@@ -18,6 +18,8 @@ Scale(root, from_=0, to=200, orient=HORIZONTAL).pack()
 mainloop()
 ```
 
+<img src="./Scale刻度/1.png">
+
 使用`get`方法可以获取当前滑块的位置：
 
 ``` python
@@ -39,6 +41,8 @@ Button(root, text="获得位置", command=show).pack()
 mainloop()
 ```
 
+<img src="./Scale刻度/2.png">
+
 可以通过`resolution`选项控制分辨率(步长)，通过`tickinterval`选项设置刻度：
 
 ``` python
@@ -53,6 +57,8 @@ Scale(root, from_=0, to=200, tickinterval=10, length=600, \
 ​
 mainloop()
 ```
+
+<img src="./Scale刻度/3.png" height="270" width="520">
 
 - `Scale(master=None, **options) (class)`：`master`是父组件；`options`是组件选项，下方表格列举了各个选项的具体含义和用法：
 
