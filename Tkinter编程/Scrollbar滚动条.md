@@ -32,31 +32,22 @@ mainloop()
 
 - `Scrollbar(master=None, **options) (class)`：`master`是父组件；`options`是组件选项，下方表格列举了各个选项的具体含义和用法：
 
-选项               | 含义
--------------------|-------
-`activebackground` | 指定当鼠标在上方飘过的时候滑块和箭头的背景颜色，默认值由系统指定
-`activerelief`     | 指定当鼠标在上方飘过的时候滑块的样式，可以选择`FLAT`、`SUNKEN`、`GROOVE`和`RIDGE`，默认值是`RAISED`
-`background`       | 指定背景颜色，默认值由系统指定
-`bg`               | 跟`background`一样
-`borderwidth`      | 指定边框宽度，默认值是`0`
-`bd`               | 跟`borderwidth`一样
-command                1、当滚动条更新时回调的函数
-                       2、通常的是指定对应组件的xview或yview方法
-cursor                 1、指定当鼠标在上方飘过的时候的鼠标样式
-                       2、默认值由系统指定
-elementborderwidth     1、指定滚动条和箭头的边框宽度
-                       2、默认值是“-1”(表示使用borderwidth选项的值)
-highlightbackground    1、指定当滚动条没有获得焦点的时候高亮边框的颜色
-                       2、默认值由系统指定
-highlightcolor         1、指定当滚动条获得焦点的时候高亮边框的颜色
-                       2、默认值由系统指定
-highlightthickness     1、指定高亮边框的宽度
-                       2、默认值是0(不带高亮边框)
-jump                   1、指定当用户拖拽滚动条时的行为
-                       2、默认值是False，滚动条的任何一丝变动都会即刻调用command选项指定的回调函数
-                       3、设置为True则当用户松开鼠标才调用
-orient                 1、指定绘制HORIZONTAL(垂直滚动条)还是VERTICAL(水平滚动条)
-                       2、默认值是VERTICAL
+选项                  | 含义
+----------------------|-------
+`activebackground`    | 指定当鼠标在上方飘过的时候滑块和箭头的背景颜色，默认值由系统指定
+`activerelief`        | 指定当鼠标在上方飘过的时候滑块的样式，可以选择`FLAT`、`SUNKEN`、`GROOVE`和`RIDGE`，默认值是`RAISED`
+`background`          | 指定背景颜色，默认值由系统指定
+`bg`                  | 跟`background`一样
+`borderwidth`         | 指定边框宽度，默认值是`0`
+`bd`                  | 跟`borderwidth`一样
+`command`             | 当滚动条更新时回调的函数，通常的是指定对应组件的`xview`或`yview`方法
+`cursor`              | 指定当鼠标在上方飘过的时候的鼠标样式，默认值由系统指定
+`elementborderwidth`  | 指定滚动条和箭头的边框宽度，默认值是`-1`(表示使用`borderwidth`选项的值)
+`highlightbackground` | 指定当滚动条没有获得焦点的时候高亮边框的颜色，默认值由系统指定
+`highlightcolor`      | 指定当滚动条获得焦点的时候高亮边框的颜色，默认值由系统指定
+`highlightthickness`  | 指定高亮边框的宽度，默认值是`0`(不带高亮边框)
+`jump`                | 指定当用户拖拽滚动条时的行为，默认值是`False`，滚动条的任何一丝变动都会即刻调用`command`选项指定的回调函数；设置为`True`则当用户松开鼠标才调用
+`orient`              | 指定绘制`HORIZONTAL`(垂直滚动条)还是`VERTICAL`(水平滚动条)，默认值是`VERTICAL`
 relief                 1、指定边框样式
                        2、默认值是SUNKEN
                        3、可以选择FLAT、RAISED、GROOVE和RIDGE
@@ -75,5 +66,5 @@ width                  1、指定滚动条的宽度
 - `delta(deltax, deltay)`：给定一个鼠标移动的范围`deltax`和`deltay`(单位为像素，`deltax`表示水平移动量，`deltay`表示垂直移动量)，然后该方法返回一个浮点类型的值(范围`-1.0`至`1.0`)。这通常在鼠标绑定上使用，用于确定当用户拖拽鼠标时滑块的如何移动。
 - `fraction(x, y)`：给定一个像素坐标`(x, y)`，该方法返回最接近给定坐标的滚动条位置(范围`0.0`至`1.0`)。
 - `get`：返回当前滑块的位置`(a, b)`。`a`值表示当前滑块的顶端或左端的位置，`b`值表示当前滑块的底端或右端的位置(范围`0.0`至`1.0`)。
-- `identify(x, y)`：返回一个字符串表示指定位置下(如果有的话)的滚动条部件。返回值可以是“arrow1”(箭头1)、“arrow2”(箭头2)、“slider”(滑块)或nothing。
-set(*args)：设置当前滚动条的位置。如果设置则需要两个参数(first, last)，first表示当前滑块的顶端或左端的位置，last表示当前滑块的底端或右端的位置(范围0.0至1.0)。
+- `identify(x, y)`：返回一个字符串表示指定位置下(如果有的话)的滚动条部件。返回值可以是`arrow1`(箭头`1`)、`arrow2`(箭头`2`)、`slider`(滑块)或`nothing`。
+- `set(*args)`：设置当前滚动条的位置。如果设置则需要两个参数`(first, last)`，`first`表示当前滑块的顶端或左端的位置，`last`表示当前滑块的底端或右端的位置(范围`0.0`至`1.0`)。
