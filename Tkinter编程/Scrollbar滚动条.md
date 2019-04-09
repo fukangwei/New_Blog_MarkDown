@@ -28,6 +28,8 @@ sb.config(command=lb.yview)
 mainloop()
 ```
 
+<img src="./Scrollbar滚动条/1.jpg">
+
 当`Listbox`组件的可视范围发生改变的时候，`Listbox`组件通过调用`set`方法通知`Scrollbar`组件。而当用户操纵滚动条的时候，将自动调用`Listbox`组件的`yview`方法。添加水平滚动条方法跟上边一样，只是将`yscrollcommand`改为`xscrollcommand`，`yview`改为`xview`即可。
 
 - `Scrollbar(master=None, **options) (class)`：`master`是父组件；`options`是组件选项，下方表格列举了各个选项的具体含义和用法：
@@ -48,21 +50,14 @@ mainloop()
 `highlightthickness`  | 指定高亮边框的宽度，默认值是`0`(不带高亮边框)
 `jump`                | 指定当用户拖拽滚动条时的行为，默认值是`False`，滚动条的任何一丝变动都会即刻调用`command`选项指定的回调函数；设置为`True`则当用户松开鼠标才调用
 `orient`              | 指定绘制`HORIZONTAL`(垂直滚动条)还是`VERTICAL`(水平滚动条)，默认值是`VERTICAL`
-relief                 1、指定边框样式
-                       2、默认值是SUNKEN
-                       3、可以选择FLAT、RAISED、GROOVE和RIDGE
-repeatdelay            1、该选项指定鼠标左键点击滚动条凹槽的响应时间
-                       2、默认值是300(毫秒)
-repeatinterval         1、该选项指定鼠标左键紧按滚动条凹槽时的响应间隔
-                       2、默认值是100(毫秒)
-takefocus              1、指定使用Tab键可以将焦点移到该Scrollbar组件上
-                       2、默认是开启的，可以将该选项设置为False，避免焦点在此组件上
-troughcolor            1、指定凹槽的颜色
-                       2、默认值由系统指定
-width                  1、指定滚动条的宽度
-                       2、默认值是16像素
+`relief`              | 指定边框样式，可以选择`FLAT`、`RAISED`、`GROOVE`和`RIDGE`，默认值是`SUNKEN`
+`repeatdelay`         | 该选项指定鼠标左键点击滚动条凹槽的响应时间，默认值是`300`毫秒
+`repeatinterval`      | 该选项指定鼠标左键紧按滚动条凹槽时的响应间隔，默认值是`100`毫秒
+`takefocus`           | 指定使用`Tab`键可以将焦点移到该`Scrollbar`组件上；默认是开启的，可以将该选项设置为`False`，避免焦点在此组件上
+`troughcolor`         | 指定凹槽的颜色，默认值由系统指定
+`width`               | 指定滚动条的宽度，默认值是`16`像素
 
-- `activate(element)`：显示element参数指定的元素的背景颜色和样式。element参数可以设置为“arrow1”(箭头1)、“arrow2”(箭头2)或“slider”(滑块)。
+- `activate(element)`：显示`element`参数指定的元素的背景颜色和样式。`element`参数可以设置为`arrow1`(箭头`1`)、`arrow2`(箭头`2`)或`slider`(滑块)。
 - `delta(deltax, deltay)`：给定一个鼠标移动的范围`deltax`和`deltay`(单位为像素，`deltax`表示水平移动量，`deltay`表示垂直移动量)，然后该方法返回一个浮点类型的值(范围`-1.0`至`1.0`)。这通常在鼠标绑定上使用，用于确定当用户拖拽鼠标时滑块的如何移动。
 - `fraction(x, y)`：给定一个像素坐标`(x, y)`，该方法返回最接近给定坐标的滚动条位置(范围`0.0`至`1.0`)。
 - `get`：返回当前滑块的位置`(a, b)`。`a`值表示当前滑块的顶端或左端的位置，`b`值表示当前滑块的底端或右端的位置(范围`0.0`至`1.0`)。
