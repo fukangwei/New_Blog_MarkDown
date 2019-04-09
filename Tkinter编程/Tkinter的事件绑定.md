@@ -3,11 +3,16 @@ title: Tkinter的事件绑定
 date: 2019-04-09 13:59:19
 tags:
 ---
-Events and Bindings
-    正如我们此前提到的，一个Tkinter应用程序大部分时间花费在事件循环中(通过mainloop方法进入)。事件可以有各种来源，包括用户触发的鼠标和键盘操作和窗口管理器触发的重绘事件(在多数情况下是由用户间接引起的)。
-    Tkinter提供一个强大的机制可以让你自由地处理事件，对于每个组件来说，你可以通过bind方法将函数或方法绑定到具体的事件上。
+&emsp;&emsp;正如我们此前提到的，一个`Tkinter`应用程序大部分时间花费在事件循环中(通过`mainloop`方法进入)。事件可以有各种来源，包括用户触发的鼠标和键盘操作和窗口管理器触发的重绘事件(在多数情况下是由用户间接引起的)。
+&emsp;&emsp;`Tkinter`提供一个强大的机制可以让你自由地处理事件，对于每个组件来说，你可以通过`bind`方法将函数或方法绑定到具体的事件上。
+
+``` python
 widget.bind(event, handler)
-当被触发的事件满足该组件绑定的事件时，Tkinter就会带着事件对象(Event)去调用handler方法。在下面的例子中，我们使用Frame组件的bind方法将鼠标点击事件(Button-1)和自定义的callback方法绑定起来。
+```
+
+当被触发的事件满足该组件绑定的事件时，`Tkinter`就会带着事件对象(`Event`)去调用`handler`方法。在下面的例子中，我们使用`Frame`组件的`bind`方法将鼠标点击事件(`Button-1`)和自定义的`callback`方法绑定起来。
+
+``` python
 # 捕获点击鼠标的位置
 from tkinter import *
 ​
@@ -21,8 +26,11 @@ frame.bind("<Button-1>", callback)
 frame.pack()
 ​
 mainloop()
+```
 
-    只有当组件获得焦点的时候才能接收键盘事件(Key)，下面的例子中，我们用focus_set获得焦点，你可以设置Frame的takefocus选项为True，然后使用Tab将焦点转移上来。
+&emsp;&emsp;只有当组件获得焦点的时候才能接收键盘事件(`Key`)，下面的例子中，我们用`focus_set`获得焦点，你可以设置`Frame`的`takefocus`选项为`True`，然后使用`Tab`将焦点转移上来。
+
+``` python
 # 捕获键盘事件
 from tkinter import *
 ​
@@ -37,8 +45,11 @@ frame.focus_set()
 frame.pack()
 ​
 mainloop()
+```
 
-    下面的例子展示捕获鼠标在组件上的运动轨迹，这里需要关注的是Motion事件：
+&emsp;&emsp;下面的例子展示捕获鼠标在组件上的运动轨迹，这里需要关注的是`Motion`事件：
+
+``` python
 from tkinter import *
 ​
 root = Tk()
@@ -51,6 +62,7 @@ frame.bind("<Motion>", callback)
 frame.pack()
 ​
 mainloop()
+```
 
 事件序列
     Tkinter使用一种称为事件序列的机制来允许用户定义事件，用户需使用bind方法将具体的事件序列与自定义的方法相绑定。事件序列是以字符串的形式表示的，可以表示一个或多个相关联的事件(如果是多个事件，那么对应的方法只有在满足所有事件的前提下才会被调用)。事件序列使用以下语法描述：
