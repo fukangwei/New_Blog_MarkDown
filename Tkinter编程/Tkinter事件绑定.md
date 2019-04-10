@@ -29,6 +29,8 @@ frame.pack()
 mainloop()
 ```
 
+<img src="./Tkinter事件绑定/1.png">
+
 &emsp;&emsp;只有当组件获得焦点的时候才能接收键盘事件(`Key`)，下面的例子中，我们用`focus_set`获得焦点，你可以设置`Frame`的`takefocus`选项为`True`，然后使用`Tab`将焦点转移上来。
 
 ``` python
@@ -47,6 +49,8 @@ frame.pack()
 ​
 mainloop()
 ```
+
+<img src="./Tkinter事件绑定/2.png">
 
 &emsp;&emsp;下面的例子展示捕获鼠标在组件上的运动轨迹，这里需要关注的是`Motion`事件：
 
