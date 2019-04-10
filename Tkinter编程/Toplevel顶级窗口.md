@@ -27,6 +27,8 @@ Button(root, text="创建顶级窗口", command=create).pack()
 mainloop()
 ```
 
+<img src="./Toplevel顶级窗口/1.png">
+
 ### 参数
 
 &emsp;&emsp;`Toplevel(master=None, **options) (class)`：`master`是父组件；`options`是组件选项，下方表格列举了各个选项的具体含义和用法：
@@ -112,15 +114,14 @@ mainloop()
 - `wm_iconname(newName=None)`：见上方`iconname`。
 - `wm_iconposition(x=None, y=None)`：见上方`iconposition`。
 - `wm_iconwindow(pathName=None)`：见上方`iconwindow`。
-
-wm_maxsize(width=None, height=None)：见上方maxsize。
-wm_minsize(width=None, height=None)：见上方minsize。
-wm_overrideredirect(boolean=None)：见上方overrideredirect。
-wm_positionfrom(who=None)：见上方positionfrom。
-wm_protocol(name=None, func=None)：见上方protocol。
-wm_resizable(width=None, height=None)：见上方resizable。
-wm_sizefrom(who=None)：见上方sizefrom。
-wm_state(newstate=None)：见上方state。
-wm_title(string=None)：见上方title。
-wm_transient(master=None)：见上方transient。
+- `wm_maxsize(width=None, height=None)`：见上方`maxsize`。
+- `wm_minsize(width=None, height=None)`：见上方`minsize`。
+- `wm_overrideredirect(boolean=None)`：见上方`overrideredirect`。
+- `wm_positionfrom(who=None)`：见上方`positionfrom`。
+- `wm_protocol(name=None, func=None)`：见上方`protocol`。
+- `wm_resizable(width=None, height=None)`：见上方`resizable`。
+- `wm_sizefrom(who=None)`：见上方`sizefrom`。
+- `wm_state(newstate=None)`：见上方`state`。
+- `wm_title(string=None)`：见上方`title`。
+- `wm_transient(master=None)`：见上方`transient`。
 - `wm_withdraw`：见上方`withdraw`。
