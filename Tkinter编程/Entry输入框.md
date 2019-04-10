@@ -23,6 +23,8 @@ e.insert(0, "默认文本...")
 mainloop()
 ```
 
+<img src="./Entry输入框/1.png">
+
 获取当前输入框的文本，可以使用`get`方法：
 
 ``` python
@@ -66,6 +68,8 @@ Button(master, text="退出", width=10, command=master.quit).grid(row=3, column=
 ​
 mainloop()
 ```
+
+<img src="./Entry输入框/2.png">
 
 &emsp;&emsp;最后需要提到的是`Entry`组件允许通过以下几种方式指定字符的位置：
 
@@ -180,6 +184,8 @@ e2.pack(padx=10, pady=10)
 mainloop()
 ```
 
+<img src="./Entry输入框/3.png">
+
 &emsp;&emsp;`invalidcommand`选项指定的函数只有在`validatecommand`的返回值为`False`的时候才被调用。下边的例子中，在第一个输入框输入`小鱿鱼`，并通过`Tab`键将焦点转移到第二个输入框，`validatecommand`指定的验证函数被触发并返回`False`，接着`invalidcommand`被触发：
 
 ``` python
@@ -209,6 +215,8 @@ e2.pack(padx=10, pady=10)
 ​
 mainloop()
 ```
+
+<img src="./Entry输入框/4.png">
 
 &emsp;&emsp;`Tkinter`有一些特殊的技能，只不过需要冷却。`Tkinter`为验证函数提供一些额外的选项：
 
@@ -250,6 +258,8 @@ e2.pack(padx=10, pady=10)
 ​
 mainloop()
 ```
+
+<img src="./Entry输入框/5.jpg">
 
 ``` python
 正确！
