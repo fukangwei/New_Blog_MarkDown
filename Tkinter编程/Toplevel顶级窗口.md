@@ -42,20 +42,15 @@ mainloop()
 `container`           | 该选项如果为`True`，意味着该窗口将被用作容器，一些其它应用程序将被嵌入，默认值是`False`
 `cursor`              | 指定当鼠标在`Toplevel`上飘过的时候的鼠标样式，默认值由系统指定
 `height`              | 设置高度
-`highlightbackground` | 指定当Toplevel没有获得焦点的时候高亮边框的颜色
-
-highlightcolor         指定当Toplevel获得焦点的时候高亮边框的颜色
-highlightthickness     指定高亮边框的宽度
-menu                   设置该选项为Toplevel窗口提供菜单栏
-padx                   水平方向上的边距
-pady                   垂直方向上的边距
-relief                 1、指定边框样式
-                       2、默认值是FLAT
-                       3、另外你还可以设置SUNKEN、RAISED、GROOVE或RIDGE
-                       4、注意，如果你要设置边框样式，记得设置borderwidth或bd选项不为0，才能看到边框
-takefocus              1、指定该组件是否接受输入焦点(用户可以通过tab键将焦点转移上来)
-                       2、默认值是False
-width                  设置宽度
+`highlightbackground` | 指定当`Toplevel`没有获得焦点的时候高亮边框的颜色
+`highlightcolor`      | 指定当`Toplevel`获得焦点的时候高亮边框的颜色
+`highlightthickness`  | 指定高亮边框的宽度
+`menu`                | 设置该选项为`Toplevel`窗口提供菜单栏
+`padx`                | 水平方向上的边距
+`pady`                | 垂直方向上的边距
+`relief`              | 指定边框样式，默认值是`FLAT`，还可以设置为`SUNKEN`、`RAISED`、`GROOVE`或`RIDGE`；注意，如果你要设置边框样式，记得设置`borderwidth`或`bd`选项不为`0`，才能看到边框
+`takefocus`           | 指定该组件是否接受输入焦点(用户可以通过`tab`键将焦点转移上来)，默认值是`False`
+`width`               | 设置宽度
 
 ### 方法
 
@@ -84,39 +79,40 @@ width                  设置宽度
 - `grid(baseWidth=None, baseHeight=None, widthInc=None, heightInc=None)`：通知窗口管理器该窗口将以网格的形式重新调整尺寸。`baseWidth`和`baseHeight`指定`Tk_GeometryRequest`要求的网格单元数，`widthInc`和`heightInc`指定网格单元的宽度和高度(像素)。
 - `group(window=None)`：将窗口添加到窗口群中。`window`参数指定控制窗口群的主窗口，如果忽略该参数，将返回当前窗口群的主窗口。
 - `iconbitmap(bitmap=None, default=None)`：设置和获取窗口的图标，例如`root.iconbitmap(bitmap="FishC.ico")`。`default`参数可以用于指定由该窗口创建的子窗口的默认图标。
-- `iconify`：将窗口图标化(最小化)。需要重新显示窗口，使用deiconify方法。该方法会使得state返回“iconic”。
-iconmask(bitmap=None)：设置和获取位图掩码。
-iconname(newName=None)：设置和获取当窗口图标化(最小化)时的图标名字。
-iconposition(x=None, y=None)：设置和获取当窗口图标化(最小化)时的图标位置。
-iconwindow(pathName=None)：设置和获取当窗口图标化(最小化)时的组件窗口，该方法会使得state返回“icon”。
-maxsize(width=None, height=None)：设置和获取该窗口的最大尺寸。
-minsize(width=None, height=None)：设置和获取该窗口的最小尺寸。
-overrideredirect(boolean=None)：如果参数为True，该窗口忽略所有的小部件(也就是说该窗口将没有传统的标题栏、边框等部件)。
-positionfrom(who=None)：指定窗口位置由“谁”决定。如果who参数是“user”，窗口位置由用户决定；如果who参数是“program”，窗口位置由系统决定。
-protocol(name=None, func=None)：将回调函数func与相应的规则name绑定。name参数可以是“WM_DELETE_WINDOW”(窗口被关闭的时候)、“WM_SAVE_YOURSELF”(窗口被保存的时候)和“WM_TAKE_FOCUS”(窗口获得焦点的时候)。
-resizable(width=None, height=None)：指定是否可以改变该窗口的尺寸。width为True说明允许调整窗口的水平尺寸，height为True说明允许调整窗口的垂直尺寸。
-sizefrom(who=None)：指定窗口尺寸由“谁”决定。如果who参数是“user”，窗口位置由用户决定；如果who参数是“program”，窗口位置由系统决定。
-state(newstate=None)：设置和获得当前窗口的状态。newstate的值可以是“normal”、“iconic”(见iconify)、“withdrawn”(见withdraw)、“icon”(见iconwindow)和“zoomed”(放大，Windows特有)。
-title(string=None)：设置窗口的标题。
-transient(master=None)：指定为master的临时窗口。
-withdraw：将窗口从屏幕上移除(并没有销毁)。需要重新显示窗口，使用deiconify方法。该方法会使得state返回“withdrawn”。
-wm_aspect(minNumer=None, minDenom=None, maxNumer=None, maxDenom=None)：见上方aspect。
-wm_attributes(*args)：见上方attributes。
-wm_client(name=None)：见上方client。
-wm_colormapwindows(*wlist)：见上方colormapwindows。
-wm_command(value=None)：见上方command。
-wm_deiconify：见上方deiconify。
-wm_focusmodel(model=None)：见上方focusmodel。
-wm_frame：见上方frame。
-wm_geometry(geometry=None)：见上方geometry。
-wm_grid(baseWidth=None, baseHeight=None, widthInc=None, heightInc=None)：见上方grid。
-wm_group(window=None)：见上方group。
-wm_iconbitmap(bitmap=None, default=None)：见上方iconbitmap。
-wm_iconify：见上方iconify。
-wm_iconmask(bitmap=None)：见上方iconmask。
-wm_iconname(newName=None)：见上方iconname。
-wm_iconposition(x=None, y=None)：见上方iconposition。
-wm_iconwindow(pathName=None)：见上方iconwindow。
+- `iconify`：将窗口图标化(最小化)。需要重新显示窗口，使用`deiconify`方法。该方法会使得`state`返回`iconic`。
+- `iconmask(bitmap=None)`：设置和获取位图掩码。
+- `iconname(newName=None)`：设置和获取当窗口图标化(最小化)时的图标名字。
+- `iconposition(x=None, y=None)`：设置和获取当窗口图标化(最小化)时的图标位置。
+- `iconwindow(pathName=None)`：设置和获取当窗口图标化(最小化)时的组件窗口，该方法会使得`state`返回`icon`。
+- `maxsize(width=None, height=None)`：设置和获取该窗口的最大尺寸。
+- `minsize(width=None, height=None)`：设置和获取该窗口的最小尺寸。
+- `overrideredirect(boolean=None)`：如果参数为`True`，该窗口忽略所有的小部件(也就是说该窗口将没有传统的标题栏、边框等部件)。
+- `positionfrom(who=None)`：指定窗口位置由`谁`决定。如果`who`参数是`user`，窗口位置由用户决定；如果`who`参数是`program`，窗口位置由系统决定。
+- `protocol(name=None, func=None)`：将回调函数`func`与相应的规则`name`绑定。`name`参数可以是`WM_DELETE_WINDOW`(窗口被关闭的时候)、`WM_SAVE_YOURSELF`(窗口被保存的时候)和`WM_TAKE_FOCUS`(窗口获得焦点的时候)。
+- `resizable(width=None, height=None)`：指定是否可以改变该窗口的尺寸。`width`为`True`说明允许调整窗口的水平尺寸，`height`为`True`说明允许调整窗口的垂直尺寸。
+- `sizefrom(who=None)`：指定窗口尺寸由`谁`决定。如果`who`参数是`user`，窗口位置由用户决定；如果`who`参数是`program`，窗口位置由系统决定。
+- `state(newstate=None)`：设置和获得当前窗口的状态。`newstate`的值可以是`normal`、`iconic`(见`iconify`)、`withdrawn`(见`withdraw`)、`icon`(见`iconwindow`)和`zoomed`(放大，`Windows`特有)。
+- `title(string=None)`：设置窗口的标题。
+- `transient(master=None)`：指定为`master`的临时窗口。
+- `withdraw`：将窗口从屏幕上移除(并没有销毁)。需要重新显示窗口，使用`deiconify`方法。该方法会使得`state`返回`withdrawn`。
+- `wm_aspect(minNumer=None, minDenom=None, maxNumer=None, maxDenom=None)`：见上方`aspect`。
+- `wm_attributes(*args)`：见上方`attributes`。
+- `wm_client(name=None)`：见上方`client`。
+- `wm_colormapwindows(*wlist)`：见上方`colormapwindows`。
+- `wm_command(value=None)`：见上方`command`。
+- `wm_deiconify`：见上方`deiconify`。
+- `wm_focusmodel(model=None)`：见上方`focusmodel`。
+- `wm_frame`：见上方`frame`。
+- `wm_geometry(geometry=None)`：见上方`geometry`。
+- `wm_grid(baseWidth=None, baseHeight=None, widthInc=None, heightInc=None)`：见上方`grid`。
+- `wm_group(window=None)`：见上方`group`。
+- `wm_iconbitmap(bitmap=None, default=None)`：见上方`iconbitmap`。
+- `wm_iconify`：见上方`iconify`。
+- `wm_iconmask(bitmap=None)`：见上方`iconmask`。
+- `wm_iconname(newName=None)`：见上方`iconname`。
+- `wm_iconposition(x=None, y=None)`：见上方`iconposition`。
+- `wm_iconwindow(pathName=None)`：见上方`iconwindow`。
+
 wm_maxsize(width=None, height=None)：见上方maxsize。
 wm_minsize(width=None, height=None)：见上方minsize。
 wm_overrideredirect(boolean=None)：见上方overrideredirect。
