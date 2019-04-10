@@ -144,19 +144,17 @@ mainloop()
 
 &emsp;&emsp;`Entry`组件是支持验证输入内容的合法性的，比如要求输入数字，你输入了字母那就是非法。实现该功能，需要通过设置`validate`、`validatecommand`和`invalidcommand`选项。首先启用验证的`开关`是`validate`选项，该选项可以设置的值有：
 
-值            含义
-------------------
-'focus'       当Entry组件获得或失去焦点的时候验证
-'focusin'     当Entry组件获得焦点的时候验证
-'focusout'    当Entry组件失去焦点的时候验证
-'key'         当输入框被编辑的时候验证
-'all'         当出现上边任何一种情况的时候验证
-'none'        1、关闭验证功能
-              2、默认设置该选项(即不启用验证)
-              3、注意，是字符串的'none'，而非None
+值         | 含义
+-----------|-------
+`focus`    | 当`Entry`组件获得或失去焦点的时候验证
+`focusin`  | 当`Entry`组件获得焦点的时候验证
+`focusout` | 当`Entry`组件失去焦点的时候验证
+`key`      | 当输入框被编辑的时候验证
+`all`      | 当出现上边任何一种情况的时候验证
+`none`     | 关闭验证功能，默认设置该选项(即不启用验证)。注意，是字符串的`none`，而非`None`
 
-其次是为validatecommand选项指定一个验证函数，该函数只能返回True或False表示验证的结果。一般情况下验证函数只需要知道输入框的内容即可，可以通过Entry组件的get方法获得该字符串。
-&emsp;&emsp;下边的例子中，在第一个输入框输入“小甲鱼”并通过Tab键将焦点转移到第二个输入框的时候，验证功能被成功触发：
+其次是为`validatecommand`选项指定一个验证函数，该函数只能返回`True`或`False`表示验证的结果。一般情况下验证函数只需要知道输入框的内容即可，可以通过`Entry`组件的`get`方法获得该字符串。
+&emsp;&emsp;下边的例子中，在第一个输入框输入`小甲鱼`并通过`Tab`键将焦点转移到第二个输入框的时候，验证功能被成功触发：
 
 ``` python
 from tkinter import *
@@ -182,7 +180,7 @@ e2.pack(padx=10, pady=10)
 mainloop()
 ```
 
-&emsp;&emsp;invalidcommand选项指定的函数只有在validatecommand的返回值为False的时候才被调用。下边的例子中，在第一个输入框输入“小鱿鱼”，并通过Tab键将焦点转移到第二个输入框，validatecommand指定的验证函数被触发并返回False，接着invalidcommand被触发：
+&emsp;&emsp;`invalidcommand`选项指定的函数只有在`validatecommand`的返回值为`False`的时候才被调用。下边的例子中，在第一个输入框输入`小鱿鱼`，并通过`Tab`键将焦点转移到第二个输入框，`validatecommand`指定的验证函数被触发并返回`False`，接着`invalidcommand`被触发：
 
 ``` python
 from tkinter import *
@@ -212,7 +210,7 @@ e2.pack(padx=10, pady=10)
 mainloop()
 ```
 
-&emsp;&emsp;Tkinter有一些特殊的技能，只不过需要冷却。Tkinter为验证函数提供一些额外的选项：
+&emsp;&emsp;`Tkinter`有一些特殊的技能，只不过需要冷却。`Tkinter`为验证函数提供一些额外的选项：
 
 额外选项 | 含义
 --------|-------
