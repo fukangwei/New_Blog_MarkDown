@@ -1,5 +1,5 @@
 ---
-title: Tkinter的事件绑定
+title: Tkinter事件绑定
 date: 2019-04-09 13:59:19
 tags:
 ---
