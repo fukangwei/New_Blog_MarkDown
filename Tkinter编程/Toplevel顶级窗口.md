@@ -3,11 +3,14 @@ title: Toplevel顶级窗口
 date: 2019-04-10 16:57:46
 tags:
 ---
-    Toplevel(顶级窗口)组件类似于Frame组件，但Toplevel组件是一个独立的顶级窗口，这种窗口通常拥有标题栏、边框等部件。
-    Toplevel组件通常用在显示额外的窗口、对话框和其他弹出窗口上。
+&emsp;&emsp;`Toplevel`(顶级窗口)组件类似于`Frame`组件，但`Toplevel`组件是一个独立的顶级窗口，这种窗口通常拥有标题栏、边框等部件。
+&emsp;&emsp;`Toplevel`组件通常用在显示额外的窗口、对话框和其他弹出窗口上。
 
-用法
-    下边例子中，我们在root窗口添加一个按钮用于创建一个顶级窗口，点一下来一个：
+### 用法
+
+&emsp;&emsp;下边例子中，我们在`root`窗口添加一个按钮用于创建一个顶级窗口，点一下来一个：
+
+``` python
 from tkinter import *
 ​
 root = Tk()
@@ -22,19 +25,20 @@ def create():
 Button(root, text="创建顶级窗口", command=create).pack()
 ​
 mainloop()
-     
+```
 
-参数
-    Toplevel(master=None, **options) (class)：master是父组件；options是组件选项，下方表格列举了各个选项的具体含义和用法：
-选项                   含义
----------------------------
-background             1、设置背景颜色
-                       2、默认值由系统指定
-                       3、为了防止更新，可以将颜色值设置为空字符串
-bg                     跟background一样
-borderwidth            设置边框宽度
-bd                     跟borderwidth一样
-class_                 默认值是Toplevel
+### 参数
+
+&emsp;&emsp;`Toplevel(master=None, **options) (class)`：`master`是父组件；`options`是组件选项，下方表格列举了各个选项的具体含义和用法：
+
+选项          | 含义
+--------------|-------------
+`background`  | 设置背景颜色，默认值由系统指定。为了防止更新，可以将颜色值设置为空字符串
+`bg`          | 跟`background`一样
+`borderwidth` | 设置边框宽度
+`bd`          | 跟`borderwidth`一样
+`class_`      | 默认值是`Toplevel`
+
 colormap               1、有些显示器只支持256色(有些可能更少)，这种显示器通常提供一个颜色映射来指定要使用要使用的256种颜色
                        2、该选项允许你指定用于该组件以及其子组件的颜色映射
                        3、默认情况下，Toplevel使用与其父组件相同的颜色映射
