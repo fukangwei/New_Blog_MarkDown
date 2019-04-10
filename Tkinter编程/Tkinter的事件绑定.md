@@ -142,11 +142,11 @@ modifier  | 含义
 
 按键名(keysym) | 按键码(keycode) | 代表的按键
 --------------|-----------------|---------------
-Alt_L             64                 左边的Alt按键
-Alt_R             113                右边的Alt按键
-BackSpace         22                 Backspace(退格)按键
-Cancel            110                break按键
-Caps_Lock         66                 CapsLock(大写字母锁定)按键
+`Alt_L`       | `64`            | 左边的`Alt`按键
+`Alt_R`       | `113`           | 右边的`Alt`按键
+`BackSpace`   | `22`            | `Backspace`(退格)按键
+`Cancel`      | `110`           | `break`按键
+`Caps_Lock`   | `66`            | `CapsLock`(大写字母锁定)按键
 Control_L         37                 左边的Ctrl按键
 Control_R         109                右边的Ctrl按键
 Delete            107                Delete按键
