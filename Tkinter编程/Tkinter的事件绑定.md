@@ -116,7 +116,7 @@ modifier  | 含义
 `Any`     | 表示任何类型的按键被按下的时候，例如`<Any-KeyPress>`表示当用户按下任何按键时触发事件
 `Control` | 当按下`Ctrl`按键的时候
 `Double`  | 当后续两个事件被连续触发的时候，例如`<Double-Button-1>`表示当用户双击鼠标左键时触发事件
-`Lock`    | 当打开大写字母锁定键(`Caps Lock`)的时候
+`Lock`    | 当打开大写字母锁定键(`CapsLock`)的时候
 `Shift`   | 当按下`Shift`按键的时候
 `Triple`  | 跟`Double`类似，当后续三个事件被连续触发的时候
 
@@ -147,27 +147,28 @@ modifier  | 含义
 `BackSpace`   | `22`            | `Backspace`(退格)按键
 `Cancel`      | `110`           | `break`按键
 `Caps_Lock`   | `66`            | `CapsLock`(大写字母锁定)按键
-Control_L         37                 左边的Ctrl按键
-Control_R         109                右边的Ctrl按键
-Delete            107                Delete按键
-Down              104                ↓按键
-End               103                End按键
-Escape            9                  Esc按键
-Execute           111                SysReq按键
-F1                67                 F1按键
-F2                68                 F2按键
-F3                69                 F3按键
-F4                70                 F4按键
-F5                71                 F5按键
-F6                72                 F6按键
-F7                73                 F7按键
-F8                74                 F8按键
-F9                75                 F9按键
-F10               76                 F10按键
-F11               77                 F11按键
-F12               96                 F12按键
-Home              97                 Home按键
-Insert            106                Insert按键
+`Control_L`   | `37`            | 左边的`Ctrl`按键
+`Control_R`   | `109`           | 右边的`Ctrl`按键
+`Delete`      | `107`           | `Delete`按键
+`Down`        | `104`           | `↓`按键
+`End`         | `103`           | `End`按键
+`Escape`      | `9`             | `Esc`按键
+`Execute`     | `111`           | `SysReq`按键
+`F1`          | `67`            | `F1`按键
+`F2`          | `68`            | `F2`按键
+`F3`          | `69`            | `F3`按键
+`F4`          | `70`            | `F4`按键
+`F5`          | `71`            | `F5`按键
+`F6`          | `72`            | `F6`按键
+`F7`          | `73`            | `F7`按键
+`F8`          | `74`            | `F8`按键
+`F9`          | `75`            | `F9`按键
+`F10`         | `76`            | `F10`按键
+`F11`         | `77`            | `F11`按键
+`F12`         | `96`            | `F12`按键
+`Home`        | `97`            | `Home`按键
+`Insert`      | `106`           | `Insert`按键
+
 Left              100                ←按键
 Linefeed          54                 Linefeed(Ctrl + J)
 KP_0              90                 小键盘数字0
