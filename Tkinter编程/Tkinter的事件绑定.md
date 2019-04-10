@@ -108,37 +108,40 @@ type            | 含义
 
 ### modifier
 
-    在事件序列中，modifier部分的内容可以是以下这些：
-modifier    含义
-----------------
-Alt         当按下Alt按键的时候
-Any         1、表示任何类型的按键被按下的时候
-            2、例如<Any-KeyPress>表示当用户按下任何按键时触发事件
-Control     当按下Ctrl按键的时候
-Double      1、当后续两个事件被连续触发的时候
-            2、例如<Double-Button-1>表示当用户双击鼠标左键时触发事件
-Lock        当打开大写字母锁定键(CapsLock)的时候
-Shift       当按下Shift按键的时候
-Triple      跟Double类似，当后续三个事件被连续触发的时候
+&emsp;&emsp;在事件序列中，`modifier`部分的内容可以是以下这些：
 
-Event对象
-    当Tkinter去回调你定义的函数的时候，都会带着Event对象(作为参数)去调用，可以使用Event对象的以下这些属性：
-属性              含义
-----------------------
-widget            产生该事件的组件
-x, y              当前的鼠标位置坐标(相对于窗口左上角，像素为单位)
-x_root, y_root    当前的鼠标位置坐标(相对于屏幕左上角，像素为单位)
-char              按键对应的字符(键盘事件专属)
-keysym            按键名，见下方“Key names”(键盘事件专属)
-keycode           按键码，见下方“Key names”(键盘事件专属)
-num               按钮数字(鼠标事件专属)
-width, height     组件的新尺寸(Configure事件专属)
-type              该事件类型
+modifier  | 含义
+----------|------
+`Alt`     | 当按下`Alt`按键的时候
+`Any`     | 表示任何类型的按键被按下的时候，例如`<Any-KeyPress>`表示当用户按下任何按键时触发事件
+`Control` | 当按下`Ctrl`按键的时候
+`Double`  | 当后续两个事件被连续触发的时候，例如`<Double-Button-1>`表示当用户双击鼠标左键时触发事件
+`Lock`    | 当打开大写字母锁定键(`Caps Lock`)的时候
+`Shift`   | 当按下`Shift`按键的时候
+`Triple`  | 跟`Double`类似，当后续三个事件被连续触发的时候
 
-“Key names”
-    当事件为Key、KeyPress和KeyRelease的时候，detail可以通过设定具体的按键名(keysym)来筛选。例如“Key-H”表示按下键盘上的大写字母“H”时候触发事件，“Key-Tab”表示按下键盘上的Tab按键的时候触发事件。下表列举了键盘所有特殊按键的keysym和keycode(下边按键码是对应美国标准101键盘的“Latin-1”字符集，键盘标准不同对应的按键码不同，但按键名是一样的)：
-按键名(keysym)    按键码(keycode)    代表的按键
------------------------------------------------
+### Event对象
+
+&emsp;&emsp;当`Tkinter`去回调你定义的函数的时候，都会带着`Event`对象(作为参数)去调用，可以使用`Event`对象的以下这些属性：
+
+属性             | 含义
+-----------------|-----
+`widget`         | 产生该事件的组件
+`x, y`           | 当前的鼠标位置坐标(相对于窗口左上角，像素为单位)
+`x_root, y_root` | 当前的鼠标位置坐标(相对于屏幕左上角，像素为单位)
+`char`           | 按键对应的字符(键盘事件专属)
+`keysym`         | 按键名，见下方`Key names`(键盘事件专属)
+`keycode`        | 按键码，见下方`Key names`(键盘事件专属)
+`num`            | 按钮数字(鼠标事件专属)
+`width, height`  | 组件的新尺寸(`Configure`事件专属)
+`type`           | 该事件类型
+
+### Key names
+
+&emsp;&emsp;当事件为`Key`、`KeyPress`和`KeyRelease`的时候，`detail`可以通过设定具体的按键名(`keysym`)来筛选。例如`Key-H`表示按下键盘上的大写字母`H`时候触发事件，`Key-Tab`表示按下键盘上的`Tab`按键的时候触发事件。下表列举了键盘所有特殊按键的`keysym`和`keycode`(下边按键码是对应美国标准`101`键盘的`Latin-1`字符集，键盘标准不同对应的按键码不同，但按键名是一样的)：
+
+按键名(keysym) | 按键码(keycode) | 代表的按键
+--------------|-----------------|---------------
 Alt_L             64                 左边的Alt按键
 Alt_R             113                右边的Alt按键
 BackSpace         22                 Backspace(退格)按键
