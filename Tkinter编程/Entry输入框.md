@@ -67,7 +67,7 @@ Button(master, text="退出", width=10, command=master.quit).grid(row=3, column=
 mainloop()
 ```
 
-&emsp;&emsp;最后需要提到的是Entry组件允许通过以下几种方式指定字符的位置：
+&emsp;&emsp;最后需要提到的是`Entry`组件允许通过以下几种方式指定字符的位置：
 
 - 数字索引号：常规的`Python`索引号，从`0`开始。
 - `ANCHOR`：对应第一个被选中的字符(如果有的话)。
@@ -79,49 +79,32 @@ mainloop()
 
 &emsp;&emsp;`Entry(master=None, **options) (class)`：`master`是父组件；`options`组件选项，下方表格列举了各个选项的具体含义和用法：
 
-选项               | 含义
--------------------|--------
-`background`       | 设置`Entry`的背景颜色，默认值由系统指定
-`bg`               | 跟`background`一样
-`borderwidth`      | 设置`Entry`的边框宽度，默认值是`1`或`2`像素
-`bd`               | 跟`borderwidth`一样
-`cursor`           | 指定当鼠标在`Entry`上飘过的时候的鼠标样式，默认值由系统指定
-`exportselection`  | 指定选中的文本是否可以被复制到剪贴板，默认值是`True`，可以修改为`False`表示不允许复制文本
-`font`             | 指定`Entry`文本的字体，默认值由系统指定
+选项                  | 含义
+----------------------|--------
+`background`          | 设置`Entry`的背景颜色，默认值由系统指定
+`bg`                  | 跟`background`一样
+`borderwidth`         | 设置`Entry`的边框宽度，默认值是`1`或`2`像素
+`bd`                  | 跟`borderwidth`一样
+`cursor`              | 指定当鼠标在`Entry`上飘过的时候的鼠标样式，默认值由系统指定
+`exportselection`     | 指定选中的文本是否可以被复制到剪贴板，默认值是`True`，可以修改为`False`表示不允许复制文本
+`font`                | 指定`Entry`文本的字体，默认值由系统指定
+`foreground`          | 设置`Entry`的文本颜色，默认值由系统指定
+`fg`                  | 跟`foreground`一样
+`highlightbackground` | 指定当`Entry`没有获得焦点的时候高亮边框的颜色，默认值由系统指定
+`highlightcolor`      | 指定当`Entry`获得焦点的时候高亮边框的颜色，默认值由系统指定
+`highlightthickness`  | 指定高亮边框的宽度，默认值是`1`或`2`像素
+`insertbackground`    | 指定输入光标的颜色
+`insertborderwidth`   | 指定输入光标的边框宽度，如果被设置为非`0`值，光标样式会被设置为`RAISED`，将`insertwidth`设置大一点才能看到效果
+`insertofftime`       | 该选项控制光标的闪烁频率(灭)，单位是毫秒
+`insertontime`        | 该选项控制光标的闪烁频率(亮)，单位是毫秒
+`insertwidth`         | 指定光标的宽度，默认值是`1`或`2`像素
+`invalidcommand`      | 指定当输入框输入的内容`非法`时调用的函数，也就是指定当`validateCommand`选项指定的函数返回`False`时的函数
+`invcmd`              | 跟`invalidcommand`一样
+`justify`             | 定义如何对齐输入框中的文本，可以使用`LEFT`、`RIGHT`或`CENTER`，默认值是`LEFT`
+`relief`              | 指定边框样式，默认值是`SUNKEN`，还可以选择`FLAT`、`RAISED`、`GROOVE`和`RIDGE`
+`selectbackground`    | 指定输入框的文本被选中时的背景颜色，默认值由系统指定
+`selectborderwidth`   | 指定输入框的文本被选中时的边框宽度(选中边框)，默认值由系统指定
 
-foreground             1、设置Entry的文本颜色
-                       2、默认值由系统指定
-fg                     跟foreground一样
-highlightbackground    1、指定当Entry没有获得焦点的时候高亮边框的颜色
-                       2、默认值由系统指定
-highlightcolor         1、指定当Entry获得焦点的时候高亮边框的颜色
-                       2、默认值由系统指定
-highlightthickness     1、指定高亮边框的宽度
-                       2、默认值是1或2像素
-insertbackground       指定输入光标的颜色
-insertborderwidth      1、指定输入光标的边框宽度
-                       2、如果被设置为非0值，光标样式会被设置为RAISED
-                       3、将insertwidth设置大一点才能看到效果
-insertofftime          1、该选项控制光标的闪烁频率(灭)
-                       2、单位是毫秒
-insertontime           1、该选项控制光标的闪烁频率(亮)
-                       2、单位是毫秒
-insertwidth            1、指定光标的宽度
-                       2、默认值是1或2像素
-invalidcommand         1、指定当输入框输入的内容“非法”时调用的函数
-                       2、也就是指定当validateCommand选项指定的函数返回False时的函数
-                       3、详见本内容最下方关于验证详解
-invcmd                 跟invalidcommand一样
-justify                1、定义如何对齐输入框中的文本
-                       2、使用LEFT、RIGHT或CENTER
-                       3、默认值是LEFT
-relief                 1、指定边框样式
-                       2、默认值是SUNKEN
-                       3、其他可以选择的值是FLAT、RAISED、GROOVE和RIDGE
-selectbackground       1、指定输入框的文本被选中时的背景颜色
-                       2、默认值由系统指定
-selectborderwidth      1、指定输入框的文本被选中时的边框宽度(选中边框)
-                       2、默认值由系统指定
 selectforeground       1、指定输入框的文本被选中时的字体颜色
                        2、默认值由系统指定
 show                   1、设置输入框如何显示文本的内容
@@ -151,8 +134,8 @@ xscrollcommand         1、与scrollbar(滚动条)组件相关联
 ### 方法
 
 - `delete(first, last=None)`：删除参数first到last范围内(包含first和last)的所有内容。如果忽略last参数，表示删除first参数指定的选项。使用delete(0, END)实现删除输入框的所有内容。
-get：获得当前输入框的内容。
-icursor(index)：将光标移动到index参数指定的位置，这同时也会设置INSERT的值。
+- `get`：获得当前输入框的内容。
+- `icursor(index)`：将光标移动到`index`参数指定的位置，这同时也会设置`INSERT`的值。
 index(index)：返回与index参数相应的选项的序号(例如e.index(END))。
 insert(index, text)：将text参数的内容插入到index参数指定的位置。使用insert(INSERT, text)将text参数指定的字符串插入到光标的位置；使用insert(END, text)将text参数指定的字符串插入到输入框的末尾。
 scan_dragto(x)：见下方scan_mark(x)。
