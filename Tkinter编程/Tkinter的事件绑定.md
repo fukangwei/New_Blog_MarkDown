@@ -168,45 +168,44 @@ modifier  | 含义
 `F12`         | `96`            | `F12`按键
 `Home`        | `97`            | `Home`按键
 `Insert`      | `106`           | `Insert`按键
-
-Left              100                ←按键
-Linefeed          54                 Linefeed(Ctrl + J)
-KP_0              90                 小键盘数字0
-KP_1              87                 小键盘数字1
-KP_2              88                 小键盘数字2
-KP_3              89                 小键盘数字3
-KP_4              83                 小键盘数字4
-KP_5              84                 小键盘数字5
-KP_6              85                 小键盘数字6
-KP_7              79                 小键盘数字7
-KP_8              80                 小键盘数字8
-KP_9              81                 小键盘数字9
-KP_Add            86                 小键盘的“+”按键
-KP_Begin          84                 小键盘的中间按键(5)
-KP_Decimal        91                 小键盘的点按键(.)
-KP_Delete         91                 小键盘的删除键
-KP_Divide         112                小键盘的“/”按键
-KP_Down           88                 小键盘的“↓”按键
-KP_End            87                 小键盘的End按键
-KP_Enter          108                小键盘的Enter按键
-KP_Home           79                 小键盘的Home按键
-KP_Insert         90                 小键盘的Insert按键
-KP_Left           83                 小键盘的“←”按键
-KP_Multiply       63                 小键盘的“*”按键
-KP_Next           89                 小键盘的PageDown按键
-KP_Prior          81                 小键盘的PageUp按键
-KP_Right          85                 小键盘的“→”按键
-KP_Subtract       82                 小键盘的“-”按键
-KP_Up             80                 小键盘的“↑”按键
-Next              105                PageDown按键
-Num_Lock          77                 NumLock(数字锁定)按键
-Pause             110                Pause(暂停)按键
-Print             111                PrintScrn(打印屏幕)按键
-Prior             99                 PageUp按键
-Return            36                 Enter(回车)按键
-Right             102                →按键
-Scroll_Lock       78                 ScrollLock按键
-Shift_L           50                 左边的Shift按键
-Shift_R           62                 右边的Shift按键
-Tab               23                 Tab(制表)按键
-Up                98                 ↑按键
+`Left`        | `100`           | `←`按键
+`Linefeed`    | `54`            | `Linefeed`(`Ctrl + J`)
+`KP_0`        | `90`            | 小键盘数字`0`
+`KP_1`        | `87`            | 小键盘数字`1`
+`KP_2`        | `88`            | 小键盘数字`2`
+`KP_3`        | `89`            | 小键盘数字`3`
+`KP_4`        | `83`            | 小键盘数字`4`
+`KP_5`        | `84`            | 小键盘数字`5`
+`KP_6`        | `85`            | 小键盘数字`6`
+`KP_7`        | `79`            | 小键盘数字`7`
+`KP_8`        | `80`            | 小键盘数字`8`
+`KP_9`        | `81`            | 小键盘数字`9`
+`KP_Add`      | `86`            | 小键盘的`+`按键
+`KP_Begin`    | `84`            | 小键盘的中间按键(`5`)
+`KP_Decimal`  | `91`            | 小键盘的点按键(`.`)
+`KP_Delete`   | `91`            | 小键盘的删除键
+`KP_Divide`   | `112`           | 小键盘的`/`按键
+`KP_Down`     | `88`            | 小键盘的`↓`按键
+`KP_End`      | `87`            | 小键盘的`End`按键
+`KP_Enter`    | `108`           | 小键盘的`Enter`按键
+`KP_Home`     | `79`            | 小键盘的`Home`按键
+`KP_Insert`   | `90`            | 小键盘的`Insert`按键
+`KP_Left`     | `83`            | 小键盘的`←`按键
+`KP_Multiply` | `63`            | 小键盘的`*`按键
+`KP_Next`     | `89`            | 小键盘的`PageDown`按键
+`KP_Prior`    | `81`            | 小键盘的`PageUp`按键
+`KP_Right`    | `85`            | 小键盘的`→`按键
+`KP_Subtract` | `82`            | 小键盘的`-`按键
+`KP_Up`       | `80`            | 小键盘的`↑`按键
+`Next`        | `105`           | `PageDown`按键
+`Num_Lock`    | `77`            | `NumLock`(数字锁定)按键
+`Pause`       | `110`           | `Pause`(暂停)按键
+`Print`       | `111`           | `PrintScrn`(打印屏幕)按键
+`Prior`       | `99`            | `PageUp`按键
+`Return`      | `36`            | `Enter`(回车)按键
+`Right`       | `102`           | `→`按键
+`Scroll_Lock` | `78`            | `ScrollLock`按键
+`Shift_L`     | `50`            | 左边的`Shift`按键
+`Shift_R`     | `62`            | 右边的`Shift`按键
+`Tab`         | `23`            | `Tab`按键
+`Up`          | `98`            | `↑`按键
