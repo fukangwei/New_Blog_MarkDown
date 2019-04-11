@@ -87,43 +87,32 @@ mainloop()
 `height`       | 设置`PanedWindow`的高度，如果忽略该选项，则高度由子组件的尺寸决定
 `opaqueresize` | 该选项定义了用户调整窗格尺寸的操作。如果该选项的值为`True`(默认)，窗格的尺寸随用户鼠标的拖拽而改变；如果该选项的值为`False`，窗格的尺寸在用户释放鼠标的时候才更新到新的位置
 `orient`       | 指定窗格的分布方式，可以是`HORIZONTAL`(横向分布)和`VERTICAL`(纵向分布)
-
-relief          1、指定边框样式
-                2、默认值是FLAT
-                3、另外你还可以设置SUNKEN、RAISED、GROOVE或RIDGE
-sashpad         设置每一条分割线到窗格间的间距
-sashrelief      1、设置分割线的样式
-                2、默认值是FLAT
-                3、另外你还可以设置SUNKEN、RAISED、GROOVE或RIDGE
-sashwidth       设置分割线的宽度
-showhandle      1、设置是否显示调节窗格的手柄
-                2、默认值为False
-width           1、设置PanedWindow的宽度
-                2、如果忽略该选项，则高度由子组件的尺寸决定
+`relief`       | 指定边框样式，默认值是`FLAT`，还可以设置为`SUNKEN`、`RAISED`、`GROOVE`或`RIDGE`
+`sashpad`      | 设置每一条分割线到窗格间的间距
+`sashrelief`   | 设置分割线的样式，默认值是`FLAT`，还可以设置为`SUNKEN`、`RAISED`、`GROOVE`或`RIDGE`
+`sashwidth`    | 设置分割线的宽度
+`showhandle`   | 设置是否显示调节窗格的手柄，默认值为`False`
+`width`        | 设置`PanedWindow`的宽度。如果忽略该选项，则高度由子组件的尺寸决定
 
 ### 方法
 
-add(child, **options)：添加一个新的子组件到窗格中，下方表格列举了各个options选项具体含义：
+- `add(child, **options)`：添加一个新的子组件到窗格中，下方表格列举了各个`options`选项具体含义：
 
-选项       含义
----------------
-after      添加新的子组件到指定子组件后边
-before     添加新的子组件到指定子组件前边
-height     指定子组件的高度
-minsize    1、该选项控制窗格不得低于的值
-           2、如果“orient = HORIZONTAL”，表示窗格的宽度不得低于该选项的值
-           3、如果“orient = VERTICAL”，表示窗格的高度不得低于该选项的值
-padx       指定子组件的水平间距
-pady       指定子组件的垂直间距
-sticky     1、当窗格的尺寸大于子组件时，该选项指定子组件位于窗格的位置
-           2、可选的值有E、S、W、N(分别代表东南西北四个方位)以及它们的组合值
-           3、例如NE表示子组件显示在右上角的位置
-width      指定子组件的宽度
+选项      | 含义
+----------|-----
+`after`   | 添加新的子组件到指定子组件后边
+`before`  | 添加新的子组件到指定子组件前边
+`height`  | 指定子组件的高度
+`minsize` | 该选项控制窗格不得低于的值。如果`orient = HORIZONTAL`，表示窗格的宽度不得低于该选项的值；如果`orient = VERTICAL`，表示窗格的高度不得低于该选项的值
+`padx`    | 指定子组件的水平间距
+`pady`    | 指定子组件的垂直间距
+`sticky`  | 当窗格的尺寸大于子组件时，该选项指定子组件位于窗格的位置。可选的值有`E`、`S`、`W`、`N`(分别代表东南西北四个方位)以及它们的组合值，例如`NE`表示子组件显示在右上角的位置
+`width`   | 指定子组件的宽度
 
-forget(child)：删除一个子组件。
-identify(x, y)：给定一个坐标(x, y)，返回该坐标所在的元素名称。如果该坐标位于子组件上，返回空字符串；如果该坐标位于分割线上，返回一个二元组(n, 'sash')，n为0表示第一个分割线；如果该坐标位于手柄上，返回一个二元组(n, 'handle')，n为0表示第一个手柄。
-panecget(child, option)：获得子组件指定选项的值。
-paneconfig(child, **options)：设置子组件的各种选项，下方表格列举了各个options选项具体含义：
+- `forget(child)`：删除一个子组件。
+- `identify(x, y)`：给定一个坐标`(x, y)`，返回该坐标所在的元素名称。如果该坐标位于子组件上，返回空字符串；如果该坐标位于分割线上，返回一个二元组`(n, 'sash')`，`n`为`0`表示第一个分割线；如果该坐标位于手柄上，返回一个二元组`(n, 'handle')`，`n`为`0`表示第一个手柄。
+- `panecget(child, option)`：获得子组件指定选项的值。
+- `paneconfig(child, **options)`：设置子组件的各种选项，下方表格列举了各个`options`选项具体含义：
 
 选项       含义
 ---------------
