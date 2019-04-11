@@ -203,11 +203,11 @@ def callback(event):
 
 ### 方法
 
-addtag(tag, method, *args)：添加一个Tag到一系列画布对象中。指定添加Tag的位置，可以是“above”、“all”、“below”、“closest”、“enclosed”、“overlapping”或“withtag”。args是附加参数，请参考下方等同的方法。
-addtag_above(tag, item)：为显示列表中item上方的画布对象添加Tag，该方法相当于addtag(tag, "above", item)，item可以是单个画布对象的ID，也可以是某个Tag。
-addtag_all(tag)：为Canvas组件中所有的画布对象添加Tag，该方法相当于addtag(tag, "all")。
-addtag_below(tag, item)：为显示列表中item下方的画布对象添加Tag，该方法相当于addtag(tag, "below", item)，item可以是单个画布对象的ID，也可以是某个Tag。
-addtag_closest(tag, x, y, halo=None, start=None)：将Tag添加到与给定坐标(x, y)相临近的画布对象。可选参数halo指定一个距离，表示以(x, y)为中心，该距离内的所有画布对象均添加Tag；可选参数start指定一个画布对象，该方法将为低于但最接近该对象的画布对象添加Tag。该方法相当于addtag(tag, "closet", x, y, halo=None, start=None)。该函数使用的是画布坐标系，如果同时由几个画布对象与给定坐标(x, y)的距离相同，则为位于显示列表上方的那个画布对象添加Tag。
+- `addtag(tag, method, *args)`：添加一个`Tag`到一系列画布对象中。指定添加`Tag`的位置，可以是`above`、`all`、`below`、`closest`、`enclosed`、`overlapping`或`withtag`。`args`是附加参数，请参考下方等同的方法。
+- `addtag_above(tag, item)`：为显示列表中`item`上方的画布对象添加`Tag`，该方法相当于`addtag(tag, "above", item)`，`item`可以是单个画布对象的`ID`，也可以是某个`Tag`。
+- `addtag_all(tag)`：为`Canvas`组件中所有的画布对象添加`Tag`，该方法相当于`addtag(tag, "all")`。
+- `addtag_below(tag, item)`：为显示列表中`item`下方的画布对象添加`Tag`，该方法相当于`addtag(tag, "below", item)`，`item`可以是单个画布对象的`ID`，也可以是某个`Tag`。
+- `addtag_closest(tag, x, y, halo=None, start=None)`：将`Tag`添加到与给定坐标`(x, y)`相临近的画布对象。可选参数`halo`指定一个距离，表示以`(x, y)`为中心，该距离内的所有画布对象均添加`Tag`；可选参数`start`指定一个画布对象，该方法将为低于但最接近该对象的画布对象添加`Tag`。该方法相当于`addtag(tag, "closet", x, y, halo=None, start=None)`。该函数使用的是画布坐标系，如果同时由几个画布对象与给定坐标`(x, y)`的距离相同，则为位于显示列表上方的那个画布对象添加Tag。
 addtag_enclosed(tag, x1, y1, x2, y2)：为所有坐标在矩形(x1, y1, x2, y2)中的画布对象添加Tag，该方法相当于addtag(tag, "enclosed", x1, y1, x2, y2)。
 addtag_overlapped(tag, x1, y1, x2, y2)：跟addtag_enclosed方法相似，不过该方法范围更广(即使画布对象只有一部分在矩形中也算)，该方法相当于addtag(tag, "overlapping", x1, y1, x2, y2)。
 addtag_withtag(tag, item)：为item参数指定的画布对象添加Tag。item参数如果指定一个Tag，则为所有拥有此Tag的画布对象添加新的Tag；item参数如果指定一个画布对象，那么只为其添加Tag。该方法相当于addtag(tag, "withtag", item)。
