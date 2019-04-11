@@ -122,59 +122,70 @@ mainloop()
 
 ### Canvas组件支持对象
 
-arc(弧形、弦或扇形)
-bitmap(内建的位图文件或XBM格式的文件)
-image(BitmapImage或PhotoImage的实例对象)
-line(线)
-oval(圆或椭圆形)
-polygon(多边形)
-rectangle(矩形)
-text(文本)
-window(组件)
+- `arc`(弧形、弦或扇形)
+- `bitmap`(内建的位图文件或`XBM`格式的文件)
+- `image`(`BitmapImage`或`PhotoImage`的实例对象)
+- `line`(线)
+- `oval`(圆或椭圆形)
+- `polygon`(多边形)
+- `rectangle`(矩形)
+- `text`(文本)
+- `window`(组件)
 
-其中，弦、扇形、椭圆形、圆形、多边形和矩形这些“封闭式”图形都是由轮廓线和填充颜色组成的，但都可以设置为透明(传入空字符串表示透明)。
+其中，弦、扇形、椭圆形、圆形、多边形和矩形这些`封闭式`图形都是由轮廓线和填充颜色组成的，但都可以设置为透明(传入空字符串表示透明)。
 
-坐标系
-    由于画布可能比窗口大(带有滚动条的Canvas组件)，因此Canvas组件可以选择使用两种坐标系：
-窗口坐标系：以窗口的左上角作为坐标原点。
-画布坐标系：以画布的左上角作为坐标原点。
-将窗口坐标系转换为画布坐标系，可以使用canvasx或canvasy方法：
+### 坐标系
+
+&emsp;&emsp;由于画布可能比窗口大(带有滚动条的`Canvas`组件)，因此`Canvas`组件可以选择使用两种坐标系：
+
+- 窗口坐标系：以窗口的左上角作为坐标原点。
+- 画布坐标系：以画布的左上角作为坐标原点。
+
+将窗口坐标系转换为画布坐标系，可以使用`canvasx`或`canvasy`方法：
+
+``` python
 def callback(event):
     canvas = event.widget
     x = canvas.canvasx(event.x)
     y = canvas.canvasy(event.y)
     print(canvas.find_closest(x, y))
+```
 
-画布对象显示的顺序
-    Canvas组件中创建的画布对象都会被列入显示列表中，越接近背景的画布对象位于显示列表的越下方。显示列表决定当两个画布对象重叠的时候是如何覆盖的(默认情况下新创建的会覆盖旧的画布对象的重叠部分，即位于显示列表上方的画布对象将覆盖下方那个)。当然，显示列表中的画布对象可以被重新排序。
+### 画布对象显示的顺序
 
-指定画布对象
-    Canvas组件提供几种方法让你指定画布对象：
-“Item handles”
-Tags
-ALL
-CURRENT
-    “Item handles”事实上是一个用于指定某个画布对象的整型数字(也成为画布对象的ID)。当你在Canvas组件上创建一个画布对象的时候，Tkinter将自动为其指定一个在该Canvas组件中独一无二的整型值。然后各种Canvas的方法可以通过这个值操纵该画布对象。
-    Tags是附在画布对象上的标签，Tags由普通的非空白字符串组成。一个画布对象可以与多个Tags相关联，一个Tag也可用于描述多个画布对象。然而，与Text组件不同，没有指定画布对象的Tags不能进行事件绑定和配置样式。也就是说，Canvas组件的Tags是仅为画布对象所拥有。
-    Canvas组件预定义了两个Tags(ALL和CURRENT)：
-ALL(或“all”)表示Canvas组件中的所有画布对象。
-CURRENT(或“current”)表示鼠标指针下的画布对象(如果有的话)。
+&emsp;&emsp;`Canvas`组件中创建的画布对象都会被列入显示列表中，越接近背景的画布对象位于显示列表的越下方。显示列表决定当两个画布对象重叠的时候是如何覆盖的(默认情况下新创建的会覆盖旧的画布对象的重叠部分，即位于显示列表上方的画布对象将覆盖下方那个)。当然，显示列表中的画布对象可以被重新排序。
 
-参数
-    Canvas(master=None, **options) (class)：master是父组件；options是组件选项，下方表格列举了各个选项的具体含义和用法：
-选项                   含义
----------------------------
-background             指定Canvas的背景颜色
-bg                     跟background一样
-borderwidth            指定Canvas的边框宽度
-bd                     跟borderwidth一样
-closeenough            1、指定一个距离，当鼠标与画布对象的距离小于该值时，鼠标被认为在画布对象上
-                       2、该选项是一个浮点类型的值
-confine                1、指定Canvas组件是否允许滚动超出scrollregion选项指定的范围
-                       2、默认值是True
-cursor                 指定当鼠标在Canvas上飘过的时候的鼠标样式
-height                 1、指定Canvas的高度
-                       2、单位是像素
+### 指定画布对象
+
+&emsp;&emsp;`Canvas`组件提供几种方法让你指定画布对象：
+
+- `Item handles`
+- `Tags`
+- `ALL`
+- `CURRENT`
+
+&emsp;&emsp;`Item handles`事实上是一个用于指定某个画布对象的整型数字(也成为画布对象的`ID`)。当你在`Canvas`组件上创建一个画布对象的时候，`Tkinter`将自动为其指定一个在该`Canvas`组件中独一无二的整型值。然后各种`Canvas`的方法可以通过这个值操纵该画布对象。
+&emsp;&emsp;`Tags`是附在画布对象上的标签，`Tags`由普通的非空白字符串组成。一个画布对象可以与多个`Tags`相关联，一个`Tag`也可用于描述多个画布对象。然而，与`Text`组件不同，没有指定画布对象的`Tags`不能进行事件绑定和配置样式。也就是说，`Canvas`组件的`Tags`是仅为画布对象所拥有。
+&emsp;&emsp;`Canvas`组件预定义了两个`Tags`(`ALL`和`CURRENT`)：
+
+- `ALL`(或`all`)表示`Canvas`组件中的所有画布对象。
+- `CURRENT`(或`current`)表示鼠标指针下的画布对象(如果有的话)。
+
+### 参数
+
+&emsp;&emsp;`Canvas(master=None, **options) (class)`：`master`是父组件；`options`是组件选项，下方表格列举了各个选项的具体含义和用法：
+
+选项                  | 含义
+----------------------|-----
+`background`          | 指定`Canvas`的背景颜色
+`bg`                  | 跟`background`一样
+`borderwidth`         | 指定`Canvas`的边框宽度
+`bd`                  | 跟`borderwidth`一样
+`closeenough`         | 指定一个距离，当鼠标与画布对象的距离小于该值时，鼠标被认为在画布对象上。该选项是一个浮点类型的值
+`confine`             | 指定`Canvas`组件是否允许滚动超出`scrollregion`选项指定的范围，默认值是`True`
+`cursor`              | 指定当鼠标在`Canvas`上飘过的时候的鼠标样式
+`height`              | 指定`Canvas`的高度，单位是像素
+
 highlightbackground    指定当Canvas没有获得焦点的时候高亮边框的颜色
 highlightcolor         指定当Canvas获得焦点的时候高亮边框的颜色
 highlightthickness     指定高亮边框的宽度
@@ -204,7 +215,8 @@ yscrollincrement       1、该选项指定Canvas垂直滚动的“步长”
                        2、例如“3c”表示3厘米，还可以选择的单位有“i”(英寸)、“m”(毫米)和“p”(DPI，大约是“1i”等于“72p”)
                        3、默认值是0，表示可以水平滚动到任意位置
 
-方法
+### 方法
+
 addtag(tag, method, *args)：添加一个Tag到一系列画布对象中。指定添加Tag的位置，可以是“above”、“all”、“below”、“closest”、“enclosed”、“overlapping”或“withtag”。args是附加参数，请参考下方等同的方法。
 addtag_above(tag, item)：为显示列表中item上方的画布对象添加Tag，该方法相当于addtag(tag, "above", item)，item可以是单个画布对象的ID，也可以是某个Tag。
 addtag_all(tag)：为Canvas组件中所有的画布对象添加Tag，该方法相当于addtag(tag, "all")。
@@ -218,6 +230,7 @@ canvasx(screenx, gridspacing=None)：将窗口坐标系的X坐标(screenx)转化
 canvasy(screeny, gridspacing=None)：将窗口坐标系的Y坐标(screenx)转化为画布坐标系。如果提供gridspacing参数，则转换结果将为该参数的整数倍。
 coords(*args)：如果仅提供一个参数(画布对象)，返回该画布对象的坐标(x1, y1, x2, y2)。你可以通过coords(item, x1, y1, x2, y2)来移动画布对象。
 create_arc(bbox, **options)：根据bbox(x1, y1, x2, y2)创建一个扇形(PIESLICE)、弓形(CHORD)或弧形(ARC)。新创建的画布对象位于显示列表的顶端，创建成功后返回该画布对象的ID。下方表格列举了各个options选项的具体含义：
+
 选项                      含义
 ------------------------------
 activedash                当画布对象状态为ACTIVE的时候，绘制虚线
@@ -259,6 +272,7 @@ style                     1、指定该方法创建的是扇形(PIESLI
 tags                      为创建的画布对象添加标签
 width                     指定边框的宽度
 create_bitmap(position, **options)：在position指定的位置(x, y)创建一个位图对象，创建成功后返回该位图对象的ID。下方表格列举了各个options选项的具体含义：
+
 选项                  含义
 --------------------------
 activebackground      指定当位图对象状态为ACTIVE时候的背景颜色
@@ -281,6 +295,7 @@ state                 1) 指定该画布对象的状态
                       3) 默认值是NORMAL
 tags                  为创建的位图对象添加标签
 create_image(position, **options)：在position指定的位置(x, y)创建一个图片对象，创建成功后返回该图片对象的ID。下方表格列举了各个options选项的具体含义：
+
 选项             含义
 ---------------------
 activeimage      指定当图片对象状态为ACTIVE时候显示的图片
@@ -294,6 +309,7 @@ state            1) 指定该图片对象的状态
                  3) 默认值是NORMAL
 tags             为创建的图片对象添加标签
 create_line(coords, **options)：根据coords给定的坐标创建一条或多条线段，如果给定的坐标多余两个点，则会首尾相连变成一条折线，创建成功后返回该画布对象的ID。下方表格列举了各个options选项的具体含义：
+
 选项               含义
 -----------------------
 activedash         当画布对象状态为ACTIVE的时候，绘制虚线
@@ -349,6 +365,7 @@ width              指定边框的宽度
 有关capstyle和joinstyle选项的图解：
 
 create_oval(bbox, **options)：根据限定矩形bbox绘制一个椭圆，新创建的画布对象位于显示列表的顶端，创建成功后返回该画布对象的ID。下方表格列举了各个options选项的具体含义：
+
 选项                      含义
 ------------------------------
 activedash                当画布对象状态为ACTIVE的时候，绘制虚线
@@ -385,6 +402,7 @@ stipple                   1、指定一个位图用于填充
 tags                      为创建的画布对象添加标签
 width                     指定边框的宽度
 create_polygon(coords, **options)：根据coords给定的坐标绘制一个多边形，新创建的画布对象位于显示列表的顶端，创建成功后返回该画布对象的ID。下方表格列举了各个options选项的具体含义：
+
 选项                      含义
 ------------------------------
 activedash                当画布对象状态为ACTIVE的时候，绘制虚线
@@ -432,6 +450,7 @@ stipple                   1、指定一个位图用于填充
 tags                      为创建的画布对象添加标签
 width                     指定边框的宽度
 create_rectangle(bbox, **options)：根据限定矩形bbox绘制一个矩形，新创建的画布对象位于显示列表的顶端，创建成功后返回该画布对象的ID。下方表格列举了各个options选项的具体含义：
+
 选项                      含义
 ------------------------------
 activedash                当画布对象状态为ACTIVE的时候，绘制虚线
@@ -468,6 +487,7 @@ stipple                   1、指定一个位图用于填充
 tags                      为创建的画布对象添加标签
 width                     指定边框的宽度
 create_text(position, **options)：在position指定的位置(x, y)创建一个文本对象，创建成功后返回该文本对象的ID。下方表格列举了各个options选项的具体含义：
+
 选项               含义
 -----------------------
 activefill         指定当文本对象状态为ACTIVE时候文本的颜色
@@ -493,6 +513,7 @@ text               指定该文本对象将要显示的文本内容
 width              1) 如果指定该选项，则文本会在该宽度处自动断行
                    2) 如果不指定该选项，文本对象的宽度等于文本最长行的长度
 create_window(position, **options)：在position指定的位置(x, y)创建一个窗口组件，创建成功后返回该窗口组件的ID。下方表格列举了各个options选项的具体含义：
+
 选项      含义
 --------------
 anchor    1) 指定位图在position参数的相对位置
@@ -505,6 +526,7 @@ state     1) 指定该图片的状态
 tags      为创建的图片对象添加标签
 width     指定窗口组件的宽度
 window    指定一个窗口组件
+
 dchars(item, from, to=None)：删除item中从from到to(包含)参数中的字符串，item可以是单个画布对象的ID，也可以是某个Tag。
 delete(item)：删除item参数指定的画布对象，如果不存在item指定的画布对象，并不会产生错误。item可以是单个画布对象的ID，也可以是某个Tag。
 dtag(item, tag=None)：在item参数指定的画布对象中删除指定的tag。如果tag参数被忽略，则删除指定画布对象所有的tags；如果不存在item指定的画布对象，并不会产生错误。item可以是单个画布对象的ID，也可以是某个Tag。
@@ -527,6 +549,7 @@ lift(item, **options)：将指定画布对象移动到显示列表的顶部。it
 lower(item, **options)：将指定画布对象移动到显示列表的底部。item可以是单个画布对象的ID，也可以是某个Tag。跟tag_lower一样。
 move(item, dx, dy)：将item移动到新位置(x, y)。item可以是单个画布对象的ID，也可以是某个Tag。
 postscript(**options)：将Canvas的当前内容封装成PostScript格式表示。下方表格列举了各个options选项的具体含义：
+
 选项         含义
 -----------------
 colormode    该选项的值可以是“color”(颜色输出)、“gray”(灰阶输出)和“mono”(黑白输出)
@@ -540,6 +563,7 @@ x            开始打印的最左边位置，以画布坐标系表示
 y            开始打印的最顶端位置，以画布坐标系表示
 width        1、指定要打印的Canvas组件的宽度
              2、默认值是Canvas组件的整体宽度
+
 scale(item, xOrigin, yOrigin, xScale, yScale)：缩放item指定的画布对象，xOrigin和yOrigin决定要缩放的位置，xScale和yScale决定缩放的比例，item可以是单个画布对象的ID，也可以是某个Tag。注意，该方法无法缩放Text画布对象。
 scan_dragto(x, y)：见下方scan_mark(x, y)。
 scan_mark(x, y)：使用这种方式来实现Canvas内容的滚动。需要将鼠标按钮事件及当前鼠标位置绑定到scan_mark(x, y)方法，然后再将motion事件及当前鼠标位置绑定到scan_dragto(x, y)方法，就可以实现Canvas在当前位置和sacn_mack(x, y)指定的位置(x, y)之间滚动。
