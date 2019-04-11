@@ -3,12 +3,12 @@ title: Canvas画布
 date: 2019-04-11 14:07:21
 tags:
 ---
-&emsp;&emsp;Canvas(画布)组件为Tkinter的图形绘制提供了基础。Canvas是一个高度灵活的组件，你可以用它绘制图形和图表，创建图形编辑器，并实现各种自定义的小部件。
-&emsp;&emsp;Canvas是一个通用的组件，通常用于显示和编辑图形。你可以用它来绘制线段、圆形、多边形，甚至是绘制其它组件。
+&emsp;&emsp;`Canvas`(画布)组件为`Tkinter`的图形绘制提供了基础。`Canvas`是一个高度灵活的组件，你可以用它绘制图形和图表，创建图形编辑器，并实现各种自定义的小部件。
+&emsp;&emsp;`Canvas`是一个通用的组件，通常用于显示和编辑图形。你可以用它来绘制线段、圆形、多边形，甚至是绘制其它组件。
 
 ### 用法
 
-&emsp;&emsp;在Canvas组件上绘制对象，可以用create_xxx的方法(xxx表示对象类型，例如线段line、矩形rectangle、文本text等)：
+&emsp;&emsp;在`Canvas`组件上绘制对象，可以用`create_xxx`的方法(`xxx`表示对象类型，例如线段`line`、矩形`rectangle`、文本`text`等)：
 
 ``` python
 from tkinter import *
@@ -25,7 +25,7 @@ w.create_rectangle(50, 25, 150, 75, fill="blue")  # 中间画一个蓝色的矩
 mainloop()
 ```
 
-添加到Canvas上的对象会一直保留直着。如果你希望修改它们，你可以使用coords、itemconfig和move方法来移动画布上的对象，或者使用delete方法来删除：
+添加到`Canvas`上的对象会一直保留直着。如果你希望修改它们，你可以使用`coords`、`itemconfig`和`move`方法来移动画布上的对象，或者使用`delete`方法来删除：
 
 ``` python
 line1 = w.create_line(0, 50, 200, 50, fill="yellow")
@@ -98,7 +98,7 @@ mainloop()
 
 &emsp;&emsp;五角星的画法如下：
 
-&emsp;&emsp;有点遗憾的是，Tkinter并没有提供画“点”的方法。不过，我们可以通过绘制一个超小的椭圆形来表示一个“点”。下边例子中，通过响应“鼠标左键按住拖动”事件(B1-Motion>)，我们在鼠标拖动的同时获取鼠标的实时位置(x, y)，并绘制一个超小的椭圆来代表一个“点”：
+&emsp;&emsp;有点遗憾的是，`Tkinter`并没有提供画`点`的方法。不过，我们可以通过绘制一个超小的椭圆形来表示一个`点`。下边例子中，通过响应`鼠标左键按住拖动`事件(`B1-Motion>`)，我们在鼠标拖动的同时获取鼠标的实时位置`(x, y)`，并绘制一个超小的椭圆来代表一个`点`：
 
 ``` python
 from tkinter import *
@@ -185,25 +185,18 @@ def callback(event):
 `confine`             | 指定`Canvas`组件是否允许滚动超出`scrollregion`选项指定的范围，默认值是`True`
 `cursor`              | 指定当鼠标在`Canvas`上飘过的时候的鼠标样式
 `height`              | 指定`Canvas`的高度，单位是像素
+`highlightbackground` | 指定当`Canvas`没有获得焦点的时候高亮边框的颜色
+`highlightcolor`      | 指定当`Canvas`获得焦点的时候高亮边框的颜色
+`highlightthickness`  | 指定高亮边框的宽度
+`relief`              | 指定`Canvas`的边框样式，默认值是`FLAT`，还可以选择`SUNKEN`、`RAISED`、`GROOVE`和`RIDGE`
+`scrollregion`        | 指定`Canvas`可以被滚动的范围，该选项的值是一个`4`元组`(x1, y1, x2, y2)`表示的矩形
+`selectbackground`    | 指定当画布对象被选中时的背景色
+`selectborderwidth`   | 指定当画布对象被选中时的边框宽度(选中边框)
+`selectforeground`    | 指定当画布对象被选中时的前景色
+`state`               | 设置`Canvas`的状态：`NORMAL`或`DISABLED`，默认值是`NORMAL`。注意，该值不会影响画布对象的状态
+`takefocus`           | 指定使用`Tab`键可以将焦点移动到输入框中，默认是开启的，可以将该选项设置为`False`避免焦点在此输入框中
+`width`               | 指定`Canvas`的宽度，单位是像素
 
-highlightbackground    指定当Canvas没有获得焦点的时候高亮边框的颜色
-highlightcolor         指定当Canvas获得焦点的时候高亮边框的颜色
-highlightthickness     指定高亮边框的宽度
-relief                 1、指定Canvas的边框样式
-                       2、默认值是FLAT
-                       3、其他可以选择的值是SUNKEN，RAISED，GROOVE和RIDGE
-scrollregion           1、指定Canvas可以被滚动的范围
-                       2、该选项的值是一个4元组(x1, y1, x2, y2)表示的矩形
-selectbackground       指定当画布对象被选中时的背景色
-selectborderwidth      指定当画布对象被选中时的边框宽度(选中边框)
-selectforeground       指定当画布对象被选中时的前景色
-state                  1、设置Canvas的状态：NORMAL或DISABLED
-                       2、默认值是NORMAL
-                       3、注意：该值不会影响画布对象的状态
-takefocus              1、指定使用Tab键可以将焦点移动到输入框中
-                       2、默认是开启的，可以将该选项设置为False避免焦点在此输入框中
-width                  1、指定Canvas的宽度
-                       2、单位是像素
 xscrollcommand         1、与scrollbar(滚动条)组件相关联(水平方向)
                        2、使用方法可以参考：Scrollbar组件
 xscrollincrement       1、该选项指定Canvas水平滚动的“步长”
