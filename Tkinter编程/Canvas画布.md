@@ -207,27 +207,26 @@ def callback(event):
 - `addtag_above(tag, item)`：为显示列表中`item`上方的画布对象添加`Tag`，该方法相当于`addtag(tag, "above", item)`，`item`可以是单个画布对象的`ID`，也可以是某个`Tag`。
 - `addtag_all(tag)`：为`Canvas`组件中所有的画布对象添加`Tag`，该方法相当于`addtag(tag, "all")`。
 - `addtag_below(tag, item)`：为显示列表中`item`下方的画布对象添加`Tag`，该方法相当于`addtag(tag, "below", item)`，`item`可以是单个画布对象的`ID`，也可以是某个`Tag`。
-- `addtag_closest(tag, x, y, halo=None, start=None)`：将`Tag`添加到与给定坐标`(x, y)`相临近的画布对象。可选参数`halo`指定一个距离，表示以`(x, y)`为中心，该距离内的所有画布对象均添加`Tag`；可选参数`start`指定一个画布对象，该方法将为低于但最接近该对象的画布对象添加`Tag`。该方法相当于`addtag(tag, "closet", x, y, halo=None, start=None)`。该函数使用的是画布坐标系，如果同时由几个画布对象与给定坐标`(x, y)`的距离相同，则为位于显示列表上方的那个画布对象添加Tag。
-addtag_enclosed(tag, x1, y1, x2, y2)：为所有坐标在矩形(x1, y1, x2, y2)中的画布对象添加Tag，该方法相当于addtag(tag, "enclosed", x1, y1, x2, y2)。
-addtag_overlapped(tag, x1, y1, x2, y2)：跟addtag_enclosed方法相似，不过该方法范围更广(即使画布对象只有一部分在矩形中也算)，该方法相当于addtag(tag, "overlapping", x1, y1, x2, y2)。
-addtag_withtag(tag, item)：为item参数指定的画布对象添加Tag。item参数如果指定一个Tag，则为所有拥有此Tag的画布对象添加新的Tag；item参数如果指定一个画布对象，那么只为其添加Tag。该方法相当于addtag(tag, "withtag", item)。
-bbox(*args)：返回一个四元组(x1, y1, x2, y2)，用于描述args指定的画布对象所在的矩形范围。如果args参数忽略，返回所有的画布对象所在的矩形范围。
-canvasx(screenx, gridspacing=None)：将窗口坐标系的X坐标(screenx)转化为画布坐标系。如果提供gridspacing参数，则转换结果将为该参数的整数倍。
-canvasy(screeny, gridspacing=None)：将窗口坐标系的Y坐标(screenx)转化为画布坐标系。如果提供gridspacing参数，则转换结果将为该参数的整数倍。
-coords(*args)：如果仅提供一个参数(画布对象)，返回该画布对象的坐标(x1, y1, x2, y2)。你可以通过coords(item, x1, y1, x2, y2)来移动画布对象。
-create_arc(bbox, **options)：根据bbox(x1, y1, x2, y2)创建一个扇形(PIESLICE)、弓形(CHORD)或弧形(ARC)。新创建的画布对象位于显示列表的顶端，创建成功后返回该画布对象的ID。下方表格列举了各个options选项的具体含义：
+- `addtag_closest(tag, x, y, halo=None, start=None)`：将`Tag`添加到与给定坐标`(x, y)`相临近的画布对象。可选参数`halo`指定一个距离，表示以`(x, y)`为中心，该距离内的所有画布对象均添加`Tag`；可选参数`start`指定一个画布对象，该方法将为低于但最接近该对象的画布对象添加`Tag`。该方法相当于`addtag(tag, "closet", x, y, halo=None, start=None)`。该函数使用的是画布坐标系，如果同时由几个画布对象与给定坐标`(x, y)`的距离相同，则为位于显示列表上方的那个画布对象添加`Tag`。
+- `addtag_enclosed(tag, x1, y1, x2, y2)`：为所有坐标在矩形`(x1, y1, x2, y2)`中的画布对象添加`Tag`，该方法相当于`addtag(tag, "enclosed", x1, y1, x2, y2)`。
+- `addtag_overlapped(tag, x1, y1, x2, y2)`：跟`addtag_enclosed`方法相似，不过该方法范围更广(即使画布对象只有一部分在矩形中也算)，该方法相当于`addtag(tag, "overlapping", x1, y1, x2, y2)`。
+- `addtag_withtag(tag, item)`：为`item`参数指定的画布对象添加`Tag`。`item`参数如果指定一个`Tag`，则为所有拥有此`Tag`的画布对象添加新的`Tag`；`item`参数如果指定一个画布对象，那么只为其添加`Tag`。该方法相当于`addtag(tag, "withtag", item)`。
+- `bbox(*args)`：返回一个四元组`(x1, y1, x2, y2)`，用于描述`args`指定的画布对象所在的矩形范围。如果`args`参数忽略，返回所有的画布对象所在的矩形范围。
+- `canvasx(screenx, gridspacing=None)`：将窗口坐标系的`X`坐标(`screenx`)转化为画布坐标系。如果提供`gridspacing`参数，则转换结果将为该参数的整数倍。
+- `canvasy(screeny, gridspacing=None)`：将窗口坐标系的`Y`坐标(`screeny`)转化为画布坐标系。如果提供`gridspacing`参数，则转换结果将为该参数的整数倍。
+- `coords(*args)`：如果仅提供一个参数(画布对象)，返回该画布对象的坐标`(x1, y1, x2, y2)`。你可以通过`coords(item, x1, y1, x2, y2)`来移动画布对象。
+- `create_arc(bbox, **options)`：根据`bbox(x1, y1, x2, y2)`创建一个扇形(`PIESLICE`)、弓形(`CHORD`)或弧形(`ARC`)。新创建的画布对象位于显示列表的顶端，创建成功后返回该画布对象的`ID`。下方表格列举了各个`options`选项的具体含义：
 
-选项                      含义
-------------------------------
-activedash                当画布对象状态为ACTIVE的时候，绘制虚线
-activefill                当画布对象状态为ACTIVE的时候，填充颜色
-activeoutline             当画布对象状态为ACTIVE的时候，绘制轮廓线
-activeoutlinestipple      当画布对象状态为ACTIVE的时候，指定填充轮廓的位图
-activestipple             当画布对象状态为ACTIVE的时候，指定填充的位图
-activewidth               当画布对象状态为ACTIVE的时候，指定边框的宽度
-dash                      1、指定绘制虚线轮廓
-                          2、该选项值是一个整数元组，元组中的元素分别代表短线的长度和间隔
-                          3、例如(3, 5)代表3个像素的短线和5个像素的间隔
+选项                    | 含义
+------------------------|------
+`activedash`            | 当画布对象状态为`ACTIVE`的时候，绘制虚线
+`activefill`            | 当画布对象状态为`ACTIVE`的时候，填充颜色
+`activeoutline`         | 当画布对象状态为`ACTIVE`的时候，绘制轮廓线
+`activeoutlinestipple`  | 当画布对象状态为`ACTIVE`的时候，指定填充轮廓的位图
+`activestipple`         | 当画布对象状态为`ACTIVE`的时候，指定填充的位图
+`activewidth`           | 当画布对象状态为`ACTIVE`的时候，指定边框的宽度
+`dash`                  | 指定绘制虚线轮廓，该选项值是一个整数元组，元组中的元素分别代表短线的长度和间隔。例如`(3, 5)`代表`3`个像素的短线和`5`个像素的间隔
+
 dashoffset                1、指定虚线轮廓开始的偏移位置
                           2、例如当“dash=(5, 1, 2, 1)”，“dashoffset=3”，则从2开始画虚线
 disableddash              当画布对象状态为DISABLE的时候，绘制虚线
@@ -257,6 +256,7 @@ style                     1、指定该方法创建的是扇形(PIESLI
                           2、默认创建的是扇形
 tags                      为创建的画布对象添加标签
 width                     指定边框的宽度
+
 create_bitmap(position, **options)：在position指定的位置(x, y)创建一个位图对象，创建成功后返回该位图对象的ID。下方表格列举了各个options选项的具体含义：
 
 选项                  含义
