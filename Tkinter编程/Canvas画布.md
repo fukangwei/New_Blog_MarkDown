@@ -467,10 +467,9 @@ def callback(event):
 - `tag_unbind(item, event, callback=None)`：解除与`item`绑定的事件。`item`可以是单个画布对象的`ID`，也可以是某个`Tag`。
 - `tkraise(item, **options)`：将指定画布对象移动到显示列表的顶部。`item`可以是单个画布对象的`ID`，也可以是某个`Tag`。和`tag_raise`一样。
 - `type(item)`：返回指定画布对象的类型。返回值可以是`arc`、`bitmap`、`image`、`line`、`oval`、`polygon`、`rectangle`、`text`或`window`。
-
-xview(*args)：该方法用于在水平方向上滚动Canvas组件的内容，一般通过绑定Scollbar组件的command选项来实现(具体操作参考Scrollbar)。如果第一个参数是MOVETO，则第二个参数表示滚动到指定的位置：0.0表示最左端，1.0表示最右端；如果第一个参数是SCROLL，则第二个参数表示滚动的数量，第三个参数表示滚动的单位(可以是UNITS或PAGES)，例如xview(SCROLL, 3, UNITS)表示向右滚动三行。
-xview_moveto(fraction)：和xview(MOVETO, fraction)一样。
-xview_scroll(number, what)：和xview(SCROLL, number, what)一样。
-yview(*args)：该方法用于在垂直方向上滚动Canvas组件的内容，一般通过绑定Scollbar组件的command选项来实现(具体操作参考Scrollbar)。如果第一个参数是MOVETO，则第二个参数表示滚动到指定的位置：0.0表示最顶端，1.0表示最底端；如果第一个参数是SCROLL，则第二个参数表示滚动的数量，第三个参数表示滚动的单位(可以是UNITS或PAGES)，例如yview(SCROLL, 3, PAGES)表示向下滚动三页。
-yview_moveto(fraction)：和yview(MOVETO, fraction)一样。
-yview_scroll(number, what)：和yview(SCROLL, number, what)一样。
+- `xview(*args)`：该方法用于在水平方向上滚动`Canvas`组件的内容，一般通过绑定`Scollbar`组件的`command`选项来实现(具体操作参考`Scrollbar`)。如果第一个参数是`MOVETO`，则第二个参数表示滚动到指定的位置：`0.0`表示最左端，`1.0`表示最右端；如果第一个参数是`SCROLL`，则第二个参数表示滚动的数量，第三个参数表示滚动的单位(可以是`UNITS`或`PAGES`)，例如`xview(SCROLL, 3, UNITS)`表示向右滚动三行。
+- `xview_moveto(fraction)`：和`xview(MOVETO, fraction)`一样。
+- `xview_scroll(number, what)`：和`xview(SCROLL, number, what)`一样。
+- `yview(*args)`：该方法用于在垂直方向上滚动`Canvas`组件的内容，一般通过绑定`Scollbar`组件的`command`选项来实现(具体操作参考`Scrollbar`)。如果第一个参数是`MOVETO`，则第二个参数表示滚动到指定的位置：`0.0`表示最顶端，`1.0`表示最底端；如果第一个参数是`SCROLL`，则第二个参数表示滚动的数量，第三个参数表示滚动的单位(可以是`UNITS`或`PAGES`)，例如`yview(SCROLL, 3, PAGES)`表示向下滚动三页。
+- `yview_moveto(fraction)`：和`yview(MOVETO, fraction)`一样。
+- `yview_scroll(number, what)`：和`yview(SCROLL, number, what)`一样。
