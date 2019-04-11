@@ -26,6 +26,8 @@ m.add(bottom)
 mainloop()
 ```
 
+<img src="./PanedWindow空间管理/1.jpg">
+
 创建一个`3`窗格的`PanedWindow`组件则需要一点小技巧：
 
 ``` python
@@ -46,8 +48,10 @@ m2.add(top)
 bottom = Label(m2, text="bottom pane")
 m2.add(bottom)
 ​
-mainloop()l
+mainloop()
 ```
+
+<img src="./PanedWindow空间管理/2.jpg">
 
 这里不同窗格事实上是有一条`分割线`(`sash`)隔开，虽然看不到，但是却可以感受到它的存在。也可以把`分割线`给显式地显示出来，并且可以为它附上一个`手柄`(`handle`)：
 
@@ -71,6 +75,8 @@ m2.add(bottom)
 ​
 mainloop()
 ```
+
+<img src="./PanedWindow空间管理/3.jpg">
 
 ### 参数
 
