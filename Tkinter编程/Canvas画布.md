@@ -196,17 +196,10 @@ def callback(event):
 `state`               | 设置`Canvas`的状态：`NORMAL`或`DISABLED`，默认值是`NORMAL`。注意，该值不会影响画布对象的状态
 `takefocus`           | 指定使用`Tab`键可以将焦点移动到输入框中，默认是开启的，可以将该选项设置为`False`避免焦点在此输入框中
 `width`               | 指定`Canvas`的宽度，单位是像素
-
-xscrollcommand         1、与scrollbar(滚动条)组件相关联(水平方向)
-                       2、使用方法可以参考：Scrollbar组件
-xscrollincrement       1、该选项指定Canvas水平滚动的“步长”
-                       2、例如“3c”表示3厘米，还可以选择的单位有“i”(英寸)、“m”(毫米)和“p”(DPI，大约是“1i”等于“72p”)
-                       3、默认值是0，表示可以水平滚动到任意位置
-yscrollcommand         1、与scrollbar(滚动条)组件相关联(垂直方向)
-                       2、使用方法可以参考：Scrollbar组件
-yscrollincrement       1、该选项指定Canvas垂直滚动的“步长”
-                       2、例如“3c”表示3厘米，还可以选择的单位有“i”(英寸)、“m”(毫米)和“p”(DPI，大约是“1i”等于“72p”)
-                       3、默认值是0，表示可以水平滚动到任意位置
+`xscrollcommand`      | 与`scrollbar`(滚动条)组件相关联(水平方向)，使用方法可以参考`Scrollbar`组件
+`xscrollincrement`    | 该选项指定`Canvas`水平滚动的`步长`。例如`3c`表示`3`厘米，还可以选择的单位有`i`(英寸)、`m`(毫米)和`p`(`DPI`，`1i`约等于`72p`)。默认值是`0`，表示可以水平滚动到任意位置
+`yscrollcommand`      | 与`scrollbar`(滚动条)组件相关联(垂直方向)，使用方法可以参考`Scrollbar`组件
+`yscrollincrement`    | 该选项指定`Canvas`垂直滚动的`步长`，例如`3c`表示`3`厘米，还可以选择的单位有`i`(英寸)、`m`(毫米)和`p`(`DPI`，`1i`约等于`72p`)。默认值是`0`，表示可以水平滚动到任意位置
 
 ### 方法
 
