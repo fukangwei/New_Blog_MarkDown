@@ -25,7 +25,7 @@ tags:
 
 ### 参数
 
-&emsp;&emsp;所有的这些函数都有相同的参数：title参数是设置标题栏的文本；message参数是设置对话框的主要文本内容，你可以用“\n”来实现换行；options参数可以设置的选项和含义如下：
+&emsp;&emsp;所有的这些函数都有相同的参数：`title`参数是设置标题栏的文本；`message`参数是设置对话框的主要文本内容，你可以用`\n`来实现换行；`options`参数可以设置的选项和含义如下：
 
 选项      | 含义
 ----------|-----
@@ -40,11 +40,11 @@ tags:
 - 返回`True`表示用户点击了`确定`或`是`按钮。
 - 返回`False`表示用户点击了`取消`或`否`按钮。
 
-askquestion返回“yes”或“no”字符串表示用户点击了“是”或“否”按钮；showerror、showinfo和showwarning返回“ok”表示用户按下了“是”按钮。
+`askquestion`返回`yes`或`no`字符串表示用户点击了`是`或`否`按钮；`showerror`、`showinfo`和`showwarning`返回`ok`表示用户按下了`是`按钮。
 
 ### filedialog(文件对话框)
 
-    当你的应用程序需要使用打开文件或保存文件的功能时，文件对话框显得尤为重要：
+&emsp;&emsp;当你的应用程序需要使用打开文件或保存文件的功能时，文件对话框显得尤为重要：
 
 ``` python
 from tkinter import *
@@ -60,25 +60,19 @@ Button(root, text="打开文件", command=callback).pack()
 mainloop()
 ```
 
-filedialog模块提供了两个函数：askopenfilename(**option)和asksaveasfilename(**option)，分别用于打开文件和保存文件。
+`filedialog`模块提供了两个函数：`askopenfilename(**option)`和`asksaveasfilename(**option)`，分别用于打开文件和保存文件。
 
 ### 参数
 
 &emsp;&emsp;两个函数可供设置的选项是一样的，下边列举了可用的选项及含义：
 
-选项                含义
-------------------------
-defaultextension    1、指定文件的后缀
-                    2、例如“defaultextension=".jpg"”，那么当用户输入一个文件名“FishC”的时候，文件名会自动添加后缀为“FishC.jpg”
-                    3、注意，如果用户输入文件名包含后缀，那么该选项不生效
-filetypes           1、指定筛选文件类型的下拉菜单选项
-                    2、该选项的值是由2元祖构成的列表
-                    3、每个2元祖由(类型名，后缀)构成，例如“filetypes=[("PNG", ".png"), ("JPG", ".jpg"), ("GIF", ".gif")]”
-initialdir          1、指定打开/保存文件的默认路径
-                    2、默认路径是当前文件夹
-parent              1、如果不指定该选项，那么对话框默认显示在根窗口上
-                    2、如果想要将对话框显示在子窗口w上，那么可以设置“parent=w”
-title               指定文件对话框的标题栏文本
+选项               | 含义
+-------------------|-----
+`defaultextension` | 指定文件的后缀，例如`defaultextension=".jpg"`，那么当用户输入一个文件名`FishC`的时候，文件名会自动添加后缀为`FishC.jpg`。注意，如果用户输入文件名包含后缀，那么该选项不生效
+`filetypes`        | 指定筛选文件类型的下拉菜单选项，该选项的值是由`2`元祖构成的列表。每个`2`元祖由`(类型名, 后缀)`构成，例如`filetypes=[("PNG", ".png"), ("JPG", ".jpg"), ("GIF", ".gif")]`
+`initialdir`       | 指定打开/保存文件的默认路径，默认路径是当前文件夹
+`parent`           | 如果不指定该选项，那么对话框默认显示在根窗口上；如果想要将对话框显示在子窗口`w`上，那么可以设置`parent=w`
+`title`            | 指定文件对话框的标题栏文本
 
 ### 返回值
 
