@@ -117,7 +117,7 @@ Button(root, text="检查", command=check).pack()
 mainloop()
 ```
 
-index方法用于将所有支持的“索引”格式(请参考下方“Indexes用法”)转换为“行.列”格式的索引号：
+`index`方法用于将所有支持的`索引`格式转换为`行.列`格式的索引号：
 
 ``` python
 print(text.index(INSERT))
@@ -125,7 +125,7 @@ text.insert(INSERT, "You are good!")
 print(text.index(INSERT))
 ```
 
-如果你需要跟踪一个位置，那么你可以将该位置“标记”下来(请参考下方“Marks用法”)：
+如果你需要跟踪一个位置，那么你可以将该位置`标记`下来：
 
 ``` python
 text.insert(INSERT, "You are good!")
@@ -133,7 +133,7 @@ text.mark_set("here", '1.8')
 text.insert("here", "very ")
 ```
 
-使用search方法可以搜索Text组件中的内容。你可以提供一个确切的目标进行搜索(默认)，也可以使用Tcl格式的正则表达式进行搜索(需设置regexp选项为True)：
+使用`search`方法可以搜索`Text`组件中的内容。你可以提供一个确切的目标进行搜索(默认)，也可以使用`Tcl`格式的正则表达式进行搜索(需设置`regexp`选项为`True`)：
 
 ``` python
 from tkinter import *
@@ -160,14 +160,14 @@ while True:
 mainloop()
 ```
 
-如果忽略stopindex选项，表示直到文本的末尾结束搜索。设置backwards选项为True，则是修改搜索的方向(变为向后搜索，那么start变量你应该设置为END，stopindex选项设置为1.0，最后“+1c”改为“-1c”)。
+如果忽略`stopindex`选项，表示直到文本的末尾结束搜索。设置`backwards`选项为`True`，则是修改搜索的方向(变为向后搜索，那么`start`变量你应该设置为`END`，`stopindex`选项设置为`1.0`，最后`+1c`改为`-1c`)。
 
 ### “恢复”和“撤销”操作  
 
-    通过设置undo选项为True可以开启Text组件的“撤销”功能。然后用edit_undo方法实现“撤销”操作，用edit_redo方法实现“恢复”操作。这是因为Text组件内部有一个栈专门用于记录内容的每次变动，所以每次“撤销”操作就是一次弹栈操作，“恢复”就是再次压栈。
+&emsp;&emsp;通过设置`undo`选项为`True`可以开启`Text`组件的`撤销`功能。然后用`edit_undo`方法实现`撤销`操作，用`edit_redo`方法实现`恢复`操作。这是因为`Text`组件内部有一个栈专门用于记录内容的每次变动，所以每次`撤销`操作就是一次弹栈操作，`恢复`就是再次压栈。
 
-    默认情况下，每一次完整的操作将会放入栈中。但怎么样算是一次完整的操作呢？Tkinter觉得每次焦点切换、用户按下Enter键、删除/插入操作的转换等之前的操作算是一次完整的操作。也就是说你连续输入“FishC 是个P”的话，一次的“撤销”操作就会将所有的内容删除。
-    那我们能不能自定义呢？比如我希望插入一个字符就算一次完整的操作，然后每次点击“撤销”就去掉一个字符。当然可以！做法就是先将autoseparators选项设置为False(因为这个选项是让Tkinter在认为一次完整的操作结束后自动插入“分隔符”)，然后绑定键盘事件，每次有输入就用edit_separator方法人为地插入一个“分隔符”：
+&emsp;&emsp;默认情况下，每一次完整的操作将会放入栈中。但怎么样算是一次完整的操作呢？`Tkinter`觉得每次焦点切换、用户按下`Enter`键、删除/插入操作的转换等之前的操作算是一次完整的操作。也就是说你连续输入`FishC 是个P`的话，一次的`撤销`操作就会将所有的内容删除。
+&emsp;&emsp;那我们能不能自定义呢？比如我希望插入一个字符就算一次完整的操作，然后每次点击`撤销`就去掉一个字符。当然可以！做法就是先将`autoseparators`选项设置为`False`(因为这个选项是让`Tkinter`在认为一次完整的操作结束后自动插入`分隔符`)，然后绑定键盘事件，每次有输入就用`edit_separator`方法人为地插入一个`分隔符`：
 
 ``` python
 from tkinter import *
@@ -192,13 +192,15 @@ Button(root, text="撤销", command=show).pack()
 mainloop()
 ```
 
-Indexes用法
-    Indexes(索引)是用来指向Text组件中文本的位置，跟Python的序列索引一样，Text组件索引也是对应实际字符之间的位置。Tkinter提供一系列不同的索引类型：
-“line.column”(行/列)
-“line.end”(某一行的末尾)
-INSERT
-CURRENT
-END
+### Indexes用法
+
+&emsp;&emsp;`Indexes`(索引)是用来指向`Text`组件中文本的位置，跟Python的序列索引一样，Text组件索引也是对应实际字符之间的位置。Tkinter提供一系列不同的索引类型：
+
+- `line.column`(行/列)
+- `line.end`(某一行的末尾)
+- `INSERT`
+- `CURRENT`
+- `END`
 user-defined marks
 user-defined tags("tag.first", "tag.last")
 selection(SEL_FIRST, SEL_LAST)
