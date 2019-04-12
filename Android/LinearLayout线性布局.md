@@ -5,6 +5,8 @@ tags:
 ---
 &emsp;&emsp;`LinearLayout`如下：
 
+<img src="./LinearLayout线性布局/1.png" height="284" width="460">
+
 &emsp;&emsp;`weight`(权重)属性详解：
 
 ``` xml
@@ -30,11 +32,15 @@ tags:
 </LinearLayout>  
 ```
 
+<img src="./LinearLayout线性布局/2.png" height="295" width="211">
+
 要实现`1:1`的效果，只需要分别把两个`LinearLayout`的`weight`改成`1`和`1`就可以了。按比例划分水平方向：将涉及到的`View`的`android:width`属性设置为`0dp`，然后设置为`android weight`属性设置比例即可；竖直方向：只需设`android:height`为`0dp`，然后设置`weight`属性即可。
 
 ### 为LinearLayout设置分割线
 
 &emsp;&emsp;很多界面开发中都会设置一些下划线或者分割线，从而使得界面更加整洁美观，比如下面的酷狗音乐的注册页面：
+
+<img src="./LinearLayout线性布局/3.png" height="273" width="250">
 
 对于这种线，我们通常有两种做法：
 
@@ -82,3 +88,5 @@ tags:
 ​
 </LinearLayout>
 ```
+
+<img src="./LinearLayout线性布局/4.png">
