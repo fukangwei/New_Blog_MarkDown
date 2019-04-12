@@ -4,6 +4,9 @@ date: 2019-04-12 13:57:39
 tags:
 ---
 &emsp;&emsp;`GridLayout`可以自己设置布局中组件的排列方式；可以自定义网格布局有多少行、多少列；可以直接设置组件位于某行某列；可以设置组件横跨几行或者几列。相关属性总结图如下：
+<!--more-->
+
+<img src="./GridLayout网格布局/1.png" height="265" width="654">
 
 &emsp;&emsp;计算器布局的实现如下：
 
@@ -60,7 +63,9 @@ tags:
 </GridLayout>
 ```
 
-&emsp;&emsp;代码很简单，只是“回退”与“清空”按钮横跨两列，而其他的都是直接添加的，默认每个组件都是占一行一列。另外还有一点要注意，我们通过android:layout_rowSpan与android:layout_columnSpan设置了组件横跨多行或者多列，如果你要让组件填满横越过的行或列的话(就像这个计算机显示数字的部分)，需要添加下面这个属性：
+<img src="./GridLayout网格布局/2.png" height="250" width="289">
+
+&emsp;&emsp;代码很简单，只是`回退`与`清空`按钮横跨两列，而其他的都是直接添加的，默认每个组件都是占一行一列。另外还有一点要注意，我们通过`android:layout_rowSpan`与`android:layout_columnSpan`设置了组件横跨多行或者多列，如果你要让组件填满横越过的行或列的话(就像这个计算机显示数字的部分)，需要添加下面这个属性：
 
 ``` xml
 android:layout_gravity = "fill"
