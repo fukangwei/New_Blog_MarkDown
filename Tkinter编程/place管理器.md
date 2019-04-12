@@ -5,6 +5,7 @@ tags:
 ---
 &emsp;&emsp;`pack`、`grid`和`place`均用于管理同在一个父组件下的所有组件的布局：`pack`是按添加顺序排列组件；`grid`是按行/列形式排列组件；`place`则允许程序员指定组件的大小和位置。
 &emsp;&emsp;通常情况下不建议使用`place`布局管理器，因为对比起`pack`和`grid`，`place`要做更多的工作。但是，`place`在一些特殊的情况下可以发挥妙用。
+<!--more-->
 
 ### 用法
 
@@ -23,6 +24,8 @@ Button(root, text="点我", command=callback).place(relx=0.5, rely=0.5, anchor=C
 mainloop()
 ```
 
+<img src="./place管理器/1.jpg">
+
 在某种情况下，或许你希望一个组件可以覆盖另一个组件，那么`place`又可以派上用场了。下面的例子演示用`Button`覆盖`Label`组件：
 
 ``` python
@@ -31,6 +34,8 @@ Label(root, image=photo).pack()
 Button(root, text="点我", command=callback).place(relx=0.5, rely=0.5, anchor=CENTER)
 ```
 
+<img src="./place管理器/2.png" height="256" width="232">
+
 `relx`和`rely`选项指定的是相对于父组件的位置，范围是`0.0`至`1.0`，因此`0.5`表示位于正中间。那么`relwidth`和`relheight`选项则是指定相对于父组件的尺寸：
 
 ``` python
@@ -38,6 +43,8 @@ Label(root, bg="red").place(relx=0.5, rely=0.5, relheight=0.75, relwidth=0.75, a
 Label(root, bg="yellow").place(relx=0.5, rely=0.5, relheight=0.5, relwidth=0.5, anchor=CENTER)
 Label(root, bg="green").place(relx=0.5, rely=0.5, relheight=0.25, relwidth=0.25, anchor=CENTER)
 ```
+
+<img src="./place管理器/3.jpg">
 
 无论你如何拉伸上面的窗口，三个`Label`的尺寸均会跟着改变。`x`和`y`选项用于设置偏移(像素)，如果同时设置`relx(rely)`和`x(y)`，那么`place`将优先计算`relx`和`rely`，然后再实现`x`和`y`指定的偏移值。
 
