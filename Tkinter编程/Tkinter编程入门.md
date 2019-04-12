@@ -23,6 +23,7 @@ root = tk.Tk()
 app = APP(root)
 root.mainloop()
 ```
+<!--more-->
 
 <img src="./Tkinter编程入门/1.jpg">
 
