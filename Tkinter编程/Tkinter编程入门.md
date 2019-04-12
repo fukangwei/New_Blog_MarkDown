@@ -64,7 +64,10 @@ theLabel.pack()
 mainloop()
 ```
 
-from tkinter import *  # 导入tkinter模块的所有内容
+&emsp;&emsp;代码如下：
+
+``` python
+from tkinter import *
 ​
 def callback():
     var.set("吹吧你，我才不信呢~")
@@ -95,7 +98,11 @@ frame1.pack(padx=10, pady=10)
 frame2.pack(padx=10, pady=10)
 ​
 mainloop()
+```
 
+&emsp;&emsp;代码如下：
+
+``` python
 from tkinter import *
 ​
 root = Tk()
@@ -111,7 +118,11 @@ l = Label(root, textvariable=v)
 l.pack()
 ​
 mainloop()
+```
 
+&emsp;&emsp;代码如下：
+
+``` python
 from tkinter import *
 ​
 root = Tk()
@@ -126,9 +137,13 @@ for girl in GIRLS:
     b.pack(anchor=W)  # anchor表示方向
 ​
 mainloop()
+```
 
-显示屏的方向图如下所示：
+显示屏的方向图如下：
 
+&emsp;&emsp;代码如下：
+
+``` python
 from tkinter import *
 ​
 master = Tk()
@@ -140,7 +155,11 @@ Radiobutton(master, text="Two", variable=v, value=2).pack(anchor=W)
 Radiobutton(master, text="Three", variable=v, value=3).pack(anchor=W)
 ​
 mainloop()
+```
 
+&emsp;&emsp;代码如下：
+
+``` python
 from tkinter import *
 ​
 master = Tk()
@@ -155,11 +174,16 @@ LANGS = [
 v = IntVar()
 v.set(1)
 for lang, num in LANGS:
-    b = Radiobutton(master, text=lang, variable=v, value=num, indicatoron=False)  # indicatoron是指示器，即前面的小圆点
+    # indicatoron是指示器，即前面的小圆点
+    b = Radiobutton(master, text=lang, variable=v, value=num, indicatoron=False)
     b.pack(fill=X)
 ​
 mainloop()
+```
 
+&emsp;&emsp;代码如下：
+
+``` python
 from tkinter import *
 ​
 root = Tk()
@@ -181,7 +205,11 @@ for lang, num in LANGS:
     b.pack(anchor=W)
 ​
 mainloop()
+```
 
+&emsp;&emsp;代码如下：
+
+``` python
 from tkinter import *
 ​
 root = Tk()
@@ -193,7 +221,11 @@ e.delete(0, END)  # 把输入框的内容清空
 e.insert(0, "默认文本")  # 填充输入框
 ​
 mainloop()
+```
 
+&emsp;&emsp;代码如下：
+
+``` python
 from tkinter import *
 ​
 def show():
@@ -217,7 +249,11 @@ Button(root, text="退出", width=10, command=root.quit) \
     .grid(row=3, column=1, sticky=E, padx=10, pady=5)
 ​
 mainloop()
+```
 
+&emsp;&emsp;代码如下：
+
+``` python
 from tkinter import *
 ​
 def show():
@@ -244,7 +280,11 @@ Button(root, text="退出", width=10, command=root.quit) \
     .grid(row=3, column=1, sticky=E, padx=10, pady=5)
 ​
 mainloop()
+```
 
+&emsp;&emsp;代码如下：
+
+``` python
 from tkinter import *
 ​
 master = Tk()
@@ -274,7 +314,11 @@ def cal():
 Button(frame, text="计算结果", command=cal).grid(row=1, column=2, pady=5)
 ​
 mainloop()
+```
 
+&emsp;&emsp;代码如下：
+
+``` python
 from tkinter import *
 ​
 master = Tk()
@@ -291,7 +335,11 @@ theButton = Button(master, text="删除", command=lambda x=theLB: x.delete(ACTIV
 theButton.pack()
 ​
 mainloop()
+```
 
+&emsp;&emsp;代码如下：
+
+``` python
 from tkinter import *
 ​
 root = Tk()
@@ -323,7 +371,11 @@ menubar.add_cascade(label="编辑", menu=editmenu)
 root.config(menu=menubar) # 显示菜单
 ​
 mainloop()
+```
 
+&emsp;&emsp;代码如下：
+
+``` python
 from tkinter import *
 ​
 root = Tk()
@@ -343,7 +395,11 @@ filemenu.add_command(label="退出", command=root.quit)
 mb.config(menu=filemenu)
 ​
 mainloop()
+```
 
+&emsp;&emsp;代码如下：
+
+``` python
 from tkinter import *
 ​
 root = Tk()
@@ -355,9 +411,14 @@ w = OptionMenu(root, variable, "one", "two", "three")
 w.pack()
 ​
 mainloop()
+```
 
+&emsp;&emsp;代码如下：
+
+``` python
 from tkinter import *
 
 messagebox.askokcancel("FishC", "发射核弹")
 
 mainloop()
+```
