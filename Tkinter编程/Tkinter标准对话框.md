@@ -4,6 +4,7 @@ date: 2019-04-12 10:40:25
 tags:
 ---
 &emsp;&emsp;`Tkinter`为了提供了三种标准对话框模块，它们分别是`messagebox`、`filedialog`和`colorchooser`。这三个模块原来是独立的，分别是`tkMessageBox`、`tkFileDialog`和`tkColorChooser`，需要导入才能使用。在`Python 3`之后，这些模块全部被收归到`tkinter`模块的麾下。下边的所有演示都是在`Python 3`下实现，如果你用的是`Python 2.x`，请在文件头`import tkMessageBox`，然后将`messagebox`替换为`tkMessageBox`即可。
+<!--more-->
 
 ### messagebox(消息对话框)
 
@@ -11,19 +12,33 @@ tags:
 
 - `askokcancel(title, message, options)`：
 
+<img src="./Tkinter标准对话框/1.png">
+
 - `askquestion(title, message, options)`：
+
+<img src="./Tkinter标准对话框/2.png">
 
 - `askretrycancel(title, message, options)`：
 
+<img src="./Tkinter标准对话框/3.png">
+
 - `askyesno(title, message, options)`：
+
+<img src="./Tkinter标准对话框/4.png">
 
 - `showerror(title, message, options)`：
 
+<img src="./Tkinter标准对话框/5.png">
+
 - `showinfo(title, message, options)`：
+
+<img src="./Tkinter标准对话框/6.png">
 
 - `showwarning(title, message, options)`：
 
-### 参数
+<img src="./Tkinter标准对话框/7.png">
+
+#### 参数
 
 &emsp;&emsp;所有的这些函数都有相同的参数：`title`参数是设置标题栏的文本；`message`参数是设置对话框的主要文本内容，你可以用`\n`来实现换行；`options`参数可以设置的选项和含义如下：
 
@@ -33,7 +48,7 @@ tags:
 `icon`    | 指定对话框显示的图标，可以指定的值有`ERROR`、`INFO`、`QUESTION`或`WARNING`。注意，不能指定自己的图标
 `parent`  | 如果不指定该选项，那么对话框默认显示在根窗口上；如果想要将对话框显示在子窗口`w`上，那么可以设置`parent=w`
 
-### 返回值
+#### 返回值
 
 &emsp;&emsp;`askokcancel`、`askretrycancel`和`askyesno`返回布尔类型的值：
 
@@ -60,9 +75,11 @@ Button(root, text="打开文件", command=callback).pack()
 mainloop()
 ```
 
+<img src="./Tkinter标准对话框/8.jpg" height="240" width="334">
+
 `filedialog`模块提供了两个函数：`askopenfilename(**option)`和`asksaveasfilename(**option)`，分别用于打开文件和保存文件。
 
-### 参数
+#### 参数
 
 &emsp;&emsp;两个函数可供设置的选项是一样的，下边列举了可用的选项及含义：
 
@@ -74,7 +91,7 @@ mainloop()
 `parent`           | 如果不指定该选项，那么对话框默认显示在根窗口上；如果想要将对话框显示在子窗口`w`上，那么可以设置`parent=w`
 `title`            | 指定文件对话框的标题栏文本
 
-### 返回值
+#### 返回值
 
 &emsp;&emsp;如果用户选择了一个文件，那么返回值是该文件的完整路径；如果用户点击了取消按钮，那么返回值是空字符串。
 
@@ -96,15 +113,17 @@ Button(root, text="选择颜色", command=callback).pack()
 mainloop()
 ```
 
-### 参数
+<img src="./Tkinter标准对话框/9.jpg" height="252" width="334">
 
-&emsp;&emsp;askcolor(color, **option)函数的color参数用于指定初始化的颜色，默认是浅灰色；option参数可以指定的选项及含义如下：
+#### 参数
+
+&emsp;&emsp;`askcolor(color, **option)`函数的`color`参数用于指定初始化的颜色，默认是浅灰色；`option`参数可以指定的选项及含义如下：
 
 选项     | 含义
 ---------|-----
 `title`  | 指定颜色对话框的标题栏文本
 `parent` | 如果不指定该选项，那么对话框默认显示在根窗口上；如果想要将对话框显示在子窗口`w`上，那么可以设置`parent=w`
 
-### 返回值
+#### 返回值
 
-&emsp;&emsp;如果用户选择一个颜色并按下“确定”按钮后，返回值是一个2元祖，第1个元素是选择的RGB颜色值，第2个元素是对应的16进制颜色值；如果用户按下“取消”按钮，那么返回值是(None, None)。
+&emsp;&emsp;如果用户选择一个颜色并按下`确定`按钮后，返回值是一个`2`元祖，第`1`个元素是选择的`RGB`颜色值，第`2`个元素是对应的`16`进制颜色值；如果用户按下`取消`按钮，那么返回值是`(None, None)`。
