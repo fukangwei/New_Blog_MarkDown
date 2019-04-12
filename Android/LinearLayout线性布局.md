@@ -3,9 +3,9 @@ title: LinearLayout线性布局
 date: 2019-04-12 14:08:13
 tags:
 ---
-    LinearLayout如下：
+&emsp;&emsp;`LinearLayout`如下：
 
-    weight(权重)属性详解：
+&emsp;&emsp;`weight`(权重)属性详解：
 
 ``` xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -32,17 +32,21 @@ tags:
 
 要实现“1:1”的效果，只需要分别把两个LinearLayout的weight改成1和1就可以了。按比例划分水平方向：将涉及到的View的android:width属性设置为0dp，然后设置为android weight属性设置比例即可；竖直方向：只需设android:height为0dp，然后设置weight属性即可！
 
-为LinearLayout设置分割线
-    很多界面开发中都会设置一些下划线或者分割线，从而使得界面更加整洁美观，比如下面的酷狗音乐的注册页面：
+### 为LinearLayout设置分割线
+
+&emsp;&emsp;很多界面开发中都会设置一些下划线或者分割线，从而使得界面更加整洁美观，比如下面的酷狗音乐的注册页面：
 
 对于这种线，我们通常有两种做法：
-    (1)直接在布局中添加一个view，这个view的作用仅仅是显示出一条线：
+
+- 直接在布局中添加一个view，这个view的作用仅仅是显示出一条线：
+
 <View  
     android:layout_width="match_parent"  
     android:layout_height="1px"  
     android:background="#000000" />  
 这个是水平方向上的黑线，当然你也可以改成其他颜色或者使用图片。
-    (2)使用LinearLayout的一个divider属性，直接为LinearLayout设置分割线，这里就需要你自己准备一张线的图片了。
+
+- 使用LinearLayout的一个divider属性，直接为LinearLayout设置分割线，这里就需要你自己准备一张线的图片了。
 android:divider：设置作为分割线的图片。
 android:showDividers：设置分割线的位置，有none(无)、beginning(开始)、end(结束)、middle(每两个组件间)。
 dividerPadding：设置分割线的Padding。
