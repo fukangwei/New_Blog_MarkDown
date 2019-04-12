@@ -3,12 +3,12 @@ title: Text文本
 date: 2019-04-12 09:32:01
 tags:
 ---
-    Text(文本)组件用于显示和处理多行文本。在Tkinter的所有组件中，Text组件显得异常强大和灵活，适用于多种任务。虽然该组件的主要目的是显示多行文本，但它常常也被用于作为简单的文本编辑器和网页浏览器使用。
-    Text组件用于显示文本文档，包含纯文本或格式化文本(使用不同字体、嵌入图片、显示链接甚至是带CSS格式的HTML等)，因此它常常也被用于作为简单的文本编辑器和网页浏览器使用。
+&emsp;&emsp;`Text`(文本)组件用于显示和处理多行文本。在`Tkinter`的所有组件中，`Text`组件显得异常强大和灵活，适用于多种任务。虽然该组件的主要目的是显示多行文本，但它常常也被用于作为简单的文本编辑器和网页浏览器使用。
+&emsp;&emsp;`Text`组件用于显示文本文档，包含纯文本或格式化文本(使用不同字体、嵌入图片、显示链接甚至是带`CSS`格式的`HTML`等)，因此它常常也被用于作为简单的文本编辑器和网页浏览器使用。
   
 ### 用法
 
-    当你创建一个Text组件的时候，它里边是没有内容的。为了给其插入内容，你可以使用insert方法以及INSERT或END索引号：
+&emsp;&emsp;当你创建一个`Text`组件的时候，它里边是没有内容的。为了给其插入内容，你可以使用`insert`方法以及`INSERT`或`END`索引号：
 
 ``` python
 from tkinter import *
@@ -25,7 +25,7 @@ text.insert(END, "FishC.com!")
 mainloop()
 ```
 
-Text组件的insert方法有一个可选的参数，用于指定一个或多个“标签”(标签用于设置文本的格式，请参考下方“Tags用法”)到新插入的文本中：
+`Text`组件的`insert`方法有一个可选的参数，用于指定一个或多个`标签`(标签用于设置文本的格式)到新插入的文本中：
 
 ``` python
 from tkinter import *
@@ -45,7 +45,7 @@ text.insert(END, "FishC.com!", "tag_1")
 mainloop()
 ```
 
-在Text组件中插入对象，可以使用window_create和image_create方法：
+在`Text`组件中插入对象，可以使用`window_create`和`image_create`方法：
 
 ``` python
 from tkinter import *
@@ -66,26 +66,26 @@ text.window_create(INSERT, window=b1)
 mainloop()
 ```
 
-    删除Text组件中的内容可以用delete方法，下边代码用于删除所有内容(也包含window和image对象，但不会删除marks的内容)：
+&emsp;&emsp;删除`Text`组件中的内容可以用`delete`方法，下边代码用于删除所有内容(也包含`window`和`image`对象，但不会删除`marks`的内容)：
 
 ``` python
 text.delete(1.0, END)
 ```
 
-删除单独一个字符(或者一个window对象，或者一个image对象)，你可以仅使用一个参数：
+删除单独一个字符(或者一个`window`对象，或者一个`image`对象)，你可以仅使用一个参数：
 
 ``` python
 text.delete(b1)
 ```
 
-将state选项从默认的NORMAL修改为DISABLED，使得Text组件中的内容为“只读”形式。不过需要注意的是，当你需要进行任何修改的时候，记得将state选项改回NORMAL，否则insert和delete方法都会失效。
-    获得Text组件的内容，可以使用get方法(仅获取文本内容)：
+将`state`选项从默认的`NORMAL`修改为`DISABLED`，使得`Text`组件中的内容为`只读`形式。不过需要注意的是，当你需要进行任何修改的时候，记得将`state`选项改回`NORMAL`，否则`insert`和`delete`方法都会失效。
+&emsp;&emsp;获得`Text`组件的内容，可以使用`get`方法(仅获取文本内容)：
 
 ``` python
 contents = text.get(1.0, END)
 ```
 
-在下边例子中，通过校检Text组件中文本的MD5摘要来判断内容是否发生改变：
+在下边例子中，通过校检`Text`组件中文本的`MD5`摘要来判断内容是否发生改变：
 
 ``` python
 from tkinter import *
