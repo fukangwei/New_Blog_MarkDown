@@ -49,11 +49,11 @@ tags:
 
 这个是水平方向上的黑线，当然你也可以改成其他颜色或者使用图片。
 
-- 使用LinearLayout的一个divider属性，直接为LinearLayout设置分割线，这里就需要你自己准备一张线的图片了。
+- 使用`LinearLayout`的一个`divider`属性，直接为`LinearLayout`设置分割线，这里就需要你自己准备一张线的图片了。
 
-android:divider：设置作为分割线的图片。
-android:showDividers：设置分割线的位置，有none(无)、beginning(开始)、end(结束)、middle(每两个组件间)。
-dividerPadding：设置分割线的Padding。
+1. `android:divider`：设置作为分割线的图片。
+2. `android:showDividers`：设置分割线的位置，有`none`(无)、`beginning`(开始)、`end`(结束)和`middle`(每两个组件间)。
+3. `dividerPadding`：设置分割线的`Padding`。
 
 ``` xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
