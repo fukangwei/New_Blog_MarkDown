@@ -49,16 +49,12 @@ Label(root, bg="green").place(relx=0.5, rely=0.5, relheight=0.25, relwidth=0.25,
 
 选项         | 含义
 -------------|-----
-`anchor`     | 控制组件在place分配的空间中的位置
-              2) N、NE、E、SE、S、SW、W、NW或CENTER来定位(EWSN代表东西南北，上北下南左西右东)
-              3) 默认值是NW
-bordermode    1) 指定边框模式(INSIDE或OUTSIDE)
-              2) 默认值是INSIDE
-height        指定该组件的高度(像素)
-in_           1) 将该组件放到该选项指定的组件中
-              2) 指定的组件必须是该组件的父组件
-relheight     1) 指定该组件相对于父组件的高度
-              2) 取值范围0.0至1.0
+`anchor`     | 控制组件在place分配的空间中的位置。`N`、`NE`、`E`、`SE`、`S`、`SW`、`W`、`NW`或`CENTER`来定位(`EWSN`代表东西南北，上北下南左西右东)，默认值是`NW`
+`bordermode` | 指定边框模式(`INSIDE`或`OUTSIDE`)，默认值是`INSIDE`
+`height`     | 指定该组件的高度(像素)
+`in_`        | 将该组件放到该选项指定的组件中，指定的组件必须是该组件的父组件
+`relheight`  | 指定该组件相对于父组件的高度，取值范围`0.0`至`1.0`
+
 relwidth      1) 指定该组件相对于父组件的宽度
               2) 取值范围0.0至1.0
 relx          1) 指定该组件相对于父组件的水平位置
