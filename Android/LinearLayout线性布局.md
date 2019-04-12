@@ -4,6 +4,7 @@ date: 2019-04-12 14:08:13
 tags:
 ---
 &emsp;&emsp;`LinearLayout`如下：
+<!--more-->
 
 <img src="./LinearLayout线性布局/1.png" height="284" width="460">
 
