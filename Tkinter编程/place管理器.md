@@ -1,0 +1,78 @@
+---
+title: place管理器
+date: 2019-04-12 11:15:07
+tags:
+---
+&emsp;&emsp;pack、grid和place均用于管理同在一个父组件下的所有组件的布局：pack是按添加顺序排列组件；grid是按行/列形式排列组件；place则允许程序员指定组件的大小和位置。
+&emsp;&emsp;通常情况下不建议使用place布局管理器，因为对比起pack和grid，place要做更多的工作。但是，place在一些特殊的情况下可以发挥妙用。
+
+### 用法
+
+&emsp;&emsp;将子组件显示在父组件的正中间：
+
+``` python
+from tkinter import *
+​
+root = Tk()
+​
+def callback():
+    print("正中靶心")
+​
+Button(root, text="点我", command=callback).place(relx=0.5, rely=0.5, anchor=CENTER)
+​
+mainloop()
+```
+
+在某种情况下，或许你希望一个组件可以覆盖另一个组件，那么place又可以派上用场了。下面的例子演示用Button覆盖Label组件：
+
+``` python
+photo = PhotoImage(file="logo_big.gif")
+Label(root, image=photo).pack()
+Button(root, text="点我", command=callback).place(relx=0.5, rely=0.5, anchor=CENTER)
+```
+
+relx和rely选项指定的是相对于父组件的位置，范围是0.0至1.0，因此0.5表示位于正中间。那么relwidth和relheight选项则是指定相对于父组件的尺寸：
+
+``` python
+Label(root, bg="red").place(relx=0.5, rely=0.5, relheight=0.75, relwidth=0.75, anchor=CENTER)
+Label(root, bg="yellow").place(relx=0.5, rely=0.5, relheight=0.5, relwidth=0.5, anchor=CENTER)
+Label(root, bg="green").place(relx=0.5, rely=0.5, relheight=0.25, relwidth=0.25, anchor=CENTER)
+```
+
+无论你如何拉伸上面的窗口，三个Label的尺寸均会跟着改变。x和y选项用于设置偏移(像素)，如果同时设置relx(rely)和x(y)，那么place将优先计算relx和rely，然后再实现x和y指定的偏移值。
+
+### 方法
+
+&emsp;&emsp;注意，下边所有方法适用于所有组件。
+
+place(**options)：下方表格列举了各个选项的具体含义和用法：
+
+选项         | 含义
+-------------|-----
+`anchor`     | 控制组件在place分配的空间中的位置
+              2) N、NE、E、SE、S、SW、W、NW或CENTER来定位(EWSN代表东西南北，上北下南左西右东)
+              3) 默认值是NW
+bordermode    1) 指定边框模式(INSIDE或OUTSIDE)
+              2) 默认值是INSIDE
+height        指定该组件的高度(像素)
+in_           1) 将该组件放到该选项指定的组件中
+              2) 指定的组件必须是该组件的父组件
+relheight     1) 指定该组件相对于父组件的高度
+              2) 取值范围0.0至1.0
+relwidth      1) 指定该组件相对于父组件的宽度
+              2) 取值范围0.0至1.0
+relx          1) 指定该组件相对于父组件的水平位置
+              2) 取值范围0.0至1.0
+rely          1) 指定该组件相对于父组件的垂直位置
+              2) 取值范围0.0至1.0
+width         指定该组件的宽度(像素)
+x             1) 指定该组件的水平偏移位置(像素)
+              2) 如同时指定了relx选项，优先实现relx选项
+y             1) 指定该组件的垂直偏移位置(像素)
+              2) 如同时指定了rely选项，优先实现rely选项
+
+place_configure(**options)：跟place一样。
+place_forget：将组件从屏幕中“删除”。并没有销毁该组件，只是看不到了。可以通过place或其他布局管理器显示已“删除”的组件。
+place_info：以字典的形式返回当前place的选项。
+place_slaves：以列表的形式返回该组件的所有子组件，该方法仅适用于父组件。
+slaves：跟place_slaves一样。
