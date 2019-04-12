@@ -3,8 +3,6 @@ title: Tkinter编程入门
 date: 2019-04-12 13:28:06
 tags:
 ---
-### Tkinter编程
-
 &emsp;&emsp;代码如下：
 
 ``` python
@@ -26,6 +24,8 @@ app = APP(root)
 root.mainloop()
 ```
 
+<img src="./Tkinter编程入门/1.jpg">
+
 &emsp;&emsp;代码如下：
 
 ``` python
@@ -41,6 +41,9 @@ imageLabel.pack(side=RIGHT)
 ​
 mainloop()
 ```
+
+<img src="./Tkinter编程入门/2.png">
+
 
 &emsp;&emsp;代码如下：
 
@@ -63,6 +66,8 @@ theLabel.pack()
 ​
 mainloop()
 ```
+
+<img src="./Tkinter编程入门/3.jpg">
 
 &emsp;&emsp;代码如下：
 
@@ -100,6 +105,8 @@ frame2.pack(padx=10, pady=10)
 mainloop()
 ```
 
+<img src="./Tkinter编程入门/4.jpg">
+
 &emsp;&emsp;代码如下：
 
 ``` python
@@ -120,6 +127,8 @@ l.pack()
 mainloop()
 ```
 
+<img src="./Tkinter编程入门/5.png">
+
 &emsp;&emsp;代码如下：
 
 ``` python
@@ -139,7 +148,11 @@ for girl in GIRLS:
 mainloop()
 ```
 
+<img src="./Tkinter编程入门/6.png">
+
 显示屏的方向图如下：
+
+<img src="./Tkinter编程入门/7.jpg">
 
 &emsp;&emsp;代码如下：
 
@@ -156,6 +169,8 @@ Radiobutton(master, text="Three", variable=v, value=3).pack(anchor=W)
 ​
 mainloop()
 ```
+
+<img src="./Tkinter编程入门/8.png">
 
 &emsp;&emsp;代码如下：
 
@@ -180,6 +195,8 @@ for lang, num in LANGS:
 ​
 mainloop()
 ```
+
+<img src="./Tkinter编程入门/9.png">
 
 &emsp;&emsp;代码如下：
 
@@ -207,6 +224,8 @@ for lang, num in LANGS:
 mainloop()
 ```
 
+<img src="./Tkinter编程入门/10.png">
+
 &emsp;&emsp;代码如下：
 
 ``` python
@@ -222,6 +241,8 @@ e.insert(0, "默认文本")  # 填充输入框
 ​
 mainloop()
 ```
+
+<img src="./Tkinter编程入门/11.png">
 
 &emsp;&emsp;代码如下：
 
@@ -250,6 +271,8 @@ Button(root, text="退出", width=10, command=root.quit) \
 ​
 mainloop()
 ```
+
+<img src="./Tkinter编程入门/12.png">
 
 &emsp;&emsp;代码如下：
 
@@ -281,6 +304,8 @@ Button(root, text="退出", width=10, command=root.quit) \
 ​
 mainloop()
 ```
+
+<img src="./Tkinter编程入门/13.jpg">
 
 &emsp;&emsp;代码如下：
 
@@ -316,6 +341,8 @@ Button(frame, text="计算结果", command=cal).grid(row=1, column=2, pady=5)
 mainloop()
 ```
 
+<img src="./Tkinter编程入门/14.png">
+
 &emsp;&emsp;代码如下：
 
 ``` python
@@ -336,6 +363,8 @@ theButton.pack()
 ​
 mainloop()
 ```
+
+<img src="./Tkinter编程入门/15.png">
 
 &emsp;&emsp;代码如下：
 
@@ -373,6 +402,8 @@ root.config(menu=menubar) # 显示菜单
 mainloop()
 ```
 
+<img src="./Tkinter编程入门/16.jpg">
+
 &emsp;&emsp;代码如下：
 
 ``` python
@@ -397,6 +428,8 @@ mb.config(menu=filemenu)
 mainloop()
 ```
 
+<img src="./Tkinter编程入门/17.jpg">
+
 &emsp;&emsp;代码如下：
 
 ``` python
@@ -413,6 +446,8 @@ w.pack()
 mainloop()
 ```
 
+<img src="./Tkinter编程入门/18.jpg">
+
 &emsp;&emsp;代码如下：
 
 ``` python
@@ -422,3 +457,5 @@ messagebox.askokcancel("FishC", "发射核弹")
 
 mainloop()
 ```
+
+<img src="./Tkinter编程入门/19.jpg">
