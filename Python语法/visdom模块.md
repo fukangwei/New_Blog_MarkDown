@@ -53,6 +53,8 @@ except BaseException as err:
     print('Error message: ', err)
 ```
 
+<img src="./visdom模块/1.png" height="238" width="329">
+
 ### vis.video(视频)
 
 &emsp;&emsp;代码如下：
@@ -76,6 +78,8 @@ except ImportError:
     print('Skipped video example')
 ```
 
+<img src="./visdom模块/2.png" height="231" width="262">
+
 ### vis.image(图片)
 
 &emsp;&emsp;代码如下：
@@ -94,6 +98,8 @@ viz.images(  # 多张图像
     np.random.randn(20, 3, 64, 64),
     opts=dict(title='Random images', caption='How random.'))
 ```
+
+<img src="./visdom模块/3.png" height="271" width="404">
 
 ### vis.scatter(散点图)
 
@@ -127,6 +133,8 @@ viz.update_window_opts(  # 对窗口进行更新，包括标注、坐标和样�
 )
 ```
 
+<img src="./visdom模块/4.png" height="294" width="392">
+
 &emsp;&emsp;通过`update='new'`添加新散点：
 
 ``` python
@@ -146,6 +154,8 @@ time.sleep(2)
 viz.scatter(X=np.random.rand(255), Y=np.random.rand(255), win=win, name='new_trace', update='new')
 ```
 
+<img src="./visdom模块/5.png">
+
 &emsp;&emsp;为`2D`散点图分配不同颜色：
 
 ``` python
@@ -164,6 +174,8 @@ viz.scatter(
     ),
 )
 ```
+
+<img src="./visdom模块/6.png" height="272" width="368">
 
 ### vis.bar(柱状图)
 
@@ -190,6 +202,8 @@ viz.bar(
     opts=dict(stacked=False, legend=['The Netherlands', 'France', 'United States']))
 ```
 
+<img src="./visdom模块/7.png" height="289" width="944">
+
 ### vis.heat/contour/surface(热程图/地理图/表面图)
 
 &emsp;&emsp;代码如下：
@@ -215,6 +229,8 @@ X = np.exp((((x - 50) ** 2) + ((y - 50) ** 2)) / -(20.0 ** 2))
 viz.contour(X=X, opts=dict(colormap='Viridis'))
 viz.surf(X=X, opts=dict(colormap='Hot'))  # surface
 ```
+
+<img src="./visdom模块/8.png" height="260" width="928">
 
 ### viz.boxplot(箱形图)/stem(茎干图)/quiver(箭状图)
 
@@ -248,6 +264,8 @@ V = np.multiply(np.sin(X), Y)
 viz.quiver(X=U, Y=V, opts=dict(normalize=0.9),)
 ```
 
+<img src="./visdom模块/9.png" height="251" width="902">
+
 ### viz.text(文字)/pie(饼图)/mesh(网丝图)
 
 &emsp;&emsp;代码如下：
@@ -278,3 +296,5 @@ k = [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6]
 Y = np.c_[i, j, k]
 viz.mesh(X=X, Y=Y, opts=dict(opacity=0.5))
 ```
+
+<img src="./visdom模块/10.png" height="242" width="762">
