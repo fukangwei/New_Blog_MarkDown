@@ -28,13 +28,16 @@ tags:
 
 &emsp;&emsp;`visdom`同时支持`PyTorch`的`tensor`和`Numpy`的`ndarray`两种数据结构，但不支持`Python`的`int`、`float`等类型，因此每次传入时都需先将数据转成`ndarray`或`tensor`。上述操作的参数一般不同，但有两个参数是绝大多数操作都具备的：
 
-- `win`：用于指定pane的名字，如果不指定，visdom将自动分配一个新的pane。如果两次操作指定的win名字一样，新的操作将覆盖当前pane的内容，因此建议每次操作都重新指定win。
-- `opts`：选项，接收一个字典，常见的option包括title、xlabel、ylabel、width等，主要用于设置pane的显示格式。
+- `win`：用于指定`pane`的名字，如果不指定，`visdom`将自动分配一个新的`pane`。如果两次操作指定的`win`名字一样，新的操作将覆盖当前`pane`的内容，因此建议每次操作都重新指定`win`。
+- `opts`：选项，接收一个字典，常见的`option`包括`title`、`xlabel`、`ylabel`、`width`等，主要用于设置`pane`的显示格式。
 
-&emsp;&emsp;之前提到过，每次操作都会覆盖之前的数值，但往往我们在训练网络的过程中需要不断地更新数值，例如损失值等，这时就需要指定参数“update='append'”来避免覆盖之前的数值。而除了使用update参数以外，还可以使用“vis.updateTrace”方法来更新图，但updateTrace不仅能在指定pane上新增一个和已有数据相互独立的Trace，还能像“update='append'”那样在同一条trace上追加数据。
+&emsp;&emsp;之前提到过，每次操作都会覆盖之前的数值，但往往我们在训练网络的过程中需要不断地更新数值，例如损失值等，这时就需要指定参数`update='append'`来避免覆盖之前的数值。而除了使用`update`参数以外，还可以使用`vis.updateTrace`方法来更新图，但`updateTrace`不仅能在指定`pane`上新增一个和已有数据相互独立的`Trace`，还能像`update='append'`那样在同一条`trace`上追加数据。
 
-viz.maplotlib(matplotlib显示)
-    代码如下所示：
+### viz.maplotlib(matplotlib显示)
+
+&emsp;&emsp;代码如下：
+
+``` python
 from visdom import Visdom
 import matplotlib.pyplot as plt
 ​
@@ -48,10 +51,13 @@ try:
 except BaseException as err:
     print('Skipped matplotlib example')
     print('Error message: ', err)
+```
 
+### vis.video(视频)
 
-vis.video(视频)
-    代码如下所示：
+&emsp;&emsp;代码如下：
+
+``` python
 from visdom import Visdom
 import urllib.request
 import os
@@ -68,22 +74,32 @@ try:
         viz.video(videofile=videofile)
 except ImportError:
     print('Skipped video example')
+```
 
+### vis.image(图片)
 
-vis.image(图片)
-    代码如下所示：
+&emsp;&emsp;代码如下：
+
+``` python
 from visdom import Visdom
 import numpy as np
 ​
 viz = Visdom()
 assert viz.check_connection()
 ​
-viz.image(np.random.rand(3, 512, 256), opts=dict(title='Random!', caption='How random.'))  # 单张图像
-viz.images(np.random.randn(20, 3, 64, 64), opts=dict(title='Random images', caption='How random.'))  # 多张图像
+viz.image(  # 单张图像
+    np.random.rand(3, 512, 256),
+    opts=dict(title='Random!', caption='How random.'))
+viz.images(  # 多张图像
+    np.random.randn(20, 3, 64, 64),
+    opts=dict(title='Random images', caption='How random.'))
+```
 
+### vis.scatter(散点图)
 
-vis.scatter(散点图)
-    代码如下所示：
+&emsp;&emsp;代码如下：
+
+``` python
 from visdom import Visdom
 import numpy as np
 import time
@@ -95,17 +111,25 @@ Y = np.random.rand(100)
 old_scatter = viz.scatter(  # 画出随机的散点图
     X=np.random.rand(100, 2),
     Y=(Y[Y > 0] + 1.5).astype(int),
-    opts=dict(legend=['Didnt', 'Update'], xtickmin=-50, xtickmax=50, xtickstep=0.5, ytickmin=-50, ytickmax=50, ytickstep=0.5, markersymbol='cross-thin-open',),
+    opts=dict(legend=['Didnt', 'Update'],
+            xtickmin=-50, xtickmax=50, xtickstep=0.5,
+            ytickmin=-50, ytickmax=50, ytickstep=0.5,
+            markersymbol='cross-thin-open',),
 )
 ​
 time.sleep(5)
 ​
 viz.update_window_opts(  # 对窗口进行更新，包括标注、坐标和样式等
     win=old_scatter,
-    opts=dict(legend=['Apples', 'Pears'], xtickmin=0, xtickmax=1, xtickstep=0.5, ytickmin=0, ytickmax=1, ytickstep=0.5, markersymbol='cross-thin-open',),
+    opts=dict(legend=['Apples', 'Pears'],
+            xtickmin=0, xtickmax=1, xtickstep=0.5, ytickmin=0,
+            ytickmax=1, ytickstep=0.5, markersymbol='cross-thin-open',),
 )
+```
 
-    通过“update='new'”添加新散点：
+&emsp;&emsp;通过`update='new'`添加新散点：
+
+``` python
 from visdom import Visdom
 import numpy as np
 import time
@@ -113,12 +137,18 @@ import time
 viz = Visdom()
 assert viz.check_connection()
 ​
-win = viz.scatter(X=np.random.rand(255, 2), opts=dict(markersize=10, markercolor=np.random.randint(0, 255, (255, 3,)),),)
+win = viz.scatter(
+    X=np.random.rand(255, 2),
+    opts=dict(markersize=10, markercolor=np.random.randint(0, 255, (255, 3,)),),)
 assert viz.win_exists(win), 'Created window marked as not existing'  # 判断窗口是否存在
 time.sleep(2)
-viz.scatter(X=np.random.rand(255), Y=np.random.rand(255), win=win, name='new_trace', update='new')  # 向散点图中加入新的描述
+# 向散点图中加入新的描述
+viz.scatter(X=np.random.rand(255), Y=np.random.rand(255), win=win, name='new_trace', update='new')
+```
 
-    为2D散点图分配不同颜色：
+&emsp;&emsp;为`2D`散点图分配不同颜色：
+
+``` python
 from visdom import Visdom
 import numpy as np
 ​
@@ -133,10 +163,13 @@ viz.scatter(
         markercolor=np.random.randint(0, 255, (2, 3,)),  # 分配两种颜色
     ),
 )
+```
 
+### vis.bar(柱状图)
 
-vis.bar(柱状图)
-    代码如下所示：
+&emsp;&emsp;代码如下：
+
+``` python
 from visdom import Visdom
 import numpy as np
 ​
@@ -147,14 +180,21 @@ viz.bar(X=np.random.rand(20))
 ​
 viz.bar(
     X=np.abs(np.random.rand(5, 3)),
-    opts=dict(stacked=True, legend=['Facebook', 'Google', 'Twitter'], rownames=['2012', '2013', '2014', '2015', '2016'])
+    opts=dict(
+     stacked=True, legend=['Facebook', 'Google', 'Twitter'],
+     rownames=['2012', '2013', '2014', '2015', '2016'])
 )
 ​
-viz.bar(X=np.random.rand(20, 3), opts=dict(stacked=False, legend=['The Netherlands', 'France', 'United States']))
+viz.bar(
+    X=np.random.rand(20, 3),
+    opts=dict(stacked=False, legend=['The Netherlands', 'France', 'United States']))
+```
 
+### vis.heat/contour/surface(热程图/地理图/表面图)
 
-vis.heat/contour/surface(热程图/地理图/表面图)
-    代码如下所示：
+&emsp;&emsp;代码如下：
+
+``` python
 from visdom import Visdom
 import numpy as np
 ​
@@ -163,7 +203,9 @@ assert viz.check_connection()
 ​
 viz.heatmap(
     X=np.outer(np.arange(1, 6), np.arange(1, 11)),
-    opts=dict(columnnames=['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'], rownames=['y1', 'y2', 'y3', 'y4', 'y5'], colormap='Electric',)
+    opts=dict(
+        columnnames=['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'],
+        rownames=['y1', 'y2', 'y3', 'y4', 'y5'], colormap='Electric',)
 )
 ​
 # contour
@@ -172,10 +214,13 @@ y = x.transpose()
 X = np.exp((((x - 50) ** 2) + ((y - 50) ** 2)) / -(20.0 ** 2))
 viz.contour(X=X, opts=dict(colormap='Viridis'))
 viz.surf(X=X, opts=dict(colormap='Hot'))  # surface
+```
 
+### viz.boxplot(箱形图)/stem(茎干图)/quiver(箭状图)
 
-viz.boxplot(箱形图)/stem(茎干图)/quiver(箭状图)
-    代码如下所示：
+&emsp;&emsp;代码如下：
+
+``` python
 from visdom import Visdom
 import numpy as np
 import math
@@ -201,10 +246,13 @@ Y = np.broadcast_to(np.expand_dims(Y, axis=0), (len(Y), len(Y)))
 U = np.multiply(np.cos(X), Y)
 V = np.multiply(np.sin(X), Y)
 viz.quiver(X=U, Y=V, opts=dict(normalize=0.9),)
+```
 
+### viz.text(文字)/pie(饼图)/mesh(网丝图)
 
-viz.text(文字)/pie(饼图)/mesh(网丝图)
-    代码如下所示：
+&emsp;&emsp;代码如下：
+
+``` python
 from visdom import Visdom
 import numpy as np
 ​
@@ -229,3 +277,4 @@ j = [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3]
 k = [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6]
 Y = np.c_[i, j, k]
 viz.mesh(X=X, Y=Y, opts=dict(opacity=0.5))
+```
