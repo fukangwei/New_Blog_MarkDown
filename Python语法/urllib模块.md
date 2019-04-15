@@ -97,6 +97,8 @@ urllib.request.unquote('http%3A//www.baidu.com')  # 执行结果“'http://www.
 &emsp;&emsp;有时我们无法爬取一些网页，经常会出现`403`错误，因为这些网页为了防止别人恶意采集其信息采取了一些反爬虫的设置。那么如果我们需要爬取这些网页的信息，应该怎么办呢？可以设置一些`Headers`信息，模拟成浏览器去访问这些网站。
 &emsp;&emsp;那我们该添加什么头部信息呢？我们需要让爬虫模拟成浏览器，模拟成浏览器可以设置`User-Agent`信息。任意打开一个网页，比如打开百度，然后按`F12`，然后出现一个窗口。切换到`Network`标签页，然后单击网页中的`百度一下`，即让网页发生一个动作。此时可以观察到下方的窗口出现了一些数据，将界面右上方的标签切换到`Headers`中，即可以看到了对应的头信息。此时往下拖动，就可以找到`User-Agent`字样的一串信息，这一串信息即是模拟浏览器所需要用到的信息：
 
+<img src="./urllib模块/1.png" height="284" width="596">
+
 &emsp;&emsp;我们可以得到如下信息：
 
 ``` python
@@ -179,11 +181,14 @@ fh.close()
 
 此时用浏览器打开刚才保存的`baidu.html`文件，就可以看到刚才爬取的网页结果：
 
+<img src="./urllib模块/2.png" height="249" width="634">
+
 通过以上实例得知，如果要使用`GET`请求，需要以下步骤：
-构建对应的`URL`地址，该`URL`地址包含`GET`请求的字段名和字段内容等信息，并且`URL`地址满足`GET`请求的格式，即`http://网址?字段名1=字段内容1&字段名2=字段内容2`。
-以对应的`URL`为参数，构建`Request`对象。
-通过`urlopen`打开构建的`Request`对象。
-按需求进行后续的处理操作，比如读取网页的内容、将内容写入文件等。
+
+1. 构建对应的`URL`地址，该`URL`地址包含`GET`请求的字段名和字段内容等信息，并且`URL`地址满足`GET`请求的格式，即`http://网址?字段名1=字段内容1&字段名2=字段内容2`。
+2. 以对应的`URL`为参数，构建`Request`对象。
+3. 通过`urlopen`打开构建的`Request`对象。
+4. 按需求进行后续的处理操作，比如读取网页的内容、将内容写入文件等。
 
 ### POST请求实例分析
 
@@ -196,15 +201,33 @@ http://www.iqianyue.com/mypost
 
 打开网址，会发现有一个表单：
 
+<img src="./urllib模块/3.png">
+
 如何通过爬虫自动实现这个传递过程呢？因为这里所采用的传递方法是`POST`方法，所以如果要使用爬虫自动实现，需要构造`PSOT`请求，实现思路如下：
 
-设置好`URL`网址。
-构建表单数据，并使用`urllib.parse.urlencode`对数据进行编码处理。
-构建`Request`对象，参数包括`URL`地址和要传递的数据。
-添加头部信息，模拟浏览器进行爬取。
-使用`urllib.requesr.urlopen`打开对应的`Request`对象，完成信息的传递。
-后续处理，比如读取网页内容、将内容写入文件等。
+1. 设置好`URL`网址。
+2. 构建表单数据，并使用`urllib.parse.urlencode`对数据进行编码处理。
+3. 构建`Request`对象，参数包括`URL`地址和要传递的数据。
+4. 添加头部信息，模拟浏览器进行爬取。
+5. 使用`urllib.requesr.urlopen`打开对应的`Request`对象，完成信息的传递。
+6. 后续处理，比如读取网页内容、将内容写入文件等。
+
 首先需要设置好对应的URL地址。在单击提交之后，会传递到当前页面进行处理，所以处理的页面应该是`http://www.iqianyue.com/mypost`，即`URL`应该设置为`http://www.iqianyue.com/mypost`。然后需要构建表单数据，在该网页上右击`查看网页源代码`，找到对应的`form`表单部分，然后进行分析：
+
+``` xml
+<html>
+<head>
+    <title>Post Test Page</title>
+</head>
+<body>
+    <form action="" method="post">
+    name:<input name="name" type="text" /><br>
+    passwd:<input name="pass" type="text" /><br>
+    <input name="" type="submit" value="submit" />
+    <br />
+</body>
+</html>
+```
 
 可以发现，表单中的姓名对应的输入框中，`name`属性值为`name`；密码对应的输入框中，`name`属性值为`pass`，所以构造的数据中会包含两个字段，字段名分别是`name`和`pass`，字段值设置我们要传递的信息。格式为字典形式：
 
@@ -232,6 +255,8 @@ fhandle.close()
 ```
 
 在浏览器中打开刚才保存的`1.html`文件，可以看到数据已经成功提交：
+
+<img src="./urllib模块/4.png">
 
 ---
 
