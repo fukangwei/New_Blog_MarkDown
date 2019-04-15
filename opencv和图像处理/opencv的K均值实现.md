@@ -25,7 +25,7 @@ void randShuffle (InputOutputArray dst, double iterFactor = 1., RNG *rng = 0);
 Class TermCriteria
 ```
 
-类TermCriteria一般表示迭代终止的条件，如果为CV_TERMCRIT_ITER，则用最大迭代次数作为终止条件；如果为CV_TERMCRIT_EPS 则用精度作为迭代条件；如果为CV_TERMCRIT_ITER+CV_TERMCRIT_EPS则用最大迭代次数或者精度作为迭代条件，看哪个条件先满足。
+类`TermCriteria`一般表示迭代终止的条件，如果为`CV_TERMCRIT_ITER`，则用最大迭代次数作为终止条件；如果为`CV_TERMCRIT_EPS`，则用精度作为迭代条件；如果为`CV_TERMCRIT_ITER + CV_TERMCRIT_EPS`，则用最大迭代次数或者精度作为迭代条件，看哪个条件先满足。
 
 ``` cpp
 double kmeans (
@@ -33,8 +33,9 @@ double kmeans (
     int attempts, int flags, OutputArray centers = noArray());
 ```
 
-该函数为kmeans聚类算法实现函数。参数data表示需要被聚类的原始数据集合，一行表示一个数据样本，每一个样本的每一列都是一个属性；参数k表示需要被聚类的个数；参数bestLabels表示每一个样本的类的标签，是一个从0开始的索引整数；参数criteria表示的是算法迭代终止条件；参数attempts表示运行kmeans的次数，取结果最好的那次聚类为最终的聚类，要配合参数flages来使用；参数flags表示的是聚类初始化的条件，其取值有3种情况：如果为KMEANS_RANDOM_CENTERS，则表示为随机选取初始化中心点；如果为KMEANS_PP_CENTERS，则表示使用某一种算法来确定初始聚类的点；如果为KMEANS_USE_INITIAL_LABELS，则表示使用用户自定义的初始点，但是如果此时的attempts大于1，则后面的聚类初始点依旧使用随机的方式；参数centers表示的是聚类后的中心点存放矩阵。该函数返回的是聚类结果的紧凑性，其计算公式为：
+该函数为`k-means`聚类算法实现函数。参数`data`表示需要被聚类的原始数据集合，一行表示一个数据样本，每一个样本的每一列都是一个属性；参数`k`表示需要被聚类的个数；参数`bestLabels`表示每一个样本的类的标签，是一个从`0`开始的索引整数；参数`criteria`表示的是算法迭代终止条件；参数`attempts`表示运行`k-means`的次数，取结果最好的那次聚类为最终的聚类，要配合参数`flags`来使用；参数`flags`表示的是聚类初始化的条件，其取值有`3`种情况：如果为`KMEANS_RANDOM_CENTERS`，则表示为随机选取初始化中心点；如果为`KMEANS_PP_CENTERS`，则表示使用某一种算法来确定初始聚类的点；如果为`KMEANS_USE_INITIAL_LABELS`，则表示使用用户自定义的初始点，但是如果此时的`attempts`大于`1`，则后面的聚类初始点依旧使用随机的方式；参数`centers`表示的是聚类后的中心点存放矩阵。该函数返回的是聚类结果的紧凑性，其计算公式为：
 
+$$\sum_{i}\left \| samples_{i} - centers_{labels_{i}}\right \|^{2}$$
 
 ``` cpp
 #include "opencv2/highgui/highgui.hpp"
@@ -103,3 +104,5 @@ int main ( int argc, char **argv ) {
     return 0;
 }
 ```
+
+<img src="./opencv的K均值实现/1.png" height="263" width="742">
