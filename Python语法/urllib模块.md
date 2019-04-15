@@ -4,7 +4,7 @@ date: 2019-04-14 21:28:47
 tags:
 ---
 &emsp;&emsp;`Urllib`库是`Python`中的一个功能强大、用于操作`URL`，并在做爬虫时经常要用到的库。在`Python2.x`中，分为`Urllib`库和`Urllin2`库，`Python3.x`之后都合并到`Urllib`库中，使用方法稍有不同。本文介绍的是`Python3`中的`urllib`库。
-
+<!--more-->
 ### 什么是Urllib库
 
 &emsp;&emsp;`Urllib`是`Python`提供的一个用于操作`URL`的模块，我们在爬取网页的时候，经常需要用到这个库。升级合并后，模块中的包位置变化的地方较多，在此列举一些常见的位置变动，方便之前用`Python2.x`的朋友在使用`Python3.x`的时候可以快速掌握。常见的变化如下：
