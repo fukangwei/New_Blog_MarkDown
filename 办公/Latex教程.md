@@ -140,15 +140,19 @@ Hello, \%world!
 \end{document}
 ```
 
-&emsp;&emsp;latex还可以对表格进行合并，例如合并行(\multirow)和合并列(\multicolumn)。命令格式如下：
+&emsp;&emsp;`latex`还可以对表格进行合并，例如合并行(`\multirow`)和合并列(`\multicolumn`)。命令格式如下：
 
+``` latex
 \multirow{nrows}[bigstructs]{width}[fixup]{text}
+```
 
-nrows：设定所占用的行数。
-bigstructs：如果使用了bigstruct宏包，那么可以使用此项。
-width：设定该栏文本的宽度。如果想让LaTeX自行决定文本的宽度，则使用“*”。
-fixup：此为可选项，主要用来调整文本的垂直位置。
-text：所要排版的文本，可用“\\”来强迫换行。
+- `nrows`：设定所占用的行数。
+- `bigstructs`：如果使用了`bigstruct`宏包，那么可以使用此项。
+- `width`：设定该栏文本的宽度。如果想让`LaTeX`自行决定文本的宽度，则使用`*`。
+- `fixup`：此为可选项，主要用来调整文本的垂直位置。
+- `text`：所要排版的文本，可用`\\`来强迫换行。
+
+``` latex
 \documentclass{article}
 \usepackage{multirow}
 \begin{document}
@@ -163,8 +167,11 @@ text：所要排版的文本，可用“\\”来强迫换行。
         \hline
     \end{tabular}
 \end{document}
+```
 
-如果需要给表格增加说明，可以使用“table”：
+如果需要给表格增加说明，可以使用`table`：
+
+``` latex
 \documentclass[UTF8]{ctexart}
 \begin{document}
     \begin{table}[h]
@@ -181,21 +188,25 @@ text：所要排版的文本，可用“\\”来强迫换行。
         \end{tabular}
     \end{table}
 \end{document}
+```
 
-使用latex制作表格是一件很复杂的事，可以使用`http://www.tablesgenerator.com/`在线生成。
+使用`latex`制作表格是一件很复杂的事，可以使用`http://www.tablesgenerator.com/`在线生成。
 
 ### 页边距
 
-&emsp;&emsp;设置页边距，推荐使用geometry宏包。比如我希望将纸张的长度设置为20cm、宽度设置为15cm、左边距1cm、右边距2cm、上边距3cm、下边距4cm，可以在导言区加上如下内容：
+&emsp;&emsp;设置页边距，推荐使用`geometry`宏包。比如我希望将纸张的长度设置为`20cm`，宽度设置为`15cm`，左边距`1cm`，右边距`2cm`，上边距`3cm`，下边距`4cm`，可以在导言区加上如下内容：
 
+``` latex
 \usepackage{geometry}
 \geometry{papersize={20cm, 15cm}}
 \geometry{left=1cm, right=2cm, top=3cm, bottom=4cm}
+```
 
 ### 页眉页脚
 
-    设置页眉页脚，推荐使用fancyhdr宏包。比如我希望在页眉左边写上我的名字，中间写上今天的日期，右边写上我的电话；页脚的正中写上页码；页眉和正文直接有一道宽为0.4pt的横线分割，可以在导言区加上如下内容：
+&emsp;&emsp;设置页眉页脚，推荐使用fancyhdr宏包。比如我希望在页眉左边写上我的名字，中间写上今天的日期，右边写上我的电话；页脚的正中写上页码；页眉和正文直接有一道宽为0.4pt的横线分割，可以在导言区加上如下内容：
 
+``` latex
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \lhead{little fool}
@@ -206,6 +217,7 @@ text：所要排版的文本，可用“\\”来强迫换行。
 \rfoot{}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0pt}
+```
 
 ### 段间距
 
@@ -223,7 +235,8 @@ TeX是高德纳教授做出来的排版引擎，同时也是该引擎使用的�
 
 注意段与段之间需要一个空行。如果需要减小段间距，只需将该数值改为负值即可。
 
-插入图片
+### 插入图片
+
     可以使用graphicx宏包提供的“\includegraphics”命令来插入图片。比如在TeX源文件同目录下有名为test.jpg的图片，可以用这样的方式将它插入到输出文档中：
 \documentclass{article}
 \usepackage{graphicx}
