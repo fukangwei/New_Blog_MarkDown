@@ -27,18 +27,25 @@ Hello, \%world!
 ```
 
 此处`%`被当做正常的百分号处理，其后的文字也将被正常输出。
-&emsp;&emsp;其后出现了控制序列`begin`，这个控制序列总是与`end`成对出现。这两个控制序列以及他们中间的内容被称为“环境”，它们之后的第一个必要参数总是一致的，被称为环境名。只有在“document”环境中的内容，才会被正常输出到文档中去，或是作为控制序列对文档产生影响。因此，在“\end{document}”之后插入任何内容都是无效的。
-&emsp;&emsp;“\begin{document}”与“\documentclass{article}”之间的部分被称为导言区。导言区中的控制序列，通常会影响到整个输出文档。
+&emsp;&emsp;其后出现了控制序列`begin`，这个控制序列总是与`end`成对出现。这两个控制序列以及它们中间的内容被称为`环境`，它们之后的第一个必要参数总是一致的，被称为`环境名`。只有在`document`环境中的内容，才会被正常输出到文档中去，或是作为控制序列对文档产生影响。因此，在`\end{document}`之后插入任何内容都是无效的。
+&emsp;&emsp;`\begin{document}`与`\documentclass{article}`之间的部分被称为`导言区`。导言区中的控制序列，通常会影响到整个输出文档。
 
-实现中英文混排
-    中英文混排可以使用ctex文档类：
+### 实现中英文混排
+
+&emsp;&emsp;中英文混排可以使用`ctex`文档类：
+
+``` latex
 \documentclass[UTF8]{ctexart}
 \begin{document}
 你好，world!
 \end{document}
+```
 
-作者、标题、日期
-    代码如下：
+### 作者、标题、日期
+
+&emsp;&emsp;代码如下：
+
+``` latex
 \documentclass[UTF8]{ctexart}
 \title{你好，world!}
 \author{Liam}
@@ -47,11 +54,15 @@ Hello, \%world!
     \maketitle
     你好，world!
 \end{document}
+```
 
-在“document”环境中，除了原本的“你好，world!”，还多了一个控制序列“maketitle”。这个控制序列能将在导言区中定义的标题、作者、日期按照预定的格式展现出来。
+在`document`环境中，除了原本的`你好，world!`，还多了一个控制序列`maketitle`。这个控制序列能将在导言区中定义的标题、作者、日期按照预定的格式展现出来。
 
-章节和段落
-    代码如下：
+### 章节和段落
+
+&emsp;&emsp;代码如下：
+
+``` latex
 \documentclass[UTF8]{ctexart}
 \title{你好，world!}
 \author{Liam}
@@ -70,16 +81,21 @@ Hello, \%world!
     \subsection{Hello 山东}
     \paragraph{山东大学} is one of the best university in 山东。
 \end{document}
+```
 
-在文档类article或ctexart中，定义了五个控制序列来调整行文组织结构：
-\section{}
-\subsection{}
-\subsubsection{}
-\paragraph{}
-\subparagraph{}
+在文档类`article`或`ctexart`中，定义了五个控制序列来调整行文组织结构：
 
-插入目录
-    在上一节的文档中，找到“\maketitle”，在它的下面插入控制序列“\tableofcontents”，保存并使用LaTeX编译两次：
+- `\section{}`
+- `\subsection{}`
+- `\subsubsection{}`
+- `\paragraph{}`
+- `\subparagraph{}`
+
+### 插入目录
+
+&emsp;&emsp;在上一节的文档中，找到“\maketitle”，在它的下面插入控制序列“\tableofcontents”，保存并使用LaTeX编译两次：
+
+``` latex
 \documentclass[UTF8]{ctexart}
 \title{你好，world!}
 \author{Liam}
@@ -99,7 +115,7 @@ Hello, \%world!
     \subsection{Hello 山东}
     \paragraph{山东大学} is one of the best university in 山东。
 \end{document}
-
+```
 
 表格
     tabular环境提供了最简单的表格功能。它用“\hline”命令表示横线，“|”表示竖线；用“&”来分列，用“\\”来换行；每列可以采用居中、居左、居右等横向对齐方式，分别用l、c、r 来表示：
