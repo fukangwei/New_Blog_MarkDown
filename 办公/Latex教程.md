@@ -237,14 +237,22 @@ TeX是高德纳教授做出来的排版引擎，同时也是该引擎使用的�
 
 ### 插入图片
 
-    可以使用graphicx宏包提供的“\includegraphics”命令来插入图片。比如在TeX源文件同目录下有名为test.jpg的图片，可以用这样的方式将它插入到输出文档中：
+&emsp;&emsp;可以使用`graphicx`宏包提供的`\includegraphics`命令来插入图片。比如在`TeX`源文件同目录下有名为`test.jpg`的图片，可以用这样的方式将它插入到输出文档中：
+
+``` latex
 \documentclass{article}
 \usepackage{graphicx}
 \begin{document}
 \includegraphics{test.jpg}
 \end{document}
-图片可能很大，超过了输出文件的纸张大小。这时你可以使用“\includegraphics”控制序列的可选参数：
+```
+
+图片可能很大，超过了输出文件的纸张大小。这时你可以使用`\includegraphics`控制序列的可选参数：
+
+``` latex
 \includegraphics[width = .8\textwidth]{a.jpg}
+```
+
 这样图片的宽度会被缩放至页面宽度的百分之八十，图片的总高度会按比例缩放。
 
 ### 分栏显示
@@ -272,18 +280,18 @@ ex  当前字体中x的高度
 
 字号如下：
 
-size           10pt (default)  11pt option  12pt option
--------------------------------------------------------
-\tiny          5pt             6pt          6pt
-\scriptsize    7pt             8pt          8pt
-\footnotesize  8pt             9pt          10pt
-\small         9pt             10pt         11pt
-\normalsize    10pt            11pt         12pt
-\large         12pt            12pt         14pt
-\Large         14pt            14pt         17pt
-\LARGE         17pt            17pt         20pt
-\huge          20pt            20pt         25pt
-\Huge          25pt            25pt         25pt
+size            | 10pt (default) | 11pt option | 12pt option
+----------------|----------------|-------------|------------
+`\tiny`         | 5pt            | 6pt         | 6pt
+`\scriptsize`   | 7pt            | 8pt         | 8pt
+`\footnotesize` | 8pt            | 9pt         | 10pt
+`\small`        | 9pt            | 10pt        | 11pt
+`\normalsize`   | 10pt           | 11pt        | 12pt
+`\large`        | 12pt           | 12pt        | 14pt
+`\Large`        | 14pt           | 14pt        | 17pt
+`\LARGE`        | 17pt           | 17pt        | 20pt
+`\huge`         | 20pt           | 20pt        | 25pt
+`\Huge`         | 25pt           | 25pt        | 25pt
 
 中英文字号对照表如下：
 
@@ -376,7 +384,7 @@ slanted斜体：“\textsl{文本}”
 - `b`：页底(`bottom`)，浮动体被放在一页的底部。
 - `p`：独立一页(`page`)，一个或多个浮动体被放在单独的页面中，这个页面被称为`浮动页`。
 
-浮动体最常见的应用就是直接在table环境中放置tabular，或者是在figure环境中放置“\includegraphics”命令插入的图形。经常还在前面使用“\centering”命令让图表居中放置。
+浮动体最常见的应用就是直接在`table`环境中放置`tabular`，或者是在`figure`环境中放置`\includegraphics`命令插入的图形。经常还在前面使用`\centering`命令让图表居中放置。
 
 ``` latex
 \documentclass[UTF8]{ctexart}
@@ -404,12 +412,17 @@ slanted斜体：“\textsl{文本}”
 \end{document}
 ```
 
-插入公式
-    代码如下：
+### 插入公式
+
+&emsp;&emsp;代码如下：
+
+``` latex
 \documentclass{article}
 \begin{document}
     \begin{equation}
     a + b = c
     \end{equation}
 \end{document}
+```
+
 注意，每一个公式后面都有一个序号。
