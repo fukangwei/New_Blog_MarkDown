@@ -93,7 +93,7 @@ Hello, \%world!
 
 ### 插入目录
 
-&emsp;&emsp;在上一节的文档中，找到“\maketitle”，在它的下面插入控制序列“\tableofcontents”，保存并使用LaTeX编译两次：
+&emsp;&emsp;在上一节的文档中，找到`\maketitle`，在它的下面插入控制序列`\tableofcontents`，保存并使用`LaTeX`编译两次：
 
 ``` latex
 \documentclass[UTF8]{ctexart}
@@ -117,8 +117,11 @@ Hello, \%world!
 \end{document}
 ```
 
-表格
-    tabular环境提供了最简单的表格功能。它用“\hline”命令表示横线，“|”表示竖线；用“&”来分列，用“\\”来换行；每列可以采用居中、居左、居右等横向对齐方式，分别用l、c、r 来表示：
+### 表格
+
+&emsp;&emsp;`tabular`环境提供了最简单的表格功能。它用`\hline`命令表示横线，`|`表示竖线；用`&`来分列，用`\\`来换行；每列可以采用居中、居左、居右等横向对齐方式，分别用`l`、`c`、`r`来表示：
+
+``` latex
 \documentclass[UTF8]{ctexart}
 \begin{document}
 \begin{tabular}{|l|c|r|}
@@ -135,9 +138,12 @@ Hello, \%world!
     \hline
 \end{tabular}
 \end{document}
+```
 
-    latex还可以对表格进行合并，例如合并行(\multirow)和合并列(\multicolumn)。命令格式如下：
+&emsp;&emsp;latex还可以对表格进行合并，例如合并行(\multirow)和合并列(\multicolumn)。命令格式如下：
+
 \multirow{nrows}[bigstructs]{width}[fixup]{text}
+
 nrows：设定所占用的行数。
 bigstructs：如果使用了bigstruct宏包，那么可以使用此项。
 width：设定该栏文本的宽度。如果想让LaTeX自行决定文本的宽度，则使用“*”。
@@ -176,16 +182,20 @@ text：所要排版的文本，可用“\\”来强迫换行。
     \end{table}
 \end{document}
 
-使用latex制作表格是一件很复杂的事，可以使用“http://www.tablesgenerator.com/”在线生成。
+使用latex制作表格是一件很复杂的事，可以使用`http://www.tablesgenerator.com/`在线生成。
 
-页边距
-    设置页边距，推荐使用geometry宏包。比如我希望将纸张的长度设置为20cm、宽度设置为15cm、左边距1cm、右边距2cm、上边距3cm、下边距4cm，可以在导言区加上如下内容：
+### 页边距
+
+&emsp;&emsp;设置页边距，推荐使用geometry宏包。比如我希望将纸张的长度设置为20cm、宽度设置为15cm、左边距1cm、右边距2cm、上边距3cm、下边距4cm，可以在导言区加上如下内容：
+
 \usepackage{geometry}
 \geometry{papersize={20cm, 15cm}}
 \geometry{left=1cm, right=2cm, top=3cm, bottom=4cm}
 
-页眉页脚
+### 页眉页脚
+
     设置页眉页脚，推荐使用fancyhdr宏包。比如我希望在页眉左边写上我的名字，中间写上今天的日期，右边写上我的电话；页脚的正中写上页码；页眉和正文直接有一道宽为0.4pt的横线分割，可以在导言区加上如下内容：
+
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \lhead{little fool}
@@ -197,15 +207,20 @@ text：所要排版的文本，可用“\\”来强迫换行。
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0pt}
 
-段间距
-    可以通过修改计数器“\parskip”的值来调整段间距，例如在原有的基础上增加段间距0.4em：
+### 段间距
+
+&emsp;&emsp;可以通过修改计数器`\parskip`的值来调整段间距，例如在原有的基础上增加段间距`0.4em`：
+
+``` latex
 \documentclass[UTF8]{ctexart}
 \addtolength{\parskip}{.4em}
 \begin{document}
 TeX是高德纳教授做出来的排版引擎，同时也是该引擎使用的标记语言的名称。
-​
+
 而LaTeX则是L.Lamport授开发的基于TeX的排版系统。
 \end{document}
+```
+
 注意段与段之间需要一个空行。如果需要减小段间距，只需将该数值改为负值即可。
 
 插入图片
