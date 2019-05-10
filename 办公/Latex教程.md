@@ -247,23 +247,31 @@ TeX是高德纳教授做出来的排版引擎，同时也是该引擎使用的�
 \includegraphics[width = .8\textwidth]{a.jpg}
 这样图片的宽度会被缩放至页面宽度的百分之八十，图片的总高度会按比例缩放。
 
-分栏显示
-    可以使用twocolumn来设置双栏显示，栏间距使用“\columnsep”进行设置：
+### 分栏显示
+
+&emsp;&emsp;可以使用`twocolumn`来设置双栏显示，栏间距使用`\columnsep`进行设置：
+
+``` latex
 \documentclass[UTF8, twocolumn]{ctexart}
 \setlength{\columnsep}{0.24in}
 \begin{document}
     % 内容
 \end{document}
+```
 
-Latex字体尺寸
-    单位如下：
+### Latex字体尺寸
+
+&emsp;&emsp;单位如下：
+
 pt  1pt = 1/72.27英寸
 bp  1bp = 1/72英寸
 mm  毫米
 cm  厘米
 in  英寸
 ex  当前字体中x的高度
+
 字号如下：
+
 size           10pt (default)  11pt option  12pt option
 -------------------------------------------------------
 \tiny          5pt             6pt          6pt
@@ -276,13 +284,16 @@ size           10pt (default)  11pt option  12pt option
 \LARGE         17pt            17pt         20pt
 \huge          20pt            20pt         25pt
 \Huge          25pt            25pt         25pt
+
 中英文字号对照表如下：
+
 初号  小初  一号     小一  二号    小二   三号    小三
 42pt  36pt  26pt    24pt  22pt   18pt   16pt   15pt
 四号  小四  五号     小五  六号    小六   七号    八号
 14pt  12pt  10.5pt  9pt   7.5pt  6.5pt  5.5pt   5pt
 
 Latex字体处理
+
 显示直立文本：“\textup{文本}”
 意大利斜体：“\textit{文本}”
 slanted斜体：“\textsl{文本}”
@@ -297,8 +308,11 @@ slanted斜体：“\textsl{文本}”
 第二行 \\
 \end{center}
 
-摘要和关键字
-    代码如下：
+### 摘要和关键字
+
+&emsp;&emsp;代码如下：
+
+``` latex
 \documentclass[conference, letterpaper]{IEEEtran}
 ​
 \begin{document}
@@ -313,9 +327,13 @@ slanted斜体：“\textsl{文本}”
         List key index terms here. No more than 5.
     \end{keywords}
 \end{document}
+```
 
-列表
-    有序列表如下：
+### 列表
+
+&emsp;&emsp;有序列表如下：
+
+``` latex
 \documentclass{article}
 \begin{document}
     \begin{enumerate}
@@ -324,8 +342,11 @@ slanted斜体：“\textsl{文本}”
     \item This is the third item
     \end{enumerate}
 \end{document}
+```
 
 无序列表如下：
+
+``` latex
 \documentclass{article}
 \begin{document}
     \begin{itemize}
@@ -334,15 +355,20 @@ slanted斜体：“\textsl{文本}”
     \item This is the third item
     \end{itemize}
 \end{document}
+```
 
+### Latex浮动体
 
-Latex浮动体
     图片或表格通常都占有较大的一块区域，直接放在文档中常常会造成分页的困难：在文档中常常会造成分页的困难，即一页放不下，放在后一页又会造成很大的留白。除了图表，其他类型的大块内容也有可能出现类似的问题，如程序算法、大型公式等。
     LaTeX中的浮动体便可以解决这个问题。浮动体是一个活动的盒子，它可以把内容放在距离浮动体代码前后不远的地方，通常就是浮动体代码所在地，但也可以放在页面开头、末尾或是单独的一页中。使用浮动体，就可以在不太费力仔细调整内容的情况下，避免大块图表把整齐的页面弄糟。此外，浮动体还可以给图表添加标题，这在论文写作中非常重要。
     LaTeX中两种浮动体环境：figure和table，通常分别用于图和表的排版。figure环境的语法格式如下：
+
+``` latex
 \begin{figure}[允许位置]
 内容
 \end{figure}
+```
+
 table环境与之类似。可选参数允许位置用来设定浮动环境可以出现在页面中的位置，即h、t、b、p四个选项的组合：
 h：此处(here)，浮动体的内容被放在代码所在的上下文位置。
 t：页顶(top)，浮动体被放在一页的顶部，这可以是代码所在环境的页面或之后的页面，注意当页排版的浮动体可能出现在实际代码之前。
