@@ -271,12 +271,14 @@ TeX是高德纳教授做出来的排版引擎，同时也是该引擎使用的�
 
 &emsp;&emsp;单位如下：
 
-pt  1pt = 1/72.27英寸
-bp  1bp = 1/72英寸
-mm  毫米
-cm  厘米
-in  英寸
-ex  当前字体中x的高度
+单位 | 大小
+-----|----
+`pt` | `1pt`是`1/72.27`英寸
+`bp` | `1bp`是`1/72`英寸
+`mm` | 毫米
+`cm` | 厘米
+`in` | 英寸
+`ex` | 当前字体中`x`的高度
 
 字号如下：
 
@@ -302,19 +304,22 @@ size            | 10pt (default) | 11pt option | 12pt option
 
 Latex字体处理
 
-显示直立文本：“\textup{文本}”
-意大利斜体：“\textit{文本}”
-slanted斜体：“\textsl{文本}”
-显示小体大写文本：“\textsc{文本}”
-中等权重：“\textmd{文本}”
-加粗命令：“\textbf{文本}”
-默认值：“\textnormal{文本}”
-下划线：“\underline{文本}”
-文字居中：
+- 显示直立文本：`\textup{文本}`
+- 意大利斜体：`\textit{文本}`
+- `slanted`斜体：`\textsl{文本}`
+- 显示小体大写文本：`\textsc{文本}`
+- 中等权重：`\textmd{文本}`
+- 加粗命令：`\textbf{文本}`
+- 默认值：`\textnormal{文本}`
+- 下划线：`\underline{文本}`
+- 文字居中：
+
+``` latex
 \begin{center}
 第一行 \\
 第二行 \\
 \end{center}
+```
 
 ### 摘要和关键字
 
