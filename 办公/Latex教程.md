@@ -307,11 +307,16 @@ size            | 10pt (default) | 11pt option | 12pt option
 小二    | 18pt
 三号    | 16pt
 小三    | 15pt
+四号    | 14pt
+小四    | 12pt
+五号    | 10.5pt
+小五    | 9pt
+六号    | 7.5pt
+小六    | 6.5pt
+七号    | 5.5pt
+八号    | 5pt
 
-四号  小四  五号     小五  六号    小六   七号    八号
-14pt  12pt  10.5pt  9pt   7.5pt  6.5pt  5.5pt   5pt
-
-Latex字体处理
+### Latex字体处理
 
 - 显示直立文本：`\textup{文本}`
 - 意大利斜体：`\textit{文本}`
