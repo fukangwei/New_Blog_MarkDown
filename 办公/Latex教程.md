@@ -56,6 +56,8 @@ Hello, \%world!
 \end{document}
 ```
 
+<img src="./Latex教程/1.png">
+
 在`document`环境中，除了原本的`你好，world!`，还多了一个控制序列`maketitle`。这个控制序列能将在导言区中定义的标题、作者、日期按照预定的格式展现出来。
 
 ### 章节和段落
@@ -82,6 +84,8 @@ Hello, \%world!
     \paragraph{山东大学} is one of the best university in 山东。
 \end{document}
 ```
+
+<img src="./Latex教程/2.png" height="274" width="196">
 
 在文档类`article`或`ctexart`中，定义了五个控制序列来调整行文组织结构：
 
@@ -117,6 +121,8 @@ Hello, \%world!
 \end{document}
 ```
 
+<img src="./Latex教程/3.png" height="291" width="215">
+
 ### 表格
 
 &emsp;&emsp;`tabular`环境提供了最简单的表格功能。它用`\hline`命令表示横线，`|`表示竖线；用`&`来分列，用`\\`来换行；每列可以采用居中、居左、居右等横向对齐方式，分别用`l`、`c`、`r`来表示：
@@ -139,6 +145,8 @@ Hello, \%world!
 \end{tabular}
 \end{document}
 ```
+
+<img src="./Latex教程/4.png">
 
 &emsp;&emsp;`latex`还可以对表格进行合并，例如合并行(`\multirow`)和合并列(`\multicolumn`)。命令格式如下：
 
@@ -169,6 +177,8 @@ Hello, \%world!
 \end{document}
 ```
 
+<img src="./Latex教程/5.png">
+
 如果需要给表格增加说明，可以使用`table`：
 
 ``` latex
@@ -189,6 +199,8 @@ Hello, \%world!
     \end{table}
 \end{document}
 ```
+
+<img src="./Latex教程/6.png">
 
 使用`latex`制作表格是一件很复杂的事，可以使用`http://www.tablesgenerator.com/`在线生成。
 
@@ -371,6 +383,8 @@ size            | 10pt (default) | 11pt option | 12pt option
 \end{document}
 ```
 
+<img src="./Latex教程/7.png">
+
 无序列表如下：
 
 ``` latex
@@ -383,6 +397,8 @@ size            | 10pt (default) | 11pt option | 12pt option
     \end{itemize}
 \end{document}
 ```
+
+<img src="./Latex教程/8.png">
 
 ### Latex浮动体
 
