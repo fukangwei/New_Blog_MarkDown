@@ -148,20 +148,26 @@ int AVLTree<T>::height() {
 };
 ```
 
-&emsp;&emsp;4、`AVL`树失衡调整。节点的插入或删除都有可能导致AVL树失去平衡，因此失衡调整是插入与删除操作的基础。AVL树的失衡调整可以分为四种情况，接下来逐一分析，假设我们要为数组“a[] = {4,5,6,3,2,8,7,0,1}”构建一棵AVL树。
-    情况一：左单旋转首先插入{4,5,6}，在插入元素6后出现不平衡的情况：
+&emsp;&emsp;4、`AVL`树失衡调整。节点的插入或删除都有可能导致`AVL`树失去平衡，因此失衡调整是插入与删除操作的基础。`AVL`树的失衡调整可以分为四种情况，接下来逐一分析，假设我们要为数组`a[] = {4, 5, 6, 3, 2, 8, 7, 0, 1}`构建一棵`AVL`树。
+&emsp;&emsp;情况一：左单旋转首先插入`{4, 5, 6}`，在插入元素`6`后出现不平衡的情况：
 
-当我们在右子树插入右孩子导致AVL失衡时，我们需要进行单左旋调整。旋转围绕最小失衡子树的根节点进行。在删除新节点时也有可能会出现需要单左旋的情况。左旋代码如下：
+当我们在右子树插入右孩子导致`AVL`失衡时，我们需要进行单左旋调整。旋转围绕最小失衡子树的根节点进行。在删除新节点时也有可能会出现需要单左旋的情况。左旋代码如下：
+
+``` cpp
 /* 左旋转操作，返回旋转后的根节点 */
 template<typename T>
 AVLTreeNode<T> *AVLTree<T>::leftRotation ( AVLTreeNode<T> *proot ) {
     AVLTreeNode<T> *prchild = proot->rchild;
     proot->rchild = prchild->lchild;
     prchild->lchild = proot;
-    proot->height = max ( height ( proot->lchild ), height ( proot->rchild ) ) + 1; /* 更新节点的高度值 */
-    prchild->height = max ( height ( prchild->lchild ), height ( prchild->rchild ) ) + 1; /* 更新节点的高度值 */
+    /* 更新节点的高度值 */
+    proot->height = max ( height ( proot->lchild ), height ( proot->rchild ) ) + 1;
+    /* 更新节点的高度值 */
+    prchild->height = max ( height ( prchild->lchild ), height ( prchild->rchild ) ) + 1;
     return prchild;
 };
+```
+
 结合例子进行分析：参数proot为最小失衡子树的根节点，上图中为节点4；若节点5有左子树，则该左子树成为节点4的右子树；节点4成为节点5的左子树；最后更新节点的高度值。
     情况二：右单旋转。我们继续插入元素{3,2}，此时二叉树为：
 
