@@ -465,7 +465,9 @@ void AVLTree<T>::destory() {
 }
 ```
 
-    10、求最大最小值。二叉排序树的最小值位于最左节点，最大值位于其最右节点：
+&emsp;&emsp;10、求最大最小值。二叉排序树的最小值位于最左节点，最大值位于其最右节点：
+
+``` cpp
 /* 返回树中最大节点值 */
 template <typename T>
 AVLTreeNode<T> *AVLTree<T>::maximum ( AVLTreeNode<T> *pnode ) const {
@@ -511,7 +513,11 @@ T AVLTree<T>::minimum() {
         return presult->key;
     }
 };
-    11、打印树的信息，如下所示：
+```
+
+&emsp;&emsp;11、打印树的信息：
+
+``` cpp
 /* 打印二叉查找树
 key       -- 节点的键值
 direction -- 0，表示该节点是根节点；
@@ -537,6 +543,8 @@ void AVLTree<T>::print_tree() const {
         print_tree ( root, root->key, 0 );
     }
 }
+```
+
     12、测试。测试代码为：
 #include "AVLTree.h"
 #include <iostream>
