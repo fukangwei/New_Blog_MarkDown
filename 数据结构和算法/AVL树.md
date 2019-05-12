@@ -545,7 +545,9 @@ void AVLTree<T>::print_tree() const {
 }
 ```
 
-    12、测试。测试代码为：
+&emsp;&emsp;12、测试代码如下：
+
+``` cpp
 #include "AVLTree.h"
 #include <iostream>
 ​
@@ -579,5 +581,6 @@ int main ( void ) {
     getchar();
     return 0;
 }
+```
 
-    补充说明：平衡二叉树的结果不是唯一的。
+&emsp;&emsp;**补充说明**：平衡二叉树的结果不是唯一的。
