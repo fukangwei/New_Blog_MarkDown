@@ -9,7 +9,7 @@ mathjax: true
 
 - 它必须是二叉查找树。
 - 每个节点的左子树和右子树的高度差至多为`1`。
-
+<!--more-->
 上图中左边二叉树的节点`45`的左孩子`46`比`45`大，不满足二叉搜索树的条件，因此它不是一棵平衡二叉树。右边二叉树满足二叉搜索树的条件，同时它满足条件二，因此它是一棵平衡二叉树。
 
 左边二叉树的节点`45`左子树高度`2`，右子树高度`0`，左右子树高度差为`2 - 0 = 2`，不满足条件二。右边二叉树的节点均满足左右子树高度差至多为1，同时它满足二叉搜索树的要求，因此它是一棵平衡二叉树。
@@ -32,6 +32,8 @@ mathjax: true
 ### AVL树的实现详解
 
     1、节点结构如下所示：
+
+``` cpp
 struct AVLTreeNode {
     AVLTreeNode ( T value, AVLTreeNode<T> *l, AVLTreeNode<T> *r )
         : key ( value ), lchild ( l ), rchild ( r ) {}
@@ -41,13 +43,19 @@ struct AVLTreeNode {
     AVLTreeNode<T> *lchild;
     AVLTreeNode<T> *rchild;
 };
+```
+
 AVL的节点结构为AVLTreeNode，它包括：
+
 key：节点的值。
 height：节点的高度，用于计算父节点的平衡因子。
 lchild：若节点有左子树，则lchild指向节点的左孩子，否则指向nullptr。
 rchild：若节点有右子树，则rchild指向节点的右孩子，否则指向nullptr。
+
 在另外一些AVL节点的设计方案中，会把BF作为结点的一个属性存储起来，而在这里存储的是节点的高度，通过节点的高度也可以间接计算出节点的BF。例如节点A的左孩子的height为2，右孩子的height为1，那么节点A的平衡因子为“2 - 1 = 1”。
     2、AVL树的抽象数据结构(ADT)：
+
+``` cpp
 template<typename T>
 class AVLTree {
   public:
@@ -99,6 +107,8 @@ private:
     AVLTreeNode<T> *leftRightRotation ( AVLTreeNode<T> *pnode ); /* 双旋：先左旋后右旋操作 */
     AVLTreeNode<T> *rightLeftRotation ( AVLTreeNode<T> *pnode ); /* 双旋：先右旋后左旋操作 */
 };
+```
+
 这里定义了AVL树的类型AVLTree，它包含了：
 AVL树的根节点root，这是唯一的数据成员。
 操作的外部接口与内部实现接口，例如preOrder为提供给用户使用的接口，接口声明为public；而preOrder(AVLTreeNode* pnode)是类内部为了递归操作所使用的接口，接口声明为private。
