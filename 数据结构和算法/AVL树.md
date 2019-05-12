@@ -546,7 +546,8 @@ void AVLTree<T>::print_tree ( AVLTreeNode<T> *tree, T key, int direction ) const
         if ( direction == 0 ) { /* tree是根节点 */
             cout << setw ( 2 ) << tree->key << " is root" << endl;
         } else { /* tree是分支节点 */
-            cout << setw ( 2 ) << tree->key << " is " << setw ( 2 ) << key << "'s " << setw ( 12 ) << ( direction == 1 ? "right child" : "left child" ) << endl;
+            cout << setw ( 2 ) << tree->key << " is " << setw ( 2 ) << key << "'s " \
+                 << setw ( 12 ) << ( direction == 1 ? "right child" : "left child" ) << endl;
         }
 ​
         print_tree ( tree->lchild, tree->key, -1 );
