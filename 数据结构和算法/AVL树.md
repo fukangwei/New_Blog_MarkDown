@@ -380,13 +380,17 @@ AVLTreeNode<T> *AVLTree<T>::search_iterator ( AVLTreeNode<T> *pnode, T key ) con
 };
 ```
 
-    8、遍历二叉树。对于二叉树的遍历，如果区分左右孩的顺序，共有三种遍历方式：
-先序遍历，或称前序遍历。
-中序遍历，对二叉排序树来说，中序遍历刚好输出一个非递减的序列(假设我们对元素的访问操作是“输出”)。
-后序遍历。
-遍历操作可以对二叉树的节点进行访问，这个访问是个抽象的词语。访问可以是输出节点值，或者是销毁这个节点或其他允许对节点进行的操作。我们就下图的AVL树介绍遍历算法：
+&emsp;&emsp;8、遍历二叉树。对于二叉树的遍历，如果区分左右孩的顺序，共有三种遍历方式：
 
-    先序遍历如下所示：
+- 先序遍历，或称前序遍历。
+- 中序遍历，对二叉排序树来说，中序遍历刚好输出一个非递减的序列(假设我们对元素的访问操作是`输出`)。
+- 后序遍历。
+
+遍历操作可以对二叉树的节点进行访问，这个访问是个抽象的词语。访问可以是输出节点值，或者是销毁这个节点或其他允许对节点进行的操作。我们就下图的`AVL`树介绍遍历算法：
+
+&emsp;&emsp;先序遍历如下：
+
+``` cpp
 template<typename T>
 void AVLTree<T>::preOrder ( AVLTreeNode<T> *pnode ) const {
     if ( pnode != nullptr ) {
@@ -400,8 +404,12 @@ template<typename T>
 void AVLTree<T>::preOrder() {
     preOrder ( root );
 };
-若二叉树为空，则空操作返回，否则先访问根节点，然后前序遍历左子树，再前序遍历右子树(简记为VLR)。前序遍历树a为“5 3 2 4 7 6 8”；前序遍历树b为“5 3 2 4 1 0 7 6 8”。
-    中序遍历如下所示：
+```
+
+若二叉树为空，则空操作返回，否则先访问根节点，然后前序遍历左子树，再前序遍历右子树(简记为`VLR`)。前序遍历树`a`为`5 3 2 4 7 6 8`；前序遍历树`b`为`5 3 2 4 1 0 7 6 8`。
+&emsp;&emsp;中序遍历如下：
+
+``` cpp
 template<typename T>
 void AVLTree<T>::inOrder ( AVLTreeNode<T> *pnode ) const {
     if ( pnode != nullptr ) {
@@ -415,8 +423,12 @@ template<typename T>
 void AVLTree<T>::InOrder() {
     inOrder ( root );
 };
-若二叉树为空，则空操作返回，否则从根节点开始，中序遍历根节点的左子树，然后访问根节点，最后中序遍历右子树(简记为LVR)。中序遍历树a为“2 3 4 5 6 7 8”；中序遍历树b为“0 1 2 3 4 5 6 7 8”。
-    后序遍历如下所示：
+```
+
+若二叉树为空，则空操作返回，否则从根节点开始，中序遍历根节点的左子树，然后访问根节点，最后中序遍历右子树(简记为`LVR`)。中序遍历树`a`为`2 3 4 5 6 7 8`；中序遍历树`b`为`0 1 2 3 4 5 6 7 8`。
+&emsp;&emsp;后序遍历如下：
+
+``` cpp
 template<typename T>
 void AVLTree<T>::postOrder ( AVLTreeNode<T> *pnode ) const {
     if ( pnode != nullptr ) {
@@ -430,8 +442,12 @@ template<typename T>
 void AVLTree<T>::postOrder() {
     postOrder ( root );
 };
-若树为空，则返回空操作，否则从左到右先叶子后节点的方式遍历访问左右子树，左右子树都访问结束，才访问根节点(简称为LRV)。后序遍历树a为“2 4 3 6 8 7 5”；后序遍历树b为“0 2 1 4 3 6 8 7 5”。
-    9、AVL树的销毁。采用后序遍历AVL树来销毁二叉树，即先销毁根节点的左子树，然后销毁根节点的右子树，最后才销毁根节点：
+```
+
+若树为空，则返回空操作，否则从左到右先叶子后节点的方式遍历访问左右子树，左右子树都访问结束，才访问根节点(简称为`LRV`)。后序遍历树`a`为`2 4 3 6 8 7 5`；后序遍历树`b`为`0 2 1 4 3 6 8 7 5`。
+&emsp;&emsp;9、`AVL`树的销毁。采用后序遍历`AVL`树来销毁二叉树，即先销毁根节点的左子树，然后销毁根节点的右子树，最后才销毁根节点：
+
+``` cpp
 /* 销毁AVL树 */
 template<typename T>
 void AVLTree<T>::destory ( AVLTreeNode<T> *&pnode ) {
@@ -447,6 +463,8 @@ template<typename T>
 void AVLTree<T>::destory() {
     destory ( root );
 }
+```
+
     10、求最大最小值。二叉排序树的最小值位于最左节点，最大值位于其最右节点：
 /* 返回树中最大节点值 */
 template <typename T>
