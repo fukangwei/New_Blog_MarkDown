@@ -204,19 +204,25 @@ AVLTreeNode<T> *AVLTree<T>::rightLeftRotation ( AVLTreeNode<T> *proot ) {
 &emsp;&emsp;情况四：先左旋后右旋。根据对称性原理，当`在左子树上插入右孩子导致AVL树失衡`，此时需要进行先左旋后右旋的调整。接着插入节点`{0, 1}`：
 
 调整的代码为：
+
+``` cpp
 /* 先左后右做旋转，参数proot为最小失衡子树的根节点，该函数返回旋转后的根节点 */
 template <typename T>
 AVLTreeNode<T> *AVLTree<T>::leftRightRotation ( AVLTreeNode<T> *proot ) {
     proot->lchild = leftRotation ( proot->lchild );
     return rightRotation ( proot );
 };
-首先对最小不平衡子树的根节点(也就是节点2)的左孩子(也就是0)进行左旋操作，再对节点2进行一次右旋操作。
-    四种失衡调整如下所示：
+```
+
+首先对最小不平衡子树的根节点(也就是节点`2`)的左孩子(也就是`0`)进行左旋操作，再对节点`2`进行一次右旋操作。
+&emsp;&emsp;四种失衡调整如下：
+
 类型	使用情形
 单左旋	在左子树插入左孩子节点，使得平衡因子绝对值由1增至2
 单右旋	在右子树插入右孩子节点，使得平衡因子绝对值由1增至2
 先左旋后右旋	在左子树插入右孩子节点，使得平衡因子绝对值由1增至2
 先右旋后左旋	在右子树插入左孩子节点，使得平衡因子绝对值由1增至2
+
     5、插入新节点。其实上面已经展示了一个完整的插入过程，如下所示：
 /* 插入操作，递归地进行插入，该函数返回插入后的根节点 */
 template <typename T>
