@@ -31,7 +31,7 @@ mathjax: true
 
 ### AVL树的实现详解
 
-    1、节点结构如下所示：
+&emsp;&emsp;1、节点结构如下：
 
 ``` cpp
 struct AVLTreeNode {
@@ -45,15 +45,15 @@ struct AVLTreeNode {
 };
 ```
 
-AVL的节点结构为AVLTreeNode，它包括：
+`AVL`的节点结构为`AVLTreeNode`，它包括：
 
-key：节点的值。
-height：节点的高度，用于计算父节点的平衡因子。
-lchild：若节点有左子树，则lchild指向节点的左孩子，否则指向nullptr。
-rchild：若节点有右子树，则rchild指向节点的右孩子，否则指向nullptr。
+- `key`：节点的值。
+- `height`：节点的高度，用于计算父节点的平衡因子。
+- `lchild`：若节点有左子树，则`lchild`指向节点的左孩子，否则指向`nullptr`。
+- `rchild`：若节点有右子树，则`rchild`指向节点的右孩子，否则指向`nullptr`。
 
-在另外一些AVL节点的设计方案中，会把BF作为结点的一个属性存储起来，而在这里存储的是节点的高度，通过节点的高度也可以间接计算出节点的BF。例如节点A的左孩子的height为2，右孩子的height为1，那么节点A的平衡因子为“2 - 1 = 1”。
-    2、AVL树的抽象数据结构(ADT)：
+在另外一些`AVL`节点的设计方案中，会把`BF`作为结点的一个属性存储起来，而在这里存储的是节点的高度，通过节点的高度也可以间接计算出节点的`BF`。例如节点`A`的左孩子的`height`为`2`，右孩子的`height`为`1`，那么节点`A`的平衡因子为`2 - 1 = 1`。
+&emsp;&emsp;2、`AVL`树的抽象数据结构(`ADT`)：
 
 ``` cpp
 template<typename T>
@@ -109,11 +109,15 @@ private:
 };
 ```
 
-这里定义了AVL树的类型AVLTree，它包含了：
-AVL树的根节点root，这是唯一的数据成员。
-操作的外部接口与内部实现接口，例如preOrder为提供给用户使用的接口，接口声明为public；而preOrder(AVLTreeNode* pnode)是类内部为了递归操作所使用的接口，接口声明为private。
-旋转操作(rotation)用来调整失去平衡的二叉树，四个内部接口针对四种失衡情况进行调整。
-构造函数和析构函数如下所示：
+这里定义了`AVL`树的类型`AVLTree`，它包含了：
+
+- `AVL`树的根节点`root`，这是唯一的数据成员。
+- 操作的外部接口与内部实现接口，例如`preOrder`为提供给用户使用的接口，接口声明为`public`；而`preOrder(AVLTreeNode* pnode)`是类内部为了递归操作所使用的接口，接口声明为`private`。
+- 旋转操作(`rotation`)用来调整失去平衡的二叉树，四个内部接口针对四种失衡情况进行调整。
+
+构造函数和析构函数如下：
+
+``` cpp
 /* 构造函数 */
 template <typename T>
 AVLTree<T>::AVLTree() : root ( nullptr ) {};
@@ -123,7 +127,11 @@ template <typename T>
 AVLTree<T>::~AVLTree() {
     destory ( root );
 }
-    3、AVL树的高度。我们的节点结构中并不存储结点的BF，取而代之的是节点的高度。一个节点的BF可由其左右子树的高度计算出来。我们提供返回一个节点高度的操作：
+```
+
+&emsp;&emsp;3、`AVL`树的高度。我们的节点结构中并不存储结点的`BF`，取而代之的是节点的高度。一个节点的`BF`可由其左右子树的高度计算出来。我们提供返回一个节点高度的操作：
+
+``` cpp
 /* 返回一棵树的高度 */
 template <typename T>
 int AVLTree<T>::height ( AVLTreeNode<T> *pnode ) {
@@ -138,7 +146,9 @@ template <typename T>
 int AVLTree<T>::height() {
     return height ( root );
 };
-    4、AVL树失衡调整。节点的插入或删除都有可能导致AVL树失去平衡，因此失衡调整是插入与删除操作的基础。AVL树的失衡调整可以分为四种情况，接下来逐一分析，假设我们要为数组“a[] = {4,5,6,3,2,8,7,0,1}”构建一棵AVL树。
+```
+
+&emsp;&emsp;4、`AVL`树失衡调整。节点的插入或删除都有可能导致AVL树失去平衡，因此失衡调整是插入与删除操作的基础。AVL树的失衡调整可以分为四种情况，接下来逐一分析，假设我们要为数组“a[] = {4,5,6,3,2,8,7,0,1}”构建一棵AVL树。
     情况一：左单旋转首先插入{4,5,6}，在插入元素6后出现不平衡的情况：
 
 当我们在右子树插入右孩子导致AVL失衡时，我们需要进行单左旋调整。旋转围绕最小失衡子树的根节点进行。在删除新节点时也有可能会出现需要单左旋的情况。左旋代码如下：
