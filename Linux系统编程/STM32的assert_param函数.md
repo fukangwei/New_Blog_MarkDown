@@ -28,15 +28,14 @@ tags:
 
 这是一个预编译文件，若是在这个文件中定义了`USE_FULL_ASSERT`，则执行后面的语句。我们在程序中一般都没什么定义，即执行后面这个语句`((void) 0)`。
 &emsp;&emsp;若是定义了`USE_FULL_ASSERT`，就调用函数`assert_param`对参数`IS_GPIO_ALL_PERIPH(GPIOx)`的正确性进行检查。若是返回`1`，就执行语句`(void) 0`；若是返回`0`，则执行函数`assert_failed((uint8_t *)__FILE__, __LINE__)`，该函数用来指示出错的行数和文件。
-&emsp;&emsp;对于“void assert_failed(uint8_t* file, uint32_t line);”，如下所示：
+&emsp;&emsp;对于`void assert_failed(uint8_t* file, uint32_t line);`，其英文注释说明了使用方法：
 
 ``` cpp
 void assert_failed ( u8 *file, u32 line ) {
     /* User can add his own implementation to report the file name and linenumber,
-    ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+       ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+
     /* Infinite loop */
     while ( 1 ) { }
 }
 ```
-
-其英文注释说明了其使用方法。
