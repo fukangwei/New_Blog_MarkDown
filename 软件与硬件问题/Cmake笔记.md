@@ -70,9 +70,34 @@ add_executable (Demo main.c)
 
 在当前目录执行`cmake .`，得到`Makefile`后再使用`make`命令编译得到`Demo`可执行文件：
 
+``` bash
+[ehome@xman Demo1]$ cmake .
+-- The C compiler identification is GNU 4.8.2
+-- The CXX compiler identification is GNU 4.8.2
+-- Check for working C compiler: /usr/sbin/cc
+-- Check for working C compiler: /usr/sbin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working CXX compiler: /usr/sbin/c++
+-- Check for working CXX compiler: /usr/sbin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/ehome/Demo1
+[ehome@xman Demo1]$ make
+Scanning dependencies of target Demo
+[100%] Building C object CMakeFiles/Demo.dir/main.c.o
+Linking C executable Demo
+[100%] Built target Demo
+[ehome@xman Demo1]$ ./Demo 5 4
+5 ^ 4 is 625
+[ehome@xman Demo1]$ ./Demo 7 3
+7 ^ 3 is 343
+```
 
+### 同一目录，多个源文件
 
-同一目录，多个源文件
 现在把 power函数单独写进一个名为 MathFunctions.c的源文件里，使得这个工程变成如下的形式：
 1. ./Demo2   2.     |   3.     +--- main.c   4.     +--- MathFunctions.c  5.     +--- MathFunctions.h
 CMakeLists.txt可以改成如下形式：
