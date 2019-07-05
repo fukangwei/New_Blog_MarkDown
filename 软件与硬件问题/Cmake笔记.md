@@ -9,13 +9,13 @@ tags:
 &emsp;&emsp;`cmake`就是针对上面问题所设计的工具：它首先允许开发者编写一种平台无关的`CMakeList.txt`文件来定制整个编译流程，然后再根据目标用户的平台进一步生成所需的本地化`Makefile`和工程文件，如`Unix`的`Makefile`或`Windows`的`Visual Studio`工程，从而做到`Write once, run every where`。显然，`cmake`是一个比上述几种`make`更高级的编译配置工具。
 &emsp;&emsp;在`Linux`平台下使用`cmake`生成`Makefile`并编译的流程如下：
 
-1. 编写 cmake配置文件 CMakeLists.txt。
-2. 执行命令 cmake PATH生成 Makefile，其中 PATH是 CMakeLists.txt所在的目录。
-3. 使用 make命令进行编译。
+1. 编写`cmake`配置文件`CMakeLists.txt`。
+2. 执行命令`cmake PATH`生成`Makefile`，其中`PATH`是`CMakeLists.txt`所在的目录。
+3. 使用`make`命令进行编译。
 
 ### 编译单个源文件
 
-首先编写 main.c文件：
+&emsp;&emsp;首先编写`main.c`文件：
 
 ``` cpp
 #include <stdio.h>
@@ -50,15 +50,27 @@ int main ( int argc, char* argv[] ) {
 }
 ```
 
-再编写 CMakeLists.txt 文件，并保存在与 main.c源文件同个目录下：
-1. # CMake最低版本号要求   2. cmake_minimum_required (VERSION 2.8)   3. # 项目信息   4. project (Demo1)   5. # 指定生成目标   6. add_executable(Demo main.c)
-CMakeLists.txt 的语法比较简单，由命令、注释和空格组成，其中命令是不区分大小写的。符号#后面的 内容被认为是注释。命令由命令名称、小括号和参数组成，参数之间使用空格进行间隔。
-对于上面的 CMakeLists.txt文件，依次出现了几个命令：
-1) cmake_minimum_required：指定运行此配置文件所需的 cmake最低版本。
-2) project：参数值是 Demo1，该命令表示项目的名称是 Demo1。
-3) add_executable：将名为 main.c的源文件编译成一个名称为 Demo 的可执行文件。
-在当前目录执行“cmake .”，得到 Makefile后再使用 make命令编译得到 Demo可执行文件：
-1. [ehome@xman Demo1]$ cmake .   2. -- The C compiler identification is GNU 4.8.2   3. -- The CXX compiler identification is GNU 4.8.2   4. -- Check for working C compiler: /usr/sbin/cc   5. -- Check for working C compiler: /usr/sbin/cc -- works   6. -- Detecting C compiler ABI info   7. -- Detecting C compiler ABI info - done   8. -- Check for working CXX compiler: /usr/sbin/c++   9. -- Check for working CXX compiler: /usr/sbin/c++ -- works   10. -- Detecting CXX compiler ABI info   11. -- Detecting CXX compiler ABI info - done   12. -- Configuring done   13. -- Generating done   14. -- Build files have been written to: /home/ehome/Documents/programming/C/power/Demo1   15. [ehome@xman Demo1]$ make   16. Scanning dependencies of target Demo   17. [100%] Building C object CMakeFiles/Demo.dir/main.c.o   18. Linking C executable Demo   19. [100%] Built target Demo   20. [ehome@xman Demo1]$ ./Demo 5 4   21. 5 ^ 4 is 625   22. [ehome@xman Demo1]$ ./Demo 7 3   23. 7 ^ 3 is 343
+再编写`CMakeLists.txt`文件，并保存在与`main.c`源文件同个目录下：
+
+``` makefile
+# CMake最低版本号要求
+cmake_minimum_required (VERSION 2.8)
+# 项目信息
+project (Demo1)
+# 指定生成目标
+add_executable (Demo main.c)
+```
+
+`CMakeLists.txt`的语法比较简单，由命令、注释和空格组成，其中命令是不区分大小写的。符号`#`后面的内容被认为是注释。命令由命令名称、小括号和参数组成，参数之间使用空格进行间隔。
+&emsp;&emsp;对于上面的`CMakeLists.txt`文件，依次出现了几个命令：
+
+- `cmake_minimum_required`：指定运行此配置文件所需的`cmake`最低版本。
+- `project`：参数值是`Demo1`，该命令表示项目的名称是`Demo1`。
+- `add_executable`：将名为`main.c`的源文件编译成一个名称为`Demo`的可执行文件。
+
+在当前目录执行`cmake .`，得到`Makefile`后再使用`make`命令编译得到`Demo`可执行文件：
+
+
 
 同一目录，多个源文件
 现在把 power函数单独写进一个名为 MathFunctions.c的源文件里，使得这个工程变成如下的形式：
