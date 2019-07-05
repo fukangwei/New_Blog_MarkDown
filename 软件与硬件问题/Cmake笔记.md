@@ -5,7 +5,7 @@ tags:
 ---
 ### 什么是cmake
 
-&emsp;&emsp;你或许听过好几种`Make`工具，例如`GNU`的`Make`、`QT`的`qmake`等。这些`Make`工具遵循着不同的规范和标准，所执行的 Makefile格式也千差万别。这样就带来了一个严峻的问题：如果软件想跨平台，必须要保证能够在不同平台编译。而如果使用上面的`Make`工具，就得为每一种标准写一次`Makefile`，这将是一件让人抓狂的工作。
+&emsp;&emsp;你或许听过好几种`Make`工具，例如`GNU`的`Make`、`Qt`的`qmake`等。这些`Make`工具遵循着不同的规范和标准，所执行的 Makefile格式也千差万别。这样就带来了一个严峻的问题：如果软件想跨平台，必须要保证能够在不同平台编译。而如果使用上面的`Make`工具，就得为每一种标准写一次`Makefile`，这将是一件让人抓狂的工作。
 &emsp;&emsp;`cmake`就是针对上面问题所设计的工具：它首先允许开发者编写一种平台无关的`CMakeList.txt`文件来定制整个编译流程，然后再根据目标用户的平台进一步生成所需的本地化`Makefile`和工程文件，如`Unix`的`Makefile`或`Windows`的`Visual Studio`工程，从而做到`Write once, run every where`。显然，`cmake`是一个比上述几种`make`更高级的编译配置工具。
 &emsp;&emsp;在`Linux`平台下使用`cmake`生成`Makefile`并编译的流程如下：
 
@@ -17,8 +17,38 @@ tags:
 
 首先编写 main.c文件：
 
-1. #include <stdio.h>   2. #include <stdlib.h>   3.    4. double power(double base, int exponent) {   5.     int result = base;   6.     int i;   7.        8.     if (exponent == 0) {   9.         return 1;   10.     }   11.        12.     for(i = 1; i < exponent; ++i){   13.         result = result * base;   14.     }   15.     return result;   16. }   17.  18. int main(int argc, char *argv[]) {   19.     if (argc < 3){   20.         printf("Usage: %s base exponent \n", argv[0]);   21.         return 1;   22.     }   23.     double base = atof(argv[1]);   24.     int exponent = atoi(argv[2]);   25.     double result = power(base, exponent);
-26.     printf("%g ^ %d is %g\n", base, exponent, result);   27.     return 0;   28. }
+``` cpp
+#include <stdio.h>
+#include <stdlib.h>
+
+double power ( double base, int exponent ) {
+    int result = base;
+    int i;
+
+    if ( exponent == 0 ) {
+        return 1;
+    }
+
+    for ( i = 1; i < exponent; ++i ) {
+        result = result * base;
+    }
+
+    return result;
+}
+
+int main ( int argc, char* argv[] ) {
+    if ( argc < 3 ) {
+        printf ( "Usage: %s base exponent \n", argv[0] );
+        return 1;
+    }
+
+    double base = atof ( argv[1] );
+    int exponent = atoi ( argv[2] );
+    double result = power ( base, exponent );
+    printf ( "%g ^ %d is %g\n", base, exponent, result );
+    return 0;
+}
+```
 
 再编写 CMakeLists.txt 文件，并保存在与 main.c源文件同个目录下：
 1. # CMake最低版本号要求   2. cmake_minimum_required (VERSION 2.8)   3. # 项目信息   4. project (Demo1)   5. # 指定生成目标   6. add_executable(Demo main.c)
