@@ -98,10 +98,20 @@ Linking C executable Demo
 
 ### 同一目录，多个源文件
 
-现在把 power函数单独写进一个名为 MathFunctions.c的源文件里，使得这个工程变成如下的形式：
-1. ./Demo2   2.     |   3.     +--- main.c   4.     +--- MathFunctions.c  5.     +--- MathFunctions.h
-CMakeLists.txt可以改成如下形式：
-1. cmake_minimum_required(VERSION 2.8)   2. project(Demo2)   3. add_executable(Demo main.c MathFunctions.c)
+&emsp;&emsp;现在把`power`函数单独写进一个名为`MathFunctions.c`的源文件里，使得这个工程变成如下的形式：
+
+``` bash
+./Demo2
+    |
+    +--- main.c
+    +--- MathFunctions.c
+    +--- MathFunctions.h
+```
+
+`CMakeLists.txt`可以改成如下形式：
+
+
+
 唯一的改动只是在 add_executable命令中增加了一个 MathFunctions.c源文件。这样写当然没什么问题， 但是如果源文件很多，把所有源文件的名字都加进去将是一件烦人的工作。更省事的方法是使用 aux_source_directory命令，该命令会查找指定目录下的所有源文件，然后将结果存进指定变量名：
 1. aux_source_directory(<dir> <variable>)
 修改 CMakeLists.txt 如下：
