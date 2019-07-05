@@ -110,7 +110,11 @@ Linking C executable Demo
 
 `CMakeLists.txt`可以改成如下形式：
 
-
+``` bash
+cmake_minimum_required (VERSION 2.8)
+project (Demo2)
+add_executable (Demo main.c MathFunctions.c)
+```
 
 唯一的改动只是在 add_executable命令中增加了一个 MathFunctions.c源文件。这样写当然没什么问题， 但是如果源文件很多，把所有源文件的名字都加进去将是一件烦人的工作。更省事的方法是使用 aux_source_directory命令，该命令会查找指定目录下的所有源文件，然后将结果存进指定变量名：
 1. aux_source_directory(<dir> <variable>)
