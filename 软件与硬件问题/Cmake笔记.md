@@ -237,13 +237,37 @@ Hello/
         +--- CMakeLists.txt
 ```
 
-hello.h.in如下：
-1. #define VERSION_MAJOR @VERSION_MAJOR@   2. #define VERSION_MINOR @VERSION_MINOR@
-CMakeLists.txt如下：
-1. cmake_minimum_required(VERSION 3.5)   2. project(hello)   3.    4. include_directories("${PROJECT_BINARY_DIR}")   5. set(VERSION_MAJOR 1)   6. set(VERSION_MINOR 0)   7. configure_file(   8.     "${PROJECT_SOURCE_DIR}/hello.h.in"   9.     "${PROJECT_BINARY_DIR}/hello.h"   10. )   11.
-12. add_subdirectory(myhello)   13. set (EXTRA_LIBS ${EXTRA_LIBS} myhello)   14.    15. add_executable(hello hello.c)   16. target_link_libraries (hello ${EXTRA_LIBS})
-hello.c如下：
-1. #include "myhello/myhello.h"   2. #include "hello.h"   3. #include <stdio.h>   4.    5. int main (int argc, char *argv[]) {   6.     printf("version:%d.%d\n", VERSION_MAJOR, VERSION_MINOR);   7.     PrintHelloWorld();   8.     return 0;   9. }
+`hello.h.in`如下：
+
+``` cpp
+#define VERSION_MAJOR @VERSION_MAJOR@
+#define VERSION_MINOR @VERSION_MINOR@
+```
+
+`CMakeLists.txt`如下：
+
+``` makefile
+cmake_minimum_required (VERSION 3.5)
+project (hello)
+include_directories ("${PROJECT_BINARY_DIR}")
+set (VERSION_MAJOR 1)
+set (VERSION_MINOR 0)
+
+configure_file (
+    "${PROJECT_SOURCE_DIR}/hello.h.in"
+    "${PROJECT_BINARY_DIR}/hello.h"
+)
+
+add_subdirectory (myhello)
+set (EXTRA_LIBS ${EXTRA_LIBS} myhello)
+add_executable (hello hello.c)
+target_link_libraries (hello ${EXTRA_LIBS})
+```
+
+`hello.c`如下：
+
+
+
 myhello.h如下：
 1. void PrintHelloWorld();
 myhello.c如下：
