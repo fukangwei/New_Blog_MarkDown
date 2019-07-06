@@ -508,69 +508,96 @@ endif (BZIP2_FOUND)
 
 #### 如何编写自己的`cmake module`模块
 
-下面以工程 demo9为示例，项目目录结构如下：
+&emsp;&emsp;下面以工程`demo9`为示例，项目目录结构如下：
+
+``` bash
 ├── cmake
 │   └── FindDEMO9LIB.cmake
 ├── CMakeLists.txt
 ├── demo9.cpp
 ├── demo9.h
 └── demo9_main.cpp
-其中 demo9.h和 demo9.cpp生成 lib，demo9_main.cpp链接对应的 lib生成可执行文件。
-demo9.h如下：
+```
+
+其中`demo9.h`和`demo9.cpp`生成`lib`，`demo9_main.cpp`链接对应的`lib`生成可执行文件。
+&emsp;&emsp;`demo9.h`如下：
+
+``` cpp
 #ifndef PROJECT_DEMO9_H
 #define PROJECT_DEMO9_H
 void print_demo9();
 #endif //PROJECT_DEMO3_H
-demo9.cpp如下：
+```
+
+`demo9.cpp`如下：
+
+``` cpp
 #include "demo9.h"
 #include <iostream>
 
-void print_demo9(){
- std::cout << "this is demo9" << std::endl;
+void print_demo9() {
+    std::cout << "this is demo9" << std::endl;
 }
-demo9_main.cpp如下：
+```
+
+`demo9_main.cpp`如下：
+
+``` cpp
 #include "demo9.h"
 
-int main(){
+int main() {
     print_demo9();
     return 0;
 }
-首先使用 demo9.h和 demo9.cpp生成静态 lib，并安装：
+```
+
+首先使用`demo9.h`和`demo9.cpp`生成静态`lib`，并安装：
+
+``` bash
 -- Installing: /usr/local/demo9/lib/libdemo9_lib.a
 -- Installing: /usr/local/demo9/include/demo9.h
-FindDEMO9LIB.cmake的内容如下：
-# 辅助输出信息
-message("now using FindDEMO9LIB.cmake find demo9 lib")
-# 将 demo9.h文件路径赋值给 DEMO9LIB_INCLUDE_DIR
-FIND_PATH(DEMO9LIB_INCLUDE_DIR demo9.h /usr/include/demo9/ /usr/local/demo9/include/)
-message("./h dir: ${DEMO9LIB_INCLUDE_DIR}")
-# 将 libdemo9_lib.a 文件路径赋值给 DEMO9LIB_LIBRARY
-FIND_LIBRARY(DEMO9LIB_LIBRARY libdemo9_lib.a /usr/local/demo9/lib/)
-message("lib dir: ${DEMO9LIB_LIBRARY}")
+```
 
-if(DEMO9LIB_INCLUDE_DIR AND DEMO9LIB_LIBRARY)
+`FindDEMO9LIB.cmake`的内容如下：
+
+``` makefile
+# 辅助输出信息
+message ("now using FindDEMO9LIB.cmake find demo9 lib")
+# 将 demo9.h文件路径赋值给 DEMO9LIB_INCLUDE_DIR
+FIND_PATH (DEMO9LIB_INCLUDE_DIR demo9.h /usr/include/demo9/ /usr/local/demo9/include/)
+message ("./h dir: ${DEMO9LIB_INCLUDE_DIR}")
+# 将 libdemo9_lib.a 文件路径赋值给 DEMO9LIB_LIBRARY
+FIND_LIBRARY (DEMO9LIB_LIBRARY libdemo9_lib.a /usr/local/demo9/lib/)
+message ("lib dir: ${DEMO9LIB_LIBRARY}")
+
+if (DEMO9LIB_INCLUDE_DIR AND DEMO9LIB_LIBRARY)
     # 设置变量结果
-    set(DEMO9LIB_FOUND TRUE)
-endif(DEMO9LIB_INCLUDE_DIR AND DEMO9LIB_LIBRARY)
-主 CMakeLists.txt内容如下：
-cmake_minimum_required(VERSION 2.8)
-project(demo9)
+    set (DEMO9LIB_FOUND TRUE)
+
+endif (DEMO9LIB_INCLUDE_DIR AND DEMO9LIB_LIBRARY)
+```
+
+主`CMakeLists.txt`内容如下：
+
+``` makefile
+cmake_minimum_required (VERSION 2.8)
+project (demo9)
 
 # create libdemo9_lib.a
-set(SRC_LIB demo9.cpp)
-add_library(demo9_lib STATIC ${SRC_LIB})
+set (SRC_LIB demo9.cpp)
+add_library (demo9_lib STATIC ${SRC_LIB})
 
 # install it
-install(TARGETS demo9_lib DESTINATION demo9/lib)
-install(FILES demo9.h DESTINATION demo9/include)
+install (TARGETS demo9_lib DESTINATION demo9/lib)
+install (FILES demo9.h DESTINATION demo9/include)
 
 # create demo9_main exectuable
-set(SRC_EXE demo9_main.cpp)
+set (SRC_EXE demo9_main.cpp)
 
 # set demo9_lib cmake module path
-set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
-message("cmake_module_path: ${CMAKE_MODULE_PATH}")
-find_package(DEMO9LIB)
+set (CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+message ("cmake_module_path: ${CMAKE_MODULE_PATH}")
+find_package (DEMO9LIB)
 
 if(DEMO9LIB_FOUND)
  add_executable(demo9_main ${SRC_EXE})
@@ -580,6 +607,8 @@ if(DEMO9LIB_FOUND)
 else()
  message("not found DEMO9LIB_FOUND")
 endif(DEMO9LIB_FOUND)
+```
+
 编译输出信息如下：
 root@xy:~/cmake_practice/# cmake ../../cmake_tuorial/demo9/
 cmake_module_path: /home/xy/cmake_practice/cmake_tuorial/demo9/cmake
