@@ -440,7 +440,7 @@ install (FILES "${PROJECT_BINARY_DIR}/hello.h" DESTINATION include)
 
 ### find_package使用
 
-为了能支持各种常见的库和包，cmake 自带了很多模块，可以通过命令 cmake –help-module-list 得到你 的 cmake 支 持 的 模 块 的 列 表 ； 或者直 接 查 看 模 块 路 径 ， 比如在 Ubuntu 上 ， 模 块 的 路 径 是 /usr/share/cmake/Modules/：
+&emsp;&emsp;为了能支持各种常见的库和包，`cmake`自带了很多模块，可以通过命令`cmake –help-module-list`得到你的`cmake`支持的模块的列表；或者直接查看模块路径，比如在`Ubuntu`上，模块的路径是`/usr/share/cmake/Modules/`：
 
 ``` bash
 ls -al /usr/share/cmake-3.5/Modules/
@@ -453,13 +453,13 @@ ls -al /usr/share/cmake-3.5/Modules/
 ...
 ```
 
-让我们以bzip2库为例，cmake中有个FindBZip2.cmake模块，只要使用find_package(BZip2)调用这个模 块，cmake 会自动给一些变量赋值，然后就可以在 CMake 脚本中使用它们了。变量的列表可以查看 cmake 模块文件，或者使用命令：
+让我们以`bzip2`库为例，`cmake`中有个`FindBZip2.cmake`模块，只要使用`find_package(BZip2)`调用这个模块，`cmake`会自动给一些变量赋值，然后就可以在`CMake`脚本中使用它们了。变量的列表可以查看`cmake`模块文件，或者使用命令：
 
-root@xy:~/cmake_practice/# cmake --help-module FindBZip2
+``` bash
+$ cmake --help-module FindBZip2
 FindBZip2
 ---------
 Try to find BZip2
-
 
 Once done this will define
 ::
@@ -468,28 +468,37 @@ BZIP2_INCLUDE_DIR - the BZip2 include directory
 BZIP2_LIBRARIES - Link these to use BZip2
 BZIP2_NEED_PREFIX - this is set if the functions are prefixed with BZ2_
 BZIP2_VERSION_STRING - the version of BZip2 found (since CMake 2.8.8)
-cmake 会将路径赋值给对应的变量，我们以 curl的 cmake为例，其部分内容如下：
-find_path(CURL_INCLUDE_DIR NAMES curl/curl.h)
-mark_as_advanced(CURL_INCLUDE_DIR)
+```
 
-# Look for the library (sorted from most current/relevant entry to least).
-find_library(CURL_LIBRARY NAMES
-    curl # Windows MSVC prebuilts:
- curllib
- libcurl_imp
- curllib_static
- # Windows older "Win32 - MSVC" prebuilts (libcurl.lib, e.g. libcurl-7.15.5-win32-msvc.zip):
- libcurl
- )
-比如一个使用 bzip2的简单程序，编译器需要知道 bzlib.h 的位置，链接器需要找到 bzip2库(动态链接的 话，Unix上是 libbz2.so ，Windows上是 libbz2.dll)。
-project(helloworld)
-add_executable(helloworld hello.c)
-find_package(BZip2)
+`cmake`会将路径赋值给对应的变量，我们以`curl`的`cmake`为例，其部分内容如下：
 
-if(BZIP2_FOUND)
-include_directories(${BZIP_INCLUDE_DIRS})
- target_link_libraries(helloworld ${BZIP2_LIBRARIES})
-endif(BZIP2_FOUND)
+``` makefile
+find_path (CURL_INCLUDE_DIR NAMES curl/curl.h)
+mark_as_advanced (CURL_INCLUDE_DIR)
+
+# Look for the library (sorted from most current/relevant entry to least)
+find_library (
+    CURL_LIBRARY NAMES
+    curl
+    curllib
+    libcurl_imp
+    curllib_static
+    libcurl
+)
+```
+
+比如一个使用`bzip2`的简单程序，编译器需要知道`bzlib.h`的位置，链接器需要找到`bzip2`库(动态链接的话，`Unix`上是`libbz2.so`，`Windows`上是`libbz2.dll`)。
+
+``` makefile
+project (helloworld)
+add_executable (helloworld hello.c)
+find_package (BZip2)
+
+if (BZIP2_FOUND)
+    include_directories (${BZIP_INCLUDE_DIRS})
+    target_link_libraries (helloworld ${BZIP2_LIBRARIES})
+endif (BZIP2_FOUND)
+```
 
 如何编写自己的 cmake module 模块
 下面以工程 demo9为示例，项目目录结构如下：
