@@ -610,27 +610,41 @@ endif(DEMO9LIB_FOUND)
 ```
 
 编译输出信息如下：
-root@xy:~/cmake_practice/# cmake ../../cmake_tuorial/demo9/
+
+``` bash
+$ cmake ../../cmake_tuorial/demo9/
 cmake_module_path: /home/xy/cmake_practice/cmake_tuorial/demo9/cmake
 now using FindDEMO9LIB.cmake find demo9 lib
 ./h dir： /usr/local/demo9/include
 lib dir: /usr/local/demo9/lib/libdemo9_lib.a
 found demo9 /usr/local/demo9/include /usr/local/demo9/lib/libdemo9_lib.a
-make结果如下：
-root@xy:~/cmake_practice/cmake_build/build_demo9# make -j10
+```
+
+`make`结果如下：
+
+``` bash
+$ make -j10
 cmake_module_path: /home/xy/cmake_practice/cmake_tuorial/demo9/cmake
 now using FindDEMO9LIB.cmake find demo9 lib
 ./h dir /usr/local/demo9/include
 lib dir: /usr/local/demo9/lib/libdemo9_lib.a
 found demo9 /usr/local/demo9/include /usr/local/demo9/lib/libdemo9_lib.a
 -- Configuring done
+```
+
 运行结果如下：
-root@xy:~/cmake_practice/# ./demo9_main
+
+``` bash
+$ ./demo9_main
 this is demo9
-#-----------------------------------------------------------------------------------------------------------
-cmake 中链接系统标准库
-如果要在编译时添加例如 -lpthread -lmath这类通用的库，只需直接在 CMakeLists.txt中添加 LINK_LIBRARIES(标准库名称)或 TARGET_LINK_LIBRARIES(编译目标名称 target 标准库名称)，其中标 准库名称就是-l后面的库名称，如 math、pthread等，编译目标名称就是 ADD_EXECUTABLE的第一个参 数。
-如果为所有 target统一指定编译时，要链接的库用 LINK_LIBRARIES；为每个 target单独指定编译时 要链接的库用 TARGET_LINK_LIBRARIES。注意，用 LINK_LIBRARIES 时这行一定要写在 ADD_EXECUTABLE前面。
+```
+
+---
+
+### cmake中链接系统标准库
+
+&emsp;&emsp;如果要在编译时添加例如`-lpthread`、`-lmath`这类通用的库，只需直接在`CMakeLists.txt`中添加`LINK_LIBRARIES (标准库名称)`或`TARGET_LINK_LIBRARIES (编译目标名称 target 标准库名称)`，其中标准库名称就是`-l`后面的库名称，如`math`、`pthread`等，编译目标名称就是`ADD_EXECUTABLE`的第一个参数。
+&emsp;&emsp;如果为所有`target`统一指定编译时，要链接的库用`LINK_LIBRARIES`；为每个`target`单独指定编译时要链接的库用`TARGET_LINK_LIBRARIES`。注意，用`LINK_LIBRARIES`时，这行一定要写在`ADD_EXECUTABLE`前面。
 
 ---
 
