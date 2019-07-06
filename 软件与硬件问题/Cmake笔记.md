@@ -370,7 +370,8 @@ include_directories ("${PROJECT_BINARY_DIR}")
 set (VERSION_MAJOR 1)
 set (VERSION_MINOR 0)
 
-option (USE_MYHELLO "Use myhello" ON)
+option (USE_MYHELLO
+        "Use myhello" ON)
 
 configure_file (
     "${PROJECT_SOURCE_DIR}/hello.h.in"
@@ -394,9 +395,23 @@ target_link_libraries (hello ${EXTRA_LIBS})
 
 `hello.c`如下：
 
-1. #include "myhello/myhello.h"   2. #include "hello.h"   3. #include <stdio.h>   4.    5. int main (int argc, char *argv[]) {   6. #ifdef USE_MYHELLO   7.     PrintHelloWorld();   8. #else   9.     printf("xx hello world!");   10. #endif   11.     return 0;   12. }
+``` cpp
+#include "myhello/myhello.h"
+#include "hello.h"
+#include <stdio.h>
 
-定义安装规则
+int main ( int argc, char* argv[] ) {
+#ifdef USE_MYHELLO
+    PrintHelloWorld();
+#else
+    printf ( "xx hello world!" );
+#endif
+    return 0;
+}
+```
+
+### 定义安装规则
+
 向 myhello文件夹中的 CMakeLists.txt增加如下代码：
 1. # 指定 myhello 库的安装路径
 2. install(TARGETS myhello DESTINATION bin)   3. install(FILES myhello.h DESTINATION include)
