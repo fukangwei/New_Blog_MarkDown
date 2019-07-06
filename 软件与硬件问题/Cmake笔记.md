@@ -102,7 +102,6 @@ Linking C executable Demo
 
 ``` bash
 Demo2/
-    |
     +--- main.c
     +--- MathFunctions.c
     +--- MathFunctions.h
@@ -140,7 +139,6 @@ add_executable (Demo ${DIR_SRCS})
 
 ``` bash
 Demo3/
-    |
     +--- main.c
     +--- math/
         +--- MathFunctions.c
@@ -225,9 +223,20 @@ add_library (MathFunctions ${DIR_LIB_SRCS})
 
 ### 添加可配置的头文件
 
-cmake可以通过可配置的头文件来产生实际的头文件，如下面的可配置头文件 hello.h.in，里面@@引用 的变量可以通过 CMakeLists.txt来设置，最后通过 cmake来替换 hello.h.in文件中的变量，并生成 hello.h内 容。
-目录结构如下：
-1. ./Hello   2.   | 3.   +--- hello.c  4.   +--- hello.in.h  5.   +--- CMakeLists.txt  6.   +--- myhello/ 7.       +--- myhello.c  8.       +--- myhello.h  9.       +--- CMakeLists.txt
+&emsp;&emsp;`cmake`可以通过可配置的头文件来产生实际的头文件，如下面的可配置头文件`hello.h.in`，里面`@@`引用的变量可以通过`CMakeLists.txt`来设置，最后通过`cmake`来替换`hello.h.in`文件中的变量，并生成`hello.h`内容。
+&emsp;&emsp;目录结构如下：
+
+``` bash
+Hello/
+    +--- hello.c
+    +--- hello.in.h
+    +--- CMakeLists.txt
+    +--- myhello/
+        +--- myhello.c
+        +--- myhello.h
+        +--- CMakeLists.txt
+```
+
 hello.h.in如下：
 1. #define VERSION_MAJOR @VERSION_MAJOR@   2. #define VERSION_MINOR @VERSION_MINOR@
 CMakeLists.txt如下：
