@@ -101,7 +101,7 @@ Linking C executable Demo
 &emsp;&emsp;现在把`power`函数单独写进一个名为`MathFunctions.c`的源文件里，使得这个工程变成如下的形式：
 
 ``` bash
-./Demo2
+Demo2/
     |
     +--- main.c
     +--- MathFunctions.c
@@ -116,23 +116,81 @@ project (Demo2)
 add_executable (Demo main.c MathFunctions.c)
 ```
 
-唯一的改动只是在 add_executable命令中增加了一个 MathFunctions.c源文件。这样写当然没什么问题， 但是如果源文件很多，把所有源文件的名字都加进去将是一件烦人的工作。更省事的方法是使用 aux_source_directory命令，该命令会查找指定目录下的所有源文件，然后将结果存进指定变量名：
-1. aux_source_directory(<dir> <variable>)
-修改 CMakeLists.txt 如下：
-1. cmake_minimum_required(VERSION 2.8)   2. project(Demo2)   3. # 查找当前目录下的所有源文件，并将名称保存到 DIR_SRCS变量   4. aux_source_directory(. DIR_SRCS)   5. add_executable(Demo ${DIR_SRCS})
-这样，cmake会将当前目录所有源文件的文件名赋值给变量 DIR_SRCS，再指示变量 DIR_SRCS中的源文 件需要编译成一个名称为 Demo的可执行文件。
+唯一的改动只是在`add_executable`命令中增加了一个`MathFunctions.c`源文件。这样写当然没什么问题，但是如果源文件很多，把所有源文件的名字都加进去将是一件烦人的工作。更省事的方法是使用`aux_source_directory`命令，该命令会查找指定目录下的所有源文件，然后将结果存进指定变量名：
 
-多个目录，多个源文件
-现在进一步将 MathFunctions.h和 MathFunctions.c文件移动到 math目录下：
-1. ./Demo3   2.     |   3.     +--- main.c 4.     +--- math/ 5.           +--- MathFunctions.c 6.           +--- MathFunctions.h
-对于这种情况，需要分别在项目根目录 Demo3 和 math目录里各编写一个 CMakeLists.txt文件。为了方便， 我们可以先将 math 目录里的文件编译成静态库，再由 main函数调用。
-main.c如下：
-1. #include <stdio.h>
-2. #include <stdlib.h>   3. #include "math/MathFunctions.h"   4.    5. int main(int argc, char *argv[]) {   6.     if (argc < 3){   7.         printf("Usage: %s base exponent \n", argv[0]);   8.         return 1;   9.     } 10.     double base = atof(argv[1]);   11.     int exponent = atoi(argv[2]);   12.     double result = power(base, exponent);   13.     printf("%g ^ %d is %g\n", base, exponent, result);   14.     return 0;   15. }
-MathFunctions.c如下：
-1. double power(double base, int exponent) {   2.     int result = base;   3.     int i;   4.    5.     if (exponent == 0) {   6.         return 1;   7.     }   8.        9.     for(i = 1; i < exponent; ++i){   10.         result = result * base;   11.     }   12.    13.     return result;   14. }
-MathFunctions.h如下：
+``` makefile
+aux_source_directory (<dir> <variable>)
+```
+
+修改`CMakeLists.txt`如下：
+
+``` makefile
+cmake_minimum_required (VERSION 2.8)
+project (Demo2)
+# 查找当前目录下的所有源文件，并将名称保存到变量DIR_SRCS
+aux_source_directory (. DIR_SRCS)
+add_executable (Demo ${DIR_SRCS})
+```
+
+这样，`cmake`会将当前目录所有源文件的文件名赋值给变量`DIR_SRCS`，再指示变量`DIR_SRCS`中的源文件需要编译成一个名称为`Demo`的可执行文件。
+
+### 多个目录，多个源文件
+
+&emsp;&emsp;现在进一步将`MathFunctions.h`和`MathFunctions.c`文件移动到`math`目录下：
+
+``` bash
+Demo3/
+    |
+    +--- main.c
+    +--- math/
+        +--- MathFunctions.c
+        +--- MathFunctions.h
+```
+
+对于这种情况，需要分别在项目根目录`Demo3`和`math`目录里各编写一个`CMakeLists.txt`文件。为了方便，我们可以先将`math`目录里的文件编译成静态库，再由`main`函数调用。
+&emsp;&emsp;`main.c`如下：
+
+``` cpp
+#include <stdio.h>
+#include <stdlib.h>
+#include "math/MathFunctions.h"
+
+int main ( int argc, char* argv[] ) {
+    if ( argc < 3 ) {
+        printf ( "Usage: %s base exponent \n", argv[0] );
+        return 1;
+    }
+
+    double base = atof ( argv[1] );
+    int exponent = atoi ( argv[2] );
+    double result = power ( base, exponent );
+    printf ( "%g ^ %d is %g\n", base, exponent, result );
+    return 0;
+}
+```
+
+`MathFunctions.c`如下：
+
+``` cpp
+double power ( double base, int exponent ) {
+    int result = base;
+    int i;
+    if ( exponent == 0 ) {
+        return 1;
+    }
+
+    for ( i = 1; i < exponent; ++i ) {
+        result = result * base;
+    }
+
+    return result;
+}
+```
+
+`MathFunctions.h`如下：
+
 1. #ifndef POWER_H   2. #define POWER_H   3.    4. extern double power(double base, int exponent);   5.    6. #endif
+
 根目录中的 CMakeLists.txt如下：
 1. cmake_minimum_required(VERSION 2.8)   2. project(Demo3)   3. aux_source_directory(. DIR_SRCS)   4. # 添加 math 子目录 5. add_subdirectory(math)   6. # 指定生成目标 7. add_executable(Demo main.cc) 8. # 添加链接库 9. target_link_libraries(Demo MathFunctions)
 该文件使用命令 add_subdirectory指明本项目包含一个子目录 math，这样 math目录下的 CMakeLists.txt文件 和源代码也会被处理 ；使用命令 target_link_libraries指明可执行文件 main需要连接一个名为 MathFunctions 的链接库 。
