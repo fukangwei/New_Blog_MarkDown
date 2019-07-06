@@ -249,6 +249,7 @@ Hello/
 ``` makefile
 cmake_minimum_required (VERSION 3.5)
 project (hello)
+
 include_directories ("${PROJECT_BINARY_DIR}")
 set (VERSION_MAJOR 1)
 set (VERSION_MINOR 0)
@@ -262,6 +263,13 @@ add_subdirectory (myhello)
 set (EXTRA_LIBS ${EXTRA_LIBS} myhello)
 add_executable (hello hello.c)
 target_link_libraries (hello ${EXTRA_LIBS})
+```
+
+第`4`至`11`行的命令主要用来设置`hello.h.in`中的两个变量，并且让`cmake`生成`hello.h`文件。生成的`hello.h`如下：
+
+``` cpp
+#define VERSION_MAJOR 1
+#define VERSION_MINOR 0
 ```
 
 `hello.c`如下：
@@ -298,13 +306,6 @@ void PrintHelloWorld() {
 
 ``` makefile
 add_library (myhello myhello.c)
-```
-
-上面加红的命令主要用来设置`hello.h.in`中的两个变量，并且让`cmake`生成`hello.h`文件。生成的`hello.h`如下：
-
-``` cpp
-#define VERSION_MAJOR 1
-#define VERSION_MINOR 0
 ```
 
 ### 检测系统是否有支持工程需要的函数
