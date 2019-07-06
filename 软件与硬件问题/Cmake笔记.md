@@ -212,7 +212,7 @@ target_link_libraries (Demo MathFunctions)
 该文件使用命令`add_subdirectory`指明本项目包含一个子目录`math`，这样`math`目录下的`CMakeLists.txt`文件和源代码也会被处理；使用命令`target_link_libraries`指明可执行文件`main`需要连接一个名为`MathFunctions`的链接库。
 &emsp;&emsp;子目录中的`CMakeLists.txt`如下：
 
-``` Makefile
+``` makefile
 # 查找当前目录下的所有源文件，并将名称保存到变量DIR_LIB_SRCS
 aux_source_directory (. DIR_LIB_SRCS)
 # 生成链接库
@@ -336,18 +336,39 @@ target_link_libraries (hello ${EXTRA_LIBS})
 在配置的头文件`hello.h.in`中加入`#cmakedefine HAVE_PRINTF`，如果系统中有`printf`函数，最终生 成的`hello.h`中会定义`HAVE_PRINTF`这个宏，否则不会生成。在`hello.c`文件中，可以根据这个宏来判断是否应该使用`printf`函数。
 &emsp;&emsp;`hello.h.in`如下：
 
-1. #define VERSION_MAJOR @VERSION_MAJOR@   2. #define VERSION_MINOR @VERSION_MINOR@   3.    4. #cmakedefine HAVE_PRINTF
+``` cpp
+#define VERSION_MAJOR @VERSION_MAJOR@
+#define VERSION_MINOR @VERSION_MINOR@
 
-hello.c如下：
-1. #include "myhello/myhello.h"   2. #include "hello.h"   3. #include <stdio.h>   4.    5. int main (int argc, char *argv[]) {   6. #ifdef HAVE_PRINTF   7.     printf("version:%d.%d\n", VERSION_MAJOR, VERSION_MINOR);   8. #endif   9.     PrintHelloWorld();   10.     return 0;   11. }
+#cmakedefine HAVE_PRINTF
+```
+
+`hello.c`如下：
+
+``` cpp
+#include "myhello/myhello.h"
+#include "hello.h"
+#include <stdio.h>
+
+int main ( int argc, char* argv[] ) {
+#ifdef HAVE_PRINTF
+    printf ( "version:%d.%d\n", VERSION_MAJOR, VERSION_MINOR );
+#endif
+    PrintHelloWorld();
+    return 0;
+}
+```
 
 ### 配置可选项
 
-&emsp;&emsp;有时候代码可能包含了所有平台的模块代码，但是对于特定的目标平台，只需要配置该平台需要模块 的代码，而不需要配置其它平台模块的代码。这种需求可以通过 cmake的配置可选项来完成，配置可选项
-就是 cmake在生成工程的时候提示你一些选项，根据你的选项来具体选择需要添加到工程中的模块代码。 例如我现在需要提高是否使用 myhello模块的选项，可以在 CMakeLists.txt中加 option命令来实现：
+&emsp;&emsp;有时候代码可能包含了所有平台的模块代码，但是对于特定的目标平台，只需要配置该平台需要模块 的代码，而不需要配置其它平台模块的代码。这种需求可以通过 cmake的配置可选项来完成，配置可选项就是 cmake在生成工程的时候提示你一些选项，根据你的选项来具体选择需要添加到工程中的模块代码。 例如我现在需要提高是否使用 myhello模块的选项，可以在 CMakeLists.txt中加 option命令来实现：
+
 1. cmake_minimum_required(VERSION 3.5)   2. project(hello)   3.    4. include_directories("${PROJECT_BINARY_DIR}")   5. set(VERSION_MAJOR 1)   6. set(VERSION_MINOR 0)   7.    8. option (USE_MYHELLO   9.         "Use myhello" ON)   10.            11. configure_file(   12.     "${PROJECT_SOURCE_DIR}/hello.h.in"   13.     "${PROJECT_BINARY_DIR}/hello.h"   14. )   15.    16. add_subdirectory(myhello)   17. set (EXTRA_LIBS ${EXTRA_LIBS} myhello)   18.    19. add_executable(hello hello.c)   20. target_link_libraries(hello ${EXTRA_LIBS})
+
 并且在 hello.h.in中添加由 cmake 根据选项来定义 USE_MYHELLO宏：
+
 1. #define VERSION_MAJOR @VERSION_MAJOR@   2. #define VERSION_MINOR @VERSION_MINOR@   3.    4. #cmakedefine USE_MYHELLO
+
 hello.c如下：
 1. #include "myhello/myhello.h"   2. #include "hello.h"   3. #include <stdio.h>   4.    5. int main (int argc, char *argv[]) {   6. #ifdef USE_MYHELLO   7.     PrintHelloWorld();   8. #else   9.     printf("xx hello world!");   10. #endif   11.     return 0;   12. }
 
