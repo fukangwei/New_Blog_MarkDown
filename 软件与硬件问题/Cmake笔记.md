@@ -266,21 +266,54 @@ target_link_libraries (hello ${EXTRA_LIBS})
 
 `hello.c`如下：
 
+``` cpp
+#include "myhello/myhello.h"
+#include "hello.h"
+#include <stdio.h>
 
+int main ( int argc, char* argv[] ) {
+    printf ( "version:%d.%d\n", VERSION_MAJOR, VERSION_MINOR );
+    PrintHelloWorld();
+    return 0;
+}
+```
 
-myhello.h如下：
-1. void PrintHelloWorld();
-myhello.c如下：
-1. #include <stdio.h>  2.  3. void PrintHelloWorld() {   4.     printf("hello world!");   5. }
-myhello 目录下的 CMakeLists.txt如下：
-1. add_library(myhello myhello.c)
-上面加红的命令主要用来设置 hello.h.in中的两个变量，并且让 cmake生成 hello.h文件。生成的 hello.h 如下：
-1. #define VERSION_MAJOR 1   2. #define VERSION_MINOR 0
+`myhello.h`如下：
 
-检测系统是否有支持工程需要的函数
-对于跨平台的工程来说，检查系统是否支持某些特性是很有必要的，这样程序中就可以通过系统的特 性来选择具体执行哪些代码。其中检查是否支持某些函数是我们经常要做的事情，如 epoll函数，可能有的 linux系统就不支持，对于不支持的系统我们只能用 poll来替代等。在 cmake中检查系统是否支持某个函数 也很简单，先包含一个 CheckFunctionExists库，然后使用 check_function_exists来判断就行了。
-CMakeLists.txt如下：
+``` cpp
+void PrintHelloWorld();
+```
+
+`myhello.c`如下：
+
+``` cpp
+#include <stdio.h>
+
+void PrintHelloWorld() {
+    printf ( "hello world!" );
+}
+```
+
+`myhello`目录下的`CMakeLists.txt`如下：
+
+``` makefile
+add_library (myhello myhello.c)
+```
+
+上面加红的命令主要用来设置`hello.h.in`中的两个变量，并且让`cmake`生成`hello.h`文件。生成的`hello.h`如下：
+
+``` cpp
+#define VERSION_MAJOR 1
+#define VERSION_MINOR 0
+```
+
+### 检测系统是否有支持工程需要的函数
+
+&emsp;&emsp;对于跨平台的工程来说，检查系统是否支持某些特性是很有必要的，这样程序中就可以通过系统的特 性来选择具体执行哪些代码。其中检查是否支持某些函数是我们经常要做的事情，如 epoll函数，可能有的 linux系统就不支持，对于不支持的系统我们只能用 poll来替代等。在 cmake中检查系统是否支持某个函数 也很简单，先包含一个 CheckFunctionExists库，然后使用 check_function_exists来判断就行了。
+&emsp;&emsp;CMakeLists.txt如下：
+
 1. cmake_minimum_required(VERSION 3.5)   2. project(hello)   3.    4. include (CheckFunctionExists)   5. check_function_exists (printf HAVE_PRINTF)   6.    7. include_directories("${PROJECT_BINARY_DIR}")   8. set(VERSION_MAJOR 1)   9. set(VERSION_MINOR 0)   10. configure_file(   11.     "${PROJECT_SOURCE_DIR}/hello.h.in"   12.     "${PROJECT_BINARY_DIR}/hello.h"   13. )   14.    15. add_subdirectory(myhello)   16. set (EXTRA_LIBS ${EXTRA_LIBS} myhello)   17.  18. add_executable(hello hello.c)   19. target_link_libraries (hello ${EXTRA_LIBS})
+
 在配置的头文件 hello.h.in中加入#cmakedefine HAVE_PRINTF，这样如果系统中有 printf函数，最终生 成的 hello.h中会定义 HAVE_PRINTF这个宏，否则不会生成。在 hello.c文件中可以根据这个宏来判断是否 应该使用 printf函数。
 hello.h.in如下：
 1. #define VERSION_MAJOR @VERSION_MAJOR@   2. #define VERSION_MINOR @VERSION_MINOR@   3.    4. #cmakedefine HAVE_PRINTF
