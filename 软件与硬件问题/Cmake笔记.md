@@ -412,14 +412,26 @@ int main ( int argc, char* argv[] ) {
 
 ### 定义安装规则
 
-向 myhello文件夹中的 CMakeLists.txt增加如下代码：
-1. # 指定 myhello 库的安装路径
-2. install(TARGETS myhello DESTINATION bin)   3. install(FILES myhello.h DESTINATION include)
-向根文件夹中的 CMakeLists.txt增加如下代码：
-1. # 指定安装路径   2. install(TARGETS Demo DESTINATION bin)   3. install(FILES "${PROJECT_BINARY_DIR}/hello.h" DESTINATION include)
+&emsp;&emsp;向`myhello`文件夹中的`CMakeLists.txt`增加如下代码：
+
+``` makefile
+# 指定myhello库的安装路径
+install (TARGETS myhello DESTINATION bin)
+install (FILES myhello.h DESTINATION include)
+```
+
+向根文件夹中的`CMakeLists.txt`增加如下代码：
+
+``` makefile
+# 指定安装路径
+install (TARGETS Demo DESTINATION bin)
+install (FILES "${PROJECT_BINARY_DIR}/hello.h" DESTINATION include)
+```
+
 使用命令“sudo make install”即可安装完成(安装目录是“/usr/local/bin”和“/usr/local/include”)。
-#------------------------------------------------------------------------------------------------------------
-set 指令详解
+
+### set指令详解
+
 语法：SET(VAR [VALUE] [CACHE TYPE DOCSTRING [FORCE]])，指令功能：用来显式地定义变 量。 例子：SET (SRC_LST main.c other.c)，用变量 SRC_LST 代替值，例子中定义 SRC_LST 代替后面的字 符串。
 #----------------------------------------------------------------------------------------------------------
 find_package 使用
