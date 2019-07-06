@@ -428,14 +428,21 @@ install (TARGETS Demo DESTINATION bin)
 install (FILES "${PROJECT_BINARY_DIR}/hello.h" DESTINATION include)
 ```
 
-使用命令“sudo make install”即可安装完成(安装目录是“/usr/local/bin”和“/usr/local/include”)。
+使用命令`sudo make install`即可安装完成(安装目录是`/usr/local/bin`和`/usr/local/include`)。
+
+---
 
 ### set指令详解
 
 语法：SET(VAR [VALUE] [CACHE TYPE DOCSTRING [FORCE]])，指令功能：用来显式地定义变 量。 例子：SET (SRC_LST main.c other.c)，用变量 SRC_LST 代替值，例子中定义 SRC_LST 代替后面的字 符串。
-#----------------------------------------------------------------------------------------------------------
-find_package 使用
+
+---
+
+### find_package使用
+
 为了能支持各种常见的库和包，cmake 自带了很多模块，可以通过命令 cmake –help-module-list 得到你 的 cmake 支 持 的 模 块 的 列 表 ； 或者直 接 查 看 模 块 路 径 ， 比如在 Ubuntu 上 ， 模 块 的 路 径 是 /usr/share/cmake/Modules/：
+
+``` bash
 ls -al /usr/share/cmake-3.5/Modules/
 ...
 -rw-r--r-- 1 root root 76K Sep 27 2016 FindBoost.cmake
@@ -444,7 +451,10 @@ ls -al /usr/share/cmake-3.5/Modules/
 -rw-r--r-- 1 root root 3.1K Mar 24 2016 FindCups.cmake
 -rw-r--r-- 1 root root 2.4K Mar 24 2016 FindCURL.cmake
 ...
+```
+
 让我们以bzip2库为例，cmake中有个FindBZip2.cmake模块，只要使用find_package(BZip2)调用这个模 块，cmake 会自动给一些变量赋值，然后就可以在 CMake 脚本中使用它们了。变量的列表可以查看 cmake 模块文件，或者使用命令：
+
 root@xy:~/cmake_practice/# cmake --help-module FindBZip2
 FindBZip2
 ---------
@@ -576,14 +586,19 @@ this is demo9
 cmake 中链接系统标准库
 如果要在编译时添加例如 -lpthread -lmath这类通用的库，只需直接在 CMakeLists.txt中添加 LINK_LIBRARIES(标准库名称)或 TARGET_LINK_LIBRARIES(编译目标名称 target 标准库名称)，其中标 准库名称就是-l后面的库名称，如 math、pthread等，编译目标名称就是 ADD_EXECUTABLE的第一个参 数。
 如果为所有 target统一指定编译时，要链接的库用 LINK_LIBRARIES；为每个 target单独指定编译时 要链接的库用 TARGET_LINK_LIBRARIES。注意，用 LINK_LIBRARIES 时这行一定要写在 ADD_EXECUTABLE前面。
-#------------------------------------------------------------------------------------------------------------
-cmake 常用变量
-CMAKE_BINARY_DIR、PROJECT_BINARY_DIR和<projectname>_BINARY_DIR：这三个变量指代的 内容是一致的，指的就是工程顶层目录。
-CMAKE_SOURCE_DIR、PROJECT_SOURCE_DIR和<projectname>_SOURCE_DIR：这三个变量指代 的内容是一致的，指的是工程顶层目录。
-CMAKE_MAJOR_VERSION：CMAKE 主版本号，比如 2.4.6中的 2。CMAKE_MINOR_VERSION： CMAKE次版本号，比如 2.4.6 中的 4。CMAKE_PATCH_VERSION：CMAKE 补丁等级，比如 2.4.6中 的 6。
-CMAKE_SYSTEM：系统名称，比如 Linux-2.6.22。
-CMAKE_SYSTEM_NAME：不包含版本的系统名，比如 Linux。
-CMAKE_SYSTEM_VERSION：系统版本，比如 2.6.22。
-CMAKE_SYSTEM_PROCESSOR：处理器名称，比如 i686。
-UNIX：在所有的类 UNIX 平台为 TRUE。
-WIN32：在所有的 win32平台为 TRUE。
+
+---
+
+### cmake常用变量
+
+- `CMAKE_BINARY_DIR`、`PROJECT_BINARY_DIR`和`<projectname>_BINARY_DIR`：这三个变量指代的内容是一致的，即工程顶层目录。
+- `CMAKE_SOURCE_DIR`、`PROJECT_SOURCE_DIR`和`<projectname>_SOURCE_DIR`：这三个变量指代的内容是一致的，即工程顶层目录。
+- `CMAKE_MAJOR_VERSION`：`cmake`主版本号，比如`2.4.6`中的`2`。
+- `CMAKE_MINOR_VERSION`：`cmake`次版本号，比如`2.4.6`中的`4`。
+- `CMAKE_PATCH_VERSION`：`cmake`补丁等级，比如`2.4.6`中的`6`。
+- `CMAKE_SYSTEM`：系统名称，比如`Linux-2.6.22`。
+- `CMAKE_SYSTEM_NAME`：不包含版本的系统名，比如`Linux`。
+- `CMAKE_SYSTEM_VERSION`：系统版本，比如`2.6.22`。
+- `CMAKE_SYSTEM_PROCESSOR`：处理器名称，比如`i686`。
+- `UNIX`：在所有的类`UNIX`平台为`TRUE`。
+- `WIN32`：在所有的`Win32`平台为`TRUE`。
