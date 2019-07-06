@@ -199,14 +199,27 @@ extern double power ( double base, int exponent );
 
 根目录中的`CMakeLists.txt`如下：
 
-1. cmake_minimum_required(VERSION 2.8)   2. project(Demo3)   3. aux_source_directory(. DIR_SRCS)   4. # 添加 math 子目录 5. add_subdirectory(math)   6. # 指定生成目标 7. add_executable(Demo main.cc) 8. # 添加链接库 9. target_link_libraries(Demo MathFunctions)
+``` makefile
+cmake_minimum_required (VERSION 2.8)
+project (Demo3)
+aux_source_directory (. DIR_SRCS)
+# 添加math子目录
+add_subdirectory (math)
+# 指定生成目标
+add_executable (Demo main.cc)
+# 添加链接库
+target_link_libraries (Demo MathFunctions)
+```
 
-该文件使用命令 add_subdirectory指明本项目包含一个子目录 math，这样 math目录下的 CMakeLists.txt文件 和源代码也会被处理 ；使用命令 target_link_libraries指明可执行文件 main需要连接一个名为 MathFunctions 的链接库 。
-子目录中的 CMakeLists.txt如下：
+该文件使用命令`add_subdirectory`指明本项目包含一个子目录`math`，这样`math`目录下的`CMakeLists.txt`文件和源代码也会被处理；使用命令`target_link_libraries`指明可执行文件`main`需要连接一个名为`MathFunctions`的链接库。
+&emsp;&emsp;子目录中的`CMakeLists.txt`如下：
+
 1. # 查找当前目录下的所有源文件，并将名称保存到 DIR_LIB_SRCS 变量   2. aux_source_directory(. DIR_LIB_SRCS)   3. # 生成链接库 4. add_library(MathFunctions ${DIR_LIB_SRCS})
+
 该文件使用命令 add_library将 src目录中的源文件编译为静态链接库。
 
-添加可配置的头文件
+### 添加可配置的头文件
+
 cmake可以通过可配置的头文件来产生实际的头文件，如下面的可配置头文件 hello.h.in，里面@@引用 的变量可以通过 CMakeLists.txt来设置，最后通过 cmake来替换 hello.h.in文件中的变量，并生成 hello.h内 容。
 目录结构如下：
 1. ./Hello   2.   | 3.   +--- hello.c  4.   +--- hello.in.h  5.   +--- CMakeLists.txt  6.   +--- myhello/ 7.       +--- myhello.c  8.       +--- myhello.h  9.       +--- CMakeLists.txt
