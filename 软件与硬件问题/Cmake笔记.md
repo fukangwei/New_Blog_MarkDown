@@ -189,10 +189,18 @@ double power ( double base, int exponent ) {
 
 `MathFunctions.h`如下：
 
-1. #ifndef POWER_H   2. #define POWER_H   3.    4. extern double power(double base, int exponent);   5.    6. #endif
+``` cpp
+#ifndef POWER_H
+#define POWER_H
 
-根目录中的 CMakeLists.txt如下：
+extern double power ( double base, int exponent );
+#endif
+```
+
+根目录中的`CMakeLists.txt`如下：
+
 1. cmake_minimum_required(VERSION 2.8)   2. project(Demo3)   3. aux_source_directory(. DIR_SRCS)   4. # 添加 math 子目录 5. add_subdirectory(math)   6. # 指定生成目标 7. add_executable(Demo main.cc) 8. # 添加链接库 9. target_link_libraries(Demo MathFunctions)
+
 该文件使用命令 add_subdirectory指明本项目包含一个子目录 math，这样 math目录下的 CMakeLists.txt文件 和源代码也会被处理 ；使用命令 target_link_libraries指明可执行文件 main需要连接一个名为 MathFunctions 的链接库 。
 子目录中的 CMakeLists.txt如下：
 1. # 查找当前目录下的所有源文件，并将名称保存到 DIR_LIB_SRCS 变量   2. aux_source_directory(. DIR_LIB_SRCS)   3. # 生成链接库 4. add_library(MathFunctions ${DIR_LIB_SRCS})
