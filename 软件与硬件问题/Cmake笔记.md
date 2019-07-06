@@ -214,9 +214,14 @@ target_link_libraries (Demo MathFunctions)
 该文件使用命令`add_subdirectory`指明本项目包含一个子目录`math`，这样`math`目录下的`CMakeLists.txt`文件和源代码也会被处理；使用命令`target_link_libraries`指明可执行文件`main`需要连接一个名为`MathFunctions`的链接库。
 &emsp;&emsp;子目录中的`CMakeLists.txt`如下：
 
-1. # 查找当前目录下的所有源文件，并将名称保存到 DIR_LIB_SRCS 变量   2. aux_source_directory(. DIR_LIB_SRCS)   3. # 生成链接库 4. add_library(MathFunctions ${DIR_LIB_SRCS})
+``` Makefile
+# 查找当前目录下的所有源文件，并将名称保存到变量DIR_LIB_SRCS
+aux_source_directory (. DIR_LIB_SRCS)
+# 生成链接库
+add_library (MathFunctions ${DIR_LIB_SRCS})
+```
 
-该文件使用命令 add_library将 src目录中的源文件编译为静态链接库。
+该文件使用命令`add_library`将`src`目录中的源文件编译为静态链接库。
 
 ### 添加可配置的头文件
 
