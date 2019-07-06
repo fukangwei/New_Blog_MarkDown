@@ -5,9 +5,9 @@ tags:
 ---
 ### 什么是cmake
 
-&emsp;&emsp;你或许听过好几种`Make`工具，例如`GNU`的`Make`、`Qt`的`qmake`等。这些`Make`工具遵循着不同的规范和标准，所执行的 Makefile格式也千差万别。这样就带来了一个严峻的问题：如果软件想跨平台，必须要保证能够在不同平台编译。而如果使用上面的`Make`工具，就得为每一种标准写一次`Makefile`，这将是一件让人抓狂的工作。
-&emsp;&emsp;`cmake`就是针对上面问题所设计的工具：它首先允许开发者编写一种平台无关的`CMakeList.txt`文件来定制整个编译流程，然后再根据目标用户的平台进一步生成所需的本地化`Makefile`和工程文件，如`Unix`的`Makefile`或`Windows`的`Visual Studio`工程，从而做到`Write once, run every where`。显然，`cmake`是一个比上述几种`make`更高级的编译配置工具。
-&emsp;&emsp;在`Linux`平台下使用`cmake`生成`Makefile`并编译的流程如下：
+&emsp;&emsp;你或许听过好几种`Make`工具，例如`GNU`的`Make`、`Qt`的`qmake`等。这些`Make`工具遵循着不同的规范和标准，所执行的`Makefile`格式也千差万别。这样就带来了一个严峻的问题：如果软件想跨平台，必须要保证能够在不同平台编译。而如果使用上面的`Make`工具，就得为每一种标准写一次`Makefile`，这将是一件让人抓狂的工作。
+&emsp;&emsp;`cmake`就是针对上面问题所设计的工具：首先它允许开发者编写一种平台无关的`CMakeList.txt`文件来定制整个编译流程，然后再根据目标用户的平台进一步生成所需的本地化`Makefile`和工程文件，如`Unix`的`Makefile`或`Windows`的`Visual Studio`工程，从而做到`Write once, run everywhere`。显然，`cmake`是一个比上述几种`make`更高级的编译配置工具。
+&emsp;&emsp;在`Linux`平台下使用`cmake`生成`Makefile`，并进行编译的流程如下：
 
 1. 编写`cmake`配置文件`CMakeLists.txt`。
 2. 执行命令`cmake PATH`生成`Makefile`，其中`PATH`是`CMakeLists.txt`所在的目录。
@@ -68,7 +68,7 @@ add_executable (Demo main.c)
 - `project`：参数值是`Demo1`，该命令表示项目的名称是`Demo1`。
 - `add_executable`：将名为`main.c`的源文件编译成一个名称为`Demo`的可执行文件。
 
-在当前目录执行`cmake .`，得到`Makefile`后再使用`make`命令编译得到`Demo`可执行文件：
+在当前目录执行`cmake .`，得到`Makefile`后，再使用`make`命令编译得到`Demo`可执行文件：
 
 ``` bash
 [ehome@xman Demo1]$ cmake .
@@ -131,11 +131,11 @@ aux_source_directory (. DIR_SRCS)
 add_executable (Demo ${DIR_SRCS})
 ```
 
-这样，`cmake`会将当前目录所有源文件的文件名赋值给变量`DIR_SRCS`，再指示变量`DIR_SRCS`中的源文件需要编译成一个名称为`Demo`的可执行文件。
+这样，`cmake`会将当前目录所有源文件的文件名赋值给变量`DIR_SRCS`，再指示变量`DIR_SRCS`中的源文件需要编译成一个名为`Demo`的可执行文件。
 
 ### 多个目录，多个源文件
 
-&emsp;&emsp;现在进一步将`MathFunctions.h`和`MathFunctions.c`文件移动到`math`目录下：
+&emsp;&emsp;现在进一步将`MathFunctions.h`和`MathFunctions.c`移动到`math`目录下：
 
 ``` bash
 Demo3/
@@ -145,7 +145,7 @@ Demo3/
         +--- MathFunctions.h
 ```
 
-对于这种情况，需要分别在项目根目录`Demo3`和`math`目录里各编写一个`CMakeLists.txt`文件。为了方便，我们可以先将`math`目录里的文件编译成静态库，再由`main`函数调用。
+对于这种情况，需要分别在项目根目录`Demo3`和子目录`math`里各编写一个`CMakeLists.txt`文件。我们可以先将`math`目录里的文件编译成静态库，再由`main`函数调用。
 &emsp;&emsp;`main.c`如下：
 
 ``` cpp
