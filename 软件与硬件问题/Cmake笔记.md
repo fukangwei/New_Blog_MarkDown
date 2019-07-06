@@ -363,7 +363,7 @@ int main ( int argc, char* argv[] ) {
 
 &emsp;&emsp;有时候代码可能包含了所有平台的模块代码，但是对于特定的目标平台，只需要配置该平台需要模块的代码，而不需要配置其它平台模块的代码。这种需求可以通过`cmake`的配置可选项来完成，配置可选项就是`cmake`在生成工程的时候提示你一些选项，根据你的选项来具体选择需要添加到工程中的模块代码。例如我现在需要提高是否使用`myhello`模块的选项，可以在`CMakeLists.txt`中加`option`命令来实现：
 
-``` cpp
+``` makefile
 cmake_minimum_required (VERSION 3.5)
 project (hello)
 include_directories ("${PROJECT_BINARY_DIR}")
@@ -434,7 +434,13 @@ install (FILES "${PROJECT_BINARY_DIR}/hello.h" DESTINATION include)
 
 ### set指令详解
 
-语法：SET(VAR [VALUE] [CACHE TYPE DOCSTRING [FORCE]])，指令功能：用来显式地定义变 量。 例子：SET (SRC_LST main.c other.c)，用变量 SRC_LST 代替值，例子中定义 SRC_LST 代替后面的字 符串。
+&emsp;&emsp;`set`用来显式地定义变量，其语法如下：
+
+``` makefile
+SET(VAR [VALUE] [CACHE TYPE DOCSTRING [FORCE]])
+```
+
+例如`SET (SRC_LST main.c other.c)`定义变量`SRC_LST`，其值为`main.c other.c`。
 
 ---
 
@@ -500,7 +506,8 @@ if (BZIP2_FOUND)
 endif (BZIP2_FOUND)
 ```
 
-如何编写自己的 cmake module 模块
+#### 如何编写自己的`cmake module`模块
+
 下面以工程 demo9为示例，项目目录结构如下：
 ├── cmake
 │   └── FindDEMO9LIB.cmake
