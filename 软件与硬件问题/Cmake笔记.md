@@ -223,7 +223,7 @@ add_library (MathFunctions ${DIR_LIB_SRCS})
 
 ### 添加可配置的头文件
 
-&emsp;&emsp;`cmake`可以通过可配置的头文件来产生实际的头文件，如下面的可配置头文件`hello.h.in`，里面`@@`引用的变量可以通过`CMakeLists.txt`来设置，最后通过`cmake`来替换`hello.h.in`文件中的变量，并生成`hello.h`内容。
+&emsp;&emsp;`cmake`可以通过可配置的头文件来产生实际的头文件，例如下面的`hello.h.in`。可配置头文件中`@@`引用的变量可以通过`CMakeLists.txt`来设置，最后使用`cmake`来替换`hello.h.in`中的变量，并生成`hello.h`。
 &emsp;&emsp;目录结构如下：
 
 ``` bash
