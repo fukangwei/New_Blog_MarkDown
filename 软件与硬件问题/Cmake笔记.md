@@ -309,19 +309,41 @@ add_library (myhello myhello.c)
 
 ### 检测系统是否有支持工程需要的函数
 
-&emsp;&emsp;对于跨平台的工程来说，检查系统是否支持某些特性是很有必要的，这样程序中就可以通过系统的特 性来选择具体执行哪些代码。其中检查是否支持某些函数是我们经常要做的事情，如 epoll函数，可能有的 linux系统就不支持，对于不支持的系统我们只能用 poll来替代等。在 cmake中检查系统是否支持某个函数 也很简单，先包含一个 CheckFunctionExists库，然后使用 check_function_exists来判断就行了。
-&emsp;&emsp;CMakeLists.txt如下：
+&emsp;&emsp;对于跨平台的工程来说，检查系统是否支持某些特性是很有必要的，这样程序中就可以通过系统的特 性来选择具体执行哪些代码。其中检查是否支持某些函数是我们经常要做的事情，如`epoll`函数，可能有的`linux`系统就不支持。对于不支持的系统，我们只能用`poll`来替代等。在`cmake`中，检查系统是否支持某个函数也很简单，先包含一个`CheckFunctionExists`库，然后使用`check_function_exists`来判断就行了。
+&emsp;&emsp;`CMakeLists.txt`如下：
 
-1. cmake_minimum_required(VERSION 3.5)   2. project(hello)   3.    4. include (CheckFunctionExists)   5. check_function_exists (printf HAVE_PRINTF)   6.    7. include_directories("${PROJECT_BINARY_DIR}")   8. set(VERSION_MAJOR 1)   9. set(VERSION_MINOR 0)   10. configure_file(   11.     "${PROJECT_SOURCE_DIR}/hello.h.in"   12.     "${PROJECT_BINARY_DIR}/hello.h"   13. )   14.    15. add_subdirectory(myhello)   16. set (EXTRA_LIBS ${EXTRA_LIBS} myhello)   17.  18. add_executable(hello hello.c)   19. target_link_libraries (hello ${EXTRA_LIBS})
+``` makefile
+cmake_minimum_required (VERSION 3.5)
+project (hello)
+include (CheckFunctionExists)
+check_function_exists (printf HAVE_PRINTF)
 
-在配置的头文件 hello.h.in中加入#cmakedefine HAVE_PRINTF，这样如果系统中有 printf函数，最终生 成的 hello.h中会定义 HAVE_PRINTF这个宏，否则不会生成。在 hello.c文件中可以根据这个宏来判断是否 应该使用 printf函数。
-hello.h.in如下：
+include_directories ("${PROJECT_BINARY_DIR}")
+set (VERSION_MAJOR 1)
+set (VERSION_MINOR 0)
+
+configure_file (
+    "${PROJECT_SOURCE_DIR}/hello.h.in"
+    "${PROJECT_BINARY_DIR}/hello.h"
+)
+
+add_subdirectory (myhello)
+set (EXTRA_LIBS ${EXTRA_LIBS} myhello)
+add_executable (hello hello.c)
+target_link_libraries (hello ${EXTRA_LIBS})
+```
+
+在配置的头文件`hello.h.in`中加入`#cmakedefine HAVE_PRINTF`，如果系统中有`printf`函数，最终生 成的`hello.h`中会定义`HAVE_PRINTF`这个宏，否则不会生成。在`hello.c`文件中，可以根据这个宏来判断是否应该使用`printf`函数。
+&emsp;&emsp;`hello.h.in`如下：
+
 1. #define VERSION_MAJOR @VERSION_MAJOR@   2. #define VERSION_MINOR @VERSION_MINOR@   3.    4. #cmakedefine HAVE_PRINTF
+
 hello.c如下：
 1. #include "myhello/myhello.h"   2. #include "hello.h"   3. #include <stdio.h>   4.    5. int main (int argc, char *argv[]) {   6. #ifdef HAVE_PRINTF   7.     printf("version:%d.%d\n", VERSION_MAJOR, VERSION_MINOR);   8. #endif   9.     PrintHelloWorld();   10.     return 0;   11. }
 
-配置可选项
-有时候代码可能包含了所有平台的模块代码，但是对于特定的目标平台，只需要配置该平台需要模块 的代码，而不需要配置其它平台模块的代码。这种需求可以通过 cmake的配置可选项来完成，配置可选项
+### 配置可选项
+
+&emsp;&emsp;有时候代码可能包含了所有平台的模块代码，但是对于特定的目标平台，只需要配置该平台需要模块 的代码，而不需要配置其它平台模块的代码。这种需求可以通过 cmake的配置可选项来完成，配置可选项
 就是 cmake在生成工程的时候提示你一些选项，根据你的选项来具体选择需要添加到工程中的模块代码。 例如我现在需要提高是否使用 myhello模块的选项，可以在 CMakeLists.txt中加 option命令来实现：
 1. cmake_minimum_required(VERSION 3.5)   2. project(hello)   3.    4. include_directories("${PROJECT_BINARY_DIR}")   5. set(VERSION_MAJOR 1)   6. set(VERSION_MINOR 0)   7.    8. option (USE_MYHELLO   9.         "Use myhello" ON)   10.            11. configure_file(   12.     "${PROJECT_SOURCE_DIR}/hello.h.in"   13.     "${PROJECT_BINARY_DIR}/hello.h"   14. )   15.    16. add_subdirectory(myhello)   17. set (EXTRA_LIBS ${EXTRA_LIBS} myhello)   18.    19. add_executable(hello hello.c)   20. target_link_libraries(hello ${EXTRA_LIBS})
 并且在 hello.h.in中添加由 cmake 根据选项来定义 USE_MYHELLO宏：
