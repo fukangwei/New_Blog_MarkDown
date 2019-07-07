@@ -310,7 +310,7 @@ add_library (myhello myhello.c)
 
 ### 检测系统是否有支持工程需要的函数
 
-&emsp;&emsp;对于跨平台的工程来说，检查系统是否支持某些特性是很有必要的，这样程序中就可以通过系统的特 性来选择具体执行哪些代码。其中检查是否支持某些函数是我们经常要做的事情，如`epoll`函数，可能有的`linux`系统就不支持。对于不支持的系统，我们只能用`poll`来替代等。在`cmake`中，检查系统是否支持某个函数也很简单，先包含一个`CheckFunctionExists`库，然后使用`check_function_exists`来判断就行了。
+&emsp;&emsp;对于跨平台的工程来说，检查系统是否支持某些特性是很有必要的，这样程序就可以通过系统的特性来选择具体执行哪些代码。例如`epoll`函数，可能有的`Linux`系统就不支持。对于不支持的系统，只能用`poll`来替代。在`cmake`中，检查系统是否支持某个函数也很简单，先包含一个`CheckFunctionExists`库，然后使用`check_function_exists`来判断就行了。
 &emsp;&emsp;`CMakeLists.txt`如下：
 
 ``` makefile
@@ -334,7 +334,7 @@ add_executable (hello hello.c)
 target_link_libraries (hello ${EXTRA_LIBS})
 ```
 
-在配置的头文件`hello.h.in`中加入`#cmakedefine HAVE_PRINTF`，如果系统中有`printf`函数，最终生 成的`hello.h`中会定义`HAVE_PRINTF`这个宏，否则不会生成。在`hello.c`文件中，可以根据这个宏来判断是否应该使用`printf`函数。
+在配置的头文件`hello.h.in`中加入`#cmakedefine HAVE_PRINTF`，如果系统中有`printf`函数，最终生成的`hello.h`中会定义`HAVE_PRINTF`这个宏，否则不会生成。在`hello.c`中，可以根据这个宏来判断是否应该使用`printf`函数。
 &emsp;&emsp;`hello.h.in`如下：
 
 ``` cpp
