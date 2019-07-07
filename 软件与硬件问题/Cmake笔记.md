@@ -447,7 +447,7 @@ SET(VAR [VALUE] [CACHE TYPE DOCSTRING [FORCE]])
 
 ### find_package使用
 
-&emsp;&emsp;为了能支持各种常见的库和包，`cmake`自带了很多模块，可以通过命令`cmake –help-module-list`得到你的`cmake`支持的模块的列表；或者直接查看模块路径，比如在`Ubuntu`上，模块的路径是`/usr/share/cmake/Modules/`：
+&emsp;&emsp;为了能支持各种常见的程序库，`cmake`自带了很多模块，可以通过命令`cmake –help-module-list`得到`cmake`支持的模块列表；或者直接查看模块路径，例如在`Ubuntu`上，模块的路径是`/usr/share/cmake/Modules/`：
 
 ``` bash
 ls -al /usr/share/cmake-3.5/Modules/
@@ -460,7 +460,7 @@ ls -al /usr/share/cmake-3.5/Modules/
 ...
 ```
 
-让我们以`bzip2`库为例，`cmake`中有个`FindBZip2.cmake`模块，只要使用`find_package(BZip2)`调用这个模块，`cmake`会自动给一些变量赋值，然后就可以在`CMake`脚本中使用它们了。变量的列表可以查看`cmake`模块文件，或者使用命令：
+以`bzip2`库为例，`cmake`中有个`FindBZip2.cmake`模块，只要使用`find_package (BZip2)`调用这个模块，`cmake`会自动给一些变量赋值，然后就可以在`cmake`脚本中使用它们了。变量的列表可以查看其`cmake`模块文件，或者使用命令：
 
 ``` bash
 $ cmake --help-module FindBZip2
@@ -477,24 +477,7 @@ BZIP2_NEED_PREFIX - this is set if the functions are prefixed with BZ2_
 BZIP2_VERSION_STRING - the version of BZip2 found (since CMake 2.8.8)
 ```
 
-`cmake`会将路径赋值给对应的变量，我们以`curl`的`cmake`为例，其部分内容如下：
-
-``` makefile
-find_path (CURL_INCLUDE_DIR NAMES curl/curl.h)
-mark_as_advanced (CURL_INCLUDE_DIR)
-
-# Look for the library (sorted from most current/relevant entry to least)
-find_library (
-    CURL_LIBRARY NAMES
-    curl
-    curllib
-    libcurl_imp
-    curllib_static
-    libcurl
-)
-```
-
-比如一个使用`bzip2`的简单程序，编译器需要知道`bzlib.h`的位置，链接器需要找到`bzip2`库(动态链接的话，`Unix`上是`libbz2.so`，`Windows`上是`libbz2.dll`)。
+可以看出，`cmake`将路径赋值给对应的变量。如果编写一个使用`bzip2`的简单程序，编译器需要知道`bzlib.h`的位置，链接器需要找到`bzip2`库(如果使用动态链接，`Unix`上是`libbz2.so`，`Windows`上是`libbz2.dll`)，则`CMakeLists.txt`内容如下：
 
 ``` makefile
 project (helloworld)
@@ -502,7 +485,7 @@ add_executable (helloworld hello.c)
 find_package (BZip2)
 
 if (BZIP2_FOUND)
-    include_directories (${BZIP_INCLUDE_DIRS})
+    include_directories (${BZIP2_INCLUDE_DIR})
     target_link_libraries (helloworld ${BZIP2_LIBRARIES})
 endif (BZIP2_FOUND)
 ```
@@ -526,8 +509,9 @@ endif (BZIP2_FOUND)
 ``` cpp
 #ifndef PROJECT_DEMO9_H
 #define PROJECT_DEMO9_H
+
 void print_demo9();
-#endif //PROJECT_DEMO3_H
+#endif
 ```
 
 `demo9.cpp`如下：
@@ -552,29 +536,20 @@ int main() {
 }
 ```
 
-首先使用`demo9.h`和`demo9.cpp`生成静态`lib`，并安装：
-
-``` bash
--- Installing: /usr/local/demo9/lib/libdemo9_lib.a
--- Installing: /usr/local/demo9/include/demo9.h
-```
-
 `FindDEMO9LIB.cmake`的内容如下：
 
 ``` makefile
 # 辅助输出信息
 message ("now using FindDEMO9LIB.cmake find demo9 lib")
-# 将 demo9.h文件路径赋值给 DEMO9LIB_INCLUDE_DIR
+# 将demo9.h文件路径赋值给变量DEMO9LIB_INCLUDE_DIR
 FIND_PATH (DEMO9LIB_INCLUDE_DIR demo9.h /usr/include/demo9/ /usr/local/demo9/include/)
 message ("./h dir: ${DEMO9LIB_INCLUDE_DIR}")
-# 将 libdemo9_lib.a 文件路径赋值给 DEMO9LIB_LIBRARY
+# 将libdemo9_lib.a文件路径赋值给变量DEMO9LIB_LIBRARY
 FIND_LIBRARY (DEMO9LIB_LIBRARY libdemo9_lib.a /usr/local/demo9/lib/)
 message ("lib dir: ${DEMO9LIB_LIBRARY}")
 
 if (DEMO9LIB_INCLUDE_DIR AND DEMO9LIB_LIBRARY)
-    # 设置变量结果
     set (DEMO9LIB_FOUND TRUE)
-
 endif (DEMO9LIB_INCLUDE_DIR AND DEMO9LIB_LIBRARY)
 ```
 
@@ -600,21 +575,21 @@ set (CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 message ("cmake_module_path: ${CMAKE_MODULE_PATH}")
 find_package (DEMO9LIB)
 
-if(DEMO9LIB_FOUND)
- add_executable(demo9_main ${SRC_EXE})
- message("found demo9 ${DEMO9LIB_INCLUDE_DIR} ${DEMO9LIB_LIBRARY}")
- include_directories(${DEMO9LIB_INCLUDE_DIR})
- target_link_libraries(demo9_main ${DEMO9LIB_LIBRARY})
-else()
- message("not found DEMO9LIB_FOUND")
-endif(DEMO9LIB_FOUND)
+if (DEMO9LIB_FOUND)
+    add_executable (demo9_main ${SRC_EXE})
+    message ("found demo9 ${DEMO9LIB_INCLUDE_DIR} ${DEMO9LIB_LIBRARY}")
+    include_directories (${DEMO9LIB_INCLUDE_DIR})
+    target_link_libraries (demo9_main ${DEMO9LIB_LIBRARY})
+else ()
+    message ("not found DEMO9LIB_FOUND")
+endif (DEMO9LIB_FOUND)
 ```
 
 编译输出信息如下：
 
 ``` bash
-$ cmake ../../cmake_tuorial/demo9/
-cmake_module_path: /home/xy/cmake_practice/cmake_tuorial/demo9/cmake
+$ cmake .
+cmake_module_path: /home/xy/demo9/cmake
 now using FindDEMO9LIB.cmake find demo9 lib
 ./h dir： /usr/local/demo9/include
 lib dir: /usr/local/demo9/lib/libdemo9_lib.a
@@ -625,7 +600,7 @@ found demo9 /usr/local/demo9/include /usr/local/demo9/lib/libdemo9_lib.a
 
 ``` bash
 $ make -j10
-cmake_module_path: /home/xy/cmake_practice/cmake_tuorial/demo9/cmake
+cmake_module_path: /home/xy/demo9/cmake
 now using FindDEMO9LIB.cmake find demo9 lib
 ./h dir /usr/local/demo9/include
 lib dir: /usr/local/demo9/lib/libdemo9_lib.a
