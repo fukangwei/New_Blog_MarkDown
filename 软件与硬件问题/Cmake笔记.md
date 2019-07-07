@@ -362,7 +362,7 @@ int main ( int argc, char* argv[] ) {
 
 ### 配置可选项
 
-&emsp;&emsp;有时候代码可能包含了所有平台的模块代码，但是对于特定的目标平台，只需要配置该平台需要模块的代码，而不需要配置其它平台模块的代码。这种需求可以通过`cmake`的配置可选项来完成，配置可选项就是`cmake`在生成工程的时候提示你一些选项，根据你的选项来具体选择需要添加到工程中的模块代码。例如我现在需要提高是否使用`myhello`模块的选项，可以在`CMakeLists.txt`中加`option`命令来实现：
+&emsp;&emsp;有时候代码可能包含了所有平台的模块代码，但是对于特定的目标平台，只需要配置该平台需要模块的代码，而不需要配置其它平台模块的代码。这种需求可以通过`cmake`的配置可选项来完成，配置可选项就是`cmake`在生成工程的时候提示你一些选项，根据你的选项来具体选择需要添加到工程中的模块代码。例如提示是否使用`myhello`模块，可以在`CMakeLists.txt`中加上`option`命令来实现：
 
 ``` makefile
 cmake_minimum_required (VERSION 3.5)
@@ -385,7 +385,7 @@ add_executable (hello hello.c)
 target_link_libraries (hello ${EXTRA_LIBS})
 ```
 
-并且在`hello.h.in`中添加由`cmake`根据选项来定义`USE_MYHELLO`宏：
+并且在`hello.h.in`中添加由`CMakeLists.txt`定义的`USE_MYHELLO`宏：
 
 ``` cpp
 #define VERSION_MAJOR @VERSION_MAJOR@
