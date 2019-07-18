@@ -310,6 +310,8 @@ tags:
 </html>
 ```
 
+<img src="./HTML教程一/8.png" width="40%">
+
 &emsp;&emsp;下例演示如何实现缩写或首字母缩写：
 
 ``` xml
@@ -329,7 +331,11 @@ tags:
 </html>
 ```
 
-    下例演示如何改变文字的方向：
+<img src="./HTML教程一/9.png" width="100%">
+
+&emsp;&emsp;下例演示如何改变文字的方向：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -340,8 +346,13 @@ tags:
         <p><bdo dir="rtl">该段落文字从右到左显示。</bdo></p>
     </body>
 </html>
+```
 
-    下例演示如何实现长短不一的引用语：
+<img src="./HTML教程一/10.png" width="40%">
+
+&emsp;&emsp;下例演示如何实现长短不一的引用语：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -353,8 +364,11 @@ tags:
         We hope they succeed.</p>
     </body>
 </html>
+```
 
-    此例演示如何标记删除文本和插入文本：
+&emsp;&emsp;此例演示如何标记删除文本和插入文本：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -364,186 +378,187 @@ tags:
         <p>My favorite color is <del>blue</del> <ins>red</ins>!</p>
     </body>
 </html>
+```
 
-    HTML文本格式化标签如下所示：
-标签        描述
-----------------
-<b>         定义粗体文本
-<em>        定义着重文字
-<i>         定义斜体字
-<small>     定义小号字
-<strong>    定义加重语气
-<sub>       定义下标字
-<sup>       定义上标字
-<ins>       定义插入字
-<del>       定义删除字
-    HTML“计算机输出”标签如下所示：
-标签      描述
---------------
-<code>    定义计算机代码
-<kbd>     定义键盘码
-<samp>    定义计算机代码样本
-<var>     定义变量
-<pre>     定义预格式文本
-    HTML引文、引用以及标签定义如下所示：
-标签            描述
---------------------
-<abbr>          定义缩写
-<address>       定义地址
-<bdo>           定义文字方向
-<blockquote>    定义长的引用
-<q>             定义短的引用语
-<cite>          定义引用、引证
-<dfn>           定义一个定义项目
-    文本显示为单行，超过部分隐藏并使用省略号，实例如下所示：
-#HTML内容如下所示：
-<div>
-    文本显示为单行,超过部分隐藏并使用省略号
-    修改 width 属性查看效果。
-</div>
-#CSS脚本内容如下所示：
-div {
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-    width:120px;
-}
+&emsp;&emsp;`HTML`文本格式化标签如下：
 
-    使用“display:-webkit-box;”让文本显示为多行(只有webkit内核才有作用)，实例如下所示：
-#HTML内容如下所示：
-<div>
-    文本显示为两行,超过部分隐藏并使用省略号
-    修改 width 属性查看效果。
-</div>
-#CSS脚本内容如下所示：
-div {
-    display:-webkit-box;
-	text-overflow:ellipsis;
-	overflow:hidden;
-	width:100px;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient:vertical;
-}
+标签       | 描述
+-----------|-----
+`<b>`      | 定义粗体文本
+`<em>`     | 定义着重文字
+`<i>`      | 定义斜体字
+`<small>`  | 定义小号字
+`<strong>` | 定义加重语气
+`<sub>`    | 定义下标字
+`<sup>`    | 定义上标字
+`<ins>`    | 定义插入字
+`<del>`    | 定义删除字
 
+&emsp;&emsp;`HTML`的计算机输出标签如下：
 
-HTML链接
-    HTML使用超级链接与网络上的另一个文档相连。几乎可以在所有的网页中找到链接，点击链接可以从一张页面跳转到另一张页面。实例如下所示：
+标签     | 描述
+---------|-----
+`<code>` | 定义计算机代码
+`<kbd>`  | 定义键盘码
+`<samp>` | 定义计算机代码样本
+`<var>`  | 定义变量
+`<pre>`  | 定义预格式文本
+
+&emsp;&emsp;`HTML`引文、引用以及标签定义如下：
+
+标签           | 描述
+---------------|-----
+`<abbr>`       | 定义缩写
+`<address>`    | 定义地址
+`<bdo>`        | 定义文字方向
+`<blockquote>` | 定义长的引用
+`<q>`          | 定义短的引用语
+`<cite>`       | 定义引用、引证
+`<dfn>`        | 定义一个定义项目
+
+### HTML链接
+
+&emsp;&emsp;`HTML`使用超级链接与网络上的另一个文档相连。几乎可以在所有的网页中找到链接，点击链接可以从一张页面跳转到另一张页面：
+
+``` xml
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<p>
-		<a href="/index.html">本文本</a> 是一个指向本网站中的一个页面的链接。</p>
-		<p><a href="http://www.microsoft.com/">本文本</a> 是一个指向万维网上的页面的链接。</p>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <p>
+        <a href="/index.html">本文本</a> 是一个指向本网站中的一个页面的链接。</p>
+        <p><a href="http://www.microsoft.com/">本文本</a> 是一个指向万维网上的页面的链接。</p>
+    </body>
 </html>
+```
 
-    HTML使用标签<a>来设置超文本链接，超链接可以是一个字、一个词或者一组词，也可以是一幅图像，您可以点击这些内容来跳转到新的文档或者当前文档中的某个部分。当您把鼠标指针移动到网页中的某个链接上时，箭头会变为一只小手。在标签<a>中使用了href属性来描述链接的地址。
-    默认情况下，链接将以以下形式出现在浏览器中：一个未访问过的链接显示为蓝色字体并带有下划线；访问过的链接显示为紫色并带有下划线；点击链接时，链接显示为红色并带有下划线。注意，如果为这些超链接设置了CSS样式，展示样式会根据CSS的设定而显示。
-    链接的HTML代码很简单，它类似这样：
+&emsp;&emsp;`HTML`使用标签`<a>`来设置超文本链接，超链接可以是一个字、一个词或者一组词，也可以是一幅图像，您可以点击这些内容来跳转到新的文档或者当前文档中的某个部分。当您把鼠标指针移动到网页中的某个链接上时，箭头会变为一只小手。在标签`<a>`中使用了`href`属性来描述链接的地址。
+&emsp;&emsp;默认情况下，链接将以以下形式出现在浏览器中：一个未访问过的链接显示为蓝色字体并带有下划线；访问过的链接显示为紫色并带有下划线；点击链接时，链接显示为红色并带有下划线。注意，如果为这些超链接设置了`CSS`样式，展示样式会根据`CSS`的设定而显示。
+&emsp;&emsp;链接的`HTML`代码很简单：
+
+``` xml
 <a href="url">链接文本</a>
-href属性描述了链接的目标。
-链接的target属性：你可以定义被链接的文档在何处显示。下面的这行会在新窗口打开文档：
+```
+
+`href`属性描述了链接的目标。
+
+#### 链接的target属性
+
+&emsp;&emsp;你可以定义被链接的文档在何处显示。下面的这行会在新窗口打开文档：
+
+``` xml
 <a href="http://www.runoob.com/" target="_blank">访问菜鸟教程!</a>
-链接的id属性：id属性可用于创建在一个HTML文档书签标记。书签是不以任何特殊的方式显示，在HTML文档中是不显示的，所以对于读者来说是隐藏的。在HTML文档中插入ID：
+```
+
+#### 链接的id属性
+
+&emsp;&emsp;`id`属性可用于创建在一个`HTML`文档书签标记。书签是不以任何特殊的方式显示，在`HTML`文档中是不显示的，所以对于读者来说是隐藏的。在`HTML`文档中插入`ID`：
+
+``` xml
 <a id="tips">有用的提示部分</a>
-在HTML文档中创建一个链接到“有用的提示部分(id="tips")”：
+```
+
+在`HTML`文档中创建一个链接到`有用的提示部分(id="tips")`：
+
+``` xml
 <a href="#tips">访问有用的提示部分</a>
-或者从另一个页面创建一个链接到“有用的提示部分(id="tips")”：
+```
+
+或者从另一个页面创建一个链接到`有用的提示部分(id="tips")`：
+
+``` xml
 <a href="http://www.runoob.com/html/html-links.html#tips">
 访问有用的提示部分</a>
-    注意，请始终将正斜杠添加到子文件夹。假如这样书写链接“href="http://www.runoob.com/html"”，就会向服务器产生两次HTTP请求，这是因为服务器会添加正斜杠到这个地址，然后创建一个新的请求，就像这样“href="http://www.runoob.com/html/"”。
-    下例演示如何使用图片链接：
+```
+
+&emsp;&emsp;注意，请始终将正斜杠添加到子文件夹。假如这样书写链接`href="http://www.runoob.com/html"`，就会向服务器产生两次`HTTP`请求，这是因为服务器会添加正斜杠到这个地址，然后创建一个新的请求，就像这样`href="http://www.runoob.com/html/"`。
+&emsp;&emsp;下例演示如何使用图片链接：
+
+``` xml
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<p>创建图片链接:
-		<a href="http://www.runoob.com/html/html-tutorial.html">
-		<img src="smiley.gif" alt="HTML 教程" width="32" height="32"></a></p>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <p>创建图片链接:
+        <a href="http://www.runoob.com/html/html-tutorial.html">
+        <img src="smiley.gif" alt="HTML 教程" width="32" height="32"></a></p>
 
-		<p>无边框的图片链接:
-		<a href="http://www.runoob.com/html/html-tutorial.html">
-		<img border="0" src="smiley.gif" alt="HTML 教程" width="32" height="32"></a></p>
-	</body>
+        <p>无边框的图片链接:
+        <a href="http://www.runoob.com/html/html-tutorial.html">
+        <img border="0" src="smiley.gif" alt="HTML 教程" width="32" height="32"></a></p>
+    </body>
 </html>
+```
 
-    下例演示如何使用书签：
+&emsp;&emsp;下例演示如何使用书签：
+
+``` xml
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<p>
-		<a href="#C4">查看章节 4</a>
-		</p>
-		<h2>章节 1</h2>
-		<p>这边显示该章节的内容……</p>
-		<h2>章节 2</h2>
-		<p>这边显示该章节的内容……</p>
-		<h2>章节 3</h2>
-		<p>这边显示该章节的内容……</p>
-		<h2><a id="C4">章节 4</a></h2>
-		<p>这边显示该章节的内容……</p>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <p>
+        <a href="#C4">查看章节 4</a>
+        </p>
+        <h2>章节 1</h2>
+        <p>这边显示该章节的内容……</p>
+        <h2>章节 2</h2>
+        <p>这边显示该章节的内容……</p>
+        <h2>章节 3</h2>
+        <p>这边显示该章节的内容……</p>
+        <h2><a id="C4">章节 4</a></h2>
+        <p>这边显示该章节的内容……</p>
+    </body>
 </html>
+```
 
-    下例演示如何跳出框架，假如你的页面被固定在框架之内：
+&emsp;&emsp;下例演示如何跳出框架，假如你的页面被固定在框架之内：
+
+``` xml
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<p>跳出框架?</p>
-		<a href="http://www.runoob.com/" target="_top">点击这里!</a>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <p>跳出框架?</p>
+        <a href="http://www.runoob.com/" target="_top">点击这里!</a>
+    </body>
 </html>
+```
 
-    下例演示如何链接到一个邮件，本例在安装邮件客户端程序后才能工作：
+&emsp;&emsp;下例演示如何链接到一个邮件，本例在安装邮件客户端程序后才能工作：
+
+``` xml
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<p>
-		这是一个电子邮件链接：
-		<a href="mailto:someone@example.com?Subject=Hello%20again" target="_top">
-		发送邮件</a>
-		</p>
-		<p>
-		<b>注意:</b> 单词之间空格使用 %20 代替，以确保浏览器可以正常显示文本。
-		</p>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <p>
+        这是一个电子邮件链接：
+        <a href="mailto:someone@example.com?Subject=Hello%20again" target="_top">
+        发送邮件</a>
+        </p>
+        <p>
+        <b>注意:</b> 单词之间空格使用 %20 代替，以确保浏览器可以正常显示文本。
+        </p>
+    </body>
 </html>
+```
 
-    下例演示更加复杂的邮件链接：
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>菜鸟教程(runoob.com)</title>
-	</head>
-	<body>
-		<p>
-		这是另一个电子邮件链接：
-		<a href="mailto:someone@example.com?cc=someoneelse@example.com&bcc=andsomeoneelse@example.com&subject=Summer%20Party&body=You%20are%20invited%20to%20a%20big%20summer%20party!" target="_top">发送邮件!</a>
-		</p>
-		<p>
-		<b>注意:</b> 单词直接空格使用 %20 代替，以确保浏览器可以正常显示文本。
-		</p>
-	</body>
-</html>
+### HTML头部
 
+&emsp;&emsp;`<title>`定义了`HTML`文档的标题：
 
-HTML头部
-<title>定义了HTML文档的标题，如下所示：
+``` xml
 <!DOCTYPE html>
 <html>
 	<head>
@@ -555,6 +570,8 @@ HTML头部
 		<p>浏览器的标题包含title元素的内容</p>
 	</body>
 </html>
+```
+
 <base>定义页面中所有链接默认的链接目标地址，如下所示：
 <!DOCTYPE html>
 <html>
