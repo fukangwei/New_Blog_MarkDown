@@ -561,53 +561,60 @@ tags:
 ``` xml
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>我的 HTML 的第一页</title>
-	</head>
-	<body>
-		<p>浏览器中包含body元素的内容。</p>
-		<p>浏览器的标题包含title元素的内容</p>
-	</body>
+    <head>
+        <meta charset="utf-8">
+        <title>我的 HTML 的第一页</title>
+    </head>
+    <body>
+        <p>浏览器中包含body元素的内容。</p>
+        <p>浏览器的标题包含title元素的内容</p>
+    </body>
 </html>
 ```
 
-<base>定义页面中所有链接默认的链接目标地址，如下所示：
+`<base>`定义页面中所有链接默认的链接目标地址：
+
+``` xml
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>菜鸟教程(runoob.com)</title>
-		<base href="http://www.runoob.com/images/" target="_blank">
-	</head>
+    <head>
+        <meta charset="utf-8">
+        <title>菜鸟教程(runoob.com)</title>
+        <base href="http://www.runoob.com/images/" target="_blank">
+    </head>
 
-	<body>
-		<img src="logo.png"> - 注意这里我们设置了图片的相对地址。能正常显示是因为我们在 head 部分设置了 base 标签，该标签指定了页面上所有链接的默认 URL，所以该图片的访问地址为 "http://www.runoob.com/images/logo.png"
-		<br><br>
-		<a href="http://www.runoob.com">菜鸟教程</a> - 注意这个链接会在新窗口打开，即便它没有 target="_blank" 属性。因为在 base 标签里我们已经设置了 target 属性的值为 "_blank"。
-	</body>
+    <body>
+        <img src="logo.png"> - 注意这里我们设置了图片的相对地址。能正常显示是因为我们在 head 部分设置了 base 标签，该标签指定了页面上所有链接的默认 URL，所以该图片的访问地址为 "http://www.runoob.com/images/logo.png"
+        <br><br>
+        <a href="http://www.runoob.com">菜鸟教程</a> - 注意这个链接会在新窗口打开，即便它没有 target="_blank" 属性。因为在 base 标签里我们已经设置了 target 属性的值为 "_blank"。
+    </body>
 </html>
+```
 
-<meta>元素来描述HTML文档的关键词、作者、字符集等，如下所示：
+`<meta>`元素来描述`HTML`文档的关键词、作者、字符集等：
+
+``` xml
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>菜鸟教程(runoob.com)</title>
-		<meta name="description" content="免费在线教程">
-		<meta name="keywords" content="HTML,CSS,XML,JavaScript">
-		<meta name="author" content="runoob">
-		<meta charset="UTF-8">
-	</head>
+    <head>
+        <meta charset="utf-8">
+        <title>菜鸟教程(runoob.com)</title>
+        <meta name="description" content="免费在线教程">
+        <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+        <meta name="author" content="runoob">
+        <meta charset="UTF-8">
+    </head>
 
-	<body>
-		<p>所有 meta 标签显示在 head 部分...</p>
-	</body>
+    <body>
+        <p>所有 meta 标签显示在 head 部分...</p>
+    </body>
 </html>
+```
 
-    HTML的<head>元素包含了所有的头部标签元素。在<head>元素中，你可以插入脚本(scripts)、样式文件(CSS)及各种meta信息。可以添加在头部区域的元素标签为：<title>、<style>、<meta>、<link>、<script>、<noscript>和<base>。
-    HTML的<title>元素定义了不同文档的标题，在“HTML/XHTML”文档中是必须的。<title>元素定义了浏览器工具栏的标题，当网页添加到收藏夹时显示在收藏夹中的标题以及显示在搜索引擎结果页面的标题。
-    HTML的<base>元素描述了基本的“链接地址/链接目标”，该标签作为HTML文档中所有的链接标签的默认链接：
+&emsp;&emsp;HTML的<head>元素包含了所有的头部标签元素。在<head>元素中，你可以插入脚本(scripts)、样式文件(CSS)及各种meta信息。可以添加在头部区域的元素标签为：<title>、<style>、<meta>、<link>、<script>、<noscript>和<base>。
+&emsp;&emsp;HTML的<title>元素定义了不同文档的标题，在“HTML/XHTML”文档中是必须的。<title>元素定义了浏览器工具栏的标题，当网页添加到收藏夹时显示在收藏夹中的标题以及显示在搜索引擎结果页面的标题。
+&emsp;&emsp;HTML的<base>元素描述了基本的“链接地址/链接目标”，该标签作为HTML文档中所有的链接标签的默认链接：
+
 <head>
     <base href="http://www.runoob.com/images/" target="_blank">
 </head>
