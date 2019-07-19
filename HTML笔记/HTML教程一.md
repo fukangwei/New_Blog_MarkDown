@@ -907,7 +907,9 @@ tags:
 </table>
 ```
 
-    下例演示一个没有边框的表格：
+&emsp;&emsp;下例演示一个没有边框的表格：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -943,6 +945,7 @@ tags:
         </table>
     </body>
 </html>
+```
 
     下例演示如何显示表格表头：
 <!DOCTYPE html>
