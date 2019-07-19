@@ -310,7 +310,7 @@ tags:
 </html>
 ```
 
-<img src="./HTML教程一/8.png" width="40%">
+<img src="./HTML教程一/8.png" width="30%">
 
 &emsp;&emsp;下例演示如何实现缩写或首字母缩写：
 
@@ -331,7 +331,7 @@ tags:
 </html>
 ```
 
-<img src="./HTML教程一/9.png" width="100%">
+<img src="./HTML教程一/9.png" width="60%">
 
 &emsp;&emsp;下例演示如何改变文字的方向：
 
@@ -348,7 +348,7 @@ tags:
 </html>
 ```
 
-<img src="./HTML教程一/10.png" width="40%">
+<img src="./HTML教程一/10.png" width="30%">
 
 &emsp;&emsp;下例演示如何实现长短不一的引用语：
 
