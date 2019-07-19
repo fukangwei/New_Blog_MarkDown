@@ -611,74 +611,96 @@ tags:
 </html>
 ```
 
-&emsp;&emsp;HTML的<head>元素包含了所有的头部标签元素。在<head>元素中，你可以插入脚本(scripts)、样式文件(CSS)及各种meta信息。可以添加在头部区域的元素标签为：<title>、<style>、<meta>、<link>、<script>、<noscript>和<base>。
-&emsp;&emsp;HTML的<title>元素定义了不同文档的标题，在“HTML/XHTML”文档中是必须的。<title>元素定义了浏览器工具栏的标题，当网页添加到收藏夹时显示在收藏夹中的标题以及显示在搜索引擎结果页面的标题。
-&emsp;&emsp;HTML的<base>元素描述了基本的“链接地址/链接目标”，该标签作为HTML文档中所有的链接标签的默认链接：
+&emsp;&emsp;`HTML`的`<head>`元素包含了所有的头部标签元素。在`<head>`元素中，你可以插入脚本(`scripts`)、样式文件(`CSS`)及各种`meta`信息。可以添加在头部区域的元素标签为：`<title>`、`<style>`、`<meta>`、`<link>`、`<script>`、`<noscript>`和`<base>`。
+&emsp;&emsp;`HTML`的`<title>`元素定义了不同文档的标题，在`HTML/XHTML`文档中是必须的。`<title>`元素定义了浏览器工具栏的标题，当网页添加到收藏夹时显示在收藏夹中的标题以及显示在搜索引擎结果页面的标题。
+&emsp;&emsp;`HTML`的`<base>`元素描述了基本的`链接地址/链接目标`，该标签作为`HTML`文档中所有的链接标签的默认链接：
 
+``` xml
 <head>
     <base href="http://www.runoob.com/images/" target="_blank">
 </head>
-    HTML的<link>元素定义了文档与外部资源之间的关系，<link>标签通常用于链接到样式表：
+```
+
+&emsp;&emsp;`HTML`的`<link>`元素定义了文档与外部资源之间的关系，`<link>`标签通常用于链接到样式表：
+
+``` xml
 <head>
     <link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
-    HTML的<style>元素定义了HTML文档的样式文件引用地址，在<style>元素中你也可以直接添加样式来渲染HTML文档：
+```
+
+&emsp;&emsp;`HTML`的`<style>`元素定义了`HTML`文档的样式文件引用地址，在`<style>`元素中你也可以直接添加样式来渲染`HTML`文档：
+
+``` xml
 <head>
-	<style type="text/css">
-	body {background-color:yellow}
-	p {color:blue}
-	</style>
+    <style type="text/css">
+    body {background-color:yellow}
+    p {color:blue}
+    </style>
 </head>
-    HTML的<meta>元素meta标签描述了一些基本的元数据，它<meta>标签提供了元数据。元数据也不显示在页面上，但会被浏览器解析。META元素通常用于指定网页的描述、关键词，文件的最后修改时间、作者和其他元数据。
-    元数据可以使用于浏览器(如何显示内容或重新加载页面)、搜索引擎(关键词)或其他Web服务，一般放置于<head>区域。使用实例如下所示：
+```
+
+&emsp;&emsp;`HTML`的`<meta>`元素`meta`标签描述了一些基本的元数据，它`<meta>`标签提供了元数据。元数据也不显示在页面上，但会被浏览器解析。`META`元素通常用于指定网页的描述、关键词，文件的最后修改时间、作者和其他元数据。
+&emsp;&emsp;元数据可以使用于浏览器(如何显示内容或重新加载页面)、搜索引擎(关键词)或其他`Web`服务，一般放置于`<head>`区域。使用实例如下：
+
+``` xml
 <meta name="keywords" content="HTML, CSS, XML, XHTML, JavaScript"> #为搜索引擎定义关键词
 <meta name="description" content="免费 Web & 编程 教程"> #为网页定义描述内容
 <meta name="author" content="Runoob"> #定义网页作者
 <meta http-equiv="refresh" content="30"> #每30秒中刷新当前页面
-    HTML的<script>元素用于加载脚本文件，如JavaScript。
+```
 
-HTML样式之CSS
-    下例演示如何使用添加到<head>部分的样式信息对HTML进行格式化：
+&emsp;&emsp;`HTML`的`<script>`元素用于加载脚本文件，如`JavaScript`。
+
+### HTML样式之CSS
+
+&emsp;&emsp;下例演示如何使用添加到`<head>`部分的样式信息对`HTML`进行格式化：
+
+``` xml
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>菜鸟教程(runoob.com)</title>
-		<style type="text/css">
-			h1 {color:red;}
-			p {color:blue;}
-		</style>
-	</head>
-	<body>
-		<h1>这是一个标题</h1>
-		<p>这是一个段落。</p>
-	</body>
+    <head>
+        <meta charset="utf-8">
+        <title>菜鸟教程(runoob.com)</title>
+        <style type="text/css">
+            h1 {color:red;}
+            p {color:blue;}
+        </style>
+    </head>
+    <body>
+        <h1>这是一个标题</h1>
+        <p>这是一个段落。</p>
+    </body>
 </html>
+```
 
-    下例演示如何使用样式属性做一个没有下划线的链接：
+&emsp;&emsp;下例演示如何使用样式属性做一个没有下划线的链接：
+
+``` xml
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>菜鸟教程(runoob.com)</title>
-	</head>
-	<body>
-		<a href="http://www.runoob.com/" style="text-decoration:none;">访问 runoob.com!</a>
-	</body>
+    <head>
+        <meta charset="utf-8">
+        <title>菜鸟教程(runoob.com)</title>
+    </head>
+    <body>
+        <a href="http://www.runoob.com/" style="text-decoration:none;">访问 runoob.com!</a>
+    </body>
 </html>
+```
 
     下例演示如何将标签链接到一个外部样式表：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>菜鸟教程(runoob.com)</title>
-		<link rel="stylesheet" type="text/css" href="styles.css">
-	</head>
-	<body>
-		<h1>我使用了外部样式文件来格式化文本 </h1>
-		<p>我也是!</p>
-	</body>
+    <head>
+        <meta charset="utf-8">
+        <title>菜鸟教程(runoob.com)</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+    <body>
+        <h1>我使用了外部样式文件来格式化文本 </h1>
+        <p>我也是!</p>
+    </body>
 </html>
 
     CSS是在HTML4开始使用的，是为了更好的渲染HTML元素而引入的。CSS可以通过以下方式添加到HTML中：
@@ -691,8 +713,8 @@ HTML样式之CSS
 <p style="color:blue;margin-left:20px;">This is a paragraph.</p>
     背景色属性(background-color)定义一个元素的背景颜色，实例如下所示：
 <body style="background-color:yellow;">
-	<h2 style="background-color:red;">这是一个标题</h2>
-	<p style="background-color:green;">这是一个段落。</p>
+    <h2 style="background-color:red;">这是一个标题</h2>
+    <p style="background-color:green;">这是一个段落。</p>
 </body>
 早期背景色属性(background-color)是使用bgcolor属性定义。
     我们可以使用font-family(字体)、color(颜色)和font-size(字体大小)属性来定义字体的样式，实例如下所示：
@@ -705,54 +727,56 @@ HTML样式之CSS
     2、内部样式表
     当单个文件需要特别样式时，就可以使用内部样式表。你可以在<head>部分通过<style>标签定义内部样式表：
 <head>
-	<style type="text/css">
-	body {background-color:yellow;}
-	p {color:blue;}
-	</style>
+    <style type="text/css">
+    body {background-color:yellow;}
+    p {color:blue;}
+    </style>
 </head>
     3、外部样式表
     当样式需要被应用到很多页面的时候，外部样式表将是理想的选择。使用外部样式表，你就可以通过更改一个文件来改变整个站点的外观，如下所示：
 <head>
-	<link rel="stylesheet" type="text/css" href="mystyle.css">
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
     HTML样式标签如下所示：
+
 标签       描述
 ---------------
 <style>    定义文本样式
 <link>     定义资源引用地址
+
     在HTML4，原来支持定义HTML元素样式的标签和属性已被弃用，这些标签将不支持新版本的HTML标签。不建议使用的标签有<font>、<center>和<strike>，不建议使用的属性color和bgcolor。
 
 HTML图像
     下例演示如何在网页中显示图像：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<p>
-		一个图像:
-		<img src="smiley.gif" alt="Smiley face" width="32" height="32"></p>
-		<p>
-		一个动图:
-		<img src="hackanm.gif" alt="Computer man" width="48" height="48"></p>
-		<p>
-		注意插入动图的语法和静态图的语法是一样的。
-		</p>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <p>
+        一个图像:
+        <img src="smiley.gif" alt="Smiley face" width="32" height="32"></p>
+        <p>
+        一个动图:
+        <img src="hackanm.gif" alt="Computer man" width="48" height="48"></p>
+        <p>
+        注意插入动图的语法和静态图的语法是一样的。
+        </p>
+    </body>
 </html>
 
     下例演示如何将其他文件夹或服务器的图片显示到网页中：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<p>一个来自文件夹中的图像:</p>
-		<img src="/images/chrome.gif" alt="Google Chrome" width="33" height="32"><p>一个来自菜鸟教程的图像:</p>
-		<img src="http://www.runoob.com/images/logo.png" alt="runoob.com" width="336" height="69">
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <p>一个来自文件夹中的图像:</p>
+        <img src="/images/chrome.gif" alt="Google Chrome" width="33" height="32"><p>一个来自菜鸟教程的图像:</p>
+        <img src="http://www.runoob.com/images/logo.png" alt="runoob.com" width="336" height="69">
+    </body>
 </html>
     在HTML中，图像由<img>标签定义。<img>是空标签，意思是说它只包含属性，并且没有闭合标签。要在页面上显示图像，你需要使用源属性(src)。src是指“source”，源属性的值是图像的URL地址。定义图像的语法如下所示：
 <img src="url" alt="some_text">
@@ -767,68 +791,68 @@ URL指存储图像的位置。如果名为“pulpit.jpg”的图像位于www.run
     下例演示如何在文字中排列图像：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<h4>默认对齐的图像 (align="bottom"):</h4>
-		<p>这是一些文本。 <img src="smiley.gif" alt="Smiley face" width="32" height="32"> 这是一些文本。</p>
-		<h4>图片使用 align="middle":</h4>
-		<p>这是一些文本。 <img src="smiley.gif" alt="Smiley face" align="middle" width="32" height="32">这是一些文本。</p>
-		<h4>图片使用 align="top":</h4>
-		<p>这是一些文本。 <img src="smiley.gif" alt="Smiley face" align="top" width="32" height="32">这是一些文本。</p>
-		<p><b>注意:</b>在HTML 4中 align 属性已废弃，HTML5 已不支持该属性，可以使用 CSS 代替。</p>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h4>默认对齐的图像 (align="bottom"):</h4>
+        <p>这是一些文本。 <img src="smiley.gif" alt="Smiley face" width="32" height="32"> 这是一些文本。</p>
+        <h4>图片使用 align="middle":</h4>
+        <p>这是一些文本。 <img src="smiley.gif" alt="Smiley face" align="middle" width="32" height="32">这是一些文本。</p>
+        <h4>图片使用 align="top":</h4>
+        <p>这是一些文本。 <img src="smiley.gif" alt="Smiley face" align="top" width="32" height="32">这是一些文本。</p>
+        <p><b>注意:</b>在HTML 4中 align 属性已废弃，HTML5 已不支持该属性，可以使用 CSS 代替。</p>
+    </body>
 </html>
 
     下例演示如何使图片浮动至段落的左边或右边：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<p>
-		<img src="smiley.gif" alt="Smiley face" style="float:left" width="32" height="32"> 一个带图片的段落，图片浮动在这个文本的左边。
-		</p>
-		<p>
-		<img src="smiley.gif" alt="Smiley face" style="float:right" width="32" height="32"> 一个带图片的段落，图片浮动在这个文本的右边。
-		</p>
-		<p><b>注意:</b> 在这里我们使用了 CSS "float" 属性，在HTML 4中 align 属性已废弃，HTML5 已不支持该属性，可以使用 CSS 代替。</p>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <p>
+        <img src="smiley.gif" alt="Smiley face" style="float:left" width="32" height="32"> 一个带图片的段落，图片浮动在这个文本的左边。
+        </p>
+        <p>
+        <img src="smiley.gif" alt="Smiley face" style="float:right" width="32" height="32"> 一个带图片的段落，图片浮动在这个文本的右边。
+        </p>
+        <p><b>注意:</b> 在这里我们使用了 CSS "float" 属性，在HTML 4中 align 属性已废弃，HTML5 已不支持该属性，可以使用 CSS 代替。</p>
+    </body>
 </html>
 
     下例演示如何将图像作为一个链接使用：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<p>创建图片链接:
-		<a href="http://www.runoob.com/html/html-tutorial.html">
-		<img src="smiley.gif" alt="HTML 教程" width="32" height="32"></a></p>
-		<p>无边框的图片链接:
-		<a href="http://www.runoob.com/html/html-tutorial.html">
-		<img border="0" src="smiley.gif" alt="HTML 教程" width="32" height="32"></a></p>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <p>创建图片链接:
+        <a href="http://www.runoob.com/html/html-tutorial.html">
+        <img src="smiley.gif" alt="HTML 教程" width="32" height="32"></a></p>
+        <p>无边框的图片链接:
+        <a href="http://www.runoob.com/html/html-tutorial.html">
+        <img border="0" src="smiley.gif" alt="HTML 教程" width="32" height="32"></a></p>
+    </body>
 </html>
 
     下例显示如何创建带有可供点击区域的图像地图，其中的每个区域都是一个超级链接：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<p>点击太阳或其他行星，注意变化：</p>
-		<img src="planets.gif" width="145" height="126" alt="Planets" usemap="#planetmap">
-		<map name="planetmap">
-			<area shape="rect" coords="0,0,82,126" alt="Sun" href="sun.htm">
-			<area shape="circle" coords="90,58,3" alt="Mercury" href="mercur.htm">
-			<area shape="circle" coords="124,58,8" alt="Venus" href="venus.htm">
-		</map>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <p>点击太阳或其他行星，注意变化：</p>
+        <img src="planets.gif" width="145" height="126" alt="Planets" usemap="#planetmap">
+        <map name="planetmap">
+            <area shape="rect" coords="0,0,82,126" alt="Sun" href="sun.htm">
+            <area shape="circle" coords="90,58,3" alt="Mercury" href="mercur.htm">
+            <area shape="circle" coords="124,58,8" alt="Venus" href="venus.htm">
+        </map>
+    </body>
 </html>
 
     HTML图像标签如下所示：
@@ -842,59 +866,59 @@ HTML表格
     HTML表格实例如下所示：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<p>
-		每个表格从一个 table 标签开始。
-		每个表格行从 tr 标签开始。
-		每个表格的数据从 td 标签开始。
-		</p>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <p>
+        每个表格从一个 table 标签开始。
+        每个表格行从 tr 标签开始。
+        每个表格的数据从 td 标签开始。
+        </p>
 
-		<h4>一列:</h4>
+        <h4>一列:</h4>
 
-		<table border="1">
-			<tr>
-			<td>100</td>
-			</tr>
-		</table>
-		<h4>一行三列:</h4>
-		<table border="1">
-			<tr>
-			<td>100</td>
-			<td>200</td>
-			<td>300</td>
-			</tr>
-		</table>
-		<h4>两行三列:</h4>
-		<table border="1">
-			<tr>
-			<td>100</td>
-			<td>200</td>
-			<td>300</td>
-			</tr>
-			<tr>
-			<td>400</td>
-			<td>500</td>
-			<td>600</td>
-			</tr>
-		</table>
-		<h4>两行三列:</h4>
+        <table border="1">
+            <tr>
+            <td>100</td>
+            </tr>
+        </table>
+        <h4>一行三列:</h4>
+        <table border="1">
+            <tr>
+            <td>100</td>
+            <td>200</td>
+            <td>300</td>
+            </tr>
+        </table>
+        <h4>两行三列:</h4>
+        <table border="1">
+            <tr>
+            <td>100</td>
+            <td>200</td>
+            <td>300</td>
+            </tr>
+            <tr>
+            <td>400</td>
+            <td>500</td>
+            <td>600</td>
+            </tr>
+        </table>
+        <h4>两行三列:</h4>
 
-		<table border="1">
-			<tr>
-			<td>100</td>
-			<td>200</td>
-			<td>300</td>
-			</tr>
-			<tr>
-			<td>400</td>
-			<td>500</td>
-			<td>600</td>
-			</tr>
-		</table>
-	</body>
+        <table border="1">
+            <tr>
+            <td>100</td>
+            <td>200</td>
+            <td>300</td>
+            </tr>
+            <tr>
+            <td>400</td>
+            <td>500</td>
+            <td>600</td>
+            </tr>
+        </table>
+    </body>
 </html>
 
     表格由<table>标签来定义，每个表格均有若干行(由<tr>标签定义)，每行被分割为若干单元格(由<td>标签定义)。字母td指表格数据(table data)，即数据单元格的内容。数据单元格可以包含文本、图片、列表、段落、表单、水平线、表格等等。
@@ -935,256 +959,256 @@ HTML表格
     下例演示一个没有边框的表格：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<h4>这个表格没有边框:</h4>
-		<table>
-			<tr>
-			<td>100</td>
-			<td>200</td>
-			<td>300</td>
-			</tr>
-			<tr>
-			<td>400</td>
-			<td>500</td>
-			<td>600</td>
-			</tr>
-		</table>
-		<h4>这个表格没有边框:</h4>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h4>这个表格没有边框:</h4>
+        <table>
+            <tr>
+            <td>100</td>
+            <td>200</td>
+            <td>300</td>
+            </tr>
+            <tr>
+            <td>400</td>
+            <td>500</td>
+            <td>600</td>
+            </tr>
+        </table>
+        <h4>这个表格没有边框:</h4>
 
-		<table border="0">
-			<tr>
-			<td>100</td>
-			<td>200</td>
-			<td>300</td>
-			</tr>
-			<tr>
-			<td>400</td>
-			<td>500</td>
-			<td>600</td>
-			</tr>
-		</table>
-	</body>
+        <table border="0">
+            <tr>
+            <td>100</td>
+            <td>200</td>
+            <td>300</td>
+            </tr>
+            <tr>
+            <td>400</td>
+            <td>500</td>
+            <td>600</td>
+            </tr>
+        </table>
+    </body>
 </html>
 
     下例演示如何显示表格表头：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<h4>水平标题:</h4>
-		<table border="1">
-			<tr>
-			<th>Name</th>
-			<th>Telephone</th>
-			<th>Telephone</th>
-			</tr>
-			<tr>
-			<td>Bill Gates</td>
-			<td>555 77 854</td>
-			<td>555 77 855</td>
-			</tr>
-		</table>
-		<h4>垂直标题:</h4>
-		<table border="1">
-			<tr>
-			<th>First Name:</th>
-			<td>Bill Gates</td>
-			</tr>
-			<tr>
-			<th>Telephone:</th>
-			<td>555 77 854</td>
-			</tr>
-			<tr>
-			<th>Telephone:</th>
-			<td>555 77 855</td>
-			</tr>
-		</table>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h4>水平标题:</h4>
+        <table border="1">
+            <tr>
+            <th>Name</th>
+            <th>Telephone</th>
+            <th>Telephone</th>
+            </tr>
+            <tr>
+            <td>Bill Gates</td>
+            <td>555 77 854</td>
+            <td>555 77 855</td>
+            </tr>
+        </table>
+        <h4>垂直标题:</h4>
+        <table border="1">
+            <tr>
+            <th>First Name:</th>
+            <td>Bill Gates</td>
+            </tr>
+            <tr>
+            <th>Telephone:</th>
+            <td>555 77 854</td>
+            </tr>
+            <tr>
+            <th>Telephone:</th>
+            <td>555 77 855</td>
+            </tr>
+        </table>
+    </body>
 </html>
 
     下例演示一个带标题(caption)的表格：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<table border="1">
-			<caption>Monthly savings</caption>
-			<tr>
-			<th>Month</th>
-			<th>Savings</th>
-			</tr>
-			<tr>
-			<td>January</td>
-			<td>$100</td>
-			</tr>
-			<tr>
-			<td>February</td>
-			<td>$50</td>
-			</tr>
-		</table>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <table border="1">
+            <caption>Monthly savings</caption>
+            <tr>
+            <th>Month</th>
+            <th>Savings</th>
+            </tr>
+            <tr>
+            <td>January</td>
+            <td>$100</td>
+            </tr>
+            <tr>
+            <td>February</td>
+            <td>$50</td>
+            </tr>
+        </table>
+    </body>
 </html>
 
     下例演示如何定义跨行或跨列的表格单元格：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<h4>单元格跨两格:</h4>
-		<table border="1">
-			<tr>
-			<th>Name</th>
-			<th colspan="2">Telephone</th>
-			</tr>
-			<tr>
-			<td>Bill Gates</td>
-			<td>555 77 854</td>
-			<td>555 77 855</td>
-			</tr>
-		</table>
-		<h4>单元格跨两列:</h4>
-			<table border="1">
-			<tr>
-			<th>First Name:</th>
-			<td>Bill Gates</td>
-			</tr>
-			<tr>
-			<th rowspan="2">Telephone:</th>
-			<td>555 77 854</td>
-			</tr>
-			<tr>
-			<td>555 77 855</td>
-			</tr>
-		</table>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h4>单元格跨两格:</h4>
+        <table border="1">
+            <tr>
+            <th>Name</th>
+            <th colspan="2">Telephone</th>
+            </tr>
+            <tr>
+            <td>Bill Gates</td>
+            <td>555 77 854</td>
+            <td>555 77 855</td>
+            </tr>
+        </table>
+        <h4>单元格跨两列:</h4>
+            <table border="1">
+            <tr>
+            <th>First Name:</th>
+            <td>Bill Gates</td>
+            </tr>
+            <tr>
+            <th rowspan="2">Telephone:</th>
+            <td>555 77 854</td>
+            </tr>
+            <tr>
+            <td>555 77 855</td>
+            </tr>
+        </table>
+    </body>
 </html>
 
     下例演示如何显示在不同的元素内显示元素：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<table border="1">
-			<tr>
-			<td>
-			<p>这是一个段落</p>
-			<p>这是另一个段落</p>
-			</td>
-			<td>这个单元格包含一个表格:
-			<table border="1">
-				<tr>
-				<td>A</td>
-				<td>B</td>
-				</tr>
-				<tr>
-				<td>C</td>
-				<td>D</td>
-				</tr>
-			</table>
-			</td>
-			</tr>
-			<tr>
-			<td>这个单元格包含一个列表
-				<ul>
-				<li>apples</li>
-				<li>bananas</li>
-				<li>pineapples</li>
-				</ul>
-			</td>
-			<td>HELLO</td>
-			</tr>
-		</table>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <table border="1">
+            <tr>
+            <td>
+            <p>这是一个段落</p>
+            <p>这是另一个段落</p>
+            </td>
+            <td>这个单元格包含一个表格:
+            <table border="1">
+                <tr>
+                <td>A</td>
+                <td>B</td>
+                </tr>
+                <tr>
+                <td>C</td>
+                <td>D</td>
+                </tr>
+            </table>
+            </td>
+            </tr>
+            <tr>
+            <td>这个单元格包含一个列表
+                <ul>
+                <li>apples</li>
+                <li>bananas</li>
+                <li>pineapples</li>
+                </ul>
+            </td>
+            <td>HELLO</td>
+            </tr>
+        </table>
+    </body>
 </html>
 
     下例演示如何使用“Cell padding”来创建单元格内容与其边框之间的空白：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<h4>没有单元格边距:</h4>
-		<table border="1">
-			<tr>
-			<td>First</td>
-			<td>Row</td>
-			</tr>
-			<tr>
-			<td>Second</td>
-			<td>Row</td>
-			</tr>
-		</table>
-		<h4>有单元格边距:</h4>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h4>没有单元格边距:</h4>
+        <table border="1">
+            <tr>
+            <td>First</td>
+            <td>Row</td>
+            </tr>
+            <tr>
+            <td>Second</td>
+            <td>Row</td>
+            </tr>
+        </table>
+        <h4>有单元格边距:</h4>
 
-		<table border="1"
-			cellpadding="10">
-			<tr>
-			<td>First</td>
-			<td>Row</td>
-			</tr>
-			<tr>
-			<td>Second</td>
-			<td>Row</td>
-			</tr>
-		</table>
-	</body>
+        <table border="1"
+            cellpadding="10">
+            <tr>
+            <td>First</td>
+            <td>Row</td>
+            </tr>
+            <tr>
+            <td>Second</td>
+            <td>Row</td>
+            </tr>
+        </table>
+    </body>
 </html>
 
     下例演示如何使用“Cell spacing”增加单元格之间的距离：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<h4>没有单元格间距:</h4>
-		<table border="1">
-			<tr>
-			<td>First</td>
-			<td>Row</td>
-			</tr>
-			<tr>
-			<td>Second</td>
-			<td>Row</td>
-			</tr>
-		</table>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h4>没有单元格间距:</h4>
+        <table border="1">
+            <tr>
+            <td>First</td>
+            <td>Row</td>
+            </tr>
+            <tr>
+            <td>Second</td>
+            <td>Row</td>
+            </tr>
+        </table>
 
-		<h4>单元格间距="0":</h4>
-		<table border="1" cellspacing="0">
-			<tr>
-			<td>First</td>
-			<td>Row</td>
-			</tr>
-			<tr>
-			<td>Second</td>
-			<td>Row</td>
-			</tr>
-		</table>
-		<h4>单元格间距="10":</h4>
+        <h4>单元格间距="0":</h4>
+        <table border="1" cellspacing="0">
+            <tr>
+            <td>First</td>
+            <td>Row</td>
+            </tr>
+            <tr>
+            <td>Second</td>
+            <td>Row</td>
+            </tr>
+        </table>
+        <h4>单元格间距="10":</h4>
 
-		<table border="1" cellspacing="10">
-			<tr>
-			<td>First</td>
-			<td>Row</td>
-			</tr>
-			<tr>
-			<td>Second</td>
-			<td>Row</td>
-			</tr>
-		</table>
-	</body>
+        <table border="1" cellspacing="10">
+            <tr>
+            <td>First</td>
+            <td>Row</td>
+            </tr>
+            <tr>
+            <td>Second</td>
+            <td>Row</td>
+            </tr>
+        </table>
+    </body>
 </html>
 
     HTML表格标签如下所示：
