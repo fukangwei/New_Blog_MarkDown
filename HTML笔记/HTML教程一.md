@@ -652,102 +652,19 @@ tags:
 
 &emsp;&emsp;`HTML`的`<script>`元素用于加载脚本文件，如`JavaScript`。
 
-### HTML样式之CSS
+### HTML图像
 
-&emsp;&emsp;下例演示如何使用添加到`<head>`部分的样式信息对`HTML`进行格式化：
+&emsp;&emsp;`HTML`图像标签如下：
 
-``` xml
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>菜鸟教程(runoob.com)</title>
-        <style type="text/css">
-            h1 {color:red;}
-            p {color:blue;}
-        </style>
-    </head>
-    <body>
-        <h1>这是一个标题</h1>
-        <p>这是一个段落。</p>
-    </body>
-</html>
-```
+标签     | 描述
+---------|------
+`<img>`  | 定义图像
+`<map>`  | 定义图像地图
+`<area>` | 定义图像地图中的可点击区域
 
-&emsp;&emsp;下例演示如何使用样式属性做一个没有下划线的链接：
+&emsp;&emsp;下例演示如何在网页中显示图像：
 
 ``` xml
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>菜鸟教程(runoob.com)</title>
-    </head>
-    <body>
-        <a href="http://www.runoob.com/" style="text-decoration:none;">访问 runoob.com!</a>
-    </body>
-</html>
-```
-
-    下例演示如何将标签链接到一个外部样式表：
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>菜鸟教程(runoob.com)</title>
-        <link rel="stylesheet" type="text/css" href="styles.css">
-    </head>
-    <body>
-        <h1>我使用了外部样式文件来格式化文本 </h1>
-        <p>我也是!</p>
-    </body>
-</html>
-
-    CSS是在HTML4开始使用的，是为了更好的渲染HTML元素而引入的。CSS可以通过以下方式添加到HTML中：
-内联样式 -- 在HTML元素中使用“style”属性。
-内部样式表 -- 在HTML文档头部 <head>区域使用<style>元素来包含CSS。
-外部引用 -- 使用外部CSS文件，这是最好的方式。
-
-    1、内联样式
-    当特殊的样式需要应用到个别元素时，就可以使用内联样式。使用内联样式的方法是在相关的标签中使用样式属性。样式属性可以包含任何CSS属性。以下实例显示出如何改变段落的颜色和左外边距：
-<p style="color:blue;margin-left:20px;">This is a paragraph.</p>
-    背景色属性(background-color)定义一个元素的背景颜色，实例如下所示：
-<body style="background-color:yellow;">
-    <h2 style="background-color:red;">这是一个标题</h2>
-    <p style="background-color:green;">这是一个段落。</p>
-</body>
-早期背景色属性(background-color)是使用bgcolor属性定义。
-    我们可以使用font-family(字体)、color(颜色)和font-size(字体大小)属性来定义字体的样式，实例如下所示：
-<h1 style="font-family:verdana;">一个标题</h1>
-<p style="font-family:arial;color:red;font-size:20px;">一个段落。</p>
-    使用text-align(文字对齐)属性指定文本的水平与垂直对齐方式，实例如下所示：
-<h1 style="text-align:center;">居中对齐的标题</h1>
-<p>这是一个段落。</p>
-文本对齐属性text-align取代了旧标签<center>。
-    2、内部样式表
-    当单个文件需要特别样式时，就可以使用内部样式表。你可以在<head>部分通过<style>标签定义内部样式表：
-<head>
-    <style type="text/css">
-    body {background-color:yellow;}
-    p {color:blue;}
-    </style>
-</head>
-    3、外部样式表
-    当样式需要被应用到很多页面的时候，外部样式表将是理想的选择。使用外部样式表，你就可以通过更改一个文件来改变整个站点的外观，如下所示：
-<head>
-    <link rel="stylesheet" type="text/css" href="mystyle.css">
-</head>
-    HTML样式标签如下所示：
-
-标签       描述
----------------
-<style>    定义文本样式
-<link>     定义资源引用地址
-
-    在HTML4，原来支持定义HTML元素样式的标签和属性已被弃用，这些标签将不支持新版本的HTML标签。不建议使用的标签有<font>、<center>和<strike>，不建议使用的属性color和bgcolor。
-
-HTML图像
-    下例演示如何在网页中显示图像：
 <!DOCTYPE html>
 <html>
     <head>
@@ -765,8 +682,11 @@ HTML图像
         </p>
     </body>
 </html>
+```
 
-    下例演示如何将其他文件夹或服务器的图片显示到网页中：
+&emsp;&emsp;下例演示如何将其他文件夹或服务器的图片显示到网页中：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -778,17 +698,31 @@ HTML图像
         <img src="http://www.runoob.com/images/logo.png" alt="runoob.com" width="336" height="69">
     </body>
 </html>
-    在HTML中，图像由<img>标签定义。<img>是空标签，意思是说它只包含属性，并且没有闭合标签。要在页面上显示图像，你需要使用源属性(src)。src是指“source”，源属性的值是图像的URL地址。定义图像的语法如下所示：
+```
+
+&emsp;&emsp;在`HTML`中，图像由`<img>`标签定义。`<img>`是空标签，意思是说它只包含属性，并且没有闭合标签。要在页面上显示图像，你需要使用源属性`src`，其值是图像的URL地址。定义图像的语法如下：
+
+``` xml
 <img src="url" alt="some_text">
-URL指存储图像的位置。如果名为“pulpit.jpg”的图像位于www.runoob.com的images目录中，那么其URL为“http://www.runoob.com/images/pulpit.jpg”。浏览器将图像显示在文档中图像标签出现的地方，如果你将图像标签置于两个段落之间，那么浏览器会首先显示第一个段落，然后显示图片，最后显示第二段。
-    HTML图像的Alt属性用来为图像定义一串预备的可替换的文本，替换文本属性的值是用户定义的。
+```
+
+`URL`指存储图像的位置。如果名为`plpit.jpg`的图像位于`www.runoob.com`的`images`目录中，那么其`URL`为`http://www.runoob.com/images/pulpit.jpg`。
+&emsp;&emsp;`HTML`图像的`Alt`属性用来为图像定义一串预备的可替换的文本，替换文本属性的值是用户定义的：
+
+``` xml
 <img src="boat.gif" alt="Big Boat">
-在浏览器无法载入图像时，替换文本属性告诉读者它们失去的信息，此时浏览器将显示这个替代性的文本而不是图像。为页面上的图像都加上替换文本属性是个好习惯，这样有助于更好的显示信息，并且对于那些使用纯文本浏览器的人来说是非常有用的。
-    height(高度)与width(宽度)属性用于设置图像的高度与宽度，属性值默认单位为像素：
+```
+
+在浏览器无法载入图像时，替换文本属性告诉读者它们失去的信息，此时浏览器将显示这个替代性的文本而不是图像。
+&emsp;&emsp;`height`与`width`属性用于设置图像的高度与宽度，属性值默认单位为像素：
+
+``` xml
 <img src="pulpit.jpg" alt="Pulpit rock" width="304" height="228">
-提示，指定图像的高度和宽度的一个很好的习惯。如果图像指定了高度宽度，页面加载时就会保留指定的尺寸。如果没有指定图片的大小，加载页面时有可能会破坏HTML页面的整体布局。
-    假如某个HTML文件包含十个图像，那么为了正确显示这个页面，需要加载11个文件。加载图片是需要时间的，所以我们的建议是“慎用图片”。加载页面时，要注意插入页面图像的路径，如果不能正确设置图像的位置，浏览器无法加载图片，图像标签就会显示一个破碎的图片。
-    下例演示如何在文字中排列图像：
+```
+
+&emsp;&emsp;下例演示如何在文字中排列图像：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -804,8 +738,11 @@ URL指存储图像的位置。如果名为“pulpit.jpg”的图像位于www.run
         <p><b>注意:</b>在HTML 4中 align 属性已废弃，HTML5 已不支持该属性，可以使用 CSS 代替。</p>
     </body>
 </html>
+```
 
-    下例演示如何使图片浮动至段落的左边或右边：
+&emsp;&emsp;下例演示如何使图片浮动至段落的左边或右边：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -821,8 +758,11 @@ URL指存储图像的位置。如果名为“pulpit.jpg”的图像位于www.run
         <p><b>注意:</b> 在这里我们使用了 CSS "float" 属性，在HTML 4中 align 属性已废弃，HTML5 已不支持该属性，可以使用 CSS 代替。</p>
     </body>
 </html>
+```
 
-    下例演示如何将图像作为一个链接使用：
+&emsp;&emsp;下例演示如何将图像作为一个链接使用：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -837,8 +777,11 @@ URL指存储图像的位置。如果名为“pulpit.jpg”的图像位于www.run
         <img border="0" src="smiley.gif" alt="HTML 教程" width="32" height="32"></a></p>
     </body>
 </html>
+```
 
-    下例显示如何创建带有可供点击区域的图像地图，其中的每个区域都是一个超级链接：
+&emsp;&emsp;下例显示如何创建带有可供点击区域的图像地图，其中的每个区域都是一个超级链接：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -854,13 +797,7 @@ URL指存储图像的位置。如果名为“pulpit.jpg”的图像位于www.run
         </map>
     </body>
 </html>
-
-    HTML图像标签如下所示：
-标签      描述
---------------
-<img>     定义图像
-<map>     定义图像地图
-<area>    定义图像地图中的可点击区域
+```
 
 HTML表格
     HTML表格实例如下所示：
