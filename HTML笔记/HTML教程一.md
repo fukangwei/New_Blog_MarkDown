@@ -3,8 +3,6 @@ title: HTML教程一
 date: 2019-07-15 21:57:22
 tags:
 ---
-### HTML教程(HTML5标准)
-
 &emsp;&emsp;超文本标记语言(`HyperText Markup Language`，简称`HTML`)是一种用于创建网页的标准标记语言，您可以使用`HTML`来建立自己的`WEB`站点。`HTML`运行在浏览器上，由浏览器来解析。
 &emsp;&emsp;`HTML`的实例如下，对于中文网页，需要使用`<meta charset="utf-8">`声明编码，否则会出现乱码。
 
@@ -43,16 +41,6 @@ tags:
 <img src="./HTML教程一/1.png" width="80%">
 
 只有`<body>`区域(白色部分)才会在浏览器中显示。
-
-&emsp;&emsp;“<!DOCTYPE>”声明
-&emsp;&emsp;`<!DOCTYPE>`声明有助于浏览器中正确显示网页。网络上有很多不同的文件，如果能够正确声明HTML的版本，浏览器就能正确显示网页内容。`doctype`声明是不区分大小写的，以下方式均可：
-
-``` xml
-<!DOCTYPE html>
-<!DOCTYPE HTML>
-<!doctype html>
-<!Doctype Html>
-```
 
 #### HTML基础(4个实例)
 
