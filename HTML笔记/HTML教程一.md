@@ -1098,7 +1098,9 @@ tags:
 </html>
 ```
 
-    下例演示如何使用“Cell padding”来创建单元格内容与其边框之间的空白：
+&emsp;&emsp;下例演示如何使用`Cell padding`来创建单元格内容与其边框之间的空白：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -1131,8 +1133,11 @@ tags:
         </table>
     </body>
 </html>
+```
 
-    下例演示如何使用“Cell spacing”增加单元格之间的距离：
+&emsp;&emsp;下例演示如何使用`Cell spacing`增加单元格之间的距离：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -1176,6 +1181,7 @@ tags:
         </table>
     </body>
 </html>
+```
 
     HTML表格标签如下所示：
 标签          描述
