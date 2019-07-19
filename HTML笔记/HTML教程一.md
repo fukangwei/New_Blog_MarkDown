@@ -425,19 +425,19 @@ tags:
 
 #### 链接的id属性
 
-&emsp;&emsp;`id`属性可用于创建在一个`HTML`文档书签标记。书签是不以任何特殊的方式显示，在`HTML`文档中是不显示的，所以对于读者来说是隐藏的。在`HTML`文档中插入`ID`：
+&emsp;&emsp;`id`属性可用于创建`HTML`文档书签标记。书签不以任何特殊的方式显示，在`HTML`文档中是不显示的。在`HTML`文档中插入`ID`：
 
 ``` xml
 <a id="tips">有用的提示部分</a>
 ```
 
-在`HTML`文档中创建一个链接到`有用的提示部分(id="tips")`：
+在`HTML`文档中创建一个链接，定位到`有用的提示部分`(`id="tips"`)：
 
 ``` xml
 <a href="#tips">访问有用的提示部分</a>
 ```
 
-或者从另一个页面创建一个链接到`有用的提示部分(id="tips")`：
+或者从另一个页面创建一个链接，定位到`有用的提示部分`(`id="tips"`)：
 
 ``` xml
 <a href="http://www.runoob.com/html/html-links.html#tips">
@@ -464,6 +464,8 @@ tags:
     </body>
 </html>
 ```
+
+<img src="./HTML教程一/14.png">
 
 &emsp;&emsp;下例演示如何使用书签：
 
