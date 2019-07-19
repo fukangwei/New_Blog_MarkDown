@@ -947,7 +947,9 @@ tags:
 </html>
 ```
 
-    下例演示如何显示表格表头：
+&emsp;&emsp;下例演示如何显示表格表头：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -984,8 +986,11 @@ tags:
         </table>
     </body>
 </html>
+```
 
-    下例演示一个带标题(caption)的表格：
+&emsp;&emsp;下例演示一个带标题的表格：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -1009,8 +1014,11 @@ tags:
         </table>
     </body>
 </html>
+```
 
-    下例演示如何定义跨行或跨列的表格单元格：
+&emsp;&emsp;下例演示如何定义跨行或跨列的表格单元格：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -1045,8 +1053,11 @@ tags:
         </table>
     </body>
 </html>
+```
 
-    下例演示如何显示在不同的元素内显示元素：
+&emsp;&emsp;下例演示如何显示在不同的元素内显示元素：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -1085,6 +1096,7 @@ tags:
         </table>
     </body>
 </html>
+```
 
     下例演示如何使用“Cell padding”来创建单元格内容与其边框之间的空白：
 <!DOCTYPE html>
