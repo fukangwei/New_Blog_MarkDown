@@ -7,6 +7,7 @@ tags:
 
 &emsp;&emsp;下例演示无序列表：
 
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,8 +22,11 @@ tags:
         </ul>
     </body>
 </html>
+```
 
-    下例演示有序列表：
+&emsp;&emsp;下例演示有序列表：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -41,22 +45,33 @@ tags:
         </ol>
     </body>
 </html>
+```
 
-    无序列表是一个项目的列表，此列项目使用粗体圆点(典型的小黑圆圈)进行标记。无序列表使用<ul>标签。同样，有序列表也是一列项目，列表项目使用数字进行标记。有序列表始于<ol>标签，每个列表项始于<li>标签，列表项项使用数字来标记。
-    自定义列表不仅仅是一列项目，而是项目及其注释的组合。自定义列表以<dl>标签开始。每个自定义列表项以<dt>开始。每个自定义列表项的定义以<dd>开始。
+&emsp;&emsp;无序列表是一个项目的列表，此列项目使用粗体圆点进行标记。无序列表使用`<ul>`标签。同样，有序列表也是一列项目，列表项目使用数字进行标记。有序列表始于`<ol>`标签，每个列表项始于`<li>`标签，列表项项使用数字来标记。
+&emsp;&emsp;自定义列表不仅仅是一列项目，而是项目及其注释的组合。自定义列表以`<dl>`标签开始。每个自定义列表项以`<dt>`开始。每个自定义列表项的定义以`<dd>`开始。
+
+``` xml
 <dl>
 <dt>Coffee</dt>
 <dd>- black hot drink</dd>
 <dt>Milk</dt>
 <dd>- white cold drink</dd>
 </dl>
+```
+
 浏览器显示如下：
+
+``` xml
 Coffee
 - black hot drink
 Milk
 - white cold drink
+```
+
 列表项内部可以使用段落、换行符、图片、链接以及其他列表等等。
-    下例演示不同类型的有序列表：
+&emsp;&emsp;下例演示不同类型的有序列表：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -100,6 +115,7 @@ Milk
         </ol>
     </body>
 </html>
+```
 
     下例演示不同类型的无序列表：
 <!DOCTYPE html>
@@ -590,81 +606,6 @@ HTML颜色
     </body>
 </html>
 
-    目前所有浏览器都支持以下颜色名。141个颜色名称是在HTML和CSS颜色规范定义的(17标准颜色，再加124)。17标准颜色为黑色、蓝色、水、紫红色、灰色、绿色、石灰、栗色、海军、橄榄、橙、紫、红、白、银、蓝绿色、黄色。
-
-HTML脚本
-    JavaScript使HTML页面具有更强的动态和交互性。
-    下例演示如何将脚本插入HTML文档：
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-    </head>
-    <body>
-        <script>
-        document.write("Hello World!")
-        </script>
-    </body>
-</html>
-    使用<noscript>标签来应对不支持脚本或禁用脚本的浏览器：
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-    </head>
-    <body>
-        <script>
-        document.write("Hello World!")
-        </script>
-        <noscript>抱歉，你的浏览器不支持 JavaScript!</noscript>
-        <p>不支持 JavaScript 的浏览器会使用 &lt;noscript&gt; 元素中定义的内容（文本）来替代。</p>
-    </body>
-</html>
-    HTML的<script>标签用于定义客户端脚本，比如JavaScript。<script>元素既可包含脚本语句，也可通过src属性指向外部脚本文件。JavaScript最常用于图片操作、表单验证以及内容动态更新。
-    HTML的<noscript>标签提供无法使用脚本时的替代内容，比方在浏览器禁用脚本时，或浏览器不支持客户端脚本时。<noscript>元素可包含普通HTML页面的body元素中能够找到的所有元素。只有在浏览器不支持脚本或者禁用脚本时，才会显示<noscript>元素中的内容：
-    JavaScript事件响应如下所示：
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-    </head>
-    <body>
-        <h1>我的第一个 JavaScript </h1>
-        <p id="demo">
-        JavaScript 可以触发事件，就像按钮点击。</p>
-        <script>
-        function myFunction()
-        {
-            document.getElementById("demo").innerHTML="Hello JavaScript!";
-        }
-        </script>
-        <button type="button" onclick="myFunction()">点我</button>
-    </body>
-</html>
-
-    JavaScript处理HTML样式如下所示：
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-    </head>
-    <body>
-        <h1>我的第一段 JavaScript</h1>
-        <p id="demo">
-        JavaScript 能改变 HTML 元素的样式。
-        </p>
-        <script>
-        function myFunction()
-        {
-            x=document.getElementById("demo") // 找到元素
-            x.style.color="#ff0000";          // 改变样式
-        }
-        </script>
-        <button type="button" onclick="myFunction()">点击这里</button>
-    </body>
-</html>
-
-
 HTML字符实体
     HTML中的预留字符必须被替换为字符实体。一些在键盘上找不到的字符也可以使用字符实体来替换。
     在HTML中不能使用小于号(<)和大于号(>)，这是因为浏览器会误认为它们是标签。如果希望正确地显示预留字符，我们必须在HTML源代码中使用字符实体(character entities)。字符实体类似这样：
@@ -721,85 +662,3 @@ HTML的URL
 Ã       %C3
 Ä       %C4
 Å       %C5
-
-HTML之XHTML
-    XHTML是以XML格式编写的HTML。XHTML与HTML4.01几乎是相同的，它是更严格、更纯净的HTML版本，是以XML应用的方式定义的HTML，得到所有主流浏览器的支持。
-    为什么使用XHTML？因特网上的很多页面包含了“糟糕”的HTML，如果在浏览器中查看，下面的HTML代码运行起来非常正常(即使它并未遵守HTML规则)：
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>这是一个不规范的 HTML</title>
-    <body>
-        <h1>不规范的 HTML
-        <p>这是一个段落
-    </body>
-    XML是一种必须正确标记且格式良好的标记语言。今日的科技界存在一些不同的浏览器技术，其中一些在计算机上运行，而另一些可能在移动电话或其他小型设备上运行。小型设备往往缺乏解释“糟糕”的标记语言的资源和能力。所以通过结合XML和HTML的长处，开发出了XHTML。
-    XHTML是作为XML被重新设计的HTML，与HTML相比最重要的区别：
-    1、文档结构
-XHTML的DOCTYPE是强制性的。
-<html>中的“XML namespace”属性是强制性的。
-<html>、<head>、<title>以及<body>也是强制性的。
-    2、元素语法
-    XHTML元素必须正确嵌套，必须始终关闭，必须小写，XHTML文档必须有一个根元素。
-    3、属性语法
-    XHTML属性必须使用小写，属性值必须用引号包围，属性最小化也是禁止的。
-
-    <!DOCTYPE ....>是强制性的。XHTML 文档必须进行XHTML文档类型声明(XHTML DOCTYPE declaration)。<html>、<head>、<title>和<body>元素也必须存在，并且必须使用<html>中的xmlns属性为文档规定xml命名空间。下面的例子展示了带有最少的必需标签的XHTML文档：
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta charset="utf-8">
-        <title>文档标题</title>
-    </head>
-    <body>
-        文档内容
-    </body>
-</html>
-    XHTML元素必须合理嵌套。在HTML中，一些元素可以不互相嵌套，像这样：
-<b><i>粗体和斜体文本</b></i>
-在XHTML中，所有的元素都必须互相合理地嵌套，像这样：
-<b><i>粗体和斜体文本</i></b>
-    XHTML元素必须有关闭标签，错误示例：
-<p>这是一个段落
-<p>这是另外一个段落
-正确示例：
-<p>这是一个段落</p>
-<p>这是另外一个段落</p>
-    空元素必须包含关闭标签，错误示例：
-分行：<br>
-水平线：<hr>
-图片：<img src="happy.gif" alt="Happy face">
-正确示例：
-分行：<br />
-水平线：<hr />
-图片：<img src="happy.gif" alt="Happy face" />
-    XHTML元素必须是小写，错误示例：
-<BODY>
-<P>这是一个段落</P>
-</BODY>
-正确示例：
-<body>
-<p>这是一个段落</p>
-</body>
-    属性名称必须是小写，错误示例：
-<table WIDTH="100%">
-正确示例：
-<table width="100%">
-    属性值必须有引号，错误示例：
-<table width=100%>
-正确示例：
-<table width="100%">
-    不允许属性简写，错误示例：
-<input checked>
-<input readonly>
-<input disabled>
-<option selected>
-正确示例：
-<input checked="checked">
-<input readonly="readonly">
-<input disabled="disabled">
-<option selected="selected">
-
-    如何将HTML转换为XHTML？添加一个XHTML的<!DOCTYPE>到你的网页中，将xmlns属性添加到每个页面的html元素中，改变所有的元素为小写，关闭所有的空元素，修改所有的属性名称为小写，所有属性值添加引号。
