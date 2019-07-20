@@ -241,7 +241,8 @@ Milk
 
 ### HTML布局
 
-    使用<div>元素的网页布局如下所示：
+&emsp;&emsp;使用`<div>`元素的网页布局如下：
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -264,7 +265,8 @@ Milk
     </body>
 </html>
 
-    使用<table>元素的网页布局如下所示：
+&emsp;&emsp;使用<table>元素的网页布局如下：
+
 <!DOCTYPE html>
 <html>
     <head>
