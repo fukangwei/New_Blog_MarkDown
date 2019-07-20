@@ -596,14 +596,14 @@ tags:
 </head>
 ```
 
-&emsp;&emsp;`HTML`的`<meta>`元素`meta`标签描述了一些基本的元数据，它`<meta>`标签提供了元数据。元数据也不显示在页面上，但会被浏览器解析。`META`元素通常用于指定网页的描述、关键词，文件的最后修改时间、作者和其他元数据。
-&emsp;&emsp;元数据可以使用于浏览器(如何显示内容或重新加载页面)、搜索引擎(关键词)或其他`Web`服务，一般放置于`<head>`区域。使用实例如下：
+&emsp;&emsp;`HTML`的`<meta>`标签描述了一些基本的元数据，通常用于指定网页的描述、关键词、文件的最后修改时间、作者和其他元数据。元数据不显示在页面上，但会被浏览器解析。
+&emsp;&emsp;元数据可以使用于浏览器(如何显示内容或重新加载页面)、搜索引擎(关键词)或其他`Web`服务，一般放置于`<head>`区域：
 
 ``` xml
 <meta name="keywords" content="HTML, CSS, XML, XHTML, JavaScript">  # 为搜索引擎定义关键词
 <meta name="description" content="免费 Web & 编程 教程">  # 为网页定义描述内容
 <meta name="author" content="Runoob">  # 定义网页作者
-<meta http-equiv="refresh" content="30">  # 每30秒中刷新当前页面
+<meta http-equiv="refresh" content="30">  # 每30秒刷新当前页面
 ```
 
 ### HTML图像
