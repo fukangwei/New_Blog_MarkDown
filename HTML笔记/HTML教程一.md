@@ -491,6 +491,8 @@ tags:
 </html>
 ```
 
+<img src="./HTML教程一/15.png" width="10%">
+
 &emsp;&emsp;下例演示如何跳出框架，假如你的页面被固定在框架之内：
 
 ``` xml
@@ -505,6 +507,8 @@ tags:
     </body>
 </html>
 ```
+
+<img src="./HTML教程一/16.png">
 
 &emsp;&emsp;下例演示如何链接到一个邮件，本例在安装邮件客户端程序后才能工作：
 
@@ -526,6 +530,8 @@ tags:
     </body>
 </html>
 ```
+
+<img src="./HTML教程一/17.png">
 
 ### HTML头部
 
