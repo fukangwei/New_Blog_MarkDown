@@ -117,7 +117,9 @@ Milk
 </html>
 ```
 
-    下例演示不同类型的无序列表：
+&emsp;&emsp;下例演示不同类型的无序列表：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -148,8 +150,11 @@ Milk
         </ul>
     </body>
 </html>
+```
 
-    下例演示如何嵌套列表：
+&emsp;&emsp;下例演示如何嵌套列表：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -169,8 +174,11 @@ Milk
         </ul>
     </body>
 </html>
+```
 
-    下例演示更复杂的嵌套列表：
+&emsp;&emsp;下例演示更复杂的嵌套列表：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -196,6 +204,7 @@ Milk
         </ul>
     </body>
 </html>
+```
 
     下例演示一个定义列表：
 <!DOCTYPE html>
