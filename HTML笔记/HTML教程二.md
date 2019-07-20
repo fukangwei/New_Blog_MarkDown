@@ -379,28 +379,39 @@ Milk
 
 &emsp;&emsp;`<input type="radio">`标签定义了表单单选框选项：
 
+``` xml
 <form>
     <input type="radio" name="sex" value="male">Male<br>
     <input type="radio" name="sex" value="female">Female
 </form>
+```
 
-    4、复选框(Checkboxes)
-    <input type="checkbox">定义了复选框，用户需要从若干给定的选择中选取一个或若干选项。
+### 复选框(Checkboxes)
+
+&emsp;&emsp;`<input type="checkbox">`定义了复选框，用户需要从若干给定的选择中选取一个或若干选项：
+
+``` xml
 <form>
-<input type="checkbox" name="vehicle" value="Bike">I have a bike<br>
-<input type="checkbox" name="vehicle" value="Car">I have a car
+    <input type="checkbox" name="vehicle" value="Bike">I have a bike<br>
+    <input type="checkbox" name="vehicle" value="Car">I have a car
 </form>
+```
 
-    5、提交按钮(Submit Button)
-    <input type="submit">定义了提交按钮，当用户单击确认按钮时，表单的内容会被传送到另一个文件。表单的动作属性定义了目的文件的文件名。由动作属性定义的这个文件通常会对接收到的输入数据进行相关的处理。
+#### 提交按钮(Submit Button)
+
+&emsp;&emsp;`<input type="submit">`定义了提交按钮，当用户单击确认按钮时，表单的内容会被传送到另一个文件。表单的动作属性定义了目的文件的文件名。由动作属性定义的这个文件通常会对接收到的输入数据进行相关的处理。
+
+``` xml
 <form name="input" action="html_form_action.php" method="get">
-Username: <input type="text" name="user">
-<input type="submit" value="Submit">
+    Username: <input type="text" name="user">
+    <input type="submit" value="Submit">
 </form>
+```
 
-假如您在上面的文本框内键入几个字母，然后点击确认按钮，那么输入数据会传送到“html_form_action.php”的页面，该页面将显示出输入的结果。
+假如您在上面的文本框内键入几个字母，然后点击确认按钮，那么输入数据会传送到`html_form_action.php`的页面，该页面将显示出输入的结果。
 
-    下例演示如何在HTML中创建单选按钮：
+&emsp;&emsp;下例演示如何在`HTML`中创建单选按钮：
+
 <!DOCTYPE html>
 <html>
     <head>
