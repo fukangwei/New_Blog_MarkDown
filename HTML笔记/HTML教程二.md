@@ -342,34 +342,46 @@ Milk
 </html>
 ```
 
-&emsp;&emsp;HTML的表单是一个包含表单元素的区域。表单元素是允许用户在表单中输入内容，比如文本域(textarea)、下拉列表、单选框(radio-buttons)、复选框(checkboxes)等等。表单使用表单标签<form>来设置：
+&emsp;&emsp;`HTML`的表单是一个包含表单元素的区域。表单元素是允许用户在表单中输入内容，比如文本域(`textarea`)、下拉列表、单选框(`radio-buttons`)、复选框(`checkboxes`)等。表单使用表单标签`<form>`来设置：
 
+``` xml
 <form>
-input 元素
+    input元素
 </form>
+```
 
-    多数情况下被用到的表单标签是输入标签<input>，输入类型是由类型属性(type)定义的。大多数经常被用到的输入类型如下：
-    1、文本域(Text Fields)
-    文本域通过<input type="text">标签来设定，当用户要在表单中键入字母、数字等内容时，就会用到文本域，如下所示：
-<form>
-First name: <input type="text" name="firstname"><br>
-Last name: <input type="text" name="lastname">
-</form>
+&emsp;&emsp;多数情况下被用到的表单标签是输入标签`<input>`，输入类型是由类型属性(`type`)定义的，大多数经常被用到的输入类型如下。
 
-注意，表单本身并不可见。同时，在大多数浏览器中，文本域的缺省宽度是20个字符。
-    2、密码字段
-    密码字段通过标签<input type="password">来定义，如下所示：
+#### 文本域(Text Fields)
+
+&emsp;&emsp;文本域通过`<input type="text">`标签来设定，当用户要在表单中键入字母、数字等内容时，就会用到文本域：
+
+``` xml
 <form>
-Password: <input type="password" name="pwd">
+    First name: <input type="text" name="firstname"><br>
+    Last name: <input type="text" name="lastname">
 </form>
+```
+
+#### 密码字段
+
+&emsp;&emsp;密码字段通过标签`<input type="password">`来定义：
+
+``` xml
+<form>
+    Password: <input type="password" name="pwd">
+</form>
+```
+
 浏览器显示效果如下：
 
-注意，密码字段字符不会明文显示，而是以星号或圆点替代。
-    3、单选按钮(Radio Buttons)
-    <input type="radio">标签定义了表单单选框选项，如下所示：
+#### 单选按钮(Radio Buttons)
+
+&emsp;&emsp;`<input type="radio">`标签定义了表单单选框选项：
+
 <form>
-<input type="radio" name="sex" value="male">Male<br>
-<input type="radio" name="sex" value="female">Female
+    <input type="radio" name="sex" value="male">Male<br>
+    <input type="radio" name="sex" value="female">Female
 </form>
 
     4、复选框(Checkboxes)
