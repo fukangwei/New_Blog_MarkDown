@@ -3,43 +3,43 @@ title: HTML教程二
 date: 2019-07-20 20:19:17
 tags:
 ---
-HTML列表
-    HTML支持有序、无序和定义列表，如下所示：
+### HTML列表
 
-    下例演示无序列表：
+&emsp;&emsp;下例演示无序列表：
+
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<h4>无序列表:</h4>
-		<ul>
-		<li>Coffee</li>
-		<li>Tea</li>
-		<li>Milk</li>
-		</ul>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h4>无序列表:</h4>
+        <ul>
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Milk</li>
+        </ul>
+    </body>
 </html>
 
     下例演示有序列表：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<ol>
-		<li>Coffee</li>
-		<li>Tea</li>
-		<li>Milk</li>
-		</ol>
-		<ol start="50">
-		<li>Coffee</li>
-		<li>Tea</li>
-		<li>Milk</li>
-		</ol>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <ol>
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Milk</li>
+        </ol>
+        <ol start="50">
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Milk</li>
+        </ol>
+    </body>
 </html>
 
     无序列表是一个项目的列表，此列项目使用粗体圆点(典型的小黑圆圈)进行标记。无序列表使用<ul>标签。同样，有序列表也是一列项目，列表项目使用数字进行标记。有序列表始于<ol>标签，每个列表项始于<li>标签，列表项项使用数字来标记。
@@ -59,143 +59,143 @@ Milk
     下例演示不同类型的有序列表：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<h4>编号列表：</h4>
-		<ol>
-		<li>Apples</li>
-		<li>Bananas</li>
-		<li>Lemons</li>
-		<li>Oranges</li>
-		</ol>
-		<h4>大写字母列表：</h4>
-		<ol type="A">
-		<li>Apples</li>
-		<li>Bananas</li>
-		<li>Lemons</li>
-		<li>Oranges</li>
-		</ol>
-		<h4>小写字母列表：</h4>
-		<ol type="a">
-		<li>Apples</li>
-		<li>Bananas</li>
-		<li>Lemons</li>
-		<li>Oranges</li>
-		</ol>
-		<h4>罗马数字列表：</h4>
-		<ol type="I">
-		<li>Apples</li>
-		<li>Bananas</li>
-		<li>Lemons</li>
-		<li>Oranges</li>
-		</ol>
-		<h4>小写罗马数字列表：</h4>
-		<ol type="i">
-		<li>Apples</li>
-		<li>Bananas</li>
-		<li>Lemons</li>
-		<li>Oranges</li>
-		</ol>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h4>编号列表：</h4>
+        <ol>
+        <li>Apples</li>
+        <li>Bananas</li>
+        <li>Lemons</li>
+        <li>Oranges</li>
+        </ol>
+        <h4>大写字母列表：</h4>
+        <ol type="A">
+        <li>Apples</li>
+        <li>Bananas</li>
+        <li>Lemons</li>
+        <li>Oranges</li>
+        </ol>
+        <h4>小写字母列表：</h4>
+        <ol type="a">
+        <li>Apples</li>
+        <li>Bananas</li>
+        <li>Lemons</li>
+        <li>Oranges</li>
+        </ol>
+        <h4>罗马数字列表：</h4>
+        <ol type="I">
+        <li>Apples</li>
+        <li>Bananas</li>
+        <li>Lemons</li>
+        <li>Oranges</li>
+        </ol>
+        <h4>小写罗马数字列表：</h4>
+        <ol type="i">
+        <li>Apples</li>
+        <li>Bananas</li>
+        <li>Lemons</li>
+        <li>Oranges</li>
+        </ol>
+    </body>
 </html>
 
     下例演示不同类型的无序列表：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<p><b>注意：</b> 在 HTML 4中 ul 属性已废弃，HTML5 已不支持该属性，因此我们使用 CSS 代替来定义不同类型的无序列表如下：</p>
-		<h4>圆点列表：</h4>
-		<ul style="list-style-type:disc">
-		<li>Apples</li>
-		<li>Bananas</li>
-		<li>Lemons</li>
-		<li>Oranges</li>
-		</ul>
-		<h4>圆圈列表：</h4>
-		<ul style="list-style-type:circle">
-		<li>Apples</li>
-		<li>Bananas</li>
-		<li>Lemons</li>
-		<li>Oranges</li>
-		</ul>
-		<h4>正方形列表：</h4>
-		<ul style="list-style-type:square">
-		<li>Apples</li>
-		<li>Bananas</li>
-		<li>Lemons</li>
-		<li>Oranges</li>
-		</ul>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <p><b>注意：</b> 在 HTML 4中 ul 属性已废弃，HTML5 已不支持该属性，因此我们使用 CSS 代替来定义不同类型的无序列表如下：</p>
+        <h4>圆点列表：</h4>
+        <ul style="list-style-type:disc">
+        <li>Apples</li>
+        <li>Bananas</li>
+        <li>Lemons</li>
+        <li>Oranges</li>
+        </ul>
+        <h4>圆圈列表：</h4>
+        <ul style="list-style-type:circle">
+        <li>Apples</li>
+        <li>Bananas</li>
+        <li>Lemons</li>
+        <li>Oranges</li>
+        </ul>
+        <h4>正方形列表：</h4>
+        <ul style="list-style-type:square">
+        <li>Apples</li>
+        <li>Bananas</li>
+        <li>Lemons</li>
+        <li>Oranges</li>
+        </ul>
+    </body>
 </html>
 
     下例演示如何嵌套列表：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<h4>嵌套列表：</h4>
-		<ul>
-		<li>Coffee</li>
-		<li>Tea
-		<ul>
-		<li>Black tea</li>
-		<li>Green tea</li>
-		</ul>
-		</li>
-		<li>Milk</li>
-		</ul>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h4>嵌套列表：</h4>
+        <ul>
+        <li>Coffee</li>
+        <li>Tea
+        <ul>
+        <li>Black tea</li>
+        <li>Green tea</li>
+        </ul>
+        </li>
+        <li>Milk</li>
+        </ul>
+    </body>
 </html>
 
     下例演示更复杂的嵌套列表：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
+    <head>
+        <meta charset="utf-8">
+    </head>
 
-	<body>
-		<h4>嵌套列表：</h4>
-		<ul>
-		<li>Coffee</li>
-		<li>Tea
-		<ul>
-		<li>Black tea</li>
-		<li>Green tea
+    <body>
+        <h4>嵌套列表：</h4>
         <ul>
-		<li>China</li>
+        <li>Coffee</li>
+        <li>Tea
+        <ul>
+        <li>Black tea</li>
+        <li>Green tea
+        <ul>
+        <li>China</li>
         <li>Africa</li>
         </ul>
-		</li>
-		</ul>
-		</li>
-		<li>Milk</li>
-		</ul>
-	</body>
+        </li>
+        </ul>
+        </li>
+        <li>Milk</li>
+        </ul>
+    </body>
 </html>
 
     下例演示一个定义列表：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<h4>一个自定义列表：</h4>
-		<dl>
-		<dt>Coffee</dt>
-		<dd>- black hot drink</dd>
-		<dt>Milk</dt>
-		<dd>- white cold drink</dd>
-		</dl>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h4>一个自定义列表：</h4>
+        <dl>
+        <dt>Coffee</dt>
+        <dd>- black hot drink</dd>
+        <dt>Milk</dt>
+        <dd>- white cold drink</dd>
+        </dl>
+    </body>
 </html>
 
 HTML的区块
@@ -213,55 +213,55 @@ HTML布局
     使用<div>元素的网页布局如下所示：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<div id="container" style="width:500px">
-		<div id="header" style="background-color:#FFA500;">
-		<h1 style="margin-bottom:0;">主要的网页标题</h1></div>
-		<div id="menu" style="background-color:#FFD700;height:200px;width:100px;float:left;">
-		<b>菜单</b><br>
-		HTML<br>
-		CSS<br>
-		JavaScript</div>
-		<div id="content" style="background-color:#EEEEEE;height:200px;width:400px;float:left;">
-		内容在这里</div>
-		<div id="footer" style="background-color:#FFA500;clear:both;text-align:center;">
-		版权 © runoob.com</div>
-		</div>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div id="container" style="width:500px">
+        <div id="header" style="background-color:#FFA500;">
+        <h1 style="margin-bottom:0;">主要的网页标题</h1></div>
+        <div id="menu" style="background-color:#FFD700;height:200px;width:100px;float:left;">
+        <b>菜单</b><br>
+        HTML<br>
+        CSS<br>
+        JavaScript</div>
+        <div id="content" style="background-color:#EEEEEE;height:200px;width:400px;float:left;">
+        内容在这里</div>
+        <div id="footer" style="background-color:#FFA500;clear:both;text-align:center;">
+        版权 © runoob.com</div>
+        </div>
+    </body>
 </html>
 
     使用<table>元素的网页布局如下所示：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<table width="500" border="0">
-		<tr>
-		<td colspan="2" style="background-color:#FFA500;">
-		<h1>主要的网页标题</h1>
-		</td>
-		</tr>
-		<tr>
-		<td style="background-color:#FFD700;width:100px;vertical-align:top;">
-		<b>菜单</b><br>
-		HTML<br>
-		CSS<br>
-		JavaScript
-		</td>
-		<td style="background-color:#eeeeee;height:200px;width:400px;vertical-align:top;">
-		内容在这里</td>
-		</tr>
-		<tr>
-		<td colspan="2" style="background-color:#FFA500;text-align:center;">
-		版权 © runoob.com</td>
-		</tr>
-		</table>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <table width="500" border="0">
+        <tr>
+        <td colspan="2" style="background-color:#FFA500;">
+        <h1>主要的网页标题</h1>
+        </td>
+        </tr>
+        <tr>
+        <td style="background-color:#FFD700;width:100px;vertical-align:top;">
+        <b>菜单</b><br>
+        HTML<br>
+        CSS<br>
+        JavaScript
+        </td>
+        <td style="background-color:#eeeeee;height:200px;width:400px;vertical-align:top;">
+        内容在这里</td>
+        </tr>
+        <tr>
+        <td colspan="2" style="background-color:#FFA500;text-align:center;">
+        版权 © runoob.com</td>
+        </tr>
+        </table>
+    </body>
 </html>
 
     大多数网站会把内容安排到多个列中(就像杂志或报纸那样)，可以使用<div>或者<table>元素来创建多列。CSS用于对元素进行定位，或者为页面创建背景以及色彩丰富的外观。虽然我们可以使用HTML的table标签来设计出漂亮的布局，但是table标签是不建议作为布局工具使用的，注意表格不是布局工具。
@@ -271,32 +271,32 @@ HTML表单
     HTML表单用于搜集不同类型的用户输入。下例演示如何在HTML页面创建文本域，用户可以在文本域中写入文本。
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<form action="">
-		First name: <input type="text" name="firstname"><br>
-		Last name: <input type="text" name="lastname">
-		</form>
-		<p><b>注意：</b> 表单本身是不可见的。并且注意一个文本字段的默认宽度是20个字符。</p>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <form action="">
+        First name: <input type="text" name="firstname"><br>
+        Last name: <input type="text" name="lastname">
+        </form>
+        <p><b>注意：</b> 表单本身是不可见的。并且注意一个文本字段的默认宽度是20个字符。</p>
+    </body>
 </html>
 
     下例演示如何创建HTML的密码域：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
+    <head>
+        <meta charset="utf-8">
+    </head>
 
-	<body>
-		<form action="">
-		Username: <input type="text" name="user"><br>
-		Password: <input type="password" name="password">
-		</form>
-		<p><b>注意：</b> 密码字段中的字符是隐藏的(显示为星号或圆圈)。</p>
-	</body>
+    <body>
+        <form action="">
+        Username: <input type="text" name="user"><br>
+        Password: <input type="password" name="password">
+        </form>
+        <p><b>注意：</b> 密码字段中的字符是隐藏的(显示为星号或圆圈)。</p>
+    </body>
 </html>
 
     HTML的表单是一个包含表单元素的区域。表单元素是允许用户在表单中输入内容，比如文本域(textarea)、下拉列表、单选框(radio-buttons)、复选框(checkboxes)等等。表单使用表单标签<form>来设置，如下所示：
@@ -348,163 +348,163 @@ Username: <input type="text" name="user">
     下例演示如何在HTML中创建单选按钮：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<form action="">
-		<input type="radio" name="sex" value="male">Male<br>
-		<input type="radio" name="sex" value="female">Female
-		</form>
-		<p><b>注意：</b>当用户点击一个单选按钮时，它就会被选中，其他同名的单选按钮就不会被选中。</p>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <form action="">
+        <input type="radio" name="sex" value="male">Male<br>
+        <input type="radio" name="sex" value="female">Female
+        </form>
+        <p><b>注意：</b>当用户点击一个单选按钮时，它就会被选中，其他同名的单选按钮就不会被选中。</p>
+    </body>
 </html>
 
     下例演示如何在HTML页面中创建简单的下拉列表框，下拉列表框是一个可选列表：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<form action="">
-		<select name="cars">
-		<option value="volvo">Volvo</option>
-		<option value="saab">Saab</option>
-		<option value="fiat">Fiat</option>
-		<option value="audi">Audi</option>
-		</select>
-		</form>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <form action="">
+        <select name="cars">
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="fiat">Fiat</option>
+        <option value="audi">Audi</option>
+        </select>
+        </form>
+    </body>
 </html>
 
     下例演示如何创建一个简单的带有预选值的下拉列表：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<form action="">
-		<select name="cars">
-		<option value="volvo">Volvo</option>
-		<option value="saab">Saab</option>
-		<option value="fiat" selected>Fiat</option>
-		<option value="audi">Audi</option>
-		</select>
-		</form>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <form action="">
+        <select name="cars">
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="fiat" selected>Fiat</option>
+        <option value="audi">Audi</option>
+        </select>
+        </form>
+    </body>
 </html>
 
     下例演示如何创建文本域(多行文本输入控件)，用户可在文本域中写入文本，可写入字符的字数不受限制：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<textarea rows="10" cols="30">
-		我是一个文本框。
-		</textarea>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <textarea rows="10" cols="30">
+        我是一个文本框。
+        </textarea>
+    </body>
 </html>
 
     下例演示如何创建按钮，你可以对按钮上的文字进行自定义：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<form action="">
-		<input type="button" value="Hello world!">
-		</form>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <form action="">
+        <input type="button" value="Hello world!">
+        </form>
+    </body>
 </html>
 
     下例演示如何在数据周围绘制一个带标题的框：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<form action="">
-		<fieldset>
-		<legend>Personal information:</legend>
-		Name: <input type="text" size="30"><br>
-		E-mail: <input type="text" size="30"><br>
-		Date of birth: <input type="text" size="10">
-		</fieldset>
-		</form>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <form action="">
+        <fieldset>
+        <legend>Personal information:</legend>
+        Name: <input type="text" size="30"><br>
+        E-mail: <input type="text" size="30"><br>
+        Date of birth: <input type="text" size="10">
+        </fieldset>
+        </form>
+    </body>
 </html>
 
     下例演示如何向页面添加表单，此表单包含两个输入框和一个确认按钮：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<form action="demo-form.php">
-		First name: <input type="text" name="FirstName" value="Mickey"><br>
-		Last name: <input type="text" name="LastName" value="Mouse"><br>
-		<input type="submit" value="提交">
-		</form>
-		<p>点击"提交"按钮，表单数据将被发送到服务器上的“demo-form.php”。</p>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <form action="demo-form.php">
+        First name: <input type="text" name="FirstName" value="Mickey"><br>
+        Last name: <input type="text" name="LastName" value="Mouse"><br>
+        <input type="submit" value="提交">
+        </form>
+        <p>点击"提交"按钮，表单数据将被发送到服务器上的“demo-form.php”。</p>
+    </body>
 </html>
 
     下例表单包含两个复选框和一个确认按钮：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<form action="demo-form.php" method="get">
-		<input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>
-		<input type="checkbox" name="vehicle" value="Car" checked="checked"> I have a car<br>
-		<input type="submit" value="提交">
-		</form>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <form action="demo-form.php" method="get">
+        <input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>
+        <input type="checkbox" name="vehicle" value="Car" checked="checked"> I have a car<br>
+        <input type="submit" value="提交">
+        </form>
+    </body>
 </html>
 
     下例表单包含两个单选框和一个确认按钮：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<form action="demo-form.php" method="get">
-		<input type="radio" name="sex" value="Male"> Male<br>
-		<input type="radio" name="sex" value="Female" checked="checked"> Female<br>
-		<input type="submit" value="提交">
-		</form>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <form action="demo-form.php" method="get">
+        <input type="radio" name="sex" value="Male"> Male<br>
+        <input type="radio" name="sex" value="Female" checked="checked"> Female<br>
+        <input type="submit" value="提交">
+        </form>
+    </body>
 </html>
 
     下例演示如何从表单发送电子邮件：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<h3>发送邮件到 someone@example.com:</h3>
-		<form action="MAILTO:someone@example.com" method="post" enctype="text/plain">
-		Name:<br>
-		<input type="text" name="name" value="your name"><br>
-		E-mail:<br>
-		<input type="text" name="mail" value="your email"><br>
-		Comment:<br>
-		<input type="text" name="comment" value="your comment" size="50"><br><br>
-		<input type="submit" value="发送">
-		<input type="reset" value="重置">
-		</form>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h3>发送邮件到 someone@example.com:</h3>
+        <form action="MAILTO:someone@example.com" method="post" enctype="text/plain">
+        Name:<br>
+        <input type="text" name="name" value="your name"><br>
+        E-mail:<br>
+        <input type="text" name="mail" value="your email"><br>
+        Comment:<br>
+        <input type="text" name="comment" value="your comment" size="50"><br><br>
+        <input type="submit" value="发送">
+        <input type="reset" value="重置">
+        </form>
+    </body>
 </html>
 
     HTML表单标签如下所示：
@@ -531,40 +531,40 @@ HTML框架
     iframe的height和width属性用来定义iframe标签的高度与宽度，属性默认以像素为单位，但是你可以指定其按比例显示(例如“80%”)。
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<iframe src="demo_iframe.htm" width="200" height="200"></iframe>
-		<p>一些旧的浏览器不支持 iframe。</p>
-		<p>如果浏览器不支持 iframes 则不会显示。</p>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <iframe src="demo_iframe.htm" width="200" height="200"></iframe>
+        <p>一些旧的浏览器不支持 iframe。</p>
+        <p>如果浏览器不支持 iframes 则不会显示。</p>
+    </body>
 </html>
 
     iframe的frameborder属性用于定义iframe表示是否显示边框，设置属性值为“0”则移除iframe的边框：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<iframe src="demo_iframe.htm" width="200" height="200" frameborder="0">
-		<p>您的浏览器不支持 iframe 标签。</p>
-		</iframe>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <iframe src="demo_iframe.htm" width="200" height="200" frameborder="0">
+        <p>您的浏览器不支持 iframe 标签。</p>
+        </iframe>
+    </body>
 </html>
 
     iframe可以显示一个目标链接的页面，目标链接的属性必须使用iframe的属性，如下实例：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<iframe src="demo_iframe.htm" name="iframe_a"></iframe>
-		<p><a href="http://www.runoob.com" target="iframe_a">RUNOOB.COM</a></p>
-		<p><b>注意：</b> 因为 a 标签的 target 属性是名为 iframe_a 的 iframe 框架，所以在点击链接时页面会显示在 iframe框架中。</p>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <iframe src="demo_iframe.htm" name="iframe_a"></iframe>
+        <p><a href="http://www.runoob.com" target="iframe_a">RUNOOB.COM</a></p>
+        <p><b>注意：</b> 因为 a 标签的 target 属性是名为 iframe_a 的 iframe 框架，所以在点击链接时页面会显示在 iframe框架中。</p>
+    </body>
 </html>
 
 
@@ -574,20 +574,20 @@ HTML颜色
     实例如下所示：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<p style="background-color:#FFFF00">
-		通过十六进制设置背景颜色
-		</p>
-		<p style="background-color:rgb(255,255,0)">
-		通过 rbg 值设置背景颜色
-		</p>
-		<p style="background-color:yellow">
-		通过颜色名设置背景颜色
-		</p>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <p style="background-color:#FFFF00">
+        通过十六进制设置背景颜色
+        </p>
+        <p style="background-color:rgb(255,255,0)">
+        通过 rbg 值设置背景颜色
+        </p>
+        <p style="background-color:yellow">
+        通过颜色名设置背景颜色
+        </p>
+    </body>
 </html>
 
     目前所有浏览器都支持以下颜色名。141个颜色名称是在HTML和CSS颜色规范定义的(17标准颜色，再加124)。17标准颜色为黑色、蓝色、水、紫红色、灰色、绿色、石灰、栗色、海军、橄榄、橙、紫、红、白、银、蓝绿色、黄色。
@@ -597,71 +597,71 @@ HTML脚本
     下例演示如何将脚本插入HTML文档：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<script>
-		document.write("Hello World!")
-		</script>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <script>
+        document.write("Hello World!")
+        </script>
+    </body>
 </html>
     使用<noscript>标签来应对不支持脚本或禁用脚本的浏览器：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<script>
-		document.write("Hello World!")
-		</script>
-		<noscript>抱歉，你的浏览器不支持 JavaScript!</noscript>
-		<p>不支持 JavaScript 的浏览器会使用 &lt;noscript&gt; 元素中定义的内容（文本）来替代。</p>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <script>
+        document.write("Hello World!")
+        </script>
+        <noscript>抱歉，你的浏览器不支持 JavaScript!</noscript>
+        <p>不支持 JavaScript 的浏览器会使用 &lt;noscript&gt; 元素中定义的内容（文本）来替代。</p>
+    </body>
 </html>
     HTML的<script>标签用于定义客户端脚本，比如JavaScript。<script>元素既可包含脚本语句，也可通过src属性指向外部脚本文件。JavaScript最常用于图片操作、表单验证以及内容动态更新。
     HTML的<noscript>标签提供无法使用脚本时的替代内容，比方在浏览器禁用脚本时，或浏览器不支持客户端脚本时。<noscript>元素可包含普通HTML页面的body元素中能够找到的所有元素。只有在浏览器不支持脚本或者禁用脚本时，才会显示<noscript>元素中的内容：
     JavaScript事件响应如下所示：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<h1>我的第一个 JavaScript </h1>
-		<p id="demo">
-		JavaScript 可以触发事件，就像按钮点击。</p>
-		<script>
-		function myFunction()
-		{
-			document.getElementById("demo").innerHTML="Hello JavaScript!";
-		}
-		</script>
-		<button type="button" onclick="myFunction()">点我</button>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h1>我的第一个 JavaScript </h1>
+        <p id="demo">
+        JavaScript 可以触发事件，就像按钮点击。</p>
+        <script>
+        function myFunction()
+        {
+            document.getElementById("demo").innerHTML="Hello JavaScript!";
+        }
+        </script>
+        <button type="button" onclick="myFunction()">点我</button>
+    </body>
 </html>
 
     JavaScript处理HTML样式如下所示：
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<h1>我的第一段 JavaScript</h1>
-		<p id="demo">
-		JavaScript 能改变 HTML 元素的样式。
-		</p>
-		<script>
-		function myFunction()
-		{
-			x=document.getElementById("demo") // 找到元素
-			x.style.color="#ff0000";          // 改变样式
-		}
-		</script>
-		<button type="button" onclick="myFunction()">点击这里</button>
-	</body>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h1>我的第一段 JavaScript</h1>
+        <p id="demo">
+        JavaScript 能改变 HTML 元素的样式。
+        </p>
+        <script>
+        function myFunction()
+        {
+            x=document.getElementById("demo") // 找到元素
+            x.style.color="#ff0000";          // 改变样式
+        }
+        </script>
+        <button type="button" onclick="myFunction()">点击这里</button>
+    </body>
 </html>
 
 
@@ -726,13 +726,13 @@ HTML之XHTML
     XHTML是以XML格式编写的HTML。XHTML与HTML4.01几乎是相同的，它是更严格、更纯净的HTML版本，是以XML应用的方式定义的HTML，得到所有主流浏览器的支持。
     为什么使用XHTML？因特网上的很多页面包含了“糟糕”的HTML，如果在浏览器中查看，下面的HTML代码运行起来非常正常(即使它并未遵守HTML规则)：
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>这是一个不规范的 HTML</title>
-	<body>
-		<h1>不规范的 HTML
-		<p>这是一个段落
-	</body>
+    <head>
+        <meta charset="utf-8">
+        <title>这是一个不规范的 HTML</title>
+    <body>
+        <h1>不规范的 HTML
+        <p>这是一个段落
+    </body>
     XML是一种必须正确标记且格式良好的标记语言。今日的科技界存在一些不同的浏览器技术，其中一些在计算机上运行，而另一些可能在移动电话或其他小型设备上运行。小型设备往往缺乏解释“糟糕”的标记语言的资源和能力。所以通过结合XML和HTML的长处，开发出了XHTML。
     XHTML是作为XML被重新设计的HTML，与HTML相比最重要的区别：
     1、文档结构
@@ -749,13 +749,13 @@ XHTML的DOCTYPE是强制性的。
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta charset="utf-8">
-		<title>文档标题</title>
-	</head>
-	<body>
-		文档内容
-	</body>
+    <head>
+        <meta charset="utf-8">
+        <title>文档标题</title>
+    </head>
+    <body>
+        文档内容
+    </body>
 </html>
     XHTML元素必须合理嵌套。在HTML中，一些元素可以不互相嵌套，像这样：
 <b><i>粗体和斜体文本</b></i>
