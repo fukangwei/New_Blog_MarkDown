@@ -551,7 +551,7 @@ tags:
 </html>
 ```
 
-`<base>`定义页面中所有链接默认的链接目标地址：
+&emsp;&emsp;`<base>`定义页面中所有链接默认的链接目标地址：
 
 ``` xml
 <!DOCTYPE html>
@@ -563,43 +563,20 @@ tags:
     </head>
 
     <body>
-        <img src="logo.png"> - 注意这里我们设置了图片的相对地址。能正常显示是因为我们在 head 部分设置了 base 标签，该标签指定了页面上所有链接的默认 URL，所以该图片的访问地址为 "http://www.runoob.com/images/logo.png"
+        <img src="logo.png">
         <br><br>
-        <a href="http://www.runoob.com">菜鸟教程</a> - 注意这个链接会在新窗口打开，即便它没有 target="_blank" 属性。因为在 base 标签里我们已经设置了 target 属性的值为 "_blank"。
+        <a href="http://www.runoob.com">菜鸟教程</a>
     </body>
 </html>
 ```
 
-`<meta>`元素来描述`HTML`文档的关键词、作者、字符集等：
+<img src="./HTML教程一/18.png">
 
-``` xml
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>菜鸟教程(runoob.com)</title>
-        <meta name="description" content="免费在线教程">
-        <meta name="keywords" content="HTML,CSS,XML,JavaScript">
-        <meta name="author" content="runoob">
-        <meta charset="UTF-8">
-    </head>
-
-    <body>
-        <p>所有 meta 标签显示在 head 部分...</p>
-    </body>
-</html>
-```
+- 我们在`<img>`中设置了图片的相对地址，能正常显示是因为在`head`部分设置了`base`标签，该标签指定了页面上所有链接的默认`URL`，所以该图片的访问地址为`http://www.runoob.com/images/logo.png`。
+- 链接会在新窗口打开，即便它没有`target="_blank"`属性。因为在`base`标签里，我们已经设置了`target`属性的值为`_blank`。
 
 &emsp;&emsp;`HTML`的`<head>`元素包含了所有的头部标签元素。在`<head>`元素中，你可以插入脚本(`scripts`)、样式文件(`CSS`)及各种`meta`信息。可以添加在头部区域的元素标签为：`<title>`、`<style>`、`<meta>`、`<link>`、`<script>`、`<noscript>`和`<base>`。
-&emsp;&emsp;`HTML`的`<title>`元素定义了不同文档的标题，在`HTML/XHTML`文档中是必须的。`<title>`元素定义了浏览器工具栏的标题，当网页添加到收藏夹时显示在收藏夹中的标题以及显示在搜索引擎结果页面的标题。
-&emsp;&emsp;`HTML`的`<base>`元素描述了基本的`链接地址/链接目标`，该标签作为`HTML`文档中所有的链接标签的默认链接：
-
-``` xml
-<head>
-    <base href="http://www.runoob.com/images/" target="_blank">
-</head>
-```
-
+&emsp;&emsp;`HTML`的`<title>`元素定义了不同文档的标题，在`HTML/XHTML`文档中是必须的。
 &emsp;&emsp;`HTML`的`<link>`元素定义了文档与外部资源之间的关系，`<link>`标签通常用于链接到样式表：
 
 ``` xml
@@ -623,13 +600,11 @@ tags:
 &emsp;&emsp;元数据可以使用于浏览器(如何显示内容或重新加载页面)、搜索引擎(关键词)或其他`Web`服务，一般放置于`<head>`区域。使用实例如下：
 
 ``` xml
-<meta name="keywords" content="HTML, CSS, XML, XHTML, JavaScript"> #为搜索引擎定义关键词
-<meta name="description" content="免费 Web & 编程 教程"> #为网页定义描述内容
-<meta name="author" content="Runoob"> #定义网页作者
-<meta http-equiv="refresh" content="30"> #每30秒中刷新当前页面
+<meta name="keywords" content="HTML, CSS, XML, XHTML, JavaScript">  # 为搜索引擎定义关键词
+<meta name="description" content="免费 Web & 编程 教程">  # 为网页定义描述内容
+<meta name="author" content="Runoob">  # 定义网页作者
+<meta http-equiv="refresh" content="30">  # 每30秒中刷新当前页面
 ```
-
-&emsp;&emsp;`HTML`的`<script>`元素用于加载脚本文件，如`JavaScript`。
 
 ### HTML图像
 
