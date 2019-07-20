@@ -638,6 +638,8 @@ tags:
 </html>
 ```
 
+<img src="./HTML教程一/19.png">
+
 &emsp;&emsp;下例演示如何将其他文件夹或服务器的图片显示到网页中：
 
 ``` xml
@@ -694,6 +696,8 @@ tags:
 </html>
 ```
 
+<img src="./HTML教程一/20.png" width="40%">
+
 &emsp;&emsp;下例演示如何使图片浮动至段落的左边或右边：
 
 ``` xml
@@ -704,15 +708,20 @@ tags:
     </head>
     <body>
         <p>
-        <img src="smiley.gif" alt="Smiley face" style="float:left" width="32" height="32"> 一个带图片的段落，图片浮动在这个文本的左边。
+        <img src="smiley.gif" alt="Smiley face" style="float:left" width="32" height="32">
+        一个带图片的段落，图片浮动在这个文本的左边。
         </p>
         <p>
-        <img src="smiley.gif" alt="Smiley face" style="float:right" width="32" height="32"> 一个带图片的段落，图片浮动在这个文本的右边。
+        <img src="smiley.gif" alt="Smiley face" style="float:right" width="32" height="32">
+        一个带图片的段落，图片浮动在这个文本的右边。
         </p>
-        <p><b>注意:</b> 在这里我们使用了 CSS "float" 属性，在HTML 4中 align 属性已废弃，HTML5 已不支持该属性，可以使用 CSS 代替。</p>
+        <p><b>注意:</b> 在这里我们使用了 CSS "float" 属性，在HTML 4中 align
+              属性已废弃，HTML5 已不支持该属性，可以使用 CSS 代替。</p>
     </body>
 </html>
 ```
+
+<img src="./HTML教程一/21.png">
 
 &emsp;&emsp;下例演示如何将图像作为一个链接使用：
 
@@ -733,6 +742,8 @@ tags:
 </html>
 ```
 
+<img src="./HTML教程一/22.png">
+
 &emsp;&emsp;下例显示如何创建带有可供点击区域的图像地图，其中的每个区域都是一个超级链接：
 
 ``` xml
@@ -752,6 +763,8 @@ tags:
     </body>
 </html>
 ```
+
+<img src="./HTML教程一/23.png">
 
 ### HTML表格
 
