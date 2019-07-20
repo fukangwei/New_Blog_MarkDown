@@ -844,6 +844,8 @@ tags:
 </html>
 ```
 
+<img src="./HTML教程一/24.png" width="40%">
+
 &emsp;&emsp;表格由`<table>`标签来定义，每个表格均有若干行(由`<tr>`标签定义)，每行被分割为若干单元格(由`<td>`标签定义)。字母`td`指表格数据(`table data`)，即数据单元格的内容。数据单元格可以包含文本、图片、列表、段落、表单、水平线、表格等。
 
 ``` xml
@@ -858,6 +860,8 @@ tags:
     </tr>
 </table>
 ```
+
+<img src="./HTML教程一/25.png">
 
 &emsp;&emsp;如果不定义边框属性，表格将不显示边框，但是大多数时候，我们希望显示边框。使用边框属性来显示一个带有边框的表格：
 
@@ -888,6 +892,8 @@ tags:
     </tr>
 </table>
 ```
+
+<img src="./HTML教程一/26.png">
 
 &emsp;&emsp;下例演示一个没有边框的表格：
 
@@ -928,6 +934,8 @@ tags:
     </body>
 </html>
 ```
+
+<img src="./HTML教程一/27.png">
 
 &emsp;&emsp;下例演示如何显示表格表头：
 
@@ -970,6 +978,8 @@ tags:
 </html>
 ```
 
+<img src="./HTML教程一/28.png">
+
 &emsp;&emsp;下例演示一个带标题的表格：
 
 ``` xml
@@ -997,6 +1007,8 @@ tags:
     </body>
 </html>
 ```
+
+<img src="./HTML教程一/29.png">
 
 &emsp;&emsp;下例演示如何定义跨行或跨列的表格单元格：
 
@@ -1036,6 +1048,8 @@ tags:
     </body>
 </html>
 ```
+
+<img src="./HTML教程一/30.png">
 
 &emsp;&emsp;下例演示如何显示在不同的元素内显示元素：
 
@@ -1080,6 +1094,8 @@ tags:
 </html>
 ```
 
+<img src="./HTML教程一/31.png">
+
 &emsp;&emsp;下例演示如何使用`Cell padding`来创建单元格内容与其边框之间的空白：
 
 ``` xml
@@ -1116,6 +1132,8 @@ tags:
     </body>
 </html>
 ```
+
+<img src="./HTML教程一/32.png">
 
 &emsp;&emsp;下例演示如何使用`Cell spacing`增加单元格之间的距离：
 
@@ -1164,3 +1182,5 @@ tags:
     </body>
 </html>
 ```
+
+<img src="./HTML教程一/33.png">
