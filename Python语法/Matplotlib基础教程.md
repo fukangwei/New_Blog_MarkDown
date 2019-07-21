@@ -242,43 +242,69 @@ plt.show()  # 显示窗口
 matplotlib.pyplot.figure(num=None, figsize=None, dpi=None, facecolor=None, edgecolor=None)
 ```
 
-- num：整型或字符型都可以。如果设置为整型，则该整型数字表示窗口的序号；如果设置为字符型，则该字符串表示窗口的名称。用该参数来命名窗口，如果两个窗口序号或名称相同，则后一个窗口会覆盖前一个窗口。
-- figsize：设置窗口大小，tuple类型，如“figsize = (8, 8)”。
-- dpi：整型数字，表示窗口的分辨率。
-- facecolor：窗口的背景颜色。
-- edgecolor：窗口的边框颜色。
+- `num`：整型或字符型都可以。如果设置为整型，则该整型数字表示窗口的序号；如果设置为字符型，则该字符串表示窗口的名称。用该参数来命名窗口，如果两个窗口序号或名称相同，则后一个窗口会覆盖前一个窗口。
+- `figsize`：设置窗口大小，`tuple`类型，如`figsize = (8, 8)`。
+- `dpi`：整型数字，表示窗口的分辨率。
+- `facecolor`：窗口的背景颜色。
+- `edgecolor`：窗口的边框颜色。
 
-&emsp;&emsp;用figure函数创建的窗口，只能显示一幅图片，如果想要显示多幅图片，则需要将这个窗口再划分为几个子图，在每个子图中显示不同的图片。我们可以使用subplot函数来划分子图。
+&emsp;&emsp;用`figure`函数创建的窗口，只能显示一幅图片，如果想要显示多幅图片，则需要将这个窗口再划分为几个子图，在每个子图中显示不同的图片。我们可以使用`subplot`函数来划分子图。
 
 ### 调整名字和间隔
 
-    使用import导入模块matplotlib.pyplot，并简写成plt；使用import导入模块numpy，并简写成np：
+&emsp;&emsp;使用`import`导入模块`matplotlib.pyplot`，并简写成`plt`；使用`import`导入模块`numpy`，并简写成`np`：
+
+``` python
 import matplotlib.pyplot as plt
 import numpy as np
-使用np.linspace定义x的范围是(-3,3)，个数是50。仿真一维数据组(x,y1)表示曲线1，仿真一维数据组(x,y2)表示曲线2：
+```
+
+使用`np.linspace`定义`x`的范围是`(-3, 3)`，个数是`50`。仿真一维数据组`(x, y1)`表示`曲线1`，仿真一维数据组`(x, y2)`表示`曲线2`：
+
+``` python
 x = np.linspace(-3, 3, 50)
 y1 = 2 * x + 1
 y2 = x ** 2
-使用plt.figure定义一个图像窗口，使用plt.plot画(x,y2)曲线；使用plt.plot画(x,y1)曲线，颜色属性(color)为红色，宽度(linewidth)为1.0，类型(linestyle)为虚线：
+```
+
+使用`plt.figure`定义一个图像窗口，使用`plt.plot`画`(x, y2)`曲线；使用`plt.plot`画`(x, y1)`曲线，颜色属性(`color`)为红色，宽度(`linewidth`)为`1.0`，类型(`linestyle`)为虚线：
+
+``` python
 plt.figure()
 plt.plot(x, y2)
 plt.plot(x, y1, color='red', linewidth=1.0, linestyle='--')
-使用plt.xlim设置x坐标轴范围为(-1,2)，使用plt.ylim设置y坐标轴范围为(-2,3)。使用plt.xlabel设置x坐标轴名称为“I am x”，使用plt.ylabel设置y坐标轴名称为“I am y”：
+```
+
+使用`plt.xlim`设置`x`坐标轴范围为`(-1, 2)`，使用`plt.ylim`设置`y`坐标轴范围为`(-2, 3)`。使用`plt.xlabel`设置`x`坐标轴名称为`I am x`，使用`plt.ylabel`设置`y`坐标轴名称为`I am y`：
+
+``` python
 plt.xlim((-1, 2))
 plt.ylim((-2, 3))
 plt.xlabel('I am x')
 plt.ylabel('I am y')
 plt.show()
+```
 
-使用plt.xticks设置x轴刻度，范围是(-1,2)，个数是5：
+使用`plt.xticks`设置`x`轴刻度，范围是`(-1, 2)`，个数是`5`：
+
+``` python
 new_ticks = np.linspace(-1, 2, 5)
 print(new_ticks)
 plt.xticks(new_ticks)
-使用plt.yticks设置y轴刻度以及名称：刻度为[-2,-1.8,-1,1.22,3]，对应刻度的名称为['really bad','bad','normal','good','really good']：
-plt.yticks([-2, -1.8, -1, 1.22, 3], [r'$really\ bad$', r'$bad$', r'$normal$', r'$good$', r'$really\ good$'])
-plt.show()
+```
 
-设置坐标轴的范围还可以使用axis函数：
+使用`plt.yticks`设置`y`轴刻度以及名称：刻度为`[-2, -1.8, -1, 1.22, 3]`，对应刻度的名称为`['really bad','bad','normal','good','really good']`：
+
+``` python
+plt.yticks(
+    [-2, -1.8, -1, 1.22, 3],
+    [r'$really\ bad$', r'$bad$', r'$normal$', r'$good$', r'$really\ good$'])
+plt.show()
+```
+
+设置坐标轴的范围还可以使用`axis`函数：
+
+``` python
 import numpy as np
 import matplotlib.pyplot as plt
 ​
@@ -286,11 +312,14 @@ x = np.arange(-101, 101, 1)
 plt.plot(x, x ** 2)
 plt.axis([-100, 100, 0, 10000])  # 设置x轴的最小值、最大值和y轴的最小值、最大值
 plt.show()
+```
 
+### matplotlib.pyplot.triplot
 
-matplotlib.pyplot.triplot
-    Draw a unstructured triangular grid as lines and/or markers.
+&emsp;&emsp;Draw a unstructured triangular grid as lines and/or markers.
+
 matplotlib.pyplot.triplot(*args, **kwargs)
+
 The triangulation to plot can be specified in one of two ways; either:
 triplot(triangulation, ...)
 where triangulation is a matplotlib.tri.Triangulation object, or
