@@ -3,48 +3,62 @@ title: Matplotlib基础教程
 date: 2019-07-21 14:52:25
 tags:
 ---
-    Matplotlib是Python的一个绘图库，它包含了大量的工具，你可以使用这些工具创建各种图形，包括简单的散点图、正弦曲线、甚至是三维图形。Python科学计算社区经常使用它完成数据可视化的工作。
+&emsp;&emsp;`Matplotlib`是`Python`的一个绘图库，它包含了大量的工具，你可以使用这些工具创建各种图形，包括简单的散点图、正弦曲线、甚至是三维图形。`Python`科学计算社区经常使用它完成数据可视化的工作。
 
-画一个简单的图形
-    首先要画一条在[0,2pi]上的正弦曲线：
+### 画一个简单的图形
+
+&emsp;&emsp;首先要画一条在`[0, 2pi]`上的正弦曲线：
+
+``` python
 import matplotlib.pyplot as plt
 import numpy as np
 ​
 x = np.linspace(0, 2 * np.pi, 50)
 plt.plot(x, np.sin(x))  # 如果没有第一个参数x，图形的x坐标默认为数组的索引
 plt.show()  # 显示图形
+```
 
+### 在一张图上绘制两个数据集
 
-在一张图上绘制两个数据集
-    大多数时候读者可能更想在一张图上绘制多个数据集，用Matplotlib也可以轻松实现这一点：
+&emsp;&emsp;大多数时候读者可能更想在一张图上绘制多个数据集，用`Matplotlib`也可以轻松实现这一点：
+
+``` python
 import matplotlib.pyplot as plt
 import numpy as np
 ​
 x = np.linspace(0, 2 * np.pi, 50)
 plt.plot(x, np.sin(x), x, np.sin(2 * x))
 plt.show()
+```
 
+### 自定义图形的外观
 
-自定义图形的外观
-    当在同一个图形上展示多个数据集时，通过改变线条的外观来区分不同的数据集变得非常必要：
+&emsp;&emsp;当在同一个图形上展示多个数据集时，通过改变线条的外观来区分不同的数据集变得非常必要：
+
+``` python
 import matplotlib.pyplot as plt
 import numpy as np
 ​
 x = np.linspace(0, 2 * np.pi, 50)
 plt.plot(x, np.sin(x), 'r-o', x, np.cos(x), 'g--')
 plt.show()
+```
 
-上述代码展示了两种不同的曲线样式，即“r-o”和“g--”。字母“r”和“g”代表线条的颜色，后面的符号代表线和点标记的类型。例如“-o”代表包含实心点标记的实线，“--”代表虚线。其他的参数需要读者自己去尝试，这也是学习Matplotlib最好的方式。
-    基本颜色格式命令如下所示：
+上述代码展示了两种不同的曲线样式，即`r-o`和`g--`。字母`r`和`g`代表线条的颜色，后面的符号代表线和点标记的类型。例如`-o`代表包含实心点标记的实线，`--`代表虚线。
+&emsp;&emsp;基本颜色格式命令如下：
+
 'b' 蓝色 'g' 绿色 'r' 红色 'c' 青色
 'm' 品红 'y' 黄色 'k' 黑色 'w' 白色
+
 基本线型格式命令如下所示：
 '-' 实线 '--' 虚线 ':' 点线
+
 基本绘制标记格式命令如下所示：
 '.' 点   'o' 圆圈 's' 正方形
 '*' 星形 '+' 加号 'x' 叉号
 
-使用子图
+### 使用子图
+
     使用子图可以在一个窗口绘制多张图：
 import matplotlib.pyplot as plt
 import numpy as np
