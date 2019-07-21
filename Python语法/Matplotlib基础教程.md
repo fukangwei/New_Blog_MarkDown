@@ -212,7 +212,8 @@ from skimage import data
 import matplotlib.pyplot as plt
 ​
 img = data.astronaut()
-plt.figure(num='astronaut', figsize=(8, 8))  # 创建一个名为astronaut的窗口，并设置大小
+# 创建一个名为astronaut的窗口，并设置大小
+plt.figure(num='astronaut', figsize=(8, 8))
 ​
 plt.subplot(2, 2, 1)  # 将窗口分为两行两列四个子图，则可显示四幅图片
 plt.title('origin image')  # 第一幅图片标题
