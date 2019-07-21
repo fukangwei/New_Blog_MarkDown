@@ -439,43 +439,55 @@ ax.set_title("OutPut")
 plt.show()
 ```
 
-“223”的意思是将画布分割成2行2列，图像画在从左到右从上到下的第3块：
+`223`的意思是将画布分割成`2`行`2`列，图像画在从左到右从上到下的第`3`块：
 
-如果其中有数字不是个位数，需要使用逗号进行隔开，例如“ax = fig.add_subplot(3,4,10)”。
+如果其中有数字不是个位数，需要使用逗号进行隔开，例如`ax = fig.add_subplot(3, 4, 10)`。
 
-rcParams函数
-    函数的主要作用为指定图片像素：
+### rcParams函数
+
+&emsp;&emsp;函数的主要作用为指定图片像素：
+
+``` python
 import matplotlib
 import matplotlib.pyplot as plt
 ​
-# 默认的像素为[6.0,4.0]，分辨率为100，则图片尺寸为“600*400”。如果指定“dpi = 200”，则图片尺寸为“1200 * 800”；指定“dpi = 300”，则图片尺寸为“1800 * 1200”
+# 默认的像素为[6.0, 4.0]，分辨率为100，则图片尺寸为“600*400”。如果指定“dpi = 200”，
+# 则图片尺寸为“1200 * 800”；指定“dpi = 300”，则图片尺寸为“1800 * 1200”
 plt.rcParams['savefig.dpi'] = 300  # 图片像素
 plt.rcParams['figure.dpi'] = 300  # 分辨率
-myfont = matplotlib.font_manager.FontProperties(fname=r'c:\windows\fonts\simsun.ttc')  # 这一行
+myfont = matplotlib.font_manager.FontProperties(fname=r'c:\windows\fonts\simsun.ttc')
 plt.plot((1, 2, 3), (4, 3, -1))
 plt.xlabel(u'横坐标', fontproperties=myfont)
 plt.ylabel(u'纵坐标', fontproperties=myfont)
 plt.savefig('plot123_2.png', dpi=300)  # 指定分辨率保存
+```
 
-Polygon函数
-    绘制多边形的代码如下所示：
+### Polygon函数
+
+&emsp;&emsp;绘制多边形的代码如下：
+
+``` python
 import matplotlib
 import matplotlib.pyplot as plt
 ​
 def main():
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    # 5点(0.1,0.1),(0.1,0.6),(0.7,0.8),(0.6,0.4),(0.6,0.1)を通る多角形を描画
-    poly = plt.Polygon(((0.1, 0.1), (0.1, 0.6), (0.7, 0.8), (0.6, 0.4), (0.6, 0.1)), fc="#770000")
+    # 5点(0.1,0.1), (0.1,0.6), (0.7,0.8), (0.6,0.4), (0.6,0.1)を通る多角形を描画
+    poly = plt.Polygon(((0.1, 0.1), (0.1, 0.6), (0.7, 0.8),
+                        (0.6, 0.4), (0.6, 0.1)), fc="#770000")
     ax.add_patch(poly)
     plt.show()
 ​
 if __name__ == '__main__':
     main()
+```
 
+### PatchCollection函数
 
-PatchCollection函数
-    绘制图形的代码如下所示：
+&emsp;&emsp;绘制图形的代码如下：
+
+``` python
 import pylab as plt
 from matplotlib.patches import Circle
 from matplotlib.collections import PatchCollection
@@ -488,7 +500,7 @@ collection = PatchCollection(patches, alpha=0.3)
 ax.add_collection(collection)
 plt.axis('equal')
 plt.show()
-
+```
 
 heatmap的绘制
     代码如下所示：
