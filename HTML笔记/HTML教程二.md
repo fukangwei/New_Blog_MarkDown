@@ -23,6 +23,8 @@ tags:
     </body>
 </html>
 ```
+
+<img src="./HTML教程二/1.png">
 <!--more-->
 &emsp;&emsp;下例演示有序列表：
 
@@ -46,6 +48,8 @@ tags:
     </body>
 </html>
 ```
+
+<img src="./HTML教程二/2.png">
 
 &emsp;&emsp;无序列表是一个项目的列表，此列项目使用粗体圆点进行标记。无序列表使用`<ul>`标签。同样，有序列表也是一列项目，列表项目使用数字进行标记。有序列表始于`<ol>`标签，每个列表项始于`<li>`标签，列表项项使用数字来标记。
 &emsp;&emsp;自定义列表不仅仅是一列项目，而是项目及其注释的组合。自定义列表以`<dl>`标签开始。每个自定义列表项以`<dt>`开始。每个自定义列表项的定义以`<dd>`开始。
@@ -117,6 +121,8 @@ Milk
 </html>
 ```
 
+<img src="./HTML教程二/3.png">
+
 &emsp;&emsp;下例演示不同类型的无序列表：
 
 ``` xml
@@ -151,6 +157,8 @@ Milk
 </html>
 ```
 
+<img src="./HTML教程二/4.png">
+
 &emsp;&emsp;下例演示如何嵌套列表：
 
 ``` xml
@@ -174,6 +182,8 @@ Milk
     </body>
 </html>
 ```
+
+<img src="./HTML教程二/5.png">
 
 &emsp;&emsp;下例演示更复杂的嵌套列表：
 
@@ -204,6 +214,8 @@ Milk
     </body>
 </html>
 ```
+
+<img src="./HTML教程二/6.png">
 
 &emsp;&emsp;下例演示一个定义列表：
 
@@ -266,6 +278,8 @@ Milk
 </html>
 ```
 
+<img src="./HTML教程二/7.png">
+
 &emsp;&emsp;使用`<table>`元素的网页布局如下：
 
 ``` xml
@@ -299,6 +313,8 @@ Milk
     </body>
 </html>
 ```
+
+<img src="./HTML教程二/8.png">
 
 &emsp;&emsp;大多数网站会把内容安排到多个列中(就像杂志或报纸那样)，可以使用`<div>`或者`<table>`元素来创建多列。`CSS`用于对元素进行定位，或者为页面创建背景以及色彩丰富的外观。虽然我们可以使用`HTML`的`table`标签来设计出漂亮的布局，但是`table`标签是不建议作为布局工具使用的，注意表格不是布局工具。
 
@@ -340,6 +356,8 @@ Milk
 </html>
 ```
 
+<img src="./HTML教程二/9.png">
+
 &emsp;&emsp;下例演示如何创建`HTML`的密码域：
 
 ``` xml
@@ -358,6 +376,8 @@ Milk
     </body>
 </html>
 ```
+
+<img src="./HTML教程二/10.png">
 
 &emsp;&emsp;`HTML`的表单是一个包含表单元素的区域。表单元素是允许用户在表单中输入内容，比如文本域(`textarea`)、下拉列表、单选框(`radio-buttons`)、复选框(`checkboxes`)等。表单使用表单标签`<form>`来设置：
 
@@ -380,6 +400,8 @@ Milk
 </form>
 ```
 
+<img src="./HTML教程二/11.png">
+
 #### 密码字段
 
 &emsp;&emsp;密码字段通过标签`<input type="password">`来定义：
@@ -390,7 +412,7 @@ Milk
 </form>
 ```
 
-浏览器显示效果如下：
+<img src="./HTML教程二/12.png">
 
 #### 单选按钮(Radio Buttons)
 
@@ -403,7 +425,9 @@ Milk
 </form>
 ```
 
-### 复选框(Checkboxes)
+<img src="./HTML教程二/13.png">
+
+#### 复选框(Checkboxes)
 
 &emsp;&emsp;`<input type="checkbox">`定义了复选框，用户需要从若干给定的选择中选取一个或若干选项：
 
@@ -413,6 +437,8 @@ Milk
     <input type="checkbox" name="vehicle" value="Car">I have a car
 </form>
 ```
+
+<img src="./HTML教程二/14.png">
 
 #### 提交按钮(Submit Button)
 
@@ -425,8 +451,9 @@ Milk
 </form>
 ```
 
-假如您在上面的文本框内键入几个字母，然后点击确认按钮，那么输入数据会传送到`html_form_action.php`的页面，该页面将显示出输入的结果。
+<img src="./HTML教程二/15.png">
 
+假如您在上面的文本框内键入几个字母，然后点击确认按钮，那么输入数据会传送到`html_form_action.php`的页面，该页面将显示出输入的结果。
 &emsp;&emsp;下例演示如何在`HTML`中创建单选按钮：
 
 ``` xml
@@ -444,6 +471,8 @@ Milk
     </body>
 </html>
 ```
+
+<img src="./HTML教程二/16.png">
 
 &emsp;&emsp;下例演示如何在`HTML`页面中创建简单的下拉列表框，下拉列表框是一个可选列表：
 
@@ -466,6 +495,8 @@ Milk
 </html>
 ```
 
+<img src="./HTML教程二/17.png">
+
 &emsp;&emsp;下例演示如何创建一个简单的带有预选值的下拉列表：
 
 ``` xml
@@ -487,6 +518,8 @@ Milk
 </html>
 ```
 
+<img src="./HTML教程二/18.png">
+
 &emsp;&emsp;下例演示如何创建文本域(多行文本输入控件)，用户可在文本域中写入文本，可写入字符的字数不受限制：
 
 ``` xml
@@ -503,6 +536,8 @@ Milk
 </html>
 ```
 
+<img src="./HTML教程二/19.png">
+
 &emsp;&emsp;下例演示如何创建按钮，你可以对按钮上的文字进行自定义：
 
 ``` xml
@@ -518,6 +553,8 @@ Milk
     </body>
 </html>
 ```
+
+<img src="./HTML教程二/20.png">
 
 &emsp;&emsp;下例演示如何在数据周围绘制一个带标题的框：
 
@@ -540,6 +577,8 @@ Milk
 </html>
 ```
 
+<img src="./HTML教程二/21.png">
+
 &emsp;&emsp;下例演示如何向页面添加表单，此表单包含两个输入框和一个确认按钮：
 
 ``` xml
@@ -559,6 +598,8 @@ Milk
 </html>
 ```
 
+<img src="./HTML教程二/22.png">
+
 &emsp;&emsp;下例表单包含两个复选框和一个确认按钮：
 
 ``` xml
@@ -577,6 +618,8 @@ Milk
 </html>
 ```
 
+<img src="./HTML教程二/23.png">
+
 &emsp;&emsp;下例表单包含两个单选框和一个确认按钮：
 
 ``` xml
@@ -594,6 +637,8 @@ Milk
     </body>
 </html>
 ```
+
+<img src="./HTML教程二/24.png">
 
 &emsp;&emsp;下例演示如何从表单发送电子邮件：
 
@@ -619,6 +664,8 @@ Milk
 </html>
 ```
 
+<img src="./HTML教程二/25.png">
+
 ### HTML框架
 
 &emsp;&emsp;通过使用框架，你可以在同一个浏览器窗口中显示不止一个页面，即在当前页面中再显示一个页面。`iframe`语法如下，该`URL`指向不同的网页：
@@ -643,6 +690,8 @@ Milk
 </html>
 ```
 
+<img src="./HTML教程二/26.png">
+
 该`URL`指向不同的网页`iframe`的`frameborder`属性用于定义`iframe`表示是否显示边框，设置属性值为`0`则移除`iframe`的边框：
 
 ``` xml
@@ -659,6 +708,8 @@ Milk
 </html>
 ```
 
+<img src="./HTML教程二/27.png">
+
 该`URL`指向不同的网页`iframe`可以显示一个目标链接的页面，目标链接的属性必须使用`iframe`的属性：
 
 ``` xml
@@ -670,14 +721,17 @@ Milk
     <body>
         <iframe src="demo_iframe.htm" name="iframe_a"></iframe>
         <p><a href="http://www.runoob.com" target="iframe_a">RUNOOB.COM</a></p>
-        <p><b>注意：</b> 因为 a 标签的 target 属性是名为 iframe_a 的 iframe 框架，所以在点击链接时页面会显示在 iframe框架中。</p>
     </body>
 </html>
 ```
 
+<img src="./HTML教程二/28.png">
+
 ### HTML颜色
 
 &emsp;&emsp;`HTML`颜色由红色、绿色、蓝色混合而成。`HTML`颜色由一个十六进制符号来定义，这个符号由红色、绿色和蓝色的值组成(`RGB`)。三种颜色的最小值是`0`(十六进制为`#00`)，最大值是`255`(十六进制为`#FF`)。这个表格给出了由三种颜色混合而成的具体效果：
+
+<img src="./HTML教程二/29.png" width="50%">
 
 ``` xml
 <!DOCTYPE html>
@@ -698,6 +752,8 @@ Milk
     </body>
 </html>
 ```
+
+<img src="./HTML教程二/30.png">
 
 ### HTML字符实体
 
