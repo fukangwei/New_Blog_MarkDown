@@ -23,7 +23,7 @@ tags:
     </body>
 </html>
 ```
-
+<!--more-->
 &emsp;&emsp;下例演示有序列表：
 
 ``` xml
