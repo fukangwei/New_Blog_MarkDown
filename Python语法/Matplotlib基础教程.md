@@ -339,7 +339,7 @@ triplot(x, y, mask=mask, ...)
 triplot(x, y, triangles, mask=mask, ...)
 ```
 
-in which case a `Triangulation` object will be created. See `Triangulation` for a explanation of these possibilities. The remaining args and kwargs are the same as for `plot()`.
+in which case a `Triangulation` object will be created. The remaining args and kwargs are the same as for `plot()`.
 &emsp;&emsp;Return a list of 2 `Line2D` containing respectively: the lines plotted for triangles edges; the markers plotted for triangles nodes.
 
 ``` python
@@ -658,8 +658,11 @@ plt.yticks(())
 plt.show()
 ```
 
-Bar柱状图
-    使用的函数是plt.bar，参数为X和Y，X为0到11的整数，Y是相应的均匀分布的随机数据：
+### Bar柱状图
+
+&emsp;&emsp;使用的函数是`plt.bar`，参数为`X`和`Y`，`X`为`0`到`11`的整数，`Y`是相应的均匀分布的随机数据：
+
+``` python
 import matplotlib.pyplot as plt
 import numpy as np
 ​
@@ -677,21 +680,32 @@ plt.ylim(-1.25, 1.25)
 plt.yticks(())
 ​
 plt.show()
+```
 
-我们使用facecolor设置主体颜色，用edgecolor设置边框颜色：
+我们使用`facecolor`设置主体颜色，用`edgecolor`设置边框颜色：
+
+``` python
 plt.bar(X, +Y1, facecolor='#9999ff', edgecolor='white')
 plt.bar(X, -Y2, facecolor='#ff9999', edgecolor='white')
+```
 
-接下来使用函数plt.text分别在柱体上方和下方加上数值，用“%.2f”保留两位小数，横向居中对齐(ha='center')，纵向底部(顶部)对齐(“va='bottom'”和“va='top'”)：
+接下来使用函数`plt.text`分别在柱体上方和下方加上数值，用`%.2f`保留两位小数，横向居中对齐(`ha='center'`)，纵向底部(顶部)对齐(`va='bottom'`和`va='top'`)：
+
+``` python
 for x, y in zip(X, Y1):
-    plt.text(x + 0.4, y + 0.05, '%.2f' % y, ha='center', va='bottom')  # ha: horizontal alignment; va: vertical alignment
+    # ha: horizontal alignment; va: vertical alignment
+    plt.text(x + 0.4, y + 0.05, '%.2f' % y, ha='center', va='bottom')
 ​
 for x, y in zip(X, Y2):
-    plt.text(x + 0.4, -y - 0.05, '%.2f' % y, ha='center', va='top')  # ha: horizontal alignment; va: vertical alignment
+    # ha: horizontal alignment; va: vertical alignment
+    plt.text(x + 0.4, -y - 0.05, '%.2f' % y, ha='center', va='top')
+```
 
+### 横向柱状图
 
-横向柱状图
-    代码如下所示：
+&emsp;&emsp;代码如下：
+
+``` python
 import numpy as np
 import matplotlib.pyplot as plt
 ​
@@ -704,16 +718,22 @@ plt.yticks(y_pos, people)
 plt.xlabel('Performance')
 plt.title('How fast do you want to go today?')
 plt.show()
+```
 
-barh的主要功能是做一个横向条形图，横向条的矩形大小为[left, left + width, bottom, bottom + height]。函数原型如下所示：
+`barh`的主要功能是做一个横向条形图，横向条的矩形大小为`[left, left + width, bottom, bottom + height]`，函数原型如下：
+
+``` python
 barh(bottom, width, height=0.8, left=0, **kwargs)
-参数bottom是Bars的垂直位置的底部边缘，width是Bars的长度。可选参数如下所示：
-height：bars的高度。
-left：bars左边缘x轴坐标值。
-color：bars颜色。
-edgecolor：bars边缘颜色。
-linewidth：bar边缘宽度，None表示默认宽度，0表示不绘制边缘。
-xerr：若不为None，将在bar图上生成errobars。
-yerr：若不为None，将在bar图上生成errobars。
-ecolor：指定errorbar颜色。
-capsize：指定errorbar的顶部长度。
+```
+
+参数`bottom`是`Bars`的垂直位置的底部边缘，`width`是`Bars`的长度。可选参数`kwargs`如下：
+
+- `height`：`bars`的高度。
+- `left`：`bars`左边缘`x`轴坐标值。
+- `color`：`bars`颜色。
+- `edgecolor`：`bars`边缘颜色。
+- `linewidth`：`bar`边缘宽度，`None`表示默认宽度，`0`表示不绘制边缘。
+- `xerr`：若不为`None`，将在`bar`图上生成`errobars`。
+- `yerr`：若不为`None`，将在`bar`图上生成`errobars`。
+- `ecolor`：指定`errorbar`颜色。
+- `capsize`：指定`errorbar`的顶部长度。
