@@ -12,7 +12,7 @@ If boolean_expression Then
     ' User code
 End If
 ```
-
+<!--more-->
 ### if-else语句
 
 &emsp;&emsp;`if-else`语句如下：
