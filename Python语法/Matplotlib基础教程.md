@@ -552,6 +552,7 @@ plt.show()
 
 &emsp;&emsp;使用示例如下：
 
+``` python
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm  # 里面有很多颜色映射表
 from matplotlib.ticker import LinearLocator, FormatStrFormatter
@@ -565,34 +566,45 @@ Y = np.arange(-5, 5, 0.25)
 X, Y = np.meshgrid(X, Y)  # 创建X-Y平面表格
 R = np.sqrt(X ** 2 + Y ** 2)  # 计算每个点的高度
 Z = np.cos(R)
+
 surf = ax.plot_surface(
     X, Y, Z, rstride=1, cstride=1, cmap=cm.coolwarm,
     linewidth=0, antialiased=False
 )
+
 ax.set_zlim(-1.01, 1.01)
-ax.zaxis.set_major_locator(LinearLocator(10))  # 设置z轴的坐标为线性的，且有10个坐标标记
-ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))  # 设置了z轴坐标的显示格式
+# 设置z轴的坐标为线性的，且有10个坐标标记
+ax.zaxis.set_major_locator(LinearLocator(10))
+# 设置了z轴坐标的显示格式
+ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
 fig.colorbar(surf, shrink=.5, aspect=5)  # 设置颜色带的大小
 plt.show()
+```
 
+### 显示灰度图
 
-显示灰度图
-    代码如下所示：
+&emsp;&emsp;代码如下：
+
+``` python
 import cv2
 import matplotlib.pyplot as plt
 ​
 img = cv2.imread('lena.jpg', 0)
 plt.imshow(img, cmap='gray')  # 灰度图显示，cmap(color map)设置为gray
 plt.show()
+```
 
+### 显示彩色图
 
-显示彩色图
-    OpenCV中的图像是以BGR的通道顺序存储的，但Matplotlib是以RGB模式显示的，所以直接在Matplotlib中显示OpenCV图像会出现问题，因此需要转换一下：
+&emsp;&emsp;`OpenCV`中的图像是以`BGR`的通道顺序存储的，但`Matplotlib`是以`RGB`模式显示的，所以直接在`Matplotlib`中显示`OpenCV`图像会出现问题，因此需要转换一下：
+
+``` python
 import cv2
 import matplotlib.pyplot as plt
 ​
 img = cv2.imread('lena.jpg')
-img2 = img[:, :, ::-1]  # 或使用“img2 = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)”
+ # 或使用“img2 = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)”
+img2 = img[:, :, ::-1]
 # 显示不正确的图
 plt.subplot(121)
 plt.imshow(img)
@@ -601,11 +613,15 @@ plt.subplot(122)
 plt.xticks([]), plt.yticks([])  # 隐藏x和y轴
 plt.imshow(img2)
 plt.show()
-img[:,:,0]表示图片的蓝色通道，熟悉Python的同学应该知道，对一个字符串s进行翻转用的是s[::-1]。同样的原理，img[:,:,::-1]就表示BGR通道翻转，变成RGB：
+```
 
+`img[:, :, 0]`表示图片的蓝色通道，熟悉`Python`的同学应该知道，对一个字符串`s`进行翻转用的是`s[::-1]`。同样的原理，`img[:, :, ::-1]`就表示`BGR`通道翻转，变成`RGB`：
 
-等高线图
-    数据集即坐标点(x,y)和对应的高度值，共有256个坐标点。高度值使用一个“height function f(x,y)”生成。x、y分别是在区间[-3,3]中均匀分布的256个值，并用meshgrid在二维平面中将x和y一一对应起来，编织成栅格：
+### 等高线图
+
+&emsp;&emsp;数据集即坐标点`(x, y)`和对应的高度值，共有`256`个坐标点。高度值使用一个`height function f(x, y)`生成。`x`、`y`分别是在区间`[-3, 3]`中均匀分布的`256`个值，并用`meshgrid`在二维平面中将x和y一一对应起来，编织成栅格：
+
+``` python
 import matplotlib.pyplot as plt
 import numpy as np
 ​
@@ -616,16 +632,30 @@ n = 256
 x = np.linspace(-3, 3, n)
 y = np.linspace(-3, 3, n)
 X, Y = np.meshgrid(x, y)
-接下来进行颜色填充，使用函数plt.contourf把颜色加进去，位置参数分别为X、Y和f(X,Y)，透明度为0.75，并将f(X,Y)的值对应到“color map”的暖色组中寻找对应颜色：
-plt.contourf(X, Y, f(X, Y), 8, alpha=.75, cmap=plt.cm.hot)  # use plt.contourf to filling contours. X, Y and value for (X,Y) point
-接下来进行等高线绘制，使用plt.contour函数划线，位置参数为X、Y和f(X,Y)，颜色为黑色，线条宽度为0.5，等高线的密集程度为8：
-C = plt.contour(X, Y, f(X, Y), 8, colors='black', linewidth=.5)  # use plt.contour to add contour lines
-接下来添加高度数字，inline控制是否将Label画在线里面，fontsize设置字体大小为10：
+```
+
+接下来进行颜色填充，使用函数`plt.contourf`把颜色加进去，位置参数分别为`X`、`Y`和`f(X, Y)`，透明度为`0.75`，并将`f(X, Y)`的值对应到`color map`的暖色组中寻找对应颜色：
+
+``` python
+# use plt.contourf to filling contours. X, Y and value for (X,Y) point
+plt.contourf(X, Y, f(X, Y), 8, alpha=.75, cmap=plt.cm.hot)
+```
+
+接下来进行等高线绘制，使用`plt.contour`函数划线，位置参数为`X`、`Y`和`f(X, Y)`，颜色为黑色，线条宽度为`0.5`，等高线的密集程度为`8`：
+
+``` python
+# use plt.contour to add contour lines
+C = plt.contour(X, Y, f(X, Y), 8, colors='black', linewidth=.5)
+```
+
+接下来添加高度数字，`inline`控制是否将`Label`画在线里面，`fontsize`设置字体大小为`10`：
+
+``` python
 plt.clabel(C, inline=True, fontsize=10)
 plt.xticks(())
 plt.yticks(())
 plt.show()
-
+```
 
 Bar柱状图
     使用的函数是plt.bar，参数为X和Y，X为0到11的整数，Y是相应的均匀分布的随机数据：
