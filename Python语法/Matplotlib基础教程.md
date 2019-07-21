@@ -318,18 +318,30 @@ plt.show()
 
 &emsp;&emsp;Draw a unstructured triangular grid as lines and/or markers.
 
+``` python
 matplotlib.pyplot.triplot(*args, **kwargs)
+```
 
 The triangulation to plot can be specified in one of two ways; either:
+
+``` python
 triplot(triangulation, ...)
+```
+
 where triangulation is a matplotlib.tri.Triangulation object, or
+
+``` python
 triplot(x, y, ...)
 triplot(x, y, triangles, ...)
 triplot(x, y, triangles=triangles, ...)
 triplot(x, y, mask=mask, ...)
 triplot(x, y, triangles, mask=mask, ...)
-in which case a Triangulation object will be created. See Triangulation for a explanation of these possibilities. The remaining args and kwargs are the same as for plot().
-    Return a list of 2 Line2D containing respectively: the lines plotted for triangles edges; the markers plotted for triangles nodes.
+```
+
+in which case a `Triangulation` object will be created. See `Triangulation` for a explanation of these possibilities. The remaining args and kwargs are the same as for `plot()`.
+&emsp;&emsp;Return a list of 2 `Line2D` containing respectively: the lines plotted for triangles edges; the markers plotted for triangles nodes.
+
+``` python
 from matplotlib import pyplot as plt
 import matplotlib.tri as tri
 import numpy as np
@@ -338,13 +350,16 @@ rand_data = np.random.randn(50, 2)
 triangulation = tri.Triangulation(rand_data[:, 0], rand_data[:, 1])
 plt.triplot(triangulation)
 plt.show()
+```
 
+### 绘制三维数据
 
-绘制三维数据
-    代码如下所示：
+&emsp;&emsp;代码如下：
+
+``` python
 import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D  # 这行代码必须要加上
+from mpl_toolkits.mplot3d import Axes3D
 ​
 fig = plt.figure()
 ax = fig.gca(projection='3d')
@@ -360,16 +375,23 @@ ax.set_xlim3d(x.min(), x.max())
 ax.set_ylim3d(y.min(), y.max())
 ax.set_zlim3d(z.min(), z.max())
 plt.show()
+```
 
+### 清除图像
 
-清除图像
-    Matplotlib提供了以下功能：
+&emsp;&emsp;`Matplotlib`提供了以下功能：
+
+``` python
 cla() # Clear axis
 clf() # Clear figure
 close() # Close a figure window
+```
 
-动态图
-    代码如下所示：
+### 动态图
+
+&emsp;&emsp;代码如下：
+
+``` python
 import matplotlib.pyplot as plt
 import numpy as np
 ​
@@ -384,16 +406,28 @@ for i in range(50):
     plt.show()
 ​
 plt.pause(1)
+```
 
-没有GUI时使用matplotlib绘图
-    在“import matplotlib.pyplot as plt”语句之前添加如下语句：
+#### 没有GUI时使用matplotlib绘图
+
+&emsp;&emsp;在`import matplotlib.pyplot as plt`语句之前添加如下语句：
+
+``` python
 import matplotlib as mpl
 mpl.use('Agg')
-在plt.draw或者plt.show之后添加生成图片的代码：
- plt.savefig("picture_name.jpg")
+```
 
-add_subplot函数
-    代码如下所示：
+在`plt.draw`或者`plt.show`之后添加生成图片的代码：
+
+``` python
+plt.savefig("picture_name.jpg")
+```
+
+### add_subplot函数
+
+&emsp;&emsp;代码如下：
+
+``` python
 import matplotlib.pyplot as plt
 import numpy as np
 ​
@@ -403,6 +437,8 @@ ax = fig.add_subplot(223)
 ax.plot(x, np.sin(x))
 ax.set_title("OutPut")
 plt.show()
+```
+
 “223”的意思是将画布分割成2行2列，图像画在从左到右从上到下的第3块：
 
 如果其中有数字不是个位数，需要使用逗号进行隔开，例如“ax = fig.add_subplot(3,4,10)”。
