@@ -1,7 +1,7 @@
 ---
 title: VBA字符串
 date: 2019-07-21 12:53:52
-tags:
+categories: VBA编程
 ---
 &emsp;&emsp;预定义的`VBA`字符串函数可以帮助开发人员非常有效地处理字符串，以下是`VBA`支持的字符串处理方法。
 <!--more-->
