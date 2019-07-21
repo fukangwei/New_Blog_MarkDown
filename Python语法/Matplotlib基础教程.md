@@ -89,7 +89,9 @@ plt.show()
 
 ### 简单的散点图
 
-    散点图是一堆离散点的集合，用Matplotlib画散点图也同样非常简单：
+&emsp;&emsp;散点图是一堆离散点的集合，用`Matplotlib`画散点图也同样非常简单：
+
+``` python
 import matplotlib.pyplot as plt
 import numpy as np
 ​
@@ -97,11 +99,15 @@ x = np.linspace(0, 2 * np.pi, 50)
 y = np.sin(x)
 plt.scatter(x, y)
 plt.show()
+```
 
-你只需要调用scatter函数并传入两个分别代表x坐标和y坐标的数组。注意，我们通过plot命令并将线的样式设置为“bo”也可以实现同样的效果。
+你只需要调用`scatter`函数并传入两个分别代表`x`坐标和`y`坐标的数组。
 
-彩色映射散点图
-    另一种你可能用到的图形是彩色映射散点图。这里我们会根据数据的大小给每个点赋予不同的颜色和大小，并在图中添加一个颜色栏：
+### 彩色映射散点图
+
+&emsp;&emsp;另一种你可能用到的图形是彩色映射散点图。这里我们会根据数据的大小给每个点赋予不同的颜色和大小，并在图中添加一个颜色栏：
+
+``` python
 import matplotlib.pyplot as plt
 import numpy as np
 ​
@@ -112,6 +118,7 @@ colour = np.random.rand(1000)
 plt.scatter(x, y, size, colour)
 plt.colorbar()
 plt.show()
+```
 
 上面的代码大量地用到了np.random.rand(1000)，原因是绘图的数据都是随机产生的。同前面一样用到了scatter函数，但是这次传入了另外的两个参数，分别为所绘点的大小和颜色。通过这种方式使得图上点的大小和颜色根据数据的大小产生变化。最后用colorbar函数添加了一个颜色栏。
 
