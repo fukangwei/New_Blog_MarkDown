@@ -305,6 +305,24 @@ Milk
 
 ### HTML表单
 
+&emsp;&emsp;`HTML`表单标签如下：
+
+标签         | 描述
+-------------|-----
+`<form>`     | 定义供用户输入的表单
+`<input>`    | 定义输入域
+`<textarea>` | 定义文本域(一个多行的输入控件)
+`<label>`    | 定义了`<input>`元素的标签，一般为输入标题
+`<fieldset>` | 定义了一组相关的表单元素，并使用外框包含起来
+`<legend>`   | 定义了`<fieldset>`元素的标题
+`<select>`   | 定义了下拉选项列表
+`<optgroup>` | 定义选项组
+`<option>`   | 定义下拉列表中的选项
+`<button>`   | 定义一个点击按钮
+`<datalist>` | 指定一个预先定义的输入控件选项列表
+`<keygen>`   | 定义了表单的密钥对生成器字段
+`<output>`   | 定义一个计算结果
+
 &emsp;&emsp;`HTML`表单用于搜集不同类型的用户输入。下例演示如何在`HTML`页面创建文本域，用户可以在文本域中写入文本：
 
 ``` xml
@@ -412,6 +430,7 @@ Milk
 
 &emsp;&emsp;下例演示如何在`HTML`中创建单选按钮：
 
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -425,8 +444,11 @@ Milk
         <p><b>注意：</b>当用户点击一个单选按钮时，它就会被选中，其他同名的单选按钮就不会被选中。</p>
     </body>
 </html>
+```
 
-    下例演示如何在HTML页面中创建简单的下拉列表框，下拉列表框是一个可选列表：
+&emsp;&emsp;下例演示如何在`HTML`页面中创建简单的下拉列表框，下拉列表框是一个可选列表：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -443,8 +465,11 @@ Milk
         </form>
     </body>
 </html>
+```
 
-    下例演示如何创建一个简单的带有预选值的下拉列表：
+&emsp;&emsp;下例演示如何创建一个简单的带有预选值的下拉列表：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -461,8 +486,11 @@ Milk
         </form>
     </body>
 </html>
+```
 
-    下例演示如何创建文本域(多行文本输入控件)，用户可在文本域中写入文本，可写入字符的字数不受限制：
+&emsp;&emsp;下例演示如何创建文本域(多行文本输入控件)，用户可在文本域中写入文本，可写入字符的字数不受限制：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -474,8 +502,11 @@ Milk
         </textarea>
     </body>
 </html>
+```
 
-    下例演示如何创建按钮，你可以对按钮上的文字进行自定义：
+&emsp;&emsp;下例演示如何创建按钮，你可以对按钮上的文字进行自定义：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -487,8 +518,11 @@ Milk
         </form>
     </body>
 </html>
+```
 
-    下例演示如何在数据周围绘制一个带标题的框：
+&emsp;&emsp;下例演示如何在数据周围绘制一个带标题的框：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -505,8 +539,11 @@ Milk
         </form>
     </body>
 </html>
+```
 
-    下例演示如何向页面添加表单，此表单包含两个输入框和一个确认按钮：
+&emsp;&emsp;下例演示如何向页面添加表单，此表单包含两个输入框和一个确认按钮：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -521,8 +558,11 @@ Milk
         <p>点击"提交"按钮，表单数据将被发送到服务器上的“demo-form.php”。</p>
     </body>
 </html>
+```
 
-    下例表单包含两个复选框和一个确认按钮：
+&emsp;&emsp;下例表单包含两个复选框和一个确认按钮：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -536,8 +576,11 @@ Milk
         </form>
     </body>
 </html>
+```
 
-    下例表单包含两个单选框和一个确认按钮：
+&emsp;&emsp;下例表单包含两个单选框和一个确认按钮：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -551,8 +594,11 @@ Milk
         </form>
     </body>
 </html>
+```
 
-    下例演示如何从表单发送电子邮件：
+&emsp;&emsp;下例演示如何从表单发送电子邮件：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -572,29 +618,19 @@ Milk
         </form>
     </body>
 </html>
+```
 
-    HTML表单标签如下所示：
-标签          描述
-------------------
-<form>        定义供用户输入的表单
-<input>       定义输入域
-<textarea>    定义文本域(一个多行的输入控件)
-<label>       定义了<input>元素的标签，一般为输入标题
-<fieldset>    定义了一组相关的表单元素，并使用外框包含起来
-<legend>      定义了<fieldset>元素的标题
-<select>      定义了下拉选项列表
-<optgroup>    定义选项组
-<option>      定义下拉列表中的选项
-<button>      定义一个点击按钮
-<datalist>    指定一个预先定义的输入控件选项列表
-<keygen>      定义了表单的密钥对生成器字段
-<output>      定义一个计算结果
+### HTML框架
 
-HTML框架
-    通过使用框架，你可以在同一个浏览器窗口中显示不止一个页面，即在当前页面中再显示一个页面。iframe语法如下所示：
+&emsp;&emsp;通过使用框架，你可以在同一个浏览器窗口中显示不止一个页面，即在当前页面中再显示一个页面。`iframe`语法如下，该`URL`指向不同的网页：
+
+``` xml
 <iframe src="URL"></iframe>
-该URL指向不同的网页。
-    iframe的height和width属性用来定义iframe标签的高度与宽度，属性默认以像素为单位，但是你可以指定其按比例显示(例如“80%”)。
+```
+
+&emsp;&emsp;`iframe`的`height`和`width`属性用来定义`iframe`标签的高度与宽度，属性默认以像素为单位，但是你可以指定其按比例显示(例如`80%`)。
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -606,8 +642,11 @@ HTML框架
         <p>如果浏览器不支持 iframes 则不会显示。</p>
     </body>
 </html>
+```
 
-    iframe的frameborder属性用于定义iframe表示是否显示边框，设置属性值为“0”则移除iframe的边框：
+该`URL`指向不同的网页`iframe`的`frameborder`属性用于定义`iframe`表示是否显示边框，设置属性值为`0`则移除`iframe`的边框：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -619,8 +658,11 @@ HTML框架
         </iframe>
     </body>
 </html>
+```
 
-    iframe可以显示一个目标链接的页面，目标链接的属性必须使用iframe的属性，如下实例：
+该`URL`指向不同的网页`iframe`可以显示一个目标链接的页面，目标链接的属性必须使用`iframe`的属性：
+
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -632,12 +674,13 @@ HTML框架
         <p><b>注意：</b> 因为 a 标签的 target 属性是名为 iframe_a 的 iframe 框架，所以在点击链接时页面会显示在 iframe框架中。</p>
     </body>
 </html>
+```
 
+### HTML颜色
 
-HTML颜色
-    HTML颜色由红色、绿色、蓝色混合而成。HTML颜色由一个十六进制符号来定义，这个符号由红色、绿色和蓝色的值组成(RGB)。三种颜色的最小值是0(十六进制为#00)，最大值是255(十六进制为#FF)。这个表格给出了由三种颜色混合而成的具体效果：
+&emsp;&emsp;`HTML`颜色由红色、绿色、蓝色混合而成。`HTML`颜色由一个十六进制符号来定义，这个符号由红色、绿色和蓝色的值组成(`RGB`)。三种颜色的最小值是`0`(十六进制为`#00`)，最大值是`255`(十六进制为`#FF`)。这个表格给出了由三种颜色混合而成的具体效果：
 
-    实例如下所示：
+``` xml
 <!DOCTYPE html>
 <html>
     <head>
@@ -655,6 +698,7 @@ HTML颜色
         </p>
     </body>
 </html>
+```
 
 HTML字符实体
     HTML中的预留字符必须被替换为字符实体。一些在键盘上找不到的字符也可以使用字符实体来替换。
