@@ -502,14 +502,19 @@ plt.axis('equal')
 plt.show()
 ```
 
-heatmap的绘制
-    代码如下所示：
+### heatmap的绘制
+
+&emsp;&emsp;代码如下：
+
+``` python
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 ​
-vegetables = ["cucumber", "tomato", "lettuce", "asparagus", "potato", "wheat", "barley"]
-farmers = ["Farmer Joe", "Upland Bros.", "Smith Gardening", "Agrifun", "Organiculture", "BioGoods Ltd.", "Cornylee Corp."]
+vegetables = ["cucumber", "tomato", "lettuce",
+              "asparagus", "potato", "wheat", "barley"]
+farmers = ["Farmer Joe", "Upland Bros.", "Smith Gardening",
+           "Agrifun", "Organiculture", "BioGoods Ltd.", "Cornylee Corp."]
 ​
 harvest = np.array(
     [[0.8, 2.4, 2.5, 3.9, 0.0, 4.0, 0.0],
@@ -530,19 +535,23 @@ ax.set_yticks(np.arange(len(vegetables)))
 # label them with the respective list entries
 ax.set_xticklabels(farmers)
 ax.set_yticklabels(vegetables)
-plt.setp(ax.get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")  # Rotate the tick labels and set their alignment
+# Rotate the tick labels and set their alignment
+plt.setp(ax.get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
 ​
-for i in range(len(vegetables)):  # Loop over data dimensions and create text annotations
+# Loop over data dimensions and create text annotations
+for i in range(len(vegetables)):
     for j in range(len(farmers)):
         text = ax.text(j, i, harvest[i, j], ha="center", va="center", color="w")
 ​
 ax.set_title("Harvest of local farmers (in tons/year)")
 fig.tight_layout()
 plt.show()
+```
 
+### LinearLocator
 
-LinearLocator
-    使用示例如下所示：
+&emsp;&emsp;使用示例如下：
+
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm  # 里面有很多颜色映射表
 from matplotlib.ticker import LinearLocator, FormatStrFormatter
