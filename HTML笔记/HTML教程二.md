@@ -126,7 +126,6 @@ Milk
         <meta charset="utf-8">
     </head>
     <body>
-        <p><b>注意：</b> 在 HTML 4中 ul 属性已废弃，HTML5 已不支持该属性，因此我们使用 CSS 代替来定义不同类型的无序列表如下：</p>
         <h4>圆点列表：</h4>
         <ul style="list-style-type:disc">
         <li>Apples</li>
