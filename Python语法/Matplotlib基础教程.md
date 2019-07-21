@@ -120,21 +120,28 @@ plt.colorbar()
 plt.show()
 ```
 
-上面的代码大量地用到了np.random.rand(1000)，原因是绘图的数据都是随机产生的。同前面一样用到了scatter函数，但是这次传入了另外的两个参数，分别为所绘点的大小和颜色。通过这种方式使得图上点的大小和颜色根据数据的大小产生变化。最后用colorbar函数添加了一个颜色栏。
+上面的代码大量地用到了`np.random.rand(1000)`，原因是绘图的数据都是随机产生的。同前面一样用到了`scatter`函数，但是这次传入了另外的两个参数，分别为所绘点的大小和颜色。通过这种方式使得图上点的大小和颜色根据数据的大小产生变化。最后用`colorbar`函数添加了一个颜色栏。
 
-直方图
-    直方图是另一种常见的图形，也可以通过几行代码创建出来：
+### 直方图
+
+&emsp;&emsp;直方图是另一种常见的图形，也可以通过几行代码创建出来：
+
+``` python
 import matplotlib.pyplot as plt
 import numpy as np
 ​
 x = np.random.randn(1000)
 plt.hist(x, 50)
 plt.show()
+```
 
-直方图是Matplotlib中最简单的图形之一，你只需要给hist函数传入一个包含数据的数组，第二个参数代表数据容器的个数。数据容器代表不同的值的间隔，并用来包含我们的数据。数据容器越多，图形上的数据条就越多。
+直方图是`Matplotlib`中最简单的图形之一，你只需要给`hist`函数传入一个包含数据的数组，第二个参数代表数据容器的个数。数据容器代表不同的值的间隔，并用来包含我们的数据。数据容器越多，图形上的数据条就越多。
 
-标题、标签和图例
-    当需要快速创建图形时，你可能不需要为图形添加标签。但是当构建需要展示的图形时，你就需要添加标题、标签和图例：
+### 标题、标签和图例
+
+&emsp;&emsp;当需要快速创建图形时，你可能不需要为图形添加标签。但是当构建需要展示的图形时，你就需要添加标题、标签和图例：
+
+``` python
 import matplotlib.pyplot as plt
 import numpy as np
 ​
@@ -146,16 +153,20 @@ plt.xlabel('Rads')  # 给x轴添加标签
 plt.ylabel('Amplitude')  # 给y轴添加标签
 plt.title('Sin and Cos Waves')  # 添加图形标题
 plt.show()
+```
 
-为了给图形添加图例，我们需要在plot函数中添加命名参数label，并赋予该参数相应的标签，然后调用legend函数就会在图形中添加图例。接下来只需要调用函数title、xlabel和ylabel就可以为图形添加标题和标签。
+为了给图形添加图例，我们需要在`plot`函数中添加命名参数`label`，并赋予该参数相应的标签，然后调用`legend`函数就会在图形中添加图例。接下来只需要调用函数`title`、`xlabel`和`ylabel`就可以为图形添加标题和标签。
 
-显示图片
-    显示图片的代码如下所示：
+### 显示图片
+
+&emsp;&emsp;显示图片的代码如下：
+
 import matplotlib.pyplot as plt
 plt.imshow(img)  # img是图片
 imshow函数格式为：
 matplotlib.pyplot.imshow(X, cmap=None)
 参数X是要绘制的图像或数组，cmap是颜色图谱(colormap)，默认绘制为RGB(A)颜色空间。其它可选的颜色图谱如下所示：
+
 颜色图谱  描述
 --------------
 autumn    红-橙-黄
