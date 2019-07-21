@@ -161,43 +161,53 @@ plt.show()
 
 &emsp;&emsp;显示图片的代码如下：
 
+``` python
 import matplotlib.pyplot as plt
-plt.imshow(img)  # img是图片
-imshow函数格式为：
-matplotlib.pyplot.imshow(X, cmap=None)
-参数X是要绘制的图像或数组，cmap是颜色图谱(colormap)，默认绘制为RGB(A)颜色空间。其它可选的颜色图谱如下所示：
 
-颜色图谱  描述
---------------
-autumn    红-橙-黄
-bone      黑-白，x线
-cool      青-洋红
-copper    黑-铜
-flag      红-白-蓝-黑
-gray      黑-白
-hot       黑-红-黄-白
-hsv       hsv颜色空间
-inferno   黑-红-黄
-jet       蓝-青-黄-红
-magma     黑-红-白
-pink      黑-粉-白
-plasma    绿-红-黄
-spring    洋红-黄
-summer    绿-黄
-viridis   蓝-绿-黄
-winter    蓝-绿
-用的比较多的是gray、jet，如下所示：
+plt.imshow(img)  # img是图片
+```
+
+`imshow`函数格式为：
+
+``` python
+matplotlib.pyplot.imshow(X, cmap=None)
+```
+
+参数X是要绘制的图像或数组，`cmap`是颜色图谱(`colormap`)，默认绘制为`RGB`颜色空间。其它可选的颜色图谱如下：
+
+颜色图谱   | 描述       | 颜色图谱   | 描述
+----------|------------|-----------|------
+`autumn`  | 红-橙-黄    | `bone`    | 黑-白，x线
+`cool`    | 青-洋红     | `copper`  | 黑-铜
+`flag`    | 红-白-蓝-黑 | `gray`    | 黑-白
+`hot`     | 黑-红-黄-白 | `hsv`     | hsv颜色空间
+`inferno` | 黑-红-黄    | `jet`     | 蓝-青-黄-红
+`magma`   | 黑-红-白    | `pink`    | 黑-粉-白
+`plasma`  | 绿-红-黄    | `spring`  | 洋红-黄
+`summer`  | 绿-黄       | `viridis` | 蓝-绿-黄
+`winter`  | 蓝-绿
+
+用的比较多的是`gray`、`jet`：
+
+``` python
 plt.imshow(image, plt.cm.gray)
 plt.imshow(img, cmap=plt.cm.jet)
-实际应用如下所示：
+```
+
+实际应用如下：
+
+``` python
 import matplotlib.pyplot as plt
 from skimage import data
 ​
 img = data.astronaut()
 plt.imshow(img)
 plt.show()
+```
 
-    matplotlib是一个专业绘图的库，相当于matlab中的plot，可以设置多个figure窗口，设置figure的标题，隐藏坐标尺，甚至可以使用subplot在一个figure中显示多张图片：
+&emsp;&emsp;`matplotlib`可以设置多个`figure`窗口，设置`figure`的标题，隐藏坐标尺，甚至可以使用`subplot`在一个`figure`中显示多张图片：
+
+``` python
 from skimage import data
 import matplotlib.pyplot as plt
 ​
@@ -224,18 +234,24 @@ plt.imshow(img[:, :, 2], plt.cm.gray)  # 绘制第四幅图片，且为灰度图
 plt.axis('off')  # 不显示坐标尺寸
 ​
 plt.show()  # 显示窗口
+```
 
-    在图片绘制过程中，我们用matplotlib.pyplot模块下的figure函数来创建显示窗口，该函数的格式为：
+&emsp;&emsp;在图片绘制过程中，我们用`matplotlib.pyplot`模块下的`figure`函数来创建显示窗口：
+
+``` python
 matplotlib.pyplot.figure(num=None, figsize=None, dpi=None, facecolor=None, edgecolor=None)
-所有参数都是可选的，都有默认值，因此调用该函数时可以不带任何参数。参数说明如下所示：
-num：整型或字符型都可以。如果设置为整型，则该整型数字表示窗口的序号；如果设置为字符型，则该字符串表示窗口的名称。用该参数来命名窗口，如果两个窗口序号或名称相同，则后一个窗口会覆盖前一个窗口。
-figsize：设置窗口大小，tuple类型，如“figsize = (8,8)”。
-dpi：整型数字，表示窗口的分辨率。
-facecolor：窗口的背景颜色。
-edgecolor：窗口的边框颜色。
-    用figure函数创建的窗口，只能显示一幅图片，如果想要显示多幅图片，则需要将这个窗口再划分为几个子图，在每个子图中显示不同的图片。我们可以使用subplot函数来划分子图。
+```
 
-调整名字和间隔
+- num：整型或字符型都可以。如果设置为整型，则该整型数字表示窗口的序号；如果设置为字符型，则该字符串表示窗口的名称。用该参数来命名窗口，如果两个窗口序号或名称相同，则后一个窗口会覆盖前一个窗口。
+- figsize：设置窗口大小，tuple类型，如“figsize = (8, 8)”。
+- dpi：整型数字，表示窗口的分辨率。
+- facecolor：窗口的背景颜色。
+- edgecolor：窗口的边框颜色。
+
+&emsp;&emsp;用figure函数创建的窗口，只能显示一幅图片，如果想要显示多幅图片，则需要将这个窗口再划分为几个子图，在每个子图中显示不同的图片。我们可以使用subplot函数来划分子图。
+
+### 调整名字和间隔
+
     使用import导入模块matplotlib.pyplot，并简写成plt；使用import导入模块numpy，并简写成np：
 import matplotlib.pyplot as plt
 import numpy as np
