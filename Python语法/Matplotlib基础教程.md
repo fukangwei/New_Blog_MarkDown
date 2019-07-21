@@ -18,6 +18,8 @@ plt.plot(x, np.sin(x))  # 如果没有第一个参数x，图形的x坐标默认�
 plt.show()  # 显示图形
 ```
 
+<img src="./Matplotlib基础教程/1.png" width="40%">
+
 ### 在一张图上绘制两个数据集
 
 &emsp;&emsp;大多数时候读者可能更想在一张图上绘制多个数据集，用`Matplotlib`也可以轻松实现这一点：
@@ -31,6 +33,8 @@ plt.plot(x, np.sin(x), x, np.sin(2 * x))
 plt.show()
 ```
 
+<img src="./Matplotlib基础教程/2.png" width="40%">
+
 ### 自定义图形的外观
 
 &emsp;&emsp;当在同一个图形上展示多个数据集时，通过改变线条的外观来区分不同的数据集变得非常必要：
@@ -43,6 +47,8 @@ x = np.linspace(0, 2 * np.pi, 50)
 plt.plot(x, np.sin(x), 'r-o', x, np.cos(x), 'g--')
 plt.show()
 ```
+
+<img src="./Matplotlib基础教程/3.png" width="40%">
 
 上述代码展示了两种不同的曲线样式，即`r-o`和`g--`。字母`r`和`g`代表线条的颜色，后面的符号代表线和点标记的类型。例如`-o`代表包含实心点标记的实线，`--`代表虚线。
 &emsp;&emsp;基本颜色格式命令如下：
@@ -85,6 +91,8 @@ plt.plot(x, np.cos(x), 'g')
 plt.show()
 ```
 
+<img src="./Matplotlib基础教程/4.png" width="40%">
+
 &emsp;&emsp;使用子图只需要一个额外的步骤，就可以像前面的例子一样绘制数据集，即在调用`plot`函数之前需要先调用`subplot`函数。该函数的第一个参数代表子图的总行数，第二个参数代表子图的总列数，第三个参数代表活跃区域。活跃区域代表当前子图所在绘图区域，绘图区域是按从左至右，从上至下的顺序编号。例如在`4 * 4`的方格上，活跃区域`6`在方格上的坐标为`(2, 2)`。
 
 ### 简单的散点图
@@ -100,6 +108,8 @@ y = np.sin(x)
 plt.scatter(x, y)
 plt.show()
 ```
+
+<img src="./Matplotlib基础教程/5.png" width="40%">
 
 你只需要调用`scatter`函数并传入两个分别代表`x`坐标和`y`坐标的数组。
 
@@ -120,6 +130,8 @@ plt.colorbar()
 plt.show()
 ```
 
+<img src="./Matplotlib基础教程/6.png" width="40%">
+
 上面的代码大量地用到了`np.random.rand(1000)`，原因是绘图的数据都是随机产生的。同前面一样用到了`scatter`函数，但是这次传入了另外的两个参数，分别为所绘点的大小和颜色。通过这种方式使得图上点的大小和颜色根据数据的大小产生变化。最后用`colorbar`函数添加了一个颜色栏。
 
 ### 直方图
@@ -134,6 +146,8 @@ x = np.random.randn(1000)
 plt.hist(x, 50)
 plt.show()
 ```
+
+<img src="./Matplotlib基础教程/7.png" width="40%">
 
 直方图是`Matplotlib`中最简单的图形之一，你只需要给`hist`函数传入一个包含数据的数组，第二个参数代表数据容器的个数。数据容器代表不同的值的间隔，并用来包含我们的数据。数据容器越多，图形上的数据条就越多。
 
@@ -154,6 +168,8 @@ plt.ylabel('Amplitude')  # 给y轴添加标签
 plt.title('Sin and Cos Waves')  # 添加图形标题
 plt.show()
 ```
+
+<img src="./Matplotlib基础教程/8.png" width="40%">
 
 为了给图形添加图例，我们需要在`plot`函数中添加命名参数`label`，并赋予该参数相应的标签，然后调用`legend`函数就会在图形中添加图例。接下来只需要调用函数`title`、`xlabel`和`ylabel`就可以为图形添加标题和标签。
 
@@ -205,6 +221,8 @@ plt.imshow(img)
 plt.show()
 ```
 
+<img src="./Matplotlib基础教程/9.png" width="40%">
+
 &emsp;&emsp;`matplotlib`可以设置多个`figure`窗口，设置`figure`的标题，隐藏坐标尺，甚至可以使用`subplot`在一个`figure`中显示多张图片：
 
 ``` python
@@ -236,6 +254,8 @@ plt.axis('off')  # 不显示坐标尺寸
 ​
 plt.show()  # 显示窗口
 ```
+
+<img src="./Matplotlib基础教程/10.png" width="40%">
 
 &emsp;&emsp;在图片绘制过程中，我们用`matplotlib.pyplot`模块下的`figure`函数来创建显示窗口：
 
@@ -286,6 +306,8 @@ plt.ylabel('I am y')
 plt.show()
 ```
 
+<img src="./Matplotlib基础教程/11.png" width="40%">
+
 使用`plt.xticks`设置`x`轴刻度，范围是`(-1, 2)`，个数是`5`：
 
 ``` python
@@ -303,6 +325,8 @@ plt.yticks(
 plt.show()
 ```
 
+<img src="./Matplotlib基础教程/12.png" width="60%">
+
 设置坐标轴的范围还可以使用`axis`函数：
 
 ``` python
@@ -314,6 +338,8 @@ plt.plot(x, x ** 2)
 plt.axis([-100, 100, 0, 10000])  # 设置x轴的最小值、最大值和y轴的最小值、最大值
 plt.show()
 ```
+
+<img src="./Matplotlib基础教程/13.png" width="40%">
 
 ### matplotlib.pyplot.triplot
 
@@ -353,6 +379,8 @@ plt.triplot(triangulation)
 plt.show()
 ```
 
+<img src="./Matplotlib基础教程/14.png" width="40%">
+
 ### 绘制三维数据
 
 &emsp;&emsp;代码如下：
@@ -377,6 +405,8 @@ ax.set_ylim3d(y.min(), y.max())
 ax.set_zlim3d(z.min(), z.max())
 plt.show()
 ```
+
+<img src="./Matplotlib基础教程/15.png" width="40%">
 
 ### 清除图像
 
@@ -442,6 +472,8 @@ plt.show()
 
 `223`的意思是将画布分割成`2`行`2`列，图像画在从左到右从上到下的第`3`块：
 
+<img src="./Matplotlib基础教程/16.png" width="40%">
+
 如果其中有数字不是个位数，需要使用逗号进行隔开，例如`ax = fig.add_subplot(3, 4, 10)`。
 
 ### rcParams函数
@@ -484,6 +516,8 @@ if __name__ == '__main__':
     main()
 ```
 
+<img src="./Matplotlib基础教程/17.png" width="40%">
+
 ### PatchCollection函数
 
 &emsp;&emsp;绘制图形的代码如下：
@@ -502,6 +536,8 @@ ax.add_collection(collection)
 plt.axis('equal')
 plt.show()
 ```
+
+<img src="./Matplotlib基础教程/18.png" width="40%">
 
 ### heatmap的绘制
 
@@ -549,6 +585,8 @@ fig.tight_layout()
 plt.show()
 ```
 
+<img src="./Matplotlib基础教程/19.png" width="40%">
+
 ### LinearLocator
 
 &emsp;&emsp;使用示例如下：
@@ -582,6 +620,8 @@ fig.colorbar(surf, shrink=.5, aspect=5)  # 设置颜色带的大小
 plt.show()
 ```
 
+<img src="./Matplotlib基础教程/20.png" width="40%">
+
 ### 显示灰度图
 
 &emsp;&emsp;代码如下：
@@ -594,6 +634,8 @@ img = cv2.imread('lena.jpg', 0)
 plt.imshow(img, cmap='gray')  # 灰度图显示，cmap(color map)设置为gray
 plt.show()
 ```
+
+<img src="./Matplotlib基础教程/21.png" width="40%">
 
 ### 显示彩色图
 
@@ -617,6 +659,8 @@ plt.show()
 ```
 
 `img[:, :, 0]`表示图片的蓝色通道，熟悉`Python`的同学应该知道，对一个字符串`s`进行翻转用的是`s[::-1]`。同样的原理，`img[:, :, ::-1]`就表示`BGR`通道翻转，变成`RGB`：
+
+<img src="./Matplotlib基础教程/22.png" width="40%">
 
 ### 等高线图
 
@@ -658,6 +702,8 @@ plt.yticks(())
 plt.show()
 ```
 
+<img src="./Matplotlib基础教程/23.png" width="40%">
+
 ### Bar柱状图
 
 &emsp;&emsp;使用的函数是`plt.bar`，参数为`X`和`Y`，`X`为`0`到`11`的整数，`Y`是相应的均匀分布的随机数据：
@@ -682,12 +728,16 @@ plt.yticks(())
 plt.show()
 ```
 
+<img src="./Matplotlib基础教程/24.png" width="40%">
+
 我们使用`facecolor`设置主体颜色，用`edgecolor`设置边框颜色：
 
 ``` python
 plt.bar(X, +Y1, facecolor='#9999ff', edgecolor='white')
 plt.bar(X, -Y2, facecolor='#ff9999', edgecolor='white')
 ```
+
+<img src="./Matplotlib基础教程/25.png" width="40%">
 
 接下来使用函数`plt.text`分别在柱体上方和下方加上数值，用`%.2f`保留两位小数，横向居中对齐(`ha='center'`)，纵向底部(顶部)对齐(`va='bottom'`和`va='top'`)：
 
@@ -700,6 +750,8 @@ for x, y in zip(X, Y2):
     # ha: horizontal alignment; va: vertical alignment
     plt.text(x + 0.4, -y - 0.05, '%.2f' % y, ha='center', va='top')
 ```
+
+<img src="./Matplotlib基础教程/26.png" width="50%">
 
 ### 横向柱状图
 
@@ -719,6 +771,8 @@ plt.xlabel('Performance')
 plt.title('How fast do you want to go today?')
 plt.show()
 ```
+
+<img src="./Matplotlib基础教程/27.png" width="40%">
 
 `barh`的主要功能是做一个横向条形图，横向条的矩形大小为`[left, left + width, bottom, bottom + height]`，函数原型如下：
 
