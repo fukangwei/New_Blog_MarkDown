@@ -23,9 +23,9 @@ tags:
     </body>
 </html>
 ```
-
-<img src="./HTML教程二/1.png">
 <!--more-->
+<img src="./HTML教程二/1.png">
+
 &emsp;&emsp;下例演示有序列表：
 
 ``` xml
