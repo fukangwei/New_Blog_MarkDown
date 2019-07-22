@@ -441,10 +441,100 @@ Private Sub Constant_demo_Click()
 End Sub
 ```
 
-执行结果：
+运行结果：
 
 ``` vbscript
 Line 1: 15
 Line 2: 23
 Line 3: 14
+```
+
+### Minute函数
+
+&emsp;&emsp;`Minute`函数返回`0`到`59`之间的数字，表示指定时间戳的分钟数值：
+
+``` vbscript
+Minute(time)
+```
+
+``` vbscript
+Private Sub Constant_demo_Click()
+    MsgBox ("Line 1: " & Minute("3:13:45 PM"))
+    MsgBox ("Line 2: " & Minute("23:43:45"))
+    MsgBox ("Line 3: " & Minute("2:20 PM"))
+End Sub
+```
+
+运行结果：
+
+``` vbscript
+Line 1: 13
+Line 2: 43
+Line 3: 20
+```
+
+### Second函数
+
+&emsp;&emsp;`Second`函数返回`0`到`59`之间的数字，表示指定时间戳的秒钟数值：
+
+``` vbscript
+Second(time)
+```
+
+``` vbscript
+Private Sub Constant_demo_Click()
+    MsgBox ("Line 1: " & Second("3:13:25 PM"))
+    MsgBox ("Line 2: " & Second("23:13:45"))
+    MsgBox ("Line 3: " & Second("2:20 PM"))
+End Sub
+```
+
+运行结果：
+
+``` vbscript
+Line 1: 25
+Line 2: 45
+Line 3: 0
+```
+
+### Time函数
+
+&emsp;&emsp;`Time`函数返回当前的系统时间：
+
+``` vbscript
+Time()
+```
+
+``` vbscript
+Private Sub Constant_demo_Click()
+    MsgBox ("当前的系统时间是：" & Time())
+End Sub
+```
+
+执行结果：
+
+``` vbscript
+当前的系统时间是：3:00:00
+```
+
+### Timer函数
+
+&emsp;&emsp;`Timer`函数返回自凌晨`00:00`起的秒数和毫秒数：
+
+``` vbscript
+Timer()
+```
+
+``` vbscript
+Private Sub Constant_demo_Click()
+    MsgBox ("Time is: " & Now())
+    MsgBox ("Timer is: " & Timer())
+End Sub
+```
+
+运行结果：
+
+``` vbscript
+Time is: 2017/11/24 3:05:15
+Timer is: 11124.53
 ```
