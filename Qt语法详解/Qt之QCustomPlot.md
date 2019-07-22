@@ -6,10 +6,10 @@ tags:
 ### 简述
 
 &emsp;&emsp;`QCustomPlot`是一个基于`C++`的`Qt`的图形库，用于绘制图像和数据可视化，例如制作曲线图、趋势图、坐标图、柱状图等。`QCustomPlot`可以导出为各种格式，比如`PDF`文件和位图(例如`PNG`、`JPG`和`BMP`)。
-
+<!--more-->
 ### 下载
 
-&emsp;&emsp;`QCustomPlot`的主页是`http://www.qcustomplot.com/`，进入`QCustomPlot`下载页，下载最新的完整包。将下载好的安装包进行解压缩，里面包含文档、示例、更改日志、GPL授权，以及最重要的两个文件`qcustomplot.h`与`qcustomplot.cpp`。
+&emsp;&emsp;`QCustomPlot`的主页是`http://www.qcustomplot.com/`，进入`QCustomPlot`下载页，下载最新的完整包。将下载好的安装包进行解压缩，里面包含文档、示例、更改日志、`GPL`授权，以及最重要的两个文件`qcustomplot.h`与`qcustomplot.cpp`。
 
 ### 配置
 
@@ -75,7 +75,7 @@ MainWindow::MainWindow ( QWidget *parent ) : CustomWindow ( parent ) {
 }
 ```
 
-&emsp;&emsp;如果需要导出，我们可以调用对应的`save…`接口。例如导出一张`PNG`格式，宽度、宽度分别为`400px`、`300px`的图片：
+&emsp;&emsp;如果需要导出图片，可以调用对应的`save…`接口。例如导出一张`PNG`格式，宽度、宽度分别为`400px`、`300px`的图片：
 
 ``` cpp
 pCustomPlot->savePng ( "customPlot.png", 400, 300 );
