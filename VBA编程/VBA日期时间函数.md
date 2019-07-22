@@ -4,7 +4,7 @@ date: 2019-07-22 18:51:08
 tags:
 ---
 &emsp;&emsp;`VBScript`日期和时间函数帮助开发人员将日期和时间从一种格式转换为另一种格式，或以适合特定条件的格式表示日期或时间值。
-
+<!--more-->
 ### 日期函数
 
 #### Date函数
@@ -36,8 +36,6 @@ The Value of a: 07/18/19
 ``` vbscript
 CDate(date)
 ```
-
-示例如下：
 
 ``` vbscript
 Private Sub Constant_demo_Click()
@@ -103,8 +101,6 @@ DateDiff(interval, date1, date2 [, firstdayofweek [, firstweekofyear]])
 3. `vbFirstFourDays`：从新年至少有四天的一周开始。
 4. `vbFirstFullWeek`：从新年的第一个整周开始。
 
-示例如下：
-
 ``` vbscript
 Private Sub Constant_Click()
     Dim fromDate As Variant
@@ -129,16 +125,16 @@ End Sub
 运行结果：
 
 ``` vbscript
-Line 1 : 1
-Line 2 : 4
-Line 3 : 12
-Line 4 : 365
-Line 5 : 365
-Line 6 : 52
-Line 7 : 52
-Line 8 : 8783
-Line 9 : 527039
-Line 10 : 31622340
+Line 1: 1
+Line 2: 4
+Line 3: 12
+Line 4: 365
+Line 5: 365
+Line 6: 52
+Line 7: 52
+Line 8: 8783
+Line 9: 527039
+Line 10: 31622340
 ```
 
 #### DatePart函数
@@ -181,8 +177,6 @@ DatePart(interval, date [, firstdayofweek [, firstweekofyear]])
 3. `vbFirstFourDays`：从新年至少有四天的一周开始。
 4. `vbFirstFullWeek`：从新年的第一个整周开始。
 
-示例如下：
-
 ``` vbscript
 Private Sub Constant_demo_Click()
     Dim Quarter As Variant
@@ -224,8 +218,6 @@ DateSerial(year, month, day)
 - `month`：必需参数，它也可以是表达式的形式，其范围是`1`至`12`。
 - `day`：必需参数，它也可以是一个表达式的形式，其范围是`1`至`31`。
 
-示例如下:
-
 ``` vbscript
 Private Sub Constant_deme()
     MsgBox(DateSerial(2018, 5, 10))
@@ -254,8 +246,6 @@ FormatDateTime(date, format)
 3. `vbShortDate`：返回短日期。
 4. `vbLongTime`：返回长时间。
 5. `vbShortTime`：返回短时间。
-
-示例如下：
 
 ``` vbscript
 Private Sub Constant_demo()
@@ -286,8 +276,6 @@ Line 5: 20:25
 IsDate(expression)
 ```
 
-示例如下：
-
 ``` vbscript
 Private Sub Constant_demo()
     MsgBox("Line 1: " & IsDate("Nov 03, 1950"))
@@ -312,8 +300,6 @@ Line 3: True
 Day(date)
 ```
 
-示例如下：
-
 ``` vbscript
 Private Sub Constant_demo_Click()
     MsgBox(Day("2018-06-30"))
@@ -334,8 +320,6 @@ End Sub
 Month(date)
 ```
 
-示例如下：
-
 ``` vbscript
 Private Sub Constant_demo_Click()
     MsgBox("Current month is: " & Month("2018-06-30"))
@@ -355,8 +339,6 @@ Current month is: 6
 ``` vbscript
 Year(date)
 ```
-
-示例如下：
 
 ``` vbscript
 Private Sub Constant_demo_Click()
@@ -380,8 +362,6 @@ MonthName(month [, toabbreviate])
 
 - `month`：必需参数，指定了月份的数字值。
 - `toabbreviate`：可选参数，布尔类型，指示月份名称是否缩写，默认为`False`。
-
-示例如下：
 
 ``` vbscript
 Private Sub Constant_demo()
@@ -407,8 +387,6 @@ Line 2: January
 Now()
 ```
 
-示例如下：
-
 ``` vbscript
 Private Sub Constant_demo_Click()
     Dim a as Variant
@@ -431,8 +409,6 @@ End Sub
 Hour(time)
 ```
 
-示例如下：
-
 ``` vbscript
 Private Sub Constant_demo_Click()
     MsgBox("Line 1: " & Hour("3:13:45 PM"))
@@ -449,7 +425,7 @@ Line 2: 23
 Line 3: 14
 ```
 
-### Minute函数
+#### Minute函数
 
 &emsp;&emsp;`Minute`函数返回`0`到`59`之间的数字，表示指定时间戳的分钟数值：
 
@@ -473,7 +449,7 @@ Line 2: 43
 Line 3: 20
 ```
 
-### Second函数
+#### Second函数
 
 &emsp;&emsp;`Second`函数返回`0`到`59`之间的数字，表示指定时间戳的秒钟数值：
 
@@ -497,7 +473,7 @@ Line 2: 45
 Line 3: 0
 ```
 
-### Time函数
+#### Time函数
 
 &emsp;&emsp;`Time`函数返回当前的系统时间：
 
@@ -517,7 +493,7 @@ End Sub
 当前的系统时间是：3:00:00
 ```
 
-### Timer函数
+#### Timer函数
 
 &emsp;&emsp;`Timer`函数返回自凌晨`00:00`起的秒数和毫秒数：
 
@@ -537,4 +513,56 @@ End Sub
 ``` vbscript
 Time is: 2017/11/24 3:05:15
 Timer is: 11124.53
+```
+
+#### TimeSerial函数
+
+&emsp;&emsp;`TimeSerial`函数返回指定小时，分钟和秒值的时间：
+
+``` vbscript
+TimeSerial(hour, minute, second)
+```
+
+- `hour`：必需参数，它是介于`0`和`23`之间的整数或任何数字表达式。
+- `minute`：必需参数，它是介于`0`和`59`之间的整数或任何数字表达式。
+- `second`：必需参数，它是介于`0`和`59`之间的整数或任何数字表达式。
+
+``` vbscript
+Private Sub Constant_demo_Click()
+    MsgBox (TimeSerial(20, 1, 2))
+    MsgBox (TimeSerial(0, 59, 59))
+    MsgBox (TimeSerial(7 * 2, 60 / 3, 15 + 3))
+End Sub
+```
+
+运行结果：
+
+``` vbscript
+8:01:02 PM
+12:59:59 AM
+2:20:18 PM
+```
+
+#### TimeValue函数
+
+&emsp;&emsp;`TimeValue`函数将给定的输入字符串转换为有效的时间：
+
+``` vbscript
+TimeValue(StringTime)
+```
+
+``` vbscript
+Private Sub Constant_demo_Click()
+    MsgBox (TimeValue("20:30"))
+    MsgBox (TimeValue("5:15"))
+    MsgBox (TimeValue("2:30:58"))
+End Sub
+```
+
+执行结果：
+
+``` vbscript
+8:30:00 PM
+5:15:00 AM
+2:30:58 AM
 ```
