@@ -384,20 +384,39 @@ uip_sethostaddr：
 #define uip_sethostaddr(addr) uip_ipaddr_copy(uip_hostaddr, (addr))
 ```
 
-获取主机IP地址，主机IP地址由4字节的数列表示，第一个八位数就是数组的第一个成员(八位数octet是网络术语，即是一个字节，但网络术语不叫字节)，使用方法如下：
+- `uip_sethostaddr`：设置主机`IP`地址，参数`addr`是指向`IP`地址类型`uip_ipaddr_t`的指针：
+
+``` cpp
 uip_ipaddr_t addr;
 uip_ipaddr ( &addr, 192, 168, 1, 2 );
 uip_sethostaddr ( &addr );
-参数addr是指向IP地址类型uip_ipaddr_t的指针。
-uip_gethostaddr：
+```
+
+- `uip_gethostaddr`：设置主机`IP`地址：
+
+``` cpp
 #define uip_gethostaddr(addr) uip_ipaddr_copy((addr), uip_hostaddr)
-使用方法如下所示：
+```
+
+使用方法如下：
+
+``` cpp
 uip_ipaddr_t hostaddr;
 uip_gethostaddr ( &hostaddr )
-uip_setdraddr：设定的是默认路由器地址。
+```
+
+- `uip_setdraddr`：设定默认路由器地址：
+
+``` cpp
 #define uip_setdraddr(addr) uip_ipaddr_copy(uip_draddr, (addr))
-uip_getdraddr：获取默认路由器地址。
+```
+
+- `uip_getdraddr`：获取默认路由器地址：
+
+``` cpp
 #define uip_getdraddr(addr) uip_ipaddr_copy((addr), uip_draddr)
+```
+
 uip_setnetmask：设定子网掩码。
 #define uip_setnetmask(addr) uip_ipaddr_copy(uip_netmask, (addr))
 uip_getnetmask：获取子网掩码。
@@ -426,13 +445,6 @@ Telnet server -- “uIP Telnet”服务器。
 Hello, world -- 一个小例程，用于讲述如何使用原始套接字写应用。
 Web client -- 此例程是一个HTTP客户端，可以网络服务器上下载网页和文件。
 Web server -- 一个非常简单的网络服务器实现。
-
-    相关变量如下：
-
-char telnetd_state::buf [TELNETD_CONF_LINELEN]
-char telnetd_state::bufptr
-u8_t telnetd_state::numsent
-u8_t telnetd_state::state
 
 ---
 
