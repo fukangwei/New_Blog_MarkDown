@@ -224,68 +224,101 @@ typedef int uip_udp_appstate_t;        /* 存储在uip_conn中的应用状态类
 - `#define UIP_TTL 64`：`uip`发送的`IP`包的生存时间(`TTL`)，通常此项不应更改。
 - `#define UIP_UDP_CHECKSUMS`：是否使用`UDP`校验和。注意，对`UDP`校验和的支持目前并不包含于`uIP`，故此项无用。
 - `#define UIP_URGDATA`：`TCP`紧迫数据通告功能是否编译。紧迫数据(带外数据)在`TCP`中很少用到，所以很少需要。
-typedef uint16_t u16_t -- 16位数据类型。这个类型定义了通贯uip所使用的16位数据类型。
-typedef uint8_t u8_t -- 8位数据类型。此类型定义了通贯uIP中使用的8位数据类型。
-typedef unsigned short uip_stats_t -- 统计数据类型。此类型定义了通贯uIP使用的统计数据类型。
-typedef uip_tcp_appstate_t -- 此种类型的应用状态将会被存储于uip_conn结构中。它通常被typedef为一种保存应用状态信息的结构。
-typedef uip_udp_appstate_t -- 此种类型的应用状态将会被存储于uip_conn结构中。它通常被typedef为一种保存应用状态信息的结构。
-void uip_log (char * msg) -- 打印uip日志信息。此函数必须为使用uIP的模块实现，uIP每产生一条日志信息就会调用一次这个函数。
+- `typedef uint16_t u16_t`：`16`位数据类型。这个类型定义了通贯`uip`所使用的`16`位数据类型。
+- `typedef uint8_t u8_t`：`8`位数据类型。此类型定义了通贯`uIP`中使用的`8`位数据类型。
+- `typedef unsigned short uip_stats_t`：统计数据类型。此类型定义了通贯`uIP`使用的统计数据类型。
+- `typedef uip_tcp_appstate_t`：此种类型的应用状态将会被存储于`uip_conn`结构中。它通常被`typedef`为一种保存应用状态信息的结构。
+- `typedef uip_udp_appstate_t`：此种类型的应用状态将会被存储于`uip_conn`结构中。它通常被`typedef`为一种保存应用状态信息的结构。
+- `void uip_log (char * msg)`：打印`uip`日志信息。此函数必须为使用`uIP`的模块实现，`uIP`每产生一条日志信息就会调用一次这个函数。
 
 ---
 
-设备驱动与uIP的对接
-    实现设备驱动与uIP的对接，需要开发者实现如下七个接口程序：
-#define uip_input() /* 处理一个输入的数据包 */
-#define uip_periodic(conn) /* 通过连接号，对连接周期性进行处理 */
-#define uip_conn_active(conn)  (uip_conns[conn].tcpstateflags != UIP_CLOSED)
-#define uip_periodic_conn(conn) /* 周期性处理一个连接，此操作要借助指向这个连接的结构体的指针 */
-#define uip_poll_conn(conn) /* 请求轮询(poll)某一指定连接 */
-#define uip_udp_periodic(conn) /* 周期性处理udp连接，此操作要借助连接号 */
+### 设备驱动与uIP的对接
+
+&emsp;&emsp;实现设备驱动与`uIP`的对接，需要开发者实现如下`7`个接口程序：
+
+``` cpp
+#define uip_input()                 /* 处理一个输入的数据包 */
+#define uip_periodic(conn)          /* 通过连接号，对连接周期性进行处理 */
+#define uip_conn_active(conn) (uip_conns[conn].tcpstateflags != UIP_CLOSED)
+#define uip_periodic_conn(conn)     /* 周期性处理一个连接，此操作要借助指向这个连接的结构体的指针 */
+#define uip_poll_conn(conn)         /* 请求轮询(poll)某一指定连接 */
+#define uip_udp_periodic(conn)      /* 周期性处理udp连接，此操作要借助连接号 */
 #define uip_udp_periodic_conn(conn) /* 周期性处理udp连接，要借助指向此连接结构体的指针 */
+```
+
 还有一个变量在接口中用到：
+
+``` cpp
 u8_t uip_buf [UIP_BUFSIZE + 2] /* uip包缓冲区 */
-uip_input：此函数应该在设备从网络上接收到数据包时得到调用。设备驱动应该在调用此函数之前，将接收到的数据包内容存入uip_buf缓冲区，并将其长度赋给uip_len变量。此函数返回时，如果系统有数据要输出，会直接将数据存入uip_buf，并将其长度值赋给uip_len。如果没有数据要发送，则将uip_len赋0。通常使用此函数的方法如下：
+```
+
+- `uip_input`：此函数应该在设备从网络上接收到数据包时得到调用。设备驱动应该在调用此函数之前，将接收到的数据包内容存入`uip_buf`缓冲区，并将其长度赋给`uip_len`变量。此函数返回时，如果系统有数据要输出，会直接将数据存入`uip_buf`，并将其长度值赋给`uip_len`。如果没有数据要发送，则将`uip_len`赋`0`。通常使用此函数的方法如下：
+
+``` cpp
 uip_len = devicedriver_poll();
+
 if ( uip_len > 0 ) {
     uip_input();
+
     if ( uip_len > 0 ) {
         devicedriver_send();
     }
 }
-注意，如果你写的uip设备驱动需要使用ARP协议(Address Resolution Protocal)，比如说在以太网内使用uip的时候，你就得在调用此函数之前先调用uip的ARP代码：
+```
+
+注意，如果你写的`uip`设备驱动需要使用`ARP`协议，比如说在以太网内使用`uip`的时候，你就得在调用此函数之前先调用`uip`的`ARP`代码：
+
+``` cpp
 #define BUF ((struct uip_eth_hdr *)&uip_buf[0])
 uip_len = ethernet_devicedrver_poll();
+
 if ( uip_len > 0 ) {
     if ( BUF->type == HTONS ( UIP_ETHTYPE_IP ) ) {
         uip_arp_ipin();
         uip_input();
+
         if ( uip_len > 0 ) {
             uip_arp_out();
             ethernet_devicedriver_send();
         }
     } else if ( BUF->type == HTONS ( UIP_ETHTYPE_ARP ) ) {
         uip_arp_arpin();
+
         if ( uip_len > 0 ) {
             ethernet_devicedriver_send();
         }
     }
 }
-uip_periodic：周期性处理一连接，需借助其连接号。此函数对uip的tcp连接进行一些必要的周期性处理(定时器、轮询等)，它应该在周期性uip定时器消息到来时被调用。它应该对每一个连接都得到调用，不管连接是打开的还是关闭的。此函数返回时，可能会有要传送出去的数据包等待得到服务，包内容会被放到uip包缓冲区中。如果真的有数据包需要送出，则uip_len的值会被置为一个大于零的数，此时设备驱动应该将数据包发送出去。通常调用此函数时，会使用一个如下的for循环：
+```
+
+- uip_periodic：周期性处理一连接，需借助其连接号。此函数对uip的tcp连接进行一些必要的周期性处理(定时器、轮询等)，它应该在周期性uip定时器消息到来时被调用。它应该对每一个连接都得到调用，不管连接是打开的还是关闭的。此函数返回时，可能会有要传送出去的数据包等待得到服务，包内容会被放到uip包缓冲区中。如果真的有数据包需要送出，则uip_len的值会被置为一个大于零的数，此时设备驱动应该将数据包发送出去。通常调用此函数时，会使用一个如下的for循环：
+
+``` cpp
 for ( i = 0; i < UIP_CONNS; ++i ) {
     uip_periodic ( i );
+
     if ( uip_len > 0 ) {
         devicedriver_send();
     }
 }
+```
+
 注意，如果你所写的设备驱动需要使用ARP协议(Address Resolution Protocal)，例如是在以太网中使用uip，你就得在调用驱动函数发送传出数据之间调用uip_arp_out函数：
+
+``` cpp
 for ( i = 0; i < UIP_CONNS; ++i ) {
     uip_periodic ( i );
+
     if ( uip_len > 0 ) {
         uip_arp_out();
         ethernet_devicedriver_send();
     }
 }
+```
+
 参数conn是将要轮询的连接号。
+
 uip_periodic_conn：对一个连接进行周期性处理，需要借助指向其结构体的指针。这个函数与uip_periodic执行的操作是相同的，不同之处仅在于传入的参数是一个指向uip_conn结构体的指针。此函数可以用于对某个连接强制进行周期性处理。参数conn是指向要进行处理的连接结构体的指针。
 uip_poll_conn：请求对特定连接进行轮询，函数功能与uip_periodic_conn相同，但不是执行任何定时器处理，轮询以得到新数据。参数conn是指向要进行处理的连接结构体uip_conn的指针。
 uip_udp_periodic：借助连接号，周期性处理udp连接。此函数基本上与uip_periodic相同，区别之处仅在于这里处理的是udp连接。其调用方式也与uip_periodic类似：
@@ -316,7 +349,9 @@ void devicedriver_send ( void ) {
     }
 }
 uip_len：uip_buf缓冲区中的数据包长度(译者注：uip_buf是一数组，其长度固定，此处指的是动态存的数据长度，不是指数列本身长度)。这个全局变量盛放存储于uip_buf中的数据包的长度。当网络设备驱动调用uip输入函数时，uip_len要被设为传入数据包的大小。当向处发送数据包时，设备驱动通过这个变量确定要发送的数据包在uip_buf中的长度。
-/*--------------------------------------------------------------------------------------------------------------------*/
+
+---
+
 配置使用函数
     uIP配置函数用于设置一些如ip地址等的uIP运行时参数。它包括以下一些函数：
 #define uip_sethostaddr(addr) /* 设定主机IP地址 */
