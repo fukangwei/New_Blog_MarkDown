@@ -173,43 +173,49 @@ typedef unsigned short uip_stats_t /* 统计数据类型 */
 #define UIP_LLH_LEN    /* 链路层头长度 */
 ```
 
-&emsp;&emsp;CPU架构配置：这里指定的是CPU的大小端模式。当今的CPU多是小端的，然而最著名的例外就是motorola的CPU，它是大端的。应根据CPU的大小端模式不同，配置BYTE_ORDER。
+&emsp;&emsp;`CPU`架构配置：这里指定的是`CPU`的大小端模式。当今的`CPU`多是小端的，然而最著名的例外就是`motorola`的CPU，它是大端的。应根据`CPU`的大小端模式不同，配置`BYTE_ORDER`。
 
 ``` cpp
 #define UIP_BYTE_ORDER /* UIP所运行的CPU大小端模式 */
 ```
 
-    针对应用的配置：UIP应用是使用单个应用函数实现的。只要TCP/IP事件发生，uIP就会调用这个函数。这个函数的名字必须在编译时使用UIP_APPCALL注册到uIP。uIP应用可以在uip_conn结构中保存应用状态。这是通过利用“typedef uip_tcp_appstate_t”和uip_udp_appstate_t指定应用的类型实现的。包含此定义的文件必须被包含在uipopt.h文件中。下面是一个例子：
+&emsp;&emsp;针对应用的配置：`UIP`应用是使用单个应用函数实现的。只要`TCP/IP`事件发生，`uIP`就会调用这个函数。这个函数的名字必须在编译时使用`UIP_APPCALL`注册到`uIP`。`uIP`应用可以在`uip_conn`结构中保存应用状态。这是通过利用`typedef uip_tcp_appstate_t`和`uip_udp_appstate_t`指定应用的类型实现的。包含此定义的文件必须被包含在`uipopt.h`文件中。下面是一个例子：
+
+``` cpp
 void httpd_appcall ( void );
 #define UIP_APPCALL httpd_appcall
+
 struct httpd_state {
     u8_t state;
     u16_t count;
     char *dataptr;
     char *script;
 };
+
 typedef struct httpd_state uip_tcp_appstate_t
-#define UIP_APPCALL smtp_appcall /* TCP/IP事件的应答函数名称 */
+#define UIP_APPCALL smtp_appcall       /* TCP/IP事件的应答函数名称 */
 typedef smtp_state uip_tcp_appstate_t; /* 存储在uip_conn中的应用状态类型 */
-typedef int uip_udp_appstate_t; /* 存储在uip_conn中的应用状态类型 */
+typedef int uip_udp_appstate_t;        /* 存储在uip_conn中的应用状态类型 */
 #define UIP_LITTLE_ENDIAN 3412
 #define UIP_BIG_ENDIAN 1234
-#define UIP_ACTIVE_OPEN -- 决定是否支持在uip中打开连接。如果此工程中工作于uip上层的应用不需要打开TCP连接，可以关闭此项以减小编译后的代码大小。
-#define UIP_ARP_MAXAGE 120 -- 以10s为单位的ARP表项的最大年龄，120代表的是20分钟(BSD中的默认值)。
-#define UIP_ARPTAB_SIZE -- ARP表的大小。如果uip节点可能在本地网络中有很多连接，则此值应设得大些。
-#define UIP_BROADCAST -- 支持广播。此标志用于配置广播的支持，仅在开启UDP时才有意义。
-#define UIP_BUFSIZE -- uip包缓冲区大小。不小于60字节，不大于1500字节。这个值越小，TCP的吞吐量就越小，相反越大。
-#define UIP_BYTE_ORDER -- uip运行的CPU构架的字节顺序，可选值仅有两个，分别为BIG_ENDIAN和LITTLE_ENDIAN。
-#define UIP_CONNS -- 可同时打开的最大TCP连接数。由TCP连接是静态开辟的，所以减小此选项的值可以减小RAM占用量，每个TCP连接需要大约30字节的RAM。
-#define UIP_FIXEDADDR -- 决定uIP是否使用固定IP地址。如果使用固定IP地址，则此地址可以在uipopt.h中指定。否则，如果想用动态的IP地址，则可以使用uip_sethostaddr、uip_setdraddr和uip_setnetmask三个宏动态指定。
-#define UIP_FIXEDETHADDR -- 决定uIP是否使用固定的MAC地址。若不使用固定的MAC地址，则可用uip_setethaddr在运行时动态指定。
-#define UIP_LISTENPORTS -- 可以同时监听的最大端口数。每监听一个TCP端口需要两字节内存。
-#define UIP_LLH_LEN -- 链路层头的长度。这个IP头在uip_buf中的编移量，对于以太网来说，此值为14；对于SLIP来说，其值0。
-#define UIP_LOGGING -- 定义是否编译事件日志，这对于调试是非常有帮助的。如果打开此项，必须在工程的构架上实现uip_log。
-#define UIP_MAXRTX 8 -- 在最多多少次重新发送同一段数据之后，就得取消连接。此项不应改变。
-#define UIP_MAXSYNRTX 5 -- 一个SYN数据最多可以重传多少次，之后就得认为连接请求失败。此项亦不应改变。
-#define UIP_PINGADDRCONF -- 设定ping的IP地址。如果设定此项，则uip使用ping包来设定其IP地址。此时uip启用时会只有一个空的IP地址，而把收到的第一个ping包设为自己的地址。注意，此项只有在UIP_FIXEDADDR设为0时才可用。
-#define UIP_REASSEMBLY -- 打开IP包重组。uip支持碎片IP包的重组。此项特性需要多余的RAM来盛放重组缓冲区，重组代码大小约为700字节。重组缓冲区的大小与uip_buf的大小(由UIP_BUFSIZE配置)相同。注意，IP包重组并未经过严格测试。
+```
+
+- `#define UIP_ACTIVE_OPEN`：决定是否支持在`uip`中打开连接。如果此工程中工作于`uip`上层的应用不需要打开`TCP`连接，可以关闭此项以减小编译后的代码大小。
+- `#define UIP_ARP_MAXAGE 120`：以`10s`为单位的`ARP`表项的最大年龄，`120`代表的是`20`分钟。
+- `#define UIP_ARPTAB_SIZE`：`ARP`表的大小。如果`uip`节点可能在本地网络中有很多连接，则此值应设得大些。
+- `#define UIP_BROADCAST`：支持广播。此标志用于配置广播的支持，仅在开启`UDP`时才有意义。
+- `#define UIP_BUFSIZE`：`uip`包缓冲区大小。不小于`60`字节，不大于`1500`字节。这个值越小，`TCP`的吞吐量就越小，相反越大。
+- `#define UIP_BYTE_ORDER`：`uip`运行的`CPU`构架的字节顺序，可选值仅有两个，分别为`BIG_ENDIAN`和`LITTLE_ENDIAN`。
+- `#define UIP_CONNS`：可同时打开的最大`TCP`连接数。每个`TCP`连接需要大约`30`字节的`RAM`。
+- `#define UIP_FIXEDADDR`：决定`uIP`是否使用固定`IP`地址。如果使用固定`IP`地址，则此地址可以在`uipopt.h`中指定。否则，如果想用动态的`IP`地址，则可以使用`uip_sethostaddr`、`uip_setdraddr`和`uip_setnetmask`三个宏动态指定。
+- `#define UIP_FIXEDETHADDR`：决定`uIP`是否使用固定的`MAC`地址。若不使用固定的`MAC`地址，则可用`uip_setethaddr`在运行时动态指定。
+- `#define UIP_LISTENPORTS`：可以同时监听的最大端口数。每监听一个`TCP`端口需要`2`字节内存。
+- `#define UIP_LLH_LEN`：链路层头的长度。这个`IP`头在`uip_buf`中的编移量，对于以太网来说，此值为`14`；对于`SLIP`来说，其值为`0`。
+- `#define UIP_LOGGING`：定义是否编译事件日志，这对于调试是非常有帮助的。如果打开此项，必须在工程的构架上实现`uip_log`。
+- `#define UIP_MAXRTX 8`：在最多多少次重新发送同一段数据之后，就得取消连接。此项不应改变。
+- `#define UIP_MAXSYNRTX 5`：一个`SYN`数据最多可以重传多少次，之后就得认为连接请求失败。此项亦不应改变。
+- `#define UIP_PINGADDRCONF`：设定`ping`的`IP`地址。如果设定此项，则`uip`使用`ping`包来设定其`IP`地址。此时`uip`启用时会只有一个空的`IP`地址，而把收到的第一个`ping`包设为自己的地址。注意，此项只有在`UIP_FIXEDADDR`设为`0`时才可用。
+- `#define UIP_REASSEMBLY`： 打开`IP`包重组。`uip`支持碎片IP包的重组。此项特性需要多余的RAM来盛放重组缓冲区，重组代码大小约为700字节。重组缓冲区的大小与uip_buf的大小(由UIP_BUFSIZE配置)相同。注意，IP包重组并未经过严格测试。
 #define UIP_RECEIVE_WINDOW -- 通告的接收器窗口。如果处理器对输入数据处理能力较慢，则应设得低些(uip_buf的大小)，否则应设得高些(32768字节)。
 #define UIP_RTO 3 -- 以时钟脉冲计算的重传超时计数，此项不应改变。
 #define UIP_STATISTICS -- 决定是否将统计功能加入编译。统计功能对于调试和显示用户是非常有帮助的。
@@ -224,7 +230,9 @@ typedef unsigned short uip_stats_t -- 统计数据类型。此类型定义了通
 typedef uip_tcp_appstate_t -- 此种类型的应用状态将会被存储于uip_conn结构中。它通常被typedef为一种保存应用状态信息的结构。
 typedef uip_udp_appstate_t -- 此种类型的应用状态将会被存储于uip_conn结构中。它通常被typedef为一种保存应用状态信息的结构。
 void uip_log (char * msg) -- 打印uip日志信息。此函数必须为使用uIP的模块实现，uIP每产生一条日志信息就会调用一次这个函数。
-/*---------------------------------------------------------------------------*/
+
+---
+
 设备驱动与uIP的对接
     实现设备驱动与uIP的对接，需要开发者实现如下七个接口程序：
 #define uip_input() /* 处理一个输入的数据包 */
