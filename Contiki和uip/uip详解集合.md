@@ -215,15 +215,15 @@ typedef int uip_udp_appstate_t;        /* 存储在uip_conn中的应用状态类
 - `#define UIP_MAXRTX 8`：在最多多少次重新发送同一段数据之后，就得取消连接。此项不应改变。
 - `#define UIP_MAXSYNRTX 5`：一个`SYN`数据最多可以重传多少次，之后就得认为连接请求失败。此项亦不应改变。
 - `#define UIP_PINGADDRCONF`：设定`ping`的`IP`地址。如果设定此项，则`uip`使用`ping`包来设定其`IP`地址。此时`uip`启用时会只有一个空的`IP`地址，而把收到的第一个`ping`包设为自己的地址。注意，此项只有在`UIP_FIXEDADDR`设为`0`时才可用。
-- `#define UIP_REASSEMBLY`： 打开`IP`包重组。`uip`支持碎片IP包的重组。此项特性需要多余的RAM来盛放重组缓冲区，重组代码大小约为700字节。重组缓冲区的大小与uip_buf的大小(由UIP_BUFSIZE配置)相同。注意，IP包重组并未经过严格测试。
-#define UIP_RECEIVE_WINDOW -- 通告的接收器窗口。如果处理器对输入数据处理能力较慢，则应设得低些(uip_buf的大小)，否则应设得高些(32768字节)。
-#define UIP_RTO 3 -- 以时钟脉冲计算的重传超时计数，此项不应改变。
-#define UIP_STATISTICS -- 决定是否将统计功能加入编译。统计功能对于调试和显示用户是非常有帮助的。
-#define UIP_TCP_MSS (UIP_BUFSIZE - UIP_LLH_LEN - UIP_TCPIP_HLEN) -- TCP最大数据段大小。此值不应大于(UIP_BUFSIZE - UIP_LLH_LEN - UIP_TCPIP_HLEN)。
-#define UIP_TIME_WAIT_TIMEOUT 120 -- 一个连接应该停留在TIME_WAIT状态的最长时间。此配置选项没有真正的实现，所以不应理会。
-#define UIP_TTL 64 -- uip发送的IP包的生存时间(TTL)，通常此项不应更改。
-#define UIP_UDP_CHECKSUMS -- 是否使用UDP校验和。注意，对UDP校验和的支持目前并不包含于uIP，故此项无用。
-#define UIP_URGDATA -- TCP紧迫数据通告功能是否编译。紧迫数据(带外数据)在TCP中很少用到，所以很少需要。
+- `#define UIP_REASSEMBLY`： 打开`IP`包重组。`uip`支持碎片`IP`包的重组。此项特性需要多余的`RAM`来盛放重组缓冲区，重组代码大小约为`700`字节。重组缓冲区的大小与`uip_buf`的大小(由`UIP_BUFSIZE`配置)相同。注意，`IP`包重组并未经过严格测试。
+- `#define UIP_RECEIVE_WINDOW`：通告的接收器窗口。如果处理器对输入数据处理能力较慢，则应设得低些(`uip_buf`的大小)，否则应设得高些(`32768`字节)。
+- `#define UIP_RTO 3`：以时钟脉冲计算的重传超时计数，此项不应改变。
+- `#define UIP_STATISTICS`：决定是否将统计功能加入编译。统计功能对于调试和显示用户是非常有帮助的。
+- `#define UIP_TCP_MSS (UIP_BUFSIZE - UIP_LLH_LEN - UIP_TCPIP_HLEN)`：`TCP`最大数据段大小。此值不应大于`(UIP_BUFSIZE - UIP_LLH_LEN - UIP_TCPIP_HLEN)`。
+- `#define UIP_TIME_WAIT_TIMEOUT 120`：一个连接应该停留在`TIME_WAIT`状态的最长时间。此配置选项没有真正的实现，所以不应理会。
+- `#define UIP_TTL 64`：`uip`发送的`IP`包的生存时间(`TTL`)，通常此项不应更改。
+- `#define UIP_UDP_CHECKSUMS`：是否使用`UDP`校验和。注意，对`UDP`校验和的支持目前并不包含于`uIP`，故此项无用。
+- `#define UIP_URGDATA`：`TCP`紧迫数据通告功能是否编译。紧迫数据(带外数据)在`TCP`中很少用到，所以很少需要。
 typedef uint16_t u16_t -- 16位数据类型。这个类型定义了通贯uip所使用的16位数据类型。
 typedef uint8_t u8_t -- 8位数据类型。此类型定义了通贯uIP中使用的8位数据类型。
 typedef unsigned short uip_stats_t -- 统计数据类型。此类型定义了通贯uIP使用的统计数据类型。
