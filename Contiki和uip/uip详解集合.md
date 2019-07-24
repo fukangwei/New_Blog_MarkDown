@@ -534,8 +534,10 @@ void uip_arp_arpin ( void ) {
 }
 ```
 
-这里有一件事是很有意思的，就是说如果某个主机请求得到我们的MAC的地址，我们先把它的MAC地址加入到自己的表中。就好比社交网络中，别人请求加我们为好友，如果我们接收的话，也自动加对方为好友一样。既然对方找上我们了，肯定是要做进一步的交流，互加MAC地址也很自然的。
+这里有一件事是很有意思的，就是说如果某个主机请求得到我们的`MAC`的地址，我们先把它的`MAC`地址加入到自己的表中。就好比社交网络中，别人请求加我们为好友，如果我们接收的话，也自动加对方为好友一样。既然对方找上我们了，肯定是要做进一步的交流，互加`MAC`地址也很自然的。
 &emsp;&emsp;如果收到了一个请求，我们要做应答：
+
+``` cpp
 BUF->opcode = HTONS ( 2 ); /* The reply opcode is 2. */
 memcpy ( BUF->dhwaddr.addr, BUF->shwaddr.addr, 6 );
 memcpy ( BUF->shwaddr.addr, uip_ethaddr.addr, 6 );
@@ -547,7 +549,11 @@ BUF->sipaddr[0] = uip_hostaddr[0];
 BUF->sipaddr[1] = uip_hostaddr[1];
 BUF->ethhdr.type = HTONS ( UIP_ETHTYPE_ARP );
 uip_len = sizeof ( struct arp_hdr );
+```
+
 由于请求和应答包很多地方是相同的，我们只需将收到的请求稍加修改就可以发送回去了。首先要改一下MAC地址，一共有四个地方。然后要将目标主机IP设为设为请求包的源主机IP，目的主机IP设为我们的IP就可以了。另外说下对ARP缓存表的设置：
+
+``` cpp
 /* 这个函数是集插入、更新一体的，有两个参数，分别是IP地址和MAC地址。*/
 static void uip_arp_update ( u16_t *ipaddr, struct uip_eth_addr *ethaddr ) {
     register struct arp_entry *tabptr;
@@ -560,17 +566,20 @@ static void uip_arp_update ( u16_t *ipaddr, struct uip_eth_addr *ethaddr ) {
            所谓更新就是传入参数IP在表中己经存在了，这时不需要新建表项，而是要修改己存表项。
            只查使用中的表项，如果有些表项IP是0，那么就不是使用中的 */
         if ( tabptr->ipaddr[0] != 0 && tabptr->ipaddr[1] != 0 ) {
-            /* Check if the source IP address of the incoming packet matches the IP address in this ARP table entry.
-               看看传入的IP有没有匹配项 */
+            /* Check if the source IP address of the incoming packet matches the
+               IP address in this ARP table entry. 看看传入的IP有没有匹配项 */
             if ( ipaddr[0] == tabptr->ipaddr[0] && ipaddr[1] == tabptr->ipaddr[1] ) {
-                /* An old entry found, update this and return. 如果有己存的匹配项，修改该项的MAC地址和更新时间 */
+                /* An old entry found, update this and return.
+                   如果有己存的匹配项，修改该项的MAC地址和更新时间 */
                 memcpy ( tabptr->ethaddr.addr, ethaddr->addr, 6 );
                 tabptr->time = arptime;
                 return;
             }
         }
     }
-    /* If we get here, no existing ARP table entry was found, so we create one. 如果运行到这里，说明没有己存的表项，则创建一个 */
+
+    /* If we get here, no existing ARP table entry was found, so we create one.
+       如果运行到这里，说明没有己存的表项，则创建一个 */
     /* First, we try to find an unused entry in the ARP table. 先看看有没有空表项可用 */
     for ( i = 0; i < UIP_ARPTAB_SIZE; ++i ) {
         tabptr = &arp_table[i];
@@ -578,7 +587,9 @@ static void uip_arp_update ( u16_t *ipaddr, struct uip_eth_addr *ethaddr ) {
             break;
         }
     }
-    /* If no unused entry is found, we try to find the oldest entry and throw it away. 如果没空表项，就找到一个最旧的表项，扔掉它，换成我们的 */
+
+    /* If no unused entry is found, we try to find the oldest entry and
+       throw it away. 如果没空表项，就找到一个最旧的表项，扔掉它，换成我们的 */
     if ( i == UIP_ARPTAB_SIZE ) {
         tmpage = 0;
         c = 0;
@@ -592,10 +603,14 @@ static void uip_arp_update ( u16_t *ipaddr, struct uip_eth_addr *ethaddr ) {
         i = c;
         tabptr = &arp_table[i];
     }
-    /* Now, i is the ARP table entry which we will fill with the new information. 现在i就是我们最终得到的表项，我们把新的信息插入到这里 */
+
+    /* Now, i is the ARP table entry which we will fill with the new
+       information. 现在i就是我们最终得到的表项，我们把新的信息插入到这里 */
     memcpy ( tabptr->ipaddr, ipaddr, 4 );
     memcpy ( tabptr->ethaddr.addr, ethaddr->addr, 6 );
     tabptr->time = arptime;
+```
+
 uip_arp_timer如下所示：
 /*
 * Periodic ARP processing function.
