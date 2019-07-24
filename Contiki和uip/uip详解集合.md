@@ -117,7 +117,7 @@ typedef uint16_t u16_t             /* 16位的数据类型 */
 typedef unsigned short uip_stats_t /* 统计数据类型 */
 ```
 
-&emsp;&emsp;静态配置选项：这些选项可以用来静态配置IP地址，条件是UIP_FIXEDADDR必须设为1。指定节点的配置选项包括IP地址、子网掩码、默认路由及以太网址。而后三项只有在以太网中时才可用。
+&emsp;&emsp;静态配置选项：这些选项可以用来静态配置`IP`地址，条件是`UIP_FIXEDADDR`必须设为`1`。指定节点的配置选项包括`IP`地址、子网掩码、默认路由及以太网址。而后三项只有在以太网中时才可用。
 
 ``` cpp
 #define UIP_FIXEDADDR    /* 决定uIP使用固定IP与否 */
@@ -127,35 +127,58 @@ typedef unsigned short uip_stats_t /* 统计数据类型 */
 
 &emsp;&emsp;`IP`配置选项：
 
-#define UIP_TTL 64 /* 定义UIP包的生存时间TTL */
-#define UIP_REASSEMBLY /* 打开IP包重新组装功能 */
+``` cpp
+#define UIP_TTL 64          /* 定义UIP包的生存时间TTL */
+#define UIP_REASSEMBLY      /* 打开IP包重新组装功能 */
 #define UIP_REASS_MAXAGE 40 /* IP片断扔掉之前在重组装缓冲区等待的时间 */
-    UDP配置选项：
-#define UIP_UDP /* UDP支持是否编译 */
+```
+
+&emsp;&emsp;UDP配置选项：
+
+``` cpp
+#define UIP_UDP           /* UDP支持是否编译 */
 #define UIP_UDP_CHECKSUMS /* 是否使用UDP校验和 */
-#define UIP_UDP_CONNS /* 最大并发UDP连接数 */
-    TCP配置选项：
-#define UIP_ACTIVE_OPEN /* 决定UIP的打开连接支持是否编译 */
-#define UIP_CONNS /* 最大同时打开的TCP连接数 */
-#define UIP_LISTENPORTS /* 最大TCP监听端口数 */
-#define UIP_URGDATA /* 是否编译TCP紧迫数据提醒 */
-#define UIP_RTO 3 /* 初始重传超时计数，以定时器脉冲个数计 */
-#define UIP_MAXRTX 8 /* 一段数据最大重传多少次才取消连接 */
-#define UIP_MAXSYNRTX 5 /* 一段SYN数据要最大得传多少次，才认定连接请求失败 */
+#define UIP_UDP_CONNS     /* 最大并发UDP连接数 */
+```
+
+&emsp;&emsp;TCP配置选项：
+
+``` cpp
+#define UIP_ACTIVE_OPEN                                         /* 决定UIP的打开连接支持是否编译 */
+#define UIP_CONNS                                               /* 最大同时打开的TCP连接数 */
+#define UIP_LISTENPORTS                                         /* 最大TCP监听端口数 */
+#define UIP_URGDATA                                             /* 是否编译TCP紧迫数据提醒 */
+#define UIP_RTO 3                                               /* 初始重传超时计数，以定时器脉冲个数计 */
+#define UIP_MAXRTX 8                                            /* 一段数据最大重传多少次才取消连接 */
+#define UIP_MAXSYNRTX 5                                          /* 一段SYN数据要最大得传多少次，才认定连接请求失败 */
 #define UIP_TCP_MSS (UIP_BUFSIZE - UIP_LLH_LEN - UIP_TCPIP_HLEN) /* TCP最大段大小 */
-#define UIP_RECEIVE_WINDOW /* 广播接收器的最大窗口大小 */
-#define UIP_TIME_WAIT_TIMEOUT 120 /* 一个连接处于TIME_WAIT状态的最大时间 */
-    ARP配置选项：
-#define UIP_ARPTAB_SIZE /* ARP表大小 */
+#define UIP_RECEIVE_WINDOW                                       /* 广播接收器的最大窗口大小 */
+#define UIP_TIME_WAIT_TIMEOUT 120                                /* 一个连接处于TIME_WAIT状态的最大时间 */
+```
+
+&emsp;&emsp;ARP配置选项：
+
+``` cpp
+#define UIP_ARPTAB_SIZE    /* ARP表大小 */
 #define UIP_ARP_MAXAGE 120 /* ARP表的最大存活年龄，单位为10s */
-    通用配置选项：
-#define UIP_BUFSIZE /* UIP包缓冲区大小 */
+```
+
+&emsp;&emsp;通用配置选项：
+
+``` cpp
+#define UIP_BUFSIZE    /* UIP包缓冲区大小 */
 #define UIP_STATISTICS /* 是否编译统计功能 */
-#define UIP_LOGGING /* 某些事件的日志功能是否编译 */
-#define UIP_BROADCAST /* 广播功能是否支持 */
-#define UIP_LLH_LEN /* 链路层头长度 */
-    CPU架构配置：这里指定的是CPU的大小端模式。当今的CPU多是小端的，然而最著名的例外就是motorola的CPU，它是大端的。应根据CPU的大小端模式不同，配置BYTE_ORDER。
+#define UIP_LOGGING    /* 某些事件的日志功能是否编译 */
+#define UIP_BROADCAST  /* 广播功能是否支持 */
+#define UIP_LLH_LEN    /* 链路层头长度 */
+```
+
+&emsp;&emsp;CPU架构配置：这里指定的是CPU的大小端模式。当今的CPU多是小端的，然而最著名的例外就是motorola的CPU，它是大端的。应根据CPU的大小端模式不同，配置BYTE_ORDER。
+
+``` cpp
 #define UIP_BYTE_ORDER /* UIP所运行的CPU大小端模式 */
+```
+
     针对应用的配置：UIP应用是使用单个应用函数实现的。只要TCP/IP事件发生，uIP就会调用这个函数。这个函数的名字必须在编译时使用UIP_APPCALL注册到uIP。uIP应用可以在uip_conn结构中保存应用状态。这是通过利用“typedef uip_tcp_appstate_t”和uip_udp_appstate_t指定应用的类型实现的。包含此定义的文件必须被包含在uipopt.h文件中。下面是一个例子：
 void httpd_appcall ( void );
 #define UIP_APPCALL httpd_appcall
