@@ -665,47 +665,47 @@ void uip_arp_init ( void ) {
 2. 一个发送ARP请求的函数。
 3. 一个处理ARP回复的函数。
 
-&emsp;&emsp;下面我们来看uIP中是如何实现的(代码见uip_arp.c)，首先定义一个缓存表的数据结构：
+&emsp;&emsp;下面来看`uIP`中是如何实现的(代码见`uip_arp.c`)，首先定义一个缓存表的数据结构：
 
+``` cpp
 struct arp_entry {
     u16_t ipaddr[2];
     struct uip_eth_addr ethaddr;
     u8_t time;
 };
+```
+
 第一项是ip地址，保存四个八位组；第二项是MAC地址；第三项是缓存更新时间。下面是ARP请求发送函数：
-/**
-* Prepend Ethernet header to an outbound IP packet and see if we need
-* to send out an ARP request.
-* 为传出的IP包添加以太网头并看是否需要发送ARP请求。
-*
-* This function should be called before sending out an IP packet. The
-* function checks the destination IP address of the IP packet to see
-* what Ethernet MAC address that should be used as a destination MAC
-* address on the Ethernet.
-* 此函数应该在发送IP包时调用，它会检查IP包的目的IP地址，看看以太网应该使用什么目的MAC地址。
-*
-* If the destination IP address is in the local network (determined
-* by logical ANDing of netmask and our IP address), the function
-* checks the ARP cache to see if an entry for the destination IP
-* address is found. If so, an Ethernet header is prepended and the
-* function returns. If no ARP cache entry is found for the
-* destination IP address, the packet in the uip_buf[] is replaced by
-* an ARP request packet for the IP address. The IP packet is dropped
-* and it is assumed that they higher level protocols (e.g., TCP)
-* eventually will retransmit the dropped packet.
-* 如果目的IP地址是在局域网中(由IP地址与子网掩码的与逻辑决定)，函数就会从ARP缓存表中查找有
-* 无对应项。若有，就取对应的MAC地址，加上以太网头，并返回。否则uip_buf[]中的数据包会被替换成一个
-* 目的IP在址的ARP请求。原来的IP包会被简单的扔掉，此函数假设高层协议(如TCP)会最终重传扔掉的包。
-*
-* If the destination IP address is not on the local network, the IP
-* address of the default router is used instead.
-* 如果目标IP地址并非一个局域网IP，则会使用默认路由的IP地址。
-*
-* When the function returns, a packet is present in the uip_buf[]
-* buffer, and the length of the packet is in the global variable
-* uip_len.
-* 函数返回时，uip_buf[]中已经有了一个包，其长度由uip_len指定。
-*/
+
+``` cpp
+/*
+ * Prepend Ethernet header to an outbound IP packet and see if we need to
+ * send out an ARP request. 为传出的IP包添加以太网头并看是否需要发送ARP请求
+ *
+ * This function should be called before sending out an IP packet. The function
+ * checks the destination IP address of the IP packet to see what Ethernet MAC
+ * address that should be used as a destination MAC address on the Ethernet.
+ * 此函数应该在发送IP包时调用，它会检查IP包的目的IP地址，看看以太网应该使用什么目的MAC地址
+ *
+ * If the destination IP address is in the local network (determined by logical ANDing
+ * of netmask and our IP address), the function checks the ARP cache to see if an entry
+ * for the destination IP address is found. If so, an Ethernet header is prepended and
+ * the function returns. If no ARP cache entry is found for the destination IP address,
+ * the packet in the uip_buf[] is replaced by an ARP request packet for the IP address.
+ * The IP packet is dropped and it is assumed that they higher level protocols (e.g., TCP)
+ * eventually will retransmit the dropped packet.
+ * 如果目的IP地址是在局域网中(由IP地址与子网掩码的与逻辑决定)，函数就会从ARP缓存表中查找有
+ * 无对应项。若有，就取对应的MAC地址，加上以太网头，并返回。否则uip_buf[]中的数据包会被替换成一个
+ * 目的IP在址的ARP请求。原来的IP包会被简单的扔掉，此函数假设高层协议(如TCP)会最终重传扔掉的包。
+ *
+ * If the destination IP address is not on the local network,
+ * the IP address of the default router is used instead.
+ * 如果目标IP地址并非一个局域网IP，则会使用默认路由的IP地址。
+ *
+ * When the function returns, a packet is present in the uip_buf[] buffer,
+ *  and the length of the packet is in the global variable uip_len.
+ * 函数返回时，uip_buf[]中已经有了一个包，其长度由uip_len指定。
+ */
 void uip_arp_out ( void ) {
     struct arp_entry *tabptr;
     /* Find the destination IP address in the ARP table and construct
@@ -759,6 +759,8 @@ void uip_arp_out ( void ) {
     IPBUF->ethhdr.type = HTONS ( UIP_ETHTYPE_IP );
     uip_len += sizeof ( struct uip_eth_hdr );
 }
+```
+
     下面再总结一下其基本顺序：用“IPBUF->ethhdr.dest.addr”来存储目的IP地址，它有可能是局域网内一主机，也可能是路由器(如果是发往外网，即原来的目的IP不在局域网内)，还有可能是广播专用的MAC“broadcast_ethaddr.addr”。
     先看是不是在广播，如果是广播，将“IPBUF->ethhdr.dest.addr”设为广播MAC。再看是不是在局域网内，如果不是，则将“IPBUF->ethhdr.dest.addr”设为路由器MAC。如果在局域网内，查看是否已经存在于ARP缓存表中，如果不在，将要发送的换成ARP请求，返回；如果已存在，则查找使用查找到的MAC地址为IP包添加以太网头。
     这里还要解释一些细节问题，主要是：
