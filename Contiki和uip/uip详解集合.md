@@ -344,8 +344,8 @@ for ( i = 0; i < UIP_UDP_CONNS; i++ ) {
 }
 ```
 
-- uip_udp_periodic_conn：周期性处理udp连接，需借助指向该连接结构体的指针。函数功能与uip_udp_periodic(conn)相同，不同之处在于所用参数为指向连接结构体的指针而非连接号。此函数可用于强制执行周期性处理某连接。参数conn是指向要处理的udp连接的uip_udp_conn结构体的指针。
-- uip_buf：它是uip数据包缓冲区。uip_buf数组用于盛放传入/传出的数据包。设备驱动应将传入的数据放于此缓冲区中。发送数据时，设备驱动从缓冲区中读取链路层的头和TCP/IP头。链路层头的大小在UIP_LLH_LEN中定义。注意，应用数据无需放在这个缓冲区中，所以设备驱动需要从uip_appdata指针所指的地方读取数据。下面是一个例子：
+- `uip_udp_periodic_conn`：周期性处理`udp`连接，需借助指向该连接结构体的指针。函数功能与`uip_udp_periodic(conn)`相同，不同之处在于所用参数为指向连接结构体的指针而非连接号。此函数可用于强制执行周期性处理某连接。参数`conn`是指向要处理的`udp`连接的`uip_udp_conn`结构体的指针。
+- `uip_buf`：它是`uip`数据包缓冲区。`uip_buf`数组用于盛放传入/传出的数据包。设备驱动应将传入的数据放于此缓冲区中。发送数据时，设备驱动从缓冲区中读取链路层的头和`TCP/IP`头。链路层头的大小在`UIP_LLH_LEN`中定义。注意，应用数据无需放在这个缓冲区中，所以设备驱动需要从`uip_appdata`指针所指的地方读取数据。下面是一个例子：
 
 ``` cpp
 void devicedriver_send ( void ) {
@@ -359,22 +359,31 @@ void devicedriver_send ( void ) {
 }
 ```
 
-uip_len：uip_buf缓冲区中的数据包长度(译者注：uip_buf是一数组，其长度固定，此处指的是动态存的数据长度，不是指数列本身长度)。这个全局变量盛放存储于uip_buf中的数据包的长度。当网络设备驱动调用uip输入函数时，uip_len要被设为传入数据包的大小。当向处发送数据包时，设备驱动通过这个变量确定要发送的数据包在uip_buf中的长度。
+- `uip_len`：`uip_buf`缓冲区中的数据包长度(`uip_buf`是一数组，其长度固定，此处指的是动态存的数据长度，不是指数列本身长度)。这个全局变量盛放存储于`uip_buf`中的数据包的长度。当网络设备驱动调用`uip`输入函数时，`uip_len`要被设为传入数据包的大小。当向处发送数据包时，设备驱动通过这个变量确定要发送的数据包在`uip_buf`中的长度。
 
 ---
 
-配置使用函数
-    uIP配置函数用于设置一些如ip地址等的uIP运行时参数。它包括以下一些函数：
+### 配置使用函数
+
+&emsp;&emsp;`uIP`配置函数用于设置一些如`ip`地址等的`uIP`运行时参数。它包括以下一些函数：
+
+``` cpp
 #define uip_sethostaddr(addr) /* 设定主机IP地址 */
 #define uip_gethostaddr(addr) /* 获取主机IP地址 */
-#define uip_setdraddr(addr) /* 设定默认路由器地址 */
-#define uip_getdraddr(addr) /* 获取默认路由器地址 */
-#define uip_setnetmask(addr) /* 设定网络掩码 */
-#define uip_getnetmask(addr) /* 获取网络掩码 */
+#define uip_setdraddr(addr)   /* 设定默认路由器地址 */
+#define uip_getdraddr(addr)   /* 获取默认路由器地址 */
+#define uip_setnetmask(addr)  /* 设定网络掩码 */
+#define uip_getnetmask(addr)  /* 获取网络掩码 */
 #define uip_setethaddr(eaddr) /* 设定以太网MAC地址 */
-前六个函数皆定义于uip.h，最后一个定义于uip_arp.h。
+```
+
+前六个函数皆定义于`uip.h`，最后一个定义于`uip_arp.h`：
+
+``` cpp
 uip_sethostaddr：
 #define uip_sethostaddr(addr) uip_ipaddr_copy(uip_hostaddr, (addr))
+```
+
 获取主机IP地址，主机IP地址由4字节的数列表示，第一个八位数就是数组的第一个成员(八位数octet是网络术语，即是一个字节，但网络术语不叫字节)，使用方法如下：
 uip_ipaddr_t addr;
 uip_ipaddr ( &addr, 192, 168, 1, 2 );
@@ -404,22 +413,31 @@ uip_setethaddr：
 struct uip_eth_addr {
     u8_t addr[6];
 };
-/*--------------------------------------------------------------------------------------------------------------------*/
-uIP应用程序
-    uIP的发行版中包含了大量的应用程序。它们既可以直接使用，也可以用来学习写uIP应用程序。相关模块如下所示：
+
+---
+
+### uIP应用程序
+
+&emsp;&emsp;uIP的发行版中包含了大量的应用程序。它们既可以直接使用，也可以用来学习写uIP应用程序。相关模块如下所示：
+
 DNS resolver -- DNS服务器，用于查找主机名，并将其映射到IP地址。
 SMTP E-mail sender -- RFC821定义的简单邮件传输协议，它是在因特网上发送和传输邮件的标准方法。
 Telnet server -- “uIP Telnet”服务器。
 Hello, world -- 一个小例程，用于讲述如何使用原始套接字写应用。
 Web client -- 此例程是一个HTTP客户端，可以网络服务器上下载网页和文件。
 Web server -- 一个非常简单的网络服务器实现。
-    相关变量如下所示：
+
+    相关变量如下：
+
 char telnetd_state::buf [TELNETD_CONF_LINELEN]
 char telnetd_state::bufptr
 u8_t telnetd_state::numsent
 u8_t telnetd_state::state
-/*--------------------------------------------------------------------------------------------------------------------*/
+
+---
+
 ARP应答
+
     ARP应答部分代码为uip_arp.c中的uip_arp_arpin函数。这个函数是在设备接收到ARP包时，由驱动程序调用的。如果收到的ARP包是一个对本地主机上次发送的ARP请求的应答，那么就从包中取得自己想要的主机的MAC地址，加入自己的ARP缓存表中；如果收到是一个ARP请求，那就把自己的MAC地址打包成一个ARP应答，发送给请求的主机。代码如下所示：
 /*
 * ARP processing for incoming ARP packets.
