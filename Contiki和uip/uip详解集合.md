@@ -641,24 +641,32 @@ void uip_arp_timer ( void ) {
 #define UIP_ARP_MAXAGE 120 /* 即20分钟 */
 ```
 
-从这里可以看出，ARP表项中的更新时间是一个数，每调用一个上面这个函数，这个数就加1。这个周期性处理函数的作用就是每隔一段时间把超过20分钟都没有更新过的表项扔掉。
+从这里可以看出，`ARP`表项中的更新时间是一个数，每调用一个上面这个函数，这个数就加`1`。这个周期性处理函数的作用就是每隔一段时间把超过`20`分钟都没有更新过的表项扔掉。
 &emsp;&emsp;`uip_arp_init`如下：
+
+``` cpp
 /* Initialize the ARP module. 初始化ARP模块 */
 void uip_arp_init ( void ) {
     for ( i = 0; i < UIP_ARPTAB_SIZE; ++i ) {
         memset ( arp_table[i].ipaddr, 0, 4 );
     }
 }
-一目了然，所谓初始化就是把数组中的每一个表项都扔掉，清空成0，变成空表项。
+```
+
+所谓初始化，就是把数组中的每一个表项都扔掉，变成空表项。
 
 ---
 
-ARP请求
-    对于一个设备用的ARP协议而言，重要的东西包括三方面：
-一个本地的IP与MAC地址的缓存表，已有对应的更新和查询操作。
-一个发送ARP请求的函数。
-一个处理ARP回复的函数。
-    下面我们来看uIP中是如何实现的(代码见uip_arp.c)，首先定义一个缓存表的数据结构：
+### ARP请求
+
+&emsp;&emsp;对于一个设备用的ARP协议而言，重要的东西包括三方面：
+
+1. 一个本地的IP与MAC地址的缓存表，已有对应的更新和查询操作。
+2. 一个发送ARP请求的函数。
+3. 一个处理ARP回复的函数。
+
+&emsp;&emsp;下面我们来看uIP中是如何实现的(代码见uip_arp.c)，首先定义一个缓存表的数据结构：
+
 struct arp_entry {
     u16_t ipaddr[2];
     struct uip_eth_addr ethaddr;
