@@ -38,14 +38,14 @@ void uip_init ( void ) {
 }
 ```
 
-UIP_LISTENPORTS：可同时监听的TCP端口数最大值，每监听一个TCP端口都要占用两字节内存。
-UIP_CONNS：可同时打开的TCP端口数的最大值，由于TCP连接是静态分配的，所以降低这个值的大小可以降低占用的内存空间，每个TCP连接大约需要30字节内存。
-UIP_UDP_CONNS：最大的并行UDP连接数。
-uip_conns：“struct uip_conn”型结构体数列，数列大小为UIP_CONNS。每个uip_conn代表一个TCP连接。
-uip_udp_conns：“struct uip_udp_conn”型号结构体数列，数列大小为UIP_UDP_CONNS。每个uip_udp_conn代表一个UDP连接。
-UIP_ACTIVE_OPEN：是否编译可以让上层应用程序动态打开外向的TCP连接的代码。关闭此功能可以降低uIP的代码大小。
+- `UIP_LISTENPORTS`：可同时监听的`TCP`端口数最大值，每监听一个`TCP`端口都要占用`2`字节内存。
+- `UIP_CONNS`：可同时打开的`TCP`端口数的最大值，由于`TCP`连接是静态分配的，所以降低这个值的大小可以降低占用的内存空间，每个`TCP`连接大约需要`30`字节内存。
+- `UIP_UDP_CONNS`：最大的并行`UDP`连接数。
+- `uip_conns`：`struct uip_conn`型结构体数列，数列大小为`UIP_CONNS`。每个`uip_conn`代表一个`TCP`连接。
+- `uip_udp_conns`：`struct uip_udp_conn`型结构体数列，数列大小为`UIP_UDP_CONNS`。每个`uip_udp_conn`代表一个`UDP`连接。
+- `UIP_ACTIVE_OPEN`：是否编译可以让上层应用程序动态打开外向的`TCP`连接的代码。关闭此功能可以降低`uIP`的代码大小。
 
-&emsp;&emsp;uip_setipid如下所示：
+&emsp;&emsp;`uip_setipid`如下：
 
 ``` cpp
 void uip_setipid ( u16_t id ) {
@@ -53,55 +53,80 @@ void uip_setipid ( u16_t id ) {
 }
 ```
 
-uip_conn结构体：代表一个uip的TCP连接，此结构体用于鉴定一个TCP连接，对应用来说，除一个域之外，所有的域都是只读的。例外的是appstate域，它的目的是让应用存取应用相关的连接状态，此域的类型定义于uipopt.h中。
+#### uip_conn结构体
+
+&emsp;&emsp;代表一个`uip`的`TCP`连接，此结构体用于监听一个`TCP`连接，对应用来说，除一个域之外，所有的域都是只读的。例外的是`appstate`域，它的目的是让应用存取应用相关的连接状态，此域的类型定义于`uipopt.h`中。
+
+``` cpp
 struct uip_conn {
-    uip_ipaddr_t ripaddr; /**< The IP address of the remote host. 运程主机的ip地址 */
-    u16_t lport; /**< The local TCP port, in network byte order. 本地主机的TCP端口，以网络传输中的字节顺序 */
-    u16_t rport; /**< The local remote TCP port, in network byte order. 远程主机的TCP端口，以网络传输中的字节顺序 */
-    u8_t rcv_nxt[4]; /**< The sequence number that we expect to receive next. 我们期待接收的下一个序号 */
-    u8_t snd_nxt[4]; /**< The sequence number that was last sent by us. 我们上次发送的序号 */
-    u16_t len; /**< Length of the data that was previously sent. 上次发送的数据长度 */
-    u16_t mss; /**< Current maximum segment size for the connection. 现行连接的段大小最大值 */
-    u16_t initialmss; /**< Initial maximum segment size for the connection. 连接的初始段大小最大值 */
-    u8_t sa; /**< Retransmission time-out calculation state variable. 重传超时计算状态变量 */
-    u8_t sv; /**< Retransmission time-out calculation state variable. 重传超时计算状态变量 */
-    u8_t rto; /**< Retransmission time-out. 重传超时 */
-    u8_t tcpstateflags; /**< TCP state and flags. TCP状态标志 */
-    u8_t timer; /**< The retransmission timer. 重传定时器 */
-    u8_t nrtx; /**< The number of retransmissions for the last segment sent. 上次发送的段的重传次数 */
-    uip_tcp_appstate_t appstate; /** The application state. 应用状态 */
+    uip_ipaddr_t ripaddr; /* The IP address of the remote host. 运程主机的ip地址 */
+    u16_t lport; /* The local TCP port, in network byte order. 本地主机的TCP端口，以网络传输中的字节顺序 */
+    u16_t rport; /* The local remote TCP port, in network byte order. 远程主机的TCP端口，以网络传输中的字节顺序 */
+    u8_t rcv_nxt[4]; /* The sequence number that we expect to receive next. 我们期待接收的下一个序号 */
+    u8_t snd_nxt[4]; /* The sequence number that was last sent by us. 我们上次发送的序号 */
+    u16_t len; /* Length of the data that was previously sent. 上次发送的数据长度 */
+    u16_t mss; /* Current maximum segment size for the connection. 现行连接的段大小最大值 */
+    u16_t initialmss; /* Initial maximum segment size for the connection. 连接的初始段大小最大值 */
+    u8_t sa; /* Retransmission time-out calculation state variable. 重传超时计算状态变量 */
+    u8_t sv; /* Retransmission time-out calculation state variable. 重传超时计算状态变量 */
+    u8_t rto; /* Retransmission time-out. 重传超时 */
+    u8_t tcpstateflags; /* TCP state and flags. TCP状态标志 */
+    u8_t timer; /* The retransmission timer. 重传定时器 */
+    u8_t nrtx; /* The number of retransmissions for the last segment sent. 上次发送的段的重传次数 */
+    uip_tcp_appstate_t appstate; /* The application state. 应用状态 */
 };
-uip_udp_conn结构体：代表一个uIP的UDP连接，如下所示：
+```
+
+#### uip_udp_conn结构体
+
+&emsp;&emsp;代表一个`uIP`的`UDP`连接：
+
+``` cpp
 struct uip_udp_conn {
-    uip_ipaddr_t ripaddr; /**< The IP address of the remote peer. 远程对等主机的ip地址 */
-    u16_t lport; /**< The local port number in network byte order. 本地端口号，以网络字节顺序 */
-    u16_t rport; /**< The remote port number in network byte order. 远程端口号，以网络字节顺序 */
-    u8_t ttl; /**< Default time-to-live. 默认存活时间 */
-    uip_udp_appstate_t appstate; /** The application state. 应用状态 */
+    uip_ipaddr_t ripaddr; /* The IP address of the remote peer. 远程对等主机的ip地址 */
+    u16_t lport; /* The local port number in network byte order. 本地端口号，以网络字节顺序 */
+    u16_t rport; /* The remote port number in network byte order. 远程端口号，以网络字节顺序 */
+    u8_t ttl; /* Default time-to-live. 默认存活时间 */
+    uip_udp_appstate_t appstate; /* The application state. 应用状态 */
 };
-/*--------------------------------------------------------------------------------------------------------------------*/
-编译配置相关
-    相关文件如下所示：
-uip-conf.h：uip配置文件。
-uipopt.h：uip配置选项。
-    针对于工程的配置选项：uip有大量的配置选项，它们都可以根据工程需要重载。它们被保存在一个工程相关的uip-conf.h文件中，所有配置的名称都有UIP_CONF前辍。
+```
+
+---
+
+### 编译配置相关
+
+&emsp;&emsp;相关文件如下：
+
+- `uip-conf.h`：`uip`配置文件。
+- `uipopt.h`：`uip`配置选项。
+
+&emsp;&emsp;针对于工程的配置选项：`uip`有大量的配置选项，它们都可以根据工程需要重载。它们被保存在一个工程相关的`uip-conf.h`文件中，所有配置的名称都有`UIP_CONF`前辍。
+
+``` cpp
 #define UIP_CONF_MAX_CONNECTIONS /* 最大的TCP连接数 */
 #define UIP_CONF_MAX_LISTENPORTS /* 最大监听的TCP端口数 */
-#define UIP_CONF_BUFFER_SIZE /* uip缓冲区大小 */
-#define UIP_CONF_BYTE_ORDER /* CPU字节顺序 */
-#define UIP_CONF_LOGGING /* 是否开启日志 */
-#define UIP_CONF_UDP /* 是否启用UDP功能 */
-#define UIP_CONF_UDP_CHECKSUMS /* 是否启用UDC校验和 */
-#define UIP_CONF_STATISTICS /* UIP配置统计是否开启 */
+#define UIP_CONF_BUFFER_SIZE     /* uip缓冲区大小 */
+#define UIP_CONF_BYTE_ORDER      /* CPU字节顺序 */
+#define UIP_CONF_LOGGING         /* 是否开启日志 */
+#define UIP_CONF_UDP             /* 是否启用UDP功能 */
+#define UIP_CONF_UDP_CHECKSUMS   /* 是否启用UDC校验和 */
+#define UIP_CONF_STATISTICS      /* UIP配置统计是否开启 */
 
-typedef uint8_t u8_t /* 8位的数据类型 */
-typedef uint16_t u16_t /* 16位的数据类型 */
+typedef uint8_t u8_t               /* 8位的数据类型 */
+typedef uint16_t u16_t             /* 16位的数据类型 */
 typedef unsigned short uip_stats_t /* 统计数据类型 */
-    静态配置选项：这些选项可以用来静态配置IP地址，条件是UIP_FIXEDADDR必须设为1。指定节点的配置选项包括IP地址、子网掩码、默认路由及以太网址。而后三项只有在以太网中时才可用。
-#define UIP_FIXEDADDR /* 决定uIP使用固定IP与否 */
+```
+
+&emsp;&emsp;静态配置选项：这些选项可以用来静态配置IP地址，条件是UIP_FIXEDADDR必须设为1。指定节点的配置选项包括IP地址、子网掩码、默认路由及以太网址。而后三项只有在以太网中时才可用。
+
+``` cpp
+#define UIP_FIXEDADDR    /* 决定uIP使用固定IP与否 */
 #define UIP_PINGADDRCONF /* 设置ping地址 */
 #define UIP_FIXEDETHADDR /* ARP模块的编译是否用固定的MAC地址 */
-    IP配置选项：
+```
+
+&emsp;&emsp;`IP`配置选项：
+
 #define UIP_TTL 64 /* 定义UIP包的生存时间TTL */
 #define UIP_REASSEMBLY /* 打开IP包重新组装功能 */
 #define UIP_REASS_MAXAGE 40 /* IP片断扔掉之前在重组装缓冲区等待的时间 */
