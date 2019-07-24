@@ -465,7 +465,7 @@ struct uip_eth_addr {
 
 ### ARP应答
 
-&emsp;&emsp;ARP应答部分代码为uip_arp.c中的uip_arp_arpin函数。这个函数是在设备接收到ARP包时，由驱动程序调用的。如果收到的ARP包是一个对本地主机上次发送的ARP请求的应答，那么就从包中取得自己想要的主机的MAC地址，加入自己的ARP缓存表中；如果收到是一个ARP请求，那就把自己的MAC地址打包成一个ARP应答，发送给请求的主机。代码如下所示：
+&emsp;&emsp;`ARP`应答部分代码为`uip_arp.c`中的`uip_arp_arpin`函数。这个函数是在设备接收到`ARP`包时，由驱动程序调用的。如果收到的`ARP`包是一个对本地主机上次发送的`ARP`请求的应答，那么就从包中取得自己想要的主机的`MAC`地址，加入自己的`ARP`缓存表中；如果收到是一个`ARP`请求，那就把自己的`MAC`地址打包成一个`ARP`应答，发送给请求的主机：
 
 ``` cpp
 /*
@@ -551,7 +551,7 @@ BUF->ethhdr.type = HTONS ( UIP_ETHTYPE_ARP );
 uip_len = sizeof ( struct arp_hdr );
 ```
 
-由于请求和应答包很多地方是相同的，我们只需将收到的请求稍加修改就可以发送回去了。首先要改一下MAC地址，一共有四个地方。然后要将目标主机IP设为设为请求包的源主机IP，目的主机IP设为我们的IP就可以了。另外说下对ARP缓存表的设置：
+由于请求和应答包很多地方是相同的，我们只需将收到的请求稍加修改就可以发送回去了。首先要改一下`MAC`地址，一共有`4`个地方。然后要将目标主机`IP`设为设为请求包的源主机`IP`，目的主机`IP`设为我们的`IP`就可以了。另外说一下对`ARP`缓存表的设置：
 
 ``` cpp
 /* 这个函数是集插入、更新一体的，有两个参数，分别是IP地址和MAC地址。*/
@@ -611,30 +611,38 @@ static void uip_arp_update ( u16_t *ipaddr, struct uip_eth_addr *ethaddr ) {
     tabptr->time = arptime;
 ```
 
-uip_arp_timer如下所示：
+`uip_arp_timer`如下：
+
+``` cpp
 /*
-* Periodic ARP processing function.
-* ARP周期性处理函数。
-*
-* This function performs periodic timer processing in the ARP module
-* and should be called at regular intervals. The recommended interval
-* is 10 seconds between the calls.
-* 此函数在ARP模块中实行周期性处理，它应该每隔一段时间就调用一次，推荐为10秒。
-*/
+ * Periodic ARP processing function. ARP周期性处理函数。
+ *
+ * This function performs periodic timer processing in the ARP module
+ * and should be called at regular intervals. The recommended interval
+ * is 10 seconds between the calls.
+ * 此函数在ARP模块中实行周期性处理，它应该每隔一段时间就调用一次，推荐为10秒
+ */
 void uip_arp_timer ( void ) {
     struct arp_entry *tabptr;
     ++arptime;
     for ( i = 0; i < UIP_ARPTAB_SIZE; ++i ) {
         tabptr = &arp_table[i];
-        if ( ( tabptr->ipaddr[0] | tabptr->ipaddr[1] ) != 0 && arptime - tabptr->time >= UIP_ARP_MAXAGE ) {
+        if ( ( tabptr->ipaddr[0] | tabptr->ipaddr[1] ) != 0 && \
+             arptime - tabptr->time >= UIP_ARP_MAXAGE ) {
             memset ( tabptr->ipaddr, 0, 4 );
         }
     }
 }
-关于UIP_ARP_MAXAGE如下所示：
+```
+
+`UIP_ARP_MAXAGE`如下：
+
+``` cpp
 #define UIP_ARP_MAXAGE 120 /* 即20分钟 */
+```
+
 从这里可以看出，ARP表项中的更新时间是一个数，每调用一个上面这个函数，这个数就加1。这个周期性处理函数的作用就是每隔一段时间把超过20分钟都没有更新过的表项扔掉。
-    uip_arp_init如下所示：
+&emsp;&emsp;`uip_arp_init`如下：
 /* Initialize the ARP module. 初始化ARP模块 */
 void uip_arp_init ( void ) {
     for ( i = 0; i < UIP_ARPTAB_SIZE; ++i ) {
@@ -642,7 +650,9 @@ void uip_arp_init ( void ) {
     }
 }
 一目了然，所谓初始化就是把数组中的每一个表项都扔掉，清空成0，变成空表项。
-/*--------------------------------------------------------------------------------------------------------------------*/
+
+---
+
 ARP请求
     对于一个设备用的ARP协议而言，重要的东西包括三方面：
 一个本地的IP与MAC地址的缓存表，已有对应的更新和查询操作。
