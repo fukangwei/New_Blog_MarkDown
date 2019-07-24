@@ -675,7 +675,7 @@ struct arp_entry {
 };
 ```
 
-第一项是ip地址，保存四个八位组；第二项是MAC地址；第三项是缓存更新时间。下面是ARP请求发送函数：
+第一项是`ip`地址，保存四个八位组；第二项是`MAC`地址；第三项是缓存更新时间。下面是`ARP`请求发送函数：
 
 ``` cpp
 /*
@@ -720,22 +720,24 @@ void uip_arp_out ( void ) {
     } else {
         /* Check if the destination address is on the local network. 检查目标地址是否在局域网内 */
         if ( !uip_ipaddr_maskcmp ( IPBUF->destipaddr, uip_hostaddr, uip_netmask ) ) {
-            /* Destination address was not on the local network, so we need to
-               use the default router's IP address instead of the destination
-               address when determining the MAC address. 目的地址不在局域网内，所以保用默认路由器的地址来确在MAC地址 */
+            /* Destination address was not on the local network, so we need to use the default router's
+               IP address instead of the destination address when determining the MAC address.
+               目的地址不在局域网内，所以保用默认路由器的地址来确在MAC地址 */
             uip_ipaddr_copy ( ipaddr, uip_draddr );
         } else {
             uip_ipaddr_copy ( ipaddr, IPBUF->destipaddr ); /* Else, we use the destination IP address. 否则，使用目标IP地址 */
         }
+
         for ( i = 0; i < UIP_ARPTAB_SIZE; ++i ) { /* 这里遍历表，对比目的IP与ARP缓存表中的IP */
             tabptr = &arp_table;
             if ( uip_ipaddr_cmp ( ipaddr, tabptr->ipaddr ) ) {
                 break;
             }
         }
+
         if ( i == UIP_ARPTAB_SIZE ) {
-            /* The destination address was not in our ARP table, so we
-               overwrite the IP packet with an ARP request. 如果遍历到头没找到，将原IP包替换为ARP请求并返回 */
+            /* The destination address was not in our ARP table, so we overwrite the IP packet
+               with an ARP request. 如果遍历到头没找到，将原IP包替换为ARP请求并返回 */
             memset ( BUF->ethhdr.dest.addr, 0xff, 6 );
             memset ( BUF->dhwaddr.addr, 0x00, 6 );
             memcpy ( BUF->ethhdr.src.addr, uip_ethaddr.addr, 6 );
@@ -752,22 +754,29 @@ void uip_arp_out ( void ) {
             uip_len = sizeof ( struct arp_hdr );
             return;
         }
-        /* Build an ethernet header. 如果是在局域网中，且在ARP缓存中找到了(如果没找到进行不到这一步，在上面就返回了)，则构建以太网头 */
+
+        /* Build an ethernet header. 如果是在局域网中，且在ARP缓存中找到了
+          (如果没找到进行不到这一步，在上面就返回了)，则构建以太网头 */
         memcpy ( IPBUF->ethhdr.dest.addr, tabptr->ethaddr.addr, 6 );
     }
+
     memcpy ( IPBUF->ethhdr.src.addr, uip_ethaddr.addr, 6 );
     IPBUF->ethhdr.type = HTONS ( UIP_ETHTYPE_IP );
     uip_len += sizeof ( struct uip_eth_hdr );
 }
 ```
 
-    下面再总结一下其基本顺序：用“IPBUF->ethhdr.dest.addr”来存储目的IP地址，它有可能是局域网内一主机，也可能是路由器(如果是发往外网，即原来的目的IP不在局域网内)，还有可能是广播专用的MAC“broadcast_ethaddr.addr”。
-    先看是不是在广播，如果是广播，将“IPBUF->ethhdr.dest.addr”设为广播MAC。再看是不是在局域网内，如果不是，则将“IPBUF->ethhdr.dest.addr”设为路由器MAC。如果在局域网内，查看是否已经存在于ARP缓存表中，如果不在，将要发送的换成ARP请求，返回；如果已存在，则查找使用查找到的MAC地址为IP包添加以太网头。
-    这里还要解释一些细节问题，主要是：
-如何在IP包上添加以太网头？
-如果将IP包替换成ARP请求，ARP请求的格式是什么？
-广播地址。
-    将IP包替换成ARP请求部分代码(实际上IP包是放在uip_buf里的，这里只是将uip_buf填充上ARP请求即可)，位于uip_arp.c：
+&emsp;&emsp;下面再总结一下其基本顺序：用`IPBUF->ethhdr.dest.addr`来存储目的`IP`地址，它有可能是局域网内一主机，也可能是路由器(如果是发往外网，即原来的目的`IP`不在局域网内)，还有可能是广播专用的`MAC`(`broadcast_ethaddr.addr`)。
+&emsp;&emsp;先看是不是在广播，如果是广播，将`IPBUF->ethhdr.dest.addr`设为广播`MAC`。再看是不是在局域网内，如果不是，则将`IPBUF->ethhdr.dest.addr`设为路由器`MAC`。如果在局域网内，查看是否已经存在于`ARP`缓存表中，如果不在，将要发送的换成ARP请求，返回；如果已存在，则查找使用查找到的`MAC`地址为`IP`包添加以太网头。
+&emsp;&emsp;这里还要解释一些细节问题，主要是：
+
+1. 如何在`IP`包上添加以太网头？
+2. 如果将`IP`包替换成`ARP`请求，`ARP`请求的格式是什么？
+3. 广播地址。
+
+&emsp;&emsp;将`IP`包替换成`ARP`请求部分代码(实际上`IP`包是放在`uip_buf`里的，这里只是将`uip_buf`填充上`ARP`请求即可)，位于`uip_arp.c`：
+
+``` cpp
 /* The destination address was not in our ARP table, so we
    overwrite the IP packet with an ARP request. */
 memset ( BUF->ethhdr.dest.addr, 0xff, 6 );
@@ -785,9 +794,17 @@ BUF->ethhdr.type = HTONS ( UIP_ETHTYPE_ARP );
 uip_appdata = &uip_buf[UIP_TCPIP_HLEN + UIP_LLH_LEN];
 uip_len = sizeof ( struct arp_hdr );
 return;
-首先解释这里的BUF(位于uip_arp.c)：
+```
+
+首先解释这里的`BUF`(位于`uip_arp.c`)：
+
+``` cpp
 #define BUF ((struct arp_hdr *)&uip_buf[0])
+```
+
 可见这里的BUF就是uip_buf，只不过这里将它取做一个“struct arp_hdr”的结构体：
+
+``` cpp
 struct arp_hdr {
     struct uip_eth_hdr ethhdr;
     u16_t hwtype; /* 硬件类型 */
@@ -800,6 +817,8 @@ struct arp_hdr {
     struct uip_eth_addr dhwaddr; /* 目的以太网地址 */
     u16_t dipaddr[2]; /* 目的IP地址 */
 };
+```
+
     这里需要了解一下ARP的帧格式：
 
 struct uip_eth_hdr {
