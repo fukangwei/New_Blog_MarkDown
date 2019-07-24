@@ -417,66 +417,82 @@ uip_gethostaddr ( &hostaddr )
 #define uip_getdraddr(addr) uip_ipaddr_copy((addr), uip_draddr)
 ```
 
-uip_setnetmask：设定子网掩码。
+- `uip_setnetmask`：设定子网掩码：
+
+``` cpp
 #define uip_setnetmask(addr) uip_ipaddr_copy(uip_netmask, (addr))
-uip_getnetmask：获取子网掩码。
+```
+
+- `uip_getnetmask`：获取子网掩码：
+
+``` cpp
 #define uip_getnetmask(addr) uip_ipaddr_copy((addr), uip_netmask)
-uip_setethaddr：
+```
+
+- `uip_setethaddr`：获取以太网的`MAC`地址，`ARP`代码需要知道以太网卡的`MAC`地址才能回应`ARP`查询，并产生以太网头：
+
+``` cpp
 #define uip_setethaddr(eaddr) do {uip_ethaddr.addr[0] = eaddr.addr[0]; \
-        uip_ethaddr.addr[1] = eaddr.addr[1];\
-        uip_ethaddr.addr[2] = eaddr.addr[2];\
-        uip_ethaddr.addr[3] = eaddr.addr[3];\
-        uip_ethaddr.addr[4] = eaddr.addr[4];\
-        uip_ethaddr.addr[5] = eaddr.addr[5];} while(0)
-获取以太网的MAC地址，ARP代码需要知道以太网卡的MAC地址才能回应ARP查询，并产生以太网头。注意，此宏只能用来确定以太网卡的MAC地址，并不能用来改变它。参数eaddr是指向uip_eth_addr结构体的指针，里面包含了以太网卡的MAC地址。
+    uip_ethaddr.addr[1] = eaddr.addr[1];\
+    uip_ethaddr.addr[2] = eaddr.addr[2];\
+    uip_ethaddr.addr[3] = eaddr.addr[3];\
+    uip_ethaddr.addr[4] = eaddr.addr[4];\
+    uip_ethaddr.addr[5] = eaddr.addr[5];} while(0)
+```
+
+注意，此宏只能用来确定以太网卡的`MAC`地址，并不能用来改变它。参数`eaddr`是指向`uip_eth_addr`结构体的指针，里面包含了以太网卡的`MAC`地址：
+
+``` cpp
 struct uip_eth_addr {
     u8_t addr[6];
 };
+```
 
 ---
 
 ### uIP应用程序
 
-&emsp;&emsp;uIP的发行版中包含了大量的应用程序。它们既可以直接使用，也可以用来学习写uIP应用程序。相关模块如下所示：
+&emsp;&emsp;`uIP`的发行版中包含了大量的应用程序，它们既可以直接使用，也可以用来学习写uIP应用程序：
 
-DNS resolver -- DNS服务器，用于查找主机名，并将其映射到IP地址。
-SMTP E-mail sender -- RFC821定义的简单邮件传输协议，它是在因特网上发送和传输邮件的标准方法。
-Telnet server -- “uIP Telnet”服务器。
-Hello, world -- 一个小例程，用于讲述如何使用原始套接字写应用。
-Web client -- 此例程是一个HTTP客户端，可以网络服务器上下载网页和文件。
-Web server -- 一个非常简单的网络服务器实现。
+- `DNS resolver`：`DNS`服务器，用于查找主机名，并将其映射到`IP`地址。
+- `SMTP E-mail sender`：`RFC821`定义的简单邮件传输协议，它是在因特网上发送和传输邮件的标准方法。
+- `Telnet server`：基于`uIP`的`Telnet`服务器。
+- `Hello world`：一个小例程，用于讲述如何使用原始套接字写应用程序。
+- `Web client`：一个`HTTP`客户端，可以网络服务器上下载网页和文件。
+- `Web server`：一个非常简单的网络服务器实现。
 
 ---
 
-ARP应答
+### ARP应答
 
-    ARP应答部分代码为uip_arp.c中的uip_arp_arpin函数。这个函数是在设备接收到ARP包时，由驱动程序调用的。如果收到的ARP包是一个对本地主机上次发送的ARP请求的应答，那么就从包中取得自己想要的主机的MAC地址，加入自己的ARP缓存表中；如果收到是一个ARP请求，那就把自己的MAC地址打包成一个ARP应答，发送给请求的主机。代码如下所示：
+&emsp;&emsp;ARP应答部分代码为uip_arp.c中的uip_arp_arpin函数。这个函数是在设备接收到ARP包时，由驱动程序调用的。如果收到的ARP包是一个对本地主机上次发送的ARP请求的应答，那么就从包中取得自己想要的主机的MAC地址，加入自己的ARP缓存表中；如果收到是一个ARP请求，那就把自己的MAC地址打包成一个ARP应答，发送给请求的主机。代码如下所示：
+
+``` cpp
 /*
-* ARP processing for incoming ARP packets.
-* 对传入的ARP包的处理。
-*
-* This function should be called by the device driver when an ARP
-* packet has been received. The function will act differently
-* depending on the ARP packet type: if it is a reply for a request
-* that we previously sent out, the ARP cache will be filled in with
-* the values from the ARP reply. If the incoming ARP packet is an ARP
-* request for our IP address, an ARP reply packet is created and put
-* into the uip_buf[] buffer.
-* 此函数在收到ARP包时由设备驱动调用，函数行为会因包类型而有不同。如果收到的是一个对前先发送的请求的应答
-* 则根据应答的值填充缓存。如果传入的包是对我们的IP的请求，则创建一个ARP应答，并放入uip_buf中。
-*
-* When the function returns, the value of the global variable uip_len
-* indicates whether the device driver should send out a packet or
-* not. If uip_len is zero, no packet should be sent. If uip_len is
-* non-zero, it contains the length of the outbound packet that is
-* present in the uip_buf[] buffer.
-* 函数返回时,全局变量uip_len的值指明了设备驱动要不要发送包.若uip_len为0,则不需发送,若uip_len不是0,
-* 则其值是uip_buf[]中包含的要传出的包的大小.
-*
-* This function expects an ARP packet with a prepended Ethernet
-* header in the uip_buf[] buffer, and the length of the packet in the
-* global variable uip_len.此函数预期中的uip_buf中有一个带以太网头的ARP包.其长度存为uip_len中.
-*/
+ * ARP processing for incoming ARP packets 对传入的ARP包的处理
+ *
+ * This function should be called by the device driver when an ARP
+ * packet has been received. The function will act differently
+ * depending on the ARP packet type: if it is a reply for a request
+ * that we previously sent out, the ARP cache will be filled in with
+ * the values from the ARP reply. If the incoming ARP packet is an ARP
+ * request for our IP address, an ARP reply packet is created and put
+ * into the uip_buf[] buffer.
+ * 此函数在收到ARP包时由设备驱动调用，函数行为会因包类型而有不同。如果收到的是一个对前先发送的请求的应答
+ * 则根据应答的值填充缓存。如果传入的包是对我们的IP的请求，则创建一个ARP应答，并放入uip_buf中
+ *
+ * When the function returns, the value of the global variable uip_len
+ * indicates whether the device driver should send out a packet or
+ * not. If uip_len is zero, no packet should be sent. If uip_len is
+ * non-zero, it contains the length of the outbound packet that is
+ * present in the uip_buf[] buffer.
+ * 函数返回时，全局变量uip_len的值指明了设备驱动要不要发送包。若uip_len为0，
+ * 则不需发送；若uip_len不是0，则其值是uip_buf中包含的要传出的包的大小
+ *
+ * This function expects an ARP packet with a prepended Ethernet header in the
+ * uip_buf[] buffer, and the length of the packet in the global variable uip_len.
+ * 此函数预期中的uip_buf中有一个带以太网头的ARP包，其长度存为uip_len中
+ */
 void uip_arp_arpin ( void ) {
     if ( uip_len < sizeof ( struct arp_hdr ) ) {
         uip_len = 0;
@@ -487,8 +503,8 @@ void uip_arp_arpin ( void ) {
         case HTONS ( ARP_REQUEST ) :
             /* ARP request. If it asked for our address, we send out a reply. 如果是一个ARP请求，则发送应答 */
             if ( uip_ipaddr_cmp ( BUF->dipaddr, uip_hostaddr ) ) {
-                /* First, we register the one who made the request in our ARP table,
-                   since it is likely that we will do more communication with this host in the future.
+                /* First, we register the one who made the request in our ARP table, since it is
+                   likely that we will do more communication with this host in the future.
                    首先，我们将发送请求的主机注册到ARP缓存表中，因为我们很可能要跟它要有更多的交流 */
                 uip_arp_update ( BUF->sipaddr, &BUF->shwaddr );
                 /* The reply opcode is 2. 应答的操作码为2 */
@@ -506,16 +522,20 @@ void uip_arp_arpin ( void ) {
             }
             break;
         case HTONS ( ARP_REPLY ) :
-            /* ARP reply. We insert or update the ARP table if it was meant for us. 如果收到的是一个ARP应答，而且也是我们所要的应答的话，就插件并更新ARP缓存表 */
+            /* ARP reply. We insert or update the ARP table if it was meant for us.
+               如果收到的是一个ARP应答，而且也是我们所要的应答的话，就插件并更新ARP缓存表 */
             if ( uip_ipaddr_cmp ( BUF->dipaddr, uip_hostaddr ) ) {
                 uip_arp_update ( BUF->sipaddr, &BUF->shwaddr );
             }
+
             break;
     }
     return;
 }
+```
+
 这里有一件事是很有意思的，就是说如果某个主机请求得到我们的MAC的地址，我们先把它的MAC地址加入到自己的表中。就好比社交网络中，别人请求加我们为好友，如果我们接收的话，也自动加对方为好友一样。既然对方找上我们了，肯定是要做进一步的交流，互加MAC地址也很自然的。
-    如果收到了一个请求，我们要做应答：
+&emsp;&emsp;如果收到了一个请求，我们要做应答：
 BUF->opcode = HTONS ( 2 ); /* The reply opcode is 2. */
 memcpy ( BUF->dhwaddr.addr, BUF->shwaddr.addr, 6 );
 memcpy ( BUF->shwaddr.addr, uip_ethaddr.addr, 6 );
