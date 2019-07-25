@@ -1010,26 +1010,28 @@ void uip_send ( const void *data, int len );                     /* 在当前连
 uip_udp_conn *uip_udp_new ( uip_ipaddr_t *ripaddr, u16_t port ); /* 建立一个新的udp连接 */
 ```
 
-#define uip_datalen() -- 如果有当前可用的传入数据的话，获取其长度。必需先调用uip_data查明是否有当前可用的传入数据。
-#define uip_urgdatalen() -- 任何到达连接的带外数据(紧迫数据)长度。要使用此宏，应配置UIP_URGDATA宏为真。
-#define uip_close() -- 此函数会以一种谨慎的方式关闭连接。
-#define uip_abort() -- 此函数用于中止(重置)当前连接，多用于出现错误导致无法使用uip_close的场合。
-#define uip_stop() -- 告诉发送主机停止发送数据。此函数会关闭接收机窗口，停止从当前连接接收数据。
-#define uip_restart() -- 如果当前连接曾被uip_stop停止，那么重新开始。该函数会重新打开接收机窗口，从当前连接上接收数据。
-#define uip_udpconnection() -- 此函数查明当前连接是否是一个udp连接。
-#define uip_newdata() -- 如果uip_appdata指针所指之处有送给应用的新数据，此宏得到一个非零值。数据的大小可以通过uip_len获得。
-#define uip_acked() -- 如果上次发送给远程主机的数据得到回应了，此宏得到一个非零值，这意味着应用可以发送新的数据。
-#define uip_connected() -- 如果当前连接己经与远程主机连接，则此宏得到非零值。这包括两种情形，一是连接被主动打开(通过uip_connect)，二是连接被被动打开(通过uip_listen)。
-#define uip_closed() -- 如果远程主机关闭了当前连接，则此宏得到非零值。这时应用可能要做一些清理工作。
-#define uip_aborted() -- 如果当前连接被远程主机中止或重置，则为非零值。
-#define uip_timeout() -- 如果当前连接由于多次重传导致超时中止，则为非零值。
-#define uip_rexmit() -- 如果上次传输的数据在网络中丢失，而应用应该重新传输，则此宏得非零值。应该使用uip_send重新传输与上次传输的完全相同的数据。
-#define uip_poll() -- 这个宏解决的问题是连接是不是由uIP轮询的。如果应用收到请求的原因是因为当前连接空闲太久被uIP轮询了，此宏得到非零值。轮询事件是用来发送数据的，这无需等待远程主机发送数据。
-#define uip_mss() -- 在连接上传送的当前最大段大小是由接收机的窗口计算和连接的MSS计算的(它可以由uip_initialmss计算)。
-#define uip_udp_remove(conn) -- 移除一个udp连接。参数conn是指向代表连接的uip_udp_conn的结构体。
-#define uip_udp_bind(conn, port) -- 绑定一个udp连接到本地端口。参数conn是指向代表udp连接的uip_udp_conn结构体的指针；port是本地端口号，以网络字节顺序。
-#define uip_udp_send(len) -- 在当前连接收发送一个长度为len的数据报。该函数只有在udp事件(轮询或新数据)才能调用。要发送的数据要提前送到uip_buf缓冲区中uip_appdata指针所指示的位置。参数len是存放在uip_buf中要发送的数据报的长度。
-    函数如下所示：
+- `#define uip_datalen()`：如果有当前可用的传入数据的话，获取其长度。必需先调用`uip_data`查明是否有当前可用的传入数据。
+- `#define uip_urgdatalen()`：任何到达连接的带外数据(紧迫数据)长度。要使用此宏，应配置`UIP_URGDATA`宏为真。
+- `#define uip_close()`：此函数会以一种谨慎的方式关闭连接。
+- `#define uip_abort()`：此函数用于中止(重置)当前连接，多用于出现错误导致无法使用`uip_close`的场合。
+- `#define uip_stop()`：告诉发送主机停止发送数据。此函数会关闭接收机窗口，停止从当前连接接收数据。
+- `#define uip_restart()`：如果当前连接曾被`uip_stop`停止，那么重新开始。该函数会重新打开接收机窗口，从当前连接上接收数据。
+- `#define uip_udpconnection()`：此函数查明当前连接是否是一个`udp`连接。
+- `#define uip_newdata()`：如果`uip_appdata`指针所指之处有送给应用的新数据，此宏得到一个非零值。数据的大小可以通过`uip_len`获得。
+- `#define uip_acked()`：如果上次发送给远程主机的数据得到回应了，此宏得到一个非零值，这意味着应用可以发送新的数据。
+- `#define uip_connected()`：如果当前连接己经与远程主机连接，则此宏得到非零值。这包括两种情形，一是连接被主动打开(通过`uip_connect`)，二是连接被被动打开(通过`uip_listen`)。
+- `#define uip_closed()`：如果远程主机关闭了当前连接，则此宏得到非零值。这时应用可能要做一些清理工作。
+- `#define uip_aborted()`：如果当前连接被远程主机中止或重置，则为非零值。
+- `#define uip_timeout()`：如果当前连接由于多次重传导致超时中止，则为非零值。
+- `#define uip_rexmit()`：如果上次传输的数据在网络中丢失，而应用应该重新传输，则此宏得非零值。应该使用`uip_send`重新传输与上次传输的完全相同的数据。
+- `#define uip_poll()`：这个宏解决的问题是连接是不是由`uIP`轮询的。如果应用收到请求的原因是因为当前连接空闲太久被`uIP`轮询了，此宏得到非零值。轮询事件是用来发送数据的，这无需等待远程主机发送数据。
+- `#define uip_mss()`：在连接上传送的当前最大段大小是由接收机的窗口计算和连接的`MSS`计算的(它可以由`uip_initialmss`计算)。
+- `#define uip_udp_remove(conn)`：移除一个`udp`连接。参数`conn`是指向代表连接的`uip_udp_conn`的结构体。
+- `#define uip_udp_bind(conn, port)`：绑定一个`udp`连接到本地端口。参数`conn`是指向代表`udp`连接的`uip_udp_conn`结构体的指针；`port`是本地端口号，以网络字节顺序。
+- `#define uip_udp_send(len)`：在当前连接收发送一个长度为`len`的数据报。该函数只有在`udp`事件(轮询或新数据)才能调用。要发送的数据要提前送到`uip_buf`缓冲区中`uip_appdata`指针所指示的位置。参数`len`是存放在`uip_buf`中要发送的数据报的长度。
+
+ &emsp;&emsp;函数如下：
+
 void listen(u16_t port)：开始监听指定端口。注意，由于此函数中所用的参数port是网络字节顺序的，所以需要用到转换函数HTONS或htons。
 uip_listen ( HTONS ( 80 ) );
 参数port是一个16位以网络字节顺序的端口号。
