@@ -32,11 +32,11 @@ categories: Android
 
 ``` xml
 <manifest ... >
-    <application ... >
-        <activity android:name=".ExampleActivity" />
-        ...
-    </application ... >
-    ...
+    <application ... >
+        <activity android:name=".ExampleActivity" />
+        ...
+        </application ... >
+    ...
 </manifest >
 ```
 
@@ -49,10 +49,10 @@ categories: Android
 
 ``` xml
 <activity android:name=".ExampleActivity" android:icon="@drawable/app_icon">
-    <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-        <category android:name="android.intent.category.LAUNCHER" />
-    </intent-filter>
+    <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
 </activity>
 ```
 
@@ -86,24 +86,25 @@ startActivity(intent);
 
 ``` java
 private void pickContact() {
-    // Create an intent to "pick" a contact, as defined by the content provider URI
-    Intent intent = new Intent(Intent.ACTION_PICK, Contacts.CONTENT_URI);
-    startActivityForResult(intent, PICK_CONTACT_REQUEST);
+    /* Create an intent to "pick" a contact, as defined by the content provider URI */
+    Intent intent = new Intent(Intent.ACTION_PICK, Contacts.CONTENT_URI);
+    startActivityForResult(intent, PICK_CONTACT_REQUEST);
 }
 ​
 @Override
 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    // If the request went well (OK) and the request was PICK_CONTACT_REQUEST
-    if (resultCode == Activity.RESULT_OK && requestCode == PICK_CONTACT_REQUEST) {
-        // Perform a query to the contact's content provider for the contact's name
-        Cursor cursor = getContentResolver().query(data.getData(),
-        new String[] {Contacts.DISPLAY_NAME}, null, null, null);
-        if (cursor.moveToFirst()) { // True if the cursor is not empty
-            int columnIndex = cursor.getColumnIndex(Contacts.DISPLAY_NAME);
-            String name = cursor.getString(columnIndex);
-            // Do something with the selected contact's name...
-        }
-    }
+    /* If the request went well (OK) and the request was PICK_CONTACT_REQUEST */
+    if (resultCode == Activity.RESULT_OK && requestCode == PICK_CONTACT_REQUEST) {
+        /* Perform a query to the contact's content provider for the contact's name */
+        Cursor cursor = getContentResolver().query(data.getData(),
+        new String[] {Contacts.DISPLAY_NAME}, null, null, null);
+
+        if (cursor.moveToFirst()) { /* True if the cursor is not empty */
+            int columnIndex = cursor.getColumnIndex(Contacts.DISPLAY_NAME);
+            String name = cursor.getString(columnIndex);
+            /* Do something with the selected contact's name */
+        }
+    }
 }
 ```
 
@@ -130,41 +131,41 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 ``` java
 public class ExampleActivity extends Activity {
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // The activity is being created.
-    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        /* The activity is being created */
+    }
 
-    @Override
-    protected void onStart() {
-       super.onStart();
-        // The activity is about to become visible.
-    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        /* The activity is about to become visible */
+    }
 ​
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // The activity has become visible (it is now "resumed").
-    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        /* The activity has become visible (it is now "resumed") */
+    }
 ​
-    @Override
-    protected void onPause() {
-        super.onPause();
-        // Another activity is taking focus (this activity is about to be "paused").
-    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        /* Another activity is taking focus (this activity is about to be "paused") */
+    }
 ​
-    @Override
-    protected void onStop() {
-        super.onStop();
-        // The activity is no longer visible (it is now "stopped")
-    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        /* The activity is no longer visible (it is now "stopped") */
+    }
 ​
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // The activity is about to be destroyed.
-    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        /* The activity is about to be destroyed */
+    }
 }
 ```
 
