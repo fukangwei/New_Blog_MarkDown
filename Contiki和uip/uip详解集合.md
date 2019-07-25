@@ -1128,11 +1128,10 @@ if ( c != NULL ) {
 - `#define PT_SPAWN(pt, child, thread)`：此宏用于产生一个子线程并等待直到子线程的退出，它只能用于线程内部。参数`pt`是指向线程控制结构的指针。`child`是指向子线程的控制结构的指针。
 - `#define PT_THREAD(name_args)`：此宏用于声明原始线程，所有的原始线程都必须由此声明。
 - `#define PT_WAIT_THREAD(pt, thread)`：阻塞并等待子线程完成。这个宏调度了一个子线程，并等待子线程的完成。注意，在此函数使用之前，子原始线程必须通过`PT_INIT`初始化。参数`pt`是指向原始线程控制结构体的指针，`thread`是带有参数的子线程。
-
-#define PT_WAIT_UNTIL(pt,condition) -- 阻塞等待，直到条件为真。此宏阻塞线程直到指定的条件为真。参数pt是指向原始线程控制结构体的指针，condition是指定的条件。
-#define PT_WAIT_WHILE(pt,cond) -- 阻塞等待，直到条件为真。此宏阻塞线程只要指定的条件为真。参数pt是指向原始线程控制结构体的指针，condition是指定的条件。
-#define PT_YIELD(pt) -- 从当前线程中让位。这个函数会让当前线程让位，从而使其它线程先在系统中运行。参数pt是指向原始个线程控制结构体的指针。
-#define PT_YEILD_UNTIL(pt,cond) -- 使当前线程让位，直到某条件发生。参数pt是指向原始线程控制结构的指针，cond是条件。此函数会让当前线程让位，直到某条件为真。
+- `#define PT_WAIT_UNTIL(pt, condition)`：阻塞等待，直到条件为真。此宏阻塞线程直到指定的条件为真。参数`pt`是指向原始线程控制结构体的指针，`condition`是指定的条件。
+- `#define PT_WAIT_WHILE(pt, cond)`：阻塞等待，直到条件为真。此宏阻塞线程只要指定的条件为真。参数`pt`是指向原始线程控制结构体的指针，`condition`是指定的条件。
+- `#define PT_YIELD(pt)`：从当前线程中让位。这个函数会让当前线程让位，从而使其它线程先在系统中运行。参数`pt`是指向原始个线程控制结构体的指针。
+- `#define PT_YEILD_UNTIL(pt, cond)`：使当前线程让位，直到某条件发生。参数`pt`是指向原始线程控制结构的指针，`cond`是条件。此函数会让当前线程让位，直到某条件为真。
 
 ---
 
