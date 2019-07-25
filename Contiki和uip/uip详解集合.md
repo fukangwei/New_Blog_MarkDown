@@ -1171,16 +1171,15 @@ u16_t psock_datalen ( struct psock *psock ) char psock_newdata ( psock *s )
 - `#define PSOCK_CLOSE_EXIT(psock)`：此宏用于关闭一个原始套接字，并退出原始套接字生存的线程。参数`psock`指向要关闭的原始套接字的结构体指针。
 - `#define PSOCK_DATALEN(psock)`：返回之前通过`PSOCK_READTO`或`PSOCK_READ`读到的数据长度。参数`psock`指向盛放数据的原始套接字的结构体指针。
 - `#define PSOCK_END(psock)`：此宏用于声明原始套接字的原始线程结束，常与`PSOCK_BEGIN(psock)`配合使用。参数`psock`指向原始套接字的结构体指针。
-
-#define PSOCK_EXIT(psock) -- 此宏用于终止原始套接字的原始线程，必须与PSOCK_CLOSE一起使用，也可以直接使用PSOCK_CLOSE_EXIT。参数psock指向原始套接字的结构体指针。
-#define PSOCK_GENERATOR_SEND(psock, generator, arg) -- 通过函数产生数据并发送。参数psock指向原始套接字的指针，generator指向产生数据的函数的指针，arg是要传给函数的参数。使宏用于通过函数产生数据，并通过原始套接字发送。它可以用于动态产生数据并传输，而不必先将产生的数据存入缓冲区。此函数减小了缓冲区内存的开销。产生器函数由应用程序实现，使用时要将函数的指针作为一个参数传给宏。产生器函数应该将产生的数据直接存放在uip_appdata缓冲区中，并返回产生数据的长度。数据每一次发送时，原始套接字层会调用产生器函数，并且如果出现重发的情况看，则也会调用一次产生器函数，也就是说重发的值并非第一次产生器函数调用时的值。
-#define PSOCK_INIT(psock, buffer, buffersize) -- 这个宏初始化一个原始套接字，它必须在使用套接字之间得到调用。此宏还规定了套接字的输入缓冲区。参数psock指向要初始化的原始套接字的指针，buffer指向原始套接字的输入缓冲区的指针，buffersize是输入缓冲区的大小。
-#define PSOCK_NEWDATA(psock) -- 此宏用于查明是否有数据到达套接字。它常和PSOCK_WAIT_UNTIL连用，查看套接字上是否有新的数据到达。参数psock指向套接字的指针。
-#define PSOCK_READBUF(psock) -- 读数据直到缓冲区满。此宏会阻塞数据等待，把数据读入由PSOCK_INIT指定的输入缓冲区。读数据操作会进行到缓冲区满为止。参数psock指向数据读取来源套接字的指针。
-#define PSOCK_READTO(psock, c) -- 读数据直到某字符出现。此宏会阻塞数据等待并开始读取数据到由PSOCK_INIT指定的输入缓冲区，数据读取会一直持续到由参数c指定的字符出现为止。参数psock指向数据读取来源套接字的指针，c用于指示停止读取数据的字符。
-#define PSOCK_SEND(psock, data, datalen) -- 发送数据。此宏通过原始套接字发送数据。原始套接字阻塞原始线程，直到所有的数据发送完毕，并且已经被完程TCP终端接收。参数psock指向用于发送数据的原始套接字的指针，data指向要发送的数据的指针，datalen是要发送的数据长度。
-#define PSOCK_SEND_STR(psock, str) -- 发送一个以零结尾的字符串。参数psock指向要用来发送数据的套接字指针，str是要发送的字符串。
-#define PSOCK_WAIT_UNTIL(psock, condition) -- 等待直接条件为真。下宏阻塞原始线程，直到条件为真。宏PSOCK_NEWDATA可以用来检查此宏等待时有没有新数据到来。此宏的典型用法如下：
+- `#define PSOCK_EXIT(psock)`：此宏用于终止原始套接字的原始线程，必须与`PSOCK_CLOSE`一起使用，也可以直接使用`PSOCK_CLOSE_EXIT`。参数`psock`指向原始套接字的结构体指针。
+- `#define PSOCK_GENERATOR_SEND(psock, generator, arg)`：通过函数产生数据并发送。参数`psock`指向原始套接字的指针，`generator`指向产生数据的函数的指针，`arg`是要传给函数的参数。使宏用于通过函数产生数据，并通过原始套接字发送。它可以用于动态产生数据并传输，而不必先将产生的数据存入缓冲区。此函数减小了缓冲区内存的开销。产生器函数由应用程序实现，使用时要将函数的指针作为一个参数传给宏。产生器函数应该将产生的数据直接存放在`uip_appdata`缓冲区中，并返回产生数据的长度。数据每一次发送时，原始套接字层会调用产生器函数，并且如果出现重发的情况看，则也会调用一次产生器函数，也就是说重发的值并非第一次产生器函数调用时的值。
+- `#define PSOCK_INIT(psock, buffer, buffersize)`：这个宏初始化一个原始套接字，它必须在使用套接字之间得到调用。此宏还规定了套接字的输入缓冲区。参数`psock`指向要初始化的原始套接字的指针，`buffer`指向原始套接字的输入缓冲区的指针，`buffersize`是输入缓冲区的大小。
+- `#define PSOCK_NEWDATA(psock)`：此宏用于查明是否有数据到达套接字。它常和`PSOCK_WAIT_UNTIL`连用，查看套接字上是否有新的数据到达。参数`psock`指向套接字的指针。
+- `#define PSOCK_READBUF(psock)`：读数据直到缓冲区满。此宏会阻塞数据等待，把数据读入由`PSOCK_INIT`指定的输入缓冲区。读数据操作会进行到缓冲区满为止。参数`psock`指向数据读取来源套接字的指针。
+- `#define PSOCK_READTO(psock, c)`：读数据直到某字符出现。此宏会阻塞数据等待并开始读取数据到由`PSOCK_INIT`指定的输入缓冲区，数据读取会一直持续到由参数`c`指定的字符出现为止。参数`psock`指向数据读取来源套接字的指针，`c`用于指示停止读取数据的字符。
+- `#define PSOCK_SEND(psock, data, datalen)`：发送数据。此宏通过原始套接字发送数据。原始套接字阻塞原始线程，直到所有的数据发送完毕，并且已经被完程`TCP`终端接收。参数`psock`指向用于发送数据的原始套接字的指针，`data`指向要发送的数据的指针，`datalen`是要发送的数据长度。
+- `#define PSOCK_SEND_STR(psock, str)`：发送一个以零结尾的字符串。参数`psock`指向要用来发送数据的套接字指针，`str`是要发送的字符串。
+- `#define PSOCK_WAIT_UNTIL(psock, condition)`：等待直接条件为真。下宏阻塞原始线程，直到条件为真。宏`PSOCK_NEWDATA`可以用来检查此宏等待时有没有新数据到来。参数`psock`是套接字指针，`condition`是等待条件。此宏的典型用法如下：
 
 ``` cpp
 PT_THREAD ( thread ( struct psock *s, struct timer *t ) ) {
@@ -1194,5 +1193,3 @@ PT_THREAD ( thread ( struct psock *s, struct timer *t ) ) {
     PSOCK_END ( s );
 }
 ```
-
-参数psock是套接字指针，condition是等待条件。
