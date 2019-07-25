@@ -888,7 +888,7 @@ ARP帧
 - 以太网首部：目的主机的`MAC`地址是`00:05:5d:61:58:a8`，源主机的`MAC`地址是`00:05:5d:a1:b8:40`，上层协议类型`0x0806`表示`ARP`。
 - `ARP`帧：硬件类型`0x0001`表示以太网，协议类型`0x0800`表示`IP`协议，硬件地址(`MAC`地址)长度为`6`，协议地址(`IP`地址)长度为`4`，`op`为`0x0002`表示应答，源主机`MAC`地址为`00:05:5d:a1:b8:40`，源主机`IP`地址为`c0 a8 00 02`(`192.168.0.2`)，目的主机`MAC`地址为`00:05:5d:61:58:a8`，目的主机`IP`地址为`c0 a8 00 37`(`192.168.0.55`)。
 
- &emsp;&emsp;上面是一个针对前面的ARP请求的应答，应答者是MAC地址为00:05:5d:a1:b8:40，IP地址为c0 a8 00 02(192.168.0.2)的主机。它将应答中的源主机地址设为自己的MAC地址，目的主机地址设为发出请求的主机的MAC地址。将最后四项中的源主机地址和IP地址设为自己的MAC地址和IP地址，目的主机地址和IP地址设为发出请求的主机的MAC地址和IP地址。可见，一个ARP的请求的应答帧很多域的值都是固定的，只有以太网首部“6+6”(目的MAC、源MAC)，最后四项“6+4+6+4”(源MAC、源IP、目的MAC、目的IP)和opcode(1-ARP请求、2-ARP应答、3-RARP请求、4-RARP应答，必需字段)需要按需填写。其中不知道的填全“0”，ARP请求的目的MAC在以太网首部为广播MAC，即全“0”。接着看函数：
+ &emsp;&emsp;上面是一个针对前面的ARP请求的应答，应答者是`MAC`地址为`00:05:5d:a1:b8:40`，`IP`地址为`c0 a8 00 02`(`192.168.0.2`)的主机。它将应答中的源主机地址设为自己的`MAC`地址，目的主机地址设为发出请求的主机的`MAC`地址。将最后四项中的源主机地址和`IP`地址设为自己的`MAC`地址和`IP`地址，目的主机地址和`IP`地址设为发出请求的主机的`MAC`地址和`IP`地址。可见，一个`ARP`的请求的应答帧很多域的值都是固定的，只有以太网首部`6 + 6`(目的`MAC`、源`MAC`)，最后四项`6 + 4 + 6 + 4`(源`MAC`、源`IP`、目的`MAC`、目的`IP`)和`opcode`(`1-ARP`请求、`2-ARP`应答、`3-RARP`请求、`4-RARP`应答，必需字段)需要按需填写。其中不知道的填全`0`，`ARP`请求的目的`MAC`在以太网首部为广播`MAC`，即全`0`。接着看如下代码：
 
 ``` cpp
 uip_ipaddr_copy ( BUF->dipaddr, ipaddr );
@@ -901,28 +901,44 @@ BUF->protolen = 4;
 BUF->ethhdr.type = HTONS ( UIP_ETHTYPE_ARP );
 ```
 
-前两句填写后四项中的IP地址部分，ipaddr为要查询的IP地址，uip_hostaddr为本机IP地址。前者在本函数中：
+前两句填写后四项中的`IP`地址部分，`ipaddr`为要查询的`IP`地址，`uip_hostaddr`为本机`IP`地址。前者在本函数中：
+
+``` cpp
 uip_ipaddr_copy ( ipaddr, IPBUF->destipaddr );
-复制了“IP_BUF->destipaddr”的内容，它是在确定了是局域网IP时才复制的。uip_arp.c如下所示：
+```
+
+复制了`IP_BUF->destipaddr`的内容，它是在确定了是局域网`IP`时才复制的。`uip_arp.c`如下：
+
+``` cpp
 #define ARP_REQUEST    1
 #define ARP_REPLY      2
 #define ARP_HWTYPE_ETH 1
-uip_arp.h如下所示：
+```
+
+`uip_arp.h`如下：
+
+``` cpp
 #define UIP_ETHTYPE_ARP 0x0806
 #define UIP_ETHTYPE_IP  0x0800
 #define UIP_ETHTYPE_IP6 0x86dd
-    HTONS是用来将单片机的字节序转换为网络字节序(位于uip.h)：
+```
+
+ &emsp;&emsp;`HTONS`是用来将单片机的字节序转换为网络字节序(位于`uip.h`)：
+
+``` cpp
 #ifndef HTONS
-#if UIP_BYTE_ORDER == UIP_BIG_ENDIAN
-    #define HTONS(n) (n)
-#else /* UIP_BYTE_ORDER == UIP_BIG_ENDIAN */
-    #define HTONS(n) (u16_t)((((u16_t) (n)) << 8) | (((u16_t) (n)) >> 8))
-#endif /* UIP_BYTE_ORDER == UIP_BIG_ENDIAN */
+    #if UIP_BYTE_ORDER == UIP_BIG_ENDIAN
+        #define HTONS(n) (n)
+    #else /* UIP_BYTE_ORDER == UIP_BIG_ENDIAN */
+        #define HTONS(n) (u16_t)((((u16_t) (n)) << 8) | (((u16_t) (n)) >> 8))
+    #endif /* UIP_BYTE_ORDER == UIP_BIG_ENDIAN */
 #else
-#error "HTONS already defined!"
+    #error "HTONS already defined!"
 #endif /* HTONS */
-至于能在本机找到目的主机的MAC地址的情况，则为其加上以太网头，即以太网首部，读过上面的内容，这个也就容易理解了，就是填上前“6+6+2”字节而己。
-&emsp;&emsp;如果在本地缓存表能找到目的主机IP地址，则直接为IP包加上以太网头，IP包的数据结构如下：
+```
+
+至于能在本机找到目的主机的`MAC`地址的情况，则为其加上以太网头，即以太网首部，读过上面的内容，这个也就容易理解了，就是填上前`6 + 6 + 2`字节而己。
+&emsp;&emsp;如果在本地缓存表能找到目的主机`IP`地址，则直接为`IP`包加上以太网头，`IP`包的数据结构如下：
 
 ``` cpp
 struct ethip_hdr {
@@ -941,7 +957,9 @@ struct ethip_hdr {
 };
 ```
 
-arp_entry结构如下所示：
+`arp_entry`结构如下：
+
+``` cpp
 struct arp_entry {
     u16_t ipaddr[2];
     struct uip_eth_addr ethaddr;
@@ -949,39 +967,49 @@ struct arp_entry {
 };
 
 #define IPBUF ((struct ethip_hdr *)&uip_buf[0])
+```
 
 ---
 
-应用层要调用的函数
-    宏定义如下所示：
+### 应用层要调用的函数
+
+&emsp;&emsp;宏定义如下：
+
+``` cpp
 #define uip_outstanding(conn) ((conn)->len)
-#define uip_datalen() /* 存放在uip_appdata中的现行可用的传入数据长度 */
-#define uip_urgdatalen() /* 到达连接的带外数据长度(紧急的) */
-#define uip_close() /* 关闭当前连接 */
-#define uip_abort() /* 中止当前连接 */
-#define uip_stop() /* 告诉发送方主机停止发送数据 */
-#define uip_stopped() /* 查明当前连接是否以前被uip_stop停止过 */
-#define uip_restart() /* 如果当前连接被uip_stop停止过，重新开始 */
-#define uip_udpconnection() /* 查明当前连接是否是udp连接 */
-#define uip_newdata() /* 查明新传入的数据是否可用 */
-#define uip_acked() /* 查明以前发送的数据是否得到回应了 */
-#define uip_connected() /* 查明连接是否连接上了 */
-#define uip_closed() /* 查明连接是否是被另一端关闭 */
-#define uip_aborted() /* 查明连接是否被另一端中止 */
-#define uip_timeout() /* 查明连接是否超时 */
-#define uip_rexmit() /* 查明是否需要将上次传送的数据重新传送 */
-#define uip_poll() /* 查明连接是否被uip轮询了 */
-#define uip_initialmss() /* 获得当前连接的初始最大段大小 */
-#define uip_mss() /* 获取可以在当前连接上发送的最大段大小 */
-#define uip_udp_remove(conn) /* 移除一个udp连接 */
+#define uip_datalen()           /* 存放在uip_appdata中的现行可用的传入数据长度 */
+#define uip_urgdatalen()        /* 到达连接的带外数据长度(紧急的) */
+#define uip_close()             /* 关闭当前连接 */
+#define uip_abort()             /* 中止当前连接 */
+#define uip_stop()              /* 告诉发送方主机停止发送数据 */
+#define uip_stopped()           /* 查明当前连接是否以前被uip_stop停止过 */
+#define uip_restart()           /* 如果当前连接被uip_stop停止过，重新开始 */
+#define uip_udpconnection()     /* 查明当前连接是否是udp连接 */
+#define uip_newdata()           /* 查明新传入的数据是否可用 */
+#define uip_acked()             /* 查明以前发送的数据是否得到回应了 */
+#define uip_connected()         /* 查明连接是否连接上了 */
+#define uip_closed()            /* 查明连接是否是被另一端关闭 */
+#define uip_aborted()           /* 查明连接是否被另一端中止 */
+#define uip_timeout()           /* 查明连接是否超时 */
+#define uip_rexmit()            /* 查明是否需要将上次传送的数据重新传送 */
+#define uip_poll()              /* 查明连接是否被uip轮询了 */
+#define uip_initialmss()        /* 获得当前连接的初始最大段大小 */
+#define uip_mss()               /* 获取可以在当前连接上发送的最大段大小 */
+#define uip_udp_remove(conn)    /* 移除一个udp连接 */
 #define uip_udp_bind(conn,port) /* 绑定一个udp连接到本地端口 */
-#define uip_udp_send(len) /* 在当前连接上发送一个长度为len的udp数据报 */
-    函数如下所示：
-void uip_listen ( u16_t port ); /* 开始监听指定的端口 */
-void uip_unlisten ( u16_t port ); /* 停止监听指定的端口 */
-uip_conn *uip_connect ( uip_ipaddr_t *ripaddr, u16_t port ); /* 通过TCP连接到远程主机 */
-void uip_send ( const void *data, int len ); /* 在当前连接上发送数据 */
+#define uip_udp_send(len)       /* 在当前连接上发送一个长度为len的udp数据报 */
+```
+
+ &emsp;&emsp;函数如下：
+
+``` cpp
+void uip_listen ( u16_t port );                                  /* 开始监听指定的端口 */
+void uip_unlisten ( u16_t port );                                /* 停止监听指定的端口 */
+uip_conn *uip_connect ( uip_ipaddr_t *ripaddr, u16_t port );     /* 通过TCP连接到远程主机 */
+void uip_send ( const void *data, int len );                     /* 在当前连接上发送数据 */
 uip_udp_conn *uip_udp_new ( uip_ipaddr_t *ripaddr, u16_t port ); /* 建立一个新的udp连接 */
+```
+
 #define uip_datalen() -- 如果有当前可用的传入数据的话，获取其长度。必需先调用uip_data查明是否有当前可用的传入数据。
 #define uip_urgdatalen() -- 任何到达连接的带外数据(紧迫数据)长度。要使用此宏，应配置UIP_URGDATA宏为真。
 #define uip_close() -- 此函数会以一种谨慎的方式关闭连接。
