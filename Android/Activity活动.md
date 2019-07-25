@@ -326,29 +326,29 @@ import android.widget.Button;
 import android.widget.Toast;
 ​
 public class MainActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button button = findViewById(R.id.button_first);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Main3Activity.class);
-                int requestCode = 0x00;
-                startActivityForResult(intent, requestCode);
-            }
-        });
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Button button = findViewById(R.id.button_first);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Main3Activity.class);
+                int requestCode = 0x00;
+                startActivityForResult(intent, requestCode);
+            }
+        });
+    }
 ​
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if ((requestCode == 0x00) && (resultCode == 0x12)) {
-            Bundle bundle = data.getExtras();
-            String name = bundle.getString("name");
-            String password = bundle.getString("password");
-            Toast.makeText(MainActivity.this, name + " " + password, Toast.LENGTH_SHORT).show();
-        }
-    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if ((requestCode == 0x00) && (resultCode == 0x12)) {
+            Bundle bundle = data.getExtras();
+            String name = bundle.getString("name");
+            String password = bundle.getString("password");
+            Toast.makeText(MainActivity.this, name + " " + password, Toast.LENGTH_SHORT).show();
+        }
+    }
 }
 ```
 
