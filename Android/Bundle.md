@@ -80,23 +80,23 @@ import android.view.View;
 import android.widget.Button;
 ​
 public class MainActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button button = findViewById(R.id.button_first);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Main3Activity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("name", "fuxinzi");
-                bundle.putString("password", "85056257");
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Button button = findViewById(R.id.button_first);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Main3Activity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("name", "fuxinzi");
+                bundle.putString("password", "85056257");
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+    }
 }
 ```
 
@@ -108,14 +108,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 ​
 public class Main3Activity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
-        Bundle bundle = getIntent().getExtras();
-        String name = bundle.getString("name");
-        String password = bundle.getString("password");
-        Toast.makeText(Main3Activity.this, name + " " + password, Toast.LENGTH_SHORT).show();
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main3);
+        Bundle bundle = getIntent().getExtras();
+        String name = bundle.getString("name");
+        String password = bundle.getString("password");
+        Toast.makeText(Main3Activity.this, name + " " + password, Toast.LENGTH_SHORT).show();
+    }
 }
 ```
