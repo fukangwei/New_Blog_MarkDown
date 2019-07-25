@@ -1137,10 +1137,10 @@ if ( c != NULL ) {
 
 ### 原始套接字(protosocket)
 
-&emsp;&emsp;原始套接字(protosocket)为uIP提供了一个与传统BSD套接字接口类似的接口。不同于为传统uIP事件驱动接口写的程序，为原始套接字(protosocket)接口写的程序是顺序方式执行的，并且无需以明确的状态机方式实现。原始套接字只能用于TCP连接。
-&emsp;&emsp;原始套接字库使用“原始线程”来提供顺序控制流。这使得原始套接字在内存方面变得轻量型，但也同时意味着原始套接字继承了“原始线程”的功能限制。每个原始套接字只能生存于单个函数中。自动变量(栈变量)不能跨原始套接字函数调用存在。注意，由于原始套接字库使用的是“原始线程”，在调用原始套接字库函数时，局部变量并不总能得到保存。所以这里建议局部变量的使用要十分小心。
-&emsp;&emsp;原始套接字库提供了一些无需处理重传和回应的发送数据函数和一些无需对被分解成多个TCP段的数据进行处理的读取数据函数。由于每个原始套接字都作为一个“原始线程”来运行，应在使用原始套接字的函数起始处通过调用PSOCK_BEGIN的方式启用原始套接字。与之类似，原始套接字可以通过调用PSOCK_EXIT结束掉。
-&emsp;&emsp;相关文件是psock.h，这是原始套接字库头文件。相关结构体是“struct psock_bufstruct psock”，它代表一个原始套接字。相关宏定义如下：
+&emsp;&emsp;原始套接字(`protosocket`)为`uIP`提供了一个与传统`BSD`套接字接口类似的接口。不同于为传统`uIP`事件驱动接口写的程序，为原始套接字(`protosocket`)接口写的程序是顺序方式执行的，并且无需以明确的状态机方式实现。原始套接字只能用于`TCP`连接。
+&emsp;&emsp;原始套接字库使用`原始线程`来提供顺序控制流。这使得原始套接字在内存方面变得轻量型，但也同时意味着原始套接字继承了`原始线程`的功能限制。每个原始套接字只能生存于单个函数中。自动变量(栈变量)不能跨原始套接字函数调用存在。注意，由于原始套接字库使用的是`原始线程`，在调用原始套接字库函数时，局部变量并不总能得到保存。所以这里建议局部变量的使用要十分小心。
+&emsp;&emsp;原始套接字库提供了一些无需处理重传和回应的发送数据函数和一些无需对被分解成多个`TCP`段的数据进行处理的读取数据函数。由于每个原始套接字都作为一个`原始线程`来运行，应在使用原始套接字的函数起始处通过调用`PSOCK_BEGIN`的方式启用原始套接字。与之类似，原始套接字可以通过调用`PSOCK_EXIT`结束掉。
+&emsp;&emsp;相关文件是`psock.h`，这是原始套接字库头文件。相关结构体是`struct psock_bufstruct psock`，它代表一个原始套接字。相关宏定义如下：
 
 ``` cpp
 #define PSOCK_INIT(psock, buffer, buffersize)       /* 初始化一个原始套接字 */
@@ -1166,11 +1166,12 @@ if ( c != NULL ) {
 u16_t psock_datalen ( struct psock *psock ) char psock_newdata ( psock *s )
 ```
 
-#define PSOCK_BEGIN(psock) -- 启用一个原始套接字的原始线程。此宏启用一个原始套接字关联的原始线程，必须在使用此原始套接字的函数调用其他原始套接字函数之前出现。参数psock指向要启用的原始套接字的结构体指针。
-#define PSOCK_CLOSE(psock) -- 此宏用于关闭一个原始套接字，只能用于此原始套接字生存的原始线程中。参数psock指向要关闭的原始套接字的结构体指针。
-#define PSOCK_CLOSE_EXIT(psock) -- 此宏用于关闭一个原始套接字，并退出原始套接字生存的线程。参数psock指向要关闭的原始套接字的结构体指针。
-#define PSOCK_DATALEN(psock) -- 返回之前通过PSOCK_READTO或PSOCK_READ读到的数据长度。参数psock指向盛放数据的原始套接字的结构体指针。
-#define PSOCK_END(psock) -- 此宏用于声明原始套接字的原始线程结束，常与PSOCK_BEGIN(psock)配合使用。参数psock指向原始套接字的结构体指针。
+- `#define PSOCK_BEGIN(psock)`：启用一个原始套接字的原始线程。此宏启用一个原始套接字关联的原始线程，必须在使用此原始套接字的函数调用其他原始套接字函数之前出现。参数`psock`指向要启用的原始套接字的结构体指针。
+- `#define PSOCK_CLOSE(psock)`：此宏用于关闭一个原始套接字，只能用于此原始套接字生存的原始线程中。参数`psock`指向要关闭的原始套接字的结构体指针。
+- `#define PSOCK_CLOSE_EXIT(psock)`：此宏用于关闭一个原始套接字，并退出原始套接字生存的线程。参数`psock`指向要关闭的原始套接字的结构体指针。
+- `#define PSOCK_DATALEN(psock)`：返回之前通过`PSOCK_READTO`或`PSOCK_READ`读到的数据长度。参数`psock`指向盛放数据的原始套接字的结构体指针。
+- `#define PSOCK_END(psock)`：此宏用于声明原始套接字的原始线程结束，常与`PSOCK_BEGIN(psock)`配合使用。参数`psock`指向原始套接字的结构体指针。
+
 #define PSOCK_EXIT(psock) -- 此宏用于终止原始套接字的原始线程，必须与PSOCK_CLOSE一起使用，也可以直接使用PSOCK_CLOSE_EXIT。参数psock指向原始套接字的结构体指针。
 #define PSOCK_GENERATOR_SEND(psock, generator, arg) -- 通过函数产生数据并发送。参数psock指向原始套接字的指针，generator指向产生数据的函数的指针，arg是要传给函数的参数。使宏用于通过函数产生数据，并通过原始套接字发送。它可以用于动态产生数据并传输，而不必先将产生的数据存入缓冲区。此函数减小了缓冲区内存的开销。产生器函数由应用程序实现，使用时要将函数的指针作为一个参数传给宏。产生器函数应该将产生的数据直接存放在uip_appdata缓冲区中，并返回产生数据的长度。数据每一次发送时，原始套接字层会调用产生器函数，并且如果出现重发的情况看，则也会调用一次产生器函数，也就是说重发的值并非第一次产生器函数调用时的值。
 #define PSOCK_INIT(psock, buffer, buffersize) -- 这个宏初始化一个原始套接字，它必须在使用套接字之间得到调用。此宏还规定了套接字的输入缓冲区。参数psock指向要初始化的原始套接字的指针，buffer指向原始套接字的输入缓冲区的指针，buffersize是输入缓冲区的大小。
@@ -1180,6 +1181,8 @@ u16_t psock_datalen ( struct psock *psock ) char psock_newdata ( psock *s )
 #define PSOCK_SEND(psock, data, datalen) -- 发送数据。此宏通过原始套接字发送数据。原始套接字阻塞原始线程，直到所有的数据发送完毕，并且已经被完程TCP终端接收。参数psock指向用于发送数据的原始套接字的指针，data指向要发送的数据的指针，datalen是要发送的数据长度。
 #define PSOCK_SEND_STR(psock, str) -- 发送一个以零结尾的字符串。参数psock指向要用来发送数据的套接字指针，str是要发送的字符串。
 #define PSOCK_WAIT_UNTIL(psock, condition) -- 等待直接条件为真。下宏阻塞原始线程，直到条件为真。宏PSOCK_NEWDATA可以用来检查此宏等待时有没有新数据到来。此宏的典型用法如下：
+
+``` cpp
 PT_THREAD ( thread ( struct psock *s, struct timer *t ) ) {
     PSOCK_BEGIN ( s );
     PSOCK_WAIT_UNTIL ( s, PSOCK_NEWADATA ( s ) || timer_expired ( t ) );
@@ -1190,4 +1193,6 @@ PT_THREAD ( thread ( struct psock *s, struct timer *t ) ) {
     }
     PSOCK_END ( s );
 }
+```
+
 参数psock是套接字指针，condition是等待条件。
