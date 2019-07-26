@@ -13,42 +13,41 @@ categories: Android
 ``` xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
-    <!-- 原尺寸显示的图像 -->
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:src="@mipmap/apple" />
-    <!-- 限制最大宽度和高度 -->
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:adjustViewBounds="true"
-        android:maxHeight="90dp"
-        android:maxWidth="90dp"
-        android:src="@mipmap/apple" />
-    <!-- 缩放图片后将其放在右下角 -->
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_margin="5dp"
-        android:scaleType="fitEnd"
-        android:src="@mipmap/apple" />
-    <!-- 为图片进行着色 -->
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:src="@mipmap/apple"
-        android:tint="#77ff0000" />
-​
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+    <!-- 原尺寸显示的图像 -->
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:src="@mipmap/apple" />
+    <!-- 限制最大宽度和高度 -->
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:adjustViewBounds="true"
+        android:maxHeight="90dp"
+        android:maxWidth="90dp"
+        android:src="@mipmap/apple" />
+    <!-- 缩放图片后将其放在右下角 -->
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_margin="5dp"
+        android:scaleType="fitEnd"
+        android:src="@mipmap/apple" />
+    <!-- 为图片进行着色 -->
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@mipmap/apple"
+        android:tint="#77ff0000" />
 </LinearLayout>
 ```
 
