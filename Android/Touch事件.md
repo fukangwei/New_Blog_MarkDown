@@ -12,17 +12,17 @@ import android.view.MotionEvent;
 import android.widget.Toast;
 ​
 public class MainActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
 ​
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        Toast.makeText(MainActivity.this, "触摸", Toast.LENGTH_SHORT).show();
-        return super.onTouchEvent(event);
-    }
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        Toast.makeText(MainActivity.this, "触摸", Toast.LENGTH_SHORT).show();
+        return super.onTouchEvent(event);
+    }
 }
 ```
 
@@ -37,26 +37,26 @@ import android.app.Activity;
 import android.widget.TextView;
 ​
 public class MainActivity extends Activity {
-    private TextView textView = null;
-    private ImageView imageView = null;
+    private TextView textView = null;
+    private ImageView imageView = null;
 ​
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        textView = (TextView) findViewById(R.id.info);
-        imageView = (ImageView) findViewById(R.id.imageView1);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        textView = (TextView) findViewById(R.id.info);
+        imageView = (ImageView) findViewById(R.id.imageView1);
 ​
-        imageView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                /* event.getX获取X坐标，event.getY获取Y坐标 */
-                String info = "X = " + event.getX() + " Y = " + event.getY();
-                textView.setText(info);
-                return true; /* 如果设为false，则滑动屏幕时坐标不改变 */
-            }
-        });
-    }
+        imageView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                /* event.getX获取X坐标，event.getY获取Y坐标 */
+                String info = "X = " + event.getX() + " Y = " + event.getY();
+                textView.setText(info);
+                return true; /* 如果设为false，则滑动屏幕时坐标不改变 */
+            }
+        });
+    }
 }
 ```
 
