@@ -72,28 +72,28 @@ import android.widget.Button;
 import android.widget.Toast;
 ​
 public class MainActivity extends Activity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button button = (Button) findViewById(R.id.button_first);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String[] lesson = new String[]{"语文", "数学", "英语"};
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setIcon(R.mipmap.ic_launcher);
-                builder.setTitle("你喜欢的课程");
-                builder.setItems(lesson, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(MainActivity.this, "你选择了" + lesson[which], Toast.LENGTH_SHORT).show();
-                    }
-                }).create();
-                builder.show();
-            }
-        });
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Button button = (Button) findViewById(R.id.button_first);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String[] lesson = new String[]{"语文", "数学", "英语"};
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setIcon(R.mipmap.ic_launcher);
+                builder.setTitle("你喜欢的课程");
+                builder.setItems(lesson, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(MainActivity.this, "你选择了" + lesson[which], Toast.LENGTH_SHORT).show();
+                    }
+                }).create();
+                builder.show();
+            }
+        });
+    }
 }
 ```
 
