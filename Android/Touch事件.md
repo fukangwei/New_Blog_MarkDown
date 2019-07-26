@@ -116,28 +116,28 @@ import android.widget.ImageView;
 import android.app.Activity;
 ​
 public class MainActivity extends Activity {
-    @Override
-    /* 重写onCreateContextMenu菜单，为菜单添加选项值 */
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        menu.add("收藏");
-        menu.add("举报");
-    }
+    @Override
+    /* 重写onCreateContextMenu菜单，为菜单添加选项值 */
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add("收藏");
+        menu.add("举报");
+    }
 ​
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        /* 将长按事件注册到菜单中，并打开菜单 */
-        ImageView imageView = (ImageView) findViewById(R.id.imageView1);
-        imageView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                registerForContextMenu(v);
-                openContextMenu(v);
-                return false;
-            }
-        });
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        /* 将长按事件注册到菜单中，并打开菜单 */
+        ImageView imageView = (ImageView) findViewById(R.id.imageView1);
+        imageView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                registerForContextMenu(v);
+                openContextMenu(v);
+                return false;
+            }
+        });
+    }
 }
 ```
