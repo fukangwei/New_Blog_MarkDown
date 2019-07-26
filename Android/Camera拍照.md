@@ -66,33 +66,34 @@ public class MainActivity extends Activity {
         return null;
     }
 ​
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
-        surfaceHolder = surfaceView.getHolder();
-        surfaceHolder.addCallback(cpHolderCallback);
-        Button button = (Button) findViewById(R.id.button_takephoto);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                camera.takePicture(null, null, new Camera.PictureCallback() {
-                    @Override
-                    public void onPictureTaken(byte[] data, Camera camera) {
-                        String path = null;
-                        if ((path = saveFile(data)) != null) {
-                            Intent it = new Intent(MainActivity.this, Main3Activity.class);
-                            it.putExtra("path", path);
-                            startActivity(it);
-                        } else {
-                            Toast.makeText(MainActivity.this, "图片保存失败", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }
-        });
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
+        surfaceHolder = surfaceView.getHolder();
+        surfaceHolder.addCallback(cpHolderCallback);
+        Button button = (Button) findViewById(R.id.button_takephoto);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                camera.takePicture(null, null, new Camera.PictureCallback() {
+                    @Override
+                    public void onPictureTaken(byte[] data, Camera camera) {
+                        String path = null;
+
+                        if ((path = saveFile(data)) != null) {
+                            Intent it = new Intent(MainActivity.this, Main3Activity.class);
+                            it.putExtra("path", path);
+                            startActivity(it);
+                        } else {
+                            Toast.makeText(MainActivity.this, "图片保存失败", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+    }
 }
 ```
 
