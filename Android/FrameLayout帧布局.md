@@ -14,26 +14,26 @@ categories: Android
 
 ``` xml
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/FrameLayout1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:foreground="@mipmap/aero3"
-    android:foregroundGravity="right|bottom">
+    android:id="@+id/FrameLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:foreground="@mipmap/aero3"
+    android:foregroundGravity="right|bottom">
 ​
-    <TextView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:background="#FF6143" />
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="#FF6143" />
 ​
-    <TextView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:background="#7BFE00" />
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="#7BFE00" />
 ​
-    <TextView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="#FFFF00" />
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#FFFF00" />
 </FrameLayout>
 ```
 
