@@ -123,23 +123,23 @@ import android.view.View;
 import android.widget.Button;
 ​
 public class MainActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button button = findViewById(R.id.button_first);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                ComponentName componentName = new ComponentName(
-                        "com.example.littlefool.myapplication",
-                        "com.example.littlefool.myapplication.Main3Activity");
-                intent.setComponent(componentName);
-                startActivity(intent);
-            }
-        });
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Button button = findViewById(R.id.button_first);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                ComponentName componentName = new ComponentName(
+                    "com.example.littlefool.myapplication",
+                    "com.example.littlefool.myapplication.Main3Activity");
+                intent.setComponent(componentName);
+                startActivity(intent);
+            }
+        });
+    }
 }
 ```
 
@@ -154,11 +154,11 @@ import android.view.View;
 import android.widget.Button;
 ​
 public class Main3Activity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main3);
+    }
 }
 ```
 
@@ -179,21 +179,21 @@ import android.widget.Button;
 import android.widget.Toast;
 ​
 public class MainActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button button = findViewById(R.id.button_first);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(intent.ACTION_MAIN);
-                intent.addCategory(intent.CATEGORY_HOME);
-                startActivity(intent);
-            }
-        });
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Button button = findViewById(R.id.button_first);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(intent.ACTION_MAIN);
+                intent.addCategory(intent.CATEGORY_HOME);
+                startActivity(intent);
+            }
+        });
+    }
 }
 ```
 
@@ -213,21 +213,21 @@ import android.widget.Button;
 import android.widget.Toast;
 ​
 public class MainActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button button = findViewById(R.id.button_first);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(intent.ACTION_VIEW);
-                intent.setData(Uri.parse("https://www.google.com"));
-                startActivity(intent);
-            }
-        });
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Button button = findViewById(R.id.button_first);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://www.google.com"));
+                startActivity(intent);
+            }
+        });
+    }
 }
 ```
 
