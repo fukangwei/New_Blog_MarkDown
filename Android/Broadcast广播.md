@@ -52,17 +52,17 @@ import android.content.Intent;
 import android.widget.Toast;
 ​
 public class broadreceiver extends BroadcastReceiver {
-    private static final String ACTION1 = "zhakeboge";
-    private static final String ACTION2 = "mayun";
+    private static final String ACTION1 = "zhakeboge";
+    private static final String ACTION2 = "mayun";
 ​
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        if (intent.getAction().equals(ACTION1)) {
-            Toast.makeText(context, "收到扎克伯格的广播", Toast.LENGTH_SHORT).show();
-        } else if (intent.getAction().equals(ACTION2)) {
-            Toast.makeText(context, "收到马云的广播", Toast.LENGTH_SHORT).show();
-        }
-    }
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        if (intent.getAction().equals(ACTION1)) {
+            Toast.makeText(context, "收到扎克伯格的广播", Toast.LENGTH_SHORT).show();
+        } else if (intent.getAction().equals(ACTION2)) {
+            Toast.makeText(context, "收到马云的广播", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
 ```
 
@@ -70,10 +70,10 @@ public class broadreceiver extends BroadcastReceiver {
 
 ``` xml
 <receiver android:name=".broadreceiver">
-    <intent-filter>
-        <action android:name="zhakeboge" />
-        <action android:name="mayun" />
-    </intent-filter>
+    <intent-filter>
+        <action android:name="zhakeboge" />
+        <action android:name="mayun" />
+    </intent-filter>
 </receiver>
 ```
 
