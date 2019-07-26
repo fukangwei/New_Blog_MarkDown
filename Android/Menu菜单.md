@@ -21,26 +21,26 @@ categories: Android
 ### Options menu
 
 &emsp;&emsp;`OptionMenu`(选项菜单)是在单击手机上的菜单键(`MENU`)时出现，必须设备具有菜单按钮才可以触发。因为屏幕的限制，最多只能展示`6`个菜单项，如果定义的菜单项超出了`6`个，其他的菜单项将被隐藏，第`6`个菜单将会显示`更多`，点击展开更多的菜单。虽说在`Android 3.0`之后不再推荐使用选项菜单，但是如果使用了在`Android 3.0`之后的设备上，选项菜单项将被默认转移到`ActionBar`中，这个可以通过`android:showAsAction`属性控制。
-&emsp;&emsp;创建选项菜单的核心步骤如下所示：
+&emsp;&emsp;创建选项菜单的核心步骤如下：
 
 - 重写`Activity`的`onCreateOptionMenu(Menu menu)`方法，调用`MenuInflater`的`inflate`方法添加菜单项(`MenuItem`)，当菜单第一次被加载时调用。
 - 重写`Activity`的`OptionsItemSelected(MenuItem item)`来响应菜单项(`MenuItem`)的点击事件。
 
-&emsp;&emsp;在`res/menu/menu.xml`文件中定义菜单项，代码如下所示：
+&emsp;&emsp;在`res/menu/menu.xml`文件中定义菜单项：
 
 ``` xml
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/startGame"
-        android:title="开始游戏" />
-    <item
-        android:id="@+id/endGame"
-        android:title="结束游戏" />
+    <item
+        android:id="@+id/startGame"
+        android:title="开始游戏" />
+    <item
+        android:id="@+id/endGame"
+        android:title="结束游戏" />
 </menu>
 ```
 
-`Java`代码如下所示：
+`Java`代码如下：
 
 ``` java
 import android.os.Bundle;
@@ -51,49 +51,49 @@ import android.app.Activity;
 import android.widget.Toast;
 ​
 public class MainActivity extends Activity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
 ​
-    @Override
-    /* 重写onCreateOptionMenu(Menu menu)方法，当菜单第一次被加载时调用 */
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = new MenuInflater(this);
-        /* 填充选项菜单(读取XML文件，解析并加载到Menu组件上) */
-        menuInflater.inflate(R.menu.menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+    @Override
+    /* 重写onCreateOptionMenu(Menu menu)方法，当菜单第一次被加载时调用 */
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = new MenuInflater(this);
+        /* 填充选项菜单(读取XML文件，解析并加载到Menu组件上) */
+        menuInflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 ​
-    @Override
-    /* 重写OptionsItemSelected(MenuItem item)来响应菜单项(MenuItem)的点击事件(根据id来区分是哪个item) */
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.startGame:
-                Toast.makeText(MainActivity.this, "开始游戏", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.endGame:
-                Toast.makeText(MainActivity.this, "结束游戏", Toast.LENGTH_SHORT).show();
-                break;
-            default:
-                break;
-        }
+    @Override
+    /* 重写OptionsItemSelected(MenuItem item)来响应菜单项(MenuItem)的点击事件(根据id来区分是哪个item) */
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.startGame:
+                Toast.makeText(MainActivity.this, "开始游戏", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.endGame:
+                Toast.makeText(MainActivity.this, "结束游戏", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
 ​
-        return super.onOptionsItemSelected(item);
-    }
+        return super.onOptionsItemSelected(item);
+    }
 }
 ```
 
 ### Context menu
 
-&emsp;&emsp;`Context menu`是上下文菜单，顾名思义是与上下文(环境)有关。当长时间按住某个组件不放，就会弹出`Context menu`。创建上下文菜单的核心步骤如下所示：
+&emsp;&emsp;`Context menu`是上下文菜单，顾名思义是与上下文(环境)有关。当长时间按住某个组件不放，就会弹出`Context menu`。创建上下文菜单的核心步骤如下：
 
 - 覆盖`Activity的onCreateContextMenu(Menu menu)`方法，调用`MenuInflater`的`inflate`方法添加菜单项(`MenuItem`)。
 - 覆盖`Activity的onContextItemSelected(MenuItem iitem)`来响应事件。
 - 调用`registerForContextMenu`方法来为视图注册上下文菜单。
 
-&emsp;&emsp;`res/menu/menu.xml`文件内容和上文相同，`Java`文件如下所示：
+&emsp;&emsp;`res/menu/menu.xml`文件内容和上文相同，`Java`文件如下：
 
 ``` java
 import android.os.Bundle;
@@ -106,38 +106,38 @@ import android.widget.ImageView;
 import android.widget.Toast;
 ​
 public class MainActivity extends Activity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ImageView imageView = (ImageView) findViewById(R.id.imageView1);
-        /* 为图片绑定上下文菜单 */
-        registerForContextMenu(imageView);
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ImageView imageView = (ImageView) findViewById(R.id.imageView1);
+        /* 为图片绑定上下文菜单 */
+        registerForContextMenu(imageView);
+    }
 ​
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        MenuInflater menuInflater = new MenuInflater(this);
-        /* 填充选项菜单(读取XML文件，解析并加载到Menu组件上) */
-        menuInflater.inflate(R.menu.menu, menu);
-        super.onCreateContextMenu(menu, v, menuInfo);
-    }
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        MenuInflater menuInflater = new MenuInflater(this);
+        /* 填充选项菜单(读取XML文件，解析并加载到Menu组件上) */
+        menuInflater.inflate(R.menu.menu, menu);
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
 ​
-    @Override
-    /* onContextItemSelected(MenuItem item)来响应菜单项(MenuItem)的点击事件(根据id来区分是哪个item) */
-    public boolean onContextItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.startGame:
-                Toast.makeText(MainActivity.this, "开始游戏", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.endGame:
-                Toast.makeText(MainActivity.this, "结束游戏", Toast.LENGTH_SHORT).show();
-                break;
-            default:
-                break;
-        }
+    @Override
+    /* onContextItemSelected(MenuItem item)来响应菜单项(MenuItem)的点击事件(根据id来区分是哪个item) */
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.startGame:
+                Toast.makeText(MainActivity.this, "开始游戏", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.endGame:
+                Toast.makeText(MainActivity.this, "结束游戏", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
 ​
-        return super.onContextItemSelected(item);
-    }
+        return super.onContextItemSelected(item);
+    }
 }
 ```
