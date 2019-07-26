@@ -24,24 +24,24 @@ mHandler.sendMessage(msg);
 
 &emsp;&emsp;根据使用场景不同，`Android`系统提供了几种常用的封装：
 
-`Handler.sendMessage(Message msg)`：在`MessageQueue`中添加一个`Message`对象。
-`Handler.sendMessageAtFrontOfQueue(Message msg)`：添加一个`Message`对象到`MessageQueue`的前面。
-`Handler.sendMessageAtTime(Message msg, long timeInMills)`：在指定的时间发送一个`Message`对象。
-`Handler.sendMessageDelayed(Message msg, long timeInMillis)`：在指定的时间之后，发送`Message`对象。
+- `Handler.sendMessage(Message msg)`：在`MessageQueue`中添加一个`Message`对象。
+- `Handler.sendMessageAtFrontOfQueue(Message msg)`：添加一个`Message`对象到`MessageQueue`的前面。
+- `Handler.sendMessageAtTime(Message msg, long timeInMills)`：在指定的时间发送一个`Message`对象。
+- `Handler.sendMessageDelayed(Message msg, long timeInMillis)`：在指定的时间之后，发送`Message`对象。
 
 发送完一个消息后，怎么处理发送的消息任务呢？在我们创建`Handler`对象的时候，可以实现它的`handleMessage`方法，在这个方法里面处理`handler`发送的`Message`对象：
 
 ``` java
 private Handler mHandler = new Handler() {
-    @Override
-    public void handleMessage(Message msg) {
-        super.handleMessage(msg);
-        /* 根据“msg.what”字段的标志处理不同的消息 */
-        /* 如果Message比较简单，你也可以不使用“msg.what”来作为区分 */
-        switch (msg.what) {
-            /* ... */
-        }
-    }
+    @Override
+    public void handleMessage(Message msg) {
+        super.handleMessage(msg);
+        /* 根据“msg.what”字段的标志处理不同的消息 */
+        /* 如果Message比较简单，你也可以不使用“msg.what”来作为区分 */
+        switch (msg.what) {
+            /* ... */
+        }
+    }
 };
 ```
 
