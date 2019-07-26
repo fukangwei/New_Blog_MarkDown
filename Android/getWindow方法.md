@@ -7,8 +7,8 @@ categories: Android
 
 ``` java
 getWindow().setFlags(
-    WindowManager.LayoutParams.FLAG_FULLSCREEN,
-    WindowManager.LayoutParams.FLAG_FULLSCREEN
+    WindowManager.LayoutParams.FLAG_FULLSCREEN,
+    WindowManager.LayoutParams.FLAG_FULLSCREEN
 );
 ```
 
@@ -16,8 +16,8 @@ getWindow().setFlags(
 
 ``` java
 getWindow().setFlags(
-    WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
-    WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+    WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
+    WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
 );
 ```
 
@@ -37,7 +37,7 @@ getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 ``` java
 getWindow().setFlags(
-    WindowManager.LayoutParams.FLAG_BLUR_BEHIND,
-    WindowManager.LayoutParams.FLAG_BLUR_BEHIND
+    WindowManager.LayoutParams.FLAG_BLUR_BEHIND,
+    WindowManager.LayoutParams.FLAG_BLUR_BEHIND
 );
 ```
