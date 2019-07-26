@@ -21,36 +21,35 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 ​
 public class MainActivity extends Activity {
-    private Camera camera = null; /* 声明一个Camera对象 */
-    SurfaceView surfaceView = null; /* 用于显示摄像头预览的区域 */
-    SurfaceHolder surfaceHolder = null; /* 获取SurfaceHolder */
+    private Camera camera = null; /* 声明一个Camera对象 */
+    SurfaceView surfaceView = null; /* 用于显示摄像头预览的区域 */
+    SurfaceHolder surfaceHolder = null; /* 获取SurfaceHolder */
 ​
-    private SurfaceHolder.Callback cpHolderCallback = new SurfaceHolder.Callback() {
+    private SurfaceHolder.Callback cpHolderCallback = new SurfaceHolder.Callback() {
+        @Override
+        public void surfaceCreated(SurfaceHolder holder) {
+            camera = Camera.open(); /* 打开摄像机 */
+            try {
+                camera.setPreviewDisplay(surfaceHolder);
+                camera.setDisplayOrientation(90); /* 让相机旋转90度 */
+                camera.startPreview(); /* 开始预览 */
+                camera.autoFocus(null); /* 设置自动对焦 */
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 ​
-        @Override
-        public void surfaceCreated(SurfaceHolder holder) {
-            camera = Camera.open(); /* 打开摄像机 */
-            try {
-                camera.setPreviewDisplay(surfaceHolder);
-                camera.setDisplayOrientation(90); /* 让相机旋转90度 */
-                camera.startPreview(); /* 开始预览 */
-                camera.autoFocus(null); /* 设置自动对焦 */
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        @Override
+        public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+        }
 ​
-        @Override
-        public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-        }
-​
-        @Override
-        public void surfaceDestroyed(SurfaceHolder holder) {
+        @Override
+        public void surfaceDestroyed(SurfaceHolder holder) {
             camera.stopPreview();
             camera.release();
             camera = null;
-        }
-    };
+        }
+    };
 ​
     private String saveFile(byte[] bytes) { /* 保存临时文件的方法 */
         try {
