@@ -93,46 +93,46 @@ import android.widget.Button;
 import android.widget.Toast;
 ​
 public class MainActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button button = (Button) findViewById(R.id.button_first);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction("mayun"); /* 为Intent添加动作“mayun” */
-                sendBroadcast(intent); /* 发送广播 */
-            }
-        });
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Button button = (Button) findViewById(R.id.button_first);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction("mayun"); /* 为Intent添加动作“mayun” */
+                sendBroadcast(intent); /* 发送广播 */
+            }
+        });
+    }
 ​
-    protected void onStart() {
-        super.onStart();
-        IntentFilter dynamic_filter = new IntentFilter();
-        dynamic_filter.addAction("mayun"); /* 添加动态广播的Action */
-        registerReceiver(broadreceiver, dynamic_filter); /* 注册自定义动态广播消息 */
-    }
+    protected void onStart() {
+        super.onStart();
+        IntentFilter dynamic_filter = new IntentFilter();
+        dynamic_filter.addAction("mayun"); /* 添加动态广播的Action */
+        registerReceiver(broadreceiver, dynamic_filter); /* 注册自定义动态广播消息 */
+    }
 ​
-    protected void onDestroy() {
-        super.onDestroy();
-        unregisterReceiver(broadreceiver);
-        Toast.makeText(MainActivity.this, "BroadcastService取消注册接收器", Toast.LENGTH_SHORT).show();
-    }
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(broadreceiver);
+        Toast.makeText(MainActivity.this, "BroadcastService取消注册接收器", Toast.LENGTH_SHORT).show();
+    }
 ​
-    private BroadcastReceiver broadreceiver = new BroadcastReceiver() {
-        private static final String ACTION1 = "zhakeboge";
-        private static final String ACTION2 = "mayun";
+    private BroadcastReceiver broadreceiver = new BroadcastReceiver() {
+        private static final String ACTION1 = "zhakeboge";
+        private static final String ACTION2 = "mayun";
 ​
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals(ACTION1)) {
-                Toast.makeText(MainActivity.this, "收到扎克伯格的广播", Toast.LENGTH_SHORT).show();
-            } else if (intent.getAction().equals(ACTION2)) {
-                Toast.makeText(MainActivity.this, "收到马云的广播", Toast.LENGTH_SHORT).show();
-            }
-        }
-    };
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(ACTION1)) {
+                Toast.makeText(MainActivity.this, "收到扎克伯格的广播", Toast.LENGTH_SHORT).show();
+            } else if (intent.getAction().equals(ACTION2)) {
+                Toast.makeText(MainActivity.this, "收到马云的广播", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
 }
 ```
