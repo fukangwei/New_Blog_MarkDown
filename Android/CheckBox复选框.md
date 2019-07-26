@@ -41,25 +41,25 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 ​
 public class MainActivity extends AppCompatActivity {
-    private CheckBox cb_one;
-    private CheckBox cb_two;
-    private CheckBox cb_three;
+    private CheckBox cb_one;
+    private CheckBox cb_two;
+    private CheckBox cb_three;
 ​
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        cb_one = (CheckBox) findViewById(R.id.first_checkbox);
-        cb_two = (CheckBox) findViewById(R.id.secend_checkbox);
-        cb_three = (CheckBox) findViewById(R.id.third_checkbox);
-        cb_one.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (cb_one.isChecked()) {
-                    Toast.makeText(MainActivity.this, cb_one.getText(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        cb_one = (CheckBox) findViewById(R.id.first_checkbox);
+        cb_two = (CheckBox) findViewById(R.id.secend_checkbox);
+        cb_three = (CheckBox) findViewById(R.id.third_checkbox);
+        cb_one.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (cb_one.isChecked()) {
+                    Toast.makeText(MainActivity.this, cb_one.getText(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 }
 ```
