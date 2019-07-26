@@ -121,52 +121,52 @@ import android.os.Bundle;
 import android.util.Log;
 ​
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "SharedPreferencesTest";
-    private final String PREFS_NAME = "MyPrefsFile"; /* 保存数据SharedPreferences文件的名字 */
+    private static final String TAG = "SharedPreferencesTest";
+    private final String PREFS_NAME = "MyPrefsFile"; /* 保存数据SharedPreferences文件的名字 */
 ​
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        saveUserInfo();
-        getUserInfo();
-        removeUserInfo();
-        getUserInfo();
-        clearUserInfo();
-        getUserInfo();
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        saveUserInfo();
+        getUserInfo();
+        removeUserInfo();
+        getUserInfo();
+        clearUserInfo();
+        getUserInfo();
+    }
 ​
-    private void saveUserInfo() { /* 保存用户信息 */
-        SharedPreferences userInfo = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        SharedPreferences.Editor editor = userInfo.edit(); /* 获取Editor */
-        editor.putString("username", "一只猫的涵养"); /* 得到Editor后，写入需要保存的数据 */
-        editor.putInt("age", 20);
-        editor.commit(); /* 提交修改 */
-        Log.i(TAG, "保存用户信息成功");
-    }
+    private void saveUserInfo() { /* 保存用户信息 */
+        SharedPreferences userInfo = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = userInfo.edit(); /* 获取Editor */
+        editor.putString("username", "一只猫的涵养"); /* 得到Editor后，写入需要保存的数据 */
+        editor.putInt("age", 20);
+        editor.commit(); /* 提交修改 */
+        Log.i(TAG, "保存用户信息成功");
+    }
 ​
-    private void getUserInfo() { /* 读取用户信息 */
-        SharedPreferences userInfo = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        String username = userInfo.getString("username", null); /* 读取username */
-        int age = userInfo.getInt("age", 0); /* 读取age */
-        Log.i(TAG, "读取用户信息");
-        Log.i(TAG, "username:" + username + "， age:" + age);
-    }
+    private void getUserInfo() { /* 读取用户信息 */
+        SharedPreferences userInfo = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        String username = userInfo.getString("username", null); /* 读取username */
+        int age = userInfo.getInt("age", 0); /* 读取age */
+        Log.i(TAG, "读取用户信息");
+        Log.i(TAG, "username:" + username + "， age:" + age);
+    }
 ​
-    private void removeUserInfo() { /* 移除年龄数据 */
-        SharedPreferences userInfo = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        SharedPreferences.Editor editor = userInfo.edit(); /* 获取Editor */
-        editor.remove("age");
-        editor.commit();
-        Log.i(TAG, "移除年龄数据");
-    }
+    private void removeUserInfo() { /* 移除年龄数据 */
+        SharedPreferences userInfo = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = userInfo.edit(); /* 获取Editor */
+        editor.remove("age");
+        editor.commit();
+        Log.i(TAG, "移除年龄数据");
+    }
 ​
-    private void clearUserInfo() { /* 清空数据 */
-        SharedPreferences userInfo = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        SharedPreferences.Editor editor = userInfo.edit(); /* 获取Editor */
-        editor.clear();
-        editor.commit();
-        Log.i(TAG, "清空数据");
-    }
+    private void clearUserInfo() { /* 清空数据 */
+        SharedPreferences userInfo = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = userInfo.edit(); /* 获取Editor */
+        editor.clear();
+        editor.commit();
+        Log.i(TAG, "清空数据");
+    }
 }
 ```
