@@ -108,17 +108,19 @@ import android.widget.ImageView;
 import java.io.File;
 ​
 public class Main3Activity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
-        ImageView img = new ImageView(this);
-        String path = getIntent().getStringExtra("path");
-        if (path != null) {
-            img.setImageURI(Uri.fromFile(new File(path)));
-        }
-        setContentView(img);
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main3);
+        ImageView img = new ImageView(this);
+        String path = getIntent().getStringExtra("path");
+
+        if (path != null) {
+            img.setImageURI(Uri.fromFile(new File(path)));
+        }
+
+        setContentView(img);
+    }
 }
 ```
 
