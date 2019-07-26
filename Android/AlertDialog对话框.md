@@ -25,40 +25,42 @@ import android.widget.Button;
 import android.widget.Toast;
 ​
 public class MainActivity extends Activity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button button = (Button) findViewById(R.id.button_first);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-                alertDialog.setIcon(R.mipmap.ic_launcher);
-                alertDialog.setTitle("little fool:");
-                alertDialog.setMessage("To be a master!");
-                alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "否", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(MainActivity.this, "你点击了取消按钮", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "是", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(MainActivity.this, "你点击了确定按钮", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                alertDialog.show();
-            }
-        });
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Button button = (Button) findViewById(R.id.button_first);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                alertDialog.setIcon(R.mipmap.ic_launcher);
+                alertDialog.setTitle("little fool:");
+                alertDialog.setMessage("To be a master!");
+                alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "否", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(MainActivity.this, "你点击了取消按钮", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "是", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(MainActivity.this, "你点击了确定按钮", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                alertDialog.show();
+            }
+        });
+    }
 }
 ```
 
 ### 普通列表对话框
 
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` java
 import android.content.DialogInterface;
@@ -97,7 +99,7 @@ public class MainActivity extends Activity {
 
 ### 单选列表对话框
 
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` java
 import android.content.DialogInterface;
@@ -137,7 +139,7 @@ public class MainActivity extends Activity {
 
 ### 多选列表对话框
 
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` java
 import android.content.DialogInterface;
