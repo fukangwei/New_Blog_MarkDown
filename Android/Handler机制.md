@@ -15,33 +15,35 @@ import android.widget.Button;
 import android.widget.TextView;
 ​
 public class MainActivity extends Activity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        final TextView textView = (TextView) findViewById(R.id.textView);
-        Button button = (Button) findViewById(R.id.button);
-        final Handler handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                if (msg.what == 0xFF) {
-                    textView.setText("变化!");
-                }
-            }
-        };
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Thread thread = new Thread(new Runnable() { /* 创建新线程 */
-                    @Override
-                    public void run() {
-                        handler.sendEmptyMessage(0xFF); /* 发送空消息 */
-                    }
-                });
-                thread.start();
-            }
-        });
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        final TextView textView = (TextView) findViewById(R.id.textView);
+        Button button = (Button) findViewById(R.id.button);
+        final Handler handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                if (msg.what == 0xFF) {
+                    textView.setText("变化!");
+                }
+            }
+        };
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Thread thread = new Thread(new Runnable() { /* 创建新线程 */
+                    @Override
+                    public void run() {
+                        handler.sendEmptyMessage(0xFF); /* 发送空消息 */
+                    }
+                });
+
+                thread.start();
+            }
+        });
+    }
 }
 ```
