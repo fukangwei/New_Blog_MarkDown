@@ -7,32 +7,31 @@ categories: Android
 
 ``` xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+​
+    <CheckBox
+        android:id="@+id/first_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选项1" />
 ​
     <CheckBox
-        android:id="@+id/first_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="选项1" />
+        android:id="@+id/secend_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选项2" />
 ​
     <CheckBox
-        android:id="@+id/secend_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="选项2" />
-​
-    <CheckBox
-        android:id="@+id/third_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="选项3" />
-​
+        android:id="@+id/third_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选项3" />
 </LinearLayout>
 ```
 
-`Java`文件如下所示：
+`Java`文件如下：
 
 ``` java
 import android.support.v7.app.AppCompatActivity;
