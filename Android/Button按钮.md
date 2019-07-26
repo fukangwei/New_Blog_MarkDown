@@ -7,10 +7,10 @@ categories: Android
 
 ``` xml
 <Button
-    android:id="@+id/button_first"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="OK" />
+    android:id="@+id/button_first"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="OK" />
 ```
 
 `Java`文件如下：
@@ -23,19 +23,18 @@ import android.widget.Button;
 import android.widget.Toast;
 ​
 public class MainActivity extends AppCompatActivity {
-​
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button button01 = (Button) findViewById(R.id.button_first);
-        button01.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "单击了按钮", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Button button01 = (Button) findViewById(R.id.button_first);
+        button01.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "单击了按钮", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }
 ```
 
@@ -43,29 +42,29 @@ public class MainActivity extends AppCompatActivity {
 
 ``` java
 public myClick(View view){
-    /* 编写要执行的代码 */
+    /* 编写要执行的代码 */
 }
 ```
 
-再将`android:onClick`属性指定为上述方法名。`XML`文件如下所示：
+再将`android:onClick`属性指定为上述方法名。`XML`文件如下：
 
 ``` xml
 <Button
-    android:id="@+id/button_first"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:onClick="myClick"
-    android:text="Button_First"/>
+    android:id="@+id/button_first"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:onClick="myClick"
+    android:text="Button_First"/>
 ​
 <Button
-    android:id="@+id/button_second"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:onClick="myClick"
-    android:text="Button_Second"/>
+    android:id="@+id/button_second"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:onClick="myClick"
+    android:text="Button_Second"/>
 ```
 
-`Java`文件如下所示：
+`Java`文件如下：
 
 ``` java
 import android.support.v7.app.AppCompatActivity;
@@ -74,22 +73,22 @@ import android.view.View;
 import android.widget.Toast;
 ​
 public class MainActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
 ​
-    public void myClick(View view) {
-        switch (view.getId()) {
-            case R.id.button_first:
-                Toast.makeText(MainActivity.this, "单击了第一个按钮", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.button_second:
-                Toast.makeText(MainActivity.this, "单击了第二个按钮", Toast.LENGTH_SHORT).show();
-                break;
-        }
-    }
+    public void myClick(View view) {
+        switch (view.getId()) {
+            case R.id.button_first:
+                Toast.makeText(MainActivity.this, "单击了第一个按钮", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.button_second:
+                Toast.makeText(MainActivity.this, "单击了第二个按钮", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
 }
 ```
 
