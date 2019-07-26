@@ -45,25 +45,26 @@ public class MainActivity extends Activity {
 ​
         @Override
         public void surfaceDestroyed(SurfaceHolder holder) {
-            camera.stopPreview();
-            camera.release();
-            camera = null;
+            camera.stopPreview();
+            camera.release();
+            camera = null;
         }
     };
 ​
-    private String saveFile(byte[] bytes) { /* 保存临时文件的方法 */
-        try {
-            File file = File.createTempFile("img", "");
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(bytes);
-            fos.flush();
-            fos.close();
-            return file.getAbsolutePath();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+    private String saveFile(byte[] bytes) { /* 保存临时文件的方法 */
+        try {
+            File file = File.createTempFile("img", "");
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(bytes);
+            fos.flush();
+            fos.close();
+            return file.getAbsolutePath();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 ​
     @Override
     protected void onCreate(Bundle savedInstanceState) {
