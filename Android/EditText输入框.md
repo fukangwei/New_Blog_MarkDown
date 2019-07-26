@@ -43,40 +43,40 @@ android:inputType="phone"
 可选参数如下(文本类型，多为大写、小写和数字符号)：
 
 ``` java
-android:inputType="none"  
-android:inputType="text"  
-android:inputType="textCapCharacters"  
-android:inputType="textCapWords"  
-android:inputType="textCapSentences"  
-android:inputType="textAutoCorrect"  
-android:inputType="textAutoComplete"  
-android:inputType="textMultiLine"  
-android:inputType="textImeMultiLine"  
-android:inputType="textNoSuggestions"  
-android:inputType="textUri"  
-android:inputType="textEmailAddress"  
-android:inputType="textEmailSubject"  
-android:inputType="textShortMessage"  
-android:inputType="textLongMessage"  
-android:inputType="textPersonName"  
-android:inputType="textPostalAddress"  
-android:inputType="textPassword"  
-android:inputType="textVisiblePassword"  
-android:inputType="textWebEditText"  
-android:inputType="textFilter"  
+android:inputType="none"
+android:inputType="text"
+android:inputType="textCapCharacters"
+android:inputType="textCapWords"
+android:inputType="textCapSentences"
+android:inputType="textAutoCorrect"
+android:inputType="textAutoComplete"
+android:inputType="textMultiLine"
+android:inputType="textImeMultiLine"
+android:inputType="textNoSuggestions"
+android:inputType="textUri"
+android:inputType="textEmailAddress"
+android:inputType="textEmailSubject"
+android:inputType="textShortMessage"
+android:inputType="textLongMessage"
+android:inputType="textPersonName"
+android:inputType="textPostalAddress"
+android:inputType="textPassword"
+android:inputType="textVisiblePassword"
+android:inputType="textWebEditText"
+android:inputType="textFilter"
 android:inputType="textPhonetic"
 ```
 
-数值类型如下所示：
+数值类型如下：
 
 ``` java
-android:inputType="number"  
-android:inputType="numberSigned"  
-android:inputType="numberDecimal"  
-android:inputType="phone" // 拨号键盘  
-android:inputType="datetime"  
-android:inputType="date" // 日期键盘  
-android:inputType="time" // 时间键盘
+android:inputType="number"
+android:inputType="numberSigned"
+android:inputType="numberDecimal"
+android:inputType="phone" /* 拨号键盘 */
+android:inputType="datetime"
+android:inputType="date" /* 日期键盘 */
+android:inputType="time" /* 时间键盘 */
 ```
 
 ### 设置最小行、最多行、单行、多行以及自动换行
@@ -90,8 +90,8 @@ android:inputType="time" // 时间键盘
 &emsp;&emsp;可以通过以下两个属性来设置字的间距：
 
 ``` java
-android:textScaleX="1.5" //设置字与字的水平间隔
-android:textScaleY="1.5" //设置字与字的垂直间隔
+android:textScaleX="1.5" /* 设置字与字的水平间隔 */
+android:textScaleY="1.5" /* 设置字与字的垂直间隔 */
 ```
 
 `EditText`还为我们提供了设置英文字母大写类型的属性`android:capitalize`(默认`none`)，提供了三个可选值：
