@@ -170,49 +170,49 @@ categories: Android
 
 ``` xml
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/TableLayout1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#66FF66"
-    android:gravity="center_vertical"
-    android:stretchColumns="0,3"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/TableLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#66FF66"
+    android:gravity="center_vertical"
+    android:stretchColumns="0,3"
+    tools:context=".MainActivity">
 ​
-    <TableRow>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="用户名:" />
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户名:" />
 ​
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="150dp" />
-    </TableRow>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="150dp" />
+    </TableRow>
 ​
-    <TableRow>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="密  码:" />
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="密  码:" />
 ​
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="150dp" />
-    </TableRow>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="150dp" />
+    </TableRow>
 ​
-    <TableRow>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="登陆" />
+    <TableRow>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="登陆" />
 ​
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="退出" />
-    </TableRow>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="退出" />
+    </TableRow>
 </TableLayout>
 ```
