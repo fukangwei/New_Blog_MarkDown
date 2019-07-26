@@ -74,32 +74,33 @@ import android.widget.Button;
 import android.app.Activity;
 ​
 public class MainActivity extends Activity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button button = (Button) findViewById(R.id.button_first);
-        /* 为按钮注册单击事件监听器 */
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("onClick", "单击事件");
-            }
-        });
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Button button = (Button) findViewById(R.id.button_first);
+        /* 为按钮注册单击事件监听器 */
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("onClick", "单击事件");
+            }
+        });
 ​
-        /* 为按钮注册触摸事件监听器 */
-        button.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    Log.i("onTouch", "按下");
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    Log.i("onTouch", "抬起");
-                }
-                return true;
-            }
-        });
-    }
+        /* 为按钮注册触摸事件监听器 */
+        button.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Log.i("onTouch", "按下");
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    Log.i("onTouch", "抬起");
+                }
+
+                return true;
+            }
+        });
+    }
 }
 ```
 
