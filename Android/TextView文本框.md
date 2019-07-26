@@ -16,23 +16,23 @@ categories: Android
 
 ``` xml
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#8fffad"
-    android:gravity="center"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8fffad"
+    android:gravity="center"
+    tools:context=".MainActivity">
 ​
-    <TextView
-        android:id="@+id/txtOne"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:background="#000000"
-        android:gravity="center"
-        android:text="TextView(显示框)"
-        android:textColor="#EA5246"
-        android:textSize="18sp"
-        android:textStyle="bold|italic" />
+    <TextView
+        android:id="@+id/txtOne"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="#000000"
+        android:gravity="center"
+        android:text="TextView(显示框)"
+        android:textColor="#EA5246"
+        android:textSize="18sp"
+        android:textStyle="bold|italic" />
 ​
 </RelativeLayout>
 ```
@@ -64,16 +64,16 @@ categories: Android
 
 ``` xml
 <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_centerInParent="true"
-    android:shadowColor="#F9F900"
-    android:shadowDx="10.0"
-    android:shadowDy="10.0"
-    android:shadowRadius="3.0"
-    android:text="带阴影的TextView"
-    android:textColor="#4A4AFF"
-    android:textSize="30sp" />
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:shadowColor="#F9F900"
+    android:shadowDx="10.0"
+    android:shadowDy="10.0"
+    android:shadowRadius="3.0"
+    android:text="带阴影的TextView"
+    android:textColor="#4A4AFF"
+    android:textSize="30sp" />
 ```
 
 <img src="./TextView文本框/2.png" height="297" width="190">
@@ -100,22 +100,21 @@ categories: Android
 ``` xml
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- 设置一个黑色边框 -->
-    <stroke
-        android:width="2px"
-        android:color="#000000" />
-    <!-- 渐变 -->
-    <gradient
-        android:angle="270"
-        android:endColor="#C0C0C0"
-        android:startColor="#FCD209" />
-    <!-- 设置一下边距，让空间大一点 -->
-    <padding
-        android:bottom="5dp"
-        android:left="5dp"
-        android:right="5dp"
-        android:top="5dp" />
-​
+    <!-- 设置一个黑色边框 -->
+    <stroke
+        android:width="2px"
+        android:color="#000000" />
+    <!-- 渐变 -->
+    <gradient
+        android:angle="270"
+        android:endColor="#C0C0C0"
+        android:startColor="#FCD209" />
+    <!-- 设置一下边距，让空间大一点 -->
+    <padding
+        android:bottom="5dp"
+        android:left="5dp"
+        android:right="5dp"
+        android:top="5dp" />
 </shape>
 ```
 
@@ -124,25 +123,24 @@ categories: Android
 ``` xml
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- 设置透明背景色 -->
-    <solid android:color="#87CEEB" />
-    <!-- 设置一个黑色边框 -->
-    <stroke
-        android:width="2px"
-        android:color="#000000" />
-    <!-- 设置四个圆角的半径 -->
-    <corners
-        android:bottomLeftRadius="10px"
-        android:bottomRightRadius="10px"
-        android:topLeftRadius="10px"
-        android:topRightRadius="10px" />
-    <!-- 设置一下边距，让空间大一点 -->
-    <padding
-        android:bottom="5dp"
-        android:left="5dp"
-        android:right="5dp"
-        android:top="5dp" />
-​
+    <!-- 设置透明背景色 -->
+    <solid android:color="#87CEEB" />
+    <!-- 设置一个黑色边框 -->
+    <stroke
+        android:width="2px"
+        android:color="#000000" />
+    <!-- 设置四个圆角的半径 -->
+    <corners
+        android:bottomLeftRadius="10px"
+        android:bottomRightRadius="10px"
+        android:topLeftRadius="10px"
+        android:topRightRadius="10px" />
+    <!-- 设置一下边距，让空间大一点 -->
+    <padding
+        android:bottom="5dp"
+        android:left="5dp"
+        android:right="5dp"
+        android:top="5dp" />
 </shape>
 ```
 
@@ -150,33 +148,32 @@ categories: Android
 
 ``` xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 ​
-    <TextView
-        android:id="@+id/txtOne"
-        android:layout_width="200dp"
-        android:layout_height="64dp"
-        android:background="@drawable/txt_rectborder"
-        android:gravity="center"
-        android:text="矩形边框的TextView"
-        android:textSize="18sp" />
+    <TextView
+        android:id="@+id/txtOne"
+        android:layout_width="200dp"
+        android:layout_height="64dp"
+        android:background="@drawable/txt_rectborder"
+        android:gravity="center"
+        android:text="矩形边框的TextView"
+        android:textSize="18sp" />
 ​
-    <TextView
-        android:id="@+id/txtTwo"
-        android:layout_width="200dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/txt_radiuborder"
-        android:gravity="center"
-        android:text="圆角边框的TextView"
-        android:textSize="18sp" />
-​
+    <TextView
+        android:id="@+id/txtTwo"
+        android:layout_width="200dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/txt_radiuborder"
+        android:gravity="center"
+        android:text="圆角边框的TextView"
+        android:textSize="18sp" />
 </LinearLayout>
 ```
 
