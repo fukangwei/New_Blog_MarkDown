@@ -30,7 +30,7 @@ categories: Android
 - `Notification`：通知对应类，保存通知相关的数据。`NotificationManager`向系统发送通知时会用到。
 - `NotificationManager`：`NotificationManager`是通知管理类，它是一个系统服务。调用`NotificationManager`的`notify`方法可以向系统发送通知。
 
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` java
 import android.app.Notification;
@@ -43,31 +43,31 @@ import android.view.View;
 import android.widget.Button;
 ​
 public class MainActivity extends Activity {
-    final int NOTIFYID = 0x00;
+    final int NOTIFYID = 0x00;
 ​
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button button = (Button) findViewById(R.id.button_first);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                Notification.Builder notification = new Notification.Builder(MainActivity.this); /* 创建一个通知对象 */
-                notification.setAutoCancel(true); /* 设置通知打开后，自动消失 */
-                notification.setSmallIcon(R.mipmap.ic_launcher); /* 设置通知图标 */
-                notification.setContentTitle("奖励百万红包"); /* 设置通知内容标题 */
-                notification.setContentText("点击查看"); /* 设置通知的内容 */
-                notification.setWhen(System.currentTimeMillis()); /* 设置发送时间 */
-                notification.setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE); /* 设置通知的声音和振动 */
-                /* 创建一个启动页面的Intent */
-                Intent intent = new Intent(MainActivity.this, Main3Activity.class);
-                PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this, 0, intent, 0);
-                notification.setContentIntent(pendingIntent); /* 设置通知栏点击跳转 */
-                notificationManager.notify(NOTIFYID, notification.build()); /* 发送通知 */
-            }
-        });
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Button button = (Button) findViewById(R.id.button_first);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                Notification.Builder notification = new Notification.Builder(MainActivity.this); /* 创建一个通知对象 */
+                notification.setAutoCancel(true); /* 设置通知打开后，自动消失 */
+                notification.setSmallIcon(R.mipmap.ic_launcher); /* 设置通知图标 */
+                notification.setContentTitle("奖励百万红包"); /* 设置通知内容标题 */
+                notification.setContentText("点击查看"); /* 设置通知的内容 */
+                notification.setWhen(System.currentTimeMillis()); /* 设置发送时间 */
+                notification.setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE); /* 设置通知的声音和振动 */
+                /* 创建一个启动页面的Intent */
+                Intent intent = new Intent(MainActivity.this, Main3Activity.class);
+                PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this, 0, intent, 0);
+                notification.setContentIntent(pendingIntent); /* 设置通知栏点击跳转 */
+                notificationManager.notify(NOTIFYID, notification.build()); /* 发送通知 */
+            }
+        });
+    }
 }
 ```
