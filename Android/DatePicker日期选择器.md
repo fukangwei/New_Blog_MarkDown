@@ -27,18 +27,17 @@ categories: Android
 
 ``` xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 ​
-    <DatePicker
-        android:id="@+id/datePicker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:calendarViewShown="true"
-        android:endYear="2027"
-        android:startYear="2007" />
-​
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:calendarViewShown="true"
+        android:endYear="2027"
+        android:startYear="2007" />
 </LinearLayout>
 ```
 
@@ -52,31 +51,33 @@ import android.widget.Toast;
 import java.util.Calendar;
 ​
 public class MainActivity extends AppCompatActivity {
-    int year;
-    int monthOfYear;
-    int dayOfMonth;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        DatePicker dp_test = (DatePicker) findViewById(R.id.datePicker);
-        Calendar calendar = Calendar.getInstance();
-        year = calendar.get(Calendar.YEAR);
-        monthOfYear = calendar.get(Calendar.MONTH);
-        dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-        dp_test.init(year, monthOfYear, dayOfMonth, new DatePicker.OnDateChangedListener() {
-            @Override
-            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                MainActivity.this.year = year;
-                MainActivity.this.monthOfYear = monthOfYear;
-                MainActivity.this.dayOfMonth = dayOfMonth;
-                show(year, monthOfYear, dayOfMonth);
-            }
-        });
-    }
-    private void show(int year, int monthOfYear, int dayOfMonth) {
-        String str = year + "年" + (monthOfYear + 1) + "月" + dayOfMonth + "日";
-        Toast.makeText(MainActivity.this, str, Toast.LENGTH_SHORT).show();
-    }
+    int year;
+    int monthOfYear;
+    int dayOfMonth;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        DatePicker dp_test = (DatePicker) findViewById(R.id.datePicker);
+        Calendar calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        monthOfYear = calendar.get(Calendar.MONTH);
+        dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        dp_test.init(year, monthOfYear, dayOfMonth, new DatePicker.OnDateChangedListener() {
+            @Override
+            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                MainActivity.this.year = year;
+                MainActivity.this.monthOfYear = monthOfYear;
+                MainActivity.this.dayOfMonth = dayOfMonth;
+                show(year, monthOfYear, dayOfMonth);
+            }
+        });
+    }
+
+    private void show(int year, int monthOfYear, int dayOfMonth) {
+        String str = year + "年" + (monthOfYear + 1) + "月" + dayOfMonth + "日";
+        Toast.makeText(MainActivity.this, str, Toast.LENGTH_SHORT).show();
+    }
 }
 ```
