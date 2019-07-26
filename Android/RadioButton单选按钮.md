@@ -90,27 +90,27 @@ import android.widget.Toast;
 import android.widget.RadioButton;
 ​
 public class MainActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button btnchange = (Button) findViewById(R.id.btnpost);
-        final RadioGroup radgroup = (RadioGroup) findViewById(R.id.radioGroup);
-        btnchange.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (int i = 0; i < radgroup.getChildCount(); i++) {
-                    RadioButton rd = (RadioButton) radgroup.getChildAt(i);
-                    if (rd.isChecked()) {
-                        Toast.makeText(getApplicationContext(), \
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Button btnchange = (Button) findViewById(R.id.btnpost);
+        final RadioGroup radgroup = (RadioGroup) findViewById(R.id.radioGroup);
+        btnchange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < radgroup.getChildCount(); i++) {
+                    RadioButton rd = (RadioButton) radgroup.getChildAt(i);
+                    if (rd.isChecked()) {
+                        Toast.makeText(getApplicationContext(), \
                                        "点击提交按钮,获取你选择的是:" + rd.getText(), \
                                        Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                }
-            }
-        });
-    }
+                        break;
+                    }
+                }
+            }
+        });
+    }
 }
 ```
 
