@@ -77,23 +77,24 @@ import android.os.Message;
 import android.util.Log;
 ​
 public class LoopThread extends Thread {
-    public Handler handler;
+    public Handler handler;
 ​
-    @Override
-    public void run() {
-        super.run();
-        Looper.prepare();
-        handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                Log.i("Lopper", String.valueOf(msg.what));
-            }
-        };
-        Message message = handler.obtainMessage();
-        message.what = 12;
-        handler.sendMessage(message);
-        Looper.loop();
-    }
+    @Override
+    public void run() {
+        super.run();
+        Looper.prepare();
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                Log.i("Lopper", String.valueOf(msg.what));
+            }
+        };
+
+        Message message = handler.obtainMessage();
+        message.what = 12;
+        handler.sendMessage(message);
+        Looper.loop();
+    }
 }
 ```

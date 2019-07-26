@@ -10,7 +10,7 @@ categories: Android
 <resources>
     <string-array name="languages">
         <item>C语言</item>
-        <item>java </item>
+        <item>java</item>
         <item>xml</item>
     </string-array>
 </resources>
@@ -32,7 +32,7 @@ categories: Android
 </LinearLayout>
 ```
 
-`Java`代码如下所示：
+`Java`代码如下：
 
 ``` java
 import android.support.v7.app.AppCompatActivity;
