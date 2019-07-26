@@ -12,14 +12,14 @@ import android.util.DisplayMetrics;
 import android.widget.Toast;
 ​
 public class MainActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        DisplayMetrics displaysMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displaysMetrics);
-        String showSize = "手机屏幕分辨率：" + displaysMetrics.widthPixels + " * " + displaysMetrics.heightPixels;
-        Toast.makeText(MainActivity.this, showSize, Toast.LENGTH_LONG).show();
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        DisplayMetrics displaysMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaysMetrics);
+        String showSize = "手机屏幕分辨率：" + displaysMetrics.widthPixels + " * " + displaysMetrics.heightPixels;
+        Toast.makeText(MainActivity.this, showSize, Toast.LENGTH_LONG).show();
+    }
 }
 ```
