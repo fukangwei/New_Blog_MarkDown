@@ -362,23 +362,23 @@ import android.view.View;
 import android.widget.Button;
 ​
 public class Main3Activity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
-        Button button = findViewById(R.id.button_close);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = getIntent();
-                Bundle bundle = new Bundle();
-                bundle.putString("name", "fuxinzi");
-                bundle.putString("password", "85056257");
-                intent.putExtras(bundle);
-                setResult(0x12, intent);
-                finish();
-            }
-        });
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main3);
+        Button button = findViewById(R.id.button_close);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getIntent();
+                Bundle bundle = new Bundle();
+                bundle.putString("name", "fuxinzi");
+                bundle.putString("password", "85056257");
+                intent.putExtras(bundle);
+                setResult(0x12, intent);
+                finish();
+            }
+        });
+    }
 }
 ```
