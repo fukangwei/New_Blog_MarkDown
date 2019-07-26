@@ -70,21 +70,20 @@ categories: Android
 
 ``` xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 ​
-    <!-- 水平进度条 -->
-    <ProgressBar
-        android:id="@+id/progressBar1"
-        style="@android:style/Widget.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:layout_marginBottom="60dp"
-        android:max="100" />
-​
+    <!-- 水平进度条 -->
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginBottom="60dp"
+        android:max="100" />
 </LinearLayout>
 ```
 
@@ -100,52 +99,56 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 ​
 public class MainActivity extends Activity {
-    private ProgressBar horizonP; /* 水平进度条 */
-    private int mProgressStatus = 0; /* 完成进度 */
-    private Handler mHandler; /* 声明一个用于处理消息的Handler类的对象 */
+    private ProgressBar horizonP; /* 水平进度条 */
+    private int mProgressStatus = 0; /* 完成进度 */
+    private Handler mHandler; /* 声明一个用于处理消息的Handler类的对象 */
 ​
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        horizonP = (ProgressBar) findViewById(R.id.progressBar1); /* 获取水平进度条 */
-        mHandler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                if (msg.what == 0x111) {
-                    horizonP.setProgress(mProgressStatus); /* 更新进度 */
-                } else {
-                    Toast.makeText(MainActivity.this, "耗时操作已经完成", Toast.LENGTH_SHORT).show();
-                    horizonP.setVisibility(View.GONE);  /* 设置进度条不显示，并且不占用空间 */
-                }
-            }
-        };
-        new Thread(new Runnable() {
-            public void run() {
-                while (true) {
-                    mProgressStatus = doWork(); /* 获取耗时操作完成的百分比 */
-                    Message m = new Message();
-                    if (mProgressStatus < 100) {
-                        m.what = 0x111; /* 自定义的消息代码 */
-                        mHandler.sendMessage(m); /* 发送信息 */
-                    } else {
-                        m.what = 0x110; /* 自定义的消息代码 */
-                        mHandler.sendMessage(m); /* 发送消息 */
-                        break;
-                    }
-                }
-            }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        horizonP = (ProgressBar) findViewById(R.id.progressBar1); /* 获取水平进度条 */
+        mHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                if (msg.what == 0x111) {
+                    horizonP.setProgress(mProgressStatus); /* 更新进度 */
+                } else {
+                    Toast.makeText(MainActivity.this, "耗时操作已经完成", Toast.LENGTH_SHORT).show();
+                    horizonP.setVisibility(View.GONE);  /* 设置进度条不显示，并且不占用空间 */
+                }
+            }
+        };
+
+        new Thread(new Runnable() {
+            public void run() {
+                while (true) {
+                    mProgressStatus = doWork(); /* 获取耗时操作完成的百分比 */
+                    Message m = new Message();
+
+                    if (mProgressStatus < 100) {
+                        m.what = 0x111; /* 自定义的消息代码 */
+                        mHandler.sendMessage(m); /* 发送信息 */
+                    } else {
+                        m.what = 0x110; /* 自定义的消息代码 */
+                        mHandler.sendMessage(m); /* 发送消息 */
+                        break;
+                    }
+                }
+            }
 ​
-            private int doWork() { /* 模拟一个耗时操作 */
-                mProgressStatus += Math.random() * 10; /* 改变完成进度 */
-                try {
-                    Thread.sleep(200); /* 线程休眠200毫秒 */
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                return mProgressStatus; /* 返回新的进度 */
-            }
-        }).start(); /* 开启一个线程 */
-    }
+            private int doWork() { /* 模拟一个耗时操作 */
+                mProgressStatus += Math.random() * 10; /* 改变完成进度 */
+
+                try {
+                    Thread.sleep(200); /* 线程休眠200毫秒 */
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                return mProgressStatus; /* 返回新的进度 */
+            }
+        }).start(); /* 开启一个线程 */
+    }
 }
 ```
