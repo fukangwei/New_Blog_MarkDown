@@ -176,14 +176,14 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 ​
 public class test {
-    public static void main(String[] args) {
-        String jsonString = "{'mobile':[{'name':'android'},{'name':'iphone'}]}";
-        JSONObject demoJson = new JSONObject(jsonString);
-        JSONArray numberList = demoJson.getJSONArray("mobile");
-        for (int i = 0; i < numberList.length(); i++) {
-            System.out.println(numberList.getJSONObject(i).getString("name"));
-        }
-    }
+    public static void main(String[] args) {
+        String jsonString = "{'mobile':[{'name':'android'},{'name':'iphone'}]}";
+        JSONObject demoJson = new JSONObject(jsonString);
+        JSONArray numberList = demoJson.getJSONArray("mobile");
+        for (int i = 0; i < numberList.length(); i++) {
+            System.out.println(numberList.getJSONObject(i).getString("name"));
+        }
+    }
 }
 ```
 
@@ -191,7 +191,7 @@ public class test {
 
 ### JSONException
 
-&emsp;&emsp;public class JSONException, extends Exception:
+&emsp;&emsp;public class `JSONException`, extends `Exception`:
 
 ``` java
 java.lang.Object
@@ -200,11 +200,11 @@ java.lang.Object
             |->  org.json.JSONException
 ```
 
-Thrown to indicate a problem with the JSON API. Such problems include:
+Thrown to indicate a problem with the `JSON API`. Such problems include:
 
 - Attempts to parse or construct malformed documents.
 - Use of null as a name.
-- Use of numeric types not available to JSON, such as NaNs or infinities.
+- Use of numeric types not available to `JSON`, such as `NaNs` or `infinities`.
 - Lookups using an out of range index or nonexistent name.
 - Type mismatches on lookups.
 
@@ -214,9 +214,9 @@ Although this is a checked exception, it is rarely recoverable. Most callers sho
 public JSONArray toJSONObject() {
     try {
         JSONObject result = new JSONObject();
-        ...
-    } catch(JSONException e){
-        throw new RuntimeException(e);
-    }
+        ...
+    } catch(JSONException e){
+        throw new RuntimeException(e);
+    }
 }
 ```

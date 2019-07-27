@@ -3,19 +3,19 @@ title: LinkedList类
 date: 2018-12-20 19:53:50
 categories: Java
 ---
-&emsp;&emsp;LinkedList其实也就是我们在数据结构中的链表，这种数据结构有如下特性：
+&emsp;&emsp;`LinkedList`其实也就是我们在数据结构中的链表，这种数据结构有如下特性：
 
 - 分配内存空间不是必须是连续的。
-- 插入、删除操作很快，只要修改前后指针就OK了，时间复杂度为`O(1)`。
+- 插入、删除操作很快，只要修改前后指针就`OK`了，时间复杂度为`O(1)`。
 - 访问比较慢，必须得从第一个元素开始遍历，时间复杂度为`O(n)`。
 
-在Java中，LinkedList提供了丰富的方法，可以模拟链式队列，链式堆栈等数据结构，为用户带来了极大的方便。
+在`Java`中，`LinkedList`提供了丰富的方法，可以模拟链式队列，链式堆栈等数据结构，为用户带来了极大的方便。
 
 ### add
 
 &emsp;&emsp;方法如下所示：
 
-- `boolean add(E e)`：在链表后添加一个元素，如果成功，返回true，否则返回false。
+- `boolean add(E e)`：在链表后添加一个元素，如果成功，返回`true`，否则返回`false`。
 - `void addFirst(E e)`：在链表头部插入一个元素。
 - `addLast(E e)`：在链表尾部添加一个元素。
 - `void add(int index, E element)`：在指定位置插入一个元素。
@@ -24,23 +24,23 @@ categories: Java
 import java.util.LinkedList;
 ​
 public class LinkedListMethodsDemo {
-    public static void main(String[] args) {
-        LinkedList<String> linkedList = new LinkedList<>();
+    public static void main(String[] args) {
+        LinkedList<String> linkedList = new LinkedList<>();
 ​
-        linkedList.add("first");
-        linkedList.add("second");
-        linkedList.add("third");
-        System.out.println(linkedList);
+        linkedList.add("first");
+        linkedList.add("second");
+        linkedList.add("third");
+        System.out.println(linkedList);
 ​
-        linkedList.addFirst("addFirst");
-        System.out.println(linkedList);
+        linkedList.addFirst("addFirst");
+        System.out.println(linkedList);
 ​
-        linkedList.addLast("addLast");
-        System.out.println(linkedList);
+        linkedList.addLast("addLast");
+        System.out.println(linkedList);
 ​
-        linkedList.add(2, "addByIndex");
-        System.out.println(linkedList);
-    }
+        linkedList.add(2, "addByIndex");
+        System.out.println(linkedList);
+    }
 }
 ```
 
@@ -55,12 +55,12 @@ public class LinkedListMethodsDemo {
 
 ### remove
 
-&emsp;&emsp;方法如下所示：
+&emsp;&emsp;方法如下：
 
 - `E remove()`：移除链表中第一个元素。
 - `boolean remove(Object o)`：移除链表中指定的元素。
 - `E remove(int index)`：移除链表中指定位置的元素。
-- `E removeFirst()`：移除链表中第一个元素，与remove类似。
+- `E removeFirst()`：移除链表中第一个元素，与`remove`类似。
 - `E removeLast()`：移除链表中最后一个元素。
 - `boolean removeFirstOccurrence(Object o)`：移除链表中第一次出现的`Object o`元素。
 - `boolean removeLastOccurrence(Object o)`：移除链表中最后一次出现的`Object o`元素。
@@ -70,51 +70,51 @@ import java.util.LinkedList;
 ​
 public class LinkedListMethodsDemo {
     public static void main(String[] args) {
-        LinkedList<String> linkedList = new LinkedList<>();
+        LinkedList<String> linkedList = new LinkedList<>();
 ​
-        linkedList.add("first");
-        linkedList.add("second");
-        linkedList.add("second");
-        linkedList.add("third");
-        linkedList.add("four");
-        linkedList.add("five");
-        System.out.println(linkedList);
+        linkedList.add("first");
+        linkedList.add("second");
+        linkedList.add("second");
+        linkedList.add("third");
+        linkedList.add("four");
+        linkedList.add("five");
+        System.out.println(linkedList);
 ​
-        linkedList.remove();
-        System.out.println("remove: " + linkedList);
+        linkedList.remove();
+        System.out.println("remove: " + linkedList);
 ​
-        linkedList.remove("second");
-        System.out.println("remove(Object): " + linkedList);
+        linkedList.remove("second");
+        System.out.println("remove(Object): " + linkedList);
 ​
-        linkedList.remove("six");
-        System.out.println("remove(Object) not exist: " + linkedList);
+        linkedList.remove("six");
+        System.out.println("remove(Object) not exist: " + linkedList);
 ​
-        linkedList.remove(2);
-        System.out.println("remove(index): " + linkedList);
+        linkedList.remove(2);
+        System.out.println("remove(index): " + linkedList);
 ​
-        linkedList.removeFirst();
-        System.out.println("removeFirst: " + linkedList);
+        linkedList.removeFirst();
+        System.out.println("removeFirst: " + linkedList);
 ​
-        linkedList.removeLast();
-        System.out.println("removeLast:" + linkedList);
+        linkedList.removeLast();
+        System.out.println("removeLast:" + linkedList);
 ​
-        System.out.println("----------------------------------");
-        linkedList.clear();
+        System.out.println("----------------------------------");
+        linkedList.clear();
 ​
-        linkedList.add("first");
-        linkedList.add("second");
-        linkedList.add("first");
-        linkedList.add("third");
-        linkedList.add("first");
-        linkedList.add("five");
-        System.out.println(linkedList);
+        linkedList.add("first");
+        linkedList.add("second");
+        linkedList.add("first");
+        linkedList.add("third");
+        linkedList.add("first");
+        linkedList.add("five");
+        System.out.println(linkedList);
 ​
-        linkedList.removeFirstOccurrence("first");
-        System.out.println("removeFirstOccurrence: " + linkedList);
+        linkedList.removeFirstOccurrence("first");
+        System.out.println("removeFirstOccurrence: " + linkedList);
 ​
-        linkedList.removeLastOccurrence("first");
-        System.out.println("removeLastOccurrence: " + linkedList);
-    }
+        linkedList.removeLastOccurrence("first");
+        System.out.println("removeLastOccurrence: " + linkedList);
+    }
 }
 ```
 
@@ -136,7 +136,7 @@ removeLastOccurrence: [second, first, third, five]
 
 ### get
 
-&emsp;&emsp;方法如下所示：
+&emsp;&emsp;方法如下：
 
 `E get(int index)`：按照下标获取元素。
 `E getFirst()`：获取第一个元素。
@@ -183,7 +183,7 @@ getLast: five
 
 ### push、pop和poll
 
-&emsp;&emsp;方法如下所示：
+&emsp;&emsp;方法如下：
 
 - `void push(E e)`：与addFirst一样，实际上它就是addFirst。
 - `E pop()`：与removeFirst一样，实际上它就是removeFirst。
