@@ -3,18 +3,18 @@ title: Collections类
 date: 2018-12-20 18:00:14
 categories: Java
 ---
-&emsp;&emsp;Collections是一个可以操作或返回集合的专用静态类。
+&emsp;&emsp;`Collections`是一个可以操作或返回集合的专用静态类。
 
 ### 排序操作
 
-&emsp;&emsp;该操作主要针对List接口，如下所示：
+&emsp;&emsp;该操作主要针对`List`接口：
 
-- `public static void reverse(List<?> list)`：反转指定List集合中元素的顺序。
-- `public static void shuffle(List<?> list)`：对List中的元素进行随机排序(洗牌)。
-- `public static void sort(List<T> list)`：对List里的元素根据自然升序排序。
+- `public static void reverse(List<?> list)`：反转指定`List`集合中元素的顺序。
+- `public static void shuffle(List<?> list)`：对`List`中的元素进行随机排序(洗牌)。
+- `public static void sort(List<T> list)`：对`List`里的元素根据自然升序排序。
 - `public static void sort(List<T> list, Comparator<? super T> c)`：自定义比较器进行排序。
-- `public static void swap(List<?> list, int i, int j)`：将指定List集合中的i处元素和j处元素进行交换
-- `public static void rotate(List<?> list, int distance)`：将所有元素向右移位指定长度，如果distance等于size，那么结果不变。
+- `public static void swap(List<?> list, int i, int j)`：将指定`List`集合中的`i`处元素和`j`处元素进行交换
+- `public static void rotate(List<?> list, int distance)`：将所有元素向右移位指定长度，如果`distance`等于`size`，那么结果不变。
 
 代码实例如下：
 
@@ -59,9 +59,9 @@ rotate后的顺序：[B, E, A, D, C]
 
 ### 查找和替换
 
-&emsp;&emsp;该操作主要针对Collection接口，如下所示：
+&emsp;&emsp;该操作主要针对`Collection`接口：
 
-- `public static void binarySearch(List<? extends Comparable<? super T>> list, T key)`：使用二分搜索法，以获得指定对象在List中的索引，前提是集合已经排序。
+- `public static void binarySearch(List<? extends Comparable<? super T>> list, T key)`：使用二分搜索法，以获得指定对象在`List`中的索引，前提是集合已经排序。
 - `public static <T extends Object & Comparable<? super T>> T max(Collection<? extends T> coll)`：返回最大元素。
 - `public static <T> T max(Collection<? extends T> coll,Comparator<? super T> comp)`：根据自定义比较器，返回最大元素。
 - `public static <T extends Object & Comparable<? super T>> T min(Collection<? extends T> coll)`：返回最小元素。
@@ -124,11 +124,11 @@ fill：[^_^, ^_^, ^_^, ^_^, ^_^, ^_^, ^_^, ^_^]
 
 ### 其他方法
 
-&emsp;&emsp;其他的方法如下所示：
+&emsp;&emsp;其他的方法如下：
 
-- `public static boolean disjoint(Collection c1, Collection c2)`：如果两个指定collection中没有相同的元素，则返回true。
-- `public static <T> boolean addAll(Collection<? super T> c, T... elements)`：一种方便的方式，将所有指定元素添加到指定collection中。
-- `public static <T> Comparator<T> reverseOrder()`：返回一个比较器，它强行反转指定比较器的顺序。如果指定比较器为null，则此方法等同于reverseOrder。
+- `public static boolean disjoint(Collection c1, Collection c2)`：如果两个指定`collection`中没有相同的元素，则返回`true`。
+- `public static <T> boolean addAll(Collection<? super T> c, T... elements)`：一种方便的方式，将所有指定元素添加到指定`collection`中。
+- `public static <T> Comparator<T> reverseOrder()`：返回一个比较器，它强行反转指定比较器的顺序。如果指定比较器为`null`，则此方法等同于`reverseOrder`。
 
 代码实例如下：
 
@@ -172,16 +172,16 @@ list和list2交集结果：true
 
 ### 设置不可变集合
 
-&emsp;&emsp;`不可变`即为无法修改返回容器的内容，注意这里指的是无法直接通过set或者add方法修改容器内reference的指向，而不是禁止reference指向内容的修改。为什么要使用不可变集合？理由如下所示：
+&emsp;&emsp;`不可变`即为无法修改返回容器的内容，注意这里指的是无法直接通过`set`或者`add`方法修改容器内`reference`的指向，而不是禁止`reference`指向内容的修改。为什么要使用不可变集合？理由如下：
 
 - 当对象被不可信的库调用时，不可变形式是安全的。
 - 不可变对象被多个线程调用时，不存在竞态条件问题。
 - 不可变集合不需要考虑变化，因此可以节省时间和空间，所有不可变的集合都比它们的可变形式有更好的内存利用率。
 - 不可变对象因为固定不变，所以可以作为常量来安全使用。
 
-相关方法如下所示：
+相关方法如下：
 
-- `emptyXxx`开头的方法：返回一个空的不可变的集合对象(LIst、Map和Set)。
+- `emptyXxx`开头的方法：返回一个空的不可变的集合对象(`List`、`Map`和`Set`)。
 - `singletonXxx`开头的方法：返回一个只包含指定对象的，不可变的集合对象。
 - `unmodifiableXxx`开头的方法：返回指定集合对象的不可变视图。
 
@@ -221,12 +221,12 @@ public class collections_test {
 
 &emsp;&emsp;Collections工具类中提供了多个`synchronizedXxx`方法，该方法返回指定集合对象对应的同步对象，从而解决多线程并发访问集合时线程的安全问题。`HashSet`、`ArrayList`、`HashMap`都是线程不安全的，如果需要考虑同步，则使用这些方法。这些方法主要有`synchronizedSet`、`synchronizedSortedSet`、`synchronizedList`、`synchronizedMap`和`synchronizedSortedMap`。
 
-- `public static Collection synchronizedCollection(Collection c)`：返回指定Collection支持的同步(线程安全的)Collection。
+- `public static Collection synchronizedCollection(Collection c)`：返回指定`Collection`支持的同步(线程安全的)`Collection`。
 - `public static List synchronizedList(List list)`：返回指定列表支持的同步(线程安全的)列表。
 - `public static Map synchronizedMap(Map m)`：返回由指定映射支持的同步(线程安全的)映射。
-- `public static Set synchronizedSet(Set s)`：返回指定Set支持的同步(线程安全的)Set。
+- `public static Set synchronizedSet(Set s)`：返回指定`Set`支持的同步(线程安全的)`Set`。
 
-使用方法如下所示：
+使用方法如下：
 
 ``` java
 import java.util.*;
