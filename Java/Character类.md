@@ -43,10 +43,10 @@ char c = test('x'); /* 原始字符“x”用test方法装箱，返回拆箱的�
 
 ``` java
 public class Test {
-    public static void main(String args[]) {
-        /* 输出“访问"菜鸟教程!"” */
-        System.out.println("访问\"菜鸟教程!\"");
-    }
+    public static void main(String args[]) {
+        /* 输出“访问"菜鸟教程!"” */
+        System.out.println("访问\"菜鸟教程!\"");
+    }
 }
 ```
 
@@ -54,8 +54,8 @@ public class Test {
 
 &emsp;&emsp;下面是`Character`类的方法：
 
-方法 | 说明
------|-----
+方法           | 说明
+---------------|-----
 `isLetter`     | 是否为一个字母
 `isDigit`      | 是否为一个数字字符
 `isWhitespace` | 是否为一个空格
