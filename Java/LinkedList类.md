@@ -361,24 +361,24 @@ import java.util.LinkedList;
 ​
 public class LinkedListMethodsDemo {
     public static void main(String[] args) {
-        LinkedList<String> linkedList = new LinkedList<>();
+        LinkedList<String> linkedList = new LinkedList<>();
 ​
-        linkedList.push("first");
-        linkedList.push("second");
-        linkedList.push("second");
-        linkedList.push("third");
-        linkedList.push("four");
-        linkedList.push("five");
-        System.out.println("linkedList: " + linkedList);
+        linkedList.push("first");
+        linkedList.push("second");
+        linkedList.push("second");
+        linkedList.push("third");
+        linkedList.push("four");
+        linkedList.push("five");
+        System.out.println("linkedList: " + linkedList);
 ​
-        System.out.println("linkedList.contains(\"second\"): " + linkedList.contains("second"));
-        System.out.println("linkedList.contains(\"six\"): " + linkedList.contains("six"));
-        System.out.println("linkedList.element(): " + linkedList.element());
-        System.out.println("linkedList: " + linkedList);
-        System.out.println("linkedList.set(3, \"set\"): " + linkedList.set(3, "set"));
-        System.out.println("linkedList: " + linkedList);
-        System.out.println("linkedList.subList(2,4): " + linkedList.subList(2, 4));
-        System.out.println("linkedList: " + linkedList);
+        System.out.println("linkedList.contains(\"second\"): " + linkedList.contains("second"));
+        System.out.println("linkedList.contains(\"six\"): " + linkedList.contains("six"));
+        System.out.println("linkedList.element(): " + linkedList.element());
+        System.out.println("linkedList: " + linkedList);
+        System.out.println("linkedList.set(3, \"set\"): " + linkedList.set(3, "set"));
+        System.out.println("linkedList: " + linkedList);
+        System.out.println("linkedList.subList(2,4): " + linkedList.subList(2, 4));
+        System.out.println("linkedList: " + linkedList);
     }
 }
 ```
