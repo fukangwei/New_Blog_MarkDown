@@ -146,28 +146,28 @@ removeLastOccurrence: [second, first, third, five]
 import java.util.LinkedList;
 ​
 public class LinkedListMethodsDemo {
-    public static void main(String[] args) {
-        LinkedList<String> linkedList = new LinkedList<>();
+    public static void main(String[] args) {
+        LinkedList<String> linkedList = new LinkedList<>();
 ​
-        linkedList.add("first");
-        linkedList.add("second");
-        linkedList.add("second");
-        linkedList.add("third");
-        linkedList.add("four");
-        linkedList.add("five");
-        System.out.println(linkedList);
+        linkedList.add("first");
+        linkedList.add("second");
+        linkedList.add("second");
+        linkedList.add("third");
+        linkedList.add("four");
+        linkedList.add("five");
+        System.out.println(linkedList);
 ​
-        linkedList.get(3);
-        System.out.println("get(index): " + linkedList.get(3));
+        linkedList.get(3);
+        System.out.println("get(index): " + linkedList.get(3));
 ​
-        linkedList.getFirst();
-        System.out.println("getFirst: " + linkedList.getFirst());
+        linkedList.getFirst();
+        System.out.println("getFirst: " + linkedList.getFirst());
 ​
-        linkedList.getLast();
-        System.out.println("getLast: " + linkedList.getLast());
+        linkedList.getLast();
+        System.out.println("getLast: " + linkedList.getLast());
 ​
-        System.out.println(linkedList);
-    }
+        System.out.println(linkedList);
+    }
 }
 ```
 
@@ -185,31 +185,31 @@ getLast: five
 
 &emsp;&emsp;方法如下：
 
-- `void push(E e)`：与addFirst一样，实际上它就是addFirst。
-- `E pop()`：与removeFirst一样，实际上它就是removeFirst。
+- `void push(E e)`：与`addFirst`一样，实际上它就是`addFirst`。
+- `E pop()`：与`removeFirst`一样，实际上它就是`removeFirst`。
 - `E poll()`：查询并移除第一个元素。
 
 ``` java
 import java.util.LinkedList;
 ​
 public class LinkedListMethodsDemo {
-    public static void main(String[] args) {
-        LinkedList<String> linkedList = new LinkedList<>();
+    public static void main(String[] args) {
+        LinkedList<String> linkedList = new LinkedList<>();
 ​
-        linkedList.push("first");
-        linkedList.push("second");
-        linkedList.push("second");
-        linkedList.push("third");
-        linkedList.push("four");
-        linkedList.push("five");
-        System.out.println("linkedList: " + linkedList);
+        linkedList.push("first");
+        linkedList.push("second");
+        linkedList.push("second");
+        linkedList.push("third");
+        linkedList.push("four");
+        linkedList.push("five");
+        System.out.println("linkedList: " + linkedList);
 ​
-        System.out.println("pop: " + linkedList.pop());
-        System.out.println("after pop: " + linkedList);
+        System.out.println("pop: " + linkedList.pop());
+        System.out.println("after pop: " + linkedList);
 ​
-        System.out.println("poll: " + linkedList.poll());
-        System.out.println("after poll: " + linkedList);
-    }
+        System.out.println("poll: " + linkedList.poll());
+        System.out.println("after poll: " + linkedList);
+    }
 }
 ```
 
@@ -223,18 +223,18 @@ poll: four
 after poll: [third, second, second, first]
 ```
 
-如果链表为空，看看poll与pop之间的区别：
+如果链表为空，看看`poll`与`pop`之间的区别：
 
 ``` java
 import java.util.LinkedList;
 ​
 public class LinkedListMethodsDemo {
-    public static void main(String[] args) {
-        LinkedList<String> linkedList = new LinkedList<>();
+    public static void main(String[] args) {
+        LinkedList<String> linkedList = new LinkedList<>();
 ​
-        System.out.println("poll: " + linkedList.poll());
-        System.out.println("pop: " + linkedList.pop());
-    }
+        System.out.println("poll: " + linkedList.poll());
+        System.out.println("pop: " + linkedList.pop());
+    }
 }
 ```
 
@@ -248,11 +248,11 @@ Exception in thread "main" java.util.NoSuchElementException
     at LinkedListMethodsDemo.main(LinkedListMethodsDemo.java:8)
 ```
 
-可以看出poll返回null，而pop则产生异常。
+可以看出`poll`返回`null`，而`pop`则产生异常。
 
 ### peek
 
-&emsp;&emsp;方法如下所示：
+&emsp;&emsp;方法如下：
 
 - `E peek()`：获取第一个元素，但是不移除。
 - `E peekFirst()`：获取第一个元素，但是不移除。
@@ -262,40 +262,40 @@ Exception in thread "main" java.util.NoSuchElementException
 import java.util.LinkedList;
 ​
 public class LinkedListMethodsDemo {
-    public static void main(String[] args) {
-        LinkedList<String> linkedList = new LinkedList<>();
+    public static void main(String[] args) {
+        LinkedList<String> linkedList = new LinkedList<>();
 ​
-        linkedList.push("first");
-        linkedList.push("second");
-        linkedList.push("second");
-        linkedList.push("third");
-        linkedList.push("four");
-        linkedList.push("five");
-        System.out.println("linkedList: " + linkedList);
+        linkedList.push("first");
+        linkedList.push("second");
+        linkedList.push("second");
+        linkedList.push("third");
+        linkedList.push("four");
+        linkedList.push("five");
+        System.out.println("linkedList: " + linkedList);
 ​
-        System.out.println("peek: " + linkedList.peek());
-        System.out.println("peekFirst: " + linkedList.peekFirst());
-        System.out.println("peekLast: " + linkedList.peekLast());
+        System.out.println("peek: " + linkedList.peek());
+        System.out.println("peekFirst: " + linkedList.peekFirst());
+        System.out.println("peekLast: " + linkedList.peekLast());
 ​
-        System.out.println("linkedList: " + linkedList);
-    }
+        System.out.println("linkedList: " + linkedList);
+    }
 }
 ```
 
-如果没找到对应的元素，则统统输出null：
+如果没找到对应的元素，则统统输出`null`：
 
 ``` java
 import java.util.LinkedList;
 ​
 public class LinkedListMethodsDemo {
-    public static void main(String[] args) {
-        LinkedList<String> linkedList = new LinkedList<>();
+    public static void main(String[] args) {
+        LinkedList<String> linkedList = new LinkedList<>();
 ​
-        System.out.println("linkedList: " + linkedList);
-        System.out.println("peek: " + linkedList.peek());
-        System.out.println("peekFirst: " + linkedList.peekFirst());
-        System.out.println("peekLast: " + linkedList.peekLast());
-    }
+        System.out.println("linkedList: " + linkedList);
+        System.out.println("peek: " + linkedList.peek());
+        System.out.println("peekFirst: " + linkedList.peekFirst());
+        System.out.println("peekLast: " + linkedList.peekLast());
+    }
 }
 ```
 
@@ -310,36 +310,36 @@ peekLast: null
 
 ### offer
 
-&emsp;&emsp;方法如下所示：
+&emsp;&emsp;方法如下：
 
 - `boolean offer(E e)`：在链表尾部插入一个元素。
-- `boolean offerFirst(E e)`：与addFirst一样，实际上它就是addFirst。
-- `boolean offerLast(E e)`：与addLast一样，实际上它就是addLast。
+- `boolean offerFirst(E e)`：与`addFirst`一样，实际上它就是`addFirst`。
+- `boolean offerLast(E e)`：与`addLast`一样，实际上它就是`addLast`。
 
 ``` java
 import java.util.LinkedList;
 ​
 public class LinkedListMethodsDemo {
-    public static void main(String[] args) {
-        LinkedList<String> linkedList = new LinkedList<>();
+    public static void main(String[] args) {
+        LinkedList<String> linkedList = new LinkedList<>();
 ​
-        linkedList.push("first");
-        linkedList.push("second");
-        linkedList.push("second");
-        linkedList.push("third");
-        linkedList.push("four");
-        linkedList.push("five");
-        System.out.println("linkedList: " + linkedList);
+        linkedList.push("first");
+        linkedList.push("second");
+        linkedList.push("second");
+        linkedList.push("third");
+        linkedList.push("four");
+        linkedList.push("five");
+        System.out.println("linkedList: " + linkedList);
 ​
-        linkedList.offer("six");
-        System.out.println("linkedList: " + linkedList);
+        linkedList.offer("six");
+        System.out.println("linkedList: " + linkedList);
 ​
-        linkedList.offerFirst("zero");
-        System.out.println("linkedList: " + linkedList);
+        linkedList.offerFirst("zero");
+        System.out.println("linkedList: " + linkedList);
 ​
-        linkedList.offerLast("seven");
-        System.out.println("linkedList: " + linkedList);
-    }
+        linkedList.offerLast("seven");
+        System.out.println("linkedList: " + linkedList);
+    }
 }
 ```
 
@@ -354,13 +354,13 @@ linkedList: [zero, five, four, third, second, second, first, six, seven]
 
 ### 其他
 
-&emsp;&emsp;LinkedList中常用的方法基本都列出来了，当然还有一些其他的例子：
+&emsp;&emsp;`LinkedList`中常用的方法基本都列出来了，当然还有一些其他的例子：
 
 ``` java
 import java.util.LinkedList;
 ​
 public class LinkedListMethodsDemo {
-    public static void main(String[] args) {
+    public static void main(String[] args) {
         LinkedList<String> linkedList = new LinkedList<>();
 ​
         linkedList.push("first");
@@ -379,7 +379,7 @@ public class LinkedListMethodsDemo {
         System.out.println("linkedList: " + linkedList);
         System.out.println("linkedList.subList(2,4): " + linkedList.subList(2, 4));
         System.out.println("linkedList: " + linkedList);
-    }
+    }
 }
 ```
 
