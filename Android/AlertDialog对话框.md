@@ -151,39 +151,41 @@ import android.widget.Button;
 import android.widget.Toast;
 ​
 public class MainActivity extends Activity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button button = (Button) findViewById(R.id.button_first);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String[] lesson = new String[]{"语文", "数学", "英语"};
-                final boolean[] checkItems = new boolean[]{false, false, false, false};
-                AlertDialog alert = null;
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setIcon(R.mipmap.ic_launcher);
-                builder.setTitle("你喜欢的课程");
-                alert = builder.setMultiChoiceItems(lesson, checkItems, new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                        checkItems[which] = isChecked;
-                    }
-                }).setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String result = "";
-                        for (int i = 0; i < checkItems.length; i++) {
-                            if (checkItems[i])
-                                result += lesson[i] + " ";
-                        }
-                        Toast.makeText(getApplicationContext(), "你选择了:" + result, Toast.LENGTH_SHORT).show();
-                    }
-                }).create();
-                alert.show();
-            }
-        });
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Button button = (Button) findViewById(R.id.button_first);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String[] lesson = new String[]{"语文", "数学", "英语"};
+                final boolean[] checkItems = new boolean[]{false, false, false, false};
+                AlertDialog alert = null;
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setIcon(R.mipmap.ic_launcher);
+                builder.setTitle("你喜欢的课程");
+                alert = builder.setMultiChoiceItems(lesson, checkItems, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                        checkItems[which] = isChecked;
+                    }
+                }).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String result = "";
+
+                        for (int i = 0; i < checkItems.length; i++) {
+                            if (checkItems[i])
+                                result += lesson[i] + " ";
+                        }
+
+                        Toast.makeText(getApplicationContext(), "你选择了:" + result, Toast.LENGTH_SHORT).show();
+                    }
+                }).create();
+                alert.show();
+            }
+        });
+    }
 }
 ```
