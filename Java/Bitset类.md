@@ -45,38 +45,38 @@ BitSet(int size)
 - `String toString()`：返回此位`set`的字符串表示形式。
 - `void xor(BitSet bitSet)`：对此位`set`和参数位`set`执行逻辑异或操作。
 
-代码如下所示：
+代码如下：
 
 ``` java
 import java.util.BitSet;
 ​
 public class BitSetDemo {​
-    public static void main(String args[]) {
-        BitSet bits1 = new BitSet(16);
-        BitSet bits2 = new BitSet(16);
+    public static void main(String args[]) {
+        BitSet bits1 = new BitSet(16);
+        BitSet bits2 = new BitSet(16);
 ​
-        for (int i = 0; i < 16; i++) { /* set some bits */
-            if ((i % 2) == 0) bits1.set(i);
-            if ((i % 5) != 0) bits2.set(i);
-        }
+        for (int i = 0; i < 16; i++) { /* set some bits */
+            if ((i % 2) == 0) bits1.set(i);
+            if ((i % 5) != 0) bits2.set(i);
+        }
 ​
-        System.out.print("Initial pattern in bits1: ");
-        System.out.println(bits1);
-        System.out.print("Initial pattern in bits2: ");
-        System.out.println(bits2);
+        System.out.print("Initial pattern in bits1: ");
+        System.out.println(bits1);
+        System.out.print("Initial pattern in bits2: ");
+        System.out.println(bits2);
 ​
-        bits2.and(bits1); /* AND bits */
-        System.out.print("bits2 AND bits1: ");
-        System.out.println(bits2);
+        bits2.and(bits1); /* AND bits */
+        System.out.print("bits2 AND bits1: ");
+        System.out.println(bits2);
 ​
-        bits2.or(bits1); /* OR bits */
-        System.out.print("bits2 OR bits1: ");
-        System.out.println(bits2);
+        bits2.or(bits1); /* OR bits */
+        System.out.print("bits2 OR bits1: ");
+        System.out.println(bits2);
 ​
-        bits2.xor(bits1); /* XOR bits */
-        System.out.print("bits2 XOR bits1: ");
-        System.out.println(bits2);
-    }
+        bits2.xor(bits1); /* XOR bits */
+        System.out.print("bits2 XOR bits1: ");
+        System.out.println(bits2);
+    }
 }
 ```
 
