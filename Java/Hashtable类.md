@@ -46,38 +46,38 @@ Hashtable(Map m);
 - `int size()`：返回此哈希表中的键的数量。
 - `String toString()`：返回此`Hashtable`对象的字符串表示形式，其形式为`ASCII`字符`,(空格)`(逗号加空格)分隔开的、括在括号中的一组条目。
 
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` java
 import java.util.*;
 ​
 public class HashTableDemo {
-    public static void main(String args[]) {
-        /* Create a hash map */
-        Hashtable balance = new Hashtable();
-        Enumeration names;
-        String str;
-        double bal;
+    public static void main(String args[]) {
+        /* Create a hash map */
+        Hashtable balance = new Hashtable();
+        Enumeration names;
+        String str;
+        double bal;
 ​
-        balance.put("Zara", 3434.34);
-        balance.put("Mahnaz", 123.22);
-        balance.put("Ayan", 1378.00);
-        balance.put("Daisy", 99.22);
-        balance.put("Qadir", -19.08);
+        balance.put("Zara", 3434.34);
+        balance.put("Mahnaz", 123.22);
+        balance.put("Ayan", 1378.00);
+        balance.put("Daisy", 99.22);
+        balance.put("Qadir", -19.08);
 ​
-        /* Show all balances in hash table */
-        names = balance.keys();
-        while (names.hasMoreElements()) {
-            str = (String) names.nextElement();
-            System.out.println(str + ": " + balance.get(str));
-        }
+        /* Show all balances in hash table */
+        names = balance.keys();
+        while (names.hasMoreElements()) {
+            str = (String) names.nextElement();
+            System.out.println(str + ": " + balance.get(str));
+        }
 ​
-        System.out.println();
-        /* Deposit 1,000 into Zara's account */
-        bal = ((Double) balance.get("Zara")).doubleValue();
-        balance.put("Zara", bal + 1000);
-        System.out.println("Zara's new balance: " + balance.get("Zara"));
-    }
+        System.out.println();
+        /* Deposit 1,000 into Zara's account */
+        bal = ((Double) balance.get("Zara")).doubleValue();
+        balance.put("Zara", bal + 1000);
+        System.out.println("Zara's new balance: " + balance.get("Zara"));
+    }
 }
 ```
 
