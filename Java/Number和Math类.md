@@ -20,11 +20,11 @@ byte c = 0x4a;
 
 ``` java
 public class Test {
-    public static void main(String args[]) {
-        Integer x = 5;
-        x = x + 10;
-        System.out.println(x); /* 输出“15” */
-    }
+    public static void main(String args[]) {
+        Integer x = 5;
+        x = x + 10;
+        System.out.println(x); /* 输出“15” */
+    }
 }
 ```
 
@@ -36,14 +36,14 @@ public class Test {
 
 ``` java
 public class Test {
-    public static void main(String[] args) {
-        System.out.println("90度的正弦值：" + Math.sin(Math.PI / 2));
-        System.out.println("0度的余弦值：" + Math.cos(0));
-        System.out.println("60度的正切值：" + Math.tan(Math.PI / 3));
-        System.out.println("1的反正切值：" + Math.atan(1));
-        System.out.println("π/2的角度值：" + Math.toDegrees(Math.PI / 2));
-        System.out.println(Math.PI);
-    }
+    public static void main(String[] args) {
+        System.out.println("90度的正弦值：" + Math.sin(Math.PI / 2));
+        System.out.println("0度的余弦值：" + Math.cos(0));
+        System.out.println("60度的正切值：" + Math.tan(Math.PI / 3));
+        System.out.println("1的反正切值：" + Math.atan(1));
+        System.out.println("π/2的角度值：" + Math.toDegrees(Math.PI / 2));
+        System.out.println(Math.PI);
+    }
 }
 ```
 
@@ -62,7 +62,7 @@ public class Test {
 
 &emsp;&emsp;下表列出的是`Number`和`Math`类常用的一些方法：
 
-方法         | 说明
+方法        | 说明
 ------------|----
 `xxxValue`  | 将`Number`对象转换为`xxx`数据类型的值并返回
 `compareTo` | 将`Number`对象与参数比较
@@ -96,18 +96,19 @@ public class Test {
 
 ``` java
 public class Main {
-    public static void main(String[] args) {
-        double[] nums = {1.4, 1.5, 1.6, -1.4, -1.5, -1.6};
-        for (double num : nums) {
-            test(num);
-        }
-    }
+    public static void main(String[] args) {
+        double[] nums = {1.4, 1.5, 1.6, -1.4, -1.5, -1.6};
+
+        for (double num : nums) {
+            test(num);
+        }
+    }
 ​
-    private static void test(double num) {
-        System.out.println("Math.floor(" + num + ") = " + Math.floor(num));
-        System.out.println("Math.round(" + num + ") = " + Math.round(num));
-        System.out.println("Math.ceil(" + num + ") = " + Math.ceil(num));
-    }
+    private static void test(double num) {
+        System.out.println("Math.floor(" + num + ") = " + Math.floor(num));
+        System.out.println("Math.round(" + num + ") = " + Math.round(num));
+        System.out.println("Math.ceil(" + num + ") = " + Math.ceil(num));
+    }
 }
 ```
 
@@ -140,7 +141,7 @@ Math.ceil(-1.6) = -1.0
 
 &emsp;&emsp;`xxxValue`方法用于将`Number`对象转换为`xxx`数据类型的值并返回。
 
-方法           | 说明
+方法          | 说明
 --------------|-----
 `byteValue`   | 以`byte`形式返回指定的数值
 `doubleValue` | 以`double`形式返回指定的数值
@@ -153,15 +154,15 @@ Math.ceil(-1.6) = -1.0
 
 ``` java
 public class Test {
-    public static void main(String args[]) {
-        Integer x = 5;
-        /* 返回byte原生数据类型 */
-        System.out.println(x.byteValue()); /* 输出“5” */
-        /* 返回double原生数据类型 */
-        System.out.println(x.doubleValue()); /* 输出“5.0” */
-        /* 返回long原生数据类型 */
-        System.out.println(x.longValue()); /* 输出“5” */
-    }
+    public static void main(String args[]) {
+        Integer x = 5;
+        /* 返回byte原生数据类型 */
+        System.out.println(x.byteValue()); /* 输出“5” */
+        /* 返回double原生数据类型 */
+        System.out.println(x.doubleValue()); /* 输出“5.0” */
+        /* 返回long原生数据类型 */
+        System.out.println(x.longValue()); /* 输出“5” */
+    }
 }
 ```
 
@@ -177,12 +178,12 @@ public int compareTo(NumberSubClass referenceName);
 
 ``` java
 public class Test {
-    public static void main(String args[]) {
-        Integer x = 5;
-        System.out.println(x.compareTo(3));
-        System.out.println(x.compareTo(5));
-        System.out.println(x.compareTo(8));
-    }
+    public static void main(String args[]) {
+        Integer x = 5;
+        System.out.println(x.compareTo(3));
+        System.out.println(x.compareTo(5));
+        System.out.println(x.compareTo(8));
+    }
 }
 ```
 
@@ -198,16 +199,16 @@ public boolean equals(Object o);
 
 ``` java
 public class Test {
-    public static void main(String args[]) {
-        Integer x = 5;
-        Integer y = 10;
-        Integer z = 5;
-        Short a = 5;
+    public static void main(String args[]) {
+        Integer x = 5;
+        Integer y = 10;
+        Integer z = 5;
+        Short a = 5;
 ​
-        System.out.println(x.equals(y)); /* false */
-        System.out.println(x.equals(z)); /* true */
-        System.out.println(x.equals(a)); /* false */
-    }
+        System.out.println(x.equals(y)); /* false */
+        System.out.println(x.equals(z)); /* true */
+        System.out.println(x.equals(a)); /* false */
+    }
 }
 ```
 
