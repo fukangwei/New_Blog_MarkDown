@@ -413,13 +413,13 @@ public synchronized static void method() {
 
 ``` java
 class SyncThread implements Runnable {
-    private static int count;
+    private static int count;
 ​
-    public SyncThread() {
-        count = 0;
-    }
+    public SyncThread() {
+        count = 0;
+    }
 ​
-    public synchronized static void method() {
+    public synchronized static void method() {
         for (int i = 0; i < 5; i++) {
             try {
                 System.out.println(Thread.currentThread().getName() + " : " + (count++));
@@ -428,11 +428,11 @@ class SyncThread implements Runnable {
                 e.printStackTrace();
             }
         }
-    }
+    }
 ​
-    public synchronized void run() {
+    public synchronized void run() {
         method();
-    }
+    }
 }
 ```
 
@@ -440,14 +440,14 @@ class SyncThread implements Runnable {
 
 ``` java
 public class test {
-    public static void main(String[] args) {
-        SyncThread syncThread1 = new SyncThread();
-        SyncThread syncThread2 = new SyncThread();
-        Thread thread1 = new Thread(syncThread1, "SyncThread1");
-        Thread thread2 = new Thread(syncThread2, "SyncThread2");
-        thread1.start();
-        thread2.start();
-    }
+    public static void main(String[] args) {
+        SyncThread syncThread1 = new SyncThread();
+        SyncThread syncThread2 = new SyncThread();
+        Thread thread1 = new Thread(syncThread1, "SyncThread1");
+        Thread thread2 = new Thread(syncThread2, "SyncThread2");
+        thread1.start();
+        thread2.start();
+    }
 }
 ```
 
