@@ -9,14 +9,14 @@ categories: Java
 
 ``` java
 public class Test {
-    public static void main(String args[]) {
-        StringBuffer sBuffer = new StringBuffer("菜鸟教程官网：");
-        sBuffer.append("www");
-        sBuffer.append(".runoob");
-        sBuffer.append(".com");
-        /* 输出“菜鸟教程官网：www.runoob.com” */
-        System.out.println(sBuffer);
-    }
+    public static void main(String args[]) {
+        StringBuffer sBuffer = new StringBuffer("菜鸟教程官网：");
+        sBuffer.append("www");
+        sBuffer.append(".runoob");
+        sBuffer.append(".com");
+        /* 输出“菜鸟教程官网：www.runoob.com” */
+        System.out.println(sBuffer);
+    }
 }
 ```
 

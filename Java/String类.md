@@ -13,11 +13,11 @@ String greeting = "菜鸟教程";
 
 ``` java
 public class StringDemo {
-    public static void main(String args[]) {
-        char[] helloArray = {'r', 'u', 'n', 'o', 'o', 'b'};
-        String helloString = new String(helloArray);
-        System.out.println(helloString); /* 输出“runoob” */
-    }
+    public static void main(String args[]) {
+        char[] helloArray = {'r', 'u', 'n', 'o', 'o', 'b'};
+        String helloString = new String(helloArray);
+        System.out.println(helloString); /* 输出“runoob” */
+    }
 }
 ```
 
@@ -29,12 +29,12 @@ public class StringDemo {
 
 ``` java
 public class StringDemo {
-    public static void main(String args[]) {
-        String site = "www.runoob.com";
-        int len = site.length();
-        /* 输出“菜鸟教程网址长度：14” */
-        System.out.println("菜鸟教程网址长度：" + len);
-    }
+    public static void main(String args[]) {
+        String site = "www.runoob.com";
+        int len = site.length();
+        /* 输出“菜鸟教程网址长度：14” */
+        System.out.println("菜鸟教程网址长度：" + len);
+    }
 }
 ```
 
@@ -58,15 +58,15 @@ string1.concat(string2);
 "Hello," + " runoob" + "!"
 ```
 
-代码如下所示：
+代码如下：
 
 ``` java
 public class StringDemo {
-    public static void main(String args[]) {
-        String string1 = "菜鸟教程网址：";
-        /* 输出“这是菜鸟教程网址：www.runoob.com” */
-        System.out.println("这是" + string1 + "www.runoob.com");
-    }
+    public static void main(String args[]) {
+        String string1 = "菜鸟教程网址：";
+        /* 输出“这是菜鸟教程网址：www.runoob.com” */
+        System.out.println("这是" + string1 + "www.runoob.com");
+    }
 }
 ```
 
@@ -196,16 +196,16 @@ public boolean contains(CharSequence s);
 
 ``` java
 public class test {
-    public static void main(String[] args) {
-        String str1 = "tutorials point", str2 = "http://";
-        CharSequence cs1 = "int";
-        /* string contains the specified sequence of char values */
-        boolean retval = str1.contains(cs1);
-        System.out.println("Method returns : " + retval);
-        /* string does not contain the specified sequence of char value */
-        retval = str2.contains("_");
-        System.out.println("Methods returns : " + retval);
-    }
+    public static void main(String[] args) {
+        String str1 = "tutorials point", str2 = "http://";
+        CharSequence cs1 = "int";
+        /* string contains the specified sequence of char values */
+        boolean retval = str1.contains(cs1);
+        System.out.println("Method returns : " + retval);
+        /* string does not contain the specified sequence of char value */
+        retval = str2.contains("_");
+        System.out.println("Methods returns : " + retval);
+    }
 }
 ```
 
