@@ -156,26 +156,27 @@ class Counter implements Runnable {
         }
     }
 ​
-    /* 非synchronized代码块，未对count进行读写操作，所以可以不用synchronized */
-    public void printCount() {
-        for (int i = 0; i < 5; i++) {
-            try {
-                System.out.println(Thread.currentThread().getName() + " count : " + count);
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+    /* 非synchronized代码块，未对count进行读写操作，所以可以不用synchronized */
+    public void printCount() {
+        for (int i = 0; i < 5; i++) {
+            try {
+                System.out.println(Thread.currentThread().getName() + " count : " + count);
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 ​
-    public void run() {
-        String threadName = Thread.currentThread().getName();
-        if (threadName.equals("A")) {
-            countAdd();
-        } else if (threadName.equals("B")) {
-            printCount();
-        }
-    }
+    public void run() {
+        String threadName = Thread.currentThread().getName();
+
+        if (threadName.equals("A")) {
+            countAdd();
+        } else if (threadName.equals("B")) {
+            printCount();
+        }
+    }
 }
 ```
 
@@ -183,13 +184,13 @@ class Counter implements Runnable {
 
 ``` java
 public class test {
-    public static void main(String[] args) {
-        Counter counter = new Counter();
-        Thread thread1 = new Thread(counter, "A");
-        Thread thread2 = new Thread(counter, "B");
-        thread1.start();
-        thread2.start();
-    }
+    public static void main(String[] args) {
+        Counter counter = new Counter();
+        Thread thread1 = new Thread(counter, "A");
+        Thread thread2 = new Thread(counter, "B");
+        thread1.start();
+        thread2.start();
+    }
 }
 ```
 
@@ -216,35 +217,37 @@ B count : 5
 
 ``` java
 class Account { /* 银行账户类 */
-    String name;
-    float amount;
+    String name;
+    float amount;
 ​
-    public Account(String name, float amount) {
-        this.name = name;
-        this.amount = amount;
-    }
+    public Account(String name, float amount) {
+        this.name = name;
+        this.amount = amount;
+    }
 ​
-    public void deposit(float amt) { /* 存钱 */
-        amount += amt;
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+    public void deposit(float amt) { /* 存钱 */
+        amount += amt;
+
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 ​
-    public void withdraw(float amt) { /* 取钱 */
-        amount -= amt;
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+    public void withdraw(float amt) { /* 取钱 */
+        amount -= amt;
+
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 ​
-    public float getBalance() {
-        return amount;
-    }
+    public float getBalance() {
+        return amount;
+    }
 }
 ```
 
@@ -252,19 +255,19 @@ class Account { /* 银行账户类 */
 
 ``` java
 class AccountOperator implements Runnable { /* 账户操作类 */
-    private Account account;
+    private Account account;
 ​
-    public AccountOperator(Account account) {
-        this.account = account;
-    }
+    public AccountOperator(Account account) {
+        this.account = account;
+    }
 ​
-    public void run() {
-        synchronized (account) {
-            account.deposit(500);
-            account.withdraw(500);
-            System.out.println(Thread.currentThread().getName() + " : " + account.getBalance());
-        }
-    }
+    public void run() {
+        synchronized (account) {
+            account.deposit(500);
+            account.withdraw(500);
+            System.out.println(Thread.currentThread().getName() + " : " + account.getBalance());
+        }
+    }
 }
 ```
 
@@ -272,7 +275,7 @@ class AccountOperator implements Runnable { /* 账户操作类 */
 
 ``` java
 public class test {
-    public static void main(String[] args) {
+    public static void main(String[] args) {
         Account account = new Account("zhang san", 10000.0f);
         AccountOperator accountOperator = new AccountOperator(account);
 ​
@@ -282,7 +285,7 @@ public class test {
             threads[i] = new Thread(accountOperator, "Thread" + i);
             threads[i].start();
         }
-    }
+    }
 }
 ```
 
