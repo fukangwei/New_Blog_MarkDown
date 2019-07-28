@@ -86,54 +86,54 @@ URL为：http://www.runoob.com/index.html?language=cn#j2se
 &emsp;&emsp;`openConnection`返回一个`java.net.URLConnection`。如果你连接`HTTP`协议的`URL`，`openConnection`方法返回`HttpURLConnection`对象；如果你连接的`URL`为一个`JAR`文件，`openConnection`方法将返回`JarURLConnection`对象。
 &emsp;&emsp;`URLConnection`方法列表如下：
 
-- `Object getContent()`：检索URL链接内容。
-- `Object getContent(Class[] classes)`：检索URL链接内容。
+- `Object getContent()`：检索`URL`链接内容。
+- `Object getContent(Class[] classes)`：检索`URL`链接内容。
 - `String getContentEncoding()`：返回头部`content-encoding`字段值。
 - `int getContentLength()`：返回头部`content-length`字段值。
 - `String getContentType()`：返回头部`content-type`字段值。
 - `int getLastModified()`：返回头部`last-modified`字段值。
 - `long getExpiration()`：返回头部`expires`字段值。
 - `long getIfModifiedSince()`：返回对象的`ifModifiedSince`字段值。
-- `public void setDoInput(boolean input)`：URL连接可用于输入和/或输出。如果打算使用URL连接进行输入，则将DoInput标志设置为true；如果不打算使用，则设置为false。默认值为true。
-- `public void setDoOutput(boolean output)`：URL连接可用于输入和/或输出。如果打算使用URL连接进行输出，则将DoOutput标志设置为true；如果不打算使用，则设置为false。默认值为false。
-- `public InputStream getInputStream() throws IOException`：返回URL的输入流，用于读取资源。
-- `public OutputStream getOutputStream() throws IOException`：返回URL的输出流，用于写入资源。
-- `public URL getURL()`：返回URLConnection对象连接的URL。
+- `public void setDoInput(boolean input)`：`URL`连接可用于输入和/或输出。如果打算使用`URL`连接进行输入，则将`DoInput`标志设置为`true`；如果不打算使用，则设置为`false`。默认值为`true`。
+- `public void setDoOutput(boolean output)`：`URL`连接可用于输入和/或输出。如果打算使用`URL`连接进行输出，则将`DoOutput`标志设置为`true`；如果不打算使用，则设置为`false`。默认值为`false`。
+- `public InputStream getInputStream() throws IOException`：返回`URL`的输入流，用于读取资源。
+- `public OutputStream getOutputStream() throws IOException`：返回`URL`的输出流，用于写入资源。
+- `public URL getURL()`：返回`URLConnection`对象连接的`URL`。
 
-&emsp;&emsp;以下实例中URL采用了HTTP协议：
+&emsp;&emsp;以下实例中`URL`采用了`HTTP`协议：
 
 ``` java
 import java.net.*;
 import java.io.*;
 ​
 public class URLConnDemo {
-    public static void main(String[] args) {
-        try {
-            URL url = new URL("http://www.runoob.com");
-            URLConnection urlConnection = url.openConnection();
-            HttpURLConnection connection = null;
+    public static void main(String[] args) {
+        try {
+            URL url = new URL("http://www.runoob.com");
+            URLConnection urlConnection = url.openConnection();
+            HttpURLConnection connection = null;
 
-            if (urlConnection instanceof HttpURLConnection) {
-                connection = (HttpURLConnection) urlConnection;
-            } else {
-                System.out.println("请输入URL地址");
-                return;
-            }
+            if (urlConnection instanceof HttpURLConnection) {
+                connection = (HttpURLConnection) urlConnection;
+            } else {
+                System.out.println("请输入URL地址");
+                return;
+            }
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String urlString = "";
-            String current;
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String urlString = "";
+            String current;
 
-            while ((current = in.readLine()) != null) {
-                urlString += current;
-            }
+            while ((current = in.readLine()) != null) {
+                urlString += current;
+            }
 
-            System.out.println(urlString);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+            System.out.println(urlString);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 ```
 
-执行结果是菜鸟教程首页`http://www.runoob.com`的HTML内容。
+执行结果是菜鸟教程首页`http://www.runoob.com`的`HTML`内容。
