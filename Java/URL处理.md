@@ -28,41 +28,41 @@ http://www.runoob.com/index.html?language=cn#j2se
 
 `URL`类中包含了很多方法用于访问`URL`的各个部分，具体方法及描述如下：
 
-- `public String getPath()`：返回URL路径部分。
-- `public String getQuery()`：返回URL查询部分。
-- `public String getAuthority()`：获取此URL的授权部分。
-- `public int getPort()`：返回URL端口部分
+- `public String getPath()`：返回`URL`路径部分。
+- `public String getQuery()`：返回`URL`查询部分。
+- `public String getAuthority()`：获取此`URL`的授权部分。
+- `public int getPort()`：返回`URL`端口部分
 - `public int getDefaultPort()`：返回协议的默认端口号。
-- `public String getProtocol()`：返回URL的协议。
-- `public String getHost()`：返回URL的主机。
-- `public String getFile()`：返回URL文件名部分
-- `public String getRef()`：获取此URL的锚点(也称为`引用`)。
-- `public URLConnection openConnection() throws IOException`：打开一个URL连接，并运行客户端访问资源。
+- `public String getProtocol()`：返回`URL`的协议。
+- `public String getHost()`：返回`URL`的主机。
+- `public String getFile()`：返回`URL`文件名部分
+- `public String getRef()`：获取此`URL`的锚点(也称为`引用`)。
+- `public URLConnection openConnection() throws IOException`：打开一个`URL`连接，并运行客户端访问资源。
 
-&emsp;&emsp;下面的实例演示了使用`java.net`的URL类获取URL的各个部分参数：
+&emsp;&emsp;下面的实例演示了使用`java.net`的`URL`类获取`URL`的各个部分参数：
 
 ``` java
 import java.net.*;
 import java.io.*;
 ​
 public class URLDemo {
-    public static void main(String[] args) {
-        try {
-            URL url = new URL("http://www.runoob.com/index.html?language=cn#j2se");
-            System.out.println("URL为：" + url.toString());
-            System.out.println("协议为：" + url.getProtocol());
-            System.out.println("验证信息：" + url.getAuthority());
-            System.out.println("文件名及请求参数：" + url.getFile());
-            System.out.println("主机名：" + url.getHost());
-            System.out.println("路径：" + url.getPath());
-            System.out.println("端口：" + url.getPort());
-            System.out.println("默认端口：" + url.getDefaultPort());
-            System.out.println("请求参数：" + url.getQuery());
-            System.out.println("定位位置：" + url.getRef());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    public static void main(String[] args) {
+        try {
+            URL url = new URL("http://www.runoob.com/index.html?language=cn#j2se");
+            System.out.println("URL为：" + url.toString());
+            System.out.println("协议为：" + url.getProtocol());
+            System.out.println("验证信息：" + url.getAuthority());
+            System.out.println("文件名及请求参数：" + url.getFile());
+            System.out.println("主机名：" + url.getHost());
+            System.out.println("路径：" + url.getPath());
+            System.out.println("端口：" + url.getPort());
+            System.out.println("默认端口：" + url.getDefaultPort());
+            System.out.println("请求参数：" + url.getQuery());
+            System.out.println("定位位置：" + url.getRef());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 ```
 
@@ -83,8 +83,8 @@ URL为：http://www.runoob.com/index.html?language=cn#j2se
 
 ### URLConnections类方法
 
-&emsp;&emsp;openConnection返回一个`java.net.URLConnection`。如果你连接HTTP协议的URL，openConnection方法返回HttpURLConnection对象；如果你连接的URL为一个JAR文件，openConnection方法将返回JarURLConnection对象。
-&emsp;&emsp;URLConnection方法列表如下：
+&emsp;&emsp;`openConnection`返回一个`java.net.URLConnection`。如果你连接`HTTP`协议的`URL`，`openConnection`方法返回`HttpURLConnection`对象；如果你连接的`URL`为一个`JAR`文件，`openConnection`方法将返回`JarURLConnection`对象。
+&emsp;&emsp;`URLConnection`方法列表如下：
 
 - `Object getContent()`：检索URL链接内容。
 - `Object getContent(Class[] classes)`：检索URL链接内容。
