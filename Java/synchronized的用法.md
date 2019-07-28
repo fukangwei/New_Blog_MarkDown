@@ -276,15 +276,16 @@ class AccountOperator implements Runnable { /* 账户操作类 */
 ``` java
 public class test {
     public static void main(String[] args) {
-        Account account = new Account("zhang san", 10000.0f);
-        AccountOperator accountOperator = new AccountOperator(account);
+        Account account = new Account("zhang san", 10000.0f);
+        AccountOperator accountOperator = new AccountOperator(account);
 ​
-        final int THREAD_NUM = 5;
-        Thread threads[] = new Thread[THREAD_NUM];
-        for (int i = 0; i < THREAD_NUM; i++) {
-            threads[i] = new Thread(accountOperator, "Thread" + i);
-            threads[i].start();
-        }
+        final int THREAD_NUM = 5;
+        Thread threads[] = new Thread[THREAD_NUM];
+
+        for (int i = 0; i < THREAD_NUM; i++) {
+            threads[i] = new Thread(accountOperator, "Thread" + i);
+            threads[i].start();
+        }
     }
 }
 ```
@@ -304,10 +305,10 @@ Thread4 : 10000.0
 
 ``` java
 public void method3(SomeObject obj) {
-    /* obj是锁定的对象 */
-    synchronized (obj) {
-        /* todo */
-    }
+    /* obj是锁定的对象 */
+    synchronized (obj) {
+        /* todo */
+    }
 }
 ```
 
@@ -315,16 +316,16 @@ public void method3(SomeObject obj) {
 
 ``` java
 class Test implements Runnable {
-    private byte[] lock = new byte[0];  /* 特殊的instance变量 */
+    private byte[] lock = new byte[0]; /* 特殊的instance变量 */
 ​
-    public void method() {
-        synchronized (lock) {
-            /* 同步代码块 */
-        }
-    }
+    public void method() {
+        synchronized (lock) {
+            /* 同步代码块 */
+        }
+    }
 ​
-    public void run() {
-    }
+    public void run() {
+    }
 }
 ```
 
@@ -336,7 +337,7 @@ class Test implements Runnable {
 
 ``` java
 public synchronized void method() {
-    /* todo */
+    /* todo */
 };
 ```
 
@@ -345,7 +346,7 @@ public synchronized void method() {
 
 ``` java
 public synchronized void method() {
-    /* todo */
+    /* todo */
 }
 ```
 
@@ -353,9 +354,9 @@ public synchronized void method() {
 
 ``` java
 public void method() {
-    synchronized (this) {
-        /* todo */
-    }
+    synchronized (this) {
+        /* todo */
+    }
 }
 ```
 
@@ -366,13 +367,13 @@ public void method() {
 
 ``` java
 class Parent {
-    public synchronized void method() {
-    }
+    public synchronized void method() {
+    }
 }
 ​
 class Child extends Parent {
-    public synchronized void method() {
-    }
+    public synchronized void method() {
+    }
 }
 ```
 
@@ -380,14 +381,14 @@ class Child extends Parent {
 
 ``` java
 class Parent {
-    public synchronized void method() {
-    }
+    public synchronized void method() {
+    }
 }
 ​
 class Child extends Parent {
-    public void method() {
-        super.method();
-    }
+    public void method() {
+        super.method();
+    }
 }
 ```
 
@@ -400,7 +401,7 @@ class Child extends Parent {
 
 ``` java
 public synchronized static void method() {
-    /* todo */
+    /* todo */
 }
 ```
 
