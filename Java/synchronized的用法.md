@@ -102,14 +102,14 @@ SyncThread2 : 9
 
 ``` java
 public class test {
-    public static void main(String[] args) {
-        SyncThread syncThread1 = new SyncThread();
-        SyncThread syncThread2 = new SyncThread();
-        Thread thread1 = new Thread(syncThread1, "SyncThread1");
-        Thread thread2 = new Thread(syncThread2, "SyncThread2");
-        thread1.start();
-        thread2.start();
-    }
+    public static void main(String[] args) {
+        SyncThread syncThread1 = new SyncThread();
+        SyncThread syncThread2 = new SyncThread();
+        Thread thread1 = new Thread(syncThread1, "SyncThread1");
+        Thread thread2 = new Thread(syncThread2, "SyncThread2");
+        thread1.start();
+        thread2.start();
+    }
 }
 ```
 
@@ -128,12 +128,12 @@ SyncThread1 : 8
 SyncThread2 : 9
 ```
 
-这时创建了两个SyncThread的对象，即syncThread1和syncThread2。线程thread1执行的是syncThread1对象中的synchronized代码(run)，而线程thread2执行的是syncThread2对象中的synchronized代码(run)。我们知道synchronized锁定的是对象，这时会有两把锁分别锁定syncThread1对象和syncThread2对象，而这两把锁是互不干扰的，不形成互斥，所以两个线程可以同时执行。
+这时创建了两个`SyncThread`的对象，即`syncThread1`和`syncThread2`。线程`thread1`执行的是`syncThread1`对象中的`synchronized`代码(`run`)，而线程`thread2`执行的是`syncThread2`对象中的`synchronized`代码(`run`)。我们知道`synchronized`锁定的是对象，这时会有两把锁分别锁定`syncThread1`对象和`syncThread2`对象，而这两把锁是互不干扰的，不形成互斥，所以两个线程可以同时执行。
 
 #### 多个线程访问synchronized和非synchronized代码块
 
 &emsp;&emsp;当一个线程访问对象的一个`synchronized(this)`同步代码块时，另一个线程仍然可以访问该对象中的非`synchronized(this)`同步代码块。
-&emsp;&emsp;`Counter.java`如下所示：
+&emsp;&emsp;`Counter.java`如下：
 
 ``` java
 class Counter implements Runnable {
@@ -179,7 +179,7 @@ class Counter implements Runnable {
 }
 ```
 
-`test.java`如下所示：
+`test.java`如下：
 
 ``` java
 public class test {
@@ -208,11 +208,11 @@ A : 4
 B count : 5
 ```
 
-上面代码中，countAdd是synchronized的，而printCount是非synchronized的。从上面的结果可以看出，一个线程访问一个对象的synchronized代码块时，别的线程可以访问该对象的非synchronized代码块而不受阻塞。
+上面代码中，`countAdd`是`synchronized`的，而`printCount`是非`synchronized`的。从上面的结果可以看出，一个线程访问一个对象的`synchronized`代码块时，别的线程可以访问该对象的非`synchronized`代码块而不受阻塞。
 
 #### 指定要给某个对象加锁
 
-&emsp;&emsp;`Account.java`如下所示：
+&emsp;&emsp;`Account.java`如下：
 
 ``` java
 class Account { /* 银行账户类 */
@@ -248,7 +248,7 @@ class Account { /* 银行账户类 */
 }
 ```
 
-`AccountOperator.java`如下所示：
+`AccountOperator.java`如下：
 
 ``` java
 class AccountOperator implements Runnable { /* 账户操作类 */
@@ -268,7 +268,7 @@ class AccountOperator implements Runnable { /* 账户操作类 */
 }
 ```
 
-`test.java`如下所示：
+`test.java`如下：
 
 ``` java
 public class test {
@@ -296,7 +296,7 @@ Thread1 : 10000.0
 Thread4 : 10000.0
 ```
 
-在AccountOperator类中的run方法里，我们用synchronized给account对象加了锁。这时，当一个线程访问account对象时，其他试图访问account对象的线程将会阻塞，直到该线程访问account对象结束。也就是说谁拿到那个锁谁就可以运行它所控制的那段代码。
+在`AccountOperator`类中的`run`方法里，我们用`synchronized`给`account`对象加了锁。这时，当一个线程访问`account`对象时，其他试图访问`account`对象的线程将会阻塞，直到该线程访问`account`对象结束。也就是说谁拿到那个锁谁就可以运行它所控制的那段代码。
 &emsp;&emsp;当有一个明确的对象作为锁时，就可以用类似下面这样的方式写程序：
 
 ``` java
@@ -325,11 +325,11 @@ class Test implements Runnable {
 }
 ```
 
-零长度的byte数组对象创建起来将比任何对象都经济：查看编译后的字节码，生成零长度的byte对象只需3条操作码，而`Object lock = new Object()`则需要7行操作码。
+零长度的`byte`数组对象创建起来将比任何对象都经济：查看编译后的字节码，生成零长度的`byte`对象只需`3`条操作码，而`Object lock = new Object()`则需要`7`行操作码。
 
 ### 修饰一个方法
 
-&emsp;&emsp;Synchronized修饰一个方法很简单，就是在方法的前面加synchronized：
+&emsp;&emsp;`Synchronized`修饰一个方法很简单，就是在方法的前面加`synchronized`：
 
 ``` java
 public synchronized void method() {
@@ -337,8 +337,8 @@ public synchronized void method() {
 };
 ```
 
-synchronized修饰方法和修饰一个代码块类似，只是作用范围不一样：修饰代码块是大括号括起来的范围，而修饰方法范围是整个函数。
-&emsp;&emsp;Synchronized作用于整个方法有两个方法，写法一如下所示：
+`synchronized`修饰方法和修饰一个代码块类似，只是作用范围不一样：修饰代码块是大括号括起来的范围，而修饰方法范围是整个函数。
+&emsp;&emsp;`Synchronized`作用于整个方法有两个方法，写法一如下：
 
 ``` java
 public synchronized void method() {
@@ -346,7 +346,7 @@ public synchronized void method() {
 }
 ```
 
-写法二如下所示：
+写法二如下：
 
 ``` java
 public void method() {
@@ -357,9 +357,9 @@ public void method() {
 ```
 
 写法一修饰的是一个方法，写法二修饰的是一个代码块，但写法一与写法二是等价的，都是锁定了整个方法的内容。
-&emsp;&emsp;在用synchronized修饰方法时，要注意以下几点：
-&emsp;&emsp;1. synchronized关键字不能继承：虽然可以使用synchronized来定义方法，但synchronized并不属于方法定义的一部分，因此synchronized关键字不能被继承。如果在父类中的某个方法使用了synchronized关键字，而在子类中覆盖了这个方法，在子类中的这个方法默认情况下并不是同步的，而必须显式地在子类的这个方法中加上synchronized关键字才可以。当然，还可以在子类方法中调用父类中相应的方法，这样虽然子类中的方法不是同步的，但子类调用了父类的同步方法，因此，子类的方法也就相当于同步了。
-&emsp;&emsp;这两种方式的例子代码如下，在子类方法中加上synchronized关键字：
+&emsp;&emsp;在用`synchronized`修饰方法时，要注意以下几点：
+&emsp;&emsp;1. `synchronized`关键字不能继承：虽然可以使用`synchronized`来定义方法，但`synchronized`并不属于方法定义的一部分，因此`synchronized`关键字不能被继承。如果在父类中的某个方法使用了`synchronized`关键字，而在子类中覆盖了这个方法，在子类中的这个方法默认情况下并不是同步的，而必须显式地在子类的这个方法中加上`synchronized`关键字才可以。当然，还可以在子类方法中调用父类中相应的方法，这样虽然子类中的方法不是同步的，但子类调用了父类的同步方法，因此，子类的方法也就相当于同步了。
+&emsp;&emsp;这两种方式的例子代码如下，在子类方法中加上`synchronized`关键字：
 
 ``` java
 class Parent {
@@ -388,12 +388,12 @@ class Child extends Parent {
 }
 ```
 
-&emsp;&emsp;2. 在定义接口方法时不能使用synchronized关键字。
-&emsp;&emsp;3. 构造方法不能使用synchronized关键字，但可以使用synchronized代码块来进行同步。
+&emsp;&emsp;2. 在定义接口方法时不能使用`synchronized`关键字。
+&emsp;&emsp;3. 构造方法不能使用`synchronized`关键字，但可以使用`synchronized`代码块来进行同步。
 
 ### 修饰一个静态的方法
 
-&emsp;&emsp;Synchronized也可修饰一个静态方法，用法如下：
+&emsp;&emsp;`Synchronized`也可修饰一个静态方法，用法如下：
 
 ``` java
 public synchronized static void method() {
@@ -401,11 +401,11 @@ public synchronized static void method() {
 }
 ```
 
-我们知道静态方法是属于类的而不属于对象的。同样的，synchronized修饰的静态方法锁定的是这个类的所有对象。
+我们知道静态方法是属于类的而不属于对象的。同样的，`synchronized`修饰的静态方法锁定的是这个类的所有对象。
 
 #### synchronized修饰静态方法
 
-&emsp;&emsp;`SyncThread.java`如下所示：
+&emsp;&emsp;`SyncThread.java`如下：
 
 ``` java
 class SyncThread implements Runnable {
@@ -432,7 +432,7 @@ class SyncThread implements Runnable {
 }
 ```
 
-`test.java`如下所示：
+`test.java`如下：
 
 ``` java
 public class test {
@@ -462,11 +462,11 @@ SyncThread2 : 8
 SyncThread2 : 9
 ```
 
-syncThread1和syncThread2是SyncThread的两个对象，但在thread1和thread2并发执行时却保持了线程同步。这是因为run中调用了静态方法method，而静态方法是属于类的，所以syncThread1和syncThread2相当于用了同一把锁。
+`syncThread1`和`syncThread2`是`SyncThread`的两个对象，但在`thread1`和`thread2`并发执行时却保持了线程同步。这是因为`run`中调用了静态方法`method`，而静态方法是属于类的，所以`syncThread1`和`syncThread2`相当于用了同一把锁。
 
 ### 修饰一个类
 
-&emsp;&emsp;Synchronized还可作用于一个类，用法如下：
+&emsp;&emsp;`Synchronized`还可作用于一个类，用法如下：
 
 ``` java
 class ClassName {
@@ -478,7 +478,7 @@ class ClassName {
 }
 ```
 
-`SyncThread.java`如下所示：
+`SyncThread.java`如下：
 
 ``` java
 class SyncThread implements Runnable {
@@ -507,4 +507,4 @@ class SyncThread implements Runnable {
 }
 ```
 
-synchronized作用于一个类T时，是给这个类T加锁，T的所有对象用的是同一把锁。
+`synchronized`作用于一个类`T`时，是给这个类`T`加锁，`T`的所有对象用的是同一把锁。
