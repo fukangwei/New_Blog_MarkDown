@@ -420,18 +420,18 @@ class SyncThread implements Runnable {
     }
 ​
     public synchronized static void method() {
-        for (int i = 0; i < 5; i++) {
-            try {
-                System.out.println(Thread.currentThread().getName() + " : " + (count++));
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+        for (int i = 0; i < 5; i++) {
+            try {
+                System.out.println(Thread.currentThread().getName() + " : " + (count++));
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 ​
     public synchronized void run() {
-        method();
+        method();
     }
 }
 ```
@@ -474,11 +474,11 @@ SyncThread2 : 9
 
 ``` java
 class ClassName {
-    public void method() {
-        synchronized (ClassName.class) {
-            /* todo */
-        }
-    }
+    public void method() {
+        synchronized (ClassName.class) {
+            /* todo */
+        }
+    }
 }
 ```
 
@@ -486,28 +486,28 @@ class ClassName {
 
 ``` java
 class SyncThread implements Runnable {
-    private static int count;
+    private static int count;
 ​
-    public SyncThread() {
-        count = 0;
-    }
+    public SyncThread() {
+        count = 0;
+    }
 ​
-    public static void method() {
-        synchronized (SyncThread.class) {
-            for (int i = 0; i < 5; i++) {
-                try {
-                    System.out.println(Thread.currentThread().getName() + ":" + (count++));
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+    public static void method() {
+        synchronized (SyncThread.class) {
+            for (int i = 0; i < 5; i++) {
+                try {
+                    System.out.println(Thread.currentThread().getName() + ":" + (count++));
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
-    public synchronized void run() {
-        method();
-    }
+    public synchronized void run() {
+        method();
+    }
 }
 ```
 
