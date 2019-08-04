@@ -59,25 +59,39 @@ A + B (2d array): 8 x 7 x 6 x 5
 ```
 
 即`1`是一张万能牌，它与任意长度的维度兼容，`A`在`1`轴广播`7`遍，在`3`轴广播`5`遍，而`B`在`0`轴广播`8`遍。如果我们把`0`轴空着的部分看做`1`，那么一切都将适用第二种情形`one of them is 1`。
-&emsp;&emsp;对于任意`shape`的数组，我们可以利用np.newaxis使它们兼容，如下面的情况不会触发广播机制：
+&emsp;&emsp;对于任意`shape`的数组，我们可以利用`np.newaxis`使它们兼容，如下面的情况不会触发广播机制：
 
+``` python
 a     (2d array): 3 x 4
 b     (2d array): 5 x 4
 a + b ValueError
+```
+
 若转化为下面的形式(当然意义也变了，怎么转化应当根据需求而定)，可以触发广播：
+
+``` python
 a[:, np.newaxis, :]     (3d array): 3 x 1 x 4
 b                       (2d array):     5 x 4
 a[:, np.newaxis, :] + b (3d array): 3 x 5 x 4
+```
 
-numpy.isfinite
-    numpy.isfinite(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'isfinite'>: Test element-wise for finiteness (not infinity or not Not a Number). The result is returned as a boolean array. Parameters:   
-x : array_like. Input values.
-out : ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
-where : array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
-**kwargs : For other keyword-only arguments, see the ufunc docs.
-    Returns: y : ndarray, bool. For scalar input, the result is a new boolean with value True if the input is finite; otherwise the value is False (input is either positive infinity, negative infinity or Not a Number). For array input, the result is a boolean array with the same dimensions as the input and the values are True if the corresponding element of the input is finite; otherwise the values are False (element is either positive infinity, negative infinity or Not a Number).
-    Notes: Not a Number, positive infinity and negative infinity are considered to be non-finite.
-    NumPy uses the IEEE Standard for Binary Floating-Point for Arithmetic (IEEE 754). This means that Not a Number is not equivalent to infinity. Also that positive infinity is not equivalent to negative infinity. But infinity is equivalent to positive infinity. Errors result if the second argument is also supplied when x is a scalar input, or if first and second arguments have different shapes.
+### numpy.isfinite
+
+&emsp;&emsp;`numpy.isfinite(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'isfinite'>`: Test `element-wise` for finiteness (not infinity or not Not a Number). The result is returned as a `boolean` array. Parameters:
+
+- `x`: array_like. Input values.
+- `out`: ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a `freshly-allocated` array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `where`: array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
+- `**kwargs` : For other keyword-only arguments, see the `ufunc` docs.
+
+&emsp;&emsp;Returns:
+
+- `y` : ndarray, `bool`. For scalar input, the result is a new `boolean` with value `True` if the input is finite; otherwise the value is `False` (input is either positive infinity, negative infinity or Not a Number). For array input, the result is a `boolean` array with the same dimensions as the input and the values are `True` if the corresponding element of the input is finite; otherwise the values are `False` (element is either positive infinity, negative infinity or Not a Number).
+
+&emsp;&emsp;Notes: Not a Number, positive infinity and negative infinity are considered to be non-finite.
+&emsp;&emsp;NumPy uses the `IEEE Standard for Binary Floating-Point for Arithmetic` (`IEEE 754`). This means that `Not a Number` is not equivalent to infinity. Also that positive infinity is not equivalent to negative infinity. But infinity is equivalent to positive infinity. Errors result if the second argument is also supplied when `x` is a scalar input, or if first and second arguments have different shapes.
+
+``` python
 >>> np.isfinite(1)
 True
 >>> np.isfinite(0)
@@ -88,16 +102,18 @@ False
 False
 >>> np.isfinite(np.NINF)
 False
->>> np.isfinite([np.log(-1.),1.,np.log(0)])
-array([False,  True, False])
+>>> np.isfinite([np.log(-1.), 1., np.log(0)])
+array([False, True, False])
 >>> x = np.array([-np.inf, 0., np.inf])
 >>> y = np.array([2, 2, 2])
 >>> np.isfinite(x, y)
 array([0, 1, 0])
 >>> y
 array([0, 1, 0])
+```
 
-numpy.rollaxis
+### numpy.rollaxis
+
     numpy.rollaxis(a, axis, start=0): Roll the specified axis backwards, until it lies in a given position(实际上是把axis轴移到start位置).
     This function continues to be supported for backward compatibility, but you should prefer moveaxis. The moveaxis function was added in NumPy 1.11. Parameters:
 a : ndarray. Input array.
