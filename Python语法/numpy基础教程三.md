@@ -5,7 +5,7 @@ tags:
 ---
 ### Broadcasting机制
 
-&emsp;&emsp;NumPy数组运算通常是逐元素(element-by-element)计算，因此要求两个数组的形状必须相同：
+&emsp;&emsp;`NumPy`数组运算通常是逐元素(`element-by-element`)计算，因此要求两个数组的形状必须相同：
 
 ``` python
 >>> a = np.array([1.0, 2.0, 3.0])
@@ -14,7 +14,7 @@ tags:
 array([ 2., 4., 6.])
 ```
 
-NumPy的Broadcasting机制解除了这种限制，在两个数组的形状满足某种条件的情况下，不同形状的数组之间仍可以进行算术运算。最简单的就是数组乘以一个标量：
+`NumPy`的`Broadcasting`机制解除了这种限制，在两个数组的形状满足某种条件的情况下，不同形状的数组之间仍可以进行算术运算。最简单的就是数组乘以一个标量：
 
 ``` python
 >>> a = np.array([1.0, 2.0, 3.0])
@@ -23,27 +23,44 @@ NumPy的Broadcasting机制解除了这种限制，在两个数组的形状满足
 array([ 2., 4., 6.])
 ```
 
-结果和第一个b是数组的例子相同。可以认为标量b被拉伸成了和a相同形状的数组，拉伸后数组每个元素的值为先前标量值的复制。实际上复制操作并不会真正进行，只是在计算时使用标量的值罢了，因此节省了内存且效率更高。对于“==”等运算符的使用，Broadcasting的效果更显著：
+结果和第一个`b`是数组的例子相同。可以认为标量`b`被拉伸成了和`a`相同形状的数组，拉伸后数组每个元素的值为先前标量值的复制。实际上复制操作并不会真正进行，只是在计算时使用标量的值罢了，因此节省了内存且效率更高。对于`==`等运算符的使用，`Broadcasting`的效果更显著：
+
+``` python
 >>> labels = np.array([1,2,0,0,2])
 >>> labels == 0
 array([False, False,  True,  True, False], dtype=bool)
 >>> (labels == 0).astype(np.float32)
 array([ 0.,  0.,  1.,  1.,  0.], dtype=float32)
-    但并不是任何维数不等的数组运算时都能触发广播机制，只有当两个数组的“trailing dimensions compatible”(尾部维度兼容)时才会触发广播，否则报错“ValueError: frames are not aligned exception”。
-    什么是尾部维度？维数较大的数组的比维数较小的数组多出来的维度看做“头部维度”，剩下的就是“尾部维度”。将两数组的shape右对齐，右半边可以上下对应的部分就是尾部，如下面1和2轴。b数组将会在0轴广播256遍：
+```
+
+&emsp;&emsp;但并不是任何维数不等的数组运算时都能触发广播机制，只有当两个数组的`trailing dimensions compatible`(尾部维度兼容)时才会触发广播，否则报错`ValueError: frames are not aligned exception`。
+&emsp;&emsp;什么是尾部维度？维数较大的数组的比维数较小的数组多出来的维度看做`头部维度`，剩下的就是`尾部维度`。将两数组的`shape`右对齐，右半边可以上下对应的部分就是尾部，如下面`1`和`2`轴。`b`数组将会在`0`轴广播`256`遍：
+
+``` python
             axis:   0     1   2
 a     (3d array): 256 x 256 x 3
 b     (2d array):       256 x 3
 a + b (2d array): 256 x 256 x 3
-什么是兼容？来自官方文档Broadcasting的解释很简练：
+``
+
+什么是兼容？来自官方文档`Broadcasting`的解释很简练：
+
+``` python
 Two dimensions are compatible when they are equal, or one of them is 1
-即对应的尾部维度的长是相等的或者其中有一方是1。上面a、b对应的尾部维度是相等的，因此a、b的维度是兼容的，对应第一种情形。下面的a、b对应第二种情形：
+```
+
+即对应的尾部维度的长是相等的或者其中有一方是`1`。上面`a`、`b`对应的尾部维度是相等的，因此`a`、`b`的维度是兼容的，对应第一种情形。下面的`a`、`b`对应第二种情形：
+
+``` python
             axis: 0   1   2   3
 A     (4d array): 8 x 1 x 6 x 1
 B     (3d array):     7 x 1 x 5
 A + B (2d array): 8 x 7 x 6 x 5
-即“1”是一张万能牌，它与任意长度的维度兼容，A在1轴广播7遍，在3轴广播5遍，而B在0轴广播8遍。如果我们把0轴空着的部分看做1，那么一切都将适用第二种情形“one of them is 1”。
-    对于任意shape的数组，我们可以利用np.newaxis使它们兼容，如下面的情况不会触发广播机制：
+```
+
+即`1`是一张万能牌，它与任意长度的维度兼容，`A`在`1`轴广播`7`遍，在`3`轴广播`5`遍，而`B`在`0`轴广播`8`遍。如果我们把`0`轴空着的部分看做`1`，那么一切都将适用第二种情形`one of them is 1`。
+&emsp;&emsp;对于任意`shape`的数组，我们可以利用np.newaxis使它们兼容，如下面的情况不会触发广播机制：
+
 a     (2d array): 3 x 4
 b     (2d array): 5 x 4
 a + b ValueError
