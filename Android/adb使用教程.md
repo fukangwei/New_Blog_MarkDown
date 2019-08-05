@@ -379,13 +379,13 @@ action                                            | 触发时机
 `android.intent.action.INPUT_METHOD_CHANGED`      | 系统输入法发生变化
 `android.intent.action.ACTION_POWER_CONNECTED`    | 外部电源连接
 `android.intent.action.ACTION_POWER_DISCONNECTED` | 外部电源断开连接
-android.intent.action.DREAMING_STARTED          系统开始休眠
-android.intent.action.DREAMING_STOPPED          系统停止休眠
-android.intent.action.WALLPAPER_CHANGED         壁纸发生变化
-android.intent.action.HEADSET_PLUG              插入耳机
-android.intent.action.MEDIA_UNMOUNTED           卸载外部介质
-android.intent.action.MEDIA_MOUNTED             挂载外部介质
-android.os.action.POWER_SAVE_MODE_CHANGED       省电模式开启
+`android.intent.action.DREAMING_STARTED`          | 系统开始休眠
+`android.intent.action.DREAMING_STOPPED`          | 系统停止休眠
+`android.intent.action.WALLPAPER_CHANGED`         | 壁纸发生变化
+`android.intent.action.HEADSET_PLUG`              | 插入耳机
+`android.intent.action.MEDIA_UNMOUNTED`           | 卸载外部介质
+`android.intent.action.MEDIA_MOUNTED`             | 挂载外部介质
+`android.os.action.POWER_SAVE_MODE_CHANGED`       | 省电模式开启
 
 ### 强制停止应用
 
