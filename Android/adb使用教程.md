@@ -280,27 +280,37 @@ command                          | 用途
 
 `<INTENT>`里还能带数据，就像写代码时的`Bundle`一样：
 
-参数                                                        | 含义
-------------------------------------------------------------|-----
-`--esn <EXTRA_KEY>`                                         | `null`值(只有`key`名)
-`--ez <EXTRA_KEY> <EXTRA_BOOLEAN_VALUE>`                    | `boolean`值
-`--ei <EXTRA_KEY> <EXTRA_INT_VALUE>`                        | `integer`值
-`--el <EXTRA_KEY> <EXTRA_LONG_VALUE>`                       | `long`值
-
---ef <EXTRA_KEY> <EXTRA_FLOAT_VALUE>                         float值
---eu <EXTRA_KEY> <EXTRA_URI_VALUE>                           URI
---ecn <EXTRA_KEY> <EXTRA_COMPONENT_NAME_VALUE>               “component name”
---eia <EXTRA_KEY> <EXTRA_INT_VALUE>[,<EXTRA_INT_VALUE...]    integer数组
---ela <EXTRA_KEY> <EXTRA_LONG_VALUE>[,<EXTRA_LONG_VALUE...]  long数组
+参数                                                           | 含义
+---------------------------------------------------------------|-----
+`--esn <EXTRA_KEY>`                                            | `null`值(只有`key`名)
+`--ez <EXTRA_KEY> <EXTRA_BOOLEAN_VALUE>`                       | `boolean`值
+`--ei <EXTRA_KEY> <EXTRA_INT_VALUE>`                           | `integer`值
+`--el <EXTRA_KEY> <EXTRA_LONG_VALUE>`                          | `long`值
+`--ef <EXTRA_KEY> <EXTRA_FLOAT_VALUE>`                         | `float`值
+`--eu <EXTRA_KEY> <EXTRA_URI_VALUE>`                           | `URI`
+`--ecn <EXTRA_KEY> <EXTRA_COMPONENT_NAME_VALUE>`               | `component name`
+`--eia <EXTRA_KEY> <EXTRA_INT_VALUE>[, <EXTRA_INT_VALUE...]`   | `integer`数组
+`--ela <EXTRA_KEY> <EXTRA_LONG_VALUE>[, <EXTRA_LONG_VALUE...]` | `long`数组
 
 ### 启动应用/调起Activity
 
     命令格式：
+
+``` bash
 adb shell am start [options] <INTENT>
+```
+
 如下命令表示调起微信主界面：
+
+``` bash
 adb shell am start -n com.tencent.mm/.ui.LauncherUI
-如下命令表示调起“org.mazhuang.boottimemeasure/.MainActivity”，并传给它string数据键值对“toast - hello, world”：
+```
+
+如下命令表示调起`org.mazhuang.boottimemeasure/.MainActivity`，并传给它`string`数据键值对`toast - hello, world`：
+
+``` bash
 adb shell am start -n org.mazhuang.boottimemeasure/.MainActivity --es "toast" "hello, world"
+```
 
 调起Service
     命令格式：
