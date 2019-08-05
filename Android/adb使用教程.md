@@ -216,42 +216,70 @@ adb shell dumpsys activity activities | grep mFocusedActivity
 ```
 
 输出示例：
-mFocusedActivity: ActivityRecord{8079d7e u0 com.cyanogenmod.trebuchet/com.android.launcher3.Launcher t42}
-其中的“com.cyanogenmod.trebuchet/com.android.launcher3.Launcher”就是当前处于前台的Activity。
 
-查看正在运行的Services
-    使用如下命令：
+``` bash
+mFocusedActivity: ActivityRecord{8079d7e u0 com.cyanogenmod.trebuchet/com.android.launcher3.Launcher t42}
+```
+
+其中的`com.cyanogenmod.trebuchet/com.android.launcher3.Launcher`就是当前处于前台的`Activity`。
+
+### 查看正在运行的Services
+
+使用如下命令：
+
+``` bash
 adb shell dumpsys activity services [<packagename>]
-“<packagename>”参数不是必须的，指定“<packagename>”表示查看与某个包名相关的Services，不指定表示查看所有Services。
+```
+
+`<packagename>`参数不是必须的，指定`<packagename>`表示查看与某个包名相关的`Services`，不指定表示查看所有`Services`。
     “<packagename>”不一定要给出完整的包名，比如运行“adb shell dumpsys activity services org.mazhuang”，那么包名“org.mazhuang.demo1”、“org.mazhuang.demo2”和“org.mazhuang123”等相关的Services都会列出来。
 
-查看应用详细信息
+### 查看应用详细信息
+
     使用如下命令：
+
+``` bash
 adb shell dumpsys package <packagename>
+```
+
 输出中包含很多信息，包括“Activity Resolver Table”、“Registered ContentProviders”、包名、userId、安装后的文件资源代码等路径、版本信息、权限信息和授予状态、签名版本信息等。
 
-查看应用安装路径
+### 查看应用安装路径
+
     使用如下命令：
+
+``` bash
 adb shell pm path <packagename>
+```
+
 输出示例如下：
+
+``` bash
 adb shell pm path ecarx.weather
 package:/data/app/ecarx.weather-1.apk
+```
 
-与应用交互
-    主要是使用“am <command>”命令，常用的“<command>”如下：
-command                          用途
--------------------------------------
-start [options] <INTENT>         启动<INTENT>指定的Activity
-startservice [options] <INTENT>  启动<INTENT>指定的Service
-broadcast [options] <INTENT>     发送<INTENT>指定的广播
-force-stop <packagename>         停止<packagename>相关的进程
-“<INTENT>”参数很灵活，和编写Android程序时代码里的Intent相对应。用于决定intent对象的选项如下：
-参数            含义
---------------------
--a <ACTION>     指定action，比如android.intent.action.VIEW
--c <CATEGORY>   指定category，比如android.intent.category.APP_CONTACTS
--n <COMPONENT>  指定完整component名，用于明确指定启动哪个Activity，如“com.example.app/.ExampleActivity”
-“<INTENT>”里还能带数据，就像写代码时的Bundle一样：
+### 与应用交互
+
+主要是使用`am <command>`命令，常用的`<command>`如下：
+
+command                          | 用途
+---------------------------------|----
+`start [options] <INTENT>`        | 启动`<INTENT>`指定的`Activity`
+`startservice [options] <INTENT>` | 启动`<INTENT>`指定的`Service`
+`broadcast [options] <INTENT>`    | 发送`<INTENT>`指定的广播
+`force-stop <packagename>`        | 停止`<packagename>`相关的进程
+
+`<INTENT>`参数很灵活，和编写`Android`程序时代码里的`Intent`相对应。用于决定`intent`对象的选项如下：
+
+参数             | 含义
+-----------------|----
+`-a <ACTION>`    | 指定`action`，比如`android.intent.action.VIEW`
+`-c <CATEGORY>`  | 指定`category`，比如`android.intent.category.APP_CONTACTS`
+`-n <COMPONENT>` | 指定完整`component`名，用于明确指定启动哪个`Activity`，如`com.example.app/.ExampleActivity`
+
+`<INTENT>`里还能带数据，就像写代码时的Bundle一样：
+
 参数                                                         含义
 -----------------------------------------------------------------
 --esn <EXTRA_KEY>                                            null值(只有key名)
