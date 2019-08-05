@@ -450,14 +450,25 @@ adb pull /sdcard/sr.mp4 ~/tmp/
 
 #### 复制电脑里的文件到设备
 
-    命令格式：
-adb push <电脑上的文件路径> <设备里的目录>
-命令示例：
-adb push ~/sr.mp4 /sdcard/
-    设备上的文件路径普通权限可能无法直接写入，如果你的设备已经root过，可以先“adb push /path/on/pc /sdcard/filename”，然后“adb shell”和su在“adb shell”里获取root权限后，“cp /sdcard/filename /path/on/device”。
+&emsp;&emsp;命令格式：
 
-模拟按键/输入
-    在“adb shell”里有个很实用的命令叫input，通过它可以做一些有趣的事情。input命令的完整help信息如下：
+``` bash
+adb push <电脑上的文件路径> <设备里的目录>
+```
+
+命令示例：
+
+``` bash
+adb push ~/sr.mp4 /sdcard/
+```
+
+&emsp;&emsp;设备上的文件路径普通权限可能无法直接写入，如果你的设备已经`root`过，可以先`adb push /path/on/pc /sdcard/filename`，然后`adb shell`和`su`在`adb shell`里获取`root`权限后，`cp /sdcard/filename /path/on/device`。
+
+### 模拟按键/输入
+
+&emsp;&emsp;在`adb shell`里有个很实用的命令叫`input`，通过它可以做一些有趣的事情。`input`命令的完整`help`信息如下：
+
+``` bash
 Usage: input [<source>] <command> [<arg>...]
 The sources are:
       mouse
@@ -479,15 +490,19 @@ The commands and default sources are:
       swipe <x1> <y1> <x2> <y2> [duration(ms)] (Default: touchscreen)
       press (Default: trackball)
       roll <dx> <dy> (Default: trackball)
-比如使用“adb shell input keyevent <keycode>”命令，不同的keycode能实现不同的功能：
-keycode 含义
-------------
-3       HOME键
-4       返回键
-5       打开拨号应用
-6       挂断电话
-24      增加音量
-25      降低音量
+```
+
+比如使用`adb shell input keyevent <keycode>`命令，不同的`keycode`能实现不同的功能：
+
+keycode | 含义
+--------|----
+`3`     | `HOME`键
+`4`     | 返回键
+`5`     | 打开拨号应用
+`6`     | 挂断电话
+`24`    | 增加音量
+`25`    | 降低音量
+
 26      电源键
 27      拍照(需要在相机应用里)
 64      打开浏览器
