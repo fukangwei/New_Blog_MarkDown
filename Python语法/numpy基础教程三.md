@@ -193,23 +193,39 @@ array([[10, 10],
        [10, 10]])
 ```
 
-numpy.fromstring
-    numpy.fromstring(string, dtype=float, count=-1, sep=''): A new 1-D array initialized from text data in a string. Parameters:
-string : str: A string containing the data.
-dtype : data-type, optional. The data type of the array; default: float. For binary input data, the data must be in exactly this format.
-count : int, optional. Read this number of dtype elements from the data. If this is negative (the default), the count will be determined from the length of the data.
-sep : str, optional. The string separating numbers in the data; extra whitespace between elements is also ignored. Deprecated since version 1.14: If this argument is not provided, fromstring falls back on the behaviour of frombuffer after encoding unicode string inputs as either utf-8 (python 3), or the default encoding (python 2).
-    Returns: arr : ndarray. The constructed array.
-    Raises: ValueError. If the string is not the correct size to satisfy the requested dtype and count.
+### numpy.fromstring
+
+&emsp;&emsp;`numpy.fromstring(string, dtype=float, count=-1, sep='')`: A new `1-D` array initialized from text data in a string. Parameters:
+
+- `string`: str: A string containing the data.
+- `dtype`: `data-type`, optional. The data type of the array; default: float. For binary input data, the data must be in exactly this format.
+- `count`: int, optional. Read this number of dtype elements from the data. If this is negative (the default), the count will be determined from the length of the data.
+- `sep`: str, optional. The string separating numbers in the data; extra whitespace between elements is also ignored. Deprecated since version 1.14: If this argument is not provided, fromstring falls back on the behaviour of frombuffer after encoding unicode string inputs as either `utf-8` (`python 3`), or the default encoding (`python 2`).
+
+&emsp;&emsp;Returns:
+
+- `arr`: ndarray. The constructed array.
+
+&emsp;&emsp;Raises: `ValueError`. If the string is not the correct size to satisfy the requested dtype and count.
+
+``` python
 >>> np.fromstring('1 2', dtype=int, sep=' ')
 array([1, 2])
 >>> np.fromstring('1, 2', dtype=int, sep=',')
 array([1, 2])
+```
 
-np.numpy.nan_to_num
-    在使用numpy数组的过程中，时常会出现nan或者inf的元素，可能会造成数值计算时的一些错误。numpy提供了nan_to_num函数，使nan和inf能够最简单地转换成相应的数值：
+### np.numpy.nan_to_num
+
+&emsp;&emsp;在使用`numpy`数组的过程中，时常会出现`nan`或者`inf`的元素，可能会造成数值计算时的一些错误。`numpy`提供了`nan_to_num`函数，使`nan`和`inf`能够最简单地转换成相应的数值：
+
+``` python
 numpy.nan_to_num(x)
-使用0代替数组x中的nan元素，使用有限的数字代替inf元素：
+```
+
+使用`0`代替数组`x`中的`nan`元素，使用有限的数字代替`inf`元素：
+
+``` python
 >>> import numpy as np
 >>> a = np.array([[np.nan,np.inf], [-np.nan,-np.inf]])
 >>> a
@@ -218,24 +234,32 @@ array([[ nan,  inf],
 >>> np.nan_to_num(a)
 array([[ 0.00000000e+000,  1.79769313e+308],
        [ 0.00000000e+000, -1.79769313e+308]])
+```
 
-numpy.meshgrid
-    Return coordinate matrices from coordinate vectors. Make N-D coordinate arrays for vectorized evaluations of N-D scalar/vector fields over N-D grids, given one-dimensional coordinate arrays x1, x2,…, xn. Changed in version 1.9: 1-D and 0-D cases are allowed. Parameters:   
-x1, x2,…, xn : array_like. 1-D arrays representing the coordinates of a grid.
-indexing : {'xy', 'ij'}, optional. Cartesian ('xy', default) or matrix ('ij') indexing of output. See Notes for more details. New in version 1.7.0.
-sparse : bool, optional. If True a sparse grid is returned in order to conserve memory. Default is False. New in version 1.7.0.
-copy : bool, optional. If False, a view into the original arrays are returned in order to conserve memory. Default is True. Please note that sparse=False, copy=False will likely return non-contiguous arrays. Furthermore, more than one element of a broadcast array may refer to a single memory location. If you need to write to the arrays, make copies first. New in version 1.7.0.
-    Returns: X1, X2,…, XN : ndarray. For vectors x1, x2,…, 'xn' with lengths Ni=len(xi) , return (N1, N2, N3,...Nn) shaped arrays if indexing='ij' or (N2, N1, N3,...Nn) shaped arrays if indexing='xy' with the elements of xi repeated to fill the matrix along the first dimension for x1, the second for x2 and so on.
+### numpy.meshgrid
+
+&emsp;&emsp;Return coordinate matrices from coordinate vectors. Make N-D coordinate arrays for vectorized evaluations of N-D scalar/vector fields over N-D grids, given one-dimensional coordinate arrays `x1, x2, ..., xn`. Changed in version 1.9: 1-D and 0-D cases are allowed. Parameters:
+
+- `x1, x2, ..., xn`: array_like. 1-D arrays representing the coordinates of a grid.
+- `indexing`: {'xy', 'ij'}, optional. Cartesian ('xy', default) or matrix ('ij') indexing of output. See Notes for more details.
+- `sparse`: bool, optional. If True a sparse grid is returned in order to conserve memory. Default is False.
+- `copy`: bool, optional. If False, a view into the original arrays are returned in order to conserve memory. Default is True. Please note that sparse=False, copy=False will likely return non-contiguous arrays. Furthermore, more than one element of a broadcast array may refer to a single memory location. If you need to write to the arrays, make copies first.
+
+&emsp;&emsp;Returns: X1, X2,…, XN : ndarray. For vectors x1, x2,…, 'xn' with lengths Ni=len(xi) , return (N1, N2, N3,...Nn) shaped arrays if indexing='ij' or (N2, N1, N3,...Nn) shaped arrays if indexing='xy' with the elements of xi repeated to fill the matrix along the first dimension for x1, the second for x2 and so on.
     Notes: This function supports both indexing conventions through the indexing keyword argument. Giving the string 'ij' returns a meshgrid with matrix indexing, while 'xy' returns a meshgrid with Cartesian indexing. In the 2-D case with inputs of length M and N, the outputs are of shape (N, M) for 'xy' indexing and (M, N) for 'ij' indexing. In the 3-D case with inputs of length M, N and P, outputs are of shape (N, M, P) for 'xy' indexing and (M, N, P) for 'ij' indexing. The difference is illustrated by the following code snippet:
+
+``` python
 xv, yv = np.meshgrid(x, y, sparse=False, indexing='ij')
 for i in range(nx):
     for j in range(ny):
-        # treat xv[i,j], yv[i,j]
+        # treat xv[i, j], yv[i, j]
 ​
 xv, yv = np.meshgrid(x, y, sparse=False, indexing='xy')
 for i in range(nx):
     for j in range(ny):
-        # treat xv[j,i], yv[j,i]
+        # treat xv[j, i], yv[j, i]
+```
+
 In the 1-D and 0-D case, the indexing and sparse keywords have no effect.
 >>> nx, ny = (3, 2)
 >>> x = np.linspace(0, 1, nx)
