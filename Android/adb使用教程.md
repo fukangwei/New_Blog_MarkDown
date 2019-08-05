@@ -44,34 +44,55 @@ adb -s 10.129.164.6:5555 install test.apk
 ### USB连接
 
     通过USB连接来正常使用adb需要保证几点：
-    1) 硬件状态正常：包括Android设备处于正常开机状态，USB连接线和各种接口完好。
-    2) Android设备的开发者选项和USB调试模式已开启：可以到“设置”->“开发者选项”->“Android调试”查看。如果在设置里找不到开发者选项，那需要通过一个彩蛋来让它显示出来：在“设置”->“关于手机”->连续点击“版本号”7次。
-    3) 设备驱动状态正常。
-    4) 通过USB线连接好电脑和设备后，使用如下命令确认状态：
+
+1. 硬件状态正常：包括`Android`设备处于正常开机状态，`USB`连接线和各种接口完好。
+2. `Android`设备的开发者选项和`USB`调试模式已开启：可以到`设置 -> 开发者选项 -> Android调试`查看。如果在设置里找不到开发者选项，那需要通过一个彩蛋来让它显示出来：在`设置 -> 关于手机`中，连续点击`7`次`版本号`。
+3. 设备驱动状态正常。
+4. 通过`USB`线连接好电脑和设备后，使用如下命令确认状态：
+
+``` bash
 adb devices
+```
+
 如果能看到如下命令，则说明连接成功：
+
+``` bash
 xxxxxx device
+```
 
 ### 应用管理
 
-查看应用列表
-    查看应用列表的基本命令格式：
+#### 查看应用列表
+
+查看应用列表的基本命令格式：
+
+``` bash
 adb shell pm list packages [-f] [-d] [-e] [-s] [-3] [-i] [-u] [--user USER_ID] [FILTER]
-在“adb shell pm list packages”的基础上，可以加一些参数进行过滤，支持的过滤参数如下：
-参数     显示列表
------------------
-无       所有应用
--f       显示应用关联的apk文件
--d       只显示disabled的应用
--e       只显示enabled的应用
--s       只显示系统应用
--3       只显示第三方应用
--i       显示应用的installer
--u       包含已卸载应用
-<FILTER> 包名包含<FILTER>字符串
-    查看所有应用使用如下命令：
+```
+
+在`adb shell pm list packages`的基础上，可以加一些参数进行过滤，支持的过滤参数如下：
+
+参数       | 显示列表
+-----------|----------
+无         | 所有应用
+`-f`       | 显示应用关联的`apk`文件
+`-d`       | 只显示`disabled`的应用
+`-e`       | 只显示`enabled`的应用
+`-s`       | 只显示系统应用
+`-3`       | 只显示第三方应用
+`-i`       | 显示应用的`installer`
+`-u`       | 包含已卸载应用
+`<FILTER>` | 包名包含`<FILTER>`字符串
+
+查看所有应用使用如下命令：
+
+``` bash
 adb shell pm list packages
+```
+
 输出示例：
+
+``` bash
 package:com.android.smoketest
 package:com.example.android.livecubes
 package:com.android.providers.telephony
@@ -85,43 +106,73 @@ package:com.android.externalstorage
 ...
 // other packages here
 ...
-    查看系统应用使用如下命令：
-adb shell pm list packages -s
-    查看第三方应用使用如下命令：
-adb shell pm list packages -3
-    查看包名包含字符串“mazhuang”的应用列表，可以使用命令：
-adb shell pm list packages mazhuang
-当然也可以使用grep来过滤：
-adb shell pm list packages | grep mazhuang
+```
 
-安装APK
-    命令格式如下所示：
+查看系统应用使用如下命令：
+
+``` bash
+adb shell pm list packages -s
+```
+
+查看第三方应用使用如下命令：
+
+``` bash
+adb shell pm list packages -3
+```
+
+    查看包名包含字符串“mazhuang”的应用列表，可以使用命令：
+
+``` bash
+adb shell pm list packages mazhuang
+```
+
+当然也可以使用grep来过滤：
+
+``` bash
+adb shell pm list packages | grep mazhuang
+```
+
+### 安装APK
+
+命令格式如下：
+
+``` bash
 adb install [-lrtsdg] <path_to_apk>
+```
+
 “adb install”后面可以跟一些可选参数来控制安装APK的行为，可用参数及含义如下：
-参数 含义
----------
--l   将应用安装到保护目录“/mnt/asec”
--r   允许覆盖安装
--t   允许安装AndroidManifest.xml里application指定“android:testOnly="true"”的应用
--s   将应用安装到sdcard
--d   允许降级覆盖安装
--g   授予所有运行时权限
-运行命令后，如果见到类似如下输出(状态为Success)，代表安装成功：
+
+参数 | 含义
+-----|----
+`-l` | 将应用安装到保护目录`/mnt/asec`
+`-r` | 允许覆盖安装
+`-t` | 允许安装`AndroidManifest.xml`里`application`指定`android:testOnly="true"`的应用
+`-s` | 将应用安装到`sdcard`
+`-d` | 允许降级覆盖安装
+`-g` | 授予所有运行时权限
+
+运行命令后，如果见到类似如下输出(状态为`Success`)，代表安装成功：
+
+``` bash
 [100%] /data/local/tmp/1.apk
     pkg: /data/local/tmp/1.apk
 Success
-上面是当前最新版“v1.0.36”的adb的输出，会显示“push apk”文件到手机的进度百分比。使用旧版本adb的输出则是这样的：
-12040 KB/s (22205609 bytes in 1.801s)
-    pkg: /data/local/tmp/SogouInput_android_v8.3_sweb.apk
-Success
-而如果状态为Failure，则表示安装失败：
+```
+
+而如果状态为`Failure`，则表示安装失败：
+
+``` bash
 [100%] /data/local/tmp/map-20160831.apk
     pkg: /data/local/tmp/map-20160831.apk
 Failure [INSTALL_FAILED_ALREADY_EXISTS]
+```
+
     “adb install”实际是分三步完成：
-“push apk”文件到“/data/local/tmp”。
-调用“pm install”安装。
-删除“/data/local/tmp”下的对应apk文件。
+
+1. “push apk”文件到“/data/local/tmp”。
+2. 调用“pm install”安装。
+3. 删除“/data/local/tmp”下的对应apk文件。
+
 所以，必要的时候也可以根据这个步骤，手动分步执行安装过程。
 
 卸载应用
