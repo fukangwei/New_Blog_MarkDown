@@ -372,9 +372,11 @@ array([[ 0,  1,  2,  3],
        [ 8,  9, 10, 11]])
 ```
 
-numpy.cov(协方差)
-    numpy.cov(m, y=None, rowvar=True, bias=False, ddof=None, fweights=None, aweights=None): Estimate a covariance matrix, given data and weights.
-    Covariance indicates the level to which two variables vary together. If we examine N-dimensional samples, X = [x1, x2, ... xN]^T, then the covariance matrix element Cij is the covariance of xi and xj. The element Cii is the variance of xi. Parameters: 
+### numpy.cov(协方差)
+
+&emsp;&emsp;`numpy.cov(m, y=None, rowvar=True, bias=False, ddof=None, fweights=None, aweights=None)`: Estimate a covariance matrix, given data and weights.
+&emsp;&emsp;Covariance indicates the level to which two variables vary together. If we examine N-dimensional samples, X = [x1, x2, ... xN]^T, then the covariance matrix element Cij is the covariance of xi and xj. The element Cii is the variance of xi. Parameters:
+
 m : array_like. A 1-D or 2-D array containing multiple variables and observations. Each row of m represents a variable, and each column a single observation of all those variables. Also see rowvar below.
 y : array_like, optional. An additional set of variables and observations. y has the same form as that of m.
 rowvar : bool, optional. If rowvar is True (default), then each row represents a variable, with observations in the columns. Otherwise, the relationship is transposed: each column represents a variable, while the rows contain observations.
@@ -382,24 +384,42 @@ bias : bool, optional. Default normalization (False) is by (N - 1), where N is t
 ddof : int, optional. If not None the default value implied by bias is overridden. Note that ddof=1 will return the unbiased estimate, even if both fweights and aweights are specified, and ddof=0 will return the simple average. See the notes for the details. The default value is None. New in version 1.5.
 fweights : array_like, int, optional. 1-D array of integer freguency weights; the number of times each observation vector should be repeated. New in version 1.10.
 aweights : array_like, optional. 1-D array of observation vector weights. These relative weights are typically large for observations considered "important" and smaller for observations considered less "important". If ddof=0 the array of weights can be used to assign probabilities to observation vectors. New in version 1.10.
-Returns: out : ndarray. The covariance matrix of the variables.
-    Notes: Assume that the observations are in the columns of the observation array m and let f = fweights and a = aweights for brevity. The steps to compute the weighted covariance are as follows:
+
+&emsp;&emsp;Returns:
+
+- `out`: ndarray. The covariance matrix of the variables.
+
+&emsp;&emsp;Notes: Assume that the observations are in the columns of the observation array m and let f = fweights and a = aweights for brevity. The steps to compute the weighted covariance are as follows:
+
+``` python
 >>> w = f * a
 >>> v1 = np.sum(w)
 >>> v2 = np.sum(w * a)
 >>> m -= np.sum(m * w, axis=1, keepdims=True) / v1
 >>> cov = np.dot(m * w, m.T) * v1 / (v1**2 - ddof * v2)
+```
+
 Note that when a == 1, the normalization factor v1 / (v1**2 - ddof * v2) goes over to 1 / (np.sum(f) - ddof) as it should.
-    Examples: Consider two variables, x0 and x1, which correlate perfectly, but in opposite directions:
+&emsp;&emsp;Examples: Consider two variables, x0 and x1, which correlate perfectly, but in opposite directions:
+
+``` python
 >>> x = np.array([[0, 2], [1, 1], [2, 0]]).T
 >>> x
 array([[0, 1, 2],
        [2, 1, 0]])
+```
+
 Note how x0 increases while x1 decreases. The covariance matrix shows this clearly:
+
+``` python
 >>> np.cov(x)
 array([[ 1., -1.],
        [-1.,  1.]])
+```
+
 Note that element C0,1, which shows the correlation between x0 and x1, is negative. Further, note how x and y are combined:
+
+``` python
 >>> x = [-2.1, -1,  4.3]
 >>> y = [3,  1.1,  0.12]
 >>> X = np.stack((x, y), axis=0)
@@ -411,10 +431,14 @@ Note that element C0,1, which shows the correlation between x0 and x1, is negati
  [ -4.286        2.14413333]]
 >>> print(np.cov(x))
 11.71
+```
 
-numpy.fromfunction
-    使用函数规则创建数组是非常方便的方法，我们常用numpy的fromfunction函数来实现这个功能。
-    创建一个函数，它是“y = i * 2”的表示形式：
+### numpy.fromfunction
+
+&emsp;&emsp;使用函数规则创建数组是非常方便的方法，我们常用numpy的fromfunction函数来实现这个功能。
+&emsp;&emsp;创建一个函数，它是“y = i * 2”的表示形式：
+
+``` python
 import numpy as np
 ​
 def func(i):
@@ -423,8 +447,12 @@ def func(i):
 ​
 array = np.fromfunction(func, (5,))
 print(array)  # 输出“[0. 2. 4. 6. 8.]”
-fromfunction的第二个参数定义了数组的形状，参数(5,)表示的数组是[0,1,2,3,4]。
-    假如创建的是二维数组，则函数式有两个自变量，例如“y = i * j”这个函数：
+```
+
+`fromfunction`的第二个参数定义了数组的形状，参数`(5,)`表示的数组是`[0, 1, 2, 3, 4]`。
+&emsp;&emsp;假如创建的是二维数组，则函数式有两个自变量，例如“y = i * j”这个函数：
+
+``` python
 import numpy as np
 ​
 def func(i, j):
@@ -435,6 +463,8 @@ def func(i, j):
 array = np.fromfunction(func, (3, 3))
 print("----------")
 print(array)
+```
+
 执行结果：
 i =
  [[0. 0. 0.]
