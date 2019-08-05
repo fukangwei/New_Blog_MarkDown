@@ -240,13 +240,16 @@ array([[ 0.00000000e+000,  1.79769313e+308],
 
 &emsp;&emsp;Return coordinate matrices from coordinate vectors. Make N-D coordinate arrays for vectorized evaluations of N-D scalar/vector fields over N-D grids, given one-dimensional coordinate arrays `x1, x2, ..., xn`. Changed in version 1.9: 1-D and 0-D cases are allowed. Parameters:
 
-- `x1, x2, ..., xn`: array_like. 1-D arrays representing the coordinates of a grid.
+- `x1, x2, ..., xn`: array_like. `1-D` arrays representing the coordinates of a grid.
 - `indexing`: {'xy', 'ij'}, optional. Cartesian ('xy', default) or matrix ('ij') indexing of output. See Notes for more details.
 - `sparse`: bool, optional. If True a sparse grid is returned in order to conserve memory. Default is False.
 - `copy`: bool, optional. If False, a view into the original arrays are returned in order to conserve memory. Default is True. Please note that sparse=False, copy=False will likely return non-contiguous arrays. Furthermore, more than one element of a broadcast array may refer to a single memory location. If you need to write to the arrays, make copies first.
 
-&emsp;&emsp;Returns: X1, X2,…, XN : ndarray. For vectors x1, x2,…, 'xn' with lengths Ni=len(xi) , return (N1, N2, N3,...Nn) shaped arrays if indexing='ij' or (N2, N1, N3,...Nn) shaped arrays if indexing='xy' with the elements of xi repeated to fill the matrix along the first dimension for x1, the second for x2 and so on.
-    Notes: This function supports both indexing conventions through the indexing keyword argument. Giving the string 'ij' returns a meshgrid with matrix indexing, while 'xy' returns a meshgrid with Cartesian indexing. In the 2-D case with inputs of length M and N, the outputs are of shape (N, M) for 'xy' indexing and (M, N) for 'ij' indexing. In the 3-D case with inputs of length M, N and P, outputs are of shape (N, M, P) for 'xy' indexing and (M, N, P) for 'ij' indexing. The difference is illustrated by the following code snippet:
+&emsp;&emsp;Returns:
+
+- `X1, X2, ..., XN`: ndarray. For vectors x1, x2,…, 'xn' with lengths Ni=len(xi) , return (N1, N2, N3,...Nn) shaped arrays if indexing='ij' or (N2, N1, N3,...Nn) shaped arrays if indexing='xy' with the elements of xi repeated to fill the matrix along the first dimension for x1, the second for x2 and so on.
+
+&emsp;&emsp;Notes: This function supports both indexing conventions through the indexing keyword argument. Giving the string 'ij' returns a meshgrid with matrix indexing, while 'xy' returns a meshgrid with Cartesian indexing. In the 2-D case with inputs of length M and N, the outputs are of shape (N, M) for 'xy' indexing and (M, N) for 'ij' indexing. In the 3-D case with inputs of length M, N and P, outputs are of shape (N, M, P) for 'xy' indexing and (M, N, P) for 'ij' indexing. The difference is illustrated by the following code snippet:
 
 ``` python
 xv, yv = np.meshgrid(x, y, sparse=False, indexing='ij')
@@ -261,6 +264,8 @@ for i in range(nx):
 ```
 
 In the 1-D and 0-D case, the indexing and sparse keywords have no effect.
+
+``` python
 >>> nx, ny = (3, 2)
 >>> x = np.linspace(0, 1, nx)
 >>> y = np.linspace(0, 1, ny)
@@ -277,36 +282,59 @@ array([[ 0. ,  0.5,  1. ]])
 >>> yv
 array([[ 0.],
        [ 1.]])
+```
+
 meshgrid is very useful to evaluate functions on a grid.
+
+``` python
 >>> x = np.arange(-5, 5, 0.1)
 >>> y = np.arange(-5, 5, 0.1)
 >>> xx, yy = np.meshgrid(x, y, sparse=True)
 >>> z = np.sin(xx**2 + yy**2) / (xx**2 + yy**2)
 >>> h = plt.contourf(x,y,z)
+```
 
-numpy.convolve(卷积)
-    numpy.convolve(a, v, mode='full'): Returns the discrete, linear convolution of two one-dimensional sequences.
-    The convolution operator is often seen in signal processing, where it models the effect of a linear time-invariant system on a signal. In probability theory, the sum of two independent random variables is distributed according to the convolution of their individual distributions.
-    If v is longer than a, the arrays are swapped before computation. Parameters:   
-    a : (N,) array_like. First one-dimensional input array.
-    v : (M,) array_like. Second one-dimensional input array.
-    mode : {'full', 'valid', 'same'}, optional.
-full: By default, mode is 'full'. This returns the convolution at each point of overlap, with an output shape of (N+M-1,). At the end-points of the convolution, the signals do not overlap completely, and boundary effects may be seen.
-same: Mode 'same' returns output of length max(M, N). Boundary effects are still visible.
-valid': Mode 'valid' returns output of length max(M, N) - min(M, N) + 1. The convolution product is only given for points where the signals overlap completely. Values outside the signal boundary have no effect.
-    Returns: out : ndarray. Discrete, linear convolution of a and v.
-    Notes: The discrete convolution operation is defined as:
+### numpy.convolve(卷积)
+
+&emsp;&emsp;`numpy.convolve(a, v, mode='full')`: Returns the discrete, linear convolution of two one-dimensional sequences.
+&emsp;&emsp;The convolution operator is often seen in signal processing, where it models the effect of a linear `time-invariant` system on a signal. In probability theory, the sum of two independent random variables is distributed according to the convolution of their individual distributions.
+&emsp;&emsp;If `v` is longer than `a`, the arrays are swapped before computation. Parameters:
+
+- `a`: (N,) array_like. First one-dimensional input array.
+- `v`: (M,) array_like. Second one-dimensional input array.
+- `mode`: {'full', 'valid', 'same'}, optional.
+
+1. `full`: By default, mode is 'full'. This returns the convolution at each point of overlap, with an output shape of `(N + M - 1,)`. At the end-points of the convolution, the signals do not overlap completely, and boundary effects may be seen.
+2. `same`: Mode 'same' returns output of length max(M, N). Boundary effects are still visible.
+3. `valid`: Mode 'valid' returns output of length max(M, N) - min(M, N) + 1. The convolution product is only given for points where the signals overlap completely. Values outside the signal boundary have no effect.
+
+&emsp;&emsp;Returns:
+
+- `out`: ndarray. Discrete, linear convolution of a and v.
+
+&emsp;&emsp;Notes: The discrete convolution operation is defined as:
 
 It can be shown that a convolution x(t) * y(t) in time/space is equivalent to the multiplication X(f) Y(f) in the Fourier domain, after appropriate padding (padding is necessary to prevent circular convolution). Since multiplication is more efficient (faster) than convolution, the function scipy.signal.fftconvolve exploits the FFT to calculate the convolution of large data-sets.
     Examples: Note how the convolution operator flips the second array before "sliding" the two across one another:
+
+``` python
 >>> np.convolve([1, 2, 3], [0, 1, 0.5])
 array([ 0. ,  1. ,  2.5,  4. ,  1.5])
-Only return the middle values of the convolution. Contains boundary effects, where zeros are taken into account: 
+```
+
+Only return the middle values of the convolution. Contains boundary effects, where zeros are taken into account:
+
+``` python
 >>> np.convolve([1,2,3],[0,1,0.5], 'same')
 array([ 1. ,  2.5,  4. ])
-The two arrays are of the same length, so there is only one position where they completely overlap: 
+```
+
+The two arrays are of the same length, so there is only one position where they completely overlap:
+
+``` python
 >>> np.convolve([1,2,3],[0,1,0.5], 'valid')
 array([ 2.5])
+```
 
 numpy.random.permutation
     numpy.random.permutation(x): Randomly permute a sequence, or return a permuted range. If x is a multi-dimensional array, it is only shuffled along its first index. 
