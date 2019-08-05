@@ -377,19 +377,19 @@ array([[ 0,  1,  2,  3],
 &emsp;&emsp;`numpy.cov(m, y=None, rowvar=True, bias=False, ddof=None, fweights=None, aweights=None)`: Estimate a covariance matrix, given data and weights.
 &emsp;&emsp;Covariance indicates the level to which two variables vary together. If we examine N-dimensional samples, X = [x1, x2, ... xN]^T, then the covariance matrix element Cij is the covariance of xi and xj. The element Cii is the variance of xi. Parameters:
 
-m : array_like. A 1-D or 2-D array containing multiple variables and observations. Each row of m represents a variable, and each column a single observation of all those variables. Also see rowvar below.
-y : array_like, optional. An additional set of variables and observations. y has the same form as that of m.
-rowvar : bool, optional. If rowvar is True (default), then each row represents a variable, with observations in the columns. Otherwise, the relationship is transposed: each column represents a variable, while the rows contain observations.
-bias : bool, optional. Default normalization (False) is by (N - 1), where N is the number of observations given (unbiased estimate). If bias is True, then normalization is by N. These values can be overridden by using the keyword ddof in numpy versions >= 1.5.
-ddof : int, optional. If not None the default value implied by bias is overridden. Note that ddof=1 will return the unbiased estimate, even if both fweights and aweights are specified, and ddof=0 will return the simple average. See the notes for the details. The default value is None. New in version 1.5.
-fweights : array_like, int, optional. 1-D array of integer freguency weights; the number of times each observation vector should be repeated. New in version 1.10.
-aweights : array_like, optional. 1-D array of observation vector weights. These relative weights are typically large for observations considered "important" and smaller for observations considered less "important". If ddof=0 the array of weights can be used to assign probabilities to observation vectors. New in version 1.10.
+- `m`: array_like. A `1-D` or `2-D` array containing multiple variables and observations. Each row of `m` represents a variable, and each column a single observation of all those variables.
+- `y`: array_like, optional. An additional set of variables and observations. y has the same form as that of m.
+- `rowvar`: bool, optional. If rowvar is `True` (default), then each row represents a variable, with observations in the columns. Otherwise, the relationship is transposed: each column represents a variable, while the rows contain observations.
+- `bias`: bool, optional. Default normalization `(False)` is by `(N - 1)`, where `N` is the number of observations given (unbiased estimate). If `bias` is `True`, then normalization is by `N`. These values can be overridden by using the keyword ddof in numpy versions >= 1.5.
+- `ddof`: int, optional. If not None the default value implied by bias is overridden. Note that `ddof=1` will return the unbiased estimate, even if both fweights and aweights are specified, and `ddof=0` will return the simple average. The default value is None.
+- `fweights`: array_like, int, optional. `1-D` array of integer freguency weights; the number of times each observation vector should be repeated.
+- `aweights`: array_like, optional. `1-D` array of observation vector weights. These relative weights are typically large for observations considered `important` and smaller for observations considered less `important`. If `ddof=0` the array of weights can be used to assign probabilities to observation vectors.
 
 &emsp;&emsp;Returns:
 
 - `out`: ndarray. The covariance matrix of the variables.
 
-&emsp;&emsp;Notes: Assume that the observations are in the columns of the observation array m and let f = fweights and a = aweights for brevity. The steps to compute the weighted covariance are as follows:
+&emsp;&emsp;Notes: Assume that the observations are in the columns of the observation array m and let `f = fweights` and `a = aweights` for brevity. The steps to compute the weighted covariance are as follows:
 
 ``` python
 >>> w = f * a
@@ -399,7 +399,7 @@ aweights : array_like, optional. 1-D array of observation vector weights. These 
 >>> cov = np.dot(m * w, m.T) * v1 / (v1**2 - ddof * v2)
 ```
 
-Note that when a == 1, the normalization factor v1 / (v1**2 - ddof * v2) goes over to 1 / (np.sum(f) - ddof) as it should.
+Note that when `a == 1`, the normalization factor `v1 / (v1**2 - ddof * v2)` goes over to `1 / (np.sum(f) - ddof)` as it should.
 &emsp;&emsp;Examples: Consider two variables, x0 and x1, which correlate perfectly, but in opposite directions:
 
 ``` python
@@ -435,8 +435,8 @@ Note that element C0,1, which shows the correlation between x0 and x1, is negati
 
 ### numpy.fromfunction
 
-&emsp;&emsp;使用函数规则创建数组是非常方便的方法，我们常用numpy的fromfunction函数来实现这个功能。
-&emsp;&emsp;创建一个函数，它是“y = i * 2”的表示形式：
+&emsp;&emsp;使用函数规则创建数组是非常方便的方法，我们常用`numpy`的`fromfunction`函数来实现这个功能。
+&emsp;&emsp;创建一个函数，它是`y = i * 2`的表示形式：
 
 ``` python
 import numpy as np
@@ -450,7 +450,7 @@ print(array)  # 输出“[0. 2. 4. 6. 8.]”
 ```
 
 `fromfunction`的第二个参数定义了数组的形状，参数`(5,)`表示的数组是`[0, 1, 2, 3, 4]`。
-&emsp;&emsp;假如创建的是二维数组，则函数式有两个自变量，例如“y = i * j”这个函数：
+&emsp;&emsp;假如创建的是二维数组，则函数式有两个自变量，例如`y = i * j`这个函数：
 
 ``` python
 import numpy as np
@@ -502,12 +502,12 @@ print(array)
 ``` python
 i =
  [[0. 0.]
- [1. 1.]
- [2. 2.]]
+  [1. 1.]
+  [2. 2.]]
 j =
  [[0. 1.]
- [0. 1.]
- [0. 1.]]
+  [0. 1.]
+  [0. 1.]]
 ----------
 [[0. 0.]
  [0. 1.]
@@ -545,9 +545,9 @@ print(float_arr)  # 输出“[1.2    2.3    3.2141]”
 
 &emsp;&emsp;`ndarray.tofile(fid, sep="", format="%s")`: Write array to a file as text or binary (default). Data is always written in "C" order, independent of the order of a. The data produced by this method can be recovered using the function fromfile(). Parameters:
 
-fid: file or str. An open file object, or a string containing a filename.
-sep: str. Separator between array items for text output. If ""(empty), a binary file is written, equivalent to file.write(a.tobytes()).
-format: str. Format string for text file output. Each entry in the array is formatted to text by first converting it to the closest Python type, and then using "format" % item.
+- `fid`: file or str. An open file object, or a string containing a filename.
+- `sep`: str. Separator between array items for text output. If ""(empty), a binary file is written, equivalent to file.write(a.tobytes()).
+- `format`: str. Format string for text file output. Each entry in the array is formatted to text by first converting it to the closest Python type, and then using "format" % item.
 
 &emsp;&emsp;Notes: This is a convenience function for quick storage of array data. Information on endianness and precision is lost, so this method is not a good choice for files intended to archive data or transport data between machines with different endianness. Some of these problems can be overcome by outputting the data as text files, at the expense of speed and file size.
 &emsp;&emsp;When fid is a file object, array contents are directly written to the file, bypassing the file object's write method. As a result, tofile cannot be used with files objects supporting compression (e.g., GzipFile) or file-like objects that do not support fileno() (e.g., BytesIO).
@@ -579,33 +579,41 @@ array([0, 0,  0, 10])
 
 ### numpy.mod
 
-&emsp;&emsp;numpy.mod(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'remainder'>: Return element-wise remainder of division(返回输入数组中相应元素的除法余数). Computes the remainder complementary to the floor_divide function. It is equivalent to the Python modulus operator "x1 % x2" and has the same sign as the divisor x2. The MATLAB function equivalent to np.remainder is mod.
-    Warning: This should not be confused with:
+&emsp;&emsp;`numpy.mod(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'remainder'>`: Return element-wise remainder of division(返回输入数组中相应元素的除法余数). Computes the remainder complementary to the floor_divide function. It is equivalent to the Python modulus operator "x1 % x2" and has the same sign as the divisor x2. The MATLAB function equivalent to np.remainder is mod.
+&emsp;&emsp;Warning: This should not be confused with:
 Python 3.7's math.remainder and C's remainder, which computes the IEEE remainder, which are the complement to round(x1 / x2).
-The MATLAB rem function and or the C % operator which is the complement to int(x1 / x2).
-    Parameters:
+&emsp;&emsp;The MATLAB rem function and or the C % operator which is the complement to int(x1 / x2).
+&emsp;&emsp;Parameters:
 
-x1: array_like. Dividend array.
-x2: array_like. Divisor array.
-out: ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
-where: array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
-**kwargs: For other keyword-only arguments, see the ufunc docs.
+- `x1`: array_like. Dividend array.
+- `x2`: array_like. Divisor array.
+- `out`: ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `where`: array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
+- `**kwargs`: For other keyword-only arguments, see the `ufunc` docs.
 
-Returns: y : ndarray. The element-wise remainder of the quotient floor_divide(x1, x2). This is a scalar if both x1 and x2 are scalars. Notes: Returns 0 when x2 is 0 and both x1 and x2 are (arrays of) integers.
+&emsp;&emsp;Returns:
+
+- `y`: ndarray. The element-wise remainder of the quotient floor_divide(x1, x2). This is a scalar if both x1 and x2 are scalars. Notes: Returns 0 when x2 is 0 and both x1 and x2 are (arrays of) integers.
+
+``` python
 >>> np.remainder([4, 7], [2, 3])
 array([0, 1])
 >>> np.remainder(np.arange(7), 5)
 array([0, 1, 2, 3, 4, 0, 1])
+```
 
-numpy.swapaxes
-    有时需要对矩阵进行旋转维度操作，二维转置直接使用“.T”，高维矩阵则需要借助numpy.swapaxes函数：
+### numpy.swapaxes
+
+&emsp;&emsp;有时需要对矩阵进行旋转维度操作，二维转置直接使用`.T`，高维矩阵则需要借助`numpy.swapaxes`函数：
+
+``` python
 >>> a = np.array([[1, 2, 3], [4, 5, 6]])
 >>> a
 array([[1, 2, 3],
        [4, 5, 6]])
 >>> a.shape
 (2, 3)
->>> a.swapaxes(0, 1)  # a.swapaxes(0,1)等价于np.swapaxes(a,0,1)
+>>> a.swapaxes(0, 1)  # a.swapaxes(0, 1)等价于np.swapaxes(a, 0, 1)
 array([[1, 4],
        [2, 5],
        [3, 6]])
@@ -613,24 +621,41 @@ array([[1, 4],
 (3, 2)
 >>> a.T.shape  # 由于是二维矩阵，可以使用“.T”操作
 (3, 2)
+```
 
-numpy.ascontiguousarray
-    numpy.ascontiguousarray(a, dtype=None): Return a contiguous array in memory (C order). Parameters:   
-a: array_like. Input array.
-dtype: str or dtype object, optional. Data-type of returned array.
-Returns: out : ndarray. Contiguous array of same shape and content as a, with type dtype if specified.
+### numpy.ascontiguousarray
+
+&emsp;&emsp;`numpy.ascontiguousarray(a, dtype=None)`: Return a contiguous array in memory (C order). Parameters:
+
+- `a`: array_like. Input array.
+- `dtype`: str or dtype object, optional. Data-type of returned array.
+
+&emsp;&emsp;Returns:
+
+- `out`: ndarray. Contiguous array of same shape and content as a, with type dtype if specified.
+
+``` python
 >>> x = np.arange(6).reshape(2,3)
 >>> np.ascontiguousarray(x, dtype=np.float32)
 array([[ 0.,  1.,  2.],
        [ 3.,  4.,  5.]], dtype=float32)
 >>> x.flags['C_CONTIGUOUS']
 True
+```
 
-numpy.greater_equal
-    numpy.greater_equal(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]): Return the truth value of (x1 >= x2) element-wise. Parameters:   
-x1, x2 : array_like. Input arrays. If x1.shape != x2.shape, they must be broadcastable to a common shape (which may be the shape of one or the other).
-out : ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
-where : array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
-    Returns: out : bool or ndarray of bool. Output array, element-wise comparison of x1 and x2. Typically of type bool, unless dtype=object is passed. This is a scalar if both x1 and x2 are scalars.
+### numpy.greater_equal
+
+&emsp;&emsp;`numpy.greater_equal(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj])`: Return the truth value of (x1 >= x2) element-wise. Parameters:
+
+- `x1, x2`: array_like. Input arrays. If x1.shape != x2.shape, they must be broadcastable to a common shape (which may be the shape of one or the other).
+- `out`: ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `where`: array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
+
+&emsp;&emsp;Returns:
+
+- `out`: bool or ndarray of bool. Output array, `element-wise` comparison of x1 and x2. Typically of type bool, unless dtype=object is passed. This is a scalar if both x1 and x2 are scalars.
+
+``` python
 >>> np.greater_equal([4, 2, 1], [2, 2, 2])
 array([ True, True, False])
+```
