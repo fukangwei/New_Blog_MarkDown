@@ -313,9 +313,8 @@ meshgrid is very useful to evaluate functions on a grid.
 - `out`: ndarray. Discrete, linear convolution of a and v.
 
 &emsp;&emsp;Notes: The discrete convolution operation is defined as:
-
-It can be shown that a convolution x(t) * y(t) in time/space is equivalent to the multiplication X(f) Y(f) in the Fourier domain, after appropriate padding (padding is necessary to prevent circular convolution). Since multiplication is more efficient (faster) than convolution, the function scipy.signal.fftconvolve exploits the FFT to calculate the convolution of large data-sets.
-    Examples: Note how the convolution operator flips the second array before "sliding" the two across one another:
+&emsp;&emsp;It can be shown that a convolution x(t) * y(t) in time/space is equivalent to the multiplication X(f) Y(f) in the Fourier domain, after appropriate padding (padding is necessary to prevent circular convolution). Since multiplication is more efficient (faster) than convolution, the function scipy.signal.fftconvolve exploits the FFT to calculate the convolution of large data-sets.
+&emsp;&emsp;Examples: Note how the convolution operator flips the second array before "sliding" the two across one another:
 
 ``` python
 >>> np.convolve([1, 2, 3], [0, 1, 0.5])
@@ -336,10 +335,17 @@ The two arrays are of the same length, so there is only one position where they 
 array([ 2.5])
 ```
 
-numpy.random.permutation
-    numpy.random.permutation(x): Randomly permute a sequence, or return a permuted range. If x is a multi-dimensional array, it is only shuffled along its first index. 
-    Parameters: x : int or array_like. If x is an integer, randomly permute np.arange(x). If x is an array, make a copy and shuffle the elements randomly.
-    Returns: out : ndarray. Permuted sequence or array range.
+### numpy.random.permutation
+
+&emsp;&emsp;`numpy.random.permutation(x)`: Randomly permute a sequence, or return a permuted range. If x is a multi-dimensional array, it is only shuffled along its first index. Parameters:
+
+- `x`: int or array_like. If x is an integer, randomly permute np.arange(x). If x is an array, make a copy and shuffle the elements randomly.
+
+&emsp;&emsp;Returns:
+
+- `out`: ndarray. Permuted sequence or array range.
+
+``` python
 >>> np.random.permutation(10)
 array([1, 7, 4, 3, 0, 9, 2, 5, 8, 6])
 >>> np.random.permutation([1, 4, 9, 12, 15])
@@ -349,9 +355,13 @@ array([15,  1,  9,  4, 12])
 array([[6, 7, 8],
        [0, 1, 2],
        [3, 4, 5]])
+```
 
-numpy.matrix.A
-    matrix.A: Return self as an ndarray object. Equivalent to np.asarray(self).
+### numpy.matrix.A
+
+&emsp;&emsp;`matrix.A`: Return self as an ndarray object. Equivalent to np.asarray(self).
+
+``` python
 >>> x = np.matrix(np.arange(12).reshape((3,4))); x
 matrix([[ 0,  1,  2,  3],
         [ 4,  5,  6,  7],
@@ -360,6 +370,7 @@ matrix([[ 0,  1,  2,  3],
 array([[ 0,  1,  2,  3],
        [ 4,  5,  6,  7],
        [ 8,  9, 10, 11]])
+```
 
 numpy.cov(协方差)
     numpy.cov(m, y=None, rowvar=True, bias=False, ddof=None, fweights=None, aweights=None): Estimate a covariance matrix, given data and weights.
