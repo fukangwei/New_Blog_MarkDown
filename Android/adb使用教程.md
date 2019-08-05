@@ -172,7 +172,7 @@ Success
 Failure [INSTALL_FAILED_ALREADY_EXISTS]
 ```
 
-&emsp;&emsp;“adb install”实际是分三步完成：
+&emsp;&emsp;`adb install`实际是分三步完成：
 
 1. `push apk`文件到`/data/local/tmp`。
 2. 调用`pm install`安装。
@@ -182,7 +182,7 @@ Failure [INSTALL_FAILED_ALREADY_EXISTS]
 
 ### 卸载应用
 
-    使用如下命令：
+&emsp;&emsp;使用如下命令：
 
 ``` bash
 adb uninstall [-k] <packagename>
@@ -198,7 +198,7 @@ adb uninstall com.qihoo360.mobilesafe
 
 ### 清除应用数据与缓存
 
-    使用如下命令：
+&emsp;&emsp;使用如下命令：
 
 ``` bash
 adb shell pm clear <packagename>
@@ -214,7 +214,7 @@ adb shell pm clear com.qihoo360.mobilesafe
 
 ### 查看前台Activity
 
-    使用如下命令：
+&emsp;&emsp;使用如下命令：
 
 ``` bash
 adb shell dumpsys activity activities | grep mFocusedActivity
@@ -230,18 +230,18 @@ mFocusedActivity: ActivityRecord{8079d7e u0 com.cyanogenmod.trebuchet/com.androi
 
 ### 查看正在运行的Services
 
-使用如下命令：
+&emsp;&emsp;使用如下命令：
 
 ``` bash
 adb shell dumpsys activity services [<packagename>]
 ```
 
 `<packagename>`参数不是必须的，指定`<packagename>`表示查看与某个包名相关的`Services`，不指定表示查看所有`Services`。
-    “<packagename>”不一定要给出完整的包名，比如运行“adb shell dumpsys activity services org.mazhuang”，那么包名“org.mazhuang.demo1”、“org.mazhuang.demo2”和“org.mazhuang123”等相关的Services都会列出来。
+&emsp;&emsp;`<packagename>`不一定要给出完整的包名，比如运行`adb shell dumpsys activity services org.mazhuang`，那么包名`org.mazhuang.demo1`、`org.mazhuang.demo2`和`org.mazhuang123`等相关的`Services`都会列出来。
 
 ### 查看应用详细信息
 
-    使用如下命令：
+&emsp;&emsp;使用如下命令：
 
 ``` bash
 adb shell dumpsys package <packagename>
@@ -251,7 +251,7 @@ adb shell dumpsys package <packagename>
 
 ### 查看应用安装路径
 
-    使用如下命令：
+&emsp;&emsp;使用如下命令：
 
 ``` bash
 adb shell pm path <packagename>
@@ -266,7 +266,7 @@ package:/data/app/ecarx.weather-1.apk
 
 ### 与应用交互
 
-主要是使用`am <command>`命令，常用的`<command>`如下：
+&emsp;&emsp;主要是使用`am <command>`命令，常用的`<command>`如下：
 
 command                          | 用途
 ---------------------------------|----
@@ -299,7 +299,7 @@ command                          | 用途
 
 ### 启动应用/调起Activity
 
-    命令格式：
+&emsp;&emsp;命令格式：
 
 ``` bash
 adb shell am start [options] <INTENT>
@@ -319,7 +319,7 @@ adb shell am start -n org.mazhuang.boottimemeasure/.MainActivity --es "toast" "h
 
 ### 调起Service
 
-    命令格式：
+&emsp;&emsp;命令格式：
 
 ``` bash
 adb shell am startservice [options] <INTENT>
@@ -339,7 +339,7 @@ adb shell am startservice -n com.android.systemui/.SystemUIService
 
 ### 停止Service
 
-    命令格式：
+&emsp;&emsp;命令格式：
 
 ``` bash
 adb shell am stopservice [options] <INTENT>
@@ -347,7 +347,7 @@ adb shell am stopservice [options] <INTENT>
 
 ### 发送广播
 
-    命令格式：
+&emsp;&emsp;命令格式：
 
 ``` bash
 adb shell am broadcast [options] <INTENT>
@@ -394,27 +394,62 @@ action                                            | 触发时机
 
 ### 强制停止应用
 
-    命令格式：
+&emsp;&emsp;命令格式：
+
+``` bash
 adb shell am force-stop <packagename>
-如下示例表示停止360安全卫士的一切进程与服务：
+```
+
+如下示例表示停止`360`安全卫士的一切进程与服务：
+
+``` bash
 adb shell am force-stop com.qihoo360.mobilesafe
+```
 
-收紧内存
-    命令格式：
+### 收紧内存
+
+&emsp;&emsp;命令格式：
+
+``` bash
 adb shell am send-trim-memory <pid> <level>
-参数pid是进程ID，level有如下选项：HIDDEN、RUNNING_MODERATE、BACKGROUND、RUNNING_LOW、MODERATE、RUNNING_CRITICAL、COMPLETE。
-    如下示例表示向“pid = 12345”的进程，发出“level = RUNNING_LOW”的收紧内存命令：
+```
+
+参数`pid`是进程`ID`；`level`有如下选项：
+
+- `HIDDEN`
+- `RUNNING_MODERATE`
+- `BACKGROUND`
+- `RUNNING_LOW`
+- `MODERATE`
+- `RUNNING_CRITICAL`
+- `COMPLETE`
+
+&emsp;&emsp;如下示例表示向`pid = 12345`的进程，发出`level = RUNNING_LOW`的收紧内存命令：
+
+``` bash
 adb shell am send-trim-memory 12345 RUNNING_LOW
+```
 
-文件管理
-复制设备里的文件到电脑
-    命令格式：
+### 文件管理
+
+#### 复制设备里的文件到电脑
+
+&emsp;&emsp;命令格式：
+
+``` bash
 adb pull <设备里的文件路径> [电脑上的目录]
-其中，参数“电脑上的目录”可以省略，默认复制到当前目录：
-adb pull /sdcard/sr.mp4 ~/tmp/
-    设备上的文件路径可能需要root权限才能访问，如果你的设备已经root过，可以先使用“adb shell”和su命令在“adb shell”里获取root权限后，先“cp /path/on/device /sdcard/filename”将文件复制到sdcard，然后“adb pull /sdcard/filename /path/on/pc”。
+```
 
-复制电脑里的文件到设备
+其中，参数`电脑上的目录`可以省略，默认复制到当前目录：
+
+``` bash
+adb pull /sdcard/sr.mp4 ~/tmp/
+```
+
+&emsp;&emsp;设备上的文件路径可能需要root权限才能访问，如果你的设备已经root过，可以先使用“adb shell”和su命令在“adb shell”里获取root权限后，先“cp /path/on/device /sdcard/filename”将文件复制到sdcard，然后“adb pull /sdcard/filename /path/on/pc”。
+
+#### 复制电脑里的文件到设备
+
     命令格式：
 adb push <电脑上的文件路径> <设备里的目录>
 命令示例：
