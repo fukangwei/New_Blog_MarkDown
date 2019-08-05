@@ -169,29 +169,52 @@ Failure [INSTALL_FAILED_ALREADY_EXISTS]
 
     “adb install”实际是分三步完成：
 
-1. “push apk”文件到“/data/local/tmp”。
-2. 调用“pm install”安装。
-3. 删除“/data/local/tmp”下的对应apk文件。
+1. `push apk`文件到`/data/local/tmp`。
+2. 调用`pm install`安装。
+3. 删除`/data/local/tmp`下的对应`apk`文件。
 
 所以，必要的时候也可以根据这个步骤，手动分步执行安装过程。
 
-卸载应用
+### 卸载应用
+
     使用如下命令：
+
+``` bash
 adb uninstall [-k] <packagename>
-“<packagename>”表示应用的包名，“-k”参数可选，表示卸载应用但保留数据和缓存目录。命令示例如下：
+```
+
+`<packagename>`表示应用的包名，`-k`参数可选，表示卸载应用但保留数据和缓存目录。命令示例如下：
+
+``` bash
 adb uninstall com.qihoo360.mobilesafe
-表示卸载360手机卫士。
+```
 
-清除应用数据与缓存
+表示卸载`360`手机卫士。
+
+### 清除应用数据与缓存
+
     使用如下命令：
+
+``` bash
 adb shell pm clear <packagename>
-“<packagename>”表示应用名包，这条命令的效果相当于在设置里的应用信息界面点击了“清除缓存”和“清除数据”。命令示例如下：
-adb shell pm clear com.qihoo360.mobilesafe
-表示清除360手机卫士的数据和缓存。
+```
 
-查看前台Activity
+`<packagename>`表示应用名包，这条命令的效果相当于在设置里的应用信息界面点击了`清除缓存`和`清除数据`。命令示例如下：
+
+``` bash
+adb shell pm clear com.qihoo360.mobilesafe
+```
+
+表示清除`360`手机卫士的数据和缓存。
+
+### 查看前台Activity
+
     使用如下命令：
+
+``` bash
 adb shell dumpsys activity activities | grep mFocusedActivity
+```
+
 输出示例：
 mFocusedActivity: ActivityRecord{8079d7e u0 com.cyanogenmod.trebuchet/com.android.launcher3.Launcher t42}
 其中的“com.cyanogenmod.trebuchet/com.android.launcher3.Launcher”就是当前处于前台的Activity。
