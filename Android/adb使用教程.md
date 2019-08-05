@@ -3,7 +3,7 @@ title: adb使用教程
 date: 2019-08-05 15:11:58
 tags:
 ---
-    adb工具位于SDK的platform-tools目录下，因此需要将platform-tools的路径添加到系统环境变量中。常用的adb命令如下所示：
+&emsp;&emsp;`adb`工具位于`SDK`的`platform-tools`目录下，因此需要将`platform-tools`的路径添加到系统环境变量中。常用的`adb`命令如下：
 
 - `adb shell`：可以使用`shell`命令。
 - `adb reboot`：重新启动。
@@ -12,13 +12,13 @@ tags:
 
 ### 命令语法
 
-adb命令的基本语法如下：
+&emsp;&emsp;`adb`命令的基本语法如下：
 
 ``` bash
 adb [-d|-e|-s <serialNumber>] <command>
 ```
 
-如果只有一个设备/模拟器连接时，可以省略掉“[-d|-e|-s <serialNumber>]”这一部分，直接使用“adb <command>”；如果有多个设备/模拟器连接，则需要为命令指定目标设备。
+如果只有一个设备或模拟器连接时，可以省略掉`[-d|-e|-s <serialNumber>]`这一部分，直接使用`adb <command>`；如果有多个设备或模拟器连接，则需要为命令指定目标设备。
 
 参数                | 含义
 --------------------|----
@@ -36,14 +36,21 @@ emulator-5554   device
 10.129.164.6:5555   device
 ```
 
-输出里的“cf264b8f”、“emulator-5554”和“10.129.164.6:5555”即为serialNumber。如果指定“cf264b8f”这个设备来运行adb命令获取屏幕分辨率，可以使用如下命令：
+输出里的`cf264b8f`、`emulator-5554`和`10.129.164.6:5555`即为`serialNumber`。如果指定`cf264b8f`这个设备来运行`adb`命令获取屏幕分辨率，可以使用如下命令：
+
+``` bash
 adb -s cf264b8f shell wm size
-又例如想给“10.129.164.6:5555”这个设备安装应用(这种形式的serialNumber格式为“<IP>:<Port>”，一般为无线连接的设备或Genymotion等第三方Android模拟器)：
+```
+
+又例如想给`10.129.164.6:5555`这个设备安装应用(这种形式的`serialNumber`格式为`<IP>:<Port>`，一般为无线连接的设备或`Genymotion`等第三方`Android`模拟器)：
+
+``` bash
 adb -s 10.129.164.6:5555 install test.apk
+```
 
 ### USB连接
 
-    通过USB连接来正常使用adb需要保证几点：
+&emsp;&emsp;通过`USB`连接来正常使用`adb`需要保证几点：
 
 1. 硬件状态正常：包括`Android`设备处于正常开机状态，`USB`连接线和各种接口完好。
 2. `Android`设备的开发者选项和`USB`调试模式已开启：可以到`设置 -> 开发者选项 -> Android调试`查看。如果在设置里找不到开发者选项，那需要通过一个彩蛋来让它显示出来：在`设置 -> 关于手机`中，连续点击`7`次`版本号`。
@@ -64,7 +71,7 @@ xxxxxx device
 
 #### 查看应用列表
 
-查看应用列表的基本命令格式：
+&emsp;&emsp;查看应用列表的基本命令格式：
 
 ``` bash
 adb shell pm list packages [-f] [-d] [-e] [-s] [-3] [-i] [-u] [--user USER_ID] [FILTER]
@@ -84,7 +91,7 @@ adb shell pm list packages [-f] [-d] [-e] [-s] [-3] [-i] [-u] [--user USER_ID] [
 `-u`       | 包含已卸载应用
 `<FILTER>` | 包名包含`<FILTER>`字符串
 
-查看所有应用使用如下命令：
+&emsp;&emsp;查看所有应用使用如下命令：
 
 ``` bash
 adb shell pm list packages
@@ -103,30 +110,28 @@ package:com.android.protips
 package:com.android.documentsui
 package:com.android.gallery
 package:com.android.externalstorage
-...
-// other packages here
-...
+// other packages
 ```
 
-查看系统应用使用如下命令：
+&emsp;&emsp;查看系统应用使用如下命令：
 
 ``` bash
 adb shell pm list packages -s
 ```
 
-查看第三方应用使用如下命令：
+&emsp;&emsp;查看第三方应用使用如下命令：
 
 ``` bash
 adb shell pm list packages -3
 ```
 
-    查看包名包含字符串“mazhuang”的应用列表，可以使用命令：
+&emsp;&emsp;查看包名包含字符串`mazhuang`的应用列表，可以使用命令：
 
 ``` bash
 adb shell pm list packages mazhuang
 ```
 
-当然也可以使用grep来过滤：
+当然也可以使用`grep`来过滤：
 
 ``` bash
 adb shell pm list packages | grep mazhuang
@@ -134,13 +139,13 @@ adb shell pm list packages | grep mazhuang
 
 ### 安装APK
 
-命令格式如下：
+&emsp;&emsp;命令格式如下：
 
 ``` bash
 adb install [-lrtsdg] <path_to_apk>
 ```
 
-“adb install”后面可以跟一些可选参数来控制安装APK的行为，可用参数及含义如下：
+`adb install`后面可以跟一些可选参数来控制安装`APK`的行为，可用参数及含义如下：
 
 参数 | 含义
 -----|----
@@ -167,7 +172,7 @@ Success
 Failure [INSTALL_FAILED_ALREADY_EXISTS]
 ```
 
-    “adb install”实际是分三步完成：
+&emsp;&emsp;“adb install”实际是分三步完成：
 
 1. `push apk`文件到`/data/local/tmp`。
 2. 调用`pm install`安装。
