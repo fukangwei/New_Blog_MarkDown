@@ -312,43 +312,73 @@ adb shell am start -n com.tencent.mm/.ui.LauncherUI
 adb shell am start -n org.mazhuang.boottimemeasure/.MainActivity --es "toast" "hello, world"
 ```
 
-调起Service
+### 调起Service
+
     命令格式：
+
+``` bash
 adb shell am startservice [options] <INTENT>
-如下命令表示调起微信的某Service：
+```
+
+如下命令表示调起微信的某`Service`：
+
+``` bash
 adb shell am startservice -n com.tencent.mm/.plugin.accountsync.model.AccountAuthenticatorService
+```
+
 另外一个典型的用例是，如果设备上原本应该显示虚拟按键但是没有显示，可以试试如下命令：
+
+``` bash
 adb shell am startservice -n com.android.systemui/.SystemUIService
+```
 
-停止Service
+### 停止Service
+
     命令格式：
+
+``` bash
 adb shell am stopservice [options] <INTENT>
+```
 
-发送广播
+### 发送广播
+
     命令格式：
+
+``` bash
 adb shell am broadcast [options] <INTENT>
-可以向所有组件广播，也可以只向指定组件广播。向所有组件广播BOOT_COMPLETED：
+```
+
+可以向所有组件广播，也可以只向指定组件广播。向所有组件广播`BOOT_COMPLETED`：
+
+``` bash
 adb shell am broadcast -a android.intent.action.BOOT_COMPLETED
-只向“org.mazhuang.boottimemeasure/.BootCompletedReceiver”广播BOOT_COMPLETED：
+```
+
+只向`org.mazhuang.boottimemeasure/.BootCompletedReceiver`广播`BOOT_COMPLETED`：
+
+``` bash
 adb shell am broadcast -a android.intent.action.BOOT_COMPLETED -n org.mazhuang.boottimemeasure/.BootCompletedReceiver
-这类用法在测试的时候很实用，比如某个广播的场景很难制造，可以考虑通过这种方式来发送广播。既能发送系统预定义的广播，也能发送自定义广播。如下是部分系统预定义广播及正常触发时机(以下广播均可使用adb触发)：
-action                                          触发时机
---------------------------------------------------------
-android.net.conn.CONNECTIVITY_CHANGE            网络连接发生变化
-android.intent.action.SCREEN_ON                 屏幕点亮
-android.intent.action.SCREEN_OFF                屏幕熄灭
-android.intent.action.BATTERY_LOW               电量低，会弹出电量低提示框
-android.intent.action.BATTERY_OKAY              电量恢复了
-android.intent.action.BOOT_COMPLETED            设备启动完毕
-android.intent.action.DEVICE_STORAGE_LOW        存储空间过低
-android.intent.action.DEVICE_STORAGE_OK         存储空间恢复
-android.intent.action.PACKAGE_ADDED             安装了新的应用
-android.net.wifi.STATE_CHANGE                   WiFi连接状态发生变化
-android.net.wifi.WIFI_STATE_CHANGED             WiFi状态变为启用/关闭/正在启动/正在关闭/未知
-android.intent.action.BATTERY_CHANGED           电池电量发生变化
-android.intent.action.INPUT_METHOD_CHANGED      系统输入法发生变化
-android.intent.action.ACTION_POWER_CONNECTED    外部电源连接
-android.intent.action.ACTION_POWER_DISCONNECTED 外部电源断开连接
+```
+
+这类用法在测试的时候很实用，比如某个广播的场景很难制造，可以考虑通过这种方式来发送广播。既能发送系统预定义的广播，也能发送自定义广播。如下是部分系统预定义广播及正常触发时机(以下广播均可使用`adb`触发)：
+
+action                                            | 触发时机
+--------------------------------------------------|--------
+`android.net.conn.CONNECTIVITY_CHANGE`            | 网络连接发生变化
+`android.intent.action.SCREEN_ON`                 | 屏幕点亮
+`android.intent.action.SCREEN_OFF`                | 屏幕熄灭
+`android.intent.action.BATTERY_LOW`               | 电量低，会弹出电量低提示框
+`android.intent.action.BATTERY_OKAY`              | 电量恢复了
+`android.intent.action.BOOT_COMPLETED`            | 设备启动完毕
+`android.intent.action.DEVICE_STORAGE_LOW`        | 存储空间过低
+`android.intent.action.DEVICE_STORAGE_OK`         | 存储空间恢复
+`android.intent.action.PACKAGE_ADDED`             | 安装了新的应用
+`android.net.wifi.STATE_CHANGE`                   | `WiFi`连接状态发生变化
+`android.net.wifi.WIFI_STATE_CHANGED`             | `WiFi`状态变为启用/关闭/正在启动/正在关闭/未知
+`android.intent.action.BATTERY_CHANGED`           | 电池电量发生变化
+`android.intent.action.INPUT_METHOD_CHANGED`      | 系统输入法发生变化
+`android.intent.action.ACTION_POWER_CONNECTED`    | 外部电源连接
+`android.intent.action.ACTION_POWER_DISCONNECTED` | 外部电源断开连接
 android.intent.action.DREAMING_STARTED          系统开始休眠
 android.intent.action.DREAMING_STOPPED          系统停止休眠
 android.intent.action.WALLPAPER_CHANGED         壁纸发生变化
@@ -357,7 +387,8 @@ android.intent.action.MEDIA_UNMOUNTED           卸载外部介质
 android.intent.action.MEDIA_MOUNTED             挂载外部介质
 android.os.action.POWER_SAVE_MODE_CHANGED       省电模式开启
 
-强制停止应用
+### 强制停止应用
+
     命令格式：
 adb shell am force-stop <packagename>
 如下示例表示停止360安全卫士的一切进程与服务：
