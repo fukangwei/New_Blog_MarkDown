@@ -278,22 +278,23 @@ command                          | 用途
 `-c <CATEGORY>`  | 指定`category`，比如`android.intent.category.APP_CONTACTS`
 `-n <COMPONENT>` | 指定完整`component`名，用于明确指定启动哪个`Activity`，如`com.example.app/.ExampleActivity`
 
-`<INTENT>`里还能带数据，就像写代码时的Bundle一样：
+`<INTENT>`里还能带数据，就像写代码时的`Bundle`一样：
 
-参数                                                         含义
------------------------------------------------------------------
---esn <EXTRA_KEY>                                            null值(只有key名)
-`-e                                                          --es <EXTRA_KEY> <EXTRA_STRING_VALUE>`
---ez <EXTRA_KEY> <EXTRA_BOOLEAN_VALUE>                       boolean值
---ei <EXTRA_KEY> <EXTRA_INT_VALUE>                           integer值
---el <EXTRA_KEY> <EXTRA_LONG_VALUE>                          long值
+参数                                                        | 含义
+------------------------------------------------------------|-----
+`--esn <EXTRA_KEY>`                                         | `null`值(只有`key`名)
+`--ez <EXTRA_KEY> <EXTRA_BOOLEAN_VALUE>`                    | `boolean`值
+`--ei <EXTRA_KEY> <EXTRA_INT_VALUE>`                        | `integer`值
+`--el <EXTRA_KEY> <EXTRA_LONG_VALUE>`                       | `long`值
+
 --ef <EXTRA_KEY> <EXTRA_FLOAT_VALUE>                         float值
 --eu <EXTRA_KEY> <EXTRA_URI_VALUE>                           URI
 --ecn <EXTRA_KEY> <EXTRA_COMPONENT_NAME_VALUE>               “component name”
 --eia <EXTRA_KEY> <EXTRA_INT_VALUE>[,<EXTRA_INT_VALUE...]    integer数组
 --ela <EXTRA_KEY> <EXTRA_LONG_VALUE>[,<EXTRA_LONG_VALUE...]  long数组
 
-启动应用/调起Activity
+### 启动应用/调起Activity
+
     命令格式：
 adb shell am start [options] <INTENT>
 如下命令表示调起微信主界面：
