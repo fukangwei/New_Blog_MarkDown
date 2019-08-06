@@ -446,7 +446,7 @@ adb pull <设备里的文件路径> [电脑上的目录]
 adb pull /sdcard/sr.mp4 ~/tmp/
 ```
 
-&emsp;&emsp;设备上的文件路径可能需要root权限才能访问，如果你的设备已经root过，可以先使用“adb shell”和su命令在“adb shell”里获取root权限后，先“cp /path/on/device /sdcard/filename”将文件复制到sdcard，然后“adb pull /sdcard/filename /path/on/pc”。
+&emsp;&emsp;设备上的文件路径可能需要`root`权限才能访问，如果你的设备已经`root`过，可以先使用`adb shell`和`su`命令在`adb shell`里获取`root`权限后，先`cp /path/on/device /sdcard/filename`将文件复制到`sdcard`，然后`adb pull /sdcard/filename /path/on/pc`。
 
 #### 复制电脑里的文件到设备
 
@@ -843,31 +843,59 @@ Override size: 480x1024
 
 ### 屏幕密度
 
-    命令格式：
+&emsp;&emsp;命令格式：
+
+``` bash
 adb shell wm density
+```
+
 输出示例：
+
+``` bash
 Physical density: 420
-该设备屏幕密度为420dpi。如果使用命令修改过，那输出可能是：
+```
+
+该设备屏幕密度为`420dpi`。如果使用命令修改过，那输出可能是：
+
+``` bash
 Physical density: 480
 Override density: 160
-表明设备的屏幕密度原来是480dpi，当前被修改为160dpi。
+```
+
+表明设备的屏幕密度原来是`480dpi`，当前被修改为`160dpi`。
 
 ### 显示屏参数
 
-    命令格式：
+&emsp;&emsp;命令格式：
+
+``` bash
 adb shell dumpsys window displays
+```
+
 输出示例：
+
+``` bash
 WINDOW MANAGER DISPLAY CONTENTS (dumpsys window displays)
   Display: mDisplayId=0
     init=1080x1920 420dpi cur=1080x1920 app=1080x1794 rng=1080x1017-1810x1731
     deferred=false layoutNeeded=false
-其中mDisplayId为显示屏编号，init是初始分辨率和屏幕密度，app的高度比init里的要小，表示屏幕底部有虚拟按键，高度为“1920 - 1794 = 126px”，合42dp。
+```
 
-android_id
-    命令格式：
+其中`mDisplayId`为显示屏编号，`init`是初始分辨率和屏幕密度，`app`的高度比`init`里的要小，表示屏幕底部有虚拟按键，高度为`1920 - 1794 = 126px`，即`42dp`。
+
+### android_id
+
+&emsp;&emsp;命令格式：
+
+``` bash
 adb shell settings get secure android_id
+```
+
 输出示例：
+
+``` bash
 51b6be48bac8c569
+```
 
 IMEI
     在“Android 4.4”及以下版本，可通过如下命令获取IMEI：
@@ -881,13 +909,18 @@ adb shell
 su
 service call iphonesubinfo 1
 输出示例：
+
+``` bash
 Result: Parcel(
   0x00000000: 00000000 0000000f 00360038 00390030 '........8.6.0.9.'
   0x00000010: 00350035 00320030 00370037 00350038 '5.5.0.2.7.7.8.5.'
   0x00000020: 00340030 00000031                   '0.4.1...        ')
+```
+
 把里面的有效内容提取出来就是IMEI了，比如这里的是860955027785041。
 
-Android系统版本
+### Android系统版本
+
     命令格式：
 adb shell getprop ro.build.version.release
 输出示例：
