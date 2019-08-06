@@ -775,17 +775,33 @@ adb shell dmesg
 `中括号`里的`[14201.684016]`代表内核开始启动后的时间，单位为`秒`。
 &emsp;&emsp;通过内核日志，我们可以做一些事情，比如衡量内核启动时间，在系统启动完毕后的内核日志里找到`Freeing init memory`那一行，其前面的时间就是。
 
-查看设备信息
-型号
-    命令格式：
-adb shell getprop ro.product.model
-输出示例：
-Nexus 5
+### 查看设备信息
 
-电池状况
-    命令格式：
+#### 型号
+
+&emsp;&emsp;命令格式：
+
+``` bash
+adb shell getprop ro.product.model
+```
+
+输出示例：
+
+``` bash
+Nexus 5
+```
+
+#### 电池状况
+
+&emsp;&emsp;命令格式：
+
+``` bash
 adb shell dumpsys battery
+```
+
 输入示例：
+
+``` bash
 Current Battery Service state:
   AC powered: false
   USB powered: true
@@ -798,19 +814,35 @@ Current Battery Service state:
   voltage: 3872
   temperature: 280
   technology: Li-poly
-其中scale代表最大电量，level代表当前电量。上面的输出表示还剩下44%的电量。
+```
 
-屏幕分辨率
-    命令格式：
+其中`scale`代表最大电量，`level`代表当前电量。上面的输出表示还剩下`44%`的电量。
+
+### 屏幕分辨率
+
+&emsp;&emsp;命令格式：
+
+``` bash
 adb shell wm size
+```
+
 输出示例：
+
+``` bash
 Physical size: 1080x1920
-该设备屏幕分辨率为“1080px * 1920px”。如果使用命令修改过，那输出可能是：
+```
+
+该设备屏幕分辨率为`1080px * 1920px`。如果使用命令修改过，那么输出可能是：
+
+``` bash
 Physical size: 1080x1920
 Override size: 480x1024
-表明设备的屏幕分辨率原本是“1080px * 1920px”，当前被修改为“480px * 1024px”。
+```
 
-屏幕密度
+表明设备的屏幕分辨率原本是`1080px * 1920px`，当前被修改为`480px * 1024px`。
+
+### 屏幕密度
+
     命令格式：
 adb shell wm density
 输出示例：
@@ -820,7 +852,8 @@ Physical density: 480
 Override density: 160
 表明设备的屏幕密度原来是480dpi，当前被修改为160dpi。
 
-显示屏参数
+### 显示屏参数
+
     命令格式：
 adb shell dumpsys window displays
 输出示例：
