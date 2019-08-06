@@ -650,48 +650,119 @@ adb logcat ActivityManager:I MyApp:D *:S
 
 ### 日志格式
 
-    可以用“adb logcat -v <format>”选项指定日志输出格式。日志支持按以下几种“<format>”：
-    brief：默认格式，格式如下所示：
+&emsp;&emsp;可以用`adb logcat -v <format>`选项指定日志输出格式。日志支持按以下几种`<format>`：
+
+- `brief`：默认格式：
+
+``` bash
 <priority>/<tag>(<pid>): <message>
+```
+
 示例如下：
+
+``` bash
 D/HeadsetStateMachine(1785): Disconnected process message: 10, size: 0
-    process：格式如下所示：
+```
+
+- `process`：格式如下：
+
+``` bash
 <priority>(<pid>) <message>
-示例：
+```
+
+示例如下：
+
+``` bash
 D(1785) Disconnected process message: 10, size: 0 (HeadsetStateMachine)
-    tag：格式如下所示：
+```
+
+- `tag`：格式如下：
+
+``` bash
 <priority>/<tag>: <message>
-示例：
+```
+
+示例如下：
+
+``` bash
 D/HeadsetStateMachine: Disconnected process message: 10, size: 0
-    raw：格式如下所示：
+```
+
+- `raw`：格式如下：
+
+``` bash
 <message>
-示例：
+```
+
+示例如下：
+
+``` bash
 Disconnected process message: 10, size: 0
-    time：格式如下所示：
+```
+
+- `time`：格式如下：
+
+``` bash
 <datetime> <priority>/<tag>(<pid>): <message>
-示例：
+```
+
+示例如下：
+
+``` bash
 08-28 22:39:39.974 D/HeadsetStateMachine(1785): Disconnected process message: 10, size: 0
-    threadtime：格式如下所示：
+```
+
+- `threadtime`：格式如下：
+
+``` bash
 <datetime> <pid> <tid> <priority> <tag>: <message>
-示例：
+```
+
+示例如下：
+
+``` bash
 08-28 22:39:39.974 1785 1832 D HeadsetStateMachine: Disconnected process message: 10, size: 0
-    long：格式如下所示：
+```
+
+- `long`：格式如下：
+
+``` bash
 [ <datetime> <pid>:<tid> <priority>/<tag> ]
 <message>
-示例：
+```
+
+示例如下：
+
+``` bash
 [ 08-28 22:39:39.974 1785: 1832 D/HeadsetStateMachine ]
 Disconnected process message: 10, size: 0
-    指定格式可与上面的过滤同时使用：
+```
+
+&emsp;&emsp;指定格式可与上面的过滤同时使用：
+
+``` bash
 adb logcat -v long ActivityManager:I *:S
+```
 
-清空日志
-    命令格式：
+### 清空日志
+
+&emsp;&emsp;命令格式：
+
+``` bash
 adb logcat -c
+```
 
-内核日志
-    命令格式：
+### 内核日志
+
+&emsp;&emsp;命令格式：
+
+``` bash
 adb shell dmesg
+```
+
 输出示例：
+
+``` bash
 <6>[14201.684016] PM: noirq resume of devices complete after 0.982 msecs
 <6>[14201.685525] PM: early resume of devices complete after 0.838 msecs
 <6>[14201.753642] PM: resume of devices complete after 68.106 msecs
@@ -699,8 +770,10 @@ adb shell dmesg
 <6>[14201.771229] PM: suspend exit 2016-08-28 13:31:32.679217193 UTC
 <6>[14201.872373] PM: suspend entry 2016-08-28 13:31:32.780363596 UTC
 <6>[14201.872498] PM: Syncing filesystems ... done.
-中括号里的[14201.684016]代表内核开始启动后的时间，单位为秒。
-    通过内核日志，我们可以做一些事情，比如衡量内核启动时间，在系统启动完毕后的内核日志里找到“Freeing init memory”那一行，其前面的时间就是。
+```
+
+`中括号`里的`[14201.684016]`代表内核开始启动后的时间，单位为`秒`。
+&emsp;&emsp;通过内核日志，我们可以做一些事情，比如衡量内核启动时间，在系统启动完毕后的内核日志里找到`Freeing init memory`那一行，其前面的时间就是。
 
 查看设备信息
 型号
