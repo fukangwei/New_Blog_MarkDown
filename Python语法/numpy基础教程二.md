@@ -5,19 +5,21 @@ tags:
 ---
 ### argsort
 
-    argsort是Numpy模块中的函数：
+&emsp;&emsp;`argsort`是`Numpy`模块中的函数：
 
-```
+``` python
 >>> import numpy
 >>> help(numpy.argsort)
-```
-
 Help on function argsort in module numpy.core.fromnumeric:
 argsort(a, axis=-1, kind='quicksort', order=None): Returns the indices that would sort an array.
 Perform an indirect sort along the given axis using the algorithm specified
 by the `kind` keyword. It returns an array of indices of the same shape as
 `a` that index data along the given axis in sorted order.
-从中可以看出argsort函数返回的是数组值从小到大的索引值。Examples：
+```
+
+从中可以看出`argsort`函数返回的是数组值从小到大的索引值。
+
+``` python
 >>> x = np.array([3, 1, 2])  # One dimensional array(一维数组)
 >>> np.argsort(x)
 array([1, 2, 0])  # 即“1”在第1位，“2”在第2位，“3”在第0位
@@ -31,19 +33,32 @@ array([[0, 1],
 >>> np.argsort(x, axis=1)  # 按行排序
 array([[0, 1],
        [0, 1]])
+```
 
-numpy.delete
-    numpy.delete(arr, obj, axis=None): Return a new array with sub-arrays along an axis deleted. For a one dimensional array, this returns those entries not returned by arr[obj]. Parameters:
-arr : array_like. Input array.
-obj : slice, int or array of ints. Indicate which sub-arrays to remove.
-axis : int, optional. The axis along which to delete the subarray defined by obj. If axis is None, obj is applied to the flattened array.
-    Returns: out : ndarray. A copy of arr with the elements specified by obj removed. Note that delete does not occur in-place. If axis is None, out is a flattened array.
-    Notes: Often it is preferable to use a boolean mask. For example:
+### numpy.delete
+
+&emsp;&emsp;`numpy.delete(arr, obj, axis=None)`: Return a new array with sub-arrays along an axis deleted. For a one dimensional array, this returns those entries not returned by `arr[obj]`. Parameters:
+
+- `arr`: array_like. Input array.
+- `obj`: slice, int or array of ints. Indicate which sub-arrays to remove.
+- `axis`: int, optional. The axis along which to delete the subarray defined by obj. If axis is None, obj is applied to the flattened array.
+
+&emsp;&emsp;Returns:
+
+- `out`: ndarray. A copy of arr with the elements specified by obj removed. Note that delete does not occur in-place. If axis is None, out is a flattened array.
+
+&emsp;&emsp;Notes: Often it is preferable to use a boolean mask. For example:
+
+``` python
 >>> mask = np.ones(len(arr), dtype=bool)
 >>> mask[[0,2,4]] = False
 >>> result = arr[mask,...]
-Is equivalent to np.delete(arr, [0,2,4], axis=0), but allows further use of mask.
-    Examples:
+```
+
+Is equivalent to `np.delete(arr, [0,2,4], axis=0)`, but allows further use of mask.
+&emsp;&emsp;Examples:
+
+``` python
 >>> arr = np.array([[1,2,3,4], [5,6,7,8], [9,10,11,12]])
 >>> arr
 array([[ 1,  2,  3,  4],
@@ -58,12 +73,16 @@ array([[ 2,  4],
        [10, 12]])
 >>> np.delete(arr, [1,3,5], None)
 array([ 1,  3,  5,  7,  8,  9, 10, 11, 12])
+```
 
-numpy.squeeze
-    numpy.squeeze(a, axis=None): Remove single-dimensional entries from the shape of an array. Parameters:
+### numpy.squeeze
+
+&emsp;&emsp;numpy.squeeze(a, axis=None): Remove single-dimensional entries from the shape of an array. Parameters:
+
 a : array_like. Input data.
 axis : None or int or tuple of ints, optional.
-New in version 1.7.0. Selects a subset of the single-dimensional entries in the shape. If an axis is selected with shape entry greater than one, an error is raised.
+
+Selects a subset of the single-dimensional entries in the shape. If an axis is selected with shape entry greater than one, an error is raised.
     Returns: squeezed : ndarray. The input array, but with all or a subset of the dimensions of length 1 removed. This is always a itself or a view into a.
     Raises: ValueError. If axis is not None, and an axis being squeezed is not of length 1.
     Examples:
