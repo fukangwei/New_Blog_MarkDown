@@ -1403,75 +1403,84 @@ network={
 
 `ssid`即为我们在`WLAN`设置里看到的名称，`psk`为密码，`key_mgmt`为安全加密方式。
 
-设置系统日期和时间
-    该步骤需要root权限，使用如下命令：
+### 设置系统日期和时间
+
+&emsp;&emsp;该步骤需要`root`权限，使用如下命令：
+
+``` bash
 adb shell
 su
 date -s 20160823.131500
-表示将系统日期和时间更改为2016年08月23日13点15分00秒。
+```
 
-重启手机
-    命令格式：
+表示将系统日期和时间更改为`2016`年`08`月`23`日`13`点`15`分`00`秒。
+
+### 重启手机
+
+&emsp;&emsp;命令格式：
+
+``` bash
 adb reboot
+```
 
-检测设备是否已root
-    命令格式：
+### 检测设备是否已root
+
+&emsp;&emsp;命令格式：
+
+``` bash
 adb shell
 su
-此时命令行提示符是“$”则表示没有root权限，是“#”则表示已root。
+```
 
-使用Monkey进行压力测试
-    Monkey可以生成伪随机用户事件来模拟单击、触摸、手势等操作，可以对正在开发中的程序进行随机压力测试。简单用法如下所示：
+此时命令行提示符是`$`，则表示没有`root`权限，是`#`则表示已`root`。
+
+### 使用Monkey进行压力测试
+
+&emsp;&emsp;`Monkey`可以生成伪随机用户事件来模拟单击、触摸、手势等操作，可以对正在开发中的程序进行随机压力测试。简单用法如下：
+
+``` bash
 adb shell monkey -p <packagename> -v 500
-表示向“<packagename>”指定的应用程序发送500个伪随机事件。
+```
 
-开启/关闭WiFi
-    该步骤需要root权限，有时需要控制设备的WiFi状态，可以用以下指令完成：
+表示向`<packagename>`指定的应用程序发送`500`个伪随机事件。
+
+### 开启/关闭WiFi
+
+&emsp;&emsp;该步骤需要`root`权限，有时需要控制设备的`WiFi`状态，可以用以下指令完成：
+
+``` bash
 # 开启WiFi
 adb root
 adb shell svc wifi enable
 # 关闭WiFi
 adb root
 adb shell svc wifi disable
-若执行成功，输出为空；若未取得root权限执行此命令，将执行失败，输出Killed。
+```
 
-刷机相关命令
-    命令如下所示：
+若执行成功，输出为空；若未取得`root`权限执行此命令，将执行失败，输出`Killed`。
+
+### 刷机相关命令
+
+&emsp;&emsp;命令如下：
+
+``` bash
 adb reboot recovery  # 重启到Recovery模式
 adb reboot  # 从Recovery重启到Android
 adb reboot bootloader  # 重启到Fastboot模式
+```
 
-通过sideload更新系统
-    如果我们下载了Android设备对应的系统更新包到电脑上，那么也可以通过adb来完成更新。以Recovery模式下更新为例
-    1) 重启到Recovery模式：
-adb reboot recovery
-    2) 在设备的Recovery界面上操作进入“Apply update -> Apply from ADB”。不同的Recovery菜单可能与此有差异，有的是一级菜单就有“Apply update from ADB”。
-    3) 通过adb上传和更新系统：
-adb sideload <path-to-update.zip>
+### 更多adb shell命令
 
-安全相关命令
-启用/禁用SELinux
-    启用SELinux：
-adb root
-adb shell setenforce 1
-禁用SELinux：
-adb root
-adb shell setenforce 0
+&emsp;&emsp;Android系统是基于Linux内核的，所以Linux里的很多命令在Android里也有相同或类似的实现，在“adb shell”里可以调用。本文档前面的部分内容已经用到了“adb shell”命令。
 
-启用/禁用dm_verity
-    启用dm_verity：
-adb root
-adb enable-verity
-禁用dm_verity：
-adb root
-adb disable-verity
+### 查看进程
 
-更多“adb shell”命令
-    Android系统是基于Linux内核的，所以Linux里的很多命令在Android里也有相同或类似的实现，在“adb shell”里可以调用。本文档前面的部分内容已经用到了“adb shell”命令。
+&emsp;&emsp;命令格式：
 
-查看进程
-    命令格式：
+``` bash
 adb shell ps
+```
+
 输出示例：
 USER   PID  PPID VSIZE   RSS   WCHAN    PC         NAME
 root   1    0    8904    788   ffffffff 00000000 S /init
@@ -1481,18 +1490,27 @@ u0_a71 7779 5926 1538748 48896 ffffffff 00000000 S com.sohu.inputmethod.sogou:cl
 u0_a58 7963 5926 1561916 59568 ffffffff 00000000 S org.mazhuang.boottimemeasure
 ...
 shell  8750 217  10640   740   00000000 b6f28340 R ps
-各列含义：
-列名 含义
----------
-USER 所属用户
-PID  进程ID
-PPID 父进程ID
-NAME 进程名
 
-查看实时资源占用情况
-    命令格式：
+各列含义：
+
+列名   | 含义
+-------|----
+`USER` | 所属用户
+`PID`  | 进程`ID`
+`PPID` | 父进程`ID`
+`NAME` | 进程名
+
+### 查看实时资源占用情况
+
+&emsp;&emsp;命令格式：
+
+``` bash
 adb shell top
+```
+
 输出示例：
+
+``` bash
 User 0%, System 6%, IOW 0%, IRQ 0%
 User 3 + Nice 0 + Sys 21 + Idle 280 + IOW 0 + IRQ 0 + SIRQ 3 = 307
 
@@ -1507,19 +1525,23 @@ User 3 + Nice 0 + Sys 21 + Idle 280 + IOW 0 + IRQ 0 + SIRQ 3 = 307
  7779  2   0% S    19 1538748K  48896K  bg u0_a71   com.sohu.inputmethod.sogou:classic
  7963  0   0% S    18 1561916K  59568K  fg u0_a58   org.mazhuang.boottimemeasure
 ...
+```
+
 各列含义：
-列名 含义
----------
-PID  进程ID
-PR   优先级
-CPU% 当前瞬间占用CPU百分比
-S    进程状态(R=运行，S=睡眠，T=跟踪/停止，Z=僵尸进程)
-#THR 线程数
-VSS  “Virtual Set Size”虚拟耗用内存(包含共享库占用的内存)
-RSS  “Resident Set Size”实际使用物理内存(包含共享库占用的内存)
-PCY  调度策略优先级，SP_BACKGROUND/SPFOREGROUND
-UID  进程所有者的用户ID
-NAME 进程名
+
+列名   | 含义
+-------|----
+`PID`  | 进程`ID`
+`PR`   | 优先级
+`CPU%` | 当前瞬间占用`CPU`百分比
+`S`    | 进程状态(`R`是运行，`S`是睡眠，`T`是跟踪或停止，`Z`是僵尸进程)
+`#THR` | 线程数
+`VSS`  | `Virtual Set Size`虚拟耗用内存(包含共享库占用的内存)
+`RSS`  | `Resident Set Size`实际使用物理内存(包含共享库占用的内存)
+`PCY`  | 调度策略优先级，例如`SP_BACKGROUND`、`SPFOREGROUND`
+`UID`  | 进程所有者的用户`ID`
+`NAME` | 进程名
+
 top命令还支持一些命令行参数，详细用法如下：
 Usage: top [ -m max_procs ] [ -n iterations ] [ -d delay ] [ -s sort_column ] [ -t ] [ -h ]
     -m num  最多显示多少个进程
