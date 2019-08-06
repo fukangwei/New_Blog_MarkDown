@@ -1200,64 +1200,104 @@ adb shell wm overscan reset
 adb shell settings put global adb_enabled 0
 ```
 
-如果想要恢复调试模式，用命令无法恢复，毕竟关闭了USB调试，adb就连接不上Android设备了。可以在设备上手动恢复：“设置”->“开发者选项”->“Android调试”。
+如果想要恢复调试模式，用命令无法恢复，毕竟关闭了`USB`调试，`adb`就连接不上`Android`设备了。可以在设备上手动恢复：`设置 -> 开发者选项 -> Android调试`。
 
-允许/禁止访问非“SDK API”
-    允许访问非“SDK API”：
+### 允许/禁止访问非SDK API
+
+&emsp;&emsp;允许访问非`SDK API`：
+
+``` bash
 adb shell settings put global hidden_api_policy_pre_p_apps 1
 adb shell settings put global hidden_api_policy_p_apps 1
-禁止访问非“SDK API”：
+```
+
+禁止访问非`SDK API`：
+
+``` bash
 adb shell settings delete global hidden_api_policy_pre_p_apps
 adb shell settings delete global hidden_api_policy_p_apps
-不需要设备获得Root权限。命令最后的数字的含义：
-值	含义
-0	禁止检测非SDK接口的调用。该情况下，日志记录功能被禁用，并且令“strict mode API”，即detectNonSdkApiUsage无效，不推荐。
-1	仅警告 -- 允许访问所有非SDK接口，但保留日志中的警告信息，可继续使用“strick mode API”。
-2	禁止调用深灰名单和黑名单中的接口。
-3	禁止调用黑名单中的接口，但允许调用深灰名单中的接口。
+```
 
-状态栏和导航栏的显示隐藏
-    本节所说的相关设置对应Cyanogenmod里的“扩展桌面”。命令格式：
+不需要设备获得`Root`权限。命令最后的数字的含义：
+
+值  | 含义
+----|----
+`0` | 禁止检测非`SDK`接口的调用。该情况下，日志记录功能被禁用，并且令`strict mode API`，即`detectNonSdkApiUsage`无效，不推荐
+`1` | 仅警告，即允许访问所有非`SDK`接口，但保留日志中的警告信息，可继续使用`strick mode API`
+`2` | 禁止调用深灰名单和黑名单中的接口
+`3` | 禁止调用黑名单中的接口，但允许调用深灰名单中的接口
+
+### 状态栏和导航栏的显示隐藏
+
+&emsp;&emsp;本节所说的相关设置对应`Cyanogenmod`里的`扩展桌面`，命令格式如下：
+
+``` bash
 adb shell settings put global policy_control <key-values>
-“<key-values>”可由如下几种键及其对应的值组成，格式为“<key1>=<value1>:<key2>=<value2>”：
-key                   含义
---------------------------
-immersive.full        同时隐藏
-immersive.status      隐藏状态栏
-immersive.navigation  隐藏导航栏
-immersive.preconfirms ?
-这些键对应的值可则如下值用逗号组合：
-value        含义
------------------
-apps         所有应用
-*            所有界面
-packagename  指定应用
--packagename 排除指定应用
-如下命令表示设置在所有界面下都同时隐藏状态栏和导航栏：
-adb shell settings put global policy_control immersive.full=*
-如下命令表示设置在包名为“com.package1”和“com.package2”的应用里隐藏状态栏，在除了包名为“com.package3”的所有应用里隐藏导航栏：
-adb shell settings put global policy_control immersive.status=com.package1,com.package2:immersive.navigation=apps,-com.package3
+```
 
-实用功能
-屏幕截图
-    截图保存到电脑：
+`<key-values>`可由如下几种键及其对应的值组成，格式为`<key1>=<value1>:<key2>=<value2>`：
+
+key                    | 含义
+-----------------------|----
+`immersive.full`       | 同时隐藏
+`immersive.status`     | 隐藏状态栏
+`immersive.navigation` | 隐藏导航栏
+
+这些键对应的值可则如下值用逗号组合：
+
+value          | 含义
+---------------|----
+`apps`         | 所有应用
+`*`            | 所有界面
+`packagename`  | 指定应用
+`-packagename` | 排除指定应用
+
+如下命令表示设置在所有界面下都同时隐藏状态栏和导航栏：
+
+``` bash
+adb shell settings put global policy_control immersive.full=*
+```
+
+如下命令表示设置在包名为`com.package1`和`com.package2`的应用里隐藏状态栏，在除了包名为`com.package3`的所有应用里隐藏导航栏：
+
+``` bash
+adb shell settings put global policy_control immersive.status=com.package1,com.package2:immersive.navigation=apps,-com.package3
+```
+
+### 实用功能
+
+#### 屏幕截图
+
+&emsp;&emsp;截图保存到电脑：
+
+``` bash
 adb exec-out screencap -p > sc.png
-如果adb版本较老，无法使用“exec-out”命令，这时候建议更新adb版本。如果无法更新的话，可以使用以下麻烦一点的办法：
+```
+
+如果`adb`版本较老，无法使用`exec-out`命令，这时候建议更新`adb`版本。如果无法更新的话，可以使用以下麻烦一点的办法：
+
+``` bash
 adb shell screencap -p /sdcard/sc.png  # 先截图保存到设备里
 adb pull /sdcard/sc.png  # 然后将png文件导出到电脑
-可以使用“adb shell screencap -h”查看screencap命令的帮助信息，下面是两个有意义的参数及含义：
-参数          含义
------------------
--p            指定保存文件为png格式
--d display-id 指定截图的显示屏编号(有多显示屏的情况下)
+```
+
+可以使用`adb shell screencap -h`查看`screencap`命令的帮助信息，下面是两个有意义的参数及含义：
+
+参数            | 含义
+----------------|---
+`-p`            | 指定保存文件为`png`格式
+`-d display-id` | 指定截图的显示屏编号(有多显示屏的情况下)
+
 如果指定文件名以“.png”结尾时，可以省略“-p”参数，否则需要使用“-p”参数。如果不指定文件名，截图文件的内容将直接输出到stdout。
 
-录制屏幕
+### 录制屏幕
+
     录制屏幕以“mp4”格式保存到“/sdcard”：
 adb shell screenrecord /sdcard/filename.mp4
 需要停止时，按下“Ctrl-C”，默认录制时间和最长录制时间都是180秒。如果需要导出到电脑：
 adb pull /sdcard/filename.mp4
 可以使用“adb shell screenrecord --help”查看screenrecord命令的帮助信息，下面是常见参数及含义：
+
 参数                 含义
 -------------------------
 --size WIDTHxHEIGHT  视频的尺寸，比如“1280x720”，默认是屏幕分辨率
