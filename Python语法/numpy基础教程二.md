@@ -304,31 +304,54 @@ array([[ 0.,  0.,  1.],
 True
 ```
 
-histogram函数
-    histogram函数用于统计数据的频率分布，其参数为输入数组和bin。如果bins是一个int，它定义了在给定范围(默认为10)中等宽单元格的数量；如果bin是序列，则它定义了块边缘，包括最右边缘，允许非均匀的块宽度。
+### histogram函数
+
+&emsp;&emsp;`histogram`函数用于统计数据的频率分布，其参数为输入数组和`bin`。如果`bin`是一个`int`，它定义了在给定范围(默认为`10`)中等宽单元格的数量；如果`bin`是序列，则它定义了块边缘，包括最右边缘，允许非均匀的块宽度。
+
+``` python
 import numpy as np
 a = np.array([22, 87, 5, 43, 56, 73, 55, 54, 11, 20, 51, 5, 79, 31, 27])
 np.histogram(a, bins=[0, 20, 40, 60, 80, 100])
 hist, bins = np.histogram(a, bins=[0, 20, 40, 60, 80, 100])
 print(hist)
 print(bins)
+```
+
 执行结果：
+
+``` python
 [3 4 5 2 1]
 [  0  20  40  60  80 100]
+```
 
-numpy.interp
-    numpy.interp(x, xp, fp, left=None, right=None, period=None): One-dimensional linear interpolation(线性插值). Returns the one-dimensional piecewise linear interpolant to a function with given values at discrete data-points(New in version 1.10.0). Parameters:
-x : array_like. The x-coordinates of the interpolated values.
-xp : 1-D sequence of floats. The x-coordinates of the data points, must be increasing if argument period is not specified. Otherwise, xp is internally sorted after normalizing the periodic boundaries with xp = xp % period.
-fp : 1-D sequence of float or complex. The y-coordinates of the data points, same length as xp.
-left : optional float or complex corresponding to fp. Value to return for x < xp[0], default is fp[0].
-right : optional float or complex corresponding to fp. Value to return for x > xp[-1], default is fp[-1].
-period : None or float, optional. A period for the x-coordinates. This parameter allows the proper interpolation of angular x-coordinates. Parameters left and right are ignored if period is specified.
-    Returns: y : float or complex (corresponding to fp) or ndarray. The interpolated values, same shape as x.
-    Raises: ValueError: If xp and fp have different length If xp or fp are not 1-D sequences If period == 0
-    Notes: Does not check that the x-coordinate sequence xp is increasing. If xp is not increasing, the results are nonsense. A simple check for increasing is:
+### numpy.interp
+
+&emsp;&emsp;`numpy.interp(x, xp, fp, left=None, right=None, period=None)`: `One-dimensional` linear interpolation(线性插值). Returns the `one-dimensional` piecewise linear interpolant to a function with given values at discrete `data-points`. Parameters:
+
+- `x`: array_like. The x-coordinates of the interpolated values.
+- `xp`: 1-D sequence of floats. The x-coordinates of the data points, must be increasing if argument period is not specified. Otherwise, xp is internally sorted after normalizing the periodic boundaries with xp = xp % period.
+- `fp`: 1-D sequence of float or complex. The y-coordinates of the data points, same length as xp.
+- `left`: optional float or complex corresponding to fp. Value to return for x < xp[0], default is fp[0].
+- `right`: optional float or complex corresponding to fp. Value to return for x > xp[-1], default is fp[-1].
+- `period`: None or float, optional. A period for the x-coordinates. This parameter allows the proper interpolation of angular x-coordinates. Parameters left and right are ignored if period is specified.
+
+&emsp;&emsp;Returns:
+
+- `y`: float or complex (corresponding to fp) or ndarray. The interpolated values, same shape as x.
+
+&emsp;&emsp;Raises:
+
+- `ValueError`: If xp and fp have different length If xp or fp are not 1-D sequences If period == 0
+
+&emsp;&emsp;Notes: Does not check that the x-coordinate sequence xp is increasing. If xp is not increasing, the results are nonsense. A simple check for increasing is:
+
+``` python
 np.all(np.diff(xp) > 0)
+```
+
 Examples:
+
+``` python
 >>> xp = [1, 2, 3]
 >>> fp = [3, 2, 0]
 >>> np.interp(2.5, xp, fp)
@@ -349,10 +372,13 @@ Plot an interpolant to the sine function:
 >>> plt.plot(xvals, yinterp, '-x')
 [<matplotlib.lines.Line2D object at 0x...>]
 >>> plt.show()
+```
 
+### ones_like(zeros_like)
 
-ones_like(zeros_like)
-    该函数返回一个用“1”填充的，和输入数组形状和类型一致的数组：
+&emsp;&emsp;该函数返回一个用`1`填充的，和输入数组形状和类型一致的数组：
+
+``` python
 >>> x = np.arange(6)
 >>> x = x.reshape((2, 3))
 >>> x
@@ -367,19 +393,29 @@ array([[1, 1, 1],
 array([ 0.,  1.,  2.])
 >>> np.ones_like(y)
 array([ 1.,  1.,  1.])
-同理，zeros_like返回一个用“0”填充的，和输入数组形状和类型一样的数组。
+```
 
-numpy.ceil
-    numpy.ceil(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'ceil'>: Return the ceiling of the input, element-wise. The ceil of the scalar x is the smallest integer i, such that i >= x. Parameters:
+同理，`zeros_like`返回一个用`0`填充的，和输入数组形状和类型一样的数组。
+
+### numpy.ceil
+
+&emsp;&emsp;`numpy.ceil(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'ceil'>`: Return the ceiling of the input, element-wise. The ceil of the scalar x is the smallest integer i, such that i >= x. Parameters:
+
 x : array_like. Input data.
 out : ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
 where : array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
-**kwargs : For other keyword-only arguments, see the ufunc docs.
-    Returns: y : ndarray or scalar. The ceiling of each element in x, with float dtype.
-    Examples:
+
+&emsp;&emsp;Returns:
+
+- `y`: ndarray or scalar. The ceiling of each element in x, with float dtype.
+
+&emsp;&emsp;Examples:
+
+``` python
 >>> a = np.array([-1.7, -1.5, -0.2, 0.2, 1.5, 1.7, 2.0])
 >>> np.ceil(a)
 array([-1., -1., -0.,  1.,  2.,  2.,  2.])
+```
 
 numpy.load
     numpy.load(file, mmap_mode=None, allow_pickle=True, fix_imports=True, encoding='ASCII'): Load arrays or pickled objects from .npy, .npz or pickled files. Parameters:
