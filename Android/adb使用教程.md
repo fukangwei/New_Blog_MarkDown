@@ -961,11 +961,21 @@ inet addr:10.130.245.230  Mask:255.255.255.252
 inet addr:127.0.0.1  Mask:255.0.0.0
 ```
 
-那么“10.130.245.230”就是设备IP地址。在有的设备上，这个命令没有输出，如果设备连着WiFi，可以使用如下命令来查看局域网IP：
+那么`10.130.245.230`就是设备`IP`地址。在有的设备上，这个命令没有输出，如果设备连着`WiFi`，可以使用如下命令来查看局域网`IP`：
+
+``` bash
 adb shell ifconfig wlan0
+```
+
 输出示例：
+
+``` bash
 wlan0: ip 10.129.160.99 mask 255.255.240.0 flags [up broadcast running multicast]
+```
+
 或者：
+
+``` bash
 wlan0  Link encap:UNSPEC
        inet addr:10.129.168.57  Bcast:10.129.175.255  Mask:255.255.240.0
        inet6 addr: fe80::66cc:2eff:fe68:b6b6/64 Scope: Link
@@ -974,9 +984,17 @@ wlan0  Link encap:UNSPEC
        TX packets:68215 errors:0 dropped:0 overruns:0 carrier:0
        collisions:0 txqueuelen:3000
        RX bytes:116266821 TX bytes:8311736
+```
+
 如果以上命令仍然不能得到期望的信息，那么可以试试以下命令(部分系统版本里可用)：
+
+``` bash
 adb shell netcfg
+```
+
 输出示例：
+
+``` bash
 wlan0      UP   10.129.160.99/20 0x00001043 f8:a9:d0:17:42:4d
 lo         UP       127.0.0.1/8  0x00000049 00:00:00:00:00:00
 p2p0       UP         0.0.0.0/0  0x00001003 fa:a9:d0:17:42:4d
@@ -998,19 +1016,37 @@ rev_rmnet7 DOWN       0.0.0.0/0  0x00001002 7a:d9:f6:81:40:5a
 rev_rmnet8 DOWN       0.0.0.0/0  0x00001002 4e:e2:a9:bb:d0:1b
 rev_rmnet0 DOWN       0.0.0.0/0  0x00001002 fe:65:d0:ca:82:a9
 rev_rmnet1 DOWN       0.0.0.0/0  0x00001002 da:d8:e8:4f:2e:fe
-可以看到网络连接名称、启用状态、IP地址和Mac地址等信息。
+```
 
-Mac地址
-    命令格式：
+可以看到网络连接名称、启用状态、`IP`地址和`MAC`地址等信息。
+
+### MAC地址
+
+&emsp;&emsp;命令格式：
+
+``` bash
 adb shell cat /sys/class/net/wlan0/address
-输出示例：
-f8:a9:d0:17:42:4d
-这查看的是局域网Mac地址，移动网络或其它连接的信息可以通过前面的小节“IP 地址”里提到的“adb shell netcfg”命令来查看。
+```
 
-CPU信息
-    命令格式：
-adb shell cat /proc/cpuinfo
 输出示例：
+
+``` bash
+f8:a9:d0:17:42:4d
+```
+
+这查看的是局域网`MAC`地址，移动网络或其它连接的信息可以通过前面的小节`IP地址`里提到的`adb shell netcfg`命令来查看。
+
+### CPU信息
+
+&emsp;&emsp;命令格式：
+
+``` bash
+adb shell cat /proc/cpuinfo
+```
+
+输出示例：
+
+``` bash
 Processor       : ARMv7 Processor rev 0 (v7l)
 processor       : 0
 BogoMIPS        : 38.40
@@ -1029,12 +1065,21 @@ CPU revision    : 0
 Hardware        : Qualcomm MSM 8974 HAMMERHEAD (Flattened Device Tree)
 Revision        : 000b
 Serial          : 0000000000000000
-这是“Nexus 5”的CPU信息，我们从输出里可以看到使用的硬件是“Qualcomm MSM 8974”，processor的编号是0到3，所以它是四核的，采用的架构是”ARMv7 Processor rev 0 (v71)“。
+```
 
-内存信息
-    命令格式：
+这是`Nexus 5`的`CPU`信息，我们从输出里可以看到使用的硬件是`Qualcomm MSM 8974`，`processor`的编号是`0`到`3`，所以它是`4`核的，采用的架构是`ARMv7 Processor rev 0 (v71)`。
+
+### 内存信息
+
+&emsp;&emsp;命令格式：
+
+``` bash
 adb shell cat /proc/meminfo
+```
+
 输出示例：
+
+``` bash
 MemTotal:        1027424 kB
 MemFree:          486564 kB
 Buffers:           15224 kB
@@ -1072,56 +1117,89 @@ Committed_AS:   13520632 kB
 VmallocTotal:     385024 kB
 VmallocUsed:       61004 kB
 VmallocChunk:     209668 kB
-其中，MemTotal就是设备的总内存，MemFree是当前空闲内存。
+```
 
-更多硬件与系统属性
-    设备的更多硬件与系统属性可以通过如下命令查看：
+其中，`MemTotal`就是设备的总内存，`MemFree`是当前空闲内存。
+
+### 更多硬件与系统属性
+
+&emsp;&emsp;设备的更多硬件与系统属性可以通过如下命令查看：
+
+``` bash
 adb shell cat /system/build.prop
-这会输出很多信息，包括前面提到的“型号”和“Android 系统版本”等。
-    输出里还包括一些其它有用的信息，它们也可通过“adb shell getprop <属性名>”命令单独查看：
-属性名                          含义
------------------------------------
-ro.build.version.sdk            SDK版本
-ro.build.version.release        Android系统版本
-ro.build.version.security_patch Android安全补丁程序级别
-ro.product.model                型号
-ro.product.brand                品牌
-ro.product.name                 设备名
-ro.product.board                处理器型号
-ro.product.cpu.abilist          CPU支持的abi列表[节注一]
-persist.sys.isUsbOtgEnabled     是否支持OTG
-dalvik.vm.heapsize              每个应用程序的内存上限
-ro.sf.lcd_density               屏幕密度
-节注一：一些小厂定制的ROM可能修改过CPU支持的abi列表的属性名，如果用“ro.product.cpu.abilist”属性名查找不到，可以这样试试：
-adb shell cat /system/build.prop | grep ro.product.cpu.abi
-示例输出：
-ro.product.cpu.abi=armeabi-v7a
-ro.product.cpu.abi2=armeabi
+```
 
-修改设置
-    修改设置之后，运行恢复命令有可能显示仍然不太正常，可以运行“adb reboot”重启设备，或手动重启。修改设置的原理主要是通过settings命令修改“/data/data/com.android.providers.settings/databases/settings.db”里存放的设置值。
+这会输出很多信息，包括前面提到的`型号`和`Android系统版本`等。
+&emsp;&emsp;输出里还包括一些其它有用的信息，它们也可通过`adb shell getprop <属性名>`命令单独查看：
 
-分辨率
-    命令格式：
+属性名                            | 含义
+----------------------------------|---
+`ro.build.version.sdk`            | `SDK`版本
+`ro.build.version.release`        | `Android`系统版本
+`ro.build.version.security_patch` | `Android`安全补丁程序级别
+`ro.product.model`                | 型号
+`ro.product.brand`                | 品牌
+`ro.product.name`                 | 设备名
+`ro.product.board`                | 处理器型号
+`ro.product.cpu.abilist`          | `CPU`支持的`abi`列表
+`persist.sys.isUsbOtgEnabled`     | 是否支持`OTG`
+`dalvik.vm.heapsize`              | 每个应用程序的内存上限
+`ro.sf.lcd_density`               | 屏幕密度
+
+### 修改设置
+
+&emsp;&emsp;修改设置之后，运行恢复命令有可能显示仍然不太正常，可以运行`adb reboot`重启设备，或手动重启。修改设置的原理主要是通过`settings`命令修改`/data/data/com.android.providers.settings/databases/settings.db`里存放的设置值。
+
+### 分辨率
+
+&emsp;&emsp;命令格式：
+
+``` bash
 adb shell wm size 480x1024
-表示将分辨率修改为“480px * 1024px”。恢复原分辨率命令：
+```
+
+表示将分辨率修改为`480px * 1024px`。恢复原分辨率命令：
+
+``` bash
 adb shell wm size reset
+```
 
-屏幕密度
-    命令格式：
+### 屏幕密度
+
+&emsp;&emsp;命令格式：
+
+``` bash
 adb shell wm density 160
-表示将屏幕密度修改为160dpi。恢复原屏幕密度命令：
+```
+
+表示将屏幕密度修改为`160dpi`。恢复原屏幕密度命令：
+
+``` bash
 adb shell wm density reset
+```
 
-显示区域
-    命令格式：
+### 显示区域
+
+&emsp;&emsp;命令格式：
+
+``` bash
 adb shell wm overscan 0,0,0,200
-四个数字分别表示距离左、上、右、下边缘的留白像素，以上命令表示将屏幕底部200px留白。恢复原显示区域命令：
-adb shell wm overscan reset
+```
 
-关闭USB调试模式
-    命令格式：
+四个数字分别表示距离左、上、右、下边缘的留白像素，以上命令表示将屏幕底部`200px`留白。恢复原显示区域命令：
+
+``` bash
+adb shell wm overscan reset
+```
+
+### 关闭USB调试模式
+
+&emsp;&emsp;命令格式：
+
+``` bash
 adb shell settings put global adb_enabled 0
+```
+
 如果想要恢复调试模式，用命令无法恢复，毕竟关闭了USB调试，adb就连接不上Android设备了。可以在设备上手动恢复：“设置”->“开发者选项”->“Android调试”。
 
 允许/禁止访问非“SDK API”
