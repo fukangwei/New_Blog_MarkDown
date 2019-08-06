@@ -59,7 +59,7 @@ Is equivalent to `np.delete(arr, [0,2,4], axis=0)`, but allows further use of ma
 &emsp;&emsp;Examples:
 
 ``` python
->>> arr = np.array([[1,2,3,4], [5,6,7,8], [9,10,11,12]])
+>>> arr = np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])
 >>> arr
 array([[ 1,  2,  3,  4],
        [ 5,  6,  7,  8],
@@ -77,15 +77,23 @@ array([ 1,  3,  5,  7,  8,  9, 10, 11, 12])
 
 ### numpy.squeeze
 
-&emsp;&emsp;numpy.squeeze(a, axis=None): Remove single-dimensional entries from the shape of an array. Parameters:
+&emsp;&emsp;`numpy.squeeze(a, axis=None)`: Remove `single-dimensional` entries from the shape of an array. Parameters:
 
-a : array_like. Input data.
-axis : None or int or tuple of ints, optional.
+- `a`: array_like. Input data.
+- `axis`: None or int or tuple of ints, optional.
 
-Selects a subset of the single-dimensional entries in the shape. If an axis is selected with shape entry greater than one, an error is raised.
-    Returns: squeezed : ndarray. The input array, but with all or a subset of the dimensions of length 1 removed. This is always a itself or a view into a.
-    Raises: ValueError. If axis is not None, and an axis being squeezed is not of length 1.
-    Examples:
+Selects a subset of the `single-dimensional` entries in the shape. If an axis is selected with shape entry greater than one, an error is raised.
+&emsp;&emsp;Returns:
+
+- `squeezed`: ndarray. The input array, but with all or a subset of the dimensions of length 1 removed. This is always a itself or a view into a.
+
+&emsp;&emsp;Raises:
+
+- `ValueError`. If axis is not None, and an axis being squeezed is not of length 1.
+
+&emsp;&emsp;Examples:
+
+``` python
 >>> x = np.array([[[0], [1], [2]]])
 >>> x.shape
 (1, 3, 1)
@@ -99,17 +107,26 @@ Traceback (most recent call last):
 ValueError: cannot select an axis to squeeze out which has size not equal to one
 >>> np.squeeze(x, axis=2).shape
 (1, 3)
+```
 
-numpy.maximum(与numpy.minimum相反)
-    numpy.maximum(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'maximum'>: Element-wise maximum of array elements.
-    Compare two arrays and returns a new array containing the element-wise maxima. If one of the elements being compared is a NaN, then that element is returned. If both elements are NaNs then the first is returned. The latter distinction is important for complex NaNs, which are defined as at least one of the real or imaginary parts being a NaN. The net effect is that NaNs are propagated. Parameters:
-x1, x2 : array_like. The arrays holding the elements to be compared. They must have the same shape, or shapes that can be broadcast to a single shape.
-out : ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
-where : array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
-**kwargs: For other keyword-only arguments, see the ufunc docs.
-    Returns: y : ndarray or scalar. The maximum of x1 and x2, element-wise. Returns scalar if both x1 and x2 are scalars.
-    Notes: The maximum is equivalent to np.where(x1 >= x2, x1, x2) when neither x1 nor x2 are nans, but it is faster and does proper broadcasting.
-    Examples:
+### numpy.maximum(与numpy.minimum相反)
+
+&emsp;&emsp;`numpy.maximum(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'maximum'>`: `Element-wise` maximum of array elements.
+&emsp;&emsp;Compare two arrays and returns a new array containing the element-wise maxima. If one of the elements being compared is a `NaN`, then that element is returned. If both elements are NaNs then the first is returned. The latter distinction is important for complex NaNs, which are defined as at least one of the real or imaginary parts being a `NaN`. The net effect is that NaNs are propagated. Parameters:
+
+- `x1, x2`: array_like. The arrays holding the elements to be compared. They must have the same shape, or shapes that can be broadcast to a single shape.
+- `out`: ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `where`: array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
+- `**kwargs`: For other keyword-only arguments, see the ufunc docs.
+
+&emsp;&emsp;Returns:
+
+- `y`: ndarray or scalar. The maximum of `x1` and `x2`, element-wise. Returns scalar if both `x1` and `x2` are scalars.
+
+&emsp;&emsp;Notes: The maximum is equivalent to `np.where(x1 >= x2, x1, x2)` when neither `x1` nor `x2` are nans, but it is faster and does proper broadcasting.
+&emsp;&emsp;Examples:
+
+``` python
 >>> np.maximum([2, 3, 4], [1, 5, 2])
 array([2, 5, 4])
 >>> np.maximum(np.eye(2), [0.5, 2])  # broadcasting
@@ -119,45 +136,67 @@ array([[ 1. ,  2. ],
 array([ NaN,  NaN,  NaN])
 >>> np.maximum(np.Inf, 1)
 inf
+```
 
-numpy.logical_not
-    numpy.logical_not(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'logical_not'>. Compute the truth value of NOT x element-wise. Parameters:
-x : array_like. Logical NOT is applied to the elements of x.
-out : ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
-where : array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
-**kwargs: For other keyword-only arguments, see the ufunc docs.
-    Returns: y : bool or ndarray of bool. Boolean result with the same shape as x of the NOT operation on elements of x.
-    Examples:
+### numpy.logical_not
+
+&emsp;&emsp;`numpy.logical_not(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'logical_not'>`. Compute the truth value of NOT x element-wise. Parameters:
+
+- `x`: array_like. Logical `NOT` is applied to the elements of `x`.
+- `out`: ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a `freshly-allocated` array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `where`: array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
+- `**kwargs`: For other `keyword-only` arguments, see the ufunc docs.
+
+&emsp;&emsp;Returns:
+
+- `y`: bool or ndarray of bool. Boolean result with the same shape as `x` of the `NOT` operation on elements of `x`.
+
+&emsp;&emsp;Examples:
+
+``` python
 >>> np.logical_not(3)
 False
 >>> np.logical_not([True, False, 0, 1])
 array([False,  True,  True, False])
 >>> x = np.arange(5)
->>> np.logical_not(x<3)
+>>> np.logical_not(x < 3)
 array([False, False, False,  True,  True])
+```
 
-numpy.logical_and
-    numpy.logical_and(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'logical_and'>. Compute the truth value of x1 AND x2 element-wise. Parameters:
-x1, x2 : array_like. Input arrays. x1 and x2 must be of the same shape.
-out : ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
-where : array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
-**kwargs : For other keyword-only arguments, see the ufunc docs.
-    Returns: y : ndarray or bool. Boolean result with the same shape as x1 and x2 of the logical AND operation on corresponding elements of x1 and x2.
-    Examples:
+### numpy.logical_and
+
+&emsp;&emsp;`numpy.logical_and(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'logical_and'>`. Compute the truth value of x1 AND x2 element-wise. Parameters:
+
+- `x1, x2`: array_like. Input arrays. `x1` and `x2` must be of the same shape.
+- `out`: ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `where`: array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
+- `**kwargs`: For other `keyword-only` arguments, see the `ufunc` docs.
+
+&emsp;&emsp;Returns:
+
+- `y`: ndarray or bool. Boolean result with the same shape as `x1` and `x2` of the logical AND operation on corresponding elements of `x1` and `x2`.
+
+&emsp;&emsp;Examples:
+
+``` python
 >>> np.logical_and(True, False)
 False
 >>> np.logical_and([True, False], [False, False])
 array([False, False])
 >>> x = np.arange(5)
->>> np.logical_and(x>1, x<4)
+>>> np.logical_and(x > 1, x < 4)
 array([False, False,  True,  True, False])
+```
 
-numpy.less
-    numpy.less(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'less'>. Return the truth value of (x1 < x2) element-wise. Parameters:
+### numpy.less
+
+&emsp;&emsp;`numpy.less(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'less'>`. Return the truth value of (`x1 < x2`) element-wise. Parameters:
+
 x1, x2 : array_like. Input arrays. If x1.shape != x2.shape, they must be broadcastable to a common shape (which may be the shape of one or the other).
 out : ndarray, None, or tuple of ndarray and None, optional.A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
 where : array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
 **kwargs. For other keyword-only arguments, see the ufunc docs.
+
     Returns: out : bool or ndarray of bool. Array of bools, or a single bool if x1 and x2 are scalars.
     Examples:
 >>> np.less([1, 2], [2, 2])
