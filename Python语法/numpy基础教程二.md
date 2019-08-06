@@ -510,42 +510,69 @@ array([[1, 2, 3, 3, 2, 1],
 array([[ 0,  1,  8, 27, 16,  5],
        [ 0,  1,  8, 27, 16,  5]])
 
-numpy.fix
-    numpy.fix(x, out=None, **kwargs): Round to nearest integer towards zero. Round an array of floats element-wise to nearest integer towards zero. The rounded values are returned as floats. Parameters:
-x : array_like. An array of floats to be rounded.
-y : ndarray, optional. Output array.
-    Returns: out : ndarray of floats. The array of rounded numbers.
-    Examples:
+### numpy.fix
+
+&emsp;&emsp;`numpy.fix(x, out=None, **kwargs)`: Round to nearest integer towards zero. Round an array of floats `element-wise` to nearest integer towards zero. The rounded values are returned as floats. Parameters:
+
+- `x`: array_like. An array of floats to be rounded.
+- `y`: ndarray, optional. Output array.
+
+&emsp;&emsp;Returns:
+
+- `out`: ndarray of floats. The array of rounded numbers.
+
+&emsp;&emsp;Examples:
+
+``` python
 >>> np.fix(3.14)
 3.0
 >>> np.fix(3)
 3.0
 >>> np.fix([2.1, 2.9, -2.1, -2.9])
 array([ 2.,  2., -2., -2.])
+```
 
-numpy.transpose(矩阵转置)
-    numpy.transpose(a, axes=None): Permute the dimensions of an array. Parameters:
-a : array_like. Input array.
-axes : list of ints, optional. By default, reverse the dimensions, otherwise permute the axes according to the values given.
-    Returns: p : ndarray. a with its axes permuted. A view is returned whenever possible.
-    Notes: Use transpose(a, argsort(axes)) to invert the transposition of tensors when using the axes keyword argument. Transposing a 1-D array returns an unchanged view of the original array.
-    Examples:
+### numpy.transpose(矩阵转置)
+
+&emsp;&emsp;`numpy.transpose(a, axes=None)`: Permute the dimensions of an array. Parameters:
+
+- `a`: array_like. Input array.
+- `axes`: list of ints, optional. By default, reverse the dimensions, otherwise permute the axes according to the values given.
+
+&emsp;&emsp;Returns:
+
+- `p`: ndarray. a with its axes permuted. A view is returned whenever possible.
+
+&emsp;&emsp;Notes: Use transpose(a, argsort(axes)) to invert the transposition of tensors when using the axes keyword argument. Transposing a `1-D` array returns an unchanged view of the original array.
+&emsp;&emsp;Examples:
+
+``` python
 >>> x = np.arange(4).reshape((2,2))
 >>> x
 array([[0, 1],
-      [2, 3]])
+       [2, 3]])
 >>> np.transpose(x)
 array([[0, 2],
        [1, 3]])
 >>> x = np.ones((1, 2, 3))
 >>> np.transpose(x, (1, 0, 2)).shape
 (2, 1, 3)
+```
 
-numpy.argwhere
-    numpy.argwhere(a): Find the indices of array elements that are non-zero, grouped by element. Parameters: a : array_like. Input data.
-    Returns: index_array : ndarray. Indices of elements that are non-zero. Indices are grouped by element.
-    Notes: np.argwhere(a) is the same as np.transpose(np.nonzero(a)). The output of argwhere is not suitable for indexing arrays. For this purpose use nonzero(a) instead.
-    Examples:
+### numpy.argwhere
+
+&emsp;&emsp;`numpy.argwhere(a)`: Find the indices of array elements that are non-zero, grouped by element. Parameters:
+
+- `a`: array_like. Input data.
+
+&emsp;&emsp;Returns:
+
+- `index_array`: ndarray. Indices of elements that are non-zero. Indices are grouped by element.
+
+&emsp;&emsp;Notes: `np.argwhere(a)` is the same as `np.transpose(np.nonzero(a))`. The output of argwhere is not suitable for indexing arrays. For this purpose use `nonzero(a)` instead.
+&emsp;&emsp;Examples:
+
+``` python
 >>> x = np.arange(6).reshape(2,3)
 >>> x
 array([[0, 1, 2],
@@ -555,6 +582,7 @@ array([[0, 2],
        [1, 0],
        [1, 1],
        [1, 2]])
+```
 
 numpy.prod
     numpy.prod(a, axis=None, dtype=None, out=None, keepdims=<class 'numpy._globals._NoValue'>): Return the product(乘积) of array elements over a given axis. Parameters:
