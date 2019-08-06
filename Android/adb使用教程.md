@@ -606,38 +606,54 @@ adb shell input text hello
 
 现在`hello`出现在文本框了。
 
-查看日志
-    Android系统的日志分为两部分，底层的Linux内核日志输出到“/proc/kmsg”，Android的日志输出到“/dev/log”。
+### 查看日志
 
-Android日志
-    命令格式：
+&emsp;&emsp;`Android`系统的日志分为两部分，底层的`Linux`内核日志输出到`/proc/kmsg`，`Android`的日志输出到`/dev/log`。
+
+### Android日志
+
+&emsp;&emsp;命令格式：
+
+``` bash
 adb logcat [<option>] ... [<filter-spec>] ...
+```
 
 ### 按级别过滤日志
 
-    Android的日志分为如下几个优先级(priority)：
+&emsp;&emsp;`Android`的日志分为如下几个优先级：
 
-V -- Verbose(最低，输出得最多)
-D -- Debug
-I -- Info
-W -- Warning
-E -- Error
-F -- Fatal
-S -- Silent(最高，什么也不输出)
+优先级 | 说明
+------|-----
+`V`   | `Verbose`(最低，输出的信息最多)
+`D`   | `Debug`
+`I`   | `Info`
+`W`   | `Warning`
+`E`   | `Error`
+`F`   | `Fatal`
+`S`   | `Silent`(最高，什么也不输出)
 
-按某级别过滤日志则会将该级别及以上的日志输出，例如如下命令会将Warning、Error、Fatal和Silent日志输出：
+按某级别过滤日志则会将该级别及以上的日志输出，例如如下命令会将`Warning`、`Error`、`Fatal`和`Silent`日志输出：
+
+``` bash
 adb logcat *:W
-注意，在macOS下需要给“*:W”这样以“*”作为tag的参数加双引号，例如“adb logcat "*:W"”，不然会报错“no matches found: *:W”。
+```
 
-按tag和级别过滤日志
-    “<filter-spec>”可以由多个“<tag>[:priority]”组成。如下命令表示输出“tag ActivityManager”的Info以上级别日志，输出“tag MyApp”的Debug以上级别日志，及其它tag的Silent级别日志(即屏蔽其它tag日志)：
+注意，在`macOS`下需要给`*:W`这样以`*`作为`tag`的参数加双引号，例如`adb logcat "*:W"`，不然会报错`no matches found: *:W`。
+
+### 按tag和级别过滤日志
+
+&emsp;&emsp;`<filter-spec>`可以由多个`<tag>[:priority]`组成。如下命令表示输出`tag ActivityManager`的`Info`以上级别日志，输出`tag MyApp`的`Debug`以上级别日志，及其它`tag`的`Silent`级别日志(即屏蔽其它`tag`日志)：
+
+``` bash
 adb logcat ActivityManager:I MyApp:D *:S
+```
 
-日志格式
+### 日志格式
+
     可以用“adb logcat -v <format>”选项指定日志输出格式。日志支持按以下几种“<format>”：
     brief：默认格式，格式如下所示：
 <priority>/<tag>(<pid>): <message>
-示例：
+示例如下：
 D/HeadsetStateMachine(1785): Disconnected process message: 10, size: 0
     process：格式如下所示：
 <priority>(<pid>) <message>
