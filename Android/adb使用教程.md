@@ -568,35 +568,43 @@ adb shell input keyevent 25  # 降低音量
 adb shell input keyevent 164  # 静音
 ```
 
-媒体控制
-    播放/暂停：
-adb shell input keyevent 85
-停止播放：
-adb shell input keyevent 86
-播放下一首：
-adb shell input keyevent 87
-播放上一首：
-adb shell input keyevent 88
-恢复播放：
-adb shell input keyevent 126
-暂停播放：
-adb shell input keyevent 127
+### 媒体控制
 
-点亮/熄灭屏幕
-    点亮屏幕：
-adb shell input keyevent 224
-熄灭屏幕：
-adb shell input keyevent 223
+``` bash
+adb shell input keyevent 85  # 播放/暂停
+adb shell input keyevent 86  # 停止播放
+adb shell input keyevent 87  # 播放下一首
+adb shell input keyevent 88  # 播放上一首
+adb shell input keyevent 126  # 恢复播放
+adb shell input keyevent 127  # 暂停播放
+```
 
-滑动解锁
-    如果锁屏没有密码，是通过滑动手势解锁，那么可以通过“input swipe”来解锁。命令如下所示(参数以机型“Nexus 5”，向上滑动手势解锁举例)：
+### 点亮/熄灭屏幕
+
+``` bash
+adb shell input keyevent 224  # 点亮屏幕
+adb shell input keyevent 223  # 熄灭屏幕
+```
+
+### 滑动解锁
+
+&emsp;&emsp;如果锁屏没有密码，是通过滑动手势解锁，那么可以通过`input swipe`来解锁，命令如下(参数以机型`Nexus 5`，向上滑动手势解锁举例)：
+
+``` bash
 adb shell input swipe 300 1000 300 500
-参数300、1000、300和500分别表示起始点x坐标、起始点y坐标、结束点x坐标和结束点y坐标。
+```
 
-输入文本
-    在焦点处于某文本框时，可以通过input命令来输入文本：
+参数`300`、`1000`、`300`和`500`分别表示起始点`x`坐标、起始点`y`坐标、结束点`x`坐标和结束点`y`坐标。
+
+### 输入文本
+
+&emsp;&emsp;在焦点处于某文本框时，可以通过`input`命令来输入文本：
+
+``` bash
 adb shell input text hello
-现在“hello”出现在文本框了。
+```
+
+现在`hello`出现在文本框了。
 
 查看日志
     Android系统的日志分为两部分，底层的Linux内核日志输出到“/proc/kmsg”，Android的日志输出到“/dev/log”。
@@ -605,8 +613,10 @@ Android日志
     命令格式：
 adb logcat [<option>] ... [<filter-spec>] ...
 
-按级别过滤日志
+### 按级别过滤日志
+
     Android的日志分为如下几个优先级(priority)：
+
 V -- Verbose(最低，输出得最多)
 D -- Debug
 I -- Info
@@ -614,6 +624,7 @@ W -- Warning
 E -- Error
 F -- Fatal
 S -- Silent(最高，什么也不输出)
+
 按某级别过滤日志则会将该级别及以上的日志输出，例如如下命令会将Warning、Error、Fatal和Silent日志输出：
 adb logcat *:W
 注意，在macOS下需要给“*:W”这样以“*”作为tag的参数加双引号，例如“adb logcat "*:W"”，不然会报错“no matches found: *:W”。
