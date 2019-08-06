@@ -192,20 +192,32 @@ array([False, False,  True,  True, False])
 
 &emsp;&emsp;`numpy.less(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'less'>`. Return the truth value of (`x1 < x2`) element-wise. Parameters:
 
-x1, x2 : array_like. Input arrays. If x1.shape != x2.shape, they must be broadcastable to a common shape (which may be the shape of one or the other).
-out : ndarray, None, or tuple of ndarray and None, optional.A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
-where : array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
-**kwargs. For other keyword-only arguments, see the ufunc docs.
+- `x1, x2`: array_like. Input arrays. If `x1.shape != x2.shape`, they must be broadcastable to a common shape (which may be the shape of one or the other).
+- `out`: ndarray, None, or tuple of ndarray and None, optional.A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a `freshly-allocated` array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `where`: array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
 
-    Returns: out : bool or ndarray of bool. Array of bools, or a single bool if x1 and x2 are scalars.
-    Examples:
+&emsp;&emsp;Returns:
+
+- `out`: bool or ndarray of bool. Array of bools, or a single bool if `x1` and `x2` are scalars.
+
+&emsp;&emsp;Examples:
+
+``` python
 >>> np.less([1, 2], [2, 2])
 array([ True, False])
+```
 
-concatenate
-    np.concatenate用于将数组拼接起来，其函数原型如下所示：
+### concatenate
+
+&emsp;&emsp;`np.concatenate`用于将数组拼接起来：
+
+``` python
 concatenate((a1, a2, ...), axis=0)
-参数a1、a2等是需要拼接的矩阵，axis则是拼接的方向。
+```
+
+参数`a1`、`a2`等是需要拼接的矩阵，`axis`则是拼接的方向。
+
+``` python
 >>> a = np.array([[1, 2], [3, 4]])
 >>> b = np.array([[5, 6]])
 >>> np.concatenate((a, b), axis=0)
@@ -215,41 +227,69 @@ array([[1, 2],
 >>> np.concatenate((a, b.T), axis=1)
 array([[1, 2, 5],
        [3, 4, 6]])
+```
 
-numpy.ma.size
-    numpy.ma.size(obj, axis=None): Return the number of elements along a given axis. Parameters:
-a : array_like. Input data.
-axis : int, optional. Axis along which the elements are counted. By default, give the total number of elements.
-    Returns: element_count : int. Number of elements along the specified axis.
-    Examples:
->>> a = np.array([[1,2,3],[4,5,6]])
+### numpy.ma.size
+
+&emsp;&emsp;`numpy.ma.size(obj, axis=None)`: Return the number of elements along a given axis. Parameters:
+
+- `a`: array_like. Input data.
+- `axis`: int, optional. Axis along which the elements are counted. By default, give the total number of elements.
+
+&emsp;&emsp;Returns:
+
+- `element_count`: int. Number of elements along the specified axis.
+
+&emsp;&emsp;Examples:
+
+``` python
+>>> a = np.array([[1, 2, 3], [4, 5, 6]])
 >>> np.size(a)
 6
 >>> np.size(a,1)
 3
 >>> np.size(a,0)
 2
+```
 
-numpy.empty
-    numpy.empty(shape, dtype=float, order='C'): Return a new array of given shape and type, without initializing entries. Parameters:
-shape : int or tuple of int. Shape of the empty array.
-dtype : data-type, optional. Desired output data-type.
-order : {'C', 'F'}, optional. Whether to store multi-dimensional data in row-major (C-style) or column-major (Fortran-style) order in memory.
-    Returns: out : ndarray. Array of uninitialized (arbitrary) data of the given shape, dtype, and order. Object arrays will be initialized to None.
-    Notes: empty, unlike zeros, does not set the array values to zero, and may therefore be marginally faster. On the other hand, it requires the user to manually set all the values in the array, and should be used with caution.
-    Examples:
+### numpy.empty
+
+&emsp;&emsp;`numpy.empty(shape, dtype=float, order='C')`: Return a new array of given shape and type, without initializing entries. Parameters:
+
+- `shape`: int or tuple of int. Shape of the empty array.
+- `dtype`: data-type, optional. Desired output data-type.
+- `order`: {'C', 'F'}, optional. Whether to store multi-dimensional data in `row-major` (`C-style`) or `column-major` (`Fortran-style`) order in memory.
+
+&emsp;&emsp;Returns:
+
+- `out`: ndarray. Array of uninitialized (arbitrary) data of the given shape, dtype, and order. Object arrays will be initialized to None.
+
+&emsp;&emsp;Notes: empty, unlike zeros, does not set the array values to zero, and may therefore be marginally faster. On the other hand, it requires the user to manually set all the values in the array, and should be used with caution.
+&emsp;&emsp;Examples:
+
+``` python
 >>> np.empty([2, 2])
 array([[ -9.74499359e+001,   6.69583040e-309],
        [  2.13182611e-314,   3.06959433e-309]])  # random
 >>> np.empty([2, 2], dtype=int)
 array([[-1073741821, -1067949133],
        [  496041986,    19249760]])  # random
+```
 
-numpy.fliplr
-    numpy.fliplr(m): Flip array in the left/right direction. Flip the entries in each row in the left/right direction. Columns are preserved, but appear in a different order than before. Parameters: m : array_like. Input array, must be at least 2-D.
-    Returns: f : ndarray. A view of m with the columns reversed. Since a view is returned, this operation is O(1).
-    Notes: Equivalent to m[:,::-1]. Requires the array to be at least 2-D.
-    Examples:
+### numpy.fliplr
+
+&emsp;&emsp;`numpy.fliplr(m)`: Flip array in the `left/right` direction. Flip the entries in each row in the left/right direction. Columns are preserved, but appear in a different order than before. Parameters:
+
+- `m`: array_like. Input array, must be at least `2-D`.
+
+&emsp;&emsp;Returns:
+
+- `f`: ndarray. A view of m with the columns reversed. Since a view is returned, this operation is `O(1)`.
+
+&emsp;&emsp;Notes: Equivalent to `m[:, ::-1]`. Requires the array to be at least `2-D`.
+&emsp;&emsp;Examples:
+
+``` python
 >>> A = np.diag([1.,2.,3.])
 >>> A
 array([[ 1.,  0.,  0.],
@@ -262,6 +302,7 @@ array([[ 0.,  0.,  1.],
 >>> A = np.random.randn(2,3,5)
 >>> np.all(np.fliplr(A) == A[:,::-1,...])
 True
+```
 
 histogram函数
     histogram函数用于统计数据的频率分布，其参数为输入数组和bin。如果bins是一个int，它定义了在给定范围(默认为10)中等宽单元格的数量；如果bin是序列，则它定义了块边缘，包括最右边缘，允许非均匀的块宽度。
