@@ -1288,31 +1288,50 @@ adb pull /sdcard/sc.png  # 然后将png文件导出到电脑
 `-p`            | 指定保存文件为`png`格式
 `-d display-id` | 指定截图的显示屏编号(有多显示屏的情况下)
 
-如果指定文件名以“.png”结尾时，可以省略“-p”参数，否则需要使用“-p”参数。如果不指定文件名，截图文件的内容将直接输出到stdout。
+如果指定文件名以`.png`结尾时，可以省略`-p`参数，否则需要使用`-p`参数。如果不指定文件名，截图文件的内容将直接输出到`stdout`。
 
 ### 录制屏幕
 
-    录制屏幕以“mp4”格式保存到“/sdcard”：
+&emsp;&emsp;录制屏幕以`mp4`格式保存到`/sdcard`：
+
+``` bash
 adb shell screenrecord /sdcard/filename.mp4
-需要停止时，按下“Ctrl-C”，默认录制时间和最长录制时间都是180秒。如果需要导出到电脑：
+```
+
+需要停止时，按下`Ctrl-C`，默认录制时间和最长录制时间都是`180`秒。如果需要导出到电脑，则使用如下命令：
+
+``` bash
 adb pull /sdcard/filename.mp4
-可以使用“adb shell screenrecord --help”查看screenrecord命令的帮助信息，下面是常见参数及含义：
+```
 
-参数                 含义
--------------------------
---size WIDTHxHEIGHT  视频的尺寸，比如“1280x720”，默认是屏幕分辨率
---bit-rate RATE      视频的比特率，默认是4Mbps
---time-limit TIME    录制时长，单位秒
---verbose            输出更多信息
+可以使用`adb shell screenrecord --help`查看`screenrecord`命令的帮助信息，下面是常见参数及含义：
 
-重新挂载system分区为可写
-    该步骤需要root权限。“/system”分区默认挂载为只读，但有些操作比如给Android系统添加命令、删除自带应用等需要对“/system”进行写操作，所以需要重新挂载它为可读写。
-    进入shell，并切换到root用户权限：
+参数                  | 含义
+----------------------|----
+`--size WIDTHxHEIGHT` | 视频的尺寸，比如`1280 x 720`，默认是屏幕分辨率
+`--bit-rate RATE`     | 视频的比特率，默认是`4Mbps`
+`--time-limit TIME`   | 录制时长，单位是秒
+`--verbose`           | 输出更多信息
+
+### 重新挂载system分区为可写
+
+&emsp;&emsp;该步骤需要`root`权限。`/system`分区默认挂载为只读，但有些操作比如给`Android`系统添加命令、删除自带应用等需要对`/system`进行写操作，所以需要重新挂载它为可读写。
+&emsp;&emsp;进入`shell`，并切换到`root`用户权限：
+
+``` bash
 adb shell
 su
+```
+
 查看当前分区挂载情况，使用如下命令：
+
+``` bash
 mount
+```
+
 输出示例：
+
+``` bash
 rootfs / rootfs ro,relatime 0 0
 tmpfs /dev tmpfs rw,seclabel,nosuid,relatime,mode=755 0 0
 devpts /dev/pts devpts rw,seclabel,relatime,mode=600 0 0
@@ -1332,25 +1351,36 @@ none /sys/fs/cgroup tmpfs rw,seclabel,relatime,mode=750,gid=1000 0 0
 none /sys/fs/cgroup/memory cgroup rw,relatime,memory 0 0
 none /sys/fs/cgroup/freezer cgroup rw,relatime,freezer 0 0
 /dev/block/platform/msm_sdcc.1/by-name/system /system ext4 ro,seclabel,relatime,data=ordered 0 0
-/dev/block/platform/msm_sdcc.1/by-name/userdata /data ext4 rw,seclabel,nosuid,nodev,relatime,noauto_da_alloc,data=ordered 0 0
-/dev/block/platform/msm_sdcc.1/by-name/cache /cache ext4 rw,seclabel,nosuid,nodev,relatime,data=ordered 0 0
-/dev/block/platform/msm_sdcc.1/by-name/persist /persist ext4 rw,seclabel,nosuid,nodev,relatime,data=ordered 0 0
-/dev/block/platform/msm_sdcc.1/by-name/modem /firmware vfat
 ...
-/dev/fuse /mnt/shell/emulated fuse rw,nosuid,nodev,relatime,user_id=1023,group_id=1023,default_permissions,allow_other 0 0
-/dev/fuse /mnt/shell/emulated/0 fuse rw,nosuid,nodev,relatime,user_id=1023,group_id=1023,default_permissions,allow_other 0 0
-找到其中带有“/system”的那一行：
-/dev/block/platform/msm_sdcc.1/by-name/system /system ext4 ro,seclabel,relatime,data=ordered 0 0
-重新挂载，使用如下命令：
-mount -o remount,rw -t yaffs2 /dev/block/platform/msm_sdcc.1/by-name/system /system
-这里的“/dev/block/platform/msm_sdcc.1/by-name/system”就是我们从上一步的输出里得到的文件路径。如果输出没有提示错误的话，操作就成功了，可以对“/system”下的文件为所欲为了。
+```
 
-查看连接过的WiFi密码
-    该步骤需要root权限，使用如下命令：
+找到其中带有`/system`的那一行：
+
+``` bash
+/dev/block/platform/msm_sdcc.1/by-name/system /system ext4 ro,seclabel,relatime,data=ordered 0 0
+```
+
+重新挂载，使用如下命令：
+
+``` bash
+mount -o remount,rw -t yaffs2 /dev/block/platform/msm_sdcc.1/by-name/system /system
+```
+
+这里的`/dev/block/platform/msm_sdcc.1/by-name/system`就是我们从上一步的输出里得到的文件路径。如果输出没有提示错误的话，操作就成功了，可以对`/system`下的文件为所欲为了。
+
+### 查看连接过的WiFi密码
+
+&emsp;&emsp;该步骤需要`root`权限，使用如下命令：
+
+``` bash
 adb shell
 su
 cat /data/misc/wifi/*.conf
+```
+
 输出示例：
+
+``` bash
 network={
     ssid="TP-LINK_9DFC"
     scan_ssid=1
@@ -1361,6 +1391,7 @@ network={
     sim_num=1
     priority=13893
 }
+
 network={
     ssid="TP-LINK_F11E"
     psk="987654321"
@@ -1368,7 +1399,9 @@ network={
     sim_num=1
     priority=17293
 }
-ssid即为我们在WLAN设置里看到的名称，psk为密码，key_mgmt为安全加密方式。
+```
+
+`ssid`即为我们在`WLAN`设置里看到的名称，`psk`为密码，`key_mgmt`为安全加密方式。
 
 设置系统日期和时间
     该步骤需要root权限，使用如下命令：
