@@ -897,17 +897,30 @@ adb shell settings get secure android_id
 51b6be48bac8c569
 ```
 
-IMEI
-    在“Android 4.4”及以下版本，可通过如下命令获取IMEI：
+### IMEI
+
+&emsp;&emsp;在`Android 4.4`及以下版本，可通过如下命令获取`IMEI`：
+
+``` bash
 adb shell dumpsys iphonesubinfo
+```
+
 输出示例：
+
+``` bash
 Phone Subscriber Info:
   Phone Type = GSM
   Device ID = 860955027785041
-其中的“Device ID”就是IMEI。而在“Android 5.0”及以上版本，这个命令输出为空，需要通过其它方式获取(需要root权限)：
+```
+
+其中的`Device ID`就是`IMEI`。而在`Android 5.0`及以上版本，这个命令输出为`空`，需要通过其它方式获取(需要`root`权限)：
+
+``` bash
 adb shell
 su
 service call iphonesubinfo 1
+```
+
 输出示例：
 
 ``` bash
@@ -917,21 +930,37 @@ Result: Parcel(
   0x00000020: 00340030 00000031                   '0.4.1...        ')
 ```
 
-把里面的有效内容提取出来就是IMEI了，比如这里的是860955027785041。
+把里面的有效内容提取出来就是`IMEI`了，比如这里的是`860955027785041`。
 
 ### Android系统版本
 
-    命令格式：
-adb shell getprop ro.build.version.release
-输出示例：
-5.0.2
+&emsp;&emsp;命令格式：
 
-IP地址
-    查看设备的IP地址可以通过“设置”->“关于手机”->“状态信息”->“IP地址”，也通过adb方便地查看：
-adb shell ifconfig | grep Mask
+``` bash
+adb shell getprop ro.build.version.release
+```
+
 输出示例：
+
+``` bash
+5.0.2
+```
+
+### IP地址
+
+&emsp;&emsp;查看设备的`IP`地址可以通过`设置 -> 关于手机 -> 状态信息 -> IP地址`，也可以通过`adb`方便地查看：
+
+``` bash
+adb shell ifconfig | grep Mask
+```
+
+输出示例：
+
+``` bash
 inet addr:10.130.245.230  Mask:255.255.255.252
 inet addr:127.0.0.1  Mask:255.0.0.0
+```
+
 那么“10.130.245.230”就是设备IP地址。在有的设备上，这个命令没有输出，如果设备连着WiFi，可以使用如下命令来查看局域网IP：
 adb shell ifconfig wlan0
 输出示例：
