@@ -1482,6 +1482,8 @@ adb shell ps
 ```
 
 输出示例：
+
+``` bash
 USER   PID  PPID VSIZE   RSS   WCHAN    PC         NAME
 root   1    0    8904    788   ffffffff 00000000 S /init
 root   2    0    0       0     ffffffff 00000000 S kthreadd
@@ -1490,6 +1492,7 @@ u0_a71 7779 5926 1538748 48896 ffffffff 00000000 S com.sohu.inputmethod.sogou:cl
 u0_a58 7963 5926 1561916 59568 ffffffff 00000000 S org.mazhuang.boottimemeasure
 ...
 shell  8750 217  10640   740   00000000 b6f28340 R ps
+```
 
 各列含义：
 
@@ -1542,29 +1545,17 @@ User 3 + Nice 0 + Sys 21 + Idle 280 + IOW 0 + IRQ 0 + SIRQ 3 = 307
 `UID`  | 进程所有者的用户`ID`
 `NAME` | 进程名
 
-top命令还支持一些命令行参数，详细用法如下：
+`top`命令还支持一些命令行参数，详细用法如下：
+
+``` bash
 Usage: top [ -m max_procs ] [ -n iterations ] [ -d delay ] [ -s sort_column ] [ -t ] [ -h ]
     -m num  最多显示多少个进程
     -n num  刷新多少次后退出
     -d num  刷新时间间隔(单位秒，默认值5)
-    -s col  按某列排序(可用col值：cpu, vss, rss, thr)
+    -s col  按某列排序(可用col值：cpu、vss、rss和thr)
     -t      显示线程信息
     -h      显示帮助文档
-
-查看进程UID
-    有两种方案，方案一如下所示：
-adb shell dumpsys package <packagename> | grep userId=
-例如：
-$ adb shell dumpsys package org.mazhuang.guanggoo | grep userId=
-   userId=10394
-    方案二如下所示：通过ps命令找到对应进程的pid之后，使用如下命令：
-adb shell cat /proc/<pid>/status | grep Uid
-例如：
-$ adb shell
-gemini:/ $ ps | grep org.mazhuang.guanggoo
-u0_a394   28635 770   1795812 78736 SyS_epoll_ 0000000000 S org.mazhuang.guanggoo
-gemini:/ $ cat /proc/28635/status | grep Uid
-Uid:    10394   10394   10394   10394
+```
 
 其它
     如下是其它常用命令的简单描述：
