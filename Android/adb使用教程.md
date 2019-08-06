@@ -530,28 +530,43 @@ keycode | 含义
 
 ### 电源键
 
-    执行效果相当于按电源键：
+&emsp;&emsp;执行效果相当于按电源键：
+
+``` bash
 adb shell input keyevent 26
+```
 
-菜单键
-    命令格式：
+### 菜单键
+
+&emsp;&emsp;命令格式：
+
+``` bash
 adb shell input keyevent 82
+```
 
-HOME键
-    命令格式：
+### HOME键
+
+&emsp;&emsp;命令格式：
+
+``` bash
 adb shell input keyevent 3
+```
 
-返回键
-    命令格式：
+### 返回键
+
+&emsp;&emsp;命令格式：
+
+``` bash
 adb shell input keyevent 4
+```
 
-音量控制
-    增加音量：
-adb shell input keyevent 24
-降低音量：
-adb shell input keyevent 25
-静音：
-adb shell input keyevent 164
+### 音量控制
+
+``` bash
+adb shell input keyevent 24  # 增加音量
+adb shell input keyevent 25  # 降低音量
+adb shell input keyevent 164  # 静音
+```
 
 媒体控制
     播放/暂停：
