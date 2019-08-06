@@ -1471,7 +1471,7 @@ adb reboot bootloader  # 重启到Fastboot模式
 
 ### 更多adb shell命令
 
-&emsp;&emsp;Android系统是基于Linux内核的，所以Linux里的很多命令在Android里也有相同或类似的实现，在“adb shell”里可以调用。本文档前面的部分内容已经用到了“adb shell”命令。
+&emsp;&emsp;`Android`系统是基于`Linux`内核的，所以`Linux`里的很多命令在`Android`里也有相同或类似的实现，在`adb shell`里可以调用。本文档前面的部分内容已经用到了`adb shell`命令。
 
 ### 查看进程
 
@@ -1557,8 +1557,10 @@ Usage: top [ -m max_procs ] [ -n iterations ] [ -d delay ] [ -s sort_column ] [ 
     -h      显示帮助文档
 ```
 
-其它
-    如下是其它常用命令的简单描述：
+### 其它
+
+&emsp;&emsp;如下是其它常用命令的简单描述：
+
 命令  功能
 ----------
 cat   显示文件内容
@@ -1574,15 +1576,29 @@ ps    查看正在运行的进程
 rm    删除文件
 top   查看进程的资源占用情况
 
-常见问题
-启动“adb server”失败
-    出错提示：
+### 常见问题
+
+#### 启动“adb server”失败
+
+&emsp;&emsp;出错提示：
+
+``` bash
 error: protocol fault (couldn't read status): No error
+```
+
 可能原因是“adb server”进程想使用的5037端口被占用。解决方案是找到占用5037端口的进程，然后终止它。以Windows下为例：
+
+``` bash
 netstat -ano | findstr LISTENING
 ...
 TCP  0.0.0.0:5037  0.0.0.0:0  LISTENING  1548
 ...
-这里的1548即为进程ID，用命令结束该进程：
+```
+
+这里的`1548`即为进程`ID`，用命令结束该进程：
+
+``` bash
 taskkill /PID 1548
-然后再启动adb就没问题了。
+```
+
+然后再启动`adb`就没问题了。
