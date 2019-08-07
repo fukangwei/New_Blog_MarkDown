@@ -584,52 +584,83 @@ array([[0, 2],
        [1, 2]])
 ```
 
-numpy.prod
-    numpy.prod(a, axis=None, dtype=None, out=None, keepdims=<class 'numpy._globals._NoValue'>): Return the product(乘积) of array elements over a given axis. Parameters:
-a : array_like. Input data.
-axis : None or int or tuple of ints, optional. Axis or axes along which a product is performed. The default, axis=None, will calculate the product of all the elements in the input array. If axis is negative it counts from the last to the first axis. New in version 1.7.0. If axis is a tuple of ints, a product is performed on all of the axes specified in the tuple instead of a single axis or all the axes as before.
-dtype : dtype, optional. The type of the returned array, as well as of the accumulator in which the elements are multiplied. The dtype of a is used by default unless a has an integer dtype of less precision than the default platform integer. In that case, if a is signed then the platform integer is used while if a is unsigned then an unsigned integer of the same precision as the platform integer is used.
-out : ndarray, optional. Alternative output array in which to place the result. It must have the same shape as the expected output, but the type of the output values will be cast if necessary.
-keepdims : bool, optional. If this is set to True, the axes which are reduced are left in the result as dimensions with size one. With this option, the result will broadcast correctly against the input array. If the default value is passed, then keepdims will not be passed through to the prod method of sub-classes of ndarray, however any non-default value will be. If the sub-classes sum method does not implement keepdims any exceptions will be raised.
-    Returns: product_along_axis : ndarray, see dtype parameter above. An array shaped as a but with the specified axis removed. Returns a reference to out if specified.
-    Notes: Arithmetic is modular when using integer types, and no error is raised on overflow. That means that, on a 32-bit platform:
+### numpy.prod
+
+&emsp;&emsp;`numpy.prod(a, axis=None, dtype=None, out=None, keepdims=<class 'numpy._globals._NoValue'>)`: Return the product(乘积) of array elements over a given axis. Parameters:
+
+- `a`: array_like. Input data.
+- `axis`: None or int or tuple of ints, optional. Axis or axes along which a product is performed. The default, axis=None, will calculate the product of all the elements in the input array. If axis is negative it counts from the last to the first axis. If axis is a tuple of ints, a product is performed on all of the axes specified in the tuple instead of a single axis or all the axes as before.
+- `dtype`: dtype, optional. The type of the returned array, as well as of the accumulator in which the elements are multiplied. The dtype of a is used by default unless a has an integer dtype of less precision than the default platform integer. In that case, if a is signed then the platform integer is used while if a is unsigned then an unsigned integer of the same precision as the platform integer is used.
+- `out`: ndarray, optional. Alternative output array in which to place the result. It must have the same shape as the expected output, but the type of the output values will be cast if necessary.
+- `keepdims`: bool, optional. If this is set to True, the axes which are reduced are left in the result as dimensions with size one. With this option, the result will broadcast correctly against the input array. If the default value is passed, then keepdims will not be passed through to the prod method of sub-classes of ndarray, however any non-default value will be. If the sub-classes sum method does not implement keepdims any exceptions will be raised.
+
+&emsp;&emsp;Returns:
+
+- `product_along_axis`: ndarray, see dtype parameter above. An array shaped as a but with the specified axis removed. Returns a reference to out if specified.
+
+&emsp;&emsp;Notes: Arithmetic is modular when using integer types, and no error is raised on overflow. That means that, on a `32-bit` platform:
+
+``` python
 >>> x = np.array([536870910, 536870910, 536870910, 536870910])
 >>> np.prod(x)  # random
 16
 The product of an empty array is the neutral element 1:
 >>> np.prod([])
 1.0
-    Examples: By default, calculate the product of all elements:
->>> np.prod([1.,2.])
+```
+
+&emsp;&emsp;Examples: By default, calculate the product of all elements:
+
+``` python
+>>> np.prod([1., 2.])
 2.0
 Even when the input array is two-dimensional:
->>> np.prod([[1.,2.],[3.,4.]])
+>>> np.prod([[1., 2.],[3., 4.]])
 24.0
 But we can also specify the axis over which to multiply:
->>> np.prod([[1.,2.],[3.,4.]], axis=1)
+>>> np.prod([[1., 2.],[3., 4.]], axis=1)
 array([  2.,  12.])
-If the type of x is unsigned, then the output type is the unsigned platform integer:
+```
+
+If the type of `x` is unsigned, then the output type is the unsigned platform integer:
+
+``` python
 >>> x = np.array([1, 2, 3], dtype=np.uint8)
 >>> np.prod(x).dtype == np.uint
 True
-If x is of a signed integer type, then the output type is the default platform integer:
+```
+
+If `x` is of a signed integer type, then the output type is the default platform integer:
+
+``` python
 >>> x = np.array([1, 2, 3], dtype=np.int8)
 >>> np.prod(x).dtype == int
 True
+```
 
-numpy.testing.assert_almost_equal
-    numpy.testing.assert_almost_equal(actual, desired, decimal=7, err_msg='', verbose=True): Raises an AssertionError if two items are not equal up to desired precision.
-    Note: It is recommended to use one of assert_allclose, assert_array_almost_equal_nulp or assert_array_max_ulp instead of this function for more consistent floating point comparisons.
-    The test verifies that the elements of actual and desired satisfy:
+### numpy.testing.assert_almost_equal
+
+&emsp;&emsp;`numpy.testing.assert_almost_equal(actual, desired, decimal=7, err_msg='', verbose=True)`: Raises an `AssertionError` if two items are not equal up to desired precision.
+&emsp;&emsp;Note: It is recommended to use one of `assert_allclose`, `assert_array_almost_equal_nulp` or `assert_array_max_ulp` instead of this function for more consistent floating point comparisons.
+&emsp;&emsp;The test verifies that the elements of actual and desired satisfy:
+
 abs(desired-actual) < 1.5 * 10**(-decimal)
-    That is a looser test than originally documented, but agrees with what the actual implementation in assert_array_almost_equal did up to rounding vagaries. An exception is raised at conflicting values. For ndarrays this delegates to assert_array_almost_equal. Parameters:
-actual : array_like. The object to check.
-desired : array_like. The expected object.
-decimal : int, optional. Desired precision, default is 7.
-err_msg : str, optional. The error message to be printed in case of failure.
-verbose : bool, optional. If True, the conflicting values are appended to the error message.
-    Raises: AssertionError. If actual and desired are not equal up to specified precision.
-    Examples:
+
+&emsp;&emsp;That is a looser test than originally documented, but agrees with what the actual implementation in `assert_array_almost_equal` did up to rounding vagaries. An exception is raised at conflicting values. For ndarrays this delegates to `assert_array_almost_equal`. Parameters:
+
+- `actual`: array_like. The object to check.
+- `desired`: array_like. The expected object.
+- `decimal`: int, optional. Desired precision.
+- `err_msg`: str, optional. The error message to be printed in case of failure.
+- `verbose`: bool, optional. If `True`, the conflicting values are appended to the error message.
+
+&emsp;&emsp;Raises:
+
+- `AssertionError`. If actual and desired are not equal up to specified precision.
+
+&emsp;&emsp;Examples:
+
+``` python
 >>> import numpy.testing as npt
 >>> npt.assert_almost_equal(2.3333333333333, 2.33333334)
 >>> npt.assert_almost_equal(2.3333333333333, 2.33333334, decimal=10)
@@ -643,15 +674,24 @@ Arrays are not almost equal
 (mismatch 50.0%)
  x: array([ 1.        ,  2.33333333])
  y: array([ 1.        ,  2.33333334])
+```
 
-numpy.roll
-    numpy.roll(a, shift, axis=None): Roll(滚动) array elements along a given axis. Elements that roll beyond the last position are re-introduced at the first. Parameters:
-a : array_like. Input array.
-shift : int or tuple of ints. The number of places by which elements are shifted. If a tuple, then axis must be a tuple of the same size, and each of the given axes is shifted by the corresponding number. If an int while axis is a tuple of ints, then the same value is used for all given axes.
-axis : int or tuple of ints, optional. Axis or axes along which elements are shifted. By default, the array is flattened before shifting, after which the original shape is restored.
-    Returns: res : ndarray. Output array, with the same shape as a.
-    Notes: New in version 1.12.0. Supports rolling over multiple dimensions simultaneously.
-    Examples:
+### numpy.roll
+
+&emsp;&emsp;`numpy.roll(a, shift, axis=None)`: Roll(滚动) array elements along a given axis. Elements that roll beyond the last position are re-introduced at the first. Parameters:
+
+- `a`: array_like. Input array.
+- `shift`: int or tuple of ints. The number of places by which elements are shifted. If a tuple, then axis must be a tuple of the same size, and each of the given axes is shifted by the corresponding number. If an int while axis is a tuple of ints, then the same value is used for all given axes.
+- `axis`: int or tuple of ints, optional. Axis or axes along which elements are shifted. By default, the array is flattened before shifting, after which the original shape is restored.
+
+&emsp;&emsp;Returns:
+
+- `res`: ndarray. Output array, with the same shape as a.
+
+&emsp;&emsp;Notes: Supports rolling over multiple dimensions simultaneously.
+&emsp;&emsp;Examples:
+
+``` python
 >>> x = np.arange(10)
 >>> np.roll(x, 2)
 array([8, 9, 0, 1, 2, 3, 4, 5, 6, 7])
@@ -668,6 +708,7 @@ array([[5, 6, 7, 8, 9],
 >>> np.roll(x2, 1, axis=1)
 array([[4, 0, 1, 2, 3],
        [9, 5, 6, 7, 8]])
+```
 
 numpy.outer
     numpy.outer(a, b, out=None): Compute the outer product of two vectors. Given two vectors, a = [a0, a1, ..., aM] and b = [b0, b1, ..., bN], the outer product [R60] is:
