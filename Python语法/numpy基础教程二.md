@@ -769,17 +769,24 @@ array([[a, aa, aaa],
 
 ### numpy.frombuffer
 
-&emsp;&emsp;numpy.frombuffer(buffer, dtype=float, count=-1, offset=0): Interpret a buffer as a 1-dimensional array. Parameters:
+&emsp;&emsp;`numpy.frombuffer(buffer, dtype=float, count=-1, offset=0)`: Interpret a buffer as a `1-dimensional` array. Parameters:
 
-buffer : buffer_like. An object that exposes the buffer interface.
-dtype : data-type, optional. Data-type of the returned array; default: float.
-count : int, optional. Number of items to read. -1 means all data in the buffer.
-offset : int, optional. Start reading the buffer from this offset (in bytes); default: 0.
-Notes: If the buffer has data that is not in machine byte-order, this should be specified as part of the data-type, e.g.:
+- `buffer`: buffer_like. An object that exposes the buffer interface.
+- `dtype`: data-type, optional. Data-type of the returned array.
+- `count`: int, optional. Number of items to read. `-1` means all data in the buffer.
+- `offset`: int, optional. Start reading the buffer from this offset (in bytes).
+
+Notes: If the buffer has data that is not in machine `byte-order`, this should be specified as part of the `data-type`, e.g.:
+
+``` python
 >>> dt = np.dtype(int)
 >>> dt = dt.newbyteorder('>')
 >>> np.frombuffer(buf, dtype=dt)
+```
+
 The data of the resulting array will not be byteswapped, but will be interpreted correctly. Examples:
+
+``` python
 >>> s = 'hello world'
 >>> np.frombuffer(s, dtype='S1', count=5, offset=6)
 array(['w', 'o', 'r', 'l', 'd'], dtype='|S1')
@@ -787,32 +794,46 @@ array(['w', 'o', 'r', 'l', 'd'], dtype='|S1')
 array([1, 2], dtype=uint8)
 >>> np.frombuffer(b'\x01\x02\x03\x04\x05', dtype=np.uint8, count=3)
 array([1, 2, 3], dtype=uint8)
+```
 
-numpy.ndarray
-    class numpy.ndarray: An array object represents a multidimensional, homogeneous array of fixed-size items. An associated data-type object describes the format of each element in the array (its byte-order, how many bytes it occupies in memory, whether it is an integer, a floating point number, or something else, etc.)
-    Arrays should be constructed using array, zeros or empty (refer to the See Also section below). The parameters given here refer to a low-level method (ndarray(...)) for instantiating an array.
-    For more information, refer to the numpy module and examine the methods and attributes of an array.
-    Parameters:(for the __new__ method; see Notes below)
-shape : tuple of ints. Shape of created array.
-dtype : data-type, optional. Any object that can be interpreted as a numpy data type.
-buffer : object exposing buffer interface, optional. Used to fill the array with data.
-offset : int, optional. Offset of array data in buffer.
-strides : tuple of ints, optional. Strides of data in memory.
-order : {'C', 'F'}, optional. Row-major (C-style) or column-major (Fortran-style) order.
-    Notes: There are two modes of creating an array using __new__:
-If buffer is None, then only shape, dtype, and order are used.
-If buffer is an object exposing the buffer interface, then all keywords are interpreted.
-No __init__ method is needed because the array is fully initialized after the __new__ method.
-    Examples: These examples illustrate the low-level ndarray constructor. Refer to the See Also section above for easier ways of constructing an ndarray. First mode, buffer is None:
+### numpy.ndarray
+
+&emsp;&emsp;`class numpy.ndarray`: An array object represents a multidimensional, homogeneous array of fixed-size items. An associated `data-type` object describes the format of each element in the array (its `byte-order`, how many bytes it occupies in memory, whether it is an integer, a floating point number, or something else, etc.)
+&emsp;&emsp;Arrays should be constructed using `array`, `zeros` or `empty`. The parameters given here refer to a `low-level` method (`ndarray(...)`) for instantiating an array.
+&emsp;&emsp;Parameters:
+
+- `shape`: tuple of ints. Shape of created array.
+- `dtype`: `data-type`, optional. Any object that can be interpreted as a numpy data type.
+- `buffer`: object exposing buffer interface, optional. Used to fill the array with data.
+- `offset`: int, optional. Offset of array data in buffer.
+- `strides`: tuple of ints, optional. Strides of data in memory.
+- `order`: {'C', 'F'}, optional. `Row-major` (`C-style`) or `column-major` (`Fortran-style`) order.
+
+Notes: There are two modes of creating an array using `__new__`:
+
+1. If buffer is None, then only shape, dtype, and order are used.
+2. If buffer is an object exposing the buffer interface, then all keywords are interpreted.
+
+No `__init__` method is needed because the array is fully initialized after the `__new__` method.
+&emsp;&emsp;Examples: These examples illustrate the low-level ndarray constructor. Refer to the See Also section above for easier ways of constructing an ndarray. First mode, buffer is None:
+
+``` python
 >>> np.ndarray(shape=(2,2), dtype=float, order='F')
 array([[ -1.13698227e+002,   4.25087011e-303],
        [  2.88528414e-306,   3.27025015e-309]])  # random
+```
+
 Second mode:
+
+``` python
 >>> np.ndarray((2,), buffer=np.array([1,2,3]), offset=np.int_().itemsize, dtype=int)  # offset = 1*itemsize, i.e. skip first element
 array([2, 3])
+```
 
-numpy.isnan
-    numpy.isnan(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'isnan'>: Test element-wise for NaN and return result as a boolean array. Parameters:
+### numpy.isnan
+
+&emsp;&emsp;numpy.isnan(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'isnan'>: Test element-wise for NaN and return result as a boolean array. Parameters:
+
 x : array_like. Input array.
 out : ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
 where : array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
@@ -860,8 +881,8 @@ Plot the data along with the fitted line:
 >>> plt.legend()
 >>> plt.show()
 
+### numpy.linalg.qr(QR分解)
 
-numpy.linalg.qr(QR分解)
     numpy.linalg.qr(a, mode='reduced'): Compute the qr factorization of a matrix. Factor the matrix a as qr, where q is orthonormal and r is upper-triangular. Parameters:
 a : array_like, shape (M, N). Matrix to be factored.
 mode : {"reduced", "complete", "r", "raw", "full", "economic"}, optional. If K = min(M, N), then
@@ -909,8 +930,12 @@ array([[0, 1],
 >>> p = np.dot(q.T, b)
 >>> np.dot(LA.inv(r), p)
 array([  1.1e-16,   1.0e+00])
-    使用示例如下所示：
+
+使用示例如下：
+
+``` python
 import numpy as np
+
 def main():
     A = np.random.rand(2, 2)  # 2*2の行列Aを生成
     Q, R = np.linalg.qr(A)  # 行列AをQR分解
@@ -919,8 +944,10 @@ def main():
     print("Q = \n" + str(Q))
     print("R = \n" + str(R))
     print("Q * R = \n" + str(Q.dot(R)))
+
 if __name__ == '__main__':
     main()
+```
 
 numpy.sign
     numpy.sign(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'sign'>: Returns an element-wise indication of the sign of a number.
