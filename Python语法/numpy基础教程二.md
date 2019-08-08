@@ -1354,37 +1354,54 @@ array([('c', 1), ('a', 2)],
       dtype=[('x', '|S1'), ('y', '<i4')])
 ```
 
-corrcoef函数
-    相关系数是用来反映变量之间相关关系密切程度的统计指标。相关系数也可以看成协方差：一种剔除了两个变量量纲影响、标准化后的特殊协方差。它消除了两个变量变化幅度的影响，而只是单纯地反应两个变量每单位变化时的相似程度：
+### corrcoef函数
 
-δx和δy表示X、Y的方差，并且“|r| ≤ 1”。
+&emsp;&emsp;相关系数是用来反映变量之间相关关系密切程度的统计指标。相关系数也可以看成协方差：一种剔除了两个变量量纲影响、标准化后的特殊协方差。它消除了两个变量变化幅度的影响，而只是单纯地反应两个变量每单位变化时的相似程度：
+
+&emsp;&emsp;δx和δy表示X、Y的方差，并且“|r| ≤ 1”。
+
+``` python
 import numpy as np
+
 a = np.array([1, 2, 3])
 b = np.array([2, 5, 8])
 x = np.vstack((a, b))
 print(np.corrcoef(a, b))
 print("--------")
 print(np.corrcoef(x))
+```
+
 执行结果：
+
+``` python
 [[1. 1.]
  [1. 1.]]
 --------
 [[1. 1.]
  [1. 1.]]
+```
 
-numpy.var
-    numpy.var(a, axis=None, dtype=None, out=None, ddof=0, keepdims=<class 'numpy._globals._NoValue'>): Compute the variance along the specified axis. Returns the variance of the array elements, a measure of the spread of a distribution. The variance is computed for the flattened array by default, otherwise over the specified axis. Parameters:
-a : array_like. Array containing numbers whose variance is desired. If a is not an array, a conversion is attempted.
-axis : None or int or tuple of ints, optional. Axis or axes along which the variance is computed. The default is to compute the variance of the flattened array. New in version 1.7.0. If this is a tuple of ints, a variance is performed over multiple axes, instead of a single axis or all the axes as before.
-dtype : data-type, optional. Type to use in computing the variance. For arrays of integer type the default is float32; for arrays of float types it is the same as the array type.
-out : ndarray, optional. Alternate output array in which to place the result. It must have the same shape as the expected output, but the type is cast if necessary.
-ddof : int, optional. "Delta Degrees of Freedom": the divisor used in the calculation is N - ddof, where N represents the number of elements. By default ddof is zero.
-keepdims : bool, optional. If this is set to True, the axes which are reduced are left in the result as dimensions with size one. With this option, the result will broadcast correctly against the input array. If the default value is passed, then keepdims will not be passed through to the var method of sub-classes of ndarray, however any non-default value will be. If the sub-classes sum method does not implement keepdims any exceptions will be raised.
-    Returns: variance : ndarray, see dtype parameter above. If out=None, returns a new array containing the variance; otherwise, a reference to the output array is returned.
-    Notes: The variance is the average of the squared deviations from the mean, i.e., var = mean(abs(x - x.mean())**2).
-    The mean is normally calculated as x.sum() / N, where N = len(x). If, however, ddof is specified, the divisor N - ddof is used instead. In standard statistical practice, ddof=1 provides an unbiased estimator of the variance of a hypothetical infinite population. ddof=0 provides a maximum likelihood estimate of the variance for normally distributed variables.
-    Note that for complex numbers, the absolute value is taken before squaring, so that the result is always real and nonnegative.
-    For floating-point input, the variance is computed using the same precision the input has. Depending on the input data, this can cause the results to be inaccurate, especially for float32 (see example below). Specifying a higher-accuracy accumulator using the dtype keyword can alleviate this issue.
+### numpy.var
+
+&emsp;&emsp;`numpy.var(a, axis=None, dtype=None, out=None, ddof=0, keepdims=<class 'numpy._globals._NoValue'>)`: Compute the variance along the specified axis. Returns the variance of the array elements, a measure of the spread of a distribution. The variance is computed for the flattened array by default, otherwise over the specified axis. Parameters:
+
+- `a`: array_like. Array containing numbers whose variance is desired. If a is not an array, a conversion is attempted.
+- `axis`: None or int or tuple of ints, optional. Axis or axes along which the variance is computed. The default is to compute the variance of the flattened array. If this is a tuple of ints, a variance is performed over multiple axes, instead of a single axis or all the axes as before.
+- `dtype`: data-type, optional. Type to use in computing the variance. For arrays of integer type the default is float32; for arrays of float types it is the same as the array type.
+- `out`: ndarray, optional. Alternate output array in which to place the result. It must have the same shape as the expected output, but the type is cast if necessary.
+- `ddof`: int, optional. "Delta Degrees of Freedom": the divisor used in the calculation is N - ddof, where N represents the number of elements. By default ddof is zero.
+- `keepdims`: bool, optional. If this is set to True, the axes which are reduced are left in the result as dimensions with size one. With this option, the result will broadcast correctly against the input array. If the default value is passed, then keepdims will not be passed through to the var method of sub-classes of ndarray, however any non-default value will be. If the sub-classes sum method does not implement keepdims any exceptions will be raised.
+
+&emsp;&emsp;Returns:
+
+- `variance`: ndarray, see dtype parameter above. If out=None, returns a new array containing the variance; otherwise, a reference to the output array is returned.
+
+&emsp;&emsp;Notes: The variance is the average of the squared deviations from the mean, i.e., var = mean(abs(x - x.mean())**2).
+&emsp;&emsp;The mean is normally calculated as x.sum() / N, where N = len(x). If, however, ddof is specified, the divisor N - ddof is used instead. In standard statistical practice, ddof=1 provides an unbiased estimator of the variance of a hypothetical infinite population. ddof=0 provides a maximum likelihood estimate of the variance for normally distributed variables.
+&emsp;&emsp;Note that for complex numbers, the absolute value is taken before squaring, so that the result is always real and nonnegative.
+&emsp;&emsp;For `floating-point` input, the variance is computed using the same precision the input has. Depending on the input data, this can cause the results to be inaccurate, especially for `float32`. Specifying a `higher-accuracy` accumulator using the dtype keyword can alleviate this issue.
+
+``` python
 >>> a = np.array([[1, 2], [3, 4]])
 >>> np.var(a)
 1.25
@@ -1392,20 +1409,31 @@ keepdims : bool, optional. If this is set to True, the axes which are reduced ar
 array([ 1.,  1.])
 >>> np.var(a, axis=1)
 array([ 0.25,  0.25])
-In single precision, var() can be inaccurate:
+```
+
+In single precision, `var()` can be inaccurate:
+
+``` python
 >>> a = np.zeros((2, 512*512), dtype=np.float32)
 >>> a[0, :] = 1.0
 >>> a[1, :] = 0.1
 >>> np.var(a)
 0.20250003
-Computing the variance in float64 is more accurate:
+```
+
+Computing the variance in `float64` is more accurate:
+
+``` python
 >>> np.var(a, dtype=np.float64)
 0.20249999932944759
 >>> ((1-0.55)**2 + (0.1-0.55)**2)/2
 0.2025
+```
 
 numpy.ndarray.shape
     Tuple of array dimensions. The shape property is usually used to get the current shape of an array, but may also be used to reshape the array in-place by assigning a tuple of array dimensions to it. As with numpy.reshape, one of the new shape dimensions can be -1, in which case its value is inferred from the size of the array and the remaining dimensions. Reshaping an array in-place will fail if a copy is required.
+
+``` python
 >>> x = np.array([1, 2, 3, 4])
 >>> x.shape
 (4,)
@@ -1425,10 +1453,15 @@ ValueError: total size of new array must be unchanged
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 AttributeError: incompatible shape for a non-contiguous array
+```
 
-einsum函数
-    给定向量a和向量b，若“a = (1, 2, 3)”，“b = (4, 5, 6)”：
+### einsum函数
+
+&emsp;&emsp;给定向量`a`和向量`b`，若`a = (1, 2, 3)`，`b = (4, 5, 6)`：
+
+``` python
 import numpy as np
+
 a = np.array([1, 2, 3])
 b = np.array([4, 5, 6])
 np.einsum('i', a)返回向量a本身。
@@ -1441,6 +1474,8 @@ np.einsum('i, j->ij', a, b)是向量a和向量b的外积(等价于np.outer(a, b)
 [[ 4  5  6]
  [ 8 10 12]
  [12 15 18]]
+```
+
     给定矩阵A和矩阵B，若“A = [[1, 2], [3, 4]]”，“B = [[5, 6], [7, 8]]”：
 import numpy as np
 A = np.array([[1, 2], [3, 4]])
