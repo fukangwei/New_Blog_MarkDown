@@ -1208,12 +1208,13 @@ print(c ** 2)
 
 ### numpy.matrix
 
-&emsp;&emsp;class numpy.matrix(data, dtype=None, copy=True): Returns a matrix from an array-like object, or from a string of data. A matrix is a specialized 2-D array that retains its 2-D nature through operations. It has certain special operators, such as * (matrix multiplication) and ** (matrix power). Parameters:
+&emsp;&emsp;`class numpy.matrix(data, dtype=None, copy=True)`: Returns a matrix from an `array-like` object, or from a string of data. A matrix is a specialized `2-D` array that retains its `2-D` nature through operations. It has certain special operators, such as * (matrix multiplication) and ** (matrix power). Parameters:
 
-data : array_like or string. If data is a string, it is interpreted as a matrix with commas or spaces separating columns, and semicolons separating rows.
-dtype : data-type. Data-type of the output matrix.
-copy : bool. If data is already an ndarray, then this flag determines whether the data is copied (the default), or whether a view is constructed.
-    Examples:
+- `data`: array_like or string. If data is a string, it is interpreted as a matrix with commas or spaces separating columns, and semicolons separating rows.
+- `dtype`: `data-type`. Data-type of the output matrix.
+- `copy`: bool. If data is already an ndarray, then this flag determines whether the data is copied (the default), or whether a view is constructed.
+
+&emsp;&emsp;Examples:
 
 ``` python
 >>> a = np.matrix('1 2; 3 4')
@@ -1225,9 +1226,12 @@ matrix([[1, 2],
         [3, 4]])
 ```
 
-numpy.matrix.getA
-    matrix.getA(): Return self as an ndarray object. Equivalent to np.asarray(self). Examples:
->>> x = np.matrix(np.arange(12).reshape((3,4))); x
+### numpy.matrix.getA
+
+&emsp;&emsp;`matrix.getA()`: Return self as an ndarray object. Equivalent to `np.asarray(self)`. Examples:
+
+``` python
+>>> x = np.matrix(np.arange(12).reshape((3, 4))); x
 matrix([[ 0,  1,  2,  3],
         [ 4,  5,  6,  7],
         [ 8,  9, 10, 11]])
@@ -1235,11 +1239,15 @@ matrix([[ 0,  1,  2,  3],
 array([[ 0,  1,  2,  3],
        [ 4,  5,  6,  7],
        [ 8,  9, 10, 11]])
+```
 
-numpy.ndarray.tolist
-    Return a copy of the array data as a (nested) Python list. Data items are converted to the nearest compatible Python type.
-    Returns: The possibly nested list of array elements.
-    Notes: The array may be recreated, a = np.array(a.tolist()).
+### numpy.ndarray.tolist
+
+&emsp;&emsp;Return a copy of the array data as a (nested) Python list. Data items are converted to the nearest compatible Python type.
+&emsp;&emsp;Returns: The possibly nested list of array elements.
+&emsp;&emsp;Notes: The array may be recreated, a = np.array(a.tolist()).
+
+``` python
 >>> a = np.array([1, 2])
 >>> a.tolist()
 [1, 2]
@@ -1248,18 +1256,21 @@ numpy.ndarray.tolist
 [array([1, 2]), array([3, 4])]
 >>> a.tolist()
 [[1, 2], [3, 4]]
+```
 
 numpy.reshape
     numpy.reshape(a, newshape, order='C'): Gives a new shape to an array without changing its data. Parameters:
     a : array_like. Array to be reshaped.
     newshape : int or tuple of ints. The new shape should be compatible with the original shape. If an integer, then the result will be a 1-D array of that length. One shape dimension can be -1. In this case, the value is inferred from the length of the array and remaining dimensions.
     order : {'C', 'F', 'A'}, optional. Read the elements of a using this index order, and place the elements into the reshaped array using this index order.
+
 'C' means to read / write the elements using C-like index order, with the last axis index changing fastest, back to the first axis index changing slowest.
 'F' means to read / write the elements using Fortran-like index order, with the first index changing fastest, and the last index changing slowest.
 'A' means to read / write the elements in Fortran-like index order if a is Fortran contiguous in memory, C-like order otherwise.
 Note that the 'C' and 'F' options take no account of the memory layout of the underlying array, and only refer to the order of indexing.
     Returns: reshaped_array : ndarray. This will be a new view object if possible; otherwise, it will be a copy. Note there is no guarantee of the memory layout (C- or Fortran- contiguous) of the returned array.
     Notes: It is not always possible to change the shape of an array without copying the data. If you want an error to be raised when the data is copied, you should assign the new shape to the shape attribute of the array:
+
 >>> a = np.zeros((10, 2))
 >>> b = a.T  # A transpose makes the array non-contiguous
 >>> c = b.view()  # Taking a view makes it possible to modify the shape without modifying the initial object
@@ -1295,8 +1306,11 @@ array([[1, 2],
        [3, 4],
        [5, 6]])
 
-numpy.ndarray.T
-    Same as self.transpose(), except that self is returned if self.ndim < 2.
+### numpy.ndarray.T
+
+&emsp;&emsp;Same as `self.transpose()`, except that self is returned if `self.ndim < 2`.
+
+``` python
 >>> x = np.array([[1.,2.],[3.,4.]])
 >>> x
 array([[ 1.,  2.],
@@ -1304,11 +1318,12 @@ array([[ 1.,  2.],
 >>> x.T
 array([[ 1.,  3.],
        [ 2.,  4.]])
->>> x = np.array([1.,2.,3.,4.])
+>>> x = np.array([1., 2., 3., 4.])
 >>> x
 array([ 1.,  2.,  3.,  4.])
 >>> x.T
 array([ 1.,  2.,  3.,  4.])
+```
 
 numpy.ndarray.sort
     ndarray.sort(axis=-1, kind='quicksort', order=None): Sort an array, in-place. Parameters:
@@ -1316,7 +1331,9 @@ axis : int, optional. Axis along which to sort. Default is -1, which means sort 
 kind : {'quicksort', 'mergesort', 'heapsort'}, optional. Sorting algorithm. Default is 'quicksort'.
 order : str or list of str, optional. When a is an array with fields defined, this argument specifies which fields to compare first, second, etc. A single field can be specified as a string, and not all fields need be specified, but unspecified fields will still be used, in the order in which they come up in the dtype, to break ties.
     Examples:
->>> a = np.array([[1,4], [3,1]])
+
+``` python
+>>> a = np.array([[1, 4], [3, 1]])
 >>> a.sort(axis=1)
 >>> a
 array([[1, 4],
@@ -1325,12 +1342,17 @@ array([[1, 4],
 >>> a
 array([[1, 3],
        [1, 4]])
+```
+
 Use the order keyword to specify a field to use when sorting a structured array:
+
+``` python
 >>> a = np.array([('a', 2), ('c', 1)], dtype=[('x', 'S1'), ('y', int)])
 >>> a.sort(order='y')
 >>> a
 array([('c', 1), ('a', 2)],
       dtype=[('x', '|S1'), ('y', '<i4')])
+```
 
 corrcoef函数
     相关系数是用来反映变量之间相关关系密切程度的统计指标。相关系数也可以看成协方差：一种剔除了两个变量量纲影响、标准化后的特殊协方差。它消除了两个变量变化幅度的影响，而只是单纯地反应两个变量每单位变化时的相似程度：
