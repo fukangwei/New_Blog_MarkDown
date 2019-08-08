@@ -1176,29 +1176,46 @@ print(c * d)
  [6 4]]
 ```
 
-而矩阵相乘则需要使用numpy的dot命令：
+而矩阵相乘则需要使用`numpy`的`dot`命令：
+
+``` python
 print(np.dot(c, d))
-“**”运算符的作用也不一样：
+```
+
+`**`运算符的作用也不一样：
+
+``` python
 import numpy as np
+
 a = np.mat('4 3; 2 1')
 c = np.array([[4, 3], [2, 1]])
 print(a ** 2)
 print("--------")
 print(c ** 2)
+```
+
 执行结果：
+
+``` python
 [[22 15]
  [10  7]]
 --------
 [[16  9]
  [ 4  1]]
-因为a是个matrix，所以“a**2”返回的是“a*a”，相当于矩阵相乘。而c是array，“c**2”相当于c中的元素逐个求平方。
+```
 
-numpy.matrix
-    class numpy.matrix(data, dtype=None, copy=True): Returns a matrix from an array-like object, or from a string of data. A matrix is a specialized 2-D array that retains its 2-D nature through operations. It has certain special operators, such as * (matrix multiplication) and ** (matrix power). Parameters:
+因为`a`是个`matrix`，所以`a**2`返回的是`a*a`，相当于矩阵相乘。而`c`是`array`，`c**2`相当于`c`中的元素逐个求平方。
+
+### numpy.matrix
+
+&emsp;&emsp;class numpy.matrix(data, dtype=None, copy=True): Returns a matrix from an array-like object, or from a string of data. A matrix is a specialized 2-D array that retains its 2-D nature through operations. It has certain special operators, such as * (matrix multiplication) and ** (matrix power). Parameters:
+
 data : array_like or string. If data is a string, it is interpreted as a matrix with commas or spaces separating columns, and semicolons separating rows.
 dtype : data-type. Data-type of the output matrix.
 copy : bool. If data is already an ndarray, then this flag determines whether the data is copied (the default), or whether a view is constructed.
     Examples:
+
+``` python
 >>> a = np.matrix('1 2; 3 4')
 >>> print(a)
 [[1 2]
@@ -1206,6 +1223,7 @@ copy : bool. If data is already an ndarray, then this flag determines whether th
 >>> np.matrix([[1, 2], [3, 4]])
 matrix([[1, 2],
         [3, 4]])
+```
 
 numpy.matrix.getA
     matrix.getA(): Return self as an ndarray object. Equivalent to np.asarray(self). Examples:
