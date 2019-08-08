@@ -1024,47 +1024,80 @@ array([-1.,  1.])
 &emsp;&emsp;The cross product of a and b in R^3 is a vector perpendicular to both a and b. If a and b are arrays of vectors, the vectors are defined by the last axis of a and b by default, and these axes can have dimensions 2 or 3. Where the dimension of either a or b is 2, the third component of the input vector is assumed to be zero and the cross product calculated accordingly. In cases where both input vectors have dimension 2, the z-component of the cross product is returned.
 &emsp;&emsp;Parameters:
 
-a : array_like. Components of the first vector(s).
-b : array_like. Components of the second vector(s).
-axisa : int, optional. Axis of a that defines the vector(s). By default, the last axis.
-axisb : int, optional. Axis of b that defines the vector(s). By default, the last axis.
-axisc : int, optional. Axis of c containing the cross product vector(s). Ignored if both input vectors have dimension 2, as the return is scalar. By default, the last axis.
-axis : int, optional. If defined, the axis of a, b and c that defines the vector(s) and cross product(s). Overrides axisa, axisb and axisc.
-    Returns: c : ndarray. Vector cross product(s).
-    Raises: ValueError. When the dimension of the vector(s) in a and/or b does not equal 2 or 3.
-    Notes: New in version 1.9.0. Supports full broadcasting of the inputs.
-    Examples: Vector cross-product:
+- `a`: array_like. Components of the first vector(s).
+- `b`: array_like. Components of the second vector(s).
+- `axisa`: int, optional. Axis of a that defines the vector(s). By default, the last axis.
+- `axisb`: int, optional. Axis of b that defines the vector(s). By default, the last axis.
+- `axisc`: int, optional. Axis of c containing the cross product vector(s). Ignored if both input vectors have dimension 2, as the return is scalar. By default, the last axis.
+- `axis`: int, optional. If defined, the axis of a, b and c that defines the vector(s) and cross product(s). Overrides axisa, axisb and axisc.
+
+&emsp;&emsp;Returns:
+
+- `c`: ndarray. Vector cross product(s).
+
+&emsp;&emsp;Raises:
+
+- `ValueError`. When the dimension of the vector(s) in a and/or b does not equal 2 or 3.
+
+&emsp;&emsp;Notes: Supports full broadcasting of the inputs.
+&emsp;&emsp;Examples: Vector `cross-product`:
+
+``` python
 >>> x = [1, 2, 3]
 >>> y = [4, 5, 6]
 >>> np.cross(x, y)
 array([-3,  6, -3])
+```
+
 One vector with dimension 2:
+
+``` python
 >>> x = [1, 2]
 >>> y = [4, 5, 6]
 >>> np.cross(x, y)
 array([12, -6, -3])
+```
+
 Equivalently:
+
+``` python
 >>> x = [1, 2, 0]
 >>> y = [4, 5, 6]
 >>> np.cross(x, y)
 array([12, -6, -3])
+```
+
 Both vectors with dimension 2:
->>> x = [1,2]
->>> y = [4,5]
+
+``` python
+>>> x = [1, 2]
+>>> y = [4, 5]
 >>> np.cross(x, y)
 -3
-Multiple vector cross-products. Note that the direction of the cross product vector is defined by the right-hand rule:
->>> x = np.array([[1,2,3], [4,5,6]])
->>> y = np.array([[4,5,6], [1,2,3]])
+```
+
+Multiple vector `cross-products`. Note that the direction of the cross product vector is defined by the `right-hand` rule:
+
+``` python
+>>> x = np.array([[1, 2, 3], [4, 5, 6]])
+>>> y = np.array([[4, 5, 6], [1, 2, 3]])
 >>> np.cross(x, y)
 array([[-3,  6, -3],
        [ 3, -6,  3]])
+```
+
 The orientation of c can be changed using the axisc keyword:
+
+``` python
 >>> np.cross(x, y, axisc=0)
 array([[-3,  3],
        [ 6, -6],
        [-3,  3]])
+```
+
 Change the vector definition of x and y using axisa and axisb:
+
+``` python
 >>> x = np.array([[1,2,3], [4,5,6], [7, 8, 9]])
 >>> y = np.array([[7, 8, 9], [4,5,6], [1,2,3]])
 >>> np.cross(x, y)
@@ -1075,21 +1108,34 @@ array([[ -6,  12,  -6],
 array([[-24,  48, -24],
        [-30,  60, -30],
        [-36,  72, -36]])
+```
 
-numpy.ndarray.flatten
-    ndarray.flatten(order='C'): Return a copy of the array collapsed into one dimension.
-    Parameters: order : {"C", "F", "A", "K"}, optional. "C" means to flatten in row-major (C-style) order. "F" means to flatten in column-major (Fortran- style) order. "A" means to flatten in column-major order if a is Fortran contiguous in memory, row-major order otherwise. "K" means to flatten a in the order the elements occur in memory. The default is "C".
-    Returns: y : ndarray. A copy of the input array, flattened to one dimension.
->>> a = np.array([[1,2], [3,4]])
+### numpy.ndarray.flatten
+
+&emsp;&emsp;`ndarray.flatten(order='C')`: Return a copy of the array collapsed into one dimension. Parameters:
+
+- `order`: {"C", "F", "A", "K"}, optional. `C` means to flatten in `row-major` (`C-style`) order. `F` means to flatten in `column-major` (`Fortran- style`) order. `A` means to flatten in `column-major` order if a is Fortran contiguous in memory, `row-major` order otherwise. `K` means to flatten a in the order the elements occur in memory.
+
+&emsp;&emsp;Returns:
+
+- `y`: ndarray. A copy of the input array, flattened to one dimension.
+
+``` python
+>>> a = np.array([[1, 2], [3, 4]])
 >>> a.flatten()
 array([1, 2, 3, 4])
 >>> a.flatten('F')
 array([1, 3, 2, 4])
+```
 
-numpy中matrix和array的区别
-    Numpy的matrices必须是2维的，但是arrays(ndarrays)可以是多维的。matrix是array的一个小的分支，所以matrix拥有array的所有特性。
-    在numpy中，matrix的主要优势是可以使用相对简单的乘法运算符号。例如a和b是两个matrices，那么“a*b”就是矩阵积：
+### numpy中matrix和array的区别
+
+&emsp;&emsp;`Numpy`的`matrices`必须是`2`维的，但是`arrays`(或`ndarrays`)可以是多维的。`matrix`是`array`的一个小的分支，所以`matrix`拥有`array`的所有特性。
+&emsp;&emsp;在`numpy`中，`matrix`的主要优势是可以使用相对简单的乘法运算符号。例如`a`和`b`是两个`matrices`，那么`a * b`就是矩阵积：
+
+``` python
 import numpy as np
+
 a = np.mat('4 3; 2 1')
 b = np.mat('1 2; 3 4')
 print(a)
@@ -1097,7 +1143,11 @@ print("-------")
 print(b)
 print("-------")
 print(a * b)
+```
+
 执行结果：
+
+``` python
 [[4 3]
  [2 1]]
 -------
@@ -1106,15 +1156,26 @@ print(a * b)
 -------
 [[13 20]
  [ 5  8]]
-matrix和array都可以通过objects后面加“.T”得到其转置，但是matrix的objects还可以在后面加“.H”得到共轭矩阵，加“.I”得到逆矩阵。
-    numpy中的arrays则是逐个元素的运算，所以c和d的“c*d”运算相当于matlab里面的“c.*d”运算：
+```
+
+`matrix`和`array`都可以通过`objects`后面加`.T`得到其转置，但是`matrix`的`objects`还可以在后面加`.H`得到共轭矩阵，加`.I`得到逆矩阵。
+&emsp;&emsp;`numpy`中的`arrays`则是逐个元素的运算，所以`c`和`d`的`c * d`运算相当于`matlab`里面的`c.*d`运算：
+
+``` python
 import numpy as np
+
 c = np.array([[4, 3], [2, 1]])
 d = np.array([[1, 2], [3, 4]])
 print(c * d)
+```
+
 执行结果：
+
+``` python
 [[4 6]
  [6 4]]
+```
+
 而矩阵相乘则需要使用numpy的dot命令：
 print(np.dot(c, d))
 “**”运算符的作用也不一样：
