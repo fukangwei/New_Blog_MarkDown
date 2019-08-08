@@ -710,18 +710,30 @@ array([[4, 0, 1, 2, 3],
        [9, 5, 6, 7, 8]])
 ```
 
-numpy.outer
-    numpy.outer(a, b, out=None): Compute the outer product of two vectors. Given two vectors, a = [a0, a1, ..., aM] and b = [b0, b1, ..., bN], the outer product [R60] is:
+### numpy.outer
+
+&emsp;&emsp;`numpy.outer(a, b, out=None)`: Compute the outer product of two vectors. Given two vectors, `a = [a0, a1, ..., aM]` and `b = [b0, b1, ..., bN]`, the outer product is:
+
+``` python
 [[a0*b0  a0*b1 ... a0*bN ]
  [a1*b0    .
  [ ...          .
  [aM*b0            aM*bN ]]
-    Parameters:
-a : (M,) array_like. First input vector. Input is flattened if not already 1-dimensional.
-b : (N,) array_like. Second input vector. Input is flattened if not already 1-dimensional.
-out : (M, N) ndarray, optional. A location where the result is stored. New in version 1.9.0.
-    Returns: out : (M, N) ndarray. out[i, j] = a[i] * b[j]
-    Examples: Make a (very coarse) grid for computing a Mandelbrot set:
+```
+
+Parameters:
+
+- `a`: `(M,)` array_like. First input vector. Input is flattened if not already `1-dimensional`.
+- `b`: `(N,)` array_like. Second input vector. Input is flattened if not already `1-dimensional`.
+- `out`: `(M, N)` ndarray, optional. A location where the result is stored.
+
+&emsp;&emsp;Returns:
+
+- `out`: `(M, N)` ndarray. `out[i, j] = a[i] * b[j]`
+
+&emsp;&emsp;Examples: Make a (very coarse) grid for computing a Mandelbrot set:
+
+``` python
 >>> rl = np.outer(np.ones((5,)), np.linspace(-2, 2, 5))
 >>> rl
 array([[-2., -1.,  0.,  1.,  2.],
@@ -743,15 +755,22 @@ array([[-2.+2.j, -1.+2.j,  0.+2.j,  1.+2.j,  2.+2.j],
        [-2.+0.j, -1.+0.j,  0.+0.j,  1.+0.j,  2.+0.j],
        [-2.-1.j, -1.-1.j,  0.-1.j,  1.-1.j,  2.-1.j],
        [-2.-2.j, -1.-2.j,  0.-2.j,  1.-2.j,  2.-2.j]])
-An example using a "vector" of letters:
+```
+
+An example using a `vector` of letters:
+
+``` python
 >>> x = np.array(['a', 'b', 'c'], dtype=object)
 >>> np.outer(x, [1, 2, 3])
 array([[a, aa, aaa],
        [b, bb, bbb],
        [c, cc, ccc]], dtype=object)
+```
 
-numpy.frombuffer
-    numpy.frombuffer(buffer, dtype=float, count=-1, offset=0): Interpret a buffer as a 1-dimensional array. Parameters:
+### numpy.frombuffer
+
+&emsp;&emsp;numpy.frombuffer(buffer, dtype=float, count=-1, offset=0): Interpret a buffer as a 1-dimensional array. Parameters:
+
 buffer : buffer_like. An object that exposes the buffer interface.
 dtype : data-type, optional. Data-type of the returned array; default: float.
 count : int, optional. Number of items to read. -1 means all data in the buffer.
