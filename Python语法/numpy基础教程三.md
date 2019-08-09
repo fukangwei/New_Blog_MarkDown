@@ -567,15 +567,13 @@ print(float_arr)  # 输出“[1.2    2.3    3.2141]”
 
 ### numpy.around(round)
 
-&emsp;&emsp;`numpy.around(a, decimals=0, out=None)`: Evenly round to the given number of decimals. Parameters:
+&emsp;&emsp;`numpy.around(a, decimals=0, out=None)`: Evenly round to the given number of `decimals`. Parameters:
 
-- `a`: array_like. Input data.
-- `decimals`: int, optional. Number of decimal places to round to (default: 0). If decimals is negative, it specifies the number of positions to the left of the decimal point.
-- `out`: ndarray, optional. Alternative output array in which to place the result. It must have the same shape as the expected output, but the type of the output values will be cast if necessary.
+- `a`: `array_like`. Input data.
+- `decimals`: `int`, optional. Number of decimal places to round to. If `decimals` is negative, it specifies the number of positions to the left of the decimal point.
+- `out`: `ndarray`, optional. Alternative output array in which to place the result. It must have the same shape as the expected output, but the type of the output values will be cast if necessary.
 
-&emsp;&emsp;An array of the same type as a, containing the rounded values. Unless out was specified, a new array is created. A reference to the result is returned.
-&emsp;&emsp;The real and imaginary parts of complex numbers are rounded separately. The result of rounding a float is a float.
-&emsp;&emsp;Notes: For values exactly halfway between rounded decimal values, NumPy rounds to the nearest even value. Thus 1.5 and 2.5 round to 2.0, -0.5 and 0.5 round to 0.0, etc. Results may also be surprising due to the inexact representation of decimal fractions in the IEEE floating point standard and errors introduced when scaling by powers of ten.
+&emsp;&emsp;Notes: For values exactly halfway between rounded decimal values, `NumPy` rounds to the nearest even value. Thus `1.5` and `2.5` round to `2.0`, `-0.5` and `0.5` round to `0.0`, etc. Results may also be surprising due to the inexact representation of decimal fractions in the `IEEE floating point standard` and errors introduced when scaling by powers of ten.
 
 ``` python
 >>> np.around([0.37, 1.64])
@@ -592,21 +590,23 @@ array([0, 0,  0, 10])
 
 ### numpy.mod
 
-&emsp;&emsp;`numpy.mod(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'remainder'>`: Return element-wise remainder of division(返回输入数组中相应元素的除法余数). Computes the remainder complementary to the floor_divide function. It is equivalent to the Python modulus operator "x1 % x2" and has the same sign as the divisor x2. The MATLAB function equivalent to np.remainder is mod.
+&emsp;&emsp;`numpy.mod(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'remainder'>`: Return element-wise remainder of division(返回输入数组中相应元素的除法余数).
+&emsp;&emsp;Computes the remainder complementary to the `floor_divide` function. It is equivalent to the Python modulus operator `x1 % x2` and has the same sign as the divisor `x2`. The `MATLAB` function equivalent to `np.remainder` is `mod`.
 &emsp;&emsp;Warning: This should not be confused with:
-Python 3.7's math.remainder and C's remainder, which computes the IEEE remainder, which are the complement to round(x1 / x2).
-&emsp;&emsp;The MATLAB rem function and or the C % operator which is the complement to int(x1 / x2).
+`Python 3.7's math.remainder` and `C's remainder`, which computes the `IEEE` remainder, which are the complement to `round(x1 / x2)`.
+&emsp;&emsp;The `MATLAB` `rem` function and or the `C` `%` operator which is the complement to `int(x1 / x2)`.
 &emsp;&emsp;Parameters:
 
-- `x1`: array_like. Dividend array.
-- `x2`: array_like. Divisor array.
-- `out`: ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
-- `where`: array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
-- `**kwargs`: For other keyword-only arguments, see the `ufunc` docs.
+- `x1`: `array_like`. Dividend array.
+- `x2`: `array_like`. Divisor array.
+- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `where`: `array_like`, optional. Values of `True` indicate to calculate the ufunc at that position, values of `False` indicate to leave the value in the output alone.
 
 &emsp;&emsp;Returns:
 
-- `y`: ndarray. The element-wise remainder of the quotient floor_divide(x1, x2). This is a scalar if both x1 and x2 are scalars. Notes: Returns 0 when x2 is 0 and both x1 and x2 are (arrays of) integers.
+- `y`: `ndarray`. The element-wise remainder of the quotient `floor_divide(x1, x2)`. This is a scalar if both `x1` and `x2` are scalars.
+
+&emsp;&emsp;Notes: Returns `0` when `x2` is `0` and both `x1` and `x2` are (arrays of) integers. `mod` is an alias of `remainder`.
 
 ``` python
 >>> np.remainder([4, 7], [2, 3])
