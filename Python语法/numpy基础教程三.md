@@ -372,10 +372,10 @@ array([[6, 7, 8],
 
 ### numpy.matrix.A
 
-&emsp;&emsp;`matrix.A`: Return self as an ndarray object. Equivalent to np.asarray(self).
+&emsp;&emsp;`matrix.A`: Return self as an ndarray object. Equivalent to `np.asarray(self)`.
 
 ``` python
->>> x = np.matrix(np.arange(12).reshape((3,4))); x
+>>> x = np.matrix(np.arange(12).reshape((3, 4))); x
 matrix([[ 0,  1,  2,  3],
         [ 4,  5,  6,  7],
         [ 8,  9, 10, 11]])
@@ -388,21 +388,21 @@ array([[ 0,  1,  2,  3],
 ### numpy.cov(协方差)
 
 &emsp;&emsp;`numpy.cov(m, y=None, rowvar=True, bias=False, ddof=None, fweights=None, aweights=None)`: Estimate a covariance matrix, given data and weights.
-&emsp;&emsp;Covariance indicates the level to which two variables vary together. If we examine N-dimensional samples, X = [x1, x2, ... xN]^T, then the covariance matrix element Cij is the covariance of xi and xj. The element Cii is the variance of xi. Parameters:
+&emsp;&emsp;Covariance indicates the level to which two variables vary together. If we examine `N-dimensional` samples, $X = [x_1, x_2, ... x_N]^T$, then the covariance matrix element $C_{ij}$ is the covariance of $x_i$ and $x_j$. The element $C_{ii}$ is the variance of $x_i$. Parameters:
 
-- `m`: array_like. A `1-D` or `2-D` array containing multiple variables and observations. Each row of `m` represents a variable, and each column a single observation of all those variables.
-- `y`: array_like, optional. An additional set of variables and observations. y has the same form as that of m.
-- `rowvar`: bool, optional. If rowvar is `True` (default), then each row represents a variable, with observations in the columns. Otherwise, the relationship is transposed: each column represents a variable, while the rows contain observations.
-- `bias`: bool, optional. Default normalization `(False)` is by `(N - 1)`, where `N` is the number of observations given (unbiased estimate). If `bias` is `True`, then normalization is by `N`. These values can be overridden by using the keyword ddof in numpy versions >= 1.5.
-- `ddof`: int, optional. If not None the default value implied by bias is overridden. Note that `ddof=1` will return the unbiased estimate, even if both fweights and aweights are specified, and `ddof=0` will return the simple average. The default value is None.
-- `fweights`: array_like, int, optional. `1-D` array of integer freguency weights; the number of times each observation vector should be repeated.
-- `aweights`: array_like, optional. `1-D` array of observation vector weights. These relative weights are typically large for observations considered `important` and smaller for observations considered less `important`. If `ddof=0` the array of weights can be used to assign probabilities to observation vectors.
+- `m`: `array_like`. A `1-D` or `2-D` array containing multiple variables and observations. Each row of `m` represents a variable, and each column a single observation of all those variables.
+- `y`: `array_like`, optional. An additional set of variables and observations. `y` has the same form as that of `m`.
+- `rowvar`: `bool`, optional. If rowvar is `True`, then each row represents a variable, with observations in the columns. Otherwise, the relationship is transposed: each column represents a variable, while the rows contain observations.
+- `bias`: `bool`, optional. Default normalization (`False`) is by `(N - 1)`, where `N` is the number of observations given (unbiased estimate). If `bias` is `True`, then normalization is by `N`. These values can be overridden by using the keyword `ddof` in `numpy versions >= 1.5`.
+- `ddof`: `int`, optional. If not `None`, the default value implied by `bias` is overridden. Note that `ddof=1` will return the unbiased estimate, even if both `fweights` and `aweights` are specified, and `ddof=0` will return the simple average.
+- `fweights`: `array_like`, `int`, optional. `1-D` array of integer freguency weights; the number of times each observation vector should be repeated.
+- `aweights`: `array_like`, optional. `1-D` array of observation vector weights. These relative weights are typically large for observations considered `important` and smaller for observations considered less `important`. If `ddof=0` the array of weights can be used to assign probabilities to observation vectors.
 
 &emsp;&emsp;Returns:
 
-- `out`: ndarray. The covariance matrix of the variables.
+- `out`: `ndarray`. The covariance matrix of the variables.
 
-&emsp;&emsp;Notes: Assume that the observations are in the columns of the observation array m and let `f = fweights` and `a = aweights` for brevity. The steps to compute the weighted covariance are as follows:
+&emsp;&emsp;Notes: Assume that the observations are in the columns of the observation array `m` and let `f = fweights` and `a = aweights` for brevity. The steps to compute the weighted covariance are as follows:
 
 ``` python
 >>> w = f * a
@@ -413,7 +413,7 @@ array([[ 0,  1,  2,  3],
 ```
 
 Note that when `a == 1`, the normalization factor `v1 / (v1**2 - ddof * v2)` goes over to `1 / (np.sum(f) - ddof)` as it should.
-&emsp;&emsp;Examples: Consider two variables, x0 and x1, which correlate perfectly, but in opposite directions:
+&emsp;&emsp;Examples: Consider two variables, $x_0$ and $x_1$, which correlate perfectly, but in opposite directions:
 
 ``` python
 >>> x = np.array([[0, 2], [1, 1], [2, 0]]).T
@@ -422,7 +422,7 @@ array([[0, 1, 2],
        [2, 1, 0]])
 ```
 
-Note how x0 increases while x1 decreases. The covariance matrix shows this clearly:
+Note how $x_0$ increases while $x_1$ decreases. The covariance matrix shows this clearly:
 
 ``` python
 >>> np.cov(x)
@@ -430,7 +430,7 @@ array([[ 1., -1.],
        [-1.,  1.]])
 ```
 
-Note that element C0,1, which shows the correlation between x0 and x1, is negative. Further, note how x and y are combined:
+Note that element $C_{0,1}$, which shows the correlation between $x_0$ and $x_1$, is negative. Further, note how x and y are combined:
 
 ``` python
 >>> x = [-2.1, -1,  4.3]
