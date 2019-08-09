@@ -306,19 +306,21 @@ meshgrid is very useful to evaluate functions on a grid.
 &emsp;&emsp;The convolution operator is often seen in signal processing, where it models the effect of a linear `time-invariant` system on a signal. In probability theory, the sum of two independent random variables is distributed according to the convolution of their individual distributions.
 &emsp;&emsp;If `v` is longer than `a`, the arrays are swapped before computation. Parameters:
 
-- `a`: (N,) array_like. First one-dimensional input array.
-- `v`: (M,) array_like. Second one-dimensional input array.
-- `mode`: {'full', 'valid', 'same'}, optional.
+- `a`: `(N,) array_like`. First `one-dimensional` input array.
+- `v`: `(M,) array_like`. Second `one-dimensional` input array.
+- `mode`: `{'full', 'valid', 'same'}`, optional.
 
-1. `full`: By default, mode is 'full'. This returns the convolution at each point of overlap, with an output shape of `(N + M - 1,)`. At the end-points of the convolution, the signals do not overlap completely, and boundary effects may be seen.
-2. `same`: Mode 'same' returns output of length max(M, N). Boundary effects are still visible.
-3. `valid`: Mode 'valid' returns output of length max(M, N) - min(M, N) + 1. The convolution product is only given for points where the signals overlap completely. Values outside the signal boundary have no effect.
+1. `full`: By default, mode is `full`. This returns the convolution at each point of overlap, with an output shape of `(N + M - 1,)`. At the end-points of the convolution, the signals do not overlap completely, and boundary effects may be seen.
+2. `same`: Mode `same` returns output of length `max(M, N)`. Boundary effects are still visible.
+3. `valid`: Mode `valid` returns output of length `max(M, N) - min(M, N) + 1`. The convolution product is only given for points where the signals overlap completely. Values outside the signal boundary have no effect.
 
 &emsp;&emsp;Returns:
 
-- `out`: ndarray. Discrete, linear convolution of a and v.
+- `out`: `ndarray`. Discrete, linear convolution of `a` and `v`.
 
 &emsp;&emsp;Notes: The discrete convolution operation is defined as:
+
+
 &emsp;&emsp;It can be shown that a convolution x(t) * y(t) in time/space is equivalent to the multiplication X(f) Y(f) in the Fourier domain, after appropriate padding (padding is necessary to prevent circular convolution). Since multiplication is more efficient (faster) than convolution, the function scipy.signal.fftconvolve exploits the FFT to calculate the convolution of large data-sets.
 &emsp;&emsp;Examples: Note how the convolution operator flips the second array before "sliding" the two across one another:
 
