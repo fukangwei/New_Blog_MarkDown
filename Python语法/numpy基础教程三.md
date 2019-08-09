@@ -172,16 +172,16 @@ TypeError: Axis must be specified when shapes of a and weights differ.
 
 ### numpy.full
 
-&emsp;&emsp;`numpy.full(shape, fill_value, dtype=None, order='C')`: Return a new array of given shape and type, filled with fill_value. Parameters:
+&emsp;&emsp;`numpy.full(shape, fill_value, dtype=None, order='C')`: Return a new array of given `shape` and type, filled with `fill_value`. Parameters:
 
-- `shape`: int or sequence of ints. Shape of the new array, e.g., (2, 3) or 2.
-- `fill_value`: scalar. Fill value.
-- `dtype`: data-type, optional. The desired data-type for the array The default, None, means np.array(fill_value).dtype.
-- `order`: {'C', 'F'}, optional. Whether to store multidimensional data in `C-` or `Fortran-contiguous` (`row-` or `column-wise`) order in memory.
+- `shape`: `int` or `sequence of ints`. Shape of the new array, e.g., `(2, 3)` or `2`.
+- `fill_value`: `scalar`. Fill value.
+- `dtype`: `data-type`, optional. The desired `data-type` for the array The default, `None`, means `np.array(fill_value).dtype`.
+- `order`: `{'C', 'F'}`, optional. Whether to store multidimensional data in `C-` or `Fortran-contiguous` (`row-` or `column-wise`) order in memory.
 
 &emsp;&emsp;Returns:
 
-- `out`: ndarray. Array of fill_value with the given shape, dtype, and order.
+- `out`: `ndarray`. Array of `fill_value` with the given `shape`, `dtype` and `order`.
 
 ``` python
 >>> np.full((2, 2), np.inf)
@@ -205,7 +205,9 @@ array([[10, 10],
 
 - `arr`: ndarray. The constructed array.
 
-&emsp;&emsp;Raises: `ValueError`. If the string is not the correct size to satisfy the requested dtype and count.
+&emsp;&emsp;Raises:
+
+- `ValueError`. If the string is not the correct size to satisfy the requested dtype and count.
 
 ``` python
 >>> np.fromstring('1 2', dtype=int, sep=' ')
