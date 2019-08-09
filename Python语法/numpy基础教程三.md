@@ -556,14 +556,14 @@ print(float_arr)  # 输出“[1.2    2.3    3.2141]”
 
 ### numpy.ndarray.tofile
 
-&emsp;&emsp;`ndarray.tofile(fid, sep="", format="%s")`: Write array to a file as text or binary (default). Data is always written in "C" order, independent of the order of a. The data produced by this method can be recovered using the function fromfile(). Parameters:
+&emsp;&emsp;`ndarray.tofile(fid, sep="", format="%s")`: Write array to a file as text or binary (default). Data is always written in `C` order, independent of the order of `a`. The data produced by this method can be recovered using the function `fromfile`. Parameters:
 
-- `fid`: file or str. An open file object, or a string containing a filename.
-- `sep`: str. Separator between array items for text output. If ""(empty), a binary file is written, equivalent to file.write(a.tobytes()).
-- `format`: str. Format string for text file output. Each entry in the array is formatted to text by first converting it to the closest Python type, and then using "format" % item.
+- `fid`: `file` or `str`. An open file object, or a string containing a filename.
+- `sep`: `str`. Separator between array items for text output. If empty, a binary file is written, equivalent to `file.write(a.tobytes())`.
+- `format`: `str`. Format string for text file output. Each entry in the array is formatted to text by first converting it to the closest `Python` type, and then using `"format" % item`.
 
 &emsp;&emsp;Notes: This is a convenience function for quick storage of array data. Information on endianness and precision is lost, so this method is not a good choice for files intended to archive data or transport data between machines with different endianness. Some of these problems can be overcome by outputting the data as text files, at the expense of speed and file size.
-&emsp;&emsp;When fid is a file object, array contents are directly written to the file, bypassing the file object's write method. As a result, tofile cannot be used with files objects supporting compression (e.g., GzipFile) or file-like objects that do not support fileno() (e.g., BytesIO).
+&emsp;&emsp;When `fid` is a file object, array contents are directly written to the file, bypassing the file object's write method. As a result, `tofile` cannot be used with files objects supporting compression (e.g., `GzipFile`) or file-like objects that do not support `fileno` (e.g., `BytesIO`).
 
 ### numpy.around(round)
 
@@ -582,9 +582,9 @@ print(float_arr)  # 输出“[1.2    2.3    3.2141]”
 array([ 0.,  2.])
 >>> np.around([0.37, 1.64], decimals=1)
 array([0.4, 1.6])
->>> np.around([.5, 1.5, 2.5, 3.5, 4.5]) # rounds to nearest even value
+>>> np.around([.5, 1.5, 2.5, 3.5, 4.5])  # rounds to nearest even value
 array([0., 2., 2., 4., 4.])
->>> np.around([1, 2, 3, 11], decimals=1) # ndarray of ints is returned
+>>> np.around([1, 2, 3, 11], decimals=1)  # ndarray of ints is returned
 array([1, 2, 3, 11])
 >>> np.around([1, 2, 3, 11], decimals=-1)
 array([0, 0,  0, 10])
