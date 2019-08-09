@@ -13,7 +13,7 @@ tags:
 >>> a * b
 array([ 2., 4., 6.])
 ```
-
+<!--more-->
 `NumPy`的`Broadcasting`机制解除了这种限制，在两个数组的形状满足某种条件的情况下，不同形状的数组之间仍可以进行算术运算。最简单的就是数组乘以一个标量：
 
 ``` python
@@ -638,17 +638,17 @@ array([[1, 4],
 
 ### numpy.ascontiguousarray
 
-&emsp;&emsp;`numpy.ascontiguousarray(a, dtype=None)`: Return a contiguous array in memory (C order). Parameters:
+&emsp;&emsp;`numpy.ascontiguousarray(a, dtype=None)`: Return a contiguous array in memory (`C order`). Parameters:
 
-- `a`: array_like. Input array.
-- `dtype`: str or dtype object, optional. Data-type of returned array.
+- `a`: `array_like`. Input array.
+- `dtype`: `str` or `dtype` object, optional. `Data-type` of returned array.
 
 &emsp;&emsp;Returns:
 
-- `out`: ndarray. Contiguous array of same shape and content as a, with type dtype if specified.
+- `out`: `ndarray`. Contiguous array of same shape and content as `a`, with type `dtype` if specified.
 
 ``` python
->>> x = np.arange(6).reshape(2,3)
+>>> x = np.arange(6).reshape(2, 3)
 >>> np.ascontiguousarray(x, dtype=np.float32)
 array([[ 0.,  1.,  2.],
        [ 3.,  4.,  5.]], dtype=float32)
@@ -658,15 +658,15 @@ True
 
 ### numpy.greater_equal
 
-&emsp;&emsp;`numpy.greater_equal(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj])`: Return the truth value of (x1 >= x2) element-wise. Parameters:
+&emsp;&emsp;`numpy.greater_equal(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj])`: Return the truth value of (`x1 >= x2`) element-wise. Parameters:
 
-- `x1, x2`: array_like. Input arrays. If x1.shape != x2.shape, they must be broadcastable to a common shape (which may be the shape of one or the other).
-- `out`: ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
-- `where`: array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
+- `x1, x2`: `array_like`. Input arrays. If `x1.shape != x2.shape`, they must be broadcastable to a common shape (which may be the shape of one or the other).
+- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `where`: `array_like`, optional. Values of `True` indicate to calculate the ufunc at that position, values of `False` indicate to leave the value in the output alone.
 
 &emsp;&emsp;Returns:
 
-- `out`: bool or ndarray of bool. Output array, `element-wise` comparison of x1 and x2. Typically of type bool, unless dtype=object is passed. This is a scalar if both x1 and x2 are scalars.
+- `out`: `bool` or `ndarray of bool`. Output array, element-wise comparison of `x1` and `x2`. Typically of type `bool`, unless `dtype=object` is passed. This is a scalar if both `x1` and `x2` are scalars.
 
 ``` python
 >>> np.greater_equal([4, 2, 1], [2, 2, 2])
