@@ -26,9 +26,9 @@ array([ 2., 4., 6.])
 结果和第一个`b`是数组的例子相同。可以认为标量`b`被拉伸成了和`a`相同形状的数组，拉伸后数组每个元素的值为先前标量值的复制。实际上复制操作并不会真正进行，只是在计算时使用标量的值罢了，因此节省了内存且效率更高。对于`==`等运算符的使用，`Broadcasting`的效果更显著：
 
 ``` python
->>> labels = np.array([1,2,0,0,2])
+>>> labels = np.array([1, 2, 0, 0, 2])
 >>> labels == 0
-array([False, False,  True,  True, False], dtype=bool)
+array([False, False, True, True, False], dtype=bool)
 >>> (labels == 0).astype(np.float32)
 array([ 0.,  0.,  1.,  1.,  0.], dtype=float32)
 ```
@@ -41,7 +41,7 @@ array([ 0.,  0.,  1.,  1.,  0.], dtype=float32)
 a     (3d array): 256 x 256 x 3
 b     (2d array):       256 x 3
 a + b (2d array): 256 x 256 x 3
-``
+```
 
 什么是兼容？来自官方文档`Broadcasting`的解释很简练：
 
@@ -77,18 +77,17 @@ a[:, np.newaxis, :] + b (3d array): 3 x 5 x 4
 
 ### numpy.isfinite
 
-&emsp;&emsp;`numpy.isfinite(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'isfinite'>`: Test `element-wise` for finiteness (not infinity or not Not a Number). The result is returned as a `boolean` array. Parameters:
+&emsp;&emsp;`numpy.isfinite(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'isfinite'>`: Test element-wise for finiteness (not `infinity` or not `Not a Number`). The result is returned as a `boolean` array. Parameters:
 
-- `x`: array_like. Input values.
-- `out`: ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a `freshly-allocated` array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
-- `where`: array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
-- `**kwargs` : For other keyword-only arguments, see the `ufunc` docs.
+- `x`: `array_like`. Input values.
+- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `where`: `array_like`, optional. Values of `True` indicate to calculate the ufunc at that position, values of `False` indicate to leave the value in the output alone.
 
 &emsp;&emsp;Returns:
 
-- `y` : ndarray, `bool`. For scalar input, the result is a new `boolean` with value `True` if the input is finite; otherwise the value is `False` (input is either positive infinity, negative infinity or Not a Number). For array input, the result is a `boolean` array with the same dimensions as the input and the values are `True` if the corresponding element of the input is finite; otherwise the values are `False` (element is either positive infinity, negative infinity or Not a Number).
+- `y` : `ndarray`, `bool`. For scalar input, the result is a new `boolean` with value `True` if the input is finite; otherwise the value is `False` (input is either positive infinity, negative infinity or `Not a Number`). For array input, the result is a `boolean` array with the same dimensions as the input and the values are `True` if the corresponding element of the input is finite; otherwise the values are `False` (element is either positive infinity, negative infinity or `Not a Number`).
 
-&emsp;&emsp;Notes: Not a Number, positive infinity and negative infinity are considered to be non-finite.
+&emsp;&emsp;Notes: `Not a Number`, positive infinity and negative infinity are considered to be `non-finite`.
 &emsp;&emsp;NumPy uses the `IEEE Standard for Binary Floating-Point for Arithmetic` (`IEEE 754`). This means that `Not a Number` is not equivalent to infinity. Also that positive infinity is not equivalent to negative infinity. But infinity is equivalent to positive infinity. Errors result if the second argument is also supplied when `x` is a scalar input, or if first and second arguments have different shapes.
 
 ``` python
@@ -120,10 +119,6 @@ array([0, 1, 0])
 - `a`: ndarray. Input array.
 - `axis`: int. The axis to roll backwards. The positions of the other axes do not change relative to one another.
 - `start`: int, optional. The axis is rolled until it lies before this position. The default, 0, results in a "complete" roll.
-
-&emsp;&emsp;Returns:
-
-- `res`: ndarray. For NumPy >= 1.10.0 a view of a is always returned. For earlier NumPy versions a view of a is returned only if the order of the axes is changed, otherwise the input array is returned.
 
 ``` python
 >>> a = np.ones((3,4,5,6))
