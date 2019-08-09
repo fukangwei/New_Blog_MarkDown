@@ -320,9 +320,14 @@ meshgrid is very useful to evaluate functions on a grid.
 
 &emsp;&emsp;Notes: The discrete convolution operation is defined as:
 
+$$
+\begin{equation}
+\left (a \ast  v \right )\left [n \right ] = \sum_{m=-\infty}^{\infty }a\left [ m\right ]v\left [ n - m\right ]
+\end{equation}
+$$
 
-&emsp;&emsp;It can be shown that a convolution x(t) * y(t) in time/space is equivalent to the multiplication X(f) Y(f) in the Fourier domain, after appropriate padding (padding is necessary to prevent circular convolution). Since multiplication is more efficient (faster) than convolution, the function scipy.signal.fftconvolve exploits the FFT to calculate the convolution of large data-sets.
-&emsp;&emsp;Examples: Note how the convolution operator flips the second array before "sliding" the two across one another:
+&emsp;&emsp;It can be shown that a convolution $x(t) * y(t)$ in time/space is equivalent to the multiplication $X(f)Y(f)$ in the `Fourier` domain, after appropriate padding (padding is necessary to prevent circular convolution). Since multiplication is more efficient (faster) than convolution, the function `scipy.signal.fftconvolve` exploits the `FFT` to calculate the convolution of large data-sets.
+&emsp;&emsp;Examples: Note how the convolution operator flips the second array before `sliding` the two across one another:
 
 ``` python
 >>> np.convolve([1, 2, 3], [0, 1, 0.5])
@@ -339,15 +344,15 @@ array([ 1. ,  2.5,  4. ])
 The two arrays are of the same length, so there is only one position where they completely overlap:
 
 ``` python
->>> np.convolve([1,2,3],[0,1,0.5], 'valid')
+>>> np.convolve([1, 2, 3], [0, 1, 0.5], 'valid')
 array([ 2.5])
 ```
 
 ### numpy.random.permutation
 
-&emsp;&emsp;`numpy.random.permutation(x)`: Randomly permute a sequence, or return a permuted range. If x is a multi-dimensional array, it is only shuffled along its first index. Parameters:
+&emsp;&emsp;`numpy.random.permutation(x)`: Randomly permute a sequence, or return a permuted range. If `x` is a `multi-dimensional` array, it is only shuffled along its first index. Parameters:
 
-- `x`: int or array_like. If x is an integer, randomly permute np.arange(x). If x is an array, make a copy and shuffle the elements randomly.
+- `x`: `int` or `array_like`. If `x` is an integer, randomly permute `np.arange(x)`. If `x` is an array, make a copy and shuffle the elements randomly.
 
 &emsp;&emsp;Returns:
 
