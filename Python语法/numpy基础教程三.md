@@ -136,28 +136,28 @@ array([0, 1, 0])
 
 - `a`: `array_like`. Array containing data to be averaged. If `a` is not an array, a conversion is attempted.
 - `axis`: `None` or `int` or `tuple of ints`, optional. Axis or axes along which to average `a`. The default, `axis=None`, will average over all of the elements of the input array. If `axis` is negative, it counts from the last to the first axis. If `axis` is a tuple of ints, averaging is performed on all of the axes specified in the tuple instead of a single axis or all the axes as before.
-- `weights`: `array_like`, optional. An array of `weights` associated with the values in `a`. Each value in a contributes to the average according to its associated weight. The `weights` array can either be `1-D` (in which case its length must be the size of `a` along the given axis) or of the same shape as `a`. If `weights=None`, then all data in `a` are assumed to have a weight equal to one.
+- `weights`: `array_like`, optional. An array of `weights` associated with the values in `a`. Each value in a contributes to the average according to its associated weight. The `weights` array can either be `1-D` (in which case its length must be the size of `a` along the given `axis`) or of the same shape as `a`. If `weights=None`, then all data in `a` are assumed to have a weight equal to one.
 
 - `returned`: `bool`, optional. Default is `False`. If `True`, the tuple `(average, sum_of_weights)` is returned, otherwise only the average is returned. If `weights=None`, `sum_of_weights` is equivalent to the number of elements over which the average is taken.
 
 &emsp;&emsp;Returns:
 
-- `average, [sum_of_weights]`: array_type or double. Return the average along the specified axis. When returned is `True`, return a tuple with the average as the first element and the sum of the weights as the second element. The return type is Float if a is of integer type, otherwise it is of the same type as a. sum_of_weights is of the same type as average.
+- `average, [sum_of_weights]`: `array_type` or `double`. Return the average along the specified `axis`. When returned is `True`, return a tuple with the average as the first element and the sum of the weights as the second element. The return type is `Float` if `a` is of integer type, otherwise it is of the same type as `a`. `sum_of_weights` is of the same type as average.
 
 &emsp;&emsp;Raises:
 
-- `ZeroDivisionError`: When all weights along axis are zero. See numpy.ma.average for a version robust to this type of error.
-- `TypeError`: When the length of 1D weights is not the same as the shape of a along axis.
+- `ZeroDivisionError`: When all weights along `axis` are `zero`. See `numpy.ma.average` for a version robust to this type of error.
+- `TypeError`: When the length of `1D` weights is not the same as the shape of `a` along `axis`.
 
 ``` python
->>> data = range(1,5)
+>>> data = range(1, 5)
 >>> data
 [1, 2, 3, 4]
 >>> np.average(data)
 2.5
->>> np.average(range(1,11), weights=range(10,0,-1))
+>>> np.average(range(1, 11), weights=range(10, 0, -1))
 4.0
->>> data = np.arange(6).reshape((3,2))
+>>> data = np.arange(6).reshape((3, 2))
 >>> data
 array([[0, 1],
        [2, 3],
@@ -172,7 +172,7 @@ TypeError: Axis must be specified when shapes of a and weights differ.
 
 ### numpy.full
 
-&emsp;&emsp;numpy.full(shape, fill_value, dtype=None, order='C'): Return a new array of given shape and type, filled with fill_value. Parameters:
+&emsp;&emsp;`numpy.full(shape, fill_value, dtype=None, order='C')`: Return a new array of given shape and type, filled with fill_value. Parameters:
 
 - `shape`: int or sequence of ints. Shape of the new array, e.g., (2, 3) or 2.
 - `fill_value`: scalar. Fill value.
