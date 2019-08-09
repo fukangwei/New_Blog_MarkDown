@@ -194,16 +194,16 @@ array([[10, 10],
 
 ### numpy.fromstring
 
-&emsp;&emsp;`numpy.fromstring(string, dtype=float, count=-1, sep='')`: A new `1-D` array initialized from text data in a string. Parameters:
+&emsp;&emsp;`numpy.fromstring(string, dtype=float, count=-1, sep='')`: A new `1-D` array initialized from text data in a `string`. Parameters:
 
-- `string`: str: A string containing the data.
-- `dtype`: `data-type`, optional. The data type of the array; default: float. For binary input data, the data must be in exactly this format.
-- `count`: int, optional. Read this number of dtype elements from the data. If this is negative (the default), the count will be determined from the length of the data.
-- `sep`: str, optional. The string separating numbers in the data; extra whitespace between elements is also ignored. Deprecated since version 1.14: If this argument is not provided, fromstring falls back on the behaviour of frombuffer after encoding unicode string inputs as either `utf-8` (`python 3`), or the default encoding (`python 2`).
+- `string`: `str`: A string containing the data.
+- `dtype`: `data-type`, optional. The data type of the array. For binary input data, the data must be in exactly this format.
+- `count`: `int`, optional. Read this number of dtype elements from the data. If this is negative (the default), the `count` will be determined from the length of the data.
+- `sep`: `str`, optional. The string separating numbers in the data; extra whitespace between elements is also ignored. Deprecated since `version 1.14`: If this argument is not provided, fromstring falls back on the behaviour of frombuffer after encoding unicode string inputs as either `utf-8` (`python 3`), or the default encoding (`python 2`).
 
 &emsp;&emsp;Returns:
 
-- `arr`: ndarray. The constructed array.
+- `arr`: `ndarray`. The constructed array.
 
 &emsp;&emsp;Raises:
 
@@ -228,7 +228,7 @@ numpy.nan_to_num(x)
 
 ``` python
 >>> import numpy as np
->>> a = np.array([[np.nan,np.inf], [-np.nan,-np.inf]])
+>>> a = np.array([[np.nan, np.inf], [-np.nan, -np.inf]])
 >>> a
 array([[ nan,  inf],
        [ nan, -inf]])
