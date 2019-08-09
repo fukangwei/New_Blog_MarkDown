@@ -37,21 +37,21 @@ array([[0, 1],
 
 ### numpy.delete
 
-&emsp;&emsp;`numpy.delete(arr, obj, axis=None)`: Return a new array with sub-arrays along an axis deleted. For a one dimensional array, this returns those entries not returned by `arr[obj]`. Parameters:
+&emsp;&emsp;`numpy.delete(arr, obj, axis=None)`: Return a new array with `sub-arrays` along an axis deleted. For a one dimensional array, this returns those entries not returned by `arr[obj]`. Parameters:
 
 - `arr`: array_like. Input array.
 - `obj`: slice, int or array of ints. Indicate which sub-arrays to remove.
-- `axis`: int, optional. The axis along which to delete the subarray defined by obj. If axis is None, obj is applied to the flattened array.
+- `axis`: int, optional. The axis along which to delete the subarray defined by obj. If axis is `None`, `obj` is applied to the flattened array.
 
 &emsp;&emsp;Returns:
 
-- `out`: ndarray. A copy of arr with the elements specified by obj removed. Note that delete does not occur in-place. If axis is None, out is a flattened array.
+- `out`: ndarray. A copy of arr with the elements specified by obj removed. Note that delete does not occur `in-place`. If axis is `None`, out is a flattened array.
 
 &emsp;&emsp;Notes: Often it is preferable to use a boolean mask. For example:
 
 ``` python
 >>> mask = np.ones(len(arr), dtype=bool)
->>> mask[[0,2,4]] = False
+>>> mask[[0, 2, 4]] = False
 >>> result = arr[mask,...]
 ```
 
@@ -85,11 +85,11 @@ array([ 1,  3,  5,  7,  8,  9, 10, 11, 12])
 Selects a subset of the `single-dimensional` entries in the shape. If an axis is selected with shape entry greater than one, an error is raised.
 &emsp;&emsp;Returns:
 
-- `squeezed`: ndarray. The input array, but with all or a subset of the dimensions of length 1 removed. This is always a itself or a view into a.
+- `squeezed`: ndarray. The input array, but with all or a subset of the dimensions of length `1` removed. This is always a itself or a view into a.
 
 &emsp;&emsp;Raises:
 
-- `ValueError`. If axis is not None, and an axis being squeezed is not of length 1.
+- `ValueError`. If axis is not None, and an axis being squeezed is not of length `1`.
 
 &emsp;&emsp;Examples:
 
@@ -1430,8 +1430,9 @@ Computing the variance in `float64` is more accurate:
 0.2025
 ```
 
-numpy.ndarray.shape
-    Tuple of array dimensions. The shape property is usually used to get the current shape of an array, but may also be used to reshape the array in-place by assigning a tuple of array dimensions to it. As with numpy.reshape, one of the new shape dimensions can be -1, in which case its value is inferred from the size of the array and the remaining dimensions. Reshaping an array in-place will fail if a copy is required.
+### numpy.ndarray.shape
+
+&emsp;&emsp;Tuple of array dimensions. The shape property is usually used to get the current shape of an array, but may also be used to reshape the array `in-place` by assigning a tuple of array dimensions to it. As with numpy.reshape, one of the new shape dimensions can be `-1`, in which case its value is inferred from the size of the array and the remaining dimensions. Reshaping an array `in-place` will fail if a copy is required.
 
 ``` python
 >>> x = np.array([1, 2, 3, 4])
@@ -1476,8 +1477,11 @@ np.einsum('i, j->ij', a, b)是向量a和向量b的外积(等价于np.outer(a, b)
  [12 15 18]]
 ```
 
-    给定矩阵A和矩阵B，若“A = [[1, 2], [3, 4]]”，“B = [[5, 6], [7, 8]]”：
+&emsp;&emsp;给定矩阵`A`和矩阵`B`，若`A = [[1, 2], [3, 4]]`，`B = [[5, 6], [7, 8]]`：
+
+``` python
 import numpy as np
+
 A = np.array([[1, 2], [3, 4]])
 B = np.array([[5, 6], [7, 8]])
 np.einsum('ij', A)返回矩阵A本身。
@@ -1497,8 +1501,12 @@ np.einsum('ij, jk', A, B)是矩阵A乘以矩阵B(等价于np.dot(A, B))：
  [43 50]]
 np.einsum('ij, ij', A, B)是矩阵A和矩阵B的内积：
 np.einsum('ij, ij', A, B) # 结果为“70”
-    To enable and control broadcasting, use an ellipsis(省略号). Default NumPy-style broadcasting is done by adding an ellipsis to the left of each term, like np.einsum('...ii->...i', a). To take the trace along the first and last axes, you can do np.einsum('i...i', a), or to do a matrix-matrix product with the left-most indices instead of rightmost, you can do np.einsum('ij...,jk...->ik...', a, b).
-    代码1如下所示：
+```
+
+&emsp;&emsp;To enable and control broadcasting, use an ellipsis(省略号). Default `NumPy-style` broadcasting is done by adding an ellipsis to the left of each term, like `np.einsum('...ii->...i', a)`. To take the trace along the first and last axes, you can do `np.einsum('i...i', a)`, or to do a `matrix-matrix` product with the left-most indices instead of rightmost, you can do `np.einsum('ij...,jk...->ik...', a, b)`.
+&emsp;&emsp;代码`1`如下：
+
+``` python
 >>> import numpy as np
 >>> c = np.arange(6).reshape(2, 3)
 >>> c
@@ -1507,7 +1515,6 @@ array([[0, 1, 2],
 >>> np.einsum('..., ...', 3, c)
 array([[ 0,  3,  6],
        [ 9, 12, 15]])
->>>
 >>>
 >>> a = np.arange(25).reshape(5, 5)
 >>> a
@@ -1518,8 +1525,12 @@ array([[ 0,  1,  2,  3,  4],
        [20, 21, 22, 23, 24]])
 >>> np.einsum('i...->...', a)
 array([50, 55, 60, 65, 70])
-    代码2如下所示：
->>> a = np.arange(60.).reshape(3,4,5)
+```
+
+&emsp;&emsp;代码`2`如下：
+
+``` python
+>>> a = np.arange(60.).reshape(3, 4, 5)
 >>> a
 array([[[ 0.,  1.,  2.,  3.,  4.],
         [ 5.,  6.,  7.,  8.,  9.],
@@ -1533,7 +1544,7 @@ array([[[ 0.,  1.,  2.,  3.,  4.],
         [45., 46., 47., 48., 49.],
         [50., 51., 52., 53., 54.],
         [55., 56., 57., 58., 59.]]])
->>> b = np.arange(24.).reshape(4,3,2)
+>>> b = np.arange(24.).reshape(4, 3, 2)
 >>> b
 array([[[ 0.,  1.],
         [ 2.,  3.],
@@ -1553,7 +1564,11 @@ array([[4400., 4730.],
        [4664., 5018.],
        [4796., 5162.],
        [4928., 5306.]])
-    代码3如下所示：
+```
+
+&emsp;&emsp;代码`3`如下：
+
+``` python
 >>> a = np.arange(6).reshape((3,2))
 >>> a
 array([[0, 1],
@@ -1574,4 +1589,6 @@ array([[10, 28, 46, 64],
 >>> np.einsum('k...,jk', a, b)
 array([[10, 28, 46, 64],
        [13, 40, 67, 94]])
-array坐标轴索引的先后顺序定义为“i -> j -> k -> l”。
+```
+
+`array`坐标轴索引的先后顺序定义为`i -> j -> k -> l`。
