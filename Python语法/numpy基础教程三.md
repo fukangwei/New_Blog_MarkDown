@@ -430,7 +430,7 @@ array([[ 1., -1.],
        [-1.,  1.]])
 ```
 
-Note that element $C_{0,1}$, which shows the correlation between $x_0$ and $x_1$, is negative. Further, note how x and y are combined:
+Note that element $C_{0,1}$, which shows the correlation between $x_0$ and $x_1$, is negative. Further, note how `x` and `y` are combined:
 
 ``` python
 >>> x = [-2.1, -1,  4.3]
