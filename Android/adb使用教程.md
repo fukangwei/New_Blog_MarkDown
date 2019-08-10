@@ -1,7 +1,7 @@
 ---
 title: adb使用教程
 date: 2019-08-05 15:11:58
-tags:
+categories: Android
 ---
 &emsp;&emsp;`adb`工具位于`SDK`的`platform-tools`目录下，因此需要将`platform-tools`的路径添加到系统环境变量中。常用的`adb`命令如下：
 
@@ -53,7 +53,7 @@ adb -s 10.129.164.6:5555 install test.apk
 &emsp;&emsp;通过`USB`连接来正常使用`adb`需要保证几点：
 
 1. 硬件状态正常：包括`Android`设备处于正常开机状态，`USB`连接线和各种接口完好。
-2. `Android`设备的开发者选项和`USB`调试模式已开启：可以到`设置 -> 开发者选项 -> Android调试`查看。如果在设置里找不到开发者选项，那需要通过一个彩蛋来让它显示出来：在`设置 -> 关于手机`中，连续点击`7`次`版本号`。
+2. `Android`设备的开发者选项和`USB`调试模式已开启：可以到`设置 -> 开发者选项 -> Android调试`查看。如果在设置里找不到`开发者选项`，那需要通过一个彩蛋来让它显示出来：在`设置 -> 关于手机`中，连续点击`7`次`版本号`。
 3. 设备驱动状态正常。
 4. 通过`USB`线连接好电脑和设备后，使用如下命令确认状态：
 
@@ -125,7 +125,7 @@ adb shell pm list packages -s
 adb shell pm list packages -3
 ```
 
-&emsp;&emsp;查看包名包含字符串`mazhuang`的应用列表，可以使用命令：
+&emsp;&emsp;查看包名包含字符串`mazhuang`的应用列表，可以使用如下命令：
 
 ``` bash
 adb shell pm list packages mazhuang
@@ -137,7 +137,7 @@ adb shell pm list packages mazhuang
 adb shell pm list packages | grep mazhuang
 ```
 
-### 安装APK
+#### 安装APK
 
 &emsp;&emsp;命令格式如下：
 
@@ -164,23 +164,16 @@ adb install [-lrtsdg] <path_to_apk>
 Success
 ```
 
-而如果状态为`Failure`，则表示安装失败：
-
-``` bash
-[100%] /data/local/tmp/map-20160831.apk
-    pkg: /data/local/tmp/map-20160831.apk
-Failure [INSTALL_FAILED_ALREADY_EXISTS]
-```
-
+而如果状态为`Failure`，则表示安装失败。
 &emsp;&emsp;`adb install`实际是分三步完成：
 
 1. `push apk`文件到`/data/local/tmp`。
-2. 调用`pm install`安装。
+2. 调用`pm install`安装`apk`文件。
 3. 删除`/data/local/tmp`下的对应`apk`文件。
 
-所以，必要的时候也可以根据这个步骤，手动分步执行安装过程。
+必要时也可以根据这个步骤，分步执行安装过程。
 
-### 卸载应用
+#### 卸载应用
 
 &emsp;&emsp;使用如下命令：
 
@@ -194,9 +187,7 @@ adb uninstall [-k] <packagename>
 adb uninstall com.qihoo360.mobilesafe
 ```
 
-表示卸载`360`手机卫士。
-
-### 清除应用数据与缓存
+#### 清除应用数据与缓存
 
 &emsp;&emsp;使用如下命令：
 
@@ -210,9 +201,7 @@ adb shell pm clear <packagename>
 adb shell pm clear com.qihoo360.mobilesafe
 ```
 
-表示清除`360`手机卫士的数据和缓存。
-
-### 查看前台Activity
+#### 查看前台Activity
 
 &emsp;&emsp;使用如下命令：
 
@@ -228,7 +217,7 @@ mFocusedActivity: ActivityRecord{8079d7e u0 com.cyanogenmod.trebuchet/com.androi
 
 其中的`com.cyanogenmod.trebuchet/com.android.launcher3.Launcher`就是当前处于前台的`Activity`。
 
-### 查看正在运行的Services
+#### 查看正在运行的Services
 
 &emsp;&emsp;使用如下命令：
 
@@ -236,10 +225,10 @@ mFocusedActivity: ActivityRecord{8079d7e u0 com.cyanogenmod.trebuchet/com.androi
 adb shell dumpsys activity services [<packagename>]
 ```
 
-`<packagename>`参数不是必须的，指定`<packagename>`表示查看与某个包名相关的`Services`，不指定表示查看所有`Services`。
+`<packagename>`参数不是必须的，指定`<packagename>`表示查看与其相关的`Services`，不指定`<packagename>`表示查看所有`Services`。
 &emsp;&emsp;`<packagename>`不一定要给出完整的包名，比如运行`adb shell dumpsys activity services org.mazhuang`，那么包名`org.mazhuang.demo1`、`org.mazhuang.demo2`和`org.mazhuang123`等相关的`Services`都会列出来。
 
-### 查看应用详细信息
+#### 查看应用详细信息
 
 &emsp;&emsp;使用如下命令：
 
@@ -249,7 +238,7 @@ adb shell dumpsys package <packagename>
 
 输出中包含很多信息，包括`Activity Resolver Table`、`Registered ContentProviders`、包名、`userId`、安装后的文件资源代码等路径、版本信息、权限信息和授予状态、签名版本信息等。
 
-### 查看应用安装路径
+#### 查看应用安装路径
 
 &emsp;&emsp;使用如下命令：
 
@@ -257,7 +246,7 @@ adb shell dumpsys package <packagename>
 adb shell pm path <packagename>
 ```
 
-输出示例如下：
+输出示例：
 
 ``` bash
 adb shell pm path ecarx.weather
