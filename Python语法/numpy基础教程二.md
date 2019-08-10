@@ -189,13 +189,13 @@ array([False, False,  True,  True, False])
 
 &emsp;&emsp;`numpy.less(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'less'>`. Return the truth value of (`x1 < x2`) element-wise. Parameters:
 
-- `x1, x2`: array_like. Input arrays. If `x1.shape != x2.shape`, they must be broadcastable to a common shape (which may be the shape of one or the other).
-- `out`: ndarray, None, or tuple of ndarray and None, optional.A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
-- `where`: array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
+- `x1, x2`: `array_like`. Input arrays. If `x1.shape != x2.shape`, they must be broadcastable to a common shape (which may be the shape of one or the other).
+- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `where`: `array_like`, optional. Values of `True` indicate to calculate the ufunc at that position, values of `False` indicate to leave the value in the output alone.
 
 &emsp;&emsp;Returns:
 
-- `out`: bool or ndarray of bool. Array of bools, or a single bool if `x1` and `x2` are scalars.
+- `out`: `bool` or `ndarray of bool`. Array of bools, or a single bool if `x1` and `x2` are scalars.
 
 &emsp;&emsp;Examples:
 
@@ -228,14 +228,14 @@ array([[1, 2, 5],
 
 ### numpy.ma.size
 
-&emsp;&emsp;`numpy.ma.size(obj, axis=None)`: Return the number of elements along a given axis. Parameters:
+&emsp;&emsp;`numpy.ma.size(obj, axis=None)`: Return the number of elements along a given `axis`. Parameters:
 
-- `a`: array_like. Input data.
-- `axis`: int, optional. Axis along which the elements are counted. By default, give the total number of elements.
+- `a`: `array_like`. Input data.
+- `axis`: `int`, optional. Axis along which the elements are counted. By default, give the total number of elements.
 
 &emsp;&emsp;Returns:
 
-- `element_count`: int. Number of elements along the specified axis.
+- `element_count`: `int`. Number of elements along the specified `axis`.
 
 &emsp;&emsp;Examples:
 
