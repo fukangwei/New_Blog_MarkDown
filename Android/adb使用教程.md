@@ -453,7 +453,7 @@ adb push ~/sr.mp4 /sdcard/
 
 &emsp;&emsp;设备上的文件路径普通权限可能无法直接写入，如果你的设备已经`root`过，可以先`adb push /path/on/pc /sdcard/filename`，然后`adb shell`和`su`在`adb shell`里获取`root`权限后，`cp /sdcard/filename /path/on/device`。
 
-### 模拟按键/输入
+#### 模拟按键/输入
 
 &emsp;&emsp;在`adb shell`里有个很实用的命令叫`input`，通过它可以做一些有趣的事情。`input`命令的完整`help`信息如下：
 
@@ -502,39 +502,31 @@ keycode | 含义                          | keycode | 含义
 `224`   | 点亮屏幕                        | `231`   | 打开语音助手
 `276`   | 如果没有`wakelock`，则让系统休眠
 
-### 电源键
-
-&emsp;&emsp;执行效果相当于按电源键：
+- `电源键`：执行效果相当于按电源键：
 
 ``` bash
 adb shell input keyevent 26
 ```
 
-### 菜单键
-
-&emsp;&emsp;命令格式：
+- `菜单键`：命令格式：
 
 ``` bash
 adb shell input keyevent 82
 ```
 
-### HOME键
-
-&emsp;&emsp;命令格式：
+- `HOME键`：命令格式：
 
 ``` bash
 adb shell input keyevent 3
 ```
 
-### 返回键
-
-&emsp;&emsp;命令格式：
+- `返回键`：命令格式：
 
 ``` bash
 adb shell input keyevent 4
 ```
 
-### 音量控制
+- `音量控制`：命令格式：
 
 ``` bash
 adb shell input keyevent 24  # 增加音量
@@ -542,7 +534,7 @@ adb shell input keyevent 25  # 降低音量
 adb shell input keyevent 164  # 静音
 ```
 
-### 媒体控制
+- `媒体控制`：命令格式：
 
 ``` bash
 adb shell input keyevent 85  # 播放/暂停
@@ -553,14 +545,14 @@ adb shell input keyevent 126  # 恢复播放
 adb shell input keyevent 127  # 暂停播放
 ```
 
-### 点亮/熄灭屏幕
+- `点亮/熄灭屏幕`：命令格式：
 
 ``` bash
 adb shell input keyevent 224  # 点亮屏幕
 adb shell input keyevent 223  # 熄灭屏幕
 ```
 
-### 滑动解锁
+#### 滑动解锁
 
 &emsp;&emsp;如果锁屏没有密码，是通过滑动手势解锁，那么可以通过`input swipe`来解锁，命令如下(参数以机型`Nexus 5`，向上滑动手势解锁举例)：
 
@@ -570,7 +562,7 @@ adb shell input swipe 300 1000 300 500
 
 参数`300`、`1000`、`300`和`500`分别表示起始点`x`坐标、起始点`y`坐标、结束点`x`坐标和结束点`y`坐标。
 
-### 输入文本
+#### 输入文本
 
 &emsp;&emsp;在焦点处于某文本框时，可以通过`input`命令来输入文本：
 
@@ -584,7 +576,7 @@ adb shell input text hello
 
 &emsp;&emsp;`Android`系统的日志分为两部分，底层的`Linux`内核日志输出到`/proc/kmsg`，`Android`的日志输出到`/dev/log`。
 
-### Android日志
+#### Android日志
 
 &emsp;&emsp;命令格式：
 
@@ -592,7 +584,7 @@ adb shell input text hello
 adb logcat [<option>] ... [<filter-spec>] ...
 ```
 
-### 按级别过滤日志
+##### 按级别过滤日志
 
 &emsp;&emsp;`Android`的日志分为如下几个优先级：
 
@@ -614,7 +606,7 @@ adb logcat *:W
 
 注意，在`macOS`下需要给`*:W`这样以`*`作为`tag`的参数加双引号，例如`adb logcat "*:W"`，不然会报错`no matches found: *:W`。
 
-### 按tag和级别过滤日志
+##### 按tag和级别过滤日志
 
 &emsp;&emsp;`<filter-spec>`可以由多个`<tag>[:priority]`组成。如下命令表示输出`tag ActivityManager`的`Info`以上级别日志，输出`tag MyApp`的`Debug`以上级别日志，及其它`tag`的`Silent`级别日志(即屏蔽其它`tag`日志)：
 
@@ -622,7 +614,7 @@ adb logcat *:W
 adb logcat ActivityManager:I MyApp:D *:S
 ```
 
-### 日志格式
+##### 日志格式
 
 &emsp;&emsp;可以用`adb logcat -v <format>`选项指定日志输出格式。日志支持按以下几种`<format>`：
 
@@ -718,7 +710,7 @@ Disconnected process message: 10, size: 0
 adb logcat -v long ActivityManager:I *:S
 ```
 
-### 清空日志
+##### 清空日志
 
 &emsp;&emsp;命令格式：
 
@@ -726,7 +718,7 @@ adb logcat -v long ActivityManager:I *:S
 adb logcat -c
 ```
 
-### 内核日志
+#### 内核日志
 
 &emsp;&emsp;命令格式：
 
@@ -792,7 +784,7 @@ Current Battery Service state:
 
 其中`scale`代表最大电量，`level`代表当前电量。上面的输出表示还剩下`44%`的电量。
 
-### 屏幕分辨率
+#### 屏幕分辨率
 
 &emsp;&emsp;命令格式：
 
@@ -815,7 +807,7 @@ Override size: 480x1024
 
 表明设备的屏幕分辨率原本是`1080px * 1920px`，当前被修改为`480px * 1024px`。
 
-### 屏幕密度
+#### 屏幕密度
 
 &emsp;&emsp;命令格式：
 
@@ -838,7 +830,7 @@ Override density: 160
 
 表明设备的屏幕密度原来是`480dpi`，当前被修改为`160dpi`。
 
-### 显示屏参数
+#### 显示屏参数
 
 &emsp;&emsp;命令格式：
 
@@ -857,7 +849,7 @@ WINDOW MANAGER DISPLAY CONTENTS (dumpsys window displays)
 
 其中`mDisplayId`为显示屏编号，`init`是初始分辨率和屏幕密度，`app`的高度比`init`里的要小，表示屏幕底部有虚拟按键，高度为`1920 - 1794 = 126px`，即`42dp`。
 
-### android_id
+#### android_id
 
 &emsp;&emsp;命令格式：
 
@@ -871,7 +863,7 @@ adb shell settings get secure android_id
 51b6be48bac8c569
 ```
 
-### IMEI
+#### IMEI
 
 &emsp;&emsp;在`Android 4.4`及以下版本，可通过如下命令获取`IMEI`：
 
@@ -906,7 +898,7 @@ Result: Parcel(
 
 把里面的有效内容提取出来就是`IMEI`了，比如这里的是`860955027785041`。
 
-### Android系统版本
+#### Android系统版本
 
 &emsp;&emsp;命令格式：
 
@@ -920,7 +912,7 @@ adb shell getprop ro.build.version.release
 5.0.2
 ```
 
-### IP地址
+#### IP地址
 
 &emsp;&emsp;查看设备的`IP`地址可以通过`设置 -> 关于手机 -> 状态信息 -> IP地址`，也可以通过`adb`方便地查看：
 
@@ -994,7 +986,7 @@ rev_rmnet1 DOWN       0.0.0.0/0  0x00001002 da:d8:e8:4f:2e:fe
 
 可以看到网络连接名称、启用状态、`IP`地址和`MAC`地址等信息。
 
-### MAC地址
+#### MAC地址
 
 &emsp;&emsp;命令格式：
 
@@ -1010,7 +1002,7 @@ f8:a9:d0:17:42:4d
 
 这查看的是局域网`MAC`地址，移动网络或其它连接的信息可以通过前面的小节`IP地址`里提到的`adb shell netcfg`命令来查看。
 
-### CPU信息
+#### CPU信息
 
 &emsp;&emsp;命令格式：
 
@@ -1043,7 +1035,7 @@ Serial          : 0000000000000000
 
 这是`Nexus 5`的`CPU`信息，我们从输出里可以看到使用的硬件是`Qualcomm MSM 8974`，`processor`的编号是`0`到`3`，所以它是`4`核的，采用的架构是`ARMv7 Processor rev 0 (v71)`。
 
-### 内存信息
+#### 内存信息
 
 &emsp;&emsp;命令格式：
 
@@ -1095,7 +1087,7 @@ VmallocChunk:     209668 kB
 
 其中，`MemTotal`就是设备的总内存，`MemFree`是当前空闲内存。
 
-### 更多硬件与系统属性
+#### 更多硬件与系统属性
 
 &emsp;&emsp;设备的更多硬件与系统属性可以通过如下命令查看：
 
@@ -1122,9 +1114,9 @@ adb shell cat /system/build.prop
 
 ### 修改设置
 
-&emsp;&emsp;修改设置之后，运行恢复命令有可能显示仍然不太正常，可以运行`adb reboot`重启设备，或手动重启。修改设置的原理主要是通过`settings`命令修改`/data/data/com.android.providers.settings/databases/settings.db`里存放的设置值。
+&emsp;&emsp;修改设置之后，运行恢复命令有可能显示仍然不太正常，可以运行`adb reboot`重启设备，或手动重启。修改设置的原理主要是修改`/data/data/com.android.providers.settings/databases/settings.db`里存放的设置值。
 
-### 分辨率
+#### 修改分辨率
 
 &emsp;&emsp;命令格式：
 
@@ -1138,7 +1130,7 @@ adb shell wm size 480x1024
 adb shell wm size reset
 ```
 
-### 屏幕密度
+#### 修改屏幕密度
 
 &emsp;&emsp;命令格式：
 
@@ -1152,7 +1144,7 @@ adb shell wm density 160
 adb shell wm density reset
 ```
 
-### 显示区域
+#### 修改显示区域
 
 &emsp;&emsp;命令格式：
 
@@ -1166,7 +1158,7 @@ adb shell wm overscan 0,0,0,200
 adb shell wm overscan reset
 ```
 
-### 关闭USB调试模式
+#### 关闭USB调试模式
 
 &emsp;&emsp;命令格式：
 
@@ -1174,9 +1166,9 @@ adb shell wm overscan reset
 adb shell settings put global adb_enabled 0
 ```
 
-如果想要恢复调试模式，用命令无法恢复，毕竟关闭了`USB`调试，`adb`就连接不上`Android`设备了。可以在设备上手动恢复：`设置 -> 开发者选项 -> Android调试`。
+如果想要恢复调试模式，用命令无法恢复，毕竟关闭了`USB`调试，`adb`就连接不上`Android`设备了，可以在设备上手动恢复。
 
-### 允许/禁止访问非SDK API
+#### 允许/禁止访问非SDK API
 
 &emsp;&emsp;允许访问非`SDK API`：
 
@@ -1201,7 +1193,7 @@ adb shell settings delete global hidden_api_policy_p_apps
 `2` | 禁止调用深灰名单和黑名单中的接口
 `3` | 禁止调用黑名单中的接口，但允许调用深灰名单中的接口
 
-### 状态栏和导航栏的显示隐藏
+#### 状态栏和导航栏的显示隐藏
 
 &emsp;&emsp;本节所说的相关设置对应`Cyanogenmod`里的`扩展桌面`，命令格式如下：
 
@@ -1264,7 +1256,7 @@ adb pull /sdcard/sc.png  # 然后将png文件导出到电脑
 
 如果指定文件名以`.png`结尾时，可以省略`-p`参数，否则需要使用`-p`参数。如果不指定文件名，截图文件的内容将直接输出到`stdout`。
 
-### 录制屏幕
+#### 录制屏幕
 
 &emsp;&emsp;录制屏幕以`mp4`格式保存到`/sdcard`：
 
@@ -1287,7 +1279,7 @@ adb pull /sdcard/filename.mp4
 `--time-limit TIME`   | 录制时长，单位是秒
 `--verbose`           | 输出更多信息
 
-### 重新挂载system分区为可写
+#### 重新挂载system分区为可写
 
 &emsp;&emsp;该步骤需要`root`权限。`/system`分区默认挂载为只读，但有些操作比如给`Android`系统添加命令、删除自带应用等需要对`/system`进行写操作，所以需要重新挂载它为可读写。
 &emsp;&emsp;进入`shell`，并切换到`root`用户权限：
@@ -1342,7 +1334,7 @@ mount -o remount,rw -t yaffs2 /dev/block/platform/msm_sdcc.1/by-name/system /sys
 
 这里的`/dev/block/platform/msm_sdcc.1/by-name/system`就是我们从上一步的输出里得到的文件路径。如果输出没有提示错误的话，操作就成功了，可以对`/system`下的文件为所欲为了。
 
-### 查看连接过的WiFi密码
+#### 查看连接过的WiFi密码
 
 &emsp;&emsp;该步骤需要`root`权限，使用如下命令：
 
@@ -1377,7 +1369,7 @@ network={
 
 `ssid`即为我们在`WLAN`设置里看到的名称，`psk`为密码，`key_mgmt`为安全加密方式。
 
-### 设置系统日期和时间
+#### 设置系统日期和时间
 
 &emsp;&emsp;该步骤需要`root`权限，使用如下命令：
 
@@ -1389,7 +1381,7 @@ date -s 20160823.131500
 
 表示将系统日期和时间更改为`2016`年`08`月`23`日`13`点`15`分`00`秒。
 
-### 重启手机
+#### 重启手机
 
 &emsp;&emsp;命令格式：
 
@@ -1397,7 +1389,7 @@ date -s 20160823.131500
 adb reboot
 ```
 
-### 检测设备是否已root
+#### 检测设备是否已root
 
 &emsp;&emsp;命令格式：
 
@@ -1408,7 +1400,7 @@ su
 
 此时命令行提示符是`$`，则表示没有`root`权限，是`#`则表示已`root`。
 
-### 使用Monkey进行压力测试
+#### 使用Monkey进行压力测试
 
 &emsp;&emsp;`Monkey`可以生成伪随机用户事件来模拟单击、触摸、手势等操作，可以对正在开发中的程序进行随机压力测试。简单用法如下：
 
@@ -1418,7 +1410,7 @@ adb shell monkey -p <packagename> -v 500
 
 表示向`<packagename>`指定的应用程序发送`500`个伪随机事件。
 
-### 开启/关闭WiFi
+#### 开启/关闭WiFi
 
 &emsp;&emsp;该步骤需要`root`权限，有时需要控制设备的`WiFi`状态，可以用以下指令完成：
 
@@ -1433,7 +1425,7 @@ adb shell svc wifi disable
 
 若执行成功，输出为空；若未取得`root`权限执行此命令，将执行失败，输出`Killed`。
 
-### 刷机相关命令
+#### 刷机相关命令
 
 &emsp;&emsp;命令如下：
 
@@ -1447,7 +1439,7 @@ adb reboot bootloader  # 重启到Fastboot模式
 
 &emsp;&emsp;`Android`系统是基于`Linux`内核的，所以`Linux`里的很多命令在`Android`里也有相同或类似的实现，在`adb shell`里可以调用。本文档前面的部分内容已经用到了`adb shell`命令。
 
-### 查看进程
+#### 查看进程
 
 &emsp;&emsp;命令格式：
 
@@ -1477,7 +1469,7 @@ shell  8750 217  10640   740   00000000 b6f28340 R ps
 `PPID` | 父进程`ID`
 `NAME` | 进程名
 
-### 查看实时资源占用情况
+#### 查看实时资源占用情况
 
 &emsp;&emsp;命令格式：
 
@@ -1531,7 +1523,7 @@ Usage: top [ -m max_procs ] [ -n iterations ] [ -d delay ] [ -s sort_column ] [ 
     -h      显示帮助文档
 ```
 
-### 其它
+#### 其它
 
 &emsp;&emsp;如下是其它常用命令的简单描述：
 
