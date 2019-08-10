@@ -37,10 +37,10 @@ array([[0, 1],
 
 ### numpy.delete
 
-&emsp;&emsp;`numpy.delete(arr, obj, axis=None)`: Return a new array with `sub-arrays` along an axis deleted. For a one dimensional array, this returns those entries not returned by `arr[obj]`. Parameters:
+&emsp;&emsp;`numpy.delete(arr, obj, axis=None)`: Return a new array with `sub-arrays` along an `axis` deleted. For a one dimensional array, this returns those entries not returned by `arr[obj]`. Parameters:
 
-- `arr`: array_like. Input array.
-- `obj`: slice, int or array of ints. Indicate which sub-arrays to remove.
+- `arr`: `array_like`. Input array.
+- `obj`: `slice`, `int` or `array of ints`. Indicate which sub-arrays to remove.
 - `axis`: int, optional. The axis along which to delete the subarray defined by obj. If axis is `None`, `obj` is applied to the flattened array.
 
 &emsp;&emsp;Returns:

@@ -9,7 +9,7 @@ categories: Android
 - `adb reboot`：重新启动。
 - `adb version`：查看`adb`的版本。
 - `adb help`：查看`adb`的用法。
-
+<!--more-->
 ### 命令语法
 
 &emsp;&emsp;`adb`命令的基本语法如下：
