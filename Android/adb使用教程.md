@@ -257,14 +257,14 @@ package:/data/app/ecarx.weather-1.apk
 
 &emsp;&emsp;主要是使用`am <command>`命令，常用的`<command>`如下：
 
-command                          | 用途
----------------------------------|----
+command                           | 用途
+----------------------------------|----
 `start [options] <INTENT>`        | 启动`<INTENT>`指定的`Activity`
 `startservice [options] <INTENT>` | 启动`<INTENT>`指定的`Service`
 `broadcast [options] <INTENT>`    | 发送`<INTENT>`指定的广播
 `force-stop <packagename>`        | 停止`<packagename>`相关的进程
 
-`<INTENT>`参数很灵活，和编写`Android`程序时代码里的`Intent`相对应。用于决定`intent`对象的选项如下：
+`<INTENT>`参数很灵活，和编写`Android`程序中的`Intent`相对应。用于决定`Intent`对象的选项如下：
 
 参数             | 含义
 -----------------|----
@@ -286,7 +286,7 @@ command                          | 用途
 `--eia <EXTRA_KEY> <EXTRA_INT_VALUE>[, <EXTRA_INT_VALUE...]`   | `integer`数组
 `--ela <EXTRA_KEY> <EXTRA_LONG_VALUE>[, <EXTRA_LONG_VALUE...]` | `long`数组
 
-### 启动应用/调起Activity
+#### 启动应用/调起Activity
 
 &emsp;&emsp;命令格式：
 
@@ -306,7 +306,7 @@ adb shell am start -n com.tencent.mm/.ui.LauncherUI
 adb shell am start -n org.mazhuang.boottimemeasure/.MainActivity --es "toast" "hello, world"
 ```
 
-### 调起Service
+#### 调起Service
 
 &emsp;&emsp;命令格式：
 
@@ -326,7 +326,7 @@ adb shell am startservice -n com.tencent.mm/.plugin.accountsync.model.AccountAut
 adb shell am startservice -n com.android.systemui/.SystemUIService
 ```
 
-### 停止Service
+#### 停止Service
 
 &emsp;&emsp;命令格式：
 
@@ -334,7 +334,7 @@ adb shell am startservice -n com.android.systemui/.SystemUIService
 adb shell am stopservice [options] <INTENT>
 ```
 
-### 发送广播
+#### 发送广播
 
 &emsp;&emsp;命令格式：
 
@@ -381,7 +381,7 @@ action                                            | 触发时机
 `android.intent.action.MEDIA_MOUNTED`             | 挂载外部介质
 `android.os.action.POWER_SAVE_MODE_CHANGED`       | 省电模式开启
 
-### 强制停止应用
+#### 强制停止应用
 
 &emsp;&emsp;命令格式：
 
@@ -389,13 +389,13 @@ action                                            | 触发时机
 adb shell am force-stop <packagename>
 ```
 
-如下示例表示停止`360`安全卫士的一切进程与服务：
+使用示例如下：
 
 ``` bash
 adb shell am force-stop com.qihoo360.mobilesafe
 ```
 
-### 收紧内存
+#### 收紧内存
 
 &emsp;&emsp;命令格式：
 
@@ -413,7 +413,7 @@ adb shell am send-trim-memory <pid> <level>
 - `RUNNING_CRITICAL`
 - `COMPLETE`
 
-&emsp;&emsp;如下示例表示向`pid = 12345`的进程，发出`level = RUNNING_LOW`的收紧内存命令：
+&emsp;&emsp;如下示例表示向`pid = 12345`的进程发出`level = RUNNING_LOW`的收紧内存命令：
 
 ``` bash
 adb shell am send-trim-memory 12345 RUNNING_LOW
