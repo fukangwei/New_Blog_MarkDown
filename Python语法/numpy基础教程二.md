@@ -37,22 +37,22 @@ array([[0, 1],
 
 ### numpy.delete
 
-&emsp;&emsp;`numpy.delete(arr, obj, axis=None)`: Return a new array with `sub-arrays` along an `axis` deleted. For a one dimensional array, this returns those entries not returned by `arr[obj]`. Parameters:
+&emsp;&emsp;`numpy.delete(arr, obj, axis=None)`: Return a new array with sub-arrays along an `axis` deleted. For a one dimensional array, this returns those entries not returned by `arr[obj]`. Parameters:
 
 - `arr`: `array_like`. Input array.
 - `obj`: `slice`, `int` or `array of ints`. Indicate which sub-arrays to remove.
-- `axis`: int, optional. The axis along which to delete the subarray defined by obj. If axis is `None`, `obj` is applied to the flattened array.
+- `axis`: `int`, optional. The `axis` along which to delete the subarray defined by `obj`. If `axis` is `None`, `obj` is applied to the flattened array.
 
 &emsp;&emsp;Returns:
 
-- `out`: ndarray. A copy of arr with the elements specified by obj removed. Note that delete does not occur `in-place`. If axis is `None`, out is a flattened array.
+- `out`: `ndarray`. A copy of `arr` with the elements specified by `obj` removed. Note that delete does not occur in-place. If `axis` is `None`, `out` is a flattened array.
 
-&emsp;&emsp;Notes: Often it is preferable to use a boolean mask. For example:
+&emsp;&emsp;Notes: Often it is preferable to use a `boolean` mask. For example:
 
 ``` python
 >>> mask = np.ones(len(arr), dtype=bool)
 >>> mask[[0, 2, 4]] = False
->>> result = arr[mask,...]
+>>> result = arr[mask, ...]
 ```
 
 Is equivalent to `np.delete(arr, [0,2,4], axis=0)`, but allows further use of mask.
@@ -77,19 +77,19 @@ array([ 1,  3,  5,  7,  8,  9, 10, 11, 12])
 
 ### numpy.squeeze
 
-&emsp;&emsp;`numpy.squeeze(a, axis=None)`: Remove `single-dimensional` entries from the shape of an array. Parameters:
+&emsp;&emsp;`numpy.squeeze(a, axis=None)`: Remove single-dimensional entries from the shape of an array. Parameters:
 
-- `a`: array_like. Input data.
-- `axis`: None or int or tuple of ints, optional.
+- `a`: `array_like`. Input data.
+- `axis`: `None` or `int` or `tuple of ints`, optional.
 
-Selects a subset of the `single-dimensional` entries in the shape. If an axis is selected with shape entry greater than one, an error is raised.
+Selects a subset of the single-dimensional entries in the shape. If an `axis` is selected with shape entry greater than one, an error is raised.
 &emsp;&emsp;Returns:
 
-- `squeezed`: ndarray. The input array, but with all or a subset of the dimensions of length `1` removed. This is always a itself or a view into a.
+- `squeezed`: `ndarray`. The input array, but with all or a subset of the dimensions of length `1` removed. This is always `a` itself or a view into `a`.
 
 &emsp;&emsp;Raises:
 
-- `ValueError`. If axis is not None, and an axis being squeezed is not of length `1`.
+- `ValueError`. If `axis` is not `None`, and an axis being squeezed is not of length `1`.
 
 &emsp;&emsp;Examples:
 
