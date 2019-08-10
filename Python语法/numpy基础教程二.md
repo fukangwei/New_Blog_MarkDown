@@ -141,13 +141,13 @@ inf
 
 &emsp;&emsp;`numpy.logical_not(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'logical_not'>`. Compute the truth value of `NOT x` element-wise. Parameters:
 
-- `x`: array_like. Logical `NOT` is applied to the elements of `x`.
-- `out`: ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
-- `where`: array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
+- `x`: `array_like`. Logical `NOT` is applied to the elements of `x`.
+- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `where`: `array_like`, optional. Values of `True` indicate to calculate the ufunc at that position, values of `False` indicate to leave the value in the output alone.
 
 &emsp;&emsp;Returns:
 
-- `y`: bool or ndarray of bool. Boolean result with the same shape as `x` of the `NOT` operation on elements of `x`.
+- `y`: `bool` or `ndarray of bool`. `Boolean` result with the same shape as `x` of the `NOT` operation on elements of `x`.
 
 &emsp;&emsp;Examples:
 
@@ -163,15 +163,15 @@ array([False, False, False,  True,  True])
 
 ### numpy.logical_and
 
-&emsp;&emsp;`numpy.logical_and(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'logical_and'>`. Compute the truth value of `x1` AND `x2` element-wise. Parameters:
+&emsp;&emsp;`numpy.logical_and(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'logical_and'>`. Compute the truth value of `x1 AND x2` element-wise. Parameters:
 
-- `x1, x2`: array_like. Input arrays. `x1` and `x2` must be of the same shape.
-- `out`: ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
-- `where`: array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
+- `x1, x2`: `array_like`. Input arrays. `x1` and `x2` must be of the same shape.
+- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `where`: `array_like`, optional. Values of `True` indicate to calculate the ufunc at that position, values of `False` indicate to leave the value in the output alone.
 
 &emsp;&emsp;Returns:
 
-- `y`: ndarray or bool. Boolean result with the same shape as `x1` and `x2` of the logical AND operation on corresponding elements of `x1` and `x2`.
+- `y`: `ndarray` or `bool`. `Boolean` result with the same shape as `x1` and `x2` of the logical `AND` operation on corresponding elements of `x1` and `x2`.
 
 &emsp;&emsp;Examples:
 
