@@ -251,17 +251,17 @@ array([[1, 2, 5],
 
 ### numpy.empty
 
-&emsp;&emsp;`numpy.empty(shape, dtype=float, order='C')`: Return a new array of given shape and type, without initializing entries. Parameters:
+&emsp;&emsp;`numpy.empty(shape, dtype=float, order='C')`: Return a new array of given `shape` and `type`, without initializing entries. Parameters:
 
-- `shape`: int or tuple of int. Shape of the empty array.
-- `dtype`: data-type, optional. Desired output data-type.
-- `order`: {'C', 'F'}, optional. Whether to store multi-dimensional data in `row-major` (`C-style`) or `column-major` (`Fortran-style`) order in memory.
+- `shape`: `int` or `tuple of int`. Shape of the empty array.
+- `dtype`: `data-type`, optional. Desired output `data-type`.
+- `order`: `{'C', 'F'}`, optional. Whether to store multi-dimensional data in `row-major` (`C-style`) or `column-major` (`Fortran-style`) order in memory.
 
 &emsp;&emsp;Returns:
 
-- `out`: ndarray. Array of uninitialized (arbitrary) data of the given shape, dtype, and order. Object arrays will be initialized to None.
+- `out`: `ndarray`. Array of uninitialized (arbitrary) data of the given `shape`, `dtype`, and `order`. Object arrays will be initialized to `None`.
 
-&emsp;&emsp;Notes: empty, unlike zeros, does not set the array values to zero, and may therefore be marginally faster. On the other hand, it requires the user to manually set all the values in the array, and should be used with caution.
+&emsp;&emsp;Notes: empty, unlike `zeros`, does not set the array values to `zero`, and may therefore be marginally faster. On the other hand, it requires the user to manually set all the values in the array, and should be used with caution.
 &emsp;&emsp;Examples:
 
 ``` python
@@ -275,13 +275,13 @@ array([[-1073741821, -1067949133],
 
 ### numpy.fliplr
 
-&emsp;&emsp;`numpy.fliplr(m)`: Flip array in the `left/right` direction. Flip the entries in each row in the left/right direction. Columns are preserved, but appear in a different order than before. Parameters:
+&emsp;&emsp;`numpy.fliplr(m)`: Flip array in the `left/right` direction. Flip the entries in each row in the `left/right` direction. Columns are preserved, but appear in a different order than before. Parameters:
 
-- `m`: array_like. Input array, must be at least `2-D`.
+- `m`: `array_like`. Input array, must be at least `2-D`.
 
 &emsp;&emsp;Returns:
 
-- `f`: ndarray. A view of m with the columns reversed. Since a view is returned, this operation is `O(1)`.
+- `f`: `ndarray`. A view of m with the columns reversed. Since a view is returned, this operation is `O(1)`.
 
 &emsp;&emsp;Notes: Equivalent to `m[:, ::-1]`. Requires the array to be at least `2-D`.
 &emsp;&emsp;Examples:
