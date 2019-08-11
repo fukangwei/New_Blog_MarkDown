@@ -16,7 +16,7 @@ Perform an indirect sort along the given axis using the algorithm specified
 by the `kind` keyword. It returns an array of indices of the same shape as
 `a` that index data along the given axis in sorted order.
 ```
-
+<!--more-->
 从中可以看出`argsort`函数返回的是数组值从小到大的索引值。
 
 ``` python
@@ -1139,7 +1139,12 @@ array([[-24,  48, -24],
 
 &emsp;&emsp;`ndarray.flatten(order='C')`: Return a copy of the array collapsed into one dimension. Parameters:
 
-- `order`: `{"C", "F", "A", "K"}`, optional. `C` means to flatten in `row-major` (`C-style`) order. `F` means to flatten in `column-major` (`Fortran- style`) order. `A` means to flatten in `column-major` order if `a` is Fortran contiguous in memory, `row-major` order otherwise. `K` means to flatten `a` in the order the elements occur in memory.
+- `order`: `{"C", "F", "A", "K"}`, optional.
+
+1. `C` means to flatten in `row-major` (`C-style`) order.
+2. `F` means to flatten in `column-major` (`Fortran- style`) order.
+3. `A` means to flatten in `column-major` order if `a` is Fortran contiguous in memory, `row-major` order otherwise.
+4. `K` means to flatten `a` in the order the elements occur in memory.
 
 &emsp;&emsp;Returns:
 
@@ -1291,9 +1296,9 @@ array([[ 0,  1,  2,  3],
 - `newshape`: `int` or `tuple of ints`. The new shape should be compatible with the original shape. If an integer, then the result will be a `1-D` array of that length. One shape dimension can be `-1`. In this case, the value is inferred from the length of the array and remaining dimensions.
 - `order`: `{'C', 'F', 'A'}`, optional. Read the elements of `a` using this index `order`, and place the elements into the reshaped array using this index `order`.
 
-1. `C`: means to read/write the elements using `C-like` index order, with the last axis index changing fastest, back to the first axis index changing slowest.
-2. `F`: means to read/write the elements using `Fortran-like` index order, with the first index changing fastest, and the last index changing slowest.
-3. `A`: means to read/write the elements in `Fortran-like` index order if `a` is `Fortran` contiguous in memory, `C-like` order otherwise.
+1. `C` means to read/write the elements using `C-like` index order, with the last axis index changing fastest, back to the first axis index changing slowest.
+2. `F` means to read/write the elements using `Fortran-like` index order, with the first index changing fastest, and the last index changing slowest.
+3. `A` means to read/write the elements in `Fortran-like` index order if `a` is `Fortran` contiguous in memory, `C-like` order otherwise.
 
 Note that the `C` and `F` options take no account of the memory layout of the underlying array, and only refer to the order of indexing.
 &emsp;&emsp;Returns:
@@ -1346,7 +1351,7 @@ array([[0, 4, 3],
 array([1, 2, 3, 4, 5, 6])
 >>> np.reshape(a, 6, order='F')
 array([1, 4, 2, 5, 3, 6])
->>> np.reshape(a, (3,-1))  # the unspecified value is inferred to be 2
+>>> np.reshape(a, (3, -1))  # the unspecified value is inferred to be 2
 array([[1, 2],
        [3, 4],
        [5, 6]])
@@ -1596,7 +1601,6 @@ array([[0, 1, 2],
 >>> np.einsum('..., ...', 3, c)
 array([[ 0,  3,  6],
        [ 9, 12, 15]])
->>>
 >>> a = np.arange(25).reshape(5, 5)
 >>> a
 array([[ 0,  1,  2,  3,  4],
