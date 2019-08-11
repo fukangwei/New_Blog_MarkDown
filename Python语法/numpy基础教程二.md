@@ -946,13 +946,12 @@ Plot the data along with the fitted line:
 5. `full`: alias of `reduced`, deprecated.
 6. `economic`: returns `h` from `raw`, deprecated.
 
-The options "reduced", "complete", and "raw" are new in numpy 1.8, see the notes for more information. The default is "reduced", and to maintain backward compatibility with earlier versions of numpy both it and the old default "full" can be omitted. Note that array h returned in "raw" mode is transposed for calling Fortran. The "economic" mode is deprecated. The modes "full" and "economic" may be passed using only the first letter for backwards compatibility, but all others must be spelled out.
-
+The default is `reduced`, and to maintain backward compatibility with earlier versions of numpy both it and the old default `full` can be omitted. Note that array `h` returned in `raw` mode is transposed for calling `Fortran`. The `economic` mode is deprecated. The modes `full` and `economic` may be passed using only the first letter for backwards compatibility, but all others must be spelled out.
 &emsp;&emsp;Returns:
 
-- `q`: ndarray of float or complex, optional. A matrix with orthonormal columns. When mode = "complete" the result is an orthogonal/unitary matrix depending on whether or not a is real/complex. The determinant may be either +/- 1 in that case.
-- `r`: ndarray of float or complex, optional. The upper-triangular matrix.
-- `(h, tau)`: ndarrays of np.double or np.cdouble, optional. The array h contains the Householder reflectors that generate q along with r. The tau array contains scaling factors for the reflectors. In the deprecated "economic" mode only h is returned.
+- `q`: `ndarray` of `float` or `complex`, optional. A matrix with orthonormal columns. When `mode = "complete"`, the result is an orthogonal/unitary matrix depending on whether or not `a` is real/complex. The determinant may be either `+/- 1` in that case.
+- `r`: `ndarray` of `float` or `complex`, optional. The upper-triangular matrix.
+- `(h, tau)`: `ndarrays` of `np.double` or `np.cdouble`, optional. The array `h` contains the `Householder` reflectors that generate `q` along with `r`. The `tau` array contains scaling factors for the reflectors. In the deprecated `economic` mode only `h` is returned.
 
 &emsp;&emsp;Raises:
 
@@ -960,7 +959,6 @@ The options "reduced", "complete", and "raw" are new in numpy 1.8, see the notes
 
 &emsp;&emsp;Notes: This is an interface to the LAPACK routines dgeqrf, zgeqrf, dorgqr, and zungqr. For more information on the qr factorization, see for example: `http://en.wikipedia.org/wiki/QR_factorization`.
 &emsp;&emsp;Subclasses of ndarray are preserved except for the "raw" mode. So if a is of type matrix, all the return values will be matrices too.
-
 &emsp;&emsp;New "reduced", "complete", and "raw" options for mode were added in NumPy 1.8.0 and the old option "full" was made an alias of "reduced". In addition the options "full" and "economic" were deprecated. Because "full" was the previous default and "reduced" is the new default, backward compatibility can be maintained by letting mode default. The "raw" option was added so that LAPACK routines that can multiply arrays by q using the Householder reflectors can be used. Note that in this case the returned arrays are of type np.double or np.cdouble and the h array is transposed to be FORTRAN compatible. No routines using the "raw" return are currently exposed by numpy, but some are available in lapack_lite and just await the necessary work.
 &emsp;&emsp;Examples:
 
