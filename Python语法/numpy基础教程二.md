@@ -404,13 +404,13 @@ array([ 1.,  1.,  1.])
 
 &emsp;&emsp;`numpy.ceil(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'ceil'>`: Return the ceiling of the input, `element-wise`. The ceil of the scalar `x` is the smallest integer `i`, such that `i >= x`. Parameters:
 
-- `x`: array_like. Input data.
-- `out`: ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
-- `where`: array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
+- `x`: `array_like`. Input data.
+- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `where`: `array_like`, optional. Values of `True` indicate to calculate the ufunc at that position, values of `False` indicate to leave the value in the output alone.
 
 &emsp;&emsp;Returns:
 
-- `y`: ndarray or scalar. The ceiling of each element in x, with float dtype.
+- `y`: `ndarray` or `scalar`. The ceiling of each element in `x`, with `float` dtype.
 
 &emsp;&emsp;Examples:
 
@@ -424,15 +424,15 @@ array([-1., -1., -0.,  1.,  2.,  2.,  2.])
 
 &emsp;&emsp;`numpy.load(file, mmap_mode=None, allow_pickle=True, fix_imports=True, encoding='ASCII')`: Load arrays or pickled objects from `.npy`, `.npz` or pickled files. Parameters:
 
-- `file`: `file-like` object, string, or `pathlib.Path`. The file to read. `File-like` objects must support the `seek()` and `read()` methods. Pickled files require that the `file-like` object support the `readline()` method as well.
-- `mmap_mode`: {None, 'r+', 'r', 'w+', 'c'}, optional. If not None, then `memory-map` the file, using the given mode (see numpy.memmap for a detailed description of the modes). A `memory-mapped` array is kept on disk. However, it can be accessed and sliced like any ndarray. Memory mapping is especially useful for accessing small fragments of large files without reading the entire file into memory.
-- `allow_pickle`: bool, optional. Allow loading pickled object arrays stored in npy files. Reasons for disallowing pickles include security, as loading pickled data can execute arbitrary code. If pickles are disallowed, loading object arrays will fail.
-- `fix_imports`: bool, optional. Only useful when loading Python 2 generated pickled files on Python 3, which includes npy/npz files containing object arrays. If fix_imports is True, pickle will try to map the old `Python 2` names to the new names used in `Python 3`.
-- `encoding`: str, optional. What encoding to use when reading `Python 2` strings. Only useful when loading `Python 2` generated pickled files in `Python 3`, which includes npy/npz files containing object arrays. Values other than `latin1`, `ASCII` and `bytes` are not allowed, as they can corrupt numerical data.
+- `file`: `file-like object`, `string`, or `pathlib.Path`. The `file` to read. `File-like objects` must support the `seek()` and `read()` methods. Pickled files require that the `file-like` object support the `readline()` method as well.
+- `mmap_mode`: `{None, 'r+', 'r', 'w+', 'c'}`, optional. If not `None`, then memory-map the file, using the given mode (see `numpy.memmap` for a detailed description of the modes). A memory-mapped array is kept on disk. However, it can be accessed and sliced like any ndarray. Memory mapping is especially useful for accessing small fragments of large files without reading the entire file into memory.
+- `allow_pickle`: `bool`, optional. Allow loading pickled object arrays stored in `npy` files. Reasons for disallowing pickles include security, as loading pickled data can execute arbitrary code. If pickles are disallowed, loading object arrays will fail.
+- `fix_imports`: `bool`, optional. Only useful when loading `Python 2` generated pickled files on `Python 3`, which includes `npy/npz` files containing object arrays. If `fix_imports` is `True`, pickle will try to map the old `Python 2` names to the new names used in `Python 3`.
+- `encoding`: `str`, optional. What `encoding` to use when reading `Python 2` strings. Only useful when loading `Python 2` generated pickled files in `Python 3`, which includes `npy/npz` files containing object arrays. Values other than `latin1`, `ASCII` and `bytes` are not allowed, as they can corrupt numerical data.
 
 &emsp;&emsp;Returns:
 
-- `result`: array, tuple, dict, etc. Data stored in the file. For `.npz` files, the returned instance of `NpzFile` class must be closed to avoid leaking file descriptors.
+- `result`: `array`, `tuple`, `dict`, etc. Data stored in the file. For `.npz` files, the returned instance of `NpzFile` class must be closed to avoid leaking file descriptors.
 
 &emsp;&emsp;Raises:
 
@@ -443,7 +443,7 @@ array([-1., -1., -0.,  1.,  2.,  2.,  2.])
 
 1. If the file contains pickle data, then whatever object is stored in the pickle is returned.
 2. If the file is a `.npy` file, then a single array is returned.
-3. If the file is a `.npz` file, then a `dictionary-like` object is returned, containing `{filename: array}` `key-value` pairs, one for each file in the archive.
+3. If the file is a `.npz` file, then a dictionary-like object is returned, containing `{filename: array}` `key-value` pairs, one for each file in the archive.
 4. If the file is a `.npz` file, the returned value supports the context manager protocol in a similar fashion to the open function:
 
 ``` python
@@ -486,15 +486,20 @@ memmap([4, 5, 6])
 
 ### numpy.power
 
-&emsp;&emsp;numpy.power(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'power'>: First array elements raised to powers from second array, element-wise. Raise each base in x1 to the positionally-corresponding power in x2. x1 and x2 must be broadcastable to the same shape. Note that an integer type raised to a negative integer power will raise a ValueError. Parameters:
+&emsp;&emsp;`numpy.power(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'power'>`: First array elements raised to powers from second array, element-wise. Raise each base in `x1` to the positionally-corresponding power in `x2`. `x1` and `x2` must be broadcastable to the same shape. Note that an integer type raised to a negative integer power will raise a `ValueError`. Parameters:
 
-x1 : array_like. The bases.
-x2 : array_like. The exponents.
-out : ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
-where : array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
+- `x1`: `array_like`. The bases.
+- `x2`: `array_like`. The exponents.
+- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `where`: `array_like`, optional. Values of `True` indicate to calculate the ufunc at that position, values of `False` indicate to leave the value in the output alone.
 
-    Returns: y : ndarray. The bases in x1 raised to the exponents in x2.
-    Examples: Cube each element in a list.
+&emsp;&emsp;Returns:
+
+- `y`: `ndarray`. The bases in `x1` raised to the exponents in `x2`.
+
+&emsp;&emsp;Examples: Cube each element in a list.
+
+``` python
 >>> x1 = range(6)
 >>> x1
 [0, 1, 2, 3, 4, 5]
@@ -512,6 +517,7 @@ array([[1, 2, 3, 3, 2, 1],
 >>> np.power(x1, x2)
 array([[ 0,  1,  8, 27, 16,  5],
        [ 0,  1,  8, 27, 16,  5]])
+```
 
 ### numpy.fix
 
