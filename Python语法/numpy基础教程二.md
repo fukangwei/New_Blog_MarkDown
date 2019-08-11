@@ -1046,23 +1046,23 @@ array([-1.,  1.])
 ### numpy.cross
 
 &emsp;&emsp;`numpy.cross(a, b, axisa=-1, axisb=-1, axisc=-1, axis=None)`: Return the cross product of two (arrays of) vectors.
-&emsp;&emsp;The cross product of a and b in R^3 is a vector perpendicular to both a and b. If a and b are arrays of vectors, the vectors are defined by the last axis of a and b by default, and these axes can have dimensions 2 or 3. Where the dimension of either a or b is 2, the third component of the input vector is assumed to be zero and the cross product calculated accordingly. In cases where both input vectors have dimension 2, the z-component of the cross product is returned.
+&emsp;&emsp;The cross product of `a` and `b` in `R^3` is a vector perpendicular to both `a` and `b`. If `a` and `b` are arrays of vectors, the vectors are defined by the last axis of `a` and `b` by default, and these axes can have dimensions `2` or `3`. Where the dimension of either `a` or `b` is `2`, the third component of the input vector is assumed to be `zero` and the cross product calculated accordingly. In cases where both input vectors have dimension `2`, the `z-component` of the cross product is returned.
 &emsp;&emsp;Parameters:
 
-- `a`: array_like. Components of the first vector(s).
-- `b`: array_like. Components of the second vector(s).
-- `axisa`: int, optional. Axis of a that defines the vector(s). By default, the last axis.
-- `axisb`: int, optional. Axis of b that defines the vector(s). By default, the last axis.
-- `axisc`: int, optional. Axis of c containing the cross product vector(s). Ignored if both input vectors have dimension 2, as the return is scalar. By default, the last axis.
-- `axis`: int, optional. If defined, the axis of a, b and c that defines the vector(s) and cross product(s). Overrides axisa, axisb and axisc.
+- `a`: `array_like`. Components of the first vector(s).
+- `b`: `array_like`. Components of the second vector(s).
+- `axisa`: `int`, optional. Axis of `a` that defines the vector(s). By default, the last axis.
+- `axisb`: `int`, optional. Axis of `b` that defines the vector(s). By default, the last axis.
+- `axisc`: `int`, optional. Axis of `c` containing the cross product vector(s). Ignored if both input vectors have dimension `2`, as the return is scalar. By default, the last axis.
+- `axis`: `int`, optional. If defined, the axis of `a`, `b` and `c` that defines the vector(s) and cross product(s). Overrides `axisa`, `axisb` and `axisc`.
 
 &emsp;&emsp;Returns:
 
-- `c`: ndarray. Vector cross product(s).
+- `c`: `ndarray`. Vector cross product(s).
 
 &emsp;&emsp;Raises:
 
-- `ValueError`. When the dimension of the vector(s) in a and/or b does not equal 2 or 3.
+- `ValueError`. When the dimension of the vector(s) in `a` and/or `b` does not equal `2` or `3`.
 
 &emsp;&emsp;Notes: Supports full broadcasting of the inputs.
 &emsp;&emsp;Examples: Vector `cross-product`:
@@ -1074,7 +1074,7 @@ array([-1.,  1.])
 array([-3,  6, -3])
 ```
 
-One vector with dimension 2:
+One vector with dimension `2`:
 
 ``` python
 >>> x = [1, 2]
@@ -1092,7 +1092,7 @@ Equivalently:
 array([12, -6, -3])
 ```
 
-Both vectors with dimension 2:
+Both vectors with dimension `2`:
 
 ``` python
 >>> x = [1, 2]
@@ -1111,7 +1111,7 @@ array([[-3,  6, -3],
        [ 3, -6,  3]])
 ```
 
-The orientation of c can be changed using the axisc keyword:
+The orientation of `c` can be changed using the `axisc` keyword:
 
 ``` python
 >>> np.cross(x, y, axisc=0)
@@ -1120,11 +1120,11 @@ array([[-3,  3],
        [-3,  3]])
 ```
 
-Change the vector definition of x and y using axisa and axisb:
+Change the vector definition of `x` and `y` using `axisa` and `axisb`:
 
 ``` python
->>> x = np.array([[1,2,3], [4,5,6], [7, 8, 9]])
->>> y = np.array([[7, 8, 9], [4,5,6], [1,2,3]])
+>>> x = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+>>> y = np.array([[7, 8, 9], [4, 5, 6], [1, 2, 3]])
 >>> np.cross(x, y)
 array([[ -6,  12,  -6],
        [  0,   0,   0],
