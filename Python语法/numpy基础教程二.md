@@ -375,6 +375,8 @@ Plot an interpolant to the sine function:
 >>> plt.show()
 ```
 
+<img src="./numpy基础教程二/1.png">
+
 ### ones_like(zeros_like)
 
 &emsp;&emsp;该函数返回一个用`1`填充的，和输入数组形状和类型一致的数组：
