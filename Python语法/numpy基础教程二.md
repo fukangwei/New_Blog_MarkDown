@@ -1022,17 +1022,17 @@ if __name__ == '__main__':
 ### numpy.sign
 
 &emsp;&emsp;`numpy.sign(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'sign'>`: Returns an element-wise indication of the sign of a number.
-&emsp;&emsp;The sign function returns -1 if x < 0, 0 if x==0, 1 if x > 0. nan is returned for nan inputs. For complex inputs, the sign function returns sign(x.real) + 0j if x.real != 0 else sign(x.imag) + 0j. complex(nan, 0) is returned for complex nan inputs. Parameters:
+&emsp;&emsp;The sign function returns `-1` if `x < 0`, `0` if `x == 0`, `1` if `x > 0`. `nan` is returned for `nan` inputs. For `complex` inputs, the sign function returns `sign(x.real) + 0j` if `x.real != 0` else `sign(x.imag) + 0j`. `complex(nan, 0)` is returned for `complex nan` inputs. Parameters:
 
-- `x`: array_like. Input values.
-- `out`: ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
-- `where`: array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
+- `x`: `array_like`. Input values.
+- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `where`: `array_like`, optional. Values of `True` indicate to calculate the ufunc at that position, values of `False` indicate to leave the value in the output alone.
 
 &emsp;&emsp;Returns:
 
 - `y`: `ndarray`. The sign of `x`.
 
-&emsp;&emsp;Notes: There is more than one definition of sign in common use for complex numbers. The definition used here is equivalent to x/sqrt{x*x} which is different from a common alternative, x/|x|.
+&emsp;&emsp;Notes: There is more than one definition of sign in common use for `complex` numbers. The definition used here is equivalent to $\frac{x}{\sqrt{x * x}}$ which is different from a common alternative, $\frac{x}{\left | x \right |}$.
 
 ``` python
 >>> np.sign([-5., 4.5])
@@ -1045,7 +1045,7 @@ array([-1.,  1.])
 
 ### numpy.cross
 
-&emsp;&emsp;numpy.cross(a, b, axisa=-1, axisb=-1, axisc=-1, axis=None): Return the cross product of two (arrays of) vectors.
+&emsp;&emsp;`numpy.cross(a, b, axisa=-1, axisb=-1, axisc=-1, axis=None)`: Return the cross product of two (arrays of) vectors.
 &emsp;&emsp;The cross product of a and b in R^3 is a vector perpendicular to both a and b. If a and b are arrays of vectors, the vectors are defined by the last axis of a and b by default, and these axes can have dimensions 2 or 3. Where the dimension of either a or b is 2, the third component of the input vector is assumed to be zero and the cross product calculated accordingly. In cases where both input vectors have dimension 2, the z-component of the cross product is returned.
 &emsp;&emsp;Parameters:
 
