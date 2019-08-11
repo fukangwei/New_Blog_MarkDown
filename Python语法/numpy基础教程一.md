@@ -3,14 +3,14 @@ title: numpy基础教程一
 date: 2019-08-11 22:53:30
 tags:
 ---
-&emsp;&emsp;建立一个一维数组，数据类型是int。也可以不指定数据类型，使用默认参数：
+&emsp;&emsp;建立一个一维数组，数据类型是`int`。也可以不指定数据类型，使用默认参数：
 
 ``` python
 import numpy as np
 a1 = np.array([1, 2, 3], dtype=int)
 ```
 
-&emsp;&emsp;建立一个二维数组，此处和MATLAB的二维数组(矩阵)的建立有很大差别：
+&emsp;&emsp;建立一个二维数组，此处和`MATLAB`的二维数组(矩阵)的建立有很大差别：
 
 ``` python
 a2 = np.array([[1, 2, 3], [2, 3, 4]])
@@ -34,69 +34,128 @@ a_eye = np.eye(3)  # 创建3阶单位矩阵
 b = np.diag(a)  # a是一个矩阵
 ```
 
-    逆矩阵的建立：
+&emsp;&emsp;逆矩阵的建立：
+
+``` python
 np.linalg.inv(a)
-    矩阵基本运算：
+```
+
+&emsp;&emsp;矩阵基本运算：
+
+``` python
 a + b  # 矩阵加法
 a - b  # 矩阵减法
 b * num  # 矩阵的数乘
 np.dot(a, b)  # 矩阵的乘法
-    矩阵的行列式：
+```
+
+&emsp;&emsp;矩阵的行列式：
+
+``` python
 np.linalg.det(A)
-    矩阵的秩：
+```
+
+&emsp;&emsp;矩阵的秩：
+
+``` python
 np.linalg.matrix_rank(a)
-    伴随矩阵的建立：
+```
+
+&emsp;&emsp;伴随矩阵的建立：
+
+``` python
 np.dot(np.linalg.det(a), np.linalg.inv(a))
-    矩阵的特征值和特征向量：
+```
+
+&emsp;&emsp;矩阵的特征值和特征向量：
+
+``` python
 b, c = np.linalg.eig(a)
-    矩阵的迹：
+```
+
+&emsp;&emsp;矩阵的迹：
+
+``` python
 np.trace(A)
-    矩阵的索引：
-a[:, 2]：索引列，只读取第3列的元素(冒号表示所有)。
-a[0]：索引行。
-a[x, y]：x相当于行，y相当于列。
-a[:, 1:3]：索引第2和第3列。
-a[::-1]：省略范围的开始下标和结束下标，步长为“-1”，整个数组头尾颠倒。
-    向量內积的运算：
+```
+
+&emsp;&emsp;矩阵的索引：
+
+- `a[:, 2]`：索引列，只读取第`3`列的元素(`:`表示所有)。
+- `a[0]`：索引行。
+- `a[x, y]`：`x`相当于行，`y`相当于列。
+- `a[:, 1:3]`：索引第`2`和第`3`列。
+- `a[::-1]`：省略范围的开始下标和结束下标，步长为`-1`，整个数组头尾颠倒。
+
+&emsp;&emsp;向量內积的运算：
+
+``` python
 dot(a, b)  # a与b是两个向量
-    arrange用于生成等差数列，其函数原型如下所示：
-arange([start,] stop[, step,], dtype=None)
-根据start与stop指定范围，根据step设定的步长，默认为“1”：
+```
+
+&emsp;&emsp;`arrange`用于生成等差数列，其函数原型如下：
+
+``` python
+arange([start, ] stop [, step], dtype=None)
+```
+
+根据`start`与`stop`指定范围，根据`step`设定的步长，默认为`1`：
+
+``` python
 a = np.arange(0, 100, 10)
 print(a)  # 结果为[ 0 10 20 30 40 50 60 70 80 90]
-    numpy的三角函数如下所示：
-sin(x[, out])              Trigonometric sine, element-wise
-cos(x[, out])              Cosine element-wise
-tan(x[, out])              Compute tangent element-wise
-arcsin(x[, out])           Inverse sine, element-wise
-arccos(x[, out])           Trigonometric inverse cosine, element-wise
-arctan(x[, out])           Trigonometric inverse tangent, element-wise
-hypot(x1, x2[, out])       Given the "legs" of a right triangle, return its hypotenuse
-arctan2(x1, x2[, out])     Element-wise arc tangent of x1/x2 choosing the quadrant correctly
-degrees(x[, out])          Convert angles from radians to degrees
-radians(x[, out])          Convert angles from degrees to radians
-unwrap(p[, discont, axis]) Unwrap by changing deltas between values to 2*pi complement
-deg2rad(x[, out])          Convert angles from degrees to radians
-rad2deg(x[, out])          Convert angles from radians to degrees
-    快速傅里叶变换：
-np.fft.fft(x)
-    numpy自带的常量：
-np.pi：圆周率
-np.NaN：无穷值
+```
 
-numpy.random模块
-    相关函数如下所示：
-rand(d0, d1, ..., dn)               Random values in a given shape
-randn(d0, d1, ..., dn)              Return a sample (or samples) from the "standard normal" distribution
-randint(low[, high, size, dtype])   Return random integers from low (inclusive) to high (exclusive)
-random_integers(low[, high, size])  Random integers of type np.int between low and high, inclusive.
-random_sample([size])               Return random floats in the half-open interval [0.0, 1.0)
-random([size])                      Return random floats in the half-open interval [0.0, 1.0)
-ranf([size])                        Return random floats in the half-open interval [0.0, 1.0)
-sample([size])                      Return random floats in the half-open interval [0.0, 1.0)
-choice(a[, size, replace, p])       Generates a random sample from a given 1-D array
-bytes(length)                       Return random bytes
-numpy.random模块提供了产生各种分布随机数的API：
+&emsp;&emsp;`numpy`的三角函数如下：
+
+函数                         | 说明
+-----------------------------|-----
+`sin(x[, out])`              | Trigonometric sine, element-wise
+`cos(x[, out])`              | Cosine element-wise
+`tan(x[, out])`              | Compute tangent element-wise
+`arcsin(x[, out])`           | Inverse sine, element-wise
+`arccos(x[, out])`           | Trigonometric inverse cosine, element-wise
+`arctan(x[, out])`           | Trigonometric inverse tangent, element-wise
+`hypot(x1, x2[, out])`       | Given the `legs` of a right triangle, return its hypotenuse
+`arctan2(x1, x2[, out])`     | Element-wise arc tangent of `x1/x2` choosing the quadrant correctly
+`degrees(x[, out])`          | Convert angles from radians to degrees
+`radians(x[, out])`          | Convert angles from degrees to radians
+`unwrap(p[, discont, axis])` | Unwrap by changing deltas between values to `2 * pi` complement
+`deg2rad(x[, out])`          | Convert angles from degrees to radians
+`rad2deg(x[, out])`          | Convert angles from radians to degrees
+
+&emsp;&emsp;快速傅里叶变换：
+
+``` python
+np.fft.fft(x)
+```
+
+&emsp;&emsp;`numpy`自带的常量：
+
+- `np.pi`：圆周率。
+- `np.NaN`：无穷值。
+
+### numpy.random模块
+
+&emsp;&emsp;相关函数如下：
+
+函数                                  | 说明
+--------------------------------------|-----
+`rand(d0, d1, ..., dn)`               | Random values in a given shape
+`randn(d0, d1, ..., dn)`              | Return a sample (or samples) from the "standard normal" distribution
+`randint(low [, high, size, dtype])`  | Return random integers from low (inclusive) to high (exclusive)
+`random_integers(low [, high, size])` | Random integers of type np.int between low and high, inclusive.
+`random_sample([size])`               | Return random floats in the half-open interval [0.0, 1.0)
+`random([size])`                      | Return random floats in the half-open interval [0.0, 1.0)
+`ranf([size])`                        | Return random floats in the half-open interval [0.0, 1.0)
+`sample([size])`                      | Return random floats in the half-open interval [0.0, 1.0)
+`choice(a [, size, replace, p])`      | Generates a random sample from a given 1-D array
+`bytes(length)`                       | Return random bytes
+
+`numpy.random`模块提供了产生各种分布随机数的`API`：
+
+函数                                         | 说明
+---------------------------------------------|-----
 beta(a, b[, size])                            贝塔分布样本，在[0,1]内
 binomial(n, p[, size])                        二项分布的样本
 chisquare(df[, size])                         卡方分布样本
@@ -132,16 +191,26 @@ vonmises(mu, kappa[, size])                   “von Mises”分布
 wald(mean, scale[, size])                     瓦尔德(逆高斯)分布
 weibull(a[, size])                            Weibull分布
 zipf(a[, size])                               齐普夫分布
+
 示例代码：
+
+``` python
 import numpy as np
+
 np.set_printoptions(precision=3)
 print(np.random.dirichlet((1, 1, 1, 1, 1, 1), 5))
+```
+
 执行结果：
+
+``` python
 [[0.068 0.444 0.093 0.021 0.114 0.26 ]
  [0.159 0.261 0.258 0.052 0.094 0.176]
  [0.082 0.264 0.022 0.167 0.405 0.06 ]
  [0.288 0.181 0.226 0.005 0.136 0.164]
  [0.047 0.39  0.269 0.036 0.044 0.215]]
+```
+
     numpy.random.seed：用于指定随机数生成时所用算法开始的整数值。如果使用相同的seed值，则每次生成的随即数都相同；如果不设置这个值，则系统根据时间来自己选择这个值，此时每次生成的随机数因时间差异而不同。
 
 mean函数
