@@ -661,23 +661,25 @@ True
 
 ### numpy.testing.assert_almost_equal
 
-&emsp;&emsp;`numpy.testing.assert_almost_equal(actual, desired, decimal=7, err_msg='', verbose=True)`: Raises an `AssertionError` if two items are not equal up to desired precision.
+&emsp;&emsp;`numpy.testing.assert_almost_equal(actual, desired, decimal=7, err_msg='', verbose=True)`: Raises an `AssertionError` if two items are not equal up to `desired` precision.
 &emsp;&emsp;Note: It is recommended to use one of `assert_allclose`, `assert_array_almost_equal_nulp` or `assert_array_max_ulp` instead of this function for more consistent floating point comparisons.
-&emsp;&emsp;The test verifies that the elements of actual and desired satisfy:
+&emsp;&emsp;The test verifies that the elements of `actual` and `desired` satisfy:
 
-abs(desired-actual) < 1.5 * 10**(-decimal)
+``` python
+abs(desired - actual) < 1.5 * 10**(-decimal)
+```
 
 &emsp;&emsp;That is a looser test than originally documented, but agrees with what the actual implementation in `assert_array_almost_equal` did up to rounding vagaries. An exception is raised at conflicting values. For ndarrays this delegates to `assert_array_almost_equal`. Parameters:
 
-- `actual`: array_like. The object to check.
-- `desired`: array_like. The expected object.
-- `decimal`: int, optional. Desired precision.
-- `err_msg`: str, optional. The error message to be printed in case of failure.
-- `verbose`: bool, optional. If `True`, the conflicting values are appended to the error message.
+- `actual`: `array_like`. The object to check.
+- `desired`: `array_like`. The expected object.
+- `decimal`: `int`, optional. Desired precision.
+- `err_msg`: `str`, optional. The error message to be printed in case of failure.
+- `verbose`: `bool`, optional. If `True`, the conflicting values are appended to the error message.
 
 &emsp;&emsp;Raises:
 
-- `AssertionError`. If actual and desired are not equal up to specified precision.
+- `AssertionError`. If `actual` and `desired` are not equal up to specified precision.
 
 &emsp;&emsp;Examples:
 
