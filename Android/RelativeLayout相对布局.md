@@ -1,12 +1,16 @@
 ---
 title: RelativeLayout相对布局
 date: 2019-08-11 20:29:22
-tags:
+categories: Android
 ---
-&emsp;&emsp;使用`LinearLayout`有一个问题，就是当界面比较复杂的时候，需要嵌套多层的`LinearLayout`，这样就会降低`UI Render`的效率(渲染速度)。而且如果是`listview`或者`GridView`上的`item`，效率会更低。另外，太多层`LinearLayout`嵌套会占用更多的系统资源，还有可能引发`StackOverflow`。如果使用`RelativeLayout`的话，可能仅仅需要一层就可以完成了，以`父容器或者兄弟组件参考 + margin + padding`就可以设置组件的显示位置。尽量使用`RelativeLayout + LinearLayout`的`weight`属性搭配。
+&emsp;&emsp;使用`LinearLayout`有一个问题，就是当界面比较复杂的时候，需要嵌套多层的`LinearLayout`，这样就会降低`UI Render`的效率(渲染速度)。而且如果是`listview`或者`GridView`上的`item`，效率会更低。另外，太多层`LinearLayout`嵌套会占用更多的系统资源，还有可能引发`StackOverflow`。如果使用`RelativeLayout`的话，可能仅仅需要一层就可以完成了，以`父容器或者兄弟组件参考 + margin + padding`就可以设置组件的显示位置。尽量使用`RelativeLayout + LinearLayout`的`weight`属性搭配。<!--more-->
 &emsp;&emsp;父容器定位属性示意图如下：
 
+<img src="./RelativeLayout相对布局/1.png" width="45%">
+
 &emsp;&emsp;根据兄弟组件定位：所谓的兄弟组件就是处于同一层次容器的组件：
+
+<img src="./RelativeLayout相对布局/2.png">
 
 &emsp;&emsp;图中的组件`1`、`2`就是兄弟组件，而组件`3`与组件`1`或组件`2`并不是兄弟组件，所以组件`3`不能通过组件`1`或`2`来进行定位，例如`layout_toleftof = "组件1"`这样是会报错的！关于兄弟组件定位，最经典例子就是`梅花布局`:
 
@@ -64,6 +68,8 @@ tags:
 </RelativeLayout>
 ```
 
+<img src="./RelativeLayout相对布局/3.png">
+
 ### margin与padding的区别
 
 &emsp;&emsp;初学者对于这两个属性可能会有一点混淆，这里区分下：首先`margin`代表的是偏移，比如`marginleft = "5dp"`表示组件离容器左边缘偏移`5dp`；而`padding`代表的则是填充，而填充的对象针对的是组件中的元素，例如`TextView`中的文字。比如为`TextView`设置`paddingleft = "5dp"`，则是在组件里的元素的左边填充5dp的空间。`margin`针对的是容器中的组件，而`padding`针对的是组件中的元素，要区分开来！下面通过简单的代码演示两者的区别：
@@ -103,6 +109,8 @@ tags:
 ​
 </RelativeLayout>
 ```
+
+<img src="./RelativeLayout相对布局/4.png">
 
 ### margin可以设置为负数
 
