@@ -821,24 +821,24 @@ array([1, 2, 3], dtype=uint8)
 
 ### numpy.ndarray
 
-&emsp;&emsp;`class numpy.ndarray`: An array object represents a multidimensional, homogeneous array of fixed-size items. An associated `data-type` object describes the format of each element in the array (its `byte-order`, how many bytes it occupies in memory, whether it is an integer, a floating point number, or something else, etc.)
+&emsp;&emsp;`class numpy.ndarray`: An array object represents a multidimensional, homogeneous array of `fixed-size` items. An associated `data-type` object describes the format of each element in the array (its `byte-order`, how many bytes it occupies in memory, whether it is an integer, a floating point number, or something else, etc.)
 &emsp;&emsp;Arrays should be constructed using `array`, `zeros` or `empty`. The parameters given here refer to a `low-level` method (`ndarray(...)`) for instantiating an array.
 &emsp;&emsp;Parameters:
 
 - `shape`: `tuple of ints`. Shape of created array.
 - `dtype`: `data-type`, optional. Any object that can be interpreted as a numpy data type.
 - `buffer`: object exposing buffer interface, optional. Used to fill the array with data.
-- `offset`: int, optional. Offset of array data in buffer.
+- `offset`: `int`, optional. Offset of array data in `buffer`.
 - `strides`: `tuple of ints`, optional. Strides of data in memory.
-- `order`: {'C', 'F'}, optional. `Row-major` (`C-style`) or `column-major` (`Fortran-style`) order.
+- `order`: `{'C', 'F'}`, optional. `Row-major` (`C-style`) or `column-major` (`Fortran-style`) order.
 
 Notes: There are two modes of creating an array using `__new__`:
 
-1. If buffer is None, then only shape, dtype, and order are used.
-2. If buffer is an object exposing the buffer interface, then all keywords are interpreted.
+1. If `buffer` is `None`, then only `shape`, `dtype` and `order` are used.
+2. If `buffer` is an object exposing the buffer interface, then all keywords are interpreted.
 
 No `__init__` method is needed because the array is fully initialized after the `__new__` method.
-&emsp;&emsp;Examples: These examples illustrate the low-level ndarray constructor. Refer to the See Also section above for easier ways of constructing an ndarray. First mode, buffer is None:
+&emsp;&emsp;Examples: These examples illustrate the low-level ndarray constructor. First mode, buffer is `None`:
 
 ``` python
 >>> np.ndarray(shape=(2,2), dtype=float, order='F')
@@ -849,7 +849,8 @@ array([[ -1.13698227e+002,   4.25087011e-303],
 Second mode:
 
 ``` python
->>> np.ndarray((2,), buffer=np.array([1,2,3]), offset=np.int_().itemsize, dtype=int)  # offset = 1*itemsize, i.e. skip first element
+>>> # offset = 1 * itemsize, i.e. skip first element
+>>> np.ndarray((2,), buffer=np.array([1,2,3]), offset=np.int_().itemsize, dtype=int)
 array([2, 3])
 ```
 
