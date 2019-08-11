@@ -598,7 +598,7 @@ array([[0, 2],
 &emsp;&emsp;`numpy.prod(a, axis=None, dtype=None, out=None, keepdims=<class 'numpy._globals._NoValue'>)`: Return the product(乘积) of array elements over a given `axis`. Parameters:
 
 - `a`: `array_like`. Input data.
-- `axis`: `None` or `int` or `tuple of ints`, optional. Axis or axes along which a product is performed. The default, `axis=None`, will calculate the product of all the elements in the input array. If `axis` is negative, it counts from the last to the first axis. If `axis` is a tuple of ints, a product is performed on all of the axes specified in the tuple instead of a single axis or all the axes as before.
+- `axis`: `None` or `int` or `tuple of ints`, optional. Axis or axes along which a product is performed. The default, `axis=None`, will calculate the product of all the elements in the input array. If `axis` is negative, it counts from the last to the first axis. If `axis` is a `tuple of ints`, a product is performed on all of the axes specified in the tuple instead of a single axis or all the axes as before.
 - `dtype`: `dtype`, optional. The type of the returned array, as well as of the accumulator in which the elements are multiplied. The `dtype` of `a` is used by default unless `a` has an integer `dtype` of less precision than the default platform integer. In that case, if `a` is signed, then the platform integer is used while if `a` is unsigned, then an unsigned integer of the same precision as the platform integer is used.
 - `out`: `ndarray`, optional. Alternative output array in which to place the result. It must have the same shape as the expected output, but the type of the output values will be cast if necessary.
 - `keepdims`: `bool`, optional. If this is set to `True`, the axes which are reduced are left in the result as dimensions with size `one`. With this option, the result will broadcast correctly against the input array. If the default value is passed, then `keepdims` will not be passed through to the prod method of sub-classes of `ndarray`, however any non-default value will be. If the sub-classes sum method does not implement `keepdims` any exceptions will be raised.
@@ -701,15 +701,15 @@ Arrays are not almost equal
 
 ### numpy.roll
 
-&emsp;&emsp;`numpy.roll(a, shift, axis=None)`: Roll(滚动) array elements along a given axis. Elements that roll beyond the last position are re-introduced at the first. Parameters:
+&emsp;&emsp;`numpy.roll(a, shift, axis=None)`: Roll(滚动) array elements along `a` given `axis`. Elements that roll beyond the last position are re-introduced at the first. Parameters:
 
-- `a`: array_like. Input array.
-- `shift`: int or tuple of ints. The number of places by which elements are shifted. If a tuple, then axis must be a tuple of the same size, and each of the given axes is shifted by the corresponding number. If an int while axis is a tuple of ints, then the same value is used for all given axes.
-- `axis`: int or tuple of ints, optional. Axis or axes along which elements are shifted. By default, the array is flattened before shifting, after which the original shape is restored.
+- `a`: `array_like`. Input array.
+- `shift`: `int` or `tuple of ints`. The number of places by which elements are shifted. If a tuple, then `axis` must be a tuple of the same size, and each of the given axes is shifted by the corresponding number. If an `int` while `axis` is a `tuple of ints`, then the same value is used for all given axes.
+- `axis`: `int` or `tuple of ints`, optional. Axis or axes along which elements are shifted. By default, the array is flattened before shifting, after which the original shape is restored.
 
 &emsp;&emsp;Returns:
 
-- `res`: ndarray. Output array, with the same shape as a.
+- `res`: `ndarray`. Output array, with the same shape as `a`.
 
 &emsp;&emsp;Notes: Supports rolling over multiple dimensions simultaneously.
 &emsp;&emsp;Examples:
@@ -738,17 +738,17 @@ array([[4, 0, 1, 2, 3],
 &emsp;&emsp;`numpy.outer(a, b, out=None)`: Compute the outer product of two vectors. Given two vectors, `a = [a0, a1, ..., aM]` and `b = [b0, b1, ..., bN]`, the outer product is:
 
 ``` python
-[[a0*b0  a0*b1 ... a0*bN ]
- [a1*b0    .
- [ ...          .
- [aM*b0            aM*bN ]]
+[[a0 * b0  a0 * b1 ... a0 * bN]
+ [a1 * b0     .
+ [ ...           .
+ [aM * b0              aM * bN]]
 ```
 
 Parameters:
 
-- `a`: `(M,)` array_like. First input vector. Input is flattened if not already `1-dimensional`.
-- `b`: `(N,)` array_like. Second input vector. Input is flattened if not already `1-dimensional`.
-- `out`: `(M, N)` ndarray, optional. A location where the result is stored.
+- `a`: `(M,)` `array_like`. First input vector. Input is flattened if not already `1-dimensional`.
+- `b`: `(N,)` `array_like`. Second input vector. Input is flattened if not already `1-dimensional`.
+- `out`: `(M, N)` `ndarray`, optional. A location where the result is stored.
 
 &emsp;&emsp;Returns:
 
@@ -764,7 +764,7 @@ array([[-2., -1.,  0.,  1.,  2.],
        [-2., -1.,  0.,  1.,  2.],
        [-2., -1.,  0.,  1.,  2.],
        [-2., -1.,  0.,  1.,  2.]])
->>> im = np.outer(1j*np.linspace(2, -2, 5), np.ones((5,)))
+>>> im = np.outer(1j * np.linspace(2, -2, 5), np.ones((5,)))
 >>> im
 array([[ 0.+2.j,  0.+2.j,  0.+2.j,  0.+2.j,  0.+2.j],
        [ 0.+1.j,  0.+1.j,  0.+1.j,  0.+1.j,  0.+1.j],
