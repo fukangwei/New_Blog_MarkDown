@@ -746,8 +746,8 @@ array([[4, 0, 1, 2, 3],
 
 Parameters:
 
-- `a`: `(M,)` `array_like`. First input vector. Input is flattened if not already `1-dimensional`.
-- `b`: `(N,)` `array_like`. Second input vector. Input is flattened if not already `1-dimensional`.
+- `a`: `(M,) array_like`. First input vector. Input is flattened if not already `1-dimensional`.
+- `b`: `(N,) array_like`. Second input vector. Input is flattened if not already `1-dimensional`.
 - `out`: `(M, N)` `ndarray`, optional. A location where the result is stored.
 
 &emsp;&emsp;Returns:
@@ -858,15 +858,15 @@ array([2, 3])
 
 &emsp;&emsp;`numpy.isnan(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'isnan'>`: Test element-wise for `NaN` and return result as a `boolean` array. Parameters:
 
-- `x`: array_like. Input array.
-- `out`: ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
-- `where`: array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
+- `x`: `array_like`. Input array.
+- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `where`: `array_like`, optional. Values of `True` indicate to calculate the ufunc at that position, values of `False` indicate to leave the value in the output alone.
 
 &emsp;&emsp;Returns:
 
-- `y`: `ndarray` or `bool`. For scalar input, the result is a new boolean with value True if the input is NaN; otherwise the value is False. For array input, the result is a boolean array of the same dimensions as the input and the values are True if the corresponding element of the input is NaN; otherwise the values are False.
+- `y`: `ndarray` or `bool`. For scalar input, the result is a new `boolean` with value `True` if the input is `NaN`; otherwise the value is `False`. For array input, the result is a `boolean` array of the same dimensions as the input and the values are `True` if the corresponding element of the input is `NaN`; otherwise the values are `False`.
 
-&emsp;&emsp;Notes: NumPy uses the IEEE Standard for Binary Floating-Point for Arithmetic (IEEE 754). This means that `Not a Number` is not equivalent to infinity.
+&emsp;&emsp;Notes: `NumPy` uses the `IEEE Standard for Binary Floating-Point for Arithmetic`. This means that `Not a Number` is not equivalent to `infinity`.
 
 ``` python
 >>> np.isnan(np.nan)
@@ -880,33 +880,33 @@ array([ True, False, False])
 ### numpy.linalg.lstsq(最小二乘法)
 
 &emsp;&emsp;`numpy.linalg.lstsq(a, b, rcond='warn')`: Return the least-squares solution to a linear matrix equation.
-&emsp;&emsp;Solves the equation a x = b by computing a vector x that minimizes the Euclidean 2-norm || b - a x ||^2. The equation may be under-, well-, or over- determined (i.e., the number of linearly independent rows of a can be less than, equal to, or greater than its number of linearly independent columns). If a is square and of full rank, then x (but for round-off error) is the "exact" solution of the equation. Parameters:
+&emsp;&emsp;Solves the equation `a x = b` by computing a vector `x` that minimizes the Euclidean 2-norm `|| b - a x ||^2`. The equation may be `under-`, `well-`, or `over-` determined (i.e., the number of linearly independent rows of `a` can be less than, equal to, or greater than its number of linearly independent columns). If `a` is square and of full rank, then `x` (but for round-off error) is the `exact` solution of the equation. Parameters:
 
-a : (M, N) array_like. "Coefficient" matrix.
-b : {(M,), (M, K)} array_like. Ordinate or "dependent variable" values. If b is two-dimensional, the least-squares solution is calculated for each of the K columns of b.
-rcond : float, optional. Cut-off ratio for small singular values of a. For the purposes of rank determination, singular values are treated as zero if they are smaller than rcond times the largest singular value of a. Changed in version 1.14.0: If not set, a FutureWarning is given. The previous default of -1 will use the machine precision as rcond parameter, the new default will use the machine precision times max(M, N). To silence the warning and use the new default, use rcond=None, to keep using the old behavior, use rcond=-1.
+- `a`: `(M, N) array_like`. `Coefficient` matrix.
+- `b`: `{(M,), (M, K)} array_like`. Ordinate or `dependent variable` values. If `b` is two-dimensional, the least-squares solution is calculated for each of the `K` columns of `b`.
+- `rcond`: `float`, optional. Cut-off ratio for small singular values of `a`. For the purposes of rank determination, singular values are treated as `zero` if they are smaller than `rcond` times the largest singular value of `a`. Changed in `version 1.14.0`: If not set, a `FutureWarning` is given. The previous default of `-1` will use the machine precision as `rcond` parameter, the new default will use the machine precision times `max(M, N)`. To silence the warning and use the new default, use `rcond=None`, to keep using the old behavior, use `rcond=-1`.
 
 &emsp;&emsp;Returns:
 
-x : {(N,), (N, K)} ndarray. Least-squares solution. If b is two-dimensional, the solutions are in the K columns of x.
-residuals : {(1,), (K,), (0,)} ndarray. Sums of residuals; squared Euclidean 2-norm for each column in b - a*x. If the rank of a is < N or M <= N, this is an empty array. If b is 1-dimensional, this is a (1,) shape array. Otherwise the shape is (K,).
-rank : int. Rank of matrix a.
-s : (min(M, N),) ndarray. Singular values of a.
+- `x`: `{(N,), (N, K)} ndarray`. Least-squares solution. If `b` is two-dimensional, the solutions are in the `K` columns of `x`.
+- `residuals`: `{(1,), (K,), (0,)} ndarray`. Sums of residuals; squared Euclidean 2-norm for each column in `b - a * x`. If the rank of `a` is `< N` or `M <= N`, this is an empty array. If `b` is 1-dimensional, this is a `(1,)` shape array. Otherwise the shape is `(K,)`.
+- `rank`: `int`. Rank of matrix `a`.
+- `s`: `(min(M, N),) ndarray`. Singular values of `a`.
 
 &emsp;&emsp;Raises:
 
 - `LinAlgError`: If computation does not converge.
 
-Notes: If b is a matrix, then all array results are returned as matrices.
-&emsp;&emsp;Examples: Fit a line, y = mx + c, through some noisy data-points:
+Notes: If `b` is a matrix, then all array results are returned as matrices.
+&emsp;&emsp;Examples: Fit a line, `y = mx + c`, through some noisy data-points:
 
 ``` python
 >>> x = np.array([0, 1, 2, 3])
 >>> y = np.array([-1, 0.2, 0.9, 2.1])
 ```
 
-By examining the coefficients, we see that the line should have a gradient of roughly 1 and cut the y-axis at, more or less, -1.
-&emsp;&emsp;We can rewrite the line equation as y = Ap, where A = [[x 1]] and p = [[m], [c]]. Now use lstsq to solve for p:
+By examining the coefficients, we see that the line should have a gradient of roughly `1` and cut the `y-axis` at, more or less, `-1`.
+&emsp;&emsp;We can rewrite the line equation as `y = Ap`, where `A = [[x 1]]` and `p = [[m], [c]]`. Now use lstsq to solve for `p`:
 
 ``` python
 >>> A = np.vstack([x, np.ones(len(x))]).T
