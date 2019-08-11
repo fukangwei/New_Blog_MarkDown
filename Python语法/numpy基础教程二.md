@@ -792,14 +792,14 @@ array([[a, aa, aaa],
 
 ### numpy.frombuffer
 
-&emsp;&emsp;`numpy.frombuffer(buffer, dtype=float, count=-1, offset=0)`: Interpret a buffer as a `1-dimensional` array. Parameters:
+&emsp;&emsp;`numpy.frombuffer(buffer, dtype=float, count=-1, offset=0)`: Interpret a `buffer` as a `1-dimensional` array. Parameters:
 
-- `buffer`: buffer_like. An object that exposes the buffer interface.
-- `dtype`: data-type, optional. Data-type of the returned array.
-- `count`: int, optional. Number of items to read. `-1` means all data in the buffer.
-- `offset`: int, optional. Start reading the buffer from this offset (in bytes).
+- `buffer`: `buffer_like`. An object that exposes the buffer interface.
+- `dtype`: `data-type`, optional. `Data-type` of the returned array.
+- `count`: `int`, optional. Number of items to read. `-1` means all data in the buffer.
+- `offset`: `int`, optional. Start reading the buffer from this offset (in `bytes`).
 
-Notes: If the buffer has data that is not in machine `byte-order`, this should be specified as part of the `data-type`, e.g.:
+Notes: If the `buffer` has data that is not in machine `byte-order`, this should be specified as part of the `data-type`, e.g.:
 
 ``` python
 >>> dt = np.dtype(int)
@@ -825,11 +825,11 @@ array([1, 2, 3], dtype=uint8)
 &emsp;&emsp;Arrays should be constructed using `array`, `zeros` or `empty`. The parameters given here refer to a `low-level` method (`ndarray(...)`) for instantiating an array.
 &emsp;&emsp;Parameters:
 
-- `shape`: tuple of ints. Shape of created array.
+- `shape`: `tuple of ints`. Shape of created array.
 - `dtype`: `data-type`, optional. Any object that can be interpreted as a numpy data type.
 - `buffer`: object exposing buffer interface, optional. Used to fill the array with data.
 - `offset`: int, optional. Offset of array data in buffer.
-- `strides`: tuple of ints, optional. Strides of data in memory.
+- `strides`: `tuple of ints`, optional. Strides of data in memory.
 - `order`: {'C', 'F'}, optional. `Row-major` (`C-style`) or `column-major` (`Fortran-style`) order.
 
 Notes: There are two modes of creating an array using `__new__`:
