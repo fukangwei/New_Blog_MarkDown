@@ -957,8 +957,9 @@ The default is `reduced`, and to maintain backward compatibility with earlier ve
 
 - `LinAlgError`. If factoring fails.
 
-&emsp;&emsp;Notes: This is an interface to the LAPACK routines dgeqrf, zgeqrf, dorgqr, and zungqr. For more information on the qr factorization, see for example: `http://en.wikipedia.org/wiki/QR_factorization`.
-&emsp;&emsp;Subclasses of ndarray are preserved except for the "raw" mode. So if a is of type matrix, all the return values will be matrices too.
+&emsp;&emsp;Notes: This is an interface to the `LAPACK` routines `dgeqrf`, `zgeqrf`, `dorgqr` and `zungqr`. For more information on the `qr` factorization, see for example: `http://en.wikipedia.org/wiki/QR_factorization`.
+&emsp;&emsp;Subclasses of ndarray are preserved except for the `raw` mode. So if `a` is of type matrix, all the return values will be matrices too.
+
 &emsp;&emsp;New "reduced", "complete", and "raw" options for mode were added in NumPy 1.8.0 and the old option "full" was made an alias of "reduced". In addition the options "full" and "economic" were deprecated. Because "full" was the previous default and "reduced" is the new default, backward compatibility can be maintained by letting mode default. The "raw" option was added so that LAPACK routines that can multiply arrays by q using the Householder reflectors can be used. Note that in this case the returned arrays are of type np.double or np.cdouble and the h array is transposed to be FORTRAN compatible. No routines using the "raw" return are currently exposed by numpy, but some are available in lapack_lite and just await the necessary work.
 &emsp;&emsp;Examples:
 
