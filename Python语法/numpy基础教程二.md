@@ -930,19 +930,21 @@ Plot the data along with the fitted line:
 >>> plt.show()
 ```
 
+<img src="./numpy基础教程二/2.png">
+
 ### numpy.linalg.qr(QR分解)
 
-&emsp;&emsp;`numpy.linalg.qr(a, mode='reduced')`: Compute the qr factorization of a matrix. Factor the matrix a as qr, where q is orthonormal and r is upper-triangular. Parameters:
+&emsp;&emsp;`numpy.linalg.qr(a, mode='reduced')`: Compute the `qr` factorization of a matrix. Factor the matrix `a` as `qr`, where `q` is orthonormal and `r` is upper-triangular. Parameters:
 
-- `a`: array_like, shape (M, N). Matrix to be factored.
-- `mode`: {"reduced", "complete", "r", "raw", "full", "economic"}, optional. If K = min(M, N), then
+- `a`: `array_like`, shape `(M, N)`. Matrix to be factored.
+- `mode`: `{"reduced", "complete", "r", "raw", "full", "economic"}`, optional. If `K = min(M, N)`, then
 
-1. `reduced`: returns q, r with dimensions (M, K), (K, N) (default)
-2. `complete`: returns q, r with dimensions (M, M), (M, N)
-3. `r`: returns r only with dimensions (K, N)
-4. `raw`: returns h, tau with dimensions (N, M), (K,)
-5. `full`  alias of "reduced", deprecated
-6. `economic`: returns h from "raw", deprecated
+1. `reduced`: returns `q`, `r` with dimensions `(M, K)`, `(K, N)`.
+2. `complete`: returns `q`, `r` with dimensions `(M, M)`, `(M, N)`.
+3. `r`: returns `r` only with dimensions `(K, N)`.
+4. `raw`: returns `h`, `tau` with dimensions `(N, M)`, `(K,)`.
+5. `full`: alias of `reduced`, deprecated.
+6. `economic`: returns `h` from `raw`, deprecated.
 
 The options "reduced", "complete", and "raw" are new in numpy 1.8, see the notes for more information. The default is "reduced", and to maintain backward compatibility with earlier versions of numpy both it and the old default "full" can be omitted. Note that array h returned in "raw" mode is transposed for calling Fortran. The "economic" mode is deprecated. The modes "full" and "economic" may be passed using only the first letter for backwards compatibility, but all others must be spelled out.
 
@@ -953,13 +955,14 @@ The options "reduced", "complete", and "raw" are new in numpy 1.8, see the notes
 - `(h, tau)`: ndarrays of np.double or np.cdouble, optional. The array h contains the Householder reflectors that generate q along with r. The tau array contains scaling factors for the reflectors. In the deprecated "economic" mode only h is returned.
 
 &emsp;&emsp;Raises:
-LinAlgError. If factoring fails.
 
-&emsp;&emsp;Notes: This is an interface to the LAPACK routines dgeqrf, zgeqrf, dorgqr, and zungqr. For more information on the qr factorization, see for example: http://en.wikipedia.org/wiki/QR_factorization
-    Subclasses of ndarray are preserved except for the "raw" mode. So if a is of type matrix, all the return values will be matrices too.
+- `LinAlgError`. If factoring fails.
 
-    New "reduced", "complete", and "raw" options for mode were added in NumPy 1.8.0 and the old option "full" was made an alias of "reduced". In addition the options "full" and "economic" were deprecated. Because "full" was the previous default and "reduced" is the new default, backward compatibility can be maintained by letting mode default. The "raw" option was added so that LAPACK routines that can multiply arrays by q using the Householder reflectors can be used. Note that in this case the returned arrays are of type np.double or np.cdouble and the h array is transposed to be FORTRAN compatible. No routines using the "raw" return are currently exposed by numpy, but some are available in lapack_lite and just await the necessary work.
-    Examples:
+&emsp;&emsp;Notes: This is an interface to the LAPACK routines dgeqrf, zgeqrf, dorgqr, and zungqr. For more information on the qr factorization, see for example: `http://en.wikipedia.org/wiki/QR_factorization`.
+&emsp;&emsp;Subclasses of ndarray are preserved except for the "raw" mode. So if a is of type matrix, all the return values will be matrices too.
+
+&emsp;&emsp;New "reduced", "complete", and "raw" options for mode were added in NumPy 1.8.0 and the old option "full" was made an alias of "reduced". In addition the options "full" and "economic" were deprecated. Because "full" was the previous default and "reduced" is the new default, backward compatibility can be maintained by letting mode default. The "raw" option was added so that LAPACK routines that can multiply arrays by q using the Householder reflectors can be used. Note that in this case the returned arrays are of type np.double or np.cdouble and the h array is transposed to be FORTRAN compatible. No routines using the "raw" return are currently exposed by numpy, but some are available in lapack_lite and just await the necessary work.
+&emsp;&emsp;Examples:
 
 ``` python
 >>> a = np.random.randn(9, 6)
