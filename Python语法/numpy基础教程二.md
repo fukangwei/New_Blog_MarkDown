@@ -959,8 +959,7 @@ The default is `reduced`, and to maintain backward compatibility with earlier ve
 
 &emsp;&emsp;Notes: This is an interface to the `LAPACK` routines `dgeqrf`, `zgeqrf`, `dorgqr` and `zungqr`. For more information on the `qr` factorization, see for example: `http://en.wikipedia.org/wiki/QR_factorization`.
 &emsp;&emsp;Subclasses of ndarray are preserved except for the `raw` mode. So if `a` is of type matrix, all the return values will be matrices too.
-
-&emsp;&emsp;New "reduced", "complete", and "raw" options for mode were added in NumPy 1.8.0 and the old option "full" was made an alias of "reduced". In addition the options "full" and "economic" were deprecated. Because "full" was the previous default and "reduced" is the new default, backward compatibility can be maintained by letting mode default. The "raw" option was added so that LAPACK routines that can multiply arrays by q using the Householder reflectors can be used. Note that in this case the returned arrays are of type np.double or np.cdouble and the h array is transposed to be FORTRAN compatible. No routines using the "raw" return are currently exposed by numpy, but some are available in lapack_lite and just await the necessary work.
+&emsp;&emsp;New `reduced`, `complete` and `raw` options for mode were added in `NumPy 1.8.0` and the old option `full` was made an alias of `reduced`. In addition the options `full` and `economic` were deprecated. Because `full` was the previous default and `reduced` is the new default, backward compatibility can be maintained by letting mode default. The `raw` option was added so that `LAPACK` routines that can multiply arrays by `q` using the `Householder` reflectors can be used. Note that in this case the returned arrays are of type `np.double` or `np.cdouble` and the `h` array is transposed to be `FORTRAN` compatible. No routines using the `raw` return are currently exposed by numpy, but some are available in lapack_lite and just await the necessary work.
 &emsp;&emsp;Examples:
 
 ``` python
@@ -977,8 +976,8 @@ True
 True
 ```
 
-&emsp;&emsp;Example illustrating a common use of qr: solving of least squares problems.
-&emsp;&emsp;What are the least-squares-best m and y0 in y = y0 + mx for the following data: {(0,1), (1,0), (1,2), (2,1)}. (Graph the points and you'll see that it should be y0 = 0, m = 1.) The answer is provided by solving the over-determined matrix equation Ax = b, where:
+&emsp;&emsp;Example illustrating a common use of `qr`: solving of least squares problems.
+&emsp;&emsp;What are the least-squares-best `m` and `y0` in `y = y0 + mx` for the following data: `{(0, 1), (1, 0), (1, 2), (2, 1)}`. (Graph the points and you'll see that it should be `y0 = 0`, `m = 1`.) The answer is provided by solving the over-determined matrix equation `Ax = b`, where:
 
 ``` python
 A = array([[0, 1], [1, 1], [1, 1], [2, 1]])
@@ -986,7 +985,7 @@ x = array([[y0], [m]])
 b = array([[1], [0], [2], [1]])
 ```
 
-&emsp;&emsp;If A = qr such that q is orthonormal (which is always possible via Gram-Schmidt), then x = inv(r) * (q.T) * b. (In numpy practice, however, we simply use lstsq.)
+&emsp;&emsp;If `A = qr` such that `q` is orthonormal (which is always possible via Gram-Schmidt), then `x = inv(r) * (q.T) * b`. (In numpy practice, however, we simply use `lstsq`.)
 
 ``` python
 >>> A = np.array([[0, 1], [1, 1], [1, 1], [2, 1]])
@@ -1031,7 +1030,7 @@ if __name__ == '__main__':
 
 &emsp;&emsp;Returns:
 
-- `y`: ndarray. The sign of x.
+- `y`: `ndarray`. The sign of `x`.
 
 &emsp;&emsp;Notes: There is more than one definition of sign in common use for complex numbers. The definition used here is equivalent to x/sqrt{x*x} which is different from a common alternative, x/|x|.
 
@@ -1040,7 +1039,7 @@ if __name__ == '__main__':
 array([-1.,  1.])
 >>> np.sign(0)
 0
->>> np.sign(5-2j)
+>>> np.sign(5 - 2j)
 (1+0j)
 ```
 
