@@ -66,7 +66,7 @@ tags:
 
 ### margin与padding的区别
 
-&emsp;&emsp;初学者对于这两个属性可能会有一点混淆，这里区分下：首先margin代表的是偏移，比如“marginleft = "5dp"”表示组件离容器左边缘偏移5dp；而padding代表的则是填充，而填充的对象针对的是组件中的元素，例如TextView中的文字。比如为TextView设置“paddingleft = "5dp"”，则是在组件里的元素的左边填充5dp的空间。margin针对的是容器中的组件，而padding针对的是组件中的元素，要区分开来！下面通过简单的代码演示两者的区别：
+&emsp;&emsp;初学者对于这两个属性可能会有一点混淆，这里区分下：首先`margin`代表的是偏移，比如`marginleft = "5dp"`表示组件离容器左边缘偏移`5dp`；而`padding`代表的则是填充，而填充的对象针对的是组件中的元素，例如`TextView`中的文字。比如为`TextView`设置`paddingleft = "5dp"`，则是在组件里的元素的左边填充5dp的空间。`margin`针对的是容器中的组件，而`padding`针对的是组件中的元素，要区分开来！下面通过简单的代码演示两者的区别：
 
 ``` xml
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
