@@ -1139,11 +1139,11 @@ array([[-24,  48, -24],
 
 &emsp;&emsp;`ndarray.flatten(order='C')`: Return a copy of the array collapsed into one dimension. Parameters:
 
-- `order`: {"C", "F", "A", "K"}, optional. `C` means to flatten in `row-major` (`C-style`) order. `F` means to flatten in `column-major` (`Fortran- style`) order. `A` means to flatten in `column-major` order if a is Fortran contiguous in memory, `row-major` order otherwise. `K` means to flatten a in the order the elements occur in memory.
+- `order`: `{"C", "F", "A", "K"}`, optional. `C` means to flatten in `row-major` (`C-style`) order. `F` means to flatten in `column-major` (`Fortran- style`) order. `A` means to flatten in `column-major` order if `a` is Fortran contiguous in memory, `row-major` order otherwise. `K` means to flatten `a` in the order the elements occur in memory.
 
 &emsp;&emsp;Returns:
 
-- `y`: ndarray. A copy of the input array, flattened to one dimension.
+- `y`: `ndarray`. A copy of the input array, flattened to one dimension.
 
 ``` python
 >>> a = np.array([[1, 2], [3, 4]])
@@ -1233,11 +1233,11 @@ print(c ** 2)
 
 ### numpy.matrix
 
-&emsp;&emsp;`class numpy.matrix(data, dtype=None, copy=True)`: Returns a matrix from an `array-like` object, or from a string of data. A matrix is a specialized `2-D` array that retains its `2-D` nature through operations. It has certain special operators, such as * (matrix multiplication) and ** (matrix power). Parameters:
+&emsp;&emsp;`class numpy.matrix(data, dtype=None, copy=True)`: Returns a matrix from an array-like object, or from a string of `data`. A matrix is a specialized `2-D` array that retains its `2-D` nature through operations. It has certain special operators, such as `*` (matrix multiplication) and `**` (matrix power). Parameters:
 
-- `data`: array_like or string. If data is a string, it is interpreted as a matrix with commas or spaces separating columns, and semicolons separating rows.
-- `dtype`: `data-type`. Data-type of the output matrix.
-- `copy`: bool. If data is already an ndarray, then this flag determines whether the data is copied (the default), or whether a view is constructed.
+- `data`: `array_like` or `string`. If `data` is a `string`, it is interpreted as a matrix with commas or spaces separating columns, and semicolons separating rows.
+- `dtype`: `data-type`. `Data-type` of the output matrix.
+- `copy`: `bool`. If `data` is already an `ndarray`, then this flag determines whether the `data` is copied (the default), or whether a view is constructed.
 
 &emsp;&emsp;Examples:
 
