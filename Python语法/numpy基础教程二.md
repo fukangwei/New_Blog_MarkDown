@@ -521,14 +521,14 @@ array([[ 0,  1,  8, 27, 16,  5],
 
 ### numpy.fix
 
-&emsp;&emsp;`numpy.fix(x, out=None, **kwargs)`: Round to nearest integer towards zero. Round an array of floats `element-wise` to nearest integer towards zero. The rounded values are returned as floats. Parameters:
+&emsp;&emsp;`numpy.fix(x, out=None, **kwargs)`: Round to nearest integer towards `zero`. Round an array of floats element-wise to nearest integer towards `zero`. The rounded values are returned as `floats`. Parameters:
 
-- `x`: array_like. An array of floats to be rounded.
-- `y`: ndarray, optional. Output array.
+- `x`: `array_like`. An array of `floats` to be rounded.
+- `y`: `ndarray`, optional. Output array.
 
 &emsp;&emsp;Returns:
 
-- `out`: ndarray of floats. The array of rounded numbers.
+- `out`: `ndarray` of `floats`. The array of rounded numbers.
 
 &emsp;&emsp;Examples:
 
@@ -545,14 +545,14 @@ array([ 2.,  2., -2., -2.])
 
 &emsp;&emsp;`numpy.transpose(a, axes=None)`: Permute the dimensions of an array. Parameters:
 
-- `a`: array_like. Input array.
-- `axes`: list of ints, optional. By default, reverse the dimensions, otherwise permute the axes according to the values given.
+- `a`: `array_like`. Input array.
+- `axes`: list of `ints`, optional. By default, reverse the dimensions, otherwise permute the `axes` according to the values given.
 
 &emsp;&emsp;Returns:
 
-- `p`: ndarray. a with its axes permuted. A view is returned whenever possible.
+- `p`: `ndarray`. `a` with its `axes` permuted. A view is returned whenever possible.
 
-&emsp;&emsp;Notes: Use transpose(a, argsort(axes)) to invert the transposition of tensors when using the axes keyword argument. Transposing a `1-D` array returns an unchanged view of the original array.
+&emsp;&emsp;Notes: `Use transpose(a, argsort(axes))` to invert the transposition of tensors when using the `axes` keyword argument. Transposing a `1-D` array returns an unchanged view of the original array.
 &emsp;&emsp;Examples:
 
 ``` python
@@ -570,13 +570,13 @@ array([[0, 2],
 
 ### numpy.argwhere
 
-&emsp;&emsp;`numpy.argwhere(a)`: Find the indices of array elements that are non-zero, grouped by element. Parameters:
+&emsp;&emsp;`numpy.argwhere(a)`: Find the indices of array elements that are `non-zero`, grouped by element. Parameters:
 
-- `a`: array_like. Input data.
+- `a`: `array_like`. Input data.
 
 &emsp;&emsp;Returns:
 
-- `index_array`: ndarray. Indices of elements that are non-zero. Indices are grouped by element.
+- `index_array`: `ndarray`. Indices of elements that are `non-zero`. Indices are grouped by element.
 
 &emsp;&emsp;Notes: `np.argwhere(a)` is the same as `np.transpose(np.nonzero(a))`. The output of argwhere is not suitable for indexing arrays. For this purpose use `nonzero(a)` instead.
 &emsp;&emsp;Examples:
@@ -595,7 +595,7 @@ array([[0, 2],
 
 ### numpy.prod
 
-&emsp;&emsp;`numpy.prod(a, axis=None, dtype=None, out=None, keepdims=<class 'numpy._globals._NoValue'>)`: Return the product(乘积) of array elements over a given axis. Parameters:
+&emsp;&emsp;`numpy.prod(a, axis=None, dtype=None, out=None, keepdims=<class 'numpy._globals._NoValue'>)`: Return the product(乘积) of array elements over a given `axis`. Parameters:
 
 - `a`: array_like. Input data.
 - `axis`: None or int or tuple of ints, optional. Axis or axes along which a product is performed. The default, axis=None, will calculate the product of all the elements in the input array. If axis is negative it counts from the last to the first axis. If axis is a tuple of ints, a product is performed on all of the axes specified in the tuple instead of a single axis or all the axes as before.
