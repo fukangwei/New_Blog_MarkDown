@@ -1268,9 +1268,9 @@ array([[ 0,  1,  2,  3],
 
 ### numpy.ndarray.tolist
 
-&emsp;&emsp;Return a copy of the array data as a (nested) Python list. Data items are converted to the nearest compatible Python type.
+&emsp;&emsp;Return a copy of the array data as a (nested) `Python` list. Data items are converted to the nearest compatible `Python` type.
 &emsp;&emsp;Returns: The possibly nested list of array elements.
-&emsp;&emsp;Notes: The array may be recreated, a = np.array(a.tolist()).
+&emsp;&emsp;Notes: The array may be recreated, `a = np.array(a.tolist())`.
 
 ``` python
 >>> a = np.array([1, 2])
@@ -1283,45 +1283,65 @@ array([[ 0,  1,  2,  3],
 [[1, 2], [3, 4]]
 ```
 
-numpy.reshape
-    numpy.reshape(a, newshape, order='C'): Gives a new shape to an array without changing its data. Parameters:
-    a : array_like. Array to be reshaped.
-    newshape : int or tuple of ints. The new shape should be compatible with the original shape. If an integer, then the result will be a 1-D array of that length. One shape dimension can be -1. In this case, the value is inferred from the length of the array and remaining dimensions.
-    order : {'C', 'F', 'A'}, optional. Read the elements of a using this index order, and place the elements into the reshaped array using this index order.
+### numpy.reshape
 
-'C' means to read / write the elements using C-like index order, with the last axis index changing fastest, back to the first axis index changing slowest.
-'F' means to read / write the elements using Fortran-like index order, with the first index changing fastest, and the last index changing slowest.
-'A' means to read / write the elements in Fortran-like index order if a is Fortran contiguous in memory, C-like order otherwise.
-Note that the 'C' and 'F' options take no account of the memory layout of the underlying array, and only refer to the order of indexing.
-    Returns: reshaped_array : ndarray. This will be a new view object if possible; otherwise, it will be a copy. Note there is no guarantee of the memory layout (C- or Fortran- contiguous) of the returned array.
-    Notes: It is not always possible to change the shape of an array without copying the data. If you want an error to be raised when the data is copied, you should assign the new shape to the shape attribute of the array:
+&emsp;&emsp;`numpy.reshape(a, newshape, order='C')`: Gives a new shape to an array without changing its data. Parameters:
 
+- `a`: `array_like`. Array to be reshaped.
+- `newshape`: `int` or `tuple of ints`. The new shape should be compatible with the original shape. If an integer, then the result will be a `1-D` array of that length. One shape dimension can be `-1`. In this case, the value is inferred from the length of the array and remaining dimensions.
+- `order`: `{'C', 'F', 'A'}`, optional. Read the elements of `a` using this index `order`, and place the elements into the reshaped array using this index `order`.
+
+1. `C`: means to read/write the elements using `C-like` index order, with the last axis index changing fastest, back to the first axis index changing slowest.
+2. `F`: means to read/write the elements using `Fortran-like` index order, with the first index changing fastest, and the last index changing slowest.
+3. `A`: means to read/write the elements in `Fortran-like` index order if `a` is `Fortran` contiguous in memory, `C-like` order otherwise.
+
+Note that the `C` and `F` options take no account of the memory layout of the underlying array, and only refer to the order of indexing.
+&emsp;&emsp;Returns:
+
+- `reshaped_array`: `ndarray`. This will be a new view object if possible; otherwise, it will be a copy. Note there is no guarantee of the memory layout (`C-` or `Fortran-` contiguous) of the returned array.
+
+&emsp;&emsp;Notes: It is not always possible to change the shape of an array without copying the data. If you want an error to be raised when the data is copied, you should assign the new shape to the shape attribute of the array:
+
+``` python
 >>> a = np.zeros((10, 2))
 >>> b = a.T  # A transpose makes the array non-contiguous
->>> c = b.view()  # Taking a view makes it possible to modify the shape without modifying the initial object
+>>> # Taking a view makes it possible to modify the shape without modifying the initial object
+>>> c = b.view()
 >>> c.shape = (20)
 AttributeError: incompatible shape for a non-contiguous array
-The order keyword gives the index ordering both for fetching the values from a, and then placing the values into the output array. For example, let's say you have an array:
+```
+
+The `order` keyword gives the index ordering both for fetching the values from `a`, and then placing the values into the output array. For example, let's say you have an array:
+
+``` python
 >>> a = np.arange(6).reshape((3, 2))
 >>> a
 array([[0, 1],
        [2, 3],
        [4, 5]])
-You can think of reshaping as first raveling the array (using the given index order), then inserting the elements from the raveled array into the new array using the same kind of index ordering as was used for the raveling.
->>> np.reshape(a, (2, 3)) # C-like index ordering
+```
+
+You can think of reshaping as first raveling the array (using the given index `order`), then inserting the elements from the raveled array into the new array using the same kind of index ordering as was used for the raveling.
+
+``` python
+>>> np.reshape(a, (2, 3))  # C-like index ordering
 array([[0, 1, 2],
        [3, 4, 5]])
->>> np.reshape(np.ravel(a), (2, 3)) # equivalent to C ravel then C reshape
+>>> np.reshape(np.ravel(a), (2, 3))  # equivalent to C ravel then C reshape
 array([[0, 1, 2],
        [3, 4, 5]])
->>> np.reshape(a, (2, 3), order='F') # Fortran-like index ordering
+>>> np.reshape(a, (2, 3), order='F')  # Fortran-like index ordering
 array([[0, 4, 3],
        [2, 1, 5]])
 >>> np.reshape(np.ravel(a, order='F'), (2, 3), order='F')
 array([[0, 4, 3],
        [2, 1, 5]])
-    Examples:
->>> a = np.array([[1,2,3], [4,5,6]])
+```
+
+&emsp;&emsp;Examples:
+
+``` python
+>>> a = np.array([[1, 2, 3], [4, 5, 6]])
 >>> np.reshape(a, 6)
 array([1, 2, 3, 4, 5, 6])
 >>> np.reshape(a, 6, order='F')
@@ -1330,6 +1350,7 @@ array([1, 4, 2, 5, 3, 6])
 array([[1, 2],
        [3, 4],
        [5, 6]])
+```
 
 ### numpy.ndarray.T
 
@@ -1350,12 +1371,15 @@ array([ 1.,  2.,  3.,  4.])
 array([ 1.,  2.,  3.,  4.])
 ```
 
-numpy.ndarray.sort
-    ndarray.sort(axis=-1, kind='quicksort', order=None): Sort an array, in-place. Parameters:
-axis : int, optional. Axis along which to sort. Default is -1, which means sort along the last axis.
-kind : {'quicksort', 'mergesort', 'heapsort'}, optional. Sorting algorithm. Default is 'quicksort'.
-order : str or list of str, optional. When a is an array with fields defined, this argument specifies which fields to compare first, second, etc. A single field can be specified as a string, and not all fields need be specified, but unspecified fields will still be used, in the order in which they come up in the dtype, to break ties.
-    Examples:
+### numpy.ndarray.sort
+
+&emsp;&emsp;`ndarray.sort(axis=-1, kind='quicksort', order=None)`: Sort an array, in-place. Parameters:
+
+- `axis`: `int`, optional. Axis along which to sort. Default is `-1`, which means sort along the last axis.
+- `kind`: `{'quicksort', 'mergesort', 'heapsort'}`, optional. Sorting algorithm.
+- `order`: `str` or `list of str`, optional. When `a` is an array with fields defined, this argument specifies which fields to compare first, second, etc. A single field can be specified as a `string`, and not all fields need be specified, but unspecified fields will still be used, in the order in which they come up in the dtype, to break ties.
+
+&emsp;&emsp;Examples:
 
 ``` python
 >>> a = np.array([[1, 4], [3, 1]])
@@ -1369,7 +1393,7 @@ array([[1, 3],
        [1, 4]])
 ```
 
-Use the order keyword to specify a field to use when sorting a structured array:
+Use the `order` keyword to specify a field to use when sorting a structured array:
 
 ``` python
 >>> a = np.array([('a', 2), ('c', 1)], dtype=[('x', 'S1'), ('y', int)])
@@ -1383,7 +1407,11 @@ array([('c', 1), ('a', 2)],
 
 &emsp;&emsp;相关系数是用来反映变量之间相关关系密切程度的统计指标。相关系数也可以看成协方差：一种剔除了两个变量量纲影响、标准化后的特殊协方差。它消除了两个变量变化幅度的影响，而只是单纯地反应两个变量每单位变化时的相似程度：
 
-&emsp;&emsp;δx和δy表示X、Y的方差，并且“|r| ≤ 1”。
+$$\begin{equation}
+r = \frac{Cov(X,Y)}{\sqrt{\partial_{x}} \sqrt{\partial_{y}}}
+\end{equation}$$
+
+&emsp;&emsp;$\partial_{x}$和$\partial_{y}$表示$X$、$Y$的方差，并且$|r| ≤ 1$。
 
 ``` python
 import numpy as np
@@ -1408,23 +1436,23 @@ print(np.corrcoef(x))
 
 ### numpy.var
 
-&emsp;&emsp;`numpy.var(a, axis=None, dtype=None, out=None, ddof=0, keepdims=<class 'numpy._globals._NoValue'>)`: Compute the variance along the specified axis. Returns the variance of the array elements, a measure of the spread of a distribution. The variance is computed for the flattened array by default, otherwise over the specified axis. Parameters:
+&emsp;&emsp;`numpy.var(a, axis=None, dtype=None, out=None, ddof=0, keepdims=<class 'numpy._globals._NoValue'>)`: Compute the variance along the specified `axis`. Returns the variance of the array elements, a measure of the spread of a distribution. The variance is computed for the flattened array by default, otherwise over the specified `axis`. Parameters:
 
-- `a`: array_like. Array containing numbers whose variance is desired. If a is not an array, a conversion is attempted.
-- `axis`: None or int or tuple of ints, optional. Axis or axes along which the variance is computed. The default is to compute the variance of the flattened array. If this is a tuple of ints, a variance is performed over multiple axes, instead of a single axis or all the axes as before.
-- `dtype`: data-type, optional. Type to use in computing the variance. For arrays of integer type the default is float32; for arrays of float types it is the same as the array type.
-- `out`: ndarray, optional. Alternate output array in which to place the result. It must have the same shape as the expected output, but the type is cast if necessary.
-- `ddof`: int, optional. "Delta Degrees of Freedom": the divisor used in the calculation is N - ddof, where N represents the number of elements. By default ddof is zero.
-- `keepdims`: bool, optional. If this is set to True, the axes which are reduced are left in the result as dimensions with size one. With this option, the result will broadcast correctly against the input array. If the default value is passed, then keepdims will not be passed through to the var method of sub-classes of ndarray, however any non-default value will be. If the sub-classes sum method does not implement keepdims any exceptions will be raised.
+- `a`: `array_like`. Array containing numbers whose variance is desired. If `a` is not an array, a conversion is attempted.
+- `axis`: `None` or `int` or `tuple of ints`, optional. Axis or axes along which the variance is computed. The default is to compute the variance of the flattened array. If this is a `tuple of ints`, a variance is performed over multiple axes, instead of a single axis or all the axes as before.
+- `dtype`: `data-type`, optional. Type to use in computing the variance. For arrays of integer type the default is `float32`; for arrays of `float` types it is the same as the array type.
+- `out`: `ndarray`, optional. Alternate output array in which to place the result. It must have the same shape as the expected output, but the type is cast if necessary.
+- `ddof`: `int`, optional. `Delta Degrees of Freedom`: the divisor used in the calculation is `N - ddof`, where `N` represents the number of elements.
+- `keepdims`: `bool`, optional. If this is set to `True`, the axes which are reduced are left in the result as dimensions with size one. With this option, the result will broadcast correctly against the input array. If the default value is passed, then `keepdims` will not be passed through to the var method of sub-classes of `ndarray`, however any non-default value will be. If the sub-classes sum method does not implement `keepdims` any exceptions will be raised.
 
 &emsp;&emsp;Returns:
 
-- `variance`: ndarray, see dtype parameter above. If out=None, returns a new array containing the variance; otherwise, a reference to the output array is returned.
+- `variance`: `ndarray`, see `dtype` parameter above. If `out=None`, returns a new array containing the variance; otherwise, a reference to the output array is returned.
 
-&emsp;&emsp;Notes: The variance is the average of the squared deviations from the mean, i.e., var = mean(abs(x - x.mean())**2).
-&emsp;&emsp;The mean is normally calculated as x.sum() / N, where N = len(x). If, however, ddof is specified, the divisor N - ddof is used instead. In standard statistical practice, ddof=1 provides an unbiased estimator of the variance of a hypothetical infinite population. ddof=0 provides a maximum likelihood estimate of the variance for normally distributed variables.
-&emsp;&emsp;Note that for complex numbers, the absolute value is taken before squaring, so that the result is always real and nonnegative.
-&emsp;&emsp;For `floating-point` input, the variance is computed using the same precision the input has. Depending on the input data, this can cause the results to be inaccurate, especially for `float32`. Specifying a `higher-accuracy` accumulator using the dtype keyword can alleviate this issue.
+&emsp;&emsp;Notes: The variance is the average of the squared deviations from the mean, i.e., `var = mean(abs(x - x.mean())**2)`.
+&emsp;&emsp;The mean is normally calculated as `x.sum() / N`, where `N = len(x)`. If, however, `ddof` is specified, the divisor `N - ddof` is used instead. In standard statistical practice, `ddof = 1` provides an unbiased estimator of the variance of a hypothetical infinite population. `ddof = 0` provides a maximum likelihood estimate of the variance for normally distributed variables.
+&emsp;&emsp;Note that for `complex` numbers, the absolute value is taken before squaring, so that the result is always `real` and `nonnegative`.
+&emsp;&emsp;For `floating-point` input, the variance is computed using the same precision the input has. Depending on the input data, this can cause the results to be inaccurate, especially for `float32`. Specifying a higher-accuracy accumulator using the `dtype` keyword can alleviate this issue.
 
 ``` python
 >>> a = np.array([[1, 2], [3, 4]])
@@ -1451,13 +1479,13 @@ Computing the variance in `float64` is more accurate:
 ``` python
 >>> np.var(a, dtype=np.float64)
 0.20249999932944759
->>> ((1-0.55)**2 + (0.1-0.55)**2)/2
+>>> ((1 - 0.55)**2 + (0.1 - 0.55)**2)/2
 0.2025
 ```
 
 ### numpy.ndarray.shape
 
-&emsp;&emsp;Tuple of array dimensions. The shape property is usually used to get the current shape of an array, but may also be used to reshape the array `in-place` by assigning a tuple of array dimensions to it. As with numpy.reshape, one of the new shape dimensions can be `-1`, in which case its value is inferred from the size of the array and the remaining dimensions. Reshaping an array `in-place` will fail if a copy is required.
+&emsp;&emsp;Tuple of array dimensions. The shape property is usually used to get the current shape of an array, but may also be used to reshape the array in-place by assigning a tuple of array dimensions to it. As with `numpy.reshape`, one of the new shape dimensions can be `-1`, in which case its value is inferred from the size of the array and the remaining dimensions. Reshaping an array in-place will fail if a copy is required.
 
 ``` python
 >>> x = np.array([1, 2, 3, 4])
@@ -1490,13 +1518,25 @@ import numpy as np
 
 a = np.array([1, 2, 3])
 b = np.array([4, 5, 6])
-np.einsum('i', a)返回向量a本身。
-np.einsum('i->', a)返回向量a的元素和(等价于np.sum(a))。
-np.einsum('i,i->i', a, b)是向量a和向量b的点乘(等价于“a*b”)：
-np.einsum('i, i->i', a, b) # 结果为[4 10 18]
-np.einsum('i,i', a, b)是向量a和向量b的内积(等价于np.inner(a,b))：
-np.einsum('i, i', a, b) # 结果为“32”
-np.einsum('i, j->ij', a, b)是向量a和向量b的外积(等价于np.outer(a, b))，结果为：
+```
+
+- `np.einsum('i', a)`返回向量`a`本身。
+- `np.einsum('i->', a)`返回向量`a`的元素和(等价于`np.sum(a)`)。
+- `np.einsum('i,i->i', a, b)`是向量`a`和向量`b`的点乘(等价于`a * b`)：
+
+``` python
+np.einsum('i, i->i', a, b)  # 结果为[4 10 18]
+```
+
+- `np.einsum('i,i', a, b)`是向量`a`和向量`b`的内积(等价于`np.inner(a, b)`)：
+
+``` python
+np.einsum('i, i', a, b)  # 结果为“32”
+```
+
+- `np.einsum('i, j->ij', a, b)`是向量`a`和向量`b`的外积(等价于`np.outer(a, b)`)，结果为：
+
+``` python
 [[ 4  5  6]
  [ 8 10 12]
  [12 15 18]]
@@ -1509,23 +1549,39 @@ import numpy as np
 
 A = np.array([[1, 2], [3, 4]])
 B = np.array([[5, 6], [7, 8]])
-np.einsum('ij', A)返回矩阵A本身。
-np.einsum('ji', A)返回矩阵A的转置(等价于A.T)。
-np.einsum('ii', A)返回矩阵A对角线上元素的和(等价于np.trace(A))。
-np.einsum('ij->', A)返回矩阵A所有元素的和(等价于np.sum(A))。
-np.einsum('ij->j', A)返回矩阵A列向量的和(等价于np.sum(A, axis=0))。
-np.einsum('ij->i', A)返回矩阵A行向量的和(等价于np.sum(A, axis=1))。
-np.einsum('ij, ij->ij', A, B)是矩阵A和矩阵B的点乘(等价于“A*B”)：
+```
+
+- `np.einsum('ij', A)`返回矩阵`A`本身。
+- `np.einsum('ji', A)`返回矩阵`A`的转置(等价于`A.T`)。
+- `np.einsum('ii', A)`返回矩阵`A`对角线上元素的和(等价于`np.trace(A)`)。
+- `np.einsum('ij->', A)`返回矩阵`A`所有元素的和(等价于`np.sum(A)`)。
+- `np.einsum('ij->j', A)`返回矩阵`A`列向量的和(等价于`np.sum(A, axis=0)`)。
+- `np.einsum('ij->i', A)`返回矩阵`A`行向量的和(等价于`np.sum(A, axis=1)`)。
+- `np.einsum('ij, ij->ij', A, B)`是矩阵`A`和矩阵`B`的点乘(等价于`A * B`)：
+
+``` python
 [[ 5 12]
  [21 32]]
-np.einsum('ij, ji->ij', A, B)是矩阵A点乘以矩阵B的转置(等价于“A*B.T”)：
+```
+
+- `np.einsum('ij, ji->ij', A, B)`是矩阵`A`点乘以矩阵`B`的转置(等价于`A*B.T`)：
+
+``` python
 [[ 5 14]
  [18 32]]
-np.einsum('ij, jk', A, B)是矩阵A乘以矩阵B(等价于np.dot(A, B))：
+```
+
+- `np.einsum('ij, jk', A, B)`是矩阵`A`乘以矩阵`B`(等价于`np.dot(A, B)`)：
+
+``` python
 [[19 22]
  [43 50]]
-np.einsum('ij, ij', A, B)是矩阵A和矩阵B的内积：
-np.einsum('ij, ij', A, B) # 结果为“70”
+```
+
+- `np.einsum('ij, ij', A, B)`是矩阵`A`和矩阵`B`的内积：
+
+``` python
+np.einsum('ij, ij', A, B)  # 结果为“70”
 ```
 
 &emsp;&emsp;To enable and control broadcasting, use an ellipsis(省略号). Default `NumPy-style` broadcasting is done by adding an ellipsis to the left of each term, like `np.einsum('...ii->...i', a)`. To take the trace along the first and last axes, you can do `np.einsum('i...i', a)`, or to do a `matrix-matrix` product with the left-most indices instead of rightmost, you can do `np.einsum('ij...,jk...->ik...', a, b)`.
