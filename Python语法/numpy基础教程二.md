@@ -597,11 +597,12 @@ array([[0, 2],
 
 &emsp;&emsp;`numpy.prod(a, axis=None, dtype=None, out=None, keepdims=<class 'numpy._globals._NoValue'>)`: Return the product(乘积) of array elements over a given `axis`. Parameters:
 
-- `a`: array_like. Input data.
-- `axis`: None or int or tuple of ints, optional. Axis or axes along which a product is performed. The default, axis=None, will calculate the product of all the elements in the input array. If axis is negative it counts from the last to the first axis. If axis is a tuple of ints, a product is performed on all of the axes specified in the tuple instead of a single axis or all the axes as before.
-- `dtype`: dtype, optional. The type of the returned array, as well as of the accumulator in which the elements are multiplied. The dtype of a is used by default unless a has an integer dtype of less precision than the default platform integer. In that case, if a is signed then the platform integer is used while if a is unsigned then an unsigned integer of the same precision as the platform integer is used.
-- `out`: ndarray, optional. Alternative output array in which to place the result. It must have the same shape as the expected output, but the type of the output values will be cast if necessary.
-- `keepdims`: bool, optional. If this is set to True, the axes which are reduced are left in the result as dimensions with size one. With this option, the result will broadcast correctly against the input array. If the default value is passed, then keepdims will not be passed through to the prod method of sub-classes of ndarray, however any non-default value will be. If the sub-classes sum method does not implement keepdims any exceptions will be raised.
+- `a`: `array_like`. Input data.
+- `axis`: `None` or `int` or `tuple of ints`, optional. Axis or axes along which a product is performed. The default, `axis=None`, will calculate the product of all the elements in the input array. If `axis` is negative, it counts from the last to the first axis. If `axis` is a tuple of ints, a product is performed on all of the axes specified in the tuple instead of a single axis or all the axes as before.
+- `dtype`: `dtype`, optional. The type of the returned array, as well as of the accumulator in which the elements are multiplied. The `dtype` of `a` is used by default unless `a` has an integer `dtype` of less precision than the default platform integer. In that case, if `a` is signed, then the platform integer is used while if `a` is unsigned, then an unsigned integer of the same precision as the platform integer is used.
+- `out`: `ndarray`, optional. Alternative output array in which to place the result. It must have the same shape as the expected output, but the type of the output values will be cast if necessary.
+
+- `keepdims`: `bool`, optional. If this is set to True, the axes which are reduced are left in the result as dimensions with size one. With this option, the result will broadcast correctly against the input array. If the default value is passed, then keepdims will not be passed through to the prod method of sub-classes of ndarray, however any non-default value will be. If the sub-classes sum method does not implement keepdims any exceptions will be raised.
 
 &emsp;&emsp;Returns:
 
