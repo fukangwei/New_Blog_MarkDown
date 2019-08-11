@@ -325,22 +325,26 @@ print(bins)
 
 &emsp;&emsp;`numpy.interp(x, xp, fp, left=None, right=None, period=None)`: `One-dimensional` linear interpolation(线性插值). Returns the `one-dimensional` piecewise linear interpolant to a function with given values at discrete `data-points`. Parameters:
 
-- `x`: array_like. The x-coordinates of the interpolated values.
-- `xp`: 1-D sequence of floats. The x-coordinates of the data points, must be increasing if argument period is not specified. Otherwise, xp is internally sorted after normalizing the periodic boundaries with xp = xp % period.
-- `fp`: 1-D sequence of float or complex. The y-coordinates of the data points, same length as xp.
-- `left`: optional float or complex corresponding to fp. Value to return for x < xp[0], default is fp[0].
-- `right`: optional float or complex corresponding to fp. Value to return for x > xp[-1], default is fp[-1].
-- `period`: None or float, optional. A period for the x-coordinates. This parameter allows the proper interpolation of angular x-coordinates. Parameters left and right are ignored if period is specified.
+- `x`: `array_like`. The `x-coordinates` of the interpolated values.
+- `xp`: `1-D` sequence of `floats`. The `x-coordinates` of the data points, must be increasing if argument `period` is not specified. Otherwise, `xp` is internally sorted after normalizing the periodic boundaries with `xp = xp % period`.
+- `fp`: `1-D` sequence of `float` or `complex`. The `y-coordinates` of the data points, same length as `xp`.
+- `left`: optional `float` or `complex` corresponding to `fp`. Value to return for `x < xp[0]`, default is `fp[0]`.
+- `right`: optional `float` or `complex` corresponding to `fp`. Value to return for `x > xp[-1]`, default is `fp[-1]`.
+- `period`: `None` or `float`, optional. A period for the `x-coordinates`. This parameter allows the proper interpolation of angular `x-coordinates`. Parameters `left` and `right` are ignored if `period` is specified.
 
 &emsp;&emsp;Returns:
 
-- `y`: float or complex (corresponding to fp) or ndarray. The interpolated values, same shape as x.
+- `y`: `float` or `complex` (corresponding to `fp`) or `ndarray`. The interpolated values, same shape as `x`.
 
 &emsp;&emsp;Raises:
 
-- `ValueError`: If xp and fp have different length If xp or fp are not 1-D sequences If period == 0
+- `ValueError`:
 
-&emsp;&emsp;Notes: Does not check that the x-coordinate sequence xp is increasing. If xp is not increasing, the results are nonsense. A simple check for increasing is:
+1. If `xp` and `fp` have different length.
+2. If `xp` or `fp` are not `1-D` sequences.
+3. If `period == 0`.
+
+&emsp;&emsp;Notes: Does not check that the `x-coordinate` sequence `xp` is increasing. If `xp` is not increasing, the results are nonsense. A simple check for increasing is:
 
 ``` python
 np.all(np.diff(xp) > 0)
