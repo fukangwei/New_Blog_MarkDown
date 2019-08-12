@@ -634,14 +634,18 @@ Graphical illustration:
 >>> plt.show()
 ```
 
-unique
-    unique用于输出数组中不同的值，如下所示：
+### unique
+
+&emsp;&emsp;`unique`用于输出数组中不同的值：
+
+``` python
 import numpy as np
 A = [1, 2, 2, 3, 4, 3]
 a = np.unique(A)
 print(a)  # 输出为 [1 2 3 4]
 a, b, c = np.unique(A, return_index=True, return_inverse=True)
 print(a, b, c)  # 输出为“[1 2 3 4] [0 1 3 4] [0 1 1 2 3 2]”
+```
 
 tanh
     这是双曲正切函数，与“np.sinh(x)/np.cosh(x)”和“-1j * np.tan(1j*x)”相等。
