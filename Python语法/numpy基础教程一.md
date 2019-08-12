@@ -653,11 +653,13 @@ print(a, b, c)  # 输出为“[1 2 3 4] [0 1 3 4] [0 1 1 2 3 2]”
 
 ### numpy.atleast_2d
 
-&emsp;&emsp;numpy.atleast_2d(*arys). View inputs as arrays with at least two dimensions. Parameters:
+&emsp;&emsp;`numpy.atleast_2d(*arys)`. View inputs as arrays with at least two dimensions. Parameters:
 
-- `arys1, arys2, ...`: array_like: One or more array-like sequences. Non-array inputs are converted to arrays. Arrays that already have two or more dimensions are preserved.
+- `arys1, arys2, ...`: `array_like`: One or more `array-like` sequences. Non-array inputs are converted to arrays. Arrays that already have two or more dimensions are preserved.
 
-Returns: res, res2, ... : ndarray. An array, or list of arrays, each with a.ndim >= 2. Copies are avoided where possible, and views with two or more dimensions are returned.
+&emsp;&emsp;Returns:
+
+- `res, res2, ...`: `ndarray`. An array, or list of arrays, each with `a.ndim >= 2`. Copies are avoided where possible, and views with two or more dimensions are returned.
 
 &emsp;&emsp;Examples:
 
@@ -673,13 +675,21 @@ True
 [array([[1]]), array([[1, 2]]), array([[1, 2]])]
 ```
 
-numpy.ones
-    numpy.ones(shape, dtype=None, order='C'). Return a new array of given shape and type, filled with ones. Parameters:
-shape: int or sequence of ints. Shape of the new array, e.g., (2, 3) or 2.
-dtype: data-type, optional. The desired data-type for the array, e.g., numpy.int8. Default is numpy.float64.
-order: {'C', 'F'}, optional. Whether to store multidimensional data in C- or Fortran-contiguous (row- or column-wise) order in memory.
-    Returns: out: ndarray. Array of ones with the given shape, dtype, and order.
-    Examples:
+### numpy.ones
+
+&emsp;&emsp;`numpy.ones(shape, dtype=None, order='C')`. Return a new array of given `shape` and `type`, filled with `ones`. Parameters:
+
+- `shape`: `int` or `sequence of ints`. Shape of the new array, e.g., `(2, 3)` or `2`.
+- `dtype`: `data-type`, optional. The desired `data-type` for the array, e.g., `numpy.int8`. Default is `numpy.float64`.
+- `order`: `{'C', 'F'}`, optional. Whether to store multidimensional data in `C-` or `Fortran-contiguous` (`row-` or `column-wise`) order in memory.
+
+&emsp;&emsp;Returns:
+
+- `out`: `ndarray`. Array of ones with the given `shape`, `dtype` and `order`.
+
+&emsp;&emsp;Examples:
+
+``` python
 >>> np.ones(5)
 array([ 1.,  1.,  1.,  1.,  1.])
 >>> np.ones((5,), dtype=np.int)
@@ -687,32 +697,49 @@ array([1, 1, 1, 1, 1])
 >>> np.ones((2, 1))
 array([[ 1.],
       [ 1.]])
->>> s = (2,2)
+>>> s = (2, 2)
 >>> np.ones(s)
 array([[ 1.,  1.],
        [ 1.,  1.]])
+```
 
-asarray函数
-    将列表转换为数组：
->>> a = [1,2]
+### asarray函数
+
+&emsp;&emsp;将列表转换为数组：
+
+``` python
+>>> a = [1, 2]
 >>> numpy.asarray(a)
 array([1, 2])
-将数据类型转换为float和int：
->>> a = [1, 2]
->>> numpy.asarray(a,'f')
-array([ 1.,  2.], dtype=float32)
->>> numpy.asarray(a,'i')
-array([1, 2])
+```
 
-argmax函数(argmin相反)
-    函数原型如下所示：
+将数据类型转换为`float`和`int`：
+
+``` python
+>>> a = [1, 2]
+>>> numpy.asarray(a, 'f')
+array([ 1.,  2.], dtype=float32)
+>>> numpy.asarray(a, 'i')
+array([1, 2])
+```
+
+### argmax函数(argmin相反)
+
+&emsp;&emsp;函数原型如下：
+
+``` python
 numpy.argmax(a, axis=None, out=None)
-a：array_like类型，数组。
-axis：int类型，可选项。默认情况下，索引的是平铺的数组，否则沿指定的轴。
-out：array类型，可选项。如果提供，结果以合适的形状和类型被插入到此数组中。
-该函数返回索引数组，它具有与a.shape相同的形状，其中axis被移除。示例如下所示：
+```
+
+- `a`：`array_like`类型，数组。
+- `axis`：`int`类型，可选项。默认情况下，索引的是平铺的数组，否则沿指定的轴。
+- `out`：`array`类型，可选项。如果提供，结果以合适的形状和类型被插入到此数组中。
+
+该函数返回索引数组，它具有与`a.shape`相同的形状，其中`axis`被移除。
+
+``` python
 >>> import numpy as np
->>> a = np.arange(6).reshape(2,3)
+>>> a = np.arange(6).reshape(2, 3)
 >>> a
 array([[0, 1, 2],
        [3, 4, 5]])
@@ -727,47 +754,87 @@ array([2, 2], dtype=int64)
 array([0, 1, 2, 3, 4, 5])
 >>> np.argmax(b)  # 只返回第一次出现的最大值的索引
 5
-    对于三维的情况，如下所示：
+```
+
+&emsp;&emsp;对于三维的情况如下：
+
+``` python
 b = np.random.randint(20, size=[3, 2, 2])
 print(b)
+```
+
 执行结果：
+
+``` python
 [[[ 0 16]
   [14  5]]
  [[16  6]
   [19  2]]
  [[11 11]
   [ 5  7]]]
-使用argmax函数：
+```
+
+使用`argmax`函数：
+
+``` python
 print(np.argmax(b, axis=1))
+```
+
 执行结果：
+
+``` python
 [[1 0]
  [1 0]
  [0 0]]
-我们指定轴为1，也就是沿着“axis = 1”的投影。在同一根投影线上是“axis = 0”和“axis = 2”的一个组合，也就是b[0,:,0]、b[0,:,1]、b[2,:,0]、b[2,:,1]、b[3,:,0]和b[3,:,1]这六条轴。这些轴对应的数字分别为[0 14]、[16 5]、[16 19]、[6 2]、[11 5]、[11 7]，取这些值的最大值索引，那么结果就是[[1,0],[1,0],[0,0]]。
+```
 
-vstack函数
-    函数原型如下所示：
+我们指定轴为`1`，也就是沿着`axis = 1`的投影。在同一根投影线上是`axis = 0`和`axis = 2`的一个组合，也就是`b[0, :, 0]`、`b[0, :, 1]`、`b[2, :, 0]`、`b[2, :, 1]`、`b[3, :, 0]`和`b[3, :, 1]`这`6`条轴。这些轴对应的数字分别为`[0 14]`、`[16 5]`、`[16 19]`、`[6 2]`、`[11 5]`、`[11 7]`，取这些值的最大值索引，那么结果就是`[[1, 0], [1, 0], [0, 0]]`。
+
+### vstack函数
+
+&emsp;&emsp;函数原型如下：
+
+``` python
 vstack(tup)
-参数tup可以是元组、列表或者numpy数组，返回结果为numpy的数组。示例一如下所示：
+```
+
+参数`tup`可以是元组、列表或者`numpy`数组，返回结果为`numpy`的数组。示例`1`如下：
+
+``` python
 import numpy as np
+
 a = [1, 2, 3]
 b = [4, 5, 6]
 print(np.vstack((a, b)))
+```
+
 执行结果：
+
+``` python
 [[1 2 3]
  [4 5 6]]
-示例二如下所示：
+```
+
+示例`2`如下：
+
+``` python
 import numpy as np
+
 a = [[1], [2], [3]]
 b = [[1], [2], [3]]
 print(np.vstack((a, b)))
+```
+
 执行结果：
+
+``` python
 [[1]
  [2]
  [3]
  [1]
  [2]
  [3]]
+```
 
 numpy.copy
     numpy.copy(a): Return an array copy of the given object.
