@@ -142,9 +142,9 @@ np.fft.fft(x)
 函数                                  | 说明
 --------------------------------------|-----
 `rand(d0, d1, ..., dn)`               | Random values in a given shape
-`randn(d0, d1, ..., dn)`              | Return a sample (or samples) from the "standard normal" distribution
+`randn(d0, d1, ..., dn)`              | Return a sample (or samples) from the `standard normal` distribution
 `randint(low [, high, size, dtype])`  | Return random integers from low (inclusive) to high (exclusive)
-`random_integers(low [, high, size])` | Random integers of type np.int between low and high, inclusive.
+`random_integers(low [, high, size])` | Random integers of type np.int between low and high, inclusive
 `random_sample([size])`               | Return random floats in the half-open interval [0.0, 1.0)
 `random([size])`                      | Return random floats in the half-open interval [0.0, 1.0)
 `ranf([size])`                        | Return random floats in the half-open interval [0.0, 1.0)
@@ -154,43 +154,43 @@ np.fft.fft(x)
 
 `numpy.random`模块提供了产生各种分布随机数的`API`：
 
-函数                                         | 说明
----------------------------------------------|-----
-beta(a, b[, size])                            贝塔分布样本，在[0,1]内
-binomial(n, p[, size])                        二项分布的样本
-chisquare(df[, size])                         卡方分布样本
-dirichlet(alpha[, size])                      狄利克雷分布样本
-exponential([scale, size])                    指数分布
-f(dfnum, dfden[, size])                       F分布样本
-gamma(shape[, scale, size])                   伽马分布
-geometric(p[, size])                          几何分布
-gumbel([loc, scale, size])                    耿贝尔分布
-hypergeometric(ngood, nbad, nsample[, size])  超几何分布样本
-laplace([loc, scale, size])                   拉普拉斯或双指数分布样本
-logistic([loc, scale, size])                  Logistic分布样本
-lognormal([mean, sigma, size])                对数正态分布
-logseries(p[, size])                          对数级数分布
-multinomial(n, pvals[, size])                 多项分布
-multivariate_normal(mean, cov[, size])        多元正态分布
-negative_binomial(n, p[, size])               负二项分布
-noncentral_chisquare(df, nonc[, size])        非中心卡方分布
-noncentral_f(dfnum, dfden, nonc[, size])      非中心F分布
-normal([loc, scale, size])                    正态(高斯)分布
-pareto(a[, size])                             帕累托(Lomax)分布
-poisson([lam, size])                          泊松分布
-power(a[, size])                              Draws samples in [0,1] from a power distribution with positive exponent "a - 1"
-rayleigh([scale, size])                       Rayleigh分布
-standard_cauchy([size])                       标准柯西分布
-standard_exponential([size])                  标准的指数分布
-standard_gamma(shape[, size])                 标准伽马分布
-standard_normal([size])                       标准正态分布(mean=0, stdev=1)
-standard_t(df[, size])                        Standard Student's t distribution with df degrees of freedom
-triangular(left, mode, right[, size])         三角形分布
-uniform([low, high, size])                    均匀分布
-vonmises(mu, kappa[, size])                   “von Mises”分布
-wald(mean, scale[, size])                     瓦尔德(逆高斯)分布
-weibull(a[, size])                            Weibull分布
-zipf(a[, size])                               齐普夫分布
+函数                                            | 说明
+------------------------------------------------|-----
+`beta(a, b [, size])`                           | 贝塔分布样本，在`[0, 1]`内
+`binomial(n, p [, size])`                       | 二项分布的样本
+`chisquare(df [, size])`                        | 卡方分布样本
+`dirichlet(alpha [, size])`                     | 狄利克雷分布样本
+`exponential([scale, size])`                    | 指数分布
+`f(dfnum, dfden [, size])`                      | F分布样本
+`gamma(shape [, scale, size])`                  | 伽马分布
+`geometric(p [, size])`                         | 几何分布
+`gumbel([loc, scale, size])`                    | 耿贝尔分布
+`hypergeometric(ngood, nbad, nsample [, size])` | 超几何分布样本
+`laplace([loc, scale, size])`                   | 拉普拉斯或双指数分布样本
+`logistic([loc, scale, size])`                  | `Logistic`分布样本
+`lognormal([mean, sigma, size])`                | 对数正态分布
+`logseries(p [, size])`                         | 对数级数分布
+`multinomial(n, pvals [, size])`                | 多项分布
+`multivariate_normal(mean, cov [, size])`       | 多元正态分布
+`negative_binomial(n, p [, size])`              | 负二项分布
+`noncentral_chisquare(df, nonc [, size])`       | 非中心卡方分布
+`noncentral_f(dfnum, dfden, nonc [, size])`     | 非中心`F`分布
+`normal([loc, scale, size])`                    | 正态(高斯)分布
+`pareto(a [, size])`                            | 帕累托(`Lomax`)分布
+`poisson([lam, size])`                          | 泊松分布
+`power(a [, size])`                             | Draws samples in `[0, 1]` from a power distribution with positive exponent `a - 1`
+`rayleigh([scale, size])`                       | `Rayleigh`分布
+`standard_cauchy([size])`                       | 标准柯西分布
+`standard_exponential([size])`                  | 标准的指数分布
+`standard_gamma(shape [, size])`                | 标准伽马分布
+`standard_normal([size])`                       | 标准正态分布(`mean=0, stdev=1`)
+`standard_t(df [, size])`                       | Standard Student's t distribution with df degrees of freedom
+`triangular(left, mode, right [, size])`        | 三角形分布
+`uniform([low, high, size])`                    | 均匀分布
+`vonmises(mu, kappa [, size])`                  | `von Mises`分布
+`wald(mean, scale [, size])`                    | 瓦尔德(逆高斯)分布
+`weibull(a [, size])`                           | `Weibull`分布
+`zipf(a [, size])`                              | 齐普夫分布
 
 示例代码：
 
