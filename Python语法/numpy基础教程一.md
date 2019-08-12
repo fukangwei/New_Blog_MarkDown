@@ -356,11 +356,15 @@ array([ 0.        ,  1.57079633,  0.78539816])
 
 ### 范数
 
-&emsp;&emsp;norm表示范数，首先需要注意的是，范数是对向量(或者矩阵)的度量，它是一个标量(scalar)。首先使用help(np.linalg.norm)查看其文档：
+&emsp;&emsp;`norm`表示范数，首先需要注意的是，范数是对向量(或者矩阵)的度量，它是一个标量(`scalar`)。首先使用`help(np.linalg.norm)`查看其文档：
 
+``` python
 norm(x, ord=None, axis=None, keepdims=False)
-这里只对常用设置进行说明，x表示要度量的向量，ord表示范数的种类：
+```
 
+这里只对常用设置进行说明，`x`表示要度量的向量，`ord`表示范数的种类：
+
+``` python
 >>> x = np.array([3, 4])
 >>> np.linalg.norm(x)
 5.
@@ -370,6 +374,7 @@ norm(x, ord=None, axis=None, keepdims=False)
 7.
 >>> np.linalg.norm(x, ord=np.inf)
 4
+```
 
 奇异值分解
     Python中可以使用numpy包的linalg.svd来求解SVD：
