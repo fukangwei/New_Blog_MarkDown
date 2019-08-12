@@ -376,16 +376,24 @@ norm(x, ord=None, axis=None, keepdims=False)
 4
 ```
 
-奇异值分解
-    Python中可以使用numpy包的linalg.svd来求解SVD：
+### 奇异值分解
+
+&emsp;&emsp;`Python`中可以使用`numpy`包的`linalg.svd`来求解`SVD`：
+
+``` python
 import numpy as np
+
 A = np.array(
     [[2, 4],
      [1, 3],
      [0, 0],
      [0, 0]])
 print(np.linalg.svd(A))
+```
+
 执行结果：
+
+``` python
 (array([[-0.81741556, -0.57604844,  0.        ,  0.        ],
         [-0.57604844,  0.81741556,  0.        ,  0.        ],
         [ 0.        ,  0.        ,  1.        ,  0.        ],
@@ -393,67 +401,108 @@ print(np.linalg.svd(A))
  array([ 5.4649857 ,  0.36596619]),
  array([[-0.40455358, -0.9145143 ],
         [-0.9145143 ,  0.40455358]]))
+```
 
-Moore-Penrose伪逆
-    计算方阵的Moore-Penrose伪逆使用函数pinv，其原型如下所示：
+### Moore-Penrose伪逆
+
+&emsp;&emsp;计算方阵的`Moore-Penrose`伪逆使用函数`pinv`，其原型如下：
+
+``` python
 B = pinv(A)
-如果矩阵A是可逆(非奇异)的，那么pinv(A)与inv(A)的结果是一样的，而且pinv比inv效率低。但如果矩阵A是奇异矩阵，则inv(A)不存在，但pinv(A)仍然存在，并表现出一些与逆矩阵类似的性质。在pinv函数中，A不一定是方阵。示例如下所示：
+```
+
+如果矩阵`A`是可逆(非奇异)的，那么`pinv(A)`与`inv(A)`的结果是一样的，而且`pinv`比`inv`效率低。但如果矩阵`A`是奇异矩阵，则`inv(A)`不存在，但`pinv(A)`仍然存在，并表现出一些与逆矩阵类似的性质。在`pinv`函数中，`A`不一定是方阵。示例如下：
+
+``` python
 import numpy as np
+
 A = np.array(
     [[1, 2, 3],
      [4, 5, 6]])
 B = np.linalg.pinv(A)
 print(B)
+```
+
 执行结果：
+
+``` python
 [[-0.94444444  0.44444444]
  [-0.11111111  0.11111111]
  [ 0.72222222 -0.22222222]]
+```
 
-genfromtxt
-    genfromtxt可以用来处理数据文本，例如文件test.csv：
+### genfromtxt
+
+&emsp;&emsp;`genfromtxt`可以用来处理数据文本，例如文件`test.csv`：
+
+``` python
 user_id,item_id,behavior_type,user_geohash,item_category,time
 99512554,37320317,3,94gn6nd,9232,2014-11-26 20
 9909811,266982489,1,,3475,2014-12-02 23
 98692568,27121464,1,94h63np,5201,2014-11-19 13
 96089426,114407102,1,949g5i3,836,2014-11-26 07
 90795949,402391768,1,94h6dlp,3046,2014-12-09 21
-用如下代码将数据完全提取出来：
-data = np.genfromtxt(filename, delimiter=',', skip_header=1, dtype=None)
-如果只取特定的列，可以使用：
-data = np.genfromtxt(filename, usecols=(2, 5), delimiter=',', skip_header=1, dtype=None)
+```
 
-dstack
-    dstack(tup): Stack arrays in sequence depth wise (along third axis).
->>> a = np.array((1,2,3))
->>> b = np.array((2,3,4))
->>> np.dstack((a,b))
+用如下代码将数据完全提取出来：
+
+``` python
+data = np.genfromtxt(filename, delimiter=',', skip_header=1, dtype=None)
+```
+
+如果只取特定的列，可以使用：
+
+``` python
+data = np.genfromtxt(filename, usecols=(2, 5), delimiter=',', skip_header=1, dtype=None)
+```
+
+### dstack
+
+&emsp;&emsp;`dstack(tup)`: Stack arrays in sequence depth wise (along third axis).
+
+``` python
+>>> a = np.array((1, 2, 3))
+>>> b = np.array((2, 3, 4))
+>>> np.dstack((a, b))
 array([[[1, 2],
         [2, 3],
         [3, 4]]])
->>> a = np.array([[1],[2],[3]])
->>> b = np.array([[2],[3],[4]])
->>> np.dstack((a,b))
+>>> a = np.array([[1], [2], [3]])
+>>> b = np.array([[2], [3], [4]])
+>>> np.dstack((a, b))
 array([[[1, 2]],
        [[2, 3]],
        [[3, 4]]])
+```
 
-strides
-    NumPy的strides属性表示的是在每个维数上以字节计算的步长，示例如下所示：
+### strides
+
+&emsp;&emsp;`NumPy`的`strides`属性表示的是在每个维数上以字节计算的步长，示例如下：
+
+``` python
 >>> a = np.arange(6)
 >>> a
 array([0, 1, 2, 3, 4, 5])
 >>> a.strides
 (4,)
-a数组中每个元素都是NumPy中的整数类型，占4个字节，所以第一维中相邻元素之间的步长为4(个字节)。同样，2维数组如下：
->>> b = np.arange(12).reshape(3,4)
+```
+
+`a`数组中每个元素都是`NumPy`中的整数类型，占`4`个字节，所以第一维中相邻元素之间的步长为`4`个字节。同样，`2`维数组如下：
+
+``` python
+>>> b = np.arange(12).reshape(3, 4)
 >>> b
 array([[ 0,  1,  2,  3],
        [ 4,  5,  6,  7],
        [ 8,  9, 10, 11]])
 >>> b.strides
 (16, 4)
-从里面开始看，里面是一个4个元素的一维整数数组，所以步长应该为4。外面是一个含有3个元素，每个元素的长度是“4*4 = 16”，所以步长为16。下面来看一下3维数组：
->>> c = np.arange(27).reshape(3,3,3)
+```
+
+从里面开始看，里面是一个`4`个元素的一维整数数组，所以步长应该为`4`。外面是一个含有`3`个元素，每个元素的长度是`4 * 4 = 16`，所以步长为`16`。下面来看一下`3`维数组：
+
+``` python
+>>> c = np.arange(27).reshape(3, 3, 3)
 array([[[ 0,  1,  2],
         [ 3,  4,  5],
         [ 6,  7,  8]],
@@ -463,55 +512,82 @@ array([[[ 0,  1,  2],
        [[18, 19, 20],
         [21, 22, 23],
         [24, 25, 26]]])
-从里面开始算，应该为(3 * 4 * 3, 3 * 4, 4)，验证如下：
+```
+
+从里面开始算，应该为`(3 * 4 * 3, 3 * 4, 4)`，验证如下：
+
+``` python
 >>> c.strides
 (36, 12, 4)
+```
 
-set_printoptions
-    使用set_printoptions设置输出精度，其语法如下所示：
+### set_printoptions
+
+&emsp;&emsp;使用`set_printoptions`设置输出精度，其语法如下：
+
+``` python
 set_printoptions([precision, threshold, ...])
-使用示例如下所示：
-np.set_printoptions(precision=3)
-print(x)  # [ 0.078  0.48   0.413  0.83   0.776  0.102  0.513  0.462  0.335  0.712]
+```
 
-numpy.r_
-    Translates slice objects to concatenation along the first axis.
-    This is a simple way to build up arrays quickly. There are two use cases.
-    If the index expression contains comma separated arrays, then stack them along their first axis.
-    If the index expression contains slice notation or scalars then create a 1-D array with a range indicated by the slice notation.
-    If slice notation is used, the syntax start:stop:step is equivalent to np.arange(start, stop, step) inside of the brackets. However, if step is an imaginary number (i.e. 100j) then its integer portion is interpreted as a number-of-points desired and the start and stop are inclusive. In other words start:stop:stepj is interpreted as np.linspace(start, stop, step, endpoint=1) inside of the brackets. After expansion of slice notation, all comma separated sequences are concatenated together.
-    Optional character strings placed as the first element of the index expression can be used to change the output. The strings 'r' or 'c' result in matrix output. If the result is 1-D and 'r' is specified a 1 x N (row) matrix is produced. If the result is 1-D and 'c' is specified, then a N x 1 (column) matrix is produced. If the result is 2-D then both provide the same matrix result.
-    A string integer specifies which axis to stack multiple comma separated arrays along. A string of two comma-separated integers allows indication of the minimum number of dimensions to force each entry into as the second integer (the axis to concatenate along is still the first integer).
-    A string with three comma-separated integers allows specification of the axis to concatenate along, the minimum number of dimensions to force the entries to, and which axis should contain the start of the arrays which are less than the specified number of dimensions. In other words the third integer allows you to specify where the 1's should be placed in the shape of the arrays that have their shapes upgraded. By default, they are placed in the front of the shape tuple. The third argument allows you to specify where the start of the array should be instead. Thus, a third argument of '0' would place the 1's at the end of the array shape. Negative integers specify where in the new shape tuple the last dimension of upgraded arrays should be placed, so the default is '-1'.
-    Parameters: Not a function, so takes no parameters.
-    Returns: A concatenated ndarray or matrix.
-    Examples:
->>> np.r_[np.array([1,2,3]), 0, 0, np.array([4,5,6])]
+使用示例如下：
+
+``` python
+np.set_printoptions(precision=3)
+print(x)  # [ 0.078  0.48   0.413  0.83   0.776  0.102]
+```
+
+### numpy.r_
+
+&emsp;&emsp;Translates slice objects to concatenation along the first axis.
+&emsp;&emsp;This is a simple way to build up arrays quickly. There are two use cases.
+
+- If the index expression contains comma separated arrays, then stack them along their first axis.
+- If the index expression contains slice notation or scalars, then create a `1-D` array with a range indicated by the slice notation.
+
+&emsp;&emsp;If slice notation is used, the syntax `start:stop:step` is equivalent to `np.arange(start, stop, step)` inside of the brackets. However, if `step` is an imaginary number (i.e. `100j`), then its integer portion is interpreted as a `number-of-points` desired and the start and stop are inclusive. In other words `start:stop:stepj` is interpreted as `np.linspace(start, stop, step, endpoint=1)` inside of the brackets. After expansion of slice notation, all comma separated sequences are concatenated together.
+&emsp;&emsp;Optional character strings placed as the first element of the index expression can be used to change the output. The strings `r` or `c` result in matrix output. If the result is `1-D` and `r` is specified a `1 x N` (row) matrix is produced. If the result is `1-D` and `c` is specified, then a `N x 1` (column) matrix is produced. If the result is `2-D` then both provide the same matrix result.
+&emsp;&emsp;A string integer specifies which axis to stack multiple comma separated arrays along. A string of two `comma-separated` integers allows indication of the minimum number of dimensions to force each entry into as the second integer (the axis to concatenate along is still the first integer).
+&emsp;&emsp;A string with three `comma-separated` integers allows specification of the axis to concatenate along, the minimum number of dimensions to force the entries to, and which axis should contain the start of the arrays which are less than the specified number of dimensions. In other words the third integer allows you to specify where the `1's` should be placed in the shape of the arrays that have their shapes upgraded. By default, they are placed in the front of the shape tuple. The third argument allows you to specify where the start of the array should be instead. Thus, a third argument of `0` would place the `1's` at the end of the array shape. Negative integers specify where in the new shape tuple the last dimension of upgraded arrays should be placed, so the default is `-1`.
+&emsp;&emsp;Parameters: Not a function, so takes no parameters.
+&emsp;&emsp;Returns: A concatenated ndarray or matrix.
+&emsp;&emsp;Examples:
+
+``` python
+>>> np.r_[np.array([1, 2, 3]), 0, 0, np.array([4, 5, 6])]
 array([1, 2, 3, 0, 0, 4, 5, 6])
->>> np.r_[-1:1:6j, [0]*3, 5, 6]
+>>> np.r_[-1:1:6j, [0] * 3, 5, 6]
 array([-1. , -0.6, -0.2,  0.2,  0.6,  1. ,  0. ,  0. ,  0. ,  5. ,  6. ])
+```
+
 String integers specify the axis to concatenate along or the minimum number of dimensions to force entries into.
+
+``` python
 >>> a = np.array([[0, 1, 2], [3, 4, 5]])
 >>> np.r_['-1', a, a]  # concatenate along last axis
 array([[0, 1, 2, 0, 1, 2],
        [3, 4, 5, 3, 4, 5]])
->>> np.r_['0,2', [1,2,3], [4,5,6]]  # concatenate along first axis, dim>=2
+>>> np.r_['0,2', [1, 2, 3], [4, 5, 6]]  # concatenate along first axis, dim>=2
 array([[1, 2, 3],
        [4, 5, 6]])
->>> np.r_['0,2,0', [1,2,3], [4,5,6]]
+>>> np.r_['0,2,0', [1, 2, 3], [4, 5, 6]]
 array([[1],
        [2],
        [3],
        [4],
        [5],
        [6]])
->>> np.r_['1,2,0', [1,2,3], [4,5,6]]
+>>> np.r_['1,2,0', [1, 2, 3], [4, 5, 6]]
 array([[1, 4],
        [2, 5],
        [3, 6]])
-Using 'r' or 'c' as a first string argument creates a matrix.
+```
+
+Using `r` or `c` as a first string argument creates a matrix.
+
+``` python
 >>> np.r_['r',[1,2,3], [4,5,6]]
 matrix([[1, 2, 3, 4, 5, 6]])
+```
 
 numpy.linspace
     该方法用于在指定区间内返回均匀间隔的数字，其原型如下所示：
