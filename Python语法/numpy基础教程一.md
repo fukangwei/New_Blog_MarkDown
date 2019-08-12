@@ -589,25 +589,50 @@ Using `r` or `c` as a first string argument creates a matrix.
 matrix([[1, 2, 3, 4, 5, 6]])
 ```
 
-numpy.linspace
-    该方法用于在指定区间内返回均匀间隔的数字，其原型如下所示：
-numpy.linspace(start, stop, num=50, endpoint=True, retstep=False, dtype=None)
-start：scalar(标量)，The starting value of the sequence(序列的起始点)。
-stop：scalar，序列的结束点，除非endpoint被设置为False，在这种情况下，the sequence consists of all but the last of num + 1 evenly spaced samples，以致于stop被排除。当endpoint是False的时候，注意步长的大小。
-num：int，optional(可选)，生成的样本数，默认是50，必须是非负数。
-endpoint：bool，optional，如果是真，则一定包括stop；如果为False，一定不会有stop。
-retstep：bool，optional，If True，return (samples, step)，where step is the spacing between samples。
-dtype：dtype，optional，The type of the output array。If dtype is not given，infer the data type from the other input arguments(推断这个输入用例从其他的输入中)。
-    Returns：
-samples：ndarray：There are num equally spaced samples in the closed interval [start, stop] or the half-open interval [start, stop) (depending on whether endpoint is True or False)。
-step：float(只有当retstep设置为真的时候才会存在)：Only returned if retstep is True；Size of spacing between samples。
-    Examples：
+### numpy.linspace
+
+&emsp;&emsp;`numpy.linspace(start, stop, num=50, endpoint=True, retstep=False, dtype=None, axis=0)`: Return evenly spaced numbers over a specified interval. Returns `num` evenly spaced samples, calculated over the interval `[start, stop]`. The endpoint of the interval can optionally be excluded. Changed in `version 1.16.0`: Non-scalar `start` and `stop` are now supported. Parameters:
+
+- `start`: `array_like`. The starting value of the sequence.
+- `stop`: `array_like`. The end value of the sequence, unless `endpoint` is set to `False`. In that case, the sequence consists of all but the last of `num + 1` evenly spaced samples, so that `stop` is excluded. Note that the step size changes when `endpoint` is `False`.
+- `num`: `int`, optional. Number of samples to generate.
+- `endpoint`: `bool`, optional. If `True`, `stop` is the last sample. Otherwise, it is not included.
+- `retstep`: `bool`, optional. If `True`, return `(samples, step)`, where step is the spacing between samples.
+- `dtype`: `dtype`, optional. The type of the output array. If `dtype` is not given, infer the data type from the other input arguments.
+- `axis`: `int`, optional. The `axis` in the result to store the samples. Relevant only if `start` or `stop` are `array-like`. By default, the samples will be along a new axis inserted at the beginning. Use `-1` to get an axis at the end.
+
+&emsp;&emsp;Returns:
+
+- `samples`: `ndarray`. There are `num` equally spaced samples in the closed interval `[start, stop]` or the `half-open` interval `[start, stop)` (depending on whether `endpoint` is `True` or `False`).
+- `step`: `float`, optional. Only returned if `retstep` is `True`. Size of spacing between samples.
+
+Examples:
+
+``` python
 >>> np.linspace(2.0, 3.0, num=5)
-    array([ 2.  ,  2.25,  2.5 ,  2.75,  3.  ])
+array([2.  , 2.25, 2.5 , 2.75, 3.  ])
 >>> np.linspace(2.0, 3.0, num=5, endpoint=False)
-    array([ 2. ,  2.2,  2.4,  2.6,  2.8])
+array([2. ,  2.2,  2.4,  2.6,  2.8])
 >>> np.linspace(2.0, 3.0, num=5, retstep=True)
-    (array([ 2.  ,  2.25,  2.5 ,  2.75,  3.  ]), 0.25)
+(array([2.  ,  2.25,  2.5 ,  2.75,  3.  ]), 0.25)
+```
+
+Graphical illustration:
+
+``` python
+>>> import matplotlib.pyplot as plt
+>>> N = 8
+>>> y = np.zeros(N)
+>>> x1 = np.linspace(0, 10, N, endpoint=True)
+>>> x2 = np.linspace(0, 10, N, endpoint=False)
+>>> plt.plot(x1, y, 'o')
+[<matplotlib.lines.Line2D object at 0x...>]
+>>> plt.plot(x2, y + 0.5, 'o')
+[<matplotlib.lines.Line2D object at 0x...>]
+>>> plt.ylim([-0.5, 1])
+(-0.5, 1)
+>>> plt.show()
+```
 
 unique
     unique用于输出数组中不同的值，如下所示：
