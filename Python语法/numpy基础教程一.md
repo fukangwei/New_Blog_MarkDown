@@ -878,13 +878,17 @@ False
 np.array_equal(a, b)
 ```
 
-numpy.triu
-    numpy.triu(m, k=0)[source]. Upper triangle of an array. Return a copy of a matrix with the elements below the k-th diagonal zeroed. Please refer to the documentation for tril for further details. Examples:
->>> np.triu([[1,2,3],[4,5,6],[7,8,9],[10,11,12]], -1)
+### numpy.triu
+
+&emsp;&emsp;`numpy.triu(m, k=0)`. Upper triangle of an array. Return a copy of a matrix with the elements below the `k-th` diagonal zeroed. Examples:
+
+``` python
+>>> np.triu([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]], -1)
 array([[1,  2,  3],
        [4,  5,  6],
        [0,  8,  9],
        [0,  0, 12]])
+```
 
 tile函数
     该函数的作用如下所示：
