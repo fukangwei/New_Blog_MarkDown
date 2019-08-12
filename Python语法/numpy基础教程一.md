@@ -836,26 +836,47 @@ print(np.vstack((a, b)))
  [3]]
 ```
 
-numpy.copy
-    numpy.copy(a): Return an array copy of the given object.
-    Parameters: a: array_like. Input data.
-    Returns: arr: ndarray. Array interpretation of a.
-    Notes: This is equivalent to:
+### numpy.copy
+
+&emsp;&emsp;`numpy.copy(a)`: Return an array copy of the given object. Parameters:
+
+- `a`: `array_like`. Input data.
+
+Returns:
+
+- `arr`: `ndarray`. Array interpretation of `a`.
+
+&emsp;&emsp;Notes: This is equivalent to:
+
+``` python
 np.array(a, copy=True)
-    Examples: Create an array x, with a reference y and a copy z:
+```
+
+&emsp;&emsp;Examples: Create an array `x`, with a reference `y` and a copy `z`:
+
+``` python
 >>> x = np.array([1, 2, 3])
 >>> y = x
 >>> z = np.copy(x)
-Note that, when we modify x, y changes, but not z:
+```
+
+Note that, when we modify `x`, `y` changes, but not `z`:
+
+``` python
 >>> x[0] = 10
 >>> x[0] == y[0]
 True
 >>> x[0] == z[0]
 False
+```
 
-array_equal
-    判断两数组是否相等，使用示例如下所示：
+### array_equal
+
+&emsp;&emsp;判断两数组是否相等，使用示例如下：
+
+``` python
 np.array_equal(a, b)
+```
 
 numpy.triu
     numpy.triu(m, k=0)[source]. Upper triangle of an array. Return a copy of a matrix with the elements below the k-th diagonal zeroed. Please refer to the documentation for tril for further details. Examples:
