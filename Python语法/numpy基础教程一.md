@@ -143,13 +143,13 @@ np.fft.fft(x)
 --------------------------------------|-----
 `rand(d0, d1, ..., dn)`               | Random values in a given shape
 `randn(d0, d1, ..., dn)`              | Return a sample (or samples) from the `standard normal` distribution
-`randint(low [, high, size, dtype])`  | Return random integers from low (inclusive) to high (exclusive)
-`random_integers(low [, high, size])` | Random integers of type np.int between low and high, inclusive
-`random_sample([size])`               | Return random floats in the half-open interval [0.0, 1.0)
-`random([size])`                      | Return random floats in the half-open interval [0.0, 1.0)
-`ranf([size])`                        | Return random floats in the half-open interval [0.0, 1.0)
-`sample([size])`                      | Return random floats in the half-open interval [0.0, 1.0)
-`choice(a [, size, replace, p])`      | Generates a random sample from a given 1-D array
+`randint(low [, high, size, dtype])`  | Return random integers from low (inclusive) to `high` (exclusive)
+`random_integers(low [, high, size])` | Random integers of type `np.int` between `low` and `high`, inclusive
+`random_sample([size])`               | Return random floats in the `half-open` interval `[0.0, 1.0)`
+`random([size])`                      | Return random floats in the `half-open` interval `[0.0, 1.0)`
+`ranf([size])`                        | Return random floats in the `half-open` interval `[0.0, 1.0)`
+`sample([size])`                      | Return random floats in the `half-open` interval `[0.0, 1.0)`
+`choice(a [, size, replace, p])`      | Generates a random sample from a given `1-D` array
 `bytes(length)`                       | Return random bytes
 
 `numpy.random`模块提供了产生各种分布随机数的`API`：
@@ -211,18 +211,27 @@ print(np.random.dirichlet((1, 1, 1, 1, 1, 1), 5))
  [0.047 0.39  0.269 0.036 0.044 0.215]]
 ```
 
-    numpy.random.seed：用于指定随机数生成时所用算法开始的整数值。如果使用相同的seed值，则每次生成的随即数都相同；如果不设置这个值，则系统根据时间来自己选择这个值，此时每次生成的随机数因时间差异而不同。
+&emsp;&emsp;`numpy.random.seed`：用于指定随机数生成时所用算法开始的整数值。如果使用相同的`seed`值，则每次生成的随即数都相同；如果不设置这个值，则系统根据时间来自己选择这个值，此时每次生成的随机数因时间差异而不同。
 
-mean函数
-    函数原型如下所示：
-numpy.mean(a, axis=None, dtype=None, out=None, keepdims=<class numpy._globals._NoValue at 0x40b6a26c>)
-经常操作的参数为axis，以“m*n”矩阵举例：
-axis不设置值：对“m*n”个数求均值，返回一个实数。
-axis = 0：压缩行，对各列求均值，返回“1*n”矩阵。
-axis = 1：压缩列，对各行求均值，返回“m*1”矩阵
-实例如下所示：
+### mean函数
+
+&emsp;&emsp;函数原型如下：
+
+``` python
+numpy.mean(a, axis=None, dtype=None, out=None)
+```
+
+经常操作的参数为`axis`，以`m * n`矩阵举例：
+
+- `axis`不设置值：对`m * n`个数求均值，返回一个实数。
+- `axis = 0`：压缩行，对各列求均值，返回`1 * n`矩阵。
+- `axis = 1`：压缩列，对各行求均值，返回`m * 1`矩阵
+
+实例如下：
+
+``` python
 >>> import numpy as np
->>> num1 = np.array([[1,2,3],[2,3,4],[3,4,5],[4,5,6]])
+>>> num1 = np.array([[1, 2, 3], [2, 3, 4], [3, 4, 5], [4, 5, 6]])
 >>> now2 = np.mat(num1)
 >>> now2
 matrix([[1, 2, 3],
@@ -231,16 +240,23 @@ matrix([[1, 2, 3],
         [4, 5, 6]])
 >>> np.mean(now2)  # 对所有元素求均值
 3.5
->>> np.mean(now2,0)  # 压缩行，对各列求均值
+>>> np.mean(now2, 0)  # 压缩行，对各列求均值
 matrix([[ 2.5,  3.5,  4.5]])
->>> np.mean(now2,1)  # 压缩列，对各行求均值
+>>> np.mean(now2, 1)  # 压缩列，对各行求均值
 matrix([[ 2.],
         [ 3.],
         [ 4.],
         [ 5.]])
+```
 
-    allclose函数用于判断两个array在误差范围内是否相等，其函数原型为：
+### allclose函数
+
+&emsp;&emsp;`allclose`函数用于判断两个`array`在误差范围内是否相等，函数原型如下：
+
+``` python
 allclose(a, b, rtol=1e-05, atol=1e-08)
+```
+
 若“absolute(a - b) <= (atol + rtol * absolute(b))”，则相等。
 A = np.random.randint(0, 2, 5)
 B = np.random.randint(0, 2, 5)
