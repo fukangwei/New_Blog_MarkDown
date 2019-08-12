@@ -647,14 +647,21 @@ a, b, c = np.unique(A, return_index=True, return_inverse=True)
 print(a, b, c)  # 输出为“[1 2 3 4] [0 1 3 4] [0 1 1 2 3 2]”
 ```
 
-tanh
-    这是双曲正切函数，与“np.sinh(x)/np.cosh(x)”和“-1j * np.tan(1j*x)”相等。
+### tanh
 
-numpy.atleast_2d
-    numpy.atleast_2d(*arys). View inputs as arrays with at least two dimensions.
-    Parameters: arys1, arys2, ...: array_like: One or more array-like sequences. Non-array inputs are converted to arrays. Arrays that already have two or more dimensions are preserved.
-    Returns: res, res2, ... : ndarray. An array, or list of arrays, each with a.ndim >= 2. Copies are avoided where possible, and views with two or more dimensions are returned.
-    Examples:
+&emsp;&emsp;这是双曲正切函数，与`np.sinh(x) / np.cosh(x)`和`-1j * np.tan(1j * x)`相等。
+
+### numpy.atleast_2d
+
+&emsp;&emsp;numpy.atleast_2d(*arys). View inputs as arrays with at least two dimensions. Parameters:
+
+- `arys1, arys2, ...`: array_like: One or more array-like sequences. Non-array inputs are converted to arrays. Arrays that already have two or more dimensions are preserved.
+
+Returns: res, res2, ... : ndarray. An array, or list of arrays, each with a.ndim >= 2. Copies are avoided where possible, and views with two or more dimensions are returned.
+
+&emsp;&emsp;Examples:
+
+``` python
 >>> np.atleast_2d(3.0)
 array([[ 3.]])
 >>> x = np.arange(3.0)
@@ -664,6 +671,7 @@ array([[ 0.,  1.,  2.]])
 True
 >>> np.atleast_2d(1, [1, 2], [[1, 2]])
 [array([[1]]), array([[1, 2]]), array([[1, 2]])]
+```
 
 numpy.ones
     numpy.ones(shape, dtype=None, order='C'). Return a new array of given shape and type, filled with ones. Parameters:
