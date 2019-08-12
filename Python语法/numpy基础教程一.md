@@ -257,27 +257,53 @@ matrix([[ 2.],
 allclose(a, b, rtol=1e-05, atol=1e-08)
 ```
 
-若“absolute(a - b) <= (atol + rtol * absolute(b))”，则相等。
+若`absolute(a - b) <= (atol + rtol * absolute(b))`，则相等。
+
+``` python
 A = np.random.randint(0, 2, 5)
 B = np.random.randint(0, 2, 5)
 equal = np.allclose(A, B)
 print(equal)
-    计算绝对值使用：
+```
+
+### abs和fabs
+
+&emsp;&emsp;计算绝对值使用：
+
+``` python
 np.abs(ndarray)  # 计算绝对值
 np.fabs(ndarray)  # 计算绝对值(非复数)
-    Exp和log函数：
-exp(x[, out])   Calculate the exponential of the elements in the input array
-expm1(x[, out]) Return the exponential of the elements in the array minus one
-log(x[, out])   Natural logarithm, element-wise
-log10(x[, out]) Compute the logarithm in base 10 element-wise
-log2(x[, y])    Return the base 2 logarithm
-log1p(x[, out]) log(1 + x) in base e, element-wise
-    any和all函数的使用：
+```
+
+### Exp和log
+
+&emsp;&emsp;`Exp`和`log`函数：
+
+函数               | 说明
+-------------------|-----
+`exp(x [, out])`   | Calculate the exponential of the elements in the input array
+`expm1(x [, out])` | Return the exponential of the elements in the array minus one
+`log(x [, out])`   | Natural logarithm, element-wise
+`log10(x [, out])` | Compute the logarithm in base `10` element-wise
+`log2(x [, y])`    | Return the base `2` logarithm
+`log1p(x [, out])` | `log(1 + x)` in base `e`, element-wise
+
+### any和all
+
+&emsp;&emsp;`any`和`all`函数的使用：
+
+``` python
 ndarray.any()  # 是否至少有一个True
 ndarray.all()  # 是否全部为True
+```
 
-    numpy.amin(numpy.ndarray.min)和numpy.amax(numpy.ndarray.max)这些函数从给定数组中的元素沿指定轴返回最小值和最大值：
+### amin和amax
+
+&emsp;&emsp;`numpy.amin`(`numpy.ndarray.min`)和`numpy.amax`(`numpy.ndarray.max`)这些函数从给定数组中的元素沿指定轴返回最小值和最大值：
+
+``` python
 import numpy as np
+
 a = np.array([[3, 7, 5],
               [8, 4, 3],
               [2, 4, 9]])
@@ -285,33 +311,53 @@ print('调用amin函数:', np.amin(a, 1))  # 第二个轴是“行”
 print('再次调用amin函数:', np.amin(a, 0))  # 第一个轴是“列”
 print('调用amax函数:', np.amax(a))  # 返回最大值
 print('再次调用amax函数:', np.amax(a, axis=0))
+```
+
 执行结果：
+
+``` python
 调用amin函数: [3 3 2]
 再次调用amin函数: [2 4 3]
 调用amax函数: 9
 再次调用amax函数: [8 7 9]
+```
 
-    angle函数的原型为：
+### angle函数
+
+&emsp;&emsp;`angle`函数的原型为：
+
+``` python
 numpy.angle(z, deg=0)
-Return the angle of the complex argument. Parameters:
-z: array_like; A complex number or sequence of complex numbers.
-deg: bool, optional; Return angle in degrees if True, radians if False (default).
-    The counterclockwise angle from the positive real axis on the complex plane, with dtype as numpy.float64. Examples:
+```
+
+Return the `angle` of the `complex` argument. Parameters:
+
+- `z`: `array_like`; A `complex` number or sequence of `complex` numbers.
+- `deg`: `bool`, optional; Return angle in degrees if `True`, radians if `False` (default).
+
+&emsp;&emsp;The counterclockwise angle from the positive real axis on the `complex` plane, with dtype as `numpy.float64`. Examples:
+
+``` python
 >>> np.angle([1.0, 1.0j, 1+1j])  # in radians
 array([ 0.        ,  1.57079633,  0.78539816])
 >>> np.angle(1+1j, deg=True)  # in degrees
 45.0
+```
 
-numpy算数运算函数
-    numpy算数运算函数如下所示：
-np.sqrt(array)	计算各元素的平方根
-np.square(array)	计算各元素的平方
-np.subtract(a, b)	a - b
-np.sqrt(array)	计算各元素的开方
-np.multiply(a, b)	a * b
+### numpy算数运算函数
 
-范数
-    norm表示范数，首先需要注意的是，范数是对向量(或者矩阵)的度量，它是一个标量(scalar)。首先使用help(np.linalg.norm)查看其文档：
+&emsp;&emsp;`numpy`算数运算函数如下：
+
+- `np.sqrt(array)`：计算各元素的平方根。
+- `np.square(array)`：计算各元素的平方。
+- `np.subtract(a, b)`：`a - b`。
+- `np.sqrt(array)`：计算各元素的开方。
+- `np.multiply(a, b)`：`a * b`。
+
+### 范数
+
+&emsp;&emsp;norm表示范数，首先需要注意的是，范数是对向量(或者矩阵)的度量，它是一个标量(scalar)。首先使用help(np.linalg.norm)查看其文档：
+
 norm(x, ord=None, axis=None, keepdims=False)
 这里只对常用设置进行说明，x表示要度量的向量，ord表示范数的种类：
 
