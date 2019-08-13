@@ -1101,7 +1101,7 @@ array([2, 3])
 
 &emsp;&emsp;Returns:
 
-- `out`: ndarray. Data read from the text file.
+- `out`: `ndarray`. Data read from the text file.
 
 &emsp;&emsp;Notes: This function aims to be a fast reader for simply formatted files. The `genfromtxt` function provides more sophisticated handling of, e.g., lines with missing values. The strings produced by the Python `float.hex` method can be used as input for floats. Examples:
 
@@ -1120,4 +1120,48 @@ array([('M', 21, 72.0), ('F', 35, 58.0)], dtype=[('gender', '|S1'), ('age', '<i4
 array([ 1.,  3.])
 >>> y
 array([ 2.,  4.])
+```
+
+### numpy.savez
+
+&emsp;&emsp;`numpy.savez(file, *args, **kwds)`: Save several arrays into a single file in uncompressed `.npz` format.
+&emsp;&emsp;If arguments are passed in with no keywords, the corresponding variable names, in the `.npz` file, are `arr_0`, `arr_1`, etc. If keyword arguments are given, the corresponding variable names, in the `.npz` file will match the keyword names. Parameters:
+
+- `file`: `str` or `file`: Either the file name (string) or an open file (file-like object) where the data will be saved. If `file` is a string or a `Path`, the `.npz` extension will be appended to the file name if it is not already there.
+- `args`: Arguments, optional: Arrays to save to the file. Since it is not possible for `Python` to know the names of the arrays outside `savez`, the arrays will be saved with names `arr_0`, `arr_1`, and so on. These arguments can be any expression.
+- `kwds`: Keyword arguments, optional: Arrays to save to the file. Arrays will be saved in the file with the keyword names.
+
+&emsp;&emsp;Notes: The `.npz` file format is a zipped archive of files named after the variables they contain. The archive is not compressed and each file in the archive contains one variable in `.npy` format. For a description of the `.npy` format, see `numpy.lib.format` or the [NumPy Enhancement Proposal](http://docs.scipy.org/doc/numpy/neps/npy-format.html).
+&emsp;&emsp;When opening the saved `.npz` file with load a `NpzFile` object is returned. This is a dictionary-like object which can be queried for its list of arrays (with the `.files` attribute), and for the arrays themselves. Examples:
+
+``` python
+>>> from tempfile import TemporaryFile
+>>> outfile = TemporaryFile()
+>>> x = np.arange(10)
+>>> y = np.sin(x)
+```
+
+Using `savez` with `*args`, the arrays are saved with default names.
+
+``` python
+>>> np.savez(outfile, x, y)
+>>> outfile.seek(0)  # Only needed here to simulate closing & reopening file
+>>> npzfile = np.load(outfile)
+>>> npzfile.files
+['arr_1', 'arr_0']
+>>> npzfile['arr_0']
+array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+```
+
+Using `savez` with `**kwds`, the arrays are saved with the keyword names.
+
+``` python
+>>> outfile = TemporaryFile()
+>>> np.savez(outfile, x=x, y=y)
+>>> outfile.seek(0)
+>>> npzfile = np.load(outfile)
+>>> npzfile.files
+['y', 'x']
+>>> npzfile['x']
+array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 ```

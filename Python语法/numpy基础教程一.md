@@ -1399,11 +1399,12 @@ array([[[ 0.,  1.],
 
 ### numpy.absolute
 
-    numpy.absolute(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'absolute'>: Calculate the absolute value element-wise. Parameters:
+&emsp;&emsp;numpy.absolute(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'absolute'>: Calculate the absolute value element-wise. Parameters:
+
 x : array_like. Input array.
 out : ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
 where : array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
-**kwargs: For other keyword-only arguments, see the ufunc docs.
+
     Returns: absolute : ndarray. An ndarray containing the absolute value of each element in x. For complex input, a + ib, the absolute value is sqrt(a^2+b^2).
     Examples:
 >>> x = np.array([-1.2, 1.2])
@@ -1570,33 +1571,3 @@ array([[1, 2],
        [3, 4],
        [3, 4]])
 
-numpy.savez
-    numpy.savez(file, *args, **kwds): Save several arrays into a single file in uncompressed .npz format.
-    If arguments are passed in with no keywords, the corresponding variable names, in the .npz file, are 'arr_0', 'arr_1', etc. If keyword arguments are given, the corresponding variable names, in the .npz file will match the keyword names. Parameters:
-file : str or file: Either the file name (string) or an open file (file-like object) where the data will be saved. If file is a string or a Path, the .npz extension will be appended to the file name if it is not already there.
-args : Arguments, optional: Arrays to save to the file. Since it is not possible for Python to know the names of the arrays outside savez, the arrays will be saved with names "arr_0", "arr_1", and so on. These arguments can be any expression.
-kwds : Keyword arguments, optional: Arrays to save to the file. Arrays will be saved in the file with the keyword names.
-    Returns: None.
-    Notes: The .npz file format is a zipped archive of files named after the variables they contain. The archive is not compressed and each file in the archive contains one variable in .npy format. For a description of the .npy format, see numpy.lib.format or the NumPy Enhancement Proposal http://docs.scipy.org/doc/numpy/neps/npy-format.html.
-    When opening the saved .npz file with load a NpzFile object is returned. This is a dictionary-like object which can be queried for its list of arrays (with the .files attribute), and for the arrays themselves. Examples:
->>> from tempfile import TemporaryFile
->>> outfile = TemporaryFile()
->>> x = np.arange(10)
->>> y = np.sin(x)
-Using savez with *args, the arrays are saved with default names.
->>> np.savez(outfile, x, y)
->>> outfile.seek(0)  # Only needed here to simulate closing & reopening file
->>> npzfile = np.load(outfile)
->>> npzfile.files
-['arr_1', 'arr_0']
->>> npzfile['arr_0']
-array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-Using savez with **kwds, the arrays are saved with the keyword names.
->>> outfile = TemporaryFile()
->>> np.savez(outfile, x=x, y=y)
->>> outfile.seek(0)
->>> npzfile = np.load(outfile)
->>> npzfile.files
-['y', 'x']
->>> npzfile['x']
-array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
