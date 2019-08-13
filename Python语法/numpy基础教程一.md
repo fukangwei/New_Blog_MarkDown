@@ -1200,63 +1200,111 @@ array([3,  7, 11])
 
 ### nditer
 
-    迭代对象nditer提供了一种灵活访问一个或者多个数组的方式。
-    1、单个数组的迭代(Single Array Iteration)
-    迭代器最基本的任务的可以完成对数组元素的访问，迭代器接口可以一个接一个地提供的每一个元素。例如：
+&emsp;&emsp;迭代对象`nditer`提供了一种灵活访问一个或者多个数组的方式。
+&emsp;&emsp;1. 单个数组的迭代(Single Array Iteration)
+&emsp;&emsp;迭代器最基本的任务的可以完成对数组元素的访问，迭代器接口可以一个接一个地提供的每一个元素：
+
+``` python
 import numpy as np
+
 a = np.arange(6).reshape(2, 3)
 print(a)
+
 for x in np.nditer(a):
     print(x, end=" ")
+```
+
 执行结果：
+
+``` python
 [[0 1 2]
  [3 4 5]]
 0 1 2 3 4 5
-这种迭代方式需要注意的是：所选择的顺序是和数组内存布局一致的，而不是使用标准C或者Fortran顺序。这是为了使用效率而设计的，这反映了默认情况下只需访问每个元素，而无需考虑其特定顺序。我们可以通过迭代上述数组的转置来看到这一点，并与以C顺序访问数组转置的copy的方式做对比：
+```
+
+这种迭代方式需要注意的是：所选择的顺序是和数组内存布局一致的，而不是使用标准`C`或者`Fortran`顺序。这是为了使用效率而设计的，这反映了默认情况下只需访问每个元素，而无需考虑其特定顺序。我们可以通过迭代上述数组的转置来看到这一点，并与以`C`顺序访问数组转置的`copy`的方式做对比：
+
+``` python
 import numpy as np
+
 a = np.arange(6).reshape(2, 3)
+
 for x in np.nditer(a.T):
     print(x, end=" ")
+
 print("\n------------")
+
 for x in np.nditer(a.T.copy(order='C')):
     print(x, end=" ")
+```
+
 执行结果：
+
+``` python
 0 1 2 3 4 5
 ------------
 0 3 1 4 2 5
-从上述例子可以看出，a和a.T的遍历顺序是一样的，也就是它们在内存中的存储顺序也是一样的，但是a.T.copy(order = 'C')的遍历结果是不同的，那是因为它和前两种的存储方式是不一样的，默认是按行访问。
-    2、控制迭代顺序(Controlling Iteration Order)
-    有时候，无论元素在内存中的分布如何，重要的是要以特定的顺序来访问数组。所以nditer提供了一种顺序参数(order parameter)的方法来实现这一要求。默认情况下是“order = 'K'”，就是上述的访问方式。另外有“order = 'C'”和“order = 'F'”，不妨理解为“C”是按行访问，“F”是按列访问。
+```
+
+从上述例子可以看出，`a`和`a.T`的遍历顺序是一样的，也就是它们在内存中的存储顺序也是一样的，但是`a.T.copy(order = 'C')`的遍历结果是不同的，那是因为它和前两种的存储方式是不一样的，默认是按行访问。
+&emsp;&emsp;2. 控制迭代顺序(Controlling Iteration Order)
+&emsp;&emsp;有时候，无论元素在内存中的分布如何，重要的是要以特定的顺序来访问数组。所以`nditer`提供了一种顺序参数(`order parameter`)的方法来实现这一要求。默认情况下是`order = 'K'`，就是上述的访问方式。另外有`order = 'C'`和`order = 'F'`，不妨理解为`C`是按行访问，`F`是按列访问。
+
+``` python
 import numpy as np
+
 a = np.arange(6).reshape(2, 3)
+
 for x in np.nditer(a, order='F'):
     print(x, end=" ")
+
 print("\n------------")
+
 for x in np.nditer(a.T, order='C'):
     print(x, end=" ")
+```
+
 执行结果：
+
+``` python
 0 3 1 4 2 5
 ------------
 0 3 1 4 2 5
-    3、修改数组值(Modify Array Values)
-    默认情况下，nditer将输入数组视为只读对象。要修改数组元素，必须指定读写(read-write)或只写(write-only)模式。这是由每个操作数标志控制的。一般而言，Python中的赋值只需更改本地或全局变量字典中的引用，而不是修改现有变量。
+```
+
+&emsp;&emsp;3. 修改数组值(Modify Array Values)
+&emsp;&emsp;默认情况下，`nditer`将输入数组视为只读对象。要修改数组元素，必须指定读写(`read-write`)或只写(`write-only`)模式。这是由每个操作数标志控制的。一般而言，`Python`中的赋值只需更改本地或全局变量字典中的引用，而不是修改现有变量。
+
+``` python
 import numpy as np
+
 a = np.arange(6).reshape(2, 3)
 print(a)
+
 for x in np.nditer(a, op_flags=['readwrite']):
     x[...] = 2 * x
-print(a)
 
-numpy.ndarray.item
+print(a)
+```
+
+### numpy.ndarray.item
+
     ndarray.item(*args): Copy an element of an array to a standard Python scalar and return it.
     Parameters: *args : Arguments (variable number and type)
+
 none: in this case, the method only works for arrays with one element (a.size == 1), which element is copied into a standard Python scalar object and returned.
 int_type: this argument is interpreted as a flat index into the array, specifying which element to copy and return.
 tuple of int_types: functions as does a single int_type argument, except that the argument is interpreted as an nd-index into the array.
-    Returns: z : Standard Python scalar object. A copy of the specified element of the array as a suitable Python scalar
+
+    Returns:
+
+- `z`: Standard Python scalar object. A copy of the specified element of the array as a suitable Python scalar
+
     Notes: When the data type of a is longdouble or clongdouble, item() returns a scalar array object because there is no available Python scalar that would not lose information. Void arrays return a buffer object for item(), unless fields are defined, in which case a tuple is returned.
     item is very similar to a[args], except, instead of an array scalar, a standard Python scalar is returned. This can be useful for speeding up access to elements of the array and doing arithmetic on elements of the array using Python's optimized math.
     Examples:
+
+``` python
 >>> x = np.random.randint(9, size=(3, 3))
 >>> x
 array([[3, 1, 7],
@@ -1270,12 +1318,16 @@ array([[3, 1, 7],
 1
 >>> x.item((2, 2))
 3
+```
 
-numpy.ndarray.itemset
+### numpy.ndarray.itemset
+
     ndarray.itemset(*args): Insert scalar into an array (scalar is cast to array's dtype, if possible). There must be at least 1 argument, and define the last argument as item. Then, a.itemset(*args) is equivalent to but faster than a[args] = item. The item should be a scalar value and args must select a single item in the array a.
     Parameters: *args : Arguments. If one argument: a scalar, only used in case a is of size 1. If two arguments: the last argument is the value to be set and must be a scalar, the first argument specifies a single array element location. It is either an int or a tuple.
     Notes: Compared to indexing syntax, itemset provides some speed increase for placing a scalar into a particular location in an ndarray, if you must do this. However, generally this is discouraged: among other problems, it complicates the appearance of the code. Also, when using itemset (and item) inside a loop, be sure to assign the methods to a local variable to avoid the attribute look-up at each loop iteration.
     Examples:
+
+``` python
 >>> x = np.random.randint(9, size=(3, 3))
 >>> x
 array([[3, 1, 7],
@@ -1287,10 +1339,12 @@ array([[3, 1, 7],
 array([[3, 1, 7],
        [2, 0, 3],
        [8, 5, 9]])
+```
 
 numpy.hsplit
     numpy.hsplit(ary, indices_or_sections): Split an array into multiple sub-arrays horizontally (column-wise).
     Please refer to the split documentation. hsplit is equivalent to split with axis=1, the array is always split along the second axis regardless of the array dimension. Examples:
+
 >>> x = np.arange(16.0).reshape(4, 4)
 >>> x
 array([[  0.,   1.,   2.,   3.],
