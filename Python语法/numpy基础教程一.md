@@ -1399,30 +1399,42 @@ array([[[ 0.,  1.],
 
 ### numpy.absolute
 
-&emsp;&emsp;numpy.absolute(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'absolute'>: Calculate the absolute value element-wise. Parameters:
+&emsp;&emsp;`numpy.absolute(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'absolute'>`: Calculate the `absolute` value element-wise. Parameters:
 
-x : array_like. Input array.
-out : ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
-where : array_like, optional. Values of True indicate to calculate the ufunc at that position, values of False indicate to leave the value in the output alone.
+- `x`: `array_like`. Input array.
+- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `where`: `array_like`, optional. Values of `True` indicate to calculate the ufunc at that position, values of `False` indicate to leave the value in the output alone.
 
-    Returns: absolute : ndarray. An ndarray containing the absolute value of each element in x. For complex input, a + ib, the absolute value is sqrt(a^2+b^2).
-    Examples:
+&emsp;&emsp;Returns:
+
+- `absolute`: `ndarray`. A `ndarray` containing the absolute value of each element in `x`. For `complex` input, `a + ib`, the absolute value is `sqrt(a^2 + b^2)`.
+
+&emsp;&emsp;Examples:
+
+``` python
 >>> x = np.array([-1.2, 1.2])
 >>> np.absolute(x)
 array([ 1.2,  1.2])
 >>> np.absolute(1.2 + 1j)
 1.5620499351813308
-Plot the function over [-10, 10]:
+```
+
+Plot the function over `[-10, 10]`:
+
+``` python
 >>> import matplotlib.pyplot as plt
 >>> x = np.linspace(start=-10, stop=10, num=101)
 >>> plt.plot(x, np.absolute(x))
 >>> plt.show()
+```
 
-Plot the function over the complex plane:
+Plot the function over the `complex` plane:
+
+``` python
 >>> xx = x + 1j * x[:, np.newaxis]
 >>> plt.imshow(np.abs(xx), extent=[-10, 10, -10, 10], cmap='gray')
 >>> plt.show()
-
+```
 
 nonzero
     nonzero(a)返回数组a中值不为零的元素的下标，它的返回值是一个长度为a.ndim(数组a的轴数)的元组，元组的每个元素都是一个整数数组，其值为非零元素的下标在对应轴上的值。例如对于一维布尔数组b1，nonzero(b1)所得到的是一个长度为1的元组，它表示b1[0]和b1[2]的值不为0(False)。
