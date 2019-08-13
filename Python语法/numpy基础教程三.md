@@ -865,13 +865,16 @@ array([[10, 28, 46, 64],
 
 ### numpy.stack
 
-&emsp;&emsp;numpy.stack(arrays, axis=0): Join a sequence of arrays along a new axis. The axis parameter specifies the index of the new axis in the dimensions of the result. For example, if axis=0 it will be the first dimension and if axis=-1 it will be the last dimension. New in version 1.10.0. Parameters:
+&emsp;&emsp;`numpy.stack(arrays, axis=0)`: Join a sequence of `arrays` along a new axis. The `axis` parameter specifies the index of the new axis in the dimensions of the result. For example, if `axis=0` it will be the first dimension and if `axis=-1` it will be the last dimension. Parameters:
 
-arrays : sequence of array_like. Each array must have the same shape.
-axis : int, optional. The axis in the result array along which the input arrays are stacked.
+- `arrays`: sequence of `array_like`. Each array must have the same shape.
+- `axis`: `int`, optional. The `axis` in the result array along which the input `arrays` are stacked.
 
-    Returns: stacked : ndarray. The stacked array has one more dimension than the input arrays.
-    Examples:
+&emsp;&emsp;Returns:
+
+- `stacked`: `ndarray`. The stacked array has one more dimension than the input `arrays`.
+
+&emsp;&emsp;Examples:
 
 ``` python
 >>> arrays = [np.random.randn(3, 4) for _ in range(10)]
@@ -890,4 +893,35 @@ array([[1, 2, 3],
 array([[1, 2],
        [2, 3],
        [3, 4]])
+```
+
+### numpy.append
+
+&emsp;&emsp;`numpy.append(arr, values, axis=None)`: Append `values` to the end of an array. Parameters:
+
+- `arr`: `array_like`. Values are appended to a copy of this array.
+- `values`: `array_like`. These `values` are appended to a copy of `arr`. It must be of the correct shape (the same shape as `arr`, excluding `axis`). If `axis` is not specified, `values` can be any shape and will be flattened before use.
+- `axis`: `int`, optional. The `axis` along which `values` are appended. If `axis` is not given, both `arr` and `values` are flattened before use.
+
+&emsp;&emsp;Returns:
+
+- `append`: `ndarray`. A copy of `arr` with `values` appended to `axis`. Note that append does not occur in-place: a new array is allocated and filled. If `axis` is `None`, out is a flattened array.
+
+&emsp;&emsp;Examples:
+
+``` python
+>>> np.append([1, 2, 3], [[4, 5, 6], [7, 8, 9]])
+array([1, 2, 3, 4, 5, 6, 7, 8, 9])
+```
+
+When `axis` is specified, `values` must have the correct shape:
+
+``` python
+>>> np.append([[1, 2, 3], [4, 5, 6]], [[7, 8, 9]], axis=0)
+array([[1, 2, 3],
+       [4, 5, 6],
+       [7, 8, 9]])
+>>> np.append([[1, 2, 3], [4, 5, 6]], [7, 8, 9], axis=0)
+Traceback (most recent call last):
+ValueError: arrays must have same number of dimensions
 ```
