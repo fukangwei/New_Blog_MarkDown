@@ -1323,10 +1323,16 @@ array([[3, 1, 7],
 
 ### numpy.ndarray.itemset
 
-    ndarray.itemset(*args): Insert scalar into an array (scalar is cast to array's dtype, if possible). There must be at least 1 argument, and define the last argument as item. Then, a.itemset(*args) is equivalent to but faster than a[args] = item. The item should be a scalar value and args must select a single item in the array a.
-    Parameters: *args : Arguments. If one argument: a scalar, only used in case a is of size 1. If two arguments: the last argument is the value to be set and must be a scalar, the first argument specifies a single array element location. It is either an int or a tuple.
-    Notes: Compared to indexing syntax, itemset provides some speed increase for placing a scalar into a particular location in an ndarray, if you must do this. However, generally this is discouraged: among other problems, it complicates the appearance of the code. Also, when using itemset (and item) inside a loop, be sure to assign the methods to a local variable to avoid the attribute look-up at each loop iteration.
-    Examples:
+&emsp;&emsp;`ndarray.itemset(*args)`: Insert scalar into an array (scalar is cast to array's dtype, if possible). There must be at least `1` argument, and define the last argument as `item`. Then, `a.itemset(*args)` is equivalent to but faster than `a[args] = item`. The item should be a scalar value and args must select a single item in the array `a`.
+&emsp;&emsp;Parameters:
+
+- `*args`: Arguments.
+
+1. If one argument: a scalar, only used in case `a` is of size `1`.
+2. If two arguments: the last argument is the value to be set and must be a scalar, the first argument specifies a single array element location. It is either an `int` or a `tuple`.
+
+&emsp;&emsp;Notes: Compared to indexing syntax, `itemset` provides some speed increase for placing a scalar into a particular location in a `ndarray`, if you must do this. However, generally this is discouraged: among other problems, it complicates the appearance of the code. Also, when using `itemset` (and `item`) inside a loop, be sure to assign the methods to a local variable to avoid the attribute look-up at each loop iteration.
+&emsp;&emsp;Examples:
 
 ``` python
 >>> x = np.random.randint(9, size=(3, 3))
@@ -1342,10 +1348,12 @@ array([[3, 1, 7],
        [8, 5, 9]])
 ```
 
-numpy.hsplit
-    numpy.hsplit(ary, indices_or_sections): Split an array into multiple sub-arrays horizontally (column-wise).
-    Please refer to the split documentation. hsplit is equivalent to split with axis=1, the array is always split along the second axis regardless of the array dimension. Examples:
+### numpy.hsplit
 
+&emsp;&emsp;`numpy.hsplit(ary, indices_or_sections)`: Split an array into multiple sub-arrays horizontally (column-wise).
+&emsp;&emsp;Please refer to the split documentation. `hsplit` is equivalent to split with `axis=1`, the array is always split along the second axis regardless of the array dimension. Examples:
+
+``` python
 >>> x = np.arange(16.0).reshape(4, 4)
 >>> x
 array([[  0.,   1.,   2.,   3.],
@@ -1371,7 +1379,11 @@ array([[  0.,   1.,   2.,   3.],
        [ 11.],
        [ 15.]]),
  array([], dtype=float64)]
+```
+
 With a higher dimensional array the split is still along the second axis.
+
+``` python
 >>> x = np.arange(8.0).reshape(2, 2, 2)
 >>> x
 array([[[ 0.,  1.],
@@ -1383,8 +1395,10 @@ array([[[ 0.,  1.],
        [[ 4.,  5.]]]),
  array([[[ 2.,  3.]],
        [[ 6.,  7.]]])]
+```
 
-numpy.absolute
+### numpy.absolute
+
     numpy.absolute(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'absolute'>: Calculate the absolute value element-wise. Parameters:
 x : array_like. Input array.
 out : ndarray, None, or tuple of ndarray and None, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or None, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
