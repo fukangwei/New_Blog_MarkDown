@@ -890,33 +890,44 @@ array([[1,  2,  3],
        [0,  0, 12]])
 ```
 
-tile函数
-    该函数的作用如下所示：
+### tile函数
+
+&emsp;&emsp;该函数的作用如下：
+
+``` python
 >>> import numpy
->>> numpy.tile([0,0],5)  # 横向重复[0,0]5次，纵向重复1次
+>>> numpy.tile([0, 0], 5)  # 横向重复“[0, 0]”5次，纵向重复1次
 array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
->>> numpy.tile([0,0],(1,1))  # 纵向重复[0,0]1次，横向重复1次
+>>> numpy.tile([0, 0], (1, 1))  # 纵向重复“[0, 0]”1次，横向重复1次
 array([[0, 0]])
->>> numpy.tile([0,0],(2,1))  # 纵向重复[0,0]2次，横向重复1次
+>>> numpy.tile([0, 0], (2, 1))  # 纵向重复“[0, 0]”2次，横向重复1次
 array([[0, 0],
        [0, 0]])
->>> numpy.tile([0,0],(3,1))
+>>> numpy.tile([0, 0], (3, 1))
 array([[0, 0],
        [0, 0],
        [0, 0]])
->>> numpy.tile([0,0],(1,3))  # 纵向重复[0,0]1次，横向重复3次
+>>> numpy.tile([0, 0], (1, 3))  # 纵向重复“[0, 0]”1次，横向重复3次
 array([[0, 0, 0, 0, 0, 0]])
->>> numpy.tile([0,0],(2,3))  # 纵向重复[0,0]2次，横向重复3次
+>>> numpy.tile([0, 0], (2, 3))  # 纵向重复“[0, 0]”2次，横向重复3次
 array([[0, 0, 0, 0, 0, 0],
        [0, 0, 0, 0, 0, 0]])
+```
 
-np.newaxis
-    np.newaxis在使用和功能上等价于None，其实就是None的一个别名：
+### np.newaxis
+
+&emsp;&emsp;`np.newaxis`在使用和功能上等价于`None`，其实就是`None`的一个别名：
+
+``` python
 >> type(np.newaxis)
 NoneType
 >> np.newaxis == None
 True
-np.newaxis的使用示例如下所示：
+```
+
+`np.newaxis`的使用示例如下：
+
+``` python
 >> x = np.arange(3)
 >> x
 array([0, 1, 2])
@@ -932,15 +943,28 @@ array([[0],
        [2]])
 >> x[:, np.newaxis].shape
 (3, 1)
-    np.newaxis的功能是插入新维度，看下面的例子：
+```
+
+&emsp;&emsp;`np.newaxis`的功能是插入新维度，看下面的例子：
+
+``` python
 import numpy as np
+
 a = np.array([1, 2, 3, 4, 5])
 print(a.shape)
 print(a)
+```
+
 执行结果：
+
+``` python
 (5,)
 [1 2 3 4 5]
-可以看出a是一个一维数组。再看一个例子：
+```
+
+可以看出`a`是一个一维数组。再看一个例子：
+
+``` python
 import numpy as np
 
 a = np.array([1, 2, 3, 4, 5])
@@ -948,17 +972,28 @@ b = a[np.newaxis, :]
 print(a.shape, b.shape)
 print(a)
 print(b)
+```
+
 执行结果：
+
+``` python
 (5,) (1, 5)
 [1 2 3 4 5]
 [[1 2 3 4 5]]
+```
+
 最后一个例子：
+
+``` python
 import numpy as np
+
 a = np.array([1, 2, 3, 4, 5])
 b = a[:, np.newaxis]
 print(a.shape, b.shape)
 print(a)
 print(b)
+```
+
 执行结果：
 (5,) (5, 1)
 [1 2 3 4 5]
