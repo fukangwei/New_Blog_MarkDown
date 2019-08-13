@@ -1083,3 +1083,41 @@ array([1, 1, 1, 1, 1])
 >>> np.count_nonzero([[0, 1, 7, 0, 0], [3, 0, 0, 2, 19]], axis=1)
 array([2, 3])
 ```
+
+### numpy.loadtxt
+
+&emsp;&emsp;`numpy.loadtxt(fname, dtype=<type 'float'>, comments='#', delimiter=None, converters=None, skiprows=0, usecols=None, unpack=False, ndmin=0, encoding='bytes')`: Load data from a text file. Each row in the text file must have the same number of values. Parameters:
+
+- `fname`: file, `str`, or `pathlib.Path`. File, filename, or generator to read. If the filename extension is `.gz` or `.bz2`, the file is first decompressed. Note that generators should return byte strings for `Python 3`.
+- `dtype`: `data-type`, optional. Data-type of the resulting array. If this is a structured `data-type`, the resulting array will be `1-dimensional`, and each row will be interpreted as an element of the array. In this case, the number of columns used must match the number of fields in the `data-type`.
+- `comments`: `str` or sequence of `str`, optional. The characters or list of characters used to indicate the start of a comment. For backwards compatibility, byte strings will be decoded as `latin1`.
+- `delimiter`: `str`, optional. The string used to separate values. For backwards compatibility, byte strings will be decoded as `latin1`. The default is `whitespace`.
+- `converters`: `dict`, optional. A dictionary mapping column number to a function that will convert that column to a `float`. E.g., if column `0` is a date string: `converters = {0: datestr2num}`. Converters can also be used to provide a default value for missing data: `converters = {3: lambda s: float(s.strip() or 0)}`.
+- `skiprows`: `int`, optional. Skip the first `skiprows` lines.
+- `usecols`: `int` or sequence, optional. Which columns to read, with `0` being the first. For example, `usecols = (1, 4, 5)` will extract the `2nd`, `5th` and `6th` columns. The default, `None`, results in all columns being read. Changed in `version 1.11.0`: When a single column has to be read, it is possible to use an integer instead of a tuple. E.g `usecols = 3` reads the `fourth` column the same way as `usecols = (3,)` would.
+- `unpack`: `bool`, optional. If `True`, the returned array is transposed, so that arguments may be unpacked using `x, y, z = loadtxt(...)`. When used with a structured `data-type`, arrays are returned for each field.
+- `ndmin`: `int`, optional. The returned array will have at least `ndmin` dimensions. Otherwise `mono-dimensional` axes will be squeezed. Legal values: `0` (default), `1` or `2`.
+- `encoding`: `str`, optional. Encoding used to decode the inputfile. Does not apply to input streams. The special value `bytes` enables backward compatibility workarounds that ensures you receive byte arrays as results if possible and passes `latin1` encoded strings to converters. Override this value to receive unicode arrays and pass strings as input to converters. If set to `None`, the system default is used.
+
+&emsp;&emsp;Returns:
+
+- `out`: ndarray. Data read from the text file.
+
+&emsp;&emsp;Notes: This function aims to be a fast reader for simply formatted files. The `genfromtxt` function provides more sophisticated handling of, e.g., lines with missing values. The strings produced by the Python `float.hex` method can be used as input for floats. Examples:
+
+``` python
+>>> from io import StringIO  # StringIO behaves like a file object
+>>> c = StringIO("0 1\n2 3")
+>>> np.loadtxt(c)
+array([[ 0.,  1.],
+       [ 2.,  3.]])
+>>> d = StringIO("M 21 72\nF 35 58")
+>>> np.loadtxt(d, dtype={'names': ('gender', 'age', 'weight'), 'formats': ('S1', 'i4', 'f4')})
+array([('M', 21, 72.0), ('F', 35, 58.0)], dtype=[('gender', '|S1'), ('age', '<i4'), ('weight', '<f4')])
+>>> c = StringIO("1,0,2\n3,0,4")
+>>> x, y = np.loadtxt(c, delimiter=',', usecols=(0, 2), unpack=True)
+>>> x
+array([ 1.,  3.])
+>>> y
+array([ 2.,  4.])
+```
