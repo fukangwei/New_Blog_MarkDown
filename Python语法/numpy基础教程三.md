@@ -672,3 +672,222 @@ True
 >>> np.greater_equal([4, 2, 1], [2, 2, 2])
 array([ True, True, False])
 ```
+
+### numpy.ndarray.shape
+
+&emsp;&emsp;Tuple of array dimensions. The shape property is usually used to get the current shape of an array, but may also be used to reshape the array in-place by assigning a tuple of array dimensions to it. As with `numpy.reshape`, one of the new shape dimensions can be `-1`, in which case its value is inferred from the size of the array and the remaining dimensions. Reshaping an array in-place will fail if a copy is required.
+
+``` python
+>>> x = np.array([1, 2, 3, 4])
+>>> x.shape
+(4,)
+>>> y = np.zeros((2, 3, 4))
+>>> y.shape
+(2, 3, 4)
+>>> y.shape = (3, 8)
+>>> y
+array([[ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.]])
+>>> y.shape = (3, 6)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: total size of new array must be unchanged
+>>> np.zeros((4,2))[::2].shape = (-1,)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: incompatible shape for a non-contiguous array
+```
+
+### einsum函数
+
+&emsp;&emsp;给定向量`a`和向量`b`，若`a = (1, 2, 3)`，`b = (4, 5, 6)`：
+
+``` python
+import numpy as np
+
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+```
+
+- `np.einsum('i', a)`返回向量`a`本身。
+- `np.einsum('i->', a)`返回向量`a`的元素和(等价于`np.sum(a)`)。
+- `np.einsum('i,i->i', a, b)`是向量`a`和向量`b`的点乘(等价于`a * b`)：
+
+``` python
+np.einsum('i, i->i', a, b)  # 结果为[4 10 18]
+```
+
+- `np.einsum('i,i', a, b)`是向量`a`和向量`b`的内积(等价于`np.inner(a, b)`)：
+
+``` python
+np.einsum('i, i', a, b)  # 结果为“32”
+```
+
+- `np.einsum('i, j->ij', a, b)`是向量`a`和向量`b`的外积(等价于`np.outer(a, b)`)，结果为：
+
+``` python
+[[ 4  5  6]
+ [ 8 10 12]
+ [12 15 18]]
+```
+
+&emsp;&emsp;给定矩阵`A`和矩阵`B`，若`A = [[1, 2], [3, 4]]`，`B = [[5, 6], [7, 8]]`：
+
+``` python
+import numpy as np
+
+A = np.array([[1, 2], [3, 4]])
+B = np.array([[5, 6], [7, 8]])
+```
+
+- `np.einsum('ij', A)`返回矩阵`A`本身。
+- `np.einsum('ji', A)`返回矩阵`A`的转置(等价于`A.T`)。
+- `np.einsum('ii', A)`返回矩阵`A`对角线上元素的和(等价于`np.trace(A)`)。
+- `np.einsum('ij->', A)`返回矩阵`A`所有元素的和(等价于`np.sum(A)`)。
+- `np.einsum('ij->j', A)`返回矩阵`A`列向量的和(等价于`np.sum(A, axis=0)`)。
+- `np.einsum('ij->i', A)`返回矩阵`A`行向量的和(等价于`np.sum(A, axis=1)`)。
+- `np.einsum('ij, ij->ij', A, B)`是矩阵`A`和矩阵`B`的点乘(等价于`A * B`)：
+
+``` python
+[[ 5 12]
+ [21 32]]
+```
+
+- `np.einsum('ij, ji->ij', A, B)`是矩阵`A`点乘以矩阵`B`的转置(等价于`A*B.T`)：
+
+``` python
+[[ 5 14]
+ [18 32]]
+```
+
+- `np.einsum('ij, jk', A, B)`是矩阵`A`乘以矩阵`B`(等价于`np.dot(A, B)`)：
+
+``` python
+[[19 22]
+ [43 50]]
+```
+
+- `np.einsum('ij, ij', A, B)`是矩阵`A`和矩阵`B`的内积：
+
+``` python
+np.einsum('ij, ij', A, B)  # 结果为“70”
+```
+
+&emsp;&emsp;To enable and control broadcasting, use an ellipsis(省略号). Default `NumPy-style` broadcasting is done by adding an ellipsis to the left of each term, like `np.einsum('...ii->...i', a)`. To take the trace along the first and last axes, you can do `np.einsum('i...i', a)`, or to do a `matrix-matrix` product with the left-most indices instead of rightmost, you can do `np.einsum('ij...,jk...->ik...', a, b)`.
+&emsp;&emsp;代码`1`如下：
+
+``` python
+>>> import numpy as np
+>>> c = np.arange(6).reshape(2, 3)
+>>> c
+array([[0, 1, 2],
+       [3, 4, 5]])
+>>> np.einsum('..., ...', 3, c)
+array([[ 0,  3,  6],
+       [ 9, 12, 15]])
+>>> a = np.arange(25).reshape(5, 5)
+>>> a
+array([[ 0,  1,  2,  3,  4],
+       [ 5,  6,  7,  8,  9],
+       [10, 11, 12, 13, 14],
+       [15, 16, 17, 18, 19],
+       [20, 21, 22, 23, 24]])
+>>> np.einsum('i...->...', a)
+array([50, 55, 60, 65, 70])
+```
+
+&emsp;&emsp;代码`2`如下：
+
+``` python
+>>> a = np.arange(60.).reshape(3, 4, 5)
+>>> a
+array([[[ 0.,  1.,  2.,  3.,  4.],
+        [ 5.,  6.,  7.,  8.,  9.],
+        [10., 11., 12., 13., 14.],
+        [15., 16., 17., 18., 19.]],
+       [[20., 21., 22., 23., 24.],
+        [25., 26., 27., 28., 29.],
+        [30., 31., 32., 33., 34.],
+        [35., 36., 37., 38., 39.]],
+       [[40., 41., 42., 43., 44.],
+        [45., 46., 47., 48., 49.],
+        [50., 51., 52., 53., 54.],
+        [55., 56., 57., 58., 59.]]])
+>>> b = np.arange(24.).reshape(4, 3, 2)
+>>> b
+array([[[ 0.,  1.],
+        [ 2.,  3.],
+        [ 4.,  5.]],
+       [[ 6.,  7.],
+        [ 8.,  9.],
+        [10., 11.]],
+       [[12., 13.],
+        [14., 15.],
+        [16., 17.]],
+       [[18., 19.],
+        [20., 21.],
+        [22., 23.]]])
+>>> np.einsum('ijk,jil->kl', a, b)
+array([[4400., 4730.],
+       [4532., 4874.],
+       [4664., 5018.],
+       [4796., 5162.],
+       [4928., 5306.]])
+```
+
+&emsp;&emsp;代码`3`如下：
+
+``` python
+>>> a = np.arange(6).reshape((3,2))
+>>> a
+array([[0, 1],
+       [2, 3],
+       [4, 5]])
+>>> b = np.arange(12).reshape((4,3))
+>>> b
+array([[ 0,  1,  2],
+       [ 3,  4,  5],
+       [ 6,  7,  8],
+       [ 9, 10, 11]])
+>>> np.einsum('ki,jk->ij', a, b)
+array([[10, 28, 46, 64],
+       [13, 40, 67, 94]])
+>>> np.einsum('ki,...k->i...', a, b)
+array([[10, 28, 46, 64],
+       [13, 40, 67, 94]])
+>>> np.einsum('k...,jk', a, b)
+array([[10, 28, 46, 64],
+       [13, 40, 67, 94]])
+```
+
+`array`坐标轴索引的先后顺序定义为`i -> j -> k -> l`。
+
+### numpy.stack
+
+&emsp;&emsp;numpy.stack(arrays, axis=0): Join a sequence of arrays along a new axis. The axis parameter specifies the index of the new axis in the dimensions of the result. For example, if axis=0 it will be the first dimension and if axis=-1 it will be the last dimension. New in version 1.10.0. Parameters:
+
+arrays : sequence of array_like. Each array must have the same shape.
+axis : int, optional. The axis in the result array along which the input arrays are stacked.
+
+    Returns: stacked : ndarray. The stacked array has one more dimension than the input arrays.
+    Examples:
+
+``` python
+>>> arrays = [np.random.randn(3, 4) for _ in range(10)]
+>>> np.stack(arrays, axis=0).shape
+(10, 3, 4)
+>>> np.stack(arrays, axis=1).shape
+(3, 10, 4)
+>>> np.stack(arrays, axis=2).shape
+(3, 4, 10)
+>>> a = np.array([1, 2, 3])
+>>> b = np.array([2, 3, 4])
+>>> np.stack((a, b))
+array([[1, 2, 3],
+       [2, 3, 4]])
+>>> np.stack((a, b), axis=-1)
+array([[1, 2],
+       [2, 3],
+       [3, 4]])
+```
