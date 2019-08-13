@@ -958,3 +958,29 @@ array([[1, 2, 3],
 array([[ 1,  3,  6],
        [ 4,  9, 15]])
 ```
+
+### numpy.random.shuffle
+
+&emsp;&emsp;`numpy.random.shuffle(x)`: Modify a sequence in-place by shuffling its contents. This function only shuffles the array along the first axis of a multi-dimensional array. The order of sub-arrays is changed but their contents remains the same. Parameters:
+
+- `x`: `array_like`. The array or list to be shuffled.
+
+&emsp;&emsp;Examples:
+
+``` python
+>>> arr = np.arange(10)
+>>> np.random.shuffle(arr)
+>>> arr
+[1 7 5 2 9 4 3 6 0 8]
+```
+
+Multi-dimensional arrays are only shuffled along the first axis:
+
+``` python
+>>> arr = np.arange(9).reshape((3, 3))
+>>> np.random.shuffle(arr)
+>>> arr
+array([[3, 4, 5],
+       [6, 7, 8],
+       [0, 1, 2]])
+```
