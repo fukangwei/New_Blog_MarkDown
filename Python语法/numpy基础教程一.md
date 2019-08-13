@@ -1119,22 +1119,34 @@ Note that some examples may use `None` instead of `np.newaxis`. These are the sa
 True
 ```
 
-numpy.array_split
-    numpy.array_split(ary, indices_or_sections, axis=0): Split an array into multiple sub-arrays.
-    Please refer to the split documentation. The only difference between these functions is that array_split allows indices_or_sections to be an integer that does not equally divide the axis. Examples:
+### numpy.array_split
+
+&emsp;&emsp;`numpy.array_split(ary, indices_or_sections, axis=0)`: Split an array into multiple sub-arrays.
+&emsp;&emsp;Please refer to the split documentation. The only difference between these functions is that `array_split` allows `indices_or_sections` to be an integer that does not equally divide the `axis`. Examples:
+
+``` python
 >>> x = np.arange(8.0)
 >>> np.array_split(x, 3)
 [array([ 0.,  1.,  2.]), array([ 3.,  4.,  5.]), array([ 6.,  7.])]
+```
 
-numpy.sum
-    numpy.sum(a, axis=None, dtype=None, out=None, keepdims=<class numpy._globals._NoValue>): Sum of array elements over a given axis. Parameters:
-a: array_like. Elements to sum.
-axis: None or int or tuple of ints, optional. Axis or axes along which a sum is performed. The default, axis=None, will sum all of the elements of the input array. If axis is negative it counts from the last to the first axis. New in version 1.7.0. If axis is a tuple of ints, a sum is performed on all of the axes specified in the tuple instead of a single axis or all the axes as before.
-dtype: dtype, optional. The type of the returned array and of the accumulator in which the elements are summed. The dtype of a is used by default unless a has an integer dtype of less precision than the default platform integer. In that case, if a is signed then the platform integer is used while if a is unsigned then an unsigned integer of the same precision as the platform integer is used.
-out: ndarray, optional. Alternative output array in which to place the result. It must have the same shape as the expected output, but the type of the output values will be cast if necessary.
-keepdims: bool, optional. If this is set to True, the axes which are reduced are left in the result as dimensions with size one. With this option, the result will broadcast correctly against the input array. If the default value is passed, then keepdims will not be passed through to the sum method of sub-classes of ndarray, however any non-default value will be. If the sub-classes sum method does not implement keepdims any exceptions will be raised.
-    Returns: sum_along_axis: ndarray. An array with the same shape as a, with the specified axis removed. If a is a 0-d array, or if axis is None, a scalar is returned. If an output array is specified, a reference to out is returned.
-    Notes: Arithmetic is modular when using integer types, and no error is raised on overflow. The sum of an empty array is the neutral element 0:
+### numpy.sum
+
+&emsp;&emsp;`numpy.sum(a, axis=None, dtype=None, out=None, keepdims=<class numpy._globals._NoValue>)`: Sum of array elements over a given `axis`. Parameters:
+
+- `a`: `array_like`. Elements to sum.
+- `axis`: `None` or int or tuple of ints, optional. Axis or axes along which a sum is performed. The default, `axis=None`, will sum all of the elements of the input array. If `axis` is negative, it counts from the last to the first axis. If `axis` is a tuple of ints, a sum is performed on all of the axes specified in the tuple instead of a single axis or all the axes as before.
+- `dtype`: `dtype`, optional. The type of the returned array and of the accumulator in which the elements are summed. The `dtype` of `a` is used by default unless `a` has an integer `dtype` of less precision than the default platform integer. In that case, if `a` is signed then the platform integer is used while if `a` is unsigned then an unsigned integer of the same precision as the platform integer is used.
+- `out`: `ndarray`, optional. Alternative output array in which to place the result. It must have the same shape as the expected output, but the type of the output values will be cast if necessary.
+- `keepdims`: `bool`, optional. If this is set to `True`, the axes which are reduced are left in the result as dimensions with size one. With this option, the result will broadcast correctly against the input array. If the default value is passed, then `keepdims` will not be passed through to the sum method of `sub-classes` of `ndarray`, however any `non-default` value will be. If the `sub-classes` sum method does not implement `keepdims` any exceptions will be raised.
+
+&emsp;&emsp;Returns:
+
+- `sum_along_axis`: `ndarray`. An array with the same shape as `a`, with the specified `axis` removed. If `a` is a `0-d` array, or if `axis` is `None`, a scalar is returned. If an output array is specified, a reference to `out` is returned.
+
+&emsp;&emsp;Notes: Arithmetic is modular when using integer types, and no error is raised on overflow. The sum of an empty array is the neutral element `0`:
+
+``` python
 >>> np.sum([])
 0.0
 Examples:
@@ -1151,9 +1163,13 @@ array([1, 5])
 If the accumulator is too small, overflow occurs:
 >>> np.ones(128, dtype=np.int8).sum(dtype=np.int8)
 -128
+```
 
-numpy.std
-    该方法用于计算矩阵标准差，使用示例如下所示：
+### numpy.std
+
+&emsp;&emsp;该方法用于计算矩阵标准差，使用示例如下：
+
+``` python
 >>> a = np.array([[1, 2], [3, 4]])
 >>> np.std(a)  # 计算全局标准差
 1.1180339887498949
@@ -1161,11 +1177,15 @@ numpy.std
 array([ 1.,  1.])
 >>> np.std(a, axis=1)  # 计算每一行的标准差
 array([ 0.5,  0.5])
+```
 
-numpy.max
-    代码示例如下所示：
->>> a = np.array(range(0,12))
->>> b = a.reshape((3,4))
+### numpy.max
+
+&emsp;&emsp;代码示例如下：
+
+``` python
+>>> a = np.array(range(0, 12))
+>>> b = a.reshape((3, 4))
 >>> b
 array([[0,  1,  2,  3],
        [4,  5,  6,  7],
@@ -1176,8 +1196,10 @@ array([[0,  1,  2,  3],
 array([8,  9, 10, 11])
 >>> np.max(b, axis=1)  # 看结果是取出最大的一列
 array([3,  7, 11])
+```
 
-nditer
+### nditer
+
     迭代对象nditer提供了一种灵活访问一个或者多个数组的方式。
     1、单个数组的迭代(Single Array Iteration)
     迭代器最基本的任务的可以完成对数组元素的访问，迭代器接口可以一个接一个地提供的每一个元素。例如：
