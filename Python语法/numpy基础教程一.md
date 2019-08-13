@@ -1487,35 +1487,3 @@ array([ 0,  2,  4,  1,  3,  5,  6,  8, 10,  7,  9, 11])
 >>> a.ravel(order='K')
 array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11])
 
-numpy.where
-    numpy.where(condition[, x, y]): Return elements, either from x or y, depending on condition. If only condition is given, return condition.nonzero(). Parameters:
-condition : array_like, bool. When True, yield x, otherwise yield y.
-x, y : array_like, optional. Values from which to choose. x, y and condition need to be broadcastable to some shape.
-    Returns: out : ndarray or tuple of ndarrays. If both x and y are specified, the output array contains elements of x where condition is True, and elements from y elsewhere. If only condition is given, return the tuple condition.nonzero(), the indices where condition is True.
-    Notes: If x and y are given and input arrays are 1-D, where is equivalent to:
-[xv if c else yv for (c, xv, yv) in zip(condition, x, y)]
-Examples:
->>> np.where([[True, False], [True, True]], [[1, 2], [3, 4]], [[9, 8], [7, 6]])
-array([[1, 8],
-       [3, 4]])
->>> np.where([[0, 1], [1, 0]])
-(array([0, 1]), array([1, 0]))
->>> x = np.arange(9.).reshape(3, 3)
->>> np.where( x > 5 )
-(array([2, 2, 2]), array([0, 1, 2]))
->>> x[np.where( x > 3.0 )]  # Note: result is 1D
-array([ 4.,  5.,  6.,  7.,  8.])
->>> np.where(x < 5, x, -1)  # Note: broadcasting
-array([[ 0.,  1.,  2.],
-       [ 3.,  4., -1.],
-       [-1., -1., -1.]])
-对于第一个例子，条件为[[True, False], [True, False]]，分别对应最后输出结果的四个值。第一个值从[1,9]中选，因为条件为True，所以选1；第二个值从[2,8]中选，因为条件为False，所以选8。Find the indices of elements of x that are in goodvalues.
->>> goodvalues = [3, 4, 7]
->>> ix = np.isin(x, goodvalues)
->>> ix
-array([[False, False, False],
-       [ True,  True, False],
-       [False,  True, False]])
->>> np.where(ix)
-(array([1, 1, 2]), array([0, 1, 1]))
-
