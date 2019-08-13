@@ -995,6 +995,8 @@ print(b)
 ```
 
 执行结果：
+
+``` python
 (5,) (5, 1)
 [1 2 3 4 5]
 [[1]
@@ -1002,39 +1004,62 @@ print(b)
  [3]
  [4]
  [5]]
-可以看出np.newaxis分别是在行或列上增加维度，原来是(5,)的数组，在行上增加维度变成(1,5)的二维数组，在列上增加维度变为(5,1)的二维数组。
+```
 
-numpy.ogrid
-    ogrid用切片作为下标，返回的是一组可用来广播计算的数组。其切片下标有如下形式：
-    1、[开始值:结束值:步长]：
+可以看出`np.newaxis`分别是在行或列上增加维度，原来是`(5,)`的数组，在行上增加维度变成`(1, 5)`的二维数组，在列上增加维度变为`(5, 1)`的二维数组。
+
+### numpy.ogrid
+
+&emsp;&emsp;`ogrid`用切片作为下标，返回的是一组可用来广播计算的数组。其切片下标有如下形式：
+&emsp;&emsp;1. `[开始值:结束值:步长]`：
+
+``` python
 import numpy as np
+
 x, y = np.ogrid[1:4:1, 1:5:2]
 print(x)
 print(y)
+```
+
 执行结果：
+
+``` python
 [[1]
  [2]
  [3]]
 [[1 3]]
-    2、[开始值:结束值:长度j]：
+```
+
+&emsp;&emsp;2. `[开始值:结束值:长度j]`：
+
+``` python
 import numpy as np
+
 x, y = np.ogrid[1:4:3j, 1:5:2j]
 print(x)
 print(y)
+```
+
 执行结果：
+
+``` python
 [[1. ]
  [2.5]
  [4. ]]
 [[1. 5.]]
+```
 
-numpy.mgrid
-    numpy.mgrid: nd_grid instance which returns a dense multi-dimensional "meshgrid".
-    An instance of numpy.lib.index_tricks.nd_grid which returns an dense (or fleshed out) mesh-grid when indexed, so that each returned argument has the same shape. The dimensions and number of the output arrays are equal to the number of indexing dimensions. If the step length is not a complex number, then the stop is not inclusive.
-    However, if the step length is a complex number (e.g. 5j), then the integer part of its magnitude is interpreted as specifying the number of points to create between the start and stop values, where the stop value is inclusive.
-    Returns: mesh-grid ndarrays all of the same dimensions.
-    Examples:
+### numpy.mgrid
+
+&emsp;&emsp;`numpy.mgrid:` `nd_grid` instance which returns a dense multi-dimensional `meshgrid`.
+&emsp;&emsp;An instance of `numpy.lib.index_tricks.nd_grid` which returns an dense (or fleshed out) `mesh-grid` when indexed, so that each returned argument has the same shape. The dimensions and number of the output arrays are equal to the number of indexing dimensions. If the step length is not a `complex` number, then the stop is not inclusive.
+&emsp;&emsp;However, if the step length is a `complex` number (e.g. `5j`), then the integer part of its magnitude is interpreted as specifying the number of points to create between the start and stop values, where the stop value is inclusive.
+&emsp;&emsp;Returns: `mesh-grid` ndarrays all of the same dimensions.
+&emsp;&emsp;Examples:
+
+``` python
 >>> import numpy as np
->>> x,y = np.mgrid[0:5,0:5]
+>>> x, y = np.mgrid[0:5, 0:5]
 >>> x
 array([[0, 0, 0, 0, 0],
        [1, 1, 1, 1, 1],
@@ -1049,18 +1074,31 @@ array([[0, 1, 2, 3, 4],
        [0, 1, 2, 3, 4]])
 >>> np.mgrid[-1:1:5j]
 array([-1. , -0.5,  0. ,  0.5,  1. ])
+```
 
-numpy.expand_dims
-    numpy.expand_dims(a, axis): Expand the shape of an array. Insert a new axis that will appear at the axis position in the expanded array shape.
-    Note: Previous to NumPy 1.13.0, neither axis < -a.ndim - 1 nor axis > a.ndim raised errors or put the new axis where documented. Those axis values are now deprecated and will raise an AxisError in the future. Parameters:
-a: array_like. Input array.
-axis: int. Position in the expanded axes where the new axis is placed.
-    Returns: res: ndarray. Output array. The number of dimensions is one greater than that of the input array.
-    Examples:
->>> x = np.array([1,2])
+### numpy.expand_dims
+
+&emsp;&emsp;`numpy.expand_dims(a, axis)`: Expand the shape of an array. Insert a new axis that will appear at the `axis` position in the expanded array shape.
+&emsp;&emsp;Note: Previous to `NumPy 1.13.0`, neither `axis < -a.ndim - 1` nor `axis > a.ndim` raised errors or put the new axis where documented. Those `axis` values are now deprecated and will raise an `AxisError` in the future. Parameters:
+
+- `a`: `array_like`. Input array.
+- `axis`: `int`. Position in the expanded axes where the new axis is placed.
+
+&emsp;&emsp;Returns:
+
+- `res`: `ndarray`. Output array. The number of dimensions is one greater than that of the input array.
+
+&emsp;&emsp;Examples:
+
+``` python
+>>> x = np.array([1, 2])
 >>> x.shape
 (2,)
-The following is equivalent to x[np.newaxis,:] or x[np.newaxis]:
+```
+
+The following is equivalent to `x[np.newaxis, :]` or `x[np.newaxis]`:
+
+``` python
 >>> y = np.expand_dims(x, axis=0)
 >>> y
 array([[1, 2]])
@@ -1072,9 +1110,14 @@ array([[1],
        [2]])
 >>> y.shape
 (2, 1)
-Note that some examples may use None instead of np.newaxis. These are the same objects:
+```
+
+Note that some examples may use `None` instead of `np.newaxis`. These are the same objects:
+
+``` python
 >>> np.newaxis is None
 True
+```
 
 numpy.array_split
     numpy.array_split(ary, indices_or_sections, axis=0): Split an array into multiple sub-arrays.
