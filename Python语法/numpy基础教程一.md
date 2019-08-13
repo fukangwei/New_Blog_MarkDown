@@ -1428,6 +1428,8 @@ Plot the function over `[-10, 10]`:
 >>> plt.show()
 ```
 
+<img src="./numpy基础教程一/1.png">
+
 Plot the function over the `complex` plane:
 
 ``` python
@@ -1436,18 +1438,30 @@ Plot the function over the `complex` plane:
 >>> plt.show()
 ```
 
-nonzero
-    nonzero(a)返回数组a中值不为零的元素的下标，它的返回值是一个长度为a.ndim(数组a的轴数)的元组，元组的每个元素都是一个整数数组，其值为非零元素的下标在对应轴上的值。例如对于一维布尔数组b1，nonzero(b1)所得到的是一个长度为1的元组，它表示b1[0]和b1[2]的值不为0(False)。
+<img src="./numpy基础教程一/2.png">
+
+### nonzero
+
+&emsp;&emsp;nonzero(a)返回数组a中值不为零的元素的下标，它的返回值是一个长度为a.ndim(数组a的轴数)的元组，元组的每个元素都是一个整数数组，其值为非零元素的下标在对应轴上的值。例如对于一维布尔数组b1，nonzero(b1)所得到的是一个长度为1的元组，它表示b1[0]和b1[2]的值不为0(False)。
+
+``` python
 >>> b1 = np.array([True, False, True, False])
 >>> np.nonzero(b1)
 (array([0, 2], dtype=int64),)
+```
+
 对于二维数组b2，nonzero(b2)所得到的是一个长度为2的元组。它的第0个元素是数组a中值不为0的元素的第0轴的下标，第1个元素则是第1轴的下标，因此从下面的结果可知b2[0,0]、b[0,2]和b2[1,0]的值不为0：
+
+``` python
 >>> b2 = np.array([[True, False, True], [True, False, False]])
 >>> np.nonzero(b2)
 (array([0, 0, 1], dtype=int64), array([0, 2, 0], dtype=int64))
+```
 
-numpy.indices
-    np.indices可以返回由数组索引构建的新数组。例如np.indices(3,2)，其中(3,2)为原来数组的维度，即行和列。返回值首先看输入的参数有几维：(3,2)有2维，所以从输出的结果应该是[[a],[b]]，其中包含两个3行2列数组。然后看每一维的大小，第一维为3，所以a中的值就是0到2(最大索引数)，a中的每一个值就是它的行索引；同样的方法得到b(列索引)，结果就是：
+### numpy.indices
+
+&emsp;&emsp;np.indices可以返回由数组索引构建的新数组。例如np.indices(3,2)，其中(3,2)为原来数组的维度，即行和列。返回值首先看输入的参数有几维：(3,2)有2维，所以从输出的结果应该是[[a],[b]]，其中包含两个3行2列数组。然后看每一维的大小，第一维为3，所以a中的值就是0到2(最大索引数)，a中的每一个值就是它的行索引；同样的方法得到b(列索引)，结果就是：
+
 array([[[0,0],[1,1],[2,2]], [[0,1],[0,1],[0,1]]])
 
 clip函数
