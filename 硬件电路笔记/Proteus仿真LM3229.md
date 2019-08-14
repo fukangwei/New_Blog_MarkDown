@@ -3,10 +3,11 @@ title: Proteus仿真LM3229
 date: 2018-12-04 11:33:04
 categories: 硬件电路笔记
 ---
-&emsp;&emsp;使用Proteus仿真LM3229(液晶驱动器为T6963C)，图片数据是由软件PICtoCODE转化的，其效果如下图所示：
-<img src="./Proteus仿真LM3229/1.png" height="330" width="400">  
+&emsp;&emsp;使用`Proteus`仿真`LM3229`(液晶驱动器为`T6963C`)，图片数据是由软件`PICtoCODE`转化的，其效果如下图：
 
-``` c
+<img src="./Proteus仿真LM3229/1.png" width="50%">
+
+``` cpp
 #include <reg52.h>
 
 #define uchar unsigned char
@@ -369,9 +370,11 @@ void main ( void ) {
 }
 ```
 
-&emsp;&emsp;使用LPC1343来控制LM3229，电路图如下所示：
-<img src="./Proteus仿真LM3229/2.png" height="330" width="400">
-&emsp;&emsp;对上述程式进行如下修改：
+&emsp;&emsp;使用`LPC1343`来控制`LM3229`，电路图如下：
+
+<img src="./Proteus仿真LM3229/2.png" width="50%">
+
+&emsp;&emsp;对上述代码进行如下修改：
 
 ``` c
 #define CD_H GPIOSetValue(1, 5, 1)
