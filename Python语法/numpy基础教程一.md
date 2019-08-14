@@ -9,7 +9,7 @@ tags:
 import numpy as np
 a1 = np.array([1, 2, 3], dtype=int)
 ```
-
+<!--more-->
 &emsp;&emsp;建立一个二维数组，此处和`MATLAB`的二维数组(矩阵)的建立有很大差别：
 
 ``` python
@@ -361,6 +361,13 @@ array([ 0.        ,  1.57079633,  0.78539816])
 ``` python
 norm(x, ord=None, axis=None, keepdims=False)
 ```
+
+参数           | 说明                       | 计算方法
+---------------|---------------------------|--------
+默认           | 二范数：$\zeta_{2}$        | $\sqrt{x_{1}^{2} + x_{2}^{2} + \cdots + x_{n}^{2}}$
+`ord = 2`      | 二范数：$\zeta_{2}$        | 同上
+`ord = 2`      | 一范数：$\zeta_{1}$        | $\left &#124; x_{1} \right &#124; + \left &#124; x_{2} \right &#124; + \cdots + \left &#124; x_{n} \right &#124;$
+`ord = np.inf` | 无穷范数：$\zeta_{\infty}$ | $max(\left &#124; x_{i} \right &#124;)$
 
 这里只对常用设置进行说明，`x`表示要度量的向量，`ord`表示范数的种类：
 
