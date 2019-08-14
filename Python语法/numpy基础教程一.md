@@ -1442,7 +1442,7 @@ Plot the function over the `complex` plane:
 
 ### nonzero
 
-&emsp;&emsp;nonzero(a)返回数组a中值不为零的元素的下标，它的返回值是一个长度为a.ndim(数组a的轴数)的元组，元组的每个元素都是一个整数数组，其值为非零元素的下标在对应轴上的值。例如对于一维布尔数组b1，nonzero(b1)所得到的是一个长度为1的元组，它表示b1[0]和b1[2]的值不为0(False)。
+&emsp;&emsp;`nonzero(a)`返回数组`a`中值不为零的元素的下标，它的返回值是一个长度为`a.ndim`(数组`a`的轴数)的元组，元组的每个元素都是一个整数数组，其值为非零元素的下标在对应轴上的值。例如对于一维布尔数组`b1`，`nonzero(b1)`所得到的是一个长度为1的元组，它表示`b1[0]`和`b1[2]`的值不为`0`(`False`)。
 
 ``` python
 >>> b1 = np.array([True, False, True, False])
@@ -1450,7 +1450,7 @@ Plot the function over the `complex` plane:
 (array([0, 2], dtype=int64),)
 ```
 
-对于二维数组b2，nonzero(b2)所得到的是一个长度为2的元组。它的第0个元素是数组a中值不为0的元素的第0轴的下标，第1个元素则是第1轴的下标，因此从下面的结果可知b2[0,0]、b[0,2]和b2[1,0]的值不为0：
+对于二维数组`b2`，`nonzero(b2)`所得到的是一个长度为`2`的元组。它的第`0`个元素是数组`a`中值不为`0`的元素的第`0`轴的下标，第`1`个元素则是第`1`轴的下标，因此从下面的结果可知`b2[0, 0]`、`b2[0, 2]`和`b2[1, 0]`的值不为`0`：
 
 ``` python
 >>> b2 = np.array([[True, False, True], [True, False, False]])
@@ -1460,30 +1460,53 @@ Plot the function over the `complex` plane:
 
 ### numpy.indices
 
-&emsp;&emsp;np.indices可以返回由数组索引构建的新数组。例如np.indices(3,2)，其中(3,2)为原来数组的维度，即行和列。返回值首先看输入的参数有几维：(3,2)有2维，所以从输出的结果应该是[[a],[b]]，其中包含两个3行2列数组。然后看每一维的大小，第一维为3，所以a中的值就是0到2(最大索引数)，a中的每一个值就是它的行索引；同样的方法得到b(列索引)，结果就是：
+&emsp;&emsp;`np.indices`可以返回由数组索引构建的新数组。例如`np.indices(3, 2)`，其中`(3, 2)`为原来数组的维度，即`行`和`列`。返回值首先看输入的参数有几维：`(3, 2)`有`2`维，所以从输出的结果应该是`[[a], [b]]`，其中包含两个`3`行`2`列数组。然后看每一维的大小，第一维为`3`，所以`a`中的值就是`0`到`2`(最大索引数)，`a`中的每一个值就是它的行索引；同样的方法得到`b`(列索引)，结果就是：
 
-array([[[0,0],[1,1],[2,2]], [[0,1],[0,1],[0,1]]])
+``` python
+array([[[0, 0], [1, 1], [2, 2]], [[0, 1], [0, 1], [0, 1]]])
+```
 
-clip函数
-    函数原型如下所示：
+### clip函数
+
+&emsp;&emsp;函数原型如下：
+
+``` python
 numpy.clip(a, a_min, a_max, out=None)
-clip将数组中的元素限制在a_min和a_max之间，大于a_max的就使得它等于a_max，小于a_min的就使得它等于a_min。
+```
+
+`clip`将数组中的元素限制在`a_min`和`a_max`之间，大于`a_max`的就使得它等于`a_max`，小于`a_min`的就使得它等于`a_min`。
+
+``` python
 >>> import numpy as np
->>> x = np.array([[1,2,3,5,6,7,8,9],[1,2,3,5,6,7,8,9]])
->>> np.clip(x,3,8)
+>>> x = np.array([[1, 2, 3, 5, 6, 7, 8, 9], [1, 2, 3, 5, 6, 7, 8, 9]])
+>>> np.clip(x, 3, 8)
 array([[3, 3, 3, 5, 6, 7, 8, 8],
        [3, 3, 3, 5, 6, 7, 8, 8]])
+```
 
-numpy.ravel
-    numpy.ravel(a, order='C'): Return a contiguous flattened array.
-    A 1-D array, containing the elements of the input, is returned. A copy is made only if needed.
-    As of NumPy 1.10, the returned array will have the same type as the input array. (for example, a masked array will be returned for a masked array input). Parameters:
-a : array_like: Input array. The elements in a are read in the order specified by order, and packed as a 1-D array.
-order : {'C','F','A','K'}, optional. The elements of a are read using this index order. 'C' means to index the elements in row-major, C-style order, with the last axis index changing fastest, back to the first axis index changing slowest. 'F' means to index the elements in column-major, Fortran-style order, with the first index changing fastest, and the last index changing slowest. Note that the 'C' and 'F' options take no account of the memory layout of the underlying array, and only refer to the order of axis indexing. 'A' means to read the elements in Fortran-like index order if a is Fortran contiguous in memory, C-like order otherwise. 'K' means to read the elements in the order they occur in memory, except for reversing the data when strides are negative. By default, 'C' index order is used.
-    Returns: y : array_like. If a is a matrix, y is a 1-D ndarray, otherwise y is an array of the same subtype as a. The shape of the returned array is (a.size,). Matrices are special cased for backward compatibility.
-    Notes: In row-major, C-style order, in two dimensions, the row index varies the slowest, and the column index the quickest. This can be generalized to multiple dimensions, where row-major order implies that the index along the first axis varies slowest, and the index along the last quickest. The opposite holds for column-major, Fortran-style index ordering.
-    When a view is desired in as many cases as possible, arr.reshape(-1) may be preferable. Examples:
-    It is equivalent to reshape(-1, order=order).
+### numpy.ravel
+
+&emsp;&emsp;`numpy.ravel(a, order='C')`: Return a contiguous flattened array.
+&emsp;&emsp;A `1-D` array, containing the elements of the input, is returned. A copy is made only if needed.
+&emsp;&emsp;As of `NumPy 1.10`, the returned array will have the same type as the input array. (for example, a masked array will be returned for a masked array input). Parameters:
+
+- `a`: `array_like`: Input array. The elements in `a` are read in the order specified by `order`, and packed as a `1-D` array.
+- `order`: `{'C', 'F', 'A', 'K'}`, optional. The elements of `a` are read using this index `order`.
+
+1. `C` means to index the elements in `row-major`, `C-style` order, with the last axis index changing fastest, back to the first axis index changing slowest.
+2. `F` means to index the elements in `column-major`, `Fortran-style` order, with the first index changing fastest, and the last index changing slowest. Note that the `C` and `F` options take no account of the memory layout of the underlying array, and only refer to the order of axis indexing.
+3. `A` means to read the elements in `Fortran-like` index order if `a` is `Fortran` contiguous in memory, `C-like` order otherwise.
+4. `K` means to read the elements in the order they occur in memory, except for reversing the data when strides are negative.
+
+&emsp;&emsp;Returns:
+
+- `y`: `array_like`. If `a` is a matrix, `y` is a `1-D` ndarray, otherwise `y` is an array of the same subtype as `a`. The shape of the returned array is `(a.size,)`. Matrices are special cased for backward compatibility.
+
+&emsp;&emsp;Notes: In `row-major`, `C-style` order, in two dimensions, the row index varies the slowest, and the column index the quickest. This can be generalized to multiple dimensions, where `row-major` order implies that the index along the first axis varies slowest, and the index along the last quickest. The opposite holds for `column-major`, `Fortran-style` index ordering.
+&emsp;&emsp;When a view is desired in as many cases as possible, `arr.reshape(-1)` may be preferable. Examples:
+&emsp;&emsp;It is equivalent to `reshape(-1, order=order)`.
+
+``` python
 >>> x = np.array([[1, 2, 3], [4, 5, 6]])
 >>> print(np.ravel(x))
 [1 2 3 4 5 6]
@@ -1491,19 +1514,27 @@ order : {'C','F','A','K'}, optional. The elements of a are read using this index
 [1 2 3 4 5 6]
 >>> print(np.ravel(x, order='F'))
 [1 4 2 5 3 6]
-    When order is 'A', it will preserve the array's 'C' or 'F' ordering:
+```
+
+&emsp;&emsp;When `order` is `A`, it will preserve the array's `C` or `F` ordering:
+
+``` python
 >>> print(np.ravel(x.T))
 [1 4 2 5 3 6]
 >>> print(np.ravel(x.T, order='A'))
 [1 2 3 4 5 6]
-    When order is 'K', it will preserve orderings that are neither 'C' nor 'F', but won't reverse axes:
+```
+
+&emsp;&emsp;When `order` is `K`, it will preserve orderings that are neither `C` nor `F`, but won't reverse axes:
+
+``` python
 >>> a = np.arange(3)[::-1]; a
 array([2, 1, 0])
 >>> a.ravel(order='C')
 array([2, 1, 0])
 >>> a.ravel(order='K')
 array([2, 1, 0])
->>> a = np.arange(12).reshape(2,3,2).swapaxes(1,2); a
+>>> a = np.arange(12).reshape(2, 3, 2).swapaxes(1, 2); a
 array([[[ 0,  2,  4],
         [ 1,  3,  5]],
        [[ 6,  8, 10],
@@ -1512,4 +1543,4 @@ array([[[ 0,  2,  4],
 array([ 0,  2,  4,  1,  3,  5,  6,  8, 10,  7,  9, 11])
 >>> a.ravel(order='K')
 array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11])
-
+```
