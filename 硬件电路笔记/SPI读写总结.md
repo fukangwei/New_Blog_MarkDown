@@ -3,21 +3,23 @@ title: SPI读写总结
 date: 2018-12-03 17:07:32
 categories: 硬件电路笔记
 ---
-&emsp;&emsp;本博客主要来源于[SPI读写总结](https://blog.csdn.net/dzlyxzy/article/details/70140306)，内容经过测试和修改，感谢原作者。
-&emsp;&emsp;SPI(Serial Peripheral interface，串行外围设备接口)协议是主从模式，即从机不主动发起访问，总是被动执行操作。其接口如下所示：
+&emsp;&emsp;`SPI`(`Serial Peripheral interface`，串行外围设备接口)协议是主从模式，即从机不主动发起访问，总是被动执行操作。其接口如下：
 
-- CSN：片选信号。
-- SCK：时钟信号。
-- MOSI(master output slave input)：主机输出从机输入，可以理解主机写从设备。
-- MISO(master input slave output)：主机输入从机输出，可以理解主机读从设备。
+- `CSN`：片选信号。
+- `SCK`：时钟信号。
+- `MOSI`(`master output slave input`)：主机输出从机输入，可以理解主机写从设备。
+- `MISO`(`master input slave output`)：主机输入从机输出，可以理解主机读从设备。
 
-&emsp;&emsp;SPI协议自然是串行地传输数据，每次按1bit读写设备，而不是并行每次1byte(8bit)传输。下图为SPI读时序和写时序：
+&emsp;&emsp;`SPI`协议自然是串行地传输数据，每次按`1bit`读写设备，而不是并行每次`1byte`(`8bit`)传输。下图为`SPI`读时序和写时序：
+
 <img src="./SPI读写总结/1.jpg" height="350" width="700">
-&emsp;&emsp;按照读写时序，输出字节(MOSI)就会从MSB循环输出，同将输入字节(MISO)从LSB循环移入，每次移动一位。
-&emsp;&emsp;单字节读时序代码如下所示：
 
-``` c
-uint8 SPI_Read_OneByte ( void ) { /* 下降沿读数据，每次读取1bit */
+&emsp;&emsp;按照读写时序，输出字节(`MOSI`)就会从`MSB`循环输出，同将输入字节(`MISO`)从`LSB`循环移入，每次移动一位。
+&emsp;&emsp;单字节读时序代码如下：
+
+``` cpp
+/* 下降沿读数据，每次读取1bit */
+uint8 SPI_Read_OneByte ( void ) {
     uint8 i;
     uint8 temp = 0;
 
@@ -25,22 +27,24 @@ uint8 SPI_Read_OneByte ( void ) { /* 下降沿读数据，每次读取1bit */
         temp <<= 1;
         SCK = 1;
 
-        if ( MISO ) { /* 读取最高位，保存至最末尾，通过左移位完成读整个字节 */
+        /* 读取最高位，保存至最末尾，通过左移位完成读整个字节 */
+        if ( MISO ) {
             temp |= 0x01;
         } else {
             temp &= ~0x01;
         }
 
-        SCK = 0; /* 下降沿来了(SCK从1至0)，MISO上的数据将发生改变，稳定后读取存入temp */
+        /* 下降沿来了(SCK从1至0)，MISO上的数据将发生改变，稳定后读取存入temp */
+        SCK = 0;
     }
 
     return temp; /* SPI读取的一字节数据 */
 }
 ```
 
-&emsp;&emsp;单字节写时序代码如下所示：
+&emsp;&emsp;单字节写时序代码如下：
 
-``` c
+``` cpp
 /* 参数u8_writedata是SPI写入的一字节数据。上升沿写数据，每次写入1bit */
 void SPI_Write_OneByte ( uint8 u8_writedata ) {
     uint8 i;
@@ -59,9 +63,9 @@ void SPI_Write_OneByte ( uint8 u8_writedata ) {
 }
 ```
 
-在此基础上可以写出nRF24L01寄存器的读写函数。nRF24L01寄存器写入函数如下所示：
+在此基础上可以写出`nRF24L01`寄存器的读写函数。`nRF24L01`寄存器写入函数如下：
 
-``` c
+``` cpp
 void nRF24L01_WriteReg ( uint8 addr, uint8 value ) {
     CSN_OFF(); /* CS片选拉低 */
     SPI_Write_OneByte ( addr | WR ); /* SPI写地址命令 */
@@ -70,9 +74,9 @@ void nRF24L01_WriteReg ( uint8 addr, uint8 value ) {
 }
 ```
 
-nRF24L01读寄存器函数如下所示：
+`nRF24L01`读寄存器函数如下：
 
-``` c
+``` cpp
 uint8 nRF24L01_ReadReg ( uint8 addr ) {
     uint8 value;
     CSN_OFF(); /* CS片选拉低 */
@@ -85,7 +89,7 @@ uint8 nRF24L01_ReadReg ( uint8 addr ) {
 
 可以将读写程序进行整合：
 
-``` c
+``` cpp
 /* 参数u8_writedata是SPI写入的一字节数据。上升沿写，下降沿读 */
 uint8 SPI_WriteAndRead_OneByte ( uint8 u8_writedata ) {
     uint8 i;
@@ -118,9 +122,9 @@ uint8 SPI_WriteAndRead_OneByte ( uint8 u8_writedata ) {
 
 ---
 
-&emsp;&emsp;STM32模拟SPI时序的代码如下所示：
+&emsp;&emsp;`STM32`模拟`SPI`时序的代码如下：
 
-``` c
+``` cpp
 #define MOSI_H GPIO_SetBits ( GPIOA, GPIO_Pin_7 )
 #define MOSI_L GPIO_ResetBits ( GPIOA, GPIO_Pin_7 )
 #define SCLK_H GPIO_SetBits ( GPIOA, GPIO_Pin_5 )
