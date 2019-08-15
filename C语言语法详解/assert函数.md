@@ -3,17 +3,16 @@ title: assert函数
 date: 2018-12-10 19:23:24
 categories: C语言语法详解
 ---
-&emsp;&emsp;该博客主要来源于[assert用法](https://blog.csdn.net/zhangxxxww/article/details/17491393)，内容经过测试和修改，感谢原作者。
-&emsp;&emsp;assert宏的原型如下所示：
+&emsp;&emsp;`assert`宏的原型如下：
 
 ``` c
 #include <assert.h>
 void assert ( int expression );
 ```
 
-assert的作用是现计算表达式expression，如果其值为假(即为0)，那么它先向stderr打印一条出错信息，然后通过调用abort来终止程序运行。
+`assert`的作用是现计算表达式`expression`，如果其值为`假`(即为`0`)，那么它先向`stderr`打印一条出错信息，然后通过调用`abort`来终止程序运行。
 
-``` c
+``` cpp
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
@@ -32,9 +31,9 @@ int main ( void ) {
 }
 ```
 
-&emsp;&emsp;频繁地调用assert会极大地影响程序的性能，增加额外的开销。在调试结束后，可以通过在包含`#include <assert.h>`的语句之前插入`#define NDEBUG`来禁用assert调用，示例代码如下：
+&emsp;&emsp;频繁地调用`assert`会极大地影响程序的性能，增加额外的开销。在调试结束后，可以通过在包含`#include <assert.h>`的语句之前插入`#define NDEBUG`来禁用`assert`调用，示例代码如下：
 
-``` c
+``` cpp
 #include <stdio.h>
 #define NDEBUG
 #include <assert.h>
@@ -44,7 +43,7 @@ int main ( void ) {
 
 - 在函数开始处检验传入参数的合法性：
 
-``` c
+``` cpp
 int resetBufferSize ( int nNewSize ) {
     assert ( nNewSize >= 0 );
     assert ( nNewSize <= MAX_BUFFER_SIZE );
@@ -52,31 +51,31 @@ int resetBufferSize ( int nNewSize ) {
 }
 ```
 
-- 每个assert只检验一个条件，因为当同时检验多个条件时，如果断言失败，无法直观的判断是哪个条件失败。不合适的用法：
+- 每个`assert`只检验一个条件，因为当同时检验多个条件时，如果断言失败，无法直观的判断是哪个条件失败。不合适的用法：
 
-``` c
+``` cpp
 assert ( nOffset >= 0 && nOffset + nSize <= m_nInfomationSize );
 ```
 
 合适的用法：
 
-``` c
+``` cpp
 assert ( nOffset >= 0 );
 assert ( nOffset + nSize <= m_nInfomationSize );
 ```
 
-- 不能使用改变环境的语句，因为assert只在DEBUG中生效。如果这么做，会使程序在真正运行时遇到问题，如下所示：
+- 不能使用改变环境的语句，因为`assert`只在`DEBUG`中生效。如果这么做，会使程序在真正运行时遇到问题：
 
-``` c
+``` cpp
 assert ( i++ < 100 );
 ```
 
-这是因为如果出错，比如在执行之前`i = 100`，那么这条语句就不会执行，`i++`这条命令就没有执行。正确的用法如下所示：
+这是因为如果出错，比如在执行之前`i = 100`，那么这条语句就不会执行，`i++`这条命令就没有执行。正确的用法如下：
 
 ``` c
 assert ( i < 100 );
 i++;
 ```
 
-- assert和后面的语句应空一行，以形成逻辑和视觉上的一致感。
-- 在有些地方assert不能代替条件过滤。
+- `assert`和后面的语句应空一行，以形成逻辑和视觉上的一致感。
+- 在有些地方`assert`不能代替条件过滤。
