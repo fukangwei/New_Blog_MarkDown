@@ -77,4 +77,4 @@ char* buf;
 asprintf ( &buf, "%d = %s", 42, "forty-two" ); /* 现在的buf指向含有格式串的malloc的内存 */
 ```
 
-&emsp;&emsp;**补充说明**：在Linux系统下，sprintf_s可以用snprintf替代。
+&emsp;&emsp;**补充说明**：在`Linux`系统下，`sprintf_s`可以用`snprintf`替代。
