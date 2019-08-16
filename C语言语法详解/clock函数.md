@@ -3,14 +3,13 @@ title: clock函数
 date: 2018-12-13 08:25:29
 categories: C语言语法详解
 ---
-&emsp;&emsp;该博客主要来源于[C语言中有没有用于计时的函数？怎么用？](https://zhidao.baidu.com/question/745245942534889812.html)，内容经过测试和修改，感谢原作者。
-&emsp;&emsp;clock是C和C++中的计时函数，而与其相关的数据类型是`clock_t`。在MSDN中，clock函数定义为：
+&emsp;&emsp;`clock`是`C/C++`中的计时函数，而与其相关的数据类型是`clock_t`。在`MSDN`中，`clock`函数定义为：
 
-``` c
+``` cpp
 clock_t clock ( void );
 ```
 
-该函数返回从`开启这个程序进程`到`程序中调用clock函数`时之间的CPU时钟计时单元`clock tick`数，在MSDN中称之为挂钟时间`wal-clock`；若挂钟时间不可取，则返回`-1`。其中，`clock_t`是用来保存时间的数据类型。
+该函数返回从`开启这个程序进程`到`程序中调用clock函数`时之间的`CPU`时钟计时单元`clock tick`数，在`MSDN`中称之为挂钟时间`wal-clock`；若挂钟时间不可取，则返回`-1`。其中，`clock_t`是用来保存时间的数据类型。
 
 ### clock_t定义
 
@@ -29,18 +28,18 @@ typedef long clock_t;
 #define CLOCKS_PER_SEC ( ( clock_t ) 1000 )
 ```
 
-在Linux系统下，`CLOCKS_PER_SEC`的值可能有所不同，目前Linux打印出来的值是1000000，表示的是微秒。
-&emsp;&emsp;可以看到，每过千分之一秒(1毫秒)，调用clock函数返回的值就加1。你可以使用公式`clock()/CLOCKS_PER_SEC`来计算一个进程自身的运行时间：
+在`Linux`系统下，`CLOCKS_PER_SEC`的值可能有所不同，目前`Linux`打印出来的值是`1000000`，表示的是微秒。
+&emsp;&emsp;可以看到，每过千分之一秒(`1`毫秒)，调用`clock`函数返回的值就加`1`。你可以使用公式`clock()/CLOCKS_PER_SEC`来计算一个进程自身的运行时间：
 
-``` c
+``` cpp
 void elapsed_time ( void ) {
     printf ( "Elapsed time:%u secs.\n", clock() / CLOCKS_PER_SEC );
 }
 ```
 
-当然，你也可以用clock函数来计算机器运行一个循环或者处理其它事件到底花了多少时间：
+当然，你也可以用`clock`函数来计算机器运行一个循环或者处理其它事件到底花了多少时间：
 
-``` c
+``` cpp
 #include "stdio.h"
 #include "stdlib.h"
 #include "time.h"
@@ -67,9 +66,9 @@ int main ( void ) {
 
 ### 宏CLOCKS_PER_SEC
 
-&emsp;&emsp;宏`CLOCKS_PER_SEC`适用于将计算系统时间类型转换为用户可读的秒时间，包含于头文件`ctime`(或`time.h`)中。在很久以前，人们就用for来进行延时，但是计算机处理速度越来越快，for循环已经无法实现精确延时，此时使用clock函数就可以实现这个功能：
+&emsp;&emsp;宏`CLOCKS_PER_SEC`适用于将计算系统时间类型转换为用户可读的秒时间，包含于头文件`ctime`(或`time.h`)中。在很久以前，人们就用`for`来进行延时，但是计算机处理速度越来越快，`for`循环已经无法实现精确延时，此时使用`clock`函数就可以实现这个功能：
 
-``` c
+``` cpp
 #include <iostream>
 #include <ctime> /* or time.h */​
 
