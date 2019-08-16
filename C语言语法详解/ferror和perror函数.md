@@ -3,20 +3,18 @@ title: ferror和perror函数
 date: 2018-12-13 11:30:24
 categories: C语言语法详解
 ---
-&emsp;&emsp;该博客主要来源于[ferror](https://baike.baidu.com/item/ferror)，内容经过测试和修改，感谢原作者。
-
 ### ferror函数
 
-&emsp;&emsp;ferror的函数原型为：
+&emsp;&emsp;`ferror`函数原型如下：
 
-``` c
+``` cpp
 int ferror ( FILE* fp );
 ```
 
-其功能是测试文件是否出现错误。返回值为未出错是0，出错为非0值。
-&emsp;&emsp;在调用各种输入输出函数(例如putc、getc、fread和fwrite等)时，如果出现错误，除了函数返回值有所反映外，还可以用ferror函数检查。对同一个文件(文件指针或文件描述符)，每一次调用输入输出函数，均产生一个新的ferror函数值，因此应当在调用输入输出函数后立即检查ferror函数的值，否则信息会丢失。fopen打开文件时，ferror函数处置自动置为0。
+其功能是测试文件是否出现错误。返回值为未出错是`0`，出错为`非0值`。
+&emsp;&emsp;在调用各种输入输出函数(例如`putc`、`getc`、`fread`和`fwrite`等)时，如果出现错误，除了函数返回值有所反映外，还可以用`ferror`函数检查。对同一个文件(文件指针或文件描述符)，每一次调用输入输出函数，均产生一个新的`ferror`函数值，因此应当在调用输入输出函数后立即检查`ferror`函数的值，否则信息会丢失。`fopen`打开文件时，`ferror`函数处置自动置为`0`。
 
-``` c
+``` cpp
 #include <stdio.h>
 #include <stdlib.h>
 ​
@@ -49,15 +47,15 @@ int main ( void ) {
 
 ### perror函数
 
-&emsp;&emsp;perror的函数原型为：
+&emsp;&emsp;`perror`函数原型如下：
 
-``` c
+``` cpp
 void perror ( const char* s );
 ```
 
-perror用来将上一个函数发生错误的原因输出到标准设备(stderr)。参数s所指的字符串会先打印出，后面再加上错误原因字符串。此错误原因依照全局变量error的值来决定要输出的字符串。在库函数中有个error变量，每个error值对应着以字符串表示的错误类型。当你调用某些函数出错时，该函数已经重新设置了error的值。perror函数只是将你输入的一些信息和现在的error所对应的错误一起输出。
+`perror`用来将上一个函数发生错误的原因输出到标准设备(`stderr`)。参数`s`所指的字符串会先打印出，后面再加上错误原因字符串。此错误原因依照全局变量`error`的值来决定要输出的字符串。在库函数中有个`error`变量，每个`error`值对应着以字符串表示的错误类型。当你调用某些函数出错时，该函数已经重新设置了`error`的值。`perror`函数只是将你输入的一些信息和现在的`error`所对应的错误一起输出。
 
-``` c
+``` cpp
 #include <stdio.h>
 ​
 int main ( void ) {
