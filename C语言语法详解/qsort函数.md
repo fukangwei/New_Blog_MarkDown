@@ -3,15 +3,14 @@ title: qsort函数
 date: 2018-12-12 18:38:58
 categories: C语言语法详解
 ---
-&emsp;&emsp;该博客主要来源于[qsort](https://baike.baidu.com/item/qsort)，内容经过测试和修改，感谢原作者。
-&emsp;&emsp;qsort函数是编译器函数库自带的快速排序函数，其函数原型为：
+&emsp;&emsp;`qsort`函数是编译器函数库自带的快速排序函数：
 
 ``` c
 #include <stdlib.h>
 void qsort ( void* base, int num, int width, int ( *fcmp ) ( const void*, const void* ) );
 ```
 
-base是待排序数组首地址，num是数组中待排序元素数量，width是各元素的占用空间大小，fcmp是指向函数的指针，用于确定排序的顺序。
+`base`是待排序数组首地址，`num`是数组中待排序元素数量，`width`是各元素的占用空间大小，`fcmp`是指向函数的指针，用于确定排序的顺序。
 
 ``` bash
 MSDN: The qsort function implements a quick-sort algorithm to sort an array of num elements, each of width bytes.
@@ -20,27 +19,27 @@ The argument compare is a pointer to a user-supplied routine that compares two a
 relationship. qsort calls the compare routine one or more times during the sort, passing pointers to two array elements on each call.
 ```
 
-&emsp;&emsp;fcmp函数的原型为`fcmp ( ( void * ) &elem1, ( void * ) &elem2 );`，具体描述为：
+&emsp;&emsp;`fcmp`函数的原型为`fcmp ( ( void * ) &elem1, ( void * ) &elem2 );`，具体描述如下：
 
-fcmp函数的返回值 | 描述
-----------------|------
-< 0             | elem1将被排在elem2前面
-= 0             | elem1等于elem2
-> 0             | elem1将被排在elem2后面
+`fcmp`函数的返回值 | 描述
+------------------|------
+`< 0`             | `elem1`将被排在`elem2`前面
+`= 0`             | `elem1`等于`elem2`
+`> 0`             | `elem1`将被排在`elem2`后面
 
-&emsp;&emsp;例如对于一个长为1000的数组(例如`int a[1000];`)进行排序，那么base为`a`，num为1000，width为`sizeof(int)`，fcmp是自己定义的函数，即`qsort ( a, 1000, sizeof ( int ), comp );`。其中，comp函数为：
+&emsp;&emsp;例如对于一个长为`1000`的数组(例如`int a[1000];`)进行排序，那么`base`为`a`，`num`为`1000`，`width`为`sizeof(int)`，`fcmp`是自己定义的函数，即`qsort ( a, 1000, sizeof ( int ), comp );`。其中，`comp`函数为：
 
-``` c
+``` cpp
 int comp ( const void* a, const void* b ) {
-    return * ( int* ) a - * ( int* ) b;   /* 由小到大排序 */
+    return * ( int* ) a - * ( int* ) b; /* 由小到大排序 */
     // return * ( int * ) b - * ( int * ) a; /* 为由大到小排序 */
 }
 ```
 
 参数列表是两个空指针，现在它要去指向你的数组元素，所以要转型为你当前的类型，然后取值。升序排列时，若第一个参数指针指向的`值`大于第二个参数指针指向的`值`，则返回正；若第一个参数指针指向的`值`等于第二个参数指针指向的`值`，则返回零；若第一个参数指针指向的`值`小于第二个参数指针指向的`值`，则返回负。降序排列时，则刚好相反。
-&emsp;&emsp;对一维数组的排序示例(从小到大排序)如下所示：
+&emsp;&emsp;对一维数组的排序示例(从小到大排序)如下：
 
-``` c
+``` cpp
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -74,7 +73,7 @@ int main ( void ) {
 
 &emsp;&emsp;按结构体中某个关键字排序(对结构体一级排序)：
 
-``` c
+``` cpp
 struct In {
     double data;
     int other;
@@ -94,7 +93,7 @@ qsort ( s, 100, sizeof ( s[0] ), cmp );
 
 &emsp;&emsp;按结构体中多个关键字排序(对结构体多级排序)，以二级为例：
 
-``` c
+``` cpp
 struct In {
     int x; /* 你可以理解为失败次数 */
     int y; /* 你可以比喻成成功次数 */
@@ -118,7 +117,7 @@ qsort ( s, 100, sizeof ( s[0] ), cmp );
 
 &emsp;&emsp;对结构体中的字符串进行排序：
 
-``` c
+``` cpp
 struct In {
     int data;
     char str[100];
@@ -132,9 +131,9 @@ int cmp ( const void* a, const void* b ) {
 qsort ( s, 100, sizeof ( s[0] ), cmp );
 ```
 
-&emsp;&emsp;qsort对其他类型的数组进行排序：
+&emsp;&emsp;`qsort`对其他类型的数组进行排序：
 
-``` c
+``` cpp
 /* 对char类型数组排序 */
 char word[100];
 
@@ -157,8 +156,9 @@ qsort ( in, 100, sizeof ( in[0] ), cmp );
 
 &emsp;&emsp;对字符串数组的排序：
 
-``` c
-/* 对于“char s[][]”型 */
+- 对于`char s[][]`型：
+
+``` cpp
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -185,8 +185,11 @@ int main() {
 
     return ( 0 );
 }
-/*-------------------------------------------------*/
-/* 对于“char *s[]”型 */
+```
+
+- 对于`char *s[]`型：
+
+``` cpp
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -220,9 +223,9 @@ int main() {
 }
 ```
 
-&emsp;&emsp;对一个二维数组进行排序：例如`int a[1000][2];`，按照`a[0]`的大小进行一个整体的排序，其中`a[1]`必须和`a[0]`一起移动交换，即第一行和第二行(`a[0]`和`a[1]`分别代表第一行和第二行的首地址)。使用库函数排序的代码量并不比用冒泡排序法少，但速度却快很多。
+&emsp;&emsp;对一个二维数组进行排序：例如`int a[1000][2];`，按照`a[0]`的大小进行一个整体的排序，其中`a[1]`必须和`a[0]`一起移动交换，即第一行和第二行(`a[0]`和`a[1]`分别代表第一行和第二行的首地址)。使用库函数排序的代码量并不比用冒泡排序法少，但速度却快很多：
 
-``` c
+``` cpp
 qsort ( a, 1000, sizeof ( int ) * 2, comp );
 
 int comp ( const void* a, const void* b ) {
