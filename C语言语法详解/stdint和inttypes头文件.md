@@ -289,28 +289,27 @@ typedef unsigned long long int uintmax_t;
 
 ### 扩展整数类型stdint.h和inttypes.h
 
-&emsp;&emsp;C语言的基本精神是让实现选择标准类型的长度，但是这种指导思想使可移植代码难以编写。C99中引入了`stdint.h`和`inttypes.h`，对整数类型的定义和格式转换进行了规范。这种扩展整数类型的定义非常清晰，从类型名字上就可以看出它的长度，这有利于编写可移植的代码。`stint.h`对整数类型进行定义，`inttypes.h`包含了`stdint.h`，并增加了可移植的格式控制串和转换函数。
-&emsp;&emsp;`stdint.h`定义标准的扩展整数类型，包括准确长度类型`intN_t`、最小长度类型`int_leastN_t`、快速长度类型`int_fastN_t`、指针长度类型`intptr_t`、最大长度类型`intmax_t`(N为类型宽度)。定义规则如下所示：
+&emsp;&emsp;`C`语言的基本精神是让实现选择标准类型的长度，但是这种指导思想使可移植代码难以编写。`C99`中引入了`stdint.h`和`inttypes.h`，对整数类型的定义和格式转换进行了规范。这种扩展整数类型的定义非常清晰，从类型名字上就可以看出它的长度，这有利于编写可移植的代码。`stint.h`对整数类型进行定义，`inttypes.h`包含了`stdint.h`，并增加了可移植的格式控制串和转换函数。
+&emsp;&emsp;`stdint.h`定义标准的扩展整数类型，包括准确长度类型`intN_t`、最小长度类型`int_leastN_t`、快速长度类型`int_fastN_t`、指针长度类型`intptr_t`、最大长度类型`intmax_t`(`N`为类型宽度)。定义规则如下：
 
-- 类型的长度用宽度N参数化，如`intN_t`，N常常为8、16、32和64。
+- 类型的长度用宽度`N`参数化，如`intN_t`，`N`常常为`8`、`16`、`32`和`64`。
 - 若要定义某种类型，则该类型的带符号和无符号类型、类型长度都要定义。如果定义`int32_t`，则有`uint32_t`类型。
 - 要用`...MIN`和`...MAX`宏定义类型的范围。如`INT32_MIN`、`INT32_MAX`和`UINT32_MAX`。
-- 在`inttypes.h`要用`PRIcKN`和`SCNcKN`定义打印该类型的printf和scanf格式控制字符串。c表示转换操作符，有d、i、o、u、x或X；K表示种类，为空或者LEAST、FAST、PTR或MAX；N是该类型的宽度。
+- 在`inttypes.h`要用`PRIcKN`和`SCNcKN`定义打印该类型的`printf`和`scanf`格式控制字符串。`c`表示转换操作符，有`d`、`i`、`o`、`u`、`x`或`X`；`K`表示种类，为`空`或者`LEAST`、`FAST`、`PTR`或`MAX`；`N`是该类型的宽度。
 
-&emsp;&emsp;具体解释如下所示：
+&emsp;&emsp;具体解释如下：
 
 - 准确长度类型：具有准确长度，没有填充位，在`stdint.h`是可选的。类型`intN_t`、`uintN_t`，范围`INTN_MIN`、`INTN_MAX`、`UINTN_MAX`，`inttypes.h`中的控制字符串`PRIcN`、`SCNcN`。
-- 最小长度类型：具有指定长度的最小类型，至少要对`N = 8、16、32、64`定义这些类型。宏`INTN_C`(constant)、`UINTN_C`(constant)用于把传进来的常数扩展成相应类型的常量(即在后面加常量修饰符，如`U`、`L`、`LL`和`ULL`)。
-
-- 快速长度类型：具有指定最小长度的最快类型(总是当前计算机CPU最佳操作的整型类型)。至少要对`N = 8、16、32、64`定义这些类型。
+- 最小长度类型：具有指定长度的最小类型，至少要对`N = 8、16、32、64`定义这些类型。宏`INTN_C`(`constant`)、`UINTN_C`(`constant`)用于把传进来的常数扩展成相应类型的常量(即在后面加常量修饰符，如`U`、`L`、`LL`和`ULL`)。
+- 快速长度类型：具有指定最小长度的最快类型(总是当前计算机`CPU`最佳操作的整型类型)。至少要对`N = 8、16、32、64`定义这些类型。
 - 指针长度类型：`intptr_t`、`uintptr_t`分别是带符号和无符号整数类型，可以放置任何对象指针。范围是`INTPTR_MIN`、`INTPTR_MAX`、`UINTPTR_MAX`。
-- 最大长度类型：`intmax_t`、`uintmax_t`分别是最大带符号和无符号整数类型，所有C语言实现都要定义。宏`INTMAX_C`、`UINTMAX_C`用于把传进来的常数扩展成相应类型的常量。
+- 最大长度类型：`intmax_t`、`uintmax_t`分别是最大带符号和无符号整数类型，所有`C`语言实现都要定义。宏`INTMAX_C`、`UINTMAX_C`用于把传进来的常数扩展成相应类型的常量。
 
-&emsp;&emsp;GNU实现中，各种扩展整数类型与我们通常使用的整数类型长度一致，即8位使用char类型，16位使用sort类型，32位使用int类型，64位在64位平台使用long类型，在32位平台上使用`long long`类型，注意32平台上的long一般和int一样大。只有快速类型有点区别，在32位平台上，16位和32位快速类型均使用int(这样才能快速地按字寻址)，64位快速类型使用`long long`；在64位平台上，16位、32位和64位快速类型均使用long。最大类型与字长度一致，指针类型也与字长度一致。
-&emsp;&emsp;`ptrdiff_t`、`size_t`、`wchar_t`、`wint_t`与`sig_atomic_t`类型的范围也在`stdint.h`中定义，有`PTRDIFF_MIN/PTRDIFF_MAX`、`SIZE_MAX`、`WCHAR_MIN/WCHAR_MAX`、`WINT_MIN/WINT_MAX`、`SIG_ATOMIC_MIN/SIG_ATOMIC_MAX`。在32位平台的GNU实现中，`ptrdiff_t`一般为int类型(在64位平台上则为long类型)，`size_t`为`unsigned int`类型(在64位平台上则为`unsigned long`类型)，`wchar_t`一般为int类型，`wint_t`一般为`unsigned int`类型，`sig_atomic_t`通常为int类型。
-&emsp;&emsp;`inttypes.h`定义扩展整数类型的printf和scanf格式控制字符串，用于实现可移植的格式化输出或输入。还定义了一些与`stdlib.h`中对应的基本算术函数和转换函数。imaxabs和imaxdiv函数类似于`stdlib.h`中的abs和div函数，`imaxabs(x)`返回最大类型整数x的绝对值，`imaxdiv(n, d)`计算最大类型整数的除法`n/d`，得出的商和余数分别放在`imaxdiv_t`结构的quot和rem成员中。strtoimax和strtoumax函数将字符串转换成最大类型的整数，与`stdlib.h`中的strtol和strtoul类似。wcstoimax和wcstoumax函数将宽字符串转换成最大类型的整数，与`wchar.h`中的wcstol和wcstoul类似。代码如下所示：
+&emsp;&emsp;`GNU`实现中，各种扩展整数类型与我们通常使用的整数类型长度一致，即`8`位使用`char`类型，`16`位使用`sort`类型，`32`位使用`int`类型，`64`位在`64`位平台使用`long`类型，在`32`位平台上使用`long long`类型，注意`32`平台上的`long`一般和`int`一样大。只有快速类型有点区别，在`32`位平台上，`16`位和`32`位快速类型均使用`int`(这样才能快速地按字寻址)，`64`位快速类型使用`long long`；在`64`位平台上，`16`位、`32`位和`64`位快速类型均使用`long`。最大类型与字长度一致，指针类型也与字长度一致。
+&emsp;&emsp;`ptrdiff_t`、`size_t`、`wchar_t`、`wint_t`与`sig_atomic_t`类型的范围也在`stdint.h`中定义，有`PTRDIFF_MIN/PTRDIFF_MAX`、`SIZE_MAX`、`WCHAR_MIN/WCHAR_MAX`、`WINT_MIN/WINT_MAX`、`SIG_ATOMIC_MIN/SIG_ATOMIC_MAX`。在`32`位平台的`GNU`实现中，`ptrdiff_t`一般为`int`类型(在`64`位平台上则为`long`类型)，`size_t`为`unsigned int`类型(在`64`位平台上则为`unsigned long`类型)，`wchar_t`一般为`int`类型，`wint_t`一般为`unsigned int`类型，`sig_atomic_t`通常为`int`类型。
+&emsp;&emsp;`inttypes.h`定义扩展整数类型的`printf`和`scanf`格式控制字符串，用于实现可移植的格式化输出或输入。还定义了一些与`stdlib.h`中对应的基本算术函数和转换函数。`imaxabs`和`imaxdiv`函数类似于`stdlib.h`中的`abs`和`div`函数，`imaxabs(x)`返回最大类型整数`x`的绝对值，`imaxdiv(n, d)`计算最大类型整数的除法`n/d`，得出的商和余数分别放在`imaxdiv_t`结构的`quot`和`rem`成员中。`strtoimax`和`strtoumax`函数将字符串转换成最大类型的整数，与`stdlib.h`中的`strtol`和`strtoul`类似。`wcstoimax`和`wcstoumax`函数将宽字符串转换成最大类型的整数，与`wchar.h`中的`wcstol`和`wcstoul`类似。
 
-``` c
+``` cpp
 /* ISO C99: 7.8 整数类型的格式转换<inttypes.h> */
 #ifndef _INTTYPES_H
 #define _INTTYPES_H 1
@@ -548,10 +547,10 @@ __END_DECLS
 #endif /* inttypes.h */
 ```
 
-&emsp;&emsp;注意，对于`inttypes.h`和`stdlib.h`中的绝对值函数和除法运算函数很容易实现，编译器通常把它们当作内部函数(标准C中允许这样做)，因此在glibc中并没有这些函数的源代码。
-&emsp;&emsp;strtoimax和strtoumax函数将字符串转换成`intmax_t`类型的整数，一个为有符号，一个为无符号，其实现都是调用内部函数来完成的，如下所示：
+&emsp;&emsp;注意，对于`inttypes.h`和`stdlib.h`中的绝对值函数和除法运算函数很容易实现，编译器通常把它们当作内部函数(标准`C`中允许这样做)，因此在`glibc`中并没有这些函数的源代码。
+&emsp;&emsp;`strtoimax`和`strtoumax`函数将字符串转换成`intmax_t`类型的整数，一个为有符号，一个为无符号，其实现都是调用内部函数来完成的：
 
-``` c
+``` cpp
 /* strtoimax.c：将字符串转换成最大整数类型 */
 #include <inttypes.h>
 #include <stdlib.h>
@@ -566,9 +565,9 @@ uintmax_t strtoumax ( const char* __restrict nptr, char** __restrict endptr, int
 }
 ```
 
-&emsp;&emsp;wcstoimax和wcstoumax函数将宽字符串转换成`intmax_t`类型的整数，一个为有符号，一个为无符号，其实现也都是调用内部函数来完成的，如下所示：
+&emsp;&emsp;`wcstoimax`和`wcstoumax`函数将宽字符串转换成`intmax_t`类型的整数，一个为有符号，一个为无符号，其实现也都是调用内部函数来完成的：
 
-``` c
+``` cpp
 /* wcstoimax将宽字符串转换成最大整数类型 */
 #include <inttypes.h>
 #include <wchar.h>
