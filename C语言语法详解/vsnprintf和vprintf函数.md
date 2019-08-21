@@ -3,13 +3,11 @@ title: vsnprintf和vprintf函数
 date: 2018-12-14 16:35:26
 categories: C语言语法详解
 ---
-
 ### vsnprintf函数
 
-&emsp;&emsp;该博客主要来源于[_vsnprintf](https://baike.baidu.com/item/_vsnprintf)，内容经过测试和修改，感谢原作者。
-&emsp;&emsp;`_vsnprintf`是C语言库函数之一，属于可变参数函数，用于向字符串中打印数据，数据格式由用户自定义。
+&emsp;&emsp;`_vsnprintf`是`C`语言库函数之一，属于可变参数函数，用于向字符串中打印数据，数据格式由用户自定义。
 
-``` c
+``` cpp
 #include <stdarg.h>
 int _vsnprintf ( char* str, size_t size, const char* format, va_list ap );
 ```
@@ -54,7 +52,7 @@ str_tmp is asd,2,3,4
 
 ### vprintf函数
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` c
 #include <stdio.h>
