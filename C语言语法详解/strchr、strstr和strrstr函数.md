@@ -3,28 +3,25 @@ title: strchr、strstr和strrstr函数
 date: 2018-12-14 21:56:15
 categories: C语言语法详解
 ---
-
 ### strchr函数
 
-&emsp;&emsp;该博客从网上整理了strchr、strstr和strrstr函数有关的内容，感谢分享资料的人们！
-&emsp;&emsp;strchr用来查找某字符在字符串中首次出现的位置，其原型为：
+&emsp;&emsp;`strchr`用来查找某字符在字符串中首次出现的位置：
 
-``` c
+``` cpp
 #include <string.h>
 char* strchr ( const char* str, int c );
 ```
 
-参数str为要查找的字符串，c为要查找的字符。如果找到指定的字符则返回该字符所在地址，否则返回NULL。
-&emsp;&emsp;strchr将会找出str字符串中第一次出现的字符c的地址，然后将该地址返回。注意，字符串str的结束标志`NUL`也会被纳入检索范围，所以str的最后一个字符也可以被定位。如果希望查找某字符在字符串中最后一次出现的位置，可以使用strrchr函数。还有一种格式：
+参数`str`为要查找的字符串，`c`为要查找的字符。如果找到指定的字符，则返回该字符所在地址，否则返回`NULL`。
+&emsp;&emsp;`strchr`将会找出`str`字符串中第一次出现字符`c`的地址，然后将该地址返回。注意，字符串`str`的结束标志`NUL`也会被纳入检索范围，所以`str`的最后一个字符也可以被定位。如果希望查找某字符在字符串中最后一次出现的位置，可以使用`strrchr`函数。还有一种格式，字符是以`char`型给出的：
 
-``` c
+``` cpp
 char* strchr ( const char* string, char c );
 ```
 
-这里字符串是以char型给出的。
 &emsp;&emsp;查找字符`5`首次出现的位置：
 
-``` c
+``` cpp
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -60,15 +57,15 @@ char* mystrchr ( char* s, char c ) {
 
 ### strstr函数
 
-&emsp;&emsp;函数功能为在一个字符串中查找一个字串，其原型为：
+&emsp;&emsp;函数功能为在一个字符串中查找一个字串：
 
-``` c
+``` cpp
 char* strstr ( char const* s1, char const* s2 );
 ```
 
-strstr实现在s1中查找整个s2第一次出现的位置，并返回一个指向该位置的指针。如果s2并没有完整的出现在s1的任何地方，函数返回一个NULL指针；如果第二个字符串是一个空字符串，函数返回s1。函数实现如下所示：
+`strstr`实现在`s1`中查找整个`s2`第一次出现的位置，并返回一个指向该位置的指针。如果`s2`并没有完整的出现在`s1`的任何地方，函数返回一个`NULL`指针；如果第二个字符串是一个空字符串，函数返回`s1`。
 
-``` c
+``` cpp
 #include <stdio.h>
 #include <string.h>
 
@@ -97,15 +94,15 @@ int main() {
 
 ### strrstr函数
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
-``` c
+``` cpp
 char* strrstr ( char* haystack, char* needle );
 ```
 
-函数功能为从字符串haystack中寻找needle最后一次出现的位置(不比较结束符`NUL`)。函数返回指向最后一次出现needle位置的指针，如果没找到则返回NULL。函数实现如下所示：
+函数功能为从字符串`haystack`中寻找`needle`最后一次出现的位置(不比较结束符`NUL`)。函数返回指向最后一次出现`needle`位置的指针，如果没找到则返回`NULL`。
 
-``` c
+``` cpp
 #include "string.h"
 
 char* my_strrstr ( char const* s1, char const* s2 ) {
