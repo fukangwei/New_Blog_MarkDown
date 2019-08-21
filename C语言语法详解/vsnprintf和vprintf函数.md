@@ -13,14 +13,14 @@ int _vsnprintf ( char* str, size_t size, const char* format, va_list ap );
 ```
 
 - `char* str`：把生成的格式化的字符串存放在这里。
-- `size_t size`：str可接受的最大字符数(非字节数，UNICODE一个字符是两个字节)，防止产生数组越界。
+- `size_t size`：`str`可接受的最大字符数(非字节数，`UNICODE`一个字符是`2`个字节)，防止产生数组越界。
 - `const char* format`：指定输出格式的字符串，它决定了你需要提供的可变参数的类型、个数和顺序。
-- `va_list ap`：`va_list`变量(va即`variable argument`，意思是可变参数)。
+- `va_list ap`：`va_list`变量(`va`即`variable argument`，意思是可变参数)。
 
-函数功能是将可变参数格式化输出到一个字符数组。用法类似于vsprintf，不过加了size的限制，防止了内存溢出(size为str所指的存储空间的大小)。函数执行成功，则返回写入到字符数组str中的字符个数(不包含终止符)，最大不超过size；执行失败，则返回负值，并置errno。
-&emsp;&emsp;注意，Linux环境下是`vsnprintf`，VC6环境下是`_vsnprintf`。
+函数功能是将可变参数格式化输出到一个字符数组。用法类似于`vsprintf`，不过加了`size`的限制，防止了内存溢出(`size`为`str`所指的存储空间的大小)。函数执行成功，则返回写入到字符数组`str`中的字符个数(不包含终止符)，最大不超过`size`；执行失败，则返回负值，并置`errno`。
+&emsp;&emsp;注意，`Linux`环境下是`vsnprintf`，`VC6`环境下是`_vsnprintf`。
 
-``` c
+``` cpp
 #include <stdio.h>
 #include <stdarg.h>
 ​
@@ -54,15 +54,15 @@ str_tmp is asd,2,3,4
 
 &emsp;&emsp;函数原型如下：
 
-``` c
+``` cpp
 #include <stdio.h>
 #include <stdarg.h>
 int vprintf ( const char* format, va_list ap );
 ```
 
-vprintf的作用和printf相同，参数format格式也相同，`va_list`为不定个数的参数列。对于返回值，成功则返回实际输出的字符数，失败则返回`-1`，错误原因存于errno中。
+`vprintf`的作用和`printf`相同，参数`format`格式也相同，`va_list`为不定个数的参数列。对于返回值，成功则返回实际输出的字符数，失败则返回`-1`，错误原因存于`errno`中。
 
-``` c
+``` cpp
 #include <stdio.h>
 #include <stdarg.h>
 
