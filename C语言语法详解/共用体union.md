@@ -3,11 +3,10 @@ title: 共用体union
 date: 2018-12-12 06:21:36
 categories: C语言语法详解
 ---
-&emsp;&emsp;该博客主要来源于[(C语言)共用体union的用法举例](https://blog.csdn.net/jiangnanyouzi/article/details/3158702)，内容经过测试和修改，感谢原作者。
-&emsp;&emsp;union的一些妙用，如下所示：
-&emsp;&emsp;1. 为了方便看懂代码。比如说写一个`3*3`的矩阵，如下所示：
+&emsp;&emsp;`union`的一些妙用如下：
+&emsp;&emsp;1. 为了方便看懂代码。比如说写一个`3*3`的矩阵：
 
-``` c
+``` cpp
 struct Matrix {
     union {
         struct {
@@ -24,7 +23,7 @@ struct Matrix m;
 &emsp;&emsp;2. 用在强制类型转换上(比强制类型转换更加容易看懂)。
 &emsp;&emsp;1) 判断系统用的是`big endian`还是`little endian`：
 
-``` c
+``` cpp
 #define TRUE  1
 #define FALSE 0
 #define BOOL  int
@@ -38,7 +37,7 @@ BOOL isBigEndian() {
 
 如果是`little endian`，那么`i = 1;`的内存从小到大依次放的是`0x01 0x00 0x00 0x00`，按照i的起始地址变成按照`char *`方式(1字节)存取，即得`c = 0x01`，反之亦然。也许看起来不是很清晰，下面来看一下这个：
 
-``` c
+``` cpp
 BOOL isBigEndian() {
     union {
         int i;
@@ -50,10 +49,10 @@ BOOL isBigEndian() {
 }
 ```
 
-这里用的是union来控制这个共享布局，有个知识点就是union里面的成员c和i都是从低地址开始对齐的。同样可以得到如此结果，而且不用转换，清晰一些。
+这里用的是`union`来控制这个共享布局，有个知识点就是`union`里面的成员`c`和`i`都是从低地址开始对齐的。同样可以得到如此结果，而且不用转换，清晰一些。
 &emsp;&emsp;2) 将`little endian`下的`long long`类型的值换成`big endian`类型的值。已知系统提供了下面的api：`long htonl(long lg);`，其作用是把所有的字节序换成大端字节序，得出下面的做法：
 
-``` c
+``` cpp
 long long htonLL ( long long lg ) {
     union {
         struct {
@@ -74,7 +73,7 @@ long long htonLL ( long long lg ) {
 }
 ```
 
-&emsp;&emsp;3) 为了理解C++类的布局，再看下面一个例子。有如下类：
+&emsp;&emsp;3) 为了理解`C++`类的布局，再看下面一个例子。有如下类：
 
 ``` cpp
 class Test {
@@ -92,7 +91,7 @@ private:
 Test t;
 ```
 
-不需要在类Test中增加代码，完成对对象中的f赋值`7.0f`：
+不需要在类`Test`中增加代码，完成对对象中的`f`赋值`7.0f`：
 
 ``` cpp
 class Test_Cpy {
@@ -125,5 +124,5 @@ int main() {
 }
 ```
 
-因为在增加类的成员函数时候，那个类的对象的布局基本不变。因此可以写一个与Test类一样结构的类`Test_Cpy`，多了一个成员函数setVal，再用uinon结构对齐，就可以给私有变量赋值了(这种方法在有虚机类和虚函数机制时可能失灵，故不可移植)。这个例子在实际中没有用途，只是用来考察内存布局的使用而已。
-&emsp;&emsp;union在操作系统底层的代码中用的比较多，因为它在内存共享布局上方便且直观，简化了设计。
+因为在增加类的成员函数时候，那个类的对象的布局基本不变。因此可以写一个与`Test`类一样结构的类`Test_Cpy`，多了一个成员函数`setVal`，再用`uinon`结构对齐，就可以给私有变量赋值了(这种方法在有虚基类和虚函数机制时可能失灵，故不可移植)。这个例子在实际中没有用途，只是用来考察内存布局的使用而已。
+&emsp;&emsp;`union`在操作系统底层的代码中用的比较多，因为它在内存共享布局上方便且直观，简化了设计。
