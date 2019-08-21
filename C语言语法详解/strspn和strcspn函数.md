@@ -3,8 +3,6 @@ title: strspn和strcspn函数
 date: 2018-12-13 13:25:52
 categories: C语言语法详解
 ---
-&emsp;&emsp;该博客主要来源于[strcspn](https://baike.baidu.com/item/strcspn)，内容经过测试和修改，感谢原作者。
-
 ### strcspn函数
 
 &emsp;&emsp;函数原型为：
@@ -14,9 +12,9 @@ categories: C语言语法详解
 size_t strcspn ( const char* s, const char* reject );
 ```
 
-strcspn从参数s字符串的开头计算连续的字符，而这些字符都完全不在参数reject所指的字符串中。简单地说，若strcspn返回的数值为n，则代表字符串s开头连续有n个字符都不含字符串reject内的字符。该函数返回字符串s开头连续不含字符串reject内的字符数目。
+`strcspn`从参数`s`字符串的开头计算连续的字符，而这些字符都完全不在参数`reject`所指的字符串中。简单地说，若`strcspn`返回的数值为`n`，则代表字符串`s`开头连续有`n`个字符都不含字符串`reject`内的字符。该函数返回字符串`s`开头连续不含字符串`reject`内的字符数目。
 
-``` c
+``` cpp
 #include <stdio.h>
 #include <string.h>
 
@@ -40,14 +38,14 @@ int main ( void ) {
 
 &emsp;&emsp;函数原型为：
 
-``` c
+``` cpp
 #include <string.h>
 size_t strspn ( const char* s, const char* accept );
 ```
 
-strspn从参数s字符串的开头计算连续的字符，而这些字符都完全是accept所指字符串中的字符。简单的说，若strspn返回的数值为n，则代表字符串s开头连续有n个字符都是属于字符串accept内的字符。该函数返回字符串s开头连续包含字符串accept内的字符数目。
+`strspn`从参数`s`字符串的开头计算连续的字符，而这些字符都完全是`accept`所指字符串中的字符。简单的说，若`strspn`返回的数值为`n`，则代表字符串`s`开头连续有`n`个字符都是属于字符串`accept`内的字符。该函数返回字符串`s`开头连续包含字符串`accept`内的字符数目。
 
-``` c
+``` cpp
 #include <string.h>
 #include <stdio.h>
 
@@ -67,9 +65,9 @@ int main() {
 0 /* 开始不包含 */
 ```
 
-其函数实现如下所示：
+其函数实现如下：
 
-``` c
+``` cpp
 int mystrspn ( const char* s, const char* accept ) {
     const char* p = NULL;
     const char* a = NULL;
