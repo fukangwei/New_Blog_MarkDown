@@ -35,7 +35,7 @@ int main ( void ) {
 }
 ```
 
-&emsp;&emsp;在这里顺便对条件编译(`#ifdef`、`#else`、`#endif`、`#if`等)进行说明。主要分为3种情况：
+&emsp;&emsp;在这里顺便对条件编译(`#ifdef`、`#else`、`#endif`、`#if`等)进行说明。主要分为`3`种情况：
 &emsp;&emsp;情况`1`如下：
 
 ``` cpp
