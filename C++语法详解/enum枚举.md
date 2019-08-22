@@ -1,19 +1,19 @@
 ---
 title: enum枚举
 date: 2019-02-05 17:55:40
-tags:
+categories: C++语法详解
 ---
 &emsp;&emsp;请看下面的语句：
 
 ``` cpp
 enum enumType {
-    Monday,
-    Tuesday,
-    Wednesday,
-    Thursday,
-    Friday,
-    Saturday,
-    Sunday
+    Monday,
+    Tuesday,
+    Wednesday,
+    Thursday,
+    Friday,
+    Saturday,
+    Sunday
 };
 ```
 
@@ -47,13 +47,13 @@ int a = Monday;
 
 ``` cpp
 enum enumType {
-    Monday = 1,
-    Tuesday = 2,
-    Wednesday = 3,
-    Thursday = 4,
-    Friday = 5,
-    Saturday = 6,
-    Sunday = 7
+    Monday = 1,
+    Tuesday = 2,
+    Wednesday = 3,
+    Thursday = 4,
+    Friday = 5,
+    Saturday = 6,
+    Sunday = 7
 };
 ```
 
@@ -61,13 +61,13 @@ enum enumType {
 
 ``` cpp
 enum enumType {
-    Monday = 1,
-    Tuesday,
-    Wednesday = 1,
-    Thursday,
-    Friday,
-    Saturday,
-    Sunday
+    Monday = 1,
+    Tuesday,
+    Wednesday = 1,
+    Thursday,
+    Friday,
+    Saturday,
+    Sunday
 };
 ```
 
@@ -76,25 +76,25 @@ enum enumType {
 
 ``` cpp
 enum enumType {
-    Step0,
-    Step1,
-    Step2
+    Step0,
+    Step1,
+    Step2
 } Step = Step0;
 ​
 switch ( Step ) {
     case Step0:
-        /* ... */
-        break;
+        /* ... */
+        break;
 ​
     case Step1:
-        /* ... */
-        break;
+        /* ... */
+        break;
 ​
     case Step2:
-        /* ... */
-        break;
+        /* ... */
+        break;
 ​
     default:
-        break;
+        break;
 }
 ```

@@ -1,7 +1,7 @@
 ---
 title: c_str函数
 date: 2018-12-27 09:25:53
-tags:
+categories: C++语法详解
 ---
 &emsp;&emsp;函数原型为：
 
@@ -10,7 +10,7 @@ const char *c_str();
 ```
 
 `c_str`函数返回一个指向正规`C`字符串的指针常量，内容与本`string`串相同。这是为了与`C`语言兼容，必须通过`string`类对象的成员函数`c_str`把`string`对象转换成`C`语言中的字符串样式。
-&emsp;&emsp;注意，一定要使用strcpy等函数来操作c_str返回的指针，比如最好不要这样写：
+&emsp;&emsp;注意，一定要使用`strcpy`等函数来操作`c_str`返回的指针，比如最好不要这样写：
 
 ``` cpp
 char *c;
