@@ -3,8 +3,7 @@ title: 构造String类
 date: 2018-12-16 13:07:07
 categories: C++应用代码
 ---
-
-&emsp;&emsp;编写类String的构造函数、析构函数和赋值函数，已知类String的原型为：
+&emsp;&emsp;编写类`String`的构造函数、析构函数和赋值函数，已知类`String`的原型为：
 
 ``` cpp
 class String {
@@ -18,7 +17,7 @@ class String {
 };
 ```
 
-代码如下所示：
+代码如下：
 
 ``` cpp
 String::String ( const char* str ) { /* 普通构造函数 */

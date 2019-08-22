@@ -256,7 +256,11 @@ Buffer after memset: ***********
 char a[100], b[50];
 /* 注意如用sizeof(a)，会造成b的内存地址溢出 */
 memcpy ( b, a, sizeof ( b ) );
-strcpy只能拷贝字符串，它遇到“\0”就结束拷贝：
+```
+
+`strcpy`只能拷贝字符串，它遇到`\0`就结束拷贝：
+
+``` cpp
 char a[100], b[50];
 /* 要注意a中的字符串长度是否超过50，如果超过，则会造成b的内存地址溢出 */
 strcpy ( a, b );
