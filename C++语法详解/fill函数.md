@@ -1,7 +1,7 @@
 ---
 title: fill函数
 date: 2018-12-27 10:16:53
-tags:
+categories: C++语法详解
 ---
 &emsp;&emsp;This is a function template, int the head file `<algorithm>`:
 
@@ -15,10 +15,10 @@ Assigns val to all the elements in the range `[first, last)`. The behavior of th
 ``` cpp
 template <class ForwardIterator, class T>
 void fill ( ForwardIterator first, ForwardIterator last, const T &val ) {
-    while ( first != last ) {
-        *first = val;
-        ++first;
-    }
+    while ( first != last ) {
+        *first = val;
+        ++first;
+    }
 }
 ```
 
@@ -33,16 +33,16 @@ void fill ( ForwardIterator first, ForwardIterator last, const T &val ) {
 #include <vector> /* std::vector */
 ​
 int main () {
-    std::vector<int> myvector ( 8 ); /* myvector: 0 0 0 0 0 0 0 0 */
-    std::fill ( myvector.begin(), myvector.begin() + 4, 5 ); /* myvector: 5 5 5 5 0 0 0 0 */
-    std::fill ( myvector.begin() + 3, myvector.end() - 2, 8 ); /* myvector: 5 5 5 8 8 8 0 0 */
-    std::cout << "myvector contains:";
+    std::vector<int> myvector ( 8 ); /* myvector: 0 0 0 0 0 0 0 0 */
+    std::fill ( myvector.begin(), myvector.begin() + 4, 5 ); /* myvector: 5 5 5 5 0 0 0 0 */
+    std::fill ( myvector.begin() + 3, myvector.end() - 2, 8 ); /* myvector: 5 5 5 8 8 8 0 0 */
+    std::cout << "myvector contains:";
 ​
-    for ( std::vector<int>::iterator it = myvector.begin(); it != myvector.end(); ++it ) {
-        std::cout << ' ' << *it;
-    }
+    for ( std::vector<int>::iterator it = myvector.begin(); it != myvector.end(); ++it ) {
+        std::cout << ' ' << *it;
+    }
 ​
-    std::cout << '\n';
-    return 0;
+    std::cout << '\n';
+    return 0;
 }
 ```

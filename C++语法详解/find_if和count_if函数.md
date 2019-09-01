@@ -1,7 +1,7 @@
 ---
 title: find_if和count_if函数
 date: 2019-02-05 21:45:44
-tags:
+categories: C++语法详解
 ---
 &emsp;&emsp;It is a function template and include in the header file `algorithm`.
 
@@ -12,7 +12,7 @@ template <class InputIterator, class UnaryPredicate>
 InputIterator find_if ( InputIterator first, InputIterator last, UnaryPredicate pred );
 ```
 
-&emsp;&emsp;It can find element in range and return an iterator to the first element in the range `[first, last)` for which `pred` returns `true`. If no such element is found, the function returns last. The behavior of this function template is equivalent to:
+&emsp;&emsp;It can find element in range and return an iterator to the `first` element in the range `[first, last)` for which `pred` returns `true`. If no such element is found, the function returns `last`. The behavior of this function template is equivalent to:
 
 ``` cpp
 template<class InputIterator, class UnaryPredicate>
