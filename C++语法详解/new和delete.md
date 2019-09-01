@@ -34,10 +34,10 @@ This requests a memory buffer from the free store that is large enough to hold a
 &emsp;&emsp;The `C++11` standard specifies an additional syntax,
 
 ``` cpp
-p = new T[N] {initializer1, ..., initializerN};
+p = new T[N] {initializer_1, ..., initializer_N};
 ```
 
-that initializes each `p[i]` to `initializeri + 1`.
+that initializes each `p[i]` to `initializer_i + 1`.
 
 ### Error handling
 

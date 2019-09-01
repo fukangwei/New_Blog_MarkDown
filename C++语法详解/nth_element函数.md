@@ -1,7 +1,7 @@
 ---
 title: nth_element函数
 date: 2019-02-05 19:48:44
-tags:
+categories: C++语法详解
 ---
 &emsp;&emsp;函数原型如下：
 
