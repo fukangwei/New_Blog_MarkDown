@@ -1,7 +1,7 @@
 ---
 title: mem_fun和mem_fun_ref函数
 date: 2019-02-05 19:53:25
-tags:
+categories: C++语法详解
 ---
 &emsp;&emsp;怎么对容器中的所有对象都进行同一个操作？我们可能首先想到的是用循环来实现。比如有如下的一个类：
 

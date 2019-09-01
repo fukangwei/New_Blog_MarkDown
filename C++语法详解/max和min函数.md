@@ -1,7 +1,7 @@
 ---
 title: max和min函数
 date: 2019-02-05 20:21:24
-tags:
+categories: C++语法详解
 ---
 ### max函数
 
@@ -17,7 +17,7 @@ Returns the largest of `a` and `b`. If both are equivalent, `a` is returned.
 
 ``` cpp
 template <class T> const T &max ( const T &a, const T &b ) {
-    return ( a < b ) ? b : a; // or return comp(a, b) ? b : a;
+    return ( a < b ) ? b : a; // or return comp(a, b) ? b : a;
 }
 ```
 
@@ -61,7 +61,7 @@ Returns the smallest of `a` and `b`. If both are equivalent, `a` is returned.
 
 ``` cpp
 template <class T> const T &min ( const T &a, const T &b ) {
-    return ! ( b < a ) ? a : b; // or return !comp(b, a) ? a : b;
+    return ! ( b < a ) ? a : b; // or return !comp(b, a) ? a : b;
 }
 ```
 
