@@ -88,7 +88,7 @@ int main() {
 执行结果：
 
 ``` cpp
-1   6   10   16   20   23   29
+1   6   10   16   20   23   29
 ```
 
 &emsp;&emsp;`rfind`函数原型如下：
@@ -224,7 +224,7 @@ int main() {
 }
 ```
 
-&emsp;&emsp;`find_last_not_of`函数原型：
+&emsp;&emsp;`find_last_not_of`的函数原型如下：
 
 ``` cpp
 size_type find_last_not_of ( const basic_string &str, size_type pos = npos ) const noexcept;

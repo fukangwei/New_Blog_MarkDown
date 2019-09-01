@@ -1,7 +1,7 @@
 ---
 title: istream_iterator和ostream_iterator
 date: 2019-03-11 12:10:03
-tags:
+categories: C++语法详解
 ---
 ### std::istream_iterator
 
@@ -103,7 +103,7 @@ class ostream_iterator;
 #### Template parameters
 
 - `T`: Element type for the iterator: The type of elements inserted into the stream.
-- `charT`: First template parameter of the associated `basic_ostream` object: The type of elements the stream handles (char for `ostream`).
+- `charT`: First template parameter of the associated `basic_ostream` object: The type of elements the stream handles (`char` for `ostream`).
 - `traits`: Second template parameter of the associated `basic_ostream`: Character traits for the elements the stream handles.
 
 **Note**: The default template arguments correspond to an instantiation that uses an ostream object as associated stream.
@@ -133,9 +133,9 @@ Return          | Function
 #### Example
 
 ``` cpp
-#include <iostream>  // std::cout
-#include <iterator>  // std::ostream_iterator
-#include <vector>    // std::vector
+#include <iostream>  // std::cout
+#include <iterator>  // std::ostream_iterator
+#include <vector>    // std::vector
 #include <algorithm> // std::copy
 ​
 int main () {
