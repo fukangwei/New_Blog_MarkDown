@@ -1,9 +1,9 @@
 ---
 title: reverse函数
 date: 2018-12-27 10:45:07
-tags:
+categories: C++语法详解
 ---
-&emsp;&emsp;This is a function template, in the header file `<algorithm>`.
+&emsp;&emsp;This is a function template, in the header file `algorithm`.
 
 ``` cpp
 template <class BidirectionalIterator>
@@ -24,7 +24,7 @@ void reverse ( BidirectionalIterator first, BidirectionalIterator last ) {
 ```
 
 &emsp;&emsp;Parameters: `first`, `last`: Bidirectional iterators to the initial and final positions of the sequence to be reversed. The range used is `[first, last)`, which contains all the elements between `first` and `last`, including the element pointed by `first` but not the element pointed by `last`.
-&emsp;&emsp;BidirectionalIterator shall point to a type for which swap is properly defined.
+&emsp;&emsp;`BidirectionalIterator` shall point to a type for which swap is properly defined.
 
 ``` cpp
 #include <iostream> /* std::cout */

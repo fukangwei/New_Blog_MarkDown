@@ -1,7 +1,7 @@
 ---
 title: pair模板类
 date: 2018-12-27 09:51:53
-tags:
+categories: C++语法详解
 ---
 &emsp;&emsp;`pair`是一种模板类型，其中包含两个数据值，两个数据的类型可以不同(也可以使用自己定义的`struct`数据结构)，基本的定义如下：
 
@@ -40,7 +40,7 @@ pair<int, string> newone;
 newone = make_pair ( a, m );
 ```
 
-&emsp;&emsp;可以直接用标准输入流读入数据到`pair`对象中，如下所示：
+&emsp;&emsp;可以直接用标准输入流读入数据到`pair`对象中：
 
 ``` cpp
 pair<string, string> next_auth;

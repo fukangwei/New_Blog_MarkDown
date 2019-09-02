@@ -1,7 +1,7 @@
 ---
 title: queue模板类
 date: 2019-02-05 21:21:00
-tags:
+categories: C++语法详解
 ---
 &emsp;&emsp;`C++`队列`queue`模板类的定义在`queue.h`。`queue`模板类需要两个模板参数，即元素类型和容器类型，元素类型是必要的，容器类型是可选的，默认为`deque`类型。
 &emsp;&emsp;队列`Queue`是一种容器适配器，它给予程序员一种先进先出(`FIFO`)的数据结构，其成员函数如下：
