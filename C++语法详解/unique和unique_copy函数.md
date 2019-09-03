@@ -1,7 +1,7 @@
 ---
 title: unique和unique_copy函数
 date: 2019-02-05 20:34:59
-tags:
+categories: C++语法详解
 ---
 &emsp;&emsp;`unique`函数的功能是去除相邻的重复元素(只保留一个)：
 
@@ -20,12 +20,12 @@ unique(first, last, compare);
 using namespace std;
 ​
 int main ( void ) {
-    string str;
-    cin >> str;
-    str.erase ( unique ( str.begin(), str.end() ), str.end() );
-    // str.resize ( unique ( str.begin(), str.end() ) - str.begin() );
-    cout << str << endl;
-    return 0;
+    string str;
+    cin >> str;
+    str.erase ( unique ( str.begin(), str.end() ), str.end() );
+    // str.resize ( unique ( str.begin(), str.end() ) - str.begin() );
+    cout << str << endl;
+    return 0;
 }
 ```
 
@@ -57,7 +57,7 @@ int main ( void ) {
 
 ---
 
-&emsp;&emsp;`unique`函数是将重复的元素折叠缩编，使成唯一；`unqiue_copy`函数是将重复的元素折叠缩编，使成唯一，并复制到其他地方。这两个函数的剔除字符原理是：看当前字符与它前一个字符是否相同，如果相同就剔除当前字符；如果不同就跳转到下一个字符。所以，在求一个字符串的字符集的时候，要先把字符串排个序再调用上面两个函数剔除重复字符，获取字符集。代码示例如下所示：
+&emsp;&emsp;`unique`函数是将重复的元素折叠缩编，使成唯一；`unqiue_copy`函数是将重复的元素折叠缩编，使成唯一，并复制到其他地方。这两个函数的剔除字符原理是：看当前字符与它前一个字符是否相同，如果相同就剔除当前字符；如果不同就跳转到下一个字符。所以，在求一个字符串的字符集的时候，要先把字符串排个序再调用上面两个函数剔除重复字符，获取字符集。
 
 ``` cpp
 string str = "zhaohaoyang";
@@ -66,7 +66,7 @@ vector<char> vecch ( str.begin(), str.end() );
 vector<char>::iterator it = vecch.begin();
 ​
 for ( ; it != vecch.end(); ++it ) {
-    cout << *it;
+    cout << *it;
 }
 ​
 cout << endl; /* 输出“zhaohaoyang” */
