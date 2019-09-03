@@ -1,7 +1,7 @@
 ---
 title: string模板类
 date: 2019-02-07 11:41:33
-tags:
+categories: C++语法详解
 ---
 ### 访问字符串中的字符
 
@@ -28,7 +28,7 @@ int main() {
 }
 ```
 
-运行结果：
+执行结果：
 
 ``` cpp
 1 2 3 4 5 6 7 8 9 0
@@ -120,20 +120,20 @@ Version            | Function
 #include <string>
 ​
 int main () {
-    std::string s0 ( "Initial string" );
-    /* constructors used in the same order as described above */
-    std::string s1;
-    std::string s2 ( s0 );
-    std::string s3 ( s0, 8, 3 );
-    std::string s4 ( "A character sequence" );
-    std::string s5 ( "Another character sequence", 12 );
-    std::string s6a ( 10, 'x' );
-    std::string s6b ( 10, 42 ); /* 42 is the ASCII code for '*' */
-    std::string s7 ( s0.begin(), s0.begin() + 7 );
-    std::cout << "s1: " << s1 << "\ns2: " << s2 << "\ns3: " << s3;
-    std::cout << "\ns4: " << s4 << "\ns5: " << s5 << "\ns6a: " << s6a;
-    std::cout << "\ns6b: " << s6b << "\ns7: " << s7 << '\n';
-    return 0;
+    std::string s0 ( "Initial string" );
+    /* constructors used in the same order as described above */
+    std::string s1;
+    std::string s2 ( s0 );
+    std::string s3 ( s0, 8, 3 );
+    std::string s4 ( "A character sequence" );
+    std::string s5 ( "Another character sequence", 12 );
+    std::string s6a ( 10, 'x' );
+    std::string s6b ( 10, 42 ); /* 42 is the ASCII code for '*' */
+    std::string s7 ( s0.begin(), s0.begin() + 7 );
+    std::cout << "s1: " << s1 << "\ns2: " << s2 << "\ns3: " << s3;
+    std::cout << "\ns4: " << s4 << "\ns5: " << s5 << "\ns6a: " << s6a;
+    std::cout << "\ns6b: " << s6b << "\ns7: " << s7 << '\n';
+    return 0;
 }
 ```
 

@@ -1,7 +1,7 @@
 ---
 title: static_cast、dynamic_cast、const_cast和reinterpret_cast
 date: 2019-02-07 15:20:55
-tags:
+categories: C++语法详解
 ---
 ### static_cast
 
@@ -40,7 +40,7 @@ public:
         cout << 'a' << endl;
     }
 ​
-  private:
+private:
     int i;
 };
 ​
