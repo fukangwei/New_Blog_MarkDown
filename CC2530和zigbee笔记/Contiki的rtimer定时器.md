@@ -1,7 +1,7 @@
 ---
 title: Contiki的rtimer定时器
 date: 2019-03-12 00:11:16
-tags:
+categories: CC2530和zigbee笔记
 ---
 ### rtimer用途
 

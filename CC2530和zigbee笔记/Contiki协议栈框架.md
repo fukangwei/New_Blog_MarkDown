@@ -1,7 +1,7 @@
 ---
 title: Contiki协议栈框架
 date: 2019-03-12 09:25:02
-tags:
+categories: CC2530和zigbee笔记
 ---
 ### 协议栈总体框架
 
@@ -9,10 +9,10 @@ tags:
 
 ``` cpp
 #define NETSTACK_CONF_NETWORK rime_driver
-#define NETSTACK_CONF_MAC     csma_driver
-#define NETSTACK_CONF_RDC     cxmac_driver
-#define NETSTACK_CONF_RADIO   sx1278_radio_driver
-#define NETSTACK_CONF_FRAMER  framer_nullmac
+#define NETSTACK_CONF_MAC     csma_driver
+#define NETSTACK_CONF_RDC     cxmac_driver
+#define NETSTACK_CONF_RADIO   sx1278_radio_driver
+#define NETSTACK_CONF_FRAMER  framer_nullmac
 ```
 
 <img src="./Contiki协议栈框架/1.png">

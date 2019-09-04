@@ -1,7 +1,7 @@
 ---
 title: MAC地址查询
 date: 2019-02-06 18:30:11
-tags:
+categories: CC2530和zigbee笔记
 ---
 &emsp;&emsp;实验内容：协调器上电后建立网路，路由器自动加入网络。然后路由器调用调用相关的`API`函数获得某一网络号节点的`MAC`地址，然后通过串口将其发送到`PC`端的串口调试助手。
 &emsp;&emsp;获得某一网络号节点的`MAC`地址的`API`函数：
@@ -24,7 +24,7 @@ ZDP_IEEEAddrReq ( uint16 shortAddr, byte ReqType, byte StartIndex, byte SecurtyE
 #include "DebugTrace.h"
 ​
 #if !defined(WIN32)
-    #include "OnBoard.h"
+    #include "OnBoard.h"
 #endif
 ​
 #include "hal_lcd.h"
@@ -35,19 +35,19 @@ ZDP_IEEEAddrReq ( uint16 shortAddr, byte ReqType, byte StartIndex, byte SecurtyE
 #define SHOW_INFO_EVENT 0x01
 ​
 const cId_t GenericApp_ClusterList[GENERICAPP_MAX_CLUSTERS] = {
-    GENERICAPP_CLUSTERID
+    GENERICAPP_CLUSTERID
 };
 ​
 const SimpleDescriptionFormat_t GenericApp_SimpleDesc = {
-    GENERICAPP_ENDPOINT,
-    GENERICAPP_PROFID,
-    GENERICAPP_DEVICEID,
-    GENERICAPP_DEVICE_VERSION,
-    GENERICAPP_FLAGS,
-    0,
-    ( cId_t * ) NULL,
-    GENERICAPP_MAX_CLUSTERS,
-    ( cId_t * ) GenericApp_ClusterList
+    GENERICAPP_ENDPOINT,
+    GENERICAPP_PROFID,
+    GENERICAPP_DEVICEID,
+    GENERICAPP_DEVICE_VERSION,
+    GENERICAPP_FLAGS,
+    0,
+    ( cId_t * ) NULL,
+    GENERICAPP_MAX_CLUSTERS,
+    ( cId_t * ) GenericApp_ClusterList
 };
 ​
 endPointDesc_t GenericApp_epDesc;
@@ -58,31 +58,32 @@ devStates_t GenericApp_NwkState;
 void ShowInfo ( void );
 void To_string ( uint8 *dest, char *src, uint8 length );
 ​
-void GenericApp_ProcessZDOMsgs ( zdoIncomingMsg_t *inMsg ); /* 增加这个函数的目的是对ZDO_CB_MSG消息响应 */
+/* 增加这个函数的目的是对ZDO_CB_MSG消息响应 */
+void GenericApp_ProcessZDOMsgs ( zdoIncomingMsg_t *inMsg );
 ​
 typedef struct RFTXBUF {
-    uint8 myNWK[4];
-    uint8 myMAC[16];
-    uint8 pNWK[4];
-    uint8 pMAC[16];
+    uint8 myNWK[4];
+    uint8 myMAC[16];
+    uint8 pNWK[4];
+    uint8 pMAC[16];
 } RFTX;
 ​
 void GenericApp_Init ( byte task_id ) {
-    GenericApp_TaskID = task_id;
-    GenericApp_NwkState = DEV_INIT;
-    GenericApp_TransID = 0;
-    GenericApp_epDesc.endPoint = GENERICAPP_ENDPOINT;
-    GenericApp_epDesc.task_id = &GenericApp_TaskID;
-    GenericApp_epDesc.simpleDesc = ( SimpleDescriptionFormat_t * ) &GenericApp_SimpleDesc;
-    GenericApp_epDesc.latencyReq = noLatencyReqs;
-    afRegister ( &GenericApp_epDesc );
-    halUARTCfg_t uartConfig;
-    uartConfig.configured = TRUE;
-    uartConfig.baudRate  = HAL_UART_BR_115200;
-    uartConfig.flowControl = FALSE;
-    uartConfig.callBackFunc = NULL;
-    HalUARTOpen ( 0, &uartConfig );
-    ZDO_RegisterForZDOMsg ( GenericApp_TaskID, IEEE_addr_rsp ); /* 对IEEE_addr_rsp消息响应的注册 */
+    GenericApp_TaskID = task_id;
+    GenericApp_NwkState = DEV_INIT;
+    GenericApp_TransID = 0;
+    GenericApp_epDesc.endPoint = GENERICAPP_ENDPOINT;
+    GenericApp_epDesc.task_id = &GenericApp_TaskID;
+    GenericApp_epDesc.simpleDesc = ( SimpleDescriptionFormat_t * ) &GenericApp_SimpleDesc;
+    GenericApp_epDesc.latencyReq = noLatencyReqs;
+    afRegister ( &GenericApp_epDesc );
+    halUARTCfg_t uartConfig;
+    uartConfig.configured = TRUE;
+    uartConfig.baudRate  = HAL_UART_BR_115200;
+    uartConfig.flowControl = FALSE;
+    uartConfig.callBackFunc = NULL;
+    HalUARTOpen ( 0, &uartConfig );
+    ZDO_RegisterForZDOMsg ( GenericApp_TaskID, IEEE_addr_rsp ); /* 对IEEE_addr_rsp消息响应的注册 */
 }
 
 UINT16 GenericApp_ProcessEvent ( byte task_id, UINT16 events ) {
