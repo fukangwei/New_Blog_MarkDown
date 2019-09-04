@@ -1,20 +1,20 @@
 ---
 title: AF_DataRequest函数
 date: 2019-02-05 14:21:35
-tags:
+categories: CC2530和zigbee笔记
 ---
 &emsp;&emsp;`Zigbee`协议栈进行数据发送是调用`AF_DataRequest`这个函数，该函数会调用协议栈里面与硬件相关的函数最终将数据通过天线发送出去。
 
 ``` cpp
 afStatus_t AF_DataRequest (
-    afAddrType_t *dstAddr, /* 目的地址指针 */
-    endPointDesc_t *srcEP, /* 发送节点的端点描述符指针 */
-    uint16 cID, /* ClusID 簇ID号 */
-    uint16 len, /* 发送数据的长度 */
-    uint8 *buf, /* 指向存放发送数据的缓冲区指针 */
-    uint8 *transID, /* 传输序列号，该序列号随着信息的发送而增加 */
-    uint8 options, /* 发送选项 */
-    uint8 radius /* 最大传输半径(发送的跳数) */
+    afAddrType_t *dstAddr, /* 目的地址指针 */
+    endPointDesc_t *srcEP, /* 发送节点的端点描述符指针 */
+    uint16 cID, /* ClusID 簇ID号 */
+    uint16 len, /* 发送数据的长度 */
+    uint8 *buf, /* 指向存放发送数据的缓冲区指针 */
+    uint8 *transID, /* 传输序列号，该序列号随着信息的发送而增加 */
+    uint8 options, /* 发送选项 */
+    uint8 radius /* 最大传输半径(发送的跳数) */
 );
 ```
 
@@ -22,11 +22,12 @@ afStatus_t AF_DataRequest (
 
 ``` cpp
 typedef struct {
-    union {
-        uint16 shortAddr; /* 用于标识该节点网络地址的变量 */
-    } addr;
-    afAddrMode_t addrMode; /* 用于指定数据传送模式，单播、多播还是广播 */
-    byte endPoint; /* 指定的端口号，端口号241至254是保留端口 */
+    union {
+        uint16 shortAddr; /* 用于标识该节点网络地址的变量 */
+    } addr;
+
+    afAddrMode_t addrMode; /* 用于指定数据传送模式，单播、多播还是广播 */
+    byte endPoint; /* 指定的端口号，端口号241至254是保留端口 */
 } afAddrType_t; /* 其定义在AF.h中 */
 ```
 
@@ -34,18 +35,18 @@ typedef struct {
 
 ``` cpp
 typedef enum {
-    afAddrNotPresent = AddrNotPresent, /* 表示通过绑定关系指定目的地址 */
-    afAddr16Bit = Addr16Bit, /* 单播发送 */
-    afAddrGroup = AddrGroup, /* 组播 */
-    afAddrBroadcast = AddrBroadcast /* 广播 */
+    afAddrNotPresent = AddrNotPresent, /* 表示通过绑定关系指定目的地址 */
+    afAddr16Bit = Addr16Bit, /* 单播发送 */
+    afAddrGroup = AddrGroup, /* 组播 */
+    afAddrBroadcast = AddrBroadcast /* 广播 */
 } afAddrMode_t;
 ​
 enum {
-    AddrNotPresent = 0,
-    AddrGroup = 1,
-    Addr16Bit = 2,
-    Addr64Bit = 3, /* 指定IEEE地址进行单播传输 */
-    AddrBroadcast = 15
+    AddrNotPresent = 0,
+    AddrGroup = 1,
+    Addr16Bit = 2,
+    Addr64Bit = 3, /* 指定IEEE地址进行单播传输 */
+    AddrBroadcast = 15
 };
 ```
 
@@ -54,28 +55,28 @@ enum {
 
 ``` cpp
 typedef struct {
-    byte endPoint; /* 端点号 */
-    byte *task_id; /* 哪一个任务的端点号(调用任务的ID) */
-    SimpleDescriptionFormat_t *simpleDesc; /* 描述一个Zigbee设备节点，称为简单设备描述符 */
-    afNetworkLatencyReq_t latencyReq; /* 枚举结构，这个字段必须为nolatencyreqs */
+    byte endPoint; /* 端点号 */
+    byte *task_id; /* 哪一个任务的端点号(调用任务的ID) */
+    SimpleDescriptionFormat_t *simpleDesc; /* 描述一个Zigbee设备节点，称为简单设备描述符 */
+    afNetworkLatencyReq_t latencyReq; /* 枚举结构，这个字段必须为nolatencyreqs */
 } endPointDesc_t; /* 其定义在AF.h中 */
 ​
 typedef struct {
-    byte EndPoint; /* EP */
-    uint16 AppProfId; /* 应用规范ID */
-    uint16 AppDeviceId; /* 特定规范ID的设备类型 */
-    byte AppDevVer: 4; /* 特定规范ID的设备的版本 */
-    byte Reserved: 4; /* AF_V1_SUPPORT uses for AppFlags:4 */
-    byte AppNumInClusters; /* 输入簇ID的个数 */
-    cId_t *pAppInClusterList; /* 输入簇ID的列表 */
-    byte AppNumOutClusters; /* 输出簇ID的个数 */
-    cId_t *pAppOutClusterList; /* 输出簇ID的列表 */
+    byte EndPoint; /* EP */
+    uint16 AppProfId; /* 应用规范ID */
+    uint16 AppDeviceId; /* 特定规范ID的设备类型 */
+    byte AppDevVer: 4; /* 特定规范ID的设备的版本 */
+    byte Reserved: 4; /* AF_V1_SUPPORT uses for AppFlags:4 */
+    byte AppNumInClusters; /* 输入簇ID的个数 */
+    cId_t *pAppInClusterList; /* 输入簇ID的列表 */
+    byte AppNumOutClusters; /* 输出簇ID的个数 */
+    cId_t *pAppOutClusterList; /* 输出簇ID的列表 */
 } SimpleDescriptionFormat_t; /* 其定义在AF.h中 */
 ​
 typedef enum {
-    noLatencyReqs,
-    fastBeacons,
-    slowBeacons
+    noLatencyReqs,
+    fastBeacons,
+    slowBeacons
 } afNetworkLatencyReq_t;
 ```
 
@@ -85,7 +86,7 @@ typedef enum {
 - `options`是发送选项，有如下选项：
 
 ``` cpp
-#define AF_FRAGMENTED   0x01
+#define AF_FRAGMENTED   0x01
 /* 要求APS应答，这是应用层的应答，只在直接发送(单播)时使用 */
 #define AF_ACK_REQUEST  0x10
 /* 总要包含这个选项 */
@@ -102,10 +103,10 @@ typedef enum {
 
 ``` cpp
 typedef enum {
-    afStatus_SUCCESS,
-    afStatus_FAILED = 0x80,
-    afStatus_MEM_FAIL,
-    afStatus_INVALID_PARAMETER
+    afStatus_SUCCESS,
+    afStatus_FAILED = 0x80,
+    afStatus_MEM_FAIL,
+    afStatus_INVALID_PARAMETER
 } afStatus_t;
 ```
 
@@ -113,76 +114,75 @@ typedef enum {
 
 ``` cpp
 afStatus_t AF_DataRequest ( afAddrType_t *dstAddr, endPointDesc_t *srcEP,
-                            uint16 cID, uint16 len, uint8 *buf, uint8 *transID,
-                            uint8 options, uint8 radius ) {
-    pDescCB pfnDescCB;
-    ZStatus_t stat;
-    APSDE_DataReq_t req;
-    afDataReqMTU_t mtu;
+                            uint16 cID, uint16 len, uint8 *buf, uint8 *transID,
+                            uint8 options, uint8 radius ) {
+    pDescCB pfnDescCB;
+    ZStatus_t stat;
+    APSDE_DataReq_t req;
+    afDataReqMTU_t mtu;
 ​
-    if ( srcEP == NULL ) { /* Verify source end point 判断源节点是否为空 */
-        return afStatus_INVALID_PARAMETER;
-    }
+    if ( srcEP == NULL ) { /* Verify source end point 判断源节点是否为空 */
+        return afStatus_INVALID_PARAMETER;
+    }
 ​
 #if !defined( REFLECTOR )
 ​
-    if ( dstAddr->addrMode == afAddrNotPresent ) {
-        return afStatus_INVALID_PARAMETER;
-    }
+    if ( dstAddr->addrMode == afAddrNotPresent ) {
+        return afStatus_INVALID_PARAMETER;
+    }
 ​
 #endif
     /* Verify destination address 判断目的地址 */
-    req.dstAddr.addr.shortAddr = dstAddr->addr.shortAddr;
+    req.dstAddr.addr.shortAddr = dstAddr->addr.shortAddr;
 ​
-    /* Validate broadcasting 判断地址的模式 */
-    if ( ( dstAddr->addrMode == afAddr16Bit ) || ( dstAddr->addrMode == afAddrBroadcast ) ) {
-        /* Check for valid broadcast values 核对有效的广播值 */
-        if ( ADDR_NOT_BCAST != NLME_IsAddressBroadcast ( dstAddr->addr.shortAddr ) ) {
-            /* Force mode to broadcast 强制转换成广播模式 */
-            dstAddr->addrMode = afAddrBroadcast;
-        } else {
-            /* Address is not a valid broadcast type 地址不是一个有效的广播地址类型 */
-            if ( dstAddr->addrMode == afAddrBroadcast ) {
-                return afStatus_INVALID_PARAMETER;
-            }
-        }
-    } else if ( dstAddr->addrMode != afAddrGroup &&
-                dstAddr->addrMode != afAddrNotPresent ) {
-        return afStatus_INVALID_PARAMETER;
-    }
+    /* Validate broadcasting 判断地址的模式 */
+    if ( ( dstAddr->addrMode == afAddr16Bit ) || ( dstAddr->addrMode == afAddrBroadcast ) ) {
+        /* Check for valid broadcast values 核对有效的广播值 */
+        if ( ADDR_NOT_BCAST != NLME_IsAddressBroadcast ( dstAddr->addr.shortAddr ) ) {
+            /* Force mode to broadcast 强制转换成广播模式 */
+            dstAddr->addrMode = afAddrBroadcast;
+        } else {
+            /* Address is not a valid broadcast type 地址不是一个有效的广播地址类型 */
+            if ( dstAddr->addrMode == afAddrBroadcast ) {
+                return afStatus_INVALID_PARAMETER;
+            }
+        }
+    } else if ( dstAddr->addrMode != afAddrGroup && dstAddr->addrMode != afAddrNotPresent ) {
+        return afStatus_INVALID_PARAMETER;
+    }
 ​
-    req.dstAddr.addrMode = dstAddr->addrMode;
-    req.profileID = ZDO_PROFILE_ID;
+    req.dstAddr.addrMode = dstAddr->addrMode;
+    req.profileID = ZDO_PROFILE_ID;
 ​
-    if ( ( pfnDescCB = afGetDescCB ( srcEP ) ) ) {
-        uint16 *pID = ( uint16 * ) ( pfnDescCB ( AF_DESCRIPTOR_PROFILE_ID, srcEP->endPoint ) );
+    if ( ( pfnDescCB = afGetDescCB ( srcEP ) ) ) {
+        uint16 *pID = ( uint16 * ) ( pfnDescCB ( AF_DESCRIPTOR_PROFILE_ID, srcEP->endPoint ) );
 ​
-        if ( pID ) {
-            req.profileID = *pID;
-            osal_mem_free ( pID );
-        }
-    } else if ( srcEP->simpleDesc ) {
-        req.profileID = srcEP->simpleDesc->AppProfId;
-    }
+        if ( pID ) {
+            req.profileID = *pID;
+            osal_mem_free ( pID );
+        }
+    } else if ( srcEP->simpleDesc ) {
+        req.profileID = srcEP->simpleDesc->AppProfId;
+    }
 ​
-    req.txOptions = 0;
+    req.txOptions = 0;
 ​
-    if ( ( options & AF_ACK_REQUEST ) &&
-         ( req.dstAddr.addrMode != AddrBroadcast ) &&
-         ( req.dstAddr.addrMode != AddrGroup ) ) {
-        req.txOptions |= APS_TX_OPTIONS_ACK;
-    }
+    if ( ( options & AF_ACK_REQUEST ) &&
+         ( req.dstAddr.addrMode != AddrBroadcast ) &&
+         ( req.dstAddr.addrMode != AddrGroup ) ) {
+        req.txOptions |= APS_TX_OPTIONS_ACK;
+    }
 ​
-    if ( options & AF_SKIP_ROUTING ) {
-        req.txOptions |= APS_TX_OPTIONS_SKIP_ROUTING;
-    }
+    if ( options & AF_SKIP_ROUTING ) {
+        req.txOptions |= APS_TX_OPTIONS_SKIP_ROUTING;
+    }
 ​
-    if ( options & AF_EN_SECURITY ) {
-        req.txOptions |= APS_TX_OPTIONS_SECURITY_ENABLE;
-        mtu.aps.secure = TRUE;
-    } else {
-        mtu.aps.secure = FALSE;
-    }
+    if ( options & AF_EN_SECURITY ) {
+        req.txOptions |= APS_TX_OPTIONS_SECURITY_ENABLE;
+        mtu.aps.secure = TRUE;
+    } else {
+        mtu.aps.secure = FALSE;
+    }
 ​
     mtu.kvp = FALSE;
     req.transID = *transID;
