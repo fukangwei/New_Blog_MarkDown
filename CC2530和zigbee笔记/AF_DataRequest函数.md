@@ -184,45 +184,44 @@ afStatus_t AF_DataRequest ( afAddrType_t *dstAddr, endPointDesc_t *srcEP,
         mtu.aps.secure = FALSE;
     }
 ​
-    mtu.kvp = FALSE;
-    req.transID = *transID;
-    req.srcEP = srcEP->endPoint;
-    req.dstEP = dstAddr->endPoint;
-    req.clusterID = cID;
-    req.asduLen = len;
-    req.asdu = buf;
-    req.discoverRoute = TRUE; // (uint8)((options & AF_DISCV_ROUTE) ? 1 : 0);
-    req.radiusCounter = radius;
+    mtu.kvp = FALSE;
+    req.transID = *transID;
+    req.srcEP = srcEP->endPoint;
+    req.dstEP = dstAddr->endPoint;
+    req.clusterID = cID;
+    req.asduLen = len;
+    req.asdu = buf;
+    req.discoverRoute = TRUE; // (uint8)((options & AF_DISCV_ROUTE) ? 1 : 0);
+    req.radiusCounter = radius;
 ​
-    if ( len > afDataReqMTU ( &mtu ) ) {
-        if ( apsfSendFragmented ) {
-            req.txOptions |= AF_FRAGMENTED | APS_TX_OPTIONS_ACK;
-            stat = ( *apsfSendFragmented ) ( &req );
-        } else {
-            stat = afStatus_INVALID_PARAMETER;
-        }
-    } else {
-        stat = APSDE_DataReq ( &req );
-    }
+    if ( len > afDataReqMTU ( &mtu ) ) {
+        if ( apsfSendFragmented ) {
+            req.txOptions |= AF_FRAGMENTED | APS_TX_OPTIONS_ACK;
+            stat = ( *apsfSendFragmented ) ( &req );
+        } else {
+            stat = afStatus_INVALID_PARAMETER;
+        }
+    } else {
+        stat = APSDE_DataReq ( &req );
+    }
 ​
-    /*
-     * If this is an EndPoint-to-EndPoint message on the same device, it will not
-     * get added to the NWK databufs. So it will not Go OTA and it will not get
-     * a MACCB_DATA_CONFIRM_CMD callback. Thus it is necessary to generate the
-     * AF_DATA_CONFIRM_CMD here. Note that APSDE_DataConfirm() only generates one
-     * message with the first in line TransSeqNumber, even on a multi message.
-     * Also note that a reflected msg will not have its confirmation generated
-     * here.
-     */
-    if ( ( req.dstAddr.addrMode == Addr16Bit ) &&
-         ( req.dstAddr.addr.shortAddr == NLME_GetShortAddr() ) ) {
-        afDataConfirm ( srcEP->endPoint, *transID, stat );
-    }
+    /*
+     * If this is an EndPoint-to-EndPoint message on the same device, it will not
+     * get added to the NWK databufs. So it will not Go OTA and it will not get
+     * a MACCB_DATA_CONFIRM_CMD callback. Thus it is necessary to generate the
+     * AF_DATA_CONFIRM_CMD here. Note that APSDE_DataConfirm() only generates one
+     * message with the first in line TransSeqNumber, even on a multi message.
+     * Also note that a reflected msg will not have its confirmation generated here.
+     */
+    if ( ( req.dstAddr.addrMode == Addr16Bit ) &&
+         ( req.dstAddr.addr.shortAddr == NLME_GetShortAddr() ) ) {
+        afDataConfirm ( srcEP->endPoint, *transID, stat );
+    }
 ​
-    if ( stat == afStatus_SUCCESS ) {
-        ( *transID )++;
-    }
+    if ( stat == afStatus_SUCCESS ) {
+        ( *transID )++;
+    }
 ​
-    return ( afStatus_t ) stat;
+    return ( afStatus_t ) stat;
 }
 ```
