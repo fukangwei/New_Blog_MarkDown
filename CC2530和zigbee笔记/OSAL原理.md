@@ -539,13 +539,12 @@ HAL_ISR_FUNCTION ( macMcuRfIsr, RF_VECTOR ) /* RF中断服务函数 */
 只要对这些宏进行展开，就得到了`CC2530`中断服务函数的形式。下面就来看一下中断服务函数是怎样添加任务的。`P0`口中断服务函数调用了函数`halProcessKeyInterrupt`：
 
 ``` cpp
-/*---------------------------------------------------------------------------------------------
- * @fn halProcessKeyInterrupt
- * @brief Checks to see if it's a valid key interrupt, saves interrupt driven key states for
- *        processing by HalKeyRead(), and debounces keys by scheduling HalKeyRead() 25ms later.
-----------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------
+ * Checks to see if it's a valid key interrupt, saves interrupt driven key states for
+ * processing by HalKeyRead(), and debounces keys by scheduling HalKeyRead() 25ms later.
+---------------------------------------------------------------------------------------*/
 void halProcessKeyInterrupt ( void ) {
-    bool valid = FALSE;
+    bool valid = FALSE;
 ​
     /* 检查中断源 */
     if ( HAL_KEY_SW_6_PXIFG & HAL_KEY_SW_6_BIT ) { /* Interrupt Flag has been set */
