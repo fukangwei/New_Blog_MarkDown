@@ -323,16 +323,16 @@ for ( ;; ) /* Forever Loop */
  * @return SUCCESS, INVALID_TASK
 -----------------------------------------------------------------*/
 uint8 osal_set_event ( uint8 task_id, uint16 event_flag ) {
-    if ( task_id < tasksCnt ) { /* 正确的ID */
-        halIntState_t   intState;
-        HAL_ENTER_CRITICAL_SECTION ( intState ); /* Hold off interrupts */
-        tasksEvents[task_id] |= event_flag; /* Stuff the event bit(s) 添加需要处理的事件的掩码 */
-        HAL_EXIT_CRITICAL_SECTION ( intState ); /* Release interrupts */
-    } else {
-        return ( INVALID_TASK );
-    }
+    if ( task_id < tasksCnt ) { /* 正确的ID */
+        halIntState_t   intState;
+        HAL_ENTER_CRITICAL_SECTION ( intState ); /* Hold off interrupts */
+        tasksEvents[task_id] |= event_flag; /* Stuff the event bit(s) 添加需要处理的事件的掩码 */
+        HAL_EXIT_CRITICAL_SECTION ( intState ); /* Release interrupts */
+    } else {
+        return ( INVALID_TASK );
+    }
 ​
-    return ( SUCCESS );
+    return ( SUCCESS );
 }
 ```
 
@@ -340,61 +340,58 @@ uint8 osal_set_event ( uint8 task_id, uint16 event_flag ) {
 
 ``` cpp
 /*-----------------------------------------------------
- * @fn osalTimerUpdate
- * @brief Update the timer structures for a timer tick.
- * @param none
- * @return none
+ * Update the timer structures for a timer tick.
  * 更新定时器任务
 -----------------------------------------------------*/
 void osalTimerUpdate ( uint16 updateTime ) {
-    halIntState_t intState;
-    osalTimerRec_t *srchTimer;
-    osalTimerRec_t *prevTimer;
-    HAL_ENTER_CRITICAL_SECTION ( intState ); /* Hold off interrupts 保存中断状态 */
-    osal_systemClock += updateTime; /* Update the system time 更新系统时间 */
-    HAL_EXIT_CRITICAL_SECTION ( intState ); /* Re-enable interrupts 恢复中断状态 */
+    halIntState_t intState;
+    osalTimerRec_t *srchTimer;
+    osalTimerRec_t *prevTimer;
+    HAL_ENTER_CRITICAL_SECTION ( intState ); /* Hold off interrupts 保存中断状态 */
+    osal_systemClock += updateTime; /* Update the system time 更新系统时间 */
+    HAL_EXIT_CRITICAL_SECTION ( intState ); /* Re-enable interrupts 恢复中断状态 */
 ​
-    if ( timerHead != NULL ) { /* Look for open timer slot */
-        srchTimer = timerHead; /* Add it to the end of the timer list 添加到定时器列表 */
-        prevTimer = ( void * ) NULL;
+    if ( timerHead != NULL ) { /* Look for open timer slot */
+        srchTimer = timerHead; /* Add it to the end of the timer list 添加到定时器列表 */
+        prevTimer = ( void * ) NULL;
 ​
-        while ( srchTimer ) { /* Look for open timer slot 遍历链表 */
-            osalTimerRec_t *freeTimer = NULL;
-            HAL_ENTER_CRITICAL_SECTION ( intState ); /* Hold off interrupts */
+        while ( srchTimer ) { /* Look for open timer slot 遍历链表 */
+            osalTimerRec_t *freeTimer = NULL;
+            HAL_ENTER_CRITICAL_SECTION ( intState ); /* Hold off interrupts */
 ​
-            if ( srchTimer->timeout <= updateTime ) { /* 超时检查 */
-                srchTimer->timeout = 0;
-            } else {
-                srchTimer->timeout = srchTimer->timeout - updateTime;
-            }
+            if ( srchTimer->timeout <= updateTime ) { /* 超时检查 */
+                srchTimer->timeout = 0;
+            } else {
+                srchTimer->timeout = srchTimer->timeout - updateTime;
+            }
 ​
-            /* When timeout or delete (event_flag == 0) 需要处理的事件 */
-            if ( srchTimer->timeout == 0 || srchTimer->event_flag == 0 ) {
-                if ( prevTimer == NULL ) { /* Take out of list */
-                    timerHead = srchTimer->next;
-                } else {
-                    prevTimer->next = srchTimer->next;
-                }
+            /* When timeout or delete (event_flag == 0) 需要处理的事件 */
+            if ( srchTimer->timeout == 0 || srchTimer->event_flag == 0 ) {
+                if ( prevTimer == NULL ) { /* Take out of list */
+                    timerHead = srchTimer->next;
+                } else {
+                    prevTimer->next = srchTimer->next;
+                }
 ​
-                freeTimer = srchTimer; /* Setup to free memory 设置要被释放的资源 */
-                srchTimer = srchTimer->next; /* Next */
-            } else {
-                prevTimer = srchTimer; /* Get next 下一个任务 */
-                srchTimer = srchTimer->next;
-            }
+                freeTimer = srchTimer; /* Setup to free memory 设置要被释放的资源 */
+                srchTimer = srchTimer->next; /* Next */
+            } else {
+                prevTimer = srchTimer; /* Get next 下一个任务 */
+                srchTimer = srchTimer->next;
+            }
 ​
-            HAL_EXIT_CRITICAL_SECTION ( intState ); /* Re-enable interrupts */
+            HAL_EXIT_CRITICAL_SECTION ( intState ); /* Re-enable interrupts */
 ​
-            if ( freeTimer ) { /* 释放任务 */
-                if ( freeTimer->timeout == 0 ) {
+            if ( freeTimer ) { /* 释放任务 */
+                if ( freeTimer->timeout == 0 ) {
                     /* 时间到了，设置事件标志以等待处理 */
-                    osal_set_event ( freeTimer->task_id, freeTimer->event_flag );
-                }
+                    osal_set_event ( freeTimer->task_id, freeTimer->event_flag );
+                }
 ​
-                osal_mem_free ( freeTimer ); /* 释放该定时器任务的资源 */
-            }
-        }
-    }
+                osal_mem_free ( freeTimer ); /* 释放该定时器任务的资源 */
+            }
+        }
+    }
 }
 ```
 
