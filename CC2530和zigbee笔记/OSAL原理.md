@@ -461,10 +461,10 @@ osalTimerRec_t *prevTimer;
 
 ``` cpp
 typedef struct {
-    void *next;
-    uint16 timeout;
-    uint16 event_flag;
-    uint8 task_id;
+    void *next;
+    uint16 timeout;
+    uint16 event_flag;
+    uint8 task_id;
 } osalTimerRec_t;
 ```
 
@@ -472,12 +472,12 @@ typedef struct {
 
 ``` cpp
 uint8 osal_start_timerEx ( uint8 taskID, uint16 event_id, uint16 timeout_value ) {
-    halIntState_t intState;
-    osalTimerRec_t *newTimer;
-    HAL_ENTER_CRITICAL_SECTION ( intState ); /* Hold off interrupts 保存中断状态 */
-    newTimer = osalAddTimer ( taskID, event_id , timeout_value ); /* Add timer 添加定时器任务 */
-    HAL_EXIT_CRITICAL_SECTION ( intState );  /* Re-enable interrupts */
-    return ( ( newTimer != NULL ) ? SUCCESS : NO_TIMER_AVAIL );
+    halIntState_t intState;
+    osalTimerRec_t *newTimer;
+    HAL_ENTER_CRITICAL_SECTION ( intState ); /* Hold off interrupts 保存中断状态 */
+    newTimer = osalAddTimer ( taskID, event_id , timeout_value ); /* Add timer 添加定时器任务 */
+    HAL_EXIT_CRITICAL_SECTION ( intState );  /* Re-enable interrupts */
+    return ( ( newTimer != NULL ) ? SUCCESS : NO_TIMER_AVAIL );
 }
 ```
 
@@ -497,12 +497,12 @@ tasksEvents[task_id] |= event_flag; /* Stuff the event bit(s) 添加需要处理
 
 ``` cpp
 if ( freeTimer ) { /* 释放任务 */
-    if ( freeTimer->timeout == 0 ) {
+    if ( freeTimer->timeout == 0 ) {
         /* 时间到了，设置事件标志以等待处理 */
-        osal_set_event ( freeTimer->task_id, freeTimer->event_flag );
-    }
+        osal_set_event ( freeTimer->task_id, freeTimer->event_flag );
+    }
 ​
-    osal_mem_free ( freeTimer ); /* 释放该定时器任务的资源 */
+    osal_mem_free ( freeTimer ); /* 释放该定时器任务的资源 */
 }
 ```
 
@@ -510,27 +510,27 @@ if ( freeTimer ) { /* 释放任务 */
 &emsp;&emsp;当然，当一开始进入函数`osal_start_system`中时，应该是没有任务的。这个时候，任务是通过中断层层调用，最后还是调用函数`osal_set_event`添加任务。在`ZigBee`协议栈中，中断函数是通过宏来实现的。这些宏在`Hal_mcu.h`文件中定义：
 
 ``` cpp
-#define _PRAGMA(x)                    _Pragma(#x)
-#define HAL_ISR_FUNC_DECLARATION(f,v) _PRAGMA(vector=v) __near_func __interrupt void f(void)
-#define HAL_ISR_FUNC_PROTOTYPE(f,v)   _PRAGMA(vector=v) __near_func __interrupt void f(void)
-#define HAL_ISR_FUNCTION(f,v)         HAL_ISR_FUNC_PROTOTYPE(f,v); HAL_ISR_FUNC_DECLARATION(f,v)
+#define _PRAGMA(x)                     _Pragma(#x)
+#define HAL_ISR_FUNC_DECLARATION(f, v) _PRAGMA(vector=v) __near_func __interrupt void f(void)
+#define HAL_ISR_FUNC_PROTOTYPE(f, v)   _PRAGMA(vector=v) __near_func __interrupt void f(void)
+#define HAL_ISR_FUNCTION(f, v)         HAL_ISR_FUNC_PROTOTYPE(f, v); HAL_ISR_FUNC_DECLARATION(f, v)
 ```
 
 当需要编写一个中断函数实体，使用宏`HAL_ISR_FUNCTION(f,v)`：
 
 ``` cpp
 HAL_ISR_FUNCTION ( halKeyPort0Isr, P0INT_VECTOR ) { /* P0口中断服务函数 */
-    if ( ( HAL_KEY_SW_6_PXIFG & HAL_KEY_SW_6_BIT ) || ( HAL_KEY_SW_7_PXIFG & HAL_KEY_SW_7_BIT ) ) {
-        halProcessKeyInterrupt();
-    }
+    if ( ( HAL_KEY_SW_6_PXIFG & HAL_KEY_SW_6_BIT ) || ( HAL_KEY_SW_7_PXIFG & HAL_KEY_SW_7_BIT ) ) {
+        halProcessKeyInterrupt();
+    }
 ​
-    /* Clear the CPU interrupt flag for Port_0 PxIFG has to be cleared before PxIF 清除中断标志 */
-    HAL_KEY_SW_6_PXIFG = 0;
-    HAL_KEY_CPU_PORT_0_IF = 0;
+    /* Clear the CPU interrupt flag for Port_0 PxIFG has to be cleared before PxIF 清除中断标志 */
+    HAL_KEY_SW_6_PXIFG = 0;
+    HAL_KEY_CPU_PORT_0_IF = 0;
 }
 ​
 HAL_ISR_FUNCTION ( halTimer1Isr, T1_VECTOR ) { /* 定时器1中断服务函数 */
-    halProcessTimer1 ();
+    halProcessTimer1 ();
 }
 ​
 HAL_ISR_FUNCTION ( macMcuRfIsr, RF_VECTOR ) /* RF中断服务函数 */
