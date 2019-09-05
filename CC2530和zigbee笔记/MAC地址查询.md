@@ -119,15 +119,15 @@ UINT16 GenericApp_ProcessEvent ( byte task_id, UINT16 events ) {
         return ( events ^ SYS_EVENT_MSG );
     }
 ​
-    if ( events & SHOW_INFO_EVENT ) {
-        HalLedBlink ( HAL_LED_2, 0, 50, 500 );
-        ShowInfo();
-        ZDP_IEEEAddrReq ( 0x0000, 0, 0, 0 ); /* 请求协调器IEEE地址 */
-        osal_start_timerEx ( GenericApp_TaskID, SHOW_INFO_EVENT, 5000 );
-        return ( events ^ SHOW_INFO_EVENT );
-    }
+    if ( events & SHOW_INFO_EVENT ) {
+        HalLedBlink ( HAL_LED_2, 0, 50, 500 );
+        ShowInfo();
+        ZDP_IEEEAddrReq ( 0x0000, 0, 0, 0 ); /* 请求协调器IEEE地址 */
+        osal_start_timerEx ( GenericApp_TaskID, SHOW_INFO_EVENT, 5000 );
+        return ( events ^ SHOW_INFO_EVENT );
+    }
 ​
-    return 0;
+    return 0;
 }
 ​
 void GenericApp_ProcessZDOMsgs ( zdoIncomingMsg_t *inMsg ) {
@@ -137,21 +137,22 @@ void GenericApp_ProcessZDOMsgs ( zdoIncomingMsg_t *inMsg ) {
     switch ( inMsg->clusterID ) {
         case IEEE_addr_rsp: {
             /* 对接受到的数据包进行解析，解析完后，pRsp指向数据包的存放地址 */
-            ZDO_NwkIEEEAddrResp_t *pRsp = ZDO_ParseAddrRsp ( inMsg );
+            ZDO_NwkIEEEAddrResp_t *pRsp = ZDO_ParseAddrRsp ( inMsg );
 ​
-            if ( pRsp ) {
-                if ( pRsp->status == ZSuccess ) { /* 解析是否正确 */
-                    To_string ( buf, pRsp->extAddr, 8 ); /* 把MAC地址转换为16进制形式存放 */
-                    HalUARTWrite ( 0, "Coordinator MAC:", osal_strlen ( "Coordinator MAC:" ) );
-                    HalUARTWrite ( 0, buf, 16 );
-                    HalUARTWrite ( 0, changeline, 2 );
-                }
+            if ( pRsp ) {
+                if ( pRsp->status == ZSuccess ) { /* 解析是否正确 */
+                    To_string ( buf, pRsp->extAddr, 8 ); /* 把MAC地址转换为16进制形式存放 */
+                    HalUARTWrite ( 0, "Coordinator MAC:", osal_strlen ( "Coordinator MAC:" ) );
+                    HalUARTWrite ( 0, buf, 16 );
+                    HalUARTWrite ( 0, changeline, 2 );
+                }
 ​
-                osal_mem_free ( pRsp ); /* 调用该函数释放数据包缓冲区 */
-            }
-        }
-        break;
-    }
+                osal_mem_free ( pRsp ); /* 调用该函数释放数据包缓冲区 */
+            }
+        }
+
+        break;
+    }
 }
 ​
 void ShowInfo ( void ) {
