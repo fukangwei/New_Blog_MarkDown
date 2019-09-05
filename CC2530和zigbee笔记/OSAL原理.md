@@ -546,26 +546,26 @@ HAL_ISR_FUNCTION ( macMcuRfIsr, RF_VECTOR ) /* RF中断服务函数 */
 void halProcessKeyInterrupt ( void ) {
     bool valid = FALSE;
 ​
-    /* 检查中断源 */
-    if ( HAL_KEY_SW_6_PXIFG & HAL_KEY_SW_6_BIT ) { /* Interrupt Flag has been set */
-        HAL_KEY_SW_6_PXIFG = ~ ( HAL_KEY_SW_6_BIT ); /* Clear Interrupt Flag */
-        valid = TRUE;
-    }
+    /* 检查中断源 */
+    if ( HAL_KEY_SW_6_PXIFG & HAL_KEY_SW_6_BIT ) { /* Interrupt Flag has been set */
+        HAL_KEY_SW_6_PXIFG = ~ ( HAL_KEY_SW_6_BIT ); /* Clear Interrupt Flag */
+        valid = TRUE;
+    }
 ​
-    if ( HAL_KEY_SW_7_PXIFG & HAL_KEY_SW_7_BIT ) { /* Interrupt Flag has been set */
-        HAL_KEY_SW_7_PXIFG = ~ ( HAL_KEY_SW_7_BIT ); /* Clear Interrupt Flag */
-        valid = TRUE;
-    }
+    if ( HAL_KEY_SW_7_PXIFG & HAL_KEY_SW_7_BIT ) { /* Interrupt Flag has been set */
+        HAL_KEY_SW_7_PXIFG = ~ ( HAL_KEY_SW_7_BIT ); /* Clear Interrupt Flag */
+        valid = TRUE;
+    }
 ​
-    if ( HAL_KEY_JOY_MOVE_PXIFG & HAL_KEY_JOY_MOVE_BIT ) { /* Interrupt Flag has been set */
-        HAL_KEY_JOY_MOVE_PXIFG = ~ ( HAL_KEY_JOY_MOVE_BIT ); /* Clear Interrupt Flag */
-        valid = TRUE;
-    }
+    if ( HAL_KEY_JOY_MOVE_PXIFG & HAL_KEY_JOY_MOVE_BIT ) { /* Interrupt Flag has been set */
+        HAL_KEY_JOY_MOVE_PXIFG = ~ ( HAL_KEY_JOY_MOVE_BIT ); /* Clear Interrupt Flag */
+        valid = TRUE;
+    }
 ​
-    if ( valid ) { /* 添加定时器任务 */
+    if ( valid ) { /* 添加定时器任务 */
         /* 使用定时器定时触发任务 */
-        osal_start_timerEx ( Hal_TaskID, HAL_KEY_EVENT, HAL_KEY_DEBOUNCE_VALUE );
-    }
+        osal_start_timerEx ( Hal_TaskID, HAL_KEY_EVENT, HAL_KEY_DEBOUNCE_VALUE );
+    }
 }
 ```
 
