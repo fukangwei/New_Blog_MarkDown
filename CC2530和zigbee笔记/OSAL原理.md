@@ -312,15 +312,11 @@ for ( ;; ) /* Forever Loop */
 
 ``` cpp
 /*----------------------------------------------------------------
- * @fn osal_set_event
- * @brief
- *
- * This function is called to set the event flags for a task. The
- * event passed in is OR'd into the task's event variable.
- * 设置事件标志,这些事件保存到变量task
- * @param uint8 task_id - receiving tasks ID
- * @param uint8 event_flag - what event to set
- * @return SUCCESS, INVALID_TASK
+ * This function is called to set the event flags for a task.
+ * The event passed in is OR'd into the task's event variable.
+ * 设置事件标志，这些事件保存到变量task
+ * uint8 task_id - receiving tasks ID
+ * uint8 event_flag - what event to set
 -----------------------------------------------------------------*/
 uint8 osal_set_event ( uint8 task_id, uint16 event_flag ) {
     if ( task_id < tasksCnt ) { /* 正确的ID */
@@ -398,12 +394,7 @@ void osalTimerUpdate ( uint16 updateTime ) {
 在我所使用的版本中，该函数只被两个函数调用，分别是：
 
 ``` cpp
-/*------------------------------------------------------
- * @fn osal_adjust_timers
- * @brief Update the timer structures for elapsed ticks.
- * @param none
- * @return none
-------------------------------------------------------*/
+/* Update the timer structures for elapsed ticks */
 void osal_adjust_timers ( void ) {
     uint16 eTime;
 ​
