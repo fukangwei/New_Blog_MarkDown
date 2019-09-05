@@ -213,20 +213,20 @@ int main ( void ) {
     ZMacInit(); /* Initialize the MAC */
     zmain_ext_addr(); /* Determine the extended address 确定长地址 */
 #ifndef NONWK
-    afInit(); /* Since the AF isn't a task, call it's initialization routine */
+    afInit(); /* Since the AF isn't a task, call it's initialization routine */
 #endif
-    osal_init_system(); /* Initialize the operating system 系统初始化 */
-    osal_int_enable ( INTS_ALL ); /* Allow interrupts 使能中断 */
-    InitBoard ( OB_READY ); /* Final board initialization 后期初始化 */
-    zmain_dev_info(); /* Display information about this device 显示设备信息 */
+    osal_init_system(); /* Initialize the operating system 系统初始化 */
+    osal_int_enable ( INTS_ALL ); /* Allow interrupts 使能中断 */
+    InitBoard ( OB_READY ); /* Final board initialization 后期初始化 */
+    zmain_dev_info(); /* Display information about this device 显示设备信息 */
 #ifdef LCD_SUPPORTED
-    zmain_lcd_init(); /* Display the device info on the LCD */
+    zmain_lcd_init(); /* Display the device info on the LCD */
 #endif
 #ifdef WDT_IN_PM1
-    WatchDogEnable ( WDTIMX ); /* If WDT is used, this is a good place to enable it. 使用看门狗 */
+    WatchDogEnable ( WDTIMX ); /* If WDT is used, this is a good place to enable it 使用看门狗 */
 #endif
-    osal_start_system(); /* No Return from here 正常情况下不返回 */
-    return ( 0 );
+    osal_start_system(); /* No Return from here 正常情况下不返回 */
+    return ( 0 );
 }
 ```
 
@@ -275,34 +275,34 @@ osal_start_system(); /* No Return from here */
 for ( ;; ) /* Forever Loop */
 #endif
 {
-    uint8 idx = 0;
-    osalTimeUpdate(); /* 定时器任务更新 */
-    Hal_ProcessPoll(); /* This replaces MT_SerialPoll() and osal_check_timer() 轮询处理 */
+    uint8 idx = 0;
+    osalTimeUpdate(); /* 定时器任务更新 */
+    Hal_ProcessPoll(); /* This replaces MT_SerialPoll() and osal_check_timer() 轮询处理 */
 ​
-    do {
-        if ( tasksEvents[idx] ) { /* Task is highest priority that is ready 查找优先级最高的任务 */
-            break;
-        }
-    } while ( ++idx < tasksCnt ); /* tasksCnt为总的任务数 */
+    do {
+        if ( tasksEvents[idx] ) { /* Task is highest priority that is ready 查找优先级最高的任务 */
+            break;
+        }
+    } while ( ++idx < tasksCnt ); /* tasksCnt为总的任务数 */
 ​
-    if ( idx < tasksCnt ) { /* 任务数检查 */
-        uint16 events;
-        halIntState_t intState;
-        HAL_ENTER_CRITICAL_SECTION ( intState ); /* 保存中断状态 */
-        events = tasksEvents[idx]; /* 取出任务后立即清除 */
-        tasksEvents[idx] = 0; /* Clear the Events for this task */
-        HAL_EXIT_CRITICAL_SECTION ( intState ); /* 恢复中断状态 */
-        events = ( tasksArr[idx] ) ( idx, events ); /* 执行任务，返回值是未处理的事件的掩码 */
-        HAL_ENTER_CRITICAL_SECTION ( intState );
+    if ( idx < tasksCnt ) { /* 任务数检查 */
+        uint16 events;
+        halIntState_t intState;
+        HAL_ENTER_CRITICAL_SECTION ( intState ); /* 保存中断状态 */
+        events = tasksEvents[idx]; /* 取出任务后立即清除 */
+        tasksEvents[idx] = 0; /* Clear the Events for this task */
+        HAL_EXIT_CRITICAL_SECTION ( intState ); /* 恢复中断状态 */
+        events = ( tasksArr[idx] ) ( idx, events ); /* 执行任务，返回值是未处理的事件的掩码 */
+        HAL_ENTER_CRITICAL_SECTION ( intState );
         /* Add back unprocessed events to the current task 添加未被处理的任务 */
-        tasksEvents[idx] |= events;
-        HAL_EXIT_CRITICAL_SECTION ( intState );
-    }
+        tasksEvents[idx] |= events;
+        HAL_EXIT_CRITICAL_SECTION ( intState );
+    }
 ​
 #if defined( POWER_SAVING )
-    else { /* Complete pass through all task events with no activity */
-        osal_pwrmgr_powerconserve(); /* Put the processor/system into sleep 当任务ID号出错时进入睡眠 */
-    }
+    else { /* Complete pass through all task events with no activity */
+        osal_pwrmgr_powerconserve(); /* Put the processor/system into sleep 当任务ID号出错时进入睡眠 */
+    }
 ​
 #endif
 }
