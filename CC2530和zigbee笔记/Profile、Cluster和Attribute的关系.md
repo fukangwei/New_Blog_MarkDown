@@ -16,25 +16,25 @@ categories: CC2530和zigbee笔记
 #define COMMAND_LIGHTING_MOVE_SATURATION            0x04
 #define COMMAND_LIGHTING_STEP_SATURATION            0x05
 #define COMMAND_LIGHTING_MOVE_TO_HUE_AND_SATURATION 0x06
-#define COMMAND_LIGHTING_MOVE_TO_COLOR              0x07
-#define COMMAND_LIGHTING_MOVE_COLOR                 0x08
-#define COMMAND_LIGHTING_STEP_COLOR                 0x09
-#define COMMAND_LIGHTING_MOVE_TO_COLOR_TEMPERATURE  0x0a
+#define COMMAND_LIGHTING_MOVE_TO_COLOR              0x07
+#define COMMAND_LIGHTING_MOVE_COLOR                 0x08
+#define COMMAND_LIGHTING_STEP_COLOR                 0x09
+#define COMMAND_LIGHTING_MOVE_TO_COLOR_TEMPERATURE  0x0a
 ```
 
 `Ballast Configuration Cluster`下面则没有定义命令。
 &emsp;&emsp;除了命令之外，每一个`cluster`还会定义一些属性，例如`colorcontrol cluster`下有：
 
 ``` cpp
-#define ATTRID_LIGHTING_COLOR_CONTROL_CURRENT_HUE        0x0000
+#define ATTRID_LIGHTING_COLOR_CONTROL_CURRENT_HUE        0x0000
 #define ATTRID_LIGHTING_COLOR_CONTROL_CURRENT_SATURATION 0x0001
-#define ATTRID_LIGHTING_COLOR_CONTROL_REMAINING_TIME     0x0002
-#define ATTRID_LIGHTING_COLOR_CONTROL_CURRENT_X          0x0003
-#define ATTRID_LIGHTING_COLOR_CONTROL_CURRENT_Y          0x0004
+#define ATTRID_LIGHTING_COLOR_CONTROL_REMAINING_TIME     0x0002
+#define ATTRID_LIGHTING_COLOR_CONTROL_CURRENT_X          0x0003
+#define ATTRID_LIGHTING_COLOR_CONTROL_CURRENT_Y          0x0004
 #define ATTRID_LIGHTING_COLOR_CONTROL_DRIFT_COMPENSATION 0x0005
-#define ATTRID_LIGHTING_COLOR_CONTROL_COMPENSATION_TEXT  0x0006
-#define ATTRID_LIGHTING_COLOR_CONTROL_COLOR_TEMPERATURE  0x0007
-#define ATTRID_LIGHTING_COLOR_CONTROL_COLOR_MODE         0x0008
+#define ATTRID_LIGHTING_COLOR_CONTROL_COMPENSATION_TEXT  0x0006
+#define ATTRID_LIGHTING_COLOR_CONTROL_COLOR_TEMPERATURE  0x0007
+#define ATTRID_LIGHTING_COLOR_CONTROL_COLOR_MODE         0x0008
 ```
 
 而`Ballast Configuration Cluster`则有：
@@ -43,7 +43,7 @@ categories: CC2530和zigbee笔记
 /* Ballast Information attribute set */
 #define ATTRID_LIGHTING_BALLAST_CONFIG_PHYSICAL_MIN_LEVEL 0x0000
 #define ATTRID_LIGHTING_BALLAST_CONFIG_PHYSICAL_MAX_LEVEL 0x0001
-#define ATTRID_LIGHTING_BALLAST_BALLAST_STATUS            0x0002
+#define ATTRID_LIGHTING_BALLAST_BALLAST_STATUS            0x0002
 ```
 
 这些属性反映了这个`cluster`下设备的状态，可以通过读写这些属性来改变其值。
@@ -68,37 +68,38 @@ Profile ID | Profile Name
 &emsp;&emsp;`cluster`的代码如下：
 
 ``` cpp
-#define SAMPLEAPP_MAX_CLUSTERS       2
+#define SAMPLEAPP_MAX_CLUSTERS       2
 #define SAMPLEAPP_PERIODIC_CLUSTERID 1
-#define SAMPLEAPP_FLASH_CLUSTERID    2
+#define SAMPLEAPP_FLASH_CLUSTERID    2
 ​
 /* This list should be filled with Application specific Cluster IDs */
 const cId_t SampleApp_ClusterList[SAMPLEAPP_MAX_CLUSTERS] = {
-    SAMPLEAPP_PERIODIC_CLUSTERID,
-    SAMPLEAPP_FLASH_CLUSTERID
+    SAMPLEAPP_PERIODIC_CLUSTERID,
+    SAMPLEAPP_FLASH_CLUSTERID
 };
 ```
 
 如何描述节点上一个具体的端口，这在规范中也有定义，使用简单描述符来描述一个端口：
 
 ``` cpp
-/* These constants are only for example and should be changed to the device's needs */
-#define SAMPLEAPP_ENDPOINT       20
-#define SAMPLEAPP_PROFID         0x0F08
-#define SAMPLEAPP_DEVICEID       0x0001
+/* These constants are only for example and
+   should be changed to the device's needs */
+#define SAMPLEAPP_ENDPOINT       20
+#define SAMPLEAPP_PROFID         0x0F08
+#define SAMPLEAPP_DEVICEID       0x0001
 #define SAMPLEAPP_DEVICE_VERSION 0
-#define SAMPLEAPP_FLAGS          0
+#define SAMPLEAPP_FLAGS          0
 ​
 const SimpleDescriptionFormat_t SampleApp_SimpleDesc = {
-    SAMPLEAPP_ENDPOINT,                /* int Endpoint; */
-    SAMPLEAPP_PROFID,                  /* uint16 AppProfId[2]; */
-    SAMPLEAPP_DEVICEID,                /* uint16 AppDeviceId[2]; */
-    SAMPLEAPP_DEVICE_VERSION,          /* int AppDevVer:4; */
-    SAMPLEAPP_FLAGS,                   /* int AppFlags:4; */
-    SAMPLEAPP_MAX_CLUSTERS,            /* uint8 AppNumInClusters; */
-    ( cId_t * ) SampleApp_ClusterList, /* uint8 *pAppInClusterList; */
-    SAMPLEAPP_MAX_CLUSTERS,            /* uint8 AppNumInClusters; */
-    ( cId_t * ) SampleApp_ClusterList  /* uint8 *pAppInClusterList; */
+    SAMPLEAPP_ENDPOINT,                /* int Endpoint;             */
+    SAMPLEAPP_PROFID,                  /* uint16 AppProfId[2];      */
+    SAMPLEAPP_DEVICEID,                /* uint16 AppDeviceId[2];    */
+    SAMPLEAPP_DEVICE_VERSION,          /* int AppDevVer:4;          */
+    SAMPLEAPP_FLAGS,                   /* int AppFlags:4;           */
+    SAMPLEAPP_MAX_CLUSTERS,            /* uint8 AppNumInClusters;   */
+    ( cId_t * ) SampleApp_ClusterList, /* uint8 *pAppInClusterList; */
+    SAMPLEAPP_MAX_CLUSTERS,            /* uint8 AppNumInClusters;   */
+    ( cId_t * ) SampleApp_ClusterList  /* uint8 *pAppInClusterList; */
 };
 ```
 
