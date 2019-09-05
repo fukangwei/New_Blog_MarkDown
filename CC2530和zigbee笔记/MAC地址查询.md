@@ -87,37 +87,37 @@ void GenericApp_Init ( byte task_id ) {
 }
 
 UINT16 GenericApp_ProcessEvent ( byte task_id, UINT16 events ) {
-    afIncomingMSGPacket_t *MSGpkt;
+    afIncomingMSGPacket_t *MSGpkt;
 ​
-    if ( events & SYS_EVENT_MSG ) {
-        MSGpkt = ( afIncomingMSGPacket_t * ) osal_msg_receive ( GenericApp_TaskID );
+    if ( events & SYS_EVENT_MSG ) {
+        MSGpkt = ( afIncomingMSGPacket_t * ) osal_msg_receive ( GenericApp_TaskID );
 ​
-        while ( MSGpkt ) {
-            switch ( MSGpkt->hdr.event ) {
-                case ZDO_CB_MSG:
-                    GenericApp_ProcessZDOMsgs ( ( zdoIncomingMsg_t * ) MSGpkt ); /* 注意这句代码 */
-                    break;
+        while ( MSGpkt ) {
+            switch ( MSGpkt->hdr.event ) {
+                case ZDO_CB_MSG:
+                    GenericApp_ProcessZDOMsgs ( ( zdoIncomingMsg_t * ) MSGpkt ); /* 注意这句代码 */
+                    break;
 ​
-                case ZDO_STATE_CHANGE:
-                    GenericApp_NwkState = ( devStates_t ) ( MSGpkt->hdr.status );
+                case ZDO_STATE_CHANGE:
+                    GenericApp_NwkState = ( devStates_t ) ( MSGpkt->hdr.status );
 ​
-                    if ( GenericApp_NwkState == DEV_ROUTER ) {
-                        HalLedBlink ( HAL_LED_1, 0, 50, 500 );
-                        osal_set_event ( GenericApp_TaskID, SHOW_INFO_EVENT );
-                    }
+                    if ( GenericApp_NwkState == DEV_ROUTER ) {
+                        HalLedBlink ( HAL_LED_1, 0, 50, 500 );
+                        osal_set_event ( GenericApp_TaskID, SHOW_INFO_EVENT );
+                    }
 ​
-                    break;
+                    break;
 ​
-                default:
-                    break;
-            }
+                default:
+                    break;
+            }
 ​
-            osal_msg_deallocate ( ( uint8 * ) MSGpkt );
-            MSGpkt = ( afIncomingMSGPacket_t * ) osal_msg_receive ( GenericApp_TaskID );
-        }
+            osal_msg_deallocate ( ( uint8 * ) MSGpkt );
+            MSGpkt = ( afIncomingMSGPacket_t * ) osal_msg_receive ( GenericApp_TaskID );
+        }
 ​
-        return ( events ^ SYS_EVENT_MSG );
-    }
+        return ( events ^ SYS_EVENT_MSG );
+    }
 ​
     if ( events & SHOW_INFO_EVENT ) {
         HalLedBlink ( HAL_LED_2, 0, 50, 500 );
