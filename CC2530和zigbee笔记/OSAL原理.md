@@ -1,7 +1,7 @@
 ---
 title: OSAL原理
 date: 2019-03-11 20:09:28
-tags:
+categories: CC2530和zigbee笔记
 ---
 ### 概述
 
@@ -38,9 +38,9 @@ osal_memset ( tasksEvents, 0, ( sizeof ( uint16 ) * tasksCnt ) );
 
 ``` cpp
 do {
-    if ( tasksEvents[idx] ) {
-        break;
-    }
+    if ( tasksEvents[idx] ) {
+        break;
+    }
 } while ( ++idx < tasksCnt );
 ```
 
@@ -54,20 +54,20 @@ events = ( tasksArr[idx] ) ( idx, events );
 
 ``` cpp
 const pTaskEventHandlerFn tasksArr[] = {
-    LL_ProcessEvent,                 /* task 0  */
-    Hal_ProcessEvent,                /* task 1  */
-    HCI_ProcessEvent,                /* task 2  */
+    LL_ProcessEvent,                 /* task 0  */
+    Hal_ProcessEvent,                /* task 1  */
+    HCI_ProcessEvent,                /* task 2  */
 #if defined ( OSAL_CBTIMER_NUM_TASKS )
-    OSAL_CBTIMER_PROCESS_EVENT ( osal_CbTimerProcessEvent ), /* task 3  */
+    OSAL_CBTIMER_PROCESS_EVENT ( osal_CbTimerProcessEvent ), /* task 3  */
 #endif
-    L2CAP_ProcessEvent,              /* task 4  */
-    GAP_ProcessEvent,                /* task 5  */
-    GATT_ProcessEvent,               /* task 6  */
-    SM_ProcessEvent,                 /* task 7  */
-    GAPRole_ProcessEvent,            /* task 8  */
-    GAPBondMgr_ProcessEvent,         /* task 9  */
-    GATTServApp_ProcessEvent,        /* task 10 */
-    SimpleBLEPeripheral_ProcessEvent /* task 11 */
+    L2CAP_ProcessEvent,              /* task 4  */
+    GAP_ProcessEvent,                /* task 5  */
+    GATT_ProcessEvent,               /* task 6  */
+    SM_ProcessEvent,                 /* task 7  */
+    GAPRole_ProcessEvent,            /* task 8  */
+    GAPBondMgr_ProcessEvent,         /* task 9  */
+    GATTServApp_ProcessEvent,        /* task 10 */
+    SimpleBLEPeripheral_ProcessEvent /* task 11 */
 };
 ```
 
@@ -82,14 +82,14 @@ const pTaskEventHandlerFn tasksArr[] = {
 ``` cpp
 if ( events &HAL_KEY_EVENT ) {
 #if (defined HAL_KEY) && (HAL_KEY == TRUE)
-    HalKeyPoll(); /* Check for keys */
+    HalKeyPoll(); /* Check for keys */
 ​
-    if ( !Hal_KeyIntEnable ) { /* if interrupt disabled, do next polling */
-        osal_start_timerEx ( Hal_TaskID, HAL_KEY_EVENT, 100 );
-    }
+    if ( !Hal_KeyIntEnable ) { /* if interrupt disabled, do next polling */
+        osal_start_timerEx ( Hal_TaskID, HAL_KEY_EVENT, 100 );
+    }
 ​
 #endif /* HAL_KEY */
-    return events ^ HAL_KEY_EVENT;
+    return events ^ HAL_KEY_EVENT;
 }
 ```
 
@@ -141,9 +141,9 @@ tasksEvents[task_id] |= event_flag;
 
 ``` cpp
 do {
-    if ( tasksEvents[idx] ) {
-        break;
-    }
+    if ( tasksEvents[idx] ) {
+        break;
+    }
 } while ( ++idx < tasksCnt );
 ```
 
@@ -202,16 +202,16 @@ MSGpkt = ( afIncomingMSGPacket_t * ) osal_msg_receive ( SimpleBLEPeripheral_Task
 
 ``` cpp
 int main ( void ) {
-    osal_int_disable ( INTS_ALL ); /* Turn off interrupts 关闭全局中断“EA = 0”，初始化过程不响应任何中断 */
-    HAL_BOARD_INIT(); /* Initialization for board related stuff such as LEDs 配置了时钟、LED、串口 */
-    zmain_vdd_check(); /* Make sure supply voltage is high enough to run 检查电源电压 */
-    zmain_ram_init();/* Initialize stack memory 初始化堆内存 */
-    InitBoard ( OB_COLD ); /* Initialize board I/O 初始化板子用到的IO口 */
-    HalDriverInit(); /*Initialze HAL drivers 初始化外设 */
-    osal_nv_init ( NULL ); /* Initialize NV System 系统初始化 */
-    zgInit(); /* Initialize basic NV items 任务初始化 */
-    ZMacInit(); /* Initialize the MAC */
-    zmain_ext_addr(); /* Determine the extended address 确定长地址 */
+    osal_int_disable ( INTS_ALL ); /* Turn off interrupts 关闭全局中断“EA = 0”，初始化过程不响应任何中断 */
+    HAL_BOARD_INIT(); /* Initialization for board related stuff such as LEDs 配置了时钟、LED、串口 */
+    zmain_vdd_check(); /* Make sure supply voltage is high enough to run 检查电源电压 */
+    zmain_ram_init();/* Initialize stack memory 初始化堆内存 */
+    InitBoard ( OB_COLD ); /* Initialize board I/O 初始化板子用到的IO口 */
+    HalDriverInit(); /*Initialze HAL drivers 初始化外设 */
+    osal_nv_init ( NULL ); /* Initialize NV System 系统初始化 */
+    zgInit(); /* Initialize basic NV items 任务初始化 */
+    ZMacInit(); /* Initialize the MAC */
+    zmain_ext_addr(); /* Determine the extended address 确定长地址 */
 #ifndef NONWK
     afInit(); /* Since the AF isn't a task, call it's initialization routine */
 #endif

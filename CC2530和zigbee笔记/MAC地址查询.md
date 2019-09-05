@@ -156,40 +156,40 @@ void GenericApp_ProcessZDOMsgs ( zdoIncomingMsg_t *inMsg ) {
 }
 ​
 void ShowInfo ( void ) {
-    RFTX rftx;
-    uint8 buf[8];
-    uint8 changline[2] = {0x0A, 0x0D};
-    uint16 nwk;
-    nwk = NLME_GetShortAddr();
-    To_string ( rftx.myNWK, ( uint8 * ) &nwk, 2 );
-    To_string ( rftx.myMAC, NLME_GetExtAddr(), 8 );
-    nwk = NLME_GetCoordShortAddr();
-    To_string ( rftx.pNWK, ( uint8 * ) &nwk, 2 );
-    NLME_GetCoordExtAddr ( buf );
-    To_string ( rftx.pMAC, buf, 8 );
-    HalUARTWrite ( 0, "NWK:", osal_strlen ( "NWK:" ) );
-    HalUARTWrite ( 0, rftx.myNWK, 4 );
-    HalUARTWrite ( 0, "  MAC:", osal_strlen ( "  MAC:" ) );
-    HalUARTWrite ( 0, rftx.myMAC, 16 );
-    HalUARTWrite ( 0, "  p-NWK:", osal_strlen ( "  p-NWK:" ) );
-    HalUARTWrite ( 0, rftx.pNWK, 4 );
-    HalUARTWrite ( 0, "  p-MAC:", osal_strlen ( "  p-MAC:" ) );
-    HalUARTWrite ( 0, rftx.pMAC, 16 );
-    HalUARTWrite ( 0, changline, 2 );
+    RFTX rftx;
+    uint8 buf[8];
+    uint8 changline[2] = {0x0A, 0x0D};
+    uint16 nwk;
+    nwk = NLME_GetShortAddr();
+    To_string ( rftx.myNWK, ( uint8 * ) &nwk, 2 );
+    To_string ( rftx.myMAC, NLME_GetExtAddr(), 8 );
+    nwk = NLME_GetCoordShortAddr();
+    To_string ( rftx.pNWK, ( uint8 * ) &nwk, 2 );
+    NLME_GetCoordExtAddr ( buf );
+    To_string ( rftx.pMAC, buf, 8 );
+    HalUARTWrite ( 0, "NWK:", osal_strlen ( "NWK:" ) );
+    HalUARTWrite ( 0, rftx.myNWK, 4 );
+    HalUARTWrite ( 0, "  MAC:", osal_strlen ( "  MAC:" ) );
+    HalUARTWrite ( 0, rftx.myMAC, 16 );
+    HalUARTWrite ( 0, "  p-NWK:", osal_strlen ( "  p-NWK:" ) );
+    HalUARTWrite ( 0, rftx.pNWK, 4 );
+    HalUARTWrite ( 0, "  p-MAC:", osal_strlen ( "  p-MAC:" ) );
+    HalUARTWrite ( 0, rftx.pMAC, 16 );
+    HalUARTWrite ( 0, changline, 2 );
 }
 ​
 void To_string ( uint8 *dest, char *src, uint8 length ) {
-    uint8 *xad;
-    uint8 i = 0;
-    uint8 ch;
-    xad = src + length - 1;
+    uint8 *xad;
+    uint8 i = 0;
+    uint8 ch;
+    xad = src + length - 1;
 ​
-    for ( i = 0; i < length; i++, xad-- ) {
-        ch = ( *xad >> 4 ) & 0x0F;
-        dest[i << 1] = ch + ( ( ch < 10 ) ? '0' : '7' );
-        ch = *xad & 0x0F;
-        dest[ ( i << 1 ) + 1] = ch + ( ( ch < 10 ) ? '0' : '7' );
-    }
+    for ( i = 0; i < length; i++, xad-- ) {
+        ch = ( *xad >> 4 ) & 0x0F;
+        dest[i << 1] = ch + ( ( ch < 10 ) ? '0' : '7' );
+        ch = *xad & 0x0F;
+        dest[ ( i << 1 ) + 1] = ch + ( ( ch < 10 ) ? '0' : '7' );
+    }
 }
 ```
 
@@ -197,12 +197,12 @@ void To_string ( uint8 *dest, char *src, uint8 length ) {
 
 ``` cpp
 typedef struct {
-    uint8 status;
-    uint16 nwkAddr;
-    uint8 extAddr[Z_EXTADDR_LEN];
-    uint8 numAssocDevs;
-    uint8 startIndex;
-    uint16 devList[];
+    uint8 status;
+    uint16 nwkAddr;
+    uint8 extAddr[Z_EXTADDR_LEN];
+    uint8 numAssocDevs;
+    uint8 startIndex;
+    uint16 devList[];
 } ZDO_NwkIEEEAddrResp_t;
 ```
 
