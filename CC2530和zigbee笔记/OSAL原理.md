@@ -408,49 +408,45 @@ void osal_adjust_timers ( void ) {
 }
 ​
 /*------------------------------------------------------------------------
- * @fn osalTimeUpdate
- * @brief Uses the free running rollover count of the MAC backoff timer;
- *        this timer runs freely with a constant 320 usec interval. The
- *        count of 320-usec ticks is converted to msecs and used to update
- *        the OSAL clock and Timers by invoking osalClockUpdate() and
- *        osalTimerUpdate(). This function is intended to be invoked
- *        from the background, not interrupt level.
- * @param None
- * @return None
+ * Uses the free running rollover count of the MAC backoff timer;
+ * this timer runs freely with a constant 320 usec interval. The
+ * count of 320-usec ticks is converted to msecs and used to update
+ * the OSAL clock and Timers by invoking osalClockUpdate() and
+ * osalTimerUpdate(). This function is intended to be invoked
+ * from the background, not interrupt level.
 ------------------------------------------------------------------------*/
 void osalTimeUpdate ( void ) { /* 定时器任务更新 */
-    uint16 tmp;
-    uint16 ticks320us;
-    uint16 elapsedMSec = 0;
-    /* Get the free-running count of 320us timer ticks 设置时间片 */
-    tmp = macMcuPrecisionCount(); /* 获取溢出值，该溢出值是一个累计的溢出值 */
+    uint16 tmp;
+    uint16 ticks320us;
+    uint16 elapsedMSec = 0;
+    /* Get the free-running count of 320us timer ticks 设置时间片 */
+    tmp = macMcuPrecisionCount(); /* 获取溢出值，该溢出值是一个累计的溢出值 */
 ​
-    if ( tmp != previousMacTimerTick ) { /* 相等则代表没有溢出 */
-        /* Calculate the elapsed ticks of the free-running timer 计算已经消耗的时间 */
-        ticks320us = tmp - previousMacTimerTick;
+    if ( tmp != previousMacTimerTick ) { /* 相等则代表没有溢出 */
+        /* Calculate the elapsed ticks of the free-running timer 计算已经消耗的时间 */
+        ticks320us = tmp - previousMacTimerTick;
         /* Store the MAC Timer tick count for the next time through this function 保存当前时间 */
-        previousMacTimerTick = tmp;
+        previousMacTimerTick = tmp;
 ​
-        /* It is necessary to loop to convert the usecs to msecs in increments so as  not to
-           overflow the 16-bit variables. 这是必要的循环转换usecs毫秒的增量，以免溢出16位变量。*/
-        while ( ticks320us > MAXCALCTICKS ) {
-            ticks320us -= MAXCALCTICKS;
-            elapsedMSec += MAXCALCTICKS * 8 / 25;
-            remUsTicks += MAXCALCTICKS * 8 % 25;
-        }
+        /* It is necessary to loop to convert the usecs to msecs in increments so as not to
+           overflow the 16-bit variables. 这是必要的循环转换usecs毫秒的增量，以免溢出16位变量 */
+        while ( ticks320us > MAXCALCTICKS ) {
+            ticks320us -= MAXCALCTICKS;
+            elapsedMSec += MAXCALCTICKS * 8 / 25;
+            remUsTicks += MAXCALCTICKS * 8 % 25;
+        }
 ​
-        /* update converted number with remaining ticks from loop and the accumulated remainder from loop */
-        tmp = ( ticks320us * 8 ) + remUsTicks;
-        /* Convert the 320 us ticks into milliseconds and a remainder */
-        elapsedMSec += tmp / 25;
-        remUsTicks = tmp % 25;
+        /* update converted number with remaining ticks from loop and the accumulated remainder from loop */
+        tmp = ( ticks320us * 8 ) + remUsTicks;
+        /* Convert the 320 us ticks into milliseconds and a remainder */
+        elapsedMSec += tmp / 25;
+        remUsTicks = tmp % 25;
 ​
-        /* Update OSAL Clock and Timers 更新系统定时器 */
-        if ( elapsedMSec ) {
-            osalClockUpdate ( elapsedMSec ); /* 更新系统时间 */
-            osalTimerUpdate ( elapsedMSec ); /* 更新定时器任务，并设置需要处理的任务的掩码标志 */
-        }
-    }
+        if ( elapsedMSec ) { /* Update OSAL Clock and Timers 更新系统定时器 */
+            osalClockUpdate ( elapsedMSec ); /* 更新系统时间 */
+            osalTimerUpdate ( elapsedMSec ); /* 更新定时器任务，并设置需要处理的任务的掩码标志 */
+        }
+    }
 }
 ```
 
