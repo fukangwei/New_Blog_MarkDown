@@ -1,7 +1,7 @@
 ---
 title: Profile、Cluster和Attribute的关系
 date: 2019-02-05 14:05:14
-tags:
+categories: CC2530和zigbee笔记
 ---
 &emsp;&emsp;`zigbee`规范引入了`profile`、`cluster`的概念。具体说来，假设规范一个`profile`(可以理解成一套规定)，这个`profile`用来规范智能家居领域的相关产品都要满足那些要求，那么`home automation public profile`就规定了智能家居都要做什么。当然你可以自己规范一个`profile`，称为`private profile`。而`zigbee`联盟则已经规范了一些`profile`，比如`home automation`、`smart energy`和`building automation`等。一个`public profile`也规定了`profile`的`ID`，比如智能家居就规定是`0x104`。协议栈本身也有一个`profile`，就是`Zigbee Device Profile`，也就是`ZDP`，这里规范了一个`zigbee`节点都要具备的功能，比如路由能力、网络发现能力、各个协议层需要做什么工作等。
 &emsp;&emsp;在一个`profile`的规范下，又提出了`cluster`的概念。`cluster`要理解成一个大方向下的一个特定对象，比如智能家居下的一个调光器，操作这个调光器就需要一些命令，比如变亮、变暗、关灯、开灯这些操作。另外这个调光器也会有一个`attribute`(属性)，比如当前的亮度，由亮变暗的过程经历多长时间(一下子变亮视觉感觉没有渐变效果好)。`home automation`的`public profile`已经规定了调光器应该有哪些`cluster`，例如`Color Control Cluster`、`Ballast Configuration Cluster`等。然后，`profile`也规范了`color control cluster`的`ID`，这个就是`clusterID`了。
@@ -9,12 +9,12 @@ tags:
 &emsp;&emsp;在这个`cluster`下面，要有以下命令：
 
 ``` cpp
-#define COMMAND_LIGHTING_MOVE_TO_HUE                0x00
-#define COMMAND_LIGHTING_MOVE_HUE                   0x01
-#define COMMAND_LIGHTING_STEP_HUE                   0x02
-#define COMMAND_LIGHTING_MOVE_TO_SATURATION         0x03
-#define COMMAND_LIGHTING_MOVE_SATURATION            0x04
-#define COMMAND_LIGHTING_STEP_SATURATION            0x05
+#define COMMAND_LIGHTING_MOVE_TO_HUE                0x00
+#define COMMAND_LIGHTING_MOVE_HUE                   0x01
+#define COMMAND_LIGHTING_STEP_HUE                   0x02
+#define COMMAND_LIGHTING_MOVE_TO_SATURATION         0x03
+#define COMMAND_LIGHTING_MOVE_SATURATION            0x04
+#define COMMAND_LIGHTING_STEP_SATURATION            0x05
 #define COMMAND_LIGHTING_MOVE_TO_HUE_AND_SATURATION 0x06
 #define COMMAND_LIGHTING_MOVE_TO_COLOR              0x07
 #define COMMAND_LIGHTING_MOVE_COLOR                 0x08
