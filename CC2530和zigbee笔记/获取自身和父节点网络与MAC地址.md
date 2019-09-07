@@ -152,38 +152,38 @@ UINT16 GenericApp_ProcessEvent ( byte task_id, UINT16 events ) { /* 消息处理
     if ( events & SYS_EVENT_MSG ) {
         MSGpkt = ( afIncomingMSGPacket_t * ) osal_msg_receive ( GenericApp_TaskID );
 ​
-        while ( MSGpkt ) {
-            switch ( MSGpkt->hdr.event ) {
-                case ZDO_STATE_CHANGE:
+        while ( MSGpkt ) {
+            switch ( MSGpkt->hdr.event ) {
+                case ZDO_STATE_CHANGE:
                     /* 读取节点的设备类型 */
-                    GenericApp_NwkState = ( devStates_t ) ( MSGpkt->hdr.status );
+                    GenericApp_NwkState = ( devStates_t ) ( MSGpkt->hdr.status );
 ​
-                    if ( GenericApp_NwkState == DEV_ROUTER ) {
-                        HalLedBlink ( HAL_LED_1, 0, 50, 500 ); /* LED1闪烁 */
-                        osal_set_event ( GenericApp_TaskID, SHOW_INFO_EVENT );
-                    }
+                    if ( GenericApp_NwkState == DEV_ROUTER ) {
+                        HalLedBlink ( HAL_LED_1, 0, 50, 500 ); /* LED1闪烁 */
+                        osal_set_event ( GenericApp_TaskID, SHOW_INFO_EVENT );
+                    }
 ​
-                    break;
+                    break;
 ​
-                default:
-                    break;
-            }
+                default:
+                    break;
+            }
 ​
-            osal_msg_deallocate ( ( uint8 * ) MSGpkt );
-            MSGpkt = ( afIncomingMSGPacket_t * ) osal_msg_receive ( GenericApp_TaskID );
-        }
+            osal_msg_deallocate ( ( uint8 * ) MSGpkt );
+            MSGpkt = ( afIncomingMSGPacket_t * ) osal_msg_receive ( GenericApp_TaskID );
+        }
 ​
-        return ( events ^ SYS_EVENT_MSG );
-    }
+        return ( events ^ SYS_EVENT_MSG );
+    }
 ​
-    if ( events & SHOW_INFO_EVENT ) {
-        HalLedBlink ( HAL_LED_2, 0, 50, 500 );
-        ShowInfo();
-        osal_start_timerEx ( GenericApp_TaskID, SHOW_INFO_EVENT, 5000 );
-        return ( events ^ SHOW_INFO_EVENT ); /* 清除事件标志 */
-    }
+    if ( events & SHOW_INFO_EVENT ) {
+        HalLedBlink ( HAL_LED_2, 0, 50, 500 );
+        ShowInfo();
+        osal_start_timerEx ( GenericApp_TaskID, SHOW_INFO_EVENT, 5000 );
+        return ( events ^ SHOW_INFO_EVENT ); /* 清除事件标志 */
+    }
 ​
-    return 0;
+    return 0;
 }
 ​
 void ShowInfo ( void ) {
