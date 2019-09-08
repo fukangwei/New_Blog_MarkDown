@@ -56,19 +56,19 @@ PROCESS_THREAD ( udp_client_process, ev, data ) {
 
 ``` cpp
 static void print_local_addresses ( void ) {
-    int i;
-    uint8_t state;
-    PRINTF ( "Client IPv6 addresses: " );
+    int i;
+    uint8_t state;
+    PRINTF ( "Client IPv6 addresses: " );
 ​
-    for ( i = 0; i < UIP_DS6_ADDR_NB; i++ ) {
-        state = uip_ds6_if.addr_list[i].state;
+    for ( i = 0; i < UIP_DS6_ADDR_NB; i++ ) {
+        state = uip_ds6_if.addr_list[i].state;
 ​
-        if ( uip_ds6_if.addr_list[i].isused && \
+        if ( uip_ds6_if.addr_list[i].isused && \
              ( state == ADDR_TENTATIVE || state == ADDR_PREFERRED ) ) {
-            PRINT6ADDR ( &uip_ds6_if.addr_list[i].ipaddr );
-            PRINTF ( "\n" );
-        }
-    }
+            PRINT6ADDR ( &uip_ds6_if.addr_list[i].ipaddr );
+            PRINTF ( "\n" );
+        }
+    }
 }
 ```
 
@@ -76,15 +76,15 @@ static void print_local_addresses ( void ) {
 
 ``` cpp
 typedef struct uip_ds6_netif {
-    uint32_t link_mtu;
-    uint8_t cur_hop_limit;
-    uint32_t base_reachable_time; /* in msec */
-    uint32_t reachable_time;      /* in msec */
-    uint32_t retrans_timer;       /* in msec */
-    uint8_t maxdadns;
-    uip_ds6_addr_t addr_list[UIP_DS6_ADDR_NB];
-    uip_ds6_aaddr_t aaddr_list[UIP_DS6_AADDR_NB];
-    uip_ds6_maddr_t maddr_list[UIP_DS6_MADDR_NB];
+    uint32_t link_mtu;
+    uint8_t cur_hop_limit;
+    uint32_t base_reachable_time; /* in msec */
+    uint32_t reachable_time;      /* in msec */
+    uint32_t retrans_timer;       /* in msec */
+    uint8_t maxdadns;
+    uip_ds6_addr_t addr_list[UIP_DS6_ADDR_NB];
+    uip_ds6_aaddr_t aaddr_list[UIP_DS6_AADDR_NB];
+    uip_ds6_maddr_t maddr_list[UIP_DS6_MADDR_NB];
 } uip_ds6_netif_t;
 ```
 
@@ -95,15 +95,13 @@ static void set_connection_address ( uip_ipaddr_t *ipaddr ) {
 #define _QUOTEME(x) #x
 #define QUOTEME(x) _QUOTEME(x)
 #ifdef UDP_CONNECTION_ADDR
-​
-    if ( uiplib_ipaddrconv ( QUOTEME ( UDP_CONNECTION_ADDR ), ipaddr ) == 0 ) {
-        PRINTF ( "UDP client failed to parse address '%s'\n", QUOTEME ( UDP_CONNECTION_ADDR ) );
-    }
-​
+    if ( uiplib_ipaddrconv ( QUOTEME ( UDP_CONNECTION_ADDR ), ipaddr ) == 0 ) {
+        PRINTF ( "UDP client failed to parse address '%s'\n", QUOTEME ( UDP_CONNECTION_ADDR ) );
+    }
 #elif UIP_CONF_ROUTER
-    uip_ip6addr ( ipaddr, 0xaaaa, 0, 0, 0, 0x0212, 0x7404, 0x0004, 0x0404 );
+    uip_ip6addr ( ipaddr, 0xaaaa, 0, 0, 0, 0x0212, 0x7404, 0x0004, 0x0404 );
 #else
-    uip_ip6addr ( ipaddr, 0xfe80, 0, 0, 0, 0x6466, 0x6666, 0x6666, 0x6666 );
+    uip_ip6addr ( ipaddr, 0xfe80, 0, 0, 0, 0x6466, 0x6666, 0x6666, 0x6666 );
 #endif /* UDP_CONNECTION_ADDR */
 }
 ```
@@ -114,31 +112,31 @@ static void set_connection_address ( uip_ipaddr_t *ipaddr ) {
 ``` cpp
 PROCESS_THREAD ( udp_server_process, ev, data ) {
 #if UIP_CONF_ROUTER
-    uip_ipaddr_t ipaddr;
+    uip_ipaddr_t ipaddr;
 #endif /* UIP_CONF_ROUTER */
-    PROCESS_BEGIN();
-    PRINTF ( "UDP server started\n" );
+    PROCESS_BEGIN();
+    PRINTF ( "UDP server started\n" );
 #if RESOLV_CONF_SUPPORTS_MDNS
-    resolv_set_hostname ( "contiki-udp-server" ); /* 设置主机的名字 */
+    resolv_set_hostname ( "contiki-udp-server" ); /* 设置主机的名字 */
 #endif
 #if UIP_CONF_ROUTER
-    uip_ip6addr ( &ipaddr, 0xaaaa, 0, 0, 0, 0, 0, 0, 0 ); /* 设置IPV6地址中后面部分的 */
-    uip_ds6_set_addr_iid ( &ipaddr, &uip_lladdr ); /* 设置IPV6地址中的Initializer部分 */
-    uip_ds6_addr_add ( &ipaddr, 0, ADDR_AUTOCONF ); /* 为地址的后面部分添加前缀 */
+    uip_ip6addr ( &ipaddr, 0xaaaa, 0, 0, 0, 0, 0, 0, 0 ); /* 设置IPV6地址中后面部分的 */
+    uip_ds6_set_addr_iid ( &ipaddr, &uip_lladdr ); /* 设置IPV6地址中的Initializer部分 */
+    uip_ds6_addr_add ( &ipaddr, 0, ADDR_AUTOCONF ); /* 为地址的后面部分添加前缀 */
 #endif /* UIP_CONF_ROUTER */
-    print_local_addresses();
-    server_conn = udp_new ( NULL, UIP_HTONS ( 3001 ), NULL );
-    udp_bind ( server_conn, UIP_HTONS ( 3000 ) );
+    print_local_addresses();
+    server_conn = udp_new ( NULL, UIP_HTONS ( 3001 ), NULL );
+    udp_bind ( server_conn, UIP_HTONS ( 3000 ) );
 ​
-    while ( 1 ) {
-        PROCESS_YIELD();
+    while ( 1 ) {
+        PROCESS_YIELD();
 ​
-        if ( ev == tcpip_event ) {
-            tcpip_handler();
-        }
-    }
+        if ( ev == tcpip_event ) {
+            tcpip_handler();
+        }
+    }
 ​
-    PROCESS_END();
+    PROCESS_END();
 }
 ```
 
@@ -146,17 +144,17 @@ PROCESS_THREAD ( udp_server_process, ev, data ) {
 
 ``` cpp
 void uip_ds6_set_addr_iid ( uip_ipaddr_t *ipaddr, uip_lladdr_t *lladdr ) {
-    /* We consider only links with IEEE EUI-64 identifier or
-     * IEEE 48-bit MAC addresses */
+    /* We consider only links with IEEE EUI-64
+       identifier or IEEE 48-bit MAC addresses */
 #if (UIP_LLADDR_LEN == 8)
-    memcpy ( ipaddr->u8 + 8, lladdr, UIP_LLADDR_LEN );
-    ipaddr->u8[8] ^= 0x02;
+    memcpy ( ipaddr->u8 + 8, lladdr, UIP_LLADDR_LEN );
+    ipaddr->u8[8] ^= 0x02;
 #elif (UIP_LLADDR_LEN == 6)
-    memcpy ( ipaddr->u8 + 8, lladdr, 3 );
-    ipaddr->u8[11] = 0xff;
-    ipaddr->u8[12] = 0xfe;
-    memcpy ( ipaddr->u8 + 13, ( uint8_t * ) lladdr + 3, 3 );
-    ipaddr->u8[8] ^= 0x02;
+    memcpy ( ipaddr->u8 + 8, lladdr, 3 );
+    ipaddr->u8[11] = 0xff;
+    ipaddr->u8[12] = 0xfe;
+    memcpy ( ipaddr->u8 + 13, ( uint8_t * ) lladdr + 3, 3 );
+    ipaddr->u8[8] ^= 0x02;
 #else
     #error uip-ds6.c cannot build interface address when UIP_LLADDR_LEN is not 6 or 8
 #endif
