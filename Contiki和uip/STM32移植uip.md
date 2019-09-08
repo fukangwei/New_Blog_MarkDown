@@ -76,14 +76,14 @@ __IO int32_t g_RunTime = 0;
 void SysTick_Handler ( void ) {
     static uint8_t s_count = 0;
 ​
-    if ( ++s_count >= 10 ) {
-        s_count = 0;
-        g_RunTime++; /* 全局运行时间每10ms增1 */
+    if ( ++s_count >= 10 ) {
+        s_count = 0;
+        g_RunTime++; /* 全局运行时间每10ms增1 */
 ​
-        if ( g_RunTime == 0x80000000 ) {
-            g_RunTime = 0;
-        }
-    }
+        if ( g_RunTime == 0x80000000 ) {
+            g_RunTime = 0;
+        }
+    }
 }
 ```
 
