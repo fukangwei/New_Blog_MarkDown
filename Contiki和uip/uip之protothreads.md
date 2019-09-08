@@ -297,25 +297,25 @@ static void protothread1 ( struct pt *pt ) { /* 线程1 */
 }
 ​
 static void protothread2 ( struct pt *pt ) { /* 线程2 */
-    PT_BEGIN ( pt );
+    PT_BEGIN ( pt );
 ​
-    while ( 1 ) {
-        protothread2_flag = 1;
-        PT_WAIT_UNTIL ( pt, protothread1_flag != 0 );
-        protothread1_flag = 0;
-    }
+    while ( 1 ) {
+        protothread2_flag = 1;
+        PT_WAIT_UNTIL ( pt, protothread1_flag != 0 );
+        protothread1_flag = 0;
+    }
 ​
-    PT_END ( pt );
+    PT_END ( pt );
 }
 ​
 void main ( void ) {
-    PT_INIT ( &pt1 ); /* 初始化 */
-    PT_INIT ( &pt2 );
+    PT_INIT ( &pt1 ); /* 初始化 */
+    PT_INIT ( &pt2 );
 ​
-    while ( 1 ) {
-        protothread1 ( &pt1 );
-        protothread2 ( &pt2 );
-    }
+    while ( 1 ) {
+        protothread1 ( &pt1 );
+        protothread2 ( &pt2 );
+    }
 }
 ```
 
@@ -323,21 +323,21 @@ void main ( void ) {
 
 ``` cpp
 static void protothread1 ( struct pt *pt ) { /* 线程1 */
-    switch ( pt->lc ) {
-        case 0:
-            ;
+    switch ( pt->lc ) {
+        case 0:
+            ;
 ​
-            while ( 1 ) {
-                protothread1_flag = 1;
-                pt->lc = 26; case 26: /* 假定当前为26行 */
+            while ( 1 ) {
+                protothread1_flag = 1;
+                pt->lc = 26; case 26: /* 假定当前为26行 */
 
-                if ( protothread2_flag == 0 ) {
-                    return; /* 若protothread2_flag未发生，则返回 */
-                }
+                if ( protothread2_flag == 0 ) {
+                    return; /* 若protothread2_flag未发生，则返回 */
+                }
 ​
-                protothread2_flag = 0;
-            }
-    }
+                protothread2_flag = 0;
+            }
+    }
 }
 ​
 static void protothread2 ( struct pt *pt ) {
