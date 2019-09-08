@@ -476,19 +476,19 @@ int myremove ( char s[] ) { /* 从字符串s中去掉结尾的空格符及制表
 ​
 /* replace strings of blanks with tabs and blanks */
 int main ( void ) {
-    int c, nb, nt, pos;
-    nb = 0;  /* number of blanks */
-    nt = 0;  /* number of tabs */
+    int c, nb, nt, pos;
+    nb = 0; /* number of blanks */
+    nt = 0; /* number of tabs */
 ​
-    for ( pos = 1; ( c = getchar() ) != EOF; pos++ ) {
-        if ( c == ' ' ) {
-            if ( pos % TABINC != 0 ) {
-                nb++; /* increment of blanks */
-            } else {
-                nb = 0; /* reset of blanks */
-                nt++; /* one more tab */
-            }
-        } else {
+    for ( pos = 1; ( c = getchar() ) != EOF; pos++ ) {
+        if ( c == ' ' ) {
+            if ( pos % TABINC != 0 ) {
+                nb++; /* increment of blanks */
+            } else {
+                nb = 0; /* reset of blanks */
+                nt++; /* one more tab */
+            }
+        } else {
             for ( ; nt > 0; nt-- ) {
                 putchar ( '\t' ); /* output tab(s) */
             }
