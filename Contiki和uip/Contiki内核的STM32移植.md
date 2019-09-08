@@ -119,25 +119,25 @@ unsigned int idle_count = 0;
 AUTOSTART_PROCESSES ( &blink_process, &blink_process_2 );
 ​
 int main ( void ) {
-    LED_Init();
-    dbg_setup_uart();
-    printf ( "Initialising\n" );
-    clock_init();
-    process_init();
-    process_start ( &etimer_process, NULL );
-    autostart_start ( autostart_processes );
-    printf ( "Processes running\n" );
+    LED_Init();
+    dbg_setup_uart();
+    printf ( "Initialising\n" );
+    clock_init();
+    process_init();
+    process_start ( &etimer_process, NULL );
+    autostart_start ( autostart_processes );
+    printf ( "Processes running\n" );
 ​
-    while ( 1 ) {
-        do {
-        } while ( process_run() > 0 );
+    while ( 1 ) {
+        do {
+        } while ( process_run() > 0 );
 ​
-        idle_count++;
-        /* Idle! */
-        /* Stop processor clock */
-        /* asm("wfi"::); */
-    }
+        idle_count++;
+        /* Idle! */
+        /* Stop processor clock */
+        /* asm("wfi"::); */
+    }
 ​
-    return 0;
+    return 0;
 }
 ```
