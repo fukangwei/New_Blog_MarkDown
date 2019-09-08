@@ -1,7 +1,7 @@
 ---
 title: uip之protothreads
 date: 2019-02-05 11:17:27
-tags:
+categories: Contiki和uip
 ---
 &emsp;&emsp;通常我们等待一个事件时有阻塞和非阻塞两种方式，`uip`不支持多线程操作，也不依靠中断来通知事件，所以要使用阻塞的方式。但阻塞这种方式又会白白浪费`cpu`时间，阻塞在那里等待事件发生，因而`uip`使用了一种`protothreads`方式，暂称其为`协程`。
 &emsp;&emsp;下面是官方文档的一些简介：协程是一种无堆栈的轻量级线程，它被设计用在服务一些简单有限的内存体系上，如一些嵌入式系统等。协程为事件驱动的线性代码执行，提供`C`的实现。协程可以被用在有或无`RTOS`(`实时操作系统`)的结构上。协程是一个非常轻量级、无堆栈线程，提供了事件驱动系统顶层的阻塞上下文的功能，而不需要每个线程的堆栈。协程的目的是实现连续流程的控制，而不需要状态机或者完整的多线程机制支持。在`C`函数中协程提供条件阻塞。
@@ -9,36 +9,36 @@ tags:
 
 ``` cpp
 static PT_THREAD ( handle_dhcp ( void ) ) {
-    PT_BEGIN ( &s.pt );
+    PT_BEGIN ( &s.pt );
 ​
-    do {
-        send_discover(); /* 发送dhcpc探求包 */
-        timer_set ( &s.timer, s.ticks );
-        PT_WAIT_UNTIL ( &s.pt, uip_newdata() || timer_expired ( &s.timer ) );
+    do {
+        send_discover(); /* 发送dhcpc探求包 */
+        timer_set ( &s.timer, s.ticks );
+        PT_WAIT_UNTIL ( &s.pt, uip_newdata() || timer_expired ( &s.timer ) );
 ​
-        /* do something */
-        if ( s.ticks < CLOCK_SECOND * 60 ) {
-            s.ticks *= 2;
-        }
-    } while ( s.state != STATE_OFFER_RECEIVED );
+        /* do something */
+        if ( s.ticks < CLOCK_SECOND * 60 ) {
+            s.ticks *= 2;
+        }
+    } while ( s.state != STATE_OFFER_RECEIVED );
 ​
-    do {
-        send_request(); /* 发送dhcpc接受包 */
-        timer_set ( &s.timer, s.ticks );
-        PT_WAIT_UNTIL ( &s.pt, uip_newdata() || timer_expired ( &s.timer ) );
+    do {
+        send_request(); /* 发送dhcpc接受包 */
+        timer_set ( &s.timer, s.ticks );
+        PT_WAIT_UNTIL ( &s.pt, uip_newdata() || timer_expired ( &s.timer ) );
 ​
-        if ( s.ticks <= CLOCK_SECOND * 10 ) {
-            s.ticks += CLOCK_SECOND;
-        } else {
-            PT_RESTART ( &s.pt );
-        }
-    } while ( s.state != STATE_CONFIG_RECEIVED );
+        if ( s.ticks <= CLOCK_SECOND * 10 ) {
+            s.ticks += CLOCK_SECOND;
+        } else {
+            PT_RESTART ( &s.pt );
+        }
+    } while ( s.state != STATE_CONFIG_RECEIVED );
 ​
-    while ( 1 ) {
-        PT_YIELD ( &s.pt );
-    }
+    while ( 1 ) {
+        PT_YIELD ( &s.pt );
+    }
 ​
-    PT_END ( &s.pt );
+    PT_END ( &s.pt );
 }
 ```
 
