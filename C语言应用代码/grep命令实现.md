@@ -1,9 +1,9 @@
 ---
 title: grep命令实现
 date: 2018-12-26 21:25:47
-tags:
+categories: C语言应用代码
 ---
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` c
 #include <stdio.h>
@@ -16,46 +16,46 @@ char pattern[] = "ould"; /* pattern to search for */
 ​
 /* find all lines matching pattern */
 int main() {
-    char line[MAXLINE];
-    int found = 0;
+    char line[MAXLINE];
+    int found = 0;
 ​
-    while ( mygetline ( line, MAXLINE ) > 0 )
-        if ( strindex ( line, pattern ) >= 0 ) {
-            printf ( "%s", line );
-            found++;
-        }
+    while ( mygetline ( line, MAXLINE ) > 0 )
+        if ( strindex ( line, pattern ) >= 0 ) {
+            printf ( "%s", line );
+            found++;
+        }
 ​
-    return found;
+    return found;
 }
 ​
 int mygetline ( char s[], int lim ) { /* get line into s, return length */
-    int c, i;
-    i = 0;
+    int c, i;
+    i = 0;
 ​
-    while ( --lim > 0 && ( c = getchar() ) != EOF && c != '\n' ) {
-        s[i++] = c;
-    }
+    while ( --lim > 0 && ( c = getchar() ) != EOF && c != '\n' ) {
+        s[i++] = c;
+    }
 ​
-    if ( c == '\n' ) {
-        s[i++] = c;
-    }
+    if ( c == '\n' ) {
+        s[i++] = c;
+    }
 ​
-    s[i] = '\0';
-    return i;
+    s[i] = '\0';
+    return i;
 }
 ​
 int strindex ( char s[], char t[] ) { /* 返回t在s中的位置，若未找到则返回“-1” */
-    int i, j, k;
+    int i, j, k;
 ​
-    for ( i = 0; s[i] != '\0'; i++ ) {
-        for ( j = i, k = 0; t[k] != '\0' && s[j] == t[k]; j++, k++ )
-            ;
+    for ( i = 0; s[i] != '\0'; i++ ) {
+        for ( j = i, k = 0; t[k] != '\0' && s[j] == t[k]; j++, k++ )
+            ;
 ​
-        if ( k > 0 && t[k] == '\0' ) {
-            return i;
-        }
-    }
+        if ( k > 0 && t[k] == '\0' ) {
+            return i;
+        }
+    }
 ​
-    return -1;
+    return -1;
 }
 ```
