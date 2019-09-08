@@ -198,27 +198,27 @@ static char handle_dhcp ( void ) {
                     }
                 } while ( 0 );
 ​
-                if ( s.ticks <= CLOCK_SECOND * 10 ) {
-                    s.ticks += CLOCK_SECOND;
-                } else {
-                    do {
-                        s.pt->lc = 0;
-                        return PT_WAITING;
-                    } while ( 0 );
-                }
-            } while ( s.state != STATE_CONFIG_RECEIVED );
+                if ( s.ticks <= CLOCK_SECOND * 10 ) {
+                    s.ticks += CLOCK_SECOND;
+                } else {
+                    do {
+                        s.pt->lc = 0;
+                        return PT_WAITING;
+                    } while ( 0 );
+                }
+            } while ( s.state != STATE_CONFIG_RECEIVED );
 ​
-            while ( 1 ) { /* 这个死循环是应用中的需求，dhcp后这个程序不要再执行了 */
-                do {
-                    PT_YIELD_FLAG = 0;
-                    s.pt->lc = __LINE__; case __LINE__:
+            while ( 1 ) { /* 这个死循环是应用中的需求，dhcp后这个程序不要再执行了 */
+                do {
+                    PT_YIELD_FLAG = 0;
+                    s.pt->lc = __LINE__; case __LINE__:
 
-                    if ( PT_YIELD_FLAG == 0 ) {
-                        return PT_YIELDED;
-                    }
-                } while ( 0 );
-            }
-    }
+                    if ( PT_YIELD_FLAG == 0 ) {
+                        return PT_YIELDED;
+                    }
+                } while ( 0 );
+            }
+    }
 ​
     PT_YIELD_FLAG = 0;
     s.pt->lc = 0;
