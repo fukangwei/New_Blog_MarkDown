@@ -60,7 +60,7 @@ static PT_THREAD ( handle_dhcp ( void ) ) {
 
 ``` cpp
 struct pt {
-    lc_t lc;
+    lc_t lc;
 };
 ```
 
@@ -103,12 +103,12 @@ case 0:
 
 ``` cpp
 #define PT_WAIT_UNTIL(pt, condition) \
-    do {                             \
-        LC_SET((pt)->lc);            \
-        if(!(condition)) {           \
-            return PT_WAITING;       \
-        }                            \
-    } while(0)
+    do {                             \
+        LC_SET((pt)->lc);            \
+        if(!(condition)) {           \
+            return PT_WAITING;       \
+        }                            \
+    } while(0)
 ```
 
 其中`LC_SET`宏为：
@@ -121,11 +121,11 @@ case 0:
 
 ``` cpp
 do {
-    s = __LINE__; case __LINE__;
+    s = __LINE__; case __LINE__;
 ​
-    if ( ! ( condition ) ) {
-        return PT_WAITING;
-    }
+    if ( ! ( condition ) ) {
+        return PT_WAITING;
+    }
 } while ( 0 )
 ```
 
