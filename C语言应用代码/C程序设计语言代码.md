@@ -285,48 +285,48 @@ void copy ( char to[], char from[] );
 ​
 /* print the longest input line */
 int main ( void ) {
-    int len; /* current line length */
-    int max; /* maximum length seen so far */
-    char line[MAXLINE]; /* current input line */
-    char longest[MAXLINE]; /* longest line saved here */
-    max = 0;
+    int len; /* current line length */
+    int max; /* maximum length seen so far */
+    char line[MAXLINE]; /* current input line */
+    char longest[MAXLINE]; /* longest line saved here */
+    max = 0;
 ​
-    while ( ( len = mygetline ( line, MAXLINE ) ) > 0 )
-        if ( len > max ) {
-            max = len;
-            copy ( longest, line );
-        }
+    while ( ( len = mygetline ( line, MAXLINE ) ) > 0 )
+        if ( len > max ) {
+            max = len;
+            copy ( longest, line );
+        }
 ​
-    if ( max > 0 ) { /* there was a line */
-        printf ( "%s", longest );
-    }
+    if ( max > 0 ) { /* there was a line */
+        printf ( "%s", longest );
+    }
 ​
-    return 0;
+    return 0;
 }
 ​
 int mygetline ( char s[], int lim ) { /* read a line into s, return length */
-    int c, i;
+    int c, i;
 ​
-    for ( i = 0; i < lim - 1 && ( c = getchar() ) != EOF && c != '\n'; ++i ) {
-        s[i] = c;
-    }
+    for ( i = 0; i < lim - 1 && ( c = getchar() ) != EOF && c != '\n'; ++i ) {
+        s[i] = c;
+    }
 ​
-    if ( c == '\n' ) {
-        s[i] = c;
-        ++i;
-    }
+    if ( c == '\n' ) {
+        s[i] = c;
+        ++i;
+    }
 ​
-    s[i] = '\0';
-    return i;
+    s[i] = '\0';
+    return i;
 }
 ​
 void copy ( char to[], char from[] ) { /* 将from复制到to；这里假定to足够大 */
-    int i;
-    i = 0;
+    int i;
+    i = 0;
 ​
-    while ( ( to[i] = from[i] ) != '\0' ) {
-        ++i;
-    }
+    while ( ( to[i] = from[i] ) != '\0' ) {
+        ++i;
+    }
 }
 ```
 
