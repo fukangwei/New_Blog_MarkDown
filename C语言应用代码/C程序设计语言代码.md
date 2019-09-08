@@ -120,35 +120,35 @@ int main() {
         }
     }
 ​
-    for ( i = MAXHIST; i > 0; i-- ) { /* 输出直方图(垂直) */
-        for ( j = 1; j < MAXWORD; j++ ) {
-            if ( wl[j] * MAXHIST / maxvalue >= i ) {
-                printf ( " * " );
-            } else {
-                printf ( "   " );
-            }
-        }
+    for ( i = MAXHIST; i > 0; i-- ) { /* 输出直方图(垂直) */
+        for ( j = 1; j < MAXWORD; j++ ) {
+            if ( wl[j] * MAXHIST / maxvalue >= i ) {
+                printf ( " * " );
+            } else {
+                printf ( "   " );
+            }
+        }
 ​
-        putchar ( '\n' );
-    }
+        putchar ( '\n' );
+    }
 ​
-    for ( i = 1; i < MAXWORD; i++ ) {
-        printf ( "%2d ", i );
-    }
+    for ( i = 1; i < MAXWORD; i++ ) {
+        printf ( "%2d ", i );
+    }
 ​
-    putchar ( '\n' );
+    putchar ( '\n' );
 ​
-    for ( i = 1; i < MAXWORD; i++ ) {
-        printf ( "%2d ", wl[i] );
-    }
+    for ( i = 1; i < MAXWORD; i++ ) {
+        printf ( "%2d ", wl[i] );
+    }
 ​
-    putchar ( '\n' );
+    putchar ( '\n' );
 ​
-    if ( ovflow > 0 ) { /* 是否有长度超出最大单词长度的单词 */
-        printf ( "There are %d words >= %d/n", ovflow, MAXWORD );
-    }
+    if ( ovflow > 0 ) { /* 是否有长度超出最大单词长度的单词 */
+        printf ( "There are %d words >= %d/n", ovflow, MAXWORD );
+    }
 ​
-    return 0;
+    return 0;
 }
 ```
 
