@@ -132,11 +132,11 @@ do {
 - `PT_RESTART`：重启协程宏：
 
 ``` cpp
-#define PT_RESTART(pt)     \
-    do {                   \
-        PT_INIT(pt);       \ /* 关键，将条件归0 */
-        return PT_WAITING; \
-    } while(0)
+#define PT_RESTART(pt)     \
+    do {                   \
+        PT_INIT(pt);       \ /* 关键，将条件归0 */
+        return PT_WAITING; \
+    } while(0)
 ```
 
 - `PT_YIELD`：放弃执行宏，此宏功能是放弃此次执行函数返回：
@@ -341,21 +341,21 @@ static void protothread1 ( struct pt *pt ) { /* 线程1 */
 }
 ​
 static void protothread2 ( struct pt *pt ) {
-    switch ( pt->lc ) {
-        case 0:
-            ;
+    switch ( pt->lc ) {
+        case 0:
+            ;
 ​
-            while ( 1 ) {
-                protothread2_flag = 1;
-                pt->lc = 44; case 44:
+            while ( 1 ) {
+                protothread2_flag = 1;
+                pt->lc = 44; case 44:
 
-                if ( protothread1_flag == 0 ) {
-                    return;
-                }
+                if ( protothread1_flag == 0 ) {
+                    return;
+                }
 ​
-                myFunc2();
-                protothread1_flag = 0;
-            }
-    }
+                myFunc2();
+                protothread1_flag = 0;
+            }
+    }
 }
 ```
