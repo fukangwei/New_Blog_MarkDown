@@ -75,50 +75,50 @@ int main ( void ) {
 ​
 #define MAXHIST 20 /* max length of histogram */
 #define MAXWORD 11 /* max length of a word */
-#define IN 1 /* inside a word */
+#define IN  1 /* inside a word */
 #define OUT 0 /* outside a word */
 ​
 int main() {
-    int i, j, c, state, nc;
-    int maxvalue; /* maximum value for wl[] */
-    int ovflow; /* number of overflow words */
-    int wl[MAXWORD]; /* word length counters */
-    state = OUT;
-    nc = 0; /* number of chars in a word */
-    ovflow = 0; /* number of words >= MAXWORD */
+    int i, j, c, state, nc;
+    int maxvalue; /* maximum value for wl[] */
+    int ovflow; /* number of overflow words */
+    int wl[MAXWORD]; /* word length counters */
+    state = OUT;
+    nc = 0; /* number of chars in a word */
+    ovflow = 0; /* number of words >= MAXWORD */
 ​
-    for ( i = 0; i < MAXWORD; i++ ) {
-        wl[i] = 0;
-    }
+    for ( i = 0; i < MAXWORD; i++ ) {
+        wl[i] = 0;
+    }
 ​
-    while ( ( c = getchar() ) != EOF ) {
-        if ( c == ' ' || c == '\t' || c == '\n' ) {
-            state = OUT; /* 在单词外，标志着一个单词的结束 */
+    while ( ( c = getchar() ) != EOF ) {
+        if ( c == ' ' || c == '\t' || c == '\n' ) {
+            state = OUT; /* 在单词外，标志着一个单词的结束 */
 ​
-            if ( nc > 0 ) {
-                if ( nc < MAXWORD ) {
-                    ++wl[nc];
-                } else {
-                    ++ovflow;
-                }
+            if ( nc > 0 ) {
+                if ( nc < MAXWORD ) {
+                    ++wl[nc];
+                } else {
+                    ++ovflow;
+                }
 ​
-                nc = 0; /* 准备计数下一个单词的字符数 */
-            }
-        } else if ( state == OUT ) { /* 出现某个单词的首字符 */
-            state = IN;
-            nc = 1; /* beginning of a new word */
-        } else { /* 单词除过首字符的其他字符 */
-            ++nc; /* inside a word */
-        }
-    }
+                nc = 0; /* 准备计数下一个单词的字符数 */
+            }
+        } else if ( state == OUT ) { /* 出现某个单词的首字符 */
+            state = IN;
+            nc = 1; /* beginning of a new word */
+        } else { /* 单词除过首字符的其他字符 */
+            ++nc; /* inside a word */
+        }
+    }
 ​
-    maxvalue = 0; /* find the maximum value in wl[MAXWORD] */
+    maxvalue = 0; /* find the maximum value in wl[MAXWORD] */
 ​
-    for ( i = 1; i < MAXWORD; i++ ) { /* wl[0]未使用(单词的长度大于0) */
-        if ( wl[i] > maxvalue ) {
-            maxvalue = wl[i];
-        }
-    }
+    for ( i = 1; i < MAXWORD; i++ ) { /* wl[0]未使用(单词的长度大于0) */
+        if ( wl[i] > maxvalue ) {
+            maxvalue = wl[i];
+        }
+    }
 ​
     for ( i = MAXHIST; i > 0; i-- ) { /* 输出直方图(垂直) */
         for ( j = 1; j < MAXWORD; j++ ) {
