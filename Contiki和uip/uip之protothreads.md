@@ -169,34 +169,34 @@ do {
 
 ``` cpp
 static char handle_dhcp ( void ) {
-    char PT_YIELD_FLAG = 1;
+    char PT_YIELD_FLAG = 1;
 ​
-    switch ( s.pt->lc ) {
-        case 0:
-            do {
-                send_discover(); /* 发送dhcpc探求包 */
-                timer_set ( &s.timer, s.ticks );
+    switch ( s.pt->lc ) {
+        case 0:
+            do {
+                send_discover(); /* 发送dhcpc探求包 */
+                timer_set ( &s.timer, s.ticks );
 ​
-                do {
-                    s.pt->lc = __LINE__; case __LINE__;
+                do {
+                    s.pt->lc = __LINE__; case __LINE__;
 ​
-                    if ( ! ( uip_newdata() ) ) {
-                        return PT_WAITING;
-                    }
-                } while ( 0 );
-            } while ( s.state != STATE_OFFER_RECEIVED );
+                    if ( ! ( uip_newdata() ) ) {
+                        return PT_WAITING;
+                    }
+                } while ( 0 );
+            } while ( s.state != STATE_OFFER_RECEIVED );
 ​
-            do {
-                send_request(); /* 发送dhcpc接受包 */
-                timer_set ( &s.timer, s.ticks );
+            do {
+                send_request(); /* 发送dhcpc接受包 */
+                timer_set ( &s.timer, s.ticks );
 ​
-                do {
-                    s.pt->lc = __LINE__; case __LINE__;
+                do {
+                    s.pt->lc = __LINE__; case __LINE__;
 ​
-                    if ( ! ( uip_newdata() ) ) {
-                        return PT_WAITING;
-                    }
-                } while ( 0 );
+                    if ( ! ( uip_newdata() ) ) {
+                        return PT_WAITING;
+                    }
+                } while ( 0 );
 ​
                 if ( s.ticks <= CLOCK_SECOND * 10 ) {
                     s.ticks += CLOCK_SECOND;
@@ -220,9 +220,9 @@ static char handle_dhcp ( void ) {
             }
     }
 ​
-    PT_YIELD_FLAG = 0;
-    s.pt->lc = 0;
-    return PT_ENDED;
+    PT_YIELD_FLAG = 0;
+    s.pt->lc = 0;
+    return PT_ENDED;
 }
 ```
 
