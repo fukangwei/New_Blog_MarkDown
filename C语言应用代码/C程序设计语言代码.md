@@ -207,31 +207,31 @@ int main ( void ) {
         }
     }
 ​
-    for ( i = 1; i < MAXWORD; i++ ) { /* 计算对应nc的直方图长度，并输出直方图 */
-        printf ( "%5d - %5d : ", i, wl[i] );
+    for ( i = 1; i < MAXWORD; i++ ) { /* 计算对应nc的直方图长度，并输出直方图 */
+        printf ( "%5d - %5d : ", i, wl[i] );
 ​
-        if ( wl[i] > 0 ) {
+        if ( wl[i] > 0 ) {
             /* 利用下面的公式计算长度，最小长度为1 */
-            if ( ( len = wl[i] * MAXHIST / maxvalue ) <= 0 ) {
-                len = 1;
-            }
-        } else {
-            len = 0;
-        }
+            if ( ( len = wl[i] * MAXHIST / maxvalue ) <= 0 ) {
+                len = 1;
+            }
+        } else {
+            len = 0;
+        }
 ​
-        while ( len > 0 ) { /* 输出直方图 */
-            putchar ( '*' );
-            --len;
-        }
+        while ( len > 0 ) { /* 输出直方图 */
+            putchar ( '*' );
+            --len;
+        }
 ​
-        putchar ( '\n' );
-    }
+        putchar ( '\n' );
+    }
 ​
-    if ( ovflow > 0 ) { /* 是否有长度超出最大单词长度的单词 */
-        printf ( "There are %d words >= %d\n", ovflow, MAXWORD );
-    }
+    if ( ovflow > 0 ) { /* 是否有长度超出最大单词长度的单词 */
+        printf ( "There are %d words >= %d\n", ovflow, MAXWORD );
+    }
 ​
-    return 0;
+    return 0;
 }
 ```
 
@@ -245,29 +245,29 @@ int main ( void ) {
 #define TABINC 4 /* tab length */
 ​
 int main ( void ) {
-    int c, nb, pos;
-    nb = 0; /* number of blanks necessary */
-    pos = 1; /* position of character in line */
+    int c, nb, pos;
+    nb = 0; /* number of blanks necessary */
+    pos = 1; /* position of character in line */
 ​
-    while ( ( c = getchar() ) != EOF ) {
-        if ( c == '\t' ) { /* tab character */
-            nb = TABINC - ( pos - 1 ) % TABINC;
+    while ( ( c = getchar() ) != EOF ) {
+        if ( c == '\t' ) { /* tab character */
+            nb = TABINC - ( pos - 1 ) % TABINC;
 ​
-            while ( nb > 0 ) {
-                putchar ( ' ' );
-                ++pos;
-                --nb;
-            }
-        } else if ( c == '\n' ) { /* new line character */
-            putchar ( c );
-            pos = 1;
-        } else { /* other character */
-            putchar ( c );
-            ++pos;
-        }
-    }
+            while ( nb > 0 ) {
+                putchar ( ' ' );
+                ++pos;
+                --nb;
+            }
+        } else if ( c == '\n' ) { /* new line character */
+            putchar ( c );
+            pos = 1;
+        } else { /* other character */
+            putchar ( c );
+            ++pos;
+        }
+    }
 ​
-    return 0;
+    return 0;
 }
 ```
 
