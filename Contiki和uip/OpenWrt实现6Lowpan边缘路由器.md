@@ -1,7 +1,7 @@
 ---
 title: OpenWrt实现6Lowpan边缘路由器
 date: 2019-03-12 11:48:09
-categories: CC2530和zigbee笔记
+categories: Contiki和uip
 ---
 &emsp;&emsp;`OpenWrt`是一个功能强大的开源路由器`linux`系统，用户可以很方便地对其进行定制和优化。`6Lowpan`是当前无线传感器网络研究的热门领域，通过对`IPv6`数据包头进行压缩、解压缩，以及在`IP`层从添加适用于无线自组网的路由协议`RPL`，实现了在无线传感器网络中也能直接使用`IPv6`协议。目前支持`6Lowpan`协议的开源系统有`Contiki`和`Tinyos`，本文使用的是`Contki`。边缘路由器是指将局域网汇接到广域互联网的一种路由设备。本文实现了将运行`OpenWrt`系统的路由器增加对`6Lowpan`的支持，使其成为`6Lowpan`网络的边缘路由器，最终实现传感器网络节点能够直接访问`IPv6`互联网。
 &emsp;&emsp;硬件使用的是`TP-link`的路由器，具体型号为`703N`。黑色天线是后来`DIY`上去的，硬件也改为`8M`的`FLASH`和`64M`的`RAM`。由于需要安装`Python`，`8M`的`FLASH`还是不够，因此通过`USB-Hub`连接了一个`U`盘，把需要安装的软件都装在`U`盘上。运行`Contiki`系统的`USB`小板如下，这个小板上面的两个芯片分别是`CC2530`无线单片机、型号为`CP210x`的`USB`转串口芯片。
@@ -25,7 +25,7 @@ tunslip6 aaaa::1/64 -s /dev/ttyUSB0 -B 57600
 
 该命令为虚拟网口指定网络前缀、相关设备以及串口波特率。成功运行后，`USB`小板会自动被分配到`aaaa::/64`的网络地址前缀，根据`64`位`mac`地址形成小板的全球唯一的`128`位`IPv6`地址。此时`shell`被`tunslip6`占用了，不能继续输入。打开另一个终端，输入`ifconfig`，查看`tun`网卡是否成功生成：
 
-``` cpp
+``` bash
 tun0 Link encap:UNSPEC HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00
 inet6 addr: aaaa::1/64 Scope:Global
 UP POINTOPOINT RUNNING NOARP MULTICAST MTU:1500 Metric:1
