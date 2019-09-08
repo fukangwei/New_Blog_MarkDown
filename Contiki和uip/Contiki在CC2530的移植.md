@@ -1,7 +1,7 @@
 ---
 title: Contiki在CC2530的移植
 date: 2019-02-04 23:38:25
-tags:
+categories: Contiki和uip
 ---
 &emsp;&emsp;首先选择一个`CC2530`上的基础程序(例如串口打印)，移植系统在此基础上进行。
 &emsp;&emsp;将`contiki-3.0/core/sys`目录下的`autostart.c`、`etimer.c`、`process.c`和`timer.c`文件，`contiki-3.0\cpu\cc253x\dev`目录下的`clock.c`以及`contiki-3.0\cpu\cc253x\dev`目录下的`soc.c`添加到工程中。
@@ -99,8 +99,7 @@ int main ( void ) {
 ​
     while ( 1 ) {
         do {
-        }
-        while ( process_run() > 0 );
+        } while ( process_run() > 0 );
 ​
         idle_count++;
         /* Idle! */
@@ -129,6 +128,7 @@ $TOOLKIT_DIR$\inc\dlib\c\
 void clock_isr ( void ) __interrupt ( ST_VECTOR ) {
     /* ... */
 }
+
 #pragma restore
 ```
 
@@ -137,13 +137,14 @@ void clock_isr ( void ) __interrupt ( ST_VECTOR ) {
 ``` cpp
 //#pragma save
 //#if CC_CONF_OPTIMIZE_STACK_SIZE
-//#pragma exclude bits
+//    #pragma exclude bits
 //#endif
 ​
 #pragma vector=ST_VECTOR
 __near_func __interrupt void clock_isr ( void ) {
     /* ... */
 }
+
 //#pragma restore
 ```
 
@@ -165,9 +166,9 @@ __near_func __interrupt void clock_isr ( void ) {
 #endif
 ```
 
-在`autostart.h`中加入如下内容，移植工作结束。
+在`autostart.h`中加入如下内容，移植工作结束：
 
 ``` cpp
 #define AUTOSTART_ENABLE 1
-#define CC_NO_VA_ARGS    0
+#define CC_NO_VA_ARGS    0
 ```

@@ -1,7 +1,7 @@
 ---
 title: Contiki协议栈框架
 date: 2019-03-12 09:25:02
-categories: CC2530和zigbee笔记
+categories: Contiki和uip
 ---
 ### 协议栈总体框架
 
