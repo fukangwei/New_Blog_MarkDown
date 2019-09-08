@@ -1,7 +1,7 @@
 ---
 title: Contiki内核的STM32移植
 date: 2019-02-05 07:24:14
-tags:
+categories: Contiki和uip
 ---
 &emsp;&emsp;1. 找一个`STM32`的`UART`的打印例程，最好是支持`printf`函数的。
 &emsp;&emsp;2. 接下来拷贝`contiki\core`中的文件。要加入工程的文件只有如下几个：`core\sys`目录下的`autostart.c`、`etimer.c`、`process.c`和`timer.c`。
@@ -13,9 +13,9 @@ tags:
 
 ``` cpp
 void clock_init() {
-    if ( SysTick_Config ( SystemCoreClock / CLOCK_SECOND ) ) {
-        while ( 1 );
-    }
+    if ( SysTick_Config ( SystemCoreClock / CLOCK_SECOND ) ) {
+        while ( 1 );
+    }
 }
 ```
 
@@ -23,17 +23,17 @@ void clock_init() {
 
 ``` cpp
 void SysTick_Handler ( void ) {
-    current_clock++;
+    current_clock++;
 ​
-    if ( etimer_pending() && etimer_next_expiration_time() <= current_clock ) {
-        etimer_request_poll();
-        // printf( "%d, %d\n", clock_time(), etimer_next_expiration_time() );
-    }
+    if ( etimer_pending() && etimer_next_expiration_time() <= current_clock ) {
+        etimer_request_poll();
+        // printf( "%d, %d\n", clock_time(), etimer_next_expiration_time() );
+    }
 ​
-    if ( --second_countdown == 0 ) {
-        current_seconds++;
-        second_countdown = CLOCK_SECOND;
-    }
+    if ( --second_countdown == 0 ) {
+        current_seconds++;
+        second_countdown = CLOCK_SECOND;
+    }
 }
 ```
 
@@ -42,26 +42,26 @@ void SysTick_Handler ( void ) {
 
 ``` cpp
 void dbg_setup_uart ( void ) {
-    USART_InitTypeDef USART_InitStructure;
-    GPIO_InitTypeDef GPIO_InitStructure;
-    RCC_APB2PeriphClockCmd ( RCC_APB2Periph_GPIOA | RCC_APB2Periph_USART1 | RCC_APB2Periph_AFIO, ENABLE );
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
-    GPIO_Init ( GPIOA, &GPIO_InitStructure );
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-    GPIO_Init ( GPIOA, &GPIO_InitStructure );
-    USART_InitStructure.USART_BaudRate = 9600;
-    USART_InitStructure.USART_WordLength = USART_WordLength_8b;
-    USART_InitStructure.USART_StopBits = USART_StopBits_1;
-    USART_InitStructure.USART_Parity = USART_Parity_No;
-    USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
-    USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
-    USART_Init ( USART1, &USART_InitStructure );
-    USART_ITConfig ( USART1, USART_IT_RXNE, ENABLE );
-    USART_Cmd ( USART1, ENABLE );
+    USART_InitTypeDef USART_InitStructure;
+    GPIO_InitTypeDef GPIO_InitStructure;
+    RCC_APB2PeriphClockCmd ( RCC_APB2Periph_GPIOA | RCC_APB2Periph_USART1 | RCC_APB2Periph_AFIO, ENABLE );
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+    GPIO_Init ( GPIOA, &GPIO_InitStructure );
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+    GPIO_Init ( GPIOA, &GPIO_InitStructure );
+    USART_InitStructure.USART_BaudRate = 9600;
+    USART_InitStructure.USART_WordLength = USART_WordLength_8b;
+    USART_InitStructure.USART_StopBits = USART_StopBits_1;
+    USART_InitStructure.USART_Parity = USART_Parity_No;
+    USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+    USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
+    USART_Init ( USART1, &USART_InitStructure );
+    USART_ITConfig ( USART1, USART_IT_RXNE, ENABLE );
+    USART_Cmd ( USART1, ENABLE );
 }
 ```
 

@@ -1,7 +1,7 @@
 ---
 title: Contiki和uip使用注意
 date: 2019-02-04 14:27:20
-tags:
+categories: Contiki和uip
 ---
 1. 在`Contiki`操作系统中，延时函数要尽量使用软件延时的方法，不要使用利用了`Systick`定时器制作的精确延时函数。因为`Contiki`也需要`Systick`定时器作为时基。
 2. 在`Contiki`操作系统中，不要出现局部自动变量(`auto`)，要将其改为局部静态变量(`static`)。
