@@ -7,24 +7,24 @@ categories: Contiki和uip
 
 ``` cpp
 typedef struct name { /* The ICMP and IP headers */
-    /* IP header */
-    u8_t vhl, /* 4位版本标识，有ipv4和ipv6两个版本 */
-         tos, /* 8位区分服务 */
-         len[2], /* IP首部和数据部分的总长度 */
-         ipid[2], /* 分片报文用来认识自己同胞的 */
-         ipoffset[2], /* 片偏移，分片报文用，其中前3位为分片标识 */
-         ttl, /* 生存时间 */
-         proto; /* 上层协议，ICMP的话应该填1 */
-    u16_t ipchksum; /* 校验和 */
-    u16_t srcipaddr[2], /* 源IP */
-          destipaffr[2]; /* 目的IP */
-    /*  ICMP(echo) header */
-    u8_t type, /* ICMP报文，request请求类型填8，relay应答类型填0 */
-         icode; /* 这里填0即可 */
-    u16_t icmpchksum; /* 包括数据在内整个ICMP数据报的检验和 */
-    /* 下面两个字段是ICMP请求应答中特有的 */
-    u16_t id, /* 标识符，标识本ICMP进程 */
-          seqno; /* 对request的应答reply要和request有相同的序列号 */
+    /* IP header */
+    u8_t vhl, /* 4位版本标识，有ipv4和ipv6两个版本 */
+         tos, /* 8位区分服务 */
+         len[2], /* IP首部和数据部分的总长度 */
+         ipid[2], /* 分片报文用来认识自己同胞的 */
+         ipoffset[2], /* 片偏移，分片报文用，其中前3位为分片标识 */
+         ttl, /* 生存时间 */
+         proto; /* 上层协议，ICMP的话应该填1 */
+    u16_t ipchksum; /* 校验和 */
+    u16_t srcipaddr[2], /* 源IP */
+          destipaffr[2]; /* 目的IP */
+    /* ICMP(echo) header */
+    u8_t type, /* ICMP报文，request请求类型填8，relay应答类型填0 */
+         icode; /* 这里填0即可 */
+    u16_t icmpchksum; /* 包括数据在内整个ICMP数据报的检验和 */
+    /* 下面两个字段是ICMP请求应答中特有的 */
+    u16_t id, /* 标识符，标识本ICMP进程 */
+          seqno; /* 对request的应答reply要和request有相同的序列号 */
 } uip_icmpip_hdr;
 ```
 
@@ -32,13 +32,13 @@ typedef struct name { /* The ICMP and IP headers */
 
 ``` cpp
 /* ICMP echo (i.e., ping) processing. This is simple,
-    we only change the ICMP type from ECHO to ECHO_REPLY
-    and adjust the ICMP checksum before we return the packet. */
+   we only change the ICMP type from ECHO to ECHO_REPLY
+   and adjust the ICMP checksum before we return the packet. */
 if ( ICMPBUF->type != ICMP_ECHO ) {
-    UIP_STAT ( ++uip_stat.icmp.drop );
-    UIP_STAT ( ++uip_stat.icmp.typeerr );
-    UIP_LOG ( "icmp: not icmp echo." );
-    goto drop;
+    UIP_STAT ( ++uip_stat.icmp.drop );
+    UIP_STAT ( ++uip_stat.icmp.typeerr );
+    UIP_LOG ( "icmp: not icmp echo." );
+    goto drop;
 }
 ```
 
