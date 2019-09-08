@@ -1,11 +1,11 @@
 ---
 title: fgrep指令实现
 date: 2018-12-26 21:32:04
-tags:
+categories: C语言应用代码
 ---
-&emsp;&emsp;`fgrep`命令实现在文件中查找并打印所有包含指定字符串的文本行，如下所示：
+&emsp;&emsp;`fgrep`命令实现在文件中查找并打印所有包含指定字符串的文本行：
 
-``` c
+``` cpp
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -27,7 +27,7 @@ void search ( char *filename, FILE *stream, char *string ) {
 }
 ​
 int main ( int ac, char **av ) {
-    char *string;
+    char *string;
 ​
     if ( ac <= 1 ) {
         fprintf ( stderr, "Usage: fgrep string file ...\n" );
