@@ -1,54 +1,54 @@
 ---
 title: udp之client和server
 date: 2019-02-05 09:47:51
-tags:
+categories: Contiki和uip
 ---
 &emsp;&emsp;对于`udp-client.c`进行分析：
 
 ``` cpp
 PROCESS_THREAD ( udp_client_process, ev, data ) {
-    static struct etimer et;
-    uip_ipaddr_t ipaddr;
-    PROCESS_BEGIN();
-    PRINTF ( "UDP client process started\n" );
+    static struct etimer et;
+    uip_ipaddr_t ipaddr;
+    PROCESS_BEGIN();
+    PRINTF ( "UDP client process started\n" );
 #if UIP_CONF_ROUTER
-    set_global_address();
+    set_global_address();
 #endif
-    print_local_addresses(); /* 打印所有本地可用的地址 */
-    static resolv_status_t status = RESOLV_STATUS_UNCACHED;
+    print_local_addresses(); /* 打印所有本地可用的地址 */
+    static resolv_status_t status = RESOLV_STATUS_UNCACHED;
 ​
-    while ( status != RESOLV_STATUS_CACHED ) {
-        status = set_connection_address ( &ipaddr ); /* 设定连接的远端IP地址 */
+    while ( status != RESOLV_STATUS_CACHED ) {
+        status = set_connection_address ( &ipaddr ); /* 设定连接的远端IP地址 */
 ​
-        if ( status == RESOLV_STATUS_RESOLVING ) { /* 处理一些异常情况 */
-            PROCESS_WAIT_EVENT_UNTIL ( ev == resolv_event_found );
-        } else if ( status != RESOLV_STATUS_CACHED ) {
-            PRINTF ( "Can't get connection address.\n" );
-            PROCESS_YIELD();
-        }
-    }
+        if ( status == RESOLV_STATUS_RESOLVING ) { /* 处理一些异常情况 */
+            PROCESS_WAIT_EVENT_UNTIL ( ev == resolv_event_found );
+        } else if ( status != RESOLV_STATUS_CACHED ) {
+            PRINTF ( "Can't get connection address.\n" );
+            PROCESS_YIELD();
+        }
+    }
 ​
-    /* 这里和普通的socket编程一样，先申请一个conn，再进行绑定，其中conn中包括远端的IP地址 */
-    client_conn = udp_new ( &ipaddr, UIP_HTONS ( 3000 ), NULL );
-    udp_bind ( client_conn, UIP_HTONS ( 3001 ) );
-    PRINTF ( "Created a connection with the server " );
-    PRINT6ADDR ( &client_conn->ripaddr ); /* 将一个IPV6地址打印出来 */
-    PRINTF ( "local/remote port %u/%u\n", UIP_HTONS ( client_conn->lport ), \
+    /* 这里和普通的socket编程一样，先申请一个conn，再进行绑定，其中conn中包括远端的IP地址 */
+    client_conn = udp_new ( &ipaddr, UIP_HTONS ( 3000 ), NULL );
+    udp_bind ( client_conn, UIP_HTONS ( 3001 ) );
+    PRINTF ( "Created a connection with the server " );
+    PRINT6ADDR ( &client_conn->ripaddr ); /* 将一个IPV6地址打印出来 */
+    PRINTF ( "local/remote port %u/%u\n", UIP_HTONS ( client_conn->lport ), \
              UIP_HTONS ( client_conn->rport ) );
-    etimer_set ( &et, SEND_INTERVAL );
+    etimer_set ( &et, SEND_INTERVAL );
 ​
-    while ( 1 ) {
-        PROCESS_YIELD();
+    while ( 1 ) {
+        PROCESS_YIELD();
 ​
-        if ( etimer_expired ( &et ) ) {
-            timeout_handler();
-            etimer_restart ( &et );
-        } else if ( ev == tcpip_event ) { /* 收到响应信息 */
-            tcpip_handler();
-        }
-    }
+        if ( etimer_expired ( &et ) ) {
+            timeout_handler();
+            etimer_restart ( &et );
+        } else if ( ev == tcpip_event ) { /* 收到响应信息 */
+            tcpip_handler();
+        }
+    }
 ​
-    PROCESS_END();
+    PROCESS_END();
 }
 ```
 
