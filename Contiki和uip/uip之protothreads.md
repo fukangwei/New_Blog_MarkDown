@@ -142,14 +142,14 @@ do {
 - `PT_YIELD`：放弃执行宏，此宏功能是放弃此次执行函数返回：
 
 ``` cpp
-#define PT_YIELD(pt)             \
-    do {                         \
-        PT_YIELD_FLAG = 0;       \
-        LC_SET((pt)->lc);        \
-        if(PT_YIELD_FLAG == 0) { \
-            return PT_YIELDED;   \
-        }                        \
-    } while(0)
+#define PT_YIELD(pt)             \
+    do {                         \
+        PT_YIELD_FLAG = 0;       \
+        LC_SET((pt)->lc);        \
+        if(PT_YIELD_FLAG == 0) { \
+            return PT_YIELDED;   \
+        }                        \
+    } while(0)
 ```
 
 - `PT_END`：协程结束宏：
