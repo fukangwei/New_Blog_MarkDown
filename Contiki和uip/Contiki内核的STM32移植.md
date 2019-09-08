@@ -83,36 +83,36 @@ void dbg_setup_uart ( void ) {
 ​
 PROCESS ( blink_process, "Blink" );
 PROCESS_THREAD ( blink_process, ev, data ) {
-    PROCESS_BEGIN();
+    PROCESS_BEGIN();
 ​
-    while ( 1 ) {
-        static struct etimer et;
-        etimer_set ( &et, CLOCK_SECOND );
-        PROCESS_WAIT_EVENT_UNTIL ( etimer_expired ( &et ) );
-        GPIO_ResetBits ( GPIOA, GPIO_Pin_8 );
-        etimer_set ( &et, CLOCK_SECOND );
-        PROCESS_WAIT_EVENT_UNTIL ( etimer_expired ( &et ) );
-        GPIO_SetBits ( GPIOA, GPIO_Pin_8 );
-    }
+    while ( 1 ) {
+        static struct etimer et;
+        etimer_set ( &et, CLOCK_SECOND );
+        PROCESS_WAIT_EVENT_UNTIL ( etimer_expired ( &et ) );
+        GPIO_ResetBits ( GPIOA, GPIO_Pin_8 );
+        etimer_set ( &et, CLOCK_SECOND );
+        PROCESS_WAIT_EVENT_UNTIL ( etimer_expired ( &et ) );
+        GPIO_SetBits ( GPIOA, GPIO_Pin_8 );
+    }
 ​
-    PROCESS_END();
+    PROCESS_END();
 }
 ​
 PROCESS ( blink_process_2, "Blink" );
 PROCESS_THREAD ( blink_process_2, ev, data ) {
-    PROCESS_BEGIN();
+    PROCESS_BEGIN();
 ​
-    while ( 1 ) {
-        static struct etimer et_2;
-        etimer_set ( &et_2, CLOCK_SECOND / 2 );
-        PROCESS_WAIT_EVENT_UNTIL ( etimer_expired ( &et_2 ) );
-        GPIO_ResetBits ( GPIOD, GPIO_Pin_2 );
-        etimer_set ( &et_2, CLOCK_SECOND / 2 );
-        PROCESS_WAIT_EVENT_UNTIL ( etimer_expired ( &et_2 ) );
-        GPIO_SetBits ( GPIOD, GPIO_Pin_2 );
-    }
+    while ( 1 ) {
+        static struct etimer et_2;
+        etimer_set ( &et_2, CLOCK_SECOND / 2 );
+        PROCESS_WAIT_EVENT_UNTIL ( etimer_expired ( &et_2 ) );
+        GPIO_ResetBits ( GPIOD, GPIO_Pin_2 );
+        etimer_set ( &et_2, CLOCK_SECOND / 2 );
+        PROCESS_WAIT_EVENT_UNTIL ( etimer_expired ( &et_2 ) );
+        GPIO_SetBits ( GPIOD, GPIO_Pin_2 );
+    }
 ​
-    PROCESS_END();
+    PROCESS_END();
 }
 ​
 unsigned int idle_count = 0;
