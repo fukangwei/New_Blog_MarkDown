@@ -136,22 +136,22 @@ typedef int uip_udp_appstate_t; /* 出错可注释 */
 #include "stm32f10x.h"
 ​
 #ifndef UIP_APPCALL
-    #define UIP_APPCALL Uip_Appcall
+    #define UIP_APPCALL Uip_Appcall
 #endif
 ​
 #ifndef UIP_UDP_APPCALL
-    #define UIP_UDP_APPCALL Udp_Appcall
+    #define UIP_UDP_APPCALL Udp_Appcall
 #endif
 ​
 void Uip_Appcall ( void );
 void Udp_Appcall ( void );
 ​
 void Uip_Appcall ( void ) {
-    /* User Code */
+    /* User Code */
 }
 ​
 void Udp_Appcall ( void ) {
-    /* User Code */
+    /* User Code */
 }
 ```
 
@@ -206,37 +206,38 @@ int main ( void ) {
 ​
         if ( uip_len > 0 ) {
             /* 如果数据存在则按协议处理 */
-            if ( BUF->type == htons ( UIP_ETHTYPE_IP ) ) { /* 如果收到的是IP数据，调用uip_input处理 */
+            if ( BUF->type == htons ( UIP_ETHTYPE_IP ) ) {
+                /* 如果收到的是IP数据，调用uip_input处理 */
                 uip_arp_ipin();
                 uip_input();
 ​
-                /* If the above function invocation resulted in data that should be
-                   sent out on the network, the global variable uip_len is set to a value > 0. */
+                /* If the above function invocation resulted in data that should be sent
+                   out on the network, the global variable uip_len is set to a value > 0 */
 ​
                 if ( uip_len > 0 ) {
                     uip_arp_out();
                     tapdev_send();
                 }
-            }
-            else if ( BUF->type == htons ( UIP_ETHTYPE_ARP ) ) { /* 如果收到的是ARP数据，调用uip_arp_arpin处理 */
+            } else if ( BUF->type == htons ( UIP_ETHTYPE_ARP ) ) {
+                /* 如果收到的是ARP数据，调用uip_arp_arpin处理 */
                 uip_arp_arpin();
 ​
                 /* If the above function invocation resulted in data that should be sent
-                   out on the network, the global variable uip_len is set to a value > 0. */
+                   out on the network, the global variable uip_len is set to a value > 0 */
 ​
                 if ( uip_len > 0 ) {
                     tapdev_send();
                 }
             }
-        }
-        else if ( timer_expired ( &periodic_timer ) ) { /* 查看0.5s是否到了，调用uip_periodic处理TCP超时程序 */
+        } else if ( timer_expired ( &periodic_timer ) ) {
+            /* 查看0.5s是否到了，调用uip_periodic处理TCP超时程序 */
             timer_reset ( &periodic_timer );
 ​
             for ( i = 0; i < UIP_CONNS; i++ ) {
                 uip_periodic ( i );
 ​
                 /* If the above function invocation resulted in data that should be sent
-                   out on the network, the global variable uip_len is set to a value > 0. */
+                   out on the network, the global variable uip_len is set to a value > 0 */
 ​
                 if ( uip_len > 0 ) {
                     uip_arp_out();
