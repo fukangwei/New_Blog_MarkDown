@@ -103,10 +103,10 @@ void spi_init ( void );
         SPI_WAITFOREOTx();      \
     } while(0)
 ​
-#define SPI_WRITE(data)              \
-    do {                             \
-        UCB0TXBUF = data;            \
-        while((UCB0STAT&UCBUSY)!=0); \
+#define SPI_WRITE(data)                \
+    do {                               \
+        UCB0TXBUF = data;              \
+        while((UCB0STAT&UCBUSY) != 0); \
     } while(0)
 ​
 /* Write one character to SPI - will not wait for end
@@ -118,25 +118,25 @@ void spi_init ( void );
         SPI_WAITFORTx_AFTER();  \
     } while(0)
 ​
-#define SPI_WRITE_FAST(data)          \
-    do {                              \
-        UCB0TXBUF = data;             \
-        while((UCB0STAT&UCBUSY)!=0);  \
+#define SPI_WRITE_FAST(data)           \
+    do {                               \
+        UCB0TXBUF = data;              \
+        while((UCB0STAT&UCBUSY) != 0); \
     } while(0)
 ​
 /* Read one character from SPI */
-#define SPI_READ(data)      \
-    do {                    \
-        SPI_TXBUF = 0;      \
-        SPI_WAITFOREORx();  \
-        data = SPI_RXBUF;   \
+#define SPI_READ(data)     \
+    do {                   \
+        SPI_TXBUF = 0;     \
+        SPI_WAITFOREORx(); \
+        data = SPI_RXBUF;  \
     } while(0)
 ​
-#define SPI_READ(data)                  \
-    do {                                \
-        UCB0RXBUF = 0;                  \
-        while((UCB0IFG&UCRXIFG) == 0);  \
-        data = SPI_RXBUF;               \
+#define SPI_READ(data)                 \
+    do {                               \
+        UCB0RXBUF = 0;                 \
+        while((UCB0IFG&UCRXIFG) == 0); \
+        data = SPI_RXBUF;              \
     } while(0)
 ```
 
