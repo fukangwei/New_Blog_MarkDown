@@ -49,9 +49,9 @@ ICMPBUF->type = ICMP_ECHO_REPLY; /* 把报文改成ICMP应答(reply) */
 ​
 /* 修改校验和 */
 if ( ICMPBUF->icmpchksum >= HTONS ( 0xffff - ( ICMP_ECHO << 8 ) ) ) {
-    ICMPBUF->icmpchksum += HTONS ( ICMP_ECHO << 8 ) + 1;
+    ICMPBUF->icmpchksum += HTONS ( ICMP_ECHO << 8 ) + 1;
 } else {
-    ICMPBUF->icmpchksum += HTONS ( ICMP_ECHO << 8 );
+    ICMPBUF->icmpchksum += HTONS ( ICMP_ECHO << 8 );
 }
 ​
 /* Swap IP addresses. */

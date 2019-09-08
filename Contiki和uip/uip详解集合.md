@@ -1,7 +1,7 @@
 ---
 title: uip详解集合
 date: 2019-07-22 21:27:18
-tags:
+categories: Contiki和uip
 ---
 ### 初始化函数
 
@@ -499,7 +499,9 @@ void uip_arp_arpin ( void ) {
         uip_len = 0;
         return;
     }
+
     uip_len = 0;
+
     switch ( BUF->opcode ) {
         case HTONS ( ARP_REQUEST ) :
             /* ARP request. If it asked for our address, we send out a reply. 如果是一个ARP请求，则发送应答 */
@@ -521,6 +523,7 @@ void uip_arp_arpin ( void ) {
                 BUF->ethhdr.type = HTONS ( UIP_ETHTYPE_ARP );
                 uip_len = sizeof ( struct arp_hdr );
             }
+
             break;
         case HTONS ( ARP_REPLY ) :
             /* ARP reply. We insert or update the ARP table if it was meant for us.
@@ -531,6 +534,7 @@ void uip_arp_arpin ( void ) {
 
             break;
     }
+
     return;
 }
 ```
@@ -555,7 +559,7 @@ uip_len = sizeof ( struct arp_hdr );
 由于请求和应答包很多地方是相同的，我们只需将收到的请求稍加修改就可以发送回去了。首先要改一下`MAC`地址，一共有`4`个地方。然后要将目标主机`IP`设为设为请求包的源主机`IP`，目的主机`IP`设为我们的`IP`就可以了。另外说一下对`ARP`缓存表的设置：
 
 ``` cpp
-/* 这个函数是集插入、更新一体的，有两个参数，分别是IP地址和MAC地址。*/
+/* 这个函数是集插入、更新一体的，有两个参数，分别是IP地址和MAC地址 */
 static void uip_arp_update ( u16_t *ipaddr, struct uip_eth_addr *ethaddr ) {
     register struct arp_entry *tabptr;
     /* Walk through the ARP mapping table and try to find an entry to update.
@@ -584,6 +588,7 @@ static void uip_arp_update ( u16_t *ipaddr, struct uip_eth_addr *ethaddr ) {
     /* First, we try to find an unused entry in the ARP table. 先看看有没有空表项可用 */
     for ( i = 0; i < UIP_ARPTAB_SIZE; ++i ) {
         tabptr = &arp_table[i];
+
         if ( tabptr->ipaddr[0] == 0 && tabptr->ipaddr[1] == 0 ) {
             break;
         }
@@ -594,13 +599,16 @@ static void uip_arp_update ( u16_t *ipaddr, struct uip_eth_addr *ethaddr ) {
     if ( i == UIP_ARPTAB_SIZE ) {
         tmpage = 0;
         c = 0;
+
         for ( i = 0; i < UIP_ARPTAB_SIZE; ++i ) {
             tabptr = &arp_table[i];
+
             if ( arptime - tabptr->time > tmpage ) {
                 tmpage = arptime - tabptr->time;
                 c = i;
             }
         }
+
         i = c;
         tabptr = &arp_table[i];
     }
@@ -626,8 +634,10 @@ static void uip_arp_update ( u16_t *ipaddr, struct uip_eth_addr *ethaddr ) {
 void uip_arp_timer ( void ) {
     struct arp_entry *tabptr;
     ++arptime;
+
     for ( i = 0; i < UIP_ARPTAB_SIZE; ++i ) {
         tabptr = &arp_table[i];
+
         if ( ( tabptr->ipaddr[0] | tabptr->ipaddr[1] ) != 0 && \
              arptime - tabptr->time >= UIP_ARP_MAXAGE ) {
             memset ( tabptr->ipaddr, 0, 4 );
@@ -769,7 +779,7 @@ void uip_arp_out ( void ) {
 ```
 
 &emsp;&emsp;下面再总结一下其基本顺序：用`IPBUF->ethhdr.dest.addr`来存储目的`IP`地址，它有可能是局域网内一主机，也可能是路由器(如果是发往外网，即原来的目的`IP`不在局域网内)，还有可能是广播专用的`MAC`(`broadcast_ethaddr.addr`)。
-&emsp;&emsp;先看是不是在广播，如果是广播，将`IPBUF->ethhdr.dest.addr`设为广播`MAC`。再看是不是在局域网内，如果不是，则将`IPBUF->ethhdr.dest.addr`设为路由器`MAC`。如果在局域网内，查看是否已经存在于`ARP`缓存表中，如果不在，将要发送的换成ARP请求，返回；如果已存在，则查找使用查找到的`MAC`地址为`IP`包添加以太网头。
+&emsp;&emsp;先看是不是在广播，如果是广播，将`IPBUF->ethhdr.dest.addr`设为广播`MAC`。再看是不是在局域网内，如果不是，则将`IPBUF->ethhdr.dest.addr`设为路由器`MAC`。如果在局域网内，查看是否已经存在于`ARP`缓存表中，如果不在，将要发送的换成`ARP`请求，返回；如果已存在，则查找使用查找到的`MAC`地址为`IP`包添加以太网头。
 &emsp;&emsp;这里还要解释一些细节问题，主要是：
 
 1. 如何在`IP`包上添加以太网头？
@@ -1185,11 +1195,13 @@ u16_t psock_datalen ( struct psock *psock ) char psock_newdata ( psock *s )
 PT_THREAD ( thread ( struct psock *s, struct timer *t ) ) {
     PSOCK_BEGIN ( s );
     PSOCK_WAIT_UNTIL ( s, PSOCK_NEWADATA ( s ) || timer_expired ( t ) );
+
     if ( PSOCK_NEWDATA ( s ) ) {
         PSOCK_READTO ( s, '\n' );
     } else {
         handle_timed_out ( s );
     }
+
     PSOCK_END ( s );
 }
 ```
