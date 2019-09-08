@@ -341,32 +341,32 @@ void copy ( char to[], char from[] ) { /* 将from复制到to；这里假定to足
 #define MAXLINE 100
 ​
 double atof ( char s[] ) { /* 把字符串转换为相应的双精度浮点数 */
-    double val, power;
-    int i, sign;
+    double val, power;
+    int i, sign;
 ​
-    for ( i = 0; isspace ( s[i] ); i++ ) /* skip white space */
-        ;
+    for ( i = 0; isspace ( s[i] ); i++ ) /* skip white space */
+        ;
 ​
-    sign = ( s[i] == '-' ) ? -1 : 1;
+    sign = ( s[i] == '-' ) ? -1 : 1;
 ​
-    if ( s[i] == '+' || s[i] == '-' ) {
-        i++;
-    }
+    if ( s[i] == '+' || s[i] == '-' ) {
+        i++;
+    }
 ​
-    for ( val = 0.0; isdigit ( s[i] ); i++ ) {
-        val = 10.0 * val + ( s[i] - '0' );
-    }
+    for ( val = 0.0; isdigit ( s[i] ); i++ ) {
+        val = 10.0 * val + ( s[i] - '0' );
+    }
 ​
-    if ( s[i] == '.' ) {
-        i++;
-    }
+    if ( s[i] == '.' ) {
+        i++;
+    }
 ​
-    for ( power = 1.0; isdigit ( s[i] ); i++ ) {
-        val = 10.0 * val + ( s[i] - '0' );
-        power *= 10;
-    }
+    for ( power = 1.0; isdigit ( s[i] ); i++ ) {
+        val = 10.0 * val + ( s[i] - '0' );
+        power *= 10;
+    }
 ​
-    return sign * val / power;
+    return sign * val / power;
 }
 ​
 int mygetline ( char s[], int lim ) { /* read a line into s, return length */
