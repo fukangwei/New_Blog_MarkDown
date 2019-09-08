@@ -1,9 +1,9 @@
 ---
 title: find命令实现
 date: 2018-12-26 21:59:07
-tags:
+categories: C语言应用代码
 ---
-&emsp;&emsp;版本`1`如下所示：
+&emsp;&emsp;版本`1`如下：
 
 ``` c
 /* find函数：打印与第一个参数指定的模式匹配的行 */
@@ -11,22 +11,23 @@ tags:
 #include <string.h>
 ​
 #define MAXLINE 1000
+
 int mygetline ( char *line, int max );
 ​
 int main ( int argc, char *argv[] ) {
-    char line[MAXLINE];
-    int found = 0;
+    char line[MAXLINE];
+    int found = 0;
 ​
-    if ( argc != 2 ) {
-        printf ( "Usage: find pattern\n" );
-    } else
-        while ( mygetline ( line, MAXLINE ) > 0 )
-            if ( strstr ( line, argv[1] ) != NULL ) {
-                printf ( "%s", line );
-                found++;
-            }
+    if ( argc != 2 ) {
+        printf ( "Usage: find pattern\n" );
+    } else
+        while ( mygetline ( line, MAXLINE ) > 0 )
+            if ( strstr ( line, argv[1] ) != NULL ) {
+                printf ( "%s", line );
+                found++;
+            }
 ​
-    return found;
+    return found;
 }
 ​
 int mygetline ( char s[], int lim ) { /* get line into s, return length */
@@ -46,7 +47,7 @@ int mygetline ( char s[], int lim ) { /* get line into s, return length */
 }
 ```
 
-&emsp;&emsp;版本`2`如下所示：
+&emsp;&emsp;版本`2`如下：
 
 ``` c
 #include <stdio.h>
