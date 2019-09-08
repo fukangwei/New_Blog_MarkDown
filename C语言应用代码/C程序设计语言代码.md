@@ -1,7 +1,7 @@
 ---
 title: C程序设计语言代码
 date: 2019-02-04 12:50:33
-tags:
+categories: C语言应用代码
 ---
 ### 字符出现频率的直方图
 
@@ -16,22 +16,22 @@ tags:
 ​
 /* Print horizontal histogram freq. of different characters */
 int main ( void ) {
-    int i, c;
-    int len; /* length of each bar */
-    int maxvalue; /* maximum value for cc[] */
-    int cc[MAXCHAR]; /* character counters */
+    int i, c;
+    int len; /* length of each bar */
+    int maxvalue; /* maximum value for cc[] */
+    int cc[MAXCHAR]; /* character counters */
 ​
-    for ( i = 0; i < MAXCHAR; i++ ) {
-        cc[i] = 0;
-    }
+    for ( i = 0; i < MAXCHAR; i++ ) {
+        cc[i] = 0;
+    }
 ​
-    while ( ( c = getchar() ) != EOF ) {
-        if ( c < MAXCHAR ) {
-            ++cc[c]; /* 对应字符的个数 */
-        }
-    }
+    while ( ( c = getchar() ) != EOF ) {
+        if ( c < MAXCHAR ) {
+            ++cc[c]; /* 对应字符的个数 */
+        }
+    }
 ​
-    maxvalue = 0; /* find the maximum value in cc[MAXCHAR] */
+    maxvalue = 0; /* find the maximum value in cc[MAXCHAR] */
 ​
     for ( i = 1; i < MAXCHAR; i++ ) { /* wl[0]未使用(单词的长度大于0) */
         if ( cc[i] > maxvalue ) {
