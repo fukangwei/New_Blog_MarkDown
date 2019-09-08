@@ -370,31 +370,31 @@ double atof ( char s[] ) { /* 把字符串转换为相应的双精度浮点数 *
 }
 ​
 int mygetline ( char s[], int lim ) { /* read a line into s, return length */
-    int c, i;
+    int c, i;
 ​
-    for ( i = 0; i < lim - 1 && ( c = getchar() ) != EOF && c != '\n'; ++i ) {
-        s[i] = c;
-    }
+    for ( i = 0; i < lim - 1 && ( c = getchar() ) != EOF && c != '\n'; ++i ) {
+        s[i] = c;
+    }
 ​
-    if ( c == '\n' ) {
-        s[i] = c;
-        ++i;
-    }
+    if ( c == '\n' ) {
+        s[i] = c;
+        ++i;
+    }
 ​
-    s[i] = '\0';
-    return i;
+    s[i] = '\0';
+    return i;
 }
 ​
 int main ( void ) {
-    double sum;
-    char line[MAXLINE];
-    sum = 0;
+    double sum;
+    char line[MAXLINE];
+    sum = 0;
 ​
-    while ( mygetline ( line, MAXLINE ) > 0 ) {
-        printf ( "The result is %g\n", sum += atof ( line ) );
-    }
+    while ( mygetline ( line, MAXLINE ) > 0 ) {
+        printf ( "The result is %g\n", sum += atof ( line ) );
+    }
 ​
-    return 0;
+    return 0;
 }
 ```
 
@@ -411,33 +411,33 @@ int mygetline ( char line[], int maxline );
 int myremove ( char s[] );
 ​
 int main ( void ) {
-    int len; /* current line length */
-    int length; /* remove returns length */
-    char line[MAXLINE]; /* current input line */
+    int len; /* current line length */
+    int length; /* remove returns length */
+    char line[MAXLINE]; /* current input line */
 ​
-    while ( ( len = mygetline ( line, MAXLINE ) ) > 0 ) {
-        if ( ( length = myremove ( line ) ) > 0 ) {
-            printf ( "%s", line );
-        }
-    }
+    while ( ( len = mygetline ( line, MAXLINE ) ) > 0 ) {
+        if ( ( length = myremove ( line ) ) > 0 ) {
+            printf ( "%s", line );
+        }
+    }
 ​
-    return 0;
+    return 0;
 }
 ​
 int mygetline ( char s[], int lim ) { /* read a line into s, return length */
-    int c, i;
+    int c, i;
 ​
-    for ( i = 0; i < lim - 1 && ( c = getchar() ) != EOF && c != '\n'; ++i ) {
-        s[i] = c;
-    }
+    for ( i = 0; i < lim - 1 && ( c = getchar() ) != EOF && c != '\n'; ++i ) {
+        s[i] = c;
+    }
 ​
-    if ( c == '\n' ) {
-        s[i] = c;
-        ++i;
-    }
+    if ( c == '\n' ) {
+        s[i] = c;
+        ++i;
+    }
 ​
-    s[i] = '\0';
-    return i;
+    s[i] = '\0';
+    return i;
 }
 ​
 int myremove ( char s[] ) { /* 从字符串s中去掉结尾的空格符及制表符，并返回处理后的字符串长度 */
