@@ -68,29 +68,29 @@ int main ( int argc, char *argv[] ) {
                 case 'x': except = 1; break;
                 case 'n': number = 1; break;
                 default:
-                    printf ( "find: illegal option %c\n", c );
-                    argc = 0;
-                    found = -1;
-                    break;
+                    printf ( "find: illegal option %c\n", c );
+                    argc = 0;
+                    found = -1;
+                    break;
             }
 ​
-    if ( argc != 1 ) {
-        printf ( "Usage: find -x -n pattern\n" );
-    } else
-        while ( mygetline ( line, MAXLINE ) > 0 ) {
-            lineno++;
+    if ( argc != 1 ) {
+        printf ( "Usage: find -x -n pattern\n" );
+    } else
+        while ( mygetline ( line, MAXLINE ) > 0 ) {
+            lineno++;
 ​
-            if ( ( strstr ( line, *argv ) != NULL ) != except ) {
-                if ( number ) {
-                    printf ( "%ld: ", lineno );
-                }
+            if ( ( strstr ( line, *argv ) != NULL ) != except ) {
+                if ( number ) {
+                    printf ( "%ld: ", lineno );
+                }
 ​
-                printf ( "%s", line );
-                found++;
-            }
-        }
+                printf ( "%s", line );
+                found++;
+            }
+        }
 ​
-    return found;
+    return found;
 }
 ​
 int mygetline ( char s[], int lim ) {
