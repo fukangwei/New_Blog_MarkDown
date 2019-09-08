@@ -12,20 +12,20 @@ categories: Contiki和uip
 &emsp;&emsp;先介绍一下`Uip`各个目录文件的功能：
 
 ``` cpp
-├-apps  # apps目录下为uip提供的一些应用示例
-│├-dhcpc
-│├-hello-world
-│├-resolv
-│├-smtp
-│├-telnetd
-│├-webclient
-│└-webserver
-│   └-httpd-fs
-├-doc  # doc下放置的为说明文档，程序中用不上
-│ └-html
-├-lib  # lib下为内存块管理函数源码
-├-uip  # uip下为uip和核心实现源码
-└-unix  # unix环境里的uip应用例子，可以参照这个例子实现应用
+├- apps  # apps目录下为uip提供的一些应用示例
+│├- dhcpc
+│├- hello-world
+│├- resolv
+│├- smtp
+│├- telnetd
+│├- webclient
+│└- webserver
+│       └-httpd-fs
+├- doc  # doc下放置的为说明文档，程序中用不上
+│   └-html
+├- lib  # lib下为内存块管理函数源码
+├- uip  # uip下为uip和核心实现源码
+└- unix  # unix环境里的uip应用例子，可以参照这个例子实现应用
 ```
 
 ### Uip移植
@@ -37,15 +37,15 @@ categories: Contiki和uip
 #include "ENC28J60.h"
 ​
 void tapdev_init ( unsigned char *my_mac ) {
-    enc28j60Init ( my_mac );
+    enc28j60Init ( my_mac );
 }
 ​
 unsigned int tapdev_read ( void ) {
-    return enc28j60PacketReceive ( UIP_CONF_BUFFER_SIZE, uip_buf );
+    return enc28j60PacketReceive ( UIP_CONF_BUFFER_SIZE, uip_buf );
 }
 ​
 void tapdev_send ( void ) {
-    enc28j60PacketSend ( uip_len, uip_buf );
+    enc28j60PacketSend ( uip_len, uip_buf );
 }
 ```
 
@@ -64,7 +64,7 @@ void tapdev_send ( void ) {
 extern __IO int32_t g_RunTime;
 ​
 clock_time_t clock_time ( void ) {
-    return g_RunTime;
+    return g_RunTime;
 }
 ```
 
@@ -74,7 +74,7 @@ clock_time_t clock_time ( void ) {
 __IO int32_t g_RunTime = 0;
 ​
 void SysTick_Handler ( void ) {
-    static uint8_t s_count = 0;
+    static uint8_t s_count = 0;
 ​
     if ( ++s_count >= 10 ) {
         s_count = 0;
