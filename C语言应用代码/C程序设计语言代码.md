@@ -33,36 +33,36 @@ int main ( void ) {
 ​
     maxvalue = 0; /* find the maximum value in cc[MAXCHAR] */
 ​
-    for ( i = 1; i < MAXCHAR; i++ ) { /* wl[0]未使用(单词的长度大于0) */
-        if ( cc[i] > maxvalue ) {
-            maxvalue = cc[i];
-        }
-    }
+    for ( i = 1; i < MAXCHAR; i++ ) { /* wl[0]未使用(单词的长度大于0) */
+        if ( cc[i] > maxvalue ) {
+            maxvalue = cc[i];
+        }
+    }
 ​
-    for ( i = 1; i < MAXCHAR; ++i ) { /* 输出直方图(水平) */
-        if ( isprint ( i ) ) {
-            printf ( "%5d - %c - %2d : ", i, i, cc[i] );
-        } else {
-            printf ( "%5d -   - %2d : ", i, cc[i] );
-        }
+    for ( i = 1; i < MAXCHAR; ++i ) { /* 输出直方图(水平) */
+        if ( isprint ( i ) ) {
+            printf ( "%5d - %c - %2d : ", i, i, cc[i] );
+        } else {
+            printf ( "%5d -   - %2d : ", i, cc[i] );
+        }
 ​
-        if ( cc[i] > 0 ) {
-            if ( ( len = cc[i] * MAXHIST / maxvalue ) <= 0 ) {
-                len = 1;
-            }
-        } else {
-            len = 0;
-        }
+        if ( cc[i] > 0 ) {
+            if ( ( len = cc[i] * MAXHIST / maxvalue ) <= 0 ) {
+                len = 1;
+            }
+        } else {
+            len = 0;
+        }
 ​
-        while ( len > 0 ) {
-            putchar ( '*' );
-            --len;
-        }
+        while ( len > 0 ) {
+            putchar ( '*' );
+            --len;
+        }
 ​
-        putchar ( '\n' );
-    }
+        putchar ( '\n' );
+    }
 ​
-    return 0;
+    return 0;
 }
 ```
 
