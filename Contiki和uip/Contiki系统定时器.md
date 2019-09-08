@@ -39,16 +39,16 @@ categories: Contiki和uip
 static struct timer rxtimer;
 ​
 void init ( void ) {
-    timer_set ( &rxtimer, CLOCK_SECOND / 2 );
+    timer_set ( &rxtimer, CLOCK_SECOND / 2 );
 }
 ​
 interrupt ( UART1RX_VECTOR )
 uart1_rx_interrupt ( void ) {
-    if ( timer_expired ( &rxtimer ) ) {
-        /* Timeout */
-    }
+    if ( timer_expired ( &rxtimer ) ) {
+        /* Timeout */
+    }
 ​
-    timer_restart ( &rxtimer );
+    timer_restart ( &rxtimer );
 }
 ```
 
@@ -81,17 +81,17 @@ uart1_rx_interrupt ( void ) {
 
 ``` cpp
 PROCESS_THREAD ( example_process, ev, data ) {
-    static struct etimer et;
-    PROCESS_BEGIN();
-    etimer_set ( &et, CLOCK_SECOND ); /* Delay 1 second */
+    static struct etimer et;
+    PROCESS_BEGIN();
+    etimer_set ( &et, CLOCK_SECOND ); /* Delay 1 second */
 ​
-    while ( 1 ) {
-        PROCESS_WAIT_EVENT_UNTIL ( etimer_expired ( &et ) );
-        etimer_reset ( &et ); /* Reset the etimer to trig again in 1 second */
-        /* ... */
-    }
+    while ( 1 ) {
+        PROCESS_WAIT_EVENT_UNTIL ( etimer_expired ( &et ) );
+        etimer_reset ( &et ); /* Reset the etimer to trig again in 1 second */
+        /* ... */
+    }
 ​
-    PROCESS_END();
+    PROCESS_END();
 }
 ```
 
