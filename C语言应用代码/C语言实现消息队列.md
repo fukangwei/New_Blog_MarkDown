@@ -1,7 +1,7 @@
 ---
 title: C语言实现消息队列
 date: 2019-02-04 12:34:58
-tags:
+categories: C语言应用代码
 ---
 &emsp;&emsp;`GM_Queue.h`如下：
 
@@ -24,9 +24,9 @@ int GM_Queue_Length(); /* 计算队列长度 */
 ​
 #ifdef __cplusplus
 }
-#endif /**< __cplusplus */
+#endif /* __cplusplus */
 ​
-#endif /**< _GM_QUEUE_H */
+#endif /* _GM_QUEUE_H */
 ```
 
 &emsp;&emsp;`GM_Queue.c`如下：
@@ -36,8 +36,8 @@ int GM_Queue_Length(); /* 计算队列长度 */
 #include <stdio.h>
 ​
 typedef struct Queue {
-    int value;
-    struct Queue *next;
+    int value;
+    struct Queue *next;
 } Queue_Struct;
 ​
 static Queue_Struct *head = NULL;
@@ -45,88 +45,88 @@ static Queue_Struct *tail = NULL;
 static int count = 0;
 ​
 int GM_Queue_Enqueue ( int value ) {
-    Queue_Struct *tmp = ( Queue_Struct * ) malloc ( sizeof ( Queue_Struct ) );
+    Queue_Struct *tmp = ( Queue_Struct * ) malloc ( sizeof ( Queue_Struct ) );
 ​
-    if ( NULL == tmp ) {
-        return -1;
-    }
+    if ( NULL == tmp ) {
+        return -1;
+    }
 ​
-    tmp->value = value;
-    tmp->next  = NULL;
+    tmp->value = value;
+    tmp->next  = NULL;
 ​
-    if ( NULL == tail ) {
-        head = tmp;
-    } else {
-        tail->next = tmp;
-    }
+    if ( NULL == tail ) {
+        head = tmp;
+    } else {
+        tail->next = tmp;
+    }
 ​
-    tail = tmp;
-    ++count;
-    return 1;
+    tail = tmp;
+    ++count;
+    return 1;
 }
 ​
 int GM_Queue_Dequeue ( int *value ) {
-    Queue_Struct *tmp = NULL;
+    Queue_Struct *tmp = NULL;
 ​
-    if ( ( NULL == head ) || ( NULL == value ) ) {
-        return -1;
-    }
+    if ( ( NULL == head ) || ( NULL == value ) ) {
+        return -1;
+    }
 ​
-    *value = head->value;
-    tmp = head;
+    *value = head->value;
+    tmp = head;
 ​
-    if ( head == tail ) {
-        head = NULL;
-        tail = NULL;
-    } else {
-        head = head->next;
-    }
+    if ( head == tail ) {
+        head = NULL;
+        tail = NULL;
+    } else {
+        head = head->next;
+    }
 ​
-    free ( tmp );
-    tmp = NULL;
-    --count;
-    return 1;
+    free ( tmp );
+    tmp = NULL;
+    --count;
+    return 1;
 }
 ​
 void GM_Queue_Clear ( void ) {
-    int i = 0;
-    int value = 0;
+    int i = 0;
+    int value = 0;
 ​
-    while ( count > 0 ) {
-        GM_Queue_Dequeue ( &value );
-    }
+    while ( count > 0 ) {
+        GM_Queue_Dequeue ( &value );
+    }
 }
 ​
 int GM_Queue_Length ( void ) {
-    return count;
+    return count;
 }
 ​
 void main ( void ) {
-    int i = 0;
-    int rt = -1;
-    int value = 0;
+    int i = 0;
+    int rt = -1;
+    int value = 0;
 ​
-    for ( i = 0; i < 10; ++i ) {
-        rt = GM_Queue_Enqueue ( i );
-        printf ( "ENQUEUE rt = %d: value = %d\n", rt, i );
-    }
+    for ( i = 0; i < 10; ++i ) {
+        rt = GM_Queue_Enqueue ( i );
+        printf ( "ENQUEUE rt = %d: value = %d\n", rt, i );
+    }
 ​
-    printf ( "COUNT = %d\n", GM_Queue_Length() );
+    printf ( "COUNT = %d\n", GM_Queue_Length() );
 ​
-    for ( i = 0; i < 10; ++i ) {
-        rt = GM_Queue_Dequeue ( &value );
-        printf ( "DEQUEUE rt = %d: value = %d\n", rt, value );
-    }
+    for ( i = 0; i < 10; ++i ) {
+        rt = GM_Queue_Dequeue ( &value );
+        printf ( "DEQUEUE rt = %d: value = %d\n", rt, value );
+    }
 ​
-    rt = GM_Queue_Dequeue ( &value );
-    printf ( "DEQUEUE rt = %d: value = %d\n", rt, value );
+    rt = GM_Queue_Dequeue ( &value );
+    printf ( "DEQUEUE rt = %d: value = %d\n", rt, value );
 ​
-    for ( i = 0; i < 10; ++i ) {
-        rt = GM_Queue_Enqueue ( i );
-        printf ( "ENQUEUE rt = %d: value = %d\n", rt, i );
-    }
+    for ( i = 0; i < 10; ++i ) {
+        rt = GM_Queue_Enqueue ( i );
+        printf ( "ENQUEUE rt = %d: value = %d\n", rt, i );
+    }
 ​
-    GM_Queue_Clear();
-    printf ( "COUNT = %d\n", GM_Queue_Length() );
+    GM_Queue_Clear();
+    printf ( "COUNT = %d\n", GM_Queue_Length() );
 }
 ```
