@@ -1,7 +1,7 @@
 ---
 title: Contiki的SPI接口
 date: 2019-02-04 23:50:56
-tags:
+categories: Contiki和uip
 ---
 ### SPI宏定义
 
@@ -26,34 +26,34 @@ extern unsigned char spi_busy;
 void spi_init ( void );
 ​
 /* Write one character to SPI */
-#define SPI_WRITE(data)          \
-    do {                         \
-        SPI_WAITFORTx_BEFORE();  \
-        SPI_TXBUF = data;        \
-        SPI_WAITFOREOTx();       \
+#define SPI_WRITE(data)         \
+    do {                        \
+        SPI_WAITFORTx_BEFORE(); \
+        SPI_TXBUF = data;       \
+        SPI_WAITFOREOTx();      \
     } while(0)
 ​
 /* Write one character to SPI - will not wait for end
    useful for multiple writes with wait after final */
-#define SPI_WRITE_FAST(data)     \
-    do {                         \
-        SPI_WAITFORTx_BEFORE();  \
-        SPI_TXBUF = data;        \
-        SPI_WAITFORTx_AFTER();   \
+#define SPI_WRITE_FAST(data)    \
+    do {                        \
+        SPI_WAITFORTx_BEFORE(); \
+        SPI_TXBUF = data;       \
+        SPI_WAITFORTx_AFTER();  \
     } while(0)
 ​
 /* Read one character from SPI */
-#define SPI_READ(data)      \
-    do {                    \
-        SPI_TXBUF = 0;      \
-        SPI_WAITFOREORx();  \
-        data = SPI_RXBUF;   \
+#define SPI_READ(data)     \
+    do {                   \
+        SPI_TXBUF = 0;     \
+        SPI_WAITFOREORx(); \
+        data = SPI_RXBUF;  \
     } while(0)
 ​
 /* Flush the SPI read register */
-#define SPI_FLUSH()  \
-    do {             \
-        SPI_RXBUF;   \
+#define SPI_FLUSH() \
+    do {            \
+        SPI_RXBUF;  \
     } while(0);
 ​
 #endif /* __SPI_H__ */
@@ -96,26 +96,26 @@ void spi_init ( void );
 
 ``` cpp
 /* Write one character to SPI */
-#define SPI_WRITE(data)          \
-    do {                         \
-        SPI_WAITFORTx_BEFORE();  \
-        SPI_TXBUF = data;        \
-        SPI_WAITFOREOTx();       \
+#define SPI_WRITE(data)         \
+    do {                        \
+        SPI_WAITFORTx_BEFORE(); \
+        SPI_TXBUF = data;       \
+        SPI_WAITFOREOTx();      \
     } while(0)
 ​
-#define SPI_WRITE(data)               \
-    do {                              \
-        UCB0TXBUF = data;             \
-        while((UCB0STAT&UCBUSY)!=0);  \
+#define SPI_WRITE(data)              \
+    do {                             \
+        UCB0TXBUF = data;            \
+        while((UCB0STAT&UCBUSY)!=0); \
     } while(0)
 ​
 /* Write one character to SPI - will not wait for end
    useful for multiple writes with wait after final */
-#define SPI_WRITE_FAST(data)     \
-    do {                         \
-        SPI_WAITFORTx_BEFORE();  \
-        SPI_TXBUF = data;        \
-        SPI_WAITFORTx_AFTER();   \
+#define SPI_WRITE_FAST(data)    \
+    do {                        \
+        SPI_WAITFORTx_BEFORE(); \
+        SPI_TXBUF = data;       \
+        SPI_WAITFORTx_AFTER();  \
     } while(0)
 ​
 #define SPI_WRITE_FAST(data)          \
