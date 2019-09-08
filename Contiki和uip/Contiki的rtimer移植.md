@@ -1,7 +1,7 @@
 ---
 title: Contiki的rtimer移植
 date: 2019-02-04 23:00:12
-tags:
+categories: Contiki和uip
 ---
 ### 移植基础
 
@@ -70,12 +70,12 @@ void rtimer_arch_enable_irq ( void ) {
 ``` cpp
 void TIM3_IRQHandler ( void ) { /* TIM3中断 */
     /* 检查指定的TIM中断发生与否 */
-    if ( TIM_GetITStatus ( TIM3, TIM_IT_CC1 ) != RESET ) {
+    if ( TIM_GetITStatus ( TIM3, TIM_IT_CC1 ) != RESET ) {
         /* 清除TIMx的中断待处理位 */
-        TIM_ClearITPendingBit ( TIM3, TIM_IT_CC1 );
-        rtimer_arch_disable_irq();
-        rtimer_run_next();
-    }
+        TIM_ClearITPendingBit ( TIM3, TIM_IT_CC1 );
+        rtimer_arch_disable_irq();
+        rtimer_run_next();
+    }
 }
 ```
 
