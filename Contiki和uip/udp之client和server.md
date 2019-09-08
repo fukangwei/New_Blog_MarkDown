@@ -165,8 +165,8 @@ void uip_ds6_set_addr_iid ( uip_ipaddr_t *ipaddr, uip_lladdr_t *lladdr ) {
 
 ``` cpp
 typedef union uip_ip6addr_t {
-    uint8_t  u8[16]; /* Initializer, must come first. */
-    uint16_t u16[8];
+    uint8_t  u8[16]; /* Initializer, must come first */
+    uint16_t u16[8];
 } uip_ip6addr_t;
 ```
 
@@ -180,22 +180,22 @@ uip_ds6_addr_add ( &ipaddr, 0, ADDR_AUTOCONF );
 
 ``` cpp
 static void tcpip_handler ( void ) {
-    static int seq_id;
-    char buf[MAX_PAYLOAD_LEN];
+    static int seq_id;
+    char buf[MAX_PAYLOAD_LEN];
 ​
-    if ( uip_newdata() ) {
-        ( ( char * ) uip_appdata ) [uip_datalen()] = 0;
-        PRINTF ( "Server received: '%s' from ", ( char * ) uip_appdata );
-        PRINT6ADDR ( &UIP_IP_BUF->srcipaddr );
-        PRINTF ( "\n" );
-        uip_ipaddr_copy ( &server_conn->ripaddr, &UIP_IP_BUF->srcipaddr );
-        PRINTF ( "Responding with message: " );
-        sprintf ( buf, "Hello from the server! (%d)", ++seq_id );
-        PRINTF ( "%s\n", buf );
-        uip_udp_packet_send ( server_conn, buf, strlen ( buf ) );
-        /* Restore server connection to allow data from any node */
-        memset ( &server_conn->ripaddr, 0, sizeof ( server_conn->ripaddr ) );
-    }
+    if ( uip_newdata() ) {
+        ( ( char * ) uip_appdata ) [uip_datalen()] = 0;
+        PRINTF ( "Server received: '%s' from ", ( char * ) uip_appdata );
+        PRINT6ADDR ( &UIP_IP_BUF->srcipaddr );
+        PRINTF ( "\n" );
+        uip_ipaddr_copy ( &server_conn->ripaddr, &UIP_IP_BUF->srcipaddr );
+        PRINTF ( "Responding with message: " );
+        sprintf ( buf, "Hello from the server! (%d)", ++seq_id );
+        PRINTF ( "%s\n", buf );
+        uip_udp_packet_send ( server_conn, buf, strlen ( buf ) );
+        /* Restore server connection to allow data from any node */
+        memset ( &server_conn->ripaddr, 0, sizeof ( server_conn->ripaddr ) );
+    }
 }
 ```
 
@@ -216,24 +216,24 @@ uip_ipaddr_copy ( &server_conn->ripaddr, &UIP_IP_BUF->srcipaddr );
 ``` cpp
 struct uip_ip_hdr {
 #if UIP_CONF_IPV6
-    /* IPV6 header */
-    uint8_t vtc;
-    uint8_t tcflow;
-    uint16_t flow;
-    uint8_t len[2];
-    uint8_t proto, ttl;
-    uip_ip6addr_t srcipaddr, destipaddr;
+    /* IPV6 header */
+    uint8_t vtc;
+    uint8_t tcflow;
+    uint16_t flow;
+    uint8_t len[2];
+    uint8_t proto, ttl;
+    uip_ip6addr_t srcipaddr, destipaddr;
 #else /* UIP_CONF_IPV6 */
-    /* IPV4 header */
-    uint8_t vhl,
-            tos,
-            len[2],
-            ipid[2],
-            ipoffset[2],
-            ttl,
-            proto;
-    uint16_t ipchksum;
-    uip_ipaddr_t srcipaddr, destipaddr;
+    /* IPV4 header */
+    uint8_t vhl,
+            tos,
+            len[2],
+            ipid[2],
+            ipoffset[2],
+            ttl,
+            proto;
+    uint16_t ipchksum;
+    uip_ipaddr_t srcipaddr, destipaddr;
 #endif /* UIP_CONF_IPV6 */
 };
 ```
