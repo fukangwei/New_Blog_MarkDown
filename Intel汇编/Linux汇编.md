@@ -3,10 +3,9 @@ title: Linux汇编
 date: 2018-12-16 18:05:16
 categories: Intel汇编
 ---
-
 ### 显示字符串(AT&T汇编)
 
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` c
 SECTION .data ; 包含已初始化的数据的段
@@ -32,7 +31,7 @@ _start:
 
 ### 字符串大写字母转换(AT&T汇编)
 
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` c
 .section .data
@@ -72,7 +71,7 @@ end:
 
 ### 显示数组(AT&T汇编)
 
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` c
 .section .data
@@ -105,7 +104,7 @@ loop:
 
 ### 在数组中找出最大值(AT&T汇编)
 
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` c
 .section .data
@@ -140,7 +139,7 @@ loop:
 
 ### 使用系统调用(AT&T汇编)
 
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` c
 .section .data
@@ -165,7 +164,7 @@ main:
 
 ### 反向遍历数据数组(AT&T汇编)
 
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` c
 .section .data
@@ -194,7 +193,7 @@ loop:
 
 ### 使用call命令调用函数(AT&T汇编)
 
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` c
 .section .data
@@ -233,7 +232,7 @@ overhere:
 
 ### 两个64位数值的相减(AT&T汇编)
 
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` c
 .section .data
