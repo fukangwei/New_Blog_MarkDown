@@ -78,17 +78,17 @@ int gettoken ( void ) { /* 返回下一个标记 */
 }
 ​
 void dcl ( void ) { /* 对一个声明符进行语法分析 */
-    int ns;
+    int ns;
 ​
-    for ( ns = 0; gettoken() == '*'; ) { /* 统计字符“*”的个数 */
-        ns++;
-    }
+    for ( ns = 0; gettoken() == '*'; ) { /* 统计字符“*”的个数 */
+        ns++;
+    }
 ​
-    dirdcl();
+    dirdcl();
 ​
-    while ( ns-- > 0 ) {
-        strcat ( out, " pointer to" );
-    }
+    while ( ns-- > 0 ) {
+        strcat ( out, " pointer to" );
+    }
 }
 ​
 void dirdcl ( void ) { /* 分析一个直接声明 */
