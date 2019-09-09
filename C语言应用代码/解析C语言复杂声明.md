@@ -1,7 +1,7 @@
 ---
 title: 解析C语言复杂声明
 date: 2019-03-12 12:28:47
-tags:
+categories: C语言应用代码
 ---
 &emsp;&emsp;代码如下(`unix`的`dcl`程序)：
 
@@ -12,11 +12,7 @@ tags:
 ​
 #define MAXTOKEN 100
 ​
-enum {
-    NAME,
-    PARENS,
-    BRACKETS
-};
+enum { NAME, PARENS, BRACKETS };
 ​
 void dcl ( void );
 void dirdcl ( void );
@@ -28,41 +24,41 @@ char datatype[MAXTOKEN]; /* 数据类型为char、int等 */
 char out[1000]; /* 输出串 */
 ​
 int main ( void ) { /* 将声明转换为文字描述 */
-    while ( gettoken() != EOF ) {
-        /* 该行的第一个记号是数据类型 */
-        strcpy ( datatype, token ); /* is the datatype */
-        out[0] = '\0';
-        dcl(); /* 分析该行的其余部分 */
+    while ( gettoken() != EOF ) {
+        /* 该行的第一个记号是数据类型 */
+        strcpy ( datatype, token ); /* is the datatype */
+        out[0] = '\0';
+        dcl(); /* 分析该行的其余部分 */
 ​
-        if ( tokentype != '\n' ) {
-            printf ( "syntax error\n" );
-        }
+        if ( tokentype != '\n' ) {
+            printf ( "syntax error\n" );
+        }
 ​
-        printf ( "%s: %s %s\n", name, out, datatype );
-    }
+        printf ( "%s: %s %s\n", name, out, datatype );
+    }
 ​
-    return 0;
+    return 0;
 }
 ​
 /* gettoken用来跳过空格和制表符，以查找输入中的下一个记号。记号(token)可以是一个名字，
    一对圆括号，可能包含一个数字的一对括号，也可以是其他任何单个字符 */
 int gettoken ( void ) { /* 返回下一个标记 */
-    int c, getch ( void );
-    void ungetch ( int );
-    char *p = token;
+    int c, getch ( void );
+    void ungetch ( int );
+    char *p = token;
 ​
-    while ( ( c = getch() ) == ' ' || c == '\t' )
-        ;
+    while ( ( c = getch() ) == ' ' || c == '\t' )
+        ;
 ​
-    if ( c == '(' ) {
-        if ( ( c = getch() ) == ')' ) {
-            strcpy ( token, "()" );
-            return tokentype = PARENS;
-        } else {
-            ungetch ( c );
-            return tokentype = '(';
-        }
-    } else if ( c == '[' ) {
+    if ( c == '(' ) {
+        if ( ( c = getch() ) == ')' ) {
+            strcpy ( token, "()" );
+            return tokentype = PARENS;
+        } else {
+            ungetch ( c );
+            return tokentype = '(';
+        }
+    } else if ( c == '[' ) {
         for ( *p++ = c; ( *p++ = getch() ) != ']'; )
             ;
 ​
