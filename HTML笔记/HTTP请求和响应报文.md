@@ -1,7 +1,7 @@
 ---
 title: HTTP请求和响应报文
 date: 2019-03-10 15:36:13
-tags:
+categories: HTML笔记
 ---
 ### HTTP请求报文
 
@@ -9,7 +9,7 @@ tags:
 
 <img src="./HTTP请求和响应报文/1.png">
 
-``` html
+``` xml
 <request-line>
 <headers>
 <blank line>
@@ -20,7 +20,7 @@ tags:
 
 &emsp;&emsp;请求行由请求方法字段、`URL`字段和`HTTP`协议版本字段这`3`个字段组成，它们用空格分隔：
 
-``` html
+``` xml
 GET /index.html HTTP/1.1
 ```
 
@@ -30,7 +30,7 @@ HTTP协议的请求方法有`GET`、`POST`、`HEAD`、`PUT`、`DELETE`、`OPTION
 
 &emsp;&emsp;最常见的一种请求方式，当客户端要从服务器中读取文档时，当点击网页上的链接或者通过在浏览器的地址栏输入网址来浏览网页的，使用的都是`GET`方式。`GET`方法要求服务器将`URL`定位的资源放在响应报文的数据部分，回送给客户端。使用`GET`方法时，请求参数和对应的值附加在`URL`后面，利用一个问号`?`代表`URL`的结尾与请求参数的开始，传递参数长度受限制，例如`/index.jsp?id=100&op=bind`。以使用`google`搜索`domety`为例，`Request`格式如下：
 
-``` html
+``` xml
 GET /search?hl=zh-CN&source=hp&q=domety&aq=f&oq= HTTP/1.1
 Accept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/vnd.ms-excel, application/vnd.ms-powerpoint,
 application/msword, application/x-silverlight, application/x-shockwave-flash, */*
@@ -47,7 +47,7 @@ FxlRugatx63JLv7CWMD6UB_O_r
 
 可以看到，`GET`方式的请求一般不包含`请求内容`部分，请求数据以地址的形式表现在请求行。地址链接如下：
 
-``` html
+``` xml
 <a href="http://www.google.cn/search?hl=zh-CN&source=hp&q=domety&aq=f&oq=">
 http://www.google.cn/search?hl=zh-CN&source=hp&q=domety&aq=f&oq=</a>
 ```
@@ -58,7 +58,7 @@ http://www.google.cn/search?hl=zh-CN&source=hp&q=domety&aq=f&oq=</a>
 
 &emsp;&emsp;对于上面提到的不适合使用`GET`方式的情况，可以考虑使用`POST`方式，因为使用`POST`方法允许客户端给服务器提供较多信息。`POST`方法将请求参数封装在`HTTP`请求数据中，以`名称/值`的形式出现，可以传输大量数据，这样`POST`方式对传送的数据大小没有限制，而且也不会显示在`URL`中。还以上面的搜索`domety`为例，如果使用`POST`方式，格式如下：
 
-``` html
+``` xml
 POST /search HTTP/1.1
 Accept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/vnd.ms-excel, application/vnd.ms-powerpoint,
 application/msword, application/x-silverlight, application/x-shockwave-flash, */*
@@ -94,7 +94,7 @@ hl=zh-CN&source=hp&q=domety
 
 &emsp;&emsp;`HTTP`响应报文也由三个部分组成：状态行、消息报头、响应正文。`HTTP`响应的格式与请求的格式十分类似：
 
-``` html
+``` xml
 <status-line>
 <headers>
 <blank line>
@@ -127,7 +127,7 @@ HTTP-Version Status-Code Reason-Phrase CRLF
 
 &emsp;&emsp;下面给出一个`HTTP`响应报文：
 
-``` html
+``` xml
 HTTP/1.1 200 OK
 Date: Sat, 31 Dec 2005 23:59:59 GMT
 Content-Type: text/html;charset=ISO-8859-1

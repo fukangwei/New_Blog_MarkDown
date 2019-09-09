@@ -1,17 +1,17 @@
 ---
 title: URL格式
 date: 2019-03-07 19:19:42
-tags:
+categories: HTML笔记
 ---
 &emsp;&emsp;在`WWW`上，每一个信息资源都有在网上唯一的地址，该地址就叫`URL`(`Uniform Resource Locator`，统一资源定位符)。`URL`由三部分组成：资源类型、存放资源的主机域名、资源文件名。其一般语法格式为：
 
-``` html
+``` xml
 protocol://hostname[:port]/path/[;parameters][?query]#fragment (带方括号的为可选项)
 ```
 
 例如：
 
-``` html
+``` xml
 http://www.imailtone.com:80/WebApplication1/WebForm1.aspx?name=tom&;age=20#resume
 ```
 
