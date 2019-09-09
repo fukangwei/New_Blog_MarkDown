@@ -92,14 +92,14 @@ void dcl ( void ) { /* 对一个声明符进行语法分析 */
 }
 ​
 void dirdcl ( void ) { /* 分析一个直接声明 */
-    int type;
+    int type;
 ​
-    if ( tokentype == '(' ) { /* 形式为(dcl) */
-        dcl();
+    if ( tokentype == '(' ) { /* 形式为(dcl) */
+        dcl();
 ​
-        if ( tokentype != ')' ) {
-            printf ( "error: missing )\n" );
-        }
+        if ( tokentype != ')' ) {
+            printf ( "error: missing )\n" );
+        }
     } else if ( tokentype == NAME ) { /* 变量名 */
         strcpy ( name, token );
     } else {
