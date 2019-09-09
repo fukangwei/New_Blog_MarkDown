@@ -59,22 +59,22 @@ int gettoken ( void ) { /* 返回下一个标记 */
             return tokentype = '(';
         }
     } else if ( c == '[' ) {
-        for ( *p++ = c; ( *p++ = getch() ) != ']'; )
-            ;
+        for ( *p++ = c; ( *p++ = getch() ) != ']'; )
+            ;
 ​
-        *p = '\0';
-        return tokentype = BRACKETS;
-    } else if ( isalpha ( c ) ) {
-        for ( *p++ = c; isalnum ( c = getch() ); ) {
-            *p++ = c;
-        }
+        *p = '\0';
+        return tokentype = BRACKETS;
+    } else if ( isalpha ( c ) ) {
+        for ( *p++ = c; isalnum ( c = getch() ); ) {
+            *p++ = c;
+        }
 ​
-        *p = '\0';
-        ungetch ( c );
-        return tokentype = NAME;
-    } else {
-        return tokentype = c;
-    }
+        *p = '\0';
+        ungetch ( c );
+        return tokentype = NAME;
+    } else {
+        return tokentype = c;
+    }
 }
 ​
 void dcl ( void ) { /* 对一个声明符进行语法分析 */
