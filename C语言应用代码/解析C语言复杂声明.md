@@ -100,20 +100,20 @@ void dirdcl ( void ) { /* 分析一个直接声明 */
         if ( tokentype != ')' ) {
             printf ( "error: missing )\n" );
         }
-    } else if ( tokentype == NAME ) { /* 变量名 */
-        strcpy ( name, token );
-    } else {
-        printf ( "error: expected name or (dcl)\n" );
-    }
+    } else if ( tokentype == NAME ) { /* 变量名 */
+        strcpy ( name, token );
+    } else {
+        printf ( "error: expected name or (dcl)\n" );
+    }
 ​
-    while ( ( type = gettoken() ) == PARENS || type == BRACKETS )
-        if ( type == PARENS ) {
-            strcat ( out, " function returning" );
-        } else {
-            strcat ( out, " array" );
-            strcat ( out, token );
-            strcat ( out, " of" );
-        }
+    while ( ( type = gettoken() ) == PARENS || type == BRACKETS )
+        if ( type == PARENS ) {
+            strcat ( out, " function returning" );
+        } else {
+            strcat ( out, " array" );
+            strcat ( out, token );
+            strcat ( out, " of" );
+        }
 }
 ​
 #define BUFSIZE 100
@@ -123,7 +123,7 @@ char buf[BUFSIZE]; /* buffer for ungetch */
 int bufp = 0; /* next free position in buf */
 ​
 int getch ( void ) { /* 取出一个字符(可能是压回的字符) */
-    return ( bufp > 0 ) ? buf[--bufp] : getchar();
+    return ( bufp > 0 ) ? buf[--bufp] : getchar();
 }
 ​
 void ungetch ( int c ) { /* 把字符压回到输入中 */
