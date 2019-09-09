@@ -127,22 +127,22 @@ int getch ( void ) { /* 取出一个字符(可能是压回的字符) */
 }
 ​
 void ungetch ( int c ) { /* 把字符压回到输入中 */
-    if ( bufp >= BUFSIZE ) {
-        printf ( "ungetch: too many characters\n" );
-    } else {
-        buf[bufp++] = c;
-    }
+    if ( bufp >= BUFSIZE ) {
+        printf ( "ungetch: too many characters\n" );
+    } else {
+        buf[bufp++] = c;
+    }
 }
 ```
 
 &emsp;&emsp;程序`dcl`是基于声明符的语法编写的，下面是其简化的语法形式：
 
 ``` cpp
-dcl:         前面带有可选的“*”的direct-dcl
-direct-dcl:  name
-             (dcl)
-             direct-dcl()
-             direct-dcl[可选的长度]
+dcl:        前面带有可选的“*”的direct-dcl
+direct-dcl: name
+            (dcl)
+            direct-dcl()
+            direct-dcl[可选的长度]
 ```
 
 简而言之，声明符`dcl`就是前面可能带有多个`*`的`direct-dcl`。`direct-dcl`可以是`name`、由一对圆括号括起来的`dcl`、后面跟有一对圆括号的`direct-dcl`、后面跟有用方括号括起来的表示可选长度的`direct-dcl`。
