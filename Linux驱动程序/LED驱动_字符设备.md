@@ -184,44 +184,44 @@ static void led_setup_cdev ( struct cdev *dev, int minor, struct file_operations
 ​
 /* 执行“insmod s3c24xx_leds.ko”命令时就会调用这个函数 */
 static int __init s3c2440_leds_init ( void ) {
-    int result;
-    dev_t dev = MKDEV ( led_major, 0 );
-    char dev_name[] = "led"; /* 加载模式后，执行“cat /proc/devices”命令看到的设备名称 */
+    int result;
+    dev_t dev = MKDEV ( led_major, 0 );
+    char dev_name[] = "led"; /* 加载模式后，执行“cat /proc/devices”命令看到的设备名称 */
 ​
-    if ( led_major ) { /* Figure out our device number */
-        result = register_chrdev_region ( dev, 1, dev_name );
-    } else {
-        result = alloc_chrdev_region ( &dev, 0, 1, dev_name );
-        led_major = MAJOR ( dev );
-    }
+    if ( led_major ) { /* Figure out our device number */
+        result = register_chrdev_region ( dev, 1, dev_name );
+    } else {
+        result = alloc_chrdev_region ( &dev, 0, 1, dev_name );
+        led_major = MAJOR ( dev );
+    }
 ​
-    if ( result < 0 ) {
-        printk ( KERN_WARNING "leds: unable to get major %d\n", led_major );
-        return result;
-    }
+    if ( result < 0 ) {
+        printk ( KERN_WARNING "leds: unable to get major %d\n", led_major );
+        return result;
+    }
 ​
-    if ( led_major == 0 ) {
-        led_major = result;
-    }
+    if ( led_major == 0 ) {
+        led_major = result;
+    }
 ​
-    led_setup_cdev ( &LedDevs, 0, &s3c2440_leds_fops ); /* Now set up cdev */
-    printk ( "Led device installed, with major %d\n", led_major );
-    printk ( "The device name is: %s\n", dev_name );
-    return 0;
+    led_setup_cdev ( &LedDevs, 0, &s3c2440_leds_fops ); /* Now set up cdev */
+    printk ( "Led device installed, with major %d\n", led_major );
+    printk ( "The device name is: %s\n", dev_name );
+    return 0;
 }
 ​
 /* 执行“rmmod s3c24xx_leds”命令时就会调用这个函数 */
 static void __exit s3c2440_leds_exit ( void ) {
-    cdev_del ( &LedDevs ); /* 卸载驱动程序 */
-    unregister_chrdev_region ( MKDEV ( led_major, 0 ), 1 );
-    printk ( "Led device uninstalled\n" );
+    cdev_del ( &LedDevs ); /* 卸载驱动程序 */
+    unregister_chrdev_region ( MKDEV ( led_major, 0 ), 1 );
+    printk ( "Led device uninstalled\n" );
 }
 ​
 /* 这两行指定驱动程序的初始化函数和卸载函数 */
 module_init ( s3c2440_leds_init );
 module_exit ( s3c2440_leds_exit );
 ​
-/* 描述驱动程序的一些信息，不是必须的 */
+/* 描述驱动程序的一些信息 */
 MODULE_AUTHOR ( "http://embedclub.taobao.com" ); /* 驱动程序的作者 */
 MODULE_DESCRIPTION ( "s3c2440 LED Driver" ); /* 一些描述信息 */
 MODULE_LICENSE ( "Dual BSD/GPL" ); /* 遵循的协议 */
@@ -236,17 +236,17 @@ MODULE_LICENSE ( "Dual BSD/GPL" ); /* 遵循的协议 */
 #include <sys/ioctl.h>
 ​
 #define LED_MAGIC 'k'
-#define IOCTL_LED_ON     _IOW (LED_MAGIC, 1, int)
-#define IOCTL_LED_OFF    _IOW (LED_MAGIC, 2, int)
-#define IOCTL_LED_RUN    _IOW (LED_MAGIC, 3, int)
+#define IOCTL_LED_ON     _IOW (LED_MAGIC, 1, int)
+#define IOCTL_LED_OFF    _IOW (LED_MAGIC, 2, int)
+#define IOCTL_LED_RUN    _IOW (LED_MAGIC, 3, int)
 #define IOCTL_LED_SHINE  _IOW (LED_MAGIC, 4, int)
 #define IOCTL_LED_ALLON  _IOW (LED_MAGIC, 5, int)
 #define IOCTL_LED_ALLOFF _IOW (LED_MAGIC, 6, int)
 ​
 void usage ( char *exename ) {
-    printf ( "Usage:\n" );
-    printf ( "    %s <led_no> <on/off>\n", exename );
-    printf ( "    led_no = 1, 2, 3 or 4\n" );
+    printf ( "Usage:\n" );
+    printf ( "    %s <led_no> <on/off>\n", exename );
+    printf ( "    led_no = 1, 2, 3 or 4\n" );
 }
 ​
 int main ( int argc, char **argv ) {
