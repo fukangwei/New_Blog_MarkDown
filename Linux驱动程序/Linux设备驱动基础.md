@@ -1006,9 +1006,9 @@ struct kobject {
 
 ``` cpp
 struct kobj_type {
-   void ( *release ) ( struct kobject *kobj );
-   struct sysfs_ops *sysfs_ops;
-   struct attribute **default_attrs;
+    void ( *release ) ( struct kobject *kobj );
+    struct sysfs_ops *sysfs_ops;
+    struct attribute **default_attrs;
 };
 ```
 
@@ -1018,9 +1018,9 @@ struct kobj_type {
 
 ``` cpp
 struct attribute {
-   char *name; /* 属性文件名 */
-   struct module *owner;
-   mode_t mode; /* 属性的保护位 */
+    char *name; /* 属性文件名 */
+    struct module *owner;
+    mode_t mode; /* 属性的保护位 */
 };
 ```
 
@@ -1030,8 +1030,8 @@ struct attribute {
 
 ``` cpp
 struct sysfs_ops {
-   ssize_t ( *show ) ( struct kobject *, struct attribute *, char * );
-   ssize_t ( *store ) ( struct kobject *, struct attribute *, const char *, size_t );
+    ssize_t ( *show ) ( struct kobject *, struct attribute *, char * );
+    ssize_t ( *store ) ( struct kobject *, struct attribute *, const char *, size_t );
 };
 ```
 
@@ -1044,10 +1044,10 @@ struct sysfs_ops {
 
 ``` cpp
 struct kset {
-   struct list_head list; /* 连接该kset中所有kobject的链表头 */
-   spinlock_t list_lock;
-   struct kobject kobj; /* 内嵌的kobject */
-   struct kset_uevent_ops *uevent_ops; /* 处理热插拔事件的操作集合 */
+    struct list_head list; /* 连接该kset中所有kobject的链表头 */
+    spinlock_t list_lock;
+    struct kobject kobj; /* 内嵌的kobject */
+    struct kset_uevent_ops *uevent_ops; /* 处理热插拔事件的操作集合 */
 }
 ```
 
@@ -1068,9 +1068,9 @@ void kset_unregister ( struct kset *kset ); /* 从内核中注销一个kset */
 
 ``` cpp
 struct kset_uevent_ops {
-   int ( *filter ) ( struct kset *kset, struct kobject *kobj );
-   const char * ( *name ) ( struct kset *kset, struct kobject *kobj );
-   int ( *uevent ) ( struct kset *kset, struct kobject *kobj, struct kobj_uevent_env *env );
+    int ( *filter ) ( struct kset *kset, struct kobject *kobj );
+    const char * ( *name ) ( struct kset *kset, struct kobject *kobj );
+    int ( *uevent ) ( struct kset *kset, struct kobject *kobj, struct    kobj_uevent_env *env );
 }
 ```
 
@@ -1095,21 +1095,21 @@ struct kset_uevent_ops {
 
 ``` cpp
 struct bus_type {
-   const char *name; /* 总线名称 */
-   struct bus_attribute *bus_attrs; /* 总线属性 */
-   struct device_attribute *dev_attrs; /* 设备属性 */
-   struct driver_attribute *drv_attrs; /* 驱动属性 */
-   int ( *match ) ( struct device *dev, struct device_driver *drv );
-   int ( *uevent ) ( struct device *dev, struct kobj_uevent_env *env );
-   int ( *probe ) ( struct device *dev );
-   int ( *remove ) ( struct device *dev );
-   void ( *shutdown ) ( struct device *dev );
-   int ( *suspend ) ( struct device *dev, pm_message_t state );
-   int ( *suspend_late ) ( struct device *dev, pm_message_t state );
-   int ( *resume_early ) ( struct device *dev );
-   int ( *resume ) ( struct device *dev );
-   struct dev_pm_ops *pm;
-   struct bus_type_private *p;
+    const char *name; /* 总线名称 */
+    struct bus_attribute *bus_attrs; /* 总线属性 */
+    struct device_attribute *dev_attrs; /* 设备属性 */
+    struct driver_attribute *drv_attrs; /* 驱动属性 */
+    int ( *match ) ( struct device *dev, struct device_driver *drv );
+    int ( *uevent ) ( struct device *dev, struct kobj_uevent_env *env );
+    int ( *probe ) ( struct device *dev );
+    int ( *remove ) ( struct device *dev );
+    void ( *shutdown ) ( struct device *dev );
+    int ( *suspend ) ( struct device *dev, pm_message_t state );
+    int ( *suspend_late ) ( struct device *dev, pm_message_t state );
+    int ( *resume_early ) ( struct device *dev );
+    int ( *resume ) ( struct device *dev );
+    struct dev_pm_ops *pm;
+    struct bus_type_private *p;
 }
 ```
 
@@ -1126,9 +1126,8 @@ int ( *match ) ( struct device *dev, struct device_driver *drv );
 当一个新设备或者驱动被添加到这个总线时，该方法被调用。用于判断指定的驱动程序是否能处理指定的设备。若可以，则返回非零值。
 
 ``` cpp
-int ( *uevent ) (
-   struct device *dev, char **envp, int num_envp,
-   char *buffer, int buffer_size );
+int ( *uevent ) ( struct device *dev, char **envp, int num_envp,
+                  char *buffer, int buffer_size );
 ```
 
 在为用户空间产生热插拔事件之前，这个方法允许总线添加环境变量。
@@ -1139,9 +1138,9 @@ int ( *uevent ) (
 
 ``` cpp
 struct bus_attribute {
-   struct attribute attr;
-   ssize_t ( *show ) ( struct bus_type *, char *buf );
-   ssize_t ( *store ) ( struct bus_type *, const char *buf, size_t count );
+    struct attribute attr;
+    ssize_t ( *show ) ( struct bus_type *, char *buf );
+    ssize_t ( *store ) ( struct bus_type *, const char *buf, size_t count );
 }
 
 int bus_create_file ( struct bus_type *bus, struct bus_attribute *attr ); /* 创建属性 */
@@ -1152,16 +1151,16 @@ void bus_remove_file ( struct bus_type *bus, struct bus_attribute *attr ); /* �
 
 ``` cpp
 struct device {
-   ...
-   struct kobject kobj;
-   char bus_id[BUS_ID_SIZE]; /* 在总线上唯一标识该设备的字符串 */
-   struct bus_type *bus; /* 设备所在总线 */
-   struct device_driver *driver; /* 管理该设备的驱动 */
-   void *driver_data; /* 该设备驱动使用的私有数据成员 */
-   struct klist_node knode_class;
-   struct class *class;
-   struct attribute_group **groups;
-   void ( *release ) ( struct device *dev );
+    ...
+    struct kobject kobj;
+    char bus_id[BUS_ID_SIZE]; /* 在总线上唯一标识该设备的字符串 */
+    struct bus_type *bus; /* 设备所在总线 */
+    struct device_driver *driver; /* 管理该设备的驱动 */
+    void *driver_data; /* 该设备驱动使用的私有数据成员 */
+    struct klist_node knode_class;
+    struct class *class;
+    struct attribute_group **groups;
+    void ( *release ) ( struct device *dev );
 }
 ```
 
