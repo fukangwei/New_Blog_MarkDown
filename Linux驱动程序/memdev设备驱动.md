@@ -121,31 +121,28 @@ static ssize_t mem_write ( struct file *filp, const char __user *buf, size_t siz
 }
 ​
 static loff_t mem_llseek ( struct file *filp, loff_t offset, int whence ) { /* seek文件定位函数 */
-    loff_t newpos;
+    loff_t newpos;
 ​
-    switch ( whence ) {
-        case 0: /* SEEK_SET */
-            newpos = offset;
-            break;
+    switch ( whence ) {
+        case 0: /* SEEK_SET */
+            newpos = offset;
+            break;
+        case 1: /* SEEK_CUR */
+            newpos = filp->f_pos + offset;
+            break;
+        case 2: /* SEEK_END */
+            newpos = MEMDEV_SIZE - 1 + offset;
+            break;
+        default: /* can't happen */
+            return -EINVAL;
+    }
 ​
-        case 1: /* SEEK_CUR */
-            newpos = filp->f_pos + offset;
-            break;
+    if ( ( newpos < 0 ) || ( newpos > MEMDEV_SIZE ) ) {
+        return -EINVAL;
+    }
 ​
-        case 2: /* SEEK_END */
-            newpos = MEMDEV_SIZE - 1 + offset;
-            break;
-​
-        default: /* can't happen */
-            return -EINVAL;
-    }
-​
-    if ( ( newpos < 0 ) || ( newpos > MEMDEV_SIZE ) ) {
-        return -EINVAL;
-    }
-​
-    filp->f_pos = newpos;
-    return newpos;
+    filp->f_pos = newpos;
+    return newpos;
 }
 ​
 static const struct file_operations mem_fops = { /* 文件操作结构体 */
