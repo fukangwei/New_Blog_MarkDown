@@ -129,33 +129,33 @@ static ssize_t mem_read ( struct file *filp, char __user *buf, size_t size, loff
         ret += count;
     }
 ​
-    if ( ret ) {
-        dev->canWrite = true; /* 有空间可写 */
-        wake_up ( & ( dev->wwq ) ); /* 唤醒写等待队列 */
+    if ( ret ) {
+        dev->canWrite = true; /* 有空间可写 */
+        wake_up ( & ( dev->wwq ) ); /* 唤醒写等待队列 */
 ​
-        if ( dev->rpos == dev->wpos ) {
-            dev->canRead = false; /* 无数据可读 */
-        }
-    }
+        if ( dev->rpos == dev->wpos ) {
+            dev->canRead = false; /* 无数据可读 */
+        }
+    }
 ​
-    return ret;
+    return ret;
 }
 ​
 /* 写函数 */
 static ssize_t mem_write ( struct file *filp, const char __user *buf, size_t size, loff_t *ppos ) {
-    unsigned int count;
-    int ret = 0;
-    struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
-    printk ( "<1> [Before mem_write: rpos = %lu, wpos = %lu, canR = %d, canW = %d]\n",
-             dev->rpos, dev->wpos, dev->canRead, dev->canWrite );
+    unsigned int count;
+    int ret = 0;
+    struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
+    printk ( "<1> [Before mem_write: rpos = %lu, wpos = %lu, canR = %d, canW = %d]\n",
+             dev->rpos, dev->wpos, dev->canRead, dev->canWrite );
 ​
-    if ( !dev->canWrite ) { /* 没有空间可写，则进入睡眠 */
-        if ( filp->f_flags & O_NONBLOCK ) {
-            return -EAGAIN;
-        }
+    if ( !dev->canWrite ) { /* 没有空间可写，则进入睡眠 */
+        if ( filp->f_flags & O_NONBLOCK ) {
+            return -EAGAIN;
+        }
 ​
-        wait_event_interruptible ( dev->wwq, dev->canWrite );
-    }
+        wait_event_interruptible ( dev->wwq, dev->canWrite );
+    }
 ​
     if ( dev->rpos > dev->wpos ) {
         count = dev->rpos - dev->wpos;
