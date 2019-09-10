@@ -35,24 +35,24 @@ uint8 SPI_RW ( uint8 tmp ) {
     uint8 bit_ctr;
 ​
     for ( bit_ctr = 0 ; bit_ctr < 8 ; bit_ctr++ ) { /* output 8-bit */
-        if ( tmp & 0x80 ) { /* output 'tmp', MSB to MOSI */
-            MOSI_H;
-        } else {
-            MOSI_L;
-        }
+        if ( tmp & 0x80 ) { /* output 'tmp', MSB to MOSI */
+            MOSI_H;
+        } else {
+            MOSI_L;
+        }
 ​
-        tmp <<= 1; /* shift next bit into MSB */
-        SCK_H; /* Set SCK high */
-        ndelay ( 60 );
+        tmp <<= 1; /* shift next bit into MSB */
+        SCK_H; /* Set SCK high */
+        ndelay ( 60 );
 ​
-        if ( MISO_STU ) { /* capture current MISO bit */
-            tmp |= 0x01 ;
-        }
+        if ( MISO_STU ) { /* capture current MISO bit */
+            tmp |= 0x01 ;
+        }
 ​
-        SCK_L; /* then set SCK low again */
-        ndelay ( 60 );
-    }
+        SCK_L; /* then set SCK low again */
+        ndelay ( 60 );
+    }
 ​
-    return ( tmp ); /* return read tmp */
+    return ( tmp ); /* return read tmp */
 }
 ```
