@@ -1,7 +1,7 @@
 ---
 title: LED驱动_字符设备
 date: 2019-02-04 10:59:29
-tags:
+categories: Linux驱动程序
 ---
 &emsp;&emsp;实现`LED`驱动测试案例及要求：
 
@@ -52,43 +52,44 @@ static struct cdev LedDevs;
 #define IOCTL_LED_ALLOFF _IOW (LED_MAGIC, 6, int)
 ​
 static unsigned long led_table [] = { /* 用来指定LED所用的GPIO引脚 */
-    S3C2410_GPB ( 5 ),
-    S3C2410_GPB ( 6 ),
-    S3C2410_GPB ( 7 ),
-    S3C2410_GPB ( 8 ),
+    S3C2410_GPB ( 5 ),
+    S3C2410_GPB ( 6 ),
+    S3C2410_GPB ( 7 ),
+    S3C2410_GPB ( 8 ),
 };
 ​
 /* 应用程序对设备文件“/dev/led”执行open时，就会调用s3c24xx_leds_open函数 */
 static int s3c2440_leds_open ( struct inode *inode, struct file *file ) {
-    int i;
+    int i;
 ​
-    for ( i = 0; i < 4; i++ ) {
-        /* 设置GPIO引脚的功能：本驱动中LED所涉及的GPIO引脚设为输出功能 */
-        s3c2410_gpio_cfgpin ( led_table[i], S3C2410_GPIO_OUTPUT );
-    }
+    for ( i = 0; i < 4; i++ ) {
+        /* 设置GPIO引脚的功能：本驱动中LED所涉及的GPIO引脚设为输出功能 */
+        s3c2410_gpio_cfgpin ( led_table[i], S3C2410_GPIO_OUTPUT );
+    }
 ​
-    return 0;
+    return 0;
 }
 ​
 void leds_all_on() { /* LEDS all light on */
-    int i;
+    int i;
 ​
-    for ( i = 0; i < 4; i++ ) {
-        s3c2410_gpio_setpin ( led_table[i], 0 );
-    }
+    for ( i = 0; i < 4; i++ ) {
+        s3c2410_gpio_setpin ( led_table[i], 0 );
+    }
 }
 ​
 void leds_all_off() { /* LEDs all light off */
-    int i;
+    int i;
 ​
-    for ( i = 0; i < 4; i++ ) {
-        s3c2410_gpio_setpin ( led_table[i], 1 );
-    }
+    for ( i = 0; i < 4; i++ ) {
+        s3c2410_gpio_setpin ( led_table[i], 1 );
+    }
 }
 ​
 /* 应用程序对设备文件“/dev/leds”执行ioctl时，就会调用s3c24xx_leds_ioctl函数 */
-static int s3c2440_leds_ioctl ( struct inode *inode, struct file *file, unsigned int cmd, unsigned long arg ) {
-    unsigned int data;
+static int s3c2440_leds_ioctl ( struct inode *inode, struct file *file,
+                                unsigned int cmd, unsigned long arg ) {
+    unsigned int data;
 ​
     /*
     if ( copy_from_user ( &data, ( unsigned int __user * ) arg, sizeof ( int ) ) ) {
