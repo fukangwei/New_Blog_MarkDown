@@ -206,32 +206,32 @@ int memdev_ioctl ( struct inode *inode, struct file *filp,
             break;
 ​
         case MEMDEV_IOCSETDATA: /* 设置参数 */
-            ret = __get_user ( ioarg, ( int * ) arg );
+            ret = __get_user ( ioarg, ( int * ) arg );
 ​
-            if ( ( ioarg < 0 ) || ( ioarg > MEMDEV_SIZE ) ) {
-                return -EINVAL;
-            }
+            if ( ( ioarg < 0 ) || ( ioarg > MEMDEV_SIZE ) ) {
+                return -EINVAL;
+            }
 ​
-            filp->f_pos = ioarg;
-            printk ( "<--- In Kernel MEMDEV_IOCSETDATA ioarg = %d --->\n\n", ioarg );
-            break;
-        default:
-            return -EINVAL;
-    }
+            filp->f_pos = ioarg;
+            printk ( "<--- In Kernel MEMDEV_IOCSETDATA ioarg = %d --->\n\n", ioarg );
+            break;
+        default:
+            return -EINVAL;
+    }
 ​
     return ret;
 }
 ​
 /* 读函数 */
 static ssize_t mem_read ( struct file *filp, char __user *buf, size_t size, loff_t *ppos ) {
-    unsigned long p = *ppos;
-    unsigned int count = size;
-    int ret = 0;
-    struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
+    unsigned long p = *ppos;
+    unsigned int count = size;
+    int ret = 0;
+    struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
 ​
-    if ( p >= MEMDEV_SIZE ) { /* 判断读位置是否有效 */
-        return 0;
-    }
+    if ( p >= MEMDEV_SIZE ) { /* 判断读位置是否有效 */
+        return 0;
+    }
 ​
     if ( count > MEMDEV_SIZE - p ) {
         count = MEMDEV_SIZE - p;
