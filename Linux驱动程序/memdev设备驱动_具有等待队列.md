@@ -66,68 +66,68 @@ int mem_open ( struct inode *inode, struct file *filp ) { /* 文件打开函数 
         return -ENODEV;
     }
 ​
-    dev = &mem_devp[num];
-    filp->private_data = dev; /* 将设备描述结构指针赋值给文件私有数据指针 */
-    dev->nattch++;
-    return 0;
+    dev = &mem_devp[num];
+    filp->private_data = dev; /* 将设备描述结构指针赋值给文件私有数据指针 */
+    dev->nattch++;
+    return 0;
 }
 ​
 int mem_release ( struct inode *inode, struct file *filp ) { /* 文件释放函数 */
-    struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
-    dev->nattch--;
+    struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
+    dev->nattch--;
 ​
-    if ( 0 == dev->nattch ) {
-        /* 使读写位置标志重新指到开头，并修改可读可写标志 */
-        dev->rpos = 0;
-        dev->wpos = 0;
-        dev->canRead  = false;
-        dev->canWrite = true;
-    }
+    if ( 0 == dev->nattch ) {
+        /* 使读写位置标志重新指到开头，并修改可读可写标志 */
+        dev->rpos = 0;
+        dev->wpos = 0;
+        dev->canRead  = false;
+        dev->canWrite = true;
+    }
 ​
-    return 0;
+    return 0;
 }
 ​
 /* 读函数 */
 static ssize_t mem_read ( struct file *filp, char __user *buf, size_t size, loff_t *ppos ) {
-    unsigned int count;
-    int ret = 0;
-    struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
+    unsigned int count;
+    int ret = 0;
+    struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
 ​
-    if ( !dev->canRead ) {
-        if ( filp->f_flags & O_NONBLOCK ) {
-            return -EAGAIN;
-        }
+    if ( !dev->canRead ) {
+        if ( filp->f_flags & O_NONBLOCK ) {
+            return -EAGAIN;
+        }
 ​
-        wait_event_interruptible ( dev->rwq, dev->canRead );
-    }
+        wait_event_interruptible ( dev->rwq, dev->canRead );
+    }
 ​
-    if ( dev->rpos < dev->wpos ) {
-        count = dev->wpos - dev->rpos;
-        count = count > size ? size : count;
-    } else {
-        count = MEMDEV_SIZE - dev->rpos - 1;
+    if ( dev->rpos < dev->wpos ) {
+        count = dev->wpos - dev->rpos;
+        count = count > size ? size : count;
+    } else {
+        count = MEMDEV_SIZE - dev->rpos - 1;
 ​
-        if ( count >= size ) {
-            count = size;
-        } else {
-            if ( copy_to_user ( buf, ( void * ) ( dev->data + dev->rpos ), count ) ) {
-                ret = -EFAULT;
-            }
+        if ( count >= size ) {
+            count = size;
+        } else {
+            if ( copy_to_user ( buf, ( void * ) ( dev->data + dev->rpos ), count ) ) {
+                ret = -EFAULT;
+            }
 ​
-            ret += count;
-            dev->rpos = 0;
-            buf += count;
-            size -= count;
-            count = dev->wpos > size ? size : dev->wpos;
-        }
-    }
+            ret += count;
+            dev->rpos = 0;
+            buf += count;
+            size -= count;
+            count = dev->wpos > size ? size : dev->wpos;
+        }
+    }
 ​
-    if ( copy_to_user ( buf, ( void * ) ( dev->data + dev->rpos ), count ) ) { /* 读数据到用户空间 */
-        ret = -EFAULT;
-    } else {
-        dev->rpos += count;
-        ret += count;
-    }
+    if ( copy_to_user ( buf, ( void * ) ( dev->data + dev->rpos ), count ) ) { /* 读数据到用户空间 */
+        ret = -EFAULT;
+    } else {
+        dev->rpos += count;
+        ret += count;
+    }
 ​
     if ( ret ) {
         dev->canWrite = true; /* 有空间可写 */
