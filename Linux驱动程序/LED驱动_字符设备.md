@@ -91,21 +91,21 @@ static int s3c2440_leds_ioctl ( struct inode *inode, struct file *file,
                                 unsigned int cmd, unsigned long arg ) {
     unsigned int data;
 ​
-    /*
-    if ( copy_from_user ( &data, ( unsigned int __user * ) arg, sizeof ( int ) ) ) {
-        return -EFAULT;
-    }
+    /*
+     * if ( copy_from_user ( &data, ( unsigned int __user * ) arg, sizeof ( int ) ) ) {
+     *     return -EFAULT;
+     * }
+​     *
+     * data = ( unsigned int ) arg; // 方法一：数据传递
+     */
+    if ( __get_user ( data, ( unsigned int __user * ) arg ) ) { /* 方法二：指针参数传递 */
+        return -EFAULT;
+    }
 ​
-    data = ( unsigned int ) arg; // 方法一：数据传递
-    */
-    if ( __get_user ( data, ( unsigned int __user * ) arg ) ) { /* 方法二：指针参数传递 */
-        return -EFAULT;
-    }
-​
-    switch ( cmd ) {
-        case IOCTL_LED_ON:
-            s3c2410_gpio_setpin ( led_table[data], 0 ); /* 设置指定引脚的输出电平为0 */
-            return 0;
+    switch ( cmd ) {
+        case IOCTL_LED_ON:
+            s3c2410_gpio_setpin ( led_table[data], 0 ); /* 设置指定引脚的输出电平为0 */
+            return 0;
 ​
         case IOCTL_LED_OFF:
             s3c2410_gpio_setpin ( led_table[data], 1 ); /* 设置指定引脚的输出电平为1 */
