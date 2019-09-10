@@ -1,7 +1,7 @@
 ---
 title: Linux设备驱动基础
 date: 2019-03-21 17:39:00
-tags:
+categories: Linux驱动程序
 ---
 ### 驱动程序介绍
 
@@ -238,9 +238,9 @@ int cdev_del ( struct cdev *p );
 DEBUG = y
 
 ifeq ($(DEBUG), y)
-   DEBFLAGS = -O2 -g -DPDEBUG
+    DEBFLAGS = -O2 -g -DPDEBUG
 else
-   DEBFLAGS = -O2
+    DEBFLAGS = -O2
 endif
 
 CFLAGS += $(DEBFLAGS)
@@ -254,7 +254,7 @@ CFLAGS += $(DEBFLAGS)
 
 ``` cpp
 if ( copy_from_user ( & ( dev->data[pos] ), buf, count ) ) {
-   ret = -EFAULT;
+    ret = -EFAULT;
 }
 ```
 
@@ -344,10 +344,13 @@ void up ( struct semaphore *sem );
 
 ``` cpp
 DECLARE_MUTEX ( sem )
+
 if ( down_interruptible ( &sem ) ) {
-   return -ERESTARTSYS;
+    return -ERESTARTSYS;
 }
+
 ... /* 临界资源 */
+
 up ( &sem );
 ```
 
@@ -372,10 +375,10 @@ unsigned long flags;
 rwlock_t rwlock;
 rwlock_init ( &rwlock );
 read_lock ( &rwlock );
-/* 临界资源 */
+... /* 临界资源 */
 read_unlock ( &rwlock );
 write_lock_irqsave ( &rwlock, flags );
-/* 临界资源 */
+... /* 临界资源 */
 write_unlock_irqrestore ( &rwlock, flags );
 ```
 
@@ -385,7 +388,7 @@ write_unlock_irqrestore ( &rwlock, flags );
 spinlock_t lock;
 spin_lock_init ( &lock );
 spin_lock ( &lock );
-/* 临界资源 */
+... /* 临界资源 */
 spin_unlock ( &lock );
 ```
 
@@ -396,13 +399,13 @@ spin_unlock ( &lock );
 ``` cpp
 rw_semaphere_t rw_sem;
 init_rwsem ( &rw_sem );
-/* 读时获取信号量 */
+... /* 读时获取信号量 */
 down_read ( &rw_sem );
-/* 临界资源 */
+... /* 临界资源 */
 up_read ( &rw_sem );
-/* 写时获取信号量 */
+... /* 写时获取信号量 */
 down_write ( &rw_sem );
-/* 临界资源 */
+... /* 临界资源 */
 up_write ( &rw_sem );
 ```
 
@@ -483,14 +486,13 @@ _IOWR ( type, nr, datatype ) /* 双向传送，type和number成员作为参数�
 
 ``` cpp
 if ( _IOC_DIR ( cmd ) & _IOC_READ ) { /* “_IOC_DIR”是用来提取命令的方向 */
-   err = !access_ok ( VERIFY_WRITE, ( void __user * ) arg, _IOC_SIZE ( cmd ) );
-}
-else if ( _IOC_DIR ( cmd ) & _IOC_WRITE ) {
-   err = !access_ok ( VERIFY_READ, ( void __user * ) arg, _IOC_SIZE ( cmd ) );
+    err = !access_ok ( VERIFY_WRITE, ( void __user * ) arg, _IOC_SIZE ( cmd ) );
+} else if ( _IOC_DIR ( cmd ) & _IOC_WRITE ) {
+    err = !access_ok ( VERIFY_READ, ( void __user * ) arg, _IOC_SIZE ( cmd ) );
 }
 
 if ( err ) {
-   return -EFAULT;
+    return -EFAULT;
 }
 ```
 
@@ -498,14 +500,14 @@ if ( err ) {
 
 ``` cpp
 switch ( cmd ) {
-   case MEM_IOCSQUANTUM: /* Set: arg points to the value */
-      retval = __get_user ( scull_quantum, ( int * ) arg );
-      break;
-   case MEM_IOCGQUANTUM: /* Get: arg is pointer to result */
-      retval = __put_user ( scull_quantum, ( int * ) arg );
-      break;
-   default:
-      return –EINVAL;
+    case MEM_IOCSQUANTUM: /* Set: arg points to the value */
+        retval = __get_user ( scull_quantum, ( int * ) arg );
+        break;
+    case MEM_IOCGQUANTUM: /* Get: arg is pointer to result */
+        retval = __put_user ( scull_quantum, ( int * ) arg );
+        break;
+    default:
+        return –EINVAL;
 }
 ```
 
@@ -587,9 +589,8 @@ wake_up_interruptible ( wait_queue_t *q );
 &emsp;&emsp;`Select`系统调用用于多路监控，当没有一个文件满足要求时，`select`将阻塞调用进程。
 
 ``` cpp
-int select (
-   int maxfd, fd_set *readfds, fd_set *writefds,
-   fe_set *exceptfds, const struct timeval *timeout );
+int select ( int maxfd, fd_set *readfds, fd_set *writefds,
+             fe_set *exceptfds, const struct timeval *timeout );
 ```
 
 - `Maxfd`：文件描述符的范围，比待检测的最大文件描述符大`1`。
@@ -637,14 +638,14 @@ FD_SET ( fd2, &fds ); /* 设置描述符 */
 maxfdp = fd1 + 1; /* 描述符最大值加1，假设fd1大于fd2 */
 
 switch ( select ( maxfdp, &fds, NULL, NULL, &timeout ) ) {
-   case -1:
-      exit ( -1 );
-      break; /* select错误，退出程序 */
-   case 0:
-      break;
-   default:
-      if ( FD_ISSET ( fd1, &fds ) ) { /* 测试fd1是否可读 */
-      }
+    case -1:
+        exit ( -1 );
+        break; /* select错误，退出程序 */
+    case 0:
+        break;
+    default:
+        if ( FD_ISSET ( fd1, &fds ) ) { /* 测试fd1是否可读 */
+        }
 }
 ```
 
@@ -666,17 +667,16 @@ switch ( select ( maxfdp, &fds, NULL, NULL, &timeout ) ) {
 
 ``` cpp
 static unsigned int mem_poll ( struct file *filp, poll_table *wait ) {
-   struct scull_pipe *dev = filp->private_data;
-   unsigned int mask = 0;
+    struct scull_pipe *dev = filp->private_data;
+    unsigned int mask = 0;
 
-   poll_wait ( filp, &dev->inq, wait ); /* 把进程添加到等待队列 */
+    poll_wait ( filp, &dev->inq, wait ); /* 把进程添加到等待队列 */
 
-   /* 返回掩码 */
-   if ( /* 有数据可读 */ ) {
-      mask = POLLIN | POLLRDNORM; /* 设备可读 */
-   }
+    if ( /* 有数据可读 */ ) {
+        mask = POLLIN | POLLRDNORM; /* 设备可读 */
+    }
 
-   return mask;
+    return mask; /* 返回掩码 */
 }
 ```
 
@@ -687,10 +687,9 @@ static unsigned int mem_poll ( struct file *filp, poll_table *wait ) {
 #### 自动创建(2.4内核)
 
 ``` cpp
-devfs_register (
-   devfs_handle_t dir, const char *name, unsigned int flags,
-   unsigned int major, unsigned int minor,
-   umode_t mode, void *ops, void *info );
+devfs_register ( devfs_handle_t dir, const char *name, unsigned int flags,
+                 unsigned int major, unsigned int minor,
+                 umode_t mode, void *ops, void *info );
 ```
 
 在指定的目录中创建设备文件。
@@ -720,9 +719,8 @@ device_create ( myclass, NULL, MKDEV ( major_num, 0 ), NULL, "my_device" );
 #### mmap系统调用(功能)
 
 ``` cpp
-void *mmap (
-   void *addr, size_t len, int prot,
-   int flags, int fd, off_t offset );
+void *mmap ( void *addr, size_t len, int prot,
+             int flags, int fd, off_t offset );
 ```
 
 内存映射函数`mmap`，负责把文件内容映射到进程的虚拟内存空间，通过对这段内存的读取和修改，来实现对文件的读取和修改，而不需要再调用`read`、`write`等操作。`mmap`不影响原文件的长度。
@@ -802,9 +800,8 @@ int ( *mmap ) ( struct file *, struct vm_area_struct * );
 &emsp;&emsp;构造页表的工作可由`remap_pfn_range`函数完成：
 
 ``` cpp
-int remap_pfn_range (
-   struct vm_area_struct *vma, unsigned long addr,
-   unsigned long pfn, unsigned long size, pgprot_t prot );
+int remap_pfn_range ( struct vm_area_struct *vma, unsigned long addr,
+                      unsigned long pfn, unsigned long size, pgprot_t prot );
 ```
 
 ### 硬件访问
@@ -941,12 +938,12 @@ void release_mem_region ( unsigned long start, unsigned long len );
 
 ``` cpp
 struct miscdevice {
-   int minor; /* 次设备号 */
-   const char *name; /* 设备名 */
-   const struct file_operations *fops; /* 文件操作 */
-   struct list_head list;
-   struct device *parent;
-   struct device *this_device;
+    int minor; /* 次设备号 */
+    const char *name; /* 设备名 */
+    const struct file_operations *fops; /* 文件操作 */
+    struct list_head list;
+    struct device *parent;
+    struct device *this_device;
 };
 ```
 
@@ -980,17 +977,17 @@ int misc_register ( struct miscdevice *misc );
 
 ``` cpp
 struct kobject {
-   const char *name;
-   struct list_head entry;
-   struct kobject *parent; /* 指向父对象 */
-   struct kset *kset;
-   struct kobj_type *ktype;
-   struct sysfs_dirent *sd;
-   struct kref kref; /* 对象引用计数 */
-   unsigned int state_initialized: 1;
-   unsigned int state_in_sysfs: 1;
-   unsigned int state_add_uevent_sent: 1;
-   unsigned int state_remove_uevent_sent: 1;
+    const char *name;
+    struct list_head entry;
+    struct kobject *parent; /* 指向父对象 */
+    struct kset *kset;
+    struct kobj_type *ktype;
+    struct sysfs_dirent *sd;
+    struct kref kref; /* 对象引用计数 */
+    unsigned int state_initialized: 1;
+    unsigned int state_in_sysfs: 1;
+    unsigned int state_add_uevent_sent: 1;
+    unsigned int state_remove_uevent_sent: 1;
 };
 ```
 
