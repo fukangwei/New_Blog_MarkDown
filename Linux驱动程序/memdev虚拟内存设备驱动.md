@@ -234,7 +234,8 @@ int globalmem_init ( void ) { /* 设备驱动模块加载函数 */
         return result;
     }
 ​
-    globalmem_devp = kmalloc ( sizeof ( struct globalmem_dev ), GFP_KERNEL ); /* 动态申请设备结构体的内存 */
+    /* 动态申请设备结构体的内存 */
+    globalmem_devp = kmalloc ( sizeof ( struct globalmem_dev ), GFP_KERNEL );
 ​
     if ( !globalmem_devp ) { /* 申请失败 */
         result = -ENOMEM;
@@ -381,147 +382,145 @@ int mem_release ( struct inode *inode, struct file *filp ) { /* 文件释放函�
 /* 读函数 */
 static ssize_t mem_read ( struct file *filp, char __user *buf, size_t size, loff_t *ppos ) {
     unsigned long p = *ppos;
-    unsigned int count = size;
-    int ret = 0;
-    struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
+    unsigned int count = size;
+    int ret = 0;
+    struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
 ​
-    if ( p >= MEMDEV_SIZE ) { /* 判断读位置是否有效 */
-        return 0;
-    }
+    if ( p >= MEMDEV_SIZE ) { /* 判断读位置是否有效 */
+        return 0;
+    }
 ​
-    if ( count > MEMDEV_SIZE - p ) {
-        count = MEMDEV_SIZE - p;
-    }
+    if ( count > MEMDEV_SIZE - p ) {
+        count = MEMDEV_SIZE - p;
+    }
 ​
-    if ( copy_to_user ( buf, ( void * ) ( dev->data + p ), count ) ) { /* 读数据到用户空间 */
-        ret = -EFAULT;
-    } else {
-        *ppos += count;
-        ret = count;
-        printk ( KERN_INFO "read %d bytes(s) from postion  %d\n", count, p );
-    }
+    if ( copy_to_user ( buf, ( void * ) ( dev->data + p ), count ) ) { /* 读数据到用户空间 */
+        ret = -EFAULT;
+    } else {
+        *ppos += count;
+        ret = count;
+        printk ( KERN_INFO "read %d bytes(s) from postion  %d\n", count, p );
+    }
 ​
-    return ret;
+    return ret;
 }
-​
+
 /* 写函数 */
 static ssize_t mem_write ( struct file *filp, const char __user *buf, size_t size, loff_t *ppos ) {
-    unsigned long p = *ppos;
-    unsigned int count = size;
-    int ret = 0;
-    struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
+    unsigned long p = *ppos;
+    unsigned int count = size;
+    int ret = 0;
+    struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
 ​
-    /* 分析和获取有效的写长度 */
-    if ( p >= MEMDEV_SIZE ) {
-        return 0;
-    }
+    /* 分析和获取有效的写长度 */
+    if ( p >= MEMDEV_SIZE ) {
+        return 0;
+    }
 ​
-    if ( count > MEMDEV_SIZE - p ) {
-        count = MEMDEV_SIZE - p;
-    }
+    if ( count > MEMDEV_SIZE - p ) {
+        count = MEMDEV_SIZE - p;
+    }
 ​
-    if ( copy_from_user ( dev->data + p, buf, count ) ) { /* 从用户空间写入数据 */
-        ret = -EFAULT;
-    } else {
-        *ppos += count;
-        ret = count;
-        printk ( KERN_INFO "written %d bytes(s) to postion %d\n", count, p );
-    }
+    if ( copy_from_user ( dev->data + p, buf, count ) ) { /* 从用户空间写入数据 */
+        ret = -EFAULT;
+    } else {
+        *ppos += count;
+        ret = count;
+        printk ( KERN_INFO "written %d bytes(s) to postion %d\n", count, p );
+    }
 ​
-    return ret;
+    return ret;
 }
 ​
 static loff_t mem_llseek ( struct file *filp, loff_t offset, int whence ) { /* seek文件定位函数 */
-    loff_t newpos;
+    loff_t newpos;
 ​
-    switch ( whence ) {
-        case 0: /* SEEK_SET */
-            newpos = offset;
-            break;
+    switch ( whence ) {
+        case 0: /* SEEK_SET */
+            newpos = offset;
+            break;
+        case 1: /* SEEK_CUR */
+            newpos = filp->f_pos + offset;
+            break;
+        case 2: /* SEEK_END */
+            newpos = MEMDEV_SIZE - 1 + offset;
+            break;
+        default: /* can't happen */
+            return -EINVAL;
+    }
 ​
-        case 1: /* SEEK_CUR */
-            newpos = filp->f_pos + offset;
-            break;
+    if ( ( newpos < 0 ) || ( newpos > MEMDEV_SIZE ) ) {
+        return -EINVAL;
+    }
 ​
-        case 2: /* SEEK_END */
-            newpos = MEMDEV_SIZE - 1 + offset;
-            break;
-​
-        default: /* can't happen */
-            return -EINVAL;
-    }
-​
-    if ( ( newpos < 0 ) || ( newpos > MEMDEV_SIZE ) ) {
-        return -EINVAL;
-    }
-​
-    filp->f_pos = newpos;
-    return newpos;
+    filp->f_pos = newpos;
+    return newpos;
 }
 ​
 static const struct file_operations mem_fops = { /* 文件操作结构体 */
-    .owner   = THIS_MODULE,
-    .llseek  = mem_llseek,
-    .read    = mem_read,
-    .write   = mem_write,
-    .open    = mem_open,
-    .release = mem_release,
+    .owner   = THIS_MODULE,
+    .llseek  = mem_llseek,
+    .read    = mem_read,
+    .write   = mem_write,
+    .open    = mem_open,
+    .release = mem_release,
 };
 ​
 static int memdev_init ( void ) { /* 设备驱动模块加载函数 */
-    int result;
-    int i;
-    dev_t devno = MKDEV ( mem_major, 0 );
+    int result;
+    int i;
+    dev_t devno = MKDEV ( mem_major, 0 );
 ​
-    if ( mem_major ) {
-        result = register_chrdev_region ( devno, MEMDEV_NR_DEVS, "memdev" ); /* 静态申请设备号 */
-    } else { /* 动态分配设备号 */
-        result = alloc_chrdev_region ( &devno, 0, MEMDEV_NR_DEVS, "memdev" );
-        mem_major = MAJOR ( devno );
-    }
+    if ( mem_major ) {
+        result = register_chrdev_region ( devno, MEMDEV_NR_DEVS, "memdev" ); /* 静态申请设备号 */
+    } else { /* 动态分配设备号 */
+        result = alloc_chrdev_region ( &devno, 0, MEMDEV_NR_DEVS, "memdev" );
+        mem_major = MAJOR ( devno );
+    }
 ​
-    if ( result < 0 ) {
-        return result;
-    }
+    if ( result < 0 ) {
+        return result;
+    }
 ​
-    cdev_init ( &cdev, &mem_fops ); /* 初始化cdev结构 */
-    cdev.owner = THIS_MODULE;
-    cdev.ops = &mem_fops;
-    cdev_add ( &cdev, MKDEV ( mem_major, 0 ), MEMDEV_NR_DEVS ); /* 注册字符设备 */
-    mem_devp = kmalloc ( MEMDEV_NR_DEVS * sizeof ( struct mem_dev ), GFP_KERNEL ); /* 为mem_devp结构对象分配内存 */
+    cdev_init ( &cdev, &mem_fops ); /* 初始化cdev结构 */
+    cdev.owner = THIS_MODULE;
+    cdev.ops = &mem_fops;
+    cdev_add ( &cdev, MKDEV ( mem_major, 0 ), MEMDEV_NR_DEVS ); /* 注册字符设备 */
+    /* 为mem_devp结构对象分配内存 */
+    mem_devp = kmalloc ( MEMDEV_NR_DEVS * sizeof ( struct mem_dev ), GFP_KERNEL );
 ​
-    if ( !mem_devp ) { /* 申请失败 */
-        result = -ENOMEM;
-        goto fail_malloc;
-    }
+    if ( !mem_devp ) { /* 申请失败 */
+        result = -ENOMEM;
+        goto fail_malloc;
+    }
 ​
-    memset ( mem_devp, 0, sizeof ( struct mem_dev ) );
+    memset ( mem_devp, 0, sizeof ( struct mem_dev ) );
 ​
-    for ( i = 0; i < MEMDEV_NR_DEVS; i++ ) {/* 为设备分配内存 */
-        mem_devp[i].size = MEMDEV_SIZE;
-        mem_devp[i].data = kmalloc ( MEMDEV_SIZE, GFP_KERNEL );
-        memset ( mem_devp[i].data, 0, MEMDEV_SIZE );
-    }
+    for ( i = 0; i < MEMDEV_NR_DEVS; i++ ) {/* 为设备分配内存 */
+        mem_devp[i].size = MEMDEV_SIZE;
+        mem_devp[i].data = kmalloc ( MEMDEV_SIZE, GFP_KERNEL );
+        memset ( mem_devp[i].data, 0, MEMDEV_SIZE );
+    }
 ​
-    printk ( "memdev driver installed, with major %d\n", mem_major );
-    printk ( "the device name is %s\n", "memdev" );
-    return 0;
+    printk ( "memdev driver installed, with major %d\n", mem_major );
+    printk ( "the device name is %s\n", "memdev" );
+    return 0;
 fail_malloc:
-    unregister_chrdev_region ( devno, 1 );
-    return result;
+    unregister_chrdev_region ( devno, 1 );
+    return result;
 }
-​
+
 static void memdev_exit ( void ) { /* 模块卸载函数 */
-    int i;
-    cdev_del ( &cdev ); /* 注销设备 */
+    int i;
+    cdev_del ( &cdev ); /* 注销设备 */
 ​
-    for ( i = 0; i < MEMDEV_NR_DEVS; i++ ) {
-        kfree ( mem_devp[i].data );
-    }
+    for ( i = 0; i < MEMDEV_NR_DEVS; i++ ) {
+        kfree ( mem_devp[i].data );
+    }
 ​
-    kfree ( mem_devp ); /* 释放设备结构体内存 */
-    unregister_chrdev_region ( MKDEV ( mem_major, 0 ), 2 ); /* 释放设备号 */
-    printk ( "memdev driver uninstalled\n" );
+    kfree ( mem_devp ); /* 释放设备结构体内存 */
+    unregister_chrdev_region ( MKDEV ( mem_major, 0 ), 2 ); /* 释放设备号 */
+    printk ( "memdev driver uninstalled\n" );
 }
 ​
 module_init ( memdev_init );
@@ -536,7 +535,7 @@ struct mem_dev *dev;
 int num = MINOR ( inode->i_rdev ); /* 获取次设备号 */
 ​
 if ( num >= MEMDEV_NR_DEVS ) {
-    return -ENODEV; /* 出错 */
+    return -ENODEV; /* 出错 */
 }
 ​
 dev = &mem_devp[num];
