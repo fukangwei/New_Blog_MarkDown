@@ -92,15 +92,15 @@ static int globalmem_ioctl ( struct inode *inodep, struct file *filp, unsigned i
 ​
     switch ( cmd ) {
         case MEM_CLEAR:
-            memset ( dev->mem, 0, GLOBALMEM_SIZE );
-            printk ( KERN_INFO "globalmem is set to zero\n" );
-            break;
+            memset ( dev->mem, 0, GLOBALMEM_SIZE );
+            printk ( KERN_INFO "globalmem is set to zero\n" );
+            break;
 ​
-        default:
-            return -EINVAL;
-    }
+        default:
+            return -EINVAL;
+    }
 ​
-    return 0;
+    return 0;
 }
 ​
 /* 读函数 */
@@ -183,7 +183,7 @@ static loff_t globalmem_llseek ( struct file *filp, loff_t offset, int orig ) { 
             }
 ​
             if ( ( filp->f_pos + offset ) < 0 ) {
-                ret =  - EINVAL;
+                ret = -EINVAL;
                 break;
             }
 ​
@@ -192,7 +192,7 @@ static loff_t globalmem_llseek ( struct file *filp, loff_t offset, int orig ) { 
             break;
 ​
         default:
-            ret =  - EINVAL;
+            ret = -EINVAL;
             break;
     }
 ​
