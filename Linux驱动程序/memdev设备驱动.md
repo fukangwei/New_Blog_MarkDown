@@ -96,28 +96,28 @@ static ssize_t mem_read ( struct file *filp, char __user *buf, size_t size, loff
 ​
 /* 写函数 */
 static ssize_t mem_write ( struct file *filp, const char __user *buf, size_t size, loff_t *ppos ) {
-    unsigned long p =  *ppos;
-    unsigned int count = size;
-    int ret = 0;
-    struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
+    unsigned long p =  *ppos;
+    unsigned int count = size;
+    int ret = 0;
+    struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
 ​
-    if ( p >= MEMDEV_SIZE ) { /* 分析和获取有效的写长度 */
-        return 0;
-    }
+    if ( p >= MEMDEV_SIZE ) { /* 分析和获取有效的写长度 */
+        return 0;
+    }
 ​
-    if ( count > MEMDEV_SIZE - p ) {
-        count = MEMDEV_SIZE - p;
-    }
+    if ( count > MEMDEV_SIZE - p ) {
+        count = MEMDEV_SIZE - p;
+    }
 ​
-    if ( copy_from_user ( dev->data + p, buf, count ) ) { /* 从用户空间写入数据 */
-        ret = -EFAULT;
-    } else {
-        *ppos += count;
-        ret = count;
-        printk ( KERN_INFO "written %d bytes(s) from %ld\n", count, p );
-    }
+    if ( copy_from_user ( dev->data + p, buf, count ) ) { /* 从用户空间写入数据 */
+        ret = -EFAULT;
+    } else {
+        *ppos += count;
+        ret = count;
+        printk ( KERN_INFO "written %d bytes(s) from %ld\n", count, p );
+    }
 ​
-    return ret;
+    return ret;
 }
 ​
 static loff_t mem_llseek ( struct file *filp, loff_t offset, int whence ) { /* seek文件定位函数 */
