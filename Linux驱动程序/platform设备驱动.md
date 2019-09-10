@@ -1,7 +1,7 @@
 ---
 title: platform设备驱动
 date: 2019-02-04 10:00:45
-tags:
+categories: Linux驱动程序
 ---
 &emsp;&emsp;`device.c`如下：
 
@@ -16,19 +16,19 @@ tags:
 static struct platform_device *my_device;
 ​
 static int __init my_device_init ( void ) {
-    int ret = 0;
-    my_device = platform_device_alloc ( "my_dev", -1 ); /* 分配结构 */
-    ret = platform_device_add ( my_device ); /* 注册设备 */
+    int ret = 0;
+    my_device = platform_device_alloc ( "my_dev", -1 ); /* 分配结构 */
+    ret = platform_device_add ( my_device ); /* 注册设备 */
 ​
-    if ( ret ) { /* 注册失败，释放相关内存 */
-        platform_device_put ( my_device );
-    }
+    if ( ret ) { /* 注册失败，释放相关内存 */
+        platform_device_put ( my_device );
+    }
 ​
-    return ret;
+    return ret;
 }
 ​
 static void my_device_exit ( void ) {
-    platform_device_unregister ( my_device );
+    platform_device_unregister ( my_device );
 }
 ​
 module_init ( my_device_init );
@@ -47,30 +47,30 @@ MODULE_LICENSE ( "Dual BSD/GPL" );
 #include <linux/platform_device.h>
 ​
 static int my_probe ( struct device *dev ) {
-    printk ( "Driver found device which my driver can handle!\n" );
-    return 0;
+    printk ( "Driver found device which my driver can handle!\n" );
+    return 0;
 }
-​
+
 static int my_remove ( struct device *dev ) {
-    printk ( "Driver found device unpluged!\n" );
-    return 0;
+    printk ( "Driver found device unpluged!\n" );
+    return 0;
 }
 ​
 static struct platform_driver my_driver = {
-    .probe  = my_probe,
-    .remove = my_remove,
-    .driver = {
-        .owner = THIS_MODULE,
-        .name  = "my_dev",
-    },
+    .probe  = my_probe,
+    .remove = my_remove,
+    .driver = {
+        .owner = THIS_MODULE,
+        .name  = "my_dev",
+    },
 };
-​
+
 static int __init my_driver_init ( void ) {
-    return platform_driver_register ( &my_driver ); /* 注册平台驱动 */
+    return platform_driver_register ( &my_driver ); /* 注册平台驱动 */
 }
 ​
 static void my_driver_exit ( void ) {
-    platform_driver_unregister ( &my_driver );
+    platform_driver_unregister ( &my_driver );
 }
 ​
 module_init ( my_driver_init );
