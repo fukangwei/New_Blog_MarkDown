@@ -205,17 +205,17 @@ static const struct file_operations globalmem_fops = { /* 文件操作结构体 
     .open    = globalmem_open,
     .release = globalmem_release,
 };
-​
+
 static void globalmem_setup_cdev ( struct globalmem_dev *dev, int index ) { /* 初始化并注册cdev */
-    int err, devno = MKDEV ( globalmem_major, index );
-    cdev_init ( &dev->cdev, &globalmem_fops );
-    dev->cdev.owner = THIS_MODULE;
-    dev->cdev.ops = &globalmem_fops;
-    err = cdev_add ( &dev->cdev, devno, 1 );
+    int err, devno = MKDEV ( globalmem_major, index );
+    cdev_init ( &dev->cdev, &globalmem_fops );
+    dev->cdev.owner = THIS_MODULE;
+    dev->cdev.ops = &globalmem_fops;
+    err = cdev_add ( &dev->cdev, devno, 1 );
 ​
-    if ( err ) {
-        printk ( KERN_NOTICE "Error %d adding LED%d", err, index );
-    }
+    if ( err ) {
+        printk ( KERN_NOTICE "Error %d adding LED%d", err, index );
+    }
 }
 ​
 int globalmem_init ( void ) { /* 设备驱动模块加载函数 */
