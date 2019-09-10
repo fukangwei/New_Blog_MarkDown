@@ -123,9 +123,9 @@ static int __init dev_init ( void ) {
         s3c2410_gpio_setpin ( led_table[i], 1 );
     }
 ​
-    ret = misc_register ( &misc ); /* 注册混杂型字符设备驱动 */
-    printk ( DEVICE_NAME"\tinitialized\n" );
-    return ret;
+    ret = misc_register ( &misc ); /* 注册混杂型字符设备驱动 */
+    printk ( DEVICE_NAME"\tinitialized\n" );
+    return ret;
 }
 ​
 static void __exit dev_exit ( void ) {
@@ -147,32 +147,32 @@ MODULE_LICENSE ( "GPL" );
 #include "memdev.h" /* 包含命令定义 */
 ​
 int main ( int argc, char **argv ) {
-    int on;
-    int fd;
+    int on;
+    int fd;
 ​
-    if ( argc != 2 || sscanf ( argv[1], "%d", &on ) != 1 || on < 0 || on > 1 ) {
-        fprintf ( stderr, "Usage:%s 0|1\n", argv[0] );
-        exit ( 1 );
-    }
+    if ( argc != 2 || sscanf ( argv[1], "%d", &on ) != 1 || on < 0 || on > 1 ) {
+        fprintf ( stderr, "Usage:%s 0|1\n", argv[0] );
+        exit ( 1 );
+    }
 ​
-    fd = open ( "/dev/led", 0 );
+    fd = open ( "/dev/led", 0 );
 ​
-    if ( fd < 0 ) {
-        perror ( "open device leds" );
-        exit ( 1 );
-    }
+    if ( fd < 0 ) {
+        perror ( "open device leds" );
+        exit ( 1 );
+    }
 ​
-    /* 通过ioctl来控制灯的亮、灭 */
-    if ( on ) {
-        printf ( "turn on all leds!\n" );
-        ioctl ( fd,  MEMDEV_IOCON, 0 );
-    } else {
-        printf ( "turn off all leds!\n" );
-        ioctl ( fd,  MEMDEV_IOCOFF, 0 );
-    }
+    /* 通过ioctl来控制灯的亮、灭 */
+    if ( on ) {
+        printf ( "turn on all leds!\n" );
+        ioctl ( fd,  MEMDEV_IOCON, 0 );
+    } else {
+        printf ( "turn off all leds!\n" );
+        ioctl ( fd,  MEMDEV_IOCOFF, 0 );
+    }
 ​
-    close ( fd );
-    return 0;
+    close ( fd );
+    return 0;
 }
 ```
 
