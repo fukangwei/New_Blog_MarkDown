@@ -1,7 +1,7 @@
 ---
 title: 按键驱动_input子系统
 date: 2019-02-04 10:50:27
-tags:
+categories: Linux驱动程序
 ---
 &emsp;&emsp;`input_button.c`如下：
 
@@ -27,11 +27,11 @@ tags:
 struct input_dev *button_dev;
 ​
 struct button_irq_desc {
-    int irq;
-    int pin;
-    int pin_setting;
-    int number;
-    char *name;
+    int irq;
+    int pin;
+    int pin_setting;
+    int number;
+    char *name;
 };
 ​
 static struct button_irq_desc button_irqs [] = {
