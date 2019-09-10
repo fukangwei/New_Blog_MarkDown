@@ -83,22 +83,20 @@ static int sbc2440_leds_ioctl ( struct inode *inode, struct file *file, unsigned
     }
 ​
     switch ( cmd ) { /* 根据命令，执行相应的操作 */
-        case MEMDEV_IOCOFF: /* 灯全灭 */
-            cmd = 1;
+        case MEMDEV_IOCOFF: /* 灯全灭 */
+            cmd = 1;
 ​
-            for ( i = 0; i < 4; i++ ) {
-                s3c2410_gpio_setpin ( led_table[i], cmd );
-            }
+            for ( i = 0; i < 4; i++ ) {
+                s3c2410_gpio_setpin ( led_table[i], cmd );
+            }
 ​
-            return 0;
+            return 0;
+        case MEMDEV_IOCON: /* 灯全亮 */
+            for ( i = 0; i < 4; i++ ) {
+                s3c2410_gpio_setpin ( led_table[i], !cmd );
+            }
 ​
-        case MEMDEV_IOCON: /* 灯全亮 */
-            for ( i = 0; i < 4; i++ ) {
-                s3c2410_gpio_setpin ( led_table[i], !cmd );
-            }
-​
-            return 0;
-​
+            return 0;
         default:
             return -EINVAL;
     }
