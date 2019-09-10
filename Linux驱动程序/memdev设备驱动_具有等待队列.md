@@ -1,7 +1,7 @@
 ---
 title: memdev设备驱动_具有等待队列
 date: 2019-02-04 11:04:47
-tags:
+categories: Linux驱动程序
 ---
 &emsp;&emsp;`memdev.h`如下：
 
@@ -10,27 +10,27 @@ tags:
 #define _MEMDEV_H_
 ​
 #ifndef MEMDEV_MAJOR
-    #define MEMDEV_MAJOR 251
+    #define MEMDEV_MAJOR 251
 #endif
 ​
 #ifndef MEMDEV_NR_DEVS
-    #define MEMDEV_NR_DEVS 2
+    #define MEMDEV_NR_DEVS 2
 #endif
 ​
 #ifndef MEMDEV_SIZE
-    #define MEMDEV_SIZE 4096
+    #define MEMDEV_SIZE 4096
 #endif
 ​
 struct mem_dev {
-    bool canRead; /* 设备可读标识 */
-    bool canWrite; /* 设备可写标识 */
-    char *data;
-    unsigned long size;
-    unsigned long rpos; /* 读定位标识 */
-    unsigned long wpos; /* 写定位标识 */
-    unsigned long nattch;
-    wait_queue_head_t rwq;
-    wait_queue_head_t wwq;
+    bool canRead; /* 设备可读标识 */
+    bool canWrite; /* 设备可写标识 */
+    char *data;
+    unsigned long size;
+    unsigned long rpos; /* 读定位标识 */
+    unsigned long wpos; /* 写定位标识 */
+    unsigned long nattch;
+    wait_queue_head_t rwq;
+    wait_queue_head_t wwq;
 };
 ​
 #endif
@@ -59,12 +59,12 @@ struct mem_dev *mem_devp; /* 设备结构体指针 */
 struct cdev cdev;
 ​
 int mem_open ( struct inode *inode, struct file *filp ) { /* 文件打开函数 */
-    struct mem_dev *dev;
-    int num = MINOR ( inode->i_rdev ); /* 获取次设备号 */
+    struct mem_dev *dev;
+    int num = MINOR ( inode->i_rdev ); /* 获取次设备号 */
 ​
-    if ( num >= MEMDEV_NR_DEVS ) {
-        return -ENODEV;
-    }
+    if ( num >= MEMDEV_NR_DEVS ) {
+        return -ENODEV;
+    }
 ​
     dev = &mem_devp[num];
     filp->private_data = dev; /* 将设备描述结构指针赋值给文件私有数据指针 */
