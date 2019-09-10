@@ -266,20 +266,20 @@ int main ( int argc, char **argv ) {
     }
 ​
     if ( argc == 2 ) {
-        if ( !strcmp ( argv[1], "on" ) ) {
-            ioctl ( fd, IOCTL_LED_ALLON, &count ); /* 点亮它 */
-        } else if ( !strcmp ( argv[1], "off" ) ) {
-            ioctl ( fd, IOCTL_LED_ALLOFF, &count ); /* 熄灭它 */
-        } else if ( !strcmp ( argv[1], "run" ) ) {
-            ioctl ( fd, IOCTL_LED_RUN, &count ); /* 运行跑马灯 */
-        } else if ( !strcmp ( argv[1], "shine" ) ) {
-            ioctl ( fd, IOCTL_LED_SHINE, &count ); /* 闪烁 */
-        } else {
-            goto err;
-        }
+        if ( !strcmp ( argv[1], "on" ) ) {
+            ioctl ( fd, IOCTL_LED_ALLON, &count ); /* 点亮它 */
+        } else if ( !strcmp ( argv[1], "off" ) ) {
+            ioctl ( fd, IOCTL_LED_ALLOFF, &count ); /* 熄灭它 */
+        } else if ( !strcmp ( argv[1], "run" ) ) {
+            ioctl ( fd, IOCTL_LED_RUN, &count ); /* 运行跑马灯 */
+        } else if ( !strcmp ( argv[1], "shine" ) ) {
+            ioctl ( fd, IOCTL_LED_SHINE, &count ); /* 闪烁 */
+        } else {
+            goto err;
+        }
     }
 ​
-    if ( argc == 3 ) {
+    if ( argc == 3 ) {
         led_no = strtoul ( argv[1], NULL, 0 ) - 1; /* 操作哪个LED */
 ​
         if ( led_no > 3 ) {
