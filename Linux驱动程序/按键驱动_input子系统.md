@@ -35,24 +35,24 @@ struct button_irq_desc {
 };
 ​
 static struct button_irq_desc button_irqs [] = {
-    {IRQ_EINT8,  S3C2410_GPG ( 0 ),  S3C2410_GPG0_EINT8,   0, "KEY0"},
-    {IRQ_EINT11, S3C2410_GPG ( 3 ),  S3C2410_GPG3_EINT11,  1, "KEY1"},
-    {IRQ_EINT13, S3C2410_GPG ( 5 ),  S3C2410_GPG5_EINT13,  2, "KEY2"},
-    {IRQ_EINT14, S3C2410_GPG ( 6 ),  S3C2410_GPG6_EINT14,  3, "KEY3"},
-    {IRQ_EINT15, S3C2410_GPG ( 7 ),  S3C2410_GPG7_EINT15,  4, "KEY4"},
-    {IRQ_EINT19, S3C2410_GPG ( 11 ), S3C2410_GPG11_EINT19, 5, "KEY5"},
+    {IRQ_EINT8,  S3C2410_GPG ( 0 ),  S3C2410_GPG0_EINT8,   0, "KEY0"},
+    {IRQ_EINT11, S3C2410_GPG ( 3 ),  S3C2410_GPG3_EINT11,  1, "KEY1"},
+    {IRQ_EINT13, S3C2410_GPG ( 5 ),  S3C2410_GPG5_EINT13,  2, "KEY2"},
+    {IRQ_EINT14, S3C2410_GPG ( 6 ),  S3C2410_GPG6_EINT14,  3, "KEY3"},
+    {IRQ_EINT15, S3C2410_GPG ( 7 ),  S3C2410_GPG7_EINT15,  4, "KEY4"},
+    {IRQ_EINT19, S3C2410_GPG ( 11 ), S3C2410_GPG11_EINT19, 5, "KEY5"},
 };
 ​
 static int key_values = 0;
 ​
 static irqreturn_t buttons_interrupt ( int irq, void *dev_id ) {
-    struct button_irq_desc *button_irqs = ( struct button_irq_desc * ) dev_id;
-    int down;
-    udelay ( 0 );
-    down = !s3c2410_gpio_getpin ( button_irqs->pin ); /* down：1(按下)，0(弹起) */
+    struct button_irq_desc *button_irqs = ( struct button_irq_desc * ) dev_id;
+    int down;
+    udelay ( 0 );
+    down = !s3c2410_gpio_getpin ( button_irqs->pin ); /* down：1(按下)，0(弹起) */
 ​
-    if ( !down ) {
-        key_values = button_irqs->number; /* 报告事件 */
+    if ( !down ) {
+        key_values = button_irqs->number; /* 报告事件 */
 ​
         if ( key_values == 0 ) {
             input_report_key ( button_dev, KEY_1, 0 );
