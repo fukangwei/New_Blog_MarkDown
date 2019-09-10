@@ -122,21 +122,21 @@ struct kset_uevent_ops uevent_ops = {
 };
 ​
 int kset_test_init() {
-    printk ( "kset test init.\n" );
-    kobject_set_name ( &kset_p.kobj, "kset_p" );
-    kset_p.uevent_ops = &uevent_ops;
-    kset_register ( &kset_p );
-    kobject_set_name ( &kset_c.kobj, "kset_c" );
-    kset_c.kobj.kset = &kset_p;
-    kset_register ( &kset_c );
-    return 0;
+    printk ( "kset test init.\n" );
+    kobject_set_name ( &kset_p.kobj, "kset_p" );
+    kset_p.uevent_ops = &uevent_ops;
+    kset_register ( &kset_p );
+    kobject_set_name ( &kset_c.kobj, "kset_c" );
+    kset_c.kobj.kset = &kset_p;
+    kset_register ( &kset_c );
+    return 0;
 }
 ​
 int kset_test_exit() {
-    printk ( "kset test exit.\n" );
-    kset_unregister ( &kset_p );
-    kset_unregister ( &kset_c );
-    return 0;
+    printk ( "kset test exit.\n" );
+    kset_unregister ( &kset_p );
+    kset_unregister ( &kset_c );
+    return 0;
 }
 ​
 module_init ( kset_test_init );
