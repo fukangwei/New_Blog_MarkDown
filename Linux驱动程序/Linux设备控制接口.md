@@ -274,36 +274,36 @@ static ssize_t mem_write ( struct file *filp, const char __user *buf, size_t siz
 }
 ​
 static const struct file_operations mem_fops = { /* 文件操作结构体 */
-    .owner   = THIS_MODULE,
-    .open    = mem_open,
-    .release = mem_release,
-    .ioctl   = memdev_ioctl,
-    .read    = mem_read,
-    .write   = mem_write,
+    .owner   = THIS_MODULE,
+    .open    = mem_open,
+    .release = mem_release,
+    .ioctl   = memdev_ioctl,
+    .read    = mem_read,
+    .write   = mem_write,
 };
 ​
 static int memdev_init ( void ) { /* 设备驱动模块加载函数 */
-    int result;
-    int i;
-    dev_t devno = MKDEV ( mem_major, 0 );
+    int result;
+    int i;
+    dev_t devno = MKDEV ( mem_major, 0 );
 ​
-    if ( mem_major ) {
-        result = register_chrdev_region ( devno, 2, "memdev" ); /* 静态申请设备号 */
-    } else {
-        result = alloc_chrdev_region ( &devno, 0, 2, "memdev" ); /* 动态分配设备号 */
-        mem_major = MAJOR ( devno );
-    }
+    if ( mem_major ) {
+        result = register_chrdev_region ( devno, 2, "memdev" ); /* 静态申请设备号 */
+    } else {
+        result = alloc_chrdev_region ( &devno, 0, 2, "memdev" ); /* 动态分配设备号 */
+        mem_major = MAJOR ( devno );
+    }
 ​
-    if ( result < 0 ) {
-        return result;
-    }
+    if ( result < 0 ) {
+        return result;
+    }
 ​
-    cdev_init ( &cdev, &mem_fops ); /* 初始化cdev结构 */
-    cdev.owner = THIS_MODULE;
-    cdev.ops = &mem_fops;
-    cdev_add ( &cdev, MKDEV ( mem_major, 0 ), MEMDEV_NR_DEVS ); /* 注册字符设备 */
+    cdev_init ( &cdev, &mem_fops ); /* 初始化cdev结构 */
+    cdev.owner = THIS_MODULE;
+    cdev.ops = &mem_fops;
+    cdev_add ( &cdev, MKDEV ( mem_major, 0 ), MEMDEV_NR_DEVS ); /* 注册字符设备 */
     /* 为设备描述结构分配内存 */
-    mem_devp = kmalloc ( MEMDEV_NR_DEVS * sizeof ( struct mem_dev ), GFP_KERNEL );
+    mem_devp = kmalloc ( MEMDEV_NR_DEVS * sizeof ( struct mem_dev ), GFP_KERNEL );
 ​
     if ( !mem_devp ) { /* 申请失败 */
         result = -ENOMEM;
