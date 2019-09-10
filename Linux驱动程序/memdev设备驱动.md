@@ -149,59 +149,59 @@ static loff_t mem_llseek ( struct file *filp, loff_t offset, int whence ) { /* s
 }
 ​
 static const struct file_operations mem_fops = { /* 文件操作结构体 */
-    .owner   = THIS_MODULE,
-    .llseek  = mem_llseek,
-    .read    = mem_read,
-    .write   = mem_write,
-    .open    = mem_open,
-    .release = mem_release,
+    .owner   = THIS_MODULE,
+    .llseek  = mem_llseek,
+    .read    = mem_read,
+    .write   = mem_write,
+    .open    = mem_open,
+    .release = mem_release,
 };
 ​
 static int memdev_init ( void ) { /* 设备驱动模块加载函数 */
-    int result;
-    int i;
-    dev_t devno = MKDEV ( mem_major, 0 );
+    int result;
+    int i;
+    dev_t devno = MKDEV ( mem_major, 0 );
 ​
-    if ( mem_major ) {
-        result = register_chrdev_region ( devno, 2, "memdev" ); /* 静态申请设备号 */
-    } else {
-        result = alloc_chrdev_region ( &devno, 0, 2, "memdev" ); /* 动态分配设备号 */
-        mem_major = MAJOR ( devno );
-    }
+    if ( mem_major ) {
+        result = register_chrdev_region ( devno, 2, "memdev" ); /* 静态申请设备号 */
+    } else {
+        result = alloc_chrdev_region ( &devno, 0, 2, "memdev" ); /* 动态分配设备号 */
+        mem_major = MAJOR ( devno );
+    }
 ​
-    if ( result < 0 ) {
-        return result;
-    }
+    if ( result < 0 ) {
+        return result;
+    }
 ​
-    cdev_init ( &cdev, &mem_fops ); /* 初始化cdev结构 */
-    cdev.owner = THIS_MODULE;
-    cdev_add ( &cdev, MKDEV ( mem_major, 0 ), MEMDEV_NR_DEVS ); /* 注册字符设备 */
-    /* 为设备描述结构分配内存 */
-    mem_devp = kmalloc ( MEMDEV_NR_DEVS * sizeof ( struct mem_dev ), GFP_KERNEL );
+    cdev_init ( &cdev, &mem_fops ); /* 初始化cdev结构 */
+    cdev.owner = THIS_MODULE;
+    cdev_add ( &cdev, MKDEV ( mem_major, 0 ), MEMDEV_NR_DEVS ); /* 注册字符设备 */
+    /* 为设备描述结构分配内存 */
+    mem_devp = kmalloc ( MEMDEV_NR_DEVS * sizeof ( struct mem_dev ), GFP_KERNEL );
 ​
-    if ( !mem_devp ) { /* 申请失败 */
-        result = -ENOMEM;
-        goto fail_malloc;
-    }
+    if ( !mem_devp ) { /* 申请失败 */
+        result = -ENOMEM;
+        goto fail_malloc;
+    }
 ​
-    memset ( mem_devp, 0, sizeof ( struct mem_dev ) );
+    memset ( mem_devp, 0, sizeof ( struct mem_dev ) );
 ​
-    for ( i = 0; i < MEMDEV_NR_DEVS; i++ ) { /* 为设备分配内存 */
-        mem_devp[i].size = MEMDEV_SIZE;
-        mem_devp[i].data = kmalloc ( MEMDEV_SIZE, GFP_KERNEL );
-        memset ( mem_devp[i].data, 0, MEMDEV_SIZE );
-    }
+    for ( i = 0; i < MEMDEV_NR_DEVS; i++ ) { /* 为设备分配内存 */
+        mem_devp[i].size = MEMDEV_SIZE;
+        mem_devp[i].data = kmalloc ( MEMDEV_SIZE, GFP_KERNEL );
+        memset ( mem_devp[i].data, 0, MEMDEV_SIZE );
+    }
 ​
-    return 0;
+    return 0;
 fail_malloc:
-    unregister_chrdev_region ( devno, 1 );
-    return result;
+    unregister_chrdev_region ( devno, 1 );
+    return result;
 }
 ​
 static void memdev_exit ( void ) { /* 模块卸载函数 */
-    cdev_del ( &cdev ); /* 注销设备 */
-    kfree ( mem_devp ); /* 释放设备结构体内存 */
-    unregister_chrdev_region ( MKDEV ( mem_major, 0 ), 2 ); /* 释放设备号 */
+    cdev_del ( &cdev ); /* 注销设备 */
+    kfree ( mem_devp ); /* 释放设备结构体内存 */
+    unregister_chrdev_region ( MKDEV ( mem_major, 0 ), 2 ); /* 释放设备号 */
 }
 ​
 MODULE_AUTHOR ( "www.enjoylinux.cn" );
@@ -218,23 +218,23 @@ module_exit ( memdev_exit );
 #include <string.h>
 ​
 int main() {
-    FILE *fp0 = NULL;
-    char Buf[4096];
-    strcpy ( Buf, "Mem is char dev!" ); /* 初始化Buf */
-    printf ( "BUF: %s\n", Buf );
-    fp0 = fopen ( "/dev/memdev", "r+" ); /* 打开设备文件 */
+    FILE *fp0 = NULL;
+    char Buf[4096];
+    strcpy ( Buf, "Mem is char dev!" ); /* 初始化Buf */
+    printf ( "BUF: %s\n", Buf );
+    fp0 = fopen ( "/dev/memdev", "r+" ); /* 打开设备文件 */
 ​
-    if ( fp0 == NULL ) {
-        printf ( "Open Memdev0 Error!\n" );
-        return -1;
-    }
+    if ( fp0 == NULL ) {
+        printf ( "Open Memdev0 Error!\n" );
+        return -1;
+    }
 ​
-    fwrite ( Buf, sizeof ( Buf ), 1, fp0 ); /* 写入设备 */
-    fseek ( fp0, 0, SEEK_SET ); /* 重新定位文件位置(思考没有该指令，会有何后果) */
-    strcpy ( Buf, "Buf is NULL!" ); /* 清除Buf */
-    printf ( "BUF: %s\n", Buf );
-    fread ( Buf, sizeof ( Buf ), 1, fp0 ); /* 读出设备 */
-    printf ( "BUF: %s\n", Buf ); /* 检测结果 */
-    return 0;
+    fwrite ( Buf, sizeof ( Buf ), 1, fp0 ); /* 写入设备 */
+    fseek ( fp0, 0, SEEK_SET ); /* 重新定位文件位置(思考没有该指令，会有何后果) */
+    strcpy ( Buf, "Buf is NULL!" ); /* 清除Buf */
+    printf ( "BUF: %s\n", Buf );
+    fread ( Buf, sizeof ( Buf ), 1, fp0 ); /* 读出设备 */
+    printf ( "BUF: %s\n", Buf ); /* 检测结果 */
+    return 0;
 }
 ```
