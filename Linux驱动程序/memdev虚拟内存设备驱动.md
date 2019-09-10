@@ -172,15 +172,14 @@ static loff_t globalmem_llseek ( struct file *filp, loff_t offset, int orig ) { 
                 break;
             }
 ​
-            filp->f_pos = ( unsigned int ) offset; /* file结构的成员“loff_t f_pos”：当前读写位置 */
-            ret = filp->f_pos;
-            break;
-​
-        case 1: /* 相对文件当前位置偏移 */
-            if ( ( filp->f_pos + offset ) > GLOBALMEM_SIZE ) {
-                ret = -EINVAL;
-                break;
-            }
+            filp->f_pos = ( unsigned int ) offset; /* file结构的成员“loff_t f_pos”：当前读写位置 */
+            ret = filp->f_pos;
+            break;
+        case 1: /* 相对文件当前位置偏移 */
+            if ( ( filp->f_pos + offset ) > GLOBALMEM_SIZE ) {
+                ret = -EINVAL;
+                break;
+            }
 ​
             if ( ( filp->f_pos + offset ) < 0 ) {
                 ret = -EINVAL;
@@ -190,7 +189,6 @@ static loff_t globalmem_llseek ( struct file *filp, loff_t offset, int orig ) { 
             filp->f_pos += offset;
             ret = filp->f_pos;
             break;
-​
         default:
             ret = -EINVAL;
             break;
