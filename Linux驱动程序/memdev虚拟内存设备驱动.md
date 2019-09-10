@@ -275,38 +275,38 @@ MODULE_LICENSE ( "Dual BSD/GPL" );
 #include <string.h>
 ​
 int main() {
-    FILE *fp0 = NULL;
-    char Buf[4096];
-    int result;
-    strcpy ( Buf, "Mem is char dev!" ); /* 初始化Buf */
-    printf ( "BUF: %s\n", Buf );
-    fp0 = fopen ( "/dev/memdev0", "r+" ); /* 文件名为memdev0，其中“0”为此设备号 */
+    FILE *fp0 = NULL;
+    char Buf[4096];
+    int result;
+    strcpy ( Buf, "Mem is char dev!" ); /* 初始化Buf */
+    printf ( "BUF: %s\n", Buf );
+    fp0 = fopen ( "/dev/memdev0", "r+" ); /* 文件名为memdev0，其中“0”为此设备号 */
 ​
-    if ( fp0 == NULL ) {
-        perror ( "Open Memdev0 Error!\n" );
-        return -1;
-    }
+    if ( fp0 == NULL ) {
+        perror ( "Open Memdev0 Error!\n" );
+        return -1;
+    }
 ​
-    result = fwrite ( Buf, sizeof ( Buf ), 1, fp0 ); /* 向设备中写入数据 */
+    result = fwrite ( Buf, sizeof ( Buf ), 1, fp0 ); /* 向设备中写入数据 */
 ​
-    if ( result  == -1 ) {
-        perror ( "fwrite Error!\n" );
-        return -1;
-    }
+    if ( result  == -1 ) {
+        perror ( "fwrite Error!\n" );
+        return -1;
+    }
 ​
-    fseek ( fp0, 0, SEEK_SET ); /* 重新定位文件位置 */
-    strcpy ( Buf, "Buf is NULL!" );
-    printf ( "BUF: %s\n", Buf );
-    sleep ( 1 );
-    result = fread ( Buf, sizeof ( Buf ), 1, fp0 ); /* 从设备中读出数据 */
+    fseek ( fp0, 0, SEEK_SET ); /* 重新定位文件位置 */
+    strcpy ( Buf, "Buf is NULL!" );
+    printf ( "BUF: %s\n", Buf );
+    sleep ( 1 );
+    result = fread ( Buf, sizeof ( Buf ), 1, fp0 ); /* 从设备中读出数据 */
 ​
-    if ( result  == -1 ) {
-        perror ( "fread Error!\n" );
-        return -1;
-    }
+    if ( result  == -1 ) {
+        perror ( "fread Error!\n" );
+        return -1;
+    }
 ​
-    printf ( "BUF: %s\n", Buf );
-    return 0;
+    printf ( "BUF: %s\n", Buf );
+    return 0;
 }
 ```
 
@@ -317,20 +317,20 @@ int main() {
 #define _MEMDEV_H_
 ​
 #ifndef MEMDEV_MAJOR
-    #define MEMDEV_MAJOR 0 /* 预设的mem的主设备号 */
+    #define MEMDEV_MAJOR 0 /* 预设的mem的主设备号 */
 #endif
 ​
 #ifndef MEMDEV_NR_DEVS
-    #define MEMDEV_NR_DEVS 2 /* 设备数 */
+    #define MEMDEV_NR_DEVS 2 /* 设备数 */
 #endif
 ​
 #ifndef MEMDEV_SIZE
-    #define MEMDEV_SIZE 4096
+    #define MEMDEV_SIZE 4096
 #endif
 ​
 struct mem_dev { /* mem设备描述结构体 */
-    char *data;
-    unsigned long size;
+    char *data;
+    unsigned long size;
 };
 ​
 #endif
@@ -361,12 +361,12 @@ struct mem_dev *mem_devp;
 struct cdev cdev;
 ​
 int mem_open ( struct inode *inode, struct file *filp ) { /* 文件打开函数 */
-    struct mem_dev *dev;
-    int num = MINOR ( inode->i_rdev ); /* 获取次设备号 */
+    struct mem_dev *dev;
+    int num = MINOR ( inode->i_rdev ); /* 获取次设备号 */
 ​
-    if ( num >= MEMDEV_NR_DEVS ) {
-        return -ENODEV; /* 出错 */
-    }
+    if ( num >= MEMDEV_NR_DEVS ) {
+        return -ENODEV; /* 出错 */
+    }
 ​
     dev = &mem_devp[num];
     /* 将设备描述结构指针赋值给文件私有数据指针 */
