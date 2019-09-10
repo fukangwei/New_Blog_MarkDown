@@ -11,18 +11,18 @@ tags:
 #include <string.h>
 ​
 int main() {
-    FILE *fp0 = NULL;
-    char Buf[4096];
-    int result;
-    strcpy ( Buf, "Mem is char dev!" ); /* 初始化Buf */
-    printf ( "BUF: %s\n", Buf );
-    /* 打开设备文件 */
-    fp0 = fopen ( "/dev/globalmem", "r+" ); /* 驱动对应的文件名为globalmen，以已读的方式打开 */
+    FILE *fp0 = NULL;
+    char Buf[4096];
+    int result;
+    strcpy ( Buf, "Mem is char dev!" ); /* 初始化Buf */
+    printf ( "BUF: %s\n", Buf );
+    /* 打开设备文件 */
+    fp0 = fopen ( "/dev/globalmem", "r+" ); /* 驱动对应的文件名为globalmen，以已读的方式打开 */
 ​
-    if ( fp0 == NULL ) {
-        perror ( "Open globalmem Error!\n" );
-        return -1;
-    }
+    if ( fp0 == NULL ) {
+        perror ( "Open globalmem Error!\n" );
+        return -1;
+    }
 ​
     result = fwrite ( Buf, sizeof ( Buf ), 1, fp0 ); /* 写入设备 */
 ​

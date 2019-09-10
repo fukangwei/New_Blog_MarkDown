@@ -282,7 +282,7 @@ module_exit ( memdev_exit );
 #include <fcntl.h>
 ​
 #define MEMDEV_SIZE 4096
-​
+
 int main ( void ) {
     int fd, ret;
     char buf[MEMDEV_SIZE];
@@ -318,34 +318,34 @@ int main ( void ) {
         close ( fd );
         _exit ( EXIT_SUCCESS );
     } else { /* father process */
-        if ( -1 == ( fd = open ( "/dev/memdev", O_RDWR ) ) ) {
-            printf ( "open() error" );
-            _exit ( EXIT_FAILURE );
-        }
+        if ( -1 == ( fd = open ( "/dev/memdev", O_RDWR ) ) ) {
+            printf ( "open() error" );
+            _exit ( EXIT_FAILURE );
+        }
 ​
-        printf ( "Father try to read, but there is no data, blocking ...\n" );
-        int ret = 0;
-        ret = read ( fd, buf, 20 );
-        usleep ( 30000 );
-        printf ( "After Child write1, Father can read:\n" );
-        buf[ret] = 0;
-        printf ( "Father read1(%d bytes): %s\n", ret, buf );
-        ret = read ( fd, buf, 20 );
-        buf[ret] = 0;
-        printf ( "Father read2(%d bytes): %s\n", ret, buf );
-        printf ( "Father read3, no data to read, blocking ...\n" );
-        ret = read ( fd, buf, 50 );
-        usleep ( 30000 );
-        buf[ret] = 0;
-        printf ( "After Child write2, Father read3(%d bytes): %s\n", ret, buf );
-        printf ( "Father sleep 10s ...\n\n" );
-        sleep ( 10 );
-        ret = read ( fd, buf, 20 );
-        printf ( "Father read4(%d bytes)\n", ret );
-        wait ( NULL );
-        close ( fd );
-    }
+        printf ( "Father try to read, but there is no data, blocking ...\n" );
+        int ret = 0;
+        ret = read ( fd, buf, 20 );
+        usleep ( 30000 );
+        printf ( "After Child write1, Father can read:\n" );
+        buf[ret] = 0;
+        printf ( "Father read1(%d bytes): %s\n", ret, buf );
+        ret = read ( fd, buf, 20 );
+        buf[ret] = 0;
+        printf ( "Father read2(%d bytes): %s\n", ret, buf );
+        printf ( "Father read3, no data to read, blocking ...\n" );
+        ret = read ( fd, buf, 50 );
+        usleep ( 30000 );
+        buf[ret] = 0;
+        printf ( "After Child write2, Father read3(%d bytes): %s\n", ret, buf );
+        printf ( "Father sleep 10s ...\n\n" );
+        sleep ( 10 );
+        ret = read ( fd, buf, 20 );
+        printf ( "Father read4(%d bytes)\n", ret );
+        wait ( NULL );
+        close ( fd );
+    }
 ​
-    _exit ( EXIT_SUCCESS );
+    _exit ( EXIT_SUCCESS );
 }
 ```
