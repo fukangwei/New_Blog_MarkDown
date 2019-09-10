@@ -185,27 +185,27 @@ int memdev_ioctl ( struct inode *inode, struct file *filp,
         return -EINVAL;
     }
 ​
-    if ( _IOC_DIR ( cmd ) & _IOC_READ ) { /* 根据命令类型，检测参数空间是否可以访问 */
-        err = !access_ok ( VERIFY_WRITE, ( void * ) arg, _IOC_SIZE ( cmd ) );
-    } else if ( _IOC_DIR ( cmd ) & _IOC_WRITE ) {
-        err = !access_ok ( VERIFY_READ, ( void * ) arg, _IOC_SIZE ( cmd ) );
-    }
+    if ( _IOC_DIR ( cmd ) & _IOC_READ ) { /* 根据命令类型，检测参数空间是否可以访问 */
+        err = !access_ok ( VERIFY_WRITE, ( void * ) arg, _IOC_SIZE ( cmd ) );
+    } else if ( _IOC_DIR ( cmd ) & _IOC_WRITE ) {
+        err = !access_ok ( VERIFY_READ, ( void * ) arg, _IOC_SIZE ( cmd ) );
+    }
 ​
-    if ( err ) {
-        return -EFAULT;
-    }
+    if ( err ) {
+        return -EFAULT;
+    }
 ​
-    switch ( cmd ) { /* 根据命令，执行相应的操作 */
-        case MEMDEV_IOCPRINT: /* 打印当前设备信息 */
-            printk ( "<--- CMD MEMDEV_IOCPRINT Done--->\n\n" );
-            break;
+    switch ( cmd ) { /* 根据命令，执行相应的操作 */
+        case MEMDEV_IOCPRINT: /* 打印当前设备信息 */
+            printk ( "<--- CMD MEMDEV_IOCPRINT Done--->\n\n" );
+            break;
 ​
-        case MEMDEV_IOCGETDATA: /* 获取参数 */
-            ioarg = filp->f_pos;
-            ret = __put_user ( ioarg, ( int * ) arg );
-            break;
+        case MEMDEV_IOCGETDATA: /* 获取参数 */
+            ioarg = filp->f_pos;
+            ret = __put_user ( ioarg, ( int * ) arg );
+            break;
 ​
-        case MEMDEV_IOCSETDATA: /* 设置参数 */
+        case MEMDEV_IOCSETDATA: /* 设置参数 */
             ret = __get_user ( ioarg, ( int * ) arg );
 ​
             if ( ( ioarg < 0 ) || ( ioarg > MEMDEV_SIZE ) ) {
@@ -215,12 +215,11 @@ int memdev_ioctl ( struct inode *inode, struct file *filp,
             filp->f_pos = ioarg;
             printk ( "<--- In Kernel MEMDEV_IOCSETDATA ioarg = %d --->\n\n", ioarg );
             break;
-​
         default:
             return -EINVAL;
     }
 ​
-    return ret;
+    return ret;
 }
 ​
 /* 读函数 */
@@ -303,7 +302,8 @@ static int memdev_init ( void ) { /* 设备驱动模块加载函数 */
     cdev.owner = THIS_MODULE;
     cdev.ops = &mem_fops;
     cdev_add ( &cdev, MKDEV ( mem_major, 0 ), MEMDEV_NR_DEVS ); /* 注册字符设备 */
-    mem_devp = kmalloc ( MEMDEV_NR_DEVS * sizeof ( struct mem_dev ), GFP_KERNEL ); /* 为设备描述结构分配内存 */
+    /* 为设备描述结构分配内存 */
+    mem_devp = kmalloc ( MEMDEV_NR_DEVS * sizeof ( struct mem_dev ), GFP_KERNEL );
 ​
     if ( !mem_devp ) { /* 申请失败 */
         result = -ENOMEM;
