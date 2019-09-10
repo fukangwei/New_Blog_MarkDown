@@ -1,7 +1,7 @@
 ---
 title: Linux设备控制接口
 date: 2019-02-04 11:24:01
-tags:
+categories: Linux驱动程序
 ---
 &emsp;&emsp;设备驱动程序的一个基本功能就是管理和控制设备，同时为用户应用程序提供管理和控制设备的接口，在`Linux`中这个接口是通过`ioctl`函数来实现的。
 
@@ -76,8 +76,8 @@ unsigned long __must_check copy_from_user ( void *to, const void __user *from, u
 #define MAXBUF 20
 ​
 typedef struct _buf_data {
-    int size;
-    char data [MAXBUF];
+    int size;
+    char data [MAXBUF];
 } buf_data;
 ​
 #define HELLO_IOCTL_NR_BASE     0
@@ -91,39 +91,39 @@ typedef struct _buf_data {
 然后为驱动程序添加`ioctl`接口`hello_ioctl`：
 
 ``` cpp
-static int hello_ioctl ( struct inode *inode, struct file *filp, unsigned int cmd, unsigned long arg ) {
-    int cmd_nr;
-    int err;
-    buf_data buff;
-    err = 0;
-    cmd_nr = _IOC_NR ( cmd );
+static int hello_ioctl ( struct inode *inode, struct file *filp,
+                         unsigned int cmd, unsigned long arg ) {
+    int cmd_nr;
+    int err;
+    buf_data buff;
+    err = 0;
+    cmd_nr = _IOC_NR ( cmd );
 ​
-    switch ( cmd_nr ) {
-        case HELLO_IOCTL_NR_SET_DATA:
-            if ( copy_from_user ( &buff, ( unsigned char * ) arg, sizeof ( buf_data ) ) ) {
-                err = -ENOMEM;
-                goto error;
-            }
+    switch ( cmd_nr ) {
+        case HELLO_IOCTL_NR_SET_DATA:
+            if ( copy_from_user ( &buff, ( unsigned char * ) arg, sizeof ( buf_data ) ) ) {
+                err = -ENOMEM;
+                goto error;
+            }
 ​
-            memset ( hello_buf, 0, sizeof ( hello_buf ) );
-            memcpy ( hello_buf, buff.data, buff.size );
-            break;
-​
-        default:
-            printk ( "hello_ioctl: Unknown ioctl command (%d)\n", cmd );
-            break;
-    }
+            memset ( hello_buf, 0, sizeof ( hello_buf ) );
+            memcpy ( hello_buf, buff.data, buff.size );
+            break;
+        default:
+            printk ( "hello_ioctl: Unknown ioctl command (%d)\n", cmd );
+            break;
+    }
 ​
 error:
-    return err;
+    return err;
 }
 ​
 static struct file_operations hello_fops = {
-    .read = hello_read,
-    .write = hello_write,
-    .open = hello_open,
-    .ioctl = hello_ioctl,
-    .release = hello_release,
+    .read = hello_read,
+    .write = hello_write,
+    .open = hello_open,
+    .ioctl = hello_ioctl,
+    .release = hello_release,
 };
 ```
 
@@ -154,36 +154,36 @@ struct mem_dev *mem_devp; /* 设备结构体指针 */
 struct cdev cdev;
 ​
 int mem_open ( struct inode *inode, struct file *filp ) { /* 文件打开函数 */
-    struct mem_dev *dev;
-    int num = MINOR ( inode->i_rdev ); /* 获取次设备号 */
+    struct mem_dev *dev;
+    int num = MINOR ( inode->i_rdev ); /* 获取次设备号 */
 ​
-    if ( num >= MEMDEV_NR_DEVS ) {
-        return -ENODEV;
-    }
+    if ( num >= MEMDEV_NR_DEVS ) {
+        return -ENODEV;
+    }
 ​
-    dev = &mem_devp[num];
-    filp->private_data = dev; /* 将设备描述结构指针赋值给文件私有数据指针 */
-    return 0;
+    dev = &mem_devp[num];
+    filp->private_data = dev; /* 将设备描述结构指针赋值给文件私有数据指针 */
+    return 0;
 }
 ​
 int mem_release ( struct inode *inode, struct file *filp ) { /* 文件释放函数 */
-    return 0;
+    return 0;
 }
 ​
 /* IO操作 */
-int memdev_ioctl ( struct inode *inode, struct file *filp, unsigned int cmd, unsigned long arg ) {
-    int err = 0;
-    int ret = 0;
-    int ioarg = 0;
+int memdev_ioctl ( struct inode *inode, struct file *filp,
+                   unsigned int cmd, unsigned long arg ) {
+    int err = 0;
+    int ret = 0;
+    int ioarg = 0;
 ​
-    /* 检测命令的有效性 */
-    if ( _IOC_TYPE ( cmd ) != MEMDEV_IOC_MAGIC ) {
-        return -EINVAL;
-    }
+    if ( _IOC_TYPE ( cmd ) != MEMDEV_IOC_MAGIC ) { /* 检测命令的有效性 */
+        return -EINVAL;
+    }
 ​
-    if ( _IOC_NR ( cmd ) > MEMDEV_IOC_MAXNR ) {
-        return -EINVAL;
-    }
+    if ( _IOC_NR ( cmd ) > MEMDEV_IOC_MAXNR ) {
+        return -EINVAL;
+    }
 ​
     if ( _IOC_DIR ( cmd ) & _IOC_READ ) { /* 根据命令类型，检测参数空间是否可以访问 */
         err = !access_ok ( VERIFY_WRITE, ( void * ) arg, _IOC_SIZE ( cmd ) );
@@ -225,7 +225,7 @@ int memdev_ioctl ( struct inode *inode, struct file *filp, unsigned int cmd, uns
 ​
 /* 读函数 */
 static ssize_t mem_read ( struct file *filp, char __user *buf, size_t size, loff_t *ppos ) {
-    unsigned long p =  *ppos;
+    unsigned long p = *ppos;
     unsigned int count = size;
     int ret = 0;
     struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
