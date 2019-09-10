@@ -305,29 +305,29 @@ static int memdev_init ( void ) { /* 设备驱动模块加载函数 */
     /* 为设备描述结构分配内存 */
     mem_devp = kmalloc ( MEMDEV_NR_DEVS * sizeof ( struct mem_dev ), GFP_KERNEL );
 ​
-    if ( !mem_devp ) { /* 申请失败 */
-        result = -ENOMEM;
-        goto fail_malloc;
-    }
+    if ( !mem_devp ) { /* 申请失败 */
+        result = -ENOMEM;
+        goto fail_malloc;
+    }
 ​
-    memset ( mem_devp, 0, sizeof ( struct mem_dev ) );
+    memset ( mem_devp, 0, sizeof ( struct mem_dev ) );
 ​
-    for ( i = 0; i < MEMDEV_NR_DEVS; i++ ) { /* 为设备分配内存 */
-        mem_devp[i].size = MEMDEV_SIZE;
-        mem_devp[i].data = kmalloc ( MEMDEV_SIZE, GFP_KERNEL );
-        memset ( mem_devp[i].data, 0, MEMDEV_SIZE );
-    }
+    for ( i = 0; i < MEMDEV_NR_DEVS; i++ ) { /* 为设备分配内存 */
+        mem_devp[i].size = MEMDEV_SIZE;
+        mem_devp[i].data = kmalloc ( MEMDEV_SIZE, GFP_KERNEL );
+        memset ( mem_devp[i].data, 0, MEMDEV_SIZE );
+    }
 ​
-    return 0;
+    return 0;
 fail_malloc:
-    unregister_chrdev_region ( devno, 1 );
-    return result;
+    unregister_chrdev_region ( devno, 1 );
+    return result;
 }
-​
+
 static void memdev_exit ( void ) { /* 模块卸载函数 */
-    cdev_del ( &cdev ); /* 注销设备 */
-    kfree ( mem_devp ); /* 释放设备结构体内存 */
-    unregister_chrdev_region ( MKDEV ( mem_major, 0 ), 2 ); /* 释放设备号 */
+    cdev_del ( &cdev ); /* 注销设备 */
+    kfree ( mem_devp ); /* 释放设备结构体内存 */
+    unregister_chrdev_region ( MKDEV ( mem_major, 0 ), 2 ); /* 释放设备号 */
 }
 ​
 MODULE_AUTHOR ( "David Xie" );
@@ -346,31 +346,31 @@ module_exit ( memdev_exit );
 #include <linux/ioctl.h>
 ​
 #ifndef MEMDEV_MAJOR
-    #define MEMDEV_MAJOR 0 /* 预设的mem的主设备号 */
+    #define MEMDEV_MAJOR 0 /* 预设的mem的主设备号 */
 #endif
 ​
 #ifndef MEMDEV_NR_DEVS
-    #define MEMDEV_NR_DEVS 2 /* 设备数 */
+    #define MEMDEV_NR_DEVS 2 /* 设备数 */
 #endif
 ​
 #ifndef MEMDEV_SIZE
-    #define MEMDEV_SIZE 4096
+    #define MEMDEV_SIZE 4096
 #endif
 ​
 struct mem_dev { /* mem设备描述结构体 */
-    char *data;
-    unsigned long size;
+    char *data;
+    unsigned long size;
 };
 ​
 #define MEMDEV_IOC_MAGIC 'k' /* 定义幻数 */
 ​
 /* 定义命令 */
-#define MEMDEV_IOCPRINT   _IO(MEMDEV_IOC_MAGIC, 1)
+#define MEMDEV_IOCPRINT   _IO(MEMDEV_IOC_MAGIC, 1)
 #define MEMDEV_IOCGETDATA _IOR(MEMDEV_IOC_MAGIC, 2, int)
 #define MEMDEV_IOCSETDATA _IOW(MEMDEV_IOC_MAGIC, 3, int)
 ​
 #define MEMDEV_IOC_MAXNR 3
-​
+
 #endif /* _MEMDEV_H_ */
 ```
 
@@ -388,8 +388,8 @@ struct mem_dev { /* mem设备描述结构体 */
 ​
 /* 调用命令MEMDEV_IOCSETDATA */
 static inline void setpos ( int fd, int pos ) {
-    printf ( "ioctl: Call MEMDEV_IOCSETDATA to set position\n" );
-    ioctl ( fd, MEMDEV_IOCSETDATA, &pos );
+    printf ( "ioctl: Call MEMDEV_IOCSETDATA to set position\n" );
+    ioctl ( fd, MEMDEV_IOCSETDATA, &pos );
 }
 ​
 /* 调用命令MEMDEV_IOCGETDATA */
