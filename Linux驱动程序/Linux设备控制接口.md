@@ -233,44 +233,44 @@ static ssize_t mem_read ( struct file *filp, char __user *buf, size_t size, loff
         return 0;
     }
 ​
-    if ( count > MEMDEV_SIZE - p ) {
-        count = MEMDEV_SIZE - p;
-    }
+    if ( count > MEMDEV_SIZE - p ) {
+        count = MEMDEV_SIZE - p;
+    }
 ​
-    if ( copy_to_user ( buf, ( void * ) ( dev->data + p ), count ) ) { /* 读数据到用户空间 */
-        ret = -EFAULT;
-    } else {
-        *ppos += count;
-        ret = count;
-        printk ( KERN_INFO "read %d bytes(s) from %ld\n", count, p );
-    }
+    if ( copy_to_user ( buf, ( void * ) ( dev->data + p ), count ) ) { /* 读数据到用户空间 */
+        ret = -EFAULT;
+    } else {
+        *ppos += count;
+        ret = count;
+        printk ( KERN_INFO "read %d bytes(s) from %ld\n", count, p );
+    }
 ​
-    return ret;
+    return ret;
 }
 ​
 /* 写函数 */
 static ssize_t mem_write ( struct file *filp, const char __user *buf, size_t size, loff_t *ppos ) {
-    unsigned long p =  *ppos;
-    unsigned int count = size;
-    int ret = 0;
-    struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
+    unsigned long p =  *ppos;
+    unsigned int count = size;
+    int ret = 0;
+    struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
 ​
-    if ( p >= MEMDEV_SIZE ) { /* 分析和获取有效的写长度 */
-        return 0;
-    }
+    if ( p >= MEMDEV_SIZE ) { /* 分析和获取有效的写长度 */
+        return 0;
+    }
 ​
-    if ( count > MEMDEV_SIZE - p ) {
-        count = MEMDEV_SIZE - p;
-    }
+    if ( count > MEMDEV_SIZE - p ) {
+        count = MEMDEV_SIZE - p;
+    }
 ​
-    if ( copy_from_user ( dev->data + p, buf, count ) ) { /* 从用户空间写入数据 */
-        ret = -EFAULT;
-    } else {
-        *ppos += count;
-        ret = count;
-    }
+    if ( copy_from_user ( dev->data + p, buf, count ) ) { /* 从用户空间写入数据 */
+        ret = -EFAULT;
+    } else {
+        *ppos += count;
+        ret = count;
+    }
 ​
-    return ret;
+    return ret;
 }
 ​
 static const struct file_operations mem_fops = { /* 文件操作结构体 */
