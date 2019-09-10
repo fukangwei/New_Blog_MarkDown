@@ -1,7 +1,7 @@
 ---
 title: memdev设备驱动
 date: 2019-02-04 10:45:51
-tags:
+categories: Linux驱动程序
 ---
 &emsp;&emsp;`memdev.h`如下：
 
@@ -10,20 +10,20 @@ tags:
 #define _MEMDEV_H_
 ​
 #ifndef MEMDEV_MAJOR
-    #define MEMDEV_MAJOR 251 /* 预设的mem的主设备号 */
+    #define MEMDEV_MAJOR 251 /* 预设的mem的主设备号 */
 #endif
 ​
 #ifndef MEMDEV_NR_DEVS
-    #define MEMDEV_NR_DEVS 2 /* 设备数 */
+    #define MEMDEV_NR_DEVS 2 /* 设备数 */
 #endif
 ​
 #ifndef MEMDEV_SIZE
-    #define MEMDEV_SIZE 4096
+    #define MEMDEV_SIZE 4096
 #endif
 ​
 struct mem_dev { /* mem设备描述结构体 */
-    char *data;
-    unsigned long size;
+    char *data;
+    unsigned long size;
 };
 ​
 #endif /* _MEMDEV_H_ */
@@ -52,46 +52,46 @@ struct mem_dev *mem_devp; /* 设备结构体指针 */
 struct cdev cdev;
 ​
 int mem_open ( struct inode *inode, struct file *filp ) { /* 文件打开函数 */
-    struct mem_dev *dev;
-    int num = MINOR ( inode->i_rdev ); /* 获取次设备号 */
+    struct mem_dev *dev;
+    int num = MINOR ( inode->i_rdev ); /* 获取次设备号 */
 ​
-    if ( num >= MEMDEV_NR_DEVS ) {
-        return -ENODEV;
-    }
+    if ( num >= MEMDEV_NR_DEVS ) {
+        return -ENODEV;
+    }
 ​
-    dev = &mem_devp[num];
-    filp->private_data = dev; /* 将设备描述结构指针赋值给文件私有数据指针 */
-    return 0;
+    dev = &mem_devp[num];
+    filp->private_data = dev; /* 将设备描述结构指针赋值给文件私有数据指针 */
+    return 0;
 }
 ​
 int mem_release ( struct inode *inode, struct file *filp ) { /* 文件释放函数 */
-    return 0;
+    return 0;
 }
 ​
 /* 读函数 */
 static ssize_t mem_read ( struct file *filp, char __user *buf, size_t size, loff_t *ppos ) {
-    unsigned long p =  *ppos;
-    unsigned int count = size;
-    int ret = 0;
-    struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
+    unsigned long p = *ppos;
+    unsigned int count = size;
+    int ret = 0;
+    struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
 ​
-    if ( p >= MEMDEV_SIZE ) { /* 判断读位置是否有效 */
-        return 0;
-    }
+    if ( p >= MEMDEV_SIZE ) { /* 判断读位置是否有效 */
+        return 0;
+    }
 ​
-    if ( count > MEMDEV_SIZE - p ) {
-        count = MEMDEV_SIZE - p;
-    }
+    if ( count > MEMDEV_SIZE - p ) {
+        count = MEMDEV_SIZE - p;
+    }
 ​
-    if ( copy_to_user ( buf, ( void * ) ( dev->data + p ), count ) ) { /* 读数据到用户空间 */
-        ret = -EFAULT;
-    } else {
-        *ppos += count;
-        ret = count;
-        printk ( KERN_INFO "read %d bytes(s) from %ld\n", count, p );
-    }
+    if ( copy_to_user ( buf, ( void * ) ( dev->data + p ), count ) ) { /* 读数据到用户空间 */
+        ret = -EFAULT;
+    } else {
+        *ppos += count;
+        ret = count;
+        printk ( KERN_INFO "read %d bytes(s) from %ld\n", count, p );
+    }
 ​
-    return ret;
+    return ret;
 }
 ​
 /* 写函数 */
