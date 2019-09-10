@@ -102,65 +102,65 @@ static int globalmem_ioctl ( struct inode *inodep, struct file *filp, unsigned i
 ​
     return 0;
 }
-​
+
 /* 读函数 */
 static ssize_t globalmem_read ( struct file *filp, char __user *buf, size_t size, loff_t *ppos ) {
-    unsigned long p = *ppos; /* file结构中保存的loff_t f_pos:当前读写位置 */
-    unsigned int count = size;
-    int ret = 0;
-    struct globalmem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
+    unsigned long p = *ppos; /* file结构中保存的loff_t f_pos:当前读写位置 */
+    unsigned int count = size;
+    int ret = 0;
+    struct globalmem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
 ​
-    /* 分析和获取有效的写长度 */
-    if ( p >= GLOBALMEM_SIZE ) {
-        return count ?  - ENXIO : 0; /* return ENXIO: No such device or address */
-    }
+    /* 分析和获取有效的写长度 */
+    if ( p >= GLOBALMEM_SIZE ) {
+        return count ? -ENXIO : 0; /* return ENXIO: No such device or address */
+    }
 ​
-    if ( count > GLOBALMEM_SIZE - p ) {
-        count = GLOBALMEM_SIZE - p;
-    }
+    if ( count > GLOBALMEM_SIZE - p ) {
+        count = GLOBALMEM_SIZE - p;
+    }
 ​
-    if ( copy_to_user ( buf, ( void * ) ( dev->mem + p ), count ) ) { /* 内核空间->用户空间 */
-        ret = -EFAULT; /* Bad address，拷贝不成功 */
-    } else { /* 拷贝成功 */
-        *ppos += count;
-        ret = count;
-        printk ( KERN_INFO "read %d bytes(s) from position %d\n", count, p );
-    }
+    if ( copy_to_user ( buf, ( void * ) ( dev->mem + p ), count ) ) { /* 内核空间->用户空间 */
+        ret = -EFAULT; /* Bad address，拷贝不成功 */
+    } else { /* 拷贝成功 */
+        *ppos += count;
+        ret = count;
+        printk ( KERN_INFO "read %d bytes(s) from position %d\n", count, p );
+    }
 ​
-    return ret;
+    return ret;
 }
 ​
 /* 写函数 */
 static ssize_t globalmem_write ( struct file *filp, const char __user *buf, size_t size, loff_t *ppos ) {
-    unsigned long p =  *ppos;
-    unsigned int count = size;
-    int ret = 0;
-    struct globalmem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
+    unsigned long p = *ppos;
+    unsigned int count = size;
+    int ret = 0;
+    struct globalmem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
 ​
-    /* 分析和获取有效的写长度 */
-    if ( p >= GLOBALMEM_SIZE ) {
-        return count ? -ENXIO : 0; /* ENXIO: No such device or addres */
-    }
+    /* 分析和获取有效的写长度 */
+    if ( p >= GLOBALMEM_SIZE ) {
+        return count ? -ENXIO : 0; /* ENXIO: No such device or addres */
+    }
 ​
-    if ( count > GLOBALMEM_SIZE - p ) {
-        count = GLOBALMEM_SIZE - p;
-    }
+    if ( count > GLOBALMEM_SIZE - p ) {
+        count = GLOBALMEM_SIZE - p;
+    }
 ​
-    if ( copy_from_user ( dev->mem + p, buf, count ) ) { /* 用户空间->内核空间 */
-        ret = -EFAULT; /* 写失败 */
-    } else { /* 写成功 */
-        *ppos += count;
-        ret = count;
-        printk ( KERN_INFO "written %d bytes(s) to position %d\n", count, p );
-    }
+    if ( copy_from_user ( dev->mem + p, buf, count ) ) { /* 用户空间->内核空间 */
+        ret = -EFAULT; /* 写失败 */
+    } else { /* 写成功 */
+        *ppos += count;
+        ret = count;
+        printk ( KERN_INFO "written %d bytes(s) to position %d\n", count, p );
+    }
 ​
-    return ret;
+    return ret;
 }
 ​
 static loff_t globalmem_llseek ( struct file *filp, loff_t offset, int orig ) { /* seek文件定位函数 */
-    loff_t ret = 0;
+    loff_t ret = 0;
 ​
-    switch ( orig ) {
+    switch ( orig ) {
         case 0: /* 相对文件头开始SEEK_SET位置偏移 */
             if ( offset < 0 ) {
                 ret =  - EINVAL; /* Invalid argument */
