@@ -219,44 +219,44 @@ static void globalmem_setup_cdev ( struct globalmem_dev *dev, int index ) { /* �
 }
 ​
 int globalmem_init ( void ) { /* 设备驱动模块加载函数 */
-    int result;
-    dev_t devno = MKDEV ( globalmem_major, 0 );
+    int result;
+    dev_t devno = MKDEV ( globalmem_major, 0 );
 ​
-    /* 申请设备号 */
-    if ( globalmem_major ) {
-        result = register_chrdev_region ( devno, 1, "globalmem" );
-    } else {
-        result = alloc_chrdev_region ( &devno, 0, 1, "globalmem" ); /* 动态申请设备号 */
-        globalmem_major = MAJOR ( devno );
-    }
+    /* 申请设备号 */
+    if ( globalmem_major ) {
+        result = register_chrdev_region ( devno, 1, "globalmem" );
+    } else {
+        result = alloc_chrdev_region ( &devno, 0, 1, "globalmem" ); /* 动态申请设备号 */
+        globalmem_major = MAJOR ( devno );
+    }
 ​
-    if ( result < 0 ) {
-        return result;
-    }
+    if ( result < 0 ) {
+        return result;
+    }
 ​
-    globalmem_devp = kmalloc ( sizeof ( struct globalmem_dev ), GFP_KERNEL ); /* 动态申请设备结构体的内存 */
+    globalmem_devp = kmalloc ( sizeof ( struct globalmem_dev ), GFP_KERNEL ); /* 动态申请设备结构体的内存 */
 ​
-    if ( !globalmem_devp ) { /* 申请失败 */
-        result =  - ENOMEM;
-        goto fail_malloc;
-    }
+    if ( !globalmem_devp ) { /* 申请失败 */
+        result = -ENOMEM;
+        goto fail_malloc;
+    }
 ​
-    memset ( globalmem_devp, 0, sizeof ( struct globalmem_dev ) );
-    globalmem_setup_cdev ( globalmem_devp, 0 );
-    printk ( "globalmem driver installed!\n" );
-    printk ( "globalmem_major is:%d\n", globalmem_major );
-    printk ( "the device name is %s\n", "globalmem" );
-    return 0;
+    memset ( globalmem_devp, 0, sizeof ( struct globalmem_dev ) );
+    globalmem_setup_cdev ( globalmem_devp, 0 );
+    printk ( "globalmem driver installed!\n" );
+    printk ( "globalmem_major is:%d\n", globalmem_major );
+    printk ( "the device name is %s\n", "globalmem" );
+    return 0;
 fail_malloc:
-    unregister_chrdev_region ( devno, 1 );
-    return result;
+    unregister_chrdev_region ( devno, 1 );
+    return result;
 }
 ​
 void globalmem_exit ( void ) { /* 模块卸载函数 */
-    cdev_del ( &globalmem_devp->cdev ); /* 注销cdev */
-    kfree ( globalmem_devp ); /* 释放设备结构体内存 */
-    unregister_chrdev_region ( MKDEV ( globalmem_major, 0 ), 1 ); /* 释放设备号 */
-    printk ( "globalmem driver uninstalled!\n" );
+    cdev_del ( &globalmem_devp->cdev ); /* 注销cdev */
+    kfree ( globalmem_devp ); /* 释放设备结构体内存 */
+    unregister_chrdev_region ( MKDEV ( globalmem_major, 0 ), 1 ); /* 释放设备号 */
+    printk ( "globalmem driver uninstalled!\n" );
 }
 ​
 module_param ( globalmem_major, int, S_IRUGO );
