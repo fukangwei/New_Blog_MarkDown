@@ -1739,18 +1739,18 @@ struct input_event ev_mouse[2];
 fd = open ( "/dev/input/event3", O_RDWR );
 
 while ( 1 ) {
-   count = read ( fd, ev_mouse, sizeof ( struct input_event ) );
+    count = read ( fd, ev_mouse, sizeof ( struct input_event ) );
 
-   for ( i = 0; i < ( int ) count / sizeof ( struct input_event ); i++ ) {
-      if ( EV_REL == ev_mouse[i].type ) {
-         printf ( "time: % ld. % d", ev_mouse[i].time.tv_sec, ev_mouse[i].time.tv_usec );
-         printf ( "type: % d code: % d value: % d\n", ev_mouse[i].type, ev_mouse[i].code, ev_mouse[i].value );
-      }
+    for ( i = 0; i < ( int ) count / sizeof ( struct input_event ); i++ ) {
+        if ( EV_REL == ev_mouse[i].type ) {
+            printf ( "time: % ld. % d", ev_mouse[i].time.tv_sec, ev_mouse[i].time.tv_usec );
+            printf ( "type: % d code: % d value: % d\n", ev_mouse[i].type, ev_mouse[i].code, ev_mouse[i].value );
+        }
 
-      if ( EV_KEY == ev_mouse[i].type ) {
-         printf ( "time: % ld. % d", ev_mouse[i].time.tv_sec, ev_mouse[i].time.tv_usec );
-         printf ( " type: % d code: % d value: % d\n", ev_mouse[i].type, ev_mouse[i].code, ev_mouse[i].value );
-      }
-   }
+        if ( EV_KEY == ev_mouse[i].type ) {
+            printf ( "time: % ld. % d", ev_mouse[i].time.tv_sec, ev_mouse[i].time.tv_usec );
+            printf ( " type: % d code: % d value: % d\n", ev_mouse[i].type, ev_mouse[i].code, ev_mouse[i].value );
+        }
+    }
 }
 ```
