@@ -1,7 +1,7 @@
 ---
 title: memdev虚拟内存设备驱动
 date: 2019-02-04 11:10:19
-tags:
+categories: Linux驱动程序
 ---
 &emsp;&emsp;`memdev`在驱动中分配一块指定大小的内存空间作为虚拟字符设备，并在驱动中提供只对该内存的读写、控制和定位函数(`seek`)，以供用户空间的进程能通过`Linux`系统调用访问该内存。
 &emsp;&emsp;测试源代码`globalmem_test.c`如下：
@@ -24,26 +24,26 @@ int main() {
         return -1;
     }
 ​
-    result = fwrite ( Buf, sizeof ( Buf ), 1, fp0 ); /* 写入设备 */
+    result = fwrite ( Buf, sizeof ( Buf ), 1, fp0 ); /* 写入设备 */
 ​
-    if ( result  == -1 ) {
-        perror ( "fwrite Error!\n" );
-        return -1;
-    }
+    if ( result  == -1 ) {
+        perror ( "fwrite Error!\n" );
+        return -1;
+    }
 ​
-    fseek ( fp0, 0, SEEK_SET ); /* 定位到从文件头开始读，写完后读写指针在文件的尾部 */
-    strcpy ( Buf, "Buf is NULL!" ); /* 清除Buf */
-    printf ( "BUF: %s\n", Buf );
-    sleep ( 1 );
-    result = fread ( Buf, sizeof ( Buf ), 1, fp0 ); /* 从设备中读出数据 */
+    fseek ( fp0, 0, SEEK_SET ); /* 定位到从文件头开始读，写完后读写指针在文件的尾部 */
+    strcpy ( Buf, "Buf is NULL!" ); /* 清除Buf */
+    printf ( "BUF: %s\n", Buf );
+    sleep ( 1 );
+    result = fread ( Buf, sizeof ( Buf ), 1, fp0 ); /* 从设备中读出数据 */
 ​
-    if ( result  == -1 ) {
-        perror ( "fread Error!\n" );
-        return -1;
-    }
+    if ( result  == -1 ) {
+        perror ( "fread Error!\n" );
+        return -1;
+    }
 ​
-    printf ( "BUF: %s\n", Buf );
-    return 0;
+    printf ( "BUF: %s\n", Buf );
+    return 0;
 }
 ```
 
@@ -66,32 +66,32 @@ int main() {
 #define GLOBALMEM_SIZE 0x1000 /* 全局内存最大为4K字节 */
 #define MEM_CLEAR 0x1         /* 全局内存清0 */
 #define GLOBALMEM_MAJOR 0     /* 预设的globalmem的主设备号 */
-​
+
 static int globalmem_major = GLOBALMEM_MAJOR;
 ​
 struct globalmem_dev { /* globalmem设备结构体 */
-    struct cdev cdev; /* cdev结构体 */
-    unsigned char mem[GLOBALMEM_SIZE]; /* 全局内存 */
+    struct cdev cdev; /* cdev结构体 */
+    unsigned char mem[GLOBALMEM_SIZE]; /* 全局内存 */
 };
 ​
 struct globalmem_dev *globalmem_devp; /* 设备结构体指针 */
 ​
 int globalmem_open ( struct inode *inode, struct file *filp ) { /* 文件打开函数 */
-    filp->private_data = globalmem_devp; /* 将设备结构体指针赋值给文件私有数据指针 */
-    return 0;
+    filp->private_data = globalmem_devp; /* 将设备结构体指针赋值给文件私有数据指针 */
+    return 0;
 }
 ​
 /* 文件释放函数 */
 int globalmem_release ( struct inode *inode, struct file *filp ) { /* file结构描述一个正在打开的设备文件 */
-    return 0;
+    return 0;
 }
-​
+
 /* ioctl设备控制函数 */
 static int globalmem_ioctl ( struct inode *inodep, struct file *filp, unsigned int cmd, unsigned long arg ) {
-    struct globalmem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
+    struct globalmem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
 ​
-    switch ( cmd ) {
-        case MEM_CLEAR:
+    switch ( cmd ) {
+        case MEM_CLEAR:
             memset ( dev->mem, 0, GLOBALMEM_SIZE );
             printk ( KERN_INFO "globalmem is set to zero\n" );
             break;
@@ -105,7 +105,7 @@ static int globalmem_ioctl ( struct inode *inodep, struct file *filp, unsigned i
 ​
 /* 读函数 */
 static ssize_t globalmem_read ( struct file *filp, char __user *buf, size_t size, loff_t *ppos ) {
-    unsigned long p =  *ppos; /* file结构中保存的loff_t f_pos:当前读写位置 */
+    unsigned long p = *ppos; /* file结构中保存的loff_t f_pos:当前读写位置 */
     unsigned int count = size;
     int ret = 0;
     struct globalmem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
