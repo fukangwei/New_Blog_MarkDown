@@ -54,21 +54,21 @@ static irqreturn_t buttons_interrupt ( int irq, void *dev_id ) {
     if ( !down ) {
         key_values = button_irqs->number; /* 报告事件 */
 ​
-        if ( key_values == 0 ) {
-            input_report_key ( button_dev, KEY_1, 0 );
-        }
+        if ( key_values == 0 ) {
+            input_report_key ( button_dev, KEY_1, 0 );
+        }
 ​
-        if ( key_values == 1 ) {
-            input_report_key ( button_dev, KEY_2, 0 );
-        }
+        if ( key_values == 1 ) {
+            input_report_key ( button_dev, KEY_2, 0 );
+        }
 ​
-        if ( key_values == 2 ) {
-            input_report_key ( button_dev, KEY_3, 0 );
-        }
+        if ( key_values == 2 ) {
+            input_report_key ( button_dev, KEY_3, 0 );
+        }
 ​
-        if ( key_values == 3 ) {
-            input_report_key ( button_dev, KEY_4, 0 );
-        }
+        if ( key_values == 3 ) {
+            input_report_key ( button_dev, KEY_4, 0 );
+        }
 ​
         if ( key_values == 4 ) {
             input_report_key ( button_dev, KEY_5, 0 );
