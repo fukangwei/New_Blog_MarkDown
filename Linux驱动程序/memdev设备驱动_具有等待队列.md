@@ -157,46 +157,46 @@ static ssize_t mem_write ( struct file *filp, const char __user *buf, size_t siz
         wait_event_interruptible ( dev->wwq, dev->canWrite );
     }
 ​
-    if ( dev->rpos > dev->wpos ) {
-        count = dev->rpos - dev->wpos;
-        count = count > size ? size : count;
-    } else {
-        count = MEMDEV_SIZE - dev->wpos - 1;
+    if ( dev->rpos > dev->wpos ) {
+        count = dev->rpos - dev->wpos;
+        count = count > size ? size : count;
+    } else {
+        count = MEMDEV_SIZE - dev->wpos - 1;
 ​
-        if ( count >= size ) {
-            count = size;
-        } else {
-            if ( copy_from_user ( dev->data + dev->wpos, buf, count ) ) {
-                ret = -EFAULT;
-            }
+        if ( count >= size ) {
+            count = size;
+        } else {
+            if ( copy_from_user ( dev->data + dev->wpos, buf, count ) ) {
+                ret = -EFAULT;
+            }
 ​
-            ret += count;
-            dev->wpos = 0;
-            buf  += count;
-            size -= count;
-            count = dev->rpos > size ? size : dev->rpos;
-        }
-    }
+            ret += count;
+            dev->wpos = 0;
+            buf  += count;
+            size -= count;
+            count = dev->rpos > size ? size : dev->rpos;
+        }
+    }
 ​
-    if ( copy_from_user ( dev->data + dev->wpos, buf, count ) ) { /* 从用户空间写入数据 */
-        ret = -EFAULT;
-    } else {
-        dev->wpos += count;
-        ret += count;
-    }
+    if ( copy_from_user ( dev->data + dev->wpos, buf, count ) ) { /* 从用户空间写入数据 */
+        ret = -EFAULT;
+    } else {
+        dev->wpos += count;
+        ret += count;
+    }
 ​
-    if ( ret ) {
-        dev->canRead = true; /* 有空间可写 */
-        wake_up ( & ( dev->rwq ) ); /* 唤醒读等待队列 */
+    if ( ret ) {
+        dev->canRead = true; /* 有空间可写 */
+        wake_up ( & ( dev->rwq ) ); /* 唤醒读等待队列 */
 ​
-        if ( dev->rpos == dev->wpos ) {
-            dev->canWrite = false; /* 无数据可写 */
-        }
-    }
+        if ( dev->rpos == dev->wpos ) {
+            dev->canWrite = false; /* 无数据可写 */
+        }
+    }
 ​
-    printk ( "<1> [After mem_write: rpos=%lu, wpos=%lu, canR=%d, canW=%d]\n",
-             dev->rpos, dev->wpos, dev->canRead, dev->canWrite );
-    return ret;
+    printk ( "<1> [After mem_write: rpos=%lu, wpos=%lu, canR=%d, canW=%d]\n",
+             dev->rpos, dev->wpos, dev->canRead, dev->canWrite );
+    return ret;
 }
 ​
 static const struct file_operations mem_fops = { /* 文件操作结构体 */
