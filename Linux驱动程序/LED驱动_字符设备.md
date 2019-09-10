@@ -107,66 +107,66 @@ static int s3c2440_leds_ioctl ( struct inode *inode, struct file *file,
             s3c2410_gpio_setpin ( led_table[data], 0 ); /* 设置指定引脚的输出电平为0 */
             return 0;
 ​
-        case IOCTL_LED_OFF:
-            s3c2410_gpio_setpin ( led_table[data], 1 ); /* 设置指定引脚的输出电平为1 */
-            return 0;
+        case IOCTL_LED_OFF:
+            s3c2410_gpio_setpin ( led_table[data], 1 ); /* 设置指定引脚的输出电平为1 */
+            return 0;
 ​
-        case IOCTL_LED_RUN: { /* 跑马灯 */
-            int i, j;
-            leds_all_off();
+        case IOCTL_LED_RUN: { /* 跑马灯 */
+            int i, j;
+            leds_all_off();
 ​
-            for ( i = 0; i < data; i++ ) /* 跑data次 */
-                for ( j = 0; j < 4; j++ ) {
-                    s3c2410_gpio_setpin ( led_table[j], 0 ); /* 亮 */
-                    mdelay ( 400 ); /* mdelay一直等待，msleep休眠则执行别的进程 */
-                    s3c2410_gpio_setpin ( led_table[j], 1 ); /* 灭 */
-                    mdelay ( 400 );
-                }
+            for ( i = 0; i < data; i++ ) /* 跑data次 */
+                for ( j = 0; j < 4; j++ ) {
+                    s3c2410_gpio_setpin ( led_table[j], 0 ); /* 亮 */
+                    mdelay ( 400 ); /* mdelay一直等待，msleep休眠则执行别的进程 */
+                    s3c2410_gpio_setpin ( led_table[j], 1 ); /* 灭 */
+                    mdelay ( 400 );
+                }
 ​
-            return 0;
-        }
+            return 0;
+        }
 ​
         case IOCTL_LED_SHINE: { /* LED闪烁 */
-            int i, j;
-            leds_all_off();
-            printk ( "IOCTL_LED_SHINE\n" );
+            int i, j;
+            leds_all_off();
+            printk ( "IOCTL_LED_SHINE\n" );
 ​
-            for ( i = 0; i < data; i++ ) {
-                for ( j = 0; j < 4; j++ ) {
-                    s3c2410_gpio_setpin ( led_table[j], 0 );
-                }
+            for ( i = 0; i < data; i++ ) {
+                for ( j = 0; j < 4; j++ ) {
+                    s3c2410_gpio_setpin ( led_table[j], 0 );
+                }
 ​
-                mdelay ( 400 ); /* 延时400ms */
+                mdelay ( 400 ); /* 延时400ms */
 ​
-                for ( j = 0; j < 4; j++ ) {
-                    s3c2410_gpio_setpin ( led_table[j], 1 );
-                }
+                for ( j = 0; j < 4; j++ ) {
+                    s3c2410_gpio_setpin ( led_table[j], 1 );
+                }
 ​
-                mdelay ( 400 );
-            }
+                mdelay ( 400 );
+            }
 ​
-            return 0;
-        }
+            return 0;
+        }
 ​
-        case IOCTL_LED_ALLON: /* 设置指定引脚的输出电平为0 */
-            leds_all_on();
-            return 0;
+        case IOCTL_LED_ALLON: /* 设置指定引脚的输出电平为0 */
+            leds_all_on();
+            return 0;
 ​
-        case IOCTL_LED_ALLOFF: /* 设置指定引脚的输出电平为1 */
-            leds_all_off();
-            return 0;
+        case IOCTL_LED_ALLOFF: /* 设置指定引脚的输出电平为1 */
+            leds_all_off();
+            return 0;
 ​
-        default:
-            return -EINVAL;
-    }
+        default:
+            return -EINVAL;
+    }
 }
 ​
 /* 这个结构是字符设备驱动程序的核心，当应用程序操作设备文件时所调用的
    open、read、write等函数，最终会调用这个结构中指定的对应函数 */
 static struct file_operations s3c2440_leds_fops = {
-    .owner = THIS_MODULE, /* 这是一个宏，指向编译模块时自动创建的__this_module变量 */
-    .open  = s3c2440_leds_open,
-    .ioctl = s3c2440_leds_ioctl,
+    .owner = THIS_MODULE, /* 这是一个宏，指向编译模块时自动创建的__this_module变量 */
+    .open  = s3c2440_leds_open,
+    .ioctl = s3c2440_leds_ioctl,
 };
 ​
 /* Set up the cdev structure for a device */
