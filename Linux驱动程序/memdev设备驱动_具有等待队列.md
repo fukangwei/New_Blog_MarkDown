@@ -200,67 +200,68 @@ static ssize_t mem_write ( struct file *filp, const char __user *buf, size_t siz
 }
 ​
 static const struct file_operations mem_fops = { /* 文件操作结构体 */
-    .owner   = THIS_MODULE,
-    .read    = mem_read,
-    .write   = mem_write,
-    .open    = mem_open,
-    .release = mem_release,
+    .owner   = THIS_MODULE,
+    .read    = mem_read,
+    .write   = mem_write,
+    .open    = mem_open,
+    .release = mem_release,
 };
 ​
 static int memdev_init ( void ) { /* 设备驱动模块加载函数 */
-    int result;
-    int i;
-    dev_t devno = MKDEV ( mem_major, 0 );
+    int result;
+    int i;
+    dev_t devno = MKDEV ( mem_major, 0 );
 ​
-    if ( mem_major ) {
-        result = register_chrdev_region ( devno, 2, "memdev" ); /* 静态申请设备号 */
-    } else {
-        result = alloc_chrdev_region ( &devno, 0, 2, "memdev" ); /* 动态分配设备号 */
-        mem_major = MAJOR ( devno );
-    }
+    if ( mem_major ) {
+        result = register_chrdev_region ( devno, 2, "memdev" ); /* 静态申请设备号 */
+    } else {
+        result = alloc_chrdev_region ( &devno, 0, 2, "memdev" ); /* 动态分配设备号 */
+        mem_major = MAJOR ( devno );
+    }
 ​
-    if ( result < 0 ) {
-        return result;
-    }
+    if ( result < 0 ) {
+        return result;
+    }
 ​
-    cdev_init ( &cdev, &mem_fops ); /* 初始化cdev结构 */
-    cdev.owner = THIS_MODULE;
-    cdev.ops = &mem_fops;
-    cdev_add ( &cdev, MKDEV ( mem_major, 0 ), MEMDEV_NR_DEVS ); /* 注册字符设备 */
-    mem_devp = kmalloc ( MEMDEV_NR_DEVS * sizeof ( struct mem_dev ), GFP_KERNEL ); /* 为设备描述结构分配内存 */
+    cdev_init ( &cdev, &mem_fops ); /* 初始化cdev结构 */
+    cdev.owner = THIS_MODULE;
+    cdev.ops = &mem_fops;
+    cdev_add ( &cdev, MKDEV ( mem_major, 0 ), MEMDEV_NR_DEVS ); /* 注册字符设备 */
+    /* 为设备描述结构分配内存 */
+    mem_devp = kmalloc ( MEMDEV_NR_DEVS * sizeof ( struct mem_dev ), GFP_KERNEL );
 ​
-    if ( !mem_devp ) { /* 申请失败 */
-        result = -ENOMEM;
-        goto fail_malloc;
-    }
+    if ( !mem_devp ) { /* 申请失败 */
+        result = -ENOMEM;
+        goto fail_malloc;
+    }
 ​
-    memset ( mem_devp, 0, sizeof ( struct mem_dev ) );
+    memset ( mem_devp, 0, sizeof ( struct mem_dev ) );
 ​
-    for ( i = 0; i < MEMDEV_NR_DEVS; i++ ) {  /* 为设备分配内存 */
-        mem_devp[i].size = MEMDEV_SIZE;
-        mem_devp[i].data = kmalloc ( MEMDEV_SIZE, GFP_KERNEL );
-        memset ( mem_devp[i].data, 0, MEMDEV_SIZE );
-        mem_devp[i].canRead  = false; /* 一开始设备没有数据可供读 */
-        mem_devp[i].canWrite = true; /* 一开始设备有空间可供写 */
-        /* 初始化读写指针 */
-        mem_devp[i].rpos = 0;
-        mem_devp[i].wpos = 0;
-        /* 初始化等待队列 */
-        init_waitqueue_head ( & ( mem_devp[i].rwq ) );
-        init_waitqueue_head ( & ( mem_devp[i].wwq ) );
-        mem_devp[i].nattch = 0;
-    }
+    for ( i = 0; i < MEMDEV_NR_DEVS; i++ ) {  /* 为设备分配内存 */
+        mem_devp[i].size = MEMDEV_SIZE;
+        mem_devp[i].data = kmalloc ( MEMDEV_SIZE, GFP_KERNEL );
+        memset ( mem_devp[i].data, 0, MEMDEV_SIZE );
+        mem_devp[i].canRead  = false; /* 一开始设备没有数据可供读 */
+        mem_devp[i].canWrite = true; /* 一开始设备有空间可供写 */
+        /* 初始化读写指针 */
+        mem_devp[i].rpos = 0;
+        mem_devp[i].wpos = 0;
+        /* 初始化等待队列 */
+        init_waitqueue_head ( & ( mem_devp[i].rwq ) );
+        init_waitqueue_head ( & ( mem_devp[i].wwq ) );
+        mem_devp[i].nattch = 0;
+    }
 ​
-    return 0;
+    return 0;
 fail_malloc:
-    unregister_chrdev_region ( devno, 1 );
-    return result;
+    unregister_chrdev_region ( devno, 1 );
+    return result;
 }
 ​
 static void memdev_exit ( void ) { /* 模块卸载函数 */
-    cdev_del ( &cdev ); /* 注销设备 */
-    kfree ( mem_devp ); /* 释放设备结构体内存 */
-    unregister_chrdev_region ( MKDEV ( mem_major, 0 ), 2 ); /* 释放设备号 */
+    cdev_del ( &cdev ); /* 注销设备 */
+    kfree ( mem_devp ); /* 释放设备结构体内存 */
+    unregister_chrdev_region ( MKDEV ( mem_major, 0 ), 2 ); /* 释放设备号 */
 }
 ​
 MODULE_LICENSE ( "GPL" );
@@ -283,40 +284,40 @@ module_exit ( memdev_exit );
 #define MEMDEV_SIZE 4096
 ​
 int main ( void ) {
-    int fd, ret;
-    char buf[MEMDEV_SIZE];
-    printf ( "One processes read, Another write ...\n" );
+    int fd, ret;
+    char buf[MEMDEV_SIZE];
+    printf ( "One processes read, Another write ...\n" );
 ​
-    if ( -1 == ( ret = fork() ) ) {
-        printf ( "fork() error\n" );
-        _exit ( EXIT_FAILURE );
-    } else if ( 0 == ret ) { /* child process */
-        if ( -1 == ( fd = open ( "/dev/memdev", O_RDWR ) ) ) {
-            printf ( "open() error" );
-            _exit ( EXIT_FAILURE );
-        }
+    if ( -1 == ( ret = fork() ) ) {
+        printf ( "fork() error\n" );
+        _exit ( EXIT_FAILURE );
+    } else if ( 0 == ret ) { /* child process */
+        if ( -1 == ( fd = open ( "/dev/memdev", O_RDWR ) ) ) {
+            printf ( "open() error" );
+            _exit ( EXIT_FAILURE );
+        }
 ​
-        printf ( "Child sleep 5s ...\n\n" );
-        sleep ( 5 );
-        strcpy ( buf, "Here is the CHILD writing ..." );
-        ret = write ( fd, buf, strlen ( buf ) );
-        printf ( "Child write1(%d bytes): %s\n", strlen ( buf ), buf );
-        sleep ( 5 );
-        printf ( "Child sleep 10s ...\n\n" );
-        sleep ( 10 );
-        ret = write ( fd, buf, strlen ( buf ) );
-        printf ( "Child write2(%d bytes): %s\n", ret, buf );
-        sleep ( 5 );
-        ret = write ( fd, buf, sizeof ( buf ) );
-        printf ( "Child write3(%d bytes -- buf is full)\n", ret );
-        printf ( "Child try to write4, but there is no space, blocking ...\n" );
-        ret = write ( fd, buf, strlen ( buf ) );
-        buf[ret] = 0;
-        usleep ( 30000 );
-        printf ( "After Father read4, Child write4(%d bytes): %s\n", ret, buf );
-        close ( fd );
-        _exit ( EXIT_SUCCESS );
-    } else { /* father process */
+        printf ( "Child sleep 5s ...\n\n" );
+        sleep ( 5 );
+        strcpy ( buf, "Here is the CHILD writing ..." );
+        ret = write ( fd, buf, strlen ( buf ) );
+        printf ( "Child write1(%d bytes): %s\n", strlen ( buf ), buf );
+        sleep ( 5 );
+        printf ( "Child sleep 10s ...\n\n" );
+        sleep ( 10 );
+        ret = write ( fd, buf, strlen ( buf ) );
+        printf ( "Child write2(%d bytes): %s\n", ret, buf );
+        sleep ( 5 );
+        ret = write ( fd, buf, sizeof ( buf ) );
+        printf ( "Child write3(%d bytes -- buf is full)\n", ret );
+        printf ( "Child try to write4, but there is no space, blocking ...\n" );
+        ret = write ( fd, buf, strlen ( buf ) );
+        buf[ret] = 0;
+        usleep ( 30000 );
+        printf ( "After Father read4, Child write4(%d bytes): %s\n", ret, buf );
+        close ( fd );
+        _exit ( EXIT_SUCCESS );
+    } else { /* father process */
         if ( -1 == ( fd = open ( "/dev/memdev", O_RDWR ) ) ) {
             printf ( "open() error" );
             _exit ( EXIT_FAILURE );
