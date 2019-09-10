@@ -250,22 +250,22 @@ void usage ( char *exename ) {
 }
 ​
 int main ( int argc, char **argv ) {
-    unsigned int led_no;
-    int fd = -1;
-    unsigned int count = 10;
+    unsigned int led_no;
+    int fd = -1;
+    unsigned int count = 10;
 ​
-    if ( argc > 3 || argc == 1 ) {
-        goto err;
-    }
+    if ( argc > 3 || argc == 1 ) {
+        goto err;
+    }
 ​
-    fd = open ( "/dev/led", 0 ); /* 打开设备 */
+    fd = open ( "/dev/led", 0 ); /* 打开设备 */
 ​
-    if ( fd < 0 ) {
-        printf ( "Can't open /dev/leds\n" );
-        return -1;
-    }
+    if ( fd < 0 ) {
+        printf ( "Can't open /dev/leds\n" );
+        return -1;
+    }
 ​
-    if ( argc == 2 ) {
+    if ( argc == 2 ) {
         if ( !strcmp ( argv[1], "on" ) ) {
             ioctl ( fd, IOCTL_LED_ALLON, &count ); /* 点亮它 */
         } else if ( !strcmp ( argv[1], "off" ) ) {
