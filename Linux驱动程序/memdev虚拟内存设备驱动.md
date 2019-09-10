@@ -368,19 +368,19 @@ int mem_open ( struct inode *inode, struct file *filp ) { /* 文件打开函数 
         return -ENODEV; /* 出错 */
     }
 ​
-    dev = &mem_devp[num];
-    /* 将设备描述结构指针赋值给文件私有数据指针 */
-    filp->private_data = dev; /* 传递的是mem_dev结构数组中其中一个的地址 */
-    return 0;
+    dev = &mem_devp[num];
+    /* 将设备描述结构指针赋值给文件私有数据指针 */
+    filp->private_data = dev; /* 传递的是mem_dev结构数组中其中一个的地址 */
+    return 0;
 }
 ​
 int mem_release ( struct inode *inode, struct file *filp ) { /* 文件释放函数 */
-    return 0;
+    return 0;
 }
 ​
 /* 读函数 */
 static ssize_t mem_read ( struct file *filp, char __user *buf, size_t size, loff_t *ppos ) {
-    unsigned long p =  *ppos;
+    unsigned long p = *ppos;
     unsigned int count = size;
     int ret = 0;
     struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
@@ -406,7 +406,7 @@ static ssize_t mem_read ( struct file *filp, char __user *buf, size_t size, loff
 ​
 /* 写函数 */
 static ssize_t mem_write ( struct file *filp, const char __user *buf, size_t size, loff_t *ppos ) {
-    unsigned long p =  *ppos;
+    unsigned long p = *ppos;
     unsigned int count = size;
     int ret = 0;
     struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
