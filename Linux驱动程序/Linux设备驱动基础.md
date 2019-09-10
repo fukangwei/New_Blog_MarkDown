@@ -1179,9 +1179,9 @@ void device_unregister ( struct device *dev ); /* 注销设备 */
 
 ``` cpp
 struct device_attribute {
-   struct attribute attr;
-   ssize_t ( *show ) ( struct device *dev, struct device_attribute *attr, char *buf );
-   ssize_t ( *store ) ( struct device *dev, struct device_attribute *attr, const char *buf, size_t count );
+    struct attribute attr;
+    ssize_t ( *show ) ( struct device *dev, struct device_attribute *attr, char *buf );
+    ssize_t ( *store ) ( struct device *dev, struct device_attribute *attr, const char *buf, size_t count );
 }
 
 int device_create_file ( struct device *device, struct device_attribute *entry ); /* 创建属性 */
@@ -1194,18 +1194,18 @@ void device_remove_file ( struct device *dev, struct device_attribute *attr ); /
 
 ``` cpp
 struct device_driver {
-   const char *name; /* 驱动程序的名字(体现在sysfs中) */
-   struct bus_type *bus; /* 驱动程序所在的总线 */
-   struct module *owner;
-   const char *mod_name;
-   int ( *probe ) ( struct device *dev );
-   int ( *remove ) ( struct device *dev );
-   void ( *shutdown ) ( struct device *dev );
-   int ( *suspend ) ( struct device *dev, pm_message_t state );
-   int ( *resume ) ( struct device *dev );
-   struct attribute_group **groups;
-   struct dev_pm_ops *pm;
-   struct driver_private *p;
+    const char *name; /* 驱动程序的名字(体现在sysfs中) */
+    struct bus_type *bus; /* 驱动程序所在的总线 */
+    struct module *owner;
+    const char *mod_name;
+    int ( *probe ) ( struct device *dev );
+    int ( *remove ) ( struct device *dev );
+    void ( *shutdown ) ( struct device *dev );
+    int ( *suspend ) ( struct device *dev, pm_message_t state );
+    int ( *resume ) ( struct device *dev );
+    struct attribute_group **groups;
+    struct dev_pm_ops *pm;
+    struct driver_private *p;
 }
 ```
 
@@ -1222,9 +1222,9 @@ void driver_unregister ( struct device_driver *drv ); /* 注销驱动 */
 
 ``` cpp
 struct driver_attribute {
-   struct attribute attr;
-   ssize_t ( *show ) ( struct device_driver *drv, char *buf );
-   ssize_t ( *store ) ( struct device_driver *drv, const char *buf, size_t count );
+    struct attribute attr;
+    ssize_t ( *show ) ( struct device_driver *drv, char *buf );
+    ssize_t ( *store ) ( struct device_driver *drv, const char *buf, size_t count );
 }
 
 int driver_create_file ( struct device_driver *drv, struct driver_attribute *attr ); /* 创建属性 */
@@ -1244,11 +1244,11 @@ void driver_remove_file ( struct device_driver *drv, struct driver_attribute *at
 
 ``` cpp
 struct platform_device {
-   const char *name; /* 设备名 */
-   int id; /* 设备编号，配合设备名使用 */
-   struct device dev;
-   u32 num_resources;
-   struct resource *resource; /* 设备资源 */
+    const char *name; /* 设备名 */
+    int id; /* 设备编号，配合设备名使用 */
+    struct device dev;
+    u32 num_resources;
+    struct resource *resource; /* 设备资源 */
 }
 ```
 
@@ -1275,11 +1275,11 @@ int platform_device_add ( struct platform_device *pdev );
 
 ``` cpp
 struct resource {
-   resource_size_t start; /* 资源的起始物理地址 */
-   resource_size_t end; /* 资源的结束物理地址 */
-   const char *name; /* 资源的名称 */
-   unsigned long flags; /* 资源的类型，比如MEM、IO、IRQ类型 */
-   struct resource *parent, *sibling, *child; /* 资源链表指针 */
+    resource_size_t start; /* 资源的起始物理地址 */
+    resource_size_t end; /* 资源的结束物理地址 */
+    const char *name; /* 资源的名称 */
+    unsigned long flags; /* 资源的类型，比如MEM、IO、IRQ类型 */
+    struct resource *parent, *sibling, *child; /* 资源链表指针 */
 }
 ```
 
@@ -1287,15 +1287,15 @@ struct resource {
 
 ``` cpp
 static struct resource s3c_wdt_resource1 = {
-   .start = 0x44100000, /* 基地址(设备地址为0x44100000至0x44200000) */
-   .end = 0x44200000,
-   .flags = IORESOURCE_MEM,
+    .start = 0x44100000, /* 基地址(设备地址为0x44100000至0x44200000) */
+    .end = 0x44200000,
+    .flags = IORESOURCE_MEM,
 }
 
 static struct resource s3c_wdt_resource2 = {
-   .start = 20, /*中断号(20号中断) */
-   .end = 20,
-   .flags = IORESOURCE_IRQ,
+    .start = 20, /*中断号(20号中断) */
+    .end = 20,
+    .flags = IORESOURCE_IRQ,
 }
 ```
 
@@ -1303,7 +1303,7 @@ static struct resource s3c_wdt_resource2 = {
 
 ``` CPP
 struct resource *platform_get_resource (
-   struct platform_device *dev, unsigned int type, unsigned int num );
+    struct platform_device *dev, unsigned int type, unsigned int num );
 ```
 
 - `dev`：资源所属的设备。
@@ -1318,14 +1318,14 @@ struct resource *platform_get_resource (
 
 ``` cpp
 struct platform_driver {
-   int ( *probe ) ( struct platform_device * );
-   int ( *remove ) ( struct platform_device * );
-   void ( *shutdown ) ( struct platform_device * );
-   int ( *suspend ) ( struct platform_device *, pm_message_t state );
-   int ( *suspend_late ) ( struct platform_device *, pm_message_t state );
-   int ( *resume_early ) ( struct platform_device * );
-   int ( *resume ) ( struct platform_device * );
-   struct device_driver driver;
+    int ( *probe ) ( struct platform_device * );
+    int ( *remove ) ( struct platform_device * );
+    void ( *shutdown ) ( struct platform_device * );
+    int ( *suspend ) ( struct platform_device *, pm_message_t state );
+    int ( *suspend_late ) ( struct platform_device *, pm_message_t state );
+    int ( *resume_early ) ( struct platform_device * );
+    int ( *resume ) ( struct platform_device * );
+    struct device_driver driver;
 }
 ```
 
@@ -1358,8 +1358,8 @@ int platform_driver_register ( struct platform_driver * );
 
 ``` cpp
 int request_irq (
-   unsigned int irq, void ( *handler ) ( int, void *, struct pt_regs * ),
-   unsigned long flags, const char *devname, void *dev_id );
+    unsigned int irq, void ( *handler ) ( int, void *, struct pt_regs * ),
+    unsigned long flags, const char *devname, void *dev_id );
 ```
 
 返回`0`表示成功，或者返回一个错误码。
@@ -1400,19 +1400,19 @@ int request_irq (
 
 ``` cpp
 void short_sh_interrupt ( int irq, void *dev_id, struct pt_regs *regs ) {
-   /* 判断是否是本设备产生了中断 */
-   value = inb ( short_base );
+    /* 判断是否是本设备产生了中断 */
+    value = inb ( short_base );
 
-   if ( ! ( value & 0x80 ) ) {
-      return;
-   }
+    if ( ! ( value & 0x80 ) ) {
+        return;
+    }
 
-   /* 清除中断位(如果设备支持自动清除，则不需要这步) */
-   outb ( value & 0x7F, short_base );
-   /* 中断处理,通常是数据接收 */
-   ...
-   /* 唤醒等待数据的进程 */
-   wake_up_interruptible ( &short_queue );
+    /* 清除中断位(如果设备支持自动清除，则不需要这步) */
+    outb ( value & 0x7F, short_base );
+    /* 中断处理，通常是数据接收 */
+    ...
+    /* 唤醒等待数据的进程 */
+    wake_up_interruptible ( &short_queue );
 }
 ```
 
@@ -1580,12 +1580,12 @@ unsigned long len;   /* 有效数据的长度 */
 
 ``` cpp
 int net_open ( struct net_device *dev ) {
-   /* 申请中断 */
-   request_irq ( dev->irq, &net_interrupt, SA_SHIRQ, "dm9000", dev );
-   /* 设置寄存器，启动设备 */
-   ...
-   /* 启动发送队列 */
-   netif_start_queue ( dev );
+    /* 申请中断 */
+    request_irq ( dev->irq, &net_interrupt, SA_SHIRQ, "dm9000", dev );
+    /* 设置寄存器，启动设备 */
+    ...
+    /* 启动发送队列 */
+    netif_start_queue ( dev );
 }
 ```
 
@@ -1707,21 +1707,21 @@ input_sync ( input_dev ); /* 同步 */
 ``` cpp
 /* 在按键中断中报告事件 */
 static void button_interrupt ( int irq, void *dummy, struct pt_regs *fp ) {
-   input_report_key ( &button_dev, BTN_0, inb ( BUTTON_PORT0 ) );
-   input_report_key ( &button_dev, BTN_0, inb ( BUTTON_PORT1 ) );
-   input_sync ( &button_dev );
+    input_report_key ( &button_dev, BTN_0, inb ( BUTTON_PORT0 ) );
+    input_report_key ( &button_dev, BTN_0, inb ( BUTTON_PORT1 ) );
+    input_sync ( &button_dev );
 }
 
 static int _ _init button_init ( void ) {
-   /* 申请中断 */
-   if ( request_irq ( BUTTON_IRQ, button_interrupt, 0, "button", NULL ) ) {
-      return - EBUSY;
-   }
+    /* 申请中断 */
+    if ( request_irq ( BUTTON_IRQ, button_interrupt, 0, "button", NULL ) ) {
+        return - EBUSY;
+    }
 
-   set_bit ( EV_KEY, button_dev.evbit ) /* 支持EV_KEY事件 */
-   set_bit ( BTN_0, button_dev.keybit ); /* 设备支持两个键 */
-   set_bit ( BTN_1, button_dev.keybit );
-   input_register_device ( &button_dev ); /* 注册input设备 */
+    set_bit ( EV_KEY, button_dev.evbit ) /* 支持EV_KEY事件 */
+    set_bit ( BTN_0, button_dev.keybit ); /* 设备支持两个键 */
+    set_bit ( BTN_1, button_dev.keybit );
+    input_register_device ( &button_dev ); /* 注册input设备 */
 }
 ```
 
@@ -1729,10 +1729,10 @@ static int _ _init button_init ( void ) {
 
 ``` cpp
 struct input_event {
-   struct timeval time; /* 按键时间 */
-   __u16 type; /* 类型，在下面有定义 */
-   __u16 code; /* 要模拟成什么按键 */
-   __s32 value; /* 是按下还是释放 */
+    struct timeval time; /* 按键时间 */
+    __u16 type; /* 类型，在下面有定义 */
+    __u16 code; /* 要模拟成什么按键 */
+    __s32 value; /* 是按下还是释放 */
 }
 
 struct input_event ev_mouse[2];
