@@ -97,9 +97,9 @@ static int sbc2440_leds_ioctl ( struct inode *inode, struct file *file, unsigned
             }
 ​
             return 0;
-        default:
-            return -EINVAL;
-    }
+        default:
+            return -EINVAL;
+    }
 }
 ​
 static struct file_operations dev_fops = { /* 文件操作结构体 */
@@ -117,11 +117,11 @@ static int __init dev_init ( void ) {
     int ret;
     int i;
 ​
-    /* 设置GPIO控制寄存器，GPIO设置为输出模式，默认下灯全灭 */
-    for ( i = 0; i < 4; i++ ) {
-        s3c2410_gpio_cfgpin ( led_table[i], led_cfg_table[i] );
-        s3c2410_gpio_setpin ( led_table[i], 1 );
-    }
+    /* 设置GPIO控制寄存器，GPIO设置为输出模式，默认下灯全灭 */
+    for ( i = 0; i < 4; i++ ) {
+        s3c2410_gpio_cfgpin ( led_table[i], led_cfg_table[i] );
+        s3c2410_gpio_setpin ( led_table[i], 1 );
+    }
 ​
     ret = misc_register ( &misc ); /* 注册混杂型字符设备驱动 */
     printk ( DEVICE_NAME"\tinitialized\n" );
