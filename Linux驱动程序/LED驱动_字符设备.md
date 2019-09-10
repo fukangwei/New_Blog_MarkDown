@@ -6,15 +6,15 @@ categories: Linux驱动程序
 &emsp;&emsp;实现`LED`驱动测试案例及要求：
 
 ``` bash
-led_test on    /* 对应四个LED全亮 */
-led_test off   /* 对应四个LED全灭 */
-led_test run   /* 运行跑马灯实验 */
+led_test on    /* 对应四个LED全亮           */
+led_test off   /* 对应四个LED全灭           */
+led_test run   /* 运行跑马灯实验            */
 led_test shine /* 4个LED灯全灭、全亮交替闪烁 */
-led_test 1 on  /* 对应LED1点亮 */
-led_test 1 off /* 对应LED1熄灭 */
+led_test 1 on  /* 对应LED1点亮              */
+led_test 1 off /* 对应LED1熄灭              */
 ...
-led_test 4 on  /* 对应LED4点亮 */
-led_test 4 off /* 对应LED4熄灭 */
+led_test 4 on  /* 对应LED4点亮              */
+led_test 4 off /* 对应LED4熄灭              */
 ```
 
 &emsp;&emsp;设备驱动如下：
@@ -44,9 +44,9 @@ static struct cdev LedDevs;
 ​
 /* 应用程序执行ioctl(fd, cmd, arg)时的第2个参数 */
 #define LED_MAGIC 'k'
-#define IOCTL_LED_ON     _IOW (LED_MAGIC, 1, int)
-#define IOCTL_LED_OFF    _IOW (LED_MAGIC, 2, int)
-#define IOCTL_LED_RUN    _IOW (LED_MAGIC, 3, int)
+#define IOCTL_LED_ON     _IOW (LED_MAGIC, 1, int)
+#define IOCTL_LED_OFF    _IOW (LED_MAGIC, 2, int)
+#define IOCTL_LED_RUN    _IOW (LED_MAGIC, 3, int)
 #define IOCTL_LED_SHINE  _IOW (LED_MAGIC, 4, int)
 #define IOCTL_LED_ALLON  _IOW (LED_MAGIC, 5, int)
 #define IOCTL_LED_ALLOFF _IOW (LED_MAGIC, 6, int)
@@ -171,15 +171,15 @@ static struct file_operations s3c2440_leds_fops = {
 ​
 /* Set up the cdev structure for a device */
 static void led_setup_cdev ( struct cdev *dev, int minor, struct file_operations *fops ) {
-    int err, devno = MKDEV ( led_major, minor );
-    cdev_init ( dev, fops ); /* 设备的注册 */
-    dev->owner = THIS_MODULE;
-    dev->ops = fops;
-    err = cdev_add ( dev, devno, 1 );
+    int err, devno = MKDEV ( led_major, minor );
+    cdev_init ( dev, fops ); /* 设备的注册 */
+    dev->owner = THIS_MODULE;
+    dev->ops = fops;
+    err = cdev_add ( dev, devno, 1 );
 ​
-    if ( err ) { /* Fail gracefully if need be */
-        printk ( KERN_NOTICE "Error %d adding Led%d", err, minor );
-    }
+    if ( err ) { /* Fail gracefully if need be */
+        printk ( KERN_NOTICE "Error %d adding Led%d", err, minor );
+    }
 }
 ​
 /* 执行“insmod s3c24xx_leds.ko”命令时就会调用这个函数 */
@@ -280,30 +280,30 @@ int main ( int argc, char **argv ) {
     }
 ​
     if ( argc == 3 ) {
-        led_no = strtoul ( argv[1], NULL, 0 ) - 1; /* 操作哪个LED */
+        led_no = strtoul ( argv[1], NULL, 0 ) - 1; /* 操作哪个LED */
 ​
-        if ( led_no > 3 ) {
-            goto err;
-        }
+        if ( led_no > 3 ) {
+            goto err;
+        }
 ​
-        if ( !strcmp ( argv[2], "on" ) ) {
-            ioctl ( fd, IOCTL_LED_ON, &led_no ); /* 点亮 */
-        } else if ( !strcmp ( argv[2], "off" ) ) {
-            ioctl ( fd, IOCTL_LED_OFF, &led_no ); /* 熄灭 */
-        } else {
-            goto err;
-        }
-    }
+        if ( !strcmp ( argv[2], "on" ) ) {
+            ioctl ( fd, IOCTL_LED_ON, &led_no ); /* 点亮 */
+        } else if ( !strcmp ( argv[2], "off" ) ) {
+            ioctl ( fd, IOCTL_LED_OFF, &led_no ); /* 熄灭 */
+        } else {
+            goto err;
+        }
+    }
 ​
-    close ( fd );
-    return 0;
+    close ( fd );
+    return 0;
 err:
 ​
-    if ( fd > 0 ) {
-        close ( fd );
-    }
+    if ( fd > 0 ) {
+        close ( fd );
+    }
 ​
-    usage ( argv[0] );
-    return -1;
+    usage ( argv[0] );
+    return -1;
 }
 ```
