@@ -149,31 +149,31 @@ static int s3c24xx_request_irq ( void ) {
 }
 ​
 static int __init dev_init ( void ) {
-    s3c24xx_request_irq(); /* request irq */
-    button_dev = input_allocate_device(); /* Initialise input stuff */
+    s3c24xx_request_irq(); /* request irq */
+    button_dev = input_allocate_device(); /* Initialise input stuff */
 ​
-    if ( !button_dev ) {
-        printk ( KERN_ERR "Unable to allocate the input device !!\n" );
-        return -ENOMEM;
-    }
+    if ( !button_dev ) {
+        printk ( KERN_ERR "Unable to allocate the input device !!\n" );
+        return -ENOMEM;
+    }
 ​
-    button_dev->name = "s3c2440_button";
-    button_dev->id.bustype = BUS_RS232;
-    button_dev->id.vendor = 0xDEAD;
-    button_dev->id.product = 0xBEEF;
-    button_dev->id.version = 0x0100;
-    button_dev->evbit[0] = BIT_MASK ( EV_KEY ) | BIT ( EV_SYN );
-    // set_bit ( EV_KEY, button_dev->evbit ) /* 支持EV_KEY事件 */
-    set_bit ( KEY_1, button_dev->keybit );
-    set_bit ( KEY_2, button_dev->keybit );
-    set_bit ( KEY_3, button_dev->keybit );
-    set_bit ( KEY_4, button_dev->keybit );
-    set_bit ( KEY_5, button_dev->keybit );
-    set_bit ( KEY_6, button_dev->keybit );
-    // printk ( "KEY_RESERVED = %d, KEY_1 = %d", KEY_RESERVED, KEY_1 );
-    input_register_device ( button_dev ); /* 注册input设备 */
-    printk ( "initialized\n" );
-    return 0;
+    button_dev->name = "s3c2440_button";
+    button_dev->id.bustype = BUS_RS232;
+    button_dev->id.vendor = 0xDEAD;
+    button_dev->id.product = 0xBEEF;
+    button_dev->id.version = 0x0100;
+    button_dev->evbit[0] = BIT_MASK ( EV_KEY ) | BIT ( EV_SYN );
+    // set_bit ( EV_KEY, button_dev->evbit ) /* 支持EV_KEY事件 */
+    set_bit ( KEY_1, button_dev->keybit );
+    set_bit ( KEY_2, button_dev->keybit );
+    set_bit ( KEY_3, button_dev->keybit );
+    set_bit ( KEY_4, button_dev->keybit );
+    set_bit ( KEY_5, button_dev->keybit );
+    set_bit ( KEY_6, button_dev->keybit );
+    // printk ( "KEY_RESERVED = %d, KEY_1 = %d", KEY_RESERVED, KEY_1 );
+    input_register_device ( button_dev ); /* 注册input设备 */
+    printk ( "initialized\n" );
+    return 0;
 }
 
 static void __exit dev_exit ( void ) {
