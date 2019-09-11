@@ -1,7 +1,7 @@
 ---
 title: exec函数族
 date: 2019-02-02 21:34:35
-tags:
+categories: Linux系统编程
 ---
 &emsp;&emsp;`exec`用被执行的程序替换调用它的程序。区别为`fork`创建一个新的进程，产生一个新的`PID`；`exec`启动一个新程序，替换原有的进程，因此进程的`PID`不会改变。
 
@@ -23,18 +23,18 @@ int execl ( const char *path, const char *arg1, ... );
 #include "sys/wait.h"
 ​
 int main() {
-    pid_t pid;
-    pid = vfork();
+    pid_t pid;
+    pid = vfork();
 ​
-    if ( pid > 0 ) {
-        wait ( NULL );
-        printf ( "This is father process\n" );
-        exit ( 0 );
-    } else {
-        execl ( "/bin/ls", "ls", "-al", "./", NULL );
-        printf ( "This is child process\n" );
-        exit ( 0 );
-    }
+    if ( pid > 0 ) {
+        wait ( NULL );
+        printf ( "This is father process\n" );
+        exit ( 0 );
+    } else {
+        execl ( "/bin/ls", "ls", "-al", "./", NULL );
+        printf ( "This is child process\n" );
+        exit ( 0 );
+    }
 }
 ```
 
@@ -53,7 +53,7 @@ int execlp ( const char *path, const char *arg1, ... );
 #include <unistd.h>
 ​
 int main() {
-    execlp ( "ls", "ls", "-al", "/etc/passwd", ( char * ) 0 );
+    execlp ( "ls", "ls", "-al", "/etc/passwd", ( char * ) 0 );
 }
 ```
 
@@ -72,8 +72,8 @@ int execv ( const char *path, char *const argv[] );
 #include <unistd.h>
 ​
 int main() {
-    char *argv[] = {"ls", "-al", "/etc/passwd", ( char * ) 0};
-    execv ( "/bin/ls", argv );
+    char *argv[] = {"ls", "-al", "/etc/passwd", ( char * ) 0};
+    execv ( "/bin/ls", argv );
 }
 ```
 
