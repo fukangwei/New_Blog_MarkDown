@@ -1,7 +1,7 @@
 ---
 title: getrlimit、setrlimit和getrusage函数
 date: 2019-02-03 17:50:03
-tags:
+categories: Linux系统编程
 ---
 &emsp;&emsp;为了支持多用户同时登录以及多个应用连接，`UNIX`系统给系统管理员提供了控制系统资源的许多方法。这种资源限制包括`CPU`时间、内存使用量以及磁盘使用量。资源控制允许你调整系统到最佳的使用率。`UNIX`的早期版本中，一些在编译时设置的系统限制如果需要修改，则需要重新编译整个系统。然而，如果并非所有的运行中的系统资源都需要重新编译整个系统，那么现代的`UNIX`系统可以调整大多数这些资源的限制。
 &emsp;&emsp;`getrlimit`允许一个进程查询所受的的系统限制，这些系统限制通过一对硬/软限制对来指定。当一个软限制被超过时，进程还可以继续，当然这取决于限制的类型，同时一个信号会发送给进程。另一方面，进程不可以超过它的硬限制。软限制值可以被进程设置在位于`0`和最大硬限制间的任意值。硬限制值不能被任何进程降低，仅仅超级用户可以增加之。
@@ -18,8 +18,8 @@ int setrlimit ( int resource, const struct rlimit *rlp );
 
 ``` cpp
 struct rlimit {
-    rlim_t rlim_cur;
-    rlim_t rlim_max;
+    rlim_t rlim_cur;
+    rlim_t rlim_max;
 };
 ```
 
@@ -27,17 +27,17 @@ struct rlimit {
 &emsp;&emsp;`getrlimit`和`setrlimit`函数的第一个参数是资源参数，这个参数用来指定进程获取信息的那个资源。可能的资源值如下所示，你也可以在`/usr/include/sys/resource.h`中找到它们：
 
 ``` cpp
-#define RLIMIT_CPU     0  /* cpu time in milliseconds                 */
-#define RLIMIT_FSIZE   1  /* maximum file size                        */
-#define RLIMIT_DATA    2  /* data size                                */
-#define RLIMIT_STACK   3  /* stack size                               */
-#define RLIMIT_CORE    4  /* core file size                           */
-#define RLIMIT_RSS     5  /* resident set size                        */
-#define RLIMIT_MEMLOCK 6  /* locked-in-memory address space           */
-#define RLIMIT_NPROC   7  /* number of processes                      */
-#define RLIMIT_NOFILE  8  /* number of open files                     */
-#define RLIMIT_SBSIZE  9  /* maximum size of all socket buffers       */
-#define RLIMIT_VMEM    10 /* virtual process size (inclusive of mmap) */
+#define RLIMIT_CPU     0  /* cpu time in milliseconds                 */
+#define RLIMIT_FSIZE   1  /* maximum file size                        */
+#define RLIMIT_DATA    2  /* data size                                */
+#define RLIMIT_STACK   3  /* stack size                               */
+#define RLIMIT_CORE    4  /* core file size                           */
+#define RLIMIT_RSS     5  /* resident set size                        */
+#define RLIMIT_MEMLOCK 6  /* locked-in-memory address space           */
+#define RLIMIT_NPROC   7  /* number of processes                      */
+#define RLIMIT_NOFILE  8  /* number of open files                     */
+#define RLIMIT_SBSIZE  9  /* maximum size of all socket buffers       */
+#define RLIMIT_VMEM    10 /* virtual process size (inclusive of mmap) */
 ```
 
 - `RLIMIT_CPU`资源限制指定一个进程可以取得`CPU`执行任务的毫秒数。一般地，一个进程仅仅有一个软限制而没有硬限制。如果超出软限制，进程会收到一个`SIGXCPU`信号。
@@ -80,22 +80,22 @@ int getrusage ( int who, struct rusage *rusage );
 
 ``` cpp
 struct rusage {
-    struct timeval ru_utime;
-    struct timeval ru_stime;
-    long ru_maxrss;
-    long ru_ixrss;
-    long ru_idrss;
-    long ru_isrss;
-    long ru_minflt;
-    long ru_majflt;
-    long ru_nswap;
-    long ru_inblock;
-    long ru_oublock;
-    long ru_msgsnd;
-    long ru_msgrcv;
-    long ru_nsignals;
-    long ru_nvcsw;
-    long ru_nivcsw;
+    struct timeval ru_utime;
+    struct timeval ru_stime;
+    long ru_maxrss;
+    long ru_ixrss;
+    long ru_idrss;
+    long ru_isrss;
+    long ru_minflt;
+    long ru_majflt;
+    long ru_nswap;
+    long ru_inblock;
+    long ru_oublock;
+    long ru_msgsnd;
+    long ru_msgrcv;
+    long ru_nsignals;
+    long ru_nvcsw;
+    long ru_nivcsw;
 };
 ```
 
@@ -122,29 +122,29 @@ struct rusage {
 #include <sys/resource.h>
 ​
 int main ( void ) {
-    struct rusage start;
-    struct rusage end;
-    FILE *fp;
-    int rc, i;
-    double usertime, kerneltime;
-    rc = getrusage ( RUSAGE_SELF, &start );
-    fp = NULL;
-    fp = fopen ( "getrusage.log", "a+" );
+    struct rusage start;
+    struct rusage end;
+    FILE *fp;
+    int rc, i;
+    double usertime, kerneltime;
+    rc = getrusage ( RUSAGE_SELF, &start );
+    fp = NULL;
+    fp = fopen ( "getrusage.log", "a+" );
 ​
-    if ( fp != NULL ) {
-        for ( i = 0; i < 10000000; i++ ) {
-            fprintf ( fp, "%d", i );
-        }
-    }
+    if ( fp != NULL ) {
+        for ( i = 0; i < 10000000; i++ ) {
+            fprintf ( fp, "%d", i );
+        }
+    }
 ​
-    fclose ( fp );
-    rc = getrusage ( RUSAGE_SELF, &end );
-    usertime = ( end.ru_utime.tv_sec - start.ru_utime.tv_sec ) + \
+    fclose ( fp );
+    rc = getrusage ( RUSAGE_SELF, &end );
+    usertime = ( end.ru_utime.tv_sec - start.ru_utime.tv_sec ) + \
                ( end.ru_utime.tv_usec - start.ru_utime.tv_usec ) / 10e6;
-    kerneltime = ( end.ru_stime.tv_sec - start.ru_stime.tv_sec ) + \
+    kerneltime = ( end.ru_stime.tv_sec - start.ru_stime.tv_sec ) + \
                  ( end.ru_stime.tv_usec - start.ru_stime.tv_usec ) / 10e6;
-    printf ( "The user time is: %f\n", usertime );
-    printf ( "The system_time is: %f\n", kerneltime );
-    return 0;
+    printf ( "The user time is: %f\n", usertime );
+    printf ( "The system_time is: %f\n", kerneltime );
+    return 0;
 }
 ```

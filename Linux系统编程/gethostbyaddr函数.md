@@ -1,13 +1,13 @@
 ---
 title: gethostbyaddr函数
 date: 2018-12-29 15:04:18
-tags:
+categories: Linux系统编程
 ---
-&emsp;&emsp;函数`gethostbyaddr`取一个二进制的`IP`地址并试图找到对应于此地址的主机名，与`gethostbyname`的行为恰好相反。其原型如下所示：
+&emsp;&emsp;函数`gethostbyaddr`取一个二进制的`IP`地址并试图找到对应于此地址的主机名，与`gethostbyname`的行为恰好相反。
 
 ``` c
 #include <netdb.h>
-struct hostent *gethostbyaddr ( const char *addr, size_t len , int family );
+struct hostent *gethostbyaddr ( const char *addr, size_t len, int family );
 ```
 
 参数`addr`不是简单的`char *`类型，而是一个真正指向含有`IPv4`或`IPv6`地址的结构`in_addr`或`in6_addr`的指针；`len`是此结构的大小，对于`IPv4`地址为`4`，对于`IPv6`地址为`16`；参数`family`为`AF_INET`或`AF_INET6`。
@@ -16,9 +16,7 @@ struct hostent *gethostbyaddr ( const char *addr, size_t len , int family );
 - 如果`family`是`AF_INET6`，`len`是`16`，且地址是`IPv4`映射的`IPv6`地址，则在域`in_addr.arpa`中查找地址的低`32`位(`IPv4`地址部分)。
 - 如果`family`是`AF_INET6`，`len`是`16`，且地址是`IPv4`兼容的`IPv6`地址，则在域`in_addr.arpa`中查找地址的低`32`位(`IPv4`地址部分)。
 
-&emsp;&emsp;代码如下所示：
-
-``` c
+``` cpp
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>

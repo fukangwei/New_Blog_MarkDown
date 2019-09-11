@@ -1,7 +1,7 @@
 ---
 title: gethostname和uname函数
 date: 2018-12-29 17:07:01
-tags:
+categories: Linux系统编程
 ---
 &emsp;&emsp;正如我们可以确定用户信息一样，程序也可以确定其运行的计算机的信息，`uname`命令提供了这些信息。`uname`同时也作为一个系统调用来在一个`C`程序中提供同样的信息，我们可以使用`man 2 uname`来查看详细的信息。
 &emsp;&emsp;许多情况都需要主机信息。我们也许希望依据在网络中一个程序所运行的机器的名字来自定义其行为，也就是说，是一个学生的机器还是一个管理员的机器。为了授权的目的，我们也许希望限制一个程序只在一台机器上运行。所有这些都意味着我们需要一个方法来确定程序所运行的机器的信息。
@@ -40,19 +40,19 @@ int uname ( struct utsname *name );
 #include <stdlib.h>
 ​
 int main() {
-    char computer[256];
-    struct utsname uts;
+    char computer[256];
+    struct utsname uts;
 ​
-    if ( gethostname ( computer, 255 ) != 0 || uname ( &uts ) < 0 ) {
-        fprintf ( stderr, "Could not get host information\n" );
-        exit ( 1 );
-    }
+    if ( gethostname ( computer, 255 ) != 0 || uname ( &uts ) < 0 ) {
+        fprintf ( stderr, "Could not get host information\n" );
+        exit ( 1 );
+    }
 ​
-    printf ( "Computer host name is %s \n", computer );
-    printf ( "System is %s on %s hardware \n", uts.sysname, uts.machine );
-    printf ( "Nodename is %s\n", uts.nodename );
-    printf ( "Version is %s, %s\n", uts.release, uts.version );
-    exit ( 0 );
+    printf ( "Computer host name is %s \n", computer );
+    printf ( "System is %s on %s hardware \n", uts.sysname, uts.machine );
+    printf ( "Nodename is %s\n", uts.nodename );
+    printf ( "Version is %s, %s\n", uts.release, uts.version );
+    exit ( 0 );
 }
 ```
 
@@ -62,7 +62,7 @@ int main() {
 Computer host name is fuxinzi-virtual-machine
 System is Linux on x86_64 hardware
 Nodename is fuxinzi-virtual-machine
-Version is 4.4.0-53-generic, #74-Ubuntu SMP Fri Dec 2 15:59:10 UTC 2016
+Version is 4.4.0-53-generic,  # 74-Ubuntu SMP Fri Dec 2 15:59:10 UTC 2016
 ```
 
 这个程序会调用`gethostname`函数来得到主机的网络名。注意，函数`uname`返回的字符串是依赖于具体实现的，在这个例子中，版本号包含内核编译的日期。
