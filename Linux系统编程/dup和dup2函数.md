@@ -1,7 +1,7 @@
 ---
 title: dup和dup2函数
 date: 2019-02-03 00:13:39
-tags:
+categories: Linux系统编程
 ---
 &emsp;&emsp;这两个函数的作用都是复制一个现存的文件描述符：
 
@@ -34,31 +34,31 @@ fcntl ( oldfd, F_DUPFD, newfd );
 #include <fcntl.h>
 ​
 int main ( int argc, char *argv[] ) {
-    int fd = open ( "hello", O_CREAT | O_RDWR | O_TRUNC, S_IRUSR | S_IWUSR );
+    int fd = open ( "hello", O_CREAT | O_RDWR | O_TRUNC, S_IRUSR | S_IWUSR );
 ​
-    if ( fd < 0 ) {
-        printf ( "Open Error!!\n" );
-        return 0;
-    }
+    if ( fd < 0 ) {
+        printf ( "Open Error!!\n" );
+        return 0;
+    }
 ​
-    int nfd = dup ( fd );
+    int nfd = dup ( fd );
 ​
-    if ( nfd < 0 ) {
-        printf ( "Error!!\n" );
-        return 0;
-    }
+    if ( nfd < 0 ) {
+        printf ( "Error!\n" );
+        return 0;
+    }
 ​
-    char buf[1000];
-    int n;
+    char buf[1000];
+    int n;
 ​
-    while ( ( n = read ( STDIN_FILENO, buf, 1000 ) ) > 0 ) {
-        if ( write ( nfd, buf, n ) != n ) {
-            printf ( "Write Error!!\n" );
-            return 0;
-        }
-    }
+    while ( ( n = read ( STDIN_FILENO, buf, 1000 ) ) > 0 ) {
+        if ( write ( nfd, buf, n ) != n ) {
+            printf ( "Write Error!!\n" );
+            return 0;
+        }
+    }
 ​
-    return 0;
+    return 0;
 }
 ```
 
@@ -67,12 +67,12 @@ int main ( int argc, char *argv[] ) {
 ``` bash
 $ gcc dup.c
 $ ls
-a.out  dup.c
+a.out  dup.c
 $ ./a.out
 hello world
 ^C
 $ ls
-a.out  dup.c  hello
+a.out  dup.c  hello
 $ cat hello
 hello world
 ```
@@ -86,30 +86,30 @@ hello world
 #include <fcntl.h>
 ​
 int main ( int argc, char *argv[] ) {
-    int fd = open ( "hello.file", O_CREAT | O_RDWR | O_TRUNC, S_IRUSR | S_IWUSR );
+    int fd = open ( "hello.file", O_CREAT | O_RDWR | O_TRUNC, S_IRUSR | S_IWUSR );
 ​
-    if ( fd < 0 ) {
-        printf ( "Open Error!!\n" );
-        return 0;
-    }
+    if ( fd < 0 ) {
+        printf ( "Open Error!!\n" );
+        return 0;
+    }
 ​
-    int nfd = dup2 ( fd, STDOUT_FILENO );
+    int nfd = dup2 ( fd, STDOUT_FILENO );
 ​
-    if ( nfd < 0 ) {
-        printf ( "Error!!\n" );
-        return 0;
-    }
+    if ( nfd < 0 ) {
+        printf ( "Error!\n" );
+        return 0;
+    }
 ​
-    char buf[5];
-    int n;
+    char buf[5];
+    int n;
 ​
-    while ( ( n = read ( STDIN_FILENO, buf, 5 ) ) > 0 )
-        if ( write ( STDOUT_FILENO, buf, n ) != n ) {
-            printf ( "Write Error!!\n" );
-            return 0;
-        }
+    while ( ( n = read ( STDIN_FILENO, buf, 5 ) ) > 0 )
+        if ( write ( STDOUT_FILENO, buf, n ) != n ) {
+            printf ( "Write Error!!\n" );
+            return 0;
+        }
 ​
-    return 0;
+    return 0;
 }
 ```
 

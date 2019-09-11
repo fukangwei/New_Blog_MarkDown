@@ -1,7 +1,7 @@
 ---
 title: errno和strerror
 date: 2019-02-03 13:52:53
-tags:
+categories: Linux系统编程
 ---
 &emsp;&emsp;经常在调用`Linux`系统`API`的时候出现一些错误，比如使用`open`、`write`、`creat`之类的函数有些时候会返回`-1`，也就是调用失败。这个时候往往需要知道失败的原因，使用`errno`这个全局变量就相当有用了。
 &emsp;&emsp;在程序代码中包含头文件`errno.h`，然后每次程序调用失败的时候，系统会自动用用错误代码填充`errno`这个全局变量，这样你只需要读`errno`这个全局变量就可以获得失败原因了。
@@ -30,77 +30,77 @@ int main ( void ) {
 #ifndef _I386_ERRNO_H
 #define _I386_ERRNO_H
 ​
-#define EPERM           1 /* Operation not permitted */
-#define ENOENT          2 /* No such file or directory */
-#define ESRCH           3 /* No such process */
-#define EINTR           4 /* Interrupted system call */
-#define EIO             5 /* I/O error */
-#define ENXIO           6 /* No such device or address */
-#define E2BIG           7 /* Arg list too long */
-#define ENOEXEC         8 /* Exec format error */
-#define EBADF           9 /* Bad file number */
-#define ECHILD          10 /* No child processes */
-#define EAGAIN          11 /* Try again */
-#define ENOMEM          12 /* Out of memory */
-#define EACCES          13 /* Permission denied */
-#define EFAULT          14 /* Bad address */
-#define ENOTBLK         15 /* Block device required */
-#define EBUSY           16 /* Device or resource busy */
-#define EEXIST          17 /* File exists */
-#define EXDEV           18 /* Cross-device link */
-#define ENODEV          19 /* No such device */
-#define ENOTDIR         20 /* Not a directory */
-#define EISDIR          21 /* Is a directory */
-#define EINVAL          22 /* Invalid argument */
-#define ENFILE          23 /* File table overflow */
-#define EMFILE          24 /* Too many open files */
-#define ENOTTY          25 /* Not a typewriter */
-#define ETXTBSY         26 /* Text file busy */
-#define EFBIG           27 /* File too large */
-#define ENOSPC          28 /* No space left on device */
-#define ESPIPE          29 /* Illegal seek */
-#define EROFS           30 /* Read-only file system */
-#define EMLINK          31 /* Too many links */
-#define EPIPE           32 /* Broken pipe */
-#define EDOM            33 /* Math argument out of domain of func */
-#define ERANGE          34 /* Math result not representable */
-#define EDEADLK         35 /* Resource deadlock would occur */
-#define ENAMETOOLONG    36 /* File name too long */
-#define ENOLCK          37 /* No record locks available */
-#define ENOSYS          38 /* Function not implemented */
-#define ENOTEMPTY       39 /* Directory not empty */
-#define ELOOP           40 /* Too many symbolic links encountered */
-#define EWOULDBLOCK     EAGAIN /* Operation would block */
-#define ENOMSG          42 /* No message of desired type */
-#define EIDRM           43 /* Identifier removed */
-#define ECHRNG          44 /* Channel number out of range */
-#define EL2NSYNC        45 /* Level 2 not synchronized */
-#define EL3HLT          46 /* Level 3 halted */
-#define EL3RST          47 /* Level 3 reset */
-#define ELNRNG          48 /* Link number out of range */
-#define EUNATCH         49 /* Protocol driver not attached */
-#define ENOCSI          50 /* No CSI structure available */
-#define EL2HLT          51 /* Level 2 halted */
-#define EBADE           52 /* Invalid exchange */
-#define EBADR           53 /* Invalid request descriptor */
-#define EXFULL          54 /* Exchange full */
-#define ENOANO          55 /* No anode */
-#define EBADRQC         56 /* Invalid request code */
-#define EBADSLT         57 /* Invalid slot */
-#define EDEADLOCK       EDEADLK
-#define EBFONT          59 /* Bad font file format */
-#define ENOSTR          60 /* Device not a stream */
-#define ENODATA         61 /* No data available */
-#define ETIME           62 /* Timer expired */
-#define ENOSR           63 /* Out of streams resources */
-#define ENONET          64 /* Machine is not on the network */
-#define ENOPKG          65 /* Package not installed */
-#define EREMOTE         66 /* Object is remote */
-#define ENOLINK         67 /* Link has been severed */
-#define EADV            68 /* Advertise error */
-#define ESRMNT          69 /* Srmount error */
-#define ECOMM           70 /* Communication error on send */
-#define EPROTO          71 /* Protocol error */
+#define EPERM           1 /* Operation not permitted */
+#define ENOENT          2 /* No such file or directory */
+#define ESRCH           3 /* No such process */
+#define EINTR           4 /* Interrupted system call */
+#define EIO             5 /* I/O error */
+#define ENXIO           6 /* No such device or address */
+#define E2BIG           7 /* Arg list too long */
+#define ENOEXEC         8 /* Exec format error */
+#define EBADF           9 /* Bad file number */
+#define ECHILD          10 /* No child processes */
+#define EAGAIN          11 /* Try again */
+#define ENOMEM          12 /* Out of memory */
+#define EACCES          13 /* Permission denied */
+#define EFAULT          14 /* Bad address */
+#define ENOTBLK         15 /* Block device required */
+#define EBUSY           16 /* Device or resource busy */
+#define EEXIST          17 /* File exists */
+#define EXDEV           18 /* Cross-device link */
+#define ENODEV          19 /* No such device */
+#define ENOTDIR         20 /* Not a directory */
+#define EISDIR          21 /* Is a directory */
+#define EINVAL          22 /* Invalid argument */
+#define ENFILE          23 /* File table overflow */
+#define EMFILE          24 /* Too many open files */
+#define ENOTTY          25 /* Not a typewriter */
+#define ETXTBSY         26 /* Text file busy */
+#define EFBIG           27 /* File too large */
+#define ENOSPC          28 /* No space left on device */
+#define ESPIPE          29 /* Illegal seek */
+#define EROFS           30 /* Read-only file system */
+#define EMLINK          31 /* Too many links */
+#define EPIPE           32 /* Broken pipe */
+#define EDOM            33 /* Math argument out of domain of func */
+#define ERANGE          34 /* Math result not representable */
+#define EDEADLK         35 /* Resource deadlock would occur */
+#define ENAMETOOLONG    36 /* File name too long */
+#define ENOLCK          37 /* No record locks available */
+#define ENOSYS          38 /* Function not implemented */
+#define ENOTEMPTY       39 /* Directory not empty */
+#define ELOOP           40 /* Too many symbolic links encountered */
+#define EWOULDBLOCK     EAGAIN /* Operation would block */
+#define ENOMSG          42 /* No message of desired type */
+#define EIDRM           43 /* Identifier removed */
+#define ECHRNG          44 /* Channel number out of range */
+#define EL2NSYNC        45 /* Level 2 not synchronized */
+#define EL3HLT          46 /* Level 3 halted */
+#define EL3RST          47 /* Level 3 reset */
+#define ELNRNG          48 /* Link number out of range */
+#define EUNATCH         49 /* Protocol driver not attached */
+#define ENOCSI          50 /* No CSI structure available */
+#define EL2HLT          51 /* Level 2 halted */
+#define EBADE           52 /* Invalid exchange */
+#define EBADR           53 /* Invalid request descriptor */
+#define EXFULL          54 /* Exchange full */
+#define ENOANO          55 /* No anode */
+#define EBADRQC         56 /* Invalid request code */
+#define EBADSLT         57 /* Invalid slot */
+#define EDEADLOCK       EDEADLK
+#define EBFONT          59 /* Bad font file format */
+#define ENOSTR          60 /* Device not a stream */
+#define ENODATA         61 /* No data available */
+#define ETIME           62 /* Timer expired */
+#define ENOSR           63 /* Out of streams resources */
+#define ENONET          64 /* Machine is not on the network */
+#define ENOPKG          65 /* Package not installed */
+#define EREMOTE         66 /* Object is remote */
+#define ENOLINK         67 /* Link has been severed */
+#define EADV            68 /* Advertise error */
+#define ESRMNT          69 /* Srmount error */
+#define ECOMM           70 /* Communication error on send */
+#define EPROTO          71 /* Protocol error */
 #define EMULTIHOP       72 /* Multihop attempted */
 #define EDOTDOT         73 /* RFS specific error */
 #define EBADMSG         74 /* Not a data message */
