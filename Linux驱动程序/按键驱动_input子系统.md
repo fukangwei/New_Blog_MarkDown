@@ -70,76 +70,76 @@ static irqreturn_t buttons_interrupt ( int irq, void *dev_id ) {
             input_report_key ( button_dev, KEY_4, 0 );
         }
 ​
-        if ( key_values == 4 ) {
-            input_report_key ( button_dev, KEY_5, 0 );
-        }
+        if ( key_values == 4 ) {
+            input_report_key ( button_dev, KEY_5, 0 );
+        }
 ​
-        if ( key_values == 5 ) {
-            input_report_key ( button_dev, KEY_6, 0 );
-        }
+        if ( key_values == 5 ) {
+            input_report_key ( button_dev, KEY_6, 0 );
+        }
 ​
-        input_sync ( button_dev );
-    } else {
-        key_values = button_irqs->number;
+        input_sync ( button_dev );
+    } else {
+        key_values = button_irqs->number;
 ​
-        if ( key_values == 0 ) {
-            input_report_key ( button_dev, KEY_1, 1 );
-        }
+        if ( key_values == 0 ) {
+            input_report_key ( button_dev, KEY_1, 1 );
+        }
 ​
-        if ( key_values == 1 ) {
-            input_report_key ( button_dev, KEY_2, 1 );
-        }
+        if ( key_values == 1 ) {
+            input_report_key ( button_dev, KEY_2, 1 );
+        }
 ​
-        if ( key_values == 2 ) {
-            input_report_key ( button_dev, KEY_3, 1 );
-        }
+        if ( key_values == 2 ) {
+            input_report_key ( button_dev, KEY_3, 1 );
+        }
 ​
-        if ( key_values == 3 ) {
-            input_report_key ( button_dev, KEY_4, 1 );
-        }
+        if ( key_values == 3 ) {
+            input_report_key ( button_dev, KEY_4, 1 );
+        }
 ​
-        if ( key_values == 4 ) {
-            input_report_key ( button_dev, KEY_5, 1 );
-        }
+        if ( key_values == 4 ) {
+            input_report_key ( button_dev, KEY_5, 1 );
+        }
 ​
-        if ( key_values == 5 ) {
-            input_report_key ( button_dev, KEY_6, 1 );
-        }
+        if ( key_values == 5 ) {
+            input_report_key ( button_dev, KEY_6, 1 );
+        }
 ​
-        input_sync ( button_dev );
-    }
+        input_sync ( button_dev );
+    }
 ​
-    return IRQ_RETVAL ( IRQ_HANDLED );
+    return IRQ_RETVAL ( IRQ_HANDLED );
 }
-​
+
 static int s3c24xx_request_irq ( void ) {
-    int i;
-    int err = 0;
+    int i;
+    int err = 0;
 ​
-    for ( i = 0; i < sizeof ( button_irqs ) / sizeof ( button_irqs[0] ); i++ ) {
-        if ( button_irqs[i].irq < 0 ) {
-            continue;
-        }
+    for ( i = 0; i < sizeof ( button_irqs ) / sizeof ( button_irqs[0] ); i++ ) {
+        if ( button_irqs[i].irq < 0 ) {
+            continue;
+        }
 ​
-        /* IRQ_TYPE_EDGE_FALLING、IRQ_TYPE_EDGE_RISING、IRQ_TYPE_EDGE_BOTH */
-        err = request_irq ( button_irqs[i].irq, buttons_interrupt, IRQ_TYPE_EDGE_BOTH, \
+        /* IRQ_TYPE_EDGE_FALLING、IRQ_TYPE_EDGE_RISING、IRQ_TYPE_EDGE_BOTH */
+        err = request_irq ( button_irqs[i].irq, buttons_interrupt, IRQ_TYPE_EDGE_BOTH, \
                             button_irqs[i].name, ( void * ) &button_irqs[i] );
 ​
-        if ( err ) {
-            break;
-        }
-    }
+        if ( err ) {
+            break;
+        }
+    }
 ​
-    if ( err ) {
-        i--;
+    if ( err ) {
+        i--;
 ​
-        for ( ; i >= 0; i-- ) {
-            if ( button_irqs[i].irq < 0 ) {
-                continue;
-            }
+        for ( ; i >= 0; i-- ) {
+            if ( button_irqs[i].irq < 0 ) {
+                continue;
+            }
 ​
-            disable_irq ( button_irqs[i].irq );
-            free_irq ( button_irqs[i].irq, ( void * ) &button_irqs[i] );
+            disable_irq ( button_irqs[i].irq );
+            free_irq ( button_irqs[i].irq, ( void * ) &button_irqs[i] );
         }
 ​
         return -EBUSY;
@@ -149,7 +149,7 @@ static int s3c24xx_request_irq ( void ) {
 }
 ​
 static int __init dev_init ( void ) {
-    s3c24xx_request_irq();  /* request irq */
+    s3c24xx_request_irq(); /* request irq */
     button_dev = input_allocate_device(); /* Initialise input stuff */
 ​
     if ( !button_dev ) {
@@ -164,30 +164,30 @@ static int __init dev_init ( void ) {
     button_dev->id.version = 0x0100;
     button_dev->evbit[0] = BIT_MASK ( EV_KEY ) | BIT ( EV_SYN );
     // set_bit ( EV_KEY, button_dev->evbit ) /* 支持EV_KEY事件 */
-    set_bit ( KEY_1,   button_dev->keybit );
-    set_bit ( KEY_2,   button_dev->keybit );
-    set_bit ( KEY_3,   button_dev->keybit );
-    set_bit ( KEY_4,   button_dev->keybit );
-    set_bit ( KEY_5,   button_dev->keybit );
-    set_bit ( KEY_6,   button_dev->keybit );
+    set_bit ( KEY_1, button_dev->keybit );
+    set_bit ( KEY_2, button_dev->keybit );
+    set_bit ( KEY_3, button_dev->keybit );
+    set_bit ( KEY_4, button_dev->keybit );
+    set_bit ( KEY_5, button_dev->keybit );
+    set_bit ( KEY_6, button_dev->keybit );
     // printk ( "KEY_RESERVED = %d, KEY_1 = %d", KEY_RESERVED, KEY_1 );
     input_register_device ( button_dev ); /* 注册input设备 */
     printk ( "initialized\n" );
     return 0;
 }
-​
+
 static void __exit dev_exit ( void ) {
-    int i;
+    int i;
 ​
-    for ( i = 0; i < sizeof ( button_irqs ) / sizeof ( button_irqs[0] ); i++ ) {
-        if ( button_irqs[i].irq < 0 ) {
-            continue;
-        }
+    for ( i = 0; i < sizeof ( button_irqs ) / sizeof ( button_irqs[0] ); i++ ) {
+        if ( button_irqs[i].irq < 0 ) {
+            continue;
+        }
 ​
-        free_irq ( button_irqs[i].irq, ( void * ) &button_irqs[i] );
-    }
+        free_irq ( button_irqs[i].irq, ( void * ) &button_irqs[i] );
+    }
 ​
-    input_unregister_device ( button_dev );
+    input_unregister_device ( button_dev );
 }
 ​
 module_init ( dev_init );
