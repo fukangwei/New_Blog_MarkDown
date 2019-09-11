@@ -140,12 +140,12 @@ static int s3c24xx_request_irq ( void ) {
 ​
             disable_irq ( button_irqs[i].irq );
             free_irq ( button_irqs[i].irq, ( void * ) &button_irqs[i] );
-        }
+        }
 ​
-        return -EBUSY;
-    }
+        return -EBUSY;
+    }
 ​
-    return 0;
+    return 0;
 }
 ​
 static int __init dev_init ( void ) {
