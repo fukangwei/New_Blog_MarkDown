@@ -1,7 +1,7 @@
 ---
 title: 添加驱动程序到Linux内核
 date: 2019-02-04 10:04:14
-tags:
+categories: Linux驱动程序
 ---
 &emsp;&emsp;添加驱动程序到内核步骤为：添加驱动程序到内核源代码位置；配置内核；编译内核；下载运行测试。
 
@@ -30,11 +30,11 @@ tags:
 
 ``` makefile
 config BEEP_MINI2440
-    tristate "BEEP Driver Support for Mini2440 BEEP Test"
-    depends on MACH_MINI2440
-    default y if MACH_MINI2440
-    help
-        This option enables support for BEEP connectded to GPIO lines on Mini2440 boards.
+    tristate "BEEP Driver Support for Mini2440 BEEP Test"
+    depends on MACH_MINI2440
+    default y if MACH_MINI2440
+    help
+        This option enables support for BEEP connectded to GPIO lines on Mini2440 boards.
 ```
 
 ### 配置编译新内核
@@ -43,7 +43,7 @@ config BEEP_MINI2440
 
 ``` bash
 Device Drivers --->
-    Character devices --->
+    Character devices --->
 ```
 
 根据该驱动的配置定义，把对应的驱动目标文件加入内核中。打开`linux-2.6.32.2/drivers/char/Makefile`文件，添加如下内容：
@@ -60,12 +60,12 @@ obj-$(CONFIG_BEEP_MINI2440) += beep_drv.o
 
 ``` cpp
 |-- beep
-    |-- beep_drv.c
-    |-- Konfig
-    |-- Makefile
+    |-- beep_drv.c
+    |-- Konfig
+    |-- Makefile
 ```
 
-步骤如下所示：
+步骤如下：
 
 - 在`drivers/char/`路径下新建`beep`目录。
 - 在`beep`目录下添加`beep_drv.c`文件。
@@ -76,11 +76,11 @@ obj-$(CONFIG_BEEP_MINI2440) += beep_drv.o
 
 ``` cpp
 config BEEP_MINI2440
-    tristate "BEEP Driver Support for Mini2440 BEEP Test"
-    depends on MACH_MINI2440
-    default y if MACH_MINI2440
-    help
-        This option enables support for BEEP connectded to GPIO lines on Mini2440 boards.
+    tristate "BEEP Driver Support for Mini2440 BEEP Test"
+    depends on MACH_MINI2440
+    default y if MACH_MINI2440
+    help
+        This option enables support for BEEP connectded to GPIO lines on Mini2440 boards.
 ```
 
 &emsp;&emsp;在`drivers/char/beep/Makefile`文件中添加如下代码：
@@ -105,7 +105,7 @@ obj-$(CONFIG_BEEP_MINI2440) += beep/
 
 ``` bash
 Device Drivers --->
-    Character devices --->
+    Character devices --->
 ```
 
 进入`Linux`内核根目录重新编译内核：
