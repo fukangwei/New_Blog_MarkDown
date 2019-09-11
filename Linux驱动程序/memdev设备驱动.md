@@ -96,7 +96,7 @@ static ssize_t mem_read ( struct file *filp, char __user *buf, size_t size, loff
 ​
 /* 写函数 */
 static ssize_t mem_write ( struct file *filp, const char __user *buf, size_t size, loff_t *ppos ) {
-    unsigned long p =  *ppos;
+    unsigned long p = *ppos;
     unsigned int count = size;
     int ret = 0;
     struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */

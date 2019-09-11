@@ -832,7 +832,7 @@ int remap_pfn_range ( struct vm_area_struct *vma, unsigned long addr,
 
 #### 申请I/O端口
 
-&emsp;&emsp;内核提供了一套函数来允许驱动申请它需要的I/O端口，其中核心的函数是：
+&emsp;&emsp;内核提供了一套函数来允许驱动申请它需要的`I/O`端口，其中核心的函数是：
 
 ``` cpp
 struct resource *request_region ( unsigned long first, unsigned long n, const char *name );

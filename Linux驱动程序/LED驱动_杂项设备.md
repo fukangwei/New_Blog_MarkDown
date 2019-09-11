@@ -109,8 +109,8 @@ static struct file_operations dev_fops = { /* 文件操作结构体 */
 ​
 static struct miscdevice misc = {
     .minor = MISC_DYNAMIC_MINOR,
-    .name  = DEVICE_NAME,
-    .fops  = &dev_fops,
+    .name  = DEVICE_NAME,
+    .fops  = &dev_fops,
 };
 ​
 static int __init dev_init ( void ) {

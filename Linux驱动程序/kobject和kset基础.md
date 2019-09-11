@@ -50,7 +50,8 @@ ssize_t kobj_test_show ( struct kobject *kobject, struct attribute *attr, char *
     return strlen ( attr->name ) + 2;
 }
 ​
-ssize_t kobj_test_store ( struct kobject *kobject, struct attribute *attr, const char *buf, size_t count ) {
+ssize_t kobj_test_store ( struct kobject *kobject, struct attribute *attr,
+                          const char *buf, size_t count ) {
     printk ( "havestore\n" );
     printk ( "write: %s\n", buf );
     return count;
@@ -117,7 +118,7 @@ int kset_uevent ( struct kset *kset, struct kobject *kobj, struct kobj_uevent_en
 ​
 struct kset_uevent_ops uevent_ops = {
     .filter = kset_filter,
-    .name   = kset_name,
+    .name   = kset_name,
     .uevent = kset_uevent,
 };
 ​

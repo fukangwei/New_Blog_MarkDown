@@ -165,7 +165,7 @@ static int s3c2440_leds_ioctl ( struct inode *inode, struct file *file,
    open、read、write等函数，最终会调用这个结构中指定的对应函数 */
 static struct file_operations s3c2440_leds_fops = {
     .owner = THIS_MODULE, /* 这是一个宏，指向编译模块时自动创建的__this_module变量 */
-    .open  = s3c2440_leds_open,
+    .open  = s3c2440_leds_open,
     .ioctl = s3c2440_leds_ioctl,
 };
 ​

@@ -199,12 +199,10 @@ int memdev_ioctl ( struct inode *inode, struct file *filp,
         case MEMDEV_IOCPRINT: /* 打印当前设备信息 */
             printk ( "<--- CMD MEMDEV_IOCPRINT Done--->\n\n" );
             break;
-​
         case MEMDEV_IOCGETDATA: /* 获取参数 */
             ioarg = filp->f_pos;
             ret = __put_user ( ioarg, ( int * ) arg );
             break;
-​
         case MEMDEV_IOCSETDATA: /* 设置参数 */
             ret = __get_user ( ioarg, ( int * ) arg );
 ​
@@ -250,7 +248,7 @@ static ssize_t mem_read ( struct file *filp, char __user *buf, size_t size, loff
 ​
 /* 写函数 */
 static ssize_t mem_write ( struct file *filp, const char __user *buf, size_t size, loff_t *ppos ) {
-    unsigned long p =  *ppos;
+    unsigned long p = *ppos;
     unsigned int count = size;
     int ret = 0;
     struct mem_dev *dev = filp->private_data; /* 获得设备结构体指针 */
