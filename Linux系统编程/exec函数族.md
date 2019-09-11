@@ -97,9 +97,9 @@ int execve ( const char *filename, char *const argv[], char *const envp[] );
 #include <unistd.h>
 ​
 int main ( int arg, char **args ) {
-    char *argv[] = {"ls", "-al", "/home/chicho/result/", NULL};
-    char *envp[] = {0, NULL}; /* 传递给执行文件新的环境变量数组 */
-    execve ( "/bin/ls", argv, envp );
+    char *argv[] = {"ls", "-al", "/home/chicho/result/", NULL};
+    char *envp[] = {0, NULL}; /* 传递给执行文件新的环境变量数组 */
+    execve ( "/bin/ls", argv, envp );
 }
 ```
 
@@ -118,9 +118,9 @@ int execvp ( const char *file, char *const argv[] );
 #include <unistd.h>
 ​
 int main() {
-    char *argv[] = {"ls", "-l", "/etc", ( char * ) 0};
-    execvp ( "ls", argv );
-    return 0;
+    char *argv[] = {"ls", "-l", "/etc", ( char * ) 0};
+    execvp ( "ls", argv );
+    return 0;
 }
 ```
 
@@ -136,7 +136,7 @@ int main() {
 extern char **environ;
 ​
 int main ( int argc, char *argv[] ) {
-    execve ( "./new", argv, environ );
+    execve ( "./new", argv, environ );
 }
 ```
 
@@ -148,7 +148,7 @@ int main ( int argc, char *argv[] ) {
 #include "sys/types.h"
 ​
 int main ( void ) {
-    puts ( "welcome to here!\n" );
-    return 0;
+    puts ( "welcome to here!\n" );
+    return 0;
 }
 ```
