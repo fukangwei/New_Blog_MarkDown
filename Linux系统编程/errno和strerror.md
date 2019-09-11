@@ -101,27 +101,27 @@ int main ( void ) {
 #define ESRMNT          69 /* Srmount error */
 #define ECOMM           70 /* Communication error on send */
 #define EPROTO          71 /* Protocol error */
-#define EMULTIHOP       72 /* Multihop attempted */
-#define EDOTDOT         73 /* RFS specific error */
-#define EBADMSG         74 /* Not a data message */
-#define EOVERFLOW       75 /* Value too large for defined data type */
-#define ENOTUNIQ        76 /* Name not unique on network */
-#define EBADFD          77 /* File descriptor in bad state */
-#define EREMCHG         78 /* Remote address changed */
-#define ELIBACC         79 /* Can not access a needed shared library */
-#define ELIBBAD         80 /* Accessing a corrupted shared library */
-#define ELIBSCN         81 /* .lib section in a.out corrupted */
-#define ELIBMAX         82 /* Attempting to link in too many shared libraries */
-#define ELIBEXEC        83 /* Cannot exec a shared library directly */
-#define EILSEQ          84 /* Illegal byte sequence */
-#define ERESTART        85 /* Interrupted system call should be restarted */
-#define ESTRPIPE        86 /* Streams pipe error */
-#define EUSERS          87 /* Too many users */
-#define ENOTSOCK        88 /* Socket operation on non-socket */
-#define EDESTADDRREQ    89 /* Destination address required */
-#define EMSGSIZE        90 /* Message too long */
-#define EPROTOTYPE      91 /* Protocol wrong type for socket */
-#define ENOPROTOOPT     92 /* Protocol not available */
+#define EMULTIHOP       72 /* Multihop attempted */
+#define EDOTDOT         73 /* RFS specific error */
+#define EBADMSG         74 /* Not a data message */
+#define EOVERFLOW       75 /* Value too large for defined data type */
+#define ENOTUNIQ        76 /* Name not unique on network */
+#define EBADFD          77 /* File descriptor in bad state */
+#define EREMCHG         78 /* Remote address changed */
+#define ELIBACC         79 /* Can not access a needed shared library */
+#define ELIBBAD         80 /* Accessing a corrupted shared library */
+#define ELIBSCN         81 /* .lib section in a.out corrupted */
+#define ELIBMAX         82 /* Attempting to link in too many shared libraries */
+#define ELIBEXEC        83 /* Cannot exec a shared library directly */
+#define EILSEQ          84 /* Illegal byte sequence */
+#define ERESTART        85 /* Interrupted system call should be restarted */
+#define ESTRPIPE        86 /* Streams pipe error */
+#define EUSERS          87 /* Too many users */
+#define ENOTSOCK        88 /* Socket operation on non-socket */
+#define EDESTADDRREQ    89 /* Destination address required */
+#define EMSGSIZE        90 /* Message too long */
+#define EPROTOTYPE      91 /* Protocol wrong type for socket */
+#define ENOPROTOOPT     92 /* Protocol not available */
 #define EPROTONOSUPPORT 93 /* Protocol not supported */
 #define ESOCKTNOSUPPORT 94 /* Socket type not supported */
 #define EOPNOTSUPP      95 /* Operation not supported on transport endpoint */
