@@ -1,7 +1,7 @@
 ---
 title: exit和_exit的区别
 date: 2019-02-06 19:51:39
-tags:
+categories: Linux系统编程
 ---
 &emsp;&emsp;在`Linux`的标准库中，有一套称作高级`I/O`的函数，例如`printf`、`fopen`、`fread`、`fwrite`，也被称作`缓冲I/O`。其特征是对应每一个打开的文件，在内存中都有一片缓冲区，每次读文件会多读若干条记录，这样下次读文件时就可以直接从内存的缓存中取出；每次写文件时也仅仅是写入到内存的缓冲区，等待满足一定的条件(达到一定的数量或者遇到特定字符，例如换行和文件结束符`EOF`)，再将缓冲区的内容一次性的写入文件，这样就大大增加了文件读写的速度，但也为我们编程带来了一点点麻烦。如果有些数据，我们认为已经写入了文件，实际上因为没有满足特定的条件，它们还只是保存在缓冲区内，这时用`_exit`函数直接将程序关闭，缓冲区中的数据就会丢失；反之，如果想保证数据的完整性，就一定要使用`exit`函数。
 &emsp;&emsp;`exit`函数与`_exit`函数最大的区别就在于：`exit`函数在调用`exit`系统调用之前要检查文件的打开情况，把文件缓冲区中的内容写回文件，就是图中的`清理I/O缓冲`一项。
@@ -9,15 +9,15 @@ tags:
 
 ``` cpp
 int main() { /* 程序1 */
-    printf ( "this is a test function!\n" )
-    printf ( "test exit" );
-    exit ( 0 );
+    printf ( "this is a test function!\n" )
+    printf ( "test exit" );
+    exit ( 0 );
 }
 ​
 int main() { /* 程序2 */
-    printf ( "this is a test function!\n" )
-    printf ( "test exit" );
-    _exit ( 0 );
+    printf ( "this is a test function!\n" )
+    printf ( "test exit" );
+    _exit ( 0 );
 }
 ```
 

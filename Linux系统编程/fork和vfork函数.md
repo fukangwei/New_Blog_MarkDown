@@ -1,7 +1,7 @@
 ---
 title: fork和vfork函数
 date: 2019-03-16 15:40:43
-tags:
+categories: Linux系统编程
 ---
 ### fork
 
@@ -23,16 +23,16 @@ pid_t fork ( void );
 #include "stdio.h"
 ​
 int main() {
-    pid_t pid;
-    pid = fork();
+    pid_t pid;
+    pid = fork();
 ​
-    if ( pid > 0 ) {
-        printf ( "This is father process\n" );
-        exit ( 0 );
-    } else {
-        printf ( "This is child process\n" );
-        exit ( 0 );
-    }
+    if ( pid > 0 ) {
+        printf ( "This is father process\n" );
+        exit ( 0 );
+    } else {
+        printf ( "This is child process\n" );
+        exit ( 0 );
+    }
 }
 ```
 
@@ -44,12 +44,12 @@ int main() {
 #include "stdlib.h"
 ​
 int main() {
-    pid_t pid;
-    int count = 0;
-    pid = fork();
-    count++;
-    printf ( "count is %d\n", count );
-    exit ( 0 );
+    pid_t pid;
+    int count = 0;
+    pid = fork();
+    count++;
+    printf ( "count is %d\n", count );
+    exit ( 0 );
 }
 ```
 
@@ -69,6 +69,7 @@ count = 1
 ``` cpp
 #include <sys/types.h>
 #include <unistd.h>
+
 pid_t vfork ( void );
 ```
 
@@ -83,12 +84,12 @@ pid_t vfork ( void );
 #include "stdlib.h"
 ​
 int main() {
-    pid_t pid;
-    int count = 0;
-    pid = vfork();
-    count++;
-    printf ( "count is %d\n", count );
-    exit ( 0 );
+    pid_t pid;
+    int count = 0;
+    pid = vfork();
+    count++;
+    printf ( "count is %d\n", count );
+    exit ( 0 );
 }
 ```
 
@@ -104,19 +105,19 @@ int main() {
 #include <unistd.h>
 ​
 int main ( void ) {
-    int var;
-    var = 88;
+    int var;
+    var = 88;
 ​
-    if ( ( pid = vfork() ) < 0 ) {
-        printf ( "vfork error" );
-        exit ( -1 );
-    } else if ( pid == 0 ) { /* 子进程 */
-        var++;
-        return 0;
-    }
+    if ( ( pid = vfork() ) < 0 ) {
+        printf ( "vfork error" );
+        exit ( -1 );
+    } else if ( pid == 0 ) { /* 子进程 */
+        var++;
+        return 0;
+    }
 ​
-    printf ( "pid = %d, glob = %d, var = %d\n", getpid(), glob, var );
-    return 0;
+    printf ( "pid = %d, glob = %d, var = %d\n", getpid(), glob, var );
+    return 0;
 }
 ```
 
@@ -155,11 +156,11 @@ int main ( void ) {
 #include "unistd.h"
 ​
 int main() {
-    pid_t pid1;
-    pid_t pid2;
-    pid1 = fork();
-    pid2 = fork();
-    printf ( "pid1:%d, pid2:%d\n", pid1, pid2 );
+    pid_t pid1;
+    pid_t pid2;
+    pid1 = fork();
+    pid2 = fork();
+    printf ( "pid1:%d, pid2:%d\n", pid1, pid2 );
 }
 ```
 
