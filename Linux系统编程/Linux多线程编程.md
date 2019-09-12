@@ -1,7 +1,7 @@
 ---
 title: Linux多线程编程
 date: 2019-02-03 18:42:31
-tags:
+categories: Linux系统编程
 ---
 ### Linux进程与线程
 
@@ -26,7 +26,8 @@ tags:
 
 ``` cpp
 #include <pthread.h>
-int pthread_create ( pthread_t *thread, pthread_attr_t *attr, void * ( *start_routine ) ( void * ), void *arg );
+int pthread_create ( pthread_t *thread, pthread_attr_t *attr,
+                     void * ( *start_routine ) ( void * ), void *arg );
 ```
 
 - `thread`：指向`pthread_create`类型的指针，用于引用新创建的线程。
@@ -38,15 +39,15 @@ int pthread_create ( pthread_t *thread, pthread_attr_t *attr, void * ( *start_ro
 
 ``` cpp
 typedef struct {
-    int detachstate; /* 线程的分离状态 */
-    int schedpolicy; /* 线程调度策略 */
-    struct sched_param schedparam; /* 线程的调度参数 */
-    int inheritsched; /* 线程的继承性 */
-    int scope; /* 线程的作用域 */
-    size_t guardsize; /* 线程栈末尾的警戒缓冲区大小 */
+    int detachstate;               /* 线程的分离状态            */
+    int schedpolicy;               /* 线程调度策略              */
+    struct sched_param schedparam; /* 线程的调度参数            */
+    int inheritsched;              /* 线程的继承性              */
+    int scope;                     /* 线程的作用域              */
+    size_t guardsize;              /* 线程栈末尾的警戒缓冲区大小 */
     int stackaddr_set;
-    void *stackaddr; /* 线程栈的位置 */
-    size_t stacksize; /* 线程栈的大小 */
+    void *stackaddr;               /* 线程栈的位置              */
+    size_t stacksize;              /* 线程栈的大小              */
 } pthread_attr_t;
 ```
 
@@ -988,7 +989,7 @@ int pthread_attr_setscope ( pthread_attr_t *attr, int scope );
 - `scope`：线程的作用域。
 
 若成功返回`0`，若失败返回`-1`。
-&emsp;&emsp;作用域控制线程是否在进程内或在系统级上竞争资源，可能的值如下所示：
+&emsp;&emsp;作用域控制线程是否在进程内或在系统级上竞争资源，可选项如下：
 
 - `PTHREAD_SCOPE_PROCESS`：进程内竞争资源。
 - `PTHREAD_SCOPE_SYSTEM`：系统级竞争资源。
@@ -1205,6 +1206,7 @@ int pthread_cond_signal ( pthread_cond_t *cv );
 ``` cpp
 #include <pthread.h>
 #include <time.h>
+
 int pthread_cond_timedwait (
     pthread_cond_t *cv, pthread_mutex_t *mp,
     const structtimespec *abstime
@@ -1221,7 +1223,6 @@ to.tv_nsec = 0;
 ```
 
 超时返回的错误码是`ETIMEDOUT`。
-
 &emsp;&emsp;5. 使用`pthread_cond_broadcast`释放阻塞的所有线程：
 
 ``` cpp
@@ -1230,7 +1231,6 @@ int pthread_cond_broadcast ( pthread_cond_t *cv );
 ```
 
 函数执行成功返回`0`，任何其他返回值都表示错误。函数唤醒所有被`pthread_cond_wait`函数阻塞在某个条件变量上的线程，参数`cv`被用来指定这个条件变量。当没有线程阻塞在这个条件变量上时，`pthread_cond_broadcast`函数无效。由于`pthread_cond_broadcast`函数唤醒所有阻塞在某个条件变量上的线程，这些线程被唤醒后将再次竞争相应的互斥锁，所以必须小心使用`pthread_cond_broadcast`函数。
-
 &emsp;&emsp;6. 使用`pthread_cond_destroy`释放条件变量：
 
 ``` cpp

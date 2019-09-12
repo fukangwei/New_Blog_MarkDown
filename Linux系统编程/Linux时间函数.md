@@ -1,7 +1,7 @@
 ---
 title: Linux时间函数
 date: 2019-02-03 00:24:17
-tags:
+categories: Linux系统编程
 ---
 ### Linux常用时间类型
 
@@ -27,14 +27,14 @@ typedef long time_t;
 ``` cpp
 #ifndef _TM_DEFINED
 #define _TM_DEFINED
-​
+
 struct tm {
-    int tm_sec; /* 秒，取值区间为0至59 */
-    int tm_min; /* 分，取值区间为0至59 */
-    int tm_hour; /* 时，取值区间为0至23 */
-    int tm_mday; /* 日，取值区间为1至31 */
-    int tm_mon; /* 月份，取值区间为0至11 */
-    int tm_year; /* 年份，其值为1900年至今年数 */
+    int tm_sec;  /* 秒，取值区间为0至59                                  */
+    int tm_min;  /* 分，取值区间为0至59                                  */
+    int tm_hour; /* 时，取值区间为0至23                                  */
+    int tm_mday; /* 日，取值区间为1至31                                  */
+    int tm_mon;  /* 月份，取值区间为0至11                                */
+    int tm_year; /* 年份，其值为1900年至今年数                           */
     int tm_wday; /* 星期，取值区间为0至6，0代表星期天，1代表星期1，以此类推 */
     int tm_yday; /* 从每年的1月1日开始的天数，取值区间为0至365，0代表1月1日 */
     /* 夏令时标识符，使用夏令时，tm_isdst为正；不使用夏令时，tm_isdst为0；不了解情况时，tm_isdst为负 */
@@ -52,7 +52,7 @@ struct tm {
 
 ``` cpp
 struct tmieval {
-    time_t tv_sec; /* 秒s */
+    time_t tv_sec;       /* 秒s    */
     suseconds_t tv_usec; /* 微秒us */
 };
 ```
@@ -65,8 +65,8 @@ struct tmieval {
 
 ``` cpp
 struct timespec {
-    time_t tv_sec; /* 秒s */
-    long tv_nsec; /* 纳秒ns */
+    time_t tv_sec; /* 秒s    */
+    long tv_nsec;  /* 纳秒ns */
 };
 ```
 
@@ -277,10 +277,9 @@ int main ( void ) {
     struct timeval time_tv;
     time_t timep;
     int ret = 0;
-    sscanf (
-        t_string, "%d-%d-%d %d:%d:%d", &time_tm.tm_year,
-        &time_tm.tm_mon, &time_tm.tm_mday, &time_tm.tm_hour,
-        &time_tm.tm_min, &time_tm.tm_sec );
+    sscanf ( t_string, "%d-%d-%d %d:%d:%d", &time_tm.tm_year,
+             &time_tm.tm_mon, &time_tm.tm_mday, &time_tm.tm_hour,
+             &time_tm.tm_min, &time_tm.tm_sec );
     time_tm.tm_year -= 1900;
     time_tm.tm_mon -= 1;
     time_tm.tm_wday = 0;
@@ -312,7 +311,7 @@ size_t strftime (
 ```
 
 该函数根据`format`中定义的格式化规则，格式化结构`timeptr`表示的时间，并把它存储在`str`中，最多为`maxsize`个字节。如果产生的字符串小于`maxsize`个字符(包括空结束字符)，则会返回复制到`str`中的字符总数(不包括空结束字符)，否则返回零。
-&emsp;&emsp;format包含了普通字符和特殊格式说明符的任何组合，这些格式说明符由函数替换为表示tm中所指定时间的相对应值。格式说明符如下所示：
+&emsp;&emsp;`format`包含了普通字符和特殊格式说明符的任何组合，这些格式说明符由函数替换为表示`tm`中所指定时间的相对应值：
 
 说明符 | 替换为                                                   | 实例
 -------|---------------------------------------------------------|---------
@@ -331,7 +330,7 @@ size_t strftime (
 `%S`   | 秒(`00`至`61`)                                           | `02`
 `%U`   | 一年中的第几周，以第一个星期日作为第一周的第一天(`00`至`53`) | `33`
 `%w`   | 十进制数表示的星期几，星期日表示为`0`(`0`至`6`)             | `4`
-`%W`   | 一年中的第几周，以第一个星期一作为第一周的第一天(00-53)      | `34`
+`%W`   | 一年中的第几周，以第一个星期一作为第一周的第一天(`00`至`53`) | `34`
 `%x`   | 日期表示法                                                | `08/19/12`
 `%X`   | 时间表示法                                                | `02:50:06`
 `%y`   | 年份，最后两个数字(`00`至`99`)                             | `01`
@@ -411,13 +410,13 @@ int main ( void ) {
 #include <math.h>
 ​
 void function() {
-    unsigned int i, j;
-    double y;
+    unsigned int i, j;
+    double y;
 ​
-    for ( i = 0; i < 1000; i++ )
-        for ( j = 0; j < 1000; j++ ) {
-            y++;
-        }
+    for ( i = 0; i < 1000; i++ )
+        for ( j = 0; j < 1000; j++ ) {
+            y++;
+        }
 }
 ​
 int main() {
