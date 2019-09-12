@@ -84,41 +84,36 @@ static int read_frame ( void ) {
                         /* Could ignore EIO, see spec. */
                         /* fall through */
                     default:
-                    errno_exit ( "read" );
+                        errno_exit ( "read" );
                 }
             }
 ​
             process_image ( buffers[0].start, buffers[0].length );
             break;
-        case IO_METHOD_MMAP:
-            CLEAR ( buf );
-            buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
-            buf.memory = V4L2_MEMORY_MMAP;
+        case IO_METHOD_MMAP:
+            CLEAR ( buf );
+            buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+            buf.memory = V4L2_MEMORY_MMAP;
+
+            if ( -1 == xioctl ( fd, VIDIOC_DQBUF, &buf ) ) {
+                switch ( errno ) {
+                    case EAGAIN: return 0;
+                    case EIO:
+                        /* Could ignore EIO, see spec. */
+                        /* fall through */
+                    default:
+                        errno_exit ( "VIDIOC_DQBUF" );
+                }
+            }
 ​
-            if ( -1 == xioctl ( fd, VIDIOC_DQBUF, &buf ) ) {
-                switch ( errno ) {
-                    case EAGAIN:
-                        return 0;
+            assert ( buf.index < n_buffers );
+            process_image ( buffers[buf.index].start, buf.length );
 ​
-                    case EIO:
+            if ( -1 == xioctl ( fd, VIDIOC_QBUF, &buf ) ) {
+                errno_exit ( "VIDIOC_QBUF" );
+            }
 ​
-                    /* Could ignore EIO, see spec. */
-​
-                    /* fall through */
-                    default:
-                        errno_exit ( "VIDIOC_DQBUF" );
-                }
-            }
-​
-            assert ( buf.index < n_buffers );
-            process_image ( buffers[buf.index].start, buf.length );
-​
-            if ( -1 == xioctl ( fd, VIDIOC_QBUF, &buf ) ) {
-                errno_exit ( "VIDIOC_QBUF" );
-            }
-​
-            break;
-​
+            break;
         case IO_METHOD_USERPTR:
             CLEAR ( buf );
             buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
