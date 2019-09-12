@@ -188,23 +188,20 @@ static void mainloop ( void ) {
 }
 ​
 static void stop_capturing ( void ) {
-    enum v4l2_buf_type type;
+    enum v4l2_buf_type type;
 ​
-    switch ( io ) {
-        case IO_METHOD_READ:
-            /* Nothing to do. */
-            break;
+    switch ( io ) {
+        case IO_METHOD_READ: /* Nothing to do. */ break;
+        case IO_METHOD_MMAP:
+        case IO_METHOD_USERPTR:
+            type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
 ​
-        case IO_METHOD_MMAP:
-        case IO_METHOD_USERPTR:
-            type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+            if ( -1 == xioctl ( fd, VIDIOC_STREAMOFF, &type ) ) {
+                errno_exit ( "VIDIOC_STREAMOFF" );
+            }
 ​
-            if ( -1 == xioctl ( fd, VIDIOC_STREAMOFF, &type ) ) {
-                errno_exit ( "VIDIOC_STREAMOFF" );
-            }
-​
-            break;
-    }
+            break;
+    }
 }
 ​
 static void start_capturing ( void ) {
