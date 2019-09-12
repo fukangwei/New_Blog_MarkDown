@@ -1,7 +1,7 @@
 ---
 title: Linux套接字编程中的5个隐患
 date: 2019-03-13 09:30:04
-tags:
+categories: Linux系统编程
 ---
 &emsp;&emsp;`Socket API`是网络应用程序开发中实际应用的标准`API`。它是在`4.2 BSD UNIX`操作系统中首次引入的，现在是任何操作系统的标准特性。事实上，很难找到一种不支持`Sockets API`的现代语言。尽管该`API`简单，但是开发新手可能会经历一些常见的问题。本文识别一些最常见的隐患并向您展示如何避免它们。
 
@@ -17,10 +17,10 @@ sock = socket ( AF_INET, SOCK_STREAM, 0 );
 status = send ( sock, buffer, buflen, MSG_DONTWAIT );
 ​
 if ( status == -1 ) {
-    /* send failed */
-    printf ( "send failed: %s\n", strerror ( errno ) );
+    /* send failed */
+    printf ( "send failed: %s\n", strerror ( errno ) );
 } else {
-    /* send succeeded -- or did it? */
+    /* send succeeded -- or did it? */
 }
 ```
 
@@ -46,13 +46,13 @@ sock = socket ( AF_INET, SOCK_STREAM, 0 );
 status = read ( sock, buffer, buflen );
 ​
 if ( status > 0 ) {
-    /* Data read from the socket */
+    /* Data read from the socket */
 } else if ( status == -1 ) {
-    /* Error, check errno, take action... */
+    /* Error, check errno, take action... */
 } else if ( status == 0 ) {
-    /* Peer closed the socket, finish the close */
-    close ( sock );
-    /* Further processing... */
+    /* Peer closed the socket, finish the close */
+    close ( sock );
+    /* Further processing... */
 }
 ```
 
@@ -113,10 +113,10 @@ ret = bind ( sock, ( struct sockaddr * ) &servaddr, sizeof ( servaddr ) );
 &emsp;&emsp;`netstat`工具提供查看`GNU/Linux`网络子系统的能力。使用`netstat`可以查看当前活动的连接(按单个协议进行查看)，查看特定状态的连接(比如处于监听状态的服务器套接字)和许多其他的信息。下面展示了`netstat`提供的一些选项和它们启用的特性。
 
 ``` bash
-netstat --tcp  # View all TCP sockets currently active
-netstat --udp  # View all UDP sockets
-netstat --listening  # View all TCP sockets in the listening state
-netstat --groups  # View the multicast group membership information
+netstat --tcp         # View all TCP sockets currently active
+netstat --udp         # View all UDP sockets
+netstat --listening   # View all TCP sockets in the listening state
+netstat --groups      # View the multicast group membership information
 netstat --masquerade  # Display the list of masqueraded connections
 netstat --statistics  # View statistics for each protocol
 ```
