@@ -608,26 +608,21 @@ int set_com_config ( int fd, int baud_rate, int data_bits, char parity, int stop
     }
 ​
     switch ( stop_bits ) { /* 设置停止位 */
-        case 1:
-            new_cfg.c_cflag &= ~CSTOPB;
-            break;
+        case 1: new_cfg.c_cflag &= ~CSTOPB; break;
+        case 2: new_cfg.c_cflag |= CSTOPB;  break;
+    }
 ​
-        case 2:
-            new_cfg.c_cflag |= CSTOPB;
-            break;
-    }
+    /* 设置等待时间和最小接收字符 */
+    new_cfg.c_cc[VTIME] = 0;
+    new_cfg.c_cc[VMIN] = 1;
+    tcflush ( fd, TCIFLUSH ); /* 处理未接收字符 */
 ​
-    /* 设置等待时间和最小接收字符 */
-    new_cfg.c_cc[VTIME] = 0;
-    new_cfg.c_cc[VMIN] = 1;
-    tcflush ( fd, TCIFLUSH ); /* 处理未接收字符 */
+    if ( ( tcsetattr ( fd, TCSANOW, &new_cfg ) ) != 0 ) { /* 激活新配置 */
+        perror ( "tcsetattr" );
+        return -1;
+    }
 ​
-    if ( ( tcsetattr ( fd, TCSANOW, &new_cfg ) ) != 0 ) { /* 激活新配置 */
-        perror ( "tcsetattr" );
-        return -1;
-    }
-​
-    return 0;
+    return 0;
 }
 ```
 
@@ -639,24 +634,24 @@ int set_com_config ( int fd, int baud_rate, int data_bits, char parity, int stop
 #include <stdlib.h>
 ​
 #define PASSWORD_LEN 8
-​
+
 int main() {
-    struct termios initialrsettings, newrsettings;
-    char password[PASSWORD_LEN + 1];
-    tcgetattr ( fileno ( stdin ), &initialrsettings );
-    newrsettings = initialrsettings;
-    newrsettings.c_lflag &= ~ECHO;
-    printf ( "Enter password: " );
-​
-    if ( tcsetattr ( fileno ( stdin ), TCSAFLUSH, &newrsettings ) != 0 ) {
-        fprintf ( stderr, "Could not set attributes\n" );
-    } else {
-        fgets ( password, PASSWORD_LEN, stdin );
-        tcsetattr ( fileno ( stdin ), TCSANOW, &initialrsettings );
-        fprintf ( stdout, "\nYou entered %s\n", password );
+    struct termios initialrsettings, newrsettings;
+    char password[PASSWORD_LEN + 1];
+    tcgetattr ( fileno ( stdin ), &initialrsettings );
+    newrsettings = initialrsettings;
+    newrsettings.c_lflag &= ~ECHO;
+    printf ( "Enter password: " );
+
+    if ( tcsetattr ( fileno ( stdin ), TCSAFLUSH, &newrsettings ) != 0 ) {
+        fprintf ( stderr, "Could not set attributes\n" );
+    } else {
+        fgets ( password, PASSWORD_LEN, stdin );
+        tcsetattr ( fileno ( stdin ), TCSANOW, &initialrsettings );
+        fprintf ( stdout, "\nYou entered %s\n", password );
     }
 ​
-    exit ( 0 );
+    exit ( 0 );
 }
 ```
 
