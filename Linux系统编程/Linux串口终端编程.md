@@ -195,21 +195,21 @@ void set_speed ( int fd, int speed ) {
     struct termios Opt;
     tcgetattr ( fd, &Opt );
 ​
-    for ( i = 0; i < sizeof ( speed_arr ) / sizeof ( int ); i++ ) {
-        if ( speed == name_arr[i] ) {
-            tcflush ( fd, TCIOFLUSH );
-            cfsetispeed ( &Opt, speed_arr[i] );
-            cfsetospeed ( &Opt, speed_arr[i] );
-            status = tcsetattr ( fd, TCSANOW, &Opt );
+    for ( i = 0; i < sizeof ( speed_arr ) / sizeof ( int ); i++ ) {
+        if ( speed == name_arr[i] ) {
+            tcflush ( fd, TCIOFLUSH );
+            cfsetispeed ( &Opt, speed_arr[i] );
+            cfsetospeed ( &Opt, speed_arr[i] );
+            status = tcsetattr ( fd, TCSANOW, &Opt );
 ​
-            if ( status != 0 ) {
-                perror ( "tcsetattr fd1" );
-                return;
-            }
+            if ( status != 0 ) {
+                perror ( "tcsetattr fd1" );
+                return;
+            }
 ​
-            tcflush ( fd, TCIOFLUSH );
-        }
-    }
+            tcflush ( fd, TCIOFLUSH );
+        }
+    }
 }
 ​
 int set_Parity ( int fd, int databits, int stopbits, int parity ) {
