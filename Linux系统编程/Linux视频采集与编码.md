@@ -223,14 +223,13 @@ static void start_capturing ( void ) {
                 }
             }
 ​
-            type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+            type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
 ​
-            if ( -1 == xioctl ( fd, VIDIOC_STREAMON, &type ) ) {
-                errno_exit ( "VIDIOC_STREAMON" );
-            }
+            if ( -1 == xioctl ( fd, VIDIOC_STREAMON, &type ) ) {
+                errno_exit ( "VIDIOC_STREAMON" );
+            }
 ​
-            break;
-​
+            break;
         case IO_METHOD_USERPTR:
             for ( i = 0; i < n_buffers; ++i ) {
                 struct v4l2_buffer buf;
