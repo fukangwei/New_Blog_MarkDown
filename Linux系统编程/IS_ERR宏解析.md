@@ -1,7 +1,7 @@
 ---
 title: IS_ERR宏解析
 date: 2019-02-02 21:48:44
-tags:
+categories: Linux系统编程
 ---
 &emsp;&emsp;最近在使用`filp_open`打开文件时遇到到一个问题，当打开一个并不存在的文件时，`filp_open`返回值为`0xfffffffe`，而并不是`0`(`NULL`)，这是因为内核对返回指针的函数做了特殊处理。内核中的函数常常返回指针，通常如果调用出错，会返回`NULL`，但`linux`做了更精妙的处理，能够通过返回的指针体现出来。
 &emsp;&emsp;对任何一个指针，必然有三种情况：有效指针、`NULL`或者`错误指针`。而`错误指针`就是指其已经到达了最后一个`page`，比如对于`32bit`的系统来说，内核空间最高地址`0xffffffff`，那么最后一个`page`就是指的`0xfffff000`至`0xffffffff`(以`4K`大小页为例)。这段地址是被保留的，如果超过这个地址，则肯定是错误的。
@@ -22,17 +22,17 @@ tags:
 ​
 /* 将错误号转化为指针，由于错误号在“-1000”至0间，返回的指针会落在最后一页 */
 static inline void *ERR_PTR ( long error ) {
-    return ( void * ) error;
+    return ( void * ) error;
 }
 ​
 /* 将指针转化为错误号 */
 static inline long PTR_ERR ( const void *ptr ) {
-    return ( long ) ptr;
+    return ( long ) ptr;
 }
 ​
 /* 判断返回的指针是错误信息还是实际地址，即指针是否落在最后一页 */
 static inline long IS_ERR ( const void *ptr ) {
-    return IS_ERR_VALUE ( ( unsigned long ) ptr );
+    return IS_ERR_VALUE ( ( unsigned long ) ptr );
 }
 ```
 
@@ -47,7 +47,7 @@ static inline long IS_ERR ( const void *ptr ) {
 #define IS_ERR_VALUE(x) unlikely((x) >= (unsigned long)-MAX_ERRNO)
 ​
 static inline long __must_check IS_ERR ( const void *ptr ) {
-    return IS_ERR_VALUE ( ( unsigned long ) ptr );
+    return IS_ERR_VALUE ( ( unsigned long ) ptr );
 }
 ```
 
@@ -55,16 +55,16 @@ static inline long __must_check IS_ERR ( const void *ptr ) {
 
 ``` cpp
 ...
-#define ENOLCK  77 /* No record locks available */
-#define ENOSYS  78 /* Function not implemented */
+#define ENOLCK  77 /* No record locks available  */
+#define ENOSYS  78 /* Function not implemented   */
 #define ENOMSG  80 /* No message of desired type */
-#define EIDRM   81 /* Identifier removed */
-#define ENOSR   82 /* Out of streams resources */
-#define ETIME   83 /* Timer expired */
-#define EBADMSG 84 /* Not a data message */
-#define EPROTO  85 /* Protocol error */
-#define ENODATA 86 /* No data available */
-#define ENOSTR  87 /* Device not a stream */
+#define EIDRM   81 /* Identifier removed         */
+#define ENOSR   82 /* Out of streams resources   */
+#define ETIME   83 /* Timer expired              */
+#define EBADMSG 84 /* Not a data message         */
+#define EPROTO  85 /* Protocol error             */
+#define ENODATA 86 /* No data available          */
+#define ENOSTR  87 /* Device not a stream        */
 ...
 ```
 
@@ -72,11 +72,11 @@ static inline long __must_check IS_ERR ( const void *ptr ) {
 
 ``` cpp
 static inline void *__must_check ERR_PTR ( long error ) {
-    return ( void * ) error;
+    return ( void * ) error;
 }
 ​
 static inline long __must_check PTR_ERR ( const void *ptr ) {
-    return ( long ) ptr;
+    return ( long ) ptr;
 }
 ```
 
@@ -86,7 +86,7 @@ static inline long __must_check PTR_ERR ( const void *ptr ) {
 struct class *cls = class_create ( ... );
 ​
 if ( IS_ERR ( cls ) ) {
-    ret = PTR_ERR ( cls );
-    return ret;
+    ret = PTR_ERR ( cls );
+    return ret;
 }
 ```
