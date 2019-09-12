@@ -205,26 +205,23 @@ static void stop_capturing ( void ) {
 }
 ​
 static void start_capturing ( void ) {
-    unsigned int i;
-    enum v4l2_buf_type type;
+    unsigned int i;
+    enum v4l2_buf_type type;
 ​
-    switch ( io ) {
-        case IO_METHOD_READ:
-            /* Nothing to do. */
-            break;
+    switch ( io ) {
+        case IO_METHOD_READ: /* Nothing to do. */ break;
+        case IO_METHOD_MMAP:
+            for ( i = 0; i < n_buffers; ++i ) {
+                struct v4l2_buffer buf;
+                CLEAR ( buf );
+                buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+                buf.memory = V4L2_MEMORY_MMAP;
+                buf.index = i;
 ​
-        case IO_METHOD_MMAP:
-            for ( i = 0; i < n_buffers; ++i ) {
-                struct v4l2_buffer buf;
-                CLEAR ( buf );
-                buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
-                buf.memory = V4L2_MEMORY_MMAP;
-                buf.index = i;
-​
-                if ( -1 == xioctl ( fd, VIDIOC_QBUF, &buf ) ) {
-                    errno_exit ( "VIDIOC_QBUF" );
-                }
-            }
+                if ( -1 == xioctl ( fd, VIDIOC_QBUF, &buf ) ) {
+                    errno_exit ( "VIDIOC_QBUF" );
+                }
+            }
 ​
             type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
 ​
