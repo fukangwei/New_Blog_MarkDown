@@ -256,55 +256,51 @@ static void start_capturing ( void ) {
 }
 ​
 static void uninit_device ( void ) {
-    unsigned int i;
+    unsigned int i;
 ​
-    switch ( io ) {
-        case IO_METHOD_READ:
-            free ( buffers[0].start );
-            break;
+    switch ( io ) {
+        case IO_METHOD_READ: free ( buffers[0].start ); break;
+        case IO_METHOD_MMAP:
+            for ( i = 0; i < n_buffers; ++i )
+                if ( -1 == munmap ( buffers[i].start, buffers[i].length ) ) {
+                    errno_exit ( "munmap" );
+                }
 ​
-        case IO_METHOD_MMAP:
-            for ( i = 0; i < n_buffers; ++i )
-                if ( -1 == munmap ( buffers[i].start, buffers[i].length ) ) {
-                    errno_exit ( "munmap" );
-                }
+            break;
+        case IO_METHOD_USERPTR:
+            for ( i = 0; i < n_buffers; ++i ) {
+                free ( buffers[i].start );
+            }
 ​
-            break;
+            break;
+    }
 ​
-        case IO_METHOD_USERPTR:
-            for ( i = 0; i < n_buffers; ++i ) {
-                free ( buffers[i].start );
-            }
-​
-            break;
-    }
-​
-    free ( buffers );
+    free ( buffers );
 }
 ​
 static void init_read ( unsigned int buffer_size ) {
-    buffers = calloc ( 1, sizeof ( *buffers ) );
+    buffers = calloc ( 1, sizeof ( *buffers ) );
 ​
-    if ( !buffers ) {
-        fprintf ( stderr, "Out of memory\n" );
-        exit ( EXIT_FAILURE );
-    }
+    if ( !buffers ) {
+        fprintf ( stderr, "Out of memory\n" );
+        exit ( EXIT_FAILURE );
+    }
 ​
-    buffers[0].length = buffer_size;
-    buffers[0].start = malloc ( buffer_size );
+    buffers[0].length = buffer_size;
+    buffers[0].start = malloc ( buffer_size );
 ​
-    if ( !buffers[0].start ) {
-        fprintf ( stderr, "Out of memory\n" );
-        exit ( EXIT_FAILURE );
-    }
+    if ( !buffers[0].start ) {
+        fprintf ( stderr, "Out of memory\n" );
+        exit ( EXIT_FAILURE );
+    }
 }
 ​
 static void init_mmap ( void ) {
-    struct v4l2_requestbuffers req;
-    CLEAR ( req );
-    req.count = 4;
-    req.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
-    req.memory = V4L2_MEMORY_MMAP;
+    struct v4l2_requestbuffers req;
+    CLEAR ( req );
+    req.count = 4;
+    req.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+    req.memory = V4L2_MEMORY_MMAP;
 ​
     if ( -1 == xioctl ( fd, VIDIOC_REQBUFS, &req ) ) {
         if ( EINVAL == errno ) {
