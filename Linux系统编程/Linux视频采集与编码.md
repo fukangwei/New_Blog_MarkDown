@@ -323,28 +323,28 @@ static void init_mmap ( void ) {
         exit ( EXIT_FAILURE );
     }
 ​
-    for ( n_buffers = 0; n_buffers < req.count; ++n_buffers ) {
-        struct v4l2_buffer buf;
-        CLEAR ( buf );
-        buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
-        buf.memory = V4L2_MEMORY_MMAP;
-        buf.index = n_buffers;
+    for ( n_buffers = 0; n_buffers < req.count; ++n_buffers ) {
+        struct v4l2_buffer buf;
+        CLEAR ( buf );
+        buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+        buf.memory = V4L2_MEMORY_MMAP;
+        buf.index = n_buffers;
 ​
-        if ( -1 == xioctl ( fd, VIDIOC_QUERYBUF, &buf ) ) {
-            errno_exit ( "VIDIOC_QUERYBUF" );
-        }
+        if ( -1 == xioctl ( fd, VIDIOC_QUERYBUF, &buf ) ) {
+            errno_exit ( "VIDIOC_QUERYBUF" );
+        }
 ​
-        buffers[n_buffers].length = buf.length;
-        buffers[n_buffers].start = mmap ( NULL /* start anywhere */,
-                                          buf.length,
-                                          PROT_READ | PROT_WRITE /* required */,
-                                          MAP_SHARED /* recommended */,
-                                          fd, buf.m.offset );
+        buffers[n_buffers].length = buf.length;
+        buffers[n_buffers].start = mmap ( NULL /* start anywhere */,
+                                          buf.length,
+                                          PROT_READ | PROT_WRITE /* required */,
+                                          MAP_SHARED /* recommended */,
+                                          fd, buf.m.offset );
 ​
-        if ( MAP_FAILED == buffers[n_buffers].start ) {
-            errno_exit ( "mmap" );
-        }
-    }
+        if ( MAP_FAILED == buffers[n_buffers].start ) {
+            errno_exit ( "mmap" );
+        }
+    }
 }
 ​
 static void init_userp ( unsigned int buffer_size ) {
