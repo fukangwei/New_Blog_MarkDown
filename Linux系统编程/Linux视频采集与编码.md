@@ -114,81 +114,77 @@ static int read_frame ( void ) {
             }
 ​
             break;
-        case IO_METHOD_USERPTR:
-            CLEAR ( buf );
-            buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
-            buf.memory = V4L2_MEMORY_USERPTR;
+        case IO_METHOD_USERPTR:
+            CLEAR ( buf );
+            buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+            buf.memory = V4L2_MEMORY_USERPTR;
 ​
-            if ( -1 == xioctl ( fd, VIDIOC_DQBUF, &buf ) ) {
-                switch ( errno ) {
-                    case EAGAIN:
-                        return 0;
+            if ( -1 == xioctl ( fd, VIDIOC_DQBUF, &buf ) ) {
+                switch ( errno ) {
+                    case EAGAIN: return 0;
+                    case EIO:
+                        /* Could ignore EIO, see spec. */
+                        /* fall through */
+                    default:
+                     errno_exit ( "VIDIOC_DQBUF" );
+                }
+            }
 ​
-                    case EIO:
+            for ( i = 0; i < n_buffers; ++i )
+                if ( buf.m.userptr == ( unsigned long ) buffers[i].start
+                     && buf.length == buffers[i].length ) {
+                        break;
+                }
 ​
-                    /* Could ignore EIO, see spec. */
+            assert ( i < n_buffers );
+            process_image ( ( void * ) buf.m.userptr, buf.length );
 ​
-                    /* fall through */
-                    default:
-                        errno_exit ( "VIDIOC_DQBUF" );
-                }
-            }
+            if ( -1 == xioctl ( fd, VIDIOC_QBUF, &buf ) ) {
+                errno_exit ( "VIDIOC_QBUF" );
+            }
 ​
-            for ( i = 0; i < n_buffers; ++i )
-                if ( buf.m.userptr == ( unsigned long ) buffers[i].start
-                     && buf.length == buffers[i].length ) {
-                    break;
-                }
+            break;
+    }
 ​
-            assert ( i < n_buffers );
-            process_image ( ( void * ) buf.m.userptr, buf.length );
-​
-            if ( -1 == xioctl ( fd, VIDIOC_QBUF, &buf ) ) {
-                errno_exit ( "VIDIOC_QBUF" );
-            }
-​
-            break;
-    }
-​
-    return 1;
+    return 1;
 }
 ​
 static void mainloop ( void ) {
-    unsigned int count;
-    count = 100;
+    unsigned int count;
+    count = 100;
 ​
-    while ( count-- > 0 ) {
-        for ( ;; ) {
-            fd_set fds;
-            struct timeval tv;
-            int r;
-            FD_ZERO ( &fds );
-            FD_SET ( fd, &fds );
-            /* Timeout. */
-            tv.tv_sec = 2;
-            tv.tv_usec = 0;
-            r = select ( fd + 1, &fds, NULL, NULL, &tv );
+    while ( count-- > 0 ) {
+        for ( ;; ) {
+            fd_set fds;
+            struct timeval tv;
+            int r;
+            FD_ZERO ( &fds );
+            FD_SET ( fd, &fds );
+            /* Timeout. */
+            tv.tv_sec = 2;
+            tv.tv_usec = 0;
+            r = select ( fd + 1, &fds, NULL, NULL, &tv );
 ​
-            if ( -1 == r ) {
-                if ( EINTR == errno ) {
-                    continue;
-                }
+            if ( -1 == r ) {
+                if ( EINTR == errno ) {
+                    continue;
+                }
 ​
-                errno_exit ( "select" );
-            }
+                errno_exit ( "select" );
+            }
 ​
-            if ( 0 == r ) {
-                fprintf ( stderr, "select timeout\n" );
-                exit ( EXIT_FAILURE );
-            }
+            if ( 0 == r ) {
+                fprintf ( stderr, "select timeout\n" );
+                exit ( EXIT_FAILURE );
+            }
 ​
-            if ( read_frame() ) {
-                break;
-            }
-​
-            /* EAGAIN - continue select loop. */
-        }
-    }
+            if ( read_frame() ) {
+                break;
+            }
+
+            /* EAGAIN - continue select loop. */
+        }
+    }
 }
 ​
 static void stop_capturing ( void ) {
