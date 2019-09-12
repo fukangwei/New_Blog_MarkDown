@@ -302,26 +302,26 @@ static void init_mmap ( void ) {
     req.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
     req.memory = V4L2_MEMORY_MMAP;
 ​
-    if ( -1 == xioctl ( fd, VIDIOC_REQBUFS, &req ) ) {
-        if ( EINVAL == errno ) {
-            fprintf ( stderr, "%s does not support memory mapping\n", dev_name );
-            exit ( EXIT_FAILURE );
-        } else {
-            errno_exit ( "VIDIOC_REQBUFS" );
-        }
-    }
+    if ( -1 == xioctl ( fd, VIDIOC_REQBUFS, &req ) ) {
+        if ( EINVAL == errno ) {
+            fprintf ( stderr, "%s does not support memory mapping\n", dev_name );
+            exit ( EXIT_FAILURE );
+        } else {
+            errno_exit ( "VIDIOC_REQBUFS" );
+        }
+    }
 ​
-    if ( req.count < 2 ) {
-        fprintf ( stderr, "Insufficient buffer memory on %s\n", dev_name );
-        exit ( EXIT_FAILURE );
-    }
+    if ( req.count < 2 ) {
+        fprintf ( stderr, "Insufficient buffer memory on %s\n", dev_name );
+        exit ( EXIT_FAILURE );
+    }
 ​
-    buffers = calloc ( req.count, sizeof ( *buffers ) );
+    buffers = calloc ( req.count, sizeof ( *buffers ) );
 ​
-    if ( !buffers ) {
-        fprintf ( stderr, "Out of memory\n" );
-        exit ( EXIT_FAILURE );
-    }
+    if ( !buffers ) {
+        fprintf ( stderr, "Out of memory\n" );
+        exit ( EXIT_FAILURE );
+    }
 ​
     for ( n_buffers = 0; n_buffers < req.count; ++n_buffers ) {
         struct v4l2_buffer buf;
@@ -376,8 +376,8 @@ static void init_userp ( unsigned int buffer_size ) {
 ​
     for ( n_buffers = 0; n_buffers < 4; ++n_buffers ) {
         buffers[n_buffers].length = buffer_size;
-        buffers[n_buffers].start = memalign ( /* boundary */page_size,
-                                                            buffer_size );
+        buffers[n_buffers].start = memalign ( /* boundary */ page_size,
+                                                             buffer_size );
 ​
         if ( !buffers[n_buffers].start ) {
             fprintf ( stderr, "Out of memory\n" );
@@ -415,7 +415,6 @@ static void init_device ( void ) {
             }
 ​
             break;
-​
         case IO_METHOD_MMAP:
         case IO_METHOD_USERPTR:
             if ( ! ( cap.capabilities & V4L2_CAP_STREAMING ) ) {
