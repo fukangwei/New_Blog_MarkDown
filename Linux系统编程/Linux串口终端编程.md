@@ -1,7 +1,7 @@
 ---
 title: Linux串口终端编程
 date: 2019-02-03 20:52:30
-tags:
+categories: Linux系统编程
 ---
 ### 串口概述
 
@@ -12,14 +12,14 @@ tags:
 
 ``` cpp
 struct termios {
-    unsigned short c_iflag; /* 输入模式标志 */
-    unsigned short c_oflag; /* 输出模式标志 */
-    unsigned short c_cflag; /* 控制模式标志 */
-    unsigned short c_lflag; /* 本地模式标志 */
-    unsigned char c_line; /* 线路规程 */
-    unsigned char c_cc[NCC]; /* 控制特性 */
-    speed_t c_ispeed; /* 输入速度 */
-    speed_t c_ospeed; /* 输出速度 */
+    unsigned short c_iflag;  /* 输入模式标志 */
+    unsigned short c_oflag;  /* 输出模式标志 */
+    unsigned short c_cflag;  /* 控制模式标志 */
+    unsigned short c_lflag;  /* 本地模式标志 */
+    unsigned char c_line;    /* 线路规程     */
+    unsigned char c_cc[NCC]; /* 控制特性     */
+    speed_t c_ispeed;        /* 输入速度     */
+    speed_t c_ospeed;        /* 输出速度     */
 };
 ```
 
@@ -142,8 +142,8 @@ tcsetattr ( fd, TCSANOW, &newtio );
 fd = open ( "/dev/ttyS0", O_RDWR | O_NOCTTY | O_NDELAY );
 ```
 
-- O_NOCTTY：通知linux系统，这个程序不会成为这个端口的控制终端。
-- O_NDELAY：通知linux系统不关心DCD信号线所处的状态(端口的另一端是否激活或者停止)。
+- `O_NOCTTY`：通知`linux`系统，这个程序不会成为这个端口的控制终端。
+- `O_NDELAY`：通知`linux`系统不关心`DCD`信号线所处的状态(端口的另一端是否激活或者停止)。
 
 然后恢复串口的状态为阻塞状态，用于等待串口数据的读入。需要使用`fcntl`函数：
 
@@ -180,20 +180,20 @@ write ( fd, buff, 8 );
 #define TRUE  0
 ​
 int speed_arr[] = {
-    B38400, B19200, B9600, B4800, B2400, B1200, B300,
-    B38400, B19200, B9600, B4800, B2400, B1200, B300,
+    B38400, B19200, B9600, B4800, B2400, B1200, B300,
+    B38400, B19200, B9600, B4800, B2400, B1200, B300,
 };
 ​
 int name_arr[] = {
-    38400, 19200, 9600, 4800, 2400, 1200, 300,
-    38400, 19200, 9600, 4800, 2400, 1200, 300,
+    38400, 19200, 9600, 4800, 2400, 1200, 300,
+    38400, 19200, 9600, 4800, 2400, 1200, 300,
 };
 ​
 void set_speed ( int fd, int speed ) {
-    int i;
-    int status;
-    struct termios Opt;
-    tcgetattr ( fd, &Opt );
+    int i;
+    int status;
+    struct termios Opt;
+    tcgetattr ( fd, &Opt );
 ​
     for ( i = 0; i < sizeof ( speed_arr ) / sizeof ( int ); i++ ) {
         if ( speed == name_arr[i] ) {
@@ -463,8 +463,8 @@ termios_p->c_cflag |= CS8;
 
 ``` cpp
 if ( tcgetattr ( fd, &old_cfg ) != 0 ) {
-    perror ( "tcgetattr" );
-    return -1;
+    perror ( "tcgetattr" );
+    return -1;
 }
 ```
 
@@ -560,8 +560,8 @@ tcsetattr ( int fd, int optional_actions, const struct termios *termios_p );
 
 ``` cpp
 if ( ( tcsetattr ( fd, TCSANOW, &new_cfg ) ) != 0 ) {
-    perror ( "tcsetattr" );
-    return -1;
+    perror ( "tcsetattr" );
+    return -1;
 }
 ```
 
@@ -820,9 +820,9 @@ int setupterm ( char *term, int fd, int *errret );
 #include <stdlib.h>
 ​
 int main() {
-    setupterm ( "unlisted", fileno ( stdout ), ( int * ) 0 );
-    printf ( "Done.\n" );
-    exit ( 0 );
+    setupterm ( "unlisted", fileno ( stdout ), ( int * ) 0 );
+    printf ( "Done.\n" );
+    exit ( 0 );
 }
 ```
 
@@ -854,12 +854,12 @@ sudo apt-get install libncurses5-dev
 #include <stdlib.h>
 ​
 int main() {
-    int nrows, ncolumns;
-    setupterm ( NULL, fileno ( stdout ), ( int * ) 0 );
-    nrows = tigetnum ( "lines" );
-    ncolumns = tigetnum ( "cols" );
-    printf ( "This terminal has %d columns and %d rows \n", ncolumns, nrows );
-    exit ( 0 );
+    int nrows, ncolumns;
+    setupterm ( NULL, fileno ( stdout ), ( int * ) 0 );
+    nrows = tigetnum ( "lines" );
+    ncolumns = tigetnum ( "cols" );
+    printf ( "This terminal has %d columns and %d rows \n", ncolumns, nrows );
+    exit ( 0 );
 }
 ```
 
