@@ -230,29 +230,29 @@ static void start_capturing ( void ) {
             }
 ​
             break;
-        case IO_METHOD_USERPTR:
-            for ( i = 0; i < n_buffers; ++i ) {
-                struct v4l2_buffer buf;
-                CLEAR ( buf );
-                buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
-                buf.memory = V4L2_MEMORY_USERPTR;
-                buf.index = i;
-                buf.m.userptr = ( unsigned long ) buffers[i].start;
-                buf.length = buffers[i].length;
+        case IO_METHOD_USERPTR:
+            for ( i = 0; i < n_buffers; ++i ) {
+                struct v4l2_buffer buf;
+                CLEAR ( buf );
+                buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+                buf.memory = V4L2_MEMORY_USERPTR;
+                buf.index = i;
+                buf.m.userptr = ( unsigned long ) buffers[i].start;
+                buf.length = buffers[i].length;
 ​
-                if ( -1 == xioctl ( fd, VIDIOC_QBUF, &buf ) ) {
-                    errno_exit ( "VIDIOC_QBUF" );
-                }
-            }
+                if ( -1 == xioctl ( fd, VIDIOC_QBUF, &buf ) ) {
+                    errno_exit ( "VIDIOC_QBUF" );
+                }
+            }
 ​
-            type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+            type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
 ​
-            if ( -1 == xioctl ( fd, VIDIOC_STREAMON, &type ) ) {
-                errno_exit ( "VIDIOC_STREAMON" );
-            }
+            if ( -1 == xioctl ( fd, VIDIOC_STREAMON, &type ) ) {
+                errno_exit ( "VIDIOC_STREAMON" );
+            }
 ​
-            break;
-    }
+            break;
+    }
 }
 ​
 static void uninit_device ( void ) {
