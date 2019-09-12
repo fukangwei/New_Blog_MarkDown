@@ -257,72 +257,66 @@ int set_Parity ( int fd, int databits, int stopbits, int parity ) {
             return ( FALSE );
     }
 ​
-    switch ( stopbits ) {
-        case 1:
-            options.c_cflag &= ~CSTOPB;
-            break;
+    switch ( stopbits ) {
+        case 1: options.c_cflag &= ~CSTOPB; break;
+        case 2: options.c_cflag |= CSTOPB; break;​
+        default:
+            fprintf ( stderr, "Unsupported stop bits\n" );
+            return ( FALSE );
+    }
 ​
-        case 2:
-            options.c_cflag |= CSTOPB;
-            break;
+    if ( parity != 'n' ) { /* Set input parity option */
+        options.c_iflag |= INPCK;
+    }
 ​
-        default:
-            fprintf ( stderr, "Unsupported stop bits\n" );
-            return ( FALSE );
-    }
+    tcflush ( fd, TCIFLUSH );
+    options.c_cc[VTIME] = 150;
+    options.c_cc[VMIN] = 0; /* Update the options and do it NOW */
 ​
-    if ( parity != 'n' ) { /* Set input parity option */
-        options.c_iflag |= INPCK;
-    }
+    if ( tcsetattr ( fd, TCSANOW, &options ) != 0 ) {
+        perror ( "SetupSerial 3" );
+        return ( FALSE );
+    }
 ​
-    tcflush ( fd, TCIFLUSH );
-    options.c_cc[VTIME] = 150;
-    options.c_cc[VMIN] = 0; /* Update the options and do it NOW */
-​
-    if ( tcsetattr ( fd, TCSANOW, &options ) != 0 ) {
-        perror ( "SetupSerial 3" );
-        return ( FALSE );
-    }
-​
-    return ( TRUE );
+    return ( TRUE );
 }
 ​
 int main ( void ) {
-    printf ( "This program updates last time at %s  %s\n", __TIME__, __DATE__ );
-    printf ( "STDIO COM1\n" );
-    int fd;
-    fd = open ( "/dev/ttyUSB0", O_RDWR ); /* 我用的是USB转串口设备 */
+    printf ( "This program updates last time at %s  %s\n", __TIME__, __DATE__ );
+    printf ( "STDIO COM1\n" );
+    int fd;
+    fd = open ( "/dev/ttyUSB0", O_RDWR ); /* 我用的是USB转串口设备 */
 ​
-    if ( fd == -1 ) {
-        perror ( "serialport error\n" );
-    } else {
-        printf ( "open " );
-        printf ( "%s", ttyname ( fd ) );
-        printf ( " succesfully!\n" );
-    }
+    if ( fd == -1 ) {
+        perror ( "serialport error\n" );
+    } else {
+        printf ( "open " );
+        printf ( "%s", ttyname ( fd ) );
+        printf ( " succesfully!\n" );
+    }
 ​
-    set_speed ( fd, 9600 );
+    set_speed ( fd, 9600 );
 ​
-    if ( set_Parity ( fd, 8, 1, 'N' ) == FALSE ) {
-        printf ( "Set Parity Error\n" );
-        exit ( 0 );
-    }
+    if ( set_Parity ( fd, 8, 1, 'N' ) == FALSE ) {
+        printf ( "Set Parity Error\n" );
+        exit ( 0 );
+    }
 ​
-    char buf[] = "fe55aa07bc010203040506073d";
-    write ( fd, &buf, 26 );
-    char buff[512];
-    int nread;
+    char buf[] = "fe55aa07bc010203040506073d";
+    write ( fd, &buf, 26 );
+    char buff[512];
+    int nread;
 ​
-    while ( 1 ) {
-        if ( ( nread = read ( fd, buff, 512 ) ) > 0 ) {
-            printf ( "\nLen: %d\n", nread );
-            buff[nread + 1] = '\0';
-            printf ( "%s", buff );
-        }
-    }
+    while ( 1 ) {
+        if ( ( nread = read ( fd, buff, 512 ) ) > 0 ) {
+            printf ( "\nLen: %d\n", nread );
+            buff[nread + 1] = '\0';
+            printf ( "%s", buff );
+        }
+    }
 ​
-    close ( fd );
-    return 0;
+    close ( fd );
+    return 0;
 }
 ```
 
