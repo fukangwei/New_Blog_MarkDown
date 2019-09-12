@@ -420,15 +420,15 @@ void function() {
 }
 ​
 int main() {
-    struct timeval tpstart, tpend;
-    float timeuse;
-    gettimeofday ( &tpstart, NULL ); /* 开始时间 */
-    function();
-    gettimeofday ( &tpend, NULL ); /* 结束时间 */
-    /* 计算执行时间 */
-    timeuse = 1000000 * ( tpend.tv_sec - tpstart.tv_sec ) + tpend.tv_usec - tpstart.tv_usec;
-    timeuse /= 1000000;
-    printf ( "Used Time:%f\n", timeuse );
-    exit ( 0 );
+    struct timeval tpstart, tpend;
+    float timeuse;
+    gettimeofday ( &tpstart, NULL ); /* 开始时间 */
+    function();
+    gettimeofday ( &tpend, NULL ); /* 结束时间 */
+    /* 计算执行时间 */
+    timeuse = 1000000 * ( tpend.tv_sec - tpstart.tv_sec ) + tpend.tv_usec - tpstart.tv_usec;
+    timeuse /= 1000000;
+    printf ( "Used Time:%f\n", timeuse );
+    exit ( 0 );
 }
 ```

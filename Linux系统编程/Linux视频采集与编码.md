@@ -1,7 +1,7 @@
 ---
 title: Linux视频采集与编码
 date: 2019-03-13 19:40:41
-tags:
+categories: Linux系统编程
 ---
 &emsp;&emsp;在`Linux`下用`V4L2`采集`yuv`视频，然后用`x264`编码成`h.264`文件。我将`yuv`视频保存到文件中(我采集视频的尺寸为`640 * 480`，`YUV`格式为`YUYV`即`YUV422`)，然后用`pyuv`播放器播放它，悲剧的是播放出来的视频花屏了。
 &emsp;&emsp;后来认真看代码，发现其中有这么一句：
@@ -31,13 +31,13 @@ fmt.fmt.pix.field = V4L2_FIELD_INTERLACED;
 #include <linux/videodev2.h>
 ​
 #define CLEAR(x) memset (&(x), 0, sizeof (x))
-​
+
 typedef enum {
     IO_METHOD_READ,
     IO_METHOD_MMAP,
     IO_METHOD_USERPTR,
 } io_method;
-​
+
 struct buffer {
     void *start;
     size_t length;
