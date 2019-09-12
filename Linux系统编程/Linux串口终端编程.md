@@ -213,59 +213,49 @@ void set_speed ( int fd, int speed ) {
 }
 ​
 int set_Parity ( int fd, int databits, int stopbits, int parity ) {
-    struct termios options;
+    struct termios options;
 ​
-    if ( tcgetattr ( fd, &options ) != 0 ) {
-        perror ( "SetupSerial 1" );
-        return ( FALSE );
-    }
+    if ( tcgetattr ( fd, &options ) != 0 ) {
+        perror ( "SetupSerial 1" );
+        return ( FALSE );
+    }
 ​
-    options.c_cflag &= ~CSIZE;
+    options.c_cflag &= ~CSIZE;
 ​
-    switch ( databits ) {
-        case 7:
-            options.c_cflag |= CS7;
-            break;
+    switch ( databits ) {
+        case 7: options.c_cflag |= CS7; break;
+        case 8: options.c_cflag |= CS8; break;
+        default:
+            fprintf ( stderr, "Unsupported data size\n" );
+            return ( FALSE );
+    }
 ​
-        case 8:
-            options.c_cflag |= CS8;
-            break;
-​
-        default:
-            fprintf ( stderr, "Unsupported data size\n" );
-            return ( FALSE );
-    }
-​
-    switch ( parity ) {
-        case 'n':
-        case 'N':
-            options.c_cflag &= ~PARENB; /* Clear parity enable */
-            options.c_iflag &= ~INPCK; /* Enable parity checking */
-            break;
-​
-        case 'o':
-        case 'O':
-            options.c_cflag |= ( PARODD | PARENB );
-            options.c_iflag |= INPCK; /* Disnable parity checking */
-            break;
-​
-        case 'e':
-        case 'E':
-            options.c_cflag |= PARENB; /* Enable parity */
-            options.c_cflag &= ~PARODD;
-            options.c_iflag |= INPCK; /* Disnable parity checking */
-            break;
-​
-        case 'S':
-        case 's': /* as no parity */
-            options.c_cflag &= ~PARENB;
-            options.c_cflag &= ~CSTOPB;
-            break;
-​
-        default:
-            fprintf ( stderr, "Unsupported parity\n" );
-            return ( FALSE );
-    }
+    switch ( parity ) {
+        case 'n':
+        case 'N':
+            options.c_cflag &= ~PARENB; /* Clear parity enable */
+            options.c_iflag &= ~INPCK; /* Enable parity checking */
+            break;
+        case 'o':
+        case 'O':
+            options.c_cflag |= ( PARODD | PARENB );
+            options.c_iflag |= INPCK; /* Disnable parity checking */
+            break;
+        case 'e':
+        case 'E':
+            options.c_cflag |= PARENB; /* Enable parity */
+            options.c_cflag &= ~PARODD;
+            options.c_iflag |= INPCK; /* Disnable parity checking */
+            break;
+        case 'S':
+        case 's': /* as no parity */
+            options.c_cflag &= ~PARENB;
+            options.c_cflag &= ~CSTOPB;
+            break;
+        default:
+            fprintf ( stderr, "Unsupported parity\n" );
+            return ( FALSE );
+    }
 ​
     switch ( stopbits ) {
         case 1:
