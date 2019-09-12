@@ -33,16 +33,16 @@ fmt.fmt.pix.field = V4L2_FIELD_INTERLACED;
 #define CLEAR(x) memset (&(x), 0, sizeof (x))
 
 typedef enum {
-    IO_METHOD_READ,
-    IO_METHOD_MMAP,
-    IO_METHOD_USERPTR,
+    IO_METHOD_READ,
+    IO_METHOD_MMAP,
+    IO_METHOD_USERPTR,
 } io_method;
 
 struct buffer {
-    void *start;
-    size_t length;
+    void *start;
+    size_t length;
 };
-​
+
 static char *dev_name = NULL;
 static io_method io = IO_METHOD_MMAP;
 static int fd = -1;
@@ -53,47 +53,43 @@ FILE *fp;
 char *filename = "test.yuv\0";
 ​
 static void errno_exit ( const char *s ) {
-    fprintf ( stderr, "%s error %d, %s\n", s, errno, strerror ( errno ) );
-    exit ( EXIT_FAILURE );
+    fprintf ( stderr, "%s error %d, %s\n", s, errno, strerror ( errno ) );
+    exit ( EXIT_FAILURE );
 }
 ​
 static int xioctl ( int fd, int request, void *arg ) {
-    int r;
+    int r;
 ​
-    do {
-        r = ioctl ( fd, request, arg );
-    } while ( -1 == r && EINTR == errno );
+    do {
+        r = ioctl ( fd, request, arg );
+    } while ( -1 == r && EINTR == errno );
 ​
-    return r;
+    return r;
 }
 ​
 static void process_image ( const void *p, int size ) {
-    fwrite ( p, size, 1, fp );
+    fwrite ( p, size, 1, fp );
 }
-​
+
 static int read_frame ( void ) {
-    struct v4l2_buffer buf;
-    unsigned int i;
+    struct v4l2_buffer buf;
+    unsigned int i;
 ​
-    switch ( io ) {
-        case IO_METHOD_READ:
-            if ( -1 == read ( fd, buffers[0].start, buffers[0].length ) ) {
-                switch ( errno ) {
-                    case EAGAIN:
-                        return 0;
+    switch ( io ) {
+        case IO_METHOD_READ:
+            if ( -1 == read ( fd, buffers[0].start, buffers[0].length ) ) {
+                switch ( errno ) {
+                    case EAGAIN: return 0;
+                    case EIO:
+                        /* Could ignore EIO, see spec. */
+                        /* fall through */
+                    default:
+                    errno_exit ( "read" );
+                }
+            }
 ​
-                    case EIO:
-​
-                    /* Could ignore EIO, see spec. */
-                    /* fall through */
-                    default:
-                        errno_exit ( "read" );
-                }
-            }
-​
-            process_image ( buffers[0].start, buffers[0].length );
-            break;
-​
+            process_image ( buffers[0].start, buffers[0].length );
+            break;
         case IO_METHOD_MMAP:
             CLEAR ( buf );
             buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
