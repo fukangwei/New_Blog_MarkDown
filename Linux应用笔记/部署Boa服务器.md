@@ -1,7 +1,7 @@
 ---
 title: 部署Boa服务器
 date: 2019-02-02 17:29:37
-tags:
+categories: Linux应用笔记
 ---
 &emsp;&emsp;部署详细步骤如下：
 &emsp;&emsp;1. 到`http://www.boa.org/`下载`boa-0.94.13.tar.gz`，解压后得到`boa-0.94.13`文件夹。
@@ -13,7 +13,7 @@ tags:
 
 ``` cpp
 if ( setuid ( 0 ) != -1 ) {
-    DIE ( "icky Linux kernel bug!" );
+    DIE ( "icky Linux kernel bug!" );
 }
 ```
 
@@ -71,12 +71,12 @@ ScriptAlias /cgi-bin/ /boa/cgi-bin/
 
 ``` xml
 <html>
-    <body>
-        <h3>this is a test!</h3><br/>
-     <img src="image.jpg"/>
-     <h3>tree picture</h3><br/>
-     <a href="/cgi-bin/test.cgi">to cgi page</a>
-    </body>
+    <body>
+        <h3>this is a test!</h3><br/>
+        <img src="image.jpg"/>
+        <h3>tree picture</h3><br/>
+        <a href="/cgi-bin/test.cgi">to cgi page</a>
+    </body>
 </html>
 ```
 
@@ -86,12 +86,12 @@ ScriptAlias /cgi-bin/ /boa/cgi-bin/
 #include <stdio.h>
 ​
 int main ( void ) {
-    printf ( "Content-type:text/html\n\n" ); /* 这句一定要加上 */
-    printf ( "<html><body>" );
-    printf ( "<font style=\"color:red; font-size:30px;\">Hello, CGI!</font><br/>" );
-    printf ( "<a href=\"/index.html\">return index.html</a>" );
-    printf ( "</body></html>" );
-    return 0;
+    printf ( "Content-type:text/html\n\n" ); /* 这句一定要加上 */
+    printf ( "<html><body>" );
+    printf ( "<font style=\"color:red; font-size:30px;\">Hello, CGI!</font><br/>" );
+    printf ( "<a href=\"/index.html\">return index.html</a>" );
+    printf ( "</body></html>" );
+    return 0;
 }
 ```
 
