@@ -109,12 +109,12 @@ var callback = function (response) { // 处理响应的回调函数
     // 不断更新数据
     var body = '';
     response.on('data', function (data) {
-        body += data;
-    });
+        body += data;
+    });
 ​
-    response.on('end', function () { // 数据接收完成
-        console.log(body);
-    });
+    response.on('end', function () { // 数据接收完成
+        console.log(body);
+    });
 }
 ​
 var req = http.request(options, callback); // 向服务端发送请求
