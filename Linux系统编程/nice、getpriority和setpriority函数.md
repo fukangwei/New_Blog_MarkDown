@@ -1,9 +1,9 @@
 ---
 title: nice、getpriority和setpriority函数
 date: 2019-02-03 17:11:07
-tags:
+categories: Linux系统编程
 ---
-&emsp;&emsp;可以通过改变进程的优先级来保证进程优先运行。在Linux下，通过系统调用nice可以改变进程的优先级。nice系统调用用来改变调用进程的优先级：
+&emsp;&emsp;可以通过改变进程的优先级来保证进程优先运行。在`Linux`下，通过系统调用`nice`可以改变进程的优先级。`nice`系统调用用来改变调用进程的优先级：
 
 ``` cpp
 #include <unistd.h>
@@ -39,8 +39,8 @@ int setpriority ( int which, int who, int prio );
 
 ``` cpp
 int nice ( int increamet ) {
-    int oldpro = getpriority ( PRIO_PROCESS, getpid() );
-    return setpriority ( PRIO_PROCESS, getpid(), oldpro + increament );
+    int oldpro = getpriority ( PRIO_PROCESS, getpid() );
+    return setpriority ( PRIO_PROCESS, getpid(), oldpro + increament );
 }
 ```
 
@@ -55,32 +55,28 @@ int nice ( int increamet ) {
 #include <stdlib.h>
 ​
 int main ( void ) {
-    pid_t pid;
-    int stat_val = 0;
-    int oldpri, newpri;
-    printf ( "nice study\n" );
-    pid = fork();
+    pid_t pid;
+    int stat_val = 0;
+    int oldpri, newpri;
+    printf ( "nice study\n" );
+    pid = fork();
 ​
-    switch ( pid ) {
-        case 0:
-            printf ( "Child is running, Curpid is %d, Parentpid is %d\n", pid, getppid() );
-            oldpri = getpriority ( PRIO_PROCESS, getpid() );
-            printf ( "Old priority = %d\n", oldpri );
-            newpri = nice ( 2 );
-            printf ( "New priority = %d\n", newpri );
-            exit ( 0 );
+    switch ( pid ) {
+        case 0:
+            printf ( "Child is running, Curpid is %d, Parentpid is %d\n", pid, getppid() );
+            oldpri = getpriority ( PRIO_PROCESS, getpid() );
+            printf ( "Old priority = %d\n", oldpri );
+            newpri = nice ( 2 );
+            printf ( "New priority = %d\n", newpri );
+            exit ( 0 );
+        case -1: perror ( "Process creation failed\n" ); break;
+        default:
+            printf ( "Parent is running,Childpid is %d, Parentpid is %d\n", pid, getpid() );
+            break;
+    }
 ​
-        case -1:
-            perror ( "Process creation failed\n" );
-            break;
-​
-        default:
-            printf ( "Parent is running,Childpid is %d, Parentpid is %d\n", pid, getpid() );
-            break;
-    }
-​
-    wait ( &stat_val );
-    exit ( 0 );
+    wait ( &stat_val );
+    exit ( 0 );
 }
 ```
 

@@ -1,9 +1,9 @@
 ---
 title: Linux下创建临时文件
 date: 2018-12-29 16:24:08
-tags:
+categories: Linux系统编程
 ---
-&emsp;&emsp;临时文件是一个暂时用来存储数据的文件。如果使用建立普通文件的方法来创建文件，则可能遇到文件是否存在、是否有文件读写权限的问题。`Linux`系统下提供的建立唯一的临时文件的方法如下所示：
+&emsp;&emsp;临时文件是一个暂时用来存储数据的文件。如果使用建立普通文件的方法来创建文件，则可能遇到文件是否存在、是否有文件读写权限的问题。`Linux`系统下提供的建立唯一的临时文件的方法如下：
 
 ``` c
 #include <stdio.h>
@@ -29,8 +29,7 @@ int main ( void ) {
 ​
     if ( tmpfp ) {
         printf ( "Open a temporary file OK!\n" );
-    }
-    else {
+    } else {
         perror ( "tmpfile\n" );
     }
 ​
@@ -51,6 +50,7 @@ int mkstemp ( char *template );
 ``` c
 char template[L_tmpnam];
 char *filename;
+
 strcpy ( template, "/temp/wypXXXXXX" );
 filename = mktemp ( template );
 printf ( "Temporary file name is %s\n", filename );
