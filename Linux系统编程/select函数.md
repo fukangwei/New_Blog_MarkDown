@@ -38,44 +38,39 @@ int select (
 
 ``` cpp
 int main ( void ) {
-    int sock;
-    FILE *fp;
-    struct fd_set fds;
-    struct timeval timeout = {3, 0}; /* select等待3秒，要非阻塞就置0 */
-    char buffer[256] = {0}; /* 256字节的接收缓冲区 */
-    /* 假定已经建立UDP或TCP连接，主机ip和port都已经给定，要写的文件已经打开。*/
-    sock = socket ( ... );
-    bind ( ... );
-    fp = fopen ( ... );
+    int sock;
+    FILE *fp;
+    struct fd_set fds;
+    struct timeval timeout = {3, 0}; /* select等待3秒，要非阻塞就置0 */
+    char buffer[256] = {0}; /* 256字节的接收缓冲区 */
+    /* 假定已经建立UDP或TCP连接，主机ip和port都已经给定，要写的文件已经打开。*/
+    sock = socket ( ... );
+    bind ( ... );
+    fp = fopen ( ... );
 ​
-    while ( 1 ) {
-        FD_ZERO ( &fds ); /* 每次循环都要清空集合，否则不能检测描述符变化 */
-        FD_SET ( sock, &fds ); /* 添加描述符 */
-        FD_SET ( fp, &fds ); /* 同上 */
-        maxfdp = sock > fp ? sock + 1 : fp + 1; /* 描述符最大值加1 */
+    while ( 1 ) {
+        FD_ZERO ( &fds ); /* 每次循环都要清空集合，否则不能检测描述符变化 */
+        FD_SET ( sock, &fds ); /* 添加描述符 */
+        FD_SET ( fp, &fds ); /* 同上 */
+        maxfdp = sock > fp ? sock + 1 : fp + 1; /* 描述符最大值加1 */
 ​
-        switch ( select ( maxfdp, &fds, &fds, NULL, &timeout ) ) { /* select使用 */
-            case -1:
-                exit ( -1 ); /* select错误，退出程序 */
-                break;
+        switch ( select ( maxfdp, &fds, &fds, NULL, &timeout ) ) { /* select使用 */
+            case -1: exit ( -1 ); /* select错误，退出程序 */ break;
+            case  0: break; /* 再次轮询 */
+            default:
+                if ( FD_ISSET ( sock, &fds ) ) { /* 测试sock是否可读，即是否网络上有数据 */
+                    recvfrom ( sock, buffer, 256, ... ); /* 接受网络数据 */
 ​
-            case 0:
-                break; /* 再次轮询 */
+                    if ( FD_ISSET ( fp, &fds ) ) { /* 测试文件是否可写 */
+                        fwrite ( fp, buffer, ... ); /* 写入文件 */
+                    }
 ​
-            default:
-                if ( FD_ISSET ( sock, &fds ) ) { /* 测试sock是否可读，即是否网络上有数据 */
-                    recvfrom ( sock, buffer, 256, ... ); /* 接受网络数据 */
+                    buffer清空;
+                }
 ​
-                    if ( FD_ISSET ( fp, &fds ) ) { /* 测试文件是否可写 */
-                        fwrite ( fp, buffer, ... ); /* 写入文件 */
-                    }
-​
-                    buffer清空;
-                }
-​
-                break;
-        }
-    }
+                break;
+        }
+    }
 }
 ```
 
@@ -97,18 +92,18 @@ int select (
 `select`用来等待文件描述词状态的改变。参数`n`代表最大的文件描述词加`1`，参数`readfds`、`writefds`和`exceptfds`称为描述词组，是用来回传该描述词的读、写或例外的状况。下面的宏提供了处理这三种描述词组的方式：
 
 ``` cpp
-FD_CLR ( inr fd, fd_set *set ); /* 用来清除描述词组set中相关fd的位 */
+FD_CLR ( inr fd, fd_set *set );   /* 用来清除描述词组set中相关fd的位        */
 FD_ISSET ( int fd, fd_set *set ); /* 用来测试描述词组set中相关fd的位是否为真 */
-FD_SET ( int fd, fd_set *set ); /* 用来设置描述词组set中相关fd的位 */
-FD_ZERO ( fd_set *set ); /* 用来清除描述词组set的全部位 */
+FD_SET ( int fd, fd_set *set );   /* 用来设置描述词组set中相关fd的位        */
+FD_ZERO ( fd_set *set );          /* 用来清除描述词组set的全部位            */
 ```
 
 参数`timeout`为结构`timeval`，用来设置`select`的等待时间：
 
 ``` cpp
 struct timeval {
-    time_t tv_sec;
-    time_t tv_usec;
+    time_t tv_sec;
+    time_t tv_usec;
 };
 ```
 
@@ -146,15 +141,15 @@ if ( FD_ISSET ( fd, readset ) {
 #include <assert.h>
 ​
 int main ( void ) {
-    int keyboard;
-    int ret, i;
-    char c;
-    fd_set readfd;
-    struct timeval timeout;
-    keyboard = open ( "/dev/tty", O_RDONLY | O_NONBLOCK );
-    assert ( keyboard > 0 );
+    int keyboard;
+    int ret, i;
+    char c;
+    fd_set readfd;
+    struct timeval timeout;
+    keyboard = open ( "/dev/tty", O_RDONLY | O_NONBLOCK );
+    assert ( keyboard > 0 );
 ​
-    while ( 1 ) {
+    while ( 1 ) {
         timeout.tv_sec = 1;
         timeout.tv_usec = 0;
         FD_ZERO ( &readfd );
