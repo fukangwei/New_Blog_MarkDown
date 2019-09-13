@@ -183,40 +183,40 @@ int main ( void ) {
 #include <assert.h>
 ​
 int main() {
-    int keyboard;
-    int ret, i;
-    char c;
-    fd_set readfd;
-    struct timeval timeout;
-    keyboard = open ( "/dev/tty", O_RDONLY | O_NONBLOCK );
-    assert ( keyboard > 0 );
+    int keyboard;
+    int ret, i;
+    char c;
+    fd_set readfd;
+    struct timeval timeout;
+    keyboard = open ( "/dev/tty", O_RDONLY | O_NONBLOCK );
+    assert ( keyboard > 0 );
 ​
-    while ( 1 ) {
-        timeout.tv_sec = 5;
-        timeout.tv_usec = 0;
-        FD_ZERO ( &readfd );
-        FD_SET ( keyboard, &readfd );
-        ret = select ( keyboard + 1, &readfd, NULL, NULL, &timeout );
+    while ( 1 ) {
+        timeout.tv_sec = 5;
+        timeout.tv_usec = 0;
+        FD_ZERO ( &readfd );
+        FD_SET ( keyboard, &readfd );
+        ret = select ( keyboard + 1, &readfd, NULL, NULL, &timeout );
 ​
-        if ( ret == -1 ) { /* select error when ret = -1 */
-            perror ( "select error" );
-        } else if ( ret ) { /* data coming when ret > 0 */
-            if ( FD_ISSET ( keyboard, &readfd ) ) {
-                i = read ( keyboard, &c, 1 );
+        if ( ret == -1 ) { /* select error when ret = -1 */
+            perror ( "select error" );
+        } else if ( ret ) { /* data coming when ret > 0 */
+            if ( FD_ISSET ( keyboard, &readfd ) ) {
+                i = read ( keyboard, &c, 1 );
 ​
-                if ( '\n' == c ) {
-                    continue;
-                }
+                if ( '\n' == c ) {
+                    continue;
+                }
 ​
-                printf ( "hehethe input is %c\n", c );
+                printf ( "hehethe input is %c\n", c );
 ​
-                if ( 'q' == c ) {
-                    break;
-                }
-            }
-        } else if ( ret == 0 ) { /* time out when ret = 0 */
-            printf ( "time out\n" );
-        }
-    }
+                if ( 'q' == c ) {
+                    break;
+                }
+            }
+        } else if ( ret == 0 ) { /* time out when ret = 0 */
+            printf ( "time out\n" );
+        }
+    }
 }
 ```
