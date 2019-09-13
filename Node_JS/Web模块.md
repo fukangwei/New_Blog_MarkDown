@@ -65,20 +65,14 @@ console.log('Server running at http://127.0.0.1:8080/');
 
 ``` html
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>
-            菜鸟教程(runoob.com)
-        </title>
-    </head>
-    <body>
-        <h1>
-            我的第一个标题
-        </h1>
-        <p>
-            我的第一个段落。
-        </p>
-    </body>
+    <head>
+        <meta charset="utf-8">
+        <title>菜鸟教程(runoob.com)</title>
+    </head>
+    <body>
+        <h1>我的第一个标题</h1>
+        <p>我的第一个段落。</p>
+    </body>
 </html>
 ```
 
@@ -106,15 +100,15 @@ Request for /index.html received.
 var http = require('http');
 ​
 var options = { // 用于请求的选项
-    host: 'localhost',
-    port: '8080',
-    path: '/index.html'
+    host: 'localhost',
+    port: '8080',
+    path: '/index.html'
 };
 ​
 var callback = function (response) { // 处理响应的回调函数
-    // 不断更新数据
-    var body = '';
-    response.on('data', function (data) {
+    // 不断更新数据
+    var body = '';
+    response.on('data', function (data) {
         body += data;
     });
 ​
