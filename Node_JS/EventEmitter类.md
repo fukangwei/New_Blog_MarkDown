@@ -1,7 +1,7 @@
 ---
 title: EventEmitter类
 date: 2019-02-08 16:21:34
-tags:
+categories: Node.js笔记
 ---
 &emsp;&emsp;`Node.js`所有的异步`I/O`操作在完成时，都会发送一个事件到事件队列。`Node.js`里面的许多对象都会分发事件：一个`net.Server`对象会在每次有新连接时触发一个事件，一个`fs.readStream`对象会在文件被打开的时候触发一个事件。所有这些产生事件的对象都是`events.EventEmitter`的实例。
 
@@ -22,11 +22,11 @@ var EventEmitter = require('events').EventEmitter;
 var event = new EventEmitter();
 ​
 event.on('some_event', function() {
-    console.log('some_event事件触发');
+    console.log('some_event事件触发');
 });
 ​
 setTimeout(function() {
-    event.emit('some_event');
+    event.emit('some_event');
 }, 1000);
 ```
 
@@ -39,11 +39,11 @@ var events = require('events');
 var emitter = new events.EventEmitter();
 ​
 emitter.on('someEvent', function(arg1, arg2) {
-    console.log('listener1', arg1, arg2);
+    console.log('listener1', arg1, arg2);
 });
 ​
 emitter.on('someEvent', function(arg1, arg2) {
-    console.log('listener2', arg1, arg2);
+    console.log('listener2', arg1, arg2);
 });
 ​
 emitter.emit('someEvent', 'arg1参数', 'arg2参数');
@@ -59,37 +59,28 @@ listener2 arg1参数 arg2参数
 以上例子中，`emitter`为事件`someEvent`注册了两个事件监听器，然后触发了`someEvent`事件。从运行结果可以看到，两个事件监听器回调函数被先后调用。这就是`EventEmitter`最简单的用法。
 &emsp;&emsp;`EventEmitter`提供了多个属性，例如`on`和`emit`。`on`函数用于绑定事件函数，`emit`属性用于触发一个事件。
 
-### addListener(event, listener)
-
-&emsp;&emsp;为指定事件添加一个监听器到监听器数组的尾部。`eventEmitter.on`与`eventEmitter.addListener`没有区别，且一个事件可以绑定多个回调函数。
-
-### on(event, listener)
-
-&emsp;&emsp;为指定事件注册一个监听器，接受一个字符串`event`和一个回调函数：
+- `addListener(event, listener)`：为指定事件添加一个监听器到监听器数组的尾部。`eventEmitter.on`与`eventEmitter.addListener`没有区别，且一个事件可以绑定多个回调函数。
+- `on(event, listener)`：为指定事件注册一个监听器，接受一个字符串`event`和一个回调函数：
 
 ``` javascript
 server.on('connection', function (stream) {
-    console.log('someone connected!');
+    console.log('someone connected!');
 });
 ```
 
-### once(event, listener)
-
-&emsp;&emsp;为指定事件注册一个单次监听器，即监听器最多只会触发一次，触发后立刻解除该监听器：
+- `once(event, listener)`：为指定事件注册一个单次监听器，即监听器最多只会触发一次，触发后立刻解除该监听器：
 
 ``` javascript
 server.once('connection', function (stream) {
-    console.log('Ah, we have our first user!');
+    console.log('Ah, we have our first user!');
 });
 ```
 
-### removeListener(event, listener)
-
-&emsp;&emsp;移除指定事件的某个监听器，监听器必须是该事件已经注册过的监听器。它接受两个参数，第一个是事件名称，第二个是回调函数名称。
+- `removeListener(event, listener)`：移除指定事件的某个监听器，监听器必须是该事件已经注册过的监听器。它接受两个参数，第一个是事件名称，第二个是回调函数名称。
 
 ``` javascript
 var callback = function(stream) {
-    console.log('someone connected!');
+    console.log('someone connected!');
 };
 ​
 server.on('connection', callback);
@@ -97,23 +88,13 @@ server.on('connection', callback);
 server.removeListener('connection', callback);
 ```
 
-### removeAllListeners([event])
-
-&emsp;&emsp;移除所有事件的所有监听器，如果指定事件，则移除指定事件的所有监听器。
-
-### setMaxListeners(n)
-
-&emsp;&emsp;默认情况下，对于`EventEmitters`，如果你添加的监听器超过`10`个就会输出警告信息。`setMaxListeners`函数用于提高监听器的默认限制的数量。
-
-### listeners(event)
-
-&emsp;&emsp;返回指定事件的监听器数组。
+- `removeAllListeners([event])`：移除所有事件的所有监听器，如果指定事件，则移除指定事件的所有监听器。
+- `setMaxListeners(n)`：默认情况下，对于`EventEmitters`，如果你添加的监听器超过`10`个就会输出警告信息。`setMaxListeners`函数用于提高监听器的默认限制的数量。
+- `listeners(event)`：返回指定事件的监听器数组。按参数的顺序执行每个监听器，如果事件有注册监听返回`true`，否则返回`false`。
 
 ``` javascript
-emit(event[, arg1][, arg2][, ...])
+emit(event [, arg1] [, arg2] [, ...])
 ```
-
-&emsp;&emsp;按参数的顺序执行每个监听器，如果事件有注册监听返回`true`，否则返回`false`。
 
 ### listenerCount(emitter, event)
 
