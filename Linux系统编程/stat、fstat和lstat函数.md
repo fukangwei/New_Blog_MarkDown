@@ -29,19 +29,19 @@ int lstat ( const char *filename, struct stat *buf );
 
 ``` cpp
 struct stat {
-    mode st_mode;    /* 文件类型和文件权限 */
-    ino st_ino;      /* inode节点号 */
-    dev st_dev;      /* 设备号(文件系统) */
-    dev st_rdev;     /* 特殊文件的设备号 */
-    nlink st_nlink;  /* 硬连接数 */
-    uid st_uid;      /* 属主的用户ID */
-    gid st_gid;      /* 属主的组ID */
-    off st_size;     /* 普通文件的字节长度 */
-    time st_atime;   /* 最后存取时间 */
-    time st_mtime;   /* 最后修改存取时间 */
-    time st_ctime;   /* 最后文件状态更改时间 */
-    long st_blksize; /* 最佳I/O块长 */
-    long st_blocks;  /* 分配的512字节块块数 */
+    mode st_mode;    /* 文件类型和文件权限   */
+    ino st_ino;      /* inode节点号         */
+    dev st_dev;      /* 设备号(文件系统)     */
+    dev st_rdev;     /* 特殊文件的设备号     */
+    nlink st_nlink;  /* 硬连接数            */
+    uid st_uid;      /* 属主的用户ID        */
+    gid st_gid;      /* 属主的组ID          */
+    off st_size;     /* 普通文件的字节长度   */
+    time st_atime;   /* 最后存取时间        */
+    time st_mtime;   /* 最后修改存取时间     */
+    time st_ctime;   /* 最后文件状态更改时间 */
+    long st_blksize; /* 最佳I/O块长         */
+    long st_blocks;  /* 分配的512字节块块数  */
 };
 ```
 
@@ -53,9 +53,9 @@ struct stat {
 #include "stdio.h"
 ​
 int main() {
-    struct stat buf;
-    stat ( "/etc/passwd", &buf );
-    printf ( "/etc/passwd file size = %ld\n", buf.st_size );
+    struct stat buf;
+    stat ( "/etc/passwd", &buf );
+    printf ( "/etc/passwd file size = %ld\n", buf.st_size );
 }
 ```
 
