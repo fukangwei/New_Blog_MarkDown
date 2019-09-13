@@ -1,7 +1,7 @@
 ---
 title: setsockopt函数
 date: 2018-12-29 14:46:55
-tags:
+categories: Linux系统编程
 ---
 &emsp;&emsp;当客户端保持着与服务器端的连接，这时服务器端断开，再开启服务器时会出现`Address already in use`，可以用`netstat -anp | more`看到客户端还保持着与服务器的连接(还在使用服务器`bind`的端口)。这是由于`client`没有执行`close`，连接还会等待`client`的`FIN`包一段时间。
 &emsp;&emsp;解决方法是使用`setsockopt`，使得`socket`可以被重用，它是最常用的服务器编程要点。具体的做法为，在`socket`调用和`bind`调用之间加上一段对`socket`设置的代码：
@@ -11,7 +11,7 @@ int opt = 1;
 setsockopt ( socket_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof ( opt ) );
 ```
 
-其函数原型如下所示：
+其函数原型如下：
 
 ``` c
 #include <sys/types.h>
@@ -33,7 +33,7 @@ int setsockopt ( int s, int level, int optname, const void *optval, socklen_topt
 - `SO_OOBINLINE`：当接收到`OOB`数据时会马上送至标准输入设备。
 - `SO_LINGER`：确保数据安全且可靠的传送出去。
 
-`optval`代表欲设置的值，`optlen`则为`optval`的长度。函数执行成功则返回`0`，若有错误则返回`-1`，错误原因存于`errno`，如下说明：
+`optval`代表欲设置的值，`optlen`则为`optval`的长度。函数执行成功则返回`0`，若有错误则返回`-1`，错误原因存于`errno`：
 
 - `EBADF`：参数`s`并非合法的`socket`处理代码。
 - `ENOTSOCK`：参数`s`为一文件描述词，非`socket`。
