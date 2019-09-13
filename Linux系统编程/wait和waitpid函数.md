@@ -1,7 +1,7 @@
 ---
 title: wait和waitpid函数
 date: 2019-02-03 15:08:47
-tags:
+categories: Linux系统编程
 ---
 &emsp;&emsp;`wait`函数原型如下：
 
@@ -33,12 +33,10 @@ int main ( void ) {
 ​
     if ( pc < 0 ) { /* 如果出错 */
         printf ( "error ocurred!/n" );
-    }
-    else if ( pc == 0 ) { /* 如果是子进程 */
+    } else if ( pc == 0 ) { /* 如果是子进程 */
         printf ( "This is child process with pid of %d/n", getpid() );
         sleep ( 10 ); /* 睡眠10秒钟 */
-    }
-    else { /* 如果是父进程 */
+    } else { /* 如果是父进程 */
         pr = wait ( NULL ); /* 在这里等待 */
         printf ( "I catched a child process with pid of %d/n" ), pr );
     }
@@ -76,19 +74,16 @@ int main ( void ) {
 ​
     if ( pc < 0 ) { /* 如果出错 */
         printf ( "error ocurred!/n" );
-    }
-    else if ( pc == 0 ) { /* 子进程 */
+    } else if ( pc == 0 ) { /* 子进程 */
         printf ( "This is child process with pid of %d./n", getpid() );
         exit ( 3 ); /* 子进程返回3 */
-    }
-    else { /* 父进程 */
+    } else { /* 父进程 */
         pr = wait ( &status );
 ​
         if ( WIFEXITED ( status ) ) { /* 如果WIFEXITED返回非零值 */
             printf ( "the child process %d exit normally./n", pr );
             printf ( "the return code is %d./n", WEXITSTATUS ( status ) );
-        }
-        else { /* 如果WIFEXITED返回零 */
+        } else { /* 如果WIFEXITED返回零 */
             printf ( "the child process %d exit abnormally./n", pr );
         }
     }
@@ -119,13 +114,9 @@ int main ( void ) {
 ​
     if ( pc < 0 ) {
         printf ( "Error occured on forking./n" );
-    }
-    else if ( pc == 0 ) {
-        /* 子进程的工作 */
+    } else if ( pc == 0 ) { /* 子进程的工作 */
         exit ( 0 );
-    }
-    else {
-        /* 父进程的工作 */
+    } else { /* 父进程的工作 */
         pr = wait ( &status );
         /* 利用子进程的结果 */
     }
@@ -192,8 +183,7 @@ int main ( void ) {
 ​
     if ( pc < 0 ) { /* 如果fork出错 */
         printf ( "Error occured on forking./n" );
-    }
-    else if ( pc == 0 ) { /* 如果是子进程 */
+    } else if ( pc == 0 ) { /* 如果是子进程 */
         sleep ( 10 ); /* 睡眠10秒 */
         exit ( 0 );
     }
@@ -210,8 +200,7 @@ int main ( void ) {
 ​
     if ( pr == pc ) {
         printf ( "successfully get child %d/n", pr );
-    }
-    else {
+    } else {
         printf ( "some error occured/n" );
     }
 }
