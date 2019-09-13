@@ -268,7 +268,7 @@ console.log(buf); // 输出“<Buffer 12 34 56 78 90 ab>”
 - `buf[index]`：获取或设置指定的字节。返回值代表一个字节，所以返回值的合法范围是十六进制`0x00`到`0xFF`，或者十进制`0`至`255`。
 - `buf.equals(otherBuffer)`：比较两个缓冲区是否相等，如果是返回`true`，否则返回`false`。
 - `buf.compare(otherBuffer)`：比较两个`Buffer`对象，返回一个数字，表示`buf`在`otherBuffer`之前、之后或相同。
-- `buf.copy(targetBuffer[, targetStart [, sourceStart [, sourceEnd]]])`：`buffer`拷贝，源和目标可以相同。`targetStart`目标开始偏移和`sourceStart`源开始偏移默认都是`0`。`sourceEnd`源结束位置偏移默认是源的长度`buffer.length`。
+- `buf.copy(targetBuffer [, targetStart [, sourceStart [, sourceEnd]]])`：`buffer`拷贝，源和目标可以相同。`targetStart`目标开始偏移和`sourceStart`源开始偏移默认都是`0`。`sourceEnd`源结束位置偏移默认是源的长度`buffer.length`。
 - `buf.slice([start [, end]])`：剪切`Buffer`对象，根据`start`(默认是`0`)和`end`(默认是`buffer.length`)裁剪了索引。负的索引是从`buffer`尾部开始计算的。
 - `buf.readUInt8(offset [, noAssert])`：根据指定的偏移量，读取一个无符号`8`位整数。
 - `buf.readUInt16LE(offset [, noAssert])`：根据指定的偏移量，使用特殊的`endian`字节序格式读取一个无符号`16`位整数。
