@@ -529,29 +529,29 @@ int main() {
 &emsp;&emsp;键盘上的方向键、功能键及数字小键盘等按键会发送以`escape`字符开头的字符串序列。`curses`函数库提供了一个用于管理功能键的功能。头文件`curses.h`通过一组以`KEY_`为前缀的定义来管理逻辑键。`Keypad`模式是指按键转义序列，此时读键盘操作不仅能够返回用户按下的键，还将返回与逻辑按键对应的`KEY_`定义(在`curses.h`头文件中定义)。
 
 ``` cpp
-#define KEY_CODE_YES    0400         /* A wchar_t contains a key code */
-#define KEY_MIN         0401         /* Minimum curses key */
-#define KEY_BREAK       0401         /* Break key (unreliable) */
-#define KEY_SRESET      0530         /* Soft (partial) reset(unreliable) */
-#define KEY_RESET       0531         /* Reset or hard reset(unreliable)*/
-#define KEY_DOWN        0402         /* down-arrow key */
-#define KEY_UP          0403         /* up-arrow key */
-#define KEY_LEFT        0404         /* left-arrow key */
-#define KEY_RIGHT       0405         /* right-arrow key */
-#define KEY_HOME        0406         /* home key */
-#define KEY_BACKSPACE   0407         /* backspace key */
-#define KEY_F0          0410         /* Function keys.  Space for 64 */
-#define KEY_F(n)        (KEY_F0+(n)) /* Value of function key n */
-#define KEY_DL          0510         /* delete-line key */
-#define KEY_IL          0511         /* insert-line key */
-#define KEY_DC          0512         /* delete-character key */
-#define KEY_IC          0513         /* insert-character key */
-#define KEY_EIC         0514         /* sent by rmir or smir in insertmode */
-#define KEY_CLEAR       0515         /* clear-screen or erase key */
-#define KEY_EOS         0516         /* clear-to-end-of-screen key */
-#define KEY_EOL         0517         /* clear-to-end-of-line key */
-#define KEY_SF          0520         /* scroll-forward key */
-#define KEY_SR          0521         /* scroll-backward key */
+#define KEY_CODE_YES    0400         /* A wchar_t contains a key code */
+#define KEY_MIN         0401         /* Minimum curses key */
+#define KEY_BREAK       0401         /* Break key (unreliable) */
+#define KEY_SRESET      0530         /* Soft (partial) reset(unreliable) */
+#define KEY_RESET       0531         /* Reset or hard reset(unreliable)*/
+#define KEY_DOWN        0402         /* down-arrow key */
+#define KEY_UP          0403         /* up-arrow key */
+#define KEY_LEFT        0404         /* left-arrow key */
+#define KEY_RIGHT       0405         /* right-arrow key */
+#define KEY_HOME        0406         /* home key */
+#define KEY_BACKSPACE   0407         /* backspace key */
+#define KEY_F0          0410         /* Function keys.  Space for 64 */
+#define KEY_F(n)        (KEY_F0 + (n)) /* Value of function key n */
+#define KEY_DL          0510         /* delete-line key */
+#define KEY_IL          0511         /* insert-line key */
+#define KEY_DC          0512         /* delete-character key */
+#define KEY_IC          0513         /* insert-character key */
+#define KEY_EIC         0514         /* sent by rmir or smir in insertmode */
+#define KEY_CLEAR       0515         /* clear-screen or erase key */
+#define KEY_EOS         0516         /* clear-to-end-of-screen key */
+#define KEY_EOL         0517         /* clear-to-end-of-line key */
+#define KEY_SF          0520         /* scroll-forward key */
+#define KEY_SR          0521         /* scroll-backward key */
 #define KEY_NPAGE       0522         /* next-page key */
 #define KEY_PPAGE       0523         /* previous-page key */
 #define KEY_STAB        0524         /* set-tab key */
