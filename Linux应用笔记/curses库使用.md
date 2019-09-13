@@ -674,45 +674,45 @@ int pair_content ( short pair_number, short *foreground, short *background ); /*
 #include <curses.h>
 ​
 int main() {
-    int i;
-    initscr();
+    int i;
+    initscr();
 ​
-    if ( !has_colors() ) {
-        endwin();
-        fprintf ( stderr, "Error - no color support on this terminal\n" );
-        exit ( 1 );
-    }
+    if ( !has_colors() ) {
+        endwin();
+        fprintf ( stderr, "Error - no color support on this terminal\n" );
+        exit ( 1 );
+    }
 ​
-    if ( start_color() != OK ) {
-        endwin();
-        fprintf ( stderr, "Error - could not initialize colors\n" );
-        exit ( 2 );
-    }
+    if ( start_color() != OK ) {
+        endwin();
+        fprintf ( stderr, "Error - could not initialize colors\n" );
+        exit ( 2 );
+    }
 ​
-    clear();
-    mvprintw ( 5, 5, "There are %d COLORS, and %d COLOR_PAIRS available",
-               COLORS, COLOR_PAIRS );
-    refresh();
-    init_pair ( 1, COLOR_RED, COLOR_BLACK );
-    init_pair ( 2, COLOR_RED, COLOR_GREEN );
-    init_pair ( 3, COLOR_GREEN, COLOR_RED );
-    init_pair ( 4, COLOR_YELLOW, COLOR_BLUE );
-    init_pair ( 5, COLOR_BLACK, COLOR_WHITE );
-    init_pair ( 6, COLOR_MAGENTA, COLOR_BLUE );
-    init_pair ( 7, COLOR_CYAN, COLOR_WHITE );
+    clear();
+    mvprintw ( 5, 5, "There are %d COLORS, and %d COLOR_PAIRS available", \
+               COLORS, COLOR_PAIRS );
+    refresh();
+    init_pair ( 1, COLOR_RED, COLOR_BLACK );
+    init_pair ( 2, COLOR_RED, COLOR_GREEN );
+    init_pair ( 3, COLOR_GREEN, COLOR_RED );
+    init_pair ( 4, COLOR_YELLOW, COLOR_BLUE );
+    init_pair ( 5, COLOR_BLACK, COLOR_WHITE );
+    init_pair ( 6, COLOR_MAGENTA, COLOR_BLUE );
+    init_pair ( 7, COLOR_CYAN, COLOR_WHITE );
 ​
-    for ( i = 1; i <= 7; i++ ) {
-        attroff ( A_BOLD );
-        attrset ( COLOR_PAIR ( i ) );
-        mvprintw ( 5 + i, 5, "Color pair %d", i );
-        attrset ( COLOR_PAIR ( i ) | A_BOLD );
-        mvprintw ( 5 + i, 25, "Bold color pair %d", i );
-        refresh();
-        sleep ( 1 );
-    }
+    for ( i = 1; i <= 7; i++ ) {
+        attroff ( A_BOLD );
+        attrset ( COLOR_PAIR ( i ) );
+        mvprintw ( 5 + i, 5, "Color pair %d", i );
+        attrset ( COLOR_PAIR ( i ) | A_BOLD );
+        mvprintw ( 5 + i, 25, "Bold color pair %d", i );
+        refresh();
+        sleep ( 1 );
+    }
 ​
-    endwin();
-    exit ( EXIT_SUCCESS );
+    endwin();
+    exit ( EXIT_SUCCESS );
 }
 ```
 
@@ -738,13 +738,13 @@ int delwin ( WINDOW  *window_to_delete );
 #include <curses.h>
 ​
 int prefresh (
-    *WINDOW *pad_ptr,
-    int pad_row,
-    int pad_column,
-    int screen_row_min,
-    int screen_col_min,
-    int screen_row_max,
-    int screen_col_max
+    *WINDOW *pad_ptr,
+    int pad_row,
+    int pad_column,
+    int screen_row_min,
+    int screen_col_min,
+    int screen_row_max,
+    int screen_col_max
 );
 ```
 
