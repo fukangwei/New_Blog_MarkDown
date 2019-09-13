@@ -1,7 +1,7 @@
 ---
 title: curses库使用
 date: 2019-02-25 14:02:21
-tags:
+categories: Linux应用笔记
 ---
 ### curses术语和概念
 
@@ -18,13 +18,13 @@ tags:
 #include <ncurses.h>
 ​
 int main() {
-    initscr();
-    move ( 5, 15 );
-    printw ( "%s", "Hello World" );
-    refresh();
-    sleep ( 2 );
-    endwin();
-    exit ( EXIT_SUCCESS );
+    initscr();
+    move ( 5, 15 );
+    printw ( "%s", "Hello World" );
+    refresh();
+    sleep ( 2 );
+    endwin();
+    exit ( EXIT_SUCCESS );
 }
 ```
 
@@ -127,55 +127,55 @@ int standout ( void ); /* 提供了一种强调或“突出”模式，在大多
 #include <curses.h>
 ​
 int main() {
-    const char witch_one[] = " First Witch  ";
-    const char witch_two[] = " Second Witch  ";
-    const char *scan_ptr;
-    initscr();
-    move ( 5, 15 );
-    attron ( A_BOLD );
-    printw ( "%s", "Macbeth" );
-    attroff ( A_BOLD );
-    refresh();
-    sleep ( 1 );
-    move ( 8, 15 );
-    attron ( A_STANDOUT );
-    printw ( "%s", "Thunder and Lightning" );
-    attroff ( A_STANDOUT );
-    refresh();
-    sleep ( 1 );
-    move ( 10, 10 );
-    printw ( "%s", "When shall we three meet again" );
-    move ( 11, 23 );
-    printw ( "%s", "In thunder, lightning, or in rain?" );
-    move ( 13, 10 );
-    printw ( "%s", "When the hurlyburly's done," );
-    move ( 14, 23 );
-    printw ( "%s", "When the battle's lost and won." );
-    refresh();
-    sleep ( 1 );
-    attron ( A_DIM );
-    scan_ptr = witch_one + strlen ( witch_one ) - 1;
+    const char witch_one[] = " First Witch  ";
+    const char witch_two[] = " Second Witch  ";
+    const char *scan_ptr;
+    initscr();
+    move ( 5, 15 );
+    attron ( A_BOLD );
+    printw ( "%s", "Macbeth" );
+    attroff ( A_BOLD );
+    refresh();
+    sleep ( 1 );
+    move ( 8, 15 );
+    attron ( A_STANDOUT );
+    printw ( "%s", "Thunder and Lightning" );
+    attroff ( A_STANDOUT );
+    refresh();
+    sleep ( 1 );
+    move ( 10, 10 );
+    printw ( "%s", "When shall we three meet again" );
+    move ( 11, 23 );
+    printw ( "%s", "In thunder, lightning, or in rain?" );
+    move ( 13, 10 );
+    printw ( "%s", "When the hurlyburly's done," );
+    move ( 14, 23 );
+    printw ( "%s", "When the battle's lost and won." );
+    refresh();
+    sleep ( 1 );
+    attron ( A_DIM );
+    scan_ptr = witch_one + strlen ( witch_one ) - 1;
 ​
-    while ( scan_ptr != witch_one ) {
-        move ( 10, 10 );
-        insch ( *scan_ptr-- );
-    }
+    while ( scan_ptr != witch_one ) {
+        move ( 10, 10 );
+        insch ( *scan_ptr-- );
+    }
 ​
-    scan_ptr = witch_two + strlen ( witch_two ) - 1;
+    scan_ptr = witch_two + strlen ( witch_two ) - 1;
 ​
-    while ( scan_ptr != witch_two ) {
-        move ( 13, 10 );
-        insch ( *scan_ptr-- );
-    }
+    while ( scan_ptr != witch_two ) {
+        move ( 13, 10 );
+        insch ( *scan_ptr-- );
+    }
 ​
-    attroff ( A_DIM );
-    refresh();
-    sleep ( 1 );
-    move ( LINES - 1, COLS - 1 );
-    refresh();
-    sleep ( 1 );
-    endwin();
-    exit ( EXIT_SUCCESS );
+    attroff ( A_DIM );
+    refresh();
+    sleep ( 1 );
+    move ( LINES - 1, COLS - 1 );
+    refresh();
+    sleep ( 1 );
+    endwin();
+    exit ( EXIT_SUCCESS );
 }
 ```
 
@@ -187,7 +187,6 @@ int main() {
 
 ``` cpp
 #include <curses.h>
-
 int echo ( void );
 int noecho ( void );
 ```
@@ -217,7 +216,6 @@ int noraw ( void );
 
 ``` cpp
 #include <curses.h>
-
 int getch ( void );
 int getstr ( char *string );
 int getnstr ( char *string, int number_of_characters );
@@ -236,10 +234,11 @@ int scanw ( char *format, ... );
 #define NAME_LEN 256
 ​
 int main() {
-    char name[NAME_LEN];
-    char password[PW_LEN];
-    const char *real_password = "xyzzy";
-    int i = 0;
+    char name[NAME_LEN];
+    char password[PW_LEN];
+    const char *real_password = "xyzzy";
+    int i = 0;
+
     initscr();
     move ( 5, 10 );
     printw ( "%s", "Please login:" );
@@ -761,6 +760,7 @@ int main() {
     int pad_lines;
     int pad_cols;
     char disp_char;
+
     initscr();
     /* 定义长度和宽度，大于屏幕 */
     pad_lines = LINES + 50;
