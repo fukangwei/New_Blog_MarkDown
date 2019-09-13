@@ -359,18 +359,19 @@ int scroll ( WINDOW *window_ptr );
 #include <curses.h>
 ​
 int main() {
-    WINDOW *new_window_ptr;
-    WINDOW *popup_window_ptr;
-    int x_loop;
-    int y_loop;
-    char a_letter = 'a';
-    initscr();
-    move ( 5, 5 );
-    printw ( "%s", "Testing multiple windows" );
-    refresh();
-    sleep ( 2 );
+    WINDOW *new_window_ptr;
+    WINDOW *popup_window_ptr;
+    int x_loop;
+    int y_loop;
+    char a_letter = 'a';
+
+    initscr();
+    move ( 5, 5 );
+    printw ( "%s", "Testing multiple windows" );
+    refresh();
+    sleep ( 2 );
 ​
-    for ( x_loop = 0; x_loop < COLS - 1; x_loop++ ) { /* COLS指现在屏幕列数 */
+    for ( x_loop = 0; x_loop < COLS - 1; x_loop++ ) { /* COLS指现在屏幕列数 */
         for ( y_loop = 0; y_loop < LINES - 1; y_loop++ ) { /* LINES指现在屏幕行数 */
             mvwaddch ( stdscr, y_loop, x_loop, a_letter );
             a_letter++;
@@ -379,7 +380,7 @@ int main() {
                 a_letter = 'a';
             }
         }
-    }
+    }
 ​
     refresh();
     sleep ( 5 );
