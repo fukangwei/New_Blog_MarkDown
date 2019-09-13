@@ -587,29 +587,29 @@ int main() {
 #define KEY_REFERENCE   0564           /* reference key                      */
 #define KEY_REFRESH     0565           /* refresh key                        */
 #define KEY_REPLACE     0566           /* replace key                        */
-#define KEY_RESTART     0567           /* restart key */
-#define KEY_RESUME      0570           /* resume key */
-#define KEY_SAVE        0571           /* save key */
-#define KEY_SBEG        0572           /* shifted begin key */
-#define KEY_SCANCEL     0573           /* shifted cancel key */
-#define KEY_SCOMMAND    0574           /* shifted command key */
-#define KEY_SCOPY       0575           /* shifted copy key */
-#define KEY_SCREATE     0576           /* shifted create key */
-#define KEY_SDC         0577           /* shifted delete-character key */
-#define KEY_SDL         0600           /* shifted delete-line key */
-#define KEY_SELECT      0601           /* select key */
-#define KEY_SEND        0602           /* shifted end key */
-#define KEY_SEOL        0603           /* shifted clear-to-end-of-linekey*/
-#define KEY_SEXIT       0604           /* shifted exit key */
-#define KEY_SFIND       0605           /* shifted find key */
-#define KEY_SHELP       0606           /* shifted help key */
-#define KEY_SHOME       0607           /* shifted home key */
-#define KEY_SIC         0610           /* shifted insert-character key */
-#define KEY_SLEFT       0611           /* shifted left-arrow key */
-#define KEY_SMESSAGE    0612           /* shifted message key */
-#define KEY_SMOVE       0613           /* shifted move key */
-#define KEY_SNEXT       0614           /* shifted next key */
-#define KEY_SOPTIONS    0615           /* shifted options key */
+#define KEY_RESTART     0567           /* restart key                        */
+#define KEY_RESUME      0570           /* resume key                         */
+#define KEY_SAVE        0571           /* save key                           */
+#define KEY_SBEG        0572           /* shifted begin key                  */
+#define KEY_SCANCEL     0573           /* shifted cancel key                 */
+#define KEY_SCOMMAND    0574           /* shifted command key                */
+#define KEY_SCOPY       0575           /* shifted copy key                   */
+#define KEY_SCREATE     0576           /* shifted create key                 */
+#define KEY_SDC         0577           /* shifted delete-character key       */
+#define KEY_SDL         0600           /* shifted delete-line key            */
+#define KEY_SELECT      0601           /* select key                         */
+#define KEY_SEND        0602           /* shifted end key                    */
+#define KEY_SEOL        0603           /* shifted clear-to-end-of-linekey    */
+#define KEY_SEXIT       0604           /* shifted exit key                   */
+#define KEY_SFIND       0605           /* shifted find key                   */
+#define KEY_SHELP       0606           /* shifted help key                   */
+#define KEY_SHOME       0607           /* shifted home key                   */
+#define KEY_SIC         0610           /* shifted insert-character key       */
+#define KEY_SLEFT       0611           /* shifted left-arrow key             */
+#define KEY_SMESSAGE    0612           /* shifted message key                */
+#define KEY_SMOVE       0613           /* shifted move key                   */
+#define KEY_SNEXT       0614           /* shifted next key                   */
+#define KEY_SOPTIONS    0615           /* shifted options key                */
 #define KEY_SPREVIOUS   0616           /* shifted previous key */
 #define KEY_SPRINT      0617           /* shifted print key */
 #define KEY_SREDO       0620           /* shifted redo key */
