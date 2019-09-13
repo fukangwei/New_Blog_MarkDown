@@ -372,24 +372,24 @@ int main() {
     sleep ( 2 );
 ​
     for ( x_loop = 0; x_loop < COLS - 1; x_loop++ ) { /* COLS指现在屏幕列数 */
-        for ( y_loop = 0; y_loop < LINES - 1; y_loop++ ) { /* LINES指现在屏幕行数 */
-            mvwaddch ( stdscr, y_loop, x_loop, a_letter );
-            a_letter++;
+        for ( y_loop = 0; y_loop < LINES - 1; y_loop++ ) { /* LINES指现在屏幕行数 */
+            mvwaddch ( stdscr, y_loop, x_loop, a_letter );
+            a_letter++;
 ​
-            if ( a_letter > 'z' ) {
-                a_letter = 'a';
-            }
-        }
+            if ( a_letter > 'z' ) {
+                a_letter = 'a';
+            }
+        }
     }
 ​
-    refresh();
-    sleep ( 5 );
-    new_window_ptr = newwin ( 10, 20, 5, 5 );
-    mvwprintw ( new_window_ptr, 2, 2, "%s", "Hello World" );
-    mvwprintw ( new_window_ptr, 5, 2, "%s", "Notice howvery long lines wrap inside the window" );
-    wrefresh ( new_window_ptr );
-    sleep ( 2 );
-    a_letter = '0';
+    refresh();
+    sleep ( 5 );
+    new_window_ptr = newwin ( 10, 20, 5, 5 );
+    mvwprintw ( new_window_ptr, 2, 2, "%s", "Hello World" );
+    mvwprintw ( new_window_ptr, 5, 2, "%s", "Notice howvery long lines wrap inside the window" );
+    wrefresh ( new_window_ptr );
+    sleep ( 2 );
+    a_letter = '0';
 ​
     for ( x_loop = 0; x_loop < COLS - 1; x_loop++ ) {
         for ( y_loop = 0; y_loop < LINES - 1; y_loop++ ) {
@@ -402,34 +402,34 @@ int main() {
         }
     }
 ​
-    refresh();
-    sleep ( 2 );
-    wrefresh ( new_window_ptr );
-    sleep ( 2 );
-    touchwin ( new_window_ptr );
-    wrefresh ( new_window_ptr );
-    sleep ( 2 );
-    popup_window_ptr = newwin ( 10, 20, 8, 8 );
-    box ( popup_window_ptr, '|', '-' );
-    mvwprintw ( popup_window_ptr, 5, 2, "%s", "Pop UpWindow!" );
-    wrefresh ( popup_window_ptr );
-    sleep ( 2 );
-    touchwin ( new_window_ptr );
-    wrefresh ( new_window_ptr );
-    sleep ( 2 );
-    wclear ( new_window_ptr );
-    wrefresh ( new_window_ptr );
-    sleep ( 2 );
-    delwin ( new_window_ptr );
-    touchwin ( popup_window_ptr );
-    wrefresh ( popup_window_ptr );
-    sleep ( 2 );
-    delwin ( popup_window_ptr );
-    touchwin ( stdscr );
-    refresh();
-    sleep ( 2 );
-    endwin();
-    exit ( EXIT_SUCCESS );
+    refresh();
+    sleep ( 2 );
+    wrefresh ( new_window_ptr );
+    sleep ( 2 );
+    touchwin ( new_window_ptr );
+    wrefresh ( new_window_ptr );
+    sleep ( 2 );
+    popup_window_ptr = newwin ( 10, 20, 8, 8 );
+    box ( popup_window_ptr, '|', '-' );
+    mvwprintw ( popup_window_ptr, 5, 2, "%s", "Pop UpWindow!" );
+    wrefresh ( popup_window_ptr );
+    sleep ( 2 );
+    touchwin ( new_window_ptr );
+    wrefresh ( new_window_ptr );
+    sleep ( 2 );
+    wclear ( new_window_ptr );
+    wrefresh ( new_window_ptr );
+    sleep ( 2 );
+    delwin ( new_window_ptr );
+    touchwin ( popup_window_ptr );
+    wrefresh ( popup_window_ptr );
+    sleep ( 2 );
+    delwin ( popup_window_ptr );
+    touchwin ( stdscr );
+    refresh();
+    sleep ( 2 );
+    endwin();
+    exit ( EXIT_SUCCESS );
 }
 ```
 
