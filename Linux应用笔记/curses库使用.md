@@ -529,19 +529,19 @@ int main() {
 &emsp;&emsp;键盘上的方向键、功能键及数字小键盘等按键会发送以`escape`字符开头的字符串序列。`curses`函数库提供了一个用于管理功能键的功能。头文件`curses.h`通过一组以`KEY_`为前缀的定义来管理逻辑键。`Keypad`模式是指按键转义序列，此时读键盘操作不仅能够返回用户按下的键，还将返回与逻辑按键对应的`KEY_`定义(在`curses.h`头文件中定义)。
 
 ``` cpp
-#define KEY_CODE_YES    0400         /* A wchar_t contains a key code */
-#define KEY_MIN         0401         /* Minimum curses key */
-#define KEY_BREAK       0401         /* Break key (unreliable) */
-#define KEY_SRESET      0530         /* Soft (partial) reset(unreliable) */
-#define KEY_RESET       0531         /* Reset or hard reset(unreliable)*/
-#define KEY_DOWN        0402         /* down-arrow key */
-#define KEY_UP          0403         /* up-arrow key */
-#define KEY_LEFT        0404         /* left-arrow key */
-#define KEY_RIGHT       0405         /* right-arrow key */
-#define KEY_HOME        0406         /* home key */
-#define KEY_BACKSPACE   0407         /* backspace key */
-#define KEY_F0          0410         /* Function keys.  Space for 64 */
-#define KEY_F(n)        (KEY_F0 + (n)) /* Value of function key n */
+#define KEY_CODE_YES    0400           /* A wchar_t contains a key code */
+#define KEY_MIN         0401           /* Minimum curses key */
+#define KEY_BREAK       0401           /* Break key (unreliable) */
+#define KEY_SRESET      0530           /* Soft (partial) reset(unreliable) */
+#define KEY_RESET       0531           /* Reset or hard reset(unreliable)*/
+#define KEY_DOWN        0402           /* down-arrow key */
+#define KEY_UP          0403           /* up-arrow key */
+#define KEY_LEFT        0404           /* left-arrow key */
+#define KEY_RIGHT       0405           /* right-arrow key              */
+#define KEY_HOME        0406           /* home key                     */
+#define KEY_BACKSPACE   0407           /* backspace key                */
+#define KEY_F0          0410           /* Function keys.  Space for 64 */
+#define KEY_F(n)        (KEY_F0 + (n)) /* Value of function key n      */
 #define KEY_DL          0510         /* delete-line key */
 #define KEY_IL          0511         /* insert-line key */
 #define KEY_DC          0512         /* delete-character key */
@@ -603,28 +603,28 @@ int main() {
 #define KEY_SEXIT       0604         /* shifted exit key */
 #define KEY_SFIND       0605         /* shifted find key */
 #define KEY_SHELP       0606         /* shifted help key */
-#define KEY_SHOME       0607         /* shifted home key */
-#define KEY_SIC         0610         /* shifted insert-character key */
-#define KEY_SLEFT       0611         /* shifted left-arrow key */
-#define KEY_SMESSAGE    0612         /* shifted message key */
-#define KEY_SMOVE       0613         /* shifted move key */
-#define KEY_SNEXT       0614         /* shifted next key */
-#define KEY_SOPTIONS    0615         /* shifted options key */
-#define KEY_SPREVIOUS   0616         /* shifted previous key */
-#define KEY_SPRINT      0617         /* shifted print key */
-#define KEY_SREDO       0620         /* shifted redo key */
-#define KEY_SREPLACE    0621         /* shifted replace key */
-#define KEY_SRIGHT      0622         /* shifted right-arrow key */
-#define KEY_SRSUME      0623         /* shifted resume key */
-#define KEY_SSAVE       0624         /* shifted save key */
-#define KEY_SSUSPEND    0625         /* shifted suspend key */
-#define KEY_SUNDO       0626         /* shifted undo key */
-#define KEY_SUSPEND     0627         /* suspend key */
-#define KEY_UNDO        0630         /* undo key */
-#define KEY_MOUSE       0631         /* Mouse event has occurred */
-#define KEY_RESIZE      0632         /* Terminal resize event */
-#define KEY_EVENT       0633         /* We were interrupted by an event*/
-#define KEY_MAX         0777         /* Maximum key value is 0633 */
+#define KEY_SHOME       0607         /* shifted home key */
+#define KEY_SIC         0610         /* shifted insert-character key */
+#define KEY_SLEFT       0611         /* shifted left-arrow key */
+#define KEY_SMESSAGE    0612         /* shifted message key */
+#define KEY_SMOVE       0613         /* shifted move key */
+#define KEY_SNEXT       0614         /* shifted next key */
+#define KEY_SOPTIONS    0615         /* shifted options key */
+#define KEY_SPREVIOUS   0616         /* shifted previous key */
+#define KEY_SPRINT      0617         /* shifted print key */
+#define KEY_SREDO       0620         /* shifted redo key */
+#define KEY_SREPLACE    0621         /* shifted replace key */
+#define KEY_SRIGHT      0622         /* shifted right-arrow key */
+#define KEY_SRSUME      0623         /* shifted resume key */
+#define KEY_SSAVE       0624         /* shifted save key */
+#define KEY_SSUSPEND    0625         /* shifted suspend key */
+#define KEY_SUNDO       0626         /* shifted undo key */
+#define KEY_SUSPEND     0627         /* suspend key */
+#define KEY_UNDO        0630         /* undo key */
+#define KEY_MOUSE       0631         /* Mouse event has occurred */
+#define KEY_RESIZE      0632         /* Terminal resize event */
+#define KEY_EVENT       0633         /* We were interrupted by an event*/
+#define KEY_MAX         0777         /* Maximum key value is 0633 */
 ```
 
 `curses`在启动时会关闭转义序列与逻辑键之间的转换功能，该功能需要通过`keypad`函数来启用：
