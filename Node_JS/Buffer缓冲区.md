@@ -316,17 +316,11 @@ console.log(buf); // 输出“<Buffer 12 34 56 78 90 ab>”
 
 - `buf.readDoubleLE(offset [, noAssert])`：根据指定的偏移量，使用指定的`endian`字节序格式读取一个`64`位双精度数，小端对齐。
 
-#### buf.readDoubleBE(offset[, noAssert])
+- `buf.readDoubleBE(offset [, noAssert])`：根据指定的偏移量，使用指定的`endian`字节序格式读取一个`64`位双精度数，大端对齐。
 
-&emsp;&emsp;根据指定的偏移量，使用指定的`endian`字节序格式读取一个`64`位双精度数，大端对齐。
+- `buf.writeUInt8(value, offset[, noAssert])`：根据传入的`offset`偏移量将`value`写入`buffer`。注意，`value`必须是一个合法的无符号`8`位整数。
 
-#### buf.writeUInt8(value, offset[, noAssert])
-
-&emsp;&emsp;根据传入的`offset`偏移量将`value`写入`buffer`。注意，`value`必须是一个合法的无符号`8`位整数。
-
-#### buf.writeUInt16LE(value, offset[, noAssert])
-
-&emsp;&emsp;根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，`value`必须是一个合法的无符号`16`位整数，小端对齐。
+- `buf.writeUInt16LE(value, offset[, noAssert])`：根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，`value`必须是一个合法的无符号`16`位整数，小端对齐。
 
 #### buf.writeUInt16BE(value, offset[, noAssert])
 
