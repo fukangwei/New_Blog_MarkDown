@@ -1,7 +1,7 @@
 ---
 title: Express框架
 date: 2019-03-02 12:19:37
-tags:
+categories: Node.js笔记
 ---
 &emsp;&emsp;`Express`是一个简洁而灵活的`Web`应用框架，使用`Express`可以快速地搭建一个完整功能的网站。`Express`框架核心特性如下：
 
@@ -18,13 +18,13 @@ var express = require('express');
 var app = express();
 ​
 app.get('/', function (req, res) {
-    res.send('Hello World');
+    res.send('Hello World');
 })
 ​
 var server = app.listen(8081, function () {
-    var host = server.address().address
-    var port = server.address().port
-    console.log("应用实例，访问地址为http://%s:%s", host, port)
+    var host = server.address().address
+    var port = server.address().port
+    console.log("应用实例，访问地址为http://%s:%s", host, port)
 })
 ```
 
@@ -42,7 +42,7 @@ var server = app.listen(8081, function () {
 
 ``` javascript
 app.get('/', function (req, res) {
-    // user code
+    // user code
 })
 ```
 
@@ -96,38 +96,38 @@ var app = express();
 ​
 // 主页输出“Hello World”
 app.get('/', function (req, res) {
-    console.log("主页GET请求");
-    res.send('Hello GET');
+    console.log("主页GET请求");
+    res.send('Hello GET');
 })
 ​
 // POST请求
 app.post('/', function (req, res) {
-    console.log("主页POST请求");
-    res.send('Hello POST');
+    console.log("主页POST请求");
+    res.send('Hello POST');
 })
 ​
 // del_user页面响应
 app.get('/del_user', function (req, res) {
-    console.log("del_user响应DELETE请求");
-    res.send('删除页面');
+    console.log("del_user响应DELETE请求");
+    res.send('删除页面');
 })
 ​
 // list_user页面GET请求
 app.get('/list_user', function (req, res) {
-    console.log("list_user的GET请求");
-    res.send('用户列表页面');
+    console.log("list_user的GET请求");
+    res.send('用户列表页面');
 })
 ​
 // 对页面abcd、abxcd、ab123cd等响应GET请求
 app.get('/ab*cd', function (req, res) {
-    console.log("“ab*cd”的GET请求");
-    res.send('正则匹配');
+    console.log("“ab*cd”的GET请求");
+    res.send('正则匹配');
 })
 ​
 var server = app.listen(8081, function () {
-    var host = server.address().address
-    var port = server.address().port
-    console.log("应用实例，访问地址为http://%s:%s", host, port)
+    var host = server.address().address
+    var port = server.address().port
+    console.log("应用实例，访问地址为http://%s:%s", host, port)
 })
 ```
 
@@ -158,13 +158,13 @@ var app = express();
 app.use(express.static('public'));
 ​
 app.get('/', function (req, res) {
-    res.send('Hello World');
+    res.send('Hello World');
 })
 ​
 var server = app.listen(8081, function () {
-    var host = server.address().address
-    var port = server.address().port
-    console.log("应用实例，访问地址为 http://%s:%s", host, port)
+    var host = server.address().address
+    var port = server.address().port
+    console.log("应用实例，访问地址为 http://%s:%s", host, port)
 })
 ```
 
@@ -177,15 +177,15 @@ var server = app.listen(8081, function () {
 
 ``` html
 <html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-        <form action="http://127.0.0.1:8081/process_get" method="get">
-            First Name: <input type="text" name="first_name"><br>
-            Last Name: <input type="text" name="last_name"> <input type="submit" value="Submit">
-        </form>
-    </body>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <form action="http://127.0.0.1:8081/process_get" method="get">
+            First Name: <input type="text" name="first_name"><br>
+            Last Name: <input type="text" name="last_name"> <input type="submit" value="Submit">
+        </form>
+    </body>
 </html>
 ```
 
@@ -198,23 +198,23 @@ var app = express();
 app.use(express.static('public'));
 ​
 app.get('/index.htm', function (req, res) {
-    res.sendFile(__dirname + "/" + "index.htm");
+    res.sendFile(__dirname + "/" + "index.htm");
 })
 ​
 app.get('/process_get', function (req, res) {
-    var response = { // 输出JSON格式
-        "first_name": req.query.first_name,
-        "last_name": req.query.last_name
-    };
+    var response = { // 输出JSON格式
+        "first_name": req.query.first_name,
+        "last_name": req.query.last_name
+    };
 ​
-    console.log(response);
-    res.end(JSON.stringify(response));
+    console.log(response);
+    res.end(JSON.stringify(response));
 })
 ​
 var server = app.listen(8081, function () {
-    var host = server.address().address
-    var port = server.address().port
-    console.log("应用实例，访问地址为http://%s:%s", host, port)
+    var host = server.address().address
+    var port = server.address().port
+    console.log("应用实例，访问地址为http://%s:%s", host, port)
 })
 ```
 
