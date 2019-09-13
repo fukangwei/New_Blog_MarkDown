@@ -312,13 +312,9 @@ console.log(buf); // 输出“<Buffer 12 34 56 78 90 ab>”
 
 - `buf.readFloatLE(offset [, noAssert])`：根据指定的偏移量，使用指定的`endian`字节序格式读取一个`32`位双浮点数，小端对齐。
 
-#### buf.readFloatBE(offset[, noAssert])
+- `buf.readFloatBE(offset [, noAssert])`：根据指定的偏移量，使用指定的`endian`字节序格式读取一个`32`位双浮点数，大端对齐。
 
-&emsp;&emsp;根据指定的偏移量，使用指定的`endian`字节序格式读取一个`32`位双浮点数，大端对齐。
-
-#### buf.readDoubleLE(offset[, noAssert])
-
-&emsp;&emsp;根据指定的偏移量，使用指定的`endian`字节序格式读取一个`64`位双精度数，小端对齐。
+- `buf.readDoubleLE(offset [, noAssert])`：根据指定的偏移量，使用指定的`endian`字节序格式读取一个`64`位双精度数，小端对齐。
 
 #### buf.readDoubleBE(offset[, noAssert])
 
