@@ -610,21 +610,21 @@ int main() {
 #define KEY_SMOVE       0613           /* shifted move key                   */
 #define KEY_SNEXT       0614           /* shifted next key                   */
 #define KEY_SOPTIONS    0615           /* shifted options key                */
-#define KEY_SPREVIOUS   0616           /* shifted previous key */
-#define KEY_SPRINT      0617           /* shifted print key */
-#define KEY_SREDO       0620           /* shifted redo key */
-#define KEY_SREPLACE    0621           /* shifted replace key */
-#define KEY_SRIGHT      0622           /* shifted right-arrow key */
-#define KEY_SRSUME      0623           /* shifted resume key */
-#define KEY_SSAVE       0624           /* shifted save key */
-#define KEY_SSUSPEND    0625           /* shifted suspend key */
-#define KEY_SUNDO       0626           /* shifted undo key */
-#define KEY_SUSPEND     0627           /* suspend key */
-#define KEY_UNDO        0630           /* undo key */
-#define KEY_MOUSE       0631           /* Mouse event has occurred */
-#define KEY_RESIZE      0632           /* Terminal resize event */
-#define KEY_EVENT       0633           /* We were interrupted by an event*/
-#define KEY_MAX         0777           /* Maximum key value is 0633 */
+#define KEY_SPREVIOUS   0616           /* shifted previous key               */
+#define KEY_SPRINT      0617           /* shifted print key                  */
+#define KEY_SREDO       0620           /* shifted redo key                   */
+#define KEY_SREPLACE    0621           /* shifted replace key                */
+#define KEY_SRIGHT      0622           /* shifted right-arrow key            */
+#define KEY_SRSUME      0623           /* shifted resume key                 */
+#define KEY_SSAVE       0624           /* shifted save key                   */
+#define KEY_SSUSPEND    0625           /* shifted suspend key                */
+#define KEY_SUNDO       0626           /* shifted undo key                   */
+#define KEY_SUSPEND     0627           /* suspend key                        */
+#define KEY_UNDO        0630           /* undo key                           */
+#define KEY_MOUSE       0631           /* Mouse event has occurred           */
+#define KEY_RESIZE      0632           /* Terminal resize event              */
+#define KEY_EVENT       0633           /* We were interrupted by an event    */
+#define KEY_MAX         0777           /* Maximum key value is 0633          */
 ```
 
 `curses`在启动时会关闭转义序列与逻辑键之间的转换功能，该功能需要通过`keypad`函数来启用：
