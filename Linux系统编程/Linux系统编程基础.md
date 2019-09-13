@@ -1,7 +1,7 @@
 ---
 title: Linux系统编程基础
 date: 2019-03-19 13:43:45
-tags:
+categories: Linux系统编程
 ---
 ### 系统调用之文件访问
 
@@ -47,8 +47,7 @@ void create_file ( char *filename ) {
     if ( creat ( filename, 0755 ) < 0 ) {
         printf ( "create file %s failure!\n", filename );
         exit ( EXIT_FAILURE );
-    }
-    else {
+    } else {
         printf ( "create file %s success!\n", filename );
     }
 }
@@ -123,8 +122,7 @@ int main ( int argc , char *argv[] ) {
     if ( ( fd = open ( argv[1], O_CREAT | O_RDWR, 0755 ) ) < 0 ) {
         perror ( "open file failure!\n" );
         exit ( 1 );
-    }
-    else {
+    } else {
         printf ( "open file %d  success!\n", fd );
     }
 
@@ -185,6 +183,7 @@ lseek ( fd, 0, SEEK_END );
 #include "stdio.h"
 
 #define NO_DUP 0
+
 #if NO_DUP
 int main ( void ) {
     int fd;
@@ -295,17 +294,15 @@ int main ( int argc, char **argv ) {
     while ( bytes_read = read ( from_fd, buffer, BUFFER_SIZE ) ) {
         if ( ( bytes_read == -1 ) && ( errno != EINTR ) ) { /* 一个致命的错误发生了 */
             break;
-        }
-        else if ( bytes_read > 0 ) {
+        } else if ( bytes_read > 0 ) {
             ptr = buffer;
+
             while ( bytes_write = write ( to_fd, ptr, bytes_read ) ) {
                 if ( ( bytes_write == -1 ) && ( errno != EINTR ) ) { /* 一个致命错误发生了 */
                     break;
-                }
-                else if ( bytes_write == bytes_read ) { /* 写完了所有读的字节 */
+                } else if ( bytes_write == bytes_read ) { /* 写完了所有读的字节 */
                     break;
-                }
-                else if ( bytes_write > 0 ) { /* 只写了一部分，继续写 */
+                } else if ( bytes_write > 0 ) { /* 只写了一部分，继续写 */
                     ptr += bytes_write;
                     bytes_read -= bytes_write;
                 }
@@ -506,6 +503,7 @@ whence     | 说明
 #include "stdio.h"
 
 #define FSEEK 1
+
 #if FSEEK
 int main() {
     FILE *fp;
@@ -553,16 +551,19 @@ int main ( int argc, char **argv ) {
         printf ( "Usage:%s fromfile tofile\n", argv[0] );
         exit ( 1 );
     }
+
     /* 打开源文件 */
     if ( ( from_fd = fopen ( argv[1], "rb" ) ) == NULL ) {
         printf ( "Open %s Error\n", argv[1] );
         exit ( 1 );
     }
+
     /* 创建目的文件 */
     if ( ( to_fd = fopen ( argv[2], "wb" ) ) == NULL ) {
         printf ( "Open %s Error\n", argv[2] );
         exit ( 1 );
     }
+
     /* 测得文件大小 */
     fseek ( from_fd, 0L, SEEK_END );
     file_len = ftell ( from_fd );
@@ -571,12 +572,14 @@ int main ( int argc, char **argv ) {
 
     while ( !feof ( from_fd ) ) { /* 进行文件拷贝 */
         fread ( buffer, BUFFER_SIZE, 1, from_fd );
+
         if ( BUFFER_SIZE >= file_len ) {
             fwrite ( buffer, file_len, 1, to_fd );
         } else {
             fwrite ( buffer, BUFFER_SIZE, 1, to_fd );
             file_len = file_len - BUFFER_SIZE;
         }
+
         bzero ( buffer, BUFFER_SIZE );
     }
 
@@ -1286,10 +1289,10 @@ struct in_addr {
 }
 
 struct sockaddr_in {
-    short int sin_family; /* Internet地址族 */
-    unsigned short int sin_port; /* 端口号 */
-    struct in_addr sin_addr; /* IP地址 */
-    unsigned char sin_zero[8]; /* 填0 */
+    short int sin_family;        /* Internet地址族 */
+    unsigned short int sin_port; /* 端口号         */
+    struct in_addr sin_addr;     /* IP地址         */
+    unsigned char sin_zero[8];   /* 填0            */
 }
 ```
 
@@ -1322,10 +1325,10 @@ char *inet_ntoa ( struct in_addr in );
 
 ``` cpp
 struct hostent {
-    char *h_name;       /* 主机的正式名称 */
-    char *h_aliases;    /* 主机的别名 */
-    int h_addrtype;     /* 主机的地址类型 */
-    int h_length;       /* 主机的地址长度 */
+    char *h_name;       /* 主机的正式名称   */
+    char *h_aliases;    /* 主机的别名       */
+    int h_addrtype;     /* 主机的地址类型   */
+    int h_length;       /* 主机的地址长度   */
     char **h_addr_list; /* 主机的IP地址列表 */
 }
 
@@ -1496,11 +1499,8 @@ FD_SET ( sock2, &fds ); /* 设置描述符 */
 maxfdp = ( sock1 > sock2 ? sock1 : sock2 ) + 1;
 
 switch ( select ( maxfdp, &fds, NULL, NULL, &timeout ) ) {
-    case -1:
-        exit ( -1 );
-        break; /* select发送错误，退出程序 */
-    case 0:
-        break;
+    case -1: exit ( -1 ); break; /* select发送错误，退出程序 */
+    case  0:              break;
     default:
         if ( FD_ISSET ( sock1, &fds ) ) { /* 测试sock1是否可读 */
             accpet ( sock1, ... );
