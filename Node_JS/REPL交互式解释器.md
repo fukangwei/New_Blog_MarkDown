@@ -1,7 +1,7 @@
 ---
 title: REPL交互式解释器
 date: 2019-02-08 14:05:46
-tags:
+categories: Node.js笔记
 ---
 &emsp;&emsp;`Node.js`的`REPL`(`Read Eval Print Loop`，交互式解释器)表示一个电脑的环境，类似`Windows`系统的终端或`Unix/Linux shell`。`Node.js`自带了交互式解释器，可以执行以下任务：
 

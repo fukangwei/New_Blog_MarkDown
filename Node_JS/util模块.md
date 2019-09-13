@@ -1,7 +1,7 @@
 ---
 title: util模块
 date: 2019-02-08 15:33:19
-tags:
+categories: Node.js笔记
 ---
 &emsp;&emsp;`util`是一个`Node.js`核心模块，提供常用函数的集合，用于弥补核心`JavaScript`的功能不足。
 
@@ -20,19 +20,19 @@ util.inherits(constructor, superConstructor)
 var util = require('util');
 ​
 function Base() {
-    this.name = 'base';
-    this.base = 1991;
-    this.sayHello = function () {
-        console.log('Hello ' + this.name);
-    };
+    this.name = 'base';
+    this.base = 1991;
+    this.sayHello = function () {
+        console.log('Hello ' + this.name);
+    };
 }
 ​
 Base.prototype.showName = function () {
-    console.log(this.name);
+    console.log(this.name);
 };
 ​
 function Sub() {
-    this.name = 'sub';
+    this.name = 'sub';
 }
 ​
 util.inherits(Sub, Base);
@@ -53,7 +53,7 @@ console.log(objSub); // 输出“Sub { name: 'sub' }”
 &emsp;&emsp;`util.inspect`是一个将任意对象转换为字符串的方法，通常用于调试和错误输出。它至少接受一个参数`object`，即要转换的对象：
 
 ``` javascript
-util.inspect(object, [showHidden ,][depth ,][colors])
+util.inspect(object [, showHidden] [, depth] [, colors])
 ```
 
 - `showHidden`：一个可选参数，如果值为`true`，将会输出更多隐藏信息。
@@ -66,10 +66,10 @@ util.inspect(object, [showHidden ,][depth ,][colors])
 var util = require('util');
 ​
 function Person() {
-    this.name = 'byvoid';
-    this.toString = function () {
-        return this.name;
-    };
+    this.name = 'byvoid';
+    this.toString = function () {
+        return this.name;
+    };
 }
 ​
 var obj = new Person();
@@ -82,14 +82,14 @@ console.log(util.inspect(obj, true));
 ``` javascript
 Person { name: 'byvoid', toString: [Function] }
 Person {
-  name: 'byvoid',
-  toString:
-   { [Function]
-     [length]: 0,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } } }
+  name: 'byvoid',
+  toString:
+   { [Function]
+     [length]: 0,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } } }
 ```
 
 ### util.isArray(object)
@@ -138,9 +138,9 @@ var util = require('util');
 console.log(util.isError(new Error())) // 输出“true”
 console.log(util.isError(new TypeError())) // 输出“true”
 console.log( // 输出“false”
-    util.isError({
-        name: 'Error',
-        message: 'an error occurred'
-    })
+    util.isError({
+        name: 'Error',
+        message: 'an error occurred'
+    })
 )
 ```

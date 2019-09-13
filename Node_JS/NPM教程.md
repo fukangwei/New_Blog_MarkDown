@@ -1,7 +1,7 @@
 ---
 title: NPM教程
 date: 2019-02-08 13:11:48
-tags:
+categories: Node.js笔记
 ---
 ### NPM基础
 
