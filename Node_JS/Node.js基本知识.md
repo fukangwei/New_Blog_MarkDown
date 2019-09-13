@@ -1,7 +1,7 @@
 ---
 title: Node.js基本知识
 date: 2019-02-08 16:08:36
-tags:
+categories: Node.js笔记
 ---
 ### Node.js基础
 
@@ -57,11 +57,12 @@ var http = require("http");
 var http = require('http');
 ​
 http.createServer(function(request, response) {
-    // 发送HTTP头部，HTTP状态值是200(OK)，内容类型是“text/plain”
-    response.writeHead(200, {
-        'Content-Type': 'text/plain'
-    });
-    response.end('Hello World\n'); // 发送响应数据“Hello World”
+    // 发送HTTP头部，HTTP状态值是200(OK)，内容类型是“text/plain”
+    response.writeHead(200, {
+        'Content-Type': 'text/plain'
+    });
+
+    response.end('Hello World\n'); // 发送响应数据“Hello World”
 }).listen(8888);
 ​
 // 终端打印如下信息
