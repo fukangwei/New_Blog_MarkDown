@@ -150,26 +150,26 @@ int main ( void ) {
     assert ( keyboard > 0 );
 ​
     while ( 1 ) {
-        timeout.tv_sec = 1;
-        timeout.tv_usec = 0;
-        FD_ZERO ( &readfd );
-        FD_SET ( keyboard, &readfd );
-        ret = select ( keyboard + 1, &readfd, NULL, NULL, &timeout );
+        timeout.tv_sec = 1;
+        timeout.tv_usec = 0;
+        FD_ZERO ( &readfd );
+        FD_SET ( keyboard, &readfd );
+        ret = select ( keyboard + 1, &readfd, NULL, NULL, &timeout );
 ​
-        if ( FD_ISSET ( keyboard, &readfd ) ) {
-            i = read ( keyboard, &c, 1 );
+        if ( FD_ISSET ( keyboard, &readfd ) ) {
+            i = read ( keyboard, &c, 1 );
 ​
-            if ( '/n' == c ) {
-                continue;
-            }
+            if ( '/n' == c ) {
+                continue;
+            }
 ​
-            printf ( "hehethe input is %c\n", c );
+            printf ( "hehethe input is %c\n", c );
 ​
-            if ( 'q' == c ) {
-                break;
-            }
-        }
-    }
+            if ( 'q' == c ) {
+                break;
+            }
+        }
+    }
 }
 ```
 
