@@ -292,33 +292,19 @@ console.log(buf); // 输出“<Buffer 12 34 56 78 90 ab>”
 
 - `buf.readUInt8(offset [, noAssert])`：根据指定的偏移量，读取一个无符号`8`位整数。
 
-#### buf.readUInt16LE(offset[, noAssert])
+- `buf.readUInt16LE(offset [, noAssert])`：根据指定的偏移量，使用特殊的`endian`字节序格式读取一个无符号`16`位整数。
 
-&emsp;&emsp;根据指定的偏移量，使用特殊的`endian`字节序格式读取一个无符号`16`位整数。
+- `buf.readUInt16BE(offset [, noAssert])`：根据指定的偏移量，使用特殊的`endian`字节序格式读取一个无符号`16`位整数，大端对齐。
 
-#### buf.readUInt16BE(offset[, noAssert])
+- `buf.readUInt32LE(offset[, noAssert])`：根据指定的偏移量，使用指定的`endian`字节序格式读取一个无符号`32`位整数，小端对齐。
 
-&emsp;&emsp;根据指定的偏移量，使用特殊的`endian`字节序格式读取一个无符号`16`位整数，大端对齐。
+- `buf.readUInt32BE(offset[, noAssert])`：根据指定的偏移量，使用指定的`endian`字节序格式读取一个无符号`32`位整数，大端对齐。
 
-#### buf.readUInt32LE(offset[, noAssert])
+- `buf.readInt8(offset [, noAssert])`：根据指定的偏移量，读取一个有符号`8`位整数。
 
-&emsp;&emsp;根据指定的偏移量，使用指定的`endian`字节序格式读取一个无符号`32`位整数，小端对齐。
+- `buf.readInt16LE(offset [, noAssert])`：根据指定的偏移量，使用特殊的`endian`格式读取一个有符号`16`位整数，小端对齐。
 
-#### buf.readUInt32BE(offset[, noAssert])
-
-&emsp;&emsp;根据指定的偏移量，使用指定的`endian`字节序格式读取一个无符号`32`位整数，大端对齐。
-
-#### buf.readInt8(offset[, noAssert])
-
-&emsp;&emsp;根据指定的偏移量，读取一个有符号`8`位整数。
-
-#### buf.readInt16LE(offset[, noAssert])
-
-&emsp;&emsp;根据指定的偏移量，使用特殊的`endian`格式读取一个有符号`16`位整数，小端对齐。
-
-#### buf.readInt16BE(offset[, noAssert])
-
-&emsp;&emsp;根据指定的偏移量，使用特殊的`endian`格式读取一个有符号`16`位整数，大端对齐。
+- `buf.readInt16BE(offset [, noAssert])`：根据指定的偏移量，使用特殊的`endian`格式读取一个有符号`16`位整数，大端对齐。
 
 #### buf.readInt32LE(offset[, noAssert])
 
