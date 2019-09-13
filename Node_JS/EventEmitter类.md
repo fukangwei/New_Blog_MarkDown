@@ -57,6 +57,9 @@ listener2 arg1参数 arg2参数
 ```
 
 以上例子中，`emitter`为事件`someEvent`注册了两个事件监听器，然后触发了`someEvent`事件。从运行结果可以看到，两个事件监听器回调函数被先后调用。这就是`EventEmitter`最简单的用法。
+
+### EventEmitter的属性
+
 &emsp;&emsp;`EventEmitter`提供了多个属性，例如`on`和`emit`。`on`函数用于绑定事件函数，`emit`属性用于触发一个事件。
 
 - `addListener(event, listener)`：为指定事件添加一个监听器到监听器数组的尾部。`eventEmitter.on`与`eventEmitter.addListener`没有区别，且一个事件可以绑定多个回调函数。
@@ -96,9 +99,10 @@ server.removeListener('connection', callback);
 emit(event [, arg1] [, arg2] [, ...])
 ```
 
-### listenerCount(emitter, event)
+- `listenerCount(emitter, event)`：返回指定事件的监听器数量。
 
-&emsp;&emsp;返回指定事件的监听器数量。
+### EventEmitter的应用
+
 &emsp;&emsp;以下实例通过`connection`事件演示了`EventEmitter`类的应用：
 
 ``` javascript
@@ -106,11 +110,11 @@ var events = require('events');
 var eventEmitter = new events.EventEmitter();
 ​
 var listener1 = function listener1() { // 监听器#1
-    console.log('监听器listener1执行');
+    console.log('监听器listener1执行');
 }
 ​
 var listener2 = function listener2() { // 监听器#2
-    console.log('监听器listener2执行');
+    console.log('监听器listener2执行');
 }
 ​
 eventEmitter.addListener('connection', listener1); // 绑定connection事件，处理函数为listener1
