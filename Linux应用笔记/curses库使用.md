@@ -391,16 +391,16 @@ int main() {
     sleep ( 2 );
     a_letter = '0';
 ​
-    for ( x_loop = 0; x_loop < COLS - 1; x_loop++ ) {
-        for ( y_loop = 0; y_loop < LINES - 1; y_loop++ ) {
-            mvwaddch ( stdscr, y_loop, x_loop, a_letter );
-            a_letter++;
+    for ( x_loop = 0; x_loop < COLS - 1; x_loop++ ) {
+        for ( y_loop = 0; y_loop < LINES - 1; y_loop++ ) {
+            mvwaddch ( stdscr, y_loop, x_loop, a_letter );
+            a_letter++;
 ​
-            if ( a_letter > '9' ) {
-                a_letter = '0';
-            }
-        }
-    }
+            if ( a_letter > '9' ) {
+                a_letter = '0';
+            }
+        }
+    }
 ​
     refresh();
     sleep ( 2 );
@@ -479,6 +479,7 @@ int main() {
     int y_loop;
     int counter;
     char a_letter = '1';
+
     initscr();
 ​
     for ( y_loop = 0; y_loop < LINES - 1; y_loop++ ) {
