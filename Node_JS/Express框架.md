@@ -229,15 +229,15 @@ var server = app.listen(8081, function () {
 
 ``` html
 <html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-        <form action="http://127.0.0.1:8081/process_post" method="post">
-            First Name: <input type="text" name="first_name"><br>
-            Last Name: <input type="text" name="last_name"> <input type="submit" value="Submit">
-        </form>
-    </body>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <form action="http://127.0.0.1:8081/process_post" method="post">
+            First Name: <input type="text" name="first_name"><br>
+            Last Name: <input type="text" name="last_name"> <input type="submit" value="Submit">
+        </form>
+    </body>
 </html>
 ```
 
@@ -250,28 +250,29 @@ var bodyParser = require('body-parser');
 ​
 // 创建“application/x-www-form-urlencoded”编码解析
 var urlencodedParser = bodyParser.urlencoded({
-    extended: false
+    extended: false
 })
 ​
 app.use(express.static('public'));
 ​
 app.get('/index.htm', function (req, res) {
-    res.sendFile(__dirname + "/" + "index.htm");
+    res.sendFile(__dirname + "/" + "index.htm");
 })
 ​
 app.post('/process_post', urlencodedParser, function (req, res) {
-    var response = { // 输出JSON格式
-        "first_name": req.body.first_name,
-        "last_name": req.body.last_name
-    };
-    console.log(response);
-    res.end(JSON.stringify(response));
+    var response = { // 输出JSON格式
+        "first_name": req.body.first_name,
+        "last_name": req.body.last_name
+    };
+
+    console.log(response);
+    res.end(JSON.stringify(response));
 })
 ​
 var server = app.listen(8081, function () {
-    var host = server.address().address
-    var port = server.address().port
-    console.log("应用实例，访问地址为http://%s:%s", host, port)
+    var host = server.address().address
+    var port = server.address().port
+    console.log("应用实例，访问地址为http://%s:%s", host, port)
 })
 ```
 
@@ -286,22 +287,19 @@ var server = app.listen(8081, function () {
 
 ``` html
 <html>
-​
-<head>
-    <title>文件上传表单</title>
-</head>
-​
-<body>
-    <h3>文件上传：</h3>
-    选择一个文件上传:
-    <br />
-    <form action="/file_upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="image" size="50" />
-        <br />
-        <input type="submit" value="上传文件" />
-    </form>
-</body>
-​
+    <head>
+        <title>文件上传表单</title>
+    </head>
+    <body>
+        <h3>文件上传：</h3>
+        选择一个文件上传:
+        <br />
+        <form action="/file_upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="image" size="50" />
+            <br />
+            <input type="submit" value="上传文件" />
+        </form>
+    </body>
 </html>
 ```
 
