@@ -318,54 +318,30 @@ console.log(buf); // 输出“<Buffer 12 34 56 78 90 ab>”
 
 - `buf.readDoubleBE(offset [, noAssert])`：根据指定的偏移量，使用指定的`endian`字节序格式读取一个`64`位双精度数，大端对齐。
 
-- `buf.writeUInt8(value, offset[, noAssert])`：根据传入的`offset`偏移量将`value`写入`buffer`。注意，`value`必须是一个合法的无符号`8`位整数。
+- `buf.writeUInt8(value, offset [, noAssert])`：根据传入的`offset`偏移量将`value`写入`buffer`。注意，`value`必须是一个合法的无符号`8`位整数。
 
-- `buf.writeUInt16LE(value, offset[, noAssert])`：根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，`value`必须是一个合法的无符号`16`位整数，小端对齐。
+- `buf.writeUInt16LE(value, offset [, noAssert])`：根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，`value`必须是一个合法的无符号`16`位整数，小端对齐。
 
-#### buf.writeUInt16BE(value, offset[, noAssert])
+- `buf.writeUInt16BE(value, offset [, noAssert])`：根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，`value`必须是一个合法的无符号`16`位整数，大端对齐。
 
-&emsp;&emsp;根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，`value`必须是一个合法的无符号`16`位整数，大端对齐。
+- `buf.writeUInt32LE(value, offset [, noAssert])`：根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，`value`必须是一个合法的无符号`32`位整数，小端对齐。
 
-#### buf.writeUInt32LE(value, offset[, noAssert])
+- `buf.writeUInt32BE(value, offset [, noAssert])`：根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，`value`必须是一个合法的有符号`32`位整数。
 
-&emsp;&emsp;根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，`value`必须是一个合法的无符号`32`位整数，小端对齐。
+- `buf.writeInt16LE(value, offset [, noAssert])`：根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，`value`必须是一个合法的有符号`16`位整数。
 
-#### buf.writeUInt32BE(value, offset[, noAssert])
+- `buf.writeInt16BE(value, offset [, noAssert])`：根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，`value`必须是一个合法的有符号`16`位整数。
 
-&emsp;&emsp;根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，`value`必须是一个合法的有符号`32`位整数。
+- `buf.writeInt32LE(value, offset [, noAssert])`：根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，`value`必须是一个合法的有符号`32`位整数。
 
-#### buf.writeInt16LE(value, offset[, noAssert])
+- `buf.writeInt32BE(value, offset [, noAssert])`：根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，`value`必须是一个合法的有符号`32`位整数。
 
-&emsp;&emsp;根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，`value`必须是一个合法的有符号`16`位整数。
+- `buf.writeFloatLE(value, offset [, noAssert])`：根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，当`value`不是一个`32`位浮点数类型的值时，结果将是不确定的。
 
-#### buf.writeInt16BE(value, offset[, noAssert])
+- `buf.writeFloatBE(value, offset [, noAssert])`：根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，当`value`不是一个`32`位浮点数类型的值时，结果将是不确定的。
 
-&emsp;&emsp;根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，`value`必须是一个合法的有符号`16`位整数。
+- `buf.writeDoubleLE(value, offset [, noAssert])`：根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，`value`必须是一个有效的`64`位`double`类型的值。
 
-#### buf.writeInt32LE(value, offset[, noAssert])
+- `buf.writeDoubleBE(value, offset [, noAssert])`：根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，`value`必须是一个有效的`64`位`double`类型的值。
 
-&emsp;&emsp;根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，`value`必须是一个合法的有符号`32`位整数。
-
-#### buf.writeInt32BE(value, offset[, noAssert])
-
-&emsp;&emsp;根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，`value`必须是一个合法的有符号`32`位整数。
-
-#### buf.writeFloatLE(value, offset[, noAssert])
-
-&emsp;&emsp;根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，当`value`不是一个`32`位浮点数类型的值时，结果将是不确定的。
-
-#### buf.writeFloatBE(value, offset[, noAssert])
-
-&emsp;&emsp;根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，当`value`不是一个`32`位浮点数类型的值时，结果将是不确定的。
-
-#### buf.writeDoubleLE(value, offset[, noAssert])
-
-&emsp;&emsp;根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，`value`必须是一个有效的64位double类型的值。
-
-#### buf.writeDoubleBE(value, offset[, noAssert])
-
-&emsp;&emsp;根据传入的`offset`偏移量和指定的`endian`格式将`value`写入`buffer`。注意，`value`必须是一个有效的`64`位`double`类型的值。
-
-#### buf.fill(value[, offset][, end])
-
-&emsp;&emsp;使用指定的`value`来填充这个`buffer`。如果没有指定`offset`(默认是`0`)和`end`(默认是`buffer.length`)，将会填充整个`buffer`。
+- `buf.fill(value [, offset] [, end])`：使用指定的`value`来填充这个`buffer`。如果没有指定`offset`(默认是`0`)和`end`(默认是`buffer.length`)，将会填充整个`buffer`。
