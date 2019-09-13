@@ -1,13 +1,13 @@
 ---
 title: pthread_detach函数
 date: 2018-12-29 16:59:37
-tags:
+categories: Linux系统编程
 ---
 &emsp;&emsp;`linux`线程执行和`windows`不同，`pthread`有两种状态：`joinable`状态和`unjoinable`状态。如果线程是`joinable`状态，当线程函数自己返回退出时或`pthread_exit`时都不会释放线程所占用堆栈和线程描述符(总计`8K`多)。只有当你调用了`pthread_join`之后，这些资源才会被释放。若是`unjoinable`状态的线程，这些资源在线程函数退出或`pthread_exit`时自动会被释放。
 &emsp;&emsp;`unjoinable`属性可以在`pthread_create`时指定，或在线程创建后在线程中`pthread_detach`自己。例如`pthread_detach(pthread_self())`，将状态改为`unjoinable`状态，确保资源的释放。或者将线程置为`joinable`，然后适时调用`pthread_join`函数。
 &emsp;&emsp;其实简单的说就是在线程函数头加上`pthread_detach(pthread_self())`的话，线程状态就会改变，在函数尾部直接`pthread_exit`，线程就会自动退出，并释放自己的资源。
 
-``` c
+``` cpp
 #include <pthread.h>
 #include <stdio.h>
 #include <unistd.h>
