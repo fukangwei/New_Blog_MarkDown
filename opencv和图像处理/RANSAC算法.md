@@ -182,30 +182,31 @@ def test():
     B_noisy = B_exact + numpy.random.normal(size=B_exact.shape)
 ​
     if 1:
-        # add some outliers
-        n_outliers = 100
-        all_idxs = numpy.arange(A_noisy.shape[0])
-        numpy.random.shuffle(all_idxs)
-        outlier_idxs = all_idxs[:n_outliers]
-        non_outlier_idxs = all_idxs[n_outliers:]
-        A_noisy[outlier_idxs] = 20 * numpy.random.random((n_outliers, n_inputs))
-        B_noisy[outlier_idxs] = 50 * numpy.random.normal(size=(n_outliers, n_outputs))
+        # add some outliers
+        n_outliers = 100
+        all_idxs = numpy.arange(A_noisy.shape[0])
+        numpy.random.shuffle(all_idxs)
+        outlier_idxs = all_idxs[:n_outliers]
+        non_outlier_idxs = all_idxs[n_outliers:]
+        A_noisy[outlier_idxs] = 20 * numpy.random.random((n_outliers, n_inputs))
+        B_noisy[outlier_idxs] = 50 * numpy.random.normal(size=(n_outliers, n_outputs))
 ​
-    # setup model
-    all_data = numpy.hstack((A_noisy, B_noisy))
-    input_columns = range(n_inputs)  # the first columns of the array
-    output_columns = [n_inputs + i for i in range(n_outputs)]  # the last columns of the array
-    debug = True
-    model = LinearLeastSquaresModel(input_columns, output_columns, debug=debug)
+    # setup model
+    all_data = numpy.hstack((A_noisy, B_noisy))
+    input_columns = range(n_inputs)  # the first columns of the array
+    output_columns = [n_inputs + i for i in range(n_outputs)]  # the last columns of the array
+    debug = True
+    model = LinearLeastSquaresModel(input_columns, output_columns, debug=debug)
 ​
-    linear_fit, resids, rank, s = scipy.linalg.lstsq(all_data[:, input_columns], all_data[:, output_columns])
+    linear_fit, resids, rank, s = scipy.linalg.lstsq(all_data[:, input_columns], all_data[:, output_columns])
 ​
-    # run RANSAC algorithm
-    ransac_fit, ransac_data = ransac(all_data, model,
-                                     50, 1000, 7e3, 300,  # misc. parameters
-                                     debug=debug, return_all=True)
-    if 1:
-        import pylab
+    # run RANSAC algorithm
+    ransac_fit, ransac_data = ransac(all_data, model,
+                                     50, 1000, 7e3, 300,  # misc. parameters
+                                     debug=debug, return_all=True)
+
+    if 1:
+        import pylab
 ​
         sort_idxs = numpy.argsort(A_exact[:, 0])
         A_col0_sorted = A_exact[sort_idxs]  # maintain as rank-2 array
