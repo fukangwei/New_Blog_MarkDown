@@ -348,7 +348,7 @@ Return The first element of the `top-level` mapping.
 FileNode FileStorage::root ( int streamidx = 0 ) const;
 ```
 
-- `streamidx`: Zero-based index of the stream. In most cases there is only one stream in the file. However, YAML supports multiple streams and so there can be several.
+- `streamidx`: `Zero-based` index of the stream. In most cases there is only one stream in the file. However, `YAML` supports multiple streams and so there can be several.
 
 #### FileStorage::operator[]
 
@@ -514,8 +514,6 @@ Possible values are:
 bool FileNode::empty() const;
 ```
 
-Return `true` if the node is empty.
-
 #### FileNode::isNone
 
 &emsp;&emsp;Checks whether the node is a `none` object.
@@ -523,8 +521,6 @@ Return `true` if the node is empty.
 ``` cpp
 bool FileNode::isNone() const;
 ```
-
-Return `true` if the node is a `none` object.
 
 #### FileNode::isSeq
 
@@ -534,8 +530,6 @@ Return `true` if the node is a `none` object.
 bool FileNode::isSeq() const;
 ```
 
-Return `true` if the node is a sequence.
-
 #### FileNode::isMap
 
 &emsp;&emsp;Checks whether the node is a mapping.
@@ -543,8 +537,6 @@ Return `true` if the node is a sequence.
 ``` cpp
 bool FileNode::isMap() const;
 ```
-
-Return `true` if the node is a mapping.
 
 #### FileNode::isInt
 
@@ -554,8 +546,6 @@ Return `true` if the node is a mapping.
 bool FileNode::isInt() const;
 ```
 
-Return `true` if the node is an integer.
-
 #### FileNode::isReal
 
 &emsp;&emsp;Checks whether the node is a `floating-point` number.
@@ -563,8 +553,6 @@ Return `true` if the node is an integer.
 ``` cpp
 bool FileNode::isReal() const;
 ```
-
-Return `true` if the node is a `floating-point` number.
 
 #### FileNode::isString
 
@@ -574,8 +562,6 @@ Return `true` if the node is a `floating-point` number.
 bool FileNode::isString() const;
 ```
 
-Return `true` if the node is a text string.
-
 #### FileNode::isNamed
 
 &emsp;&emsp;Checks whether the node has a name.
@@ -584,41 +570,33 @@ Return `true` if the node is a text string.
 bool FileNode::isNamed() const;
 ```
 
-Return `true` if the node has a name.
-
 #### FileNode::name
 
-&emsp;&emsp;Returns the node name.
+&emsp;&emsp;Return the node name or an empty string if the node is nameless.
 
 ``` cpp
 string FileNode::name() const;
 ```
 
-Return the node name or an empty string if the node is nameless.
-
 #### FileNode::size
 
-&emsp;&emsp;Returns the number of elements in the node.
+&emsp;&emsp;Return the number of elements in the node, if it is a sequence or mapping, or `1` otherwise.
 
 ``` cpp
 size_t FileNode::size() const;
 ```
 
-Return the number of elements in the node, if it is a sequence or mapping, or `1` otherwise.
-
 #### FileNode::operator int
 
-&emsp;&emsp;Returns the node content as an integer.
+&emsp;&emsp;Return the node content as an `integer`. If the node stores a `floating-point` number, it is rounded.
 
 ``` cpp
 FileNode::operator int() const;
 ```
 
-Return the node content as an integer. If the node stores a `floating-point` number, it is rounded.
-
 #### FileNode::operator float
 
-&emsp;&emsp;Returns the node content as float.
+&emsp;&emsp;Returns the node content as `float`.
 
 ``` cpp
 FileNode::operator float() const;
@@ -626,7 +604,7 @@ FileNode::operator float() const;
 
 #### FileNode::operator double
 
-&emsp;&emsp;Returns the node content as double.
+&emsp;&emsp;Returns the node content as `double`.
 
 ``` cpp
 FileNode::operator double() const;
@@ -634,7 +612,7 @@ FileNode::operator double() const;
 
 #### FileNode::operator string
 
-&emsp;&emsp;Returns the node content as text string.
+&emsp;&emsp;Returns the node content as `text string`.
 
 ``` cpp
 FileNode::operator string() const;
