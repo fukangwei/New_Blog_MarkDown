@@ -136,28 +136,28 @@ def salt(img, n):
         i = int(np.random.random() * img.shape[0])
         j = int(np.random.random() * img.shape[1])
 
-        if img.ndim == 2:
-            img[i, j] = 255
-        elif img.ndim == 3:
-            img[i, j, 0] = 255
-            img[i, j, 1] = 255
-            img[i, j, 2] = 255
-            # 另一种方式“img[i, j] = [255, 255, 255]”
-    return img
+        if img.ndim == 2:
+            img[i, j] = 255
+        elif img.ndim == 3:
+            img[i, j, 0] = 255
+            img[i, j, 1] = 255
+            img[i, j, 2] = 255
+            # 另一种方式“img[i, j] = [255, 255, 255]”
+    return img
 ​
 if __name__ == '__main__':
-    img = cv2.imread("girl.jpg")
-    saltImage = salt(img, 500)
-    cv2.imshow("Salt", saltImage)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    img = cv2.imread("girl.jpg")
+    saltImage = salt(img, 500)
+    cv2.imshow("Salt", saltImage)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 ```
 
 <img src="./opencv_python图片基本处理/5.png" height="256" width="352">
 
 &emsp;&emsp;假设一张图片的宽度和高度是`300 * 100`，用`opencv`的`img.shape`返回的是(`100, 300, 3`)，分别是图像的`行数`、`列数`、`色彩通道数`。行数对应于坐标轴上的`y`，表示的是图像高度；列数对应于坐标轴上的`x`，表示的是图像宽度，也就是说`shape`返回的是`(高度, 宽度, 通道数) = (y, x, c)`。因此`img[50, 10]`表示第`50`行第`10`列的那个元素。
 &emsp;&emsp;由于`OpenCV Python`和`NumPy`结合得很紧密，所以既可以使用`OpenCV`自带的`split`函数，也可以直接操作`numpy`数组来分离通道。
-&emsp;&emsp;split方法如下：
+&emsp;&emsp;`split`方法如下：
 
 ``` python
 import cv2
