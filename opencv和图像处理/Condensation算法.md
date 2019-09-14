@@ -162,16 +162,16 @@ int main ( int argc, char *const argv[] ) {
             /* Clear screen */
             img =  Scalar::all ( 100 );
 ​
-            for ( int i = 0; i < condens->SamplesNum; i++ ) {
-                float diffX = ( measurement ( 0 ) - condens->flSamples[i][0] ) / xRange;
-                float diffY = ( measurement ( 1 ) - condens->flSamples[i][1] ) / yRange;
-                condens->flConfidence[i] = 1.0 / ( sqrt ( diffX * diffX + diffY * diffY ) );
-                /* plot particles */
+            for ( int i = 0; i < condens->SamplesNum; i++ ) {
+                float diffX = ( measurement ( 0 ) - condens->flSamples[i][0] ) / xRange;
+                float diffY = ( measurement ( 1 ) - condens->flSamples[i][1] ) / yRange;
+                condens->flConfidence[i] = 1.0 / ( sqrt ( diffX * diffX + diffY * diffY ) );
+                /* plot particles */
 #ifdef PLOT_PARTICLES
-                Point partPt ( condens->flSamples[i][0], condens->flSamples[i][1] );
-                drawCross ( partPt ,  Scalar ( 255, 0, 255 ), 2 );
+                Point partPt ( condens->flSamples[i][0], condens->flSamples[i][1] );
+                drawCross ( partPt ,  Scalar ( 255, 0, 255 ), 2 );
 #endif
-            }
+            }
 ​
             cvConDensUpdateByTime ( condens );
             Point statePt ( condens->State[0], condens->State[1] );
