@@ -4,6 +4,7 @@ date: 2019-01-18 13:22:19
 categories: opencv和图像处理
 ---
 ### 图像的载入、显示和保存
+
 &emsp;&emsp;`opencv`使用`pip`的安装方式如下：
 
 ``` bash
@@ -58,7 +59,7 @@ cv2.imwrite('1.png', img, [int(cv2.IMWRITE_PNG_COMPRESSION), 9])
 emptyImage = np.zeros(img.shape, np.uint8)
 ```
 
-图像使用`NumPy`数组的属性来表示图像的尺寸和通道信息。如果输入`img.shape`，将得到(`500, 375, 3`)，这里是以`OpenCV`自带的`cat.jpg`为示例，最后的`3`表示这是一个RGB图像。
+图像使用`NumPy`数组的属性来表示图像的尺寸和通道信息。如果输入`img.shape`，将得到(`500, 375, 3`)，这里是以`OpenCV`自带的`cat.jpg`为示例，最后的`3`表示这是一个`RGB`图像。
 &emsp;&emsp;也可以复制原有的图像来获得一幅新图像：
 
 ``` python
@@ -86,7 +87,7 @@ cv2.imwrite("./cat3.jpg", img, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 cv2.imwrite("./cat.png", img, [int(cv2.IMWRITE_PNG_COMPRESSION), 0])
 cv2.imwrite("./cat2.png", img, [int(cv2.IMWRITE_PNG_COMPRESSION), 9])
 cv2.waitKey(0)
-cv2.destroyAllWindows()  
+cv2.destroyAllWindows()
 ```
 
 <img src="./opencv_python图片基本处理/3.png" height="258" width="356">
@@ -131,9 +132,10 @@ import cv2
 import numpy as np
 ​
 def salt(img, n):
-    for k in range(n):
-        i = int(np.random.random() * img.shape[0])
-        j = int(np.random.random() * img.shape[1])
+    for k in range(n):
+        i = int(np.random.random() * img.shape[0])
+        j = int(np.random.random() * img.shape[1])
+
         if img.ndim == 2:
             img[i, j] = 255
         elif img.ndim == 3:
