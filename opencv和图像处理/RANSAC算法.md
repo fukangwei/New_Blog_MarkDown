@@ -1,7 +1,7 @@
 ---
 title: RANSAC算法
 date: 2019-03-07 13:13:26
-tags:
+categories: opencv和图像处理
 ---
 &emsp;&emsp;随机抽样一致算法(`random sample consensus`，`RANSAC`)采用迭代的方式从一组包含离群的被观测数据中估算出数学模型的参数。它是一种不确定的算法，即有一定的概率得出一个合理的结果；为了提高概率必须提高迭代次数。
 &emsp;&emsp;`RANSAC`算法的基本假设是样本中包含正确数据(`inliers`，可以被模型描述的数据)，也包含异常数据(`outliers`，偏离正常范围很远、无法适应数学模型的数据)，即数据集中含有噪声。这些异常数据可能是由于错误的测量、错误的假设、错误的计算等产生的。同时`RANSAC`也假设，给定一组正确的数据，存在可以计算出符合这些数据的模型参数的方法。
@@ -208,24 +208,25 @@ def test():
     if 1:
         import pylab
 ​
-        sort_idxs = numpy.argsort(A_exact[:, 0])
-        A_col0_sorted = A_exact[sort_idxs]  # maintain as rank-2 array
+        sort_idxs = numpy.argsort(A_exact[:, 0])
+        A_col0_sorted = A_exact[sort_idxs]  # maintain as rank-2 array
 ​
-        if 1:
-            pylab.plot(A_noisy[:, 0], B_noisy[:, 0], 'k.', label='data')
-            pylab.plot(A_noisy[ransac_data['inliers'], 0], \
+        if 1:
+            pylab.plot(A_noisy[:, 0], B_noisy[:, 0], 'k.', label='data')
+            pylab.plot(A_noisy[ransac_data['inliers'], 0], \
                 B_noisy[ransac_data['inliers'], 0], 'bx', label='RANSAC data')
-        else:
-            pylab.plot(A_noisy[non_outlier_idxs, 0], B_noisy[non_outlier_idxs, 0], 'k.', label='noisy data')
-            pylab.plot(A_noisy[outlier_idxs, 0], B_noisy[outlier_idxs, 0], 'r.', label='outlier data')
-        pylab.plot(A_col0_sorted[:, 0], numpy.dot(A_col0_sorted, ransac_fit)[:, 0], label='RANSAC fit')
-        pylab.plot(A_col0_sorted[:, 0], numpy.dot(A_col0_sorted, perfect_fit)[:, 0], label='exact system')
-        pylab.plot(A_col0_sorted[:, 0], numpy.dot(A_col0_sorted, linear_fit)[:, 0], label='linear fit')
-        pylab.legend()
-        pylab.show()
+        else:
+            pylab.plot(A_noisy[non_outlier_idxs, 0], B_noisy[non_outlier_idxs, 0], 'k.', label='noisy data')
+            pylab.plot(A_noisy[outlier_idxs, 0], B_noisy[outlier_idxs, 0], 'r.', label='outlier data')
+
+        pylab.plot(A_col0_sorted[:, 0], numpy.dot(A_col0_sorted, ransac_fit)[:, 0], label='RANSAC fit')
+        pylab.plot(A_col0_sorted[:, 0], numpy.dot(A_col0_sorted, perfect_fit)[:, 0], label='exact system')
+        pylab.plot(A_col0_sorted[:, 0], numpy.dot(A_col0_sorted, linear_fit)[:, 0], label='linear fit')
+        pylab.legend()
+        pylab.show()
 ​
 if __name__ == '__main__':
-    test()
+    test()
 ```
 
 <img src="./RANSAC算法/3.png" height="310" width="318">
