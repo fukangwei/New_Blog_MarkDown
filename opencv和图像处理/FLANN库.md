@@ -298,14 +298,14 @@ int main ( int argc, char **argv ) {
     /* Show detected matches */
     imshow ( "Good Matches", img_matches );
 ​
-    for ( int i = 0; i < good_matches.size(); i++ ) {
-        printf (
+    for ( int i = 0; i < good_matches.size(); i++ ) {
+        printf (
             "-- Good Match [%d] Keypoint 1: %d  -- Keypoint 2: %d\n", \
             i, good_matches[i].queryIdx, good_matches[i].trainIdx );
-    }
+    }
 ​
-    waitKey ( 0 );
-    return 0;
+    waitKey ( 0 );
+    return 0;
 }
 ```
 
@@ -316,17 +316,17 @@ int main ( int argc, char **argv ) {
 ``` cpp
 -- Max dist : 0.416223
 -- Min dist : 0.138605
--- Good Match [0] Keypoint 1: 1  -- Keypoint 2: 86
--- Good Match [1] Keypoint 1: 3  -- Keypoint 2: 109
--- Good Match [2] Keypoint 1: 10  -- Keypoint 2: 120
--- Good Match [3] Keypoint 1: 12  -- Keypoint 2: 1357
--- Good Match [4] Keypoint 1: 13  -- Keypoint 2: 550
--- Good Match [5] Keypoint 1: 14  -- Keypoint 2: 960
--- Good Match [6] Keypoint 1: 15  -- Keypoint 2: 932
--- Good Match [7] Keypoint 1: 20  -- Keypoint 2: 336
--- Good Match [8] Keypoint 1: 21  -- Keypoint 2: 558
--- Good Match [9] Keypoint 1: 23  -- Keypoint 2: 574
--- Good Match [10] Keypoint 1: 24  -- Keypoint 2: 1170
+-- Good Match [0] Keypoint 1: 1  -- Keypoint 2: 86
+-- Good Match [1] Keypoint 1: 3  -- Keypoint 2: 109
+-- Good Match [2] Keypoint 1: 10  -- Keypoint 2: 120
+-- Good Match [3] Keypoint 1: 12  -- Keypoint 2: 1357
+-- Good Match [4] Keypoint 1: 13  -- Keypoint 2: 550
+-- Good Match [5] Keypoint 1: 14  -- Keypoint 2: 960
+-- Good Match [6] Keypoint 1: 15  -- Keypoint 2: 932
+-- Good Match [7] Keypoint 1: 20  -- Keypoint 2: 336
+-- Good Match [8] Keypoint 1: 21  -- Keypoint 2: 558
+-- Good Match [9] Keypoint 1: 23  -- Keypoint 2: 574
+-- Good Match [10] Keypoint 1: 24  -- Keypoint 2: 1170
 ```
 
 &emsp;&emsp;`python`代码如下：
@@ -358,8 +358,8 @@ matchesMask = [[0, 0] for i in range(len(matches))]
 ​
 # ratio test as per Lowe's paper
 for i, (m, n) in enumerate(matches):
-    if m.distance < 0.7 * n.distance:
-        matchesMask[i] = [1, 0]
+    if m.distance < 0.7 * n.distance:
+        matchesMask[i] = [1, 0]
 ​
 draw_params = dict(matchColor=(0, 255, 0), singlePointColor=(255, 0, 0), \
                    matchesMask=matchesMask, flags=0)
