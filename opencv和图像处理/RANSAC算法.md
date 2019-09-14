@@ -161,27 +161,27 @@ class LinearLeastSquaresModel:
         return x
 ​
     def get_error(self, data, model):
-        A = numpy.vstack([data[:, i] for i in self.input_columns]).T
-        B = numpy.vstack([data[:, i] for i in self.output_columns]).T
-        B_fit = scipy.dot(A, model)
-        err_per_point = numpy.sum((B - B_fit) ** 2, axis=1)  # sum squared error per row
-        return err_per_point
+        A = numpy.vstack([data[:, i] for i in self.input_columns]).T
+        B = numpy.vstack([data[:, i] for i in self.output_columns]).T
+        B_fit = scipy.dot(A, model)
+        err_per_point = numpy.sum((B - B_fit) ** 2, axis=1)  # sum squared error per row
+        return err_per_point
 ​
 def test():
-    # generate perfect input data
-    n_samples = 500
-    n_inputs = 1
-    n_outputs = 1
-    A_exact = 20 * numpy.random.random((n_samples, n_inputs))
-    perfect_fit = 60 * numpy.random.normal(size=(n_inputs, n_outputs))  # the model
-    B_exact = scipy.dot(A_exact, perfect_fit)
-    assert B_exact.shape == (n_samples, n_outputs)
+    # generate perfect input data
+    n_samples = 500
+    n_inputs = 1
+    n_outputs = 1
+    A_exact = 20 * numpy.random.random((n_samples, n_inputs))
+    perfect_fit = 60 * numpy.random.normal(size=(n_inputs, n_outputs))  # the model
+    B_exact = scipy.dot(A_exact, perfect_fit)
+    assert B_exact.shape == (n_samples, n_outputs)
 ​
-    # add a little gaussian noise (linear least squares alone should handle this well)
-    A_noisy = A_exact + numpy.random.normal(size=A_exact.shape)
-    B_noisy = B_exact + numpy.random.normal(size=B_exact.shape)
+    # add a little gaussian noise (linear least squares alone should handle this well)
+    A_noisy = A_exact + numpy.random.normal(size=A_exact.shape)
+    B_noisy = B_exact + numpy.random.normal(size=B_exact.shape)
 ​
-    if 1:
+    if 1:
         # add some outliers
         n_outliers = 100
         all_idxs = numpy.arange(A_noisy.shape[0])
