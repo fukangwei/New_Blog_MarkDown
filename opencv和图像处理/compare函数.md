@@ -16,14 +16,14 @@ void compare (InputArray src1, InputArray src2, OutputArray dst, int cmpop);
 - `dst`：结果图像，类型是`CV_8UC1`，即单通道`8`位图，大小和`src1`和`src2`中最大的那个一样。比较结果为真的地方值是`255`，否则为`0`。
 - `cmpop`：操作类型，有以下几种：
 
-``` c
+``` cpp
 enum {
-    CMP_EQ = 0, /* 相等     */
-    CMP_GT = 1, /* 大于     */
-    CMP_GE = 2, /* 大于等于 */
-    CMP_LT = 3, /* 小于     */
-    CMP_LE = 4, /* 小于等于 */
-    CMP_NE = 5  /* 不相等   */
+    CMP_EQ = 0, /* 相等     */
+    CMP_GT = 1, /* 大于     */
+    CMP_GE = 2, /* 大于等于 */
+    CMP_LT = 3, /* 小于     */
+    CMP_LE = 4, /* 小于等于 */
+    CMP_NE = 5  /* 不相等   */
 };
 ```
 
