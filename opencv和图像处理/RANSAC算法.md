@@ -51,15 +51,16 @@ while iterations < k {
     if the number of elements in alsoinliers is > d {
         % this implies that we may have found a good model
         % now test how good it is
-        bettermodel = model parameters fitted to all points in maybeinliers and alsoinliers
-        thiserr = a measure of how well model fits these points
-        if thiserr < besterr {
-            bestfit = bettermodel
-            besterr = thiserr
-        }
-    }
+        bettermodel = model parameters fitted to all points in maybeinliers and alsoinliers
+        thiserr = a measure of how well model fits these points
 
-    increment iterations
+        if thiserr < besterr {
+            bestfit = bettermodel
+            besterr = thiserr
+        }
+    }
+
+    increment iterations
 }
 ​
 return bestfit
@@ -92,25 +93,25 @@ import scipy  # use numpy if scipy unavailable
 import scipy.linalg  # use numpy if scipy unavailable
 ​
 def ransac(data, model, n, k, t, d, debug=False, return_all=False):
-    iterations = 0
-    bestfit = None
-    besterr = numpy.inf
-    best_inlier_idxs = None
+    iterations = 0
+    bestfit = None
+    besterr = numpy.inf
+    best_inlier_idxs = None
 
-    while iterations < k:
-        maybe_idxs, test_idxs = random_partition(n, data.shape[0])
-        maybeinliers = data[maybe_idxs, :]
-        test_points = data[test_idxs]
-        maybemodel = model.fit(maybeinliers)
-        test_err = model.get_error(test_points, maybemodel)
-        also_idxs = test_idxs[test_err < t]  # select indices of rows with accepted points
-        alsoinliers = data[also_idxs, :]
+    while iterations < k:
+        maybe_idxs, test_idxs = random_partition(n, data.shape[0])
+        maybeinliers = data[maybe_idxs, :]
+        test_points = data[test_idxs]
+        maybemodel = model.fit(maybeinliers)
+        test_err = model.get_error(test_points, maybemodel)
+        also_idxs = test_idxs[test_err < t]  # select indices of rows with accepted points
+        alsoinliers = data[also_idxs, :]
 
-        if debug:
-            print('test_err.min()', test_err.min())
-            print('test_err.max()', test_err.max())
-            print('numpy.mean(test_err)', numpy.mean(test_err))
-            print('iteration %d:len(alsoinliers) = %d' % (iterations, len(alsoinliers)))
+        if debug:
+            print('test_err.min()', test_err.min())
+            print('test_err.max()', test_err.max())
+            print('numpy.mean(test_err)', numpy.mean(test_err))
+            print('iteration %d:len(alsoinliers) = %d' % (iterations, len(alsoinliers)))
 
         if len(alsoinliers) > d:
             betterdata = numpy.concatenate((maybeinliers, alsoinliers))
