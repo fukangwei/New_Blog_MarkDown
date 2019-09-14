@@ -47,36 +47,37 @@ public class ImageManipulationsActivity extends Activity {
         }
     };
 ​
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        Log.i(TAG, "called onCreate");
-        super.onCreate(savedInstanceState);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        setContentView(R.layout.image_manipulations_surface_view);
-        imageview = (ImageView) this.findViewById(R.id.imageView);
-        Mat img = Imgcodecs.imread("/sdcard/pic2.png", 1); /* 读取图片文件 */
-        Bitmap bm = Bitmap.createBitmap(img.cols(), img.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(img, bm);
-        imageview.setImageBitmap(bm);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        Log.i(TAG, "called onCreate");
+        super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        setContentView(R.layout.image_manipulations_surface_view);
+        imageview = (ImageView) this.findViewById(R.id.imageView);
+        Mat img = Imgcodecs.imread("/sdcard/pic2.png", 1); /* 读取图片文件 */
+        Bitmap bm = Bitmap.createBitmap(img.cols(), img.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img, bm);
+        imageview.setImageBitmap(bm);
 ​
-        boolean flag = Imgcodecs.imwrite("/sdcard/new.jpg", img); /* 写入图片文件 */
+        boolean flag = Imgcodecs.imwrite("/sdcard/new.jpg", img); /* 写入图片文件 */
 ​
-        if (flag) { /* 如果写入成功 */
-            Toast.makeText(this, "Write OK", Toast.LENGTH_SHORT).show();
-        }
-    }
+        if (flag) { /* 如果写入成功 */
+            Toast.makeText(this, "Write OK", Toast.LENGTH_SHORT).show();
+        }
+    }
 ​
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (!OpenCVLoader.initDebug()) {
-            Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
-            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback);
-        } else {
-            Log.d(TAG, "OpenCV library found inside package. Using it!");
-            mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
-        }
-    }
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (!OpenCVLoader.initDebug()) {
+            Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
+            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback);
+        } else {
+            Log.d(TAG, "OpenCV library found inside package. Using it!");
+            mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
+        }
+    }
 }
 ```
 
@@ -101,19 +102,19 @@ Mat img = Imgcodecs.imread("/sdcard/pic2.png", 0); /* 读取图片文件 */
 
 ``` java
 public void onCreate(Bundle savedInstanceState) {
-    Log.i(TAG, "called onCreate");
-    super.onCreate(savedInstanceState);
-    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-    setContentView(R.layout.image_manipulations_surface_view);
-    imageview = (ImageView) this.findViewById(R.id.imageView);
-    Mat img = Imgcodecs.imread("/sdcard/face.jpg", 0); /* 读取图片文件 */
+    Log.i(TAG, "called onCreate");
+    super.onCreate(savedInstanceState);
+    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    setContentView(R.layout.image_manipulations_surface_view);
+    imageview = (ImageView) this.findViewById(R.id.imageView);
+    Mat img = Imgcodecs.imread("/sdcard/face.jpg", 0); /* 读取图片文件 */
 ​
-    Size dsize = new Size(img.cols(), img.rows());
-    Mat img2 = new Mat(dsize, CvType.CV_8SC1);
-    Imgproc.Canny(img, img2, 123, 250); /* Canny边缘检测 */
+    Size dsize = new Size(img.cols(), img.rows());
+    Mat img2 = new Mat(dsize, CvType.CV_8SC1);
+    Imgproc.Canny(img, img2, 123, 250); /* Canny边缘检测 */
 ​
-    Bitmap bm = Bitmap.createBitmap(img.cols(), img.rows(), Bitmap.Config.ARGB_8888);
-    Utils.matToBitmap(img2, bm);
-    imageview.setImageBitmap(bm);
+    Bitmap bm = Bitmap.createBitmap(img.cols(), img.rows(), Bitmap.Config.ARGB_8888);
+    Utils.matToBitmap(img2, bm);
+    imageview.setImageBitmap(bm);
 }
 ```
