@@ -113,26 +113,26 @@ def ransac(data, model, n, k, t, d, debug=False, return_all=False):
             print('numpy.mean(test_err)', numpy.mean(test_err))
             print('iteration %d:len(alsoinliers) = %d' % (iterations, len(alsoinliers)))
 
-        if len(alsoinliers) > d:
-            betterdata = numpy.concatenate((maybeinliers, alsoinliers))
-            bettermodel = model.fit(betterdata)
-            better_errs = model.get_error(betterdata, bettermodel)
-            thiserr = numpy.mean(better_errs)
+        if len(alsoinliers) > d:
+            betterdata = numpy.concatenate((maybeinliers, alsoinliers))
+            bettermodel = model.fit(betterdata)
+            better_errs = model.get_error(betterdata, bettermodel)
+            thiserr = numpy.mean(better_errs)
 
-            if thiserr < besterr:
-                bestfit = bettermodel
-                besterr = thiserr
-                best_inlier_idxs = numpy.concatenate((maybe_idxs, also_idxs))
+            if thiserr < besterr:
+                bestfit = bettermodel
+                besterr = thiserr
+                best_inlier_idxs = numpy.concatenate((maybe_idxs, also_idxs))
 
-        iterations += 1
+        iterations += 1
 
-    if bestfit is None:
-        raise ValueError("did not meet fit acceptance criteria")
+    if bestfit is None:
+        raise ValueError("did not meet fit acceptance criteria")
 
-    if return_all:
-        return bestfit, {'inliers': best_inlier_idxs}
-    else:
-        return bestfit
+    if return_all:
+        return bestfit, {'inliers': best_inlier_idxs}
+    else:
+        return bestfit
 ​
 def random_partition(n, n_data):
     """ return n random rows of data (and also the other len(data) - n rows) """
