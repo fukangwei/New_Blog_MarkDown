@@ -58,30 +58,30 @@ void onMouse ( int event, int x, int y, int flags, void *param ) {
 }
 ​
 int main() {
-    img = imread ( "kele.JPG", 1 );
-    img0 = img.clone();
-    imshow ( "原图", img );
-    setMouseCallback ( "原图", onMouse );
-    Mat result;
-    Mat bgModel, fgModel; /* 背景和前景 */
+    img = imread ( "kele.JPG", 1 );
+    img0 = img.clone();
+    imshow ( "原图", img );
+    setMouseCallback ( "原图", onMouse );
+    Mat result;
+    Mat bgModel, fgModel; /* 背景和前景 */
 ​
-    for ( ;; ) {
-        int c = waitKey ( 10 );
+    for ( ;; ) {
+        int c = waitKey ( 10 );
 ​
-        if ( ( char ) c == 'p' ) {
-            grabCut ( img0, result, selection, bgModel, fgModel, 5, GC_INIT_WITH_RECT );
-            compare ( result, GC_PR_FGD, result, CMP_EQ ); /* 得到前景mask */
-            Mat foreground ( img.size(), CV_8UC3, Scalar::all ( 255 ) );
-            img0.copyTo ( foreground, result );
-            imshow ( "grabcut", foreground );
-        }
+        if ( ( char ) c == 'p' ) {
+            grabCut ( img0, result, selection, bgModel, fgModel, 5, GC_INIT_WITH_RECT );
+            compare ( result, GC_PR_FGD, result, CMP_EQ ); /* 得到前景mask */
+            Mat foreground ( img.size(), CV_8UC3, Scalar::all ( 255 ) );
+            img0.copyTo ( foreground, result );
+            imshow ( "grabcut", foreground );
+        }
 ​
-        if ( char ( c ) == 'q' ) {
-            return 0;
-        }
-    }
+        if ( char ( c ) == 'q' ) {
+            return 0;
+        }
+    }
 ​
-    return 0;
+    return 0;
 }
 ```
 
