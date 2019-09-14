@@ -59,14 +59,14 @@ Gray = (R * 156762 + G * 307757 + B * 59769 ) >> 19
 Gray = (R * 313524 + G * 615514 + B * 119538) >> 20
 ```
 
-&emsp;&emsp;一道面试题：写一个函数，将一个`32`位`RGB`像素的色值转为灰度，`RGB`转灰度的公式为`Grey = 0.03 * red + 0.59 * green + 0.11 * blue`；`RGB`像素格式(左边最高位，右边最低位)为`00000000RRRRRRRRGGGGGGGGBBBBBBBB`。答案如下所示：
+&emsp;&emsp;一道面试题：写一个函数，将一个`32`位`RGB`像素的色值转为灰度，`RGB`转灰度的公式为`Grey = 0.03 * red + 0.59 * green + 0.11 * blue`；`RGB`像素格式(左边最高位，右边最低位)为`00000000RRRRRRRRGGGGGGGGBBBBBBBB`：
 
 ``` cpp
 unsigned int ToGrey ( unsigned int rgb ) {
-    unsigned int blue = ( rgb & 0x000000FF ) >> 0;
-    unsigned int green = ( rgb & 0x0000FF00 ) >> 8;
-    unsigned int red = ( rgb & 0x00FF0000 ) >> 16;
-    printf ( "\nred = %d, green = %d, blue = %d\n", red, green, blue );
-    return ( red * 38 + green * 75 + blue * 15 ) >> 7;
+    unsigned int blue = ( rgb & 0x000000FF ) >> 0;
+    unsigned int green = ( rgb & 0x0000FF00 ) >> 8;
+    unsigned int red = ( rgb & 0x00FF0000 ) >> 16;
+    printf ( "\nred = %d, green = %d, blue = %d\n", red, green, blue );
+    return ( red * 38 + green * 75 + blue * 15 ) >> 7;
 }
 ```
