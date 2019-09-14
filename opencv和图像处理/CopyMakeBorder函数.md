@@ -1,7 +1,7 @@
 ---
 title: CopyMakeBorder函数
 date: 2019-03-04 17:13:55
-tags:
+categories: opencv和图像处理
 ---
 &emsp;&emsp;其作用是复制图像并且制作边界(处理边界卷积)：
 
@@ -28,21 +28,21 @@ void cvCopyMakeBorder (
 #include "cv.h"
 ​
 int main ( int argc, char **argv ) {
-    IplImage *src, *dst;
-    src = cvLoadImage ( "timg1.jpg", -1 );
-    dst = cvCreateImage ( cvSize ( src->width + 100, src->height + 100 ), IPL_DEPTH_8U, 3 );
-    cvNamedWindow ( "src", 0 );
-    cvShowImage ( "src", src );
-    cvNamedWindow ( "filtering", 0 );
-    cvCopyMakeBorder ( src, dst, cvPoint ( 1, 1 ), IPL_BORDER_CONSTANT ); /* 填充边界固定值，黑色 */
-    cvShowImage ( "dst", dst );
-    cvCopyMakeBorder ( src, dst, cvPoint ( 1, 1 ), IPL_BORDER_REPLICATE ); /* 复制边界 */
-    cvShowImage ( "filtering", dst );
-    cvWaitKey ( 0 );
-    cvReleaseImage ( &src );
-    cvReleaseImage ( &dst );
-    cvDestroyAllWindows();
-    return ( 0 );
+    IplImage *src, *dst;
+    src = cvLoadImage ( "timg1.jpg", -1 );
+    dst = cvCreateImage ( cvSize ( src->width + 100, src->height + 100 ), IPL_DEPTH_8U, 3 );
+    cvNamedWindow ( "src", 0 );
+    cvShowImage ( "src", src );
+    cvNamedWindow ( "filtering", 0 );
+    cvCopyMakeBorder ( src, dst, cvPoint ( 1, 1 ), IPL_BORDER_CONSTANT ); /* 填充边界固定值，黑色 */
+    cvShowImage ( "dst", dst );
+    cvCopyMakeBorder ( src, dst, cvPoint ( 1, 1 ), IPL_BORDER_REPLICATE ); /* 复制边界 */
+    cvShowImage ( "filtering", dst );
+    cvWaitKey ( 0 );
+    cvReleaseImage ( &src );
+    cvReleaseImage ( &dst );
+    cvDestroyAllWindows();
+    return ( 0 );
 }
 ```
 
