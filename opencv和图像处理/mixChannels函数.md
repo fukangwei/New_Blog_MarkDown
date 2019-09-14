@@ -29,20 +29,20 @@ using namespace std;
 using namespace cv;
 ​
 int main ( int argc, char **argv ) {
-    Mat rgba ( 3, 4, CV_8UC4, Scalar ( 1, 2, 3, 4 ) );
-    Mat bgr ( rgba.rows, rgba.cols, CV_8UC3 );
-    Mat alpha ( rgba.rows, rgba.cols, CV_8UC1 );
-    /* forming an array of matrices is a quite efficient operation,
-       because the matrix data is not copied, only the headers */
-    Mat out[] = { bgr, alpha };
-    /* rgba[0] -> bgr[2], rgba[1] -> bgr[1],
-       rgba[2] -> bgr[0], rgba[3] -> alpha[0] */
-    int from_to[] = { 0, 2, 1, 1, 2, 0, 3, 3 };
-    mixChannels ( &rgba, 1, out, 2, from_to, 4 );
-    cout << "rgba:" << endl << rgba << endl;
-    cout << "bgr:" << endl << bgr << endl;
-    cout << "alpha:" << endl << alpha << endl;
-    return 0;
+    Mat rgba ( 3, 4, CV_8UC4, Scalar ( 1, 2, 3, 4 ) );
+    Mat bgr ( rgba.rows, rgba.cols, CV_8UC3 );
+    Mat alpha ( rgba.rows, rgba.cols, CV_8UC1 );
+    /* forming an array of matrices is a quite efficient operation,
+       because the matrix data is not copied, only the headers */
+    Mat out[] = { bgr, alpha };
+    /* rgba[0] -> bgr[2], rgba[1] -> bgr[1],
+       rgba[2] -> bgr[0], rgba[3] -> alpha[0] */
+    int from_to[] = { 0, 2, 1, 1, 2, 0, 3, 3 };
+    mixChannels ( &rgba, 1, out, 2, from_to, 4 );
+    cout << "rgba:" << endl << rgba << endl;
+    cout << "bgr:" << endl << bgr << endl;
+    cout << "alpha:" << endl << alpha << endl;
+    return 0;
 }
 ```
 
@@ -51,16 +51,16 @@ result:
 ``` cpp
 rgba:
 [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4;
-  1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4;
-  1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4]
+ 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4;
+ 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4]
 bgr:
 [3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1;
-  3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1;
-  3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1]
+ 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1;
+ 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1]
 alpha:
 [4, 4, 4, 4;
-  4, 4, 4, 4;
-  4, 4, 4, 4]
+ 4, 4, 4, 4;
+ 4, 4, 4, 4]
 ```
 
 &emsp;&emsp;example two:
@@ -75,22 +75,22 @@ using namespace std;
 using namespace cv;
 ​
 int main ( int argc, char **argv ) {
-    Mat rgba ( 3, 4, CV_8UC4, Scalar ( 1, 2, 3, 4 ) );
-    Mat bgr ( rgba.rows, rgba.cols, CV_8UC3 );
-    Mat alpha ( rgba.rows, rgba.cols, CV_8UC1 );
-    Mat a ( rgba.rows, rgba.cols, CV_8UC1 );
-    Mat b ( rgba.rows, rgba.cols, CV_8UC1 );
-    Mat c ( rgba.rows, rgba.cols, CV_8UC1 );;
-    Mat d ( rgba.rows, rgba.cols, CV_8UC1 );
-    Mat out[] = { a, b, c, d };
-    int from_to[] = {0, 0, 1, 1, 2, 2, 3, 3};
-    mixChannels ( &rgba, 1, out, 4, from_to, 4 );
-    cout << "rgba: " << endl << rgba << endl;
-    cout << "a: " << endl << a << endl;
-    cout << "b: " << endl << b << endl;
-    cout << "c: " << endl << c << endl;
-    cout << "d: " << endl << d << endl;
-    return 0;
+    Mat rgba ( 3, 4, CV_8UC4, Scalar ( 1, 2, 3, 4 ) );
+    Mat bgr ( rgba.rows, rgba.cols, CV_8UC3 );
+    Mat alpha ( rgba.rows, rgba.cols, CV_8UC1 );
+    Mat a ( rgba.rows, rgba.cols, CV_8UC1 );
+    Mat b ( rgba.rows, rgba.cols, CV_8UC1 );
+    Mat c ( rgba.rows, rgba.cols, CV_8UC1 );;
+    Mat d ( rgba.rows, rgba.cols, CV_8UC1 );
+    Mat out[] = { a, b, c, d };
+    int from_to[] = {0, 0, 1, 1, 2, 2, 3, 3};
+    mixChannels ( &rgba, 1, out, 4, from_to, 4 );
+    cout << "rgba: " << endl << rgba << endl;
+    cout << "a: " << endl << a << endl;
+    cout << "b: " << endl << b << endl;
+    cout << "c: " << endl << c << endl;
+    cout << "d: " << endl << d << endl;
+    return 0;
 }
 ```
 
@@ -99,22 +99,22 @@ result:
 ``` cpp
 rgba:
 [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4;
-  1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4;
-  1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4]
+ 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4;
+ 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4]
 a:
 [1, 1, 1, 1;
-  1, 1, 1, 1;
-  1, 1, 1, 1]
+ 1, 1, 1, 1;
+ 1, 1, 1, 1]
 b:
 [2, 2, 2, 2;
-  2, 2, 2, 2;
-  2, 2, 2, 2]
+ 2, 2, 2, 2;
+ 2, 2, 2, 2]
 c:
 [3, 3, 3, 3;
-  3, 3, 3, 3;
-  3, 3, 3, 3]
+ 3, 3, 3, 3;
+ 3, 3, 3, 3]
 d:
 [4, 4, 4, 4;
-  4, 4, 4, 4;
-  4, 4, 4, 4]
+ 4, 4, 4, 4;
+ 4, 4, 4, 4]
 ```
