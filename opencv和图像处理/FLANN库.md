@@ -72,14 +72,14 @@ public:
     }
 ​
     FLANN_DEPRECATED const ::cvflann::IndexParams *getIndexParameters() {
-        if ( nnIndex_L1 ) {
-            return nnIndex_L1->getIndexParameters();
-        }
+        if ( nnIndex_L1 ) {
+            return nnIndex_L1->getIndexParameters();
+        }
 ​
-        if ( nnIndex_L2 ) {
-            return nnIndex_L2->getIndexParameters();
-        }
-    }
+        if ( nnIndex_L2 ) {
+            return nnIndex_L2->getIndexParameters();
+        }
+    }
 ​
 private:
     /* providing backwards compatibility for L2 and L1 distances (most common) */
@@ -95,12 +95,12 @@ private:
 ``` cpp
 flann::Index_<T>::Index_ ( const Mat &features, const IndexParams &params )
 /* Parameters:
-   features – Matrix of containing the features(points) to index.
-              The size of the matrix is num_features x feature_dimensionality and
-              the data type of the elements in the matrix must coincide with the type of the index.
-   params – Structure containing the index parameters.
-            The type of index that will be constructed depends on
-            the type of this parameter. */
+   features – Matrix of containing the features(points) to index.
+              The size of the matrix is num_features x feature_dimensionality and
+              the data type of the elements in the matrix must coincide with the type of the index.
+   params – Structure containing the index parameters.
+            The type of index that will be constructed depends on
+            the type of this parameter. */
 ```
 
 参数`features`是包含用于构建索引的特征的矩阵，参数`params`是包含索引参数的结构。该构造函数所实例的快速搜索结构是根据参数`params`所指定的特定算法来构建的。`params`是由`IndexParams`的派生类的引用。
@@ -112,7 +112,7 @@ flann::Index_<T>::Index_ ( const Mat &features, const IndexParams &params )
 /* trees: The number of parallel kd-trees to use.
    Good values are in the range */
 struct KDTreeIndexParams : public IndexParams {
-    KDTreeIndexParams ( int trees = 4 );
+    KDTreeIndexParams ( int trees = 4 );
 };
 ```
 
@@ -120,7 +120,7 @@ struct KDTreeIndexParams : public IndexParams {
 
 ``` cpp
 struct KMeansIndexParams : public IndexParams {
-    KMeansIndexParams (
+    KMeansIndexParams (
         int branching = 32, int iterations = 11,
         flann_centers_init_t centers_init = CENTERS_RANDOM,
         float cb_index = 0.2 );
@@ -131,7 +131,7 @@ struct KMeansIndexParams : public IndexParams {
 
 ``` cpp
 struct CompositeIndexParams : public IndexParams {
-    CompositeIndexParams (
+    CompositeIndexParams (
         int trees = 4, int branching = 32, int iterations = 11,
         flann_centers_init_t centers_init = CENTERS_RANDOM,
         float cb_index = 0.2 );
@@ -142,7 +142,7 @@ struct CompositeIndexParams : public IndexParams {
 
 ``` cpp
 struct LshIndexParams : public IndexParams {
-    LshIndexParams (
+    LshIndexParams (
         unsigned int table_number,
         unsigned int key_size,
         unsigned int multi_probe_level );
@@ -153,7 +153,7 @@ struct LshIndexParams : public IndexParams {
 
 ``` cpp
 struct AutotunedIndexParams : public IndexParams {
-    AutotunedIndexParams (
+    AutotunedIndexParams (
         float target_precision = 0.9, float build_weight = 0.01,
         float memory_weight = 0, float sample_fraction = 0.1 );
 };
@@ -164,7 +164,7 @@ struct AutotunedIndexParams : public IndexParams {
 ``` cpp
 /* filename:The filename in which the index was saved. */
 struct SavedIndexParams : public IndexParams {
-    SavedIndexParams ( std::string filename );
+    SavedIndexParams ( std::string filename );
 };
 ```
 
@@ -176,6 +176,7 @@ struct SavedIndexParams : public IndexParams {
 void flann::Index_<T>::knnSearch (
     const vector<T> &query, vector<int> &indices,
     vector<float> &dists, int knn, const SearchParams &params );
+
 void flann::Index_<T>::knnSearch (
     const Mat &queries, Mat &indices, Mat &dists,
     int knn, const SearchParams &params );
@@ -189,6 +190,7 @@ void flann::Index_<T>::knnSearch (
 int flann::Index_<T>::radiusSearch (
     const vector<T> &query, vector<int> &indices,
     vector<float> &dists, float radius, const SearchParams &params );
+
 int flann::Index_<T>::radiusSearch (
     const Mat &query, Mat &indices, Mat &dists,
     float radius, const SearchParams &params );
@@ -222,12 +224,9 @@ const IndexParams *flann::Index_<T>::getIndexParameters();
 
 &emsp;&emsp;`OpenCV`提供了两种`Matching`方式：
 
-``` cpp
-Brute-force matcher ( cv::BFMatcher );
-Flann-based matcher ( cv::FlannBasedMatcher );
-```
+- `Brute-force`：`matcher ( cv::BFMatcher );`，用暴力方法找到点集一中每个`descriptor`在点集二中距离最近的`descriptor`。
+- `Flann-based`：`matcher ( cv::FlannBasedMatcher );`，使用快速近似最近邻搜索算法进行寻找。
 
-`Brute-force matcher`就是用暴力方法找到点集一中每个`descriptor`在点集二中距离最近的`descriptor`；`Flann-based matcher`使用快速近似最近邻搜索算法寻找。
 &emsp;&emsp;为了提高检测速度，你可以调用`matching`函数前，先训练一个`matcher`。训练过程可以首先使用`cv::FlannBasedMatcher`来优化，为`descriptor`建立索引树，这种操作将在匹配大量数据时发挥巨大作用(比如在上百幅图像的数据集中查找匹配图像)。而`Brute-force matcher`在这个过程并不进行操作，它只是将`train descriptors`保存在内存中。
 
 ``` cpp
@@ -240,13 +239,13 @@ Flann-based matcher ( cv::FlannBasedMatcher );
 using namespace cv;
 ​
 int main ( int argc, char **argv ) {
-    Mat img_1 = imread ( "desk.jpg", CV_LOAD_IMAGE_GRAYSCALE );
-    Mat img_2 = imread ( "timg1.jpg", CV_LOAD_IMAGE_GRAYSCALE );
+    Mat img_1 = imread ( "desk.jpg", CV_LOAD_IMAGE_GRAYSCALE );
+    Mat img_2 = imread ( "timg1.jpg", CV_LOAD_IMAGE_GRAYSCALE );
 ​
-    if ( !img_1.data || !img_2.data ) {
-        std::cout << " --(!) Error reading images " << std::endl;
-        return -1;
-    }
+    if ( !img_1.data || !img_2.data ) {
+        std::cout << " --(!) Error reading images " << std::endl;
+        return -1;
+    }
 ​
     /* Step 1: Detect the keypoints using SURF Detector */
     int minHessian = 400;
