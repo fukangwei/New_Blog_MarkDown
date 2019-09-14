@@ -236,23 +236,23 @@ CvSeq *pCurSeq = pInputSeq;
 CvSeq *pOldSeq = NULL;
 ​
 while ( pCurSeq ) {
-    if ( process ( pCurSeq ) ) {
-        pOldSeq = pCurSeq;
+    if ( process ( pCurSeq ) ) {
+        pOldSeq = pCurSeq;
 ​
-        if ( pOldSeq->h_prev ) {
+        if ( pOldSeq->h_prev ) {
             pCurSeq = pOldSeq->h_prev;
             pCurSeq->h_next = pOldSeq->h_next;
             pOldSeq->h_next->h_prev = pCurSeq;
             pCurSeq = pCurSeq->h_next;
             cvClearSeq ( pOldSeq );
-        } else {
+        } else {
             pCurSeq = pOldSeq->h_next;
             pCurSeq->h_prev = NULL;
             cvClearSeq ( pOldSeq );
         }
-    } else {
-        pCurSeq = pCurSeq->h_next;
-    }
+    } else {
+        pCurSeq = pCurSeq->h_next;
+    }
 }
 ```
 
