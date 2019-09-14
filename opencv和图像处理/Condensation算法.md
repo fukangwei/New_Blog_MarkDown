@@ -173,30 +173,30 @@ int main ( int argc, char *const argv[] ) {
 #endif
             }
 ​
-            cvConDensUpdateByTime ( condens );
-            Point statePt ( condens->State[0], condens->State[1] );
-            particleV.push_back ( statePt );
-            /* plot points */
-            drawCross ( statePt,  Scalar ( 255, 255, 255 ), 5 );
-            drawCross ( measPt,  Scalar ( 0, 0, 255 ), 5 );
+            cvConDensUpdateByTime ( condens );
+            Point statePt ( condens->State[0], condens->State[1] );
+            particleV.push_back ( statePt );
+            /* plot points */
+            drawCross ( statePt,  Scalar ( 255, 255, 255 ), 5 );
+            drawCross ( measPt,  Scalar ( 0, 0, 255 ), 5 );
 ​
-            for ( int i = 0; i < mouseV.size() - 1; i++ ) {
-                line ( img, mouseV[i], mouseV[i + 1],  Scalar ( 255, 255, 0 ), 1 );
-            }
+            for ( int i = 0; i < mouseV.size() - 1; i++ ) {
+                line ( img, mouseV[i], mouseV[i + 1],  Scalar ( 255, 255, 0 ), 1 );
+            }
 ​
-            for ( int i = 0; i < particleV.size() - 1; i++ ) {
-                line ( img, particleV[i], particleV[i + 1],  Scalar ( 0, 255, 0 ), 1 );
-            }
+            for ( int i = 0; i < particleV.size() - 1; i++ ) {
+                line ( img, particleV[i], particleV[i + 1],  Scalar ( 0, 255, 0 ), 1 );
+            }
 ​
-            imshow ( "mouse particle", img );
-        }
+            imshow ( "mouse particle", img );
+        }
 ​
-        if ( code == 27 || code == 'q' || code == 'Q' ) {
-            break;
-        }
-    }
+        if ( code == 27 || code == 'q' || code == 'Q' ) {
+            break;
+        }
+    }
 ​
-    return 0;
+    return 0;
 }
 ```
 
