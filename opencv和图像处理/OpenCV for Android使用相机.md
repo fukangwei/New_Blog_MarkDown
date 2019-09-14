@@ -120,53 +120,53 @@ public class ImageManipulationsActivity extends Activity implements CameraBridge
         @Override
         public void onManagerConnected(int status) {
             switch (status) {
-                case LoaderCallbackInterface.SUCCESS: {
-                    Log.i(TAG, "OpenCV loaded successfully");
-                    mOpenCvCameraView.enableView();
-                }
-                break;
-                default: {
-                    super.onManagerConnected(status);
-                }
-                break;
-            }
-        }
-    };
+                case LoaderCallbackInterface.SUCCESS: {
+                    Log.i(TAG, "OpenCV loaded successfully");
+                    mOpenCvCameraView.enableView();
+                }
+                break;
+                default: {
+                    super.onManagerConnected(status);
+                }
+                break;
+            }
+        }
+    };
 ​
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        Log.i(TAG, "called onCreate");
-        super.onCreate(savedInstanceState);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        setContentView(R.layout.image_manipulations_surface_view);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        Log.i(TAG, "called onCreate");
+        super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        setContentView(R.layout.image_manipulations_surface_view);
 ​
-        mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.image_manipulations_activity_surface_view);
-        mOpenCvCameraView.setVisibility(CameraBridgeViewBase.VISIBLE);
-        mOpenCvCameraView.setCvCameraViewListener(this);
-    }
+        mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.image_manipulations_activity_surface_view);
+        mOpenCvCameraView.setVisibility(CameraBridgeViewBase.VISIBLE);
+        mOpenCvCameraView.setCvCameraViewListener(this);
+    }
 ​
-    @Override
-    public void onResume() {
-        super.onResume();
+    @Override
+    public void onResume() {
+        super.onResume();
 ​
-        if (getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) { /* 强制横屏 */
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        } else { /* 横屏后才加载部件 */
-            if (!OpenCVLoader.initDebug()) {
-                Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
-                OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback);
-            } else {
-                Log.d(TAG, "OpenCV library found inside package. Using it!");
-                mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
-            }
-        }
-    }
+        if (getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) { /* 强制横屏 */
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        } else { /* 横屏后才加载部件 */
+            if (!OpenCVLoader.initDebug()) {
+                Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
+                OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback);
+            } else {
+                Log.d(TAG, "OpenCV library found inside package. Using it!");
+                mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
+            }
+        }
+    }
 ​
-    @Override
-    protected void onDestroy() {
-        if (mOpenCvCameraView != null) {
-            mOpenCvCameraView.disableView();
-        }
+    @Override
+    protected void onDestroy() {
+        if (mOpenCvCameraView != null) {
+            mOpenCvCameraView.disableView();
+        }
 
         super.onDestroy();
     }
