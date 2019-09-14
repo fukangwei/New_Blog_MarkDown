@@ -1,7 +1,7 @@
 ---
 title: imdecode和imencode
 date: 2019-02-23 20:01:13
-tags:
+categories: opencv和图像处理
 ---
 &emsp;&emsp;`cv2.imdecode`函数从指定的内存缓存中读取数据，并把数据转换(解码)成图像格式，主要用于从网络传输数据中恢复出图像。
 &emsp;&emsp;`cv2.imencode`函数是将图片格式转换(编码)成流数据，赋值到内存缓存中，主要用于图像数据格式的压缩，方便网络传输。
@@ -43,8 +43,8 @@ str_encode = data_encode.tostring()
 ​
 # 缓存数据保存到本地
 with open('img_encode.txt', 'wb') as f:
-    f.write(str_encode)
-    f.flush
+    f.write(str_encode)
+    f.flush
 ```
 
 ### imencode和imdecode的使用
@@ -61,11 +61,11 @@ data_encode = np.array(img_encode)
 str_encode = data_encode.tostring()
 ​
 with open('img_encode.txt', 'wb') as f:
-    f.write(str_encode)
-    f.flush
+    f.write(str_encode)
+    f.flush
 ​
 with open('img_encode.txt', 'rb') as f:
-    str_encode = f.read()
+    str_encode = f.read()
 ​
 nparr = np.fromstring(str_encode, np.uint8)
 img_decode = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
