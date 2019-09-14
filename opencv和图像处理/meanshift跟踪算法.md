@@ -1,7 +1,7 @@
 ---
 title: meanshift跟踪算法
 date: 2019-03-07 14:05:39
-tags:
+categories: opencv和图像处理
 ---
 &emsp;&emsp;首先介绍一下`meanshift`算法，它的本质是一个迭代的过程，能够在一组数据的密度分布中寻找到局部极值。它比较稳定，而且是无参密度估计(不需要事先知道样本数据的概率密度分布函数，完全依靠对样本点的计算)，而且在采样充分的情况下，一定会收敛，即可以对服从任意分布的数据进行密度估计。
 &emsp;&emsp;这里就不把`meanshift`的数学公式都写出来了，只为了让大家知道`meanshift`的作用是什么；高维的部分也先不考虑，以二维来说明可能更容易理解。下图中的很多的红点就是我们的样本特征点，`meanshift`就是在这些点中的任意一个点为圆心，然后以半径`R`画一个圆(在`OpenCV`中是一个矩形)，然后落在这个圆中的所有点和圆心都会有对应的一个向量，把所有这些向量相加(注意是向量相加)，最终只得到一个向量，就是下图中用黄色箭头表示的向量，这个向量就是`meanshift`向量。
@@ -43,11 +43,11 @@ import numpy as np
 import cv2
 ​
 cap = cv2.VideoCapture('output_2.avi')
-ret, frame = cap.read()  # take first frame of the video
+ret, frame = cap.read()  # take first frame of the video
 print(frame.shape)
 ​
 # setup initial location of window
-r, h, c, w = 200, 170, 260, 100  # simply hardcoded the values
+r, h, c, w = 200, 170, 260, 100  # simply hardcoded the values
 track_window = (c, r, w, h)
 ​
 cv2.rectangle(frame, (c, r), (c + w, r + h), 255, 2)
@@ -65,27 +65,28 @@ cv2.normalize(roi_hist, roi_hist, 0, 255, cv2.NORM_MINMAX)
 term_crit = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 1)
 ​
 while (True):
-    ret, frame = cap.read()
+    ret, frame = cap.read()
 ​
-    if ret == True:
-        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-        dst = cv2.calcBackProject([hsv], [0], roi_hist, [0, 180], 1)
+    if ret == True:
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        dst = cv2.calcBackProject([hsv], [0], roi_hist, [0, 180], 1)
 ​
-        # apply meanshift to get the new location
-        ret, track_window = cv2.meanShift(dst, track_window, term_crit)
+        # apply meanshift to get the new location
+        ret, track_window = cv2.meanShift(dst, track_window, term_crit)
 ​
-        # Draw it on image
-        x, y, w, h = track_window
-        img2 = cv2.rectangle(frame, (x, y), (x + w, y + h), 255, 2)
-        cv2.imshow('img2', img2)
+        # Draw it on image
+        x, y, w, h = track_window
+        img2 = cv2.rectangle(frame, (x, y), (x + w, y + h), 255, 2)
+        cv2.imshow('img2', img2)
 ​
-        k = cv2.waitKey(60) & 0xff
-        if k == 27:
-            break
-        else:
-            cv2.imwrite(chr(k) + ".jpg", img2)
-    else:
-        break
+        k = cv2.waitKey(60) & 0xff
+
+        if k == 27:
+            break
+        else:
+            cv2.imwrite(chr(k) + ".jpg", img2)
+    else:
+        break
 ​
 cv2.destroyAllWindows()
 cap.release()

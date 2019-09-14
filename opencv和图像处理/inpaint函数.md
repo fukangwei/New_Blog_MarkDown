@@ -80,23 +80,23 @@ int main ( int argc, char **argv ) {
     setMouseCallback ( "image", onMouse, 0 );
 ​
     for ( ;; ) {
-        char c = ( char ) waitKey();
+        char c = ( char ) waitKey();
 ​
-        if ( c == 27 ) {
-            break;
-        }
+        if ( c == 27 ) {
+            break;
+        }
 ​
-        if ( c == 'r' ) {
-            inpaintMask = Scalar::all ( 0 );
-            img0.copyTo ( img );
-            imshow ( "image", img );
-        }
+        if ( c == 'r' ) {
+            inpaintMask = Scalar::all ( 0 );
+            img0.copyTo ( img );
+            imshow ( "image", img );
+        }
 ​
-        if ( c == 'i' || c == ' ' ) {
-            Mat inpainted;
-            inpaint ( img, inpaintMask, inpainted, 3, CV_INPAINT_TELEA );
-            imshow ( "inpainted image", inpainted );
-        }
+        if ( c == 'i' || c == ' ' ) {
+            Mat inpainted;
+            inpaint ( img, inpaintMask, inpainted, 3, CV_INPAINT_TELEA );
+            imshow ( "inpainted image", inpainted );
+        }
     }
 ​
     return 0;
