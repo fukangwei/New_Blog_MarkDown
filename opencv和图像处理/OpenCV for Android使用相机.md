@@ -171,20 +171,20 @@ public class ImageManipulationsActivity extends Activity implements CameraBridge
         super.onDestroy();
     }
 ​
-    /* 对象实例化以及基本属性的设置，包括长度、宽度和图像类型 */
-    public void onCameraViewStarted(int width, int height) {
-        mRgba = new Mat(height, width, CvType.CV_8UC4);
-    }
+    /* 对象实例化以及基本属性的设置，包括长度、宽度和图像类型 */
+    public void onCameraViewStarted(int width, int height) {
+        mRgba = new Mat(height, width, CvType.CV_8UC4);
+    }
 ​
-    /* 图像处理都写在这里 */
-    public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
-        mRgba = inputFrame.rgba(); /* 直接返回输入视频预览图的RGB数据，并存放在Mat数据中 */
-        return mRgba;
-    }
+    /* 图像处理都写在这里 */
+    public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
+        mRgba = inputFrame.rgba(); /* 直接返回输入视频预览图的RGB数据，并存放在Mat数据中 */
+        return mRgba;
+    }
 ​
-    /* 结束时释放资源 */
-    public void onCameraViewStopped() {
-        mRgba.release();
-    }
+    /* 结束时释放资源 */
+    public void onCameraViewStopped() {
+        mRgba.release();
+    }
 }
 ```
