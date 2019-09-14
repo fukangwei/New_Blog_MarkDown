@@ -213,19 +213,19 @@ while ( pCurSeq = pCurSeq->h_next ) {
  * Read/Write sequence.
  * Elements can be dynamically inserted to or deleted from the sequence.
  */
-#define CV_SEQUENCE_FIELDS()                                   \
-    CV_TREE_NODE_FIELDS(CvSeq);                                \
-    int   total;       /* total number of elements */          \
-    int   elem_size;   /* size of sequence element in bytes */ \
-    char* block_max;   /* maximal bound of the last block */   \
-    char* ptr;         /* current write pointer */             \
-    int   delta_elems; /* how many elements allocated when the seq grows */  \
-    CvMemStorage* storage;   /* where the seq is stored */                   \
-    CvSeqBlock* free_blocks; /* free blocks list */                          \
-    CvSeqBlock* first; /* pointer to the first sequence block */
-​
+#define CV_SEQUENCE_FIELDS()                                   \
+    CV_TREE_NODE_FIELDS(CvSeq);                                \
+    int   total;       /* total number of elements */          \
+    int   elem_size;   /* size of sequence element in bytes */ \
+    char* block_max;   /* maximal bound of the last block */   \
+    char* ptr;         /* current write pointer */             \
+    int   delta_elems; /* how many elements allocated when the seq grows */ \
+    CvMemStorage* storage;   /* where the seq is stored */                  \
+    CvSeqBlock* free_blocks; /* free blocks list */                         \
+    CvSeqBlock* first; /* pointer to the first sequence block */
+
 typedef struct CvSeq {
-    CV_SEQUENCE_FIELDS()
+    CV_SEQUENCE_FIELDS()
 } CvSeq;
 ```
 
