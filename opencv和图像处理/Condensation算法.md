@@ -1,7 +1,7 @@
 ---
 title: Condensation算法
 date: 2019-02-24 10:18:45
-tags:
+categories: opencv和图像处理
 ---
 &emsp;&emsp;自`opencv 2.3`以后，`condensation`算法放在`legacy`中了，也就是说要引入下面的头文件：
 
@@ -22,18 +22,18 @@ tags:
 
 ``` cpp
 typedef struct CvConDensation {
-    int MP; /* Dimension of measurement vector 测量向量的维数 */
-    int DP; /* Dimension of state vector 状态向量的维数 */
-    float *DynamMatr; /* Matrix of the linear Dynamics system 线性动态系统矩阵 */
-    float *State; /* Vector of State 状态向量 */
-    int SamplesNum; /* Number of the Samples 粒子数 */
-    float **flSamples; /* array of the Sample Vectors 粒子向量数组 */
-    float **flNewSamples; /* temporary array of the Sample Vectors 粒子向量临时数组 */
-    float *flConfidence; /* Confidence for each Sample 每个粒子的置信度(译者注：也就是粒子的权值) */
-    float *flCumulative; /* Cumulative confidence 权值的累计 */
-    float *Temp; /* Temporary vector 临时向量 */
-    float *RandomSample; /* RandomVector to update sample set 用来更新粒子集的随机向量 */
-    CvRandState *RandS; /* Array of structures to generate random vectors 产生随机向量的结构数组 */
+    int MP; /* Dimension of measurement vector 测量向量的维数 */
+    int DP; /* Dimension of state vector 状态向量的维数 */
+    float *DynamMatr; /* Matrix of the linear Dynamics system 线性动态系统矩阵 */
+    float *State; /* Vector of State 状态向量 */
+    int SamplesNum; /* Number of the Samples 粒子数 */
+    float **flSamples; /* array of the Sample Vectors 粒子向量数组 */
+    float **flNewSamples; /* temporary array of the Sample Vectors 粒子向量临时数组 */
+    float *flConfidence; /* Confidence for each Sample 每个粒子的置信度(译者注：也就是粒子的权值) */
+    float *flCumulative; /* Cumulative confidence 权值的累计 */
+    float *Temp; /* Temporary vector 临时向量 */
+    float *RandomSample; /* RandomVector to update sample set 用来更新粒子集的随机向量 */
+    CvRandState *RandS; /* Array of structures to generate random vectors 产生随机向量的结构数组 */
 } CvConDensation;
 ```
 
@@ -76,63 +76,62 @@ void cvConDensUpdateByTime ( CvConDensation *ConDens );
 using namespace cv;
 using namespace std;
 ​
-#define drawCross( center, color, d )                               \
-    line( img,  Point( center.x - d, center.y - d ),                \
-          Point( center.x + d, center.y + d ), color, 2, CV_AA, 0); \
-    line( img,  Point( center.x + d, center.y - d ),                \
-          Point( center.x - d, center.y + d ), color, 2, CV_AA, 0 )
-​
+#define drawCross( center, color, d )                               \
+    line( img,  Point( center.x - d, center.y - d ),                \
+          Point( center.x + d, center.y + d ), color, 2, CV_AA, 0); \
+    line( img,  Point( center.x + d, center.y - d ),                \
+          Point( center.x - d, center.y + d ), color, 2, CV_AA, 0 )
+
 struct mouse_info_struct {
-    int x, y;
+    int x, y;
 };
 ​
 struct mouse_info_struct mouse_info = { -1, -1}, last_mouse;
 ​
 vector< Point> mouseV, particleV;
 int counter = -1;
-​
+
 /* Define this to proceed one click at a time. */
 #define PLOT_PARTICLES 1
-​
+
 void on_mouse ( int event, int x, int y, int flags, void *param ) {
 #ifdef CLICK
-​
-    if ( event == CV_EVENT_LBUTTONUP )
+    if ( event == CV_EVENT_LBUTTONUP )
 #endif
-    {
-        last_mouse = mouse_info;
-        mouse_info.x = x;
-        mouse_info.y = y;
-        counter = 0;
-    }
+    {
+        last_mouse = mouse_info;
+        mouse_info.x = x;
+        mouse_info.y = y;
+        counter = 0;
+    }
 }
 ​
 int main ( int argc, char *const argv[] ) {
-    Mat img ( 650, 650, CV_8UC3 );
-    char code = ( char ) - 1;
-    namedWindow ( "mouse particle" );
-    setMouseCallback ( "mouse particle", on_mouse, 0 );
-    Mat_<float> measurement ( 2, 1 );
-    measurement.setTo ( Scalar ( 0 ) );
-    int dim = 2;
-    int nParticles = 25;
-    float xRange = 650.0;
-    float yRange = 650.0;
-    float minRange[] = { 0, 0 };
-    float maxRange[] = { xRange, yRange };
-    CvMat LB, UB;
-    cvInitMatHeader ( &LB, 2, 1, CV_32FC1, minRange );
-    cvInitMatHeader ( &UB, 2, 1, CV_32FC1, maxRange );
-    CvConDensation *condens = cvCreateConDensation ( dim, dim, nParticles );
-    cvConDensInitSampleSet ( condens, &LB, &UB );
-    /* The OpenCV documentation doesn't tell you to initialize this
-       transition matrix, but you have to do it. For this 2D example,
-       we're just using a 2x2 identity matrix. I'm sure there's a slicker
-       way to do this, left as an exercise for the reader. */
-    condens->DynamMatr[0] = 1.0;
-    condens->DynamMatr[1] = 0.0;
-    condens->DynamMatr[2] = 0.0;
-    condens->DynamMatr[3] = 1.0;
+    Mat img ( 650, 650, CV_8UC3 );
+    char code = ( char ) - 1;
+    namedWindow ( "mouse particle" );
+    setMouseCallback ( "mouse particle", on_mouse, 0 );
+    Mat_<float> measurement ( 2, 1 );
+    measurement.setTo ( Scalar ( 0 ) );
+    int dim = 2;
+    int nParticles = 25;
+    float xRange = 650.0;
+    float yRange = 650.0;
+    float minRange[] = { 0, 0 };
+    float maxRange[] = { xRange, yRange };
+    CvMat LB, UB;
+    cvInitMatHeader ( &LB, 2, 1, CV_32FC1, minRange );
+    cvInitMatHeader ( &UB, 2, 1, CV_32FC1, maxRange );
+    CvConDensation *condens = cvCreateConDensation ( dim, dim, nParticles );
+    cvConDensInitSampleSet ( condens, &LB, &UB );
+    /* The OpenCV documentation doesn't tell you to initialize this
+       transition matrix, but you have to do it. For this 2D example,
+       we're just using a 2x2 identity matrix. I'm sure there's a slicker
+       way to do this, left as an exercise for the reader. */
+    condens->DynamMatr[0] = 1.0;
+    condens->DynamMatr[1] = 0.0;
+    condens->DynamMatr[2] = 0.0;
+    condens->DynamMatr[3] = 1.0;
 ​
     for ( ;; ) {
         if ( mouse_info.x < 0 || mouse_info.y < 0 ) {
