@@ -301,14 +301,13 @@ bool FileStorage::open ( const string &filename, int flags, const string &encodi
 
 #### FileStorage::isOpened
 
-&emsp;&emsp;Checks whether the file is opened.
+&emsp;&emsp;Return `true` if the object is associated with the current file and `false` otherwise. It is a good practice to call this method after you tried to open a file.
 
 ``` cpp
 bool FileStorage::isOpened() const;
 ```
 
-Return `true` if the object is associated with the current file and `false` otherwise.
-&emsp;&emsp;It is a good practice to call this method after you tried to open a file.
+&emsp;&emsp;
 
 #### FileStorage::release
 
