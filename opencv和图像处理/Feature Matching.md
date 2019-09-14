@@ -1,7 +1,7 @@
 ---
 title: Feature Matching
 date: 2019-03-06 17:47:16
-tags:
+categories: opencv和图像处理
 ---
 ### Basics of Brute-Force Matcher
 
@@ -83,8 +83,8 @@ matches = bf.knnMatch(des1, des2, k=2)
 # Apply ratio test
 good = []
 for m, n in matches:
-    if m.distance < 0.75 * n.distance:
-        good.append([m])
+    if m.distance < 0.75 * n.distance:
+        good.append([m])
 ​
 # cv2.drawMatchesKnn expects list of lists as matches.
 img3 = cv2.drawMatchesKnn(img1, kp1, img2, kp2, good, flags=2)
@@ -109,9 +109,9 @@ index_params = dict(algorithm = FLANN_INDEX_KDTREE, trees = 5)
 
 ``` python
 index_params = dict(algorithm=FLANN_INDEX_LSH,
-                    table_number=6,  # 12
-                    key_size=12,  # 20
-                    multi_probe_level=1)  # 2
+                    table_number=6,  # 12
+                    key_size=12,  # 20
+                    multi_probe_level=1)  # 2
 ```
 
 &emsp;&emsp;Second dictionary is the `SearchParams`. It specifies the number of times the trees in the index should be recursively traversed. Higher values gives better precision, but also takes more time. If you want to change the value, pass `search_params = dict(checks=100)`.
@@ -146,8 +146,8 @@ matchesMask = [[0, 0] for i in range(len(matches))]
 ​
 # ratio test as per Lowe's paper
 for i, (m, n) in enumerate(matches):
-    if m.distance < 0.7 * n.distance:
-        matchesMask[i] = [1, 0]
+    if m.distance < 0.7 * n.distance:
+        matchesMask[i] = [1, 0]
 ​
 draw_params = dict(matchColor=(0, 255, 0), singlePointColor=(255, 0, 0), matchesMask=matchesMask, flags=0)
 ​

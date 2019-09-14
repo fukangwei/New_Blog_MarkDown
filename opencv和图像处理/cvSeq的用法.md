@@ -240,20 +240,20 @@ while ( pCurSeq ) {
         pOldSeq = pCurSeq;
 ​
         if ( pOldSeq->h_prev ) {
-            pCurSeq = pOldSeq->h_prev;
-            pCurSeq->h_next = pOldSeq->h_next;
-            pOldSeq->h_next->h_prev = pCurSeq;
-            pCurSeq = pCurSeq->h_next;
-            cvClearSeq ( pOldSeq );
+            pCurSeq = pOldSeq->h_prev;
+            pCurSeq->h_next = pOldSeq->h_next;
+            pOldSeq->h_next->h_prev = pCurSeq;
+            pCurSeq = pCurSeq->h_next;
+            cvClearSeq ( pOldSeq );
         } else {
-            pCurSeq = pOldSeq->h_next;
-            pCurSeq->h_prev = NULL;
-            cvClearSeq ( pOldSeq );
-        }
+            pCurSeq = pOldSeq->h_next;
+            pCurSeq->h_prev = NULL;
+            cvClearSeq ( pOldSeq );
+        }
     } else {
         pCurSeq = pCurSeq->h_next;
     }
 }
 ```
 
-&emsp;&emsp;后来在`Google Book`里查了一下，发现`《Learning OpenCV: Computer Vision with the OpenCV Library》`中有这么一段话：The sequence structure itself has some important elements that you should be aware of. The first, and one you will use often, is total. This is the total number of points or objects in the sequence. The next four important elements are pointers to other sequence: `h_prev`, `h_next`, `v_prev` and `v_next`. These four pointers are part of what are called `CV_TREE_NODE_FIELDS`; they are used not to indicate elements inside of the sequence but rather to connect different sequences to one another. Other objects in the OpenCV universe also contain these tree node fields。
+&emsp;&emsp;后来在`Google Book`里查了一下，发现`《Learning OpenCV: Computer Vision with the OpenCV Library》`中有这么一段话：The sequence structure itself has some important elements that you should be aware of. The first, and one you will use often, is total. This is the total number of points or objects in the sequence. The next four important elements are pointers to other sequence: `h_prev`, `h_next`, `v_prev` and `v_next`. These four pointers are part of what are called `CV_TREE_NODE_FIELDS`; they are used not to indicate elements inside of the sequence but rather to connect different sequences to one another. Other objects in the `OpenCV` universe also contain these tree node fields。
