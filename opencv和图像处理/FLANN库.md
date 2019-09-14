@@ -1,7 +1,7 @@
 ---
 title: FLANN库
 date: 2019-03-04 18:57:23
-tags:
+categories: opencv和图像处理
 ---
 &emsp;&emsp;`FLANN`库全称是`Fast Library for Approximate Nearest Neighbors`，它是目前最完整的最近邻开源库。不但实现了一系列查找算法，还包含了一种自动选取最快算法的机制。
 
@@ -12,27 +12,26 @@ tags:
 ``` cpp
 template <typename T> class
 #ifndef _MSC_VER
-    FLANN_DEPRECATED
+    FLANN_DEPRECATED
 #endif
-    Index_ {
-  public:
-    typedef typename L2<T>::ElementType ElementType;
-    typedef typename L2<T>::ResultType DistanceType;
+    Index_ {
+public:
+    typedef typename L2<T>::ElementType ElementType;
+    typedef typename L2<T>::ResultType DistanceType;
 ​
-    Index_ ( const Mat &features, const ::cvflann::IndexParams &params );
+    Index_ ( const Mat &features, const ::cvflann::IndexParams &params );
+    ~Index_();
 ​
-    ~Index_();
-​
-    void knnSearch ( const vector<ElementType> &query, vector<int> &indices, \
+    void knnSearch ( const vector<ElementType> &query, vector<int> &indices, \
         vector<DistanceType> &dists, int knn, const ::cvflann::SearchParams &params );
-    void knnSearch ( const Mat &queries, Mat &indices, Mat &dists, int knn, \
+    void knnSearch ( const Mat &queries, Mat &indices, Mat &dists, int knn, \
         const ::cvflann::SearchParams &params );
-    int radiusSearch ( const vector<ElementType> &query, vector<int> &indices, \
+    int radiusSearch ( const vector<ElementType> &query, vector<int> &indices, \
         vector<DistanceType> &dists, DistanceType radius, const ::cvflann::SearchParams &params );
-    int radiusSearch ( const Mat &query, Mat &indices, Mat &dists, \
+    int radiusSearch ( const Mat &query, Mat &indices, Mat &dists, \
         DistanceType radius, const ::cvflann::SearchParams &params );
 ​
-    void save ( std::string filename ) {
+    void save ( std::string filename ) {
         if ( nnIndex_L1 ) {
             nnIndex_L1->save ( filename );
         }
