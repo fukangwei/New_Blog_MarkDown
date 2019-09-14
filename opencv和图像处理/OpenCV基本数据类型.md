@@ -1,7 +1,7 @@
 ---
 title: OpenCV基本数据类型
 date: 2019-02-23 16:37:31
-tags:
+categories: opencv和图像处理
 ---
 &emsp;&emsp;`OpenCV`提供了多种基本数据类型，虽然这些数据类型在`C`语言中不是基本类型，但结构都很简单，可将它们作为原子类型。可以在`/OpenCV/cxcore/include`目录下的`cxtypes.h`文件中查看其详细定义。
 &emsp;&emsp;数据类型中最简单的就是`CvPoint`，它是一个包含`integer`类型成员`x`和`y`的简单结构体。`CvPoint`有两个变体类型，即`CvPoint2D32f`和`CvPoint3D32f`。前者同样有两个成员`x`和`y`，但它们是浮点类型；而后者却多了一个浮点类型的成员`z`。
@@ -14,7 +14,7 @@ tags:
 
 ``` cpp
 typedef struct CvScalar {
-    double val[4];
+    double val[4];
 } CvScalar;
 ```
 
@@ -89,25 +89,28 @@ CV_<bit_depth> (S|U|F)C<number_of_channels>
 
 ``` cpp
 typedef struct CvMat { /* CvMat矩阵头 */
-    int type; /* 数据类型 */
-    int step; /* 每行数据的字节数：元素个数*元素类型的字节长度 */
-    int *refcount; /* for internal use only */
-    int hdr_refcount;
-    union {
-        uchar *ptr; /* 指向data数据的第一个元素 */
-        short *s;
-        int *i;
-        float *fl;
-        double *db;
-    } data; /* 共同体data，里面成员共用一个空间 */
-    union {
-        int rows; /* 像素的行数 */
-        int height; /* 图片的高度 */
-    };
-    union {
-        int cols; /* 像素的列数 */
-        int width; /* 图片的宽度 */
-    };
+    int type; /* 数据类型 */
+    int step; /* 每行数据的字节数：元素个数*元素类型的字节长度 */
+    int *refcount; /* for internal use only */
+    int hdr_refcount;
+
+    union {
+        uchar *ptr; /* 指向data数据的第一个元素 */
+        short *s;
+        int *i;
+        float *fl;
+        double *db;
+    } data; /* 共同体data，里面成员共用一个空间 */
+
+    union {
+        int rows; /* 像素的行数 */
+        int height; /* 图片的高度 */
+    };
+
+    union {
+        int cols; /* 像素的列数 */
+        int width; /* 图片的宽度 */
+    };
 } CvMat;
 ```
 
@@ -117,28 +120,28 @@ typedef struct CvMat { /* CvMat矩阵头 */
 
 ``` cpp
 typedef struct _IplImage {
-    int nSize;
-    int ID;
-    int nChannels;
-    int alphaChannel;
-    int depth;
-    char colorModel[4];
-    char channelSeq[4];
-    int dataOrder;
-    int origin;
-    int align;
-    int width;
-    int height;
-    struct _IplROI *roi;
-    struct _IplImage *maskROI;
-    void *imageId;
-    struct _IplTileInfo *tileInfo;
-    int imageSize;
-    char *imageData;
-    int widthStep;
-    int BorderMode[4];
-    int BorderConst[4];
-    char *imageDataOrigin;
+    int nSize;
+    int ID;
+    int nChannels;
+    int alphaChannel;
+    int depth;
+    char colorModel[4];
+    char channelSeq[4];
+    int dataOrder;
+    int origin;
+    int align;
+    int width;
+    int height;
+    struct _IplROI *roi;
+    struct _IplImage *maskROI;
+    void *imageId;
+    struct _IplTileInfo *tileInfo;
+    int imageSize;
+    char *imageData;
+    int widthStep;
+    int BorderMode[4];
+    int BorderConst[4];
+    char *imageDataOrigin;
 } IplImage;
 ```
 
@@ -170,7 +173,7 @@ color[1] = 0; /* G通道 */
 color[2] = 0; /* R通道 */
 ```
 
-`cv::mat`的成员函数`at(int y, int x)`可以用来存取图像中对应坐标为`(x, y)`的元素坐标。但是在使用它时要注意，在编译期必须要已知图像的数据类型，这是因为`cv::mat`可以存放任意数据类型的元素，因此at方法的实现是用模板函数来实现的。假设提前已知一幅图像`img`的数据类型为`unsigned char`型灰度图，要对坐标为`(14, 25)`的像素重新赋值为`25`，则对应操作如下：
+`cv::mat`的成员函数`at(int y, int x)`可以用来存取图像中对应坐标为`(x, y)`的元素坐标。但是在使用它时要注意，在编译期必须要已知图像的数据类型，这是因为`cv::mat`可以存放任意数据类型的元素，因此`at`方法的实现是用模板函数来实现的。假设提前已知一幅图像`img`的数据类型为`unsigned char`型灰度图，要对坐标为`(14, 25)`的像素重新赋值为`25`，则对应操作如下：
 
 ``` cpp
 srcImage.at<uchar> ( 14, 25 ) = 25;

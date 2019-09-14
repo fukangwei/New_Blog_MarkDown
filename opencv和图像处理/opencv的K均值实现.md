@@ -95,12 +95,12 @@ int main ( int argc, char **argv ) {
         imshow ( "clusters", img );
         char key = ( char ) waitKey ( 0 ); /* 无限等待 */
 ​
-        if ( key == 27 || key == 'q' || key == 'Q' ) {
-            break;
-        }
-    }
+        if ( key == 27 || key == 'q' || key == 'Q' ) {
+            break;
+        }
+    }
 ​
-    return 0;
+    return 0;
 }
 ```
 
