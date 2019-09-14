@@ -285,19 +285,18 @@ int main ( int argc, char **argv ) {
     std::vector< DMatch > good_matches;
 ​
     for ( int i = 0; i < descriptors_1.rows; i++ ) {
-        if ( matches[i].distance < 2 * min_dist ) {
-            good_matches.push_back ( matches[i] );
-        }
-    }
+        if ( matches[i].distance < 2 * min_dist ) {
+            good_matches.push_back ( matches[i] );
+        }
+    }
 ​
-    /* Draw only "good" matches */
-    Mat img_matches;
-    drawMatches (
-        img_1, keypoints_1, img_2, keypoints_2, good_matches, img_matches, Scalar::all ( -1 ),
-        Scalar::all ( -1 ), vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS
-    );
-    /* Show detected matches */
-    imshow ( "Good Matches", img_matches );
+    /* Draw only "good" matches */
+    Mat img_matches;
+    drawMatches (
+        img_1, keypoints_1, img_2, keypoints_2, good_matches, img_matches, Scalar::all ( -1 ),
+        Scalar::all ( -1 ), vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
+    /* Show detected matches */
+    imshow ( "Good Matches", img_matches );
 ​
     for ( int i = 0; i < good_matches.size(); i++ ) {
         printf (
