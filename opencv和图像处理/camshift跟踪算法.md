@@ -60,60 +60,60 @@ int main ( int argc, char *argv[] ) {
         }
 ​
         if ( originalPoint != processPoint && !leftButtonDownFlag ) {
-            Mat imageHSV;
-            Mat calcBackImage;
-            cvtColor ( image, imageHSV, CV_RGB2HSV );
-            calcBackProject ( &imageHSV, 2, channels, dstHist, calcBackImage, &histRange ); /* 反向投影 */
-            TermCriteria criteria ( TermCriteria::MAX_ITER + TermCriteria::EPS, 1000, 0.001 );
-            CamShift ( calcBackImage, rect, criteria );
-            Mat imageROI = imageHSV ( rect ); /* 更新模板 */
-            targetImageHSV = imageHSV ( rect );
-            calcHist ( &imageROI, 2, channels, Mat(), dstHist, 1, &histSize, &histRange );
-            normalize ( dstHist, dstHist, 0.0, 1.0, NORM_MINMAX ); /* 归一化 */
-            rectangle ( image, rect, Scalar ( 255, 0, 0 ), 3 ); /* 目标绘制 */
-            pt.push_back ( Point ( rect.x + rect.width / 2, rect.y + rect.height / 2 ) );
+            Mat imageHSV;
+            Mat calcBackImage;
+            cvtColor ( image, imageHSV, CV_RGB2HSV );
+            calcBackProject ( &imageHSV, 2, channels, dstHist, calcBackImage, &histRange ); /* 反向投影 */
+            TermCriteria criteria ( TermCriteria::MAX_ITER + TermCriteria::EPS, 1000, 0.001 );
+            CamShift ( calcBackImage, rect, criteria );
+            Mat imageROI = imageHSV ( rect ); /* 更新模板 */
+            targetImageHSV = imageHSV ( rect );
+            calcHist ( &imageROI, 2, channels, Mat(), dstHist, 1, &histSize, &histRange );
+            normalize ( dstHist, dstHist, 0.0, 1.0, NORM_MINMAX ); /* 归一化 */
+            rectangle ( image, rect, Scalar ( 255, 0, 0 ), 3 ); /* 目标绘制 */
+            pt.push_back ( Point ( rect.x + rect.width / 2, rect.y + rect.height / 2 ) );
 ​
-            for ( int i = 0; i < pt.size() - 1; i++ ) {
-                line ( image, pt[i], pt[i + 1], Scalar ( 0, 255, 0 ), 2.5 );
-            }
-        }
+            for ( int i = 0; i < pt.size() - 1; i++ ) {
+                line ( image, pt[i], pt[i + 1], Scalar ( 0, 255, 0 ), 2.5 );
+            }
+        }
 ​
-        imshow ( "跟踪手", image );
-        waitKey ( 100 );
-    }
+        imshow ( "跟踪手", image );
+        waitKey ( 100 );
+    }
 ​
-    return 0;
+    return 0;
 }
 ​
 void onMouse ( int event, int x, int y, int flags, void *ustc ) {
-    if ( event == CV_EVENT_LBUTTONDOWN ) {
-        leftButtonDownFlag = true; /* 标志位 */
-        originalPoint = Point ( x, y ); /* 设置左键按下点的矩形起点 */
-        processPoint = originalPoint;
-    }
+    if ( event == CV_EVENT_LBUTTONDOWN ) {
+        leftButtonDownFlag = true; /* 标志位 */
+        originalPoint = Point ( x, y ); /* 设置左键按下点的矩形起点 */
+        processPoint = originalPoint;
+    }
 ​
-    if ( event == CV_EVENT_MOUSEMOVE && leftButtonDownFlag ) {
-        imageCopy = image.clone();
-        processPoint = Point ( x, y );
+    if ( event == CV_EVENT_MOUSEMOVE && leftButtonDownFlag ) {
+        imageCopy = image.clone();
+        processPoint = Point ( x, y );
 ​
-        if ( originalPoint != processPoint ) {
-            /* 在复制的图像上绘制矩形 */
-            rectangle ( imageCopy, originalPoint, processPoint, Scalar ( 255, 0, 0 ), 2 );
-        }
+        if ( originalPoint != processPoint ) {
+            /* 在复制的图像上绘制矩形 */
+            rectangle ( imageCopy, originalPoint, processPoint, Scalar ( 255, 0, 0 ), 2 );
+        }
 ​
-        imshow ( "跟踪手", imageCopy );
-    }
+        imshow ( "跟踪手", imageCopy );
+    }
 ​
-    if ( event == CV_EVENT_LBUTTONUP ) {
-        leftButtonDownFlag = false;
-        rect = Rect ( originalPoint, processPoint );
-        rectImage = image ( rect ); /* 子图像显示 */
-        imshow ( "Sub Image", rectImage );
-        cvtColor ( rectImage, targetImageHSV, CV_RGB2HSV );
-        imshow ( "targetImageHSV", targetImageHSV );
-        calcHist ( &targetImageHSV, 2, channels, Mat(), dstHist, 1, &histSize, &histRange, true, false );
-        normalize ( dstHist, dstHist, 0, 255, CV_MINMAX );
-    }
+    if ( event == CV_EVENT_LBUTTONUP ) {
+        leftButtonDownFlag = false;
+        rect = Rect ( originalPoint, processPoint );
+        rectImage = image ( rect ); /* 子图像显示 */
+        imshow ( "Sub Image", rectImage );
+        cvtColor ( rectImage, targetImageHSV, CV_RGB2HSV );
+        imshow ( "targetImageHSV", targetImageHSV );
+        calcHist ( &targetImageHSV, 2, channels, Mat(), dstHist, 1, &histSize, &histRange, true, false );
+        normalize ( dstHist, dstHist, 0, 255, CV_MINMAX );
+    }
 }
 ```
 
@@ -128,11 +128,9 @@ import cv2
 cap = cv2.VideoCapture('output_2.avi')
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
 out = cv2.VideoWriter('result.avi', fourcc, 20.0, (640, 480))
-​
-# take first frame of the video
-ret, frame = cap.read()
+ret, frame = cap.read()  # take first frame of the video
 # setup initial location of window
-r, h, c, w = 200, 170, 260, 100  # simply hardcoded the values
+r, h, c, w = 200, 170, 260, 100  # simply hardcoded the values
 track_window = (c, r, w, h)
 # set up the ROI for tracking
 roi = frame[r:r + h, c:c + w]
@@ -144,7 +142,8 @@ cv2.normalize(roi_hist, roi_hist, 0, 255, cv2.NORM_MINMAX)
 term_crit = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 1)
 ​
 while (1):
-    ret, frame = cap.read()
+    ret, frame = cap.read()
+
     if ret == True:
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         dst = cv2.calcBackProject([hsv], [0], roi_hist, [0, 180], 1)
