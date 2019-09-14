@@ -22,31 +22,31 @@ using namespace std;
 using namespace cv;
 ​
 int main() {
-    double t1 = ( double ) getTickCount();
-    cout << "t1 = " << t1 << endl;
-    int sum = 0;
+    double t1 = ( double ) getTickCount();
+    cout << "t1 = " << t1 << endl;
+    int sum = 0;
 ​
-    for ( int i = 0; i < 10000; i++ ) {
-        sum += i;
-    }
+    for ( int i = 0; i < 10000; i++ ) {
+        sum += i;
+    }
 ​
-    double t2 = ( double ) getTickCount();
-    cout << "t2 = " << t2 << endl;
-    double time = ( t2 - t1 ) / getTickFrequency();
-    cout << "Time = " << time << endl;
-    int64 e1 = getTickCount();
-    cout << "e1 = " << e1 << endl;
-    int sum1 = 0;
+    double t2 = ( double ) getTickCount();
+    cout << "t2 = " << t2 << endl;
+    double time = ( t2 - t1 ) / getTickFrequency();
+    cout << "Time = " << time << endl;
+    int64 e1 = getTickCount();
+    cout << "e1 = " << e1 << endl;
+    int sum1 = 0;
 ​
-    for ( int i = 0; i < 10000; i++ ) {
-        sum1 += i;
-    }
+    for ( int i = 0; i < 10000; i++ ) {
+        sum1 += i;
+    }
 ​
-    int64 e2 = getTickCount();
-    cout << "e2 = " << e2 << endl;
-    double time1 = ( e2 - e1 ) / getTickFrequency();
-    cout << "time1 = " << time1 << endl;
-    return 0;
+    int64 e2 = getTickCount();
+    cout << "e2 = " << e2 << endl;
+    double time1 = ( e2 - e1 ) / getTickFrequency();
+    cout << "time1 = " << time1 << endl;
+    return 0;
 }
 ```
 
@@ -75,7 +75,7 @@ img1 = cv2.imread('timg1.jpg')
 e1 = cv2.getTickCount()
 ​
 for i in range(5, 49, 2):
-    img1 = cv2.medianBlur(img1, i)
+    img1 = cv2.medianBlur(img1, i)
 ​
 e2 = cv2.getTickCount()
 t = (e2 - e1) / cv2.getTickFrequency()
