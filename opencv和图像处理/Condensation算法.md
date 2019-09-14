@@ -133,36 +133,34 @@ int main ( int argc, char *const argv[] ) {
     condens->DynamMatr[2] = 0.0;
     condens->DynamMatr[3] = 1.0;
 ​
-    for ( ;; ) {
-        if ( mouse_info.x < 0 || mouse_info.y < 0 ) {
-            imshow ( "mouse particle", img );
-            waitKey ( 30 );
-            continue;
-        }
+    for ( ;; ) {
+        if ( mouse_info.x < 0 || mouse_info.y < 0 ) {
+            imshow ( "mouse particle", img );
+            waitKey ( 30 );
+            continue;
+        }
 ​
-        mouseV.clear();
-        particleV.clear();
+        mouseV.clear();
+        particleV.clear();
 ​
-        for ( ;; ) {
-            code = ( char ) waitKey ( 100 );
+        for ( ;; ) {
+            code = ( char ) waitKey ( 100 );
 ​
-            if ( code > 0 ) {
-                break;
-            }
+            if ( code > 0 ) {
+                break;
+            }
 ​
 #ifdef CLICK
-​
-            if ( counter++ > 0 ) {
-                continue;
-            }
-​
+            if ( counter++ > 0 ) {
+                continue;
+            }
 #endif
-            measurement ( 0 ) = mouse_info.x;
-            measurement ( 1 ) = mouse_info.y;
-            Point measPt ( measurement ( 0 ), measurement ( 1 ) );
-            mouseV.push_back ( measPt );
-            /* Clear screen */
-            img =  Scalar::all ( 100 );
+            measurement ( 0 ) = mouse_info.x;
+            measurement ( 1 ) = mouse_info.y;
+            Point measPt ( measurement ( 0 ), measurement ( 1 ) );
+            mouseV.push_back ( measPt );
+            /* Clear screen */
+            img =  Scalar::all ( 100 );
 ​
             for ( int i = 0; i < condens->SamplesNum; i++ ) {
                 float diffX = ( measurement ( 0 ) - condens->flSamples[i][0] ) / xRange;
