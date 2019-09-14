@@ -81,19 +81,19 @@ int main ( int argc, char **argv ) {
 ​
         randShuffle ( points, 1, &rng ); /* 因为要聚类，所以先随机打乱points里面的点，注意points和pointChunk是共用数据的 */
         kmeans ( /* 聚类3次，取结果最好的那次，聚类的初始化采用PP特定的随机算法 */
-            points, clusterCount, labels,
-            TermCriteria ( CV_TERMCRIT_EPS + CV_TERMCRIT_ITER, 10, 1.0 ),
-            3, KMEANS_PP_CENTERS, centers );
+            points, clusterCount, labels,
+            TermCriteria ( CV_TERMCRIT_EPS + CV_TERMCRIT_ITER, 10, 1.0 ),
+            3, KMEANS_PP_CENTERS, centers );
         img = Scalar::all ( 0 );
 ​
-        for ( i = 0; i < sampleCount; i++ ) {
-            int clusterIdx = labels.at<int> ( i );
-            Point ipt = points.at<Point2f> ( i );
-            circle ( img, ipt, 2, colorTab[clusterIdx], CV_FILLED, CV_AA );
-        }
+        for ( i = 0; i < sampleCount; i++ ) {
+            int clusterIdx = labels.at<int> ( i );
+            Point ipt = points.at<Point2f> ( i );
+            circle ( img, ipt, 2, colorTab[clusterIdx], CV_FILLED, CV_AA );
+        }
 ​
-        imshow ( "clusters", img );
-        char key = ( char ) waitKey ( 0 ); /* 无限等待 */
+        imshow ( "clusters", img );
+        char key = ( char ) waitKey ( 0 ); /* 无限等待 */
 ​
         if ( key == 27 || key == 'q' || key == 'Q' ) {
             break;
