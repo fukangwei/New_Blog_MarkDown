@@ -1,6 +1,7 @@
 ---
 title: opencv的K均值实现
 date: 2019-04-15 10:02:58
+categories: opencv和图像处理
 mathjax: true
 ---
 &emsp;&emsp;在使用`k-means`之前，必须先了解`k-means`算法的`2`个缺点：第一是必须人为指定所聚的类的个数`k`；第二是如果使用欧式距离来衡量相似度的话，可能会得到错误的结果，因为没有考虑到属性的重要性和相关性。为了减少这种错误，在使用`k-means`距离时，一定要使样本的每一维数据归一化，不然的话由于样本的属性范围不同，会导致错误的结果。
@@ -46,46 +47,44 @@ using namespace cv;
 using namespace std;
 ​
 int main ( int argc, char **argv ) {
-    const int MAX_CLUSTERS = 5;
-    Scalar colorTab[] = { /* 因为最多只有5类，所以最多也就给5个颜色 */
-        Scalar ( 0, 0, 255 ),
-        Scalar ( 0, 255, 0 ),
-        Scalar ( 255, 100, 100 ),
-        Scalar ( 255, 0, 255 ),
-        Scalar ( 0, 255, 255 )
-    };
-    Mat img ( 500, 500, CV_8UC3 );
-    RNG rng ( 12345 ); /* 随机数产生器 */
+    const int MAX_CLUSTERS = 5;
+    Scalar colorTab[] = { /* 因为最多只有5类，所以最多也就给5个颜色 */
+        Scalar ( 0, 0, 255 ),
+        Scalar ( 0, 255, 0 ),
+        Scalar ( 255, 100, 100 ),
+        Scalar ( 255, 0, 255 ),
+        Scalar ( 0, 255, 255 ) };
+    Mat img ( 500, 500, CV_8UC3 );
+    RNG rng ( 12345 ); /* 随机数产生器 */
 ​
-    for ( ;; ) {
-        int k, clusterCount = rng.uniform ( 2, MAX_CLUSTERS + 1 );
-        int i, sampleCount = rng.uniform ( 1, 1001 );
+    for ( ;; ) {
+        int k, clusterCount = rng.uniform ( 2, MAX_CLUSTERS + 1 );
+        int i, sampleCount = rng.uniform ( 1, 1001 );
         /* 产生的样本数，实际上为2通道的列向量，元素类型为Point2f */
-        Mat points ( sampleCount, 1, CV_32FC2 ), labels;
-        clusterCount = MIN ( clusterCount, sampleCount );
-        Mat centers ( clusterCount, 1, points.type() ); /* 用来存储聚类后的中心点 */
+        Mat points ( sampleCount, 1, CV_32FC2 ), labels;
+        clusterCount = MIN ( clusterCount, sampleCount );
+        Mat centers ( clusterCount, 1, points.type() ); /* 用来存储聚类后的中心点 */
 ​
-        /* generate random sample from multigaussian distribution */
-        for ( k = 0; k < clusterCount; k++ ) { /* 产生随机数 */
-            Point center;
-            center.x = rng.uniform ( 0, img.cols );
-            center.y = rng.uniform ( 0, img.rows );
-            /* 最后一个类的样本数不一定是平分的，剩下的一份都给最后一类，每一类都是同样的方差，只是均值不同而已 */
-            Mat pointChunk = points.rowRange (
+        /* generate random sample from multigaussian distribution */
+        for ( k = 0; k < clusterCount; k++ ) { /* 产生随机数 */
+            Point center;
+            center.x = rng.uniform ( 0, img.cols );
+            center.y = rng.uniform ( 0, img.rows );
+            /* 最后一个类的样本数不一定是平分的，剩下的一份都给最后一类，每一类都是同样的方差，只是均值不同而已 */
+            Mat pointChunk = points.rowRange (
                                 k * sampleCount / clusterCount,
                                 k == clusterCount - 1 ? sampleCount : ( k + 1 ) * sampleCount / clusterCount );
-            rng.fill (
+            rng.fill (
                 pointChunk, CV_RAND_NORMAL, Scalar ( center.x, center.y ),
                 Scalar ( img.cols * 0.05, img.rows * 0.05 ) );
-        }
+        }
 ​
-        randShuffle ( points, 1, &rng ); /* 因为要聚类，所以先随机打乱points里面的点，注意points和pointChunk是共用数据的 */
-        kmeans ( /* 聚类3次，取结果最好的那次，聚类的初始化采用PP特定的随机算法 */
+        randShuffle ( points, 1, &rng ); /* 因为要聚类，所以先随机打乱points里面的点，注意points和pointChunk是共用数据的 */
+        kmeans ( /* 聚类3次，取结果最好的那次，聚类的初始化采用PP特定的随机算法 */
             points, clusterCount, labels,
             TermCriteria ( CV_TERMCRIT_EPS + CV_TERMCRIT_ITER, 10, 1.0 ),
-            3, KMEANS_PP_CENTERS, centers
-        );
-        img = Scalar::all ( 0 );
+            3, KMEANS_PP_CENTERS, centers );
+        img = Scalar::all ( 0 );
 ​
         for ( i = 0; i < sampleCount; i++ ) {
             int clusterIdx = labels.at<int> ( i );
