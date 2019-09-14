@@ -1,7 +1,7 @@
 ---
 title: cvConvertImage和cvflip函数
 date: 2019-03-06 15:05:07
-tags:
+categories: opencv和图像处理
 ---
 ### cvflip
 
@@ -25,12 +25,12 @@ using namespace std;
 using namespace cv;
 ​
 int main() {
-    Mat img = imread ( "timg1.jpg", CV_LOAD_IMAGE_ANYCOLOR );
-    imshow ( "Input", img );
-    cv::flip ( img, img, 0 );
-    imshow ( "Flip", img );
-    waitKey ( 0 );
-    return 0;
+    Mat img = imread ( "timg1.jpg", CV_LOAD_IMAGE_ANYCOLOR );
+    imshow ( "Input", img );
+    cv::flip ( img, img, 0 );
+    imshow ( "Flip", img );
+    waitKey ( 0 );
+    return 0;
 }
 ```
 
@@ -50,15 +50,12 @@ flip(src, flipCode, dst=None)
 import cv2
 ​
 image = cv2.imread("girl.jpg")
-​
 # Flipped Horizontally(水平翻转)
 h_flip = cv2.flip(image, 1)
 cv2.imshow("girl-h.jpg", h_flip)
-​
 # Flipped Vertically(垂直翻转)
 v_flip = cv2.flip(image, 0)
 cv2.imshow("girl-v.jpg", v_flip)
-​
 # Flipped Horizontally & Vertically(水平垂直翻转)
 hv_flip = cv2.flip(image, -1)
 cv2.imshow("girl-hv.jpg", hv_flip)
@@ -83,16 +80,16 @@ void cvConvertImage ( const CvArr *src, CvArr *dst, int flags = 0 );
 #include <cv.h>
 ​
 int main ( void ) {
-    IplImage *img;
-    IplImage *dst;
-    img = cvLoadImage ( "timg1.jpg", 0 );
-    dst = cvCreateImage ( cvGetSize ( img ), IPL_DEPTH_8U, 1 );
-    cvConvertImage ( img, dst, CV_CVTIMG_FLIP );
-    cvNamedWindow ( "Imageshow", 1 );
-    cvShowImage ( "Imageshow", img );
-    cvNamedWindow ( "Converted", 1 );
-    cvShowImage ( "Converted", dst );
-    cvWaitKey ( 0 );
+    IplImage *img;
+    IplImage *dst;
+    img = cvLoadImage ( "timg1.jpg", 0 );
+    dst = cvCreateImage ( cvGetSize ( img ), IPL_DEPTH_8U, 1 );
+    cvConvertImage ( img, dst, CV_CVTIMG_FLIP );
+    cvNamedWindow ( "Imageshow", 1 );
+    cvShowImage ( "Imageshow", img );
+    cvNamedWindow ( "Converted", 1 );
+    cvShowImage ( "Converted", dst );
+    cvWaitKey ( 0 );
 }
 ```
 
