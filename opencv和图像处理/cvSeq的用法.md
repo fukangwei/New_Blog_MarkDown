@@ -181,13 +181,13 @@ CvSeq *pCurSeq = pInputSeq;
 int index = 0;
 ​
 while ( pCurSeq = pCurSeq->h_next ) {
-    if ( process ( pCurSeq ) ) {
-        pCurSeq = pCurSeq->h_prev; /* 这里为了简单，不考虑是否为列表头 */
-        cvSeqRemove ( pInputSeq, index );
-        --index;
-    }
+    if ( process ( pCurSeq ) ) {
+        pCurSeq = pCurSeq->h_prev; /* 这里为了简单，不考虑是否为列表头 */
+        cvSeqRemove ( pInputSeq, index );
+        --index;
+    }
 ​
-    ++index;
+    ++index;
 }
 ```
 
@@ -210,9 +210,9 @@ while ( pCurSeq = pCurSeq->h_next ) {
     struct node_type* v_next  /* 2nd next sequence */
 ​
 /*
-   Read/Write sequence.
-   Elements can be dynamically inserted to or deleted from the sequence.
-*/
+ * Read/Write sequence.
+ * Elements can be dynamically inserted to or deleted from the sequence.
+ */
 #define CV_SEQUENCE_FIELDS()                                   \
     CV_TREE_NODE_FIELDS(CvSeq);                                \
     int   total;       /* total number of elements */          \
