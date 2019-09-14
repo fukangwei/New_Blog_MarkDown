@@ -1,7 +1,7 @@
 ---
 title: Haar分类器
 date: 2019-03-04 12:35:12
-tags:
+categories: opencv和图像处理
 ---
 &emsp;&emsp;以`Haar`特征分类器为基础的对象检测技术是一种非常有效的对象检测技术。它是基于机器学习的，通过使用大量的正负样本图像训练得到一个`cascade function`，最后再用它来做对象检测。
 &emsp;&emsp;现在我们来学习面部检测。开始时，算法需要大量的正样本图像(面部图像)和负样本图像(不含面部的图像)来训练分类器，我们需要从其中提取特征。下图中的Haar特征会被使用，它们就像我们的卷积核。每一个特征是一个值，这个值等于黑色矩形中的像素值之后减去白色矩形中的像素值之和。
@@ -37,8 +37,7 @@ gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 # Detects objects of different sizes in the input image.
 # The detected objects are returned as a list of rectangles.
 # cv2.CascadeClassifier.detectMultiScale(image, scaleFactor, minNeighbors, flags, minSize, maxSize)
-# scaleFactor – Parameter specifying how much the image size is reduced at each image
-# scale.
+# scaleFactor – Parameter specifying how much the image size is reduced at each image scale.
 # minNeighbors – Parameter specifying how many neighbors each candidate rectangle should
 # have to retain it.
 # minSize – Minimum possible object size. Objects smaller than that are ignored.
@@ -46,12 +45,13 @@ gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 ​
 for (x, y, w, h) in faces:
-    img = cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
-    roi_gray = gray[y:y + h, x:x + w]
-    roi_color = img[y:y + h, x:x + w]
-    eyes = eye_cascade.detectMultiScale(roi_gray)
-    for (ex, ey, ew, eh) in eyes:
-        cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
+    img = cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
+    roi_gray = gray[y:y + h, x:x + w]
+    roi_color = img[y:y + h, x:x + w]
+    eyes = eye_cascade.detectMultiScale(roi_gray)
+
+    for (ex, ey, ew, eh) in eyes:
+        cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
 ​
 cv2.imshow('img', img)
 cv2.waitKey(0)
