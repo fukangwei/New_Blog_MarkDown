@@ -201,20 +201,20 @@ while ( pCurSeq = pCurSeq->h_next ) {
 为什么会有这样的错误呢？看一下`CvSeq`的源代码就清楚了。下面是`OpenCV 1.0`版本有关`CvSeq`的定义：
 
 ``` cpp
-#define CV_TREE_NODE_FIELDS(node_type)                       \
-    int    flags;             /* micsellaneous flags */      \
-    int    header_size;       /* size of sequence header */  \
-    struct node_type* h_prev; /* previous sequence */        \
-    struct node_type* h_next; /* next sequence */            \
-    struct node_type* v_prev; /* 2nd previous sequence */    \
-    struct node_type* v_next  /* 2nd next sequence */
+#define CV_TREE_NODE_FIELDS(node_type)                      \
+    int    flags;             /* micsellaneous flags     */ \
+    int    header_size;       /* size of sequence header */ \
+    struct node_type* h_prev; /* previous sequence       */ \
+    struct node_type* h_next; /* next sequence           */ \
+    struct node_type* v_prev; /* 2nd previous sequence   */ \
+    struct node_type* v_next  /* 2nd next sequence       */
 ​
 /*
  * Read/Write sequence.
  * Elements can be dynamically inserted to or deleted from the sequence.
  */
 #define CV_SEQUENCE_FIELDS()                                   \
-    CV_TREE_NODE_FIELDS(CvSeq);                                \
+    CV_TREE_NODE_FIELDS(CvSeq);                                \
     int   total;       /* total number of elements */          \
     int   elem_size;   /* size of sequence element in bytes */ \
     char* block_max;   /* maximal bound of the last block */   \
