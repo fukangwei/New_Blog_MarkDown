@@ -59,7 +59,7 @@ int main ( int argc, char *argv[] ) {
             break;
         }
 ​
-        if ( originalPoint != processPoint && !leftButtonDownFlag ) {
+        if ( originalPoint != processPoint && !leftButtonDownFlag ) {
             Mat imageHSV;
             Mat calcBackImage;
             cvtColor ( image, imageHSV, CV_RGB2HSV );
