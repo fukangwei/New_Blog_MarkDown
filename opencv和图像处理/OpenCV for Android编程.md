@@ -1,7 +1,7 @@
 ---
 title: OpenCV for Android编程
 date: 2019-02-06 11:55:28
-tags:
+categories: opencv和图像处理
 ---
 ### 显示图片
 
@@ -24,28 +24,28 @@ import android.widget.ImageView;
 import android.widget.Toast;
 ​
 public class ImageManipulationsActivity extends Activity {
-    static {
-        System.loadLibrary("opencv_java3");
-    }
+    static {
+        System.loadLibrary("opencv_java3");
+    }
 ​
-    private static final String TAG = "OCVSample::Activity";
-    private ImageView imageview;
+    private static final String TAG = "OCVSample::Activity";
+    private ImageView imageview;
 ​
-    private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
-        @Override
-        public void onManagerConnected(int status) {
-            switch (status) {
-                case LoaderCallbackInterface.SUCCESS: {
-                    Log.i(TAG, "OpenCV loaded successfully");
-                }
-                break;
-                default: {
-                    super.onManagerConnected(status);
-                }
-                break;
-            }
-        }
-    };
+    private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
+        @Override
+        public void onManagerConnected(int status) {
+            switch (status) {
+                case LoaderCallbackInterface.SUCCESS: {
+                    Log.i(TAG, "OpenCV loaded successfully");
+                }
+                break;
+                default: {
+                    super.onManagerConnected(status);
+                }
+                break;
+            }
+        }
+    };
 ​
     @Override
     public void onCreate(Bundle savedInstanceState) {
