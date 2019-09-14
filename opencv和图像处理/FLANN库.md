@@ -32,46 +32,46 @@ public:
         DistanceType radius, const ::cvflann::SearchParams &params );
 ​
     void save ( std::string filename ) {
-        if ( nnIndex_L1 ) {
-            nnIndex_L1->save ( filename );
-        }
+        if ( nnIndex_L1 ) {
+            nnIndex_L1->save ( filename );
+        }
 ​
-        if ( nnIndex_L2 ) {
-            nnIndex_L2->save ( filename );
-        }
-    }
+        if ( nnIndex_L2 ) {
+            nnIndex_L2->save ( filename );
+        }
+    }
 ​
-    int veclen() const {
-        if ( nnIndex_L1 ) {
-            return nnIndex_L1->veclen();
-        }
+    int veclen() const {
+        if ( nnIndex_L1 ) {
+            return nnIndex_L1->veclen();
+        }
 ​
-        if ( nnIndex_L2 ) {
-            return nnIndex_L2->veclen();
-        }
-    }
+        if ( nnIndex_L2 ) {
+            return nnIndex_L2->veclen();
+        }
+    }
 ​
-    int size() const {
-        if ( nnIndex_L1 ) {
-            return nnIndex_L1->size();
-        }
+    int size() const {
+        if ( nnIndex_L1 ) {
+            return nnIndex_L1->size();
+        }
 ​
-        if ( nnIndex_L2 ) {
-            return nnIndex_L2->size();
-        }
-    }
+        if ( nnIndex_L2 ) {
+            return nnIndex_L2->size();
+        }
+    }
 ​
-    ::cvflann::IndexParams getParameters() {
-        if ( nnIndex_L1 ) {
-            return nnIndex_L1->getParameters();
-        }
+    ::cvflann::IndexParams getParameters() {
+        if ( nnIndex_L1 ) {
+            return nnIndex_L1->getParameters();
+        }
 ​
-        if ( nnIndex_L2 ) {
-            return nnIndex_L2->getParameters();
-        }
-    }
+        if ( nnIndex_L2 ) {
+            return nnIndex_L2->getParameters();
+        }
+    }
 ​
-    FLANN_DEPRECATED const ::cvflann::IndexParams *getIndexParameters() {
+    FLANN_DEPRECATED const ::cvflann::IndexParams *getIndexParameters() {
         if ( nnIndex_L1 ) {
             return nnIndex_L1->getIndexParameters();
         }
@@ -81,10 +81,10 @@ public:
         }
     }
 ​
-  private:
-    /* providing backwards compatibility for L2 and L1 distances (most common) */
-    ::cvflann::Index< L2<ElementType> > *nnIndex_L2;
-    ::cvflann::Index< L1<ElementType> > *nnIndex_L1;
+private:
+    /* providing backwards compatibility for L2 and L1 distances (most common) */
+    ::cvflann::Index< L2<ElementType> > *nnIndex_L2;
+    ::cvflann::Index< L1<ElementType> > *nnIndex_L1;
 };
 ```
 
