@@ -5,29 +5,29 @@ categories: opencv和图像处理
 ---
 ### saturate_cast的作用
 
-&emsp;&emsp;`saturate_cast`用于防止数据溢出，其大致原理如下所示：
+&emsp;&emsp;`saturate_cast`用于防止数据溢出，其大致原理如下：
 
-``` c
+``` cpp
 if ( data < 0 ) {
-    data = 0;
+    data = 0;
 } else if ( data > 255 ) {
-    data = 255;
+    data = 255;
 }
 ```
 
 示例代码如下：
 
-``` c
+``` cpp
 for ( int i = 0; i < src1.rows; i++ ) {
-    const uchar *src1_ptr = src1.ptr<uchar> ( i );
-    const uchar *src2_ptr = src2.ptr<uchar> ( i );
-    uchar *dst_ptr  = dst.ptr<uchar> ( i );
+    const uchar *src1_ptr = src1.ptr<uchar> ( i );
+    const uchar *src2_ptr = src2.ptr<uchar> ( i );
+    uchar *dst_ptr  = dst.ptr<uchar> ( i );
 ​
-    for ( int j = 0; j < src1.cols * nChannels; j++ ) {
+    for ( int j = 0; j < src1.cols * nChannels; j++ ) {
         /* 加入保护 */
-        dst_ptr[j] = saturate_cast<uchar> ( src1_ptr[j] * alpha + src2_ptr[j] * beta + gama );
-        // dst_ptr[j] = ( src1_ptr[j] * alpha + src2_ptr[j] * beta + gama ); /* 未加入保护 */
-    }
+        dst_ptr[j] = saturate_cast<uchar> ( src1_ptr[j] * alpha + src2_ptr[j] * beta + gama );
+        // dst_ptr[j] = ( src1_ptr[j] * alpha + src2_ptr[j] * beta + gama ); /* 未加入保护 */
+    }
 }
 ```
 
@@ -50,26 +50,26 @@ A.col ( 0 ).copyTo ( D );
 
 ### CV_IMAGE_ELEM宏
 
-&emsp;&emsp;该宏用于提取像素值，其原型如下所示：
+&emsp;&emsp;该宏用于提取像素值：
 
 ``` c
 CV_IMAGE_ELEM ( image, elemtype, row, col )
 ```
 
-参数`image`是`IplImage *`型指针；`elemtype`是数据类型，经常为`uchar`；`row`和`col`分别是数据矩阵的行和列。其实现如下所示：
+参数`image`是`IplImage *`型指针；`elemtype`是数据类型，经常为`uchar`；`row`和`col`分别是数据矩阵的行和列。
 
 ``` c
 #define CV_IMAGE_ELEM( image, elemtype, row, col ) \
-    (((elemtype *)((image)->imageData + (image)->widthStep * (row)))[(col)])
+    (((elemtype *)((image)->imageData + (image)->widthStep * (row)))[(col)])
 ```
 
-&emsp;&emsp;对于单通道的灰度图像，访问像素时使用：
+- 对于单通道的灰度图像，访问像素时使用：
 
 ``` c
 CV_IMAGE_ELEM ( image, uchar, i, j );
 ```
 
-&emsp;&emsp;对于三通道的彩色图像，访问像素时使用：
+- 对于三通道的彩色图像，访问像素时使用：
 
 ``` c
 CV_IMAGE_ELEM ( image, uchar, i, j * 3 );
