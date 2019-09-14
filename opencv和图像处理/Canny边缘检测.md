@@ -1,7 +1,7 @@
 ---
 title: Canny边缘检测
 date: 2019-03-03 14:42:20
-tags:
+categories: opencv和图像处理
 ---
 &emsp;&emsp;图像的边缘检测的原理是检测出图像中所有灰度值变化较大的点，而且这些点连接起来就构成了若干线条，这些线条就可以称为图像的边缘。`Canny`边缘检测算子是`John F. Canny`于`1986`年开发出来的一个多级边缘检测算法。
 &emsp;&emsp;`Canny`基于三个基本目标：
@@ -60,32 +60,32 @@ IplImage *g_pSrcImage, *g_pCannyImg;
 const char *pstrWindowsCannyTitle = "边缘检测图";
 ​
 void on_trackbar ( int threshold ) { /* cvCreateTrackbar的回调函数 */
-    cvCanny ( g_pSrcImage, g_pCannyImg, threshold, threshold * 3, 3 ); /* canny边缘检测 */
-    cvShowImage ( pstrWindowsCannyTitle, g_pCannyImg );
+    cvCanny ( g_pSrcImage, g_pCannyImg, threshold, threshold * 3, 3 );
+    cvShowImage ( pstrWindowsCannyTitle, g_pCannyImg );
 }
 ​
 int main() {
-    const char *pstrImageName = "zzjb.jpg";
-    const char *pstrWindowsSrcTitle = "原图";
-    const char *pstrWindowsToolBar = "Threshold";
-    /* 从文件中载入图像的灰度图(CV_LOAD_IMAGE_GRAYSCALE) */
-    g_pSrcImage = cvLoadImage ( pstrImageName, CV_LOAD_IMAGE_GRAYSCALE );
-    g_pCannyImg = cvCreateImage ( cvGetSize ( g_pSrcImage ), IPL_DEPTH_8U, 1 );
-    /* 创建窗口 */
-    cvNamedWindow ( pstrWindowsSrcTitle, CV_WINDOW_AUTOSIZE );
-    cvNamedWindow ( pstrWindowsCannyTitle, CV_WINDOW_AUTOSIZE );
-    /* 创建滑动条 */
-    int nThresholdEdge = 1;
-    cvCreateTrackbar ( pstrWindowsToolBar, pstrWindowsCannyTitle, &nThresholdEdge, 100, on_trackbar );
-    /* 在指定窗口中显示图像 */
-    cvShowImage ( pstrWindowsSrcTitle, g_pSrcImage );
-    on_trackbar ( 1 );
-    cvWaitKey(); /* 等待按键事件 */
-    cvDestroyWindow ( pstrWindowsSrcTitle );
-    cvDestroyWindow ( pstrWindowsCannyTitle );
-    cvReleaseImage ( &g_pSrcImage );
-    cvReleaseImage ( &g_pCannyImg );
-    return 0;
+    const char *pstrImageName = "zzjb.jpg";
+    const char *pstrWindowsSrcTitle = "原图";
+    const char *pstrWindowsToolBar = "Threshold";
+    /* 从文件中载入图像的灰度图(CV_LOAD_IMAGE_GRAYSCALE) */
+    g_pSrcImage = cvLoadImage ( pstrImageName, CV_LOAD_IMAGE_GRAYSCALE );
+    g_pCannyImg = cvCreateImage ( cvGetSize ( g_pSrcImage ), IPL_DEPTH_8U, 1 );
+    /* 创建窗口 */
+    cvNamedWindow ( pstrWindowsSrcTitle, CV_WINDOW_AUTOSIZE );
+    cvNamedWindow ( pstrWindowsCannyTitle, CV_WINDOW_AUTOSIZE );
+    /* 创建滑动条 */
+    int nThresholdEdge = 1;
+    cvCreateTrackbar ( pstrWindowsToolBar, pstrWindowsCannyTitle, &nThresholdEdge, 100, on_trackbar );
+    /* 在指定窗口中显示图像 */
+    cvShowImage ( pstrWindowsSrcTitle, g_pSrcImage );
+    on_trackbar ( 1 );
+    cvWaitKey(); /* 等待按键事件 */
+    cvDestroyWindow ( pstrWindowsSrcTitle );
+    cvDestroyWindow ( pstrWindowsCannyTitle );
+    cvReleaseImage ( &g_pSrcImage );
+    cvReleaseImage ( &g_pCannyImg );
+    return 0;
 }
 ```
 
