@@ -135,32 +135,32 @@ def ransac(data, model, n, k, t, d, debug=False, return_all=False):
         return bestfit
 ​
 def random_partition(n, n_data):
-    """ return n random rows of data (and also the other len(data) - n rows) """
-    all_idxs = numpy.arange(n_data)
-    numpy.random.shuffle(all_idxs)
-    idxs1 = all_idxs[:n]
-    idxs2 = all_idxs[n:]
-    return idxs1, idxs2
+    """ return n random rows of data (and also the other len(data) - n rows) """
+    all_idxs = numpy.arange(n_data)
+    numpy.random.shuffle(all_idxs)
+    idxs1 = all_idxs[:n]
+    idxs2 = all_idxs[n:]
+    return idxs1, idxs2
 ​
 class LinearLeastSquaresModel:
-    """
+    """
     linear system solved using linear least squares
-    This class serves as an example that fulfills the model interface
-    needed by the ransac() function.
-    """
+    This class serves as an example that fulfills the model interface
+    needed by the ransac() function.
+    """
 ​
-    def __init__(self, input_columns, output_columns, debug=False):
-        self.input_columns = input_columns
-        self.output_columns = output_columns
-        self.debug = debug
+    def __init__(self, input_columns, output_columns, debug=False):
+        self.input_columns = input_columns
+        self.output_columns = output_columns
+        self.debug = debug
 ​
-    def fit(self, data):
-        A = numpy.vstack([data[:, i] for i in self.input_columns]).T
-        B = numpy.vstack([data[:, i] for i in self.output_columns]).T
-        x, resids, rank, s = scipy.linalg.lstsq(A, B)
-        return x
+    def fit(self, data):
+        A = numpy.vstack([data[:, i] for i in self.input_columns]).T
+        B = numpy.vstack([data[:, i] for i in self.output_columns]).T
+        x, resids, rank, s = scipy.linalg.lstsq(A, B)
+        return x
 ​
-    def get_error(self, data, model):
+    def get_error(self, data, model):
         A = numpy.vstack([data[:, i] for i in self.input_columns]).T
         B = numpy.vstack([data[:, i] for i in self.output_columns]).T
         B_fit = scipy.dot(A, model)
