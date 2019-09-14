@@ -1,7 +1,7 @@
 ---
 title: camshift跟踪算法
 date: 2019-03-04 18:30:48
-tags:
+categories: opencv和图像处理
 ---
 &emsp;&emsp;`CamShift`算法的全称是`Continuously Adaptive Mean-SHIFT`，即连续自适应`MeanShift`算法。其基本思想是对视频序列的所有图像帧都作`MeanShift`运算，并将上一帧的结果(搜索窗口的中心位置和窗口大小)作为下一帧`MeanShift`算法的搜索窗口的初始值，如此迭代下去。简单地说，`meanShift`是针对单张图片寻找最优迭代结果，而`camShift`则是针对视频序列来处理，并对该序列中的每一帧图片都调用`meanShift`来寻找最优迭代结果。正是由于`camShift`针对一个视频序列进行处理，从而保证其可以不断调整窗口的大小，如此一来，当目标的大小发生变化的时候，该算法就可以自适应地调整目标区域继续跟踪。
 &emsp;&emsp;在`OpenCV`自带的`camShift`的例子当中，是通过计算目标在`HSV`空间下的`H`分量直方图，然后通过直方图反向投影得到目标像素的概率分布，最后调用`OpenCV`的`CAMSHIFT`算法，自动跟踪并调整目标窗口的中心位置与大小。该算法对于简单背景下的单目标跟踪效果较好，但如果被跟踪目标与背景颜色或周围其它目标颜色比较接近，则跟踪效果较差。另外，由于采用颜色特征，所以它对被跟踪目标的形状变化有一定的抵抗能力。
@@ -42,22 +42,22 @@ Mat dstHist;
 Rect rect;
 vector<Point> pt; /* 保存目标轨迹 */
 void onMouse ( int event, int x, int y, int flags , void *ustc ); /* 鼠标回调函数 */
-​
+
 int main ( int argc, char *argv[] ) {
-    VideoCapture video ( argv[1] );
-    double fps = video.get ( CV_CAP_PROP_FPS ); /* 获取视频帧率 */
-    double pauseTime = 1000 / fps; /* 两幅画面中间间隔 */
-    namedWindow ( "跟踪手", 0 );
-    setMouseCallback ( "跟踪手", onMouse );
+    VideoCapture video ( argv[1] );
+    double fps = video.get ( CV_CAP_PROP_FPS ); /* 获取视频帧率 */
+    double pauseTime = 1000 / fps; /* 两幅画面中间间隔 */
+    namedWindow ( "跟踪手", 0 );
+    setMouseCallback ( "跟踪手", onMouse );
 ​
-    while ( true ) {
-        if ( !leftButtonDownFlag ) { /* 判定鼠标左键没有按下，采取播放视频，否则暂停 */
-            video >> image;
-        }
+    while ( true ) {
+        if ( !leftButtonDownFlag ) { /* 判定鼠标左键没有按下，采取播放视频，否则暂停 */
+            video >> image;
+        }
 ​
-        if ( !image.data || waitKey ( pauseTime ) == 27 ) { /* 图像为空或Esc键按下退出播放 */
-            break;
-        }
+        if ( !image.data || waitKey ( pauseTime ) == 27 ) { /* 图像为空或Esc键按下退出播放 */
+            break;
+        }
 ​
         if ( originalPoint != processPoint && !leftButtonDownFlag ) {
             Mat imageHSV;
@@ -157,6 +157,7 @@ while (1):
         cv2.imshow('img2', img2)
         out.write(img2)
         k = cv2.waitKey(60) & 0xff
+
         if k == 27:
             break
         else:
