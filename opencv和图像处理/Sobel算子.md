@@ -1,12 +1,12 @@
 ---
 title: Sobel算子
 date: 2019-03-06 22:39:24
-tags:
+categories: opencv和图像处理
 ---
 &emsp;&emsp;`Sobel`算子依然是一种过滤器，只是其是带有方向的。在`OpenCV`中，使用`Sobel`算子的函数原型如下：
 
 ``` python
-dst = cv2.Sobel(src, ddepth, dx, dy[, dst[, ksize[, scale[, delta[, borderType]]]]])  
+dst = cv2.Sobel(src, ddepth, dx, dy [, dst [, ksize [, scale [, delta [, borderType]]]]])  
 ```
 
 - `src`：需要处理的图像；
