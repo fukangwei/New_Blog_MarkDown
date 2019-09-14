@@ -1,7 +1,7 @@
 ---
 title: OpenCV for Android使用相机
 date: 2019-02-06 12:03:36
-tags:
+categories: opencv和图像处理
 ---
 &emsp;&emsp;我们想要在应用中通过`OpenCV`的`Java API`实现打开相机，并全屏显示的功能，所以`MainActivity`需要实现`CvCameraViewListener2`接口。一共需要实现三个方法，分别是`onCameraViewStarted`、`onCameraViewStopped`和`onCameraFrame`，而图像处理函数写在`onCameraFrame`函数中。
 &emsp;&emsp;修改文件`AndroidManifest.xml`，添加相机的相关权限：
@@ -16,18 +16,18 @@ tags:
 
 ``` xml
 <application
-    android:allowBackup="true"
-    android:label="@string/app_name"
-    android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+    android:allowBackup="true"
+    android:label="@string/app_name"
+    android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
 ```
 
 打开`res/layout`下面的布局文件`activity_main.xml`，添加一个`OpenCV`的视觉组件`JavaCameraView`：
 
 ``` xml
 <org.opencv.android.JavaCameraView
-    android:id="@+id/image_manipulations_activity_surface_view"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" />
+    android:id="@+id/image_manipulations_activity_surface_view"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" />
 ```
 
 &emsp;&emsp;回到`MainActivity`中，完成`API`的调用。声明一个`CameraBridgeViewBase`对象，用于存放`activity_main.xml`中的`JavaCameraView`组件，并在`OnCreate`中绑定事件监听：
@@ -43,8 +43,8 @@ mOpenCvCameraView.setCvCameraViewListener(this);
 ``` java
 /* 图像处理函数都写在这里 */
 public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
-    mRgba = inputFrame.rgba(); /* 直接返回输入视频预览图的RGB数据，并存放在Mat数据中 */
-    return mRgba;
+    mRgba = inputFrame.rgba(); /* 直接返回输入视频预览图的RGB数据，并存放在Mat数据中 */
+    return mRgba;
 }
 ```
 
@@ -53,20 +53,20 @@ public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
 ``` java
 /* 通过OpenCV管理Android服务，异步初始化OpenCV */
 private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
-    @Override
-    public void onManagerConnected(int status) {
-        switch (status) {
-            case LoaderCallbackInterface.SUCCESS: {
-                Log.i(TAG, "OpenCV loaded successfully");
-                mOpenCvCameraView.enableView();
-            }
-            break;
-            default: {
-                super.onManagerConnected(status);
-            }
-            break;
-        }
-    }
+    @Override
+    public void onManagerConnected(int status) {
+        switch (status) {
+            case LoaderCallbackInterface.SUCCESS: {
+                Log.i(TAG, "OpenCV loaded successfully");
+                mOpenCvCameraView.enableView();
+            }
+            break;
+            default: {
+                super.onManagerConnected(status);
+            }
+            break;
+        }
+    }
 };
 ```
 
@@ -74,19 +74,19 @@ private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
 
 ``` java
 public void onResume() {
-    super.onResume();
+    super.onResume();
 
-    if (getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) { /* 强制横屏 */
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-    } else { /* 横屏后才加载部件 */
-        if (!OpenCVLoader.initDebug()) {
-            Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
-            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback);
-        } else {
-            Log.d(TAG, "OpenCV library found inside package. Using it!");
-            mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
-        }
-    }
+    if (getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) { /* 强制横屏 */
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+    } else { /* 横屏后才加载部件 */
+        if (!OpenCVLoader.initDebug()) {
+            Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
+            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback);
+        } else {
+            Log.d(TAG, "OpenCV library found inside package. Using it!");
+            mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
+        }
+    }
 }
 ```
 
@@ -106,21 +106,20 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
 ​
-​
 public class ImageManipulationsActivity extends Activity implements CameraBridgeViewBase.CvCameraViewListener2 {
-    static {
-        System.loadLibrary("opencv_java3");
-    }
+    static {
+        System.loadLibrary("opencv_java3");
+    }
 ​
-    private String TAG = "OpenCV_Test";
-    private CameraBridgeViewBase mOpenCvCameraView; /* OpenCV的相机接口 */
-    private Mat mRgba; /* 缓存相机每帧输入的数据 */
+    private String TAG = "OpenCV_Test";
+    private CameraBridgeViewBase mOpenCvCameraView; /* OpenCV的相机接口 */
+    private Mat mRgba; /* 缓存相机每帧输入的数据 */
 ​
-    /* 通过OpenCV管理Android服务，异步初始化OpenCV */
-    private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
-        @Override
-        public void onManagerConnected(int status) {
-            switch (status) {
+    /* 通过OpenCV管理Android服务，异步初始化OpenCV */
+    private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
+        @Override
+        public void onManagerConnected(int status) {
+            switch (status) {
                 case LoaderCallbackInterface.SUCCESS: {
                     Log.i(TAG, "OpenCV loaded successfully");
                     mOpenCvCameraView.enableView();
@@ -168,8 +167,9 @@ public class ImageManipulationsActivity extends Activity implements CameraBridge
         if (mOpenCvCameraView != null) {
             mOpenCvCameraView.disableView();
         }
-        super.onDestroy();
-    }
+
+        super.onDestroy();
+    }
 ​
     /* 对象实例化以及基本属性的设置，包括长度、宽度和图像类型 */
     public void onCameraViewStarted(int width, int height) {
