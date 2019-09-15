@@ -5,7 +5,7 @@ tags:
 ---
 ### while循环
 
-&emsp;&emsp;while语句在给定条件为true时，重复执行语句或语句组，循环主体执行之前会先测试条件：
+&emsp;&emsp;`while`语句在给定条件为`true`时，重复执行语句或语句组，循环主体执行之前会先测试条件：
 
 ``` perl
 while ( condition ) {
@@ -13,7 +13,7 @@ while ( condition ) {
 }
 ```
 
-其中`statement(s)`可以是一个单独的语句，也可以是几个语句组成的代码块。condition可以是任意的表达式，当条件为true时执行循环；当条件为false时，程序流将退出循环。
+其中`statement(s)`可以是一个单独的语句，也可以是几个语句组成的代码块。`condition`可以是任意的表达式，当条件为`true`时执行循环；当条件为`false`时，程序流将退出循环。
 
 ``` perl
 $a = 1;
@@ -34,7 +34,7 @@ a的值为：3
 
 ### until循环
 
-&emsp;&emsp;until语句在给定条件为false时，重复执行语句或语句组：
+&emsp;&emsp;`until`语句在给定条件为`false`时，重复执行语句或语句组：
 
 ``` perl
 until ( condition ) {
@@ -44,7 +44,7 @@ until ( condition ) {
 
 ### for循环
 
-&emsp;&emsp;for循环用于多次执行一个语句序列，简化管理循环变量的代码：
+&emsp;&emsp;`for`循环用于多次执行一个语句序列：
 
 ``` perl
 for ( init; condition; increment ) {
@@ -71,7 +71,7 @@ a的值为：3
 
 ### foreach循环
 
-&emsp;&emsp;foreach循环用于迭代一个列表或集合变量的值：
+&emsp;&emsp;`foreach`循环用于迭代一个列表或集合变量的值：
 
 ``` perl
 foreach var ( list ) {
@@ -99,7 +99,7 @@ a的值为：36
 
 ### do...while循环
 
-&emsp;&emsp;在Perl语言中，`do...while`循环是在循环的尾部检查它的条件。`do...while`循环与while循环类似，但是`do...while`循环会确保至少执行一次循环：
+&emsp;&emsp;在`Perl`语言中，`do...while`循环是在循环的尾部检查它的条件。`do...while`循环与`while`循环类似，但是`do...while`循环会确保至少执行一次循环：
 
 ``` perl
 do{
@@ -128,7 +128,7 @@ a的值为：3
 
 ### 循环嵌套
 
-&emsp;&emsp;Perl语言允许在一个循环内使用另一个循环。嵌套for循环语句的语法：
+&emsp;&emsp;`Perl`语言允许在一个循环内使用另一个循环。嵌套`for`循环语句的语法：
 
 ``` perl
 for (init; condition; increment) {
@@ -140,14 +140,15 @@ for (init; condition; increment) {
 }
 ```
 
-嵌套while循环语句的语法：
+嵌套`while`循环语句的语法：
 
 ``` perl
 while (condition) {
     while (condition) {
         statement(s);
-    }
-    statement(s);
+    }
+
+    statement(s);
 }
 ```
 
@@ -163,7 +164,7 @@ do {
 } while (condition);
 ```
 
-嵌套until循环语句的语法：
+嵌套`until`循环语句的语法：
 
 ``` perl
 until(condition) {
@@ -175,7 +176,7 @@ until(condition) {
 }
 ```
 
-嵌套foreach循环语句的语法：
+嵌套`foreach`循环语句的语法：
 
 ``` perl
 foreach $a(@listA) {
@@ -222,13 +223,13 @@ a = 2
 
 #### next语句
 
-&emsp;&emsp;next语句用于停止执行从next语句的下一语句开始到循环体结束标识符之间的语句，转去执行continue语句块，然后再返回到循环体的起始处开始执行下一次循环：
+&emsp;&emsp;`next`语句用于停止执行从`next`语句的下一语句开始到循环体结束标识符之间的语句，转去执行`continue`语句块，然后再返回到循环体的起始处开始执行下一次循环：
 
 ``` perl
 next [LABEL];
 ```
 
-其中LABEL是可选的，如果没有指定LABEL，next语句将返回到循环体的起始处，开始执行下一次循环。
+其中`LABEL`是可选的，如果没有指定`LABEL`，`next`语句将返回到循环体的起始处，开始执行下一次循环。
 
 ``` perl
 $a = 1;
@@ -254,7 +255,7 @@ a的值为：4
 
 #### last语句
 
-&emsp;&emsp;last语句用于退出循环语句块，从而结束循环，last语句之后的语句不再执行，continue语句块也不再执行。语法格式如下所示：
+&emsp;&emsp;last语句用于退出循环语句块，从而结束循环，last语句之后的语句不再执行，continue语句块也不再执行：
 
 ``` perl
 last
