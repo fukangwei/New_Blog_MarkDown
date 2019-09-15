@@ -1,7 +1,7 @@
 ---
 title: Perl哈希
 date: 2018-12-20 14:49:22
-tags:
+categories: Perl
 ---
 ### 哈希变量
 
