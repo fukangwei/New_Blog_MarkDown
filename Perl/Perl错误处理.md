@@ -1,7 +1,7 @@
 ---
 title: Perl错误处理
 date: 2018-12-18 07:06:34
-tags:
+categories: Perl
 ---
 ### if语句
 
@@ -31,7 +31,7 @@ unless ( chdir("/etc") ) {
 }
 ```
 
-unless语句在设置错误提醒时是非常有用的。也可以将以上代码简写为：
+`unless`语句在设置错误提醒时是非常有用的。也可以将以上代码简写为：
 
 ``` perl
 die "Error: 无法打开目录!: $!" unless ( chdir("/etc") );
@@ -39,7 +39,7 @@ die "Error: 无法打开目录!: $!" unless ( chdir("/etc") );
 
 ### 三元运算符
 
-&emsp;&emsp;以下是一个三元运算符的简单实例:
+&emsp;&emsp;以下是一个三元运算符的简单实例：
 
 ``` perl
 print( exists( $hash{value} ) ? '存在' : '不存在', "\n" );
@@ -49,7 +49,7 @@ print( exists( $hash{value} ) ? '存在' : '不存在', "\n" );
 
 ### warn函数
 
-&emsp;&emsp;warn函数用于触发一个警告信息，不会有其他操作，输出到STDERR(标准输出文件)，通常用于给用户提示：
+&emsp;&emsp;`warn`函数用于触发一个警告信息，不会有其他操作，输出到`STDERR`(标准输出文件)，通常用于给用户提示：
 
 ``` perl
 chdir('/etc') or warn "无法切换目录";
@@ -57,7 +57,7 @@ chdir('/etc') or warn "无法切换目录";
 
 ### die函数
 
-&emsp;&emsp;die函数类似于warn，但它执行以后会退出，一般用作错误信息的输出：
+&emsp;&emsp;`die`函数类似于`warn`，但它执行以后会退出，一般用作错误信息的输出：
 
 ``` perl
 chdir('/etc') or die "无法切换目录";
