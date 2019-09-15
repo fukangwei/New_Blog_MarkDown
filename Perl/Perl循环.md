@@ -306,7 +306,7 @@ foreach $a(@listA) {
 }
 ```
 
-while循环中使用continue语句：
+`while`循环中使用`continue`语句：
 
 ``` perl
 $a = 0;
@@ -326,15 +326,14 @@ a = 1
 a = 2
 ```
 
-foreach循环中使用continue语句：
+`foreach`循环中使用`continue`语句：
 
 ``` perl
 @list = (1, 2, 3, 4, 5);
 ​
 foreach $a(@list) {
     print "a = $a\n";
-}
-continue {
+} continue {
     last if $a == 4;
 }
 ```
@@ -350,27 +349,26 @@ a = 4
 
 #### redo语句
 
-&emsp;&emsp;redo语句直接转到循环体的第一行开始重复执行本次循环，redo语句之后的语句不再执行，continue语句块也不再执行。continue语句可用在while和foreach循环中：
+&emsp;&emsp;`redo`语句直接转到循环体的第一行开始重复执行本次循环，`redo`语句之后的语句不再执行，`continue`语句块也不再执行。`continue`语句可用在`while`和`foreach`循环中：
 
 ``` perl
 redo [LABEL];
 ```
 
-带标号修饰符LABEL的redo语句表示把循环控制流程直接转到与标号修饰符LABEL相关联的语句块的第一行处开始执行，而不再执行redo语句之后的语句和continue语句块；不带标号修饰符LABEL的redo语句表示把循环控制流程直接转到当前语句块的第一行处开始执行，而不再执行redo语句之后的语句和continue语句块；如果是在for循环中或者是带有continue语句块，则for循环中的递增列表和continue语句块都不再被执行。
+带标号修饰符`LABEL`的`redo`语句表示把循环控制流程直接转到与标号修饰符`LABEL`相关联的语句块的第一行处开始执行，而不再执行`redo`语句之后的语句和`continue`语句块；不带标号修饰符`LABEL`的`redo`语句表示把循环控制流程直接转到当前语句块的第一行处开始执行，而不再执行`redo`语句之后的语句和`continue`语句块；如果是在`for`循环中或者是带有`continue`语句块，则`for`循环中的递增列表和`continue`语句块都不再被执行。
 
 ``` perl
 $a = 0;
 ​
 while ($a < 6) {
-    if ($a == 3) {
-        $a = $a + 1;
-        redo;
-    }
+    if ($a == 3) {
+        $a = $a + 1;
+        redo;
+    }
 
-    print "a = $a\n";
-}
-continue {
-    $a = $a + 1;
+    print "a = $a\n";
+} continue {
+    $a = $a + 1;
 }
 ```
 
