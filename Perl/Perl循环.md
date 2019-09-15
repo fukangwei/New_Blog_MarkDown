@@ -3,10 +3,9 @@ title: Perl循环
 date: 2018-12-20 09:37:04
 tags:
 ---
-
 ### while循环
 
-&emsp;&emsp;while语句在给定条件为true时，重复执行语句或语句组，循环主体执行之前会先测试条件。语法格式如下所示：
+&emsp;&emsp;while语句在给定条件为true时，重复执行语句或语句组，循环主体执行之前会先测试条件：
 
 ``` perl
 while ( condition ) {
@@ -35,7 +34,7 @@ a的值为：3
 
 ### until循环
 
-&emsp;&emsp;until语句在给定条件为false时，重复执行语句或语句组。语法格式如下所示：
+&emsp;&emsp;until语句在给定条件为false时，重复执行语句或语句组：
 
 ``` perl
 until ( condition ) {
@@ -45,7 +44,7 @@ until ( condition ) {
 
 ### for循环
 
-&emsp;&emsp;for循环用于多次执行一个语句序列，简化管理循环变量的代码。语法格式如下所示：
+&emsp;&emsp;for循环用于多次执行一个语句序列，简化管理循环变量的代码：
 
 ``` perl
 for ( init; condition; increment ) {
@@ -57,7 +56,7 @@ for ( init; condition; increment ) {
 
 ``` perl
 for( $a = 0; $a < 4; $a = $a + 1 ){
-    print "a的值为：$a\n";
+    print "a的值为：$a\n";
 }
 ```
 
@@ -72,7 +71,7 @@ a的值为：3
 
 ### foreach循环
 
-&emsp;&emsp;foreach循环用于迭代一个列表或集合变量的值。语法格式如下所示：
+&emsp;&emsp;foreach循环用于迭代一个列表或集合变量的值：
 
 ``` perl
 foreach var ( list ) {
@@ -100,7 +99,7 @@ a的值为：36
 
 ### do...while循环
 
-&emsp;&emsp;在Perl语言中，`do...while`循环是在循环的尾部检查它的条件。`do...while`循环与while循环类似，但是`do...while`循环会确保至少执行一次循环。语法格式如下所示：
+&emsp;&emsp;在Perl语言中，`do...while`循环是在循环的尾部检查它的条件。`do...while`循环与while循环类似，但是`do...while`循环会确保至少执行一次循环：
 
 ``` perl
 do{
@@ -129,7 +128,7 @@ a的值为：3
 
 ### 循环嵌套
 
-&emsp;&emsp;Perl语言允许在一个循环内使用另一个循环，下面演示几个实例来说明这个概念。嵌套for循环语句的语法：
+&emsp;&emsp;Perl语言允许在一个循环内使用另一个循环。嵌套for循环语句的语法：
 
 ``` perl
 for (init; condition; increment) {
@@ -157,6 +156,7 @@ while (condition) {
 ``` perl
 do {
     statement(s);
+
     do {
         statement(s);
     } while (condition);
@@ -170,6 +170,7 @@ until(condition) {
     until(condition) {
         statement(s);
     }
+
     statement(s);
 }
 ```
@@ -181,6 +182,7 @@ foreach $a(@listA) {
     foreach $b(@listB) {
         statement(s);
     }
+
     statement(s);
 }
 ```
@@ -193,10 +195,12 @@ $b = 0;
 ​
 while ($a < 2) {
     $b = 0;
+
     while ($b < 2) {
         print "a = $a, b = $b\n";
         $b = $b + 1;
     }
+
     $a = $a + 1;
     print "a = $a\n\n";
 }

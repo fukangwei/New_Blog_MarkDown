@@ -39,7 +39,7 @@ while (<DATA>) {
 以下代码以写入`>`的方式打开文件`file.txt`：
 
 ``` perl
-open( DATA, ">file.txt" ) or die "file.txt 文件无法打开, $!"; # “>”表示写入方式
+open( DATA, ">file.txt" ) or die "file.txt 文件无法打开, $!";  # “>”表示写入方式
 ```
 
 如果需要以读写方式打开文件，可以在`>`或`<`字符前添加`+`号：
