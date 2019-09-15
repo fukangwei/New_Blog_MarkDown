@@ -5,13 +5,12 @@ tags:
 ---
 ### if语句
 
-&emsp;&emsp;if语句可以判断语句的返回值：
+&emsp;&emsp;`if`语句可以判断语句的返回值：
 
-``` c
+``` perl
 if ( open( DATA, $file ) ) {
     ...;
-}
-else {
+} else {
     die "Error: 无法打开文件 - $!";
 }
 ```
@@ -24,9 +23,9 @@ open(DATA, $file) || die "Error: 无法打开文件 - $!";
 
 ### unless函数
 
-&emsp;&emsp;unless函数与if相反，只有在表达式返回false时才会执行：
+&emsp;&emsp;`unless`函数与`if`相反，只有在表达式返回`false`时才会执行：
 
-``` c
+``` perl
 unless ( chdir("/etc") ) {
     die "Error: 无法打开目录 - $!";
 }

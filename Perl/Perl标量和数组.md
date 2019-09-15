@@ -40,9 +40,9 @@ print "名字数为：$size\n";  # 输出“名字数为：3”
 &emsp;&emsp;以下将演示`Perl`中特殊字符的应用，例如`__FILE__`、`__LINE__`和`__PACKAGE__`。它们分别表示当前执行脚本的文件名、行号和包名。这些特殊字符是单独的标记，不能写在字符串中：
 
 ``` perl
-print "文件名 ". __FILE__ . "\n";         # 输出“文件名 .\haha.pl”
-print "行号 " . __LINE__ ."\n";           # 输出“行号 2”
-print "包名 " . __PACKAGE__ ."\n";        # 输出“包名 main”
+print "文件名 ".__FILE__."\n";            # 输出“文件名 .\haha.pl”
+print "行号 ".__LINE__."\n";              # 输出“行号 2”
+print "包名 ".__PACKAGE__."\n";           # 输出“包名 main”
 print "__FILE__ __LINE__ __PACKAGE__\n";  # 无法解析
 ```
 
