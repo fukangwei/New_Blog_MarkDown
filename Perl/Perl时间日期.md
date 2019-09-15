@@ -1,10 +1,10 @@
 ---
 title: Perl时间日期
 date: 2018-12-19 11:28:44
-tags:
+categories: Perl
 ---
-&emsp;&emsp;Perl中处理时间的函数有如下几种：time函数(返回从1970年1月1日起累计的秒数)；localtime函数(获取本地时区时间)；gmtime函数(获取格林威治时间)。
-&emsp;&emsp;localtime函数在没有参数的情况下返回当前的时间和日期。以下9个符号代表不同的时间日期参数：
+&emsp;&emsp;`Perl`中处理时间的函数有如下几种：`time`函数(返回从`1970`年`1`月`1`日起累计的秒数)；`localtime`函数(获取本地时区时间)；`gmtime`函数(获取格林威治时间)。
+&emsp;&emsp;`localtime`函数在没有参数的情况下返回当前的时间和日期。以下`9`个符号代表不同的时间日期参数：
 
 ``` perl
 sec   # 秒，0到61
@@ -27,22 +27,25 @@ isdst # 如果夏令时有效，则为真
 print "$mday $months[$mon] $days[$wday]\n"; # 输出“25 十月 星期四”
 ```
 
-&emsp;&emsp;如果直接调用localtime，它返回系统当前设置时区的时间：
+&emsp;&emsp;如果直接调用`localtime`，它返回系统当前设置时区的时间：
 
 ``` perl
 $datestring = localtime();
-print "时间日期为：$datestring\n"; # 输出“时间日期为：Thu Oct 25 14:54:59 2018”
+# 输出“时间日期为：Thu Oct 25 14:54:59 2018”
+print "时间日期为：$datestring\n";
 ```
 
 #### 格林威治时间(GMT)
 
-&emsp;&emsp;函数gmtime与localtime类似，但它返回标准格林威治时间：
+&emsp;&emsp;函数`gmtime`与`localtime`类似，但它返回标准格林威治时间：
 
 ``` perl
 $local_datestring = localtime();
-print "本地时间日期为：$local_datestring\n"; # 输出“本地时间日期为：Thu Oct 25 14:56:52 2018”
+# 输出“本地时间日期为：Thu Oct 25 14:56:52 2018”
+print "本地时间日期为：$local_datestring\n";
 $gmt_datestring = gmtime();
-print "GMT时间日期为：$gmt_datestring\n"; # 输出“GMT时间日期为：Thu Oct 25 05:56:52 2018”
+# 输出“GMT时间日期为：Thu Oct 25 05:56:52 2018”
+print "GMT时间日期为：$gmt_datestring\n";
 ```
 
 ### 格式化日期和时间
