@@ -165,15 +165,15 @@ print "最大索引：$max_index\n";  # 输出“最大索引：50”
 
 ``` perl
 @sites = ("google","runoob","taobao");
-print "1. \@sites = @sites\n"; # 输出“1. @sites = google runoob taobao”
-push(@sites, "baidu"); # 在数组结尾添加一个元素
-print "2. \@sites = @sites\n"; # 输出“2. @sites = google runoob taobao baidu”
-unshift(@sites, "weibo"); # 在数组开头添加一个元素
-print "3. \@sites = @sites\n"; # 输出“3. @sites = weibo google runoob taobao baidu”
-pop(@sites); # 删除数组末尾的元素
-print "4. \@sites = @sites\n"; # 输出“4. @sites = weibo google runoob taobao”
-shift(@sites); # 移除数组开头的元素
-print "5. \@sites = @sites\n"; # 输出“5. @sites = google runoob taobao”
+print "1. \@sites = @sites\n";  # 输出“1. @sites = google runoob taobao”
+push(@sites, "baidu");  # 在数组结尾添加一个元素
+print "2. \@sites = @sites\n";  # 输出“2. @sites = google runoob taobao baidu”
+unshift(@sites, "weibo");  # 在数组开头添加一个元素
+print "3. \@sites = @sites\n";  # 输出“3. @sites = weibo google runoob taobao baidu”
+pop(@sites);  # 删除数组末尾的元素
+print "4. \@sites = @sites\n";  # 输出“4. @sites = weibo google runoob taobao”
+shift(@sites);  # 移除数组开头的元素
+print "5. \@sites = @sites\n";  # 输出“5. @sites = google runoob taobao”
 ```
 
 ### 切割数组
@@ -183,7 +183,7 @@ print "5. \@sites = @sites\n"; # 输出“5. @sites = google runoob taobao”
 ``` perl
 @sites = qw/google taobao runoob weibo qq facebook 网易/;
 @sites2 = @sites[ 3, 4, 5 ];
-print "@sites2\n"; # 输出“weibo qq facebook”
+print "@sites2\n";  # 输出“weibo qq facebook”
 ```
 
 数组索引需要指定有效的索引值，可以是正数或负数，每个索引值使用逗号隔开。如果是连续的索引，可以使用`..`来表示指定范围：
@@ -191,18 +191,18 @@ print "@sites2\n"; # 输出“weibo qq facebook”
 ``` perl
 @sites = qw/google taobao runoob weibo qq facebook 网易/;
 @sites2 = @sites[3..5];
-print "@sites2\n"; # 输出“weibo qq facebook”
+print "@sites2\n";  # 输出“weibo qq facebook”
 ```
 
 ### 替换数组元素
 
-&emsp;&emsp;Perl中数组元素替换使用splice函数，语法格式如下：
+&emsp;&emsp;`Perl`中数组元素替换使用`splice`函数：
 
 ``` perl
 splice @ARRAY, OFFSET [, LENGTH [, LIST]]
 ```
 
-`ARRAY`是要替换的数组，`OFFSET`是起始位置，`LENGTH`是替换的元素个数，`LIST`是替换元素列表。以下实例从第6个元素开始替换数组中的5个元素：
+`ARRAY`是要替换的数组，`OFFSET`是起始位置，`LENGTH`是替换的元素个数，`LIST`是替换元素列表。以下实例从第`6`个元素开始替换数组中的`5`个元素：
 
 ``` perl
 @nums = (1..20);
@@ -220,7 +220,7 @@ print "替换后 - @nums\n";
 
 ### 将字符串转换为数组
 
-&emsp;&emsp;Perl中将字符串转换为数组使用split函数，语法格式如下：
+&emsp;&emsp;`Perl`中将字符串转换为数组使用`split`函数：
 
 ``` perl
 split [PATTERN [, EXPR [, LIMIT]]]
@@ -238,14 +238,14 @@ $var_names = "google,taobao,runoob,weibo";
 @string = split('-', $var_string);
 @names  = split(',', $var_names);
 ​
-print "$test[3]\n";  # 输出“o”
-print "$string[2]\n";  # 输出“com”
-print "$names[3]\n";   # 输出“weibo”
+print "$test[3]\n";  # 输出“o”
+print "$string[2]\n";  # 输出“com”
+print "$names[3]\n";  # 输出“weibo”
 ```
 
 ### 将数组转换为字符串
 
-&emsp;&emsp;Perl中将数组转换为字符串使用join函数，语法格式如下：
+&emsp;&emsp;`Perl`中将数组转换为字符串使用`join`函数：
 
 ``` perl
 join EXPR, LIST
@@ -255,7 +255,7 @@ join EXPR, LIST
 
 ### 数组排序
 
-&emsp;&emsp;Perl中数组排序使用sort函数，语法格式如下：
+&emsp;&emsp;`Perl`中数组排序使用`sort`函数：
 
 ``` perl
 sort [SUBROUTINE] LIST
@@ -265,21 +265,22 @@ sort [SUBROUTINE] LIST
 
 ``` perl
 @sites = qw(google taobao runoob facebook);
-print "排序前：@sites\n"; # 输出“排序前：google taobao runoob facebook”
+print "排序前：@sites\n";  # 输出“排序前：google taobao runoob facebook”
 
 # 对数组进行排序
 @sites = sort(@sites);
-print "排序后：@sites\n"; # 输出“排序后：facebook google runoob taobao”
+print "排序后：@sites\n";  # 输出“排序后：facebook google runoob taobao”
 ```
 
 注意，数组排序是根据`ASCII`数字值来排序，所以我们在对数组进行排序时，最好先将每个元素转换为小写后再排序。
 
 ### 合并数组
+
 &emsp;&emsp;数组的元素是以逗号来分割，我们也可以使用逗号来合并数组：
 
 ``` perl
 @numbers = ( 1, 3, ( 4, 5, 6 ) );
-print "numbers = @numbers\n"; # 输出“numbers = 1 3 4 5 6”
+print "numbers = @numbers\n";  # 输出“numbers = 1 3 4 5 6”
 ```
 
 也可以在数组中嵌入多个数组，并合并到主数组中：
@@ -288,7 +289,7 @@ print "numbers = @numbers\n"; # 输出“numbers = 1 3 4 5 6”
 @odd  = ( 1, 3, 5 );
 @even = ( 2, 4, 6 );
 @numbers = ( @odd, @even );
-print "numbers = @numbers\n"; # 输出“numbers = 1 3 5 2 4 6”
+print "numbers = @numbers\n";  # 输出“numbers = 1 3 5 2 4 6”
 ```
 
 ### 从列表中选择元素
@@ -297,12 +298,12 @@ print "numbers = @numbers\n"; # 输出“numbers = 1 3 5 2 4 6”
 
 ``` perl
 $var = ( 5, 4, 3, 2, 1 )[4];
-print "var的值为$var\n" # 输出“var的值为1”
+print "var的值为$var\n"  # 输出“var的值为1”
 ```
 
 同样可以在数组中使用`..`来读取指定范围的元素：
 
 ``` perl
 @list = ( 5, 4, 3, 2, 1 )[ 1 .. 3 ];
-print "list的值 = @list\n"; # 输出“list的值 = 4 3 2”
+print "list的值 = @list\n";  # 输出“list的值 = 4 3 2”
 ```
