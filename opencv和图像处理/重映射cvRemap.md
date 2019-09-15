@@ -57,23 +57,23 @@ int main ( int argc, char **argv ) {
     std::cout << "MatSrc:" << std::endl;
 ​
     for ( int rows = 0; rows < MatSrc.height; rows++ ) {
-        uchar *DataPt = ( uchar * ) ( MatSrc.data.ptr + rows * MatSrc.step );
+        uchar *DataPt = ( uchar * ) ( MatSrc.data.ptr + rows * MatSrc.step );
 ​
-        for ( int cols = 0; cols < MatSrc.width; cols++ ) {
-            uchar data = * ( DataPt + cols );
-            std::cout << ( int ) data << " ";
-        }
+        for ( int cols = 0; cols < MatSrc.width; cols++ ) {
+            uchar data = * ( DataPt + cols );
+            std::cout << ( int ) data << " ";
+        }
 ​
-        std::cout << std::endl;
-    }
+        std::cout << std::endl;
+    }
 ​
-    /* 打印mapx */
-    std::cout << "mapx:" << std::endl;
+    /* 打印mapx */
+    std::cout << "mapx:" << std::endl;
 ​
-    for ( int rows = 0; rows < mapx.height; rows++ ) {
-        float *DataPt = ( float * ) ( mapx.data.ptr + rows * mapx.step );
+    for ( int rows = 0; rows < mapx.height; rows++ ) {
+        float *DataPt = ( float * ) ( mapx.data.ptr + rows * mapx.step );
 ​
-        for ( int cols = 0; cols < mapx.width; cols++ ) {
+        for ( int cols = 0; cols < mapx.width; cols++ ) {
             float data = * ( DataPt + cols );
             std::cout << ( float ) data << " ";
         }
