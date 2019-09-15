@@ -66,12 +66,11 @@ int N2j = rng.operator ()(100); /* 返回[0, 100)范围内的随机数 */
 
 ### 用随机数填充矩阵RNG::fill
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` cpp
-void fill (
-    InputOutputArray mat, int distType, InputArray a,
-    InputArray b, bool saturateRange = false);
+void fill ( InputOutputArray mat, int distType, InputArray a,
+            InputArray b, bool saturateRange = false);
 ```
 
 - `mat`：输入输出矩阵，最多支持`4`通道，超过`4`通道先用`reshape`改变结构。
@@ -79,8 +78,6 @@ void fill (
 - `a`：如果`disType`是`UNIFORM`，则`a`表示为下界(闭区间)；如果`disType`是`NORMAL`，则`a`表示均值。
 - `b`：如果`disType`是`UNIFORM`，则`b`表示为上界(开区间)；如果`disType`是`NORMAL`，则`b`标准差。
 - `saturateRange`：只针对均匀分布有效。当为真的时候，会先把产生随机数的范围变换到数据类型的范围，再产生随机数；如果为假，会先产生随机数，再进行截断到数据类型的有效区间。
-
-&emsp;&emsp;代码如下所示：
 
 ``` cpp
 /* 产生[1, 1000)均匀分布的int随机数填充fillM */
@@ -96,9 +93,9 @@ Mat fillM2 ( 3, 3, CV_8U );
 rng.fill ( fillM2, RNG::UNIFORM, 1, 1000, FALSE );
 cout << "filM2 = " << fillM2 << endl;
 ​
-/* fillM1产生的数据都在[0, 255)内，且小于255 */
+/* fillM1产生的数据都在[0, 255)内，且小于255                                 */
 /* fillM2产生的数据虽然也在同样范围内，但是由于用了截断操作，所以很多数据都是255 */
-/* 产生均值为1，标准差为3的随机double数填进fillN */
+/* 产生均值为1，标准差为3的随机double数填进fillN                              */
 Mat_<double>fillN ( 3, 3 );
 rng.fill ( fillN, RNG::NORMAL, 1, 3 );
 cout << "filN = " << fillN << endl;
@@ -106,13 +103,13 @@ cout << "filN = " << fillN << endl;
 
 ### randu
 
-&emsp;&emsp;`randu`的作用是返回均匀分布的随机数，填入数组或矩阵，其函数原型如下所示：
+&emsp;&emsp;`randu`的作用是返回均匀分布的随机数，填入数组或矩阵：
 
 ``` cpp
 randu ( dst, low, high );
 ```
 
-参数`dst`是输出数组或矩阵，`low`是区间下界(闭区间)，`high`是区间上界(开区间)。代码示例如下：
+参数`dst`是输出数组或矩阵，`low`是区间下界(闭区间)，`high`是区间上界(开区间)。
 
 ``` cpp
 Mat_<int> randuM ( 3, 3 );
@@ -124,13 +121,13 @@ cout << "randuM = " << randuM << endl;
 
 ### randn
 
-&emsp;&emsp;`randn`的作用是返回高斯分布的随机数，填入数组或矩阵，其函数原型如下所示：
+&emsp;&emsp;`randn`的作用是返回高斯分布的随机数，填入数组或矩阵：
 
 ``` cpp
 randn ( dst, mean, stddev );
 ```
 
-参数`dst`是输出数组或矩阵，`mean`是均值，`stddev`是标准差。代码示例如下：
+参数`dst`是输出数组或矩阵，`mean`是均值，`stddev`是标准差。
 
 ``` cpp
 Mat_<int> randnM ( 3, 3 );
@@ -140,7 +137,7 @@ cout << "randnM = " << randnM << endl;
 
 ### randShuffle
 
-&emsp;&emsp;`randShuffle`的作用是将原数组(矩阵)打乱，其函数原型如下所示：
+&emsp;&emsp;`randShuffle`的作用是将原数组(矩阵)打乱：
 
 ``` cpp
 randShuffle (InputOutputArray dst, double iterFactor = 1., RNG *rng = 0);
@@ -149,8 +146,6 @@ randShuffle (InputOutputArray dst, double iterFactor = 1., RNG *rng = 0);
 - `dst`：输入输出数组(一维)。
 - `iterFactor`：决定交换数值的行列的位置的一个系数。
 - `rng`：(可选)随机数产生器，它决定了打乱的方法。`0`表示使用默认的随机数产生器，即`seed = -1`。
-
-&emsp;&emsp;代码示例如下：
 
 ``` cpp
 Mat randShufM = ( Mat_<double> ( 2, 3 ) << 1, 2, 3, 4, 5, 6 );
@@ -164,7 +159,7 @@ cout << "randShufM = " << endl << randShufM << endl;
 
 ### cvRandArr
 
-&emsp;&emsp;`cvRandArr`的作用是用`CvRNG`产生的随机数填充数组(矩阵)，其函数原型如下所示：
+&emsp;&emsp;`cvRandArr`的作用是用`CvRNG`产生的随机数填充数组(矩阵)：
 
 ``` cpp
 void cvRandArr (CvRNG *rng, CvArr *arr, int dist_type, CvScalar param1, CvScalar param2);
@@ -175,8 +170,6 @@ void cvRandArr (CvRNG *rng, CvArr *arr, int dist_type, CvScalar param1, CvScalar
 - `dist_type`：`CV_RAND_UNI`或者`CV_RAND_NORMAL`。
 - `param1`：如果是均匀分布，则它是随机数范围的闭下边界；如果是正态分布，则它是随机数的平均值。
 - `param2`：如果是均匀分布，则它是随机数范围的开上边界；如果是正态分布，则它是随机数的标准差。
-
-&emsp;&emsp;代码示例如下：
 
 ``` cpp
 CvMat *cvM = cvCreateMat ( 3, 3, CV_16U ); /* 创建“3 * 3”的矩阵 */
