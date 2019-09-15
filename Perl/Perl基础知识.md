@@ -22,28 +22,28 @@ print("Hello, world\n");
 &emsp;&emsp;`Perl`与脚本语言一样，不需要编译器和链接器来运行代码，你要做的只是写出程序并告诉`Perl`来运行而已。`Perl`提供脚本语言(如`sed`和`awk`)的所有功能，还具有它们所不具备的很多功能，同时还支持`sed`到`Perl`以及`awk`到`Perl`的翻译器。简而言之，`Perl`像`C`一样强大，像`awk`、`sed`等脚本描述语言一样方便。
 &emsp;&emsp;`Perl`的优点如下：
 
-- 相比于C、Pascal这样的高级语言，Perl语言直接提供泛型变量、动态数组、Hash表等更加便捷的编程元素。
-- Perl具有动态语言的强大灵活的特性，并且还从C/C++、Basic、Pascal等语言中分别借鉴了语法规则，从而提供了许多冗余语法。
-- 在统一变量类型和掩盖运算细节方面，Perl做得比其他高级语言(例如Python)更为出色。
-- 由于从其他语言大量借鉴了语法，使得从其他编程语言转到Perl语言的程序员可以迅速上手写程序并完成任务，这使得Perl语言是一门容易用的语言。
-- Perl是可扩展的，我们可以通过CPAN(`the Comprehensive Perl Archive Network`，意思是`全面的Perl存档网络`)中心仓库找到很多我们需要的模块。
-- Perl的`mod_perl`的模块允许Apache服务器使用Perl解释器。
+- 相比于`C`、`Pascal`这样的高级语言，`Perl`语言直接提供泛型变量、动态数组、`Hash`表等更加便捷的编程元素。
+- `Perl`具有动态语言的强大灵活的特性，并且还从`C/C++`、`Basic`、`Pascal`等语言中分别借鉴了语法规则，从而提供了许多冗余语法。
+- 在统一变量类型和掩盖运算细节方面，`Perl`做得比其他高级语言(例如`Python`)更为出色。
+- 由于从其他语言大量借鉴了语法，使得从其他编程语言转到`Perl`语言的程序员可以迅速上手写程序并完成任务，这使得`Perl`语言是一门容易用的语言。
+- `Perl`是可扩展的，我们可以通过`CPAN`(`the Comprehensive Perl Archive Network`，意思是`全面的Perl存档网络`)中心仓库找到很多我们需要的模块。
+- `Perl`的`mod_perl`的模块允许`Apache`服务器使用`Perl`解释器。
 
-&emsp;&emsp;Perl的缺点如下：
+&emsp;&emsp;`Perl`的缺点如下：
 
 - 也正是因为Perl的灵活性和过度的冗余语法，也因此获得了“仅写”`write-only`的坏名声，因为Perl程序可以写得很随意(例如变量不经声明就可以直接使用)，可能少写一些字母就会得到意想不到的结果(而不报错)。许多Perl程序的代码令人难以阅读，实现相同功能的程序代码长度可以相差十倍百倍，这就令程序的维护者(甚至是编写者)难以维护。
 - 同样的，因为Perl这样随意的特点，可能会导致一些Perl程序员遗忘语法，以至于不得不经常查看Perl手册。建议的解决方法是在程序里使用`use strict;`以及`use warnings;`，并统一代码风格，使用库。Perl同样可以将代码书写得像Python或Ruby等语言一样优雅。
-- 很多时候，perl.exe进程会占用很多的内存空间。
+- 很多时候，`perl.exe`进程会占用很多的内存空间。
 
 ### 注释
 
-&emsp;&emsp;使用注释使你的程序易读，这是好的编程习惯。perl注释的方法为在语句的开头使用字符`#`：
+&emsp;&emsp;使用注释使你的程序易读，这是好的编程习惯。`perl`注释的方法为在语句的开头使用字符`#`：
 
 ``` perl
 # 这一行是perl中的注释
 ```
 
-perl也支持多行注释，最常用的方法是使用POD(Plain Old Documentations)：
+`perl`也支持多行注释，最常用的方法是使用`POD`(`Plain Old Documentations`)：
 
 ``` perl
 print "Hello, world\n"; # 这是一个单行注释
@@ -60,7 +60,7 @@ print "Hello, world\n"; # 这是一个单行注释
 
 ### 单引号和双引号
 
-&emsp;&emsp;perl输出字符串可以使用单引号和双引号：
+&emsp;&emsp;`perl`输出字符串可以使用`'`和`"`：
 
 ``` perl
 print "Hello, world\n"; # 双引号，输出“Hello, world”
