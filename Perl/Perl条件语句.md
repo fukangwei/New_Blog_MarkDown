@@ -152,7 +152,7 @@ unless ( boolean_expression_1 ) {
 $a = 20;
 ​
 unless ( $a  ==  30 ) {
-    printf "a的值不为30\n"; # 输出“a的值不为30”
+    printf "a的值不为30\n";  # 输出“a的值不为30”
 } elsif ( $a ==  30 ) {
     printf "a的值为30\n";
 } else {
