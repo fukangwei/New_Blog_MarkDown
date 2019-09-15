@@ -255,7 +255,7 @@ a的值为：4
 
 #### last语句
 
-&emsp;&emsp;last语句用于退出循环语句块，从而结束循环，last语句之后的语句不再执行，continue语句块也不再执行：
+&emsp;&emsp;`last`语句用于退出循环语句块，从而结束循环，`last`语句之后的语句不再执行，`continue`语句块也不再执行：
 
 ``` perl
 last
@@ -286,24 +286,22 @@ a的值为：2
 
 #### continue语句
 
-&emsp;&emsp;continue块通常在条件语句再次判断前执行，可用在while和foreach循环中。在while循环中，continue语句语法格式如下：
+&emsp;&emsp;`continue`块通常在条件语句再次判断前执行，可用在`while`和`foreach`循环中。在`while`循环中，`continue`语句语法格式如下：
 
 ``` perl
 while (condition) {
-    statement(s);
-}
-continue {
-    statement(s);
+    statement(s);
+} continue {
+    statement(s);
 }
 ```
 
-在foreach循环中，continue语句语法格式如下：
+在`foreach`循环中，`continue`语句语法格式如下：
 
 ``` perl
 foreach $a(@listA) {
     statement(s);
-}
-continue {
+} continue {
     statement(s);
 }
 ```
@@ -315,8 +313,7 @@ $a = 0;
 ​
 while ($a < 3) {
     print "a = $a\n";
-}
-continue {
+} continue {
     $a = $a + 1;
 }
 ```
