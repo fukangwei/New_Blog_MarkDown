@@ -8,7 +8,7 @@ tags:
 
 ### IF语句
 
-&emsp;&emsp;Perl的if语句由一个布尔表达式后跟一个或多个语句组成。语法格式如下所示：
+&emsp;&emsp;Perl的if语句由一个布尔表达式后跟一个或多个语句组成：
 
 ``` perl
 if ( boolean_expression ) {
@@ -68,14 +68,11 @@ if ( boolean_expression ) {
 ``` perl
 if ( boolean_expression_1 ) {
     # 在布尔表达式boolean_expression_1为true时执行
-}
-elsif ( boolean_expression_2 ) {
+} elsif ( boolean_expression_2 ) {
     # 在布尔表达式boolean_expression_2为true时执行
-}
-elsif ( boolean_expression_3 ) {
+} elsif ( boolean_expression_3 ) {
     # 在布尔表达式boolean_expression_3为true时执行
-}
-else {
+} else {
     # 布尔表达式的条件都为false时执行
 }
 ```
@@ -144,14 +141,11 @@ unless ( boolean_expression ) {
 ``` perl
 unless ( boolean_expression_1 ) {
     # 在布尔表达式boolean_expression_1为false时执行
-}
-elsif ( boolean_expression_2 ) {
+} elsif ( boolean_expression_2 ) {
     # 在布尔表达式boolean_expression_2为true时执行
-}
-elsif ( boolean_expression_3 ) {
+} elsif ( boolean_expression_3 ) {
     # 在布尔表达式boolean_expression_3为true时执行
-}
-else {
+} else {
     # 没有条件匹配时执行
 }
 ```
@@ -218,7 +212,7 @@ $var = 10;
 %hash = ('key1' => 10, 'key2' => 20);
 ​
 switch ( $var ) {
-    case 10         {print "数字10\n"} # 输出“数字10”
+    case 10         {print "数字10\n"}  # 输出“数字10”
     case "a"        {print "字符串a"}
     case [1..10,42] {print "数字在列表中"}
     case (\@array)  {print "数字在数组中"}
@@ -237,7 +231,7 @@ $var = 10;
 %hash = ('key1' => 10, 'key2' => 20);
 ​
 switch ( $var ) {
-    case 10         {print "数字10\n"; next;} # 匹配后继续执行
+    case 10         {print "数字10\n"; next;}  # 匹配后继续执行
     case "a"        {print "string a"}
     case [1..10,42] {print "数字在列表中"}
     case (\@array)  {print "数字在数组中"}
