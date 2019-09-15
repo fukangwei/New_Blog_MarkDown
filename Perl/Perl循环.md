@@ -1,7 +1,7 @@
 ---
 title: Perl循环
 date: 2018-12-20 09:37:04
-tags:
+categories: Perl
 ---
 ### while循环
 
