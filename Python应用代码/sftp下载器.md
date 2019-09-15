@@ -61,23 +61,23 @@ def download():
     sftp.get(remotepath, localpath)
 ​
 if __name__ == "__main__":
-    trans = paramiko.Transport(("58.193.165.12", 22))
-    trans.connect(username="user4", password="444444")
-    sftp = paramiko.SFTPClient.from_transport(trans)
-    ssh = paramiko.SSHClient()
-    ssh._transport = trans
-    root = Tk()
-    Label(root, text="下载文件路径：").grid(row=0, column=0)
+    trans = paramiko.Transport(("58.193.165.12", 22))
+    trans.connect(username="user4", password="444444")
+    sftp = paramiko.SFTPClient.from_transport(trans)
+    ssh = paramiko.SSHClient()
+    ssh._transport = trans
+    root = Tk()
+    Label(root, text="下载文件路径：").grid(row=0, column=0)
 ​
-    e1 = Entry(root)
-    Button(root, text="下载文件", width=10, command=download).grid(row=2, column=0, sticky=W, padx=10, pady=5)
-    Button(root, text="返回上一个目录", width=10, command=dir_return).grid(row=3, column=0, sticky=W, padx=10, pady=5)
+    e1 = Entry(root)
+    Button(root, text="下载文件", width=10, command=download).grid(row=2, column=0, sticky=W, padx=10, pady=5)
+    Button(root, text="返回上一个目录", width=10, command=dir_return).grid(row=3, column=0, sticky=W, padx=10, pady=5)
 ​
-    theLB = Listbox(root, selectmode=BROWSE)  # 创建一个空列表
-    theLB.grid(row=1, column=0)
-    theLB.bind('<Double-Button-1>', enter_dir)  # 创建双击列表中元素的事件，即进入该目录
-    show_current_list()
+    theLB = Listbox(root, selectmode=BROWSE)  # 创建一个空列表
+    theLB.grid(row=1, column=0)
+    theLB.bind('<Double-Button-1>', enter_dir)  # 创建双击列表中元素的事件，即进入该目录
+    show_current_list()
 ​
-    mainloop()
-    trans.close()
+    mainloop()
+    trans.close()
 ```
