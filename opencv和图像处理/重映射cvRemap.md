@@ -74,42 +74,42 @@ int main ( int argc, char **argv ) {
         float *DataPt = ( float * ) ( mapx.data.ptr + rows * mapx.step );
 ​
         for ( int cols = 0; cols < mapx.width; cols++ ) {
-            float data = * ( DataPt + cols );
-            std::cout << ( float ) data << " ";
-        }
+            float data = * ( DataPt + cols );
+            std::cout << ( float ) data << " ";
+        }
 ​
-        std::cout << std::endl;
-    }
+        std::cout << std::endl;
+    }
 ​
-    /* 打印mapy */
-    std::cout << "mapy:" << std::endl;
+    /* 打印mapy */
+    std::cout << "mapy:" << std::endl;
 ​
-    for ( int rows = 0; rows < mapy.height; rows++ ) {
-        float *DataPt = ( float * ) ( mapy.data.ptr + rows * mapy.step );
+    for ( int rows = 0; rows < mapy.height; rows++ ) {
+        float *DataPt = ( float * ) ( mapy.data.ptr + rows * mapy.step );
 ​
-        for ( int cols = 0; cols < mapy.width; cols++ ) {
-            float data = * ( DataPt + cols );
-            std::cout << ( float ) data << " ";
-        }
+        for ( int cols = 0; cols < mapy.width; cols++ ) {
+            float data = * ( DataPt + cols );
+            std::cout << ( float ) data << " ";
+        }
 ​
-        std::cout << std::endl;
-    }
+        std::cout << std::endl;
+    }
 ​
-    /* 打印结果矩阵 */
-    std::cout << "MatDst:" << std::endl;
+    /* 打印结果矩阵 */
+    std::cout << "MatDst:" << std::endl;
 ​
-    for ( int rows = 0; rows < MatDst->height; rows++ ) {
-        uchar *DataPt = ( uchar * ) ( MatDst->data.ptr + rows * MatDst->step );
+    for ( int rows = 0; rows < MatDst->height; rows++ ) {
+        uchar *DataPt = ( uchar * ) ( MatDst->data.ptr + rows * MatDst->step );
 ​
-        for ( int cols = 0; cols < MatDst->width; cols++ ) {
-            uchar data = * ( DataPt + cols );
-            std::cout << ( int ) data << " ";
-        }
+        for ( int cols = 0; cols < MatDst->width; cols++ ) {
+            uchar data = * ( DataPt + cols );
+            std::cout << ( int ) data << " ";
+        }
 ​
-        std::cout << std::endl;
-    }
+        std::cout << std::endl;
+    }
 ​
-    return 0;
+    return 0;
 }
 ```
 
