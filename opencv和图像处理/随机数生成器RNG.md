@@ -175,21 +175,20 @@ void cvRandArr (CvRNG *rng, CvArr *arr, int dist_type, CvScalar param1, CvScalar
 CvMat *cvM = cvCreateMat ( 3, 3, CV_16U ); /* 创建“3 * 3”的矩阵 */
 /* 给cvM赋值，范围是[0, 255) */
 cvRandArr ( &cvRNG, cvM, CV_RAND_UNI, cvScalarAll ( 0 ), cvScalarAll ( 255 ) );
-​
 cout << "cvM = ";
 ​
 for ( int i = 0; i < 3; i++ ) {
-    for ( int j = 0; j < 3; j++ ) {
-        cout << ( int ) cvGetReal2D ( cvM, i, j ) << "   ";
-    }
+    for ( int j = 0; j < 3; j++ ) {
+        cout << ( int ) cvGetReal2D ( cvM, i, j ) << "   ";
+    }
 ​
-    cout << endl;
+    cout << endl;
 }
 ```
 
 ### cvRandInt
 
-&emsp;&emsp;`cvRandInt`的函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` cpp
 unsigned int cvRandInt ( CvRNG *rng );
@@ -204,7 +203,7 @@ cout << "cvInt = " << cvInt << endl;
 
 ### cvRandReal
 
-&emsp;&emsp;`cvRandReal`的函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` cpp
 double cvRandReal ( CvRNG *rng );
