@@ -3,12 +3,11 @@ title: Perl条件语句
 date: 2018-12-20 15:01:04
 tags:
 ---
+&emsp;&emsp;`Perl`条件语句是通过一条或多条语句的执行结果(`True`或者`False`)来决定执行的代码块。注意，数字`0`、字符串`0`、`""`、`空list`和`undef`为`false`，其他值均为`true`。`true`前面使用`!`或`not`则返回`false`。
 
-&emsp;&emsp;Perl条件语句是通过一条或多条语句的执行结果(True或者False)来决定执行的代码块。注意，数字`0`、字符串`0` 、`""`、空list和undef为false，其他值均为true。true前面使用`!`或not则返回false。
+### if语句
 
-### IF语句
-
-&emsp;&emsp;Perl的if语句由一个布尔表达式后跟一个或多个语句组成：
+&emsp;&emsp;`Perl`的`if`语句由一个布尔表达式后跟一个或多个语句组成：
 
 ``` perl
 if ( boolean_expression ) {
@@ -32,6 +31,7 @@ $a = "";
 if ( $a ) {
     printf "变量a为true\n";
 }
+
 print "a的值为：$a\n";
 ```
 
@@ -43,9 +43,9 @@ a的值为：10
 a的值为：
 ```
 
-### IF...ELSE语句
+### if-else语句
 
-&emsp;&emsp;一个if语句后可跟一个可选的else语句，else语句在布尔表达式为false时执行。语法格式如下所示：
+&emsp;&emsp;一个`if`语句后可跟一个可选的`else`语句，`else`语句在布尔表达式为`false`时执行：
 
 ``` perl
 if ( boolean_expression ) {
@@ -55,15 +55,13 @@ if ( boolean_expression ) {
 }
 ```
 
-### IF...ELSIF语句
+### if-elsif语句
 
 &emsp;&emsp;一个if语句后可跟一个可选的elsif语句，然后再跟另一个else语句。这种条件判断语句在多个条件的情况下非常有用。在使用if、elsif、else语句时，需要注意以下几点：
 
 - if语句后可以跟上0个或1个else语句，但是elsif后面必须有else语句。
 - if语句后可以跟上0个或1个elsif语句，但它们必须写在else语句前。
 - 如果其中的一个elsif执行成功，其他的elsif和else将不再被执行。
-
-语法格式如下所示：
 
 ``` perl
 if ( boolean_expression_1 ) {
