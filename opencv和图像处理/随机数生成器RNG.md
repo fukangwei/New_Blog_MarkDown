@@ -231,66 +231,70 @@ using namespace cv;
 using namespace std;
 ​
 int main ( int argc, char **argv ) {
-    RNG rng;
-    int N1 = rng;
-    double N1a = rng.uniform ( 0, 1 );
-    double N1b = rng.uniform ( ( double ) 0, ( double ) 1 );
-    double N1c = rng.uniform ( 0.f, 1.f );
-    double N1d = rng.uniform ( 0., 1. );
-    double N1g = rng.gaussian ( 2 );
-    cout << "N1 = " << N1 << endl;
-    cout << "N1a = " << N1a << endl;
-    cout << "N1b = " << N1b << endl;
-    cout << "N1c = " << N1c << endl;
-    cout << "N1d = " << N1d << endl;
-    cout << "N1g = " << N1g << endl;
-    int N2 = rng.next();
-    int N2a = rng.operator uchar();
-    int N2b = rng.operator schar();
-    int N2c = rng.operator ushort();
-    int N2d = rng.operator short int();
-    int N2e = rng.operator int();
-    int N2f = rng.operator unsigned int();
-    int N2g = rng.operator float();
-    int N2h = rng.operator double();
-    int N2i = rng.operator () (); /* 和“rng.next()”等价 */
-    int N2j = rng.operator () ( 100 ); /* 返回[0,100)范围内的随机数 */
-    cout << "N2 = " << N2 << endl;
-    cout << "N2a = " << N2a << endl;
-    cout << "N2b = " << N2b << endl;
-    cout << "N2c = " << N2c << endl;
-    cout << "N2d = " << N2d << endl;
-    cout << "N2e = " << N2e << endl;
-    cout << "N2f = " << N2f << endl;
-    cout << "N2g = " << N2g << endl;
-    cout << "N2h = " << N2h << endl;
-    cout << "N2i = " << N2i << endl;
-    cout << "N2j = " << N2j << endl << endl;
-    Mat_<int>fillM ( 3, 3 );
-    rng.fill ( fillM, RNG::UNIFORM, 1, 1000 );
-    cout << "filM = " << fillM << endl << endl;
-    Mat fillM1 ( 3, 3, CV_8U );
-    rng.fill ( fillM1, RNG::UNIFORM, 1, 1000, TRUE );
-    cout << "filM1 = " << fillM1 << endl << endl;
-    Mat fillM2 ( 3, 3, CV_8U );
-    rng.fill ( fillM2, RNG::UNIFORM, 1, 1000, FALSE );
-    cout << "filM2 = " << fillM2 << endl << endl;
-    Mat_<double>fillN ( 3, 3 );
-    rng.fill ( fillN, RNG::NORMAL, 1, 3 );
-    cout << "filN = " << fillN << endl << endl;
-    Mat_<int>randuM ( 3, 3 );
-    randu ( randuM, Scalar ( 0 ), Scalar ( 255 ) );
-    cout << "randuM = " << randuM << endl << endl;
-    Mat_<int>randnM ( 3, 3 );
-    randn ( randnM, 0, 1 );
-    cout << "randnM = " << randnM << endl << endl;
-    Mat randShufM = ( Mat_<double> ( 2, 3 ) << 1, 2, 3, 4, 5, 6 );
-    randShuffle ( randShufM, 7, 0 );
-    cout << "randShufM = " << endl << randShufM << endl << endl;
-    CvRNG cvRNG;
-    CvMat *cvM = cvCreateMat ( 3, 3, CV_16U );
-    cvRandArr ( &cvRNG, cvM, CV_RAND_UNI, cvScalarAll ( 0 ), cvScalarAll ( 255 ) );
-    cout << "cvM = ";
+    RNG rng;
+    int N1 = rng;
+    double N1a = rng.uniform ( 0, 1 );
+    double N1b = rng.uniform ( ( double ) 0, ( double ) 1 );
+    double N1c = rng.uniform ( 0.f, 1.f );
+    double N1d = rng.uniform ( 0., 1. );
+    double N1g = rng.gaussian ( 2 );
+
+    cout << "N1 = " << N1 << endl;
+    cout << "N1a = " << N1a << endl;
+    cout << "N1b = " << N1b << endl;
+    cout << "N1c = " << N1c << endl;
+    cout << "N1d = " << N1d << endl;
+    cout << "N1g = " << N1g << endl;
+
+    int N2 = rng.next();
+    int N2a = rng.operator uchar();
+    int N2b = rng.operator schar();
+    int N2c = rng.operator ushort();
+    int N2d = rng.operator short int();
+    int N2e = rng.operator int();
+    int N2f = rng.operator unsigned int();
+    int N2g = rng.operator float();
+    int N2h = rng.operator double();
+    int N2i = rng.operator () (); /* 和“rng.next()”等价 */
+    int N2j = rng.operator () ( 100 ); /* 返回[0, 100)范围内的随机数 */
+
+    cout << "N2 = " << N2 << endl;
+    cout << "N2a = " << N2a << endl;
+    cout << "N2b = " << N2b << endl;
+    cout << "N2c = " << N2c << endl;
+    cout << "N2d = " << N2d << endl;
+    cout << "N2e = " << N2e << endl;
+    cout << "N2f = " << N2f << endl;
+    cout << "N2g = " << N2g << endl;
+    cout << "N2h = " << N2h << endl;
+    cout << "N2i = " << N2i << endl;
+    cout << "N2j = " << N2j << endl << endl;
+
+    Mat_<int>fillM ( 3, 3 );
+    rng.fill ( fillM, RNG::UNIFORM, 1, 1000 );
+    cout << "filM = " << fillM << endl << endl;
+    Mat fillM1 ( 3, 3, CV_8U );
+    rng.fill ( fillM1, RNG::UNIFORM, 1, 1000, TRUE );
+    cout << "filM1 = " << fillM1 << endl << endl;
+    Mat fillM2 ( 3, 3, CV_8U );
+    rng.fill ( fillM2, RNG::UNIFORM, 1, 1000, FALSE );
+    cout << "filM2 = " << fillM2 << endl << endl;
+    Mat_<double>fillN ( 3, 3 );
+    rng.fill ( fillN, RNG::NORMAL, 1, 3 );
+    cout << "filN = " << fillN << endl << endl;
+    Mat_<int>randuM ( 3, 3 );
+    randu ( randuM, Scalar ( 0 ), Scalar ( 255 ) );
+    cout << "randuM = " << randuM << endl << endl;
+    Mat_<int>randnM ( 3, 3 );
+    randn ( randnM, 0, 1 );
+    cout << "randnM = " << randnM << endl << endl;
+    Mat randShufM = ( Mat_<double> ( 2, 3 ) << 1, 2, 3, 4, 5, 6 );
+    randShuffle ( randShufM, 7, 0 );
+    cout << "randShufM = " << endl << randShufM << endl << endl;
+    CvRNG cvRNG;
+    CvMat *cvM = cvCreateMat ( 3, 3, CV_16U );
+    cvRandArr ( &cvRNG, cvM, CV_RAND_UNI, cvScalarAll ( 0 ), cvScalarAll ( 255 ) );
+    cout << "cvM = ";
 ​
     for ( int i = 0; i < 3; i++ ) {
         for ( int j = 0; j < 3; j++ ) {
