@@ -1,9 +1,9 @@
 ---
 title: Perl之sort函数
 date: 2018-12-18 06:52:52
-tags:
+categories: Perl
 ---
-&emsp;&emsp;最简单的用法如下所示：
+&emsp;&emsp;最简单的用法如下：
 
 ``` perl
 my @arr = ( 3, 2, 8, 6 );
@@ -22,9 +22,9 @@ foreach ( sort { $a <=> $b } @arr ){
 8
 ```
 
-&emsp;&emsp;将hash表的`hash value`按照ASCII码顺序进行排序：
+&emsp;&emsp;将`hash`表的`hash value`按照`ASCII`码顺序进行排序：
 
-``` bash
+``` perl
 my %hash = ( 'a' => 2, 'b' => 3, 'c' => 11 );
 ​
 foreach my $key ( sort { $hash{$a} cmp $hash{$b} } keys %hash ) {
@@ -60,11 +60,11 @@ c => 11
 
 按照数字顺序从大到小进行排序：
 
-``` bash
+``` perl
 my %hash = ( 'a' => 2, 'b' => 3, 'c' => 11 );
 ​
 foreach my $key ( sort { $hash{$b} <=> $hash{$a} } keys %hash ) {
-    print $key, " => ", $hash{$key}, "\n";
+    print $key, " => ", $hash{$key}, "\n";
 }
 ```
 
