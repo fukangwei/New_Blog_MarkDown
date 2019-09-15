@@ -1,29 +1,33 @@
 ---
 title: 特征检测器FeatureDetector
 date: 2019-02-24 17:19:26
-tags:
+categories: opencv和图像处理
 ---
 &emsp;&emsp;`OpenCV`提供`FeatureDetector`实现特征检测及匹配：
 
 ``` cpp
 class CV_EXPORTS FeatureDetector {
 public:
-    virtual ~FeatureDetector();
-    void detect (
-        const Mat &image,
-        vector<KeyPoint> &keypoints,
-        const Mat &mask = Mat()
-    ) const;
-    void detect (
-        const vector<Mat> &images,
-        vector<vector<KeyPoint> > &keypoints,
-        const vector<Mat> &masks = vector<Mat>()
-    ) const;
-    virtual void read ( const FileNode & );
-    virtual void write ( FileStorage & ) const;
-    static Ptr<FeatureDetector> create ( const string &detectorType );
+    virtual ~FeatureDetector();
+
+    void detect (
+        const Mat &image,
+        vector<KeyPoint> &keypoints,
+        const Mat &mask = Mat()
+    ) const;
+
+    void detect (
+        const vector<Mat> &images,
+        vector<vector<KeyPoint> > &keypoints,
+        const vector<Mat> &masks = vector<Mat>()
+    ) const;
+
+    virtual void read ( const FileNode & );
+    virtual void write ( FileStorage & ) const;
+    static Ptr<FeatureDetector> create ( const string &detectorType );
+
 protected:
-    ...
+    ...
 };
 ```
 
