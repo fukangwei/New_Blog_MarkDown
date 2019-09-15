@@ -129,7 +129,7 @@ $name = <STDIN>;
 print "网址：$name\n";
 ```
 
-输入网址后，print语句就会输出：
+输入网址后，`print`语句就会输出：
 
 ``` bash
 google网址?
@@ -150,13 +150,13 @@ http://www.google.com
 ``` perl
 open(DATA,"<import.txt") or die "无法打开数据";
 @lines = <DATA>;
-print @lines; # 输出数组内容
+print @lines;  # 输出数组内容
 close(DATA);
 ```
 
 ### getc函数
 
-&emsp;&emsp;xgetc函数从指定的`FILEHANDLE`返回单一的字符，如果没指定，则返回`STDIN`：
+&emsp;&emsp;`getc`函数从指定的`FILEHANDLE`返回单一的字符，如果没指定，则返回`STDIN`：
 
 ``` perl
 getc FILEHANDLE
@@ -167,7 +167,7 @@ getc
 
 ### read函数
 
-&emsp;&emsp;read函数用于从缓冲区的文件句柄读取信息。这个函数用于从文件读取二进制数据。
+&emsp;&emsp;`read`函数用于从缓冲区的文件句柄读取信息。这个函数用于从文件读取二进制数据。
 
 ``` perl
 read FILEHANDLE, SCALAR, LENGTH, OFFSET
@@ -183,7 +183,7 @@ read FILEHANDLE, SCALAR, LENGTH
 
 ### print函数
 
-&emsp;&emsp;利用文件句柄和print函数可以把程序运行的结果发给输出设备(`STDOUT`是标准输出)：
+&emsp;&emsp;利用文件句柄和`print`函数可以把程序运行的结果发给输出设备(`STDOUT`是标准输出)：
 
 ``` perl
 print FILEHANDLE LIST
@@ -205,7 +205,7 @@ print "Hello World!\n";
 open( DATA1, "<file1.txt" );
 open( DATA2, ">file2.txt" );
 ​
-while (<DATA1>) { # 拷贝数据
+while (<DATA1>) {  # 拷贝数据
     print DATA2 $_;
 }
 ​
@@ -223,7 +223,7 @@ rename( "/usr/runoob/test/file1.txt", "/usr/runoob/test/file2.txt" );
 
 ### 删除文件
 
-&emsp;&emsp;以下实例演示如何使用unlink函数来删除文件：
+&emsp;&emsp;以下实例演示如何使用`unlink`函数来删除文件：
 
 ``` perl
 unlink("/usr/runoob/test/file1.txt");
@@ -231,7 +231,7 @@ unlink("/usr/runoob/test/file1.txt");
 
 ### tell函数
 
-&emsp;&emsp;tell函数用于获取文件位置：
+&emsp;&emsp;`tell`函数用于获取文件位置：
 
 ``` perl
 tell FILEHANDLE
@@ -242,7 +242,7 @@ tell
 
 ### seek函数
 
-&emsp;&emsp;seek函数是通过文件句柄来移动文件读写指针的方式来读取或写入文件的，以字节为单位进行读取和写入：
+&emsp;&emsp;`seek`函数是通过文件句柄来移动文件读写指针的方式来读取或写入文件的，以`byte`为单位进行读取和写入：
 
 ``` perl
 seek FILEHANDLE, POSITION, WHENCE
@@ -250,9 +250,9 @@ seek FILEHANDLE, POSITION, WHENCE
 
 - `FILEHANDLE`：文件句柄，用于存放一个文件唯一标识符。
 - `POSITION`：表示文件句柄(读写位置指针)要移动的字节数。
-- `WHENCE`：表示文件句柄(读写位置指针)开始移动时的起始位置，可以取的值为0、1、2，分别表示文件开头、当前位置和文件尾。
+- `WHENCE`：表示文件句柄(读写位置指针)开始移动时的起始位置，可以取的值为`0`、`1`、`2`，分别表示文件开头、当前位置和文件尾。
 
-以下实例为从文件开头读取256个字节：
+以下实例为从文件开头读取`256`个字节：
 
 ``` perl
 seek DATA, 256, 0;
@@ -260,7 +260,7 @@ seek DATA, 256, 0;
 
 ### 文件信息
 
-&emsp;&emsp;Perl的文件操作也可以测试文件是否存在，是否可读写等。可以先创建`file1.txt`文件，内如如下：
+&emsp;&emsp;`Perl`的文件操作也可以测试文件是否存在，是否可读写等。可以先创建`file1.txt`文件，内容如下：
 
 ``` bash
 www.runoob.com
