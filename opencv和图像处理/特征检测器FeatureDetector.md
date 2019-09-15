@@ -72,17 +72,17 @@ initModule_nonfree();
 using namespace cv;
 ​
 int main() {
-    Mat image;
-    image = imread ( "timg1.jpg" );
-    imshow ( "image", image );
-    std::vector<KeyPoint> keyPoints; /* vector of keyPoints */
-    /* construction of the fast feature detector object */
-    FastFeatureDetector fast ( 40 ); /* 检测的阈值为40 */
-    fast.detect ( image, keyPoints ); /* feature point detection */
-    drawKeypoints ( image, keyPoints, image, Scalar::all ( 255 ), DrawMatchesFlags::DRAW_OVER_OUTIMG );
-    imshow ( "FAST feature", image );
-    cvWaitKey ( 0 );
-    return 0;
+    Mat image;
+    image = imread ( "timg1.jpg" );
+    imshow ( "image", image );
+    std::vector<KeyPoint> keyPoints; /* vector of keyPoints */
+    /* construction of the fast feature detector object */
+    FastFeatureDetector fast ( 40 ); /* 检测的阈值为40 */
+    fast.detect ( image, keyPoints ); /* feature point detection */
+    drawKeypoints ( image, keyPoints, image, Scalar::all ( 255 ), DrawMatchesFlags::DRAW_OVER_OUTIMG );
+    imshow ( "FAST feature", image );
+    cvWaitKey ( 0 );
+    return 0;
 }
 ```
 
