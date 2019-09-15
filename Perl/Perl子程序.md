@@ -1,9 +1,9 @@
 ---
 title: Perl子程序
 date: 2018-12-19 20:06:58
-tags:
+categories: Perl
 ---
-&emsp;&emsp;Perl子程序也就是用户定义的函数。Perl子程序可以出现在程序的任何地方，语法格式如下：
+&emsp;&emsp;Perl子程序也就是用户定义的函数，可以出现在程序的任何地方：
 
 ``` perl
 sub subroutine {
@@ -35,7 +35,7 @@ Hello();
 
 ### 向子程序传递参数
 
-&emsp;&emsp;Perl子程序可以像其他编程语言一样接受多个参数，子程序参数使用特殊数组`@_`标明，因此子程序第一个参数为`$_[0]`，第二个参数为`$_[1]`，以此类推。不论参数是标量型还是数组型，用户把参数传给子程序时，perl默认按引用的方式调用它们。
+&emsp;&emsp;`Perl`子程序可以像其他编程语言一样接受多个参数，子程序参数使用特殊数组`@_`标明，因此子程序第一个参数为`$_[0]`，第二个参数为`$_[1]`，以此类推。不论参数是标量型还是数组型，用户把参数传给子程序时，`perl`默认按引用的方式调用它们。
 
 ``` perl
 sub Average {
@@ -64,7 +64,7 @@ Average(10, 20, 30);
 ``` perl
 sub PrintList {
     my @list = @_;
-    print "列表为：@list\n"; # 输出“列表为：10 1 2 3 4”
+    print "列表为：@list\n";  # 输出“列表为：10 1 2 3 4”
 }
 ​
 $a = 10;
@@ -73,7 +73,7 @@ $a = 10;
 PrintList($a, @b);
 ```
 
-我们可以向子程序传入多个数组和哈希，但是在传入多个数组和哈希时，会导致丢失独立的标识，所以需要使用引用来传递。
+可以向子程序传入多个数组和哈希，但是在传入这种参数时，会导致丢失独立的标识，所以需要使用引用来传递。
 
 ### 向子程序传递哈希
 
@@ -102,12 +102,12 @@ age：3
 
 ### 子程序返回值
 
-&emsp;&emsp;子程序可以像其他编程语言一样使用return语句来返回函数值。如果没有使用return语句，则子程序的最后一行语句将作为返回值。
+&emsp;&emsp;子程序可以像其他编程语言一样使用`return`语句来返回函数值。如果没有使用`return`语句，则子程序的最后一行语句将作为返回值。
 
 ``` perl
 sub add_a_b {
-    $_[0] + $_[1]; # 不使用return
-    # return $_[0] + $_[1]; # 使用return
+    $_[0] + $_[1];  # 不使用return
+    # return $_[0] + $_[1];  # 使用return
 }
 ​
 print add_a_b( 1, 2 )
@@ -117,34 +117,34 @@ print add_a_b( 1, 2 )
 
 ### 子程序的私有变量
 
-&emsp;&emsp;默认情况下，Perl中所有的变量都是全局变量，这就是说变量在程序的任何地方都可以调用。如果我们需要设置私有变量，可以使用my操作符来设置。
-&emsp;&emsp;my操作符用于创建词法作用域变量，通过my创建的变量，存活于声明开始的地方，直到闭合作用域的结尾。闭合作用域指的可以是一对花括号中的区域，可以是一个文件，也可以是一个`if`、`while`、`for`、`foreach`、`eval`字符串。以下实例演示如何声明一个或多个私有变量：
+&emsp;&emsp;默认情况下，`Perl`中所有的变量都是全局变量，这就是说变量在程序的任何地方都可以调用。如果我们需要设置私有变量，可以使用`my`操作符来设置。
+&emsp;&emsp;`my`操作符用于创建词法作用域变量，通过`my`创建的变量，存活于声明开始的地方，直到闭合作用域的结尾。闭合作用域指的可以是一对花括号中的区域，可以是一个文件，也可以是一个`if`、`while`、`for`、`foreach`、`eval`字符串。以下实例演示如何声明一个或多个私有变量：
 
 ``` perl
 sub somefunc {
-    my $variable; # “$variable”在方法somefunc外不可见
-    my ( $another, @an_array, %a_hash ); # 同时声明多个变量
+    my $variable;  # “$variable”在方法somefunc外不可见
+    my ( $another, @an_array, %a_hash );  # 同时声明多个变量
 }
 ```
 
 示例如下：
 
 ``` perl
-$string = "Hello, World!"; # 全局变量
+$string = "Hello, World!";  # 全局变量
 ​
 sub PrintHello{
-    my $string; # PrintHello函数的私有变量
+    my $string;  # PrintHello函数的私有变量
     $string = "Hello, Runoob!";
-    print "函数内字符串：$string\n"; # 输出“函数内字符串：Hello, Runoob!”
+    print "函数内字符串：$string\n";  # 输出“函数内字符串：Hello, Runoob!”
 }
 ​
 PrintHello();
-print "函数外字符串：$string\n"; # 输出“函数外字符串：Hello, World!”
+print "函数外字符串：$string\n";  # 输出“函数外字符串：Hello, World!”
 ```
 
 ### 变量的临时赋值
 
-&emsp;&emsp;我们可以使用local为全局变量提供临时的值，在退出作用域后将原来的值还回去。local定义的变量不存在于主程序中，存在于该子程序和该子程序调用的子程序中：
+&emsp;&emsp;可以使用`local`为全局变量提供临时的值，在退出作用域后将原来的值还回去。`local`定义的变量不存在于主程序中，存在于该子程序和该子程序调用的子程序中：
 
 ``` perl
 $string = "Hello, World!";
@@ -180,13 +180,13 @@ PrintHello函数内字符串值：Hello, World!
 
 ### 静态变量
 
-&emsp;&emsp;state操作符功能类似于C里面的static修饰符，state关键字将局部变量变得持久。state也是词法变量，所以只在定义该变量的词法作用域中有效：
+&emsp;&emsp;`state`操作符功能类似于`C`里面的`static`修饰符，`state`关键字将局部变量变得持久。`state`也是词法变量，所以只在定义该变量的词法作用域中有效：
 
 ``` perl
 use feature 'state';
 ​
 sub PrintCount {
-    state $count = 0; # 初始化变量
+    state $count = 0;  # 初始化变量
     print "counter值为：$count\n";
     $count++;
 }
@@ -206,12 +206,13 @@ counter值为：2
 
 ### 子程序调用上下文
 
-&emsp;&emsp;子程序调用过程中，会根据上下文来返回不同类型的值，比如以下localtime子程序，在标量上下文返回字符串，在列表上下文返回列表：
+&emsp;&emsp;子程序调用过程中，会根据上下文来返回不同类型的值，比如以下`localtime`子程序，在标量上下文返回字符串，在列表上下文返回列表：
 
 ``` perl
 my $datestring = localtime(time);
-print $datestring; # 输出“Thu Oct 25 22:11:28 2018”
+print $datestring;  # 输出“Thu Oct 25 22:11:28 2018”
 print "\n";
 ( $sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst ) = localtime(time);
-printf( "%d-%d-%d %d:%d:%d", $year + 1990, $mon + 1, $mday, $hour, $min, $sec ); # 输出“2108-10-25 22:11:28”
+# 输出“2108-10-25 22:11:28”
+printf( "%d-%d-%d %d:%d:%d", $year + 1990, $mon + 1, $mday, $hour, $min, $sec );
 ```
