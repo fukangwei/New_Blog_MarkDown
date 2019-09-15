@@ -48,17 +48,17 @@ def show_current_list():  # 显示当前的目录
         theLB.insert(END, i)
 ​
 def download():
-    global current_dir
+    global current_dir
 
-    if dict[theLB.get(theLB.curselection())] == "dir":  # 如果当前选定的是目录
-        return
-    elif dict[theLB.get(theLB.curselection())] == "file":  # 如果当前选定的是文件
-        file_name = current_dir + "/" + theLB.get(theLB.curselection())
-        print(file_name)
+    if dict[theLB.get(theLB.curselection())] == "dir":  # 如果当前选定的是目录
+        return
+    elif dict[theLB.get(theLB.curselection())] == "file":  # 如果当前选定的是文件
+        file_name = current_dir + "/" + theLB.get(theLB.curselection())
+        print(file_name)
 ​
-    remotepath = file_name  # 获取远程访问的文件名
-    localpath = theLB.get(theLB.curselection())  # 保存至本地的文件名
-    sftp.get(remotepath, localpath)
+    remotepath = file_name  # 获取远程访问的文件名
+    localpath = theLB.get(theLB.curselection())  # 保存至本地的文件名
+    sftp.get(remotepath, localpath)
 ​
 if __name__ == "__main__":
     trans = paramiko.Transport(("58.193.165.12", 22))
