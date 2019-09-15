@@ -384,9 +384,9 @@ a = 5
 
 #### goto语句
 
-&emsp;&emsp;Perl有三种goto形式：`got LABLE`、`goto EXPR`和`goto &NAME`：
+&emsp;&emsp;`Perl`有`3`种`goto`形式：`got LABLE`、`goto EXPR`和`goto &NAME`：
 
-- `goto LABEL`：找出标记为LABEL的语句，并且从那里重新执行。
+- `goto LABEL`：找出标记为`LABEL`的语句，并且从那里重新执行。
 - `goto EXPR`：`goto EXPR`只是`goto LABEL`的一般形式。它期待表达式生成一个标记名称，并跳到该标记处执行。
 - `goto &NAME`：它把正在运行着的子进程替换为一个已命名子进程的调用。
 
@@ -428,7 +428,7 @@ $str2 = "OP";
 LOOP: do {
     if ($a == 3) {
         $a = $a + 1;
-        goto $str1.$str2; # 类似于“goto LOOP”
+        goto $str1.$str2;  # 类似于“goto LOOP”
     }
 
     print "a = $a\n";
