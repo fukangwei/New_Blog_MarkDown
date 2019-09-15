@@ -296,27 +296,27 @@ int main ( int argc, char **argv ) {
     cvRandArr ( &cvRNG, cvM, CV_RAND_UNI, cvScalarAll ( 0 ), cvScalarAll ( 255 ) );
     cout << "cvM = ";
 ​
-    for ( int i = 0; i < 3; i++ ) {
-        for ( int j = 0; j < 3; j++ ) {
-            cout << ( int ) cvGetReal2D ( cvM, i, j ) << "   ";
-        }
+    for ( int i = 0; i < 3; i++ ) {
+        for ( int j = 0; j < 3; j++ ) {
+            cout << ( int ) cvGetReal2D ( cvM, i, j ) << "   ";
+        }
 ​
-        cout << endl;
-    }
+        cout << endl;
+    }
 ​
-    cout << endl;
-    int cvInt = cvRandInt ( &cvRNG );
-    cout << "cvInt = " << cvInt << endl;
-    double cvDouble = cvRandReal ( &cvRNG );
-    cout << "cvDouble = " << cvDouble << endl;
-    printf ( "\nrand1 =" );
+    cout << endl;
+    int cvInt = cvRandInt ( &cvRNG );
+    cout << "cvInt = " << cvInt << endl;
+    double cvDouble = cvRandReal ( &cvRNG );
+    cout << "cvDouble = " << cvDouble << endl;
+    printf ( "\nrand1 =" );
 ​
-    for ( int i = 0; i < 10; i++ ) {
-        printf ( "%d ", rand() % 10 );
-    }
+    for ( int i = 0; i < 10; i++ ) {
+        printf ( "%d ", rand() % 10 );
+    }
 ​
-    printf ( "\nsrand1 =" );
-    srand ( 8 );
+    printf ( "\nsrand1 =" );
+    srand ( 8 );
 ​
     for ( int i = 0; i < 10; i++ ) {
         printf ( "%d ", rand() % 10 );
