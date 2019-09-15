@@ -1,11 +1,10 @@
 ---
 title: Perl文件操作
 date: 2018-12-18 18:24:44
-tags:
+categories: Perl
 ---
-
-&emsp;&emsp;Perl使用一种叫做文件句柄类型的变量来操作文件，从文件读取或者写入数据需要使用文件句柄。文件句柄`file handle`是一个I/O连接的名称，Perl提供了三种文件句柄，即`STDIN`、`STDOUT`和`STDERR`，分别代表标准输入、标准输出和标准出错输出。
-&emsp;&emsp;Perl打开文件可以使用以下方式：
+&emsp;&emsp;`Perl`使用一种叫做文件句柄类型的变量来操作文件，从文件读取或者写入数据需要使用文件句柄。文件句柄`file handle`是一个`I/O`连接的名称，`Perl`提供了三种文件句柄，即`STDIN`、`STDOUT`和`STDERR`，分别代表标准输入、标准输出和标准出错输出。
+&emsp;&emsp;`Perl`打开文件可以使用以下方式：
 
 ``` perl
 open FILEHANDLE, EXPR
@@ -17,17 +16,17 @@ sysopen FILEHANDLE, FILENAME, MODE
 - `FILEHANDLE`：文件句柄，用于存放一个文件唯一标识符。
 - `EXPR`：文件名及文件访问类型组成的表达式。
 - `MODE`：文件访问类型。
-- `PERMS`：访问权限位(permission bits)。
+- `PERMS`：访问权限位(`Permission Bits`)。
 
 ### open函数
 
-&emsp;&emsp;以下代码使用open函数以只读`<`的方式打开文件`file.txt`：
+&emsp;&emsp;以下代码使用`open`函数以只读`<`的方式打开文件`file.txt`：
 
 ``` perl
-open(DATA, "<file.txt"); # “<”表示只读方式
+open(DATA, "<file.txt");  # “<”表示只读方式
 ```
 
-代码中的DATA为文件句柄，用于读取文件。以下实例将打开文件并将文件内容输出：
+代码中的`DATA`为文件句柄，用于读取文件。以下实例将打开文件并将文件内容输出：
 
 ``` perl
 open( DATA, "<file.txt" ) or die "file.txt文件无法打开，$!";
@@ -49,7 +48,7 @@ open( DATA, ">file.txt" ) or die "file.txt 文件无法打开, $!"; # “>”表
 open( DATA, "+<file.txt" ); or die "file.txt 文件无法打开, $!";
 ```
 
-这种方式不会删除文件原来的内容，如果要删除，格式如下所示：
+这种方式不会删除文件原来的内容，如果要删除，使用如下方式：
 
 ``` perl
 open( DATA, "+>file.txt" ) or die "file.txt 文件无法打开, $!";
@@ -80,7 +79,7 @@ open( DATA, "+>>file.txt" ) || die "file.txt 文件无法打开, $!";
 
 ### sysopen函数
 
-&emsp;&emsp;sysopen函数类似于open函数，只是它们的参数形式不一样。以下实例是以读写`+<filename`的方式打开文件：
+&emsp;&emsp;`sysopen`函数类似于`open`函数，只是它们的参数形式不一样。以下实例是以读写`+<filename`的方式打开文件：
 
 ``` perl
 sysopen( DATA, "file.txt", O_RDWR );
@@ -114,7 +113,7 @@ close FILEHANDLE
 close
 ```
 
-`FILEHANDLE`为指定的文件句柄，如果成功关闭则返回true。
+`FILEHANDLE`为指定的文件句柄，如果成功关闭则返回`true`。
 
 ``` perl
 close(DATA) || die "无法关闭文件";
