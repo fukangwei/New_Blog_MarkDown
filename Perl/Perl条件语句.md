@@ -57,11 +57,11 @@ if ( boolean_expression ) {
 
 ### if-elsif语句
 
-&emsp;&emsp;一个if语句后可跟一个可选的elsif语句，然后再跟另一个else语句。这种条件判断语句在多个条件的情况下非常有用。在使用if、elsif、else语句时，需要注意以下几点：
+&emsp;&emsp;一个`if`语句后可跟一个可选的`elsif`语句，然后再跟另一个`else`语句。这种条件判断语句在多个条件的情况下非常有用。在使用`if`、`elsif`、`else`语句时，需要注意以下几点：
 
-- if语句后可以跟上0个或1个else语句，但是elsif后面必须有else语句。
-- if语句后可以跟上0个或1个elsif语句，但它们必须写在else语句前。
-- 如果其中的一个elsif执行成功，其他的elsif和else将不再被执行。
+- `if`语句后可以跟上`0`个或`1`个`else`语句，但是`elsif`后面必须有`else`语句。
+- `if`语句后可以跟上`0`个或`1`个`elsif`语句，但它们必须写在`else`语句前。
+- 如果其中的一个`elsif`执行成功，其他的`elsif`和`else`将不再被执行。
 
 ``` perl
 if ( boolean_expression_1 ) {
@@ -75,9 +75,9 @@ if ( boolean_expression_1 ) {
 }
 ```
 
-### UNLESS语句
+### unless语句
 
-&emsp;&emsp;一个unless语句由一个布尔表达式后跟一个或多个语句组成。语法格式如下所示：
+&emsp;&emsp;一个`unless`语句由一个布尔表达式后跟一个或多个语句组成：
 
 ``` perl
 unless ( boolean_expression ) {
@@ -85,7 +85,7 @@ unless ( boolean_expression ) {
 }
 ```
 
-如果布尔表达式boolean_expression为false，则if语句内的代码块将被执行，否则不执行。
+如果布尔表达式`boolean_expression`为`false`，则`if`语句内的代码块将被执行，否则不执行。
 
 ``` perl
 $a = 20;
@@ -114,9 +114,9 @@ a的值为：20
 a的值为：
 ```
 
-### UNLESS...ELSE语句
+### unless-else语句
 
-&emsp;&emsp;一个unless语句后可跟一个可选的else语句，else语句在布尔表达式为true时执行。语法格式如下所示：
+&emsp;&emsp;一个unless语句后可跟一个可选的else语句，else语句在布尔表达式为true时执行：
 
 ``` perl
 unless ( boolean_expression ) {
