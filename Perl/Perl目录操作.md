@@ -1,18 +1,18 @@
 ---
 title: Perl目录操作
 date: 2018-12-18 07:52:52
-tags:
+categories: Perl
 ---
 &emsp;&emsp;以下列出了一些操作目录的标准函数：
 
-函数                     | 作用
-------------------------|-------
-opendir DIRHANDLE, EXPR | 打开目录
-readdir DIRHANDLE       | 读取目录
-rewinddir DIRHANDLE     | 定位指针到开头
-telldir DIRHANDLE       | 返回目录的当前位置
-seekdir DIRHANDLE, POS  | 定位指定到目录的POS位置
-closedir DIRHANDLE      | 关闭目录
+函数                      | 作用
+--------------------------|-------
+`opendir DIRHANDLE, EXPR` | 打开目录
+`readdir DIRHANDLE`       | 读取目录
+`rewinddir DIRHANDLE`     | 定位指针到开头
+`telldir DIRHANDLE`       | 返回目录的当前位置
+`seekdir DIRHANDLE, POS`  | 定位指定到目录的`POS`位置
+`closedir DIRHANDLE`      | 关闭目录
 
 ### 显示所有的文件
 
@@ -20,27 +20,27 @@ closedir DIRHANDLE      | 关闭目录
 
 ``` perl
 $dir = "/tmp/*";
-my @files = glob($dir); # 显示“/tmp”目录下的所有文件
+my @files = glob($dir);  # 显示“/tmp”目录下的所有文件
 
 foreach (@files) {
     print $_ . "\n";
 }
 ​
 $dir = "/tmp/*.c";
-@files = glob($dir); # 显示“/tmp”目录下所有以“.c”结尾的文件
+@files = glob($dir);  # 显示“/tmp”目录下所有以“.c”结尾的文件
 
 foreach (@files) {
     print $_ . "\n";
 }
 ​
 $dir = "/tmp/.*";
-@files = glob($dir); # 显示所有隐藏文件
+@files = glob($dir);  # 显示所有隐藏文件
 
 foreach (@files) {
     print $_ . "\n";
 }
 ​
-$dir = "/tmp/* /home/*"; # 显示“/tmp”和“/home”目录下的所有文件
+$dir = "/tmp/* /home/*";  # 显示“/tmp”和“/home”目录下的所有文件
 @files = glob($dir);
 
 foreach (@files) {
