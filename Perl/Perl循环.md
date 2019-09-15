@@ -222,7 +222,7 @@ a = 2
 
 #### next语句
 
-&emsp;&emsp;next语句用于停止执行从next语句的下一语句开始到循环体结束标识符之间的语句，转去执行continue语句块，然后再返回到循环体的起始处开始执行下一次循环。语法格式如下所示：
+&emsp;&emsp;next语句用于停止执行从next语句的下一语句开始到循环体结束标识符之间的语句，转去执行continue语句块，然后再返回到循环体的起始处开始执行下一次循环：
 
 ``` perl
 next [LABEL];
@@ -270,6 +270,7 @@ while ($a < 5) {
         $a = $a + 1;
         last;
     }
+
     print "a的值为：$a\n";
     $a = $a + 1;
 }
@@ -284,7 +285,7 @@ a的值为：2
 
 #### continue语句
 
-&emsp;&emsp;continue块通常在条件语句再次判断前执行，可用在while和foreach循环中。在while循环中，continue语句语法格式如下所示：
+&emsp;&emsp;continue块通常在条件语句再次判断前执行，可用在while和foreach循环中。在while循环中，continue语句语法格式如下：
 
 ``` perl
 while (condition) {
@@ -295,7 +296,7 @@ continue {
 }
 ```
 
-在foreach循环中，continue语句语法格式如下所示：
+在foreach循环中，continue语句语法格式如下：
 
 ``` perl
 foreach $a(@listA) {
@@ -351,7 +352,7 @@ a = 4
 
 #### redo语句
 
-&emsp;&emsp;redo语句直接转到循环体的第一行开始重复执行本次循环，redo语句之后的语句不再执行，continue语句块也不再执行。continue语句可用在while和foreach循环中。语法格式如下所示：
+&emsp;&emsp;redo语句直接转到循环体的第一行开始重复执行本次循环，redo语句之后的语句不再执行，continue语句块也不再执行。continue语句可用在while和foreach循环中：
 
 ``` perl
 redo [LABEL];
@@ -367,6 +368,7 @@ while ($a < 6) {
         $a = $a + 1;
         redo;
     }
+
     print "a = $a\n";
 }
 continue {
@@ -404,6 +406,7 @@ LOOP: do {
         goto LOOP;
         print "这一句不会被执行\n";
     }
+
     print "a = $a\n";
     $a = $a + 1;
 } while ($a < 6);
@@ -431,6 +434,7 @@ LOOP: do {
         $a = $a + 1;
         goto $str1.$str2; # 类似于“goto LOOP”
     }
+
     print "a = $a\n";
     $a = $a + 1;
 } while ($a < 5);
@@ -446,7 +450,7 @@ a = 4
 
 #### 无限循环
 
-&emsp;&emsp;如果条件永远不为false，则循环将变成无限循环。for循环在传统意义上可用于实现无限循环：
+&emsp;&emsp;如果条件永远不为`false`，则循环将变成无限循环：
 
 ``` perl
 for (;;) {
