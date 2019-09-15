@@ -58,23 +58,23 @@ foreach ( 'Google', 'Runoob', 'Taobao' ) {
 `$^L`、`$FORMAT_FORMFEED`            | 发送到输出通道的走纸换页符，默认为`\f`
 `$^A`、`$ACCUMULATOR`                | 打印前用于保存格式化数据的变量
 `$?`、`$CHILD_ERROR`                 | 返回上一个外部命令的状态
-`$!`、`$OS_ERROR`、`$ERRNO`          | 这个变量的数字值是errno的值，字符串值是对应的系统错误字符串
-`$@`、`$EVAL_ERROR`                  | 命令eval的错误消息。如果为空，则表示上一次eval命令执行成功
-`$$`、`$PROCESS_ID`、`$PID`          | 运行当前Perl脚本程序的进程号
+`$!`、`$OS_ERROR`、`$ERRNO`          | 这个变量的数字值是`errno`的值，字符串值是对应的系统错误字符串
+`$@`、`$EVAL_ERROR`                  | 命令`eval`的错误消息。如果为空，则表示上一次`eval`命令执行成功
+`$$`、`$PROCESS_ID`、`$PID`          | 运行当前`Perl`脚本程序的进程号
 `$<`、`$REAL_USER_ID`、`$UID`        | 当前进程的实际用户号
 `$>`、`$EFFECTIVE_USER_ID`、`$EUID`  | 当前进程的有效用户号
 `$(`、`$REAL_GROUP_ID`、`$GID`       | 当前进程的实际组用户号
 `$)`、`$EFFECTIVE_GROUP_ID`、`$EGID` | 当前进程的有效组用户号
 `$0`、`$PROGRAM_NAME`                | 包含正在执行的脚本的文件名
-`$[`                                 | 数组的数组第一个元素的下标，默认是0
-`$]`、`$PERL_VERSION`                | Perl的版本号
+`$[`                                 | 数组的数组第一个元素的下标，默认是`0`
+`$]`、`$PERL_VERSION`                | `Perl`的版本号
 `$^D`、`$DEBUGGING`                  | 调试标志的值
-`$^E`、`$EXTENDED_OS_ERROR`          | 在非UNIX环境中的操作系统扩展错误信息
+`$^E`、`$EXTENDED_OS_ERROR`          | 在`非UNIX`环境中的操作系统扩展错误信息
 `$^H`                                | 由编译器激活的语法检查状态
 `$^M`                                | 备用内存池的大小
 `$^O`、`$OSNAME`                     | 操作系统名
 `$^W`、`$WARNING`                    | 警告开关的当前值
-`$^X`、`$EXECUTABLE_NAME`            | Perl二进制可执行代码的名字
+`$^X`、`$EXECUTABLE_NAME`            | `Perl`二进制可执行代码的名字
 `$ARGV`                              | 从默认的文件句柄中读取时的当前文件名
 
 &emsp;&emsp;全局数组特殊变量如下：
@@ -85,7 +85,7 @@ foreach ( 'Google', 'Runoob', 'Taobao' ) {
 `@INC`  | 在导入模块时需要搜索的目录列表
 `@F`    | 命令行的数组输入
 
-&emsp;&emsp;全局哈希特殊变量如下所示：
+&emsp;&emsp;全局哈希特殊变量如下：
 
 全局哈希 | 说明
 --------|-----
@@ -101,7 +101,7 @@ foreach ( 'Google', 'Runoob', 'Taobao' ) {
 `STDERR`    | 标准错误输出句柄
 `STDIN`     | 标准输入句柄
 `STDOUT`    | 标准输出句柄
-`_(下划线)` | 特殊的文件句柄用于缓存文件信息(fstat、stat和lstat)
+`_(下划线)` | 特殊的文件句柄用于缓存文件信息(`fstat`、`stat`和`lstat`)
 
 &emsp;&emsp;全局特殊常量如下：
 
@@ -110,14 +110,14 @@ foreach ( 'Google', 'Runoob', 'Taobao' ) {
 `__END__`     | 脚本的逻辑结束，忽略后面的文本
 `__FILE__`    | 当前文件名
 `__LINE__`    | 当前行号
-`__PACKAGE__` | 当前包名，默认的包名是main
+`__PACKAGE__` | 当前包名，默认的包名是`main`
 
 &emsp;&emsp;正则表达式特殊变量如下：
 
-特殊变量                   | 说明
---------------------------|------
-`$n`                      | 包含上次模式匹配的第n个子串
-`$&`、`$MATCH`            | 前一次成功模式匹配的字符串
+特殊变量                       | 说明
+------------------------------|------
+`$n`                          | 包含上次模式匹配的第n个子串
+`$&`、`$MATCH`                | 前一次成功模式匹配的字符串
 <code>$\`</code>、`$PREMATCH` | 前一次匹配成功的子串之前的内容
 `$'`、`$POSTMATCH`            | 前一次匹配成功的子串之后的内容
 `$+`、`$LAST_PAREN_MATCH`     | 与上个正则表达式搜索格式匹配的最后一个括号
