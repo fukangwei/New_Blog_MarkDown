@@ -1,13 +1,12 @@
 ---
 title: Perl基础知识
 date: 2018-12-17 22:10:30
-tags:
+categories: Perl
 ---
-
 ### Perl基础
 
-&emsp;&emsp;Perl是`Practical Extraction and Report Language`的缩写，可翻译为`实用报表提取语言`。Perl是高级、通用、直译式、动态的程序语言。最初的设计者为拉里·沃尔(Larry Wall)，于1987年12月18日发表。
-&emsp;&emsp;Perl借用了C、sed、awk、shell脚本以及很多其他编程语言的特性，最重要的特性是内部集成了正则表达式的功能，以及巨大的第三方代码库CPAN。第一个Perl程序如下所示：
+&emsp;&emsp;Perl是`Practical Extraction and Report Language`的缩写，可翻译为`实用报表提取语言`。Perl是高级、通用、直译式、动态的程序语言。
+&emsp;&emsp;Perl借用了C、sed、awk、shell脚本以及很多其他编程语言的特性，最重要的特性是内部集成了正则表达式的功能，以及巨大的第三方代码库CPAN。第一个Perl程序如下：
 
 ``` perl
 print "Hello, World!\n";
@@ -30,7 +29,7 @@ print("Hello, world\n");
 - Perl是可扩展的，我们可以通过CPAN(`the Comprehensive Perl Archive Network`，意思是`全面的Perl存档网络`)中心仓库找到很多我们需要的模块。
 - Perl的`mod_perl`的模块允许Apache服务器使用Perl解释器。
 
-&emsp;&emsp;Perl的缺点如下所示：
+&emsp;&emsp;Perl的缺点如下：
 
 - 也正是因为Perl的灵活性和过度的冗余语法，也因此获得了“仅写”`write-only`的坏名声，因为Perl程序可以写得很随意(例如变量不经声明就可以直接使用)，可能少写一些字母就会得到意想不到的结果(而不报错)。许多Perl程序的代码令人难以阅读，实现相同功能的程序代码长度可以相差十倍百倍，这就令程序的维护者(甚至是编写者)难以维护。
 - 同样的，因为Perl这样随意的特点，可能会导致一些Perl程序员遗忘语法，以至于不得不经常查看Perl手册。建议的解决方法是在程序里使用`use strict;`以及`use warnings;`，并统一代码风格，使用库。Perl同样可以将代码书写得像Python或Ruby等语言一样优雅。
