@@ -1,7 +1,7 @@
 ---
 title: Perl条件语句
 date: 2018-12-20 15:01:04
-tags:
+categories: Perl
 ---
 &emsp;&emsp;`Perl`条件语句是通过一条或多条语句的执行结果(`True`或者`False`)来决定执行的代码块。注意，数字`0`、字符串`0`、`""`、`空list`和`undef`为`false`，其他值均为`true`。`true`前面使用`!`或`not`则返回`false`。
 
@@ -116,7 +116,7 @@ a的值为：
 
 ### unless-else语句
 
-&emsp;&emsp;一个unless语句后可跟一个可选的else语句，else语句在布尔表达式为true时执行：
+&emsp;&emsp;一个`unless`语句后可跟一个可选的`else`语句，`else`语句在布尔表达式为`true`时执行：
 
 ``` perl
 unless ( boolean_expression ) {
@@ -190,13 +190,13 @@ switch(argument){
 
 以下是`switch`语句的规则:
 
-- switch语句的括号中可以使用任意类型的标量参数。
-- 在一个switch中可以有任意数量的case语句，每个case后跟一个要比较的值和一个冒号。
-- case语句后的标量会与switch语句的标量进行比较，判断是否相等。
-- 当被测试的变量等于case中的常量时，case后跟的语句将被执行，直到遇到break语句为止。
-- switch语句可以有一个可选的else，该语句在最后面，该语句在所有case不匹配的情况下执行。
-- 当匹配case后，会执行case语句块代码，执行后跳出switch语句。
-- 当匹配case后，如果我们需要继续执行接下来的case语句，则需要添加next语句。
+- `switch`语句的括号中可以使用任意类型的标量参数。
+- 在一个`switch`中可以有任意数量的`case`语句，每个`case`后跟一个要比较的值和一个冒号。
+- `case`语句后的标量会与`switch`语句的标量进行比较，判断是否相等。
+- 当被测试的变量等于`case`中的常量时，`case`后跟的语句将被执行，直到遇到`break`语句为止。
+- `switch`语句可以有一个可选的`else`，该语句在最后面，该语句在所有`case`不匹配的情况下执行。
+- 当匹配`case`后，会执行`case`语句块代码，执行后跳出`switch`语句。
+- 当匹配`case`后，如果我们需要继续执行接下来的`case`语句，则需要添加`next`语句。
 
 ``` perl
 use Switch;
@@ -215,7 +215,7 @@ switch ( $var ) {
 }
 ```
 
-使用next的示例：
+使用`next`的示例：
 
 ``` perl
 use Switch;
