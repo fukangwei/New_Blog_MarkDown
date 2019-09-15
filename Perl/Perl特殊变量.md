@@ -101,7 +101,7 @@ foreach ( 'Google', 'Runoob', 'Taobao' ) {
 `STDERR`    | 标准错误输出句柄
 `STDIN`     | 标准输入句柄
 `STDOUT`    | 标准输出句柄
-`_(下划线)` | 特殊的文件句柄用于缓存文件信息(`fstat`、`stat`和`lstat`)
+`_`         | 特殊的文件句柄用于缓存文件信息(`fstat`、`stat`和`lstat`)
 
 &emsp;&emsp;全局特殊常量如下：
 
