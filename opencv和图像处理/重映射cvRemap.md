@@ -1,7 +1,7 @@
 ---
 title: 重映射cvRemap
 date: 2019-03-04 11:47:15
-tags:
+categories: opencv和图像处理
 ---
 &emsp;&emsp;`cvRemap`可以对图像进行普通几何变换，它利用下面指定的矩阵变换输入图像：
 
@@ -33,33 +33,30 @@ void cvRemap (
 #include <iostream>
 ​
 int main ( int argc, char **argv ) {
-    uchar DataSrc[] = {
-        1, 2, 3,
-        4, 5, 6,
-        7, 8, 9
-    };
-    CvMat MatSrc;
-    cvInitMatHeader ( &MatSrc, 3, 3, CV_8UC1, DataSrc ); /* 初始化矩阵 */
-    CvMat *MatDst = cvCreateMat ( 3, 3, CV_8UC1 ); /* 创建矩阵 */
-    float DataMapx[] = { /* cvRemap函数的mapx一定要为float型 */
-        1, 2, 0,
-        1, 2, 0,
-        1, 2, 0
-    };
-    CvMat mapx;
-    cvInitMatHeader ( &mapx, 3, 3, CV_32FC1, DataMapx ); /* 注意类型是CV_32FC1 */
-    float DataMapy[] = {
-        0, 0, 1,
-        1, 1, 2,
-        2, 2, 0
-    };
-    CvMat mapy;
-    cvInitMatHeader ( &mapy, 3, 3, CV_32FC1, DataMapy );
-    cvRemap ( &MatSrc, MatDst, &mapx, &mapy, CV_INTER_LINEAR | CV_WARP_FILL_OUTLIERS );
-    /* 打印原矩阵 */
-    std::cout << "MatSrc:" << std::endl;
+    uchar DataSrc[] = {
+        1, 2, 3,
+        4, 5, 6,
+        7, 8, 9 };
+    CvMat MatSrc;
+    cvInitMatHeader ( &MatSrc, 3, 3, CV_8UC1, DataSrc ); /* 初始化矩阵 */
+    CvMat *MatDst = cvCreateMat ( 3, 3, CV_8UC1 ); /* 创建矩阵 */
+    float DataMapx[] = { /* cvRemap函数的mapx一定要为float型 */
+        1, 2, 0,
+        1, 2, 0,
+        1, 2, 0 };
+    CvMat mapx;
+    cvInitMatHeader ( &mapx, 3, 3, CV_32FC1, DataMapx ); /* 注意类型是CV_32FC1 */
+    float DataMapy[] = {
+        0, 0, 1,
+        1, 1, 2,
+        2, 2, 0 };
+    CvMat mapy;
+    cvInitMatHeader ( &mapy, 3, 3, CV_32FC1, DataMapy );
+    cvRemap ( &MatSrc, MatDst, &mapx, &mapy, CV_INTER_LINEAR | CV_WARP_FILL_OUTLIERS );
+    /* 打印原矩阵 */
+    std::cout << "MatSrc:" << std::endl;
 ​
-    for ( int rows = 0; rows < MatSrc.height; rows++ ) {
+    for ( int rows = 0; rows < MatSrc.height; rows++ ) {
         uchar *DataPt = ( uchar * ) ( MatSrc.data.ptr + rows * MatSrc.step );
 ​
         for ( int cols = 0; cols < MatSrc.width; cols++ ) {
