@@ -50,21 +50,22 @@ print "GMT时间日期为：$gmt_datestring\n";
 
 ### 格式化日期和时间
 
-&emsp;&emsp;可以使用localtime函数的9个时间元素来输出需要制定的格式时间。格式化输出使用printf函数：
+&emsp;&emsp;可以使用`localtime`函数的`9`个时间元素来输出需要制定的格式时间。格式化输出使用`printf`函数：
 
 ``` perl
 ($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst) = localtime();
-printf("格式化时间：HH:MM:SS\n"); # 输出“格式化时间：HH:MM:SS”
-printf("%02d:%02d:%02d", $hour, $min, $sec); # 输出“14:58:43”
+printf("格式化时间：HH:MM:SS\n");  # 输出“格式化时间：HH:MM:SS”
+printf("%02d:%02d:%02d", $hour, $min, $sec);  # 输出“14:58:43”
 ```
 
 ### 新纪元时间(Epoch Time)
 
-&emsp;&emsp;可以使用time函数来获取新纪元时间，该函数返回从1970年1月1日起累计的秒数：
+&emsp;&emsp;可以使用`time`函数来获取新纪元时间，该函数返回从`1970`年`1`月`1`日起累计的秒数：
 
 ``` perl
 $epoc = time();
-print "从1970年1月1日起累计的秒数为：$epoc\n"; # 输出“从1970年1月1日起累计的秒数为：1540447256”
+# 输出“从1970年1月1日起累计的秒数为：1540447256”
+print "从1970年1月1日起累计的秒数为：$epoc\n";
 ```
 
 可以输出一个想要的时间格式：
@@ -92,10 +93,10 @@ printf("%d-%d-%d %d:%d:%d", $year + 1900, $mon + 1, $mday, $hour, $min, $sec);
 
 ### strftime
 
-&emsp;&emsp;函数strftime可以将时间格式化为我们想要的格式。下表列出了一些格式化的符号，`*`号表示该项依赖本地时间：
+&emsp;&emsp;函数`strftime`可以将时间格式化为我们想要的格式。下表列出了一些格式化的符号，`*`号表示该项依赖本地时间：
 
-符号 | 描述 | 实例
-----|------|----
+符号 | 描述                                                   | 实例
+-----|-------------------------------------------------------|----
 `%a` | 星期几的简称(Sun to Sat)`*`                            | Thu
 `%A` | 星期几的全称(Sunday to Saturday)`*`                    | Thursday
 `%b` | 月的简称(Jan to Dec)`*`                                | Aug
