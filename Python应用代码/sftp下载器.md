@@ -1,40 +1,43 @@
 ---
 title: sftp下载器
 date: 2018-12-29 08:00:34
-tags:
+categories: Python应用代码
 ---
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` python
 from tkinter import *
 import paramiko
 ​
-current_dir = "/home/user4"  # 当前的目录
+current_dir = "/home/user4"  # 当前的目录
 ​
-def enter_dir(event):  # 双击进入下一个目录
-    global current_dir
-    if dict[theLB.get(theLB.curselection())] == "dir":
-        print("这是一个目录")
-        dir_name = theLB.get(theLB.curselection())
-        current_dir = current_dir + "/" + dir_name
-    elif dict[theLB.get(theLB.curselection())] == "file":
-        print("这是一个文件")
-        return
-    show_current_list()
+def enter_dir(event):  # 双击进入下一个目录
+    global current_dir
+
+    if dict[theLB.get(theLB.curselection())] == "dir":
+        print("这是一个目录")
+        dir_name = theLB.get(theLB.curselection())
+        current_dir = current_dir + "/" + dir_name
+    elif dict[theLB.get(theLB.curselection())] == "file":
+        print("这是一个文件")
+        return
+
+    show_current_list()
 ​
-def dir_return():  # 显示当前的目录
-    global current_dir
-    current_dir = current_dir[0:current_dir.rindex("/")]
-    show_current_list()
+def dir_return():  # 显示当前的目录
+    global current_dir
+    current_dir = current_dir[0:current_dir.rindex("/")]
+    show_current_list()
 ​
 dict = {}  # 创建文件空字典
 ​
-def show_current_list():  # 显示当前的目录
+def show_current_list():  # 显示当前的目录
     global dict
-    dict.clear()  # 清空字典
+    dict.clear()  # 清空字典
     stdin, stdout, stderr = ssh.exec_command("cd " + current_dir + ";ls -al")
     file_list = stdout.readlines()
     theLB.delete(0, END)  # 删除原来的所有项目
+
     for i in file_list:
         if i.rstrip()[0] == 'd':  # 如果是目录
             dict[i.rstrip().split(" ")[-1]] = "dir"
