@@ -116,7 +116,7 @@ foreach ( 'Google', 'Runoob', 'Taobao' ) {
 
 特殊变量                       | 说明
 ------------------------------|------
-`$n`                          | 包含上次模式匹配的第n个子串
+`$n`                          | 包含上次模式匹配的第`n`个子串
 `$&`、`$MATCH`                | 前一次成功模式匹配的字符串
 <code>$\`</code>、`$PREMATCH` | 前一次匹配成功的子串之前的内容
 `$'`、`$POSTMATCH`            | 前一次匹配成功的子串之后的内容
@@ -124,11 +124,11 @@ foreach ( 'Google', 'Runoob', 'Taobao' ) {
 
 &emsp;&emsp;文件句柄特殊变量如下：
 
-文件句柄特殊变量 | 说明
----------------|-----
-<code>$&#124;</code>、`$OUTPUT_AUTOFLUSH` | 如果设置为零，在每次调用函数write或print后，自动调用函数fflush，将所写内容写回文件
-`$%`、`$FORMAT_PAGE_NUMBER`    | 当前输出页号
-`$=`、`$FORMAT_LINES_PER_PAGE` | 当前每页长度，默认为60
-`$-`、`$FORMAT_LINES_LEFT`     | 当前页剩余的行数
-`$~`、`$FORMAT_NAME`           | 当前报表输出格式的名称，默认值是文件句柄名
-`$^`、`$FORMAT_TOP_NAME`       | 当前报表输出表头格式的名称，默认值是带后缀`_TOP`的文件句柄名
+文件句柄特殊变量                            | 说明
+------------------------------------------|-----
+<code>$&#124;</code>、`$OUTPUT_AUTOFLUSH` | 如果设置为`0`，在每次调用函数`write`或`print`后，自动调用函数`fflush`，将所写内容写回文件
+`$%`、`$FORMAT_PAGE_NUMBER`               | 当前输出页号
+`$=`、`$FORMAT_LINES_PER_PAGE`            | 当前每页长度，默认为`60`
+`$-`、`$FORMAT_LINES_LEFT`                | 当前页剩余的行数
+`$~`、`$FORMAT_NAME`                      | 当前报表输出格式的名称，默认值是文件句柄名
+`$^`、`$FORMAT_TOP_NAME`                  | 当前报表输出表头格式的名称，默认值是带后缀`_TOP`的文件句柄名
