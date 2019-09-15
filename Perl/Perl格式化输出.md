@@ -20,8 +20,6 @@ value_one, value_two
 - `value_one`、`value_two`、`...`：数据行，用来向前面的格式行中插入值，都是`perl`的变量。
 - `.`：结束符号。
 
-示例如下：
-
 ``` perl
 $text = "google runoob taobao";
 ​
