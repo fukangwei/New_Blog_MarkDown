@@ -32,23 +32,24 @@ def dir_return():  # 显示当前的目录
 dict = {}  # 创建文件空字典
 ​
 def show_current_list():  # 显示当前的目录
-    global dict
-    dict.clear()  # 清空字典
-    stdin, stdout, stderr = ssh.exec_command("cd " + current_dir + ";ls -al")
-    file_list = stdout.readlines()
-    theLB.delete(0, END)  # 删除原来的所有项目
+    global dict
+    dict.clear()  # 清空字典
+    stdin, stdout, stderr = ssh.exec_command("cd " + current_dir + ";ls -al")
+    file_list = stdout.readlines()
+    theLB.delete(0, END)  # 删除原来的所有项目
 
-    for i in file_list:
-        if i.rstrip()[0] == 'd':  # 如果是目录
-            dict[i.rstrip().split(" ")[-1]] = "dir"
-        elif i.rstrip()[0] == '-':  # 如果是文件
-            dict[i.rstrip().split(" ")[-1]] = "file"
+    for i in file_list:
+        if i.rstrip()[0] == 'd':  # 如果是目录
+            dict[i.rstrip().split(" ")[-1]] = "dir"
+        elif i.rstrip()[0] == '-':  # 如果是文件
+            dict[i.rstrip().split(" ")[-1]] = "file"
 ​
-    for i in dict.keys():  # 将目录和文件的名称插入到listbox中
-        theLB.insert(END, i)
+    for i in dict.keys():  # 将目录和文件的名称插入到listbox中
+        theLB.insert(END, i)
 ​
 def download():
     global current_dir
+
     if dict[theLB.get(theLB.curselection())] == "dir":  # 如果当前选定的是目录
         return
     elif dict[theLB.get(theLB.curselection())] == "file":  # 如果当前选定的是文件
