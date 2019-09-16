@@ -40,9 +40,9 @@ val = config.get('section1', 'name')  # 获取指定节点的指定key的value
 print(val)  # 输出“wang”
 # 获取节点section1的age属性，属性需要是int型，否则ValueError
 val = config.getint('section1', 'age')
-print(val)  # 输出“18”
+print(val)  # 输出“18”
 val = config.has_section('section1')  # 检查指定节点是否存在，返回True或False
-print(val)  # 输出“True”
+print(val)  # 输出“True”
 # 检查指定节点中是否存在某个key，返回True或False
 val = config.has_option('section1', 'age')
 print(val)  # 输出“True”
