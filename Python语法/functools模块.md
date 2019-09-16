@@ -11,17 +11,18 @@ categories: Python语法
 
 ``` python
 def partial(func, *args, **keywords):
-    def newfunc(*fargs, **fkeywords):
-        newkeywords = keywords.copy()
-        newkeywords.update(fkeywords)
-        return func(*(args + fargs), **newkeywords)
-    newfunc.func = func
-    newfunc.args = args
-    newfunc.keywords = keywords
-    return newfunc
+    def newfunc(*fargs, **fkeywords):
+        newkeywords = keywords.copy()
+        newkeywords.update(fkeywords)
+        return func(*(args + fargs), **newkeywords)
+
+    newfunc.func = func
+    newfunc.args = args
+    newfunc.keywords = keywords
+    return newfunc
 ```
 
-声明如下所示：
+声明如下：
 
 ``` python
 urlunquote = functools.partial(urlunquote, encoding='latin1')
@@ -33,7 +34,7 @@ urlunquote = functools.partial(urlunquote, encoding='latin1')
 from functools import partial
 ​
 def add(a, b):
-    return a + b
+    return a + b
 ​
 plus3 = partial(add, 3)
 plus5 = partial(add, 5)
@@ -62,11 +63,13 @@ WRAPPER_ASSIGNMENTS = ('__module__', '__name__', '__doc__')
 WRAPPER_UPDATES = ('__dict__',)
 ​
 def update_wrapper(wrapper, wrapped, assigned=WRAPPER_ASSIGNMENTS, updated=WRAPPER_UPDATES):
-    for attr in assigned:
-        setattr(wrapper, attr, getattr(wrapped, attr))
-    for attr in updated:
-        getattr(wrapper, attr).update(getattr(wrapped, attr, {}))
-    return wrapper
+    for attr in assigned:
+        setattr(wrapper, attr, getattr(wrapped, attr))
+
+    for attr in updated:
+        getattr(wrapper, attr).update(getattr(wrapped, attr, {}))
+
+    return wrapper
 ```
 
 `update_wrapper`主要用在装饰器函数中，以确保被装饰的函数保留原来的属性：
@@ -75,38 +78,38 @@ def update_wrapper(wrapper, wrapped, assigned=WRAPPER_ASSIGNMENTS, updated=WRAPP
 from functools import update_wrapper
 ​
 def wrap(func):
-    def call_it(*args, **kwargs):
-        """ wrap func: call_it """
-        print('before call')
-        return func(*args, **kwargs)
+    def call_it(*args, **kwargs):
+        """ wrap func: call_it """
+        print('before call')
+        return func(*args, **kwargs)
 ​
-    return call_it
+    return call_it
 ​
 @wrap
 def hello():
-    """ say hello """
-    print('hello world')
+    """ say hello """
+    print('hello world')
 ​
 def wrap2(func):
-    def call_it(*args, **kwargs):
-        """ wrap func: call_it2 """
-        print('before call')
-        return func(*args, **kwargs)
+    def call_it(*args, **kwargs):
+        """ wrap func: call_it2 """
+        print('before call')
+        return func(*args, **kwargs)
 ​
-    return update_wrapper(call_it, func)
+    return update_wrapper(call_it, func)
 ​
 @wrap2
 def hello2():
-    """ test hello """
-    print('hello world2')
+    """ test hello """
+    print('hello world2')
 ​
 if __name__ == '__main__':
-    hello()
-    print(hello.__name__)
-    print(hello.__doc__)
-    hello2()
-    print(hello2.__name__)
-    print(hello2.__doc__)
+    hello()
+    print(hello.__name__)
+    print(hello.__doc__)
+    hello2()
+    print(hello2.__name__)
+    print(hello2.__doc__)
 ```
 
 执行结果：
@@ -124,11 +127,11 @@ test hello
 
 ### functool.wraps
 
-&emsp;&emsp;`wraps`函数是为了在装饰器中方便地拷贝被装饰函数的签名，而对`update_wrapper`做的一个包装，其实现如下所示：
+&emsp;&emsp;`wraps`函数是为了在装饰器中方便地拷贝被装饰函数的签名，而对`update_wrapper`做的一个包装，其实现如下：
 
 ``` python
 def wraps(wrapped, assigned=WRAPPER_ASSIGNMENTS, updated=WRAPPER_UPDATES):
-    return partial(update_wrapper, wrapped=wrapped, assigned=assigned, updated=updated)
+    return partial(update_wrapper, wrapped=wrapped, assigned=assigned, updated=updated)
 ```
 
 示例如下：
