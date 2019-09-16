@@ -3,7 +3,7 @@ title: pycocotools模块
 date: 2019-03-02 14:00:58
 categories: Python语法
 ---
-&emsp;&emsp;`COCO` is a large image dataset designed for object detection, segmentation, person keypoints detection, stuff segmentation, and caption generation. This package provides `Matlab`, `Python` and `Lua` `APIs` that assists in loading, parsing, and visualizing the annotations in `COCO`. Please visit `http://cocodataset.org/` for more information on `COCO`, including for the data, paper, and tutorials. The exact format of the annotations is also described on the `COCO` website. The `Matlab` and `Python` `APIs` are complete, the `Lua` `API` provides only basic functionality.
+&emsp;&emsp;`COCO` is a large image dataset designed for object detection, segmentation, person keypoints detection, stuff segmentation, and caption generation. This package provides `Matlab`, `Python` and `Lua` `APIs` that assists in loading, parsing, and visualizing the annotations in `COCO`. Please visit `http://cocodataset.org/` for more information on `COCO`, including for the data, paper and tutorials. The exact format of the annotations is also described on the `COCO` website. The `Matlab` and `Python` `APIs` are complete, the `Lua` `API` provides only basic functionality.
 &emsp;&emsp;In addition to this `API`, please download both the `COCO` images and annotations in order to run the demos and use the `API`. Both are available on the project website.
 
 - Please download, unzip, and place the images in `coco/images/`.
@@ -31,7 +31,7 @@ from pycocotools.coco import COCO
 dataDir = '..'
 dataType = 'val2017'
 annFile = '{}/annotations/instances_{}.json'.format(dataDir, dataType)
-coco = COCO(annFile)  # initialize COCO api for instance annotations
+coco = COCO(annFile)  # initialize COCO api for instance annotations
 ```
 
 The result is:
@@ -51,7 +51,7 @@ from pycocotools.coco import COCO
 dataDir = '..'
 dataType = 'val2017'
 annFile = '{}/annotations/instances_{}.json'.format(dataDir, dataType)
-coco = COCO(annFile)  # initialize COCO api for instance annotations
+coco = COCO(annFile)  # initialize COCO api for instance annotations
 ​
 # display COCO categories and supercategories
 cats = coco.loadCats(coco.getCatIds())
@@ -66,22 +66,22 @@ The result is:
 
 ``` python
 COCO categories:
-person bicycle car motorcycle airplane bus train truck         \
-    boat traffic light fire hydrant stop sign parking meter    \
-    bench bird cat dog horse sheep cow elephant bear zebra     \
-    giraffe backpack umbrella handbag tie suitcase frisbee     \
-    skis snowboard sports ball kite baseball bat baseball      \
-    glove skateboard surfboard tennis racket bottle wine       \
-    glass cup fork knife spoon bowl banana apple sandwich      \
-    orange broccoli carrot hot dog pizza donut cake chair      \
-    couch potted plant bed dining table toilet tv laptop       \
-    mouse remote keyboard cell phone microwave oven toaster    \
-    sink refrigerator book clock vase scissors teddy bear hair \
-    drier toothbrush
+person bicycle car motorcycle airplane bus train truck         \
+    boat traffic light fire hydrant stop sign parking meter    \
+    bench bird cat dog horse sheep cow elephant bear zebra     \
+    giraffe backpack umbrella handbag tie suitcase frisbee     \
+    skis snowboard sports ball kite baseball bat baseball      \
+    glove skateboard surfboard tennis racket bottle wine       \
+    glass cup fork knife spoon bowl banana apple sandwich      \
+    orange broccoli carrot hot dog pizza donut cake chair      \
+    couch potted plant bed dining table toilet tv laptop       \
+    mouse remote keyboard cell phone microwave oven toaster    \
+    sink refrigerator book clock vase scissors teddy bear hair \
+    drier toothbrush
 ​
 COCO supercategories:
-appliance furniture accessory animal sports kitchen  \
-    electronic indoor person vehicle outdoor food
+appliance furniture accessory animal sports kitchen \
+    electronic indoor person vehicle outdoor food
 ```
 
 &emsp;&emsp;code three:
@@ -98,7 +98,7 @@ pylab.rcParams['figure.figsize'] = (8.0, 10.0)
 dataDir = '..'
 dataType = 'val2017'
 annFile = '{}/annotations/instances_{}.json'.format(dataDir, dataType)
-coco = COCO(annFile)  # initialize COCO api for instance annotations
+coco = COCO(annFile)  # initialize COCO api for instance annotations
 ​
 # get all images containing given categories, select one at random
 catIds = coco.getCatIds(catNms=['person', 'dog', 'skateboard'])
@@ -130,7 +130,7 @@ pylab.rcParams['figure.figsize'] = (8.0, 10.0)
 dataDir = '..'
 dataType = 'val2017'
 annFile = '{}/annotations/instances_{}.json'.format(dataDir, dataType)
-coco = COCO(annFile)  # initialize COCO api for instance annotations
+coco = COCO(annFile)  # initialize COCO api for instance annotations
 ​
 # get all images containing given categories, select one at random
 catIds = coco.getCatIds(catNms=['person', 'dog', 'skateboard'])
@@ -277,9 +277,10 @@ def getBndboxKeypointsGT():
         'imageName', 'personNumber', 'bndbox', 'nose',
         'left_eye', 'right_eye', 'left_ear', 'right_ear', 'left_shoulder', 'right_shoulder',
         'left_elbow', 'right_elbow', 'left_wrist', 'right_wrist', 'left_hip', 'right_hip',
-        'left_knee', 'right_knee', 'left_ankle', 'right_ankle'
-    ]
+        'left_knee', 'right_knee', 'left_ankle', 'right_ankle']
+
     keypointsWriter.writerow(firstRow)
+
     for i in range(len(imgIds)):
         imageNameTemp = coco_kps.loadImgs(imgIds[i])[0]
         imageName = imageNameTemp['file_name'].encode('raw_unicode_escape')
@@ -287,6 +288,7 @@ def getBndboxKeypointsGT():
         annIds = coco_kps.getAnnIds(imgIds=img['id'], catIds=catIds, iscrowd=None)
         anns = coco_kps.loadAnns(annIds)
         personNumber = len(anns)
+
         for j in range(personNumber):
             bndbox = anns[j]['bbox']
             keyPoints = anns[j]['keypoints']
@@ -309,10 +311,10 @@ def getBndboxKeypointsGT():
                 str(keyPoints[39]) + '_' + str(keyPoints[40]) + '_' + str(keyPoints[41]),
                 str(keyPoints[42]) + '_' + str(keyPoints[43]) + '_' + str(keyPoints[44]),
                 str(keyPoints[45]) + '_' + str(keyPoints[46]) + '_' + str(keyPoints[47]),
-                str(keyPoints[48]) + '_' + str(keyPoints[49]) + '_' + str(keyPoints[50]),
-            ]
+                str(keyPoints[48]) + '_' + str(keyPoints[49]) + '_' + str(keyPoints[50]),]
 ​
             keypointsWriter.writerow(keypointsRow)
+
     csvFile.close()
 ​
 if __name__ == "__main__":
