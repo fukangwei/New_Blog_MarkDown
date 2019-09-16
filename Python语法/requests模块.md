@@ -512,9 +512,8 @@ req = Request('GET', url, data=data, headers=header)
 prepped = req.prepare()
 # do something with prepped.body
 # do something with prepped.headers
-resp = s.send(
-        prepped, stream=stream, verify=verify,
-        proxies=proxies, cert=cert, timeout=timeout)
+resp = s.send(prepped, stream=stream, verify=verify, \
+              proxies=proxies, cert=cert, timeout=timeout)
 print(resp.status_code)
 ```
 
@@ -529,7 +528,8 @@ req = Request('GET', url, data=data, headers=headers)
 prepped = s.prepare_request(req)
 # do something with prepped.body
 # do something with prepped.headers
-resp = s.send(prepped, stream=stream, verify=verify, proxies=proxies, cert=cert, timeout=timeout)
+resp = s.send(prepped, stream=stream, verify=verify, \
+              proxies=proxies, cert=cert, timeout=timeout)
 print(resp.status_code)
 ```
 
@@ -717,10 +717,11 @@ http://httpbin.org
 from requests.auth import AuthBase
 
 class PizzaAuth(AuthBase):
-    """Attaches HTTP Pizza Authentication to the given Request object."""
+    """ Attaches HTTP Pizza Authentication to the given Request object. """
     def __init__(self, username):
         # setup any auth-related data here
         self.username = username
+
     def __call__(self, r):
         # modify and return the request
         r.headers['X-Pizza'] = self.username
@@ -974,7 +975,7 @@ Sounds great! I'll get right on it.
 ``` python
 >>> r = requests.request('MKCOL', url, data=data)
 >>> r.status_code
-200 # Assuming your call was correct
+200  # Assuming your call was correct
 ```
 
 这样你就可以使用服务器要求的任意方法动词了。
@@ -991,7 +992,7 @@ Sounds great! I'll get right on it.
  <https://api.github.com/users/kennethreitz/repos?page=6&per_page=10>; rel="last"'
 ```
 
-Requests会自动解析这些响应头链接字段，并使得它们非常易于使用：
+`Requests`会自动解析这些响应头链接字段，并使得它们非常易于使用：
 
 ``` python
 >>> r.links["next"]
@@ -1027,7 +1028,8 @@ from requests.packages.urllib3.poolmanager import PoolManager
 class Ssl3HttpAdapter(HTTPAdapter):
     """ Transport adapter """
     def init_poolmanager(self, connections, maxsize, block=False):
-        self.poolmanager = PoolManager(num_pools=connections, maxsize=maxsize, block=block, ssl_version=ssl.PROTOCOL_SSLv3)
+        self.poolmanager = PoolManager(num_pools=connections, maxsize=maxsize, \
+                                       block=block, ssl_version=ssl.PROTOCOL_SSLv3)
 ```
 
 ### 阻塞和非阻塞
