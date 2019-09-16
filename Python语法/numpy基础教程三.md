@@ -1122,12 +1122,12 @@ array([ 2.,  4.])
 &emsp;&emsp;`numpy.savez(file, *args, **kwds)`: Save several arrays into a single file in uncompressed `.npz` format.
 &emsp;&emsp;If arguments are passed in with no keywords, the corresponding variable names, in the `.npz` file, are `arr_0`, `arr_1`, etc. If keyword arguments are given, the corresponding variable names, in the `.npz` file will match the keyword names. Parameters:
 
-- `file`: `str` or `file`: Either the file name (string) or an open file (file-like object) where the data will be saved. If `file` is a string or a `Path`, the `.npz` extension will be appended to the file name if it is not already there.
+- `file`: `str` or `file`: Either the file name (`string`) or an open file (`file-like` object) where the data will be saved. If `file` is a string or a `Path`, the `.npz` extension will be appended to the file name if it is not already there.
 - `args`: Arguments, optional: Arrays to save to the file. Since it is not possible for `Python` to know the names of the arrays outside `savez`, the arrays will be saved with names `arr_0`, `arr_1`, and so on. These arguments can be any expression.
 - `kwds`: Keyword arguments, optional: Arrays to save to the file. Arrays will be saved in the file with the keyword names.
 
 &emsp;&emsp;Notes: The `.npz` file format is a zipped archive of files named after the variables they contain. The archive is not compressed and each file in the archive contains one variable in `.npy` format. For a description of the `.npy` format, see `numpy.lib.format` or the [NumPy Enhancement Proposal](http://docs.scipy.org/doc/numpy/neps/npy-format.html).
-&emsp;&emsp;When opening the saved `.npz` file with load a `NpzFile` object is returned. This is a dictionary-like object which can be queried for its list of arrays (with the `.files` attribute), and for the arrays themselves. Examples:
+&emsp;&emsp;When opening the saved `.npz` file with load a `NpzFile` object is returned. This is a `dictionary-like` object which can be queried for its list of arrays (with the `.files` attribute), and for the arrays themselves.
 
 ``` python
 >>> from tempfile import TemporaryFile
