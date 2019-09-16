@@ -1408,8 +1408,6 @@ array([[[ 0.,  1.],
 
 - `absolute`: `ndarray`. A `ndarray` containing the absolute value of each element in `x`. For `complex` input, `a + ib`, the absolute value is `sqrt(a^2 + b^2)`.
 
-&emsp;&emsp;Examples:
-
 ``` python
 >>> x = np.array([-1.2, 1.2])
 >>> np.absolute(x)
