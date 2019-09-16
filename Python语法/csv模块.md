@@ -215,9 +215,10 @@ Write all the rows parameters (a list of row objects as described above) to the 
 import csv
 ​
 with open('some.csv', newline='') as f:
-    reader = csv.reader(f)
-    for row in reader:
-        print(row)
+    reader = csv.reader(f)
+
+    for row in reader:
+        print(row)
 ```
 
 Reading a file with an alternate format:
@@ -226,9 +227,10 @@ Reading a file with an alternate format:
 import csv
 ​
 with open('passwd', newline='') as f:
-    reader = csv.reader(f, delimiter=':', quoting=csv.QUOTE_NONE)
-    for row in reader:
-        print(row)
+    reader = csv.reader(f, delimiter=':', quoting=csv.QUOTE_NONE)
+
+    for row in reader:
+        print(row)
 ```
 
 The corresponding simplest possible writing example is:
@@ -237,22 +239,23 @@ The corresponding simplest possible writing example is:
 import csv
 ​
 with open('some.csv', 'w', newline='') as f:
-    writer = csv.writer(f)
-    writer.writerows(someiterable)
+    writer = csv.writer(f)
+    writer.writerows(someiterable)
 ```
 
-Since `open()` is used to open a `CSV` file for reading, the file will by default be decoded into unicode using the system default encoding. To decode a file using a different encoding, use the encoding argument of open:
+Since `open()` is used to open a `CSV` file for reading, the file will by default be decoded into unicode using the system default encoding. To decode a file using a different encoding, use the `encoding` argument of `open`:
 
 ``` python
 import csv
 ​
 with open('some.csv', newline='', encoding='utf-8') as f:
-    reader = csv.reader(f)
-    for row in reader:
-        print(row)
+    reader = csv.reader(f)
+
+    for row in reader:
+        print(row)
 ```
 
-The same applies to writing in something other than the system default encoding: specify the encoding argument when opening the output file.
+The same applies to writing in something other than the system default encoding: specify the `encoding` argument when opening the output file.
 &emsp;&emsp;Registering a new dialect:
 
 ``` python
@@ -260,7 +263,7 @@ import csv
 ​
 csv.register_dialect('unixpwd', delimiter=':', quoting=csv.QUOTE_NONE)
 with open('passwd', newline='') as f:
-    reader = csv.reader(f, 'unixpwd')
+    reader = csv.reader(f, 'unixpwd')
 ```
 
 A slightly more advanced use of the reader -- catching and reporting errors:
@@ -269,13 +272,15 @@ A slightly more advanced use of the reader -- catching and reporting errors:
 import csv, sys
 ​
 filename = 'some.csv'
+
 with open(filename, newline='') as f:
-    reader = csv.reader(f)
-    try:
-        for row in reader:
-            print(row)
-    except csv.Error as e:
-        sys.exit('file {}, line {}: {}'.format(filename, reader.line_num, e))
+    reader = csv.reader(f)
+
+    try:
+        for row in reader:
+            print(row)
+    except csv.Error as e:
+        sys.exit('file {}, line {}: {}'.format(filename, reader.line_num, e))
 ```
 
 And while the module doesn't directly support parsing strings, it can easily be done:
