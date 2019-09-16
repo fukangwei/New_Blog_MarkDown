@@ -140,16 +140,16 @@ def wraps(wrapped, assigned=WRAPPER_ASSIGNMENTS, updated=WRAPPER_UPDATES):
 from functools import wraps
 ​
 def wrap3(func):
-    @wraps(func)
-    def call_it(*args, **kwargs):
-        print("calling", func.__name__)
-        return func(*args, **kwargs)
+    @wraps(func)
+    def call_it(*args, **kwargs):
+        print("calling", func.__name__)
+        return func(*args, **kwargs)
 ​
-    return call_it
+    return call_it
 ​
 @wrap3
 def hello3():
-    print("I am hello3")
+    print("I am hello3")
 ​
 hello3()
 print(hello3.__name__)
@@ -177,11 +177,11 @@ reduce(function, sequence, startValue)
 from functools import reduce
 ​
 def foo(x, y):
-    return x + y
+    return x + y
 ​
 result = range(1, 10)
-print(reduce(foo, result))  # 结果为45
-print(reduce(foo, result, 10))  # 结果为55
+print(reduce(foo, result))  # 结果为45
+print(reduce(foo, result, 10))  # 结果为55
 ```
 
 ### functools.cmp_to_key
@@ -206,16 +206,16 @@ from functools import total_ordering
 ​
 @total_ordering
 class Student:
-    def __init__(self, firstname, lastname):
-        self.firstname = firstname
-        self.lastname = lastname
+    def __init__(self, firstname, lastname):
+        self.firstname = firstname
+        self.lastname = lastname
 ​
-    def __eq__(self, other):
-        return ((self.lastname.lower(), self.firstname.lower())
+    def __eq__(self, other):
+        return ((self.lastname.lower(), self.firstname.lower())
                  == (other.lastname.lower(), other.firstname.lower()))
 ​
-    def __lt__(self, other):
-        return ((self.lastname.lower(), self.firstname.lower())
+    def __lt__(self, other):
+        return ((self.lastname.lower(), self.firstname.lower())
                  < (other.lastname.lower(), other.firstname.lower()))
 ​
 print(dir(Student))
@@ -251,11 +251,11 @@ from functools import lru_cache
 ​
 @lru_cache(None)
 def add(x, y):
-    print("calculating: %s + %s" % (x, y))
-    return x + y
+    print("calculating: %s + %s" % (x, y))
+    return x + y
 ​
 print(add(1, 2))
-print(add(1, 2))  # 直接返回缓存信息
+print(add(1, 2))  # 直接返回缓存信息
 print(add(2, 3))
 ```
 
