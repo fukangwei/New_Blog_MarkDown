@@ -182,28 +182,28 @@ def add(number, value1, lock):
     lock.acquire()
 
     try:
-        print("init, member = {1}".format(value1, number.value))
+        print("init, member = {1}".format(value1, number.value))
 
-        for i in range(1, 3):
-            number.value += value1
-            time.sleep(1)
-            print("add {0}, number = {1}".format(value1, number.value))
-    except Exception as e:
-        raise e
-    finally:
-        lock.release()
+        for i in range(1, 3):
+            number.value += value1
+            time.sleep(1)
+            print("add {0}, number = {1}".format(value1, number.value))
+    except Exception as e:
+        raise e
+    finally:
+        lock.release()
 ​
 if __name__ == "__main__":
-    lock = multiprocessing.Lock()
-    number = multiprocessing.Value("i", 0)
+    lock = multiprocessing.Lock()
+    number = multiprocessing.Value("i", 0)
 ​
-    p1 = multiprocessing.Process(target=add, args=(number, 1, lock))
-    p3 = multiprocessing.Process(target=add, args=(number, 3, lock))
+    p1 = multiprocessing.Process(target=add, args=(number, 1, lock))
+    p3 = multiprocessing.Process(target=add, args=(number, 3, lock))
 ​
-    p1.start()
-    p3.start()
+    p1.start()
+    p3.start()
 ​
-    print("main end")
+    print("main end")
 ```
 
 执行结果：
@@ -226,23 +226,24 @@ add 3, number = 8
 import multiprocessing
 ​
 def worker(d, L):
-    L += range(11, 16)  # 返回一个列表序列的特殊写法
-    for i in range(1, 3):
-        key = "key {0}".format(i)
-        value = "value {0}".format(i)
-        d[key] = value
+    L += range(11, 16)  # 返回一个列表序列的特殊写法
+
+    for i in range(1, 3):
+        key = "key {0}".format(i)
+        value = "value {0}".format(i)
+        d[key] = value
 ​
 if __name__ == "__main__":
-    manager = multiprocessing.Manager()
-    L = manager.list()
-    d = manager.dict()
-    p = multiprocessing.Process(target=worker, args=(d, L))
-    p.start()
-    p.join()
+    manager = multiprocessing.Manager()
+    L = manager.list()
+    d = manager.dict()
+    p = multiprocessing.Process(target=worker, args=(d, L))
+    p.start()
+    p.join()
 ​
-    print(d)
-    print(L)
-    print("main end")
+    print(d)
+    print(L)
+    print("main end")
 ```
 
 执行结果：
