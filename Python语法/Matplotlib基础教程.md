@@ -1,7 +1,7 @@
 ---
 title: Matplotlib基础教程
 date: 2019-07-21 14:52:25
-tags:
+categories: Python语法
 ---
 &emsp;&emsp;`Matplotlib`是`Python`的一个绘图库，它包含了大量的工具，你可以使用这些工具创建各种图形，包括简单的散点图、正弦曲线、甚至是三维图形。`Python`科学计算社区经常使用它完成数据可视化的工作。
 <!--more-->
@@ -355,7 +355,7 @@ The triangulation to plot can be specified in one of two ways; either:
 triplot(triangulation, ...)
 ```
 
-where triangulation is a matplotlib.tri.Triangulation object, or
+where triangulation is a `matplotlib.tri.Triangulation` object, or
 
 ``` python
 triplot(x, y, ...)
@@ -413,9 +413,9 @@ plt.show()
 &emsp;&emsp;`Matplotlib`提供了以下功能：
 
 ``` python
-cla() # Clear axis
-clf() # Clear figure
-close() # Close a figure window
+cla()  # Clear axis
+clf()  # Clear figure
+close()  # Close a figure window
 ```
 
 ### 动态图
@@ -602,7 +602,7 @@ fig = plt.figure()
 ax = fig.gca(projection='3d')
 X = np.arange(-5, 5, 0.25)
 Y = np.arange(-5, 5, 0.25)
-X, Y = np.meshgrid(X, Y)  # 创建X-Y平面表格
+X, Y = np.meshgrid(X, Y)  # 创建“X-Y”平面表格
 R = np.sqrt(X ** 2 + Y ** 2)  # 计算每个点的高度
 Z = np.cos(R)
 
