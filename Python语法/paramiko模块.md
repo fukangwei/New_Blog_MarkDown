@@ -10,7 +10,8 @@ pip install paramiko
 ```
 
 下面是两种使用`paramiko`连接到`linux`服务器的代码：
-&emsp;&emsp;方式一如下：
+
+- 方式一如下：
 
 ``` python
 ssh = paramiko.SSHClient()
@@ -18,7 +19,7 @@ ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 ssh.connect("某IP地址", 22, "用户名", "口令")
 ```
 
-&emsp;&emsp;方式二如下：
+- 方式二如下：
 
 ``` python
 t = paramiko.Transport(("主机", "端口"))
