@@ -15,7 +15,7 @@ categories: Python语法
 ```
 
 `import_module`只是简单地执行和`import`相同的步骤，但是返回生成的模块对象。你只需要将其存储在一个变量，然后像正常的模块一样使用。
-&emsp;&emsp;假设文件结构如下所示：
+&emsp;&emsp;假设文件结构如下：
 
 ``` bash
 a
@@ -25,28 +25,28 @@ b
 │ -- b.py
 │ -- __init__.py
 │ -- c
-     │ -- c.py
-     │ -- __init__.py
+     │ -- c.py
+     │ -- __init__.py
 ```
 
-`c.py`中的内容如下所示：
+`c.py`中的内容如下：
 
 ``` python
 args = {'a': 1}
 ​
 class C:
-    def c(self):
-        print("I am C!")
+    def c(self):
+        print("I am C!")
 ```
 
-目的是从`a`模块中导入`c.py`中的对象，解决方案如下所示：
+目的是从`a`模块中导入`c.py`中的对象，解决方案如下：
 
 ``` python
 import importlib
 ​
 # 从“b module”导入“c module”中的“c.py”
-params = importlib.import_module('b.c.c')  # 绝对导入
-params1 = importlib.import_module('.c.c', package='b')  # 相对导入
+params = importlib.import_module('b.c.c')  # 绝对导入
+params1 = importlib.import_module('.c.c', package='b')  # 相对导入
 test = params.C()
 print(params.args)
 print(test.c())
