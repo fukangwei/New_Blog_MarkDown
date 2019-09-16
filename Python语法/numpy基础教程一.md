@@ -93,7 +93,7 @@ np.trace(A)
 dot(a, b)  # a与b是两个向量
 ```
 
-&emsp;&emsp;`arrange`用于生成等差数列，其函数原型如下：
+&emsp;&emsp;`arrange`用于生成等差数列：
 
 ``` python
 arange([start, ] stop [, step], dtype=None)
@@ -484,7 +484,7 @@ array([[[1, 2]],
 
 ### strides
 
-&emsp;&emsp;`NumPy`的`strides`属性表示的是在每个维数上以字节计算的步长，示例如下：
+&emsp;&emsp;`NumPy`的`strides`属性表示的是在每个维数上以字节计算的步长：
 
 ``` python
 >>> a = np.arange(6)
