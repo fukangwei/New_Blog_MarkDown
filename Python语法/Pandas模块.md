@@ -1179,8 +1179,7 @@ Viewing the first `n` lines (three in this case):
 ### pandas.factorize
 
 &emsp;&emsp;`pandas.factorize(values, sort=False, order=None, na_sentinel=-1, size_hint=None)`: Encode the object as an enumerated type or categorical variable.
-&emsp;&emsp;This method is useful for obtaining a numeric representation of an array when all that matters is identifying distinct `values`. `factorize` is available as both a `top-level` function `pandas.factorize()`, and as a method `Series.factorize()` and `Index.factorize()`.
-&emsp;&emsp;Parameters:
+&emsp;&emsp;This method is useful for obtaining a numeric representation of an array when all that matters is identifying distinct `values`. `factorize` is available as both a `top-level` function `pandas.factorize()`, and as a method `Series.factorize()` and `Index.factorize()`. Parameters:
 
 - `values`: `sequence`. A `1-D` `seqeunce`. Sequences that aren't pandas objects are coereced to `ndarrays` before factorization.
 - `sort`: `bool`, default `False`. Sort uniques and shuffle labels to maintain the relationship.
@@ -1249,8 +1248,7 @@ Index(['a', 'c'], dtype='object')
 
 ### pandas.crosstab
 
-&emsp;&emsp;`pandas.crosstab(index, columns, values=None, rownames=None, colnames=None, aggfunc=None, margins=False, margins_name='All', dropna=True, normalize=False)`: Compute a simple `cross-tabulation` of two (or more) factors. By default computes a frequency table of the factors unless an array of `values` and an aggregation function are passed.
-&emsp;&emsp;Parameters:
+&emsp;&emsp;`pandas.crosstab(index, columns, values=None, rownames=None, colnames=None, aggfunc=None, margins=False, margins_name='All', dropna=True, normalize=False)`: Compute a simple `cross-tabulation` of two (or more) factors. By default computes a frequency table of the factors unless an array of `values` and an aggregation function are passed. Parameters:
 
 - `index`: `array-like`, `Series`, or list of `arrays/Series`. Values to group by in the rows.
 - `columns`: `array-like`, `Series`, or list of `arrays/Series`. Values to group by in the columns.
@@ -1285,7 +1283,7 @@ c   dull shiny dull shiny
 a
 bar    1     2    1     0
 foo    2     2    1     2
-#---------------------------------------------------------------
+# ---------------------------------------------------------------
 >>> foo = pd.Categorical(['a', 'b'], categories=['a', 'b', 'c'])
 >>> bar = pd.Categorical(['d', 'e'], categories=['d', 'e', 'f'])
 # 'c' and 'f' are not represented in the data,
