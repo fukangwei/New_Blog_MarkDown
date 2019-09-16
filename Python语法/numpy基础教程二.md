@@ -160,14 +160,12 @@ array([False, False, False,  True,  True])
 &emsp;&emsp;`numpy.logical_and(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'logical_and'>`. Compute the truth value of `x1 AND x2` element-wise. Parameters:
 
 - `x1, x2`: `array_like`. Input arrays. `x1` and `x2` must be of the same shape.
-- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a `freshly-allocated` array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
 - `where`: `array_like`, optional. Values of `True` indicate to calculate the ufunc at that position, values of `False` indicate to leave the value in the output alone.
 
 &emsp;&emsp;Returns:
 
 - `y`: `ndarray` or `bool`. `Boolean` result with the same shape as `x1` and `x2` of the logical `AND` operation on corresponding elements of `x1` and `x2`.
-
-&emsp;&emsp;Examples:
 
 ``` python
 >>> np.logical_and(True, False)
@@ -184,14 +182,12 @@ array([False, False,  True,  True, False])
 &emsp;&emsp;`numpy.less(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'less'>`. Return the truth value of (`x1 < x2`) element-wise. Parameters:
 
 - `x1, x2`: `array_like`. Input arrays. If `x1.shape != x2.shape`, they must be broadcastable to a common shape (which may be the shape of one or the other).
-- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a `freshly-allocated` array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
 - `where`: `array_like`, optional. Values of `True` indicate to calculate the ufunc at that position, values of `False` indicate to leave the value in the output alone.
 
 &emsp;&emsp;Returns:
 
 - `out`: `bool` or `ndarray of bool`. Array of bools, or a single bool if `x1` and `x2` are scalars.
-
-&emsp;&emsp;Examples:
 
 ``` python
 >>> np.less([1, 2], [2, 2])
@@ -231,8 +227,6 @@ array([[1, 2, 5],
 
 - `element_count`: `int`. Number of elements along the specified `axis`.
 
-&emsp;&emsp;Examples:
-
 ``` python
 >>> a = np.array([[1, 2, 3], [4, 5, 6]])
 >>> np.size(a)
@@ -249,14 +243,13 @@ array([[1, 2, 5],
 
 - `shape`: `int` or `tuple of int`. Shape of the empty array.
 - `dtype`: `data-type`, optional. Desired output `data-type`.
-- `order`: `{'C', 'F'}`, optional. Whether to store multi-dimensional data in `row-major` (`C-style`) or `column-major` (`Fortran-style`) order in memory.
+- `order`: `{'C', 'F'}`, optional. Whether to store `multi-dimensional` data in `row-major` (`C-style`) or `column-major` (`Fortran-style`) order in memory.
 
 &emsp;&emsp;Returns:
 
 - `out`: `ndarray`. Array of uninitialized (arbitrary) data of the given `shape`, `dtype`, and `order`. Object arrays will be initialized to `None`.
 
 &emsp;&emsp;Notes: empty, unlike `zeros`, does not set the array values to `zero`, and may therefore be marginally faster. On the other hand, it requires the user to manually set all the values in the array, and should be used with caution.
-&emsp;&emsp;Examples:
 
 ``` python
 >>> np.empty([2, 2])
@@ -278,7 +271,6 @@ array([[-1073741821, -1067949133],
 - `f`: `ndarray`. A view of m with the columns reversed. Since a view is returned, this operation is `O(1)`.
 
 &emsp;&emsp;Notes: Equivalent to `m[:, ::-1]`. Requires the array to be at least `2-D`.
-&emsp;&emsp;Examples:
 
 ``` python
 >>> A = np.diag([1.,2.,3.])
