@@ -1012,7 +1012,7 @@ array([[1, 2],
 
 ### numpy.bincount
 
-&emsp;&emsp;`numpy.bincount(x, weights=None, minlength=None)`: Count number of occurrences of each value in array of non-negative ints.
+&emsp;&emsp;`numpy.bincount(x, weights=None, minlength=None)`: Count number of occurrences of each value in array of `non-negative` ints.
 &emsp;&emsp;The number of bins (of size `1`) is one larger than the largest value in `x`. If `minlength` is specified, there will be at least this number of bins in the output array (though it will be longer if necessary, depending on the contents of `x`). Each bin gives the number of occurrences of its index value in `x`. If `weights` is specified, the input array is weighted by it, i.e. if a value `n` is found at position `i`, `out[n] += weight[i]` instead of `out[n] += 1`. Parameters:
 
 - `x`: `array_like`, `1` dimension, nonnegative ints. Input array.
@@ -1027,8 +1027,6 @@ array([[1, 2],
 
 - `ValueError`: If the input is not `1-dimensional`, or contains elements with negative values, or if minlength is `non-positive`.
 - `TypeError`: If the type of the input is `float` or `complex`.
-
-&emsp;&emsp;Examples:
 
 ``` python
 >>> np.bincount(np.arange(5))
