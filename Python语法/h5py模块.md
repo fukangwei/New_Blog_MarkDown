@@ -44,7 +44,7 @@ import numpy as np
 ​
 f = h5py.File("myh5py.hdf5", "w")
 d1 = f.create_dataset("dset1", (20,), 'i')
-d1[...] = np.arange(20)  # 赋值
+d1[...] = np.arange(20)  # 赋值
 # 或者可以直接按照下面的方式创建数据集并赋值
 f["dset2"] = np.arange(15)
 ​
@@ -59,7 +59,7 @@ for key in f.keys():
 /dset1
 [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
 /dset2
-[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14]
+[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14]
 ```
 
 如果我们有现成的`numpy`数组，那么就可以在创建数据集的时候赋值，此时就不必指定数据的类型和形状，只需要把数组名传给参数`data`：
@@ -73,15 +73,15 @@ a = np.arange(20)
 d1 = f.create_dataset("dset1", data=a)
 ​
 for key in f.keys():
-    print(f[key].name)
-    print(f[key].value)
+    print(f[key].name)
+    print(f[key].value)
 ```
 
 执行结果：
 
 ``` python
 /dset1
-[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
+[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
 ```
 
 &emsp;&emsp;3. 创建`group`组：
@@ -91,14 +91,14 @@ import h5py
 import numpy as np
 ​
 f = h5py.File("myh5py.hdf5", "w")
-g1 = f.create_group("bar")  # 创建一个名为bar的组
+g1 = f.create_group("bar")  # 创建一个名为bar的组
 # 在bar这个组里面分别创建name为dset1和dset2的数据集并赋值
 g1["dset1"] = np.arange(10)
 g1["dset2"] = np.arange(12).reshape((3, 4))
 ​
 for key in g1.keys():
-    print(g1[key].name)
-    print(g1[key].value)
+    print(g1[key].name)
+    print(g1[key].value)
 ```
 
 注意观察数据集`dset1`和`dset2`的名字是不是有点和前面的不一样，如果是直接创建数据集，不在任何组里面，那么它的名字就是`/+名字`；现在这两个数据集都在`bar`这个`group`里面，名字就变成了`/bar+/名字`，是不是有点文件夹的感觉。
