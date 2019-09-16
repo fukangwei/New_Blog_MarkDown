@@ -178,11 +178,13 @@ def find_gt(a, x):
     raise ValueError
 ​
 def find_ge(a, x):
-    'Find leftmost item greater than or equal to x'
-    i = bisect.bisect_left(a, x)
-    if i != len(a):
-        return a[i]
-    raise ValueError
+    'Find leftmost item greater than or equal to x'
+    i = bisect.bisect_left(a, x)
+
+    if i != len(a):
+        return a[i]
+
+    raise ValueError
 ```
 
 &emsp;&emsp;对学生成绩转换为`ABCDF`四个等级：
@@ -191,8 +193,8 @@ def find_ge(a, x):
 import bisect
 ​
 def grade(score, breakpoints=[60, 70, 80, 90], grades='FDCBA'):
-    i = bisect.bisect(breakpoints, score)
-    return grades[i]
+    i = bisect.bisect(breakpoints, score)
+    return grades[i]
 ​
 print([33, 99, 77, 70, 89, 90, 100])
 print([grade(score) for score in [33, 99, 77, 70, 89, 90, 100]])
