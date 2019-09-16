@@ -55,18 +55,18 @@ Spam, Lovely Spam, Wonderful Spam
 import csv
 ​
 with open('eggs.csv', 'w', newline='') as csvfile:
-    spamwriter = csv.writer(csvfile, delimiter=' ', quotechar='|', quoting=csv.QUOTE_MINIMAL)
-    spamwriter.writerow(['Spam'] * 5 + ['Baked Beans'])
-    spamwriter.writerow(['Spam', 'Lovely Spam', 'Wonderful Spam'])
+    spamwriter = csv.writer(csvfile, delimiter=' ', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    spamwriter.writerow(['Spam'] * 5 + ['Baked Beans'])
+    spamwriter.writerow(['Spam', 'Lovely Spam', 'Wonderful Spam'])
 ```
 
-- `csv.register_dialect(name[, dialect[, **fmtparams]])`: Associate `dialect` with `name`. `name` must be a string. The `dialect` can be specified either by passing a `sub-class` of `Dialect`, or by `fmtparams` keyword arguments, or both, with keyword arguments overriding parameters of the `dialect`.
+- `csv.register_dialect(name [, dialect [, **fmtparams]])`: Associate `dialect` with `name`. `name` must be a string. The `dialect` can be specified either by passing a `sub-class` of `Dialect`, or by `fmtparams` keyword arguments, or both, with keyword arguments overriding parameters of the `dialect`.
 - `csv.unregister_dialect(name)`: Delete the dialect associated with `name` from the dialect registry. An `Error` is raised if `name` is not a registered dialect name.
 - `csv.get_dialect(name)`: Return the dialect associated with `name`. An `Error` is raised if `name` is not a registered dialect name. This function returns an immutable `Dialect`.
 - `csv.list_dialects()`: Return the names of all registered dialects.
 - `csv.field_size_limit([new_limit])`: Returns the current maximum field size allowed by the parser. If `new_limit` is given, this becomes the new limit.
 
-&emsp;&emsp;The csv module defines the following classes:
+&emsp;&emsp;The `csv` module defines the following classes:
 
 - `csv.DictReader(f, fieldnames=None, restkey=None, restval=None, dialect='excel', *args, **kwds):` Create an object that operates like a regular reader but maps the information in each row to an `OrderedDict` whose keys are given by the optional `fieldnames` parameter.
 
@@ -97,16 +97,16 @@ OrderedDict([('first_name', 'John'), ('last_name', 'Cleese')])
 import csv
 ​
 with open('names.csv', 'w', newline='') as csvfile:
-    fieldnames = ['first_name', 'last_name']
-    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-    writer.writeheader()
-    writer.writerow({'first_name': 'Baked', 'last_name': 'Beans'})
-    writer.writerow({'first_name': 'Lovely', 'last_name': 'Spam'})
-    writer.writerow({'first_name': 'Wonderful', 'last_name': 'Spam'})
+    fieldnames = ['first_name', 'last_name']
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    writer.writeheader()
+    writer.writerow({'first_name': 'Baked', 'last_name': 'Beans'})
+    writer.writerow({'first_name': 'Lovely', 'last_name': 'Spam'})
+    writer.writerow({'first_name': 'Wonderful', 'last_name': 'Spam'})
 ```
 
 - `class csv.Dialect`: The `Dialect` class is a container class relied on primarily for its attributes, which are used to define the parameters for a specific reader or writer instance.
-- `class csv.excel`: The excel class defines the usual properties of an `Excel-generated` `CSV` file. It is registered with the dialect name `excel`.
+- `class csv.excel`: The `excel` class defines the usual properties of an `Excel-generated CSV` file. It is registered with the dialect name `excel`.
 - `class csv.excel_tab`: The `excel_tab` class defines the usual properties of an `Excel-generated` `TAB-delimited` file. It is registered with the dialect name `excel-tab`.
 - `class csv.unix_dialect`: The `unix_dialect` class defines the usual properties of a `CSV` file generated on `UNIX` systems, i.e. using `\n` as line terminator and quoting all fields. It is registered with the dialect name `unix`.
 - `class csv.Sniffer`: The `Sniffer` class is used to deduce the format of a `CSV` file.
@@ -128,13 +128,13 @@ Analyze the `sample` text (presumed to be in `CSV` format) and return `True` if 
 
 ``` python
 with open('example.csv', newline='') as csvfile:
-    dialect = csv.Sniffer().sniff(csvfile.read(1024))
-    csvfile.seek(0)
-    reader = csv.reader(csvfile, dialect)
-    # process CSV file contents here
+    dialect = csv.Sniffer().sniff(csvfile.read(1024))
+    csvfile.seek(0)
+    reader = csv.reader(csvfile, dialect)
+    # process CSV file contents here
 ```
 
-&emsp;&emsp;The csv module defines the following constants:
+&emsp;&emsp;The `csv` module defines the following constants:
 
 - `csv.QUOTE_ALL`: Instructs writer objects to quote all fields.
 - `csv.QUOTE_MINIMAL`: Instructs writer objects to only quote those fields which contain special characters such as delimiter, quotechar or any of the characters in lineterminator.
@@ -142,7 +142,7 @@ with open('example.csv', newline='') as csvfile:
 - `csv.QUOTE_NONE`: Instructs writer objects to never quote fields. When the current delimiter occurs in output data it is preceded by the current escapechar character. If escapechar is not set, the writer will raise `Error` if any characters that require escaping are encountered.
 
 &emsp;&emsp;Instructs reader to perform no special processing of quote characters.
-&emsp;&emsp;The csv module defines the following exception:
+&emsp;&emsp;The `csv` module defines the following exception:
 
 - `exception csv.Error`: Raised by any of the functions when an error is detected.
 
@@ -154,12 +154,12 @@ with open('example.csv', newline='') as csvfile:
 - `Dialect.delimiter`: A `one-character` string used to separate fields. It defaults to `,`.
 - `Dialect.doublequote`: Controls how instances of quotechar appearing inside a field should themselves be quoted. When `True`, the character is doubled. When `False`, the escapechar is used as a prefix to the quotechar. It defaults to `True`.
 
-&emsp;&emsp;On output, if doublequote is `False` and no escapechar is set, Error is raised if a quotechar is found in a field.
+&emsp;&emsp;On output, if `doublequote` is `False` and no escapechar is set, `Error` is raised if a quotechar is found in a field.
 
-- `Dialect.escapechar`: A `one-character` string used by the writer to escape the delimiter if quoting is set to `QUOTE_NONE` and the quotechar if doublequote is `False`. On reading, the escapechar removes any special meaning from the following character. It defaults to `None`, which disables escaping.
+- `Dialect.escapechar`: A `one-character` string used by the writer to escape the delimiter if quoting is set to `QUOTE_NONE` and the quotechar if `doublequote` is `False`. On reading, the escapechar removes any special meaning from the following character. It defaults to `None`, which disables escaping.
 - `Dialect.lineterminator`: The string used to terminate lines produced by the writer. It defaults to `\r\n`.
 
-&emsp;&emsp;**Note**: The reader is `hard-coded` to recognise either `\r` or `\n` as `end-of-line`, and ignores lineterminator. This behavior may change in the future.
+&emsp;&emsp;**Note**: The reader is `hard-coded` to recognise either `\r` or `\n` as `end-of-line`, and ignores `lineterminator`. This behavior may change in the future.
 
 - `Dialect.quotechar`: A `one-character` string used to quote fields containing special characters, such as the delimiter or quotechar, or which contain `new-line` characters. It defaults to `"`.
 - `Dialect.quoting`: Controls when quotes should be generated by the writer and recognised by the reader. It can take on any of the `QUOTE_*` constants and defaults to `QUOTE_MINIMAL`.
