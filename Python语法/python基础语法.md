@@ -36,7 +36,7 @@ categories: Python语法
 
 ``` python
 # 第一个注释
-print("Hello, Python!")  # 第二个注释
+print("Hello, Python!")  # 第二个注释
 ```
 
 多行注释可以用多个`#`号：
@@ -51,10 +51,8 @@ print("Hello, Python!")
 
 ``` python
 def example(anything):
-    '''
-    形参为任意类型的对象，这个示例函数会将其原样返回
-    '''
-    return anything
+    ''' 形参为任意类型的对象，这个示例函数会将其原样返回 '''
+    return anything
 ```
 
 ### 行与缩进
@@ -63,20 +61,20 @@ def example(anything):
 
 ``` python
 if True:
-    print("True")
+    print("True")
 else:
-    print("False")
+    print("False")
 ```
 
 以下代码最后一行语句缩进数的空格数不一致，会导致运行错误：
 
 ``` python
 if True:
-    print("Answer")
-    print("True")
+    print("Answer")
+    print("True")
 else:
-    print("Answer")
-  print("False")  # 缩进不一致，会导致运行错误
+    print("Answer")
+  print("False")  # 缩进不一致，会导致运行错误
 ```
 
 ### 多行语句
@@ -85,15 +83,15 @@ else:
 
 ``` python
 total = item_one + \
-        item_two + \
-        item_three
+        item_two + \
+        item_three
 ```
 
 在`[]`、`{}`或`()`中的多行语句，不需要使用反斜杠`\`：
 
 ``` python
 total = ['item_one', 'item_two', 'item_three',
-        'item_four', 'item_five']
+         'item_four', 'item_five']
 ```
 
 ### 空行
@@ -125,11 +123,11 @@ import sys; x = 'runoob'; sys.stdout.write(x + '\n')
 
 ``` python
 if expression:
-    suite
+    suite
 elif expression:
-    suite
+    suite
 else:
-    suite
+    suite
 ```
 
 ### Print输出
@@ -162,15 +160,15 @@ a b
 &emsp;&emsp;`python`的变量不需要声明变量类型，变量的类型由赋予它的值来决定：
 
 ``` python
-a = 1  # 整型
-a = 1.001  # 浮点数
-a = "python"  # 字符串
-print(a)  # 结果为“python”。print输出时只保留了最后一次的赋值
+a = 1  # 整型
+a = 1.001  # 浮点数
+a = "python"  # 字符串
+print(a)  # 结果为“python”。print输出时只保留了最后一次的赋值
 ```
 
-### import与“from...import”
+### import与from-import
 
-&emsp;&emsp;`python`用`import`或`from...import`来导入相应的模块。
+&emsp;&emsp;`python`用`import`或`from-import`来导入相应的模块。
 
 - 将整个模块(`somemodule`)导入，格式为`import somemodule`。
 - 从某个模块中导入某个函数，格式为`from somemodule import somefunction`。
@@ -185,7 +183,7 @@ import sys
 print('命令行参数为:')
 
 for i in sys.argv:
-    print(i)
+    print(i)
 
 print('\npython路径为', sys.path)
 ```
@@ -193,7 +191,7 @@ print('\npython路径为', sys.path)
 &emsp;&emsp;导入`sys`模块的`argv`和`path`函数：
 
 ``` python
-from sys import argv, path  # 导入特定的成员
+from sys import argv, path  # 导入特定的成员
 ​
-print('path:', path)  # 因为已经导入path成员，所以此处引用时不需要加“sys.path”
+print('path:', path)  # 因为已经导入path成员，所以此处引用时不需要加“sys.path”
 ```
