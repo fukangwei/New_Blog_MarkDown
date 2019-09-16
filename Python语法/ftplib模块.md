@@ -64,15 +64,15 @@ def downloadfile(ftp, remotepath, localpath):
     fp.close()  # 关闭文件
 ​
 def uploadfile(ftp, remotepath, localpath):
-    bufsize = 1024
-    fp = open(localpath, 'rb')
-    ftp.storbinary('STOR ' + remotepath, fp, bufsize)  # 上传文件
-    # ftp.set_debuglevel(0)
-    fp.close()
+    bufsize = 1024
+    fp = open(localpath, 'rb')
+    ftp.storbinary('STOR ' + remotepath, fp, bufsize)  # 上传文件
+    # ftp.set_debuglevel(0)
+    fp.close()
 ​
 if __name__ == "__main__":
-    ftp = ftpconnect("******", "***", "***")
-    downloadfile(ftp, "***", "***")
-    uploadfile(ftp, "***", "***")
-    ftp.quit()
+    ftp = ftpconnect("******", "***", "***")
+    downloadfile(ftp, "***", "***")
+    uploadfile(ftp, "***", "***")
+    ftp.quit()
 ```
