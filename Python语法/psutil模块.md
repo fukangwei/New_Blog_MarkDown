@@ -12,10 +12,10 @@ categories: Python语法
 
 ``` python
 >>> import psutil
->>> psutil.cpu_count()  # CPU逻辑数量
+>>> psutil.cpu_count()  # CPU逻辑数量
 4
->>> psutil.cpu_count(logical=False)  # CPU物理核心
-2  # “2”说明是双核超线程，“4”则是4核非超线程
+>>> psutil.cpu_count(logical=False)  # CPU物理核心
+2  # “2”说明是双核超线程，“4”则是4核非超线程
 ```
 
 统计`CPU`的`用户/系统/空闲时间`：
@@ -29,7 +29,7 @@ scputimes(user=10963.31, nice=0.0, system=5138.67, idle=356102.45)
 
 ``` python
 >>> for x in range(10):
-...     psutil.cpu_percent(interval=1, percpu=True)
+...     psutil.cpu_percent(interval=1, percpu=True)
 ...
 [14.0, 4.0, 4.0, 4.0]
 [12.0, 3.0, 4.0, 3.0]
@@ -62,12 +62,12 @@ sswap(total=1073741824, used=150732800, free=923009024, percent=14.0, sin=107059
 &emsp;&emsp;可以通过`psutil`获取磁盘分区、磁盘使用率和磁盘`IO`信息：
 
 ``` python
->>> psutil.disk_partitions()  # 磁盘分区信息
+>>> psutil.disk_partitions()  # 磁盘分区信息
 [sdiskpart(device='/dev/disk1', mountpoint='/', fstype='hfs', \
 ...        opts='rw,local,rootfs,dovolfs,journaled,multilabel')]
->>> psutil.disk_usage('/') # 磁盘使用情况
+>>> psutil.disk_usage('/')  # 磁盘使用情况
 sdiskusage(total=998982549504, used=390880133120, free=607840272384, percent=39.1)
->>> psutil.disk_io_counters()  # 磁盘IO
+>>> psutil.disk_io_counters()  # 磁盘IO
 sdiskio(read_count=988513, write_count=274457, read_bytes=14856830464, \
 ...     write_bytes=17509420032, read_time=2228966, write_time=1618405)
 ```
@@ -79,10 +79,10 @@ sdiskio(read_count=988513, write_count=274457, read_bytes=14856830464, \
 &emsp;&emsp;`psutil`可以获取网络接口和网络连接信息：
 
 ``` python
->>> psutil.net_io_counters()  # 获取网络读写字节/包的个数
+>>> psutil.net_io_counters()  # 获取网络读写字节/包的个数
 snetio(bytes_sent=3885744870, bytes_recv=10357676702, packets_sent=10613069, \
 ...    packets_recv=10423357, errin=0, errout=0, dropin=0, dropout=0)
->>> psutil.net_if_addrs()  # 获取网络接口信息
+>>> psutil.net_if_addrs()  # 获取网络接口信息
 {
   'lo0': [snic(family=<AddressFamily.AF_INET: 2>, address='127.0.0.1', netmask='255.0.0.0'), ...],
   'en1': [snic(family=<AddressFamily.AF_INET: 2>, address='10.0.1.80', netmask='255.255.255.0'), ...],
@@ -90,7 +90,7 @@ snetio(bytes_sent=3885744870, bytes_recv=10357676702, packets_sent=10613069, \
   'en2': [...],
   'bridge0': [...]
 }
->>> psutil.net_if_stats()  # 获取网络接口状态
+>>> psutil.net_if_stats()  # 获取网络接口状态
 {
   'lo0': snicstats(isup=True, duplex=<NicDuplex.NIC_DUPLEX_UNKNOWN: 0>, speed=0, mtu=16384),
   'en0': snicstats(isup=True, duplex=<NicDuplex.NIC_DUPLEX_UNKNOWN: 0>, speed=0, mtu=1500),
@@ -105,13 +105,13 @@ snetio(bytes_sent=3885744870, bytes_recv=10357676702, packets_sent=10613069, \
 ``` python
 >>> psutil.net_connections()
 Traceback (most recent call last):
-  ...
+  ...
 PermissionError: [Errno 1] Operation not permitted
 ​
 During handling of the above exception, another exception occurred:
 ​
 Traceback (most recent call last):
-  ...
+  ...
 psutil.AccessDenied: psutil.AccessDenied (pid=3847)
 ```
 
@@ -121,19 +121,19 @@ psutil.AccessDenied: psutil.AccessDenied (pid=3847)
 >>> import psutil
 >>> psutil.net_connections()
 [
-    sconn(fd=83, family=<AddressFamily.AF_INET6: 30>, type=1, laddr=addr(ip='::127.0.0.1', port=62911), \
+    sconn(fd=83, family=<AddressFamily.AF_INET6: 30>, type=1, laddr=addr(ip='::127.0.0.1', port=62911), \
     raddr=addr(ip='::127.0.0.1', port=3306), status='ESTABLISHED', pid=3725), \
     sconn(fd=84, family=<AddressFamily.AF_INET6: 30>, type=1, laddr=addr(ip='::127.0.0.1', port=62905), \
     raddr=addr(ip='::127.0.0.1', port=3306), status='ESTABLISHED', pid=3725),
-    sconn(fd=93, family=<AddressFamily.AF_INET6: 30>, type=1, laddr=addr(ip='::', port=8080), \
+    sconn(fd=93, family=<AddressFamily.AF_INET6: 30>, type=1, laddr=addr(ip='::', port=8080), \
     raddr=(), status='LISTEN', pid=3725), sconn(fd=103, family=<AddressFamily.AF_INET6: 30>, type=1, \
     laddr=addr(ip='::127.0.0.1', port=62918), raddr=addr(ip='::127.0.0.1', port=3306), \
                status='ESTABLISHED', pid=3725),
-    sconn(fd=105, family=<AddressFamily.AF_INET6: 30>, type=1, ..., pid=3725),
-    sconn(fd=106, family=<AddressFamily.AF_INET6: 30>, type=1, ..., pid=3725),
-    sconn(fd=107, family=<AddressFamily.AF_INET6: 30>, type=1, ..., pid=3725),
-    ...
-    sconn(fd=27, family=<AddressFamily.AF_INET: 2>, type=2, ..., pid=1)
+    sconn(fd=105, family=<AddressFamily.AF_INET6: 30>, type=1, ..., pid=3725),
+    sconn(fd=106, family=<AddressFamily.AF_INET6: 30>, type=1, ..., pid=3725),
+    sconn(fd=107, family=<AddressFamily.AF_INET6: 30>, type=1, ..., pid=3725),
+    ...
+    sconn(fd=27, family=<AddressFamily.AF_INET: 2>, type=2, ..., pid=1)
 ]
 ```
 
