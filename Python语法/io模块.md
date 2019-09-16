@@ -14,7 +14,7 @@ f = StringIO()
 f.write('hello')
 f.write(' ')
 f.write('world!')
-print(f.getvalue())  # 执行结果为“hello world!”
+print(f.getvalue())  # 执行结果为“hello world!”
 ```
 
 `getvalue`方法用于获得写入后的`str`。
@@ -25,10 +25,12 @@ from io import StringIO
 ​
 f = StringIO('Hello!\nHi!\nGoodbye!')
 while True:
-    s = f.readline()
-    if s == '':
-        break
-    print(s.strip())
+    s = f.readline()
+
+    if s == '':
+        break
+
+    print(s.strip())
 ```
 
 执行结果：
@@ -48,7 +50,7 @@ from io import BytesIO
 ​
 f = BytesIO()
 f.write('中文'.encode('utf-8'))
-print(f.getvalue())  # 执行结果为“b'\xe4\xb8\xad\xe6\x96\x87'”
+print(f.getvalue())  # 执行结果为“b'\xe4\xb8\xad\xe6\x96\x87'”
 ```
 
 注意，写入的不是`str`，而是经过`UTF-8`编码的`bytes`。
@@ -58,7 +60,7 @@ print(f.getvalue())  # 执行结果为“b'\xe4\xb8\xad\xe6\x96\x87'”
 from io import BytesIO
 ​
 f = BytesIO(b'\xe4\xb8\xad\xe6\x96\x87')
-print(f.read())  # 执行结果为“b'\xe4\xb8\xad\xe6\x96\x87'”
+print(f.read())  # 执行结果为“b'\xe4\xb8\xad\xe6\x96\x87'”
 ```
 
 `StringIO`和`BytesIO`是在内存中操作`str`和`bytes`的方法，和读写文件具有一致的接口。
