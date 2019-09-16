@@ -236,10 +236,10 @@ os.fstat(fd)
 import os
 ​
 fd = os.open("foo.txt", os.O_RDWR | os.O_CREAT)
-info = os.fstat(fd)  # 获取元组
+info = os.fstat(fd)  # 获取元组
 print("文件信息:", info)
-print("文件UID: %d" % info.st_uid)  # 获取文件uid
-print("文件GID: %d" % info.st_gid)  # 获取文件gid
+print("文件UID: %d" % info.st_uid)  # 获取文件uid
+print("文件GID: %d" % info.st_gid)  # 获取文件gid
 os.close(fd)
 ```
 
@@ -267,8 +267,8 @@ os.fsync(fd)
 import os
 ​
 fd = os.open("foo.txt", os.O_RDWR | os.O_CREAT)
-os.write(fd, "This is test".encode())  # 写入字符串
-os.fsync(fd)  # 使用fsync方法
+os.write(fd, "This is test".encode())  # 写入字符串
+os.fsync(fd)  # 使用fsync方法
 os.lseek(fd, 0, 0)
 str = os.read(fd, 100)
 print("读取的字符串为:", str.decode())  # 输出“读取的字符串为: This is test”
@@ -292,8 +292,8 @@ os.ftruncate(fd, length)
 import os
 ​
 fd = os.open("foo.txt", os.O_RDWR | os.O_CREAT)
-os.write(fd, "This is test - This is test".encode())  # 写入字符串
-os.ftruncate(fd, 10)  # 使用ftruncate方法
+os.write(fd, "This is test - This is test".encode())  # 写入字符串
+os.ftruncate(fd, 10)  # 使用ftruncate方法
 os.lseek(fd, 0, 0)
 str = os.read(fd, 100)
 print("读取的字符串是:", str.decode())  # 输出“读取的字符串是: This is te”
@@ -313,11 +313,11 @@ os.getcwd()
 ``` python
 import os
 ​
-os.chdir("/var/www/html")  # 切换到“/var/www/html”目录
-print("当前工作目录: %s" % os.getcwd())  # 输出“当前工作目录: /var/www/html”
-fd = os.open("/tmp", os.O_RDONLY)  # 打开“/tmp”
-os.fchdir(fd)  # 使用os.fchdir方法修改目录
-print("当前工作目录: %s" % os.getcwd())  # 输出“当前工作目录: /tmp”
+os.chdir("/var/www/html")  # 切换到“/var/www/html”目录
+print("当前工作目录: %s" % os.getcwd())  # 输出“当前工作目录: /var/www/html”
+fd = os.open("/tmp", os.O_RDONLY)  # 打开“/tmp”
+os.fchdir(fd)  # 使用os.fchdir方法修改目录
+print("当前工作目录: %s" % os.getcwd())  # 输出“当前工作目录: /tmp”
 os.close(fd)
 ```
 
@@ -337,8 +337,8 @@ import os
 path = "./"
 dirs = os.listdir(path)
 ​
-for file in dirs:  # 输出所有文件和文件夹
-    print(file)
+for file in dirs:  # 输出所有文件和文件夹
+    print(file)
 ```
 
 执行结果：
@@ -415,7 +415,7 @@ os.makedirs(path, mode=0o777)
 ``` python
 import os
 ​
-path = "./tmp/daily"  # 创建的目录
+path = "./tmp/daily"  # 创建的目录
 os.makedirs(path, 0o755)
 ```
 
@@ -452,7 +452,7 @@ os.open(file, flags [, mode])
 import os
 ​
 fd = os.open("foo.txt", os.O_RDWR | os.O_CREAT)
-os.write(fd, "This is test".encode())  # 写入字符串
+os.write(fd, "This is test".encode())  # 写入字符串
 os.close(fd)
 ```
 
@@ -489,7 +489,7 @@ os.remove(path)
 import os
 ​
 print("目录为: %s" % os.listdir(os.getcwd()))
-os.remove("foo.txt")  # 移除
+os.remove("foo.txt")  # 移除
 print("移除后: %s" % os.listdir(os.getcwd()))
 ```
 
@@ -539,7 +539,7 @@ os.rename(src, dst)
 import os
 ​
 print("目录为: %s" % os.listdir(os.getcwd()))
-os.rename("test", "test2")  # 重命名
+os.rename("test", "test2")  # 重命名
 print("重命名成功。")
 print("目录为: %s" % os.listdir(os.getcwd()))
 ```
@@ -570,7 +570,7 @@ import os
 ​
 print("当前目录为: %s" % os.getcwd())
 print("目录为: %s" % os.listdir(os.getcwd()))
-os.renames("aa1.txt", "newdir/aanew.txt")  # 重命名为“aa1.txt”
+os.renames("aa1.txt", "newdir/aanew.txt")  # 重命名为“aa1.txt”
 print("重命名成功。")
 print("目录为: %s" % os.listdir(os.getcwd()))
 ```
