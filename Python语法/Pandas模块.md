@@ -6,6 +6,7 @@ categories: Python语法
 ### Pandas基本介绍
 
 #### Numpy和Pandas
+
 &emsp;&emsp;如果用`python`的列表和字典来作比较，那么可以说`Numpy`是列表形式的，没有数值标签；而`Pandas`就是字典形式。`Pandas`是基于`Numpy`构建的，让`Numpy`为中心的应用变得更加简单。
 &emsp;&emsp;要使用`pandas`，首先需要了解它主要的两个数据结构：`Series`和`DataFrame`。
 
@@ -888,13 +889,13 @@ import pandas as pd
 left = pd.DataFrame({
     'key1': ['K0', 'K0', 'K1', 'K2'],
     'key2': ['K0', 'K1', 'K0', 'K1'],
-    'A': ['A0', 'A1', 'A2', 'A3'],
-    'B': ['B0', 'B1', 'B2', 'B3']})
+       'A': ['A0', 'A1', 'A2', 'A3'],
+       'B': ['B0', 'B1', 'B2', 'B3']})
 right = pd.DataFrame(
     {'key1': ['K0', 'K1', 'K1', 'K2'],
      'key2': ['K0', 'K0', 'K0', 'K0'],
-     'C': ['C0', 'C1', 'C2', 'C3'],
-     'D': ['D0', 'D1', 'D2', 'D3']})
+        'C': ['C0', 'C1', 'C2', 'C3'],
+        'D': ['D0', 'D1', 'D2', 'D3']})
 print("--------left------")
 print(left)
 print("--------right------")
@@ -1135,7 +1136,6 @@ print(my_cats_2)  # 输出“[foo, bar, baz, foo, foo, bar]”
 ### pandas.DataFrame.head
 
 &emsp;&emsp;`DataFrame.head(n=5)`: Return the first `n` rows. This function returns the first `n` rows for the object based on position. It is useful for quickly testing if your object has the right type of data in it.
-&emsp;&emsp;Examples:
 
 ``` python
 >>> import pandas as pd
