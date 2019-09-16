@@ -953,7 +953,7 @@ True
 ```
 
 &emsp;&emsp;Example illustrating a common use of `qr`: solving of least squares problems.
-&emsp;&emsp;What are the least-squares-best `m` and `y0` in `y = y0 + mx` for the following data: `{(0, 1), (1, 0), (1, 2), (2, 1)}`. (Graph the points and you'll see that it should be `y0 = 0`, `m = 1`.) The answer is provided by solving the over-determined matrix equation `Ax = b`, where:
+&emsp;&emsp;What are the least-squares-best `m` and `y0` in `y = y0 + mx` for the following data: `{(0, 1), (1, 0), (1, 2), (2, 1)}`. (Graph the points and you'll see that it should be `y0 = 0`, `m = 1`.) The answer is provided by solving the `over-determined` matrix equation `Ax = b`, where:
 
 ``` python
 A = array([[0, 1], [1, 1], [1, 1], [2, 1]])
@@ -961,7 +961,7 @@ x = array([[y0], [m]])
 b = array([[1], [0], [2], [1]])
 ```
 
-&emsp;&emsp;If `A = qr` such that `q` is orthonormal (which is always possible via Gram-Schmidt), then `x = inv(r) * (q.T) * b`. (In numpy practice, however, we simply use `lstsq`.)
+&emsp;&emsp;If `A = qr` such that `q` is orthonormal (which is always possible via `Gram-Schmidt`), then `x = inv(r) * (q.T) * b`. (In numpy practice, however, we simply use `lstsq`.)
 
 ``` python
 >>> A = np.array([[0, 1], [1, 1], [1, 1], [2, 1]])
