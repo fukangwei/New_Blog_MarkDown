@@ -56,7 +56,7 @@ if __name__ == "__main__":
     p = multiprocessing.Process(target=worker, args=(5,))
     p.start()
     print(p.is_alive())
-    p.join(timeout=3)  # 只等待3秒，如果进程还没结束，则向下执行print(p.name)
+    p.join(timeout=3)  # 只等待3秒，如果进程还没结束，则向下执行print(p.name)
     print(p.name)
     print(p.pid)
     print("This is end")
@@ -269,21 +269,21 @@ import multiprocessing
 import time
 ​
 def worker(msg):
-    print("start {0}".format(msg))
-    time.sleep(1)
-    print("end {0}".format(msg))
+    print("start {0}".format(msg))
+    time.sleep(1)
+    print("end {0}".format(msg))
 ​
 if __name__ == "__main__":
-    print("main start")
-    pool = multiprocessing.Pool(processes=3)
+    print("main start")
+    pool = multiprocessing.Pool(processes=3)
 ​
-    for i in range(1, 5):
-        msg = "hello {0}".format(i)
-        pool.apply_async(func=worker, args=(msg,))
+    for i in range(1, 5):
+        msg = "hello {0}".format(i)
+        pool.apply_async(func=worker, args=(msg,))
 ​
-    pool.close()
-    pool.join()
-    print("main end")
+    pool.close()
+    pool.join()
+    print("main end")
 ```
 
 调用`join`之前，先调用`close`函数，否则会出错。执行完`close`后，如果没有新的进程加入到`pool`，则`join`函数等待所有子进程结束。执行结果：
@@ -309,21 +309,21 @@ import multiprocessing
 import time
 ​
 def worker(msg):
-    print("start {0}".format(msg))
-    time.sleep(1)
-    print("end {0}".format(msg))
+    print("start {0}".format(msg))
+    time.sleep(1)
+    print("end {0}".format(msg))
 ​
 if __name__ == "__main__":
-    print("main start")
-    pool = multiprocessing.Pool(processes=3)
+    print("main start")
+    pool = multiprocessing.Pool(processes=3)
 ​
-    for i in range(1, 5):
-        msg = "hello {0}".format(i)
-        pool.apply(func=worker, args=(msg,))
+    for i in range(1, 5):
+        msg = "hello {0}".format(i)
+        pool.apply(func=worker, args=(msg,))
 ​
-    pool.close()
-    pool.join()
-    print("main end")
+    pool.close()
+    pool.join()
+    print("main end")
 ```
 
 执行结果：
