@@ -563,7 +563,7 @@ print(float_arr)  # 输出“[1.2    2.3    3.2141]”
 - `format`: `str`. Format string for text file output. Each entry in the array is formatted to text by first converting it to the closest `Python` type, and then using `"format" % item`.
 
 &emsp;&emsp;Notes: This is a convenience function for quick storage of array data. Information on endianness and precision is lost, so this method is not a good choice for files intended to archive data or transport data between machines with different endianness. Some of these problems can be overcome by outputting the data as text files, at the expense of speed and file size.
-&emsp;&emsp;When `fid` is a file object, array contents are directly written to the file, bypassing the file object's write method. As a result, `tofile` cannot be used with files objects supporting compression (e.g., `GzipFile`) or file-like objects that do not support `fileno` (e.g., `BytesIO`).
+&emsp;&emsp;When `fid` is a file object, array contents are directly written to the file, bypassing the file object's write method. As a result, `tofile` cannot be used with files objects supporting compression (e.g., `GzipFile`) or `file-like` objects that do not support `fileno` (e.g., `BytesIO`).
 
 ### numpy.around(round)
 
@@ -591,7 +591,7 @@ array([0, 0,  0, 10])
 ### numpy.mod
 
 &emsp;&emsp;`numpy.mod(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'remainder'>`: Return element-wise remainder of division(返回输入数组中相应元素的除法余数).
-&emsp;&emsp;Computes the remainder complementary to the `floor_divide` function. It is equivalent to the Python modulus operator `x1 % x2` and has the same sign as the divisor `x2`. The `MATLAB` function equivalent to `np.remainder` is `mod`.
+&emsp;&emsp;Computes the remainder complementary to the `floor_divide` function. It is equivalent to the `Python` modulus operator `x1 % x2` and has the same sign as the divisor `x2`. The `MATLAB` function equivalent to `np.remainder` is `mod`.
 &emsp;&emsp;Warning: This should not be confused with:
 `Python 3.7's math.remainder` and `C's remainder`, which computes the `IEEE` remainder, which are the complement to `round(x1 / x2)`.
 &emsp;&emsp;The `MATLAB` `rem` function and or the `C` `%` operator which is the complement to `int(x1 / x2)`.
@@ -675,7 +675,7 @@ array([ True, True, False])
 
 ### numpy.ndarray.shape
 
-&emsp;&emsp;Tuple of array dimensions. The shape property is usually used to get the current shape of an array, but may also be used to reshape the array in-place by assigning a tuple of array dimensions to it. As with `numpy.reshape`, one of the new shape dimensions can be `-1`, in which case its value is inferred from the size of the array and the remaining dimensions. Reshaping an array in-place will fail if a copy is required.
+&emsp;&emsp;Tuple of array dimensions. The shape property is usually used to get the current shape of an array, but may also be used to reshape the array `in-place` by assigning a tuple of array dimensions to it. As with `numpy.reshape`, one of the new shape dimensions can be `-1`, in which case its value is inferred from the size of the array and the remaining dimensions. Reshaping an array `in-place` will fail if a copy is required.
 
 ``` python
 >>> x = np.array([1, 2, 3, 4])
@@ -774,7 +774,7 @@ B = np.array([[5, 6], [7, 8]])
 np.einsum('ij, ij', A, B)  # 结果为“70”
 ```
 
-&emsp;&emsp;To enable and control broadcasting, use an ellipsis(省略号). Default `NumPy-style` broadcasting is done by adding an ellipsis to the left of each term, like `np.einsum('...ii->...i', a)`. To take the trace along the first and last axes, you can do `np.einsum('i...i', a)`, or to do a `matrix-matrix` product with the left-most indices instead of rightmost, you can do `np.einsum('ij...,jk...->ik...', a, b)`.
+&emsp;&emsp;To enable and control broadcasting, use an ellipsis(省略号). Default `NumPy-style` broadcasting is done by adding an ellipsis to the left of each term, like `np.einsum('...ii->...i', a)`. To take the trace along the first and last axes, you can do `np.einsum('i...i', a)`, or to do a `matrix-matrix` product with the `left-most` indices instead of rightmost, you can do `np.einsum('ij...,jk...->ik...', a, b)`.
 &emsp;&emsp;代码`1`如下：
 
 ``` python
@@ -905,7 +905,7 @@ array([[1, 2],
 
 &emsp;&emsp;Returns:
 
-- `append`: `ndarray`. A copy of `arr` with `values` appended to `axis`. Note that append does not occur in-place: a new array is allocated and filled. If `axis` is `None`, out is a flattened array.
+- `append`: `ndarray`. A copy of `arr` with `values` appended to `axis`. Note that append does not occur `in-place`: a new array is allocated and filled. If `axis` is `None`, out is a flattened array.
 
 &emsp;&emsp;Examples:
 
@@ -940,7 +940,6 @@ ValueError: arrays must have same number of dimensions
 - `cumsum_along_axis`: `ndarray`. A new array holding the result is returned unless `out` is specified, in which case a reference to `out` is returned. The result has the same size as `a`, and the same shape as `a` if `axis` is not `None` or `a` is a `1-d` array.
 
 &emsp;&emsp;Notes: Arithmetic is modular when using integer types, and no error is raised on overflow.
-&emsp;&emsp;Examples:
 
 ``` python
 >>> a = np.array([[1, 2, 3], [4, 5, 6]])
@@ -961,11 +960,9 @@ array([[ 1,  3,  6],
 
 ### numpy.random.shuffle
 
-&emsp;&emsp;`numpy.random.shuffle(x)`: Modify a sequence in-place by shuffling its contents. This function only shuffles the array along the first axis of a multi-dimensional array. The order of sub-arrays is changed but their contents remains the same. Parameters:
+&emsp;&emsp;`numpy.random.shuffle(x)`: Modify a sequence `in-place` by shuffling its contents. This function only shuffles the array along the first axis of a `multi-dimensional` array. The order of `sub-arrays` is changed but their contents remains the same. Parameters:
 
 - `x`: `array_like`. The array or list to be shuffled.
-
-&emsp;&emsp;Examples:
 
 ``` python
 >>> arr = np.arange(10)
@@ -974,7 +971,7 @@ array([[ 1,  3,  6],
 [1 7 5 2 9 4 3 6 0 8]
 ```
 
-Multi-dimensional arrays are only shuffled along the first axis:
+`Multi-dimensional` arrays are only shuffled along the first axis:
 
 ``` python
 >>> arr = np.arange(9).reshape((3, 3))
