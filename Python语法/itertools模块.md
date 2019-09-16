@@ -17,10 +17,10 @@ categories: Python语法
 from itertools import count
 ​
 for i in count(18):
-    if i > 20:
-        break
-    else:
-        print(i)
+    if i > 20:
+        break
+    else:
+        print(i)
 ```
 
 执行结果：
@@ -37,7 +37,7 @@ for i in count(18):
 from itertools import islice, count
 ​
 for i in islice(count(10), 5):
-    print(i)
+    print(i)
 ```
 
 执行结果：
@@ -61,10 +61,11 @@ from itertools import cycle
 ​
 count = 0
 for item in cycle('XYZ'):
-    if count > 4:
-        break
-    print(item)
-    count += 1
+    if count > 4:
+        break
+
+    print(item)
+    count += 1
 ```
 
 执行结果：
@@ -119,7 +120,7 @@ repeat(5, 5)
 5
 >>> next(iterator)
 Traceback (most recent call last):
-  Python Shell, prompt 21, line 1
+  Python Shell, prompt 21, line 1
 builtins.StopIteration:
 ```
 
@@ -129,7 +130,7 @@ builtins.StopIteration:
 
 &emsp;&emsp;多数用`itertools`创建的迭代器并不是无限的。为了对于输出的可读的结果，我们将使用`Python`内建列表存储。如果不使用列表，你将只能打印出`itertools`对象。
 
-#### accumulate(可迭代对象[, 函数])
+#### accumulate(可迭代对象 [, 函数])
 
 &emsp;&emsp;`accumulate`迭代器将返回累计求和结果，或者传入两个参数的话，由传入的函数累积计算的结果。默认设定为相加。
 
@@ -187,7 +188,7 @@ print(my_list)
 >>> cmd = ['ls', '/some/dir']
 >>> chain.from_iterable(cmd, numbers)
 Traceback (most recent call last):
-  Python Shell, prompt 66, line 1
+  Python Shell, prompt 66, line 1
 builtins.TypeError: from_iterable() takes exactly one argument (2 given)
 >>> list(chain.from_iterable([cmd, numbers]))
 ['ls', '/some/dir', 0, 1, 2, 3, 4]
@@ -226,7 +227,7 @@ builtins.TypeError: from_iterable() takes exactly one argument (2 given)
 from itertools import dropwhile
 ​
 def greater_than_five(x):
-    return x > 5
+    return x > 5
 ​
 my_list = list(dropwhile(greater_than_five, [6, 7, 8, 9, 1, 2, 3, 10]))
 print(my_list)
@@ -246,7 +247,7 @@ print(my_list)
 from itertools import filterfalse
 ​
 def greater_than_five(x):
-    return x > 5
+    return x > 5
 ​
 my_list = list(filterfalse(greater_than_five, [6, 7, 8, 9, 1, 2, 3, 10]))
 print(my_list)
@@ -269,19 +270,19 @@ print(my_list)
 from itertools import *
 ​
 def height_class(h):
-    if h > 180:
-        return 'tall'
-    elif h < 160:
-        return 'short'
-    else:
-        return 'middle'
+    if h > 180:
+        return 'tall'
+    elif h < 160:
+        return 'short'
+    else:
+        return 'middle'
 ​
 friends = [191, 158, 159, 165, 170, 177, 181, 182, 190]
 friends = sorted(friends, key=height_class)
 
 for m, n in groupby(friends, key=height_class):
-    print(m, list(n))
-    print("---------")
+    print(m, list(n))
+    print("---------")
 ```
 
 执行结果：
@@ -297,7 +298,7 @@ tall [191, 181, 182, 190]
 
 `groupby`的功能类似于`UNIX`中的`uniq`命令。分组之前需要使用`sorted`对原循环器的元素，根据`key`函数进行排序，让同组元素先在位置上靠拢。
 
-#### islice(可迭代变量, 起始值, 终止值[, 步长])
+#### islice(可迭代变量, 起始值, 终止值 [, 步长])
 
 &emsp;&emsp;`islice`是一个返回可迭代对象选定元素的迭代器。简而言之，`islice`所做的是利用可迭代对象的索引实现切片，然后以迭代器的形式返回所选元素。实际上`islice`有两种实现方式，一种是`itertools.islice(iterable, stop)`，还有一种更符合`Python`惯例的形式：`islice(iterable, start, stop[, step])`。来看看第一种形式：
 
@@ -314,7 +315,7 @@ tall [191, 181, 182, 190]
 '4'
 >>> next(iterator)
 Traceback (most recent call last):
-  Python Shell, prompt 15, line 1
+  Python Shell, prompt 15, line 1
 builtins.StopIteration:
 ```
 
@@ -326,7 +327,7 @@ from itertools import islice
 from itertools import count
 ​
 for i in islice(count(), 3, 7):
-    print(i)
+    print(i)
 ```
 
 执行结果：
@@ -348,10 +349,10 @@ for i in islice(count(), 3, 7):
 from itertools import starmap
 ​
 def add(a, b):
-    return a + b
+    return a + b
 ​
 for item in starmap(add, [(2, 3), (4, 5)]):
-    print(item)
+    print(item)
 ```
 
 执行结果：
@@ -377,7 +378,7 @@ for item in starmap(add, [(2, 3), (4, 5)]):
 
 #### tee(可迭代对象, n=2)
 
-&emsp;&emsp;`tee`工具能够从一个可迭代对象创建n个迭代器，这意味着你能够用一个可迭代对象创建多个迭代器。
+&emsp;&emsp;`tee`工具能够从一个可迭代对象创建`n`个迭代器，这意味着你能够用一个可迭代对象创建多个迭代器。
 
 ``` python
 from itertools import tee
@@ -386,7 +387,7 @@ data = 'ABC'
 iter1, iter2 = tee(data)
 ​
 for item in iter1:
-    print(item)
+    print(item)
 
 print("----------")
 
@@ -416,7 +417,7 @@ C
 from itertools import zip_longest
 ​
 for item in zip_longest('ABCD', 'xy', fillvalue='BLANK'):
-    print(item)
+    print(item)
 ```
 
 执行结果：
@@ -451,7 +452,7 @@ for item in zip_longest('ABCD', 'xy', fillvalue='BLANK'):
 from itertools import combinations
 ​
 for item in combinations('WXYZ', 2):
-    print(''.join(item))
+    print(''.join(item))
 ```
 
 执行结果：
@@ -475,7 +476,7 @@ YZ
 from itertools import combinations_with_replacement
 ​
 for item in combinations_with_replacement('WXYZ', 2):
-    print(''.join(item))
+    print(''.join(item))
 ```
 
 #### product(*可迭代对象, 重复=1)
@@ -507,7 +508,7 @@ for item in combinations_with_replacement('WXYZ', 2):
 from itertools import permutations
 ​
 for item in permutations('WXYZ', 2):
-    print(''.join(item))
+    print(''.join(item))
 ```
 
 执行结果：
