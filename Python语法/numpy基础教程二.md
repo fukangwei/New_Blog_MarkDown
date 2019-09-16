@@ -470,11 +470,11 @@ memmap([4, 5, 6])
 
 ### numpy.power
 
-&emsp;&emsp;`numpy.power(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'power'>`: First array elements raised to powers from second array, element-wise. Raise each base in `x1` to the positionally-corresponding power in `x2`. `x1` and `x2` must be broadcastable to the same shape. Note that an integer type raised to a negative integer power will raise a `ValueError`. Parameters:
+&emsp;&emsp;`numpy.power(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'power'>`: First array elements raised to powers from second array, `element-wise`. Raise each base in `x1` to the `positionally-corresponding` power in `x2`. `x1` and `x2` must be broadcastable to the same shape. Note that an integer type raised to a negative integer power will raise a `ValueError`. Parameters:
 
 - `x1`: `array_like`. The bases.
 - `x2`: `array_like`. The exponents.
-- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a `freshly-allocated` array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
 - `where`: `array_like`, optional. Values of `True` indicate to calculate the ufunc at that position, values of `False` indicate to leave the value in the output alone.
 
 &emsp;&emsp;Returns:
@@ -505,7 +505,7 @@ array([[ 0,  1,  8, 27, 16,  5],
 
 ### numpy.fix
 
-&emsp;&emsp;`numpy.fix(x, out=None, **kwargs)`: Round to nearest integer towards `zero`. Round an array of floats element-wise to nearest integer towards `zero`. The rounded values are returned as `floats`. Parameters:
+&emsp;&emsp;`numpy.fix(x, out=None, **kwargs)`: Round to nearest integer towards `zero`. Round an array of floats `element-wise` to nearest integer towards `zero`. The rounded values are returned as `floats`. Parameters:
 
 - `x`: `array_like`. An array of `floats` to be rounded.
 - `y`: `ndarray`, optional. Output array.
@@ -513,8 +513,6 @@ array([[ 0,  1,  8, 27, 16,  5],
 &emsp;&emsp;Returns:
 
 - `out`: `ndarray` of `floats`. The array of rounded numbers.
-
-&emsp;&emsp;Examples:
 
 ``` python
 >>> np.fix(3.14)
@@ -537,7 +535,6 @@ array([ 2.,  2., -2., -2.])
 - `p`: `ndarray`. `a` with its `axes` permuted. A view is returned whenever possible.
 
 &emsp;&emsp;Notes: `Use transpose(a, argsort(axes))` to invert the transposition of tensors when using the `axes` keyword argument. Transposing a `1-D` array returns an unchanged view of the original array.
-&emsp;&emsp;Examples:
 
 ``` python
 >>> x = np.arange(4).reshape((2,2))
@@ -563,7 +560,6 @@ array([[0, 2],
 - `index_array`: `ndarray`. Indices of elements that are `non-zero`. Indices are grouped by element.
 
 &emsp;&emsp;Notes: `np.argwhere(a)` is the same as `np.transpose(np.nonzero(a))`. The output of argwhere is not suitable for indexing arrays. For this purpose use `nonzero(a)` instead.
-&emsp;&emsp;Examples:
 
 ``` python
 >>> x = np.arange(6).reshape(2,3)
@@ -585,7 +581,7 @@ array([[0, 2],
 - `axis`: `None` or `int` or `tuple of ints`, optional. Axis or axes along which a product is performed. The default, `axis=None`, will calculate the product of all the elements in the input array. If `axis` is negative, it counts from the last to the first axis. If `axis` is a `tuple of ints`, a product is performed on all of the axes specified in the tuple instead of a single axis or all the axes as before.
 - `dtype`: `dtype`, optional. The type of the returned array, as well as of the accumulator in which the elements are multiplied. The `dtype` of `a` is used by default unless `a` has an integer `dtype` of less precision than the default platform integer. In that case, if `a` is signed, then the platform integer is used while if `a` is unsigned, then an unsigned integer of the same precision as the platform integer is used.
 - `out`: `ndarray`, optional. Alternative output array in which to place the result. It must have the same shape as the expected output, but the type of the output values will be cast if necessary.
-- `keepdims`: `bool`, optional. If this is set to `True`, the axes which are reduced are left in the result as dimensions with size `one`. With this option, the result will broadcast correctly against the input array. If the default value is passed, then `keepdims` will not be passed through to the prod method of sub-classes of `ndarray`, however any non-default value will be. If the sub-classes sum method does not implement `keepdims` any exceptions will be raised.
+- `keepdims`: `bool`, optional. If this is set to `True`, the axes which are reduced are left in the result as dimensions with size `one`. With this option, the result will broadcast correctly against the input array. If the default value is passed, then `keepdims` will not be passed through to the prod method of `sub-classes` of `ndarray`, however any non-default value will be. If the sub-classes sum method does not implement `keepdims` any exceptions will be raised.
 
 &emsp;&emsp;Returns:
 
@@ -613,7 +609,7 @@ The product of an empty array is the neutral element `1`:
 2.0
 ```
 
-Even when the input array is two-dimensional:
+Even when the input array is `two-dimensional`:
 
 ``` python
 >>> np.prod([[1., 2.],[3., 4.]])
