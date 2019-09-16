@@ -1332,7 +1332,6 @@ array([[3, 1, 7],
 2. If two arguments: the last argument is the value to be set and must be a scalar, the first argument specifies a single array element location. It is either an `int` or a `tuple`.
 
 &emsp;&emsp;Notes: Compared to indexing syntax, `itemset` provides some speed increase for placing a scalar into a particular location in a `ndarray`, if you must do this. However, generally this is discouraged: among other problems, it complicates the appearance of the code. Also, when using `itemset` (and `item`) inside a loop, be sure to assign the methods to a local variable to avoid the attribute look-up at each loop iteration.
-&emsp;&emsp;Examples:
 
 ``` python
 >>> x = np.random.randint(9, size=(3, 3))
@@ -1351,7 +1350,7 @@ array([[3, 1, 7],
 ### numpy.hsplit
 
 &emsp;&emsp;`numpy.hsplit(ary, indices_or_sections)`: Split an array into multiple sub-arrays horizontally (column-wise).
-&emsp;&emsp;Please refer to the split documentation. `hsplit` is equivalent to split with `axis=1`, the array is always split along the second axis regardless of the array dimension. Examples:
+&emsp;&emsp;Please refer to the split documentation. `hsplit` is equivalent to split with `axis=1`, the array is always split along the second axis regardless of the array dimension.
 
 ``` python
 >>> x = np.arange(16.0).reshape(4, 4)
@@ -1362,22 +1361,22 @@ array([[  0.,   1.,   2.,   3.],
        [ 12.,  13.,  14.,  15.]])
 >>> np.hsplit(x, 2)
 [array([[  0.,   1.],
-       [  4.,   5.],
-       [  8.,   9.],
-       [ 12.,  13.]]),
+        [  4.,   5.],
+        [  8.,   9.],
+        [ 12.,  13.]]),
  array([[  2.,   3.],
-       [  6.,   7.],
-       [ 10.,  11.],
-       [ 14.,  15.]])]
+        [  6.,   7.],
+        [ 10.,  11.],
+        [ 14.,  15.]])]
 >>> np.hsplit(x, np.array([3, 6]))
 [array([[  0.,   1.,   2.],
-       [  4.,   5.,   6.],
-       [  8.,   9.,  10.],
-       [ 12.,  13.,  14.]]),
+        [  4.,   5.,   6.],
+        [  8.,   9.,  10.],
+        [ 12.,  13.,  14.]]),
  array([[  3.],
-       [  7.],
-       [ 11.],
-       [ 15.]]),
+        [  7.],
+        [ 11.],
+        [ 15.]]),
  array([], dtype=float64)]
 ```
 
@@ -1392,9 +1391,9 @@ array([[[ 0.,  1.],
         [ 6.,  7.]]])
 >>> np.hsplit(x, 2)
 [array([[[ 0.,  1.]],
-       [[ 4.,  5.]]]),
+        [[ 4.,  5.]]]),
  array([[[ 2.,  3.]],
-       [[ 6.,  7.]]])]
+        [[ 6.,  7.]]])]
 ```
 
 ### numpy.absolute
