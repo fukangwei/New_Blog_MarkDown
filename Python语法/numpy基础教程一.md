@@ -1136,7 +1136,7 @@ True
 &emsp;&emsp;`numpy.sum(a, axis=None, dtype=None, out=None, keepdims=<class numpy._globals._NoValue>)`: Sum of array elements over a given `axis`. Parameters:
 
 - `a`: `array_like`. Elements to sum.
-- `axis`: `None` or int or tuple of ints, optional. Axis or axes along which a sum is performed. The default, `axis=None`, will sum all of the elements of the input array. If `axis` is negative, it counts from the last to the first axis. If `axis` is a tuple of ints, a sum is performed on all of the axes specified in the tuple instead of a single axis or all the axes as before.
+- `axis`: `None` or `int` or `tuple of ints`, optional. Axis or axes along which a sum is performed. The default, `axis=None`, will sum all of the elements of the input array. If `axis` is negative, it counts from the last to the first axis. If `axis` is a tuple of ints, a sum is performed on all of the axes specified in the tuple instead of a single axis or all the axes as before.
 - `dtype`: `dtype`, optional. The type of the returned array and of the accumulator in which the elements are summed. The `dtype` of `a` is used by default unless `a` has an integer `dtype` of less precision than the default platform integer. In that case, if `a` is signed then the platform integer is used while if `a` is unsigned then an unsigned integer of the same precision as the platform integer is used.
 - `out`: `ndarray`, optional. Alternative output array in which to place the result. It must have the same shape as the expected output, but the type of the output values will be cast if necessary.
 - `keepdims`: `bool`, optional. If this is set to `True`, the axes which are reduced are left in the result as dimensions with size one. With this option, the result will broadcast correctly against the input array. If the default value is passed, then `keepdims` will not be passed through to the sum method of `sub-classes` of `ndarray`, however any `non-default` value will be. If the `sub-classes` sum method does not implement `keepdims` any exceptions will be raised.
@@ -1168,7 +1168,7 @@ If the accumulator is too small, overflow occurs:
 
 ### numpy.std
 
-&emsp;&emsp;该方法用于计算矩阵标准差，使用示例如下：
+&emsp;&emsp;该方法用于计算矩阵标准差：
 
 ``` python
 >>> a = np.array([[1, 2], [3, 4]])
@@ -1202,7 +1202,7 @@ array([3,  7, 11])
 ### nditer
 
 &emsp;&emsp;迭代对象`nditer`提供了一种灵活访问一个或者多个数组的方式。
-&emsp;&emsp;1. 单个数组的迭代(Single Array Iteration)
+&emsp;&emsp;1. 单个数组的迭代(`Single Array Iteration`)
 &emsp;&emsp;迭代器最基本的任务的可以完成对数组元素的访问，迭代器接口可以一个接一个地提供的每一个元素：
 
 ``` python
@@ -1248,7 +1248,7 @@ for x in np.nditer(a.T.copy(order='C')):
 ```
 
 从上述例子可以看出，`a`和`a.T`的遍历顺序是一样的，也就是它们在内存中的存储顺序也是一样的，但是`a.T.copy(order = 'C')`的遍历结果是不同的，那是因为它和前两种的存储方式是不一样的，默认是按行访问。
-&emsp;&emsp;2. 控制迭代顺序(Controlling Iteration Order)
+&emsp;&emsp;2. 控制迭代顺序(`Controlling Iteration Order`)
 &emsp;&emsp;有时候，无论元素在内存中的分布如何，重要的是要以特定的顺序来访问数组。所以`nditer`提供了一种顺序参数(`order parameter`)的方法来实现这一要求。默认情况下是`order = 'K'`，就是上述的访问方式。另外有`order = 'C'`和`order = 'F'`，不妨理解为`C`是按行访问，`F`是按列访问。
 
 ``` python
@@ -1273,7 +1273,7 @@ for x in np.nditer(a.T, order='C'):
 0 3 1 4 2 5
 ```
 
-&emsp;&emsp;3. 修改数组值(Modify Array Values)
+&emsp;&emsp;3. 修改数组值(`Modify Array Values`)
 &emsp;&emsp;默认情况下，`nditer`将输入数组视为只读对象。要修改数组元素，必须指定读写(`read-write`)或只写(`write-only`)模式。这是由每个操作数标志控制的。一般而言，`Python`中的赋值只需更改本地或全局变量字典中的引用，而不是修改现有变量。
 
 ``` python
@@ -1304,7 +1304,6 @@ print(a)
 
 &emsp;&emsp;Notes: When the data type of `a` is longdouble or clongdouble, `item()` returns a scalar array object because there is no available `Python` scalar that would not lose information. Void arrays return a buffer object for `item(),` unless fields are defined, in which case a tuple is returned.
 &emsp;&emsp;`item` is very similar to `a[args]`, except, instead of an array scalar, a standard `Python` scalar is returned. This can be useful for speeding up access to elements of the array and doing arithmetic on elements of the array using `Python's` optimized math.
-&emsp;&emsp;Examples:
 
 ``` python
 >>> x = np.random.randint(9, size=(3, 3))
