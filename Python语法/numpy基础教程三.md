@@ -251,7 +251,7 @@ Please note that `sparse=False`, `copy=False` will likely return `non-contiguous
 
 - `X1, X2, ..., XN`: `ndarray`. For vectors `x1, x2, ..., xn` with lengths `Ni = len(xi)`, return `(N1, N2, N3, ..., Nn)` shaped arrays if `indexing = 'ij'`, or `(N2, N1, N3, ..., Nn)` shaped arrays if `indexing='xy'` with the elements of `xi` repeated to fill the matrix along the first dimension for `x1`, the second for `x2` and so on.
 
-&emsp;&emsp;Notes: This function supports both indexing conventions through the indexing keyword argument. Giving the string `ij` returns a meshgrid with matrix indexing, while `xy` returns a meshgrid with Cartesian indexing. In the `2-D` case with inputs of length `M` and `N`, the outputs are of shape `(N, M)` for `xy` indexing and `(M, N)` for `ij` indexing. In the `3-D` case with inputs of length `M`, `N` and `P`, outputs are of shape `(N, M, P)` for `xy` indexing and `(M, N, P)` for `ij` indexing. The difference is illustrated by the following code snippet:
+&emsp;&emsp;Notes: This function supports both indexing conventions through the indexing keyword argument. Giving the string `ij` returns a meshgrid with matrix indexing, while `xy` returns a meshgrid with `Cartesian` indexing. In the `2-D` case with inputs of length `M` and `N`, the outputs are of shape `(N, M)` for `xy` indexing and `(M, N)` for `ij` indexing. In the `3-D` case with inputs of length `M`, `N` and `P`, outputs are of shape `(N, M, P)` for `xy` indexing and `(M, N, P)` for `ij` indexing. The difference is illustrated by the following code snippet:
 
 ``` python
 xv, yv = np.meshgrid(x, y, sparse=False, indexing='ij')
@@ -302,7 +302,7 @@ meshgrid is very useful to evaluate functions on a grid.
 
 ### numpy.convolve(卷积)
 
-&emsp;&emsp;`numpy.convolve(a, v, mode='full')`: Returns the discrete, linear convolution of two one-dimensional sequences.
+&emsp;&emsp;`numpy.convolve(a, v, mode='full')`: Returns the discrete, linear convolution of two `one-dimensional` sequences.
 &emsp;&emsp;The convolution operator is often seen in signal processing, where it models the effect of a linear `time-invariant` system on a signal. In probability theory, the sum of two independent random variables is distributed according to the convolution of their individual distributions.
 &emsp;&emsp;If `v` is longer than `a`, the arrays are swapped before computation. Parameters:
 
@@ -310,7 +310,7 @@ meshgrid is very useful to evaluate functions on a grid.
 - `v`: `(M,) array_like`. Second `one-dimensional` input array.
 - `mode`: `{'full', 'valid', 'same'}`, optional.
 
-1. `full`: By default, mode is `full`. This returns the convolution at each point of overlap, with an output shape of `(N + M - 1,)`. At the end-points of the convolution, the signals do not overlap completely, and boundary effects may be seen.
+1. `full`: By default, mode is `full`. This returns the convolution at each point of overlap, with an output shape of `(N + M - 1,)`. At the `end-points` of the convolution, the signals do not overlap completely, and boundary effects may be seen.
 2. `same`: Mode `same` returns output of length `max(M, N)`. Boundary effects are still visible.
 3. `valid`: Mode `valid` returns output of length `max(M, N) - min(M, N) + 1`. The convolution product is only given for points where the signals overlap completely. Values outside the signal boundary have no effect.
 
