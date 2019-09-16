@@ -1171,7 +1171,7 @@ array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 &emsp;&emsp;Returns:
 
-- `repeated_array`: `ndarray`. Output array which has the same shape as `a`, except along the given axis. Examples:
+- `repeated_array`: `ndarray`. Output array which has the same shape as `a`, except along the given axis.
 
 ``` python
 >>> np.repeat(3, 4)
@@ -1190,8 +1190,8 @@ array([[1, 2],
 
 ### numpy.vsplit
 
-&emsp;&emsp;`numpy.vsplit(ary, indices_or_sections)`: Split an array into multiple sub-arrays vertically (row-wise).
-&emsp;&emsp;Please refer to the split documentation. `vsplit` is equivalent to split with `axis=0` (default), the array is always split along the first axis regardless of the array dimension. Examples:
+&emsp;&emsp;`numpy.vsplit(ary, indices_or_sections)`: Split an array into multiple `sub-arrays` vertically (`row-wise`).
+&emsp;&emsp;Please refer to the split documentation. `vsplit` is equivalent to split with `axis=0` (default), the array is always split along the first axis regardless of the array dimension.
 
 ``` python
 >>> x = np.arange(16.0).reshape(4, 4)
