@@ -7,21 +7,23 @@ categories: Python语法
 
 ``` python
 def foo():
-    sum = 0
-    for i in range(100000):
-        sum += i
-    return sum
+    sum = 0
+
+    for i in range(100000):
+        sum += i
+
+    return sum
 ​
 if __name__ == "__main__":
-    foo()
+    foo()
 ```
 
-把if程序块改为如下：
+把`if`程序块改为如下：
 
 ``` python
 if __name__ == "__main__":
-    import profile
-    profile.run("foo()")
+    import profile
+    profile.run("foo()")
 ```
 
 执行结果：
@@ -31,16 +33,16 @@ if __name__ == "__main__":
 ​
 Ordered by: standard name
 ​
-ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-     1    0.000    0.000    0.016    0.016 :0(exec)
-     1    0.000    0.000    0.000    0.000 :0(setprofile)
-     1    0.000    0.000    0.016    0.016 <string>:1(<module>)
-     1    0.016    0.016    0.016    0.016 const.py:1(foo)
-     1    0.000    0.000    0.016    0.016 profile:0(foo())
-     0    0.000             0.000          profile:0(profiler)
+ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+     1    0.000    0.000    0.016    0.016 :0(exec)
+     1    0.000    0.000    0.000    0.000 :0(setprofile)
+     1    0.000    0.000    0.016    0.016 <string>:1(<module>)
+     1    0.016    0.016    0.016    0.016 const.py:1(foo)
+     1    0.000    0.000    0.016    0.016 profile:0(foo())
+     0    0.000             0.000          profile:0(profiler)
 ```
 
-&emsp;&emsp;`profile`的统计结果分为`ncalls`、`tottime`、`percall`、`cumtime`、`percall`和`filename:lineno(function)`等若干列，如下所示：
+&emsp;&emsp;`profile`的统计结果分为`ncalls`、`tottime`、`percall`、`cumtime`、`percall`和`filename:lineno(function)`等若干列：
 
 列                          | 说明
 ----------------------------|----
