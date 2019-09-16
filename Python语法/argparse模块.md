@@ -31,10 +31,10 @@ $ python my_test.py -h
 usage: my_test.py [-h] integer
 ​
 positional arguments:
-  integer     display an integer
+  integer     display an integer
 ​
 optional arguments:
-  -h, --help  show this help message and exit
+  -h, --help  show this help message and exit
 $ python my_test.py 10
 10
 ```
@@ -72,10 +72,10 @@ parser.add_argument("--cubic", help="display a cubic of a given number", type=in
 args = parser.parse_args()
 ​
 if args.square:
-    print(args.square ** 2)
+    print(args.square ** 2)
 ​
 if args.cubic:
-    print(args.cubic ** 3)
+    print(args.cubic ** 3)
 ```
 
 执行结果：
@@ -85,9 +85,9 @@ $ python my_test.py --h
 usage: my_test.py [-h] [--square SQUARE] [--cubic CUBIC]
 ​
 optional arguments:
-  -h, --help       show this help message and exit
-  --square SQUARE  display a square of a given number
-  --cubic CUBIC    display a cubic of a given number
+  -h, --help       show this help message and exit
+  --square SQUARE  display a square of a given number
+  --cubic CUBIC    display a cubic of a given number
 $ python my_test.py --square 8
 64
 $ python my_test.py --cubic 8
@@ -95,7 +95,7 @@ $ python my_test.py --cubic 8
 $ python my_test.py 8
 usage: my_test.py [-h] [--square SQUARE] [--cubic CUBIC]
 my_test.py: error: unrecognized arguments: 8
-$ python my_test.py  # 没有输出
+$ python my_test.py  # 没有输出
 ```
 
 ### 混合使用
@@ -139,8 +139,8 @@ ArgumentParser.add_argument(
 - `name or flags`：这是必须的参数，它接受选项参数或者是位置参数：
 
 ``` python
-parser.add_argument('-f', '--foo')  # 选项参数
-parser.add_argument('bar')  # 位置参数
+parser.add_argument('-f', '--foo')  # 选项参数
+parser.add_argument('bar')  # 位置参数
 ```
 
 - `nargs`：当选项后接受多个或者`0`个参数时需要使用这个来指定，比如`-u`选项接受`2`个参数：
@@ -243,8 +243,8 @@ usage: [-h] -u U : error: argument -u is required
 usage: [-h] -u U
 ​
 optional arguments:
-  -h, --help  show this help message and exit
-  -u U        for test sth(default: wowo)
+  -h, --help  show this help message and exit
+  -u U        for test sth(default: wowo)
 ```
 
 - `dest`：这个参数相当于把位置或者选项关联到一个特定的名字：
@@ -266,15 +266,15 @@ Namespace(myname=['a', 'b', 'c'])
 usage: [-h] [--str [AAA [AAA ...]]]
 ​
 optional arguments:
-  -h, --help            show this help message and exit
-  --str [AAA [AAA ...]]
+  -h, --help           show this help message and exit
+  --str [AAA [AAA ...]]
 >>> parser.add_argument('str', nargs='*', metavar='AAA')
 >>> parser.print_help()
 usage: [-h] [AAA [AAA ...]]
 ​
 positional arguments:
-  AAA
+  AAA
 ​
 optional arguments:
-  -h, --help  show this help message and exit
+  -h, --help  show this help message and exit
 ```
