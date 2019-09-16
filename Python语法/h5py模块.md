@@ -115,7 +115,7 @@ for key in g1.keys():
 >>> f = h5py.File('mytestfile.hdf5', 'r')
 ```
 
-The `File` object is your starting point. What is stored in this file? Remember `h5py.File` acts like a Python dictionary, thus we can check the keys:
+The `File` object is your starting point. What is stored in this file? Remember `h5py.File` acts like a `Python` dictionary, thus we can check the keys:
 
 ``` python
 >>> f.keys()
