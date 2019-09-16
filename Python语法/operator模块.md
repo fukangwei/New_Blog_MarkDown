@@ -5,9 +5,9 @@ categories: Python语法
 ---
 &emsp;&emsp;本模块主要包括一些`Python`内部操作符对应的函数。这些函数主要分为几类：`对象比较`、`逻辑比较`、`算术运算`和`序列操作`：
 
-操作 | 语法 | 函数
------|------|----
-相加         | `a + b`                | `add(a, b)`
+操作        | 语法                     | 函数
+------------|-------------------------|----
+相加        | `a + b`                 | `add(a, b)`
 字符串拼接   | `seq1 + seq2`           | `concat(seq1, seq2)`
 包含测试     | `obj in seq`            | `contains(seq, obj)`
 普通除法     | `a / b`                 | `truediv(a, b)`
@@ -48,10 +48,10 @@ categories: Python语法
 import operator
 ​
 a = operator.add(1, 3)
-print(a)  # 结果为4
+print(a)  # 结果为4
 ```
 
-&emsp;&emsp;对于`operator`模块中的`itemgetter`函数，`help`信息如下所示：
+&emsp;&emsp;对于`operator`模块中的`itemgetter`函数，`help`信息如下：
 
 ``` bash
 >>> import operator
@@ -59,38 +59,38 @@ print(a)  # 结果为4
 Help on class itemgetter in module operator:
 ​
 class itemgetter(builtins.object)
- |  itemgetter(item, ...) --> itemgetter object
+ |  itemgetter(item, ...) --> itemgetter object
  |
- |  Return a callable object that fetches the given item(s) from its operand.
- |  After f = itemgetter(2), the call f(r) returns r[2].
- |  After g = itemgetter(2, 5, 3), the call g(r) returns (r[2], r[5], r[3])
+ |  Return a callable object that fetches the given item(s) from its operand.
+ |  After f = itemgetter(2), the call f(r) returns r[2].
+ |  After g = itemgetter(2, 5, 3), the call g(r) returns (r[2], r[5], r[3])
  |
- |  Methods defined here:
+ |  Methods defined here:
  |
- |  __call__(self, /, *args, **kwargs)
- |      Call self as a function.
+ |  __call__(self, /, *args, **kwargs)
+ |      Call self as a function.
  |
- |  __getattribute__(self, name, /)
- |      Return getattr(self, name).
+ |  __getattribute__(self, name, /)
+ |      Return getattr(self, name).
  |
- |  __new__(*args, **kwargs) from builtins.type
- |      Create and return a new object.  See help(type) for accurate signature.
+ |  __new__(*args, **kwargs) from builtins.type
+ |      Create and return a new object.  See help(type) for accurate signature.
  |
- |  __reduce__(...)
- |      Return state information for pickling
+ |  __reduce__(...)
+ |      Return state information for pickling
  |
- |  __repr__(self, /)
- |      Return repr(self).
+ |  __repr__(self, /)
+ |      Return repr(self).
 ```
 
-示例如下所示：
+示例如下：
 
 ``` python
 a = [1,2,3]
->>> b = operator.itemgetter(1)  # 定义函数b，获取对象的第1个域的值
+>>> b = operator.itemgetter(1)  # 定义函数b，获取对象的第1个域的值
 >>> b(a)
 2
->>> b = operator.itemgetter(1,0)  # 定义函数b，获取对象的第1个域和第0个域的值
+>>> b = operator.itemgetter(1, 0)  # 定义函数b，获取对象的第1个域和第0个域的值
 >>> b(a)
 (2, 1)
 ```
