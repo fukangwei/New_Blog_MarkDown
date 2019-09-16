@@ -20,12 +20,12 @@ categories: Python语法
 &emsp;&emsp;Note that the file is always opened in `binary` mode. To open a compressed file in `text` mode, use `open()` (or wrap your `GzipFile` with an `io.TextIOWrapper`).
 &emsp;&emsp;The `compresslevel` argument is an integer from `0` to `9` controlling the level of compression; `1` is fastest and produces the least compression, and `9` is slowest and produces the most compression. `0` is no compression.
 &emsp;&emsp;The `mtime` argument is an optional numeric timestamp to be written to the last modification time field in the stream when compressing. It should only be provided in compression mode. If omitted or `None`, the current time is used.
-&emsp;&emsp;Calling a `GzipFile` object's `close()` method does not close fileobj, since you might wish to append more material after the compressed data. This also allows you to pass an `io.BytesIO` object opened for writing as fileobj, and retrieve the resulting memory buffer using the `io.BytesIO` object’s `getvalue()` method.
+&emsp;&emsp;Calling a `GzipFile` object's `close()` method does not close `fileobj`, since you might wish to append more material after the compressed data. This also allows you to pass an `io.BytesIO` object opened for writing as `fileobj`, and retrieve the resulting memory buffer using the `io.BytesIO` object’s `getvalue()` method.
 &emsp;&emsp;`GzipFile` supports the `io.BufferedIOBase` interface, including iteration and the with statement. Only the `truncate()` method isn’t implemented.
 &emsp;&emsp;`GzipFile` also provides the following method and attribute:
 &emsp;&emsp;`peek(n)`: Read `n` uncompressed bytes without advancing the file position. At most one single read on the compressed stream is done to satisfy the call. The number of bytes returned may be more or less than requested.
-&emsp;&emsp;Note While calling `peek()` does not change the file position of the `GzipFile`, it may change the position of the underlying file object (e.g. if the `GzipFile` was constructed with the fileobj parameter).
-&emsp;&emsp;`mtime`: When decompressing, the value of the last modification time field in the most recently read header may be read from this attribute, as an integer. The initial value before reading any headers is None.
+&emsp;&emsp;Note While calling `peek()` does not change the file position of the `GzipFile`, it may change the position of the underlying file object (e.g. if the `GzipFile` was constructed with the `fileobj` parameter).
+&emsp;&emsp;`mtime`: When decompressing, the value of the last modification time field in the most recently read header may be read from this attribute, as an integer. The initial value before reading any headers is `None`.
 &emsp;&emsp;All `gzip` compressed streams are required to contain this timestamp field. Some programs, such as `gunzip`, make use of the timestamp. The format is the same as the return value of `time.time()` and the `st_mtime` attribute of the object returned by `os.stat()`.
 &emsp;&emsp;`gzip.compress(data, compresslevel=9)`: Compress the `data`, returning a bytes object containing the compressed data. `compresslevel` has the same meaning as in the `GzipFile` constructor above.
 &emsp;&emsp;`gzip.decompress(data)`: Decompress the `data`, returning a bytes object containing the uncompressed data.
@@ -38,7 +38,7 @@ categories: Python语法
 import gzip
 ​
 with gzip.open('/home/joe/file.txt.gz', 'rb') as f:
-    file_content = f.read()
+    file_content = f.read()
 ```
 
 &emsp;&emsp;Example of how to create a compressed `GZIP` file:
@@ -48,7 +48,7 @@ import gzip
 ​
 content = b"Lots of content here"
 with gzip.open('/home/joe/file.txt.gz', 'wb') as f:
-    f.write(content)
+    f.write(content)
 ```
 
 &emsp;&emsp;Example of how to `GZIP` compress an existing file:
@@ -58,8 +58,8 @@ import gzip
 import shutil
 ​
 with open('/home/joe/file.txt', 'rb') as f_in:
-    with gzip.open('/home/joe/file.txt.gz', 'wb') as f_out:
-        shutil.copyfileobj(f_in, f_out)
+    with gzip.open('/home/joe/file.txt.gz', 'wb') as f_out:
+        shutil.copyfileobj(f_in, f_out)
 ```
 
 &emsp;&emsp;Example of how to `GZIP` compress a binary string:
