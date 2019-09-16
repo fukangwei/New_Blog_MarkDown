@@ -11,7 +11,7 @@ categories: Python语法
 
 ``` python
 >>> from datetime import datetime
->>> now = datetime.now()  # 获取当前datetime
+>>> now = datetime.now()  # 获取当前datetime
 >>> print(now)
 2018-04-20 17:28:22.173096
 >>> print(type(now))
@@ -24,7 +24,7 @@ categories: Python语法
 
 ``` python
 >>> from datetime import datetime
->>> dt = datetime(2015, 4, 19, 12, 20)  # 用指定日期时间创建datetime
+>>> dt = datetime(2015, 4, 19, 12, 20)  # 用指定日期时间创建datetime
 >>> print(dt)
 2015-04-19 12:20:00
 ```
@@ -36,8 +36,8 @@ categories: Python语法
 
 ``` python
 >>> from datetime import datetime
->>> dt = datetime(2015, 4, 19, 12, 20)  # 用指定日期时间创建datetime
->>> dt.timestamp()  # 把datetime转换为timestamp
+>>> dt = datetime(2015, 4, 19, 12, 20)  # 用指定日期时间创建datetime
+>>> dt.timestamp()  # 把datetime转换为timestamp
 1429417200.0
 ```
 
@@ -61,9 +61,9 @@ categories: Python语法
 ``` python
 >>> from datetime import datetime
 >>> t = 1429417200.0
->>> print(datetime.fromtimestamp(t))  # 本地时间
+>>> print(datetime.fromtimestamp(t))  # 本地时间
 2015-04-19 12:20:00
->>> print(datetime.utcfromtimestamp(t))  # UTC时间
+>>> print(datetime.utcfromtimestamp(t))  # UTC时间
 2015-04-19 04:20:00
 ```
 
@@ -117,11 +117,11 @@ datetime.datetime(2015, 5, 21, 4, 57, 3, 540997)
 
 ``` python
 >>> from datetime import datetime, timedelta, timezone
->>> tz_utc_8 = timezone(timedelta(hours=8))  # 创建时区UTC+8:00
+>>> tz_utc_8 = timezone(timedelta(hours=8))  # 创建时区UTC+8:00
 >>> now = datetime.now()
 >>> now
 datetime.datetime(2015, 5, 18, 17, 2, 10, 871012)
->>> dt = now.replace(tzinfo=tz_utc_8)  # 强制设置为UTC+8:00
+>>> dt = now.replace(tzinfo=tz_utc_8)  # 强制设置为UTC+8:00
 >>> dt
 datetime.datetime(2015, 5, 18, 17, 2, 10, 871012, tzinfo=datetime.timezone(datetime.timedelta(0, 28800)))
 ```
