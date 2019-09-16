@@ -1232,7 +1232,7 @@ matrix([[1, 2],
 
 ### numpy.matrix.getA
 
-&emsp;&emsp;`matrix.getA()`: Return self as an ndarray object. Equivalent to `np.asarray(self)`. Examples:
+&emsp;&emsp;`matrix.getA()`: Return self as an ndarray object. Equivalent to `np.asarray(self)`.
 
 ``` python
 >>> x = np.matrix(np.arange(12).reshape((3, 4))); x
