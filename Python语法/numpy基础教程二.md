@@ -37,15 +37,15 @@ array([[0, 1],
 
 ### numpy.delete
 
-&emsp;&emsp;`numpy.delete(arr, obj, axis=None)`: Return a new array with sub-arrays along an `axis` deleted. For a one dimensional array, this returns those entries not returned by `arr[obj]`. Parameters:
+&emsp;&emsp;`numpy.delete(arr, obj, axis=None)`: Return a new array with `sub-arrays` along an `axis` deleted. For a one dimensional array, this returns those entries not returned by `arr[obj]`. Parameters:
 
 - `arr`: `array_like`. Input array.
-- `obj`: `slice`, `int` or `array of ints`. Indicate which sub-arrays to remove.
+- `obj`: `slice`, `int` or `array of ints`. Indicate which `sub-arrays` to remove.
 - `axis`: `int`, optional. The `axis` along which to delete the subarray defined by `obj`. If `axis` is `None`, `obj` is applied to the flattened array.
 
 &emsp;&emsp;Returns:
 
-- `out`: `ndarray`. A copy of `arr` with the elements specified by `obj` removed. Note that delete does not occur in-place. If `axis` is `None`, `out` is a flattened array.
+- `out`: `ndarray`. A copy of `arr` with the elements specified by `obj` removed. Note that delete does not occur `in-place`. If `axis` is `None`, `out` is a flattened array.
 
 &emsp;&emsp;Notes: Often it is preferable to use a `boolean` mask. For example:
 
@@ -56,7 +56,6 @@ array([[0, 1],
 ```
 
 Is equivalent to `np.delete(arr, [0,2,4], axis=0)`, but allows further use of mask.
-&emsp;&emsp;Examples:
 
 ``` python
 >>> arr = np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])
@@ -77,12 +76,12 @@ array([ 1,  3,  5,  7,  8,  9, 10, 11, 12])
 
 ### numpy.squeeze
 
-&emsp;&emsp;`numpy.squeeze(a, axis=None)`: Remove single-dimensional entries from the shape of an array. Parameters:
+&emsp;&emsp;`numpy.squeeze(a, axis=None)`: Remove `single-dimensional` entries from the shape of an array. Parameters:
 
 - `a`: `array_like`. Input data.
 - `axis`: `None` or `int` or `tuple of ints`, optional.
 
-Selects a subset of the single-dimensional entries in the shape. If an `axis` is selected with shape entry greater than one, an error is raised.
+Selects a subset of the `single-dimensional` entries in the shape. If an `axis` is selected with shape entry greater than one, an error is raised.
 &emsp;&emsp;Returns:
 
 - `squeezed`: `ndarray`. The input array, but with all or a subset of the dimensions of length `1` removed. This is always `a` itself or a view into `a`.
@@ -90,8 +89,6 @@ Selects a subset of the single-dimensional entries in the shape. If an `axis` is
 &emsp;&emsp;Raises:
 
 - `ValueError`. If `axis` is not `None`, and an axis being squeezed is not of length `1`.
-
-&emsp;&emsp;Examples:
 
 ``` python
 >>> x = np.array([[[0], [1], [2]]])
@@ -112,18 +109,17 @@ ValueError: cannot select an axis to squeeze out which has size not equal to one
 ### numpy.maximum(与numpy.minimum相反)
 
 &emsp;&emsp;`numpy.maximum(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'maximum'>`: Element-wise `maximum` of array elements.
-&emsp;&emsp;Compare two arrays and returns a new array containing the element-wise maxima. If one of the elements being compared is a `NaN`, then that element is returned. If both elements are `NaNs`, then the first is returned. The latter distinction is important for complex `NaNs`, which are defined as at least one of the real or imaginary parts being a `NaN`. The net effect is that `NaNs` are propagated. Parameters:
+&emsp;&emsp;Compare two arrays and returns a new array containing the `element-wise` maxima. If one of the elements being compared is a `NaN`, then that element is returned. If both elements are `NaNs`, then the first is returned. The latter distinction is important for complex `NaNs`, which are defined as at least one of the real or imaginary parts being a `NaN`. The net effect is that `NaNs` are propagated. Parameters:
 
 - `x1, x2`: `array_like`. The arrays holding the elements to be compared. They must have the same shape, or shapes that can be broadcast to a single shape.
-- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a `freshly-allocated` array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
 - `where`: `array_like`, optional. Values of `True` indicate to calculate the ufunc at that position, values of `False` indicate to leave the value in the output alone.
 
 &emsp;&emsp;Returns:
 
-- `y`: `ndarray` or `scalar`. The maximum of `x1` and `x2`, element-wise. Returns scalar if both `x1` and `x2` are scalars.
+- `y`: `ndarray` or `scalar`. The maximum of `x1` and `x2`, `element-wise`. Returns scalar if both `x1` and `x2` are scalars.
 
 &emsp;&emsp;Notes: The `maximum` is equivalent to `np.where(x1 >= x2, x1, x2)` when neither `x1` nor `x2` are `nans`, but it is faster and does proper broadcasting.
-&emsp;&emsp;Examples:
 
 ``` python
 >>> np.maximum([2, 3, 4], [1, 5, 2])
@@ -142,7 +138,7 @@ inf
 &emsp;&emsp;`numpy.logical_not(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'logical_not'>`. Compute the truth value of `NOT x` element-wise. Parameters:
 
 - `x`: `array_like`. Logical `NOT` is applied to the elements of `x`.
-- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a `freshly-allocated` array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
 - `where`: `array_like`, optional. Values of `True` indicate to calculate the ufunc at that position, values of `False` indicate to leave the value in the output alone.
 
 &emsp;&emsp;Returns:
