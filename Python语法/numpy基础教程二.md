@@ -815,7 +815,7 @@ Notes: There are two modes of creating an array using `__new__`:
 2. If `buffer` is an object exposing the buffer interface, then all keywords are interpreted.
 
 No `__init__` method is needed because the array is fully initialized after the `__new__` method.
-&emsp;&emsp;Examples: These examples illustrate the low-level ndarray constructor. First mode, buffer is `None`:
+&emsp;&emsp;Examples: These examples illustrate the `low-level` ndarray constructor. First mode, buffer is `None`:
 
 ``` python
 >>> np.ndarray(shape=(2,2), dtype=float, order='F')
@@ -833,7 +833,7 @@ array([2, 3])
 
 ### numpy.isnan
 
-&emsp;&emsp;`numpy.isnan(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'isnan'>`: Test element-wise for `NaN` and return result as a `boolean` array. Parameters:
+&emsp;&emsp;`numpy.isnan(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'isnan'>`: Test `element-wise` for `NaN` and return result as a `boolean` array. Parameters:
 
 - `x`: `array_like`. Input array.
 - `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
