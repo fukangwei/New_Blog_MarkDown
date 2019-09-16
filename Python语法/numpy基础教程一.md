@@ -1,7 +1,7 @@
 ---
 title: numpy基础教程一
 date: 2019-08-11 22:53:30
-tags:
+categories: Python语法
 ---
 &emsp;&emsp;建立一个一维数组，数据类型是`int`。也可以不指定数据类型，使用默认参数：
 
@@ -161,7 +161,7 @@ np.fft.fft(x)
 `chisquare(df [, size])`                        | 卡方分布样本
 `dirichlet(alpha [, size])`                     | 狄利克雷分布样本
 `exponential([scale, size])`                    | 指数分布
-`f(dfnum, dfden [, size])`                      | F分布样本
+`f(dfnum, dfden [, size])`                      | `F`分布样本
 `gamma(shape [, scale, size])`                  | 伽马分布
 `geometric(p [, size])`                         | 几何分布
 `gumbel([loc, scale, size])`                    | 耿贝尔分布
@@ -251,7 +251,7 @@ matrix([[ 2.],
 
 ### allclose函数
 
-&emsp;&emsp;`allclose`函数用于判断两个`array`在误差范围内是否相等，函数原型如下：
+&emsp;&emsp;`allclose`函数用于判断两个`array`在误差范围内是否相等：
 
 ``` python
 allclose(a, b, rtol=1e-05, atol=1e-08)
@@ -412,7 +412,7 @@ print(np.linalg.svd(A))
 
 ### Moore-Penrose伪逆
 
-&emsp;&emsp;计算方阵的`Moore-Penrose`伪逆使用函数`pinv`，其原型如下：
+&emsp;&emsp;计算方阵的`Moore-Penrose`伪逆使用函数`pinv`：
 
 ``` python
 B = pinv(A)
