@@ -36,8 +36,8 @@ CRITICAL:root:critical message
 日志格式如下：
 
 ``` python
-WARINING : root           : warn message
-日志级别 : logger实例名称 : 日志消息内容
+WARINING : root           : warn message
+日志级别  : logger实例名称 : 日志消息内容
 ```
 
 &emsp;&emsp;通过`logging.basicConfig`函数对日志的输出格式及方式做相关配置：
@@ -165,8 +165,8 @@ logging.warning('This is warning message')
 执行结果是在屏幕上打印：
 
 ``` python
-root        : INFO     This is info message
-root        : WARNING  This is warning message
+root        : INFO     This is info message
+root        : WARNING  This is warning message
 ```
 
 在执行目录下生成`myapp.log`文件，其内容为：
@@ -205,8 +205,8 @@ logging.getLogger('').addHandler(Rthandler)
 
 以下是日志回滚方式，经常使用`RotatingFileHandler`和`TimedRotatingFileHandler`：
 
-- logging.handlers.BaseRotatingHandler
-- logging.handlers.RotatingFileHandler
-- logging.handlers.TimedRotatingFileHandler
+- `logging.handlers.BaseRotatingHandler`
+- `logging.handlers.RotatingFileHandler`
+- `logging.handlers.TimedRotatingFileHandler`
 
 由于`StreamHandler`和`FileHandler`是常用的日志处理方式，所以直接包含在`logging`模块中，而其他方式则包含在`logging.handlers`模块中。

@@ -65,7 +65,7 @@ print(txn.get(str(2).encode()))
 print("------")
 
 for key, value in txn.cursor():
-    print(key, value)
+    print(key, value)
 ​
 env.close()
 ```
