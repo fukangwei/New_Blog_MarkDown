@@ -391,14 +391,12 @@ array([ 1.,  1.,  1.])
 &emsp;&emsp;`numpy.ceil(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'ceil'>`: Return the ceiling of the input, `element-wise`. The ceil of the scalar `x` is the smallest integer `i`, such that `i >= x`. Parameters:
 
 - `x`: `array_like`. Input data.
-- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a `freshly-allocated` array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
 - `where`: `array_like`, optional. Values of `True` indicate to calculate the ufunc at that position, values of `False` indicate to leave the value in the output alone.
 
 &emsp;&emsp;Returns:
 
 - `y`: `ndarray` or `scalar`. The ceiling of each element in `x`, with `float` dtype.
-
-&emsp;&emsp;Examples:
 
 ``` python
 >>> a = np.array([-1.7, -1.5, -0.2, 0.2, 1.5, 1.7, 2.0])
@@ -411,7 +409,7 @@ array([-1., -1., -0.,  1.,  2.,  2.,  2.])
 &emsp;&emsp;`numpy.load(file, mmap_mode=None, allow_pickle=True, fix_imports=True, encoding='ASCII')`: Load arrays or pickled objects from `.npy`, `.npz` or pickled files. Parameters:
 
 - `file`: `file-like object`, `string`, or `pathlib.Path`. The `file` to read. `File-like objects` must support the `seek()` and `read()` methods. Pickled files require that the `file-like` object support the `readline()` method as well.
-- `mmap_mode`: `{None, 'r+', 'r', 'w+', 'c'}`, optional. If not `None`, then memory-map the file, using the given mode (see `numpy.memmap` for a detailed description of the modes). A memory-mapped array is kept on disk. However, it can be accessed and sliced like any ndarray. Memory mapping is especially useful for accessing small fragments of large files without reading the entire file into memory.
+- `mmap_mode`: `{None, 'r+', 'r', 'w+', 'c'}`, optional. If not `None`, then `memory-map` the file, using the given mode (see `numpy.memmap` for a detailed description of the modes). A `memory-mapped` array is kept on disk. However, it can be accessed and sliced like any ndarray. Memory mapping is especially useful for accessing small fragments of large files without reading the entire file into memory.
 - `allow_pickle`: `bool`, optional. Allow loading pickled object arrays stored in `npy` files. Reasons for disallowing pickles include security, as loading pickled data can execute arbitrary code. If pickles are disallowed, loading object arrays will fail.
 - `fix_imports`: `bool`, optional. Only useful when loading `Python 2` generated pickled files on `Python 3`, which includes `npy/npz` files containing object arrays. If `fix_imports` is `True`, pickle will try to map the old `Python 2` names to the new names used in `Python 3`.
 - `encoding`: `str`, optional. What `encoding` to use when reading `Python 2` strings. Only useful when loading `Python 2` generated pickled files in `Python 3`, which includes `npy/npz` files containing object arrays. Values other than `latin1`, `ASCII` and `bytes` are not allowed, as they can corrupt numerical data.
@@ -429,7 +427,7 @@ array([-1., -1., -0.,  1.,  2.,  2.,  2.])
 
 1. If the file contains pickle data, then whatever object is stored in the pickle is returned.
 2. If the file is a `.npy` file, then a single array is returned.
-3. If the file is a `.npz` file, then a dictionary-like object is returned, containing `{filename: array}` `key-value` pairs, one for each file in the archive.
+3. If the file is a `.npz` file, then a `dictionary-like` object is returned, containing `{filename: array}` `key-value` pairs, one for each file in the archive.
 4. If the file is a `.npz` file, the returned value supports the context manager protocol in a similar fashion to the open function:
 
 ``` python
