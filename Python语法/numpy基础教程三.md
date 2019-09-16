@@ -874,8 +874,6 @@ array([[10, 28, 46, 64],
 
 - `stacked`: `ndarray`. The stacked array has one more dimension than the input `arrays`.
 
-&emsp;&emsp;Examples:
-
 ``` python
 >>> arrays = [np.random.randn(3, 4) for _ in range(10)]
 >>> np.stack(arrays, axis=0).shape
@@ -906,8 +904,6 @@ array([[1, 2],
 &emsp;&emsp;Returns:
 
 - `append`: `ndarray`. A copy of `arr` with `values` appended to `axis`. Note that append does not occur `in-place`: a new array is allocated and filled. If `axis` is `None`, out is a flattened array.
-
-&emsp;&emsp;Examples:
 
 ``` python
 >>> np.append([1, 2, 3], [[4, 5, 6], [7, 8, 9]])
@@ -995,8 +991,6 @@ array([[3, 4, 5],
 
 - `stacked`: `ndarray`. The array formed by stacking the given arrays.
 
-&emsp;&emsp;Examples:
-
 ``` python
 >>> a = np.array((1, 2, 3))
 >>> b = np.array((2, 3, 4))
@@ -1066,7 +1060,7 @@ array([ 0.3,  0.7,  1.1])
 
 &emsp;&emsp;Returns:
 
-- `count`: `int` or `array of int`. Number of `non-zero` values in the array along a given `axis`. Otherwise, the total number of `non-zero` values in the array is returned. Examples:
+- `count`: `int` or `array of int`. Number of `non-zero` values in the array along a given `axis`. Otherwise, the total number of `non-zero` values in the array is returned.
 
 ``` python
 >>> np.count_nonzero(np.eye(4))
@@ -1098,7 +1092,7 @@ array([2, 3])
 
 - `out`: `ndarray`. Data read from the text file.
 
-&emsp;&emsp;Notes: This function aims to be a fast reader for simply formatted files. The `genfromtxt` function provides more sophisticated handling of, e.g., lines with missing values. The strings produced by the Python `float.hex` method can be used as input for floats. Examples:
+&emsp;&emsp;Notes: This function aims to be a fast reader for simply formatted files. The `genfromtxt` function provides more sophisticated handling of, e.g., lines with missing values. The strings produced by the Python `float.hex` method can be used as input for floats.
 
 ``` python
 >>> from io import StringIO  # StringIO behaves like a file object
