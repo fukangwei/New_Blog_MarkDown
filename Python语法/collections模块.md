@@ -39,11 +39,11 @@ n.y = 22
 from collections import deque
 ​
 q = deque(['a', 'b', 'c'])
-q.append('x')  # 默认添加到列表最后一项
-q.appendleft('y')  # 添加到列表第一项
+q.append('x')  # 默认添加到列表最后一项
+q.appendleft('y')  # 添加到列表第一项
 print(q)
-print(q.pop())  # 默认删除列表最后一个元素
-print(q.popleft())  # 删除列表的第一个元素
+print(q.pop())  # 默认删除列表最后一个元素
+print(q.popleft())  # 删除列表的第一个元素
 print(q)
 ```
 
@@ -65,8 +65,8 @@ from collections import defaultdict
 ​
 Mydict = defaultdict(lambda: 'N/A')
 Mydict['key1'] = 'abc'
-print(Mydict['key1'])  # 字典的key1存在
-print(Mydict['key2'])  # 字典的key2不存在，返回默认值为“N/A”
+print(Mydict['key1'])  # 字典的key1存在
+print(Mydict['key2'])  # 字典的key2不存在，返回默认值为“N/A”
 ```
 
 执行结果：
@@ -86,9 +86,9 @@ N/A
 from collections import OrderedDict
 ​
 d = dict([('a', 1), ('c', 3), ('b', 2)])
-print(d)  # dict的Key是无序的
+print(d)  # dict的Key是无序的
 od = OrderedDict([('a', 1), ('b', 2), ('c', 3)])
-print(od)  # OrderedDict的Key是有序的
+print(od)  # OrderedDict的Key是有序的
 ```
 
 执行结果：
@@ -104,21 +104,24 @@ OrderedDict([('a', 1), ('b', 2), ('c', 3)])
 from collections import OrderedDict
 ​
 class LastUpdatedOrderedDict(OrderedDict):
-    def __init__(self, capacity):
-        super(LastUpdatedOrderedDict, self).__init__()
-        self._capacity = capacity
+    def __init__(self, capacity):
+        super(LastUpdatedOrderedDict, self).__init__()
+        self._capacity = capacity
 ​
-    def __setitem__(self, key, value):
-        containsKey = 1 if key in self else 0
-        if len(self) - containsKey >= self._capacity:
-            last = self.popitem(last=False)
-            print('remove:', last)
-        if containsKey:
-            del self[key]
-            print('set:', (key, value))
-        else:
-            print('add:', (key, value))
-        OrderedDict.__setitem__(self, key, value)
+    def __setitem__(self, key, value):
+        containsKey = 1 if key in self else 0
+
+        if len(self) - containsKey >= self._capacity:
+            last = self.popitem(last=False)
+            print('remove:', last)
+
+        if containsKey:
+            del self[key]
+            print('set:', (key, value))
+        else:
+            print('add:', (key, value))
+
+        OrderedDict.__setitem__(self, key, value)
 ```
 
 ### Counter
