@@ -81,15 +81,15 @@ OK
 
 ``` python
 def func():
-    fs = []
+    fs = []
 
-    for i in range(4):
-        def lam(x):
-            return x * i
+    for i in range(4):
+        def lam(x):
+            return x * i
 ​
-        fs.append(lam)
+        fs.append(lam)
 
-    return fs
+    return fs
 ```
 
 当调用`func`时，每循环一次，将`lam`函数的地址存到`fs`中。因为在每次循环中`lam`函数都未绑定`i`的值，所以直到循环结束，`i`的值为`3`，并将`lam`中所用到的`i`值定为`3`。因此真正调用(例如`f[0](3)`)时，`i`值保持不变(为`3`)。
