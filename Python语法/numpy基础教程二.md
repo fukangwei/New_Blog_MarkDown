@@ -997,11 +997,11 @@ if __name__ == '__main__':
 
 ### numpy.sign
 
-&emsp;&emsp;`numpy.sign(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'sign'>`: Returns an element-wise indication of the sign of a number.
+&emsp;&emsp;`numpy.sign(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'sign'>`: Returns an `element-wise` indication of the sign of a number.
 &emsp;&emsp;The sign function returns `-1` if `x < 0`, `0` if `x == 0`, `1` if `x > 0`. `nan` is returned for `nan` inputs. For `complex` inputs, the sign function returns `sign(x.real) + 0j` if `x.real != 0` else `sign(x.imag) + 0j`. `complex(nan, 0)` is returned for `complex nan` inputs. Parameters:
 
 - `x`: `array_like`. Input values.
-- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a `freshly-allocated` array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
 - `where`: `array_like`, optional. Values of `True` indicate to calculate the ufunc at that position, values of `False` indicate to leave the value in the output alone.
 
 &emsp;&emsp;Returns:
@@ -1214,13 +1214,11 @@ print(c ** 2)
 
 ### numpy.matrix
 
-&emsp;&emsp;`class numpy.matrix(data, dtype=None, copy=True)`: Returns a matrix from an array-like object, or from a string of `data`. A matrix is a specialized `2-D` array that retains its `2-D` nature through operations. It has certain special operators, such as `*` (matrix multiplication) and `**` (matrix power). Parameters:
+&emsp;&emsp;`class numpy.matrix(data, dtype=None, copy=True)`: Returns a matrix from an `array-like` object, or from a string of `data`. A matrix is a specialized `2-D` array that retains its `2-D` nature through operations. It has certain special operators, such as `*` (matrix multiplication) and `**` (matrix power). Parameters:
 
 - `data`: `array_like` or `string`. If `data` is a `string`, it is interpreted as a matrix with commas or spaces separating columns, and semicolons separating rows.
 - `dtype`: `data-type`. `Data-type` of the output matrix.
 - `copy`: `bool`. If `data` is already an `ndarray`, then this flag determines whether the `data` is copied (the default), or whether a view is constructed.
-
-&emsp;&emsp;Examples:
 
 ``` python
 >>> a = np.matrix('1 2; 3 4')
@@ -1354,13 +1352,11 @@ array([ 1.,  2.,  3.,  4.])
 
 ### numpy.ndarray.sort
 
-&emsp;&emsp;`ndarray.sort(axis=-1, kind='quicksort', order=None)`: Sort an array, in-place. Parameters:
+&emsp;&emsp;`ndarray.sort(axis=-1, kind='quicksort', order=None)`: Sort an array, `in-place`. Parameters:
 
 - `axis`: `int`, optional. Axis along which to sort. Default is `-1`, which means sort along the last axis.
 - `kind`: `{'quicksort', 'mergesort', 'heapsort'}`, optional. Sorting algorithm.
 - `order`: `str` or `list of str`, optional. When `a` is an array with fields defined, this argument specifies which fields to compare first, second, etc. A single field can be specified as a `string`, and not all fields need be specified, but unspecified fields will still be used, in the order in which they come up in the dtype, to break ties.
-
-&emsp;&emsp;Examples:
 
 ``` python
 >>> a = np.array([[1, 4], [3, 1]])
@@ -1424,7 +1420,7 @@ print(np.corrcoef(x))
 - `dtype`: `data-type`, optional. Type to use in computing the variance. For arrays of integer type the default is `float32`; for arrays of `float` types it is the same as the array type.
 - `out`: `ndarray`, optional. Alternate output array in which to place the result. It must have the same shape as the expected output, but the type is cast if necessary.
 - `ddof`: `int`, optional. `Delta Degrees of Freedom`: the divisor used in the calculation is `N - ddof`, where `N` represents the number of elements.
-- `keepdims`: `bool`, optional. If this is set to `True`, the axes which are reduced are left in the result as dimensions with size one. With this option, the result will broadcast correctly against the input array. If the default value is passed, then `keepdims` will not be passed through to the var method of sub-classes of `ndarray`, however any non-default value will be. If the sub-classes sum method does not implement `keepdims` any exceptions will be raised.
+- `keepdims`: `bool`, optional. If this is set to `True`, the axes which are reduced are left in the result as dimensions with size one. With this option, the result will broadcast correctly against the input array. If the default value is passed, then `keepdims` will not be passed through to the var method of `sub-classes` of `ndarray`, however any `non-default` value will be. If the `sub-classes` sum method does not implement `keepdims` any exceptions will be raised.
 
 &emsp;&emsp;Returns:
 
@@ -1433,7 +1429,7 @@ print(np.corrcoef(x))
 &emsp;&emsp;Notes: The variance is the average of the squared deviations from the mean, i.e., `var = mean(abs(x - x.mean())**2)`.
 &emsp;&emsp;The mean is normally calculated as `x.sum() / N`, where `N = len(x)`. If, however, `ddof` is specified, the divisor `N - ddof` is used instead. In standard statistical practice, `ddof = 1` provides an unbiased estimator of the variance of a hypothetical infinite population. `ddof = 0` provides a maximum likelihood estimate of the variance for normally distributed variables.
 &emsp;&emsp;Note that for `complex` numbers, the absolute value is taken before squaring, so that the result is always `real` and `nonnegative`.
-&emsp;&emsp;For `floating-point` input, the variance is computed using the same precision the input has. Depending on the input data, this can cause the results to be inaccurate, especially for `float32`. Specifying a higher-accuracy accumulator using the `dtype` keyword can alleviate this issue.
+&emsp;&emsp;For `floating-point` input, the variance is computed using the same precision the input has. Depending on the input data, this can cause the results to be inaccurate, especially for `float32`. Specifying a `higher-accuracy` accumulator using the `dtype` keyword can alleviate this issue.
 
 ``` python
 >>> a = np.array([[1, 2], [3, 4]])
