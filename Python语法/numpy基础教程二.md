@@ -836,7 +836,7 @@ array([2, 3])
 &emsp;&emsp;`numpy.isnan(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj]) = <ufunc 'isnan'>`: Test `element-wise` for `NaN` and return result as a `boolean` array. Parameters:
 
 - `x`: `array_like`. Input array.
-- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a freshly-allocated array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
+- `out`: `ndarray`, `None`, or `tuple of ndarray` and `None`, optional. A location into which the result is stored. If provided, it must have a shape that the inputs broadcast to. If not provided or `None`, a `freshly-allocated` array is returned. A tuple (possible only as a keyword argument) must have length equal to the number of outputs.
 - `where`: `array_like`, optional. Values of `True` indicate to calculate the ufunc at that position, values of `False` indicate to leave the value in the output alone.
 
 &emsp;&emsp;Returns:
@@ -856,7 +856,7 @@ array([ True, False, False])
 
 ### numpy.linalg.lstsq(最小二乘法)
 
-&emsp;&emsp;`numpy.linalg.lstsq(a, b, rcond='warn')`: Return the least-squares solution to a linear matrix equation.
+&emsp;&emsp;`numpy.linalg.lstsq(a, b, rcond='warn')`: Return the `least-squares` solution to a linear matrix equation.
 &emsp;&emsp;Solves the equation `a x = b` by computing a vector `x` that minimizes the Euclidean 2-norm `|| b - a x ||^2`. The equation may be `under-`, `well-`, or `over-` determined (i.e., the number of linearly independent rows of `a` can be less than, equal to, or greater than its number of linearly independent columns). If `a` is square and of full rank, then `x` (but for round-off error) is the `exact` solution of the equation. Parameters:
 
 - `a`: `(M, N) array_like`. `Coefficient` matrix.
