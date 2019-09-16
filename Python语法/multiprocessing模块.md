@@ -19,8 +19,8 @@ import multiprocessing
 p = multiprocessing.cpu_count()
 m = multiprocessing.active_children()
 ​
-print(p)  # 输出“8”
-print(m)  # 输出“[]”
+print(p)  # 输出“8”
+print(m)  # 输出“[]”
 ```
 
 ### Process进程
@@ -49,17 +49,17 @@ import time
 import multiprocessing
 ​
 def worker(interval):
-    print("interval is", interval)
-    time.sleep(interval)
+    print("interval is", interval)
+    time.sleep(interval)
 ​
 if __name__ == "__main__":
-    p = multiprocessing.Process(target=worker, args=(5,))
-    p.start()
-    print(p.is_alive())
-    p.join(timeout=3)  # 只等待3秒，如果进程还没结束，则向下执行print(p.name)
-    print(p.name)
-    print(p.pid)
-    print("This is end")
+    p = multiprocessing.Process(target=worker, args=(5,))
+    p.start()
+    print(p.is_alive())
+    p.join(timeout=3)  # 只等待3秒，如果进程还没结束，则向下执行print(p.name)
+    print(p.name)
+    print(p.pid)
+    print("This is end")
 ```
 
 执行结果：
@@ -79,26 +79,26 @@ import time
 import multiprocessing
 ​
 def worker(name, interval):
-    print("{0} start".format(name))
-    time.sleep(interval)
-    print("{0} end".format(name))
+    print("{0} start".format(name))
+    time.sleep(interval)
+    print("{0} end".format(name))
 ​
 if __name__ == "__main__":
-    print("main start")
-    print("The computer has {0} core".format(multiprocessing.cpu_count()))
+    print("main start")
+    print("The computer has {0} core".format(multiprocessing.cpu_count()))
 ​
-    p1 = multiprocessing.Process(target=worker, args=("worker", 2))
-    p2 = multiprocessing.Process(target=worker, args=("worker", 3))
-    p3 = multiprocessing.Process(target=worker, args=("worker", 4))
+    p1 = multiprocessing.Process(target=worker, args=("worker", 2))
+    p2 = multiprocessing.Process(target=worker, args=("worker", 3))
+    p3 = multiprocessing.Process(target=worker, args=("worker", 4))
 ​
-    p1.start()
-    p2.start()
-    p3.start()
+    p1.start()
+    p2.start()
+    p3.start()
 ​
-    for p in multiprocessing.active_children():
-        print("The pid of {0} is {1}".format(p.name, p.pid))
+    for p in multiprocessing.active_children():
+        print("The pid of {0} is {1}".format(p.name, p.pid))
 
-    print("main end")
+    print("main end")
 ```
 
 执行结果：
@@ -129,9 +129,11 @@ import multiprocessing
 import time
 ​
 def add(number, value, lock):
-    lock.acquire()  # 获取锁
-    try:
-        print("init, member = {1}".format(value, number))
+    lock.acquire()  # 获取锁
+
+    try:
+        print("init, member = {1}".format(value, number))
+
         for i in range(1, 3):
             number += value
             time.sleep(1)
