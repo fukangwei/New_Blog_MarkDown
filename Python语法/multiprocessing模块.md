@@ -134,26 +134,26 @@ def add(number, value, lock):
     try:
         print("init, member = {1}".format(value, number))
 
-        for i in range(1, 3):
-            number += value
-            time.sleep(1)
-            print("add {0}, number = {1}".format(value, number))
-    except Exception as e:
-        raise e
-    finally:
-        lock.release()  # 释放锁
+        for i in range(1, 3):
+            number += value
+            time.sleep(1)
+            print("add {0}, number = {1}".format(value, number))
+    except Exception as e:
+        raise e
+    finally:
+        lock.release()  # 释放锁
 ​
 if __name__ == "__main__":
-    lock = multiprocessing.Lock()  # 定义锁
-    number = 0
+    lock = multiprocessing.Lock()  # 定义锁
+    number = 0
 ​
-    p1 = multiprocessing.Process(target=add, args=(number, 1, lock))
-    p3 = multiprocessing.Process(target=add, args=(number, 3, lock))
+    p1 = multiprocessing.Process(target=add, args=(number, 1, lock))
+    p3 = multiprocessing.Process(target=add, args=(number, 3, lock))
 ​
-    p1.start()
-    p3.start()
+    p1.start()
+    p3.start()
 ​
-    print("main end")
+    print("main end")
 ```
 
 执行结果：
@@ -179,9 +179,11 @@ import multiprocessing
 import time
 ​
 def add(number, value1, lock):
-    lock.acquire()
-    try:
+    lock.acquire()
+
+    try:
         print("init, member = {1}".format(value1, number.value))
+
         for i in range(1, 3):
             number.value += value1
             time.sleep(1)
