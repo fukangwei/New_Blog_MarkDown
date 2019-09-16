@@ -3,7 +3,7 @@ title: fractions模块
 date: 2018-12-27 18:14:41
 categories: Python语法
 ---
-&emsp;&emsp;`fractions`模块提供了分数类型的支持，构造函数如下所示：
+&emsp;&emsp;`fractions`模块提供了分数类型的支持，构造函数如下：
 
 ``` python
 class fractions.Fraction(numerator=0, denominator=1)
