@@ -145,8 +145,6 @@ inf
 
 - `y`: `bool` or `ndarray of bool`. `Boolean` result with the same shape as `x` of the `NOT` operation on elements of `x`.
 
-&emsp;&emsp;Examples:
-
 ``` python
 >>> np.logical_not(3)
 False
