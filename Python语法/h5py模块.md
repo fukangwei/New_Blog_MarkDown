@@ -8,7 +8,7 @@ categories: Python语法
 
 ``` python
 import h5py
-f = h5py.File("myh5py.hdf5", "w")  # 如果是读取文件的话，就把“w”换成“r”
+f = h5py.File("myh5py.hdf5", "w")  # 如果是读取文件的话，就把“w”换成“r”
 ```
 
 &emsp;&emsp;2. 创建`dataset`数据集：
@@ -21,10 +21,10 @@ f = h5py.File("myh5py.hdf5", "w")
 f.create_dataset("dset1", (20,), 'i')
 ​
 for key in f.keys():
-    print(key)
-    print(f[key].name)
-    print(f[key].shape)
-    print(f[key].value)
+    print(key)
+    print(f[key].name)
+    print(f[key].shape)
+    print(f[key].value)
 ```
 
 执行结果：
@@ -49,15 +49,15 @@ d1[...] = np.arange(20)  # 赋值
 f["dset2"] = np.arange(15)
 ​
 for key in f.keys():
-    print(f[key].name)
-    print(f[key].value)
+    print(f[key].name)
+    print(f[key].value)
 ```
 
 执行结果：
 
 ``` python
 /dset1
-[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
+[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
 /dset2
 [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14]
 ```
