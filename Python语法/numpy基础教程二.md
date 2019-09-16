@@ -661,8 +661,6 @@ abs(desired - actual) < 1.5 * 10**(-decimal)
 
 - `AssertionError`. If `actual` and `desired` are not equal up to specified precision.
 
-&emsp;&emsp;Examples:
-
 ``` python
 >>> import numpy.testing as npt
 >>> npt.assert_almost_equal(2.3333333333333, 2.33333334)
@@ -681,7 +679,7 @@ Arrays are not almost equal
 
 ### numpy.roll
 
-&emsp;&emsp;`numpy.roll(a, shift, axis=None)`: Roll(滚动) array elements along `a` given `axis`. Elements that roll beyond the last position are re-introduced at the first. Parameters:
+&emsp;&emsp;`numpy.roll(a, shift, axis=None)`: Roll(滚动) array elements along `a` given `axis`. Elements that roll beyond the last position are `re-introduced` at the first. Parameters:
 
 - `a`: `array_like`. Input array.
 - `shift`: `int` or `tuple of ints`. The number of places by which elements are shifted. If a tuple, then `axis` must be a tuple of the same size, and each of the given axes is shifted by the corresponding number. If an `int` while `axis` is a `tuple of ints`, then the same value is used for all given axes.
@@ -692,7 +690,6 @@ Arrays are not almost equal
 - `res`: `ndarray`. Output array, with the same shape as `a`.
 
 &emsp;&emsp;Notes: Supports rolling over multiple dimensions simultaneously.
-&emsp;&emsp;Examples:
 
 ``` python
 >>> x = np.arange(10)
@@ -734,7 +731,7 @@ Parameters:
 
 - `out`: `(M, N)` ndarray. `out[i, j] = a[i] * b[j]`
 
-&emsp;&emsp;Examples: Make a (very coarse) grid for computing a Mandelbrot set:
+&emsp;&emsp;Examples: Make a (very coarse) grid for computing a `Mandelbrot` set:
 
 ``` python
 >>> rl = np.outer(np.ones((5,)), np.linspace(-2, 2, 5))
