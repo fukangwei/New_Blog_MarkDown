@@ -28,7 +28,7 @@ wb = load_workbook("template.xlsx")
 可以看看打开的`excel`表里面有哪些`sheet`页：
 
 ``` python
-print(wb.sheetnames) # 执行结果为['Sheet1', 'Sheet2', 'Sheet3']
+print(wb.sheetnames)  # 执行结果为['Sheet1', 'Sheet2', 'Sheet3']
 ```
 
 读取指定的`Sheet`页，打印其中的内容：
@@ -36,14 +36,14 @@ print(wb.sheetnames) # 执行结果为['Sheet1', 'Sheet2', 'Sheet3']
 ``` python
 sheet = wb.get_sheet_by_name("Sheet3")
 ​
-print(sheet["C"])  # (<Cell Sheet3.C1>, <Cell Sheet3.C2>, <Cell Sheet3.C3>, (省略) <- 第C列
-print(sheet["4"])  # (<Cell Sheet3.A4>, <Cell Sheet3.B4>, <Cell Sheet3.C4>, (省略) <- 第4行
-print(sheet["C4"].value)  # c4 <- 第C4格的值
-print(sheet.max_row)  # 10 <- 最大行数
-print(sheet.max_column)  # 5 <- 最大列数
+print(sheet["C"])  # (<Cell Sheet3.C1>, <Cell Sheet3.C2>, <Cell Sheet3.C3>, (省略) <- 第C列
+print(sheet["4"])  # (<Cell Sheet3.A4>, <Cell Sheet3.B4>, <Cell Sheet3.C4>, (省略) <- 第4行
+print(sheet["C4"].value)  # c4 <- 第C4格的值
+print(sheet.max_row)  # 10 <- 最大行数
+print(sheet.max_column)  # 5 <- 最大列数
 ​
 for i in sheet["C"]:
-    print(i.value, end=" ")  # c1 c2 c3 c4 c5 c6 c7 c8 c9 c10 <- C列中的所有值
+    print(i.value, end=" ")  # c1 c2 c3 c4 c5 c6 c7 c8 c9 c10 <- C列中的所有值
 ```
 
 ### 写入xlsx
@@ -74,7 +74,7 @@ sheet.title = "New Shit"
 sheet['C3'] = 'Hello world!'
 ​
 for i in range(10):
-    sheet["A%d" % (i + 1)].value = i + 1
+    sheet["A%d" % (i + 1)].value = i + 1
 ```
 
 我们还可以进行其他操作，比如写公式：
