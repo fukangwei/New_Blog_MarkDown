@@ -530,7 +530,7 @@ array([[[ 0,  1,  2],
 
 ### set_printoptions
 
-&emsp;&emsp;使用`set_printoptions`设置输出精度，其语法如下：
+&emsp;&emsp;使用`set_printoptions`设置输出精度：
 
 ``` python
 set_printoptions([precision, threshold, ...])
@@ -551,13 +551,12 @@ print(x)  # [ 0.078  0.48   0.413  0.83   0.776  0.102]
 - If the index expression contains comma separated arrays, then stack them along their first axis.
 - If the index expression contains slice notation or scalars, then create a `1-D` array with a range indicated by the slice notation.
 
-&emsp;&emsp;If slice notation is used, the syntax `start:stop:step` is equivalent to `np.arange(start, stop, step)` inside of the brackets. However, if `step` is an imaginary number (i.e. `100j`), then its integer portion is interpreted as a `number-of-points` desired and the start and stop are inclusive. In other words `start:stop:stepj` is interpreted as `np.linspace(start, stop, step, endpoint=1)` inside of the brackets. After expansion of slice notation, all comma separated sequences are concatenated together.
+&emsp;&emsp;If slice notation is used, the syntax `start:stop:step` is equivalent to `np.arange(start, stop, step)` inside of the brackets. However, if `step` is an imaginary number (i.e. `100j`), then its integer portion is interpreted as a `number-of-points` desired and the `start` and `stop` are inclusive. In other words `start:stop:stepj` is interpreted as `np.linspace(start, stop, step, endpoint=1)` inside of the brackets. After expansion of slice notation, all comma separated sequences are concatenated together.
 &emsp;&emsp;Optional character strings placed as the first element of the index expression can be used to change the output. The strings `r` or `c` result in matrix output. If the result is `1-D` and `r` is specified a `1 x N` (row) matrix is produced. If the result is `1-D` and `c` is specified, then a `N x 1` (column) matrix is produced. If the result is `2-D` then both provide the same matrix result.
 &emsp;&emsp;A string integer specifies which axis to stack multiple comma separated arrays along. A string of two `comma-separated` integers allows indication of the minimum number of dimensions to force each entry into as the second integer (the axis to concatenate along is still the first integer).
 &emsp;&emsp;A string with three `comma-separated` integers allows specification of the axis to concatenate along, the minimum number of dimensions to force the entries to, and which axis should contain the start of the arrays which are less than the specified number of dimensions. In other words the third integer allows you to specify where the `1's` should be placed in the shape of the arrays that have their shapes upgraded. By default, they are placed in the front of the shape tuple. The third argument allows you to specify where the start of the array should be instead. Thus, a third argument of `0` would place the `1's` at the end of the array shape. Negative integers specify where in the new shape tuple the last dimension of upgraded arrays should be placed, so the default is `-1`.
 &emsp;&emsp;Parameters: Not a function, so takes no parameters.
 &emsp;&emsp;Returns: A concatenated ndarray or matrix.
-&emsp;&emsp;Examples:
 
 ``` python
 >>> np.r_[np.array([1, 2, 3]), 0, 0, np.array([4, 5, 6])]
@@ -668,8 +667,6 @@ print(a, b, c)  # 输出为“[1 2 3 4] [0 1 3 4] [0 1 1 2 3 2]”
 
 - `res, res2, ...`: `ndarray`. An array, or list of arrays, each with `a.ndim >= 2`. Copies are avoided where possible, and views with two or more dimensions are returned.
 
-&emsp;&emsp;Examples:
-
 ``` python
 >>> np.atleast_2d(3.0)
 array([[ 3.]])
@@ -693,8 +690,6 @@ True
 &emsp;&emsp;Returns:
 
 - `out`: `ndarray`. Array of ones with the given `shape`, `dtype` and `order`.
-
-&emsp;&emsp;Examples:
 
 ``` python
 >>> np.ones(5)
@@ -849,7 +844,7 @@ print(np.vstack((a, b)))
 
 - `a`: `array_like`. Input data.
 
-Returns:
+&emsp;&emsp;Returns:
 
 - `arr`: `ndarray`. Array interpretation of `a`.
 
@@ -879,7 +874,7 @@ False
 
 ### array_equal
 
-&emsp;&emsp;判断两数组是否相等，使用示例如下：
+&emsp;&emsp;判断两数组是否相等：
 
 ``` python
 np.array_equal(a, b)
@@ -1062,7 +1057,6 @@ print(y)
 &emsp;&emsp;An instance of `numpy.lib.index_tricks.nd_grid` which returns an dense (or fleshed out) `mesh-grid` when indexed, so that each returned argument has the same shape. The dimensions and number of the output arrays are equal to the number of indexing dimensions. If the step length is not a `complex` number, then the stop is not inclusive.
 &emsp;&emsp;However, if the step length is a `complex` number (e.g. `5j`), then the integer part of its magnitude is interpreted as specifying the number of points to create between the start and stop values, where the stop value is inclusive.
 &emsp;&emsp;Returns: `mesh-grid` ndarrays all of the same dimensions.
-&emsp;&emsp;Examples:
 
 ``` python
 >>> import numpy as np
