@@ -598,7 +598,7 @@ os.rmdir(path)
 import os
 ​
 print("目录为: %s" % os.listdir(os.getcwd()))
-os.rmdir("mydir")  # 删除路径
+os.rmdir("mydir")  # 删除路径
 print("目录为: %s" % os.listdir(os.getcwd()))
 ```
 
@@ -653,10 +653,11 @@ os.walk(top[, topdown=True [, onerror=None [, followlinks=False]]])
 import os
 ​
 for root, dirs, files in os.walk(".", topdown=False):
-    for name in files:
-        print(os.path.join(root, name))
-    for name in dirs:
-        print(os.path.join(root, name))
+    for name in files:
+        print(os.path.join(root, name))
+
+    for name in dirs:
+        print(os.path.join(root, name))
 ```
 
 执行结果：
@@ -719,7 +720,7 @@ b'\xbe2'
 import os
 ​
 for key in os.environ.keys():
-    print(key)
+    print(key)
 ```
 
 &emsp;&emsp;获取指定名字的环境变量对应的值：
@@ -746,7 +747,7 @@ print(os.environ.get('datapath'))
 
 ### os模块中的常量
 
-&emsp;&emsp;如下所示：
+&emsp;&emsp;`os`模块中具有如下常量：
 
 - `os.curdir`：指代当前目录(`.`)。
 - `os.pardir`：指代上一级目录(`..`)。
@@ -775,11 +776,11 @@ print(os.environ.get('datapath'))
 - `os.path.isdir(path)`：判断路径是否为目录。
 - `os.path.islink(path)`：判断路径是否为链接。
 - `os.path.ismount(path)`：判断路径是否为挂载点。
-- `os.path.join(path1[, path2[, ...]])`：把目录和文件名合成一个路径。
+- `os.path.join(path1 [, path2 [, ...]])`：把目录和文件名合成一个路径。
 - `os.path.normcase(path)`：转换`path`的大小写和斜杠。
 - `os.path.normpath(path)`：规范`path`字符串形式。
 - `os.path.realpath(path)`：返回`path`的真实路径。
-- `os.path.relpath(path[, start])`：从`start`开始计算相对路径。
+- `os.path.relpath(path [, start])`：从`start`开始计算相对路径。
 - `os.path.samefile(path1, path2)`：判断目录或文件是否相同。
 - `os.path.sameopenfile(fp1, fp2)`：判断`fp1`和`fp2`是否指向同一文件
 - `os.path.samestat(stat1, stat2)`：判断`stat1`和`stat2`是否指向同一个文件。
