@@ -65,12 +65,12 @@ im.save('f.png')
 from PIL import Image
 ​
 im = Image.open('001.jpg')
-box = (100, 100, 500, 500)  # 设置要拷贝的区域
-# 将im表示的图片对象拷贝到region中，大小为(400*400)像素。这个region可以用来进行
+box = (100, 100, 500, 500)  # 设置要拷贝的区域
+# 将im表示的图片对象拷贝到region中，大小为(400 * 400)像素。这个region可以用来进行
 # 后续的操作(region其实就是一个Image对象)，box变量是一个四元组(左, 上, 右, 下)
 region = im.crop(box)
-region = region.transpose(Image.ROTATE_90)  # 先把region中的Image反转90度，然后再放回到region中
-im.paste(region, box)  # 粘贴box大小的region到原先的图片对象中
+region = region.transpose(Image.ROTATE_90)  # 先把region中的Image反转90度，然后再放回到region中
+im.paste(region, box)  # 粘贴box大小的region到原先的图片对象中
 im.save('1.jpg')
 ```
 
@@ -79,7 +79,7 @@ im.save('1.jpg')
 区域由一个`4-tuple`来决定，该`tuple`中的信息为`(left, upper, right, lower)`，`Pillow`的系统原点`(0, 0)`为图片左上角，坐标中的数字单位为像素点。粘贴后的图片是临时性，所以需要使用`save`保存成新图片。如果只是复制一个图像，则使用如下方法：
 
 ``` python
-box = im.copy()  # 直接复制图像
+box = im.copy()  # 直接复制图像
 ```
 
 ### 分离和合并通道
@@ -87,8 +87,8 @@ box = im.copy()  # 直接复制图像
 &emsp;&emsp;每一个`RGB`图像都是由三个通道的灰度图叠加的，所以`Pillow`提供了将这三个通道分离的方法。对于单通道图片，`split`则返回图像本身。
 
 ``` python
-r, g, b = im.split()  # 分割成三个通道
-im = Image.merge("RGB", (b, g, r))  # 将b和r两个通道进行翻转
+r, g, b = im.split()  # 分割成三个通道
+im = Image.merge("RGB", (b, g, r))  # 将b和r两个通道进行翻转
 im.save('rgb.jpg')
 ```
 
@@ -107,15 +107,15 @@ out = im.rotate(45)
 置换图像：
 
 ``` python
-out = im.transpose(Image.FLIP_LEFT_RIGHT)  # 左右翻转
-out = im.transpose(Image.FLIP_TOP_BOTTOM)  # 上下反向
-out = im.transpose(Image.ROTATE_90)  # 上下反向
+out = im.transpose(Image.FLIP_LEFT_RIGHT)  # 左右翻转
+out = im.transpose(Image.FLIP_TOP_BOTTOM)  # 上下反向
+out = im.transpose(Image.ROTATE_90)  # 上下反向
 ```
 
 模式转换：
 
 ``` python
-am = im.convert('L')  # 转为灰度图像
+am = im.convert('L')  # 转为灰度图像
 am.show()
 ```
 
