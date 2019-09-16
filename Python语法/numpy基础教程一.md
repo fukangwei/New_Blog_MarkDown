@@ -335,7 +335,7 @@ Return the `angle` of the `complex` argument. Parameters:
 - `z`: `array_like`; A `complex` number or sequence of `complex` numbers.
 - `deg`: `bool`, optional; Return angle in degrees if `True`, radians if `False` (default).
 
-&emsp;&emsp;The counterclockwise angle from the positive real axis on the `complex` plane, with dtype as `numpy.float64`. Examples:
+&emsp;&emsp;The counterclockwise angle from the positive real axis on the `complex` plane, with dtype as `numpy.float64`.
 
 ``` python
 >>> np.angle([1.0, 1.0j, 1+1j])  # in radians
@@ -612,8 +612,6 @@ matrix([[1, 2, 3, 4, 5, 6]])
 - `samples`: `ndarray`. There are `num` equally spaced samples in the closed interval `[start, stop]` or the `half-open` interval `[start, stop)` (depending on whether `endpoint` is `True` or `False`).
 - `step`: `float`, optional. Only returned if `retstep` is `True`. Size of spacing between samples.
 
-Examples:
-
 ``` python
 >>> np.linspace(2.0, 3.0, num=5)
 array([2.  , 2.25, 2.5 , 2.75, 3.  ])
@@ -882,7 +880,7 @@ np.array_equal(a, b)
 
 ### numpy.triu
 
-&emsp;&emsp;`numpy.triu(m, k=0)`. Upper triangle of an array. Return a copy of a matrix with the elements below the `k-th` diagonal zeroed. Examples:
+&emsp;&emsp;`numpy.triu(m, k=0)`. Upper triangle of an array. Return a copy of a matrix with the elements below the `k-th` diagonal zeroed.
 
 ``` python
 >>> np.triu([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]], -1)
@@ -1089,8 +1087,6 @@ array([-1. , -0.5,  0. ,  0.5,  1. ])
 
 - `res`: `ndarray`. Output array. The number of dimensions is one greater than that of the input array.
 
-&emsp;&emsp;Examples:
-
 ``` python
 >>> x = np.array([1, 2])
 >>> x.shape
@@ -1123,7 +1119,7 @@ True
 ### numpy.array_split
 
 &emsp;&emsp;`numpy.array_split(ary, indices_or_sections, axis=0)`: Split an array into multiple sub-arrays.
-&emsp;&emsp;Please refer to the split documentation. The only difference between these functions is that `array_split` allows `indices_or_sections` to be an integer that does not equally divide the `axis`. Examples:
+&emsp;&emsp;Please refer to the split documentation. The only difference between these functions is that `array_split` allows `indices_or_sections` to be an integer that does not equally divide the `axis`.
 
 ``` python
 >>> x = np.arange(8.0)
@@ -1150,7 +1146,6 @@ True
 ``` python
 >>> np.sum([])
 0.0
-Examples:
 >>> np.sum([0.5, 1.5])
 2.0
 >>> np.sum([0.5, 0.7, 0.2, 1.5], dtype=np.int32)
@@ -1500,7 +1495,7 @@ array([[3, 3, 3, 5, 6, 7, 8, 8],
 - `y`: `array_like`. If `a` is a matrix, `y` is a `1-D` ndarray, otherwise `y` is an array of the same subtype as `a`. The shape of the returned array is `(a.size,)`. Matrices are special cased for backward compatibility.
 
 &emsp;&emsp;Notes: In `row-major`, `C-style` order, in two dimensions, the row index varies the slowest, and the column index the quickest. This can be generalized to multiple dimensions, where `row-major` order implies that the index along the first axis varies slowest, and the index along the last quickest. The opposite holds for `column-major`, `Fortran-style` index ordering.
-&emsp;&emsp;When a view is desired in as many cases as possible, `arr.reshape(-1)` may be preferable. Examples:
+&emsp;&emsp;When a view is desired in as many cases as possible, `arr.reshape(-1)` may be preferable.
 &emsp;&emsp;It is equivalent to `reshape(-1, order=order)`.
 
 ``` python
