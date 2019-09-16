@@ -11,13 +11,13 @@ categories: Python语法
 from enum import Enum
 ​
 class Color(Enum):
-    red = 1
-    orange = 2
-    yellow = 3
-    green = 4
-    blue = 5
-    indigo = 6
-    purple = 7
+    red = 1
+    orange = 2
+    yellow = 3
+    green = 4
+    blue = 5
+    indigo = 6
+    purple = 7
 ```
 
 上面的代码定义了颜色的枚举类`Color`，其中有`7`个成员，分别是`Color.red`、`Color.orange`、`Color.yellow`等。每一个成员都有它们各自名称和值，`Color.red`成员的名称是`red`，值是`1`。每个成员的数据类型就是它所属的枚举。
@@ -30,8 +30,8 @@ class Color(Enum):
 from enum import Enum
 ​
 class Color(Enum):
-    red = 1
-    red = 2
+    red = 1
+    red = 2
 ```
 
 上述代码会提示错误`TypeError: Attempted to reuse key: 'red'`。
@@ -41,8 +41,8 @@ class Color(Enum):
 from enum import Enum
 ​
 class Color(Enum):
-    red = 1
-    red_alias = 1
+    red = 1
+    red_alias = 1
 ```
 
 &emsp;&emsp;如果枚举中存在相同值的成员，在通过值获取枚举成员时，只能获取到第一个成员：
@@ -51,10 +51,10 @@ class Color(Enum):
 from enum import Enum
 ​
 class Color(Enum):
-    red = 1
-    red_alias = 1
+    red = 1
+    red_alias = 1
 ​
-print(Color(1))  # 结果为“Color.red”
+print(Color(1))  # 结果为“Color.red”
 ```
 
 &emsp;&emsp;如果要限制定义枚举时，不能定义相同值的成员。可以使用装饰器`@unique`(要导入`unique`模块)：
@@ -64,8 +64,8 @@ from enum import Enum, unique
 ​
 @unique
 class Color(Enum):
-    red = 1
-    red_alias = 1
+    red = 1
+    red_alias = 1
 ```
 
 执行时就会提示错误：
@@ -102,7 +102,7 @@ red_member.value
 
 ``` python
 for color in Color:
-    print(color)
+    print(color)
 ```
 
 输出结果是枚举的所有成员，例如`Color.red`。
@@ -112,13 +112,13 @@ for color in Color:
 from enum import Enum
 ​
 class Color(Enum):
-    red = 1
-    orange = 2
-    yellow = 3
-    red_alias = 1
+    red = 1
+    orange = 2
+    yellow = 3
+    red_alias = 1
 ​
 for color in Color.__members__.items():
-    print(color)
+    print(color)
 ```
 
 执行结果：
