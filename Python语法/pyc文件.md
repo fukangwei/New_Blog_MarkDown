@@ -20,30 +20,30 @@ import py_compile
 py_compile.compile(r'test.py')
 ```
 
-`compile`函数原型如下所示：
+`compile`函数原型如下：
 
 ``` python
-compile(file[, cfile[, dfile[, doraise]]])
+compile(file [, cfile [, dfile [, doraise]]])
 ```
 
 - `file`：需要编译的`py`文件的路径。
-- `cfile`：编译后的`pyc`文件名称和路径，默认为直接在`file`文件名后加`c`或者`o`，`o`”表示优化的字节码。
+- `cfile`：编译后的`pyc`文件名称和路径，默认为直接在`file`文件名后加`c`或者`o`，`o`表示优化的字节码。
 - `dfile`：it is used as the name of the source file in error messages instead of file.
-- `doraise`：可以是两个值，即`True`或`False`。如果为`True`，则会引发一个`PyCompileError`，否则如果编译文件出错，则会有一个错误，默认显示在`sys.stderr`中，而不会引发异常。
+- `doraise`：可以是两个值，即`True`或`False`。如果为`True`，并且文件编译出错，则会引发一个`PyCompileError`；否则默认在`sys.stderr`中显示一条错误信息，而不会引发异常。
 
 ### 批量生成pyc文件
 
-&emsp;&emsp;一般来说，我们的工程都是在一个目录下的，不会仅仅编译一个`py`文件而已，而是需要把整个文件夹下的`py`文件都编译为`pyc`文件。`python`又提供了另一个模块`compileall`，使用方法如下：
+&emsp;&emsp;一般来说，我们的工程都是在一个目录下的，不会仅仅编译一个`py`文件，而是需要把整个文件夹下的`py`文件都编译为`pyc`文件。`python`又提供了另一个模块`compileall`，使用方法如下：
 
 ``` python
 import compileall
 compileall.compile_dir(r'H:/game')
 ```
 
-这样就把`game`目录以及其子目录下的`py`文件编译为`pyc`文件了。`compile_dir`的函数说明如下所示：
+这样就把`game`目录以及其子目录下的`py`文件编译为`pyc`文件了。`compile_dir`的函数说明如下：
 
 ``` python
-compile_dir(dir[, maxlevels[, ddir[, force[, rx[, quiet]]]]])
+compile_dir(dir [, maxlevels [, ddir [, force [, rx [, quiet]]]]])
 ```
 
 - `dir`：需要编译的文件夹位置。
