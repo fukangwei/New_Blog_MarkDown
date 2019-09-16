@@ -27,7 +27,7 @@ print(chr(48), chr(49), chr(97))  # 十进制
 
 ### ord
 
-&emsp;&emsp;`ord`以一个字符(长度为1的字符串)作为参数，返回对应的`ASCII`数值：
+&emsp;&emsp;`ord`以一个字符(长度为`1`的字符串)作为参数，返回对应的`ASCII`数值：
 
 ``` python
 ord(c)
@@ -68,7 +68,7 @@ len(l)  # 列表元素个数，结果为“5”
 &emsp;&emsp;`range`可创建一个整数列表，一般用在`for`循环中：
 
 ``` python
-range(start, stop[, step])
+range(start, stop [, step])
 ```
 
 - `start`：计数从`start`开始，默认是从`0`开始。例如`range(5)`等价于`range(0, 5)`。
@@ -84,7 +84,7 @@ range(start, stop[, step])
 [0, 5, 10, 15, 20, 25]
 >>> range(0, 10, 3)  # 步长为3
 [0, 3, 6, 9]
->>> range(0, -10, -1) # 负数
+>>> range(0, -10, -1)  # 负数
 [0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
 >>> range(0)
 []
@@ -188,11 +188,11 @@ zip([iterable, ...])
 >>> a = [1, 2, 3]
 >>> b = [4, 5, 6]
 >>> c = [4, 5, 6, 7, 8]
->>> zipped = zip(a, b) # 打包为元组的列表
+>>> zipped = zip(a, b)  # 打包为元组的列表
 [(1, 4), (2, 5), (3, 6)]
->>> zip(a, c) # 元素个数与最短的列表一致
+>>> zip(a, c)  # 元素个数与最短的列表一致
 [(1, 4), (2, 5), (3, 6)]
->>> zip(*zipped) # 与zip相反，可理解为解压，返回二维矩阵式
+>>> zip(*zipped)  # 与zip相反，可理解为解压，返回二维矩阵式
 [(1, 2, 3), (4, 5, 6)]
 ```
 
@@ -220,7 +220,7 @@ def zip(*iterables):
 ```
 
 The `left-to-right` evaluation order of the iterables is guaranteed. This makes possible an idiom for clustering a data series into `n-length` groups using `zip(*[iter(s)] * n)`. This repeats the same iterator `n` times so that each output tuple has the result of `n` calls to the iterator. This has the effect of dividing the input into `n-length` chunks.
-&emsp;&emsp;`zip()` should only be used with unequal length inputs when you don’t care about trailing, unmatched values from the longer iterables. If those values are important, use `itertools.zip_longest()` instead.
+&emsp;&emsp;`zip()` should only be used with unequal length inputs when you don't care about trailing, unmatched values from the longer iterables. If those values are important, use `itertools.zip_longest()` instead.
 &emsp;&emsp;`zip()` in conjunction with the `*` operator can be used to unzip a list:
 
 ``` python
@@ -239,7 +239,7 @@ True
 &emsp;&emsp;`sorted`函数对所有可迭代的对象进行排序操作。`sort`与`sorted`区别：`sort`是应用在`list`上的方法，`sorted`可以对所有可迭代的对象进行排序操作。`list`的`sort`方法返回的是对已经存在的列表进行操作，而内建函数`sorted`方法返回的是一个新的`list`，而不是在原来的基础上进行的操作。
 
 ``` python
-sorted(iterable[, cmp[, key[, reverse]]])
+sorted(iterable [, cmp [, key [, reverse]]])
 ```
 
 - `iterable`：可迭代对象。
@@ -280,7 +280,7 @@ sorted(iterable[, cmp[, key[, reverse]]])
 &emsp;&emsp;`round`返回浮点数`x`的四舍五入值：
 
 ``` python
-round(x[, n])
+round(x [, n])
 ```
 
 参数`x`是一个浮点数，`n`是保留的小数位数(可选项，如果不写的话，默认保留到整数)。
@@ -606,7 +606,7 @@ iter(object[, sentinel])
 &emsp;&emsp;`next`返回迭代器的下一个项目。
 
 ``` python
-next(iterator[, default])
+next(iterator [, default])
 ```
 
 参数`iterator`是可迭代对象；`default`是可选的，用于设置在没有下一个元素时返回的默认值，如果不设置，又没有下一个元素时则会触发`StopIteration`异常。
@@ -718,7 +718,7 @@ repr(object)
 &emsp;&emsp;`enumerate`用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标，一般用在`for`循环当中。
 
 ``` python
-enumerate(sequence, [start=0])
+enumerate(sequence [, start=0])
 ```
 
 参数`sequence`是一个序列、迭代器或其他支持迭代对象，`start`是下标起始位置，该函数返回`enumerate`对象。
