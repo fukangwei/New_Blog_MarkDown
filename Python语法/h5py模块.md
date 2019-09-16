@@ -122,7 +122,7 @@ The `File` object is your starting point. What is stored in this file? Remember 
 [u'mydataset']
 ```
 
-Based on our observation, there is one data set, mydataset in the file. Let us examine the data set as a Dataset object:
+Based on our observation, there is one data set, mydataset in the file. Let us examine the data set as a `Dataset` object:
 
 ``` python
 >>> dset = f['mydataset']
@@ -167,7 +167,7 @@ The File object is a context manager; so the following code works too:
 >>> import h5py
 >>> import numpy as np
 >>> with h5py.File("mytestfile.hdf5", "w") as f:
-...     dset = f.create_dataset("mydataset", (100,), dtype='i')
+...     dset = f.create_dataset("mydataset", (100,), dtype='i')
 ```
 
 ### Groups and hierarchical organization
@@ -213,9 +213,9 @@ Groups support most of the Python `dictionary-style` interface. You retrieve obj
 
 ``` python
 >>> dataset_three = f['subgroup2/dataset_three']
-Iterating over a group provides the names of its members: 
+Iterating over a group provides the names of its members:
 >>> for name in f:
-...     print name
+...     print name
 mydataset
 subgroup
 subgroup2
@@ -242,7 +242,7 @@ There are also the familiar `keys()`, `values()`, `items()` and `iter()` methods
 
 ``` python
 >>> def printname(name):
-...     print name
+...     print name
 >>> f.visit(printname)
 mydataset
 subgroup
