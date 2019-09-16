@@ -1,7 +1,7 @@
 ---
 title: numpy基础教程三
 date: 2019-08-04 08:11:52
-tags:
+categories: Python语法
 ---
 ### Broadcasting机制
 
@@ -117,8 +117,8 @@ array([0, 1, 0])
 &emsp;&emsp;This function continues to be supported for backward compatibility, but you should prefer `moveaxis`. The `moveaxis` function was added in `NumPy 1.11`. Parameters:
 
 - `a`: ndarray. Input array.
-- `axis`: int. The axis to roll backwards. The positions of the other axes do not change relative to one another.
-- `start`: int, optional. The axis is rolled until it lies before this position. The default, 0, results in a "complete" roll.
+- `axis`: `int`. The axis to roll backwards. The positions of the other axes do not change relative to one another.
+- `start`: `int`, optional. The axis is rolled until it lies before this position. The default, `0`, results in a `complete` roll.
 
 ``` python
 >>> a = np.ones((3,4,5,6))
