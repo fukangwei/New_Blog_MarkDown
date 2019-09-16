@@ -774,9 +774,9 @@ array([[a, aa, aaa],
 - `buffer`: `buffer_like`. An object that exposes the buffer interface.
 - `dtype`: `data-type`, optional. `Data-type` of the returned array.
 - `count`: `int`, optional. Number of items to read. `-1` means all data in the buffer.
-- `offset`: `int`, optional. Start reading the buffer from this offset (in `bytes`).
+- `offset`: `int`, optional. Start reading the buffer from this `offset` (in `bytes`).
 
-Notes: If the `buffer` has data that is not in machine `byte-order`, this should be specified as part of the `data-type`, e.g.:
+Notes: If the `buffer` has data that is not in machine `byte-order`, this should be specified as part of the `data-type`:
 
 ``` python
 >>> dt = np.dtype(int)
@@ -784,7 +784,7 @@ Notes: If the `buffer` has data that is not in machine `byte-order`, this should
 >>> np.frombuffer(buf, dtype=dt)
 ```
 
-The data of the resulting array will not be byteswapped, but will be interpreted correctly. Examples:
+The data of the resulting array will not be byteswapped, but will be interpreted correctly.
 
 ``` python
 >>> s = 'hello world'
