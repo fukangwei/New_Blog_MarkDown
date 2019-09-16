@@ -59,10 +59,10 @@ os.closerange(fd_low, fd_high)
 
 ``` python
 for fd in range(fd_low, fd_high):
-    try:
-        os.close(fd)
-    except OSError:
-        pass
+    try:
+        os.close(fd)
+    except OSError:
+        pass
 ```
 
 该方法没有返回值。
@@ -89,8 +89,8 @@ os.dup(fd)
 import os
 ​
 fd = os.open("foo.txt", os.O_RDWR | os.O_CREAT)
-d_fd = os.dup(fd)  # 复制文件描述符
-os.write(d_fd, b"This is test")  # 使用复制的文件描述符写入文件
+d_fd = os.dup(fd)  # 复制文件描述符
+os.write(d_fd, b"This is test")  # 使用复制的文件描述符写入文件
 os.closerange(fd, d_fd)
 ```
 
@@ -112,7 +112,7 @@ import os
 ​
 fd = os.open("foo.txt", os.O_RDWR | os.O_CREAT)
 os.write(fd, "This is test".encode())
-fd2 = 1000  # 文件描述符为1000
+fd2 = 1000  # 文件描述符为1000
 os.dup2(fd, fd2)
 # 在新的文件描述符上插入数据
 os.lseek(fd2, 0, 0)
@@ -134,11 +134,11 @@ os.fchdir(fd)
 ``` python
 import os
 ​
-os.chdir("/var/www/html")  # 首先到目录“/var/www/html”
-print("当前工作目录为: %s" % os.getcwd())  # 输出“当前工作目录为: /var/www/html”
-fd = os.open("/tmp", os.O_RDONLY)  # 打开新目录“/tmp”
-os.fchdir(fd)  # 使用os.fchdir方法修改到新目录
-print("当前工作目录为: %s" % os.getcwd())  # 输出“当前工作目录为: /tmp”
+os.chdir("/var/www/html")  # 首先到目录“/var/www/html”
+print("当前工作目录为: %s" % os.getcwd())  # 输出“当前工作目录为: /var/www/html”
+fd = os.open("/tmp", os.O_RDONLY)  # 打开新目录“/tmp”
+os.fchdir(fd)  # 使用os.fchdir方法修改到新目录
+print("当前工作目录为: %s" % os.getcwd())  # 输出“当前工作目录为: /tmp”
 os.close(fd)
 ```
 
@@ -156,8 +156,8 @@ os.fdatasync(fd)
 import os, sys
 ​
 fd = os.open("foo.txt", os.O_RDWR | os.O_CREAT)
-os.write(fd, "This is test".encode())  # 写入字符串
-os.fdatasync(fd)  # 使用fdatasync方法
+os.write(fd, "This is test".encode())  # 写入字符串
+os.fdatasync(fd)  # 使用fdatasync方法
 os.lseek(fd, 0, 0)
 str = os.read(fd, 100)
 print("读取的字符是:", str.decode())  # 输出“读取的字符是: This is test”
@@ -169,7 +169,7 @@ os.close(fd)
 &emsp;&emsp;`os.fdopen`通过文件描述符`fd`创建一个文件对象，并返回这个文件对象。
 
 ``` python
-os.fdopen(fd, [, mode[, bufsize]])
+os.fdopen(fd, [, mode [, bufsize]])
 ```
 
 - `fd`：文件描述符。
@@ -185,13 +185,13 @@ os.fdopen(fd, [, mode[, bufsize]])
 import os
 ​
 fd = os.open("foo.txt", os.O_RDWR | os.O_CREAT)
-fo = os.fdopen(fd, "w+")  # 获取以上文件的对象
-print("Current I/O pointer position: %d" % fo.tell())  # 获取当前位置
-fo.write("Python is a great language.\nYeah its great!")  # 写入字符串
+fo = os.fdopen(fd, "w+")  # 获取以上文件的对象
+print("Current I/O pointer position: %d" % fo.tell())  # 获取当前位置
+fo.write("Python is a great language.\nYeah its great!")  # 写入字符串
 fo.seek(0, 0)
-str = os.read(fd, 100)  # 读取内容
+str = os.read(fd, 100)  # 读取内容
 print("Read String is:", str.decode())
-print("Current I/O pointer position: %d" % fo.tell())  # 获取当前位置
+print("Current I/O pointer position: %d" % fo.tell())  # 获取当前位置
 os.close(fd)
 ```
 
