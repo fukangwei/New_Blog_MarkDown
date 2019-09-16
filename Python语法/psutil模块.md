@@ -191,14 +191,14 @@ Terminated: 15 <-- 自己把自己结束了
 ``` python
 >>> import psutil
 >>> psutil.test()
-USER         PID %MEM     VSZ     RSS TTY           START    TIME  COMMAND
-root           0 24.0 74270628 2016380 ?             Nov18   40:51  kernel_task
-root           1  0.1 2494140    9484 ?             Nov18   01:39  launchd
-root          44  0.4 2519872   36404 ?             Nov18   02:02  UserEventAgent
-root          45    ? 2474032    1516 ?             Nov18   00:14  syslogd
-root          47  0.1 2504768    8912 ?             Nov18   00:03  kextd
-root          48  0.1 2505544    4720 ?             Nov18   00:19  fseventsd
-_appleeven    52  0.1 2499748    5024 ?             Nov18   00:00  appleeventsd
-root          53  0.1 2500592    6132 ?             Nov18   00:02  configd
+USER         PID %MEM      VSZ     RSS TTY START   TIME  COMMAND
+root           0 24.0 74270628 2016380  ?  Nov18  40:51  kernel_task
+root           1  0.1  2494140    9484  ?  Nov18  01:39  launchd
+root          44  0.4  2519872   36404  ?  Nov18  02:02  UserEventAgent
+root          45    ?  2474032    1516  ?  Nov18  00:14  syslogd
+root          47  0.1  2504768    8912  ?  Nov18  00:03  kextd
+root          48  0.1  2505544    4720  ?  Nov18  00:19  fseventsd
+_appleeven    52  0.1  2499748    5024  ?  Nov18  00:00  appleeventsd
+root          53  0.1  2500592    6132  ?  Nov18  00:02  configd
 ...
 ```
