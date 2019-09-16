@@ -50,9 +50,9 @@ random.randint(a, b)
 用于生成一个指定范围内的整数。其中参数`a`是下限，参数`b`是上限，生成的随机数`n`(`a <= n <= b`)。
 
 ``` python
-print(random.randint(12, 20))  # 生成的随机数n(12 <= n <= 20)
-print(random.randint(20, 20))  # 结果永远是20
-print(random.randint(20, 10))  # 该语句是错误的，下限必须小于上限
+print(random.randint(12, 20))  # 生成的随机数n(12 <= n <= 20)
+print(random.randint(20, 20))  # 结果永远是20
+print(random.randint(20, 10))  # 该语句是错误的，下限必须小于上限
 ```
 
 ### random.randrange
@@ -115,7 +115,7 @@ random.sample(sequence, k)
 
 ``` python
 list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-slice = random.sample(list, 5)  # 从list中随机获取5个元素，作为一个片段返回
+slice = random.sample(list, 5)  # 从list中随机获取5个元素，作为一个片段返回
 print(slice)
-print(list)  # 原有序列并没有改变
+print(list)  # 原有序列并没有改变
 ```
