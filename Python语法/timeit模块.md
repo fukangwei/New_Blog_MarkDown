@@ -56,12 +56,12 @@ $ python -m timeit '"-".join(map(str, range(100)))'
 &emsp;&emsp;`print_exc(file=None)`：输出计时代码中的`traceback`。典型用法如下：
 
 ``` python
-t = Timer(...)  # 在“try/except”语句外使用
+t = Timer(...)  # 在“try/except”语句外使用
 ​
 try:
-    t.timeit(...)  # 或t.repeat(...)
+    t.timeit(...)  # 或t.repeat(...)
 except:
-    t.print_exc()
+    t.print_exc()
 ```
 
 这样做的好处是，可以将参数`file`直接定位到`traceback`，默认是`sys.stderr`。
@@ -76,8 +76,8 @@ python -m timeit [-n N] [-r N] [-s S] [-t] [-c] [-h] [statement ...]
 
 详解如下：
 
-选项 | 原型 | 含义
------|------|-----
+选项   | 原型          | 含义
+-------|--------------|-----
 `-n N` | `--number=N` | 执行指定语句(段)的次数
 `-r N` | `--repeat=N` | 重复测量的次数，默认是`3`次
 `-s S` | `--setup=S`  | 执行时初始语句(默认是`pass`)
@@ -139,9 +139,9 @@ $ python -m timeit 'if hasattr(int, "__nonzero__"): pass'
 >>> # 属性缺省的情况
 >>> s = """ \
 try:
-    str.__nonzero__
+    str.__nonzero__
 except AttributeError:
-    pass
+    pass
 """
 >>> timeit.timeit(stmt=s, number=100000)
 0.08674410171410782
@@ -151,9 +151,9 @@ except AttributeError:
 >>> # 属性存在的情况
 >>> s = """ \
 try:
-    int.__nonzero__
+    int.__nonzero__
 except AttributeError:
-    pass
+    pass
 """
 >>> timeit.timeit(stmt=s, number=100000)
 0.09908718327663735
@@ -166,11 +166,12 @@ except AttributeError:
 
 ``` python
 def test():
-    L = []
-    for i in range(100):
-        L.append(i)
+    L = []
+
+    for i in range(100):
+        L.append(i)
 ​
 if __name__ == '__main__':
-    import timeit
-    print(timeit.timeit("test()", setup="from __main__ import test"))
+    import timeit
+    print(timeit.timeit("test()", setup="from __main__ import test"))
 ```
