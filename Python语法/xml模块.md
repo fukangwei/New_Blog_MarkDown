@@ -459,19 +459,19 @@ Our `XML` now looks like this:
 ``` xml
 <?xml version="1.0"?>
 <data>
-    <country name="Liechtenstein">
-        <rank updated="yes">2</rank>
-        <year>2008</year>
-        <gdppc>141100</gdppc>
-        <neighbor name="Austria" direction="E"/>
-        <neighbor name="Switzerland" direction="W"/>
-    </country>
-    <country name="Singapore">
-        <rank updated="yes">5</rank>
-        <year>2011</year>
-        <gdppc>59900</gdppc>
-        <neighbor name="Malaysia" direction="N"/>
-    </country>
+    <country name="Liechtenstein">
+        <rank updated="yes">2</rank>
+        <year>2008</year>
+        <gdppc>141100</gdppc>
+        <neighbor name="Austria" direction="E"/>
+        <neighbor name="Switzerland" direction="W"/>
+    </country>
+    <country name="Singapore">
+        <rank updated="yes">5</rank>
+        <year>2011</year>
+        <gdppc>59900</gdppc>
+        <neighbor name="Malaysia" direction="N"/>
+    </country>
 </data>
 ```
 
@@ -496,18 +496,18 @@ Our `XML` now looks like this:
 ``` xml
 <?xml version="1.0"?>
 <actors xmlns:fictional="http://characters.example.com"
-        xmlns="http://people.example.com">
-    <actor>
-        <name>John Cleese</name>
-        <fictional:character>Lancelot</fictional:character>
-        <fictional:character>Archie Leach</fictional:character>
-    </actor>
-    <actor>
-        <name>Eric Idle</name>
-        <fictional:character>Sir Robin</fictional:character>
-        <fictional:character>Gunther</fictional:character>
-        <fictional:character>Commander Clement</fictional:character>
-    </actor>
+        xmlns="http://people.example.com">
+    <actor>
+        <name>John Cleese</name>
+        <fictional:character>Lancelot</fictional:character>
+        <fictional:character>Archie Leach</fictional:character>
+    </actor>
+    <actor>
+        <name>Eric Idle</name>
+        <fictional:character>Sir Robin</fictional:character>
+        <fictional:character>Gunther</fictional:character>
+        <fictional:character>Commander Clement</fictional:character>
+    </actor>
 </actors>
 ```
 
@@ -517,10 +517,11 @@ One way to search and explore this `XML` example is to manually add the `URI` to
 root = fromstring(xml_text)
 
 for actor in root.findall('{http://people.example.com}actor'):
-    name = actor.find('{http://people.example.com}name')
-    print(name.text)
-    for char in actor.findall('{http://characters.example.com}character'):
-        print(' |-->', char.text)
+    name = actor.find('{http://people.example.com}name')
+    print(name.text)
+
+    for char in actor.findall('{http://characters.example.com}character'):
+        print(' |-->', char.text)
 ```
 
 A better way to search the namespaced `XML` example is to create a dictionary with your own prefixes and use those in the search functions:
@@ -529,10 +530,11 @@ A better way to search the namespaced `XML` example is to create a dictionary wi
 ns = {'real_person': 'http://people.example.com', 'role': 'http://characters.example.com'}
 ​
 for actor in root.findall('real_person:actor', ns):
-    name = actor.find('real_person:name', ns)
-    print(name.text)
-    for char in actor.findall('role:character', ns):
-        print(' |-->', char.text)
+    name = actor.find('real_person:name', ns)
+    print(name.text)
+
+    for char in actor.findall('role:character', ns):
+        print(' |-->', char.text)
 ```
 
 These two approaches both output:
@@ -572,18 +574,18 @@ root.findall(".//neighbor[2]")
 
 #### Supported XPath syntax
 
-Syntax | Meaning
--------|--------
-`tag` | Selects all child elements with the given `tag`. For example, `spam` selects all child elements named `spam`, and `spam/egg` selects all grandchildren named `egg` in all children named `spam`.
-`*` | Selects all child elements. For example, `*/egg` selects all grandchildren named `egg`.
-`.` | Selects the current node. This is mostly useful at the `beginning` of the path, to indicate that it's a relative path.
-`//` | Selects all subelements, on all levels beneath the current element. For example, `.//egg` selects all `egg` elements in the entire tree.
-`..` | Selects the parent element. Returns `None` if the path attempts to reach the ancestors of the `start` element (the element find was called on).
-`[@attrib]` | Selects all elements that have the given `attribute`.
+Syntax              | Meaning
+--------------------|--------
+`tag`               | Selects all child elements with the given `tag`. For example, `spam` selects all child elements named `spam`, and `spam/egg` selects all grandchildren named `egg` in all children named `spam`.
+`*`                 | Selects all child elements. For example, `*/egg` selects all grandchildren named `egg`.
+`.`                 | Selects the current node. This is mostly useful at the `beginning` of the path, to indicate that it's a relative path.
+`//`                | Selects all subelements, on all levels beneath the current element. For example, `.//egg` selects all `egg` elements in the entire tree.
+`..`                | Selects the parent element. Returns `None` if the path attempts to reach the ancestors of the `start` element (the element find was called on).
+`[@attrib]`         | Selects all elements that have the given `attribute`.
 `[@attrib='value']` | Selects all elements for which the given `attribute` has the given `value`. The value cannot contain quotes.
-`[tag]` | Selects all elements that have a child named `tag`. Only immediate children are supported.
-`[tag='text']` | Selects all elements that have a child named `tag` whose complete `text` content, including descendants, equals the given `text`.
-`[position]` | Selects all elements that are located at the given `position`. The `position` can be either an `integer` (`1` is the `first position`), the expression `last()` (for the `last position`), or a `position` relative to the `last position` (e.g. `last() - 1`).
+`[tag]`             | Selects all elements that have a child named `tag`. Only immediate children are supported.
+`[tag='text']`      | Selects all elements that have a child named `tag` whose complete `text` content, including descendants, equals the given `text`.
+`[position]`        | Selects all elements that are located at the given `position`. The `position` can be either an `integer` (`1` is the `first position`), the expression `last()` (for the `last position`), or a `position` relative to the `last position` (e.g. `last() - 1`).
 
 Predicates (expressions within square brackets) must be preceded by a tag name, an asterisk, or another predicate. position predicates must be preceded by a tag name.
 
@@ -602,7 +604,8 @@ Predicates (expressions within square brackets) must be preceded by a tag name, 
 &emsp;&emsp;**Note**: `iterparse()` only guarantees that it has seen the `>` character of a starting tag when it emits a `start` event, so the attributes are defined, but the contents of the `text` and `tail` attributes are undefined at that point. The same applies to the `element` children; they may or may not be present. If you need a fully populated `element`, look for `end` events instead.
 &emsp;&emsp;`xml.etree.ElementTree.parse(source, parser=None)`: Parses an `XML` section into an `element` tree. `source` is a filename or file object containing `XML` data. `parser` is an optional `parser` instance. If not given, the standard `XMLParser` parser is used. Returns an `ElementTree` instance.
 &emsp;&emsp;`xml.etree.ElementTree.ProcessingInstruction(target, text=None)`: `PI` element factory. This factory function creates a special `element` that will be serialized as an `XML` processing instruction. `target` is a string containing the `PI` target. `text` is a string containing the `PI` contents, if given. Returns an `element` instance, representing a processing instruction.
-&emsp;&emsp;Note that XMLParser skips over processing instructions in the input instead of creating comment objects for them. An ElementTree will only contain processing instruction nodes if they have been inserted into to the tree using one of the Element methods.
+
+&emsp;&emsp;Note that `XMLParser` skips over processing instructions in the input instead of creating comment objects for them. An `ElementTree` will only contain processing instruction nodes if they have been inserted into to the tree using one of the Element methods.
 &emsp;&emsp;`xml.etree.ElementTree.register_namespace(prefix, uri)`: Registers a `namespace prefix`. The `registry` is global, and any existing mapping for either the given `prefix` or the `namespace URI` will be removed. `prefix` is a `namespace prefix`. `uri` is a `namespace uri`. Tags and attributes in this `namespace` will be serialized with the given `prefix`, if at all possible.
 &emsp;&emsp;`xml.etree.ElementTree.SubElement(parent, tag, attrib={}, **extra)`: `Subelement` factory. This function creates an `element` instance, and appends it to an existing `element`.
 &emsp;&emsp;The `element` name, attribute names, and attribute values can be either `bytestrings` or `Unicode strings`. `parent` is the `parent` element. `tag` is the subelement name. `attrib` is an optional dictionary, containing `element` attributes. `extra` contains additional attributes, given as keyword arguments. Returns an `element` instance.
