@@ -28,17 +28,17 @@ categories: Python语法
 
 ``` python
 class Dict(dict):
-    def __init__(self, **kw):
-        super(Dict, self).__init__(**kw)
+    def __init__(self, **kw):
+        super(Dict, self).__init__(**kw)
 ​
-    def __getattr__(self, key):
-        try:
-            return self[key]
-        except KeyError:
-            raise AttributeError(r"'Dict' object has no attribute '%s'" % key)
+    def __getattr__(self, key):
+        try:
+            return self[key]
+        except KeyError:
+            raise AttributeError(r"'Dict' object has no attribute '%s'" % key)
 ​
-    def __setattr__(self, key, value):
-        self[key] = value
+    def __setattr__(self, key, value):
+        self[key] = value
 ```
 
 为了编写单元测试，需要引入`Python`自带的`unittest`模块，编写`mydict_test.py`如下：
@@ -48,32 +48,34 @@ import unittest
 from mydict import Dict
 ​
 class TestDict(unittest.TestCase):
-    def test_init(self):
-        d = Dict(a=1, b='test')
-        self.assertEqual(d.a, 1)
-        self.assertEqual(d.b, 'test')
-        self.assertTrue(isinstance(d, dict))
+    def test_init(self):
+        d = Dict(a=1, b='test')
+        self.assertEqual(d.a, 1)
+        self.assertEqual(d.b, 'test')
+        self.assertTrue(isinstance(d, dict))
 ​
-    def test_key(self):
-        d = Dict()
-        d['key'] = 'value'
-        self.assertEqual(d.key, 'value')
+    def test_key(self):
+        d = Dict()
+        d['key'] = 'value'
+        self.assertEqual(d.key, 'value')
 ​
-    def test_attr(self):
-        d = Dict()
-        d.key = 'value'
-        self.assertTrue('key' in d)
-        self.assertEqual(d['key'], 'value')
+    def test_attr(self):
+        d = Dict()
+        d.key = 'value'
+        self.assertTrue('key' in d)
+        self.assertEqual(d['key'], 'value')
 ​
-    def test_keyerror(self):
-        d = Dict()
-        with self.assertRaises(KeyError):
-            value = d['empty']
+    def test_keyerror(self):
+        d = Dict()
+
+        with self.assertRaises(KeyError):
+            value = d['empty']
 ​
-    def test_attrerror(self):
-        d = Dict()
-        with self.assertRaises(AttributeError):
-            value = d.empty
+    def test_attrerror(self):
+        d = Dict()
+
+        with self.assertRaises(AttributeError):
+            value = d.empty
 ```
 
 编写单元测试时，我们需要编写一个测试类，从`unittest.TestCase`继承。
@@ -87,14 +89,14 @@ self.assertEqual(abs(-1), 1)  # 断言函数返回的结果与“1”相等
 
 ``` python
 with self.assertRaises(KeyError):
-    value = d['empty']
+    value = d['empty']
 ```
 
 而通过`d.empty`访问不存在的`key`时，我们期待抛出`AttributeError`：
 
 ``` python
 with self.assertRaises(AttributeError):
-    value = d.empty
+    value = d.empty
 ```
 
 ### 运行单元测试
@@ -103,7 +105,7 @@ with self.assertRaises(AttributeError):
 
 ``` python
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main()
 ```
 
 这样就可以把`mydict_test.py`当做正常的`python`脚本运行：
@@ -132,11 +134,11 @@ OK
 
 ``` python
 class TestDict(unittest.TestCase):
-    def setUp(self):
-        print('setUp...')
+    def setUp(self):
+        print('setUp...')
 ​
-    def tearDown(self):
-        print('tearDown...')
+    def tearDown(self):
+        print('tearDown...')
 ```
 
 可以再次运行测试，看看每个测试方法调用前后是否会打印出`setUp...`和`tearDown...`。
@@ -147,10 +149,10 @@ class TestDict(unittest.TestCase):
 
 ``` python
 class TestMathFunc(unittest.TestCase):
-    """ Test mathfuc.py """
-    ...
-    @unittest.skip("I don't want to run this case.")
-    def test_divide(self):
+    """ Test mathfuc.py """
+    ...
+    @unittest.skip("I don't want to run this case.")
+    def test_divide(self):
         """Test method divide(a, b)"""
         print("divide")
         self.assertEqual(2, divide(6, 3))
