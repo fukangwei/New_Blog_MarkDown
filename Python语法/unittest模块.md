@@ -167,24 +167,22 @@ class TestMathFunc(unittest.TestCase):
 import unittest
 ​
 class MyTestCase(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        print('开始执行')
+    @classmethod
+    def setUpClass(cls):
+        print('开始执行')
 ​
-    @classmethod
-    def tearDownClass(cls):
-        print('结束执行')
+    @classmethod
+    def tearDownClass(cls):
+        print('结束执行')
 ​
-    # 测试用例
-    def test_case1(self):
-        print('用例1')
+    def test_case1(self):  # 测试用例1
+        print('用例1')
 ​
-    # 测试用例
-    def test_case2(self):
-        print('用例2')
+    def test_case2(self):  # 测试用例2
+        print('用例2')
 ​
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main()
 ```
 
 ### 小结
