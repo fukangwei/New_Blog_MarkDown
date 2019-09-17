@@ -1,7 +1,7 @@
 ---
 title: visdom模块
 date: 2019-04-13 15:26:26
-tags:
+categories: Python语法
 ---
 &emsp;&emsp;`visdom`可以创造、组织和共享多种数据的可视化，包括数值、图像、文本，甚至是视频，支持`PyTorch`、`Torch`及`Numpy`。用户可通过编程组织可视化空间，或通过用户接口为数据打造仪表板，检查实验结果或调试代码。
 &emsp;&emsp;`visdom`中有两个重要概念：
@@ -45,12 +45,12 @@ viz = Visdom()
 assert viz.check_connection()
 ​
 try:
-    plt.plot([1, 23, 2, 4])
-    plt.ylabel('some numbers')
-    viz.matplot(plt)
+    plt.plot([1, 23, 2, 4])
+    plt.ylabel('some numbers')
+    viz.matplot(plt)
 except BaseException as err:
-    print('Skipped matplotlib example')
-    print('Error message: ', err)
+    print('Skipped matplotlib example')
+    print('Error message: ', err)
 ```
 
 <img src="./visdom模块/1.png" height="238" width="329">
@@ -68,14 +68,14 @@ viz = Visdom()
 assert viz.check_connection()
 ​
 try:
-    video_url = 'http://media.w3.org/2010/05/sintel/trailer.ogv'
-    videofile = 'trailer.ogv'
-    urllib.request.urlretrieve(video_url, videofile)
+    video_url = 'http://media.w3.org/2010/05/sintel/trailer.ogv'
+    videofile = 'trailer.ogv'
+    urllib.request.urlretrieve(video_url, videofile)
 ​
-    if os.path.isfile(videofile):
-        viz.video(videofile=videofile)
+    if os.path.isfile(videofile):
+        viz.video(videofile=videofile)
 except ImportError:
-    print('Skipped video example')
+    print('Skipped video example')
 ```
 
 <img src="./visdom模块/2.png" height="231" width="262">
@@ -114,10 +114,10 @@ viz = Visdom()
 assert viz.check_connection()
 ​
 Y = np.random.rand(100)
-old_scatter = viz.scatter(  # 画出随机的散点图
-    X=np.random.rand(100, 2),
-    Y=(Y[Y > 0] + 1.5).astype(int),
-    opts=dict(legend=['Didnt', 'Update'],
+old_scatter = viz.scatter(  # 画出随机的散点图
+    X=np.random.rand(100, 2),
+    Y=(Y[Y > 0] + 1.5).astype(int),
+    opts=dict(legend=['Didnt', 'Update'],
             xtickmin=-50, xtickmax=50, xtickstep=0.5,
             ytickmin=-50, ytickmax=50, ytickstep=0.5,
             markersymbol='cross-thin-open',),
@@ -125,9 +125,9 @@ old_scatter = viz.scatter(  # 画出随机的散点图
 ​
 time.sleep(5)
 ​
-viz.update_window_opts(  # 对窗口进行更新，包括标注、坐标和样式等
-    win=old_scatter,
-    opts=dict(legend=['Apples', 'Pears'],
+viz.update_window_opts(  # 对窗口进行更新，包括标注、坐标和样式等
+    win=old_scatter,
+    opts=dict(legend=['Apples', 'Pears'],
             xtickmin=0, xtickmax=1, xtickstep=0.5, ytickmin=0,
             ytickmax=1, ytickstep=0.5, markersymbol='cross-thin-open',),
 )
@@ -148,7 +148,7 @@ assert viz.check_connection()
 win = viz.scatter(
     X=np.random.rand(255, 2),
     opts=dict(markersize=10, markercolor=np.random.randint(0, 255, (255, 3,)),),)
-assert viz.win_exists(win), 'Created window marked as not existing'  # 判断窗口是否存在
+assert viz.win_exists(win), 'Created window marked as not existing'  # 判断窗口是否存在
 time.sleep(2)
 # 向散点图中加入新的描述
 viz.scatter(X=np.random.rand(255), Y=np.random.rand(255), win=win, name='new_trace', update='new')
@@ -166,12 +166,12 @@ viz = Visdom()
 assert viz.check_connection()
 ​
 viz.scatter(
-    X=np.random.rand(255, 2),
-    Y=(np.random.rand(255) + 1.5).astype(int),  # 随机指定1或者2
-    opts=dict(
-        markersize=10,
-        markercolor=np.random.randint(0, 255, (2, 3,)),  # 分配两种颜色
-    ),
+    X=np.random.rand(255, 2),
+    Y=(np.random.rand(255) + 1.5).astype(int),  # 随机指定1或者2
+    opts=dict(
+        markersize=10,
+        markercolor=np.random.randint(0, 255, (2, 3,)),  # 分配两种颜色
+    ),
 )
 ```
 
@@ -191,15 +191,13 @@ assert viz.check_connection()
 viz.bar(X=np.random.rand(20))
 ​
 viz.bar(
-    X=np.abs(np.random.rand(5, 3)),
-    opts=dict(
-     stacked=True, legend=['Facebook', 'Google', 'Twitter'],
-     rownames=['2012', '2013', '2014', '2015', '2016'])
+    X=np.abs(np.random.rand(5, 3)),
+    opts=dict(stacked=True, legend=['Facebook', 'Google', 'Twitter'], \
+              rownames=['2012', '2013', '2014', '2015', '2016'])
 )
 ​
-viz.bar(
-    X=np.random.rand(20, 3),
-    opts=dict(stacked=False, legend=['The Netherlands', 'France', 'United States']))
+viz.bar(X=np.random.rand(20, 3), opts=dict(stacked=False, \
+        legend=['The Netherlands', 'France', 'United States']))
 ```
 
 <img src="./visdom模块/7.png" height="289" width="944">
@@ -216,8 +214,8 @@ viz = Visdom()
 assert viz.check_connection()
 ​
 viz.heatmap(
-    X=np.outer(np.arange(1, 6), np.arange(1, 11)),
-    opts=dict(
+    X=np.outer(np.arange(1, 6), np.arange(1, 11)),
+    opts=dict(
         columnnames=['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'],
         rownames=['y1', 'y2', 'y3', 'y4', 'y5'], colormap='Electric',)
 )
@@ -227,7 +225,7 @@ x = np.tile(np.arange(1, 101), (100, 1))
 y = x.transpose()
 X = np.exp((((x - 50) ** 2) + ((y - 50) ** 2)) / -(20.0 ** 2))
 viz.contour(X=X, opts=dict(colormap='Viridis'))
-viz.surf(X=X, opts=dict(colormap='Hot'))  # surface
+viz.surf(X=X, opts=dict(colormap='Hot'))  # surface
 ```
 
 <img src="./visdom模块/8.png" height="260" width="928">
