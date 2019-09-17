@@ -94,6 +94,7 @@ io.show()
 
 ``` python
 from skimage import io, data
+
 img = data.hubble_deep_field()
 io.imshow(img)
 io.show()
@@ -274,7 +275,7 @@ io.show()
 
 #### 图像数据类型
 
-&emsp;&emsp;在`skimage`中，一张图片以`numpy`数组形式存储，数组的数据类型有很多中，相互之间可以转换。数据类型以及取值范围如下表所示：
+&emsp;&emsp;在`skimage`中，一张图片以`numpy`数组形式存储，数组的数据类型有很多中，相互之间可以转换。数据类型以及取值范围如下：
 
 数据类型   | 数值范围
 ----------|----------
@@ -724,6 +725,7 @@ plt.show()
 
 ``` python
 from skimage import data, exposure
+
 image = data.moon()
 result = exposure.is_low_contrast(image)
 print(result)  # 输出“False”
@@ -839,9 +841,8 @@ print(hist2)
 &emsp;&emsp;绘图可以调用`matplotlib.pyplot`库来进行，其中的`hist`函数可以直接绘制直方图：
 
 ``` python
-n, bins, patches = plt.hist(
-    arr, bins=10, normed=0, facecolor='black',
-    edgecolor='black', alpha=1, histtype='bar')
+n, bins, patches = plt.hist(arr, bins=10, normed=0, facecolor='black', \
+                            edgecolor='black', alpha=1, histtype='bar')
 ```
 
 - `arr`: 显示直方图的一维数组。
