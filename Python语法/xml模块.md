@@ -57,8 +57,8 @@ categories: Python语法
 
 &emsp;&emsp;`SAX`是一种基于事件驱动的`API`。利用`SAX`解析`XML`文档牵涉到两个部分，即`解析器`和`事件处理器`。
 
-- 解析器负责读取XML文档，并向事件处理器发送事件，例如元素开始和元素结束事件。
-- 事件处理器则负责对事件作出相应，对传递的XML数据进行处理。
+- 解析器负责读取`XML`文档，并向事件处理器发送事件，例如元素开始和元素结束事件。
+- 事件处理器则负责对事件作出相应，对传递的`XML`数据进行处理。
 
 &emsp;&emsp;在`python`中使用`SAX`方式处理`XML`，要先引入`xml.sax`中的`parse`函数，还有`xml.sax.handler`中的`ContentHandler`。
 
@@ -108,23 +108,24 @@ xml.sax.parseString(xmlstring, contenthandler[, errorhandler])
 import xml.sax
 ​
 class MovieHandler(xml.sax.ContentHandler):
-    def __init__(self):
-        self.CurrentData = ""
-        self.type = ""
-        self.format = ""
-        self.year = ""
-        self.rating = ""
-        self.stars = ""
-        self.description = ""
+    def __init__(self):
+        self.CurrentData = ""
+        self.type = ""
+        self.format = ""
+        self.year = ""
+        self.rating = ""
+        self.stars = ""
+        self.description = ""
 
-    def startElement(self, tag, attributes):  # 元素开始调用
-        self.CurrentData = tag
-        if tag == "movie":
-            print("*****Movie*****")
-            title = attributes["title"]
-            print("Title:", title)
+    def startElement(self, tag, attributes):  # 元素开始调用
+        self.CurrentData = tag
 
-    def endElement(self, tag):  # 元素结束调用
+        if tag == "movie":
+            print("*****Movie*****")
+            title = attributes["title"]
+            print("Title:", title)
+
+    def endElement(self, tag):  # 元素结束调用
         if self.CurrentData == "type":
             print("Type:", self.type)
         elif self.CurrentData == "format":
