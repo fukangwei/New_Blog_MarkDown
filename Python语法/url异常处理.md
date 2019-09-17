@@ -12,9 +12,9 @@ import urllib.error
 req = urllib.request.Request("http://www.ooxx-fishc.com")
 ​
 try:
-    urllib.request.urlopen(req)
+    urllib.request.urlopen(req)
 except urllib.error.URLError as e:
-    print(e.reason)
+    print(e.reason)
 ```
 
 执行结果：
@@ -32,10 +32,10 @@ import urllib.error
 req = urllib.request.Request("http://www.fishC.com/ooxx.html")
 ​
 try:
-    urllib.request.urlopen(req)
+    urllib.request.urlopen(req)
 except urllib.error.HTTPError as e:
-    print(e.code)
-    print(e.read().decode("utf-8"))
+    print(e.code)
+    print(e.read().decode("utf-8"))
 ```
 
 结果为`404`和一个网页代码。
@@ -48,15 +48,15 @@ from urllib.error import URLError, HTTPError
 req = Request("http://www.ooxx-fishc.com/")
 ​
 try:
-    response = urlopen(req)
+    response = urlopen(req)
 except HTTPError as e:
-    print("The server could\'t fulfill the request.")
-    print("Error code: ", e.code)
+    print("The server could\'t fulfill the request.")
+    print("Error code: ", e.code)
 except URLError as e:
-    print("We failed to reach a server.")
-    print("Reason: ", e.reason)
+    print("We failed to reach a server.")
+    print("Reason: ", e.reason)
 else:
-    pass  # everything is fine
+    pass  # everything is fine
 ```
 
 执行结果：
@@ -75,16 +75,16 @@ from urllib.error import URLError
 req = Request("http://www.fishC.com/ooxx.html")
 ​
 try:
-    response = urlopen(req)
+    response = urlopen(req)
 except URLError as e:
-    if hasattr(e, "reason"):
-        print("We failed to reach a server.")
-        print("Reason: ", e.reason)
-    elif hasattr(e, "code"):
-        print("The server could\'t fulfill the request.")
-        print("Error code: ", e.code)
+    if hasattr(e, "reason"):
+        print("We failed to reach a server.")
+        print("Reason: ", e.reason)
+    elif hasattr(e, "code"):
+        print("The server could\'t fulfill the request.")
+        print("Error code: ", e.code)
 else:
-    pass  # everything is fine
+    pass  # everything is fine
 ```
 
 执行结果：
