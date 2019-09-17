@@ -17,7 +17,7 @@ turtle.screensize(canvwidth=None, canvheight=None, bg=None)
 
 ``` python
 turtle.screensize(800, 600, "green")
-turtle.screensize()  # 返回默认大小(400,300)
+turtle.screensize()  # 返回默认大小(400, 300)
 ```
 
 &emsp;&emsp;`setup`函数如下：
@@ -96,8 +96,8 @@ turtle.setup(width=800, height=800, startx=100, starty=100)
 
 模式       | 初始龟标题 | 正角度
 -----------|-----------|-------
-`standard` | 向右(东)   | 逆时针
-`logo`     | 向上(北)   | 顺时针
+`standard` | 向右(东)  | 逆时针
+`logo`     | 向上(北)  | 顺时针
 
 - `turtle.delay(delay=None)`：设置或返回以毫秒为单位的绘图延迟。
 - `turtle.begin_poly()`：开始记录多边形的顶点。当前的乌龟位置是多边形的第一个顶点。
@@ -119,9 +119,9 @@ turtle.circle(radius, extent=None, steps=None)
 - `steps`：可选项，做一个半径为`radius`的圆的内切正多边形，多边形边数为`steps`。
 
 ``` python
-circle(50)  # 整圆
-circle(50, steps=3)  # 三角形
-circle(120, 180)  # 半圆
+circle(50)  # 整圆
+circle(50, steps=3)  # 三角形
+circle(120, 180)  # 半圆
 ```
 
 ### 具体应用
@@ -132,11 +132,11 @@ circle(120, 180)  # 半圆
 import turtle
 ​
 turtle.color("red", "yellow")
-​
 turtle.begin_fill()
+
 for _ in range(50):
-    turtle.forward(200)
-    turtle.left(170)
+    turtle.forward(200)
+    turtle.left(170)
 
 turtle.end_fill()​
 turtle.mainloop()
@@ -153,11 +153,11 @@ import time
 turtle.pensize(5)
 turtle.pencolor("yellow")
 turtle.fillcolor("red")
-​
 turtle.begin_fill()
+
 for _ in range(5):
-    turtle.forward(200)
-    turtle.right(144)
+    turtle.forward(200)
+    turtle.right(144)
 
 turtle.end_fill()
 time.sleep(2)
