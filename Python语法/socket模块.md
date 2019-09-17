@@ -85,18 +85,18 @@ import socket
 # 创建socket对象
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ​
-host = socket.gethostname()  # 获取本地主机名
+host = socket.gethostname()  # 获取本地主机名
 port = 9999
 ​
 serversocket.bind((host, port))
 serversocket.listen(5)
 ​
 while True:
-    clientsocket, addr = serversocket.accept()  # 建立客户端连接
-    print("连接地址: %s" % str(addr))
-    msg = '欢迎访问菜鸟教程！' + "\r\n"
-    clientsocket.send(msg.encode('utf-8'))
-    clientsocket.close()
+    clientsocket, addr = serversocket.accept()  # 建立客户端连接
+    print("连接地址: %s" % str(addr))
+    msg = '欢迎访问菜鸟教程！' + "\r\n"
+    clientsocket.send(msg.encode('utf-8'))
+    clientsocket.close()
 ```
 
 `TCP`客户端如下：
@@ -108,7 +108,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 host = socket.gethostname()
 port = 9999
 s.connect((host, port))
-msg = s.recv(1024)  # 接收小于1024字节的数据
+msg = s.recv(1024)  # 接收小于1024字节的数据
 s.close()
 print(msg.decode('utf-8'))
 ```
@@ -122,9 +122,9 @@ socket.setdefaulttimeout(0.01)
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ​
 try:
-    sock.connect(("123123231", 12345))
+    sock.connect(("123123231", 12345))
 except socket.timeout as e:
-    print("timeout")
+    print("timeout")
 ```
 
 &emsp;&emsp;`UDP`服务器如下：
@@ -132,21 +132,23 @@ except socket.timeout as e:
 ``` python
 from socket import *
 ​
-host = "127.0.0.1"  # 服务器地址
-port = 12345  # 服务器端口
-bufsiz = 2048  # 缓存大小
-adds = (host, port)  # 地址和端口
+host = "127.0.0.1"  # 服务器地址
+port = 12345  # 服务器端口
+bufsiz = 2048  # 缓存大小
+adds = (host, port)  # 地址和端口
 ​
-udpsersock = socket(AF_INET, SOCK_DGRAM)  # 创建UDP的套接字类型
-udpsersock.bind(adds)  # 绑定到地址和端口
+udpsersock = socket(AF_INET, SOCK_DGRAM)  # 创建UDP的套接字类型
+udpsersock.bind(adds)  # 绑定到地址和端口
 ​
 while True:
-    msg = input('服务器说：')  # 输入数据
-    data, addc = udpsersock.recvfrom(bufsiz)
-    udpsersock.sendto(msg.encode('utf-8'), addc)
-    if not data:
-        break
-    print('客户端回答：', data.decode('utf-8'))
+    msg = input('服务器说：')  # 输入数据
+    data, addc = udpsersock.recvfrom(bufsiz)
+    udpsersock.sendto(msg.encode('utf-8'), addc)
+
+    if not data:
+        break
+
+    print('客户端回答：', data.decode('utf-8'))
 ​
 udpsersock.close()
 ```
@@ -156,20 +158,22 @@ udpsersock.close()
 ``` python
 from socket import *
 ​
-host = 'localhost'  # 本地服务器地址
-port = 12345  # 客户端端口(确保和服务器的端口一致)
-bufsiz = 2048  # 缓存大小
-addc = (host, port)  # 地址和端口
+host = 'localhost'  # 本地服务器地址
+port = 12345  # 客户端端口(确保和服务器的端口一致)
+bufsiz = 2048  # 缓存大小
+addc = (host, port)  # 地址和端口
 ​
-udpclisock = socket(AF_INET, SOCK_DGRAM)  # 创建UDP的套接字类型
+udpclisock = socket(AF_INET, SOCK_DGRAM)  # 创建UDP的套接字类型
 ​
 while True:
-    msg = input('客户端说：')  # 输入数据
-    udpclisock.sendto(msg.encode('utf-8'), addc)
-    data, adds = udpclisock.recvfrom(bufsiz)
-    if not data:
-        break
-    print('服务器回答：', data.decode('utf-8'))
+    msg = input('客户端说：')  # 输入数据
+    udpclisock.sendto(msg.encode('utf-8'), addc)
+    data, adds = udpclisock.recvfrom(bufsiz)
+
+    if not data:
+        break
+
+    print('服务器回答：', data.decode('utf-8'))
 ​
 udpclisock.close()
 ```
