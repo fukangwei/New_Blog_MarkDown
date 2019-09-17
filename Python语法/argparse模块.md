@@ -7,7 +7,11 @@ categories: Python语法
 
 ### 简单示例
 
-&emsp;&emsp;先来看一个简单示例，主要有三个步骤：创建`ArgumentParser`对象；调用`add_argument`方法添加参数；使用`parse_args`解析添加的参数。
+&emsp;&emsp;先来看一个简单示例，主要有三个步骤：
+
+1. 创建`ArgumentParser`对象。
+2. 调用`add_argument`方法添加参数。
+3. 使用`parse_args`解析添加的参数。
 
 ``` python
 import argparse
