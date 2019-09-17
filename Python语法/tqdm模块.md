@@ -11,13 +11,13 @@ from tqdm import tqdm
 from time import sleep
 ​
 for i in tqdm(range(9)):
-    sleep(0.1)
+    sleep(0.1)
 ```
 
 执行结果：
 
 ``` bash
-100%|██████████| 9/9 [00:00<00:00,  9.94it/s]
+100%|██████████| 9/9 [00:00<00:00,  9.94it/s]
 ```
 
 还可以为进度条添加描述：
@@ -29,14 +29,14 @@ from time import sleep
 pbar = tqdm(["a", "b", "c", "d"])
 ​
 for char in pbar:
-    pbar.set_description("Processing %s" % char)
-    sleep(1)
+    pbar.set_description("Processing %s" % char)
+    sleep(1)
 ```
 
 执行结果：
 
 ``` bash
-Processing c:  50%|█████     | 2/4 [00:02<00:02,  1.00s/it]
+Processing c:  50%|█████     | 2/4 [00:02<00:02,  1.00s/it]
 ```
 
 &emsp;&emsp;除了自动的更新方式，还可以手动地控制更新：
@@ -46,13 +46,13 @@ from tqdm import tqdm
 from time import sleep
 ​
 with tqdm(total=100) as pbar:
-    for i in range(10):
-        sleep(1)
-        pbar.update(10)
+    for i in range(10):
+        sleep(1)
+        pbar.update(10)
 ```
 
 执行结果：
 
 ``` bash
-40%|████      | 40/100 [00:04<00:06, 10.00it/s]
+40%|████      | 40/100 [00:04<00:06, 10.00it/s]
 ```
