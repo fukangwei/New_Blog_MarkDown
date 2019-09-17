@@ -126,19 +126,20 @@ class MovieHandler(xml.sax.ContentHandler):
             print("Title:", title)
 
     def endElement(self, tag):  # 元素结束调用
-        if self.CurrentData == "type":
-            print("Type:", self.type)
-        elif self.CurrentData == "format":
-            print("Format:", self.format)
-        elif self.CurrentData == "year":
-            print("Year:", self.year)
-        elif self.CurrentData == "rating":
-            print("Rating:", self.rating)
-        elif self.CurrentData == "stars":
-            print("Stars:", self.stars)
-        elif self.CurrentData == "description":
-            print("Description:", self.description)
-        self.CurrentData = ""
+        if self.CurrentData == "type":
+            print("Type:", self.type)
+        elif self.CurrentData == "format":
+            print("Format:", self.format)
+        elif self.CurrentData == "year":
+            print("Year:", self.year)
+        elif self.CurrentData == "rating":
+            print("Rating:", self.rating)
+        elif self.CurrentData == "stars":
+            print("Stars:", self.stars)
+        elif self.CurrentData == "description":
+            print("Description:", self.description)
+
+        self.CurrentData = ""
 ​
     def characters(self, content):  # 读取字符时调用
         if self.CurrentData == "type":
