@@ -778,17 +778,17 @@ Example of changing the attribute `target` of every link in first paragraph:
 
 #### class xml.etree.ElementTree.XMLPullParser(events=None)
 
-&emsp;&emsp;A `pull parser` suitable for `non-blocking` applications. Its `input-side API` is similar to that of `XMLParser`, but instead of pushing calls to a callback target, `XMLPullParser` collects an internal list of parsing `events` and lets the user read from it. `events` is a sequence of `events` to report back. The supported `events` are the strings `start`, `end`, `start-ns` and `end-ns` (the `ns` events are used to get detailed namespace information). If `events` is omitted, only `end` events are reported.
-&emsp;&emsp;`feed(data)`: Feed the given `bytes data` to the `parser`.
-&emsp;&emsp;`close()`: Signal the `parser` that the data stream is terminated. Unlike `XMLParser.close()`, this method always returns `None`. Any events not yet retrieved when the `parser` is closed can still be read with `read_events()`.
-&emsp;&emsp;`read_events()`: Return an iterator over the `events` which have been encountered in the data fed to the `parser`. The iterator yields `(event, elem)` pairs, where `event` is a string representing the type of `event` (e.g. `end`) and `elem` is the encountered `Element` object.
+&emsp;&emsp;A pull parser suitable for `non-blocking` applications. Its `input-side API` is similar to that of `XMLParser`, but instead of pushing calls to a callback target, `XMLPullParser` collects an internal list of parsing `events` and lets the user read from it. `events` is a sequence of events to report back. The supported `events` are the strings `start`, `end`, `start-ns` and `end-ns` (the `ns` events are used to get detailed namespace information). If `events` is omitted, only `end` events are reported.
+&emsp;&emsp;`feed(data)`: Feed the given `bytes data` to the parser.
+&emsp;&emsp;`close()`: Signal the parser that the data stream is terminated. Unlike `XMLParser.close()`, this method always returns `None`. Any events not yet retrieved when the parser is closed can still be read with `read_events()`.
+&emsp;&emsp;`read_events()`: Return an iterator over the `events` which have been encountered in the data fed to the parser. The iterator yields `(event, elem)` pairs, where `event` is a string representing the type of `event` (e.g. `end`) and `elem` is the encountered `Element` object.
 &emsp;&emsp;`Events` provided in a previous call to `read_events()` will not be yielded again. `Events` are consumed from the internal queue only when they are retrieved from the iterator, so multiple readers iterating in parallel over iterators obtained from `read_events()` will have unpredictable results.
-&emsp;&emsp;**Note**: `XMLPullParser` only guarantees that it has seen the `>` character of a starting tag when it emits a `start` event, so the attributes are defined, but the contents of the text and tail attributes are undefined at that point. The same applies to the `element` children; they may or may not be present. If you need a fully populated `element`, look for `end` events instead.
+&emsp;&emsp;**Note**: `XMLPullParser` only guarantees that it has seen the `>` character of a starting tag when it emits a `start` event, so the attributes are defined, but the contents of the text and tail attributes are undefined at that point. The same applies to the element children; they may or may not be present. If you need a fully populated element, look for `end` events instead.
 
 ### Exceptions
 
 #### class xml.etree.ElementTree.ParseError
 
 &emsp;&emsp;`XML` parse error, raised by the various parsing methods in this module when parsing fails. The string representation of an instance of this exception will contain a `user-friendly` error message. In addition, it will have the following `attributes` available:
-&emsp;&emsp;`code`: A numeric error `code` from the expat `parser`. See the documentation of `xml.parsers.expat` for the list of error codes and their meanings.
+&emsp;&emsp;`code`: A numeric error `code` from the expat parser. See the documentation of `xml.parsers.expat` for the list of error codes and their meanings.
 &emsp;&emsp;`position`: A tuple of line, column numbers, specifying where the error occurred.
