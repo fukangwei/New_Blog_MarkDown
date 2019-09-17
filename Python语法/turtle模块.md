@@ -177,22 +177,22 @@ turtle.mainloop()
 import turtle
 ​
 def branch(length, level):
-    if level <= 0:
-        return
+    if level <= 0:
+        return
 ​
-    turtle.forward(length)
-    turtle.left(45)
-    branch(0.6 * length, level - 1)
-    turtle.right(90)
-    branch(0.6 * length, level - 1)
-    turtle.left(45)
-    turtle.backward(length)
-    return
+    turtle.forward(length)
+    turtle.left(45)
+    branch(0.6 * length, level - 1)
+    turtle.right(90)
+    branch(0.6 * length, level - 1)
+    turtle.left(45)
+    turtle.backward(length)
+    return
 ​
 if __name__ == "__main__":
-    turtle.left(90)
-    branch(100, 4)
-    turtle.mainloop()
+    turtle.left(90)
+    branch(100, 4)
+    turtle.mainloop()
 ```
 
 <img src="./turtle模块/3.png" height="141" width="143">
