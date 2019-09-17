@@ -15,17 +15,17 @@ categories: Python语法
 
 &emsp;&emsp;`gmtime`、`localtime`和`strptime`以时间元祖(`struct_time`)的形式返回。
 
-索引值        | 属性                     | 值
--------------| -------------------------|------------
-`0`          | `tm_year`(年)            | 例如`2015`
-`1`          | `tm_mon`(月)             | `1`至`12`
-`2`          | `tm_mday`(日)            | `1`至`31`
-`3`          | `tm_hour`(时)            | `0`至`23`
-`4`          | `tm_min`(分)             | `0`至`59`
-`5`          | `tm_sec`(秒)             | `0`至`61`(`60`代表闰秒，`61`基于历史原因保留)
-`6`          | `tm_wday`(星期几)        | `0`至`6`(`0`表示星期一)
-`7`          | `tm_yday`(一年中的第几天) | `1`至`366`
-`8`          | `tm_isdst`(是否为夏令时)  | `0`、`1`、`-1`(`-1`代表夏令时)
+索引值 | 属性                     | 值
+------|--------------------------|------------
+`0`   | `tm_year`(年)            | 例如`2015`
+`1`   | `tm_mon`(月)             | `1`至`12`
+`2`   | `tm_mday`(日)            | `1`至`31`
+`3`   | `tm_hour`(时)            | `0`至`23`
+`4`   | `tm_min`(分)             | `0`至`59`
+`5`   | `tm_sec`(秒)             | `0`至`61`(`60`代表闰秒，`61`基于历史原因保留)
+`6`   | `tm_wday`(星期几)        | `0`至`6`(`0`表示星期一)
+`7`   | `tm_yday`(一年中的第几天) | `1`至`366`
+`8`   | `tm_isdst`(是否为夏令时)  | `0`、`1`、`-1`(`-1`代表夏令时)
 
 - `time.altzone`：返回格林威治西部的夏令时地区的偏移秒数；如果该地区在格林威治东部会返回负值(如西欧，包括英国)；对夏令时启用地区才能使用。
 - `time.asctime([t])`：接受时间元组并返回一个可读的形式为`Tue Dec 11 18:07:14 2015`(`2015`年`12`月`11`日周二`18`时`07`分`14`秒)的`24`个字符的字符串。
@@ -40,7 +40,7 @@ categories: Python语法
 - `time.sleep(secs)`：推迟调用线程的运行，`secs`的单位是秒。
 - `time.strftime(format[, t])`：把一个代表时间的元组或者`struct_time`(例如由`time.localtime`和`time.gmtime`返回)转化为格式化的时间字符串。如果`t`未指定，将传入`time.localtime`。如果元组中任何一个元素越界，将会抛出`ValueError`异常。`format`格式如下：
 
-格式  | 含义
+格式 | 含义
 -----|----
 `%a` | 本地(`locale`)简化星期名称
 `%A` | 本地完整星期名称
@@ -70,6 +70,7 @@ categories: Python语法
 
 ``` python
 import time as t
+
 time_str = t.strftime("a, %d %b %Y %H:%M:%S +0000", t.gmtime())
 print(time_str)  # 结果为“a, 19 Nov 2015 00:10:32 +0000”
 ```
@@ -78,8 +79,8 @@ print(time_str)  # 结果为“a, 19 Nov 2015 00:10:32 +0000”
 
 ``` python
 import time as t
-time_str = t.strptime("30 Nov 14", "%d %b %y")
 
+time_str = t.strptime("30 Nov 14", "%d %b %y")
 # 结果为time.struct_time(tm_year=2014, tm_mon=11, tm_mday=30, tm_hour=0, \
 #                        tm_min=0, tm_sec=0, tm_wday=6, tm_yday=334, tm_isdst=-1)
 print(time_str)
