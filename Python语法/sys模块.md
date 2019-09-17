@@ -22,8 +22,8 @@ import sys
 print('The name of this program is: %s' % (sys.argv[0]))
 print('The command line arguments are:')
 
-for i in sys.argv:  # 获取参数列表
-    print(i)
+for i in sys.argv:  # 获取参数列表
+    print(i)
 ​
 # 统计参数个数
 print('There are %s arguments.' % (len(sys.argv) - 1))
@@ -50,10 +50,11 @@ print('There are %s arguments.' % (len(sys.argv) - 1))
 import sys, os
 ​
 osType = sys.platform
+
 if osType == 'linux' or osType == 'linux2':
-    command = 'clear'
+    command = 'clear'
 else:
-    command = 'cls'
+    command = 'cls'
 ​
 os.system(command)
 ```
@@ -81,11 +82,11 @@ sys.path.append('引用模块的地址')
 ``` python
 import sys
 ​
-def find_module(module):  # print sys.builtin_module_names
-    if module in sys.builtin_module_names:
-        print(module, "=>", "__builtin__")
-    else:
-        print(module, "=>", __import__(module).__file__)
+def find_module(module):  # print sys.builtin_module_names
+    if module in sys.builtin_module_names:
+        print(module, "=>", "__builtin__")
+    else:
+        print(module, "=>", __import__(module).__file__)
 ​
 find_module('os')
 find_module('sys')
@@ -103,9 +104,9 @@ import sys
 print('running...')
 ​
 try:
-    sys.exit(1)
+    sys.exit(1)
 except SystemExit:
-    print('SystemExit exit 1')
+    print('SystemExit exit 1')
 ​
 print('exited')
 ```
