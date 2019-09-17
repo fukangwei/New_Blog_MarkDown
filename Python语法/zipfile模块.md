@@ -7,7 +7,7 @@ categories: Python语法
 &emsp;&emsp;`zipFile`的原型为：
 
 ``` python
-class zipfile.ZipFile(file[, mode[, compression[, allowZip64]]])
+class zipfile.ZipFile(file [, mode [, compression [, allowZip64]]])
 ```
 
 - `file`：`zip`文件名(包含路径)。
@@ -18,12 +18,12 @@ class zipfile.ZipFile(file[, mode[, compression[, allowZip64]]])
 &emsp;&emsp;`ZipFile.namelist`：获取`zip`文档内所有文件的名称列表(名称是字符串)。
 &emsp;&emsp;`ZipFile.getinfo(name)`：获取`zip`文档内指定文件的信息。返回一个`zipfile.ZipInfo`对象，它包括文件的详细信息。
 &emsp;&emsp;`ZipFile.infolist`：获取`zip`文档内所有文件的信息，返回一个`zipfile.ZipInfo`的列表。
-&emsp;&emsp;`ZipFile.extract(member[, path[, pwd]])`：将`zip`文档内的指定文件解压到指定目录。参数`member`指定要解压的文件名称(字符串)或对应的`ZipInfo`对象，`path`指定了解压文件保存的文件夹，`pwd`为解压密码。
-&emsp;&emsp;`ZipFile.extractall([path[, members[, pwd]]])`：解压`zip`文档中的所有文件到指定目录。参数`members`的默认值为`zip`文档内的所有文件名称列表，也可以自己设置，选择要解压的文件名称。
+&emsp;&emsp;`ZipFile.extract(member [, path [, pwd]])`：将`zip`文档内的指定文件解压到指定目录。参数`member`指定要解压的文件名称(字符串)或对应的`ZipInfo`对象，`path`指定了解压文件保存的文件夹，`pwd`为解压密码。
+&emsp;&emsp;`ZipFile.extractall([path [, members [, pwd]]])`：解压`zip`文档中的所有文件到指定目录。参数`members`的默认值为`zip`文档内的所有文件名称列表，也可以自己设置，选择要解压的文件名称。
 &emsp;&emsp;`ZipFile.printdir`：将`zip`文档内的信息打印到控制台上，包含三列信息，即`File Name`、`Modified`和`Size`。
-&emsp;&emsp;`ZipFile.read(name[, pwd])`：获取`zip`文档内指定文件的二进制数据。
-&emsp;&emsp;`ZipFile.write(filename[, arcname[, compress_type]])`：将指定文件添加到`zip`文档中。参数`filename`为文件路径；`arcname`为添加到`zip`文档之后保存的名称；`compress_type`表示压缩方法，它的值可以是`zipfile.ZIP_STORED`或`zipfile.ZIP_DEFLATED`。
-&emsp;&emsp;`zipInfo`的属性如下所示：
+&emsp;&emsp;`ZipFile.read(name [, pwd])`：获取`zip`文档内指定文件的二进制数据。
+&emsp;&emsp;`ZipFile.write(filename [, arcname [, compress_type]])`：将指定文件添加到`zip`文档中。参数`filename`为文件路径；`arcname`为添加到`zip`文档之后保存的名称；`compress_type`表示压缩方法，它的值可以是`zipfile.ZIP_STORED`或`zipfile.ZIP_DEFLATED`。
+&emsp;&emsp;`zipInfo`的属性如下：
 
 - `ZipInfo.compress_type`：压缩类型。
 - `ZipInfo.comment`：文档说明。
@@ -41,25 +41,25 @@ class zipfile.ZipFile(file[, mode[, compression[, allowZip64]]])
 - `ZipInfo.compress_size`：获取压缩后的大小。
 - `ZipInfo.file_size`：获取未压缩的文件大小。
 
-&emsp;&emsp;压缩文件的代码如下所示：
+&emsp;&emsp;压缩文件的代码如下：
 
 ``` python
 import zipfile
 ​
 # 将data.h5和myh5py.hdf5压缩至文件test.zip
 with zipfile.ZipFile('test.zip', mode='w') as zipf:
-    zipf.write('data.h5')
-    zipf.write('myh5py.hdf5')
+    zipf.write('data.h5')
+    zipf.write('myh5py.hdf5')
 ​
 zipf = zipfile.ZipFile('test.zip')
 print(zipf.namelist())
 ```
 
-&emsp;&emsp;解压文件的代码如下所示：
+&emsp;&emsp;解压文件的代码如下：
 
 ``` python
 import zipfile
 ​
 zipf = zipfile.ZipFile('test.zip')
-zipf.extractall('./channel1')  # 将所有文件解压到channel1目录下
+zipf.extractall('./channel1')  # 将所有文件解压到channel1目录下
 ```
