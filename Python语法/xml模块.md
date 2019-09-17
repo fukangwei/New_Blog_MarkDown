@@ -141,28 +141,28 @@ class MovieHandler(xml.sax.ContentHandler):
 
         self.CurrentData = ""
 ​
-    def characters(self, content):  # 读取字符时调用
-        if self.CurrentData == "type":
-            self.type = content
-        elif self.CurrentData == "format":
-            self.format = content
-        elif self.CurrentData == "year":
-            self.year = content
-        elif self.CurrentData == "rating":
-            self.rating = content
-        elif self.CurrentData == "stars":
-            self.stars = content
-        elif self.CurrentData == "description":
-            self.description = content
+    def characters(self, content):  # 读取字符时调用
+        if self.CurrentData == "type":
+            self.type = content
+        elif self.CurrentData == "format":
+            self.format = content
+        elif self.CurrentData == "year":
+            self.year = content
+        elif self.CurrentData == "rating":
+            self.rating = content
+        elif self.CurrentData == "stars":
+            self.stars = content
+        elif self.CurrentData == "description":
+            self.description = content
 ​
 if __name__ == "__main__":
-    parser = xml.sax.make_parser()  # 创建一个XMLReader
+    parser = xml.sax.make_parser()  # 创建一个XMLReader
     # turn off namepsaces
-    parser.setFeature(xml.sax.handler.feature_namespaces, 0)
-    # 重写ContextHandler
-    Handler = MovieHandler()
-    parser.setContentHandler(Handler)
-    parser.parse("movies.xml")
+    parser.setFeature(xml.sax.handler.feature_namespaces, 0)
+    # 重写ContextHandler
+    Handler = MovieHandler()
+    parser.setContentHandler(Handler)
+    parser.parse("movies.xml")
 ```
 
 执行结果：
@@ -210,27 +210,28 @@ Description: Viewable boredom
 from xml.dom.minidom import parse
 import xml.dom.minidom
 ​
-DOMTree = xml.dom.minidom.parse("movies.xml")  # 使用minidom解析器打开XML文档
+DOMTree = xml.dom.minidom.parse("movies.xml")  # 使用minidom解析器打开XML文档
 collection = DOMTree.documentElement
 ​
 if collection.hasAttribute("shelf"):
-    print("Root element : %s" % collection.getAttribute("shelf"))
+    print("Root element : %s" % collection.getAttribute("shelf"))
 ​
-movies = collection.getElementsByTagName("movie")  # 在集合中获取所有电影
+movies = collection.getElementsByTagName("movie")  # 在集合中获取所有电影
 ​
-for movie in movies:  # 打印每部电影的详细信息
-    print("*****Movie*****")
-    if movie.hasAttribute("title"):
-        print("Title: %s" % movie.getAttribute("title"))
+for movie in movies:  # 打印每部电影的详细信息
+    print("*****Movie*****")
+
+    if movie.hasAttribute("title"):
+        print("Title: %s" % movie.getAttribute("title"))
 ​
-    type = movie.getElementsByTagName('type')[0]
-    print("Type: %s" % type.childNodes[0].data)
-    format = movie.getElementsByTagName('format')[0]
-    print("Format: %s" % format.childNodes[0].data)
-    rating = movie.getElementsByTagName('rating')[0]
-    print("Rating: %s" % rating.childNodes[0].data)
-    description = movie.getElementsByTagName('description')[0]
-    print("Description: %s" % description.childNodes[0].data)
+    type = movie.getElementsByTagName('type')[0]
+    print("Type: %s" % type.childNodes[0].data)
+    format = movie.getElementsByTagName('format')[0]
+    print("Format: %s" % format.childNodes[0].data)
+    rating = movie.getElementsByTagName('rating')[0]
+    print("Rating: %s" % rating.childNodes[0].data)
+    description = movie.getElementsByTagName('description')[0]
+    print("Description: %s" % description.childNodes[0].data)
 ```
 
 执行结果：
