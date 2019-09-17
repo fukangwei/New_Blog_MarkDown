@@ -1,7 +1,7 @@
 ---
 title: urllib模块
 date: 2019-04-14 21:28:47
-tags:
+categories: Python语法
 ---
 &emsp;&emsp;`Urllib`库是`Python`中的一个功能强大、用于操作`URL`，并在做爬虫时经常要用到的库。在`Python2.x`中，分为`Urllib`库和`Urllin2`库，`Python3.x`之后都合并到`Urllib`库中，使用方法稍有不同。本文介绍的是`Python3`中的`urllib`库。
 <!--more-->
@@ -37,8 +37,8 @@ file = urllib.request.urlopen('www.baidu.com')
 此时还需要将对应的网页内容读取出来，可以使用`file.read`读取全部内容，或者也可以使用`file.readline`读取一行内容：
 
 ``` python
-data = file.read()  # 读取全部
-dataline = file.readline()  # 读取一行内容
+data = file.read()  # 读取全部
+dataline = file.readline()  # 读取一行内容
 ```
 
 读取内容常见的有`3`种方式：
@@ -71,25 +71,25 @@ file.info()
 如果希望获取当前爬取网页的状态码，可以使用`getcode`。若返回`200`，则表示正确，否则表示不正确：
 
 ``` python
-file.getcode()  # 执行结果“200”
+file.getcode()  # 执行结果“200”
 ```
 
 如果想要获取当前所爬取的`URL`地址，可以使用`geturl`：
 
 ``` python
-file.geturl()  # 执行结果“'http://www.baidu.com'”
+file.geturl()  # 执行结果“'http://www.baidu.com'”
 ```
 
 &emsp;&emsp;一般来说，标准`URL`只会允许一部分`ASCII`字符(比如数字、字母、部分符号)，而其他的一些字符(比如汉字)是不符合`URL`标准的，此时需要进行编码，可以使用`urllib.request.quote`：
 
 ``` python
-urllib.request.quote('http://www.baidu.com')  # 执行结果“'http%3A//www.baidu.com'”
+urllib.request.quote('http://www.baidu.com')  # 执行结果“'http%3A//www.baidu.com'”
 ```
 
 有时需要对编码的网址进行解码：
 
 ``` python
-urllib.request.unquote('http%3A//www.baidu.com')  # 执行结果“'http://www.baidu.com'”
+urllib.request.unquote('http%3A//www.baidu.com')  # 执行结果“'http://www.baidu.com'”
 ```
 
 #### 浏览器的模拟：Headers属性
@@ -166,7 +166,7 @@ import urllib.parse
 ​
 url = 'http://www.baidu.com/s?wd='
 key = 'fengxin的博客'
-key_code = urllib.request.quote(key)  # 因为URL里含中文，需要进行编码
+key_code = urllib.request.quote(key)  # 因为URL里含中文，需要进行编码
 url_all = url + key_code
 ​
 header = {'User-Agent': 'Mozilla/5.0 (X11; Fedora; Linux x86_64) AppleWebKit/537.36 \
@@ -216,16 +216,16 @@ http://www.iqianyue.com/mypost
 
 ``` xml
 <html>
-<head>
-    <title>Post Test Page</title>
-</head>
-<body>
-    <form action="" method="post">
-    name:<input name="name" type="text" /><br>
-    passwd:<input name="pass" type="text" /><br>
-    <input name="" type="submit" value="submit" />
-    <br />
-</body>
+    <head>
+        <title>Post Test Page</title>
+    </head>
+    <body>
+        <form action="" method="post">
+        name:<input name="name" type="text" /><br>
+        passwd:<input name="pass" type="text" /><br>
+        <input name="" type="submit" value="submit" />
+        <br />
+    </body>
 </html>
 ```
 
@@ -245,7 +245,7 @@ url = 'http://www.iqianyue.com/mypost'
 header = {'User-Agent': 'Mozilla/5.0 (X11; Fedora; Linux x86_64) \
             AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'}
 data = {'name': 'fengxin', 'pass': '123'}
-postdata = urllib.parse.urlencode(data).encode('utf8')  # 进行编码
+postdata = urllib.parse.urlencode(data).encode('utf8')  # 进行编码
 request = urllib.request.Request(url, postdata)
 reponse = urllib.request.urlopen(request).read()
 ​
@@ -278,12 +278,14 @@ urlretrieve(url, filename=None, reporthook=None, data=None)
 import os
 import urllib.request
 ​
-def cbk(a, b, c):  # 回调函数
-    """ 参数a是已经下载的数据块数量，b是数据块的大小，c是远程文件的大小 """
-    per = 100.0 * a * b / c
-    if per > 100:
-        per = 100
-    print('%.2f%%' % per)
+def cbk(a, b, c):  # 回调函数
+    """ 参数a是已经下载的数据块数量，b是数据块的大小，c是远程文件的大小 """
+    per = 100.0 * a * b / c
+
+    if per > 100:
+        per = 100
+
+    print('%.2f%%' % per)
 ​
 url = 'http://www.python.org/ftp/python/2.7.5/Python-2.7.5.tar.bz2'
 dir = os.path.abspath('.')
