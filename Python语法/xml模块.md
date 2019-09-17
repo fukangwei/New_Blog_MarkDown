@@ -649,17 +649,17 @@ the `a` element has `None` for both text and tail attributes, the `b` element ha
 &emsp;&emsp;`itertext()`: Creates a text `iterator`. The `iterator` loops over this `element` and all subelements, in document order, and returns all inner `text`.
 &emsp;&emsp;`makeelement(tag, attrib)`: Creates a new `element` object of the same type as this `element`. Do not call this method, use the `SubElement()` factory function instead.
 &emsp;&emsp;`remove(subelement)`: Removes `subelement` from the `element`. Unlike the `find*` methods, this method compares elements based on the instance identity, not on tag value or contents.
-&emsp;&emsp;Element objects also support the following sequence type methods for working with subelements: `__delitem__()`, `__getitem__()`, `__setitem__()`, `__len__()`.
+&emsp;&emsp;`Element` objects also support the following sequence type methods for working with subelements: `__delitem__()`, `__getitem__()`, `__setitem__()`, `__len__()`.
 &emsp;&emsp;**Caution**: Elements with no subelements will test as `False`. This behavior will change in future versions. Use specific `len(elem)` or elem is `None` test instead.
 
 ``` python
 element = root.find('foo')
 ​
-if not element:  # careful!
-    print("element not found, or element has no subelements")
+if not element:  # careful!
+    print("element not found, or element has no subelements")
 ​
 if element is None:
-    print("element not found")
+    print("element not found")
 ```
 
 ### ElementTree Objects
@@ -674,22 +674,22 @@ if element is None:
 &emsp;&emsp;`findtext(match, default=None, namespaces=None)`: Same as `Element.findtext()`, starting at the root of the tree.
 &emsp;&emsp;`getiterator(tag=None)`: Deprecated since version `3.2`: Use method `ElementTree.iter()` instead.
 &emsp;&emsp;`getroot()`: Returns the `root element` for this tree.
-&emsp;&emsp;`iter(tag=None)`: Creates and returns a tree `iterator` for the `root element`. The `iterator` loops over all elements in this tree, in section order. `tag` is the `tag` to look for (default is to return all elements).
+&emsp;&emsp;`iter(tag=None)`: Creates and returns a tree `iterator` for the `root element`. The `iterator` loops over all elements in this tree, in section order. `tag` is the tag to look for (default is to return all elements).
 &emsp;&emsp;`iterfind(match, namespaces=None)`: Same as `Element.iterfind()`, starting at the root of the tree.
-&emsp;&emsp;`parse(source, parser=None)`: Loads an external `XML` section into this `element` tree. `source` is a file name or file object. `parser` is an optional `parser` instance. If not given, the standard `XMLParser` parser is used. Returns the section `root element`.
-&emsp;&emsp;`write(file, encoding="us-ascii", xml_declaration=None, default_namespace=None, method="xml", *, short_empty_elements=True)`: Writes the element tree to a file, as `XML`. `file` is a `file name`, or a `file object` opened for writing. `encoding` is the output `encoding` (default is `US-ASCII`). `xml_declaration` controls if an `XML` declaration should be added to the `file`. Use False for never, `True` for always, `None` for only if not `US-ASCII` or `UTF-8` or `Unicode` (default is `None`). `default_namespace` sets the default `XML` namespace (for `xmlns`). `method` is either `xml`, `html` or `text` (default is `xml`). The `keyword-only` `short_empty_elements` parameter controls the formatting of elements that contain no content. If `True` (the default), they are emitted as a single `self-closed` tag, otherwise they are emitted as a pair of start/end tags.
-&emsp;&emsp;The output is either a `string` (`str`) or `binary` (`bytes`). This is controlled by the encoding argument. If encoding is `unicode`, the output is a `string`; otherwise, it’s `binary`. Note that this may conflict with the type of file if it’s an open file object; make sure you do not try to write a `string` to a `binary` stream and vice versa.
+&emsp;&emsp;`parse(source, parser=None)`: Loads an external `XML` section into this `element` tree. `source` is a file name or file object. `parser` is an optional parser instance. If not given, the standard `XMLParser` parser is used. Returns the section `root element`.
+&emsp;&emsp;`write(file, encoding="us-ascii", xml_declaration=None, default_namespace=None, method="xml", *, short_empty_elements=True)`: Writes the element tree to a file, as `XML`. `file` is a file name, or a file object opened for writing. `encoding` is the output encoding (default is `US-ASCII`). `xml_declaration` controls if an `XML` declaration should be added to the `file`. Use False for never, `True` for always, `None` for only if not `US-ASCII` or `UTF-8` or `Unicode` (default is `None`). `default_namespace` sets the default `XML` namespace (for `xmlns`). `method` is either `xml`, `html` or `text` (default is `xml`). The `keyword-only` `short_empty_elements` parameter controls the formatting of elements that contain no content. If `True` (the default), they are emitted as a single `self-closed` tag, otherwise they are emitted as a pair of start/end tags.
+&emsp;&emsp;The output is either a `string` (`str`) or `binary` (`bytes`). This is controlled by the encoding argument. If encoding is `unicode`, the output is a `string`; otherwise, it's `binary`. Note that this may conflict with the type of file if it's an open file object; make sure you do not try to write a `string` to a `binary` stream and vice versa.
 &emsp;&emsp;This is the `XML` file that is going to be manipulated:
 
 ``` xml
 <html>
-    <head>
-        <title>Example page</title>
-    </head>
-    <body>
-        <p>Moved to <a href="http://example.org/">example.org</a>
-        or <a href="http://example.com/">example.com</a>.</p>
-    </body>
+    <head>
+        <title>Example page</title>
+    </head>
+    <body>
+        <p>Moved to <a href="http://example.org/">example.org</a>
+        or <a href="http://example.com/">example.com</a>.</p>
+    </body>
 </html>
 ```
 
@@ -700,14 +700,14 @@ Example of changing the attribute `target` of every link in first paragraph:
 >>> tree = ElementTree()
 >>> tree.parse("index.xhtml")
 <Element 'html' at 0xb77e6fac>
->>> p = tree.find("body/p")  # Finds first occurrence of tag p in body
+>>> p = tree.find("body/p")  # Finds first occurrence of tag p in body
 >>> p
 <Element 'p' at 0xb77ec26c>
->>> links = list(p.iter("a"))  # Returns list of all links
+>>> links = list(p.iter("a"))  # Returns list of all links
 >>> links
 [<Element 'a' at 0xb77ec2ac>, <Element 'a' at 0xb77ec1cc>]
->>> for i in links:  # Iterates through all found links
-...     i.attrib["target"] = "blank"
+>>> for i in links:  # Iterates through all found links
+...     i.attrib["target"] = "blank"
 >>> tree.write("output.xhtml")
 ```
 
@@ -721,13 +721,13 @@ Example of changing the attribute `target` of every link in first paragraph:
 
 #### class xml.etree.ElementTree.TreeBuilder(element_factory=None)
 
-&emsp;&emsp;Generic `element` structure `builder`. This builder converts a sequence of start, data, and end method calls to a `well-formed` element structure. You can use this class to build an `element` structure using a custom `XML` parser, or a parser for some other `XML-like` format. `element_factory`, when given, must be a callable accepting two positional arguments: a `tag` and a `dict` of attributes. It is expected to return a new `element` instance.
-&emsp;&emsp;`close()`: Flushes the builder buffers, and returns the toplevel document `element`. Returns an `Element` instance.
+&emsp;&emsp;Generic element structure builder. This builder converts a sequence of start, data, and end method calls to a `well-formed` element structure. You can use this class to build an element structure using a custom `XML` parser, or a parser for some other `XML-like` format. `element_factory`, when given, must be a callable accepting two positional arguments: a `tag` and a `dict` of attributes. It is expected to return a new element instance.
+&emsp;&emsp;`close()`: Flushes the builder buffers, and returns the toplevel document element. Returns an `Element` instance.
 &emsp;&emsp;`data(data)`: Adds text to the current `element`. `data` is a string. This should be either a `bytestring`, or a `Unicode` string.
-&emsp;&emsp;`end(tag)`: Closes the current `element`. `tag` is the `element` name. Returns the closed element.
-&emsp;&emsp;`start(tag, attrs)`: Opens a new `element`. `tag` is the `element` name. `attrs` is a dictionary containing `element` attributes. Returns the opened `element`.
+&emsp;&emsp;`end(tag)`: Closes the current element. `tag` is the element name. Returns the closed element.
+&emsp;&emsp;`start(tag, attrs)`: Opens a new element. `tag` is the element name. `attrs` is a dictionary containing element attributes. Returns the opened element.
 &emsp;&emsp;In addition, a custom `TreeBuilder` object can provide the following method:
-&emsp;&emsp;`doctype(name, pubid, system)`: Handles a `doctype` declaration. `name` is the `doctype` name. `pubid` is the `public` identifier. `system` is the `system` identifier. This method does not exist on the default `TreeBuilder` class.
+&emsp;&emsp;`doctype(name, pubid, system)`: Handles a `doctype` declaration. `name` is the `doctype` name. `pubid` is the `public` identifier. `system` is the system identifier. This method does not exist on the default `TreeBuilder` class.
 
 ### XMLParser Objects
 
