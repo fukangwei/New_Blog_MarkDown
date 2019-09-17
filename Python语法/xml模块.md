@@ -3,7 +3,6 @@ title: xml模块
 date: 2019-01-12 14:08:01
 categories: Python语法
 ---
-
 ### 什么是XML？
 
 &emsp;&emsp;`XML`指可扩展标记语言(`Extensible Markup Language`)，标准通用标记语言的子集，是一种用于标记电子文件使其具有结构性的标记语言。它被设计用于传输和存储数据。
@@ -20,37 +19,37 @@ categories: Python语法
 
 ``` xml
 <collection shelf="New Arrivals">
-<movie title="Enemy Behind">
-    <type>War, Thriller</type>
-    <format>DVD</format>
-    <year>2003</year>
-    <rating>PG</rating>
-    <stars>10</stars>
-    <description>Talk about a US-Japan war</description>
-</movie>
-<movie title="Transformers">
-    <type>Anime, Science Fiction</type>
-    <format>DVD</format>
-    <year>1989</year>
-    <rating>R</rating>
-    <stars>8</stars>
-    <description>A schientific fiction</description>
-</movie>
-    <movie title="Trigun">
-    <type>Anime, Action</type>
-    <format>DVD</format>
-    <episodes>4</episodes>
-    <rating>PG</rating>
-    <stars>10</stars>
-    <description>Vash the Stampede!</description>
-</movie>
-<movie title="Ishtar">
-    <type>Comedy</type>
-    <format>VHS</format>
-    <rating>PG</rating>
-    <stars>2</stars>
-    <description>Viewable boredom</description>
-</movie>
+    <movie title="Enemy Behind">
+        <type>War, Thriller</type>
+        <format>DVD</format>
+        <year>2003</year>
+        <rating>PG</rating>
+        <stars>10</stars>
+        <description>Talk about a US-Japan war</description>
+    </movie>
+    <movie title="Transformers">
+        <type>Anime, Science Fiction</type>
+        <format>DVD</format>
+        <year>1989</year>
+        <rating>R</rating>
+        <stars>8</stars>
+        <description>A schientific fiction</description>
+    </movie>
+    <movie title="Trigun">
+        <type>Anime, Action</type>
+        <format>DVD</format>
+        <episodes>4</episodes>
+        <rating>PG</rating>
+        <stars>10</stars>
+        <description>Vash the Stampede!</description>
+    </movie>
+    <movie title="Ishtar">
+        <type>Comedy</type>
+        <format>VHS</format>
+        <rating>PG</rating>
+        <stars>2</stars>
+        <description>Viewable boredom</description>
+    </movie>
 </collection>
 ```
 
