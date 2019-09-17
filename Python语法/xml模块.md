@@ -287,26 +287,26 @@ Description: Viewable boredom
 ``` xml
 <?xml version="1.0"?>
 <data>
-    <country name="Liechtenstein">
-        <rank>1</rank>
-        <year>2008</year>
-        <gdppc>141100</gdppc>
-        <neighbor name="Austria" direction="E"/>
-        <neighbor name="Switzerland" direction="W"/>
-    </country>
-    <country name="Singapore">
-        <rank>4</rank>
-        <year>2011</year>
-        <gdppc>59900</gdppc>
-        <neighbor name="Malaysia" direction="N"/>
-    </country>
-    <country name="Panama">
-        <rank>68</rank>
-        <year>2011</year>
-        <gdppc>13600</gdppc>
-        <neighbor name="Costa Rica" direction="W"/>
-        <neighbor name="Colombia" direction="E"/>
-    </country>
+    <country name="Liechtenstein">
+        <rank>1</rank>
+        <year>2008</year>
+        <gdppc>141100</gdppc>
+        <neighbor name="Austria" direction="E"/>
+        <neighbor name="Switzerland" direction="W"/>
+    </country>
+    <country name="Singapore">
+        <rank>4</rank>
+        <year>2011</year>
+        <gdppc>59900</gdppc>
+        <neighbor name="Malaysia" direction="N"/>
+    </country>
+    <country name="Panama">
+        <rank>68</rank>
+        <year>2011</year>
+        <gdppc>13600</gdppc>
+        <neighbor name="Costa Rica" direction="W"/>
+        <neighbor name="Colombia" direction="E"/>
+    </country>
 </data>
 ```
 
@@ -314,6 +314,7 @@ We can import this data by reading from a file:
 
 ``` python
 import xml.etree.ElementTree as ET
+
 tree = ET.parse('country_data.xml')
 root = tree.getroot()
 Or directly from a string:
@@ -334,7 +335,7 @@ It also has children nodes over which we can iterate:
 
 ``` python
 >>> for child in root:
-...     print(child.tag, child.attrib)
+...     print(child.tag, child.attrib)
 ...
 country {'name': 'Liechtenstein'}
 country {'name': 'Singapore'}
@@ -362,8 +363,8 @@ Children are nested, and we can access specific child nodes by `index`:
 [('start', <Element 'mytag' at 0x7fa66db2be58>)]
 >>> parser.feed(' more text</mytag>')
 >>> for event, elem in parser.read_events():
-...     print(event)
-...     print(elem.tag, 'text=', elem.text)
+...     print(event)
+...     print(elem.tag, 'text=', elem.text)
 ...
 end
 ```
@@ -377,7 +378,7 @@ The obvious use case is applications that operate in a `non-blocking` fashion wh
 
 ``` python
 >>> for neighbor in root.iter('neighbor'):
-...     print(neighbor.attrib)
+...     print(neighbor.attrib)
 ...
 {'name': 'Austria', 'direction': 'E'}
 {'name': 'Switzerland', 'direction': 'W'}
@@ -390,9 +391,9 @@ The obvious use case is applications that operate in a `non-blocking` fashion wh
 
 ``` python
 >>> for country in root.findall('country'):
-...     rank = country.find('rank').text
-...     name = country.get('name')
-...     print(name, rank)
+...     rank = country.find('rank').text
+...     name = country.get('name')
+...     print(name, rank)
 ...
 Liechtenstein 1
 Singapore 4
@@ -409,9 +410,9 @@ More sophisticated specification of which elements to look for is possible by us
 
 ``` python
 >>> for rank in root.iter('rank'):
-...     new_rank = int(rank.text) + 1
-...     rank.text = str(new_rank)
-...     rank.set('updated', 'yes')
+...     new_rank = int(rank.text) + 1
+...     rank.text = str(new_rank)
+...     rank.set('updated', 'yes')
 >>> tree.write('output.xml')
 ```
 
@@ -420,26 +421,26 @@ Our `XML` now looks like this:
 ``` xml
 <?xml version="1.0"?>
 <data>
-    <country name="Liechtenstein">
-        <rank updated="yes">2</rank>
-        <year>2008</year>
-        <gdppc>141100</gdppc>
-        <neighbor name="Austria" direction="E"/>
-        <neighbor name="Switzerland" direction="W"/>
-    </country>
-    <country name="Singapore">
-        <rank updated="yes">5</rank>
-        <year>2011</year>
-        <gdppc>59900</gdppc>
-        <neighbor name="Malaysia" direction="N"/>
-    </country>
-    <country name="Panama">
-        <rank updated="yes">69</rank>
-        <year>2011</year>
-        <gdppc>13600</gdppc>
-        <neighbor name="Costa Rica" direction="W"/>
-        <neighbor name="Colombia" direction="E"/>
-    </country>
+    <country name="Liechtenstein">
+        <rank updated="yes">2</rank>
+        <year>2008</year>
+        <gdppc>141100</gdppc>
+        <neighbor name="Austria" direction="E"/>
+        <neighbor name="Switzerland" direction="W"/>
+    </country>
+    <country name="Singapore">
+        <rank updated="yes">5</rank>
+        <year>2011</year>
+        <gdppc>59900</gdppc>
+        <neighbor name="Malaysia" direction="N"/>
+    </country>
+    <country name="Panama">
+        <rank updated="yes">69</rank>
+        <year>2011</year>
+        <gdppc>13600</gdppc>
+        <neighbor name="Costa Rica" direction="W"/>
+        <neighbor name="Colombia" direction="E"/>
+    </country>
 </data>
 ```
 
@@ -447,9 +448,9 @@ We can remove elements using `Element.remove()`. Let's say we want to remove all
 
 ``` python
 >>> for country in root.findall('country'):
-...     rank = int(country.find('rank').text)
-...     if rank > 50:
-...         root.remove(country)
+...     rank = int(country.find('rank').text)
+...     if rank > 50:
+...         root.remove(country)
 >>> tree.write('output.xml')
 ```
 
@@ -514,6 +515,7 @@ One way to search and explore this `XML` example is to manually add the `URI` to
 
 ``` python
 root = fromstring(xml_text)
+
 for actor in root.findall('{http://people.example.com}actor'):
     name = actor.find('{http://people.example.com}name')
     print(name.text)
