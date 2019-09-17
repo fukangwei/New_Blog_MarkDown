@@ -173,11 +173,11 @@ conn = sqlite3.connect('test.db')
 print("Opened database successfully")
 c = conn.cursor()
 c.execute('''CREATE TABLE COMPANY
-       (ID INT PRIMARY KEY     NOT NULL,
-        NAME           TEXT    NOT NULL,
-        AGE            INT     NOT NULL,
-        ADDRESS        CHAR(50),
-        SALARY         REAL);''')
+       (ID INT PRIMARY KEY     NOT NULL,
+        NAME           TEXT    NOT NULL,
+        AGE            INT     NOT NULL,
+        ADDRESS        CHAR(50),
+        SALARY         REAL);''')
 print("Table created successfully")
 conn.commit()
 conn.close()
@@ -213,7 +213,7 @@ print("Records created successfully")
 conn.close()
 ```
 
-上述程序执行时，它会在COMPANY表中创建给定记录，并会显示如下信息：
+上述程序执行时，它会在`COMPANY`表中创建给定记录，并会显示如下信息：
 
 ``` python
 Opened database successfully
@@ -234,11 +234,11 @@ print("Opened database successfully")
 cursor = c.execute("SELECT id, name, address, salary  from COMPANY")
 ​
 for row in cursor:
-    print("ID =", row[0])
-    print("NAME =", row[1])
-    print("ADDRESS =", row[2])
-    print("SALARY =", row[3])
-    print("----------")
+    print("ID =", row[0])
+    print("NAME =", row[1])
+    print("ADDRESS =", row[2])
+    print("SALARY =", row[3])
+    print("----------")
 ​
 print("Operation done successfully")
 conn.close()
@@ -287,11 +287,12 @@ conn.commit()
 print("Total number of rows updated :", conn.total_changes)
 ​
 cursor = conn.execute("SELECT id, name, address, salary from COMPANY")
+
 for row in cursor:
-    print("ID =", row[0])
-    print("NAME = ", row[1])
-    print("ADDRESS = ", row[2])
-    print("SALARY = ", row[3], "\n")
+    print("ID =", row[0])
+    print("NAME = ", row[1])
+    print("ADDRESS = ", row[2])
+    print("SALARY = ", row[3], "\n")
 ​
 print("Operation done successfully")
 conn.close()
@@ -313,11 +314,12 @@ conn.commit()
 print("Total number of rows deleted :", conn.total_changes)
 ​
 cursor = conn.execute("SELECT id, name, address, salary  from COMPANY")
+
 for row in cursor:
-    print("ID =", row[0])
-    print("NAME =", row[1])
-    print("ADDRESS =", row[2])
-    print("SALARY = ", row[3], "\n")
+    print("ID =", row[0])
+    print("NAME =", row[1])
+    print("ADDRESS =", row[2])
+    print("SALARY = ", row[3], "\n")
 ​
 print("Operation done successfully")
 conn.close()
