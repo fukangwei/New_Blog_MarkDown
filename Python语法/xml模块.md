@@ -555,7 +555,7 @@ Eric Idle
 
 #### Example
 
-&emsp;&emsp;Here's an example that demonstrates some of the `XPath` capabilities of the module. We'll be using the countrydata `XML` document from the Parsing `XML` section:
+&emsp;&emsp;Here's an example that demonstrates some of the `XPath` capabilities of the module. We'll be using the countrydata `XML` document from the `Parsing XML` section:
 
 ``` python
 import xml.etree.ElementTree as ET
