@@ -10,7 +10,7 @@ categories: Python语法
 &emsp;&emsp;函数原型如下：
 
 ``` python
-shutil.copyfileobj(fsrc, fdst[, length])
+shutil.copyfileobj(fsrc, fdst [, length])
 ```
 
 用于将文件内容拷贝到另一个文件中。
@@ -22,13 +22,13 @@ shutil.copyfileobj(open('hello.py', 'r'), open('hello.txt', 'w'))
 
 ### copyfile
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 shutil.copyfile(src, dst)
 ```
 
-用于拷贝文件。示例如下：
+用于拷贝文件。
 
 ``` python
 shutil.copyfile('f1.log', 'f2.log')
@@ -36,13 +36,13 @@ shutil.copyfile('f1.log', 'f2.log')
 
 ### copymode
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 shutil.copymode(src, dst)
 ```
 
-仅拷贝权限，内容、组、用户均不变。示例如下：
+仅拷贝权限，内容、组、用户均不变。
 
 ``` python
 shutil.copymode('f1.log', 'f2.log')
@@ -50,13 +50,13 @@ shutil.copymode('f1.log', 'f2.log')
 
 ### copystat
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 shutil.copystat(src, dst)
 ```
 
-仅拷贝状态的信息，包括`mode bits`、`atime`、`mtime`和`flags`。示例如下：
+仅拷贝状态的信息，包括`mode bits`、`atime`、`mtime`和`flags`。
 
 ``` python
 shutil.copystat('f1.log', 'f2.log')
@@ -64,13 +64,13 @@ shutil.copystat('f1.log', 'f2.log')
 
 ### copy
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 shutil.copy(src, dst)
 ```
 
-拷贝文件和权限。示例如下：
+拷贝文件和权限。
 
 ``` python
 shutil.copy('f1.log', 'f2.log')
@@ -78,13 +78,13 @@ shutil.copy('f1.log', 'f2.log')
 
 ### copy2
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 shutil.copy2(src, dst)
 ```
 
-拷贝文件和状态信息。示例如下：
+拷贝文件和状态信息。
 
 ``` python
 shutil.copy2('f1.log', 'f2.log')
@@ -92,14 +92,14 @@ shutil.copy2('f1.log', 'f2.log')
 
 ### copytree和ignore_patterns
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 shutil.ignore_patterns(*patterns)
 shutil.copytree(src, dst, symlinks=False, ignore=None)
 ```
 
-递归地去拷贝文件夹。示例如下：
+递归地去拷贝文件夹。
 
 ``` python
 shutil.copytree('folder1', 'folder2', ignore=shutil.ignore_patterns('*.pyc', 'tmp*'))
@@ -108,13 +108,13 @@ shutil.copytree('f1', 'f2', symlinks=True, ignore=shutil.ignore_patterns('*.pyc'
 
 ### rmtree
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 shutil.rmtree(path[, ignore_errors[, onerror]])
 ```
 
-递归地删除文件。示例如下：
+递归地删除文件。
 
 ``` python
 shutil.rmtree('folder1')
@@ -122,13 +122,13 @@ shutil.rmtree('folder1')
 
 ### move
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 shutil.move(src, dst)
 ```
 
-递归地移动文件，类似于`mv`命令，其实就是重命名。示例如下：
+递归地移动文件，类似于`mv`命令，其实就是重命名。
 
 ``` python
 shutil.move('folder1', 'folder3')
@@ -136,7 +136,7 @@ shutil.move('folder1', 'folder3')
 
 ### make_archive
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 shutil.make_archive(base_name, format, root_dir, owner, group, logger)
@@ -151,7 +151,7 @@ shutil.make_archive(base_name, format, root_dir, owner, group, logger)
 - `group`：组，默认当前组。
 - `logger`：用于记录日志，通常是`logging.Logger`对象。
 
-示例如下所示：
+示例如下：
 
 ``` python
 import shutil
