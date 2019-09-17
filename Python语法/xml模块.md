@@ -733,41 +733,41 @@ Example of changing the attribute `target` of every link in first paragraph:
 
 #### class xml.etree.ElementTree.XMLParser(html=0, target=None, encoding=None)
 
-&emsp;&emsp;This class is the `low-level` building block of the module. It uses `xml.parsers.expat` for efficient, `event-based` parsing of `XML`. It can be fed `XML` data incrementally with the `feed()` method, and parsing events are translated to a push `API` - by invoking callbacks on the `target` object. If `target` is omitted, the standard `TreeBuilder` is used. The html argument was historically used for backwards compatibility and is now deprecated. If `encoding` is given, the value overrides the `encoding` specified in the `XML` file.
-&emsp;&emsp;Deprecated since version `3.4`: The html argument. The remaining arguments should be passed via keyword to prepare for the removal of the html argument.
-&emsp;&emsp;`close()`: Finishes feeding data to the `parser`. Returns the result of calling the `close()` method of the `target` passed during construction; by default, this is the toplevel document element.
+&emsp;&emsp;This class is the `low-level` building block of the module. It uses `xml.parsers.expat` for efficient, `event-based` parsing of `XML`. It can be fed `XML` data incrementally with the `feed()` method, and parsing events are translated to a push `API` - by invoking callbacks on the `target` object. If `target` is omitted, the standard `TreeBuilder` is used. The `html` argument was historically used for backwards compatibility and is now deprecated. If `encoding` is given, the value overrides the `encoding` specified in the `XML` file.
+&emsp;&emsp;Deprecated since version `3.4`: The `html` argument. The remaining arguments should be passed via keyword to prepare for the removal of the `html` argument.
+&emsp;&emsp;`close()`: Finishes feeding data to the parser. Returns the result of calling the `close()` method of the `target` passed during construction; by default, this is the toplevel document element.
 &emsp;&emsp;`doctype(name, pubid, system)`: Deprecated since version `3.2`: Define the `TreeBuilder.doctype()` method on a custom `TreeBuilder` target.
-&emsp;&emsp;`feed(data)`: Feeds `data` to the `parser`. `data` is encoded `data`.
+&emsp;&emsp;`feed(data)`: Feeds `data` to the parser. `data` is encoded data.
 &emsp;&emsp;`XMLParser.feed()` calls target's `start(tag, attrs_dict)` method for each opening tag, its `end(tag)` method for each closing tag, and data is processed by method `data(data)`. `XMLParser.close()` calls target's method `close()`. `XMLParser` can be used not only for building a tree structure. This is an example of counting the maximum depth of an `XML` file:
 
 ``` python
 >>> from xml.etree.ElementTree import XMLParser
->>> class MaxDepth:  # The target object of the parser
-...     maxDepth = 0
-...     depth = 0
-...     def start(self, tag, attrib):  # Called for each opening tag.
-...         self.depth += 1
-...         if self.depth > self.maxDepth:
-...             self.maxDepth = self.depth
-...     def end(self, tag):  # Called for each closing tag.
-...         self.depth -= 1
-...     def data(self, data):
-...         pass  # We do not need to do anything with data.
-...     def close(self):  # Called when all data has been parsed.
-...         return self.maxDepth
+>>> class MaxDepth:  # The target object of the parser
+...     maxDepth = 0
+...     depth = 0
+...     def start(self, tag, attrib):  # Called for each opening tag.
+...         self.depth += 1
+...         if self.depth > self.maxDepth:
+...             self.maxDepth = self.depth
+...     def end(self, tag):  # Called for each closing tag.
+...         self.depth -= 1
+...     def data(self, data):
+...         pass  # We do not need to do anything with data.
+...     def close(self):  # Called when all data has been parsed.
+...         return self.maxDepth
 ...
 >>> target = MaxDepth()
 >>> parser = XMLParser(target=target)
 >>> exampleXml = """
 ... <a>
-...   <b>
-...   </b>
-...   <b>
-...     <c>
-...       <d>
-...       </d>
-...     </c>
-...   </b>
+...   <b>
+...   </b>
+...   <b>
+...     <c>
+...       <d>
+...       </d>
+...     </c>
+...   </b>
 ... </a>"""
 >>> parser.feed(exampleXml)
 >>> parser.close()
