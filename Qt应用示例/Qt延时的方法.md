@@ -9,7 +9,7 @@ categories: Qt应用示例
 void QTimer::singleShot ( int msec, QObject *receiver, const char *member ) [static]
 ```
 
-实例如下所示：
+实例如下：
 
 ``` cpp
 #include <QApplication>
@@ -31,8 +31,7 @@ QTime now;
 ​
 do {
     now = QTime::currentTime();
-}
-while ( n.msecsTo ( now ) <= 500 ); /* 延迟500毫秒 */
+} while ( n.msecsTo ( now ) <= 500 ); /* 延迟500毫秒 */
 ```
 
 &emsp;&emsp;3. 如下代码可以让程序以秒延时：
@@ -43,6 +42,5 @@ QDateTime now;
 ​
 do {
     now = QDateTime::currentDateTime();
-}
-while ( n2.secsTo ( now ) <= 6 ); /* 延时6秒 */
+} while ( n2.secsTo ( now ) <= 6 ); /* 延时6秒 */
 ```
