@@ -3,7 +3,7 @@ title: Qt实现启动画面
 date: 2018-12-28 16:22:52
 categories: Qt应用示例
 ---
-&emsp;&emsp;如果一个程序的启动比较耗时，为了不让用户枯燥地等待或者是误以为程序运行异常了，我们都会在启动比较耗时的程序中加上启动界面。在`Qt`中实现启动界面，主要就是使用`QSplashScreen`类，实例如下所示：
+&emsp;&emsp;如果一个程序的启动比较耗时，为了不让用户枯燥地等待或者是误以为程序运行异常了，我们都会在启动比较耗时的程序中加上启动界面。在`Qt`中实现启动界面，主要就是使用`QSplashScreen`类：
 
 ``` cpp
 #include <QApplication>
@@ -26,8 +26,7 @@ int main ( int argc, char *argv[] ) {
     do {
         now = QDateTime::currentDateTime();
         app.processEvents();
-    }
-    while ( n.secsTo ( now ) <= 5 ); /* 延时5秒 */
+    } while ( n.secsTo ( now ) <= 5 ); /* 延时5秒 */
     /*----------------------------------------------------*/
     MainWindow window;
     window.show();
@@ -37,7 +36,7 @@ int main ( int argc, char *argv[] ) {
 ```
 
 &emsp;&emsp;如果需要实现带进度条的启动界面，需要实现如下代码：
-&emsp;&emsp;`mysplashscreen.h`如下所示：
+&emsp;&emsp;`mysplashscreen.h`如下：
 
 ``` cpp
 #ifndef __MYSPLASHSCREEN_H
@@ -45,16 +44,16 @@ int main ( int argc, char *argv[] ) {
 #include <QtGui>
 ​
 class MySplashScreen: public QSplashScreen {
-    Q_OBJECT
+    Q_OBJECT
 private:
-    QProgressBar *ProgressBar;
+    QProgressBar *ProgressBar;
 public:
-    MySplashScreen ( const QPixmap &pixmap );
-    ~MySplashScreen();
-    void setProgress ( int value );
-    void show_started ( void );
+    MySplashScreen ( const QPixmap &pixmap );
+    ~MySplashScreen();
+    void setProgress ( int value );
+    void show_started ( void );
 private slots:
-    void progressChanged ( int );
+    void progressChanged ( int );
 };
 ​
 #endif // __MYSPLASHSCREEN_H
@@ -101,7 +100,7 @@ void MySplashScreen::show_started ( void ) {
 }
 ```
 
-&emsp;&emsp;`main.cpp`如下所示：
+&emsp;&emsp;`main.cpp`如下：
 
 ``` cpp
 #include "widget.h"
@@ -111,13 +110,13 @@ void MySplashScreen::show_started ( void ) {
 #include "mysplashscreen.h"
 ​
 int main ( int argc, char *argv[] ) {
-    QApplication app ( argc, argv );
-    MySplashScreen *splash = new MySplashScreen ( QPixmap ( "./image/miaojie.png" ) );
-    splash->show_started();
-    app.processEvents();
-    Widget w;
-    w.show();
-    splash->finish ( &w );
-    return app.exec();
+    QApplication app ( argc, argv );
+    MySplashScreen *splash = new MySplashScreen ( QPixmap ( "./image/miaojie.png" ) );
+    splash->show_started();
+    app.processEvents();
+    Widget w;
+    w.show();
+    splash->finish ( &w );
+    return app.exec();
 }
 ```
