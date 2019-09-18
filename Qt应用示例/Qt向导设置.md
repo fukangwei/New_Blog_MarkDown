@@ -191,63 +191,63 @@ void ClassWizard::accept() {
     block.clear();
 ​
     if ( field ( "comment" ).toBool() ) {
-        block += "/*\n";
-        block += "    " + implementation.toAscii() + "\n";
-        block += "*/\n";
-        block += "\n";
+        block += "/*\n";
+        block += "    " + implementation.toAscii() + "\n";
+        block += "*/\n";
+        block += "\n";
     }
 ​
-    block += "#include \"" + header.toAscii() + "\"\n";
-    block += "\n";
+    block += "#include \"" + header.toAscii() + "\"\n";
+    block += "\n";
 ​
-    if ( field ( "qobjectCtor" ).toBool() ) {
-        block += className + "::" + className + "(QObject *parent)\n";
-        block += "    : " + baseClass + "(parent)\n";
-        block += "{\n";
-        block += "}\n";
-    } else if ( field ( "qwidgetCtor" ).toBool() ) {
-        block += className + "::" + className + "(QWidget *parent)\n";
-        block += "    : " + baseClass + "(parent)\n";
-        block += "{\n";
-        block += "}\n";
-    } else if ( field ( "defaultCtor" ).toBool() ) {
-        block += className + "::" + className + "()\n";
-        block += "{\n";
-        block += "    // missing code\n";
-        block += "}\n";
+    if ( field ( "qobjectCtor" ).toBool() ) {
+        block += className + "::" + className + "(QObject *parent)\n";
+        block += "    : " + baseClass + "(parent)\n";
+        block += "{\n";
+        block += "}\n";
+    } else if ( field ( "qwidgetCtor" ).toBool() ) {
+        block += className + "::" + className + "(QWidget *parent)\n";
+        block += "    : " + baseClass + "(parent)\n";
+        block += "{\n";
+        block += "}\n";
+    } else if ( field ( "defaultCtor" ).toBool() ) {
+        block += className + "::" + className + "()\n";
+        block += "{\n";
+        block += "    // missing code\n";
+        block += "}\n";
 ​
-        if ( field ( "copyCtor" ).toBool() ) {
-            block += "\n";
-            block += className + "::" + className + "(const " + className + " &other)\n";
-            block += "{\n";
-            block += "    *this = other;\n";
-            block += "}\n";
-            block += "\n";
-            block += className + " &" + className + "::operator=(const " + className + " &other)\n";
-            block += "{\n";
+        if ( field ( "copyCtor" ).toBool() ) {
+            block += "\n";
+            block += className + "::" + className + "(const " + className + " &other)\n";
+            block += "{\n";
+            block += "    *this = other;\n";
+            block += "}\n";
+            block += "\n";
+            block += className + " &" + className + "::operator=(const " + className + " &other)\n";
+            block += "{\n";
 ​
-            if ( !baseClass.isEmpty() ) {
-                block += "    " + baseClass + "::operator=(other);\n";
-            }
+            if ( !baseClass.isEmpty() ) {
+                block += "    " + baseClass + "::operator=(other);\n";
+            }
 ​
-            block += "    // missing code\n";
-            block += "    return *this;\n";
-            block += "}\n";
-        }
-    }
+            block += "    // missing code\n";
+            block += "    return *this;\n";
+            block += "}\n";
+        }
+    }
 ​
-    QFile implementationFile ( outputDir + "/" + implementation );
+    QFile implementationFile ( outputDir + "/" + implementation );
 ​
-    if ( !implementationFile.open ( QFile::WriteOnly | QFile::Text ) ) {
-        QMessageBox::warning ( 0, QObject::tr ( "Simple Wizard" ),
-                               QObject::tr ( "Cannot write file %1:\n%2" )
-                               .arg ( implementationFile.fileName() )
-                               .arg ( implementationFile.errorString() ) );
-        return;
-    }
+    if ( !implementationFile.open ( QFile::WriteOnly | QFile::Text ) ) {
+         QMessageBox::warning ( 0, QObject::tr ( "Simple Wizard" ),
+                                QObject::tr ( "Cannot write file %1:\n%2" )
+                                .arg ( implementationFile.fileName() )
+                                .arg ( implementationFile.errorString() ) );
+        return;
+    }
 ​
-    implementationFile.write ( block );
-    QDialog::accept();
+    implementationFile.write ( block );
+    QDialog::accept();
 }
 ​
 IntroPage::IntroPage ( QWidget *parent ) : QWizardPage ( parent ) {
