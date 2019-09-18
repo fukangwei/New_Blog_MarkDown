@@ -29,9 +29,9 @@ int main() {
 using namespace std;
 ​
 int main() {
-    QString str = "one, two* three / four / five ^ six";
-    cout << str.section ( QRegExp ( "[,*/^]" ), 3, 3 ).trimmed().toStdString() << endl;
-    return 0;
+    QString str = "one, two* three / four / five ^ six";
+    cout << str.section ( QRegExp ( "[,*/^]" ), 3, 3 ).trimmed().toStdString() << endl;
+    return 0;
 }
 ```
 
@@ -135,7 +135,6 @@ d = QString ( "1234.56e-02" ).toDouble ( &ok );
 /* 方法1 */
 QString str = "123.45";
 float d = str.toFloat(); /* d = 123.45 */
-​
 /* 方法2 */
 QString str = "R2D2";
 bool ok;

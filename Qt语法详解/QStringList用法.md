@@ -33,8 +33,8 @@ QStringList list = str.split ( "," );
 ``` cpp
 QStringList files;
 files << "$QTDIR/src/moc/moc.y"
-      << "$QTDIR/src/moc/moc.l"
-      << "$QTDIR/include/qconfig.h";
+      << "$QTDIR/src/moc/moc.l"
+      << "$QTDIR/include/qconfig.h";
 /* files is ["/usr/lib/qt/src/moc/moc.y", ...] */
 files.replaceInStrings ( "$QTDIR", "/usr/lib/qt" );
 ```
