@@ -307,39 +307,39 @@ ClassInfoPage::ClassInfoPage ( QWidget *parent ) : QWizardPage ( parent ) {
 }
 ​
 CodeStylePage::CodeStylePage ( QWidget *parent ) : QWizardPage ( parent ) {
-    setTitle ( tr ( "Code Style Options" ) );
-    setSubTitle ( tr ( "Choose the formatting of the generated code." ) );
-    setPixmap ( QWizard::LogoPixmap, QPixmap ( ":/images/logo2.png" ) );
-    commentCheckBox = new QCheckBox ( tr ( "&Start generated files with a " "comment" ) );
-    commentCheckBox->setChecked ( true );
-    protectCheckBox = new QCheckBox ( tr ( "&Protect header file against multiple " "inclusions" ) );
-    protectCheckBox->setChecked ( true );
-    macroNameLabel = new QLabel ( tr ( "&Macro name:" ) );
-    macroNameLineEdit = new QLineEdit;
-    macroNameLabel->setBuddy ( macroNameLineEdit );
-    includeBaseCheckBox = new QCheckBox ( tr ( "&Include base class definition" ) );
-    baseIncludeLabel = new QLabel ( tr ( "Base class include:" ) );
-    baseIncludeLineEdit = new QLineEdit;
-    baseIncludeLabel->setBuddy ( baseIncludeLineEdit );
-    connect ( protectCheckBox, SIGNAL ( toggled ( bool ) ), macroNameLabel, SLOT ( setEnabled ( bool ) ) );
-    connect ( protectCheckBox, SIGNAL ( toggled ( bool ) ), macroNameLineEdit, SLOT ( setEnabled ( bool ) ) );
-    connect ( includeBaseCheckBox, SIGNAL ( toggled ( bool ) ), baseIncludeLabel, SLOT ( setEnabled ( bool ) ) );
-    connect ( includeBaseCheckBox, SIGNAL ( toggled ( bool ) ), baseIncludeLineEdit, SLOT ( setEnabled ( bool ) ) );
-    registerField ( "comment", commentCheckBox );
-    registerField ( "protect", protectCheckBox );
-    registerField ( "macroName", macroNameLineEdit );
-    registerField ( "includeBase", includeBaseCheckBox );
-    registerField ( "baseInclude", baseIncludeLineEdit );
-    QGridLayout *layout = new QGridLayout;
-    layout->setColumnMinimumWidth ( 0, 20 );
-    layout->addWidget ( commentCheckBox, 0, 0, 1, 3 );
-    layout->addWidget ( protectCheckBox, 1, 0, 1, 3 );
-    layout->addWidget ( macroNameLabel, 2, 1 );
-    layout->addWidget ( macroNameLineEdit, 2, 2 );
-    layout->addWidget ( includeBaseCheckBox, 3, 0, 1, 3 );
-    layout->addWidget ( baseIncludeLabel, 4, 1 );
-    layout->addWidget ( baseIncludeLineEdit, 4, 2 );
-    setLayout ( layout );
+    setTitle ( tr ( "Code Style Options" ) );
+    setSubTitle ( tr ( "Choose the formatting of the generated code." ) );
+    setPixmap ( QWizard::LogoPixmap, QPixmap ( ":/images/logo2.png" ) );
+    commentCheckBox = new QCheckBox ( tr ( "&Start generated files with a " "comment" ) );
+    commentCheckBox->setChecked ( true );
+    protectCheckBox = new QCheckBox ( tr ( "&Protect header file against multiple " "inclusions" ) );
+    protectCheckBox->setChecked ( true );
+    macroNameLabel = new QLabel ( tr ( "&Macro name:" ) );
+    macroNameLineEdit = new QLineEdit;
+    macroNameLabel->setBuddy ( macroNameLineEdit );
+    includeBaseCheckBox = new QCheckBox ( tr ( "&Include base class definition" ) );
+    baseIncludeLabel = new QLabel ( tr ( "Base class include:" ) );
+    baseIncludeLineEdit = new QLineEdit;
+    baseIncludeLabel->setBuddy ( baseIncludeLineEdit );
+    connect ( protectCheckBox, SIGNAL ( toggled ( bool ) ), macroNameLabel, SLOT ( setEnabled ( bool ) ) );
+    connect ( protectCheckBox, SIGNAL ( toggled ( bool ) ), macroNameLineEdit, SLOT ( setEnabled ( bool ) ) );
+    connect ( includeBaseCheckBox, SIGNAL ( toggled ( bool ) ), baseIncludeLabel, SLOT ( setEnabled ( bool ) ) );
+    connect ( includeBaseCheckBox, SIGNAL ( toggled ( bool ) ), baseIncludeLineEdit, SLOT ( setEnabled ( bool ) ) );
+    registerField ( "comment", commentCheckBox );
+    registerField ( "protect", protectCheckBox );
+    registerField ( "macroName", macroNameLineEdit );
+    registerField ( "includeBase", includeBaseCheckBox );
+    registerField ( "baseInclude", baseIncludeLineEdit );
+    QGridLayout *layout = new QGridLayout;
+    layout->setColumnMinimumWidth ( 0, 20 );
+    layout->addWidget ( commentCheckBox, 0, 0, 1, 3 );
+    layout->addWidget ( protectCheckBox, 1, 0, 1, 3 );
+    layout->addWidget ( macroNameLabel, 2, 1 );
+    layout->addWidget ( macroNameLineEdit, 2, 2 );
+    layout->addWidget ( includeBaseCheckBox, 3, 0, 1, 3 );
+    layout->addWidget ( baseIncludeLabel, 4, 1 );
+    layout->addWidget ( baseIncludeLineEdit, 4, 2 );
+    setLayout ( layout );
 }
 ​
 void CodeStylePage::initializePage() {
@@ -394,22 +394,21 @@ void OutputFilesPage::initializePage() {
     outputDirLineEdit->setText ( QDir::convertSeparators ( QDir::tempPath() ) );
 }
 ​
-ConclusionPage::ConclusionPage ( QWidget *parent )
-    : QWizardPage ( parent ) {
-    setTitle ( tr ( "Conclusion" ) );
-    setPixmap ( QWizard::WatermarkPixmap, QPixmap ( ":/images/watermark2.png" ) );
-    label = new QLabel;
-    label->setWordWrap ( true );
-    QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget ( label );
-    setLayout ( layout );
+ConclusionPage::ConclusionPage ( QWidget *parent ) : QWizardPage ( parent ) {
+    setTitle ( tr ( "Conclusion" ) );
+    setPixmap ( QWizard::WatermarkPixmap, QPixmap ( ":/images/watermark2.png" ) );
+    label = new QLabel;
+    label->setWordWrap ( true );
+    QVBoxLayout *layout = new QVBoxLayout;
+    layout->addWidget ( label );
+    setLayout ( layout );
 }
 ​
 void ConclusionPage::initializePage() {
-    QString finishText = wizard()->buttonText ( QWizard::FinishButton );
-    finishText.remove ( '&' );
-    label->setText ( tr ( "Click %1 to generate the class skeleton." )
-                     .arg ( finishText ) );
+    QString finishText = wizard()->buttonText ( QWizard::FinishButton );
+    finishText.remove ( '&' );
+    label->setText ( tr ( "Click %1 to generate the class skeleton." )
+                     .arg ( finishText ) );
 }
 ```
 
