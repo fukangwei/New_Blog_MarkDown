@@ -82,29 +82,23 @@ void MainWindow::ftpCommandFinished ( int, bool error ) {
     if ( ftp->currentCommand() == QFtp::ConnectToHost ) {
         if ( error ) {
             ui->label->setText ( tr ( "连接服务器出现错误：%1" ).arg ( ftp->errorString() ) );
-        }
-        else {
+        } else {
             ui->label->setText ( tr ( "连接到服务器成功" ) );
         }
-    }
-    else if ( ftp->currentCommand() == QFtp::Login ) {
+    } else if ( ftp->currentCommand() == QFtp::Login ) {
         if ( error ) {
             ui->label->setText ( tr ( "登录出现错误：%1" ).arg ( ftp->errorString() ) );
-        }
-        else {
+        } else {
             ui->label->setText ( tr ( "登录成功" ) );
         }
-    }
-    else if ( ftp->currentCommand() == QFtp::Get ) {
+    } else if ( ftp->currentCommand() == QFtp::Get ) {
         if ( error ) {
             ui->label->setText ( tr ( "下载出现错误：%1" ).arg ( ftp->errorString() ) );
-        }
-        else {
+        } else {
             ui->label->setText ( tr ( "已经完成下载" ) );
             ui->textBrowser->setText ( ftp->readAll() );
         }
-    }
-    else if ( ftp->currentCommand() == QFtp::Close ) {
+    } else if ( ftp->currentCommand() == QFtp::Close ) {
         ui->label->setText ( tr ( "已经关闭连接" ) );
     }
 }
@@ -130,21 +124,21 @@ class QUrlInfo;
 class QTreeWidgetItem;
 ​
 namespace Ui {
-class MainWindow;
+    class MainWindow;
 }
 ​
 class MainWindow : public QMainWindow {
     Q_OBJECT
-  public:
+public:
     explicit MainWindow ( QWidget *parent = 0 );
     ~MainWindow();
-  private:
+private:
     Ui::MainWindow *ui;
     QFtp *ftp;
     QHash<QString, bool> isDirectory; /* 用来存储一个路径是否为目录的信息 */
     QString currentPath; /* 用来存储现在的路径 */
     QFile *file; /* 用来表示下载的文件 */
-  private slots:
+private slots:
     void ftpCommandStarted ( int );
     void ftpCommandFinished ( int, bool );
     void updateDataTransferProgress ( qint64, qint64 ); /* 更新进度条 */
@@ -182,20 +176,10 @@ void MainWindow::ftpCommandStarted ( int ) {
     int id = ftp->currentCommand();
 ​
     switch ( id ) {
-        case QFtp::ConnectToHost :
-            ui->label->setText ( tr ( "正在连接到服务器…" ) );
-            break;
-​
-        case QFtp::Login :
-            ui->label->setText ( tr ( "正在登录…" ) );
-            break;
-​
-        case QFtp::Get :
-            ui->label->setText ( tr ( "正在下载…" ) );
-            break;
-​
-        case QFtp::Close :
-            ui->label->setText ( tr ( "正在关闭连接…" ) );
+        case QFtp::ConnectToHost : ui->label->setText ( tr ( "正在连接到服务器..." ) ); break;​
+        case QFtp::Login         : ui->label->setText ( tr ( "正在登录..." ) );        break;
+        case QFtp::Get           : ui->label->setText ( tr ( "正在下载..." ) );        break;
+        case QFtp::Close         : ui->label->setText ( tr ( "正在关闭连接..." ) );
     }
 }
 ​
@@ -203,39 +187,32 @@ void MainWindow::ftpCommandFinished ( int, bool error ) {
     if ( ftp->currentCommand() == QFtp::ConnectToHost ) {
         if ( error ) {
             ui->label->setText ( tr ( "连接服务器出现错误：%1" ).arg ( ftp->errorString() ) );
-        }
-        else {
+        } else {
             ui->label->setText ( tr ( "连接到服务器成功" ) );
         }
-    }
-    else if ( ftp->currentCommand() == QFtp::Login ) {
+    } else if ( ftp->currentCommand() == QFtp::Login ) {
         if ( error ) {
             ui->label->setText ( tr ( "登录出现错误：%1" ).arg ( ftp->errorString() ) );
-        }
-        else {
+        } else {
             ui->label->setText ( tr ( "登录成功" ) );
             ftp->list();
         }
-    }
-    else if ( ftp->currentCommand() == QFtp::Get ) {
+    } else if ( ftp->currentCommand() == QFtp::Get ) {
         if ( error ) {
             ui->label->setText ( tr ( "下载出现错误：%1" ).arg ( ftp->errorString() ) );
-        }
-        else {
+        } else {
             ui->label->setText ( tr ( "已经完成下载" ) );
             file->close();
         }
 ​
         ui->downloadButton->setEnabled ( true );
-    }
-    else if ( ftp->currentCommand() == QFtp::List ) {
+    } else if ( ftp->currentCommand() == QFtp::List ) {
         if ( isDirectory.isEmpty() ) {
             ui->fileList->addTopLevelItem ( new QTreeWidgetItem ( QStringList() << tr ( "<empty>" ) ) );
             ui->fileList->setEnabled ( false );
             ui->label->setText ( tr ( "该目录为空" ) );
         }
-    }
-    else if ( ftp->currentCommand() == QFtp::Close ) {
+    } else if ( ftp->currentCommand() == QFtp::Close ) {
         ui->label->setText ( tr ( "已经关闭连接" ) );
     }
 }
@@ -298,8 +275,7 @@ void MainWindow::on_cdToParentButton_clicked() { /* 返回上级目录按钮 */
     if ( currentPath.isEmpty() ) {
         ui->cdToParentButton->setEnabled ( false );
         ftp->cd ( "/" );
-    }
-    else {
+    } else {
         ftp->cd ( currentPath );
     }
 ​
