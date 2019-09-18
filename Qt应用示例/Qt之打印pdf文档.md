@@ -12,7 +12,7 @@ categories: Qt应用示例
 #include <QMainWindow>
 ​
 namespace Ui {
-    class MainWindow;
+    class MainWindow;
 }
 ​
 class MainWindow : public QMainWindow {
@@ -77,7 +77,8 @@ void MainWindow::doPrintPreview() { /* 打印预览 */
     QPrinter printer;
     QPrintPreviewDialog preview ( &printer, this ); /* 创建打印预览对话框 */
     /* 当要生成预览页面时，发射paintRequested信号 */
-    connect ( &preview, SIGNAL ( paintRequested ( QPrinter * ) ), this, SLOT ( printPreview ( QPrinter * ) ) );
+    connect ( &preview, SIGNAL ( paintRequested ( QPrinter * ) ), \
+              this, SLOT ( printPreview ( QPrinter * ) ) );
     preview.exec();
 }
 ​

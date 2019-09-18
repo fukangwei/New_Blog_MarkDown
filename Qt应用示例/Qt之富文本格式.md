@@ -20,24 +20,22 @@ class MySyntaxHighlighter;
 ​
 class MainWindow : public QMainWindow {
     Q_OBJECT
-​
 public:
     explicit MainWindow ( QWidget *parent = 0 );
     ~MainWindow();
-​
 private:
     Ui::MainWindow *ui;
     QLineEdit *lineEdit;
     MySyntaxHighlighter *highlighter;
 private slots:
-    void showTextFrame();              /* 遍历文档框架 */
-    void showTextBlock();              /* 遍历所有文本块 */
-    void setTextFont ( bool checked ); /* 设置字体格式 */
-    void insertTable();                /* 插入表格 */
-    void insertList();                 /* 插入列表 */
-    void insertImage();                /* 插入图片 */
-    void textFind();                   /* 查找文本 */
-    void findNext();                   /* 查找下一个 */
+    void showTextFrame();              /* 遍历文档框架   */
+    void showTextBlock();              /* 遍历所有文本块 */
+    void setTextFont ( bool checked ); /* 设置字体格式   */
+    void insertTable();                /* 插入表格       */
+    void insertList();                 /* 插入列表       */
+    void insertImage();                /* 插入图片       */
+    void textFind();                   /* 查找文本       */
+    void findNext();                   /* 查找下一个     */
 };
 ​
 #endif // MAINWINDOW_H
@@ -55,11 +53,8 @@ class MySyntaxHighlighter : public QSyntaxHighlighter {
     Q_OBJECT
 public:
     explicit MySyntaxHighlighter ( QTextDocument *parent = 0 );
-​
 signals:
-​
 public slots:
-​
 protected:
     void highlightBlock ( const QString &text ); /* 必须重新实现该函数 */
 };
@@ -165,8 +160,7 @@ void MainWindow::showTextFrame() { /* 遍历框架 */
 ​
         if ( childFrame ) {
             qDebug() << "frame";
-        }
-        else if ( childBlock.isValid() ) {
+        } else if ( childBlock.isValid() ) {
             qDebug() << "block:" << childBlock.text();
         }
     }
@@ -201,8 +195,7 @@ void MainWindow::setTextFont ( bool checked ) { /* 设置字体格式 */
         charFormat.setFontUnderline ( true ); /* 使用下划线 */
         cursor.setCharFormat ( charFormat ); /* 使用字符格式 */
         cursor.insertText ( tr ( "测试字体" ) ); /* 使用字符格式 */
-    }
-    else { /* 如果处于非选中状态，可以进行其他操作 */
+    } else { /* 如果处于非选中状态，可以进行其他操作 */
         /* 恢复默认的字体格式 */
     }
 }
