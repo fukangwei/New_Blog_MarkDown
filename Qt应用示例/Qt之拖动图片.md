@@ -98,19 +98,18 @@ void MainWindow::mousePressEvent ( QMouseEvent *event ) {
        当图片被放下后，exec()函数就会返回操作类型，这个返回值由dropEvent函数中的设置决定的 */
     if ( drag->exec ( Qt::CopyAction | Qt::MoveAction, Qt::CopyAction ) == Qt::MoveAction ) {
         child->close();
-    }
-    else { /* 如果是复制操作，那么拖放完成后显示标签、显示原图片，不再使用阴影 */
+    } else { /* 如果是复制操作，那么拖放完成后显示标签、显示原图片，不再使用阴影 */
         child->show();
         child->setPixmap ( pixmap );
     }
 }
 ​
 void MainWindow::dragEnterEvent ( QDragEnterEvent *event ) { /* 拖动进入事件 */
-    if ( event->mimeData()->hasFormat ( "myimage/png" ) ) { /* 如果有我们定义的MIME类型数据，则进行移动操作 */
+    /* 如果有我们定义的MIME类型数据，则进行移动操作 */
+    if ( event->mimeData()->hasFormat ( "myimage/png" ) ) {
         event->setDropAction ( Qt::MoveAction );
         event->accept();
-    }
-    else {
+    } else {
         event->ignore();
     }
 }
@@ -119,8 +118,7 @@ void MainWindow::dragMoveEvent ( QDragMoveEvent *event ) { /* 拖动事件 */
     if ( event->mimeData()->hasFormat ( "myimage/png" ) ) {
         event->setDropAction ( Qt::MoveAction );
         event->accept();
-    }
-    else {
+    } else {
         event->ignore();
     }
 }
@@ -143,8 +141,7 @@ void MainWindow::dropEvent ( QDropEvent *event ) { /* 放下事件 */
         newLabel->setAttribute ( Qt::WA_DeleteOnClose );
         event->setDropAction ( Qt::MoveAction );
         event->accept();
-    }
-    else {
+    } else {
         event->ignore();
     }
 }

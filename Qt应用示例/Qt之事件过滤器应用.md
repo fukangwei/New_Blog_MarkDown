@@ -43,14 +43,12 @@ class MyLineEdit;
 ​
 class Widget : public QWidget {
     Q_OBJECT
-​
 public:
     explicit Widget ( QWidget *parent = 0 );
     ~Widget();
     bool eventFilter ( QObject *obj, QEvent *event );
 protected:
     void keyPressEvent ( QKeyEvent *event );
-​
 private:
     Ui::Widget *ui;
     MyLineEdit *lineEdit;
@@ -142,7 +140,6 @@ namespace Ui {
 ​
 class Widget : public QWidget {
     Q_OBJECT
-​
 public:
     explicit Widget ( QWidget *parent = 0 );
     ~Widget();
@@ -183,34 +180,28 @@ bool Widget::eventFilter ( QObject *obj, QEvent *event ) { /* 事件过滤器 */
 ​
             if ( wheelEvent->delta() > 0 ) {
                 ui->textEdit->zoomIn();
-            }
-            else {
+            } else {
                 ui->textEdit->zoomOut();
             }
 ​
             return true; /* 该事件已经被处理 */
-        }
-        else {
+        } else {
             return false; /* 如果是其他事件，可以进行进一步的处理 */
         }
-    }
-    else if ( obj == ui->spinBox ) {
+    } else if ( obj == ui->spinBox ) {
         if ( event->type() == QEvent::KeyPress ) {
             QKeyEvent *keyEvent = static_cast<QKeyEvent *> ( event );
 ​
             if ( keyEvent->key() == Qt::Key_Space ) {
                 ui->spinBox->setValue ( 0 );
                 return true;
-            }
-            else {
+            } else {
                 return false;
             }
-        }
-        else {
+        } else {
             return false;
         }
-    }
-    else {
+    } else {
         return QWidget::eventFilter ( obj, event );
     }
 }
