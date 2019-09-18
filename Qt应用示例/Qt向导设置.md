@@ -121,12 +121,12 @@ void ClassWizard::accept() {
     QString implementation = field ( "implementation" ).toString();
     QByteArray block;
 ​
-    if ( field ( "comment" ).toBool() ) {
-        block += "/*\n";
-        block += "    " + header.toAscii() + "\n";
-        block += "*/\n";
-        block += "\n";
-    }
+    if ( field ( "comment" ).toBool() ) {
+        block += "/*\n";
+        block += "    " + header.toAscii() + "\n";
+        block += "*/\n";
+        block += "\n";
+    }
 ​
     if ( field ( "protect" ).toBool() ) {
         block += "#ifndef " + macroName + "\n";
