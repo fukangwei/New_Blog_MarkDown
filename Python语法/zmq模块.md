@@ -15,12 +15,12 @@ socket = context.socket(zmq.REP)
 socket.bind("tcp://*:5555")
 ​
 while True:
-    message = socket.recv()  # Wait for next request from client
-    request_body = json.loads(message)
-    print("Received request: %s" % message)
-    # Do some work
-    time.sleep(0.001)
-    socket.send(b"World")  # Send reply back to client
+    message = socket.recv()  # Wait for next request from client
+    request_body = json.loads(message)
+    print("Received request: %s" % message)
+    # Do some work
+    time.sleep(0.001)
+    socket.send(b"World")  # Send reply back to client
 ```
 
 &emsp;&emsp;客户端代码如下：
@@ -34,10 +34,10 @@ print("Connecting to hello world server...")
 socket = context.socket(zmq.REQ)
 socket.connect("tcp://localhost:5555")
 ​
-for request in range(10):  # Do 10 requests, waiting each time for a response
-    print("Sending request %s ..." % request)
-    request_body = {'command': 'list', 'type': 'command'}
-    socket.send_string(json.dumps(request_body))
-    message = socket.recv()  # Get the reply
-    print("Received reply %s [ %s ]" % (request, message))
+for request in range(10):  # Do 10 requests, waiting each time for a response
+    print("Sending request %s ..." % request)
+    request_body = {'command': 'list', 'type': 'command'}
+    socket.send_string(json.dumps(request_body))
+    message = socket.recv()  # Get the reply
+    print("Received reply %s [ %s ]" % (request, message))
 ```
