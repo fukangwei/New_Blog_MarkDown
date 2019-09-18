@@ -12,7 +12,7 @@ categories: Qt应用示例
 #include <QMainWindow>
 ​
 namespace Ui {
-    class MainWindow;
+    class MainWindow;
 }
 ​
 class MainWindow : public QMainWindow {
@@ -52,8 +52,7 @@ MainWindow::~MainWindow() {
 void MainWindow::dragEnterEvent ( QDragEnterEvent *event ) { /* 拖动进入事件 */
     if ( event->mimeData()->hasUrls() ) { /* 数据中是否包含URL，如果是则接收动作，否则忽略该事件 */
         event->acceptProposedAction();
-    }
-    else {
+    } else {
         event->ignore();
     }
 }
