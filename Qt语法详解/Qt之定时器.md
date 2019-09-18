@@ -66,7 +66,7 @@ if ( testTimer->isActive() ) { /* 停止运行定时器 */
 QTimer::singleShot ( 100, this, SLOT ( animateTimeout() ) );
 ```
 
-    widget.h如下所示：
+&emsp;&emsp;`widget.h`如下：
 
 ``` cpp
 #ifndef WIDGET_H
@@ -80,7 +80,6 @@ namespace Ui {
 ​
 class Widget : public QWidget {
     Q_OBJECT
-​
 public:
     explicit Widget ( QWidget *parent = 0 );
     ~Widget();
@@ -129,17 +128,14 @@ void Widget::timerEvent ( QTimerEvent *event ) {
     /* 判断是哪个定时器 */
     if ( event->timerId() == id1 ) {
         qDebug() << "timer1";
-    }
-    else if ( event->timerId() == id2 ) {
+    } else if ( event->timerId() == id2 ) {
         qDebug() << "timer2";
-    }
-    else {
+    } else {
         qDebug() << "timer3";
     }
 }
 ​
-/* 定时器溢出处理 */
-void Widget::timerUpdate() {
+void Widget::timerUpdate() { /* 定时器溢出处理 */
     QTime time = QTime::currentTime(); /* 获取当前时间 */
     QString text = time.toString ( "hh:mm" ); /* 转换为字符串 */
 ​
