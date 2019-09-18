@@ -163,39 +163,39 @@ void ClassWizard::accept() {
     } else if ( field ( "defaultCtor" ).toBool() ) {
         block += "    " + className + "();\n";
 ​
-        if ( field ( "copyCtor" ).toBool() ) {
-            block += "    " + className + "(const " + className + " &other);\n";
-            block += "\n";
-            block += "    " + className + " &operator=" + "(const " + className + " &other);\n";
-        }
-    }
+        if ( field ( "copyCtor" ).toBool() ) {
+            block += "    " + className + "(const " + className + " &other);\n";
+            block += "\n";
+            block += "    " + className + " &operator=" + "(const " + className + " &other);\n";
+        }
+    }
 ​
-    block += "};\n";
+    block += "};\n";
 ​
-    if ( field ( "protect" ).toBool() ) {
-        block += "\n";
-        block += "#endif\n";
-    }
+    if ( field ( "protect" ).toBool() ) {
+        block += "\n";
+        block += "#endif\n";
+    }
 ​
-    QFile headerFile ( outputDir + "/" + header );
+    QFile headerFile ( outputDir + "/" + header );
 ​
-    if ( !headerFile.open ( QFile::WriteOnly | QFile::Text ) ) {
-        QMessageBox::warning (
+    if ( !headerFile.open ( QFile::WriteOnly | QFile::Text ) ) {
+        QMessageBox::warning (
             0, QObject::tr ( "Simple Wizard" ),
-            QObject::tr ( "Cannot write file %1:\n%2" )
+            QObject::tr ( "Cannot write file %1:\n%2" )
                 .arg ( headerFile.fileName() ).arg ( headerFile.errorString() ) );
-        return;
-    }
+        return;
+    }
 ​
-    headerFile.write ( block );
-    block.clear();
+    headerFile.write ( block );
+    block.clear();
 ​
-    if ( field ( "comment" ).toBool() ) {
+    if ( field ( "comment" ).toBool() ) {
         block += "/*\n";
         block += "    " + implementation.toAscii() + "\n";
         block += "*/\n";
         block += "\n";
-    }
+    }
 ​
     block += "#include \"" + header.toAscii() + "\"\n";
     block += "\n";
