@@ -4,7 +4,7 @@ date: 2018-12-28 16:05:08
 categories: Qt应用示例
 ---
 &emsp;&emsp;`QT`提供了`QCryptographicHash`类，可以很方便地实现`MD5`等加密算法。
-&emsp;&emsp;第一种方法如下所示：
+&emsp;&emsp;第一种方法如下：
 
 ``` cpp
 #include <QtCore/QCoreApplication>
@@ -26,7 +26,7 @@ int main ( int argc, char *argv[] ) {
 }
 ```
 
-&emsp;&emsp;第二种方法如下所示：
+&emsp;&emsp;第二种方法如下：
 
 ``` cpp
 #include <QtCore/QCoreApplication>

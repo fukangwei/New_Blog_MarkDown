@@ -15,20 +15,17 @@ categories: Qt应用示例
 #include <QMainWindow>
 ​
 namespace Ui {
-    class MainWindow;
+    class MainWindow;
 }
 ​
 class MainWindow : public QMainWindow {
     Q_OBJECT
-​
-  public:
+public:
     explicit MainWindow ( QWidget *parent = 0 );
-    ~MainWindow();
-​
-  private:
-    Ui::MainWindow *ui;
-​
-  private slots:
+    ~MainWindow();​
+private:
+    Ui::MainWindow *ui;​
+private slots:
     void receivelogin(); /* 与login中发射的信号关联的槽函数 */
     void on_pushButton_clicked(); /* 与relogin的click关联的槽函数 */
     void on_pushButton_2_clicked(); /* 与quit的click关联的槽函数 */
@@ -49,14 +46,14 @@ signals:
 #include <QDialog>
 ​
 namespace Ui {
-    class MyDialog;
+    class MyDialog;
 }
+
 class MyDialog : public QDialog {
     Q_OBJECT
 public:
     explicit MyDialog ( QWidget *parent = 0 );
     ~MyDialog();
-​
 private slots:
     void on_pushButton_clicked(); /* 与login关联的槽函数 */
     void receiveshow(); /* 与relogin中发射的信号关联的槽函数 */
