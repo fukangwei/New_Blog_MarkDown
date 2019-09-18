@@ -75,8 +75,7 @@ void MainWindow::showMessage ( const QString &path ) { /* 显示文件或目录�
     if ( path == dir.absolutePath() ) {
         ui->listWidget->addItem ( dir.dirName() + tr ( "目录发生改变: " ) );
         ui->listWidget->addItems ( dir.entryList() );
-    }
-    else { /* 如果是文件发生了改变 */
+    } else { /* 如果是文件发生了改变 */
         ui->listWidget->addItem ( path + tr ( "文件发生改变！" ) );
     }
 }

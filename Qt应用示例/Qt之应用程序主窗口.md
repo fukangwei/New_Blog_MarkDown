@@ -12,7 +12,7 @@ categories: Qt应用示例
 #include <QMainWindow>
 ​
 namespace Ui {
-    class MainWindow;
+    class MainWindow;
 }
 ​
 class MainWindow : public QMainWindow {

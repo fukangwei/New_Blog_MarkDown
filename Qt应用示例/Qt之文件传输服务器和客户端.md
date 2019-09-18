@@ -124,8 +124,7 @@ void Client::updateClientProgress ( qint64 numBytes ) { /* 发送数据，并更
         outBlock = localFile->read ( qMin ( bytesToWrite, payloadSize ) );
         bytesToWrite -= ( int ) tcpClient->write ( outBlock ); /* 发送完一次数据后还剩余数据的大小 */
         outBlock.resize ( 0 ); /* 清空发送缓冲区 */
-    }
-    else { /* 如果没有发送任何数据，则关闭文件 */
+    } else { /* 如果没有发送任何数据，则关闭文件 */
         localFile->close();
     }
 ​
@@ -279,8 +278,7 @@ void Server::updateServerProgress() { /* 接收文件并更新进度条 */
                 qDebug() << "server: open file error!";
                 return;
             }
-        }
-        else {
+        } else {
             return;
         }
     }

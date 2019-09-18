@@ -17,7 +17,7 @@ char buffer[BufferSize];
 ​
 QSemaphore freeBytes ( BufferSize );
 QSemaphore usedBytes;
-​
+
 class Producer : public QThread { /* 生产者线程类 */
 public:
     void run();

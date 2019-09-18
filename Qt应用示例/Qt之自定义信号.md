@@ -17,7 +17,6 @@ namespace Ui {
 ​
 class Widget : public QWidget {
     Q_OBJECT
-​
 public:
     explicit Widget ( QWidget *parent = 0 );
     ~Widget();
@@ -80,7 +79,11 @@ Widget::~Widget() {
 void Widget::showValue ( int value ) { /* 自定义槽函数 */
     ui->label->setText ( tr ( "获取的值是：%1" ).arg ( value ) );
 }
-   mydialog.cpp：
+```
+
+&emsp;&emsp;`mydialog.cpp`如下：
+
+``` cpp
 #include "mydialog.h"
 #include "ui_mydialog.h"
 ​
