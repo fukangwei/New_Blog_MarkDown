@@ -13,7 +13,7 @@ ImgWindow1->show();
 connect ( ImgWindow1, SIGNAL ( destroyed() ), this, SLOT ( CloseImgWindow() ) );
 ​
 void QMainFunction::CloseImgWindow() {
-    qDebug() << "It is Destroyed!";
+    qDebug() << "It is Destroyed!";
 }
 ```
 
