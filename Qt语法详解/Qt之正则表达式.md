@@ -67,23 +67,23 @@ Widget::Widget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::Widget ) {
     QRegExp rxlen ( "(\\d+)(?:\\s*)(cm|inch)" );
     int pos3 = rxlen.indexIn ( "Length: 189cm" );
 ​
-    if ( pos3 > -1 ) {
-        QString value = rxlen.cap ( 1 ); /* 结果为189 */
-        QString unit = rxlen.cap ( 2 ); /* 结果为cm */
-        QString string = rxlen.cap ( 0 ); /* 结果为189cm */
-        qDebug() << value << unit << string;
-    }
+    if ( pos3 > -1 ) {
+        QString value = rxlen.cap ( 1 ); /* 结果为189 */
+        QString unit = rxlen.cap ( 2 ); /* 结果为cm */
+        QString string = rxlen.cap ( 0 ); /* 结果为189cm */
+        qDebug() << value << unit << string;
+    }
 ​
-    QRegExp rx5 ( "\\b(\\w+)\\W+\\1\\b" );
-    rx5.setCaseSensitivity ( Qt::CaseInsensitive ); /* 设置不区分大小写 */
-    qDebug() << rx5.indexIn ( "Hello--hello" ); /* 结果为0 */
-    qDebug() << rx5.cap ( 1 ); /* 结果为Hello */
-    QRegExp rx6 ( "\\b你好\\b" ); /* 匹配中文 */
-    qDebug() << rx6.indexIn ( "你好" ); /* 结果为0 */
-    qDebug() << rx6.cap ( 0 ); /* 整个字符串完全匹配，使用“cap(0)”捕获，结果为“你好” */
+    QRegExp rx5 ( "\\b(\\w+)\\W+\\1\\b" );
+    rx5.setCaseSensitivity ( Qt::CaseInsensitive ); /* 设置不区分大小写 */
+    qDebug() << rx5.indexIn ( "Hello--hello" ); /* 结果为0 */
+    qDebug() << rx5.cap ( 1 ); /* 结果为Hello */
+    QRegExp rx6 ( "\\b你好\\b" ); /* 匹配中文 */
+    qDebug() << rx6.indexIn ( "你好" ); /* 结果为0 */
+    qDebug() << rx6.cap ( 0 ); /* 整个字符串完全匹配，使用“cap(0)”捕获，结果为“你好” */
 }
 ​
 Widget::~Widget() {
-    delete ui;
+    delete ui;
 }
 ```
