@@ -128,40 +128,40 @@ void ClassWizard::accept() {
         block += "\n";
     }
 ​
-    if ( field ( "protect" ).toBool() ) {
-        block += "#ifndef " + macroName + "\n";
-        block += "#define " + macroName + "\n";
-        block += "\n";
-    }
+    if ( field ( "protect" ).toBool() ) {
+        block += "#ifndef " + macroName + "\n";
+        block += "#define " + macroName + "\n";
+        block += "\n";
+    }
 ​
-    if ( field ( "includeBase" ).toBool() ) {
-        block += "#include " + baseInclude + "\n";
-        block += "\n";
-    }
+    if ( field ( "includeBase" ).toBool() ) {
+        block += "#include " + baseInclude + "\n";
+        block += "\n";
+    }
 ​
-    block += "class " + className;
+    block += "class " + className;
 ​
-    if ( !baseClass.isEmpty() ) {
-        block += " : public " + baseClass;
-    }
+    if ( !baseClass.isEmpty() ) {
+        block += " : public " + baseClass;
+    }
 ​
-    block += "\n";
-    block += "{\n";
+    block += "\n";
+    block += "{\n";
 ​
-    /* qmake ignore Q_OBJECT */
-    if ( field ( "qobjectMacro" ).toBool() ) {
-        block += "    Q_OBJECT\n";
-        block += "\n";
-    }
+    /* qmake ignore Q_OBJECT */
+    if ( field ( "qobjectMacro" ).toBool() ) {
+        block += "    Q_OBJECT\n";
+        block += "\n";
+    }
 ​
-    block += "public:\n";
+    block += "public:\n";
 ​
-    if ( field ( "qobjectCtor" ).toBool() ) {
-        block += "    " + className + "(QObject *parent = 0);\n";
-    } else if ( field ( "qwidgetCtor" ).toBool() ) {
-        block += "    " + className + "(QWidget *parent = 0);\n";
-    } else if ( field ( "defaultCtor" ).toBool() ) {
-        block += "    " + className + "();\n";
+    if ( field ( "qobjectCtor" ).toBool() ) {
+        block += "    " + className + "(QObject *parent = 0);\n";
+    } else if ( field ( "qwidgetCtor" ).toBool() ) {
+        block += "    " + className + "(QWidget *parent = 0);\n";
+    } else if ( field ( "defaultCtor" ).toBool() ) {
+        block += "    " + className + "();\n";
 ​
         if ( field ( "copyCtor" ).toBool() ) {
             block += "    " + className + "(const " + className + " &other);\n";
