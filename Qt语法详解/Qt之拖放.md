@@ -51,18 +51,18 @@ void TabelView::dragMoveEvent ( QDragMoveEvent *event ) {
 ### Drag and Drop
 
 &emsp;&emsp;Drag and drop provides a simple visual mechanism which users can use to transfer information between and within applications (In the literature this is referred to as a `direct manipulation model`). Drag and drop is similar in function to the clipboard's cut and paste mechanism.
-&emsp;&emsp;This document describes the basic drag and drop mechanism and outlines the approach used to enable it in custom widgets. Drag and drop operations are also supported by Qt's item views and by the graphics view framework. More information is available in Using drag and drop with item views and `Graphics View Framework`.
+&emsp;&emsp;This document describes the basic drag and drop mechanism and outlines the approach used to enable it in custom widgets. Drag and drop operations are also supported by `Qt's` item views and by the graphics view framework. More information is available in Using drag and drop with item views and `Graphics View Framework`.
 
 ### Drag and Drop Classes
 
 &emsp;&emsp;These classes deal with drag and drop and the necessary mime type encoding and decoding.
 
-- QDragEnterEvent: Event which is sent to a widget when a drag and drop action enters it.
-- QDragLeaveEvent: Event that is sent to a widget when a drag and drop action leaves it.
-- QDragMoveEvent: Event which is sent while a drag and drop action is in progress.
-- QDropEvent: Event which is sent when a drag and drop action is completed.
-- QMacPasteboardMime: Converts between a `MIME` type and a `Uniform Type Identifier` (`UTI`) format.
-- QWindowsMime: Maps `open-standard` `MIME` to Window `Clipboard` formats.
+- `QDragEnterEvent`: Event which is sent to a widget when a drag and drop action enters it.
+- `QDragLeaveEvent`: Event that is sent to a widget when a drag and drop action leaves it.
+- `QDragMoveEvent`: Event which is sent while a drag and drop action is in progress.
+- `QDropEvent`: Event which is sent when a drag and drop action is completed.
+- `QMacPasteboardMime`: Converts between a `MIME` type and a `Uniform Type Identifier` (`UTI`) format.
+- `QWindowsMime`: Maps `open-standard` `MIME` to Window `Clipboard` formats.
 
 ### Configuration
 
@@ -139,7 +139,7 @@ Window::Window ( QWidget *parent ) : QWidget ( parent ) {
 }
 ```
 
-&emsp;&emsp;The `dragEnterEvent()` function is typically used to inform Qt about the types of data that the widget accepts. You must reimplement this function if you want to receive either `QDragMoveEvent` or `QDropEvent` in your reimplementations of `dragMoveEvent()` and `dropEvent()`.
+&emsp;&emsp;The `dragEnterEvent()` function is typically used to inform `Qt` about the types of data that the widget accepts. You must reimplement this function if you want to receive either `QDragMoveEvent` or `QDropEvent` in your reimplementations of `dragMoveEvent()` and `dropEvent()`.
 &emsp;&emsp;The following code shows how `dragEnterEvent()` can be reimplemented to tell the drag and drop system that we can only handle plain text:
 
 ``` cpp
@@ -171,13 +171,13 @@ void Window::dropEvent ( QDropEvent *event ) {
 
 ### Subclassing Complex Widgets
 
-&emsp;&emsp;Certain standard Qt widgets provide their own support for drag and drop. When subclassing these widgets, it may be necessary to reimplement `dragMoveEvent()` in addition to `dragEnterEvent()` and `dropEvent()` to prevent the base class from providing default drag and drop handling, and to handle any special cases you are interested in.
+&emsp;&emsp;Certain standard `Qt` widgets provide their own support for drag and drop. When subclassing these widgets, it may be necessary to reimplement `dragMoveEvent()` in addition to `dragEnterEvent()` and `dropEvent()` to prevent the base class from providing default drag and drop handling, and to handle any special cases you are interested in.
 
 ### Drag and Drop Actions
 
-&emsp;&emsp;In the simplest case, the target of a drag and drop action receives a copy of the data being dragged, and the source decides whether to delete the original. This is described by the `CopyAction` action. The target may also choose to handle other actions, specifically the `MoveAction` and `LinkAction` actions. If the source calls `QDrag::exec()`, and it returns `MoveAction`, the source is responsible for deleting any original data if it chooses to do so. The `QMimeData` and `QDrag` objects created by the source widget should not be deleted -- they will be destroyed by Qt. The target is responsible for taking ownership of the data sent in the drag and drop operation; this is usually done by keeping references to the data.
+&emsp;&emsp;In the simplest case, the target of a drag and drop action receives a copy of the data being dragged, and the source decides whether to delete the original. This is described by the `CopyAction` action. The target may also choose to handle other actions, specifically the `MoveAction` and `LinkAction` actions. If the source calls `QDrag::exec()`, and it returns `MoveAction`, the source is responsible for deleting any original data if it chooses to do so. The `QMimeData` and `QDrag` objects created by the source widget should not be deleted -- they will be destroyed by `Qt`. The target is responsible for taking ownership of the data sent in the drag and drop operation; this is usually done by keeping references to the data.
 &emsp;&emsp;If the target understands the `LinkAction` action, it should store its own reference to the original information; the source does not need to perform any further processing on the data. The most common use of drag and drop actions is when performing a `Move` within the same widget.
-&emsp;&emsp;The other major use of drag actions is when using a reference type such as text/uri-list, where the dragged data are actually references to files or objects.
+&emsp;&emsp;The other major use of drag actions is when using a reference type such as `text/uri-list`, where the dragged data are actually references to files or objects.
 
 ### Adding New Drag and Drop Types
 
@@ -249,12 +249,10 @@ void DragWidget::dropEvent ( QDropEvent *event ) {
     if ( event->proposedAction() == Qt::MoveAction ) {
         event->acceptProposedAction();
         /* Process the data from the event */
-    }
-    else if ( event->proposedAction() == Qt::CopyAction ) {
+    } else if ( event->proposedAction() == Qt::CopyAction ) {
         event->acceptProposedAction();
         /* Process the data from the event */
-    }
-    else {
+    } else {
         /* Ignore the drop */
         return;
     }
@@ -266,7 +264,7 @@ Note that we checked for individual drop actions in the above code. As mentioned
 
 ### Drop Rectangles
 
-&emsp;&emsp;The widget's `dragMoveEvent()` can be used to restrict drops to certain parts of the widget by only accepting the proposed drop actions when the cursor is within those areas. For example, the following code accepts any proposed drop actions when the cursor is over a child widget (dropFrame):
+&emsp;&emsp;The widget's `dragMoveEvent()` can be used to restrict drops to certain parts of the widget by only accepting the proposed drop actions when the cursor is within those areas. For example, the following code accepts any proposed drop actions when the cursor is over a child widget (`dropFrame`):
 
 ``` cpp
 void Window::dragMoveEvent ( QDragMoveEvent *event ) {
@@ -315,5 +313,5 @@ void ClipWindow::updateClipboard() {
 
 ### Interoperating with Other Applications
 
-&emsp;&emsp;On `X11`, the public `XDND` protocol is used, while on `Windows` Qt uses the `OLE` standard, and Qt for `Mac OS X` uses the `Carbon Drag Manager`. On `X11`, `XDND` uses `MIME`, so no translation is necessary. The Qt API is the same regardless of the platform. On `Windows`, `MIME-aware` applications can communicate by using clipboard format names that are `MIME` types. Already some Windows applications use `MIME` naming conventions for their clipboard formats. Internally, Qt uses `QWindowsMime` and `QMacPasteboardMime` for translating proprietary clipboard formats to and from `MIME` types.
+&emsp;&emsp;On `X11`, the public `XDND` protocol is used, while on `Windows` Qt uses the `OLE` standard, and Qt for `Mac OS X` uses the `Carbon Drag Manager`. On `X11`, `XDND` uses `MIME`, so no translation is necessary. The `Qt API` is the same regardless of the platform. On `Windows`, `MIME-aware` applications can communicate by using clipboard format names that are `MIME` types. Already some Windows applications use `MIME` naming conventions for their clipboard formats. Internally, `Qt` uses `QWindowsMime` and `QMacPasteboardMime` for translating proprietary clipboard formats to and from `MIME` types.
 **Note**: The `Motif Drag & Drop Protocol` only allows receivers to request data in response to a `QDropEvent`. If you attempt to request data in response to e.g. a `QDragMoveEvent`, an empty `QByteArray` is returned.

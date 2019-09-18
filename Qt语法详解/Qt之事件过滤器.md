@@ -19,12 +19,10 @@ bool MainWindow::eventFilter ( QObject *obj, QEvent *event ) {
             QKeyEvent *keyEvent = static_cast<QKeyEvent *> ( event );
             qDebug() << "Ate key press" << keyEvent->key();
             return true;
-        }
-        else {
+        } else {
             return false;
         }
-    }
-    else {
+    } else {
         /* pass the event on to the parent class */
         return QMainWindow::eventFilter ( obj, event );
     }

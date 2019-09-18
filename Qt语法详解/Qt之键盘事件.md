@@ -9,11 +9,9 @@ categories: Qt语法详解
 void Widget::keyPressEvent ( QKeyEvent *event ) {
     if ( event->key() == Qt::Key_A ) {
         /* 当按下按键“A”时，do something */
-    }
-    else if ( event->key() == Qt::Key_D ) {
+    } else if ( event->key() == Qt::Key_D ) {
         /* 当按下按键“D”时，do something */
-    }
-    else if ( event->key() == Qt::Key_W ) {
+    } else if ( event->key() == Qt::Key_W ) {
         if ( event->state() == Qt::ShiftButton ) {
             /* 当按下“Shift+W”时，do something */
         }
@@ -132,7 +130,6 @@ namespace Ui {
 ​
 class Widget : public QWidget {
     Q_OBJECT
-​
 public:
     explicit Widget ( QWidget *parent = 0 );
     ~Widget();
@@ -178,8 +175,7 @@ void Widget::keyPressEvent ( QKeyEvent *event ) {
         }
 ​
         keyUp = true; /* 标记向上方向键已经按下 */
-    }
-    else if ( event->key() == Qt::Key_Left ) {
+    } else if ( event->key() == Qt::Key_Left ) {
         if ( event->isAutoRepeat() ) {
             return;
         }
@@ -205,12 +201,10 @@ void Widget::keyReleaseEvent ( QKeyEvent *event ) {
         if ( keyLeft ) { /* 如果向左方向键已经按下且没有释放 */
             ui->pushButton->move ( 30, 80 ); /* 斜移 */
             move = true; /* 标记已经移动 */
-        }
-        else {
+        } else {
             ui->pushButton->move ( 120, 80 ); /* 否则直接上移 */
         }
-    }
-    else if ( event->key() == Qt::Key_Left ) {
+    } else if ( event->key() == Qt::Key_Left ) {
         if ( event->isAutoRepeat() ) {
             return;
         }
@@ -225,12 +219,10 @@ void Widget::keyReleaseEvent ( QKeyEvent *event ) {
         if ( keyUp ) {
             ui->pushButton->move ( 30, 80 );
             move = true;
-        }
-        else {
+        } else {
             ui->pushButton->move ( 30, 120 );
         }
-    }
-    else if ( event->key() == Qt::Key_Down ) { /* 使用向下方向键来还原按钮的位置 */
+    } else if ( event->key() == Qt::Key_Down ) { /* 使用向下方向键来还原按钮的位置 */
         ui->pushButton->move ( 120, 120 );
     }
 }
@@ -248,8 +240,7 @@ void Widget::keyPressEvent ( QKeyEvent *event ) { /* 键盘按下事件 */
         if ( event->key() == Qt::Key_M ) { /* 是否按下M键 */
             setWindowState ( Qt::WindowMaximized ); /* 窗口最大化 */
         }
-    }
-    else {
+    } else {
         QWidget::keyPressEvent ( event );
     }
 }
