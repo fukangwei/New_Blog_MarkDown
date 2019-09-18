@@ -63,7 +63,8 @@ MainWindow::~MainWindow() {
 void MainWindow::startRequest ( QUrl url ) {
     reply = manager->get ( QNetworkRequest ( url ) );
     connect ( reply, SIGNAL ( readyRead() ), this, SLOT ( httpReadyRead() ) );
-    connect ( reply, SIGNAL ( downloadProgress ( qint64, qint64 ) ), this, SLOT ( updateDataReadProgress ( qint64, qint64 ) ) );
+    connect ( reply, SIGNAL ( downloadProgress ( qint64, qint64 ) ), \
+              this, SLOT ( updateDataReadProgress ( qint64, qint64 ) ) );
     connect ( reply, SIGNAL ( finished() ), this, SLOT ( httpFinished() ) );
 }
 ​

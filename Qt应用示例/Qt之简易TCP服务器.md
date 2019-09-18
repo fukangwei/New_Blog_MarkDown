@@ -194,8 +194,7 @@ void tcp_client::readMessage() {
     if ( tcpSocket->bytesAvailable() > 0 ) { /* 如果有数据到达 */
         datagram.resize ( tcpSocket->bytesAvailable() );
         tcpSocket->read ( datagram.data(), datagram.size() );
-    }
-    else {
+    } else {
         return ;
     }
 ​

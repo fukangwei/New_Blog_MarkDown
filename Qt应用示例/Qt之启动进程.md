@@ -3,7 +3,7 @@ title: Qt之启动进程
 date: 2018-12-28 16:32:19
 categories: Qt应用示例
 ---
-&emsp;&emsp;`mainwindow.h`如下所示：
+&emsp;&emsp;`mainwindow.h`如下：
 
 ``` cpp
 #ifndef MAINWINDOW_H
@@ -35,7 +35,7 @@ private:
 #endif // MAINWINDOW_H
 ```
 
-&emsp;&emsp;`mainwindow.cpp`如下所示：
+&emsp;&emsp;`mainwindow.cpp`如下：
 
 ``` cpp
 #include "mainwindow.h"
@@ -72,11 +72,9 @@ void MainWindow::showState ( QProcess::ProcessState state ) { /* 显示状态变
 ​
     if ( state == QProcess::NotRunning ) {
         qDebug() << "Not Running";
-    }
-    else if ( state == QProcess::Starting ) {
+    } else if ( state == QProcess::Starting ) {
         qDebug() << "Starting";
-    }
-    else {
+    } else {
         qDebug() << "Running";
     }
 }
@@ -85,7 +83,8 @@ void MainWindow::showError() { /* 显示错误 */
     qDebug() << "showError: " << endl << myProcess.errorString();
 }
 ​
-void MainWindow::showFinished ( int exitCode, QProcess::ExitStatus exitStatus ) { /* 显示结束信息 */
+/* 显示结束信息 */
+void MainWindow::showFinished ( int exitCode, QProcess::ExitStatus exitStatus ) {
     qDebug() << "showFinished: " << endl << exitCode << exitStatus;
 }
 ```

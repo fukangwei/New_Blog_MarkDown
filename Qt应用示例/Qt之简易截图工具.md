@@ -14,30 +14,27 @@ categories: Qt应用示例
 #include "QTimer.h"
 ​
 namespace Ui {
-    class Widget;
+    class Widget;
 }
 ​
 class Widget : public QWidget {
-    Q_OBJECT
-​
+    Q_OBJECT
 public:
-    explicit Widget ( QWidget *parent = 0 );
-    ~Widget();
-​
+    explicit Widget ( QWidget *parent = 0 );
+    ~Widget();
 private slots:
-    void on_cut_screen_clicked();
-    void changeValue();
-​
+    void on_cut_screen_clicked();
+    void changeValue();
 private:
-    Ui::Widget *ui;
-    QPixmap pixmap;
-    QTimer *timer;
+    Ui::Widget *ui;
+    QPixmap pixmap;
+    QTimer *timer;
 };
 ​
 #endif // WIDGET_H
 ```
 
-&emsp;&emsp;`widget.cpp`如下所示：
+&emsp;&emsp;`widget.cpp`如下：
 
 ``` cpp
 #include "widget.h"
@@ -48,35 +45,33 @@ private:
 #include "QDesktopServices.h"
 #include "QClipboard.h"
 ​
-Widget::Widget ( QWidget *parent ) : QWidget ( parent ),
-    ui ( new Ui::Widget ) {
-    ui->setupUi ( this );
-    timer = new QTimer();
-    timer->setInterval ( 1000 ); /* 设置超时时间为1秒 */
-    connect ( timer, SIGNAL ( timeout() ), this, SLOT ( changeValue() ) );
+Widget::Widget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::Widget ) {
+    ui->setupUi ( this );
+    timer = new QTimer();
+    timer->setInterval ( 1000 ); /* 设置超时时间为1秒 */
+    connect ( timer, SIGNAL ( timeout() ), this, SLOT ( changeValue() ) );
 }
 ​
 Widget::~Widget() {
-    delete ui;
+    delete ui;
 }
 ​
 void Widget::on_cut_screen_clicked() {
-    timer->start();
-    this->hide(); /* 将当前窗口进行隐藏 */
-    pixmap = QPixmap::grabWindow ( QApplication::desktop()->winId() );
-    ui->label->setPixmap ( pixmap.scaled ( ui->label->size() ) );
-    QString fileName = QFileDialog::getSaveFileName (
+    timer->start();
+    this->hide(); /* 将当前窗口进行隐藏 */
+    pixmap = QPixmap::grabWindow ( QApplication::desktop()->winId() );
+    ui->label->setPixmap ( pixmap.scaled ( ui->label->size() ) );
+    QString fileName = QFileDialog::getSaveFileName (
         this, "save file",
-        QDesktopServices::storageLocation ( QDesktopServices::PicturesLocation )
-    );
-    pixmap.save ( fileName );
-    QClipboard *clipboard = QApplication::clipboard();
-    clipboard->setPixmap ( pixmap );
+        QDesktopServices::storageLocation ( QDesktopServices::PicturesLocation ) );
+    pixmap.save ( fileName );
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setPixmap ( pixmap );
 }
 ​
 void Widget::changeValue() {
-    this->show(); /* 显示主窗口 */
-    timer->stop();
+    this->show(); /* 显示主窗口 */
+    timer->stop();
 }
 ```
 

@@ -3,7 +3,7 @@ title: Qt之获取网络接口信息
 date: 2018-12-28 16:13:21
 categories: Qt应用示例
 ---
-&emsp;&emsp;`mainwindow.h`如下所示：
+&emsp;&emsp;`mainwindow.h`如下：
 
 ``` cpp
 #ifndef MAINWINDOW_H
@@ -30,7 +30,7 @@ private slots:
 #endif // MAINWINDOW_H
 ```
 
-&emsp;&emsp;`mainwindow.cpp`如下所示：
+&emsp;&emsp;`mainwindow.cpp`如下：
 
 ``` cpp
 #include "mainwindow.h"

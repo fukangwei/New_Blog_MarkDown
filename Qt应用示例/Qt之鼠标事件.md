@@ -3,7 +3,7 @@ title: Qt之鼠标事件
 date: 2018-12-28 16:17:19
 categories: Qt应用示例
 ---
-&emsp;&emsp;`widget.h`如下所示：
+&emsp;&emsp;`widget.h`如下：
 
 ``` cpp
 #ifndef WIDGET_H
@@ -17,7 +17,6 @@ namespace Ui {
 ​
 class Widget : public QWidget {
     Q_OBJECT
-​
 public:
     explicit Widget ( QWidget *parent = 0 );
     ~Widget();
@@ -35,7 +34,7 @@ private:
 #endif // WIDGET_H
 ```
 
-&emsp;&emsp;`widget.cpp`如下所示：
+&emsp;&emsp;`widget.cpp`如下：
 
 ``` cpp
 #include "widget.h"
@@ -60,8 +59,7 @@ void Widget::mousePressEvent ( QMouseEvent *event ) { /* 鼠标按下事件 */
         cursor.setShape ( Qt::ClosedHandCursor ); /* 使鼠标指针暂时变为小手抓取的样子 */
         QApplication::setOverrideCursor ( cursor );
         offset = event->globalPos() - pos(); /* 获取指针位置和窗口位置的差值，以便移动时使用 */
-    }
-    else if ( event->button() == Qt::RightButton ) { /* 如果是鼠标右键按下 */
+    } else if ( event->button() == Qt::RightButton ) { /* 如果是鼠标右键按下 */
         QCursor cursor ( QPixmap ( "../yafeilinux.png" ) ); /* 使用自定义的图片作为鼠标指针 */
         QApplication::setOverrideCursor ( cursor );
     }
@@ -83,18 +81,17 @@ void Widget::mouseDoubleClickEvent ( QMouseEvent *event ) { /* 鼠标双击事�
     if ( event->button() == Qt::LeftButton ) { /* 如果是鼠标左键按下 */
         if ( windowState() != Qt::WindowFullScreen ) { /* 如果现在不是全屏，将窗口设置为全屏 */
             setWindowState ( Qt::WindowFullScreen );
-        }
-        else {
+        } else {
             setWindowState ( Qt::WindowNoState ); /* 如果现在已经是全屏状态，那么恢复以前的大小 */
         }
     }
 }
 ​
 void Widget::wheelEvent ( QWheelEvent *event ) { /* 滚轮事件 */
-    if ( event->delta() > 0 ) { /* 当滚轮远离使用者时进行放大，当滚轮向使用者方向旋转时进行缩小 */
+    /* 当滚轮远离使用者时进行放大，当滚轮向使用者方向旋转时进行缩小 */
+    if ( event->delta() > 0 ) {
         ui->textEdit->zoomIn();
-    }
-    else {
+    } else {
         ui->textEdit->zoomOut();
     }
 }

@@ -11,7 +11,7 @@ QString current_date = current_date_time.toString ( "yyyy-MM-dd hh:mm:ss ddd" );
 ```
 
 例如`2013-05-24 13:09:10 周五`。
-&emsp;&emsp;获取当前时间`时`、`分`、`秒`的方法如下所示，其时间范围是：小时为`0`至`23`，分钟为`0`至`59`，秒为`0`至`59`，毫秒为`0`至`999`：
+&emsp;&emsp;获取当前时间`时`、`分`、`秒`的方法如下，其时间范围是：小时为`0`至`23`，分钟为`0`至`59`，秒为`0`至`59`，毫秒为`0`至`999`：
 
 ``` cpp
 QTime current_time = QTime::currentTime();
@@ -27,10 +27,8 @@ int msec = current_time.msec();
 /* 获取当前时间及文件缓存时间 */
 QDateTime currentDateTime = QDateTime::currentDateTime();
 QDateTime dateTime = QDateTime::fromString ( strDate, sDateTimeFormat );
-​
 /* 获取文件缓存一个月之后的时间 */
 QDateTime afterOneMonthDateTime = dateTime.addMonths ( 1 );
-​
 /* 如果缓存时间超过一个月，则删除 */
 qint64 nSecs = afterOneMonthDateTime.secsTo ( currentDateTime );
 ​
