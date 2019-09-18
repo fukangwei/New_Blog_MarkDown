@@ -73,22 +73,22 @@ public:
 protected:
     void initializePage();
 private:
-    QLabel *outputDirLabel;
-    QLabel *headerLabel;
-    QLabel *implementationLabel;
-    QLineEdit *outputDirLineEdit;
-    QLineEdit *headerLineEdit;
-    QLineEdit *implementationLineEdit;
+    QLabel *outputDirLabel;
+    QLabel *headerLabel;
+    QLabel *implementationLabel;
+    QLineEdit *outputDirLineEdit;
+    QLineEdit *headerLineEdit;
+    QLineEdit *implementationLineEdit;
 };
 ​
 class ConclusionPage : public QWizardPage {
-    Q_OBJECT
+    Q_OBJECT
 public:
-    ConclusionPage ( QWidget *parent = 0 );
+    ConclusionPage ( QWidget *parent = 0 );
 protected:
-    void initializePage();
+    void initializePage();
 private:
-    QLabel *label;
+    QLabel *label;
 };
 ​
 #endif // CLASSWIZARD_H
@@ -101,14 +101,14 @@ private:
 #include "classwizard.h"
 ​
 ClassWizard::ClassWizard ( QWidget *parent ) : QWizard ( parent ) {
-    addPage ( new IntroPage );
-    addPage ( new ClassInfoPage );
-    addPage ( new CodeStylePage );
-    addPage ( new OutputFilesPage );
-    addPage ( new ConclusionPage );
-    setPixmap ( QWizard::BannerPixmap, QPixmap ( ":/images/banner.png" ) );
-    setPixmap ( QWizard::BackgroundPixmap, QPixmap ( ":/images/background.png" ) );
-    setWindowTitle ( tr ( "Class Wizard" ) );
+    addPage ( new IntroPage );
+    addPage ( new ClassInfoPage );
+    addPage ( new CodeStylePage );
+    addPage ( new OutputFilesPage );
+    addPage ( new ConclusionPage );
+    setPixmap ( QWizard::BannerPixmap, QPixmap ( ":/images/banner.png" ) );
+    setPixmap ( QWizard::BackgroundPixmap, QPixmap ( ":/images/background.png" ) );
+    setWindowTitle ( tr ( "Class Wizard" ) );
 }
 ​
 void ClassWizard::accept() {
