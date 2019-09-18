@@ -112,14 +112,14 @@ ClassWizard::ClassWizard ( QWidget *parent ) : QWizard ( parent ) {
 }
 ​
 void ClassWizard::accept() {
-    QByteArray className = field ( "className" ).toByteArray();
-    QByteArray baseClass = field ( "baseClass" ).toByteArray();
-    QByteArray macroName = field ( "macroName" ).toByteArray();
-    QByteArray baseInclude = field ( "baseInclude" ).toByteArray();
-    QString outputDir = field ( "outputDir" ).toString();
-    QString header = field ( "header" ).toString();
-    QString implementation = field ( "implementation" ).toString();
-    QByteArray block;
+    QByteArray className = field ( "className" ).toByteArray();
+    QByteArray baseClass = field ( "baseClass" ).toByteArray();
+    QByteArray macroName = field ( "macroName" ).toByteArray();
+    QByteArray baseInclude = field ( "baseInclude" ).toByteArray();
+    QString outputDir = field ( "outputDir" ).toString();
+    QString header = field ( "header" ).toString();
+    QString implementation = field ( "implementation" ).toString();
+    QByteArray block;
 ​
     if ( field ( "comment" ).toBool() ) {
         block += "/*\n";
