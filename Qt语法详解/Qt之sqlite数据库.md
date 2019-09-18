@@ -30,8 +30,7 @@ database.setPassword ( "123456" );
 if ( !database.open() ) { /* 打开数据库 */
     qDebug() << database.lastError();
     qFatal ( "failed to connect." ) ;
-}
-else {
+} else {
     /* QSqlQuery类提供执行和操作的SQL语句的方法。可以用来执行DML(数据操作语言)语句，
        如SELECT、INSERT、UPDATE、DELETE，以及DDL(数据定义语言)语句，
        例如“CREATE TABLE”。也可以用来执行那些不是标准的SQL的数据库特定的命令 */
@@ -48,8 +47,7 @@ else {
 ​
     if ( !sql_query.exec() ) {
         qDebug() << sql_query.lastError();
-    }
-    else {
+    } else {
         qDebug() << "table created!";
     }
 ​
@@ -59,8 +57,7 @@ else {
 ​
     if ( !sql_query.exec() ) {
         qDebug() << sql_query.lastError();
-    }
-    else {
+    } else {
         while ( sql_query.next() ) {
             max_id = sql_query.value ( 0 ).toInt();
             qDebug() << QString ( "max id:%1" ).arg ( max_id );
@@ -75,8 +72,7 @@ else {
 ​
     if ( !sql_query.exec() ) {
         qDebug() << sql_query.lastError();
-    }
-    else {
+    } else {
         qDebug() << "inserted!";
     }
 ​
@@ -87,16 +83,14 @@ else {
 ​
     if ( !sql_query.exec() ) {
         qDebug() << sql_query.lastError();
-    }
-    else {
+    } else {
         qDebug() << "updated!";
     }
 ​
     /* 查询部分数据 */
     if ( !sql_query.exec ( select_sql ) ) {
         qDebug() << sql_query.lastError();
-    }
-    else {
+    } else {
         while ( sql_query.next() ) {
             int id = sql_query.value ( "id" ).toInt();
             QString name = sql_query.value ( "name" ).toString();
@@ -109,8 +103,7 @@ else {
 ​
     if ( !sql_query.exec() ) {
         qDebug() << sql_query.lastError();
-    }
-    else {
+    } else {
         while ( sql_query.next() ) {
             int id = sql_query.value ( 0 ).toInt();
             QString name = sql_query.value ( 1 ).toString();
@@ -125,8 +118,7 @@ else {
 ​
     if ( !sql_query.exec() ) {
         qDebug() << sql_query.lastError();
-    }
-    else {
+    } else {
         qDebug() << "deleted!";
     }
 ​
@@ -135,8 +127,7 @@ else {
 ​
     if ( !sql_query.exec() ) {
         qDebug() << sql_query.lastError();
-    }
-    else {
+    } else {
         qDebug() << "cleared";
     }
 }
@@ -285,8 +276,7 @@ QSqlDatabase db;
 ​
 if ( QSqlDatabase::contains ( "qt_sql_default_connection" ) ) {
     db = QSqlDatabase::database ( "qt_sql_default_connection" );
-}
-else {
+} else {
     db = QSqlDatabase::addDatabase ( "QSQLITE" );
 }
 ```
