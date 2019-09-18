@@ -6,7 +6,7 @@ categories: Qt语法详解
 &emsp;&emsp;The `QWizardPage` class is the base class for wizard pages.
 
 Header        | Since    | Inherits
---------------|----------|---------------------
+--------------|----------|---------
 `QWizardPage` | `Qt 4.3` | `QWidget`
 
 ### Public Functions
@@ -52,8 +52,8 @@ Retunrn     | Function
 &emsp;&emsp;A page has the following attributes, which are rendered by `QWizard`: a title, a subTitle, and a set of pixmaps. Once a page is added to the wizard (using `QWizard::addPage()` or `QWizard::setPage()`), `wizard()` returns a pointer to the associated `QWizard` object.
 &emsp;&emsp;Page provides five virtual functions that can be reimplemented to provide custom behavior:
 
-- `initializePage()` is called to initialize the page's contents when the user clicks the wizard's Next button. If you want to derive the page's default from what the user entered on previous pages, this is the function to reimplement.
-- `cleanupPage()` is called to reset the page's contents when the user clicks the wizard's Back button.
+- `initializePage()` is called to initialize the page's contents when the user clicks the wizard's `Next` button. If you want to derive the page's default from what the user entered on previous pages, this is the function to reimplement.
+- `cleanupPage()` is called to reset the page's contents when the user clicks the wizard's `Back` button.
 - `validatePage()` validates the page when the user clicks `Next` or `Finish`. It is often used to show an error message if the user has entered incomplete or invalid information.
 - `nextId()` returns the `ID` of the next page. It is useful when creating `non-linear` wizards, which allow different traversal paths based on the information provided by the user.
 - `isComplete()` is called to determine whether the `Next` and/or `Finish` button should be enabled or disabled. If you reimplement `isComplete()`, also make sure that `completeChanged()` is emitted whenever the complete state changes.
@@ -70,7 +70,7 @@ Return    | Function
 `QString` | `subTitle() const`
 `void`    | `setSubTitle(const QString & subTitle)`
 
-- `title`: This property holds the `title` of the page. The `title` is shown by the QWizard, above the actual page. All pages should have a `title`. The `title` may be `plain text` or `HTML`, depending on the value of the `QWizard::titleFormat` property. By default, this property contains an empty string. Access functions:
+- `title`: This property holds the `title` of the page. The `title` is shown by the `QWizard`, above the actual page. All pages should have a `title`. The `title` may be `plain text` or `HTML`, depending on the value of the `QWizard::titleFormat` property. By default, this property contains an empty string. Access functions:
 
 Return    | Function
 ----------|---------
@@ -87,10 +87,10 @@ Return    | Function
 
 ``` cpp
 void OutputFilesPage::initializePage() {
-    QString className = field ( "className" ).toString();
-    headerLineEdit->setText ( className.toLower() + ".h" );
-    implementationLineEdit->setText ( className.toLower() + ".cpp" );
-    outputDirLineEdit->setText ( QDir::convertSeparators ( QDir::tempPath() ) );
+    QString className = field ( "className" ).toString();
+    headerLineEdit->setText ( className.toLower() + ".h" );
+    implementationLineEdit->setText ( className.toLower() + ".cpp" );
+    outputDirLineEdit->setText ( QDir::convertSeparators ( QDir::tempPath() ) );
 }
 ```
 
@@ -98,10 +98,10 @@ void OutputFilesPage::initializePage() {
 
 ``` cpp
 void OutputFilesPage::initializePage() {
-    QString className = field ( "className" ).toString();
-    headerLineEdit->setText ( className.toLower() + ".h" );
-    implementationLineEdit->setText ( className.toLower() + ".cpp" );
-    outputDirLineEdit->setText ( QDir::convertSeparators ( QDir::tempPath() ) );
+    QString className = field ( "className" ).toString();
+    headerLineEdit->setText ( className.toLower() + ".h" );
+    implementationLineEdit->setText ( className.toLower() + ".cpp" );
+    outputDirLineEdit->setText ( QDir::convertSeparators ( QDir::tempPath() ) );
 }
 ```
 
@@ -114,11 +114,11 @@ The default implementation does nothing.
 
 ``` cpp
 int IntroPage::nextId() const {
-    if ( evaluateRadioButton->isChecked() ) {
-        return LicenseWizard::Page_Evaluate;
-    } else {
-        return LicenseWizard::Page_Register;
-    }
+    if ( evaluateRadioButton->isChecked() ) {
+        return LicenseWizard::Page_Evaluate;
+    } else {
+        return LicenseWizard::Page_Register;
+    }
 }
 ```
 
