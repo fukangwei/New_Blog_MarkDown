@@ -5,9 +5,9 @@ categories: Qt语法详解
 ---
 &emsp;&emsp;The `QWizard` class provides a framework for wizards.
 
-Header    | Inherits
-----------|-----------
-QWizard   |   QDialog
+Header  | Inherits
+--------|---------
+QWizard | QDialog
 
 ### Public Functions
 
@@ -102,46 +102,46 @@ Return         | Function
 
 ``` cpp
 QWizardPage *createIntroPage() {
-    QWizardPage *page = new QWizardPage;
-    page->setTitle ( "Introduction" );
-    QLabel *label = new QLabel ( "This wizard will help you register your copy "
-                                 "of Super Product Two." );
-    label->setWordWrap ( true );
-    QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget ( label );
-    page->setLayout ( layout );
-    return page;
+    QWizardPage *page = new QWizardPage;
+    page->setTitle ( "Introduction" );
+    QLabel *label = new QLabel ( "This wizard will help you register your copy "
+                                 "of Super Product Two." );
+    label->setWordWrap ( true );
+    QVBoxLayout *layout = new QVBoxLayout;
+    layout->addWidget ( label );
+    page->setLayout ( layout );
+    return page;
 }
 ​
 QWizardPage *createRegistrationPage() {
-    ...
+    ...
 }
 ​
 QWizardPage *createConclusionPage() {
-    ...
+    ...
 }
 ​
 int main ( int argc, char *argv[] ) {
-    QApplication app ( argc, argv );
-    QString translatorFileName = QLatin1String ( "qt_" );
-    translatorFileName += QLocale::system().name();
-    QTranslator *translator = new QTranslator ( &app );
+    QApplication app ( argc, argv );
+    QString translatorFileName = QLatin1String ( "qt_" );
+    translatorFileName += QLocale::system().name();
+    QTranslator *translator = new QTranslator ( &app );
 ​
-    if ( translator->load ( translatorFileName, QLibraryInfo::location ( QLibraryInfo::TranslationsPath ) ) ) {
-        app.installTranslator ( translator );
-    }
+    if ( translator->load ( translatorFileName, QLibraryInfo::location ( QLibraryInfo::TranslationsPath ) ) ) {
+        app.installTranslator ( translator );
+    }
 ​
-    QWizard wizard;
-    wizard.addPage ( createIntroPage() );
-    wizard.addPage ( createRegistrationPage() );
-    wizard.addPage ( createConclusionPage() );
-    wizard.setWindowTitle ( "Trivial Wizard" );
+    QWizard wizard;
+    wizard.addPage ( createIntroPage() );
+    wizard.addPage ( createRegistrationPage() );
+    wizard.addPage ( createConclusionPage() );
+    wizard.setWindowTitle ( "Trivial Wizard" );
 #ifdef Q_OS_SYMBIAN
-    wizard.showMaximized();
+    wizard.showMaximized();
 #else
-    wizard.show();
+    wizard.show();
 #endif
-    return app.exec();
+    return app.exec();
 }
 ```
 
@@ -201,18 +201,18 @@ connect ( wizard(), SIGNAL ( customButtonClicked ( int ) ), this, SLOT ( printBu
 
 ``` cpp
 ClassInfoPage::ClassInfoPage ( QWidget *parent ) : QWizardPage ( parent ) {
-    ...
-    classNameLabel = new QLabel ( tr ( "&Class name:" ) );
-    classNameLineEdit = new QLineEdit;
-    classNameLabel->setBuddy ( classNameLineEdit );
-    baseClassLabel = new QLabel ( tr ( "B&ase class:" ) );
-    baseClassLineEdit = new QLineEdit;
-    baseClassLabel->setBuddy ( baseClassLineEdit );
-    qobjectMacroCheckBox = new QCheckBox ( tr ( "Generate Q_OBJECT &macro" ) );
-    registerField ( "className*", classNameLineEdit );
-    registerField ( "baseClass", baseClassLineEdit );
-    registerField ( "qobjectMacro", qobjectMacroCheckBox );
-    ...
+    ...
+    classNameLabel = new QLabel ( tr ( "&Class name:" ) );
+    classNameLineEdit = new QLineEdit;
+    classNameLabel->setBuddy ( classNameLineEdit );
+    baseClassLabel = new QLabel ( tr ( "B&ase class:" ) );
+    baseClassLineEdit = new QLineEdit;
+    baseClassLabel->setBuddy ( baseClassLineEdit );
+    qobjectMacroCheckBox = new QCheckBox ( tr ( "Generate Q_OBJECT &macro" ) );
+    registerField ( "className*", classNameLineEdit );
+    registerField ( "baseClass", baseClassLineEdit );
+    registerField ( "qobjectMacro", qobjectMacroCheckBox );
+    ...
 }
 ```
 
@@ -221,10 +221,10 @@ ClassInfoPage::ClassInfoPage ( QWidget *parent ) : QWizardPage ( parent ) {
 
 ``` cpp
 void OutputFilesPage::initializePage() {
-    QString className = field ( "className" ).toString();
-    headerLineEdit->setText ( className.toLower() + ".h" );
-    implementationLineEdit->setText ( className.toLower() + ".cpp" );
-    outputDirLineEdit->setText ( QDir::convertSeparators ( QDir::tempPath() ) );
+    QString className = field ( "className" ).toString();
+    headerLineEdit->setText ( className.toLower() + ".h" );
+    implementationLineEdit->setText ( className.toLower() + ".cpp" );
+    outputDirLineEdit->setText ( QDir::convertSeparators ( QDir::tempPath() ) );
 }
 ```
 
@@ -241,12 +241,12 @@ void OutputFilesPage::initializePage() {
 
 ``` cpp
 ClassWizard::ClassWizard ( QWidget *parent ) : QWizard ( parent ) {
-    addPage ( new IntroPage );
-    addPage ( new ClassInfoPage );
-    addPage ( new CodeStylePage );
-    addPage ( new OutputFilesPage );
-    addPage ( new ConclusionPage );
-    ...
+    addPage ( new IntroPage );
+    addPage ( new ClassInfoPage );
+    addPage ( new CodeStylePage );
+    addPage ( new OutputFilesPage );
+    addPage ( new ConclusionPage );
+    ...
 }
 ```
 
@@ -263,9 +263,9 @@ ClassWizard::ClassWizard ( QWidget *parent ) : QWizard ( parent ) {
 
 ``` cpp
 class LicenseWizard : public QWizard {
-    ...
-    enum { Page_Intro, Page_Evaluate, Page_Register, Page_Details, Page_Conclusion };
-    ...
+    ...
+    enum { Page_Intro, Page_Evaluate, Page_Register, Page_Details, Page_Conclusion };
+    ...
 };
 ```
 
@@ -273,12 +273,12 @@ class LicenseWizard : public QWizard {
 
 ``` cpp
 LicenseWizard::LicenseWizard ( QWidget *parent ) : QWizard ( parent ) {
-    setPage ( Page_Intro, new IntroPage );
-    setPage ( Page_Evaluate, new EvaluatePage );
-    setPage ( Page_Register, new RegisterPage );
-    setPage ( Page_Details, new DetailsPage );
-    setPage ( Page_Conclusion, new ConclusionPage );
-    ...
+    setPage ( Page_Intro, new IntroPage );
+    setPage ( Page_Evaluate, new EvaluatePage );
+    setPage ( Page_Register, new RegisterPage );
+    setPage ( Page_Details, new DetailsPage );
+    setPage ( Page_Conclusion, new ConclusionPage );
+    ...
 }
 ```
 
@@ -286,31 +286,31 @@ LicenseWizard::LicenseWizard ( QWidget *parent ) : QWizard ( parent ) {
 
 ``` cpp
 int IntroPage::nextId() const {
-    if ( evaluateRadioButton->isChecked() ) {
-        return LicenseWizard::Page_Evaluate;
-    } else {
-        return LicenseWizard::Page_Register;
-    }
+    if ( evaluateRadioButton->isChecked() ) {
+        return LicenseWizard::Page_Evaluate;
+    } else {
+        return LicenseWizard::Page_Register;
+    }
 }
 ​
 int EvaluatePage::nextId() const {
-    return LicenseWizard::Page_Conclusion;
+    return LicenseWizard::Page_Conclusion;
 }
 ​
 int RegisterPage::nextId() const {
-    if ( upgradeKeyLineEdit->text().isEmpty() ) {
-        return LicenseWizard::Page_Details;
-    } else {
-        return LicenseWizard::Page_Conclusion;
-    }
+    if ( upgradeKeyLineEdit->text().isEmpty() ) {
+        return LicenseWizard::Page_Details;
+    } else {
+        return LicenseWizard::Page_Conclusion;
+    }
 }
 ​
 int DetailsPage::nextId() const {
-    return LicenseWizard::Page_Conclusion;
+    return LicenseWizard::Page_Conclusion;
 }
 ​
 int ConclusionPage::nextId() const {
-    return -1;
+    return -1;
 }
 ```
 
