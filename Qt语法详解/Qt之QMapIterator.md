@@ -8,7 +8,7 @@ categories: Qt语法详解
 ### Public Functions
 
 Return           | Function
------------------|----
+-----------------|---------
                  | `QMapIterator(const QMap<Key, T> & map)`
 `bool`           | `findNext(const T & value)`
 `bool`           | `findPrevious(const T & value)`
