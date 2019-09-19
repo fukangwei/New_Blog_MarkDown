@@ -65,7 +65,7 @@ Return                       | Function
 &emsp;&emsp;`Top-level` items are constructed without a parent then inserted at the position specified by a pair of row and column numbers:
 
 ``` cpp
-QTableWidgetItem *newItem = new QTableWidgetItem (
+QTableWidgetItem *newItem = new QTableWidgetItem ( \
     tr ( "%1" ).arg ( pow ( row, column + 1 ) ) );
 tableWidget->setItem ( row, column, newItem );
 ```
@@ -135,5 +135,5 @@ You can define new user types in `QTableWidgetItem` subclasses to ensure that cu
 
 ### Related Non-Members
 
-- `QDataStream & operator<<(QDataStream & out, const QTableWidgetItem & item)`: Writes the table widget item item to stream out. This operator uses `QTableWidgetItem::write()`.
-- `QDataStream & operator>>(QDataStream & in, QTableWidgetItem & item)`: Reads a table widget item from stream in into item. This operator uses `QTableWidgetItem::read()`.
+- `QDataStream & operator<<(QDataStream & out, const QTableWidgetItem & item)`: Writes the table widget item `item` to stream `out`. This operator uses `QTableWidgetItem::write()`.
+- `QDataStream & operator>>(QDataStream & in, QTableWidgetItem & item)`: Reads a table widget item from stream `in` into `item`. This operator uses `QTableWidgetItem::read()`.
