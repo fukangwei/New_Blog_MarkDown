@@ -255,8 +255,8 @@ int topLevelItemCount() const
 - `void QTreeWidget::scrollToItem(const QTreeWidgetItem * item, QAbstractItemView::ScrollHint hint = EnsureVisible) [slot]`: Ensures that the `item` is visible, scrolling the view if necessary using the specified `hint`.
 - `QList<QTreeWidgetItem *> QTreeWidget::selectedItems() const`: Returns a list of all selected `non-hidden` items.
 - `void QTreeWidget::setCurrentItem(QTreeWidgetItem * item)`: Sets the current `item` in the tree widget. Unless the selection mode is `NoSelection`, the item is also be selected.
-- `void QTreeWidget::setCurrentItem(QTreeWidgetItem * item, int column)`: Sets the current `item` in the tree widget and the current `column` to column.
-- `void QTreeWidget::setCurrentItem(QTreeWidgetItem * item, int column, QItemSelectionModel::SelectionFlags command)`: Sets the current `item` in the tree widget and the current `column` to column, using the given `command`.
+- `void QTreeWidget::setCurrentItem(QTreeWidgetItem * item, int column)`: Sets the current `item` in the tree widget and the current column to `column`.
+- `void QTreeWidget::setCurrentItem(QTreeWidgetItem * item, int column, QItemSelectionModel::SelectionFlags command)`: Sets the current `item` in the tree widget and the current column to `column`, using the given `command`.
 - `void QTreeWidget::setFirstItemColumnSpanned(const QTreeWidgetItem * item, bool span)`: Sets the given `item` to only show one section for all columns if `span` is `true`; otherwise the item will show one section per column.
 - `void QTreeWidget::setHeaderItem(QTreeWidgetItem * item)`: Sets the header `item` for the tree widget. The label for each column in the header is supplied by the corresponding label in the item. The tree widget takes ownership of the item.
 - `void QTreeWidget::setHeaderLabel(const QString & label)`: Same as `setHeaderLabels(QStringList(label))`.
@@ -268,4 +268,4 @@ int topLevelItemCount() const
 - `Qt::DropActions QTreeWidget::supportedDropActions() const [virtual protected]`: Returns the drop actions supported by this view.
 - `QTreeWidgetItem * QTreeWidget::takeTopLevelItem(int index)`: Removes the `top-level` item at the given `index` in the tree and returns it, otherwise returns `0`.
 - `QTreeWidgetItem * QTreeWidget::topLevelItem(int index) const`: Returns the top level item at the given `index`, or `0` if the item does not exist.
-- `QRect QTreeWidget::visualItemRect(const QTreeWidgetItem * item) const`: Returns the rectangle on the viewport occupied by the `item` at item.
+- `QRect QTreeWidget::visualItemRect(const QTreeWidgetItem * item) const`: Returns the rectangle on the viewport occupied by the item at `item`.
