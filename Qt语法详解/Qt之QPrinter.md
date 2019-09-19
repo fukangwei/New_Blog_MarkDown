@@ -268,7 +268,7 @@ Note the difference between `Point` and `DevicePixel`. The `Point` unit is defin
 - `bool QPrinter::fontEmbeddingEnabled() const`: Returns `true` if font embedding is enabled. Currently this option is only supported on `X11`.
 - `int QPrinter::fromPage() const`: Returns the number of the first page in a range of pages to be printed (the `from page` setting). Pages in a document are numbered according to the convention that the first page is page `1`. By default, this function returns a special value of `0`, meaning that the `from page` setting is unset. **Note**: If `fromPage()` and `toPage()` both return `0`, this indicates that the whole document will be printed.
 - `bool QPrinter::fullPage() const`: Returns `true` if the origin of the printer's coordinate system is at the corner of the page and `false` if it is at the edge of the printable area.
-- `void QPrinter::getPageMargins(qreal * left, qreal * top, qreal * right, qreal * bottom, Unit unit) const`: Returns the page margins for this printer in `left`, `top`, `right`, `bottom`. The `unit` of the returned margins are specified with the `unit` parameter.
+- `void QPrinter::getPageMargins(qreal * left, qreal * top, qreal * right, qreal * bottom, Unit unit) const`: Returns the page margins for this printer in `left`, `top`, `right`, `bottom`. The unit of the returned margins are specified with the `unit` parameter.
 - `bool QPrinter::isValid() const`: Returns `true` if the printer currently selected is a valid printer in the system, or a pure `PDF/PostScript` printer; otherwise returns `false`. To detect other failures check the output of `QPainter::begin()` or `QPrinter::newPage()`.
 
 ``` cpp

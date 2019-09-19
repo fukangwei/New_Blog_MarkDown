@@ -59,7 +59,7 @@ p += QPoint(1, 0);
 p.rx()++;
 ```
 
-&emsp;&emsp;A `QPoint` object can also be used as a vector: Addition and subtraction are defined as for vectors (each component is added separately). A `QPoint` object can also be divided or multiplied by an int or a qreal.
+&emsp;&emsp;A `QPoint` object can also be used as a vector: Addition and subtraction are defined as for vectors (each component is added separately). A `QPoint` object can also be divided or multiplied by an `int` or a `qreal`.
 &emsp;&emsp;In addition, the `QPoint` class provides the `manhattanLength()` function which gives an inexpensive approximation of the length of the `QPoint` object interpreted as a vector. Finally, `QPoint` objects can be streamed as well as compared.
 
 ### Member Function Documentation
