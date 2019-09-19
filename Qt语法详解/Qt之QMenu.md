@@ -80,7 +80,7 @@ Return | Function
 ### Reimplemented Protected Functions
 
 Return         | Function
----------------|-------
+---------------|---------
 `virtual void` | `actionEvent ( QActionEvent *e );`
 `virtual void` | `changeEvent ( QEvent *e );`
 `virtual void` | `enterEvent ( QEvent * );`
@@ -123,7 +123,7 @@ Return         | Function
 
 ``` cpp
 QIcon icon() const;
-void  setIcon ( const QIcon &icon );
+void  setIcon ( const QIcon &icon );
 ```
 
 - `separatorsCollapsible : bool`: This property holds whether consecutive separators should be collapsed. This property specifies whether consecutive separators in the menu should be visually collapsed to a single one. Separators at the beginning or the end of the menu are also hidden. By default, this property is `true`. Access functions:
