@@ -154,12 +154,12 @@ Constant                         | Value | Description
 
 - enum `QTextCursor::SelectionType`: This enum describes the types of selection that can be applied with the `select()` function.
 
-Constant | Value | Description
----------|-------|-------------------------------------
-`QTextCursor::Document`         | `3` | Selects the entire document.
-`QTextCursor::BlockUnderCursor` | `2` | Selects the block of text under the cursor.
-`QTextCursor::LineUnderCursor`  | `1` | Selects the line of text under the cursor.
-`QTextCursor::WordUnderCursor`  | `0` | Selects the word under the cursor. If the cursor is not positioned within a string of selectable characters, no text is selected.
+Constant                        | Value | Description
+--------------------------------|-------|------------
+`QTextCursor::Document`         | `3`   | Selects the entire document.
+`QTextCursor::BlockUnderCursor` | `2`   | Selects the block of text under the cursor.
+`QTextCursor::LineUnderCursor`  | `1`   | Selects the line of text under the cursor.
+`QTextCursor::WordUnderCursor`  | `0`   | Selects the word under the cursor. If the cursor is not positioned within a string of selectable characters, no text is selected.
 
 ### Member Function Documentation
 

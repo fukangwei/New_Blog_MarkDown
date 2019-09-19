@@ -330,7 +330,7 @@ The block returned is invalid and represents the block after the last block in t
 - `QTextBlock QTextDocument::lastBlock() const`: Returns the document's last (valid) text block.
 - `int QTextDocument::lineCount() const`: Returns the number of lines of this document (if the layout supports this). Otherwise, this is identical to the number of blocks.
 - `QVariant QTextDocument::loadResource(int type, const QUrl & name) [virtual protected]`: Loads data of the specified `type` from the resource with the given `name`. This function is called by the rich text engine to request data that isn't directly stored by `QTextDocument`, but still associated with it. For example, images are referenced indirectly by the name attribute of a `QTextImageFormat` object. When called by `Qt`, `type` is one of the values of `QTextDocument::ResourceType`. If the `QTextDocument` is a child object of a `QTextEdit`, `QTextBrowser`, or a `QTextDocument` itself then the default implementation tries to retrieve the data from the parent.
-- `void QTextDocument::markContentsDirty(int position, int length)`: Marks the contents specified by the given `position` and `length` as `dirty`, informing the document that it needs to be laid out again.
+- `void QTextDocument::markContentsDirty(int position, int length)`: Marks the contents specified by the given `position` and `length` as dirty, informing the document that it needs to be laid out again.
 - `QString QTextDocument::metaInformation(MetaInformation info) const`: Returns meta information about the document of the type specified by `info`.
 - `void QTextDocument::modificationChanged(bool changed) [signal]`: This signal is emitted whenever the content of the document changes in a way that affects the modification state. If `changed` is `true`, the document has been modified; otherwise it is `false`. For example, calling `setModified(false)` on a document and then inserting text causes the signal to get emitted. If you undo that operation, causing the document to return to its original unmodified state, the signal will get emitted again.
 - `QTextObject * QTextDocument::object(int objectIndex) const`: Returns the text object associated with the given `objectIndex`.
@@ -354,7 +354,7 @@ The block returned is invalid and represents the block after the last block in t
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><body>...
 ```
 
-If no encoding is specified then no such meta information is generated. If you later on convert the returned html string into a byte array for transmission over a network or when saving to disk you should specify the encoding you're going to use for the conversion to a byte array here.
+If no `encoding` is specified then no such meta information is generated. If you later on convert the returned html string into a byte array for transmission over a network or when saving to disk you should specify the encoding you're going to use for the conversion to a byte array here.
 
 - `QString QTextDocument::toPlainText() const`: Returns the plain text contained in the document. If you want formatting information use a `QTextCursor` instead.
 - `void QTextDocument::undo(QTextCursor * cursor)`: Undoes the last editing operation on the document if undo is available. The provided `cursor` is positioned at the end of the location where the edition operation was undone.
