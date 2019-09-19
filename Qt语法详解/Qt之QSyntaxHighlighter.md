@@ -101,8 +101,7 @@ while ( startIndex >= 0 ) {
     if ( endIndex == -1 ) {
         setCurrentBlockState ( 1 );
         commentLength = text.length() - startIndex;
-    }
-    else {
+    } else {
         commentLength = endIndex - startIndex + endExpression.matchedLength();
     }
 ​
@@ -125,7 +124,7 @@ while ( startIndex >= 0 ) {
 - `QTextBlockUserData * QSyntaxHighlighter::currentBlockUserData() const [protected]`: Returns the `QTextBlockUserData` object previously attached to the current text block.
 - `QTextDocument * QSyntaxHighlighter::document() const`: Returns the `QTextDocument` on which this syntax highlighter is installed.
 - `QTextCharFormat QSyntaxHighlighter::format(int position) const [protected]`: Returns the format at `position` inside the syntax highlighter's current text block.
-- `void QSyntaxHighlighter::highlightBlock(const QString & text) [pure virtual protected]`: Highlights the given `text` block. This function is called when necessary by the rich `text` engine, i.e. on `text` blocks which have changed. To provide your own syntax highlighting, you must subclass `QSyntaxHighlighter` and reimplement `highlightBlock()`. In your reimplementation you should parse the block's `text` and call `setFormat()` as often as necessary to apply any font and color changes that you require. For example:
+- `void QSyntaxHighlighter::highlightBlock(const QString & text) [pure virtual protected]`: Highlights the given `text` block. This function is called when necessary by the rich text engine, i.e. on `text` blocks which have changed. To provide your own syntax highlighting, you must subclass `QSyntaxHighlighter` and reimplement `highlightBlock()`. In your reimplementation you should parse the block's `text` and call `setFormat()` as often as necessary to apply any font and color changes that you require. For example:
 
 ``` cpp
 void MyHighlighter::highlightBlock ( const QString &text ) {
@@ -167,7 +166,7 @@ struct BlockData : public QTextBlockUserData {
 ```
 
 &emsp;&emsp;During cursor navigation in the associated editor, you can ask the current `QTextBlock` (retrieved using the `QTextCursor::block()` function) if it has a user data object set and cast it to your `BlockData` object. Then you can check if the current cursor position matches with a previously recorded parenthesis position, and, depending on the type of parenthesis (opening or closing), find the next opening or closing parenthesis on the same level.
-&emsp;&emsp;In this way you can do a visual parenthesis matching and highlight from the current cursor position to the matching parenthesis. That makes it easier to spot a missing parenthesis in your code and to find where a corresponding `opening/closing` parenthesis is when editing parenthesis intensive code.
+&emsp;&emsp;In this way you can do a visual parenthesis matching and highlight from the current cursor position to the matching parenthesis. That makes it easier to spot a missing parenthesis in your code and to find where a corresponding opening/closing parenthesis is when editing parenthesis intensive code.
 
 - `void QSyntaxHighlighter::setDocument(QTextDocument * doc)`: Installs the syntax highlighter on the given `QTextDocument` `doc`. A `QSyntaxHighlighter` can only be used with one document at a time.
 - `void QSyntaxHighlighter::setFormat(int start, int count, const QTextCharFormat & format) [protected]`: This function is applied to the syntax highlighter's current text block (i.e. the text that is passed to the `highlightBlock()` function). The specified `format` is applied to the text from the `start` position for a length of `count` characters (if `count` is `0`, nothing is done). The formatting properties set in `format` are merged at display time with the formatting information stored directly in the document, for example as previously set with `QTextCursor's` functions. Note that the document itself remains unmodified by the `format` set through this function.
