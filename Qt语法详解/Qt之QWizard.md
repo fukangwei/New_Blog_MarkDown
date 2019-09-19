@@ -318,56 +318,49 @@ int ConclusionPage::nextId() const {
 
 ``` cpp
 int LicenseWizard::nextId() const {
-    switch ( currentId() ) {
-        case Page_Intro:
-            if ( field ( "intro.evaluate" ).toBool() ) {
-                return Page_Evaluate;
-            } else {
-                return Page_Register;
-            }
-​
-        case Page_Evaluate:
-            return Page_Conclusion;
-​
-        case Page_Register:
-            if ( field ( "register.upgradeKey" ).toString().isEmpty() ) {
-                return Page_Details;
-            } else {
-                return Page_Conclusion;
-            }
-​
-        case Page_Details:
-            return Page_Conclusion;
-​
-        case Page_Conclusion:
-        default:
-            return -1;
-    }
+    switch ( currentId() ) {
+        case Page_Intro:
+            if ( field ( "intro.evaluate" ).toBool() ) {
+                return Page_Evaluate;
+            } else {
+                return Page_Register;
+            }
+        case Page_Evaluate: return Page_Conclusion;
+        case Page_Register:
+            if ( field ( "register.upgradeKey" ).toString().isEmpty() ) {
+                return Page_Details;
+            } else {
+                return Page_Conclusion;
+            }
+        case Page_Details: return Page_Conclusion;
+        case Page_Conclusion:
+        default: return -1;
+    }
 }
 ```
 
 &emsp;&emsp;To start at another page than the page with the lowest `ID`, call `setStartId()`.
-&emsp;&emsp;To test whether a page has been visited or not, call `hasVisitedPage()`s. For example:
+&emsp;&emsp;To test whether a page has been visited or not, call `hasVisitedPage()`. For example:
 
 ``` cpp
 void ConclusionPage::initializePage() {
-    QString licenseText;
+    QString licenseText;
 ​
-    if ( wizard()->hasVisitedPage ( LicenseWizard::Page_Evaluate ) ) {
-        licenseText = tr ( "<u>Evaluation License Agreement:</u> "
-                           "You can use this software for 30 days and make one "
-                           "backup, but you are not allowed to distribute it." );
-    } else if ( wizard()->hasVisitedPage ( LicenseWizard::Page_Details ) ) {
-        licenseText = tr ( "<u>First-Time License Agreement:</u> "
-                           "You can use this software subject to the license "
-                           "you will receive by email." );
-    } else {
-        licenseText = tr ( "<u>Upgrade License Agreement:</u> "
-                           "This software is licensed under the terms of your "
-                           "current license." );
-    }
+    if ( wizard()->hasVisitedPage ( LicenseWizard::Page_Evaluate ) ) {
+        licenseText = tr ( "<u>Evaluation License Agreement:</u> "
+                           "You can use this software for 30 days and make one "
+                           "backup, but you are not allowed to distribute it." );
+    } else if ( wizard()->hasVisitedPage ( LicenseWizard::Page_Details ) ) {
+        licenseText = tr ( "<u>First-Time License Agreement:</u> "
+                           "You can use this software subject to the license "
+                           "you will receive by email." );
+    } else {
+        licenseText = tr ( "<u>Upgrade License Agreement:</u> "
+                           "This software is licensed under the terms of your "
+                           "current license." );
+    }
 ​
-    bottomLabel->setText ( licenseText );
+    bottomLabel->setText ( licenseText );
 }
 ```
 
@@ -504,28 +497,27 @@ void setWizardStyle ( WizardStyle style )
 
 ``` cpp
 LicenseWizard::LicenseWizard ( QWidget *parent ) : QWizard ( parent ) {
-    ...
-    setOption ( HaveHelpButton, true );
-    connect ( this, SIGNAL ( helpRequested() ), this, SLOT ( showHelp() ) );
-    ...
+    ...
+    setOption ( HaveHelpButton, true );
+    connect ( this, SIGNAL ( helpRequested() ), this, SLOT ( showHelp() ) );
+    ...
 }
 ​
 void LicenseWizard::showHelp() {
-    static QString lastHelpMessage;
-    QString message;
+    static QString lastHelpMessage;
+    QString message;
 ​
-    switch ( currentId() ) {
-        case Page_Intro:
-            message = tr ( "The decision you make here will affect which page you "
-                           "get to see next." );
-            break;
-            ...
+    switch ( currentId() ) {
+        case Page_Intro:
+            message = tr ( "The decision you make here will affect which page you "
+                           "get to see next." );
+            break;
+            ...
+        default:
+            message = tr ( "This help is likely not to be of any help." );
+    }
 ​
-        default:
-            message = tr ( "This help is likely not to be of any help." );
-    }
-​
-    QMessageBox::information ( this, tr ( "License Wizard Help" ), message );
+    QMessageBox::information ( this, tr ( "License Wizard Help" ), message );
 }
 ```
 
