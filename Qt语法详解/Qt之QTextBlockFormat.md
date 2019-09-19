@@ -72,7 +72,7 @@ Constant                               | Value | Description
 - `int QTextBlockFormat::indent() const`: Returns the paragraph's indent.
 - `bool QTextBlockFormat::isValid() const`: Returns `true` if this block format is valid; otherwise returns `false`.
 - `qreal QTextBlockFormat::leftMargin() const`: Returns the paragraph's left margin.
-- `qreal QTextBlockFormat::lineHeight(qreal scriptLineHeight, qreal scaling) const`: Returns the height of the lines in the paragraph based on the height of the script line given by `scriptLineHeight` and the specified `scaling` factor. The value that is returned is also dependent on the given `LineHeightType` of the paragraph as well as the `LineHeight` setting that has been set for the paragraph. The scaling is needed for heights that include a fixed number of pixels, to scale them appropriately for printing.
+- `qreal QTextBlockFormat::lineHeight(qreal scriptLineHeight, qreal scaling) const`: Returns the height of the lines in the paragraph based on the height of the script line given by `scriptLineHeight` and the specified `scaling` factor. The value that is returned is also dependent on the given `LineHeightType` of the paragraph as well as the `LineHeight` setting that has been set for the paragraph. The `scaling` is needed for heights that include a fixed number of pixels, to scale them appropriately for printing.
 - `qreal QTextBlockFormat::lineHeight() const`: This returns the `LineHeight` property for the paragraph.
 - `int QTextBlockFormat::lineHeightType() const`: This returns the `LineHeightType` property of the paragraph.
 - `bool QTextBlockFormat::nonBreakableLines() const`: Returns `true` if the lines in the paragraph are `non-breakable`; otherwise returns `false`.
@@ -82,9 +82,9 @@ Constant                               | Value | Description
 - `void QTextBlockFormat::setBottomMargin(qreal margin)`: Sets the paragraph's bottom `margin`.
 - `void QTextBlockFormat::setIndent(int indentation)`: Sets the paragraph's `indentation`. Margins are set independently of `indentation` with `setLeftMargin()` and `setTextIndent()`. The `indentation` is an integer that is multiplied with the `document-wide` standard indent, resulting in the actual indent of the paragraph.
 - `void QTextBlockFormat::setLeftMargin(qreal margin)`: Sets the paragraph's left `margin`. Indentation can be applied separately with `setIndent()`.
-- `void QTextBlockFormat::setLineHeight(qreal height, int heightType)`: Sets the line `height` for the paragraph to the value given by `height` which is dependent on `heightType` in the way described by the `LineHeightTypes` enum.
+- `void QTextBlockFormat::setLineHeight(qreal height, int heightType)`: Sets the line height for the paragraph to the value given by `height` which is dependent on `heightType` in the way described by the `LineHeightTypes` enum.
 - `void QTextBlockFormat::setNonBreakableLines(bool b)`: If `b` is `true`, the lines in the paragraph are treated as `non-breakable`; otherwise they are breakable.
-- `void QTextBlockFormat::setPageBreakPolicy(PageBreakFlags policy)` -- Sets the page break `policy` for the paragraph to `policy`.
+- `void QTextBlockFormat::setPageBreakPolicy(PageBreakFlags policy)` -- Sets the page break policy for the paragraph to `policy`.
 - `void QTextBlockFormat::setRightMargin(qreal margin)`: Sets the paragraph's right `margin`.
 - `void QTextBlockFormat::setTabPositions(const QList<QTextOption::Tab> & tabs)`: Sets the tab positions for the text block to those specified by `tabs`.
 - `void QTextBlockFormat::setTextIndent(qreal indent)`: Sets the `indent` for the first line in the block. This allows the first line of a paragraph to be indented differently to the other lines, enhancing the readability of the text.
