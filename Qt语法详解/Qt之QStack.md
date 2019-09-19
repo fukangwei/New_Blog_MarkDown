@@ -15,19 +15,19 @@ Header   | Inherits
 
 ### Public Functions
 
-``` cpp
-          QStack()
-          ~QStack()
-T         pop()
-void      push(const T & t)
-void      swap(QStack<T> & other)
-T &       top()
-const T & top() const
-```
+Return      | Function
+------------|---------
+            | `QStack()`
+            | `~QStack()`
+`T`         | `pop()`
+`void`      | `push(const T & t)`
+`void`      | `swap(QStack<T> & other)`
+`T &`       | `top()`
+`const T &` | `top() const`
 
 ### Detailed Description
 
-&emsp;&emsp;The `QStack` class is a template class that provides a stack. `QStack<T>` is one of Qt's generic container classes. It implements a stack data structure for items of a same type.
+&emsp;&emsp;The `QStack` class is a template class that provides a stack. `QStack<T>` is one of `Qt's` generic container classes. It implements a stack data structure for items of a same type.
 &emsp;&emsp;A stack is a last in, first out (`LIFO`) structure. Items are added to the top of the stack using `push()` and retrieved from the top using `pop()`. The `top()` function provides access to the topmost item without removing it. Example:
 
 ``` cpp
@@ -42,8 +42,8 @@ while ( !stack.isEmpty() ) {
 ```
 
 The example will output `3, 2, 1` in that order.
-&emsp;&emsp;`QStack` inherits from `QVector`. All of QVector's functionality also applies to `QStack`. For example, you can use `isEmpty()` to test whether the stack is empty, and you can traverse a `QStack` using QVector's iterator classes (for example, `QVectorIterator`). But in addition, `QStack` provides three convenience functions that make it easy to implement LIFO semantics: `push()`, `pop()`, and `top()`.
-&emsp;&emsp;QStack's value type must be an assignable data type. This covers most data types that are commonly used, but the compiler won't let you, for example, store a `QWidget` as a value; instead, store a `QWidget *`.
+&emsp;&emsp;`QStack` inherits from `QVector`. All of `QVector's` functionality also applies to `QStack`. For example, you can use `isEmpty()` to test whether the stack is empty, and you can traverse a `QStack` using `QVector's` iterator classes (for example, `QVectorIterator`). But in addition, `QStack` provides three convenience functions that make it easy to implement `LIFO` semantics: `push()`, `pop()`, and `top()`.
+&emsp;&emsp;`QStack's` value type must be an assignable data type. This covers most data types that are commonly used, but the compiler won't let you, for example, store a `QWidget` as a value; instead, store a `QWidget *`.
 
 ### Member Function Documentation
 
