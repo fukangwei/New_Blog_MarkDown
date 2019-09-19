@@ -53,7 +53,7 @@ Return         | Function
 ### Detailed Description
 
 &emsp;&emsp;The `QUrlInfo` class stores information about `URLs`.
-&emsp;&emsp;The information about a URL that can be retrieved includes `name()`, `permissions()`, `owner()`, `group()`, `size()`, `lastModified()`, `lastRead()`, `isDir()`, `isFile()`, `isSymLink()`, `isWritable()`, `isReadable()` and `isExecutable()`.
+&emsp;&emsp;The information about a `URL` that can be retrieved includes `name()`, `permissions()`, `owner()`, `group()`, `size()`, `lastModified()`, `lastRead()`, `isDir()`, `isFile()`, `isSymLink()`, `isWritable()`, `isReadable()` and `isExecutable()`.
 &emsp;&emsp;You can create your own `QUrlInfo` objects passing in all the relevant information in the constructor, and you can modify a `QUrlInfo`; for each getter mentioned above there is an equivalent setter. Note that setting values does not affect the underlying resource that the `QUrlInfo` provides information about; for example if you call `setWritable(true)` on a `read-only` resource the only thing changed is the `QUrlInfo` object, not the resource.
 
 ### Member Type Documentation
