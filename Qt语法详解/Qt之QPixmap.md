@@ -173,9 +173,10 @@ Constant                    | Value | Description
 
 ``` cpp
 static const char * const start_xpm[]={
-    "16 15 8 1",
-    "a c #cec6bd",
-....
+    "16 15 8 1",
+    "a c #cec6bd",
+    ....
+}
 ```
 
 The extra const makes the entire definition `read-only`, which is slightly more efficient (for example, when the code is in a shared library) and `ROMable` when the application is to be stored in `ROM`.
