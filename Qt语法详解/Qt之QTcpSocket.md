@@ -18,10 +18,10 @@ Header       | Inherits          | Inherited By
 
 ### Detailed Description
 
-&emsp;&emsp;The `QTcpSocket` class provides a TCP socket.
-&emsp;&emsp;TCP (Transmission Control Protocol) is a `reliable`, `stream-oriented`, `connection-oriented` transport protocol. It is especially well suited for continuous transmission of data.
+&emsp;&emsp;The `QTcpSocket` class provides a `TCP` socket.
+&emsp;&emsp;`TCP` (`Transmission Control Protocol`) is a `reliable`, `stream-oriented`, `connection-oriented` transport protocol. It is especially well suited for continuous transmission of data.
 &emsp;&emsp;`QTcpSocket` is a convenience subclass of `QAbstractSocket` that allows you to establish a TCP connection and transfer streams of data.
-&emsp;&emsp;**Note**: TCP sockets cannot be opened in `QIODevice::Unbuffered` mode.
+&emsp;&emsp;**Note**: `TCP` sockets cannot be opened in `QIODevice::Unbuffered` mode.
 
 ### Symbian Platform Security Requirements
 

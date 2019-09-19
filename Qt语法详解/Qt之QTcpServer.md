@@ -11,28 +11,28 @@ Header       | Inherits
 
 **Note**: All functions in this class are reentrant.
 
-Public Functions
+### Public Functions
 
-Return | Function
--------|---------
-                                | `QTcpServer(QObject * parent = 0)`
-`virtual`                       | `~QTcpServer()`
-`void`                          | `close()`
-`QString`                       | `errorString() const`
-`virtual bool`                  | `hasPendingConnections() const`
-`bool`                          | `isListening() const`
-`bool`                          | `listen(const QHostAddress & address = QHostAddress::Any, quint16 port = 0)`
-`int`                           | `maxPendingConnections() const`
-`virtual QTcpSocket *`          | `nextPendingConnection()`
-`QNetworkProxy`                 | `proxy() const`
-`QHostAddress`                  | `serverAddress() const`
-`QAbstractSocket::SocketError`  | `serverError() const`
-`quint16`                       | `serverPort() const`
-`void`                          | `setMaxPendingConnections(int numConnections)`
-`void`                          | `setProxy(const QNetworkProxy & networkProxy)`
-`bool`                          | `setSocketDescriptor(int socketDescriptor)`
-`int`                           | `socketDescriptor() const`
-`bool`                          | `waitForNewConnection(int msec = 0, bool * timedOut = 0)`
+Return                         | Function
+-------------------------------|---------
+                               | `QTcpServer(QObject * parent = 0)`
+`virtual`                      | `~QTcpServer()`
+`void`                         | `close()`
+`QString`                      | `errorString() const`
+`virtual bool`                 | `hasPendingConnections() const`
+`bool`                         | `isListening() const`
+`bool`                         | `listen(const QHostAddress & address = QHostAddress::Any, quint16 port = 0)`
+`int`                          | `maxPendingConnections() const`
+`virtual QTcpSocket *`         | `nextPendingConnection()`
+`QNetworkProxy`                | `proxy() const`
+`QHostAddress`                 | `serverAddress() const`
+`QAbstractSocket::SocketError` | `serverError() const`
+`quint16`                      | `serverPort() const`
+`void`                         | `setMaxPendingConnections(int numConnections)`
+`void`                         | `setProxy(const QNetworkProxy & networkProxy)`
+`bool`                         | `setSocketDescriptor(int socketDescriptor)`
+`int`                          | `socketDescriptor() const`
+`bool`                         | `waitForNewConnection(int msec = 0, bool * timedOut = 0)`
 
 ### Signals
 
