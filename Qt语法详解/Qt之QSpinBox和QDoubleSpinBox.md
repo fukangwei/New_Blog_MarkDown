@@ -28,7 +28,6 @@ categories: Qt语法详解
 ​
 class MainWindow : public CustomWindow {
     Q_OBJECT
-​
 public:
     explicit MainWindow ( QWidget *parent = 0 ) : CustomWindow ( parent ) {
         QSpinBox *pSpinBox = new QSpinBox ( this );
@@ -40,8 +39,8 @@ public:
         pSpinBox->setWrapping ( true ); /* 开启循环 */
         connect ( pSpinBox, static_cast<void ( QSpinBox::* ) ( int ) > \
             ( &QSpinBox::valueChanged ), [ = ] ( int value ) {
-            qDebug() << "Value : "  << value;
-            qDebug() << "Text : "  << pSpinBox->text();
+            qDebug() << "Value : " << value;
+            qDebug() << "Text : " << pSpinBox->text();
         } );
         connect ( pSpinBox, static_cast<void ( QSpinBox::* ) ( const QString & ) > \
             ( &QSpinBox::valueChanged ), [ = ] ( const QString & text ) {
@@ -89,10 +88,8 @@ zoomSpinBox->setValue ( 100 ); /* 当前值 */
 ​
 class IconSizeSpinBox : public QSpinBox {
     Q_OBJECT
-​
 public:
     explicit IconSizeSpinBox ( QWidget *parent = 0 ) {}
-​
 protected:
     /* 将输入的文本解读为适当的值 */
     virtual int valueFromText ( const QString &text ) const Q_DECL_OVERRIDE {
@@ -100,8 +97,7 @@ protected:
 ​
         if ( regExp.exactMatch ( text ) ) {
             return regExp.cap ( 1 ).toInt();
-        }
-        else {
+        } else {
             return 0;
         }
     }

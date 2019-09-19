@@ -36,7 +36,7 @@ bool QSharedMemory::create ( int size, AccessMode mode = ReadWrite );
 
 ``` cpp
 QSharedMemory::ReadOnly /* 只读方式访问共享内存 */
-QSharedMemory::ReadWrite  /* 读写方式访问共享内存 */
+QSharedMemory::ReadWrite /* 读写方式访问共享内存 */
 ```
 
 ### 关联共享内存

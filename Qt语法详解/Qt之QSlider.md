@@ -32,7 +32,7 @@ categories: Qt语法详解
 &emsp;&emsp;枚举量为`QSlider::TickPosition`，这个枚举指定刻度线相对于滑块和用户操作的位置。
 
 常量                      | 描述
---------------------------|-------------------
+--------------------------|-----
 `QSlider::NoTicks`        | 不绘制任何刻度线
 `QSlider::TicksBothSides` | 在滑块的两侧绘制刻度线
 `QSlider::TicksAbove`     | 在(水平)滑块上方绘制刻度线
