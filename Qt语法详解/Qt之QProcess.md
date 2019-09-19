@@ -82,14 +82,11 @@ int main ( int argc, char *argv[] ) {
 ​
 class MainWindow : public QMainWindow {
     Q_OBJECT
-​
 public:
     MainWindow ( QWidget *parent = 0 );
     ~MainWindow();
-​
 private slots:
     void openProcess();
-​
 private:
     QProcess *p;
 };
@@ -128,15 +125,12 @@ void MainWindow::openProcess() {
 ​
 class MainWindow : public QMainWindow {
     Q_OBJECT
-​
 public:
     MainWindow ( QWidget *parent = 0 );
     ~MainWindow();
-​
 private slots:
     void openProcess();
     void readResult ( int exitCode );
-​
 private:
     QProcess *p;
 };

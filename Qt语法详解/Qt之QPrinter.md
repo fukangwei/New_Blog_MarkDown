@@ -156,7 +156,7 @@ Constant                   | Value | Description
 &emsp;&emsp;The defined sizes (with `setFullPage(true)`) are:
 
 Constant              | Value | Description
-----------------------|-------|-----------------
+----------------------|-------|------------
 `QPrinter::A0`        | `5`   | `841 x 1189` mm
 `QPrinter::A1`        | `6`   | `594 x 841` mm
 `QPrinter::A2`        | `7`   | `420 x 594` mm
@@ -222,7 +222,7 @@ Constant                | Value | Description
 - enum `QPrinter::PrinterMode`: This enum describes the mode the printer should work in. It basically presets a certain resolution and working mode.
 
 Constant                      | Value | Description
-------------------------------|-------|----------------------------------
+------------------------------|-------|------------
 `QPrinter::ScreenResolution`  | `0`   | Sets the resolution of the print device to the screen resolution. This has the big advantage that the results obtained when painting on the printer will match more or less exactly the visible output on the screen. It is the easiest to use, as font metrics on the screen and on the printer are the same. This is the default value. `ScreenResolution` will produce a lower quality output than `HighResolution` and should only be used for drafts.
 `QPrinter::PrinterResolution` | `1`   | This value is deprecated. Is is equivalent to `ScreenResolution` on `Unix` and `HighResolution` on `Windows` and `Mac`. Due do the difference between `ScreenResolution` and `HighResolution`, use of this value may lead to `non-portable` printer code.
 `QPrinter::HighResolution`    | `2`   | On `Windows`, sets the printer resolution to that defined for the printer in use. For `PostScript` printing, sets the resolution of the `PostScript` driver to `1200` dpi.
@@ -241,7 +241,7 @@ Constant            | Value
 - enum `QPrinter::Unit`: This enum type is used to specify the measurement unit for page and paper sizes.
 
 Constant                | Value
-------------------------|-------
+------------------------|------
 `QPrinter::Millimeter`  | `0`
 `QPrinter::Point`       | `1`
 `QPrinter::Inch`        | `2`
