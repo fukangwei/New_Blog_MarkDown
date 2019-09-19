@@ -18,20 +18,20 @@ Header       | Inherits      | Inherited By
 
 ### Public Functions
 
-``` cpp
-                    QTextFrame(QTextDocument * document)
-                    ~QTextFrame()
-iterator            begin() const
-QList<QTextFrame *> childFrames() const
-iterator            end() const
-QTextCursor         firstCursorPosition() const
-int                 firstPosition() const
-QTextFrameFormat    frameFormat() const
-QTextCursor         lastCursorPosition() const
-int                 lastPosition() const
-QTextFrame *        parentFrame() const
-void                setFrameFormat(const QTextFrameFormat & format)
-```
+Return                | Function
+----------------------|-------------
+                      | `QTextFrame(QTextDocument * document)`
+                      | `~QTextFrame()`
+`iterator`            | `begin() const`
+`QList<QTextFrame *>` | `childFrames() const`
+`iterator`            | `end() const`
+`QTextCursor`         | `firstCursorPosition() const`
+`int`                 | `firstPosition() const`
+`QTextFrameFormat`    | `frameFormat() const`
+`QTextCursor`         | `lastCursorPosition() const`
+`int`                 | `lastPosition() const`
+`QTextFrame *`        | `parentFrame() const`
+`void`                | `setFrameFormat(const QTextFrameFormat & format)`
 
 ### Detailed Description
 
@@ -49,15 +49,15 @@ void                setFrameFormat(const QTextFrameFormat & format)
 
 ### Member Function Documentation
 
-- `QTextFrame::QTextFrame(QTextDocument * document)`: Creates a new empty frame for the text document.
+- `QTextFrame::QTextFrame(QTextDocument * document)`: Creates a new empty frame for the text `document`.
 - `QTextFrame::~QTextFrame()`: Destroys the frame, and removes it from the document's layout.
 - `iterator QTextFrame::begin() const`: Returns an iterator pointing to the `first` document element inside the frame. Please see the document `STL-style-Iterators` for more information.
-- `QList<QTextFrame *> QTextFrame::childFrames() const`: Returns a (possibly empty) list of the frame's `child` frames.
+- `QList<QTextFrame *> QTextFrame::childFrames() const`: Returns a (possibly empty) list of the frame's child frames.
 - `iterator QTextFrame::end() const`: Returns an iterator pointing to the position past the `last` document element inside the frame. Please see the document `STL-Style` Iterators for more information.
-- `QTextCursor QTextFrame::firstCursorPosition() const`: Returns the `first` cursor position inside the frame.
-- `int QTextFrame::firstPosition() const`: Returns the `first` document position inside the frame.
-- `QTextFrameFormat QTextFrame::frameFormat() const`: Returns the frame's `format`.
-- `QTextCursor QTextFrame::lastCursorPosition() const`: Returns the `last` cursor position inside the frame.
-- `int QTextFrame::lastPosition() const`: Returns the `last` document position inside the frame.
-- `QTextFrame * QTextFrame::parentFrame() const`: Returns the frame's `parent` frame. If the frame is the root frame of a document, this will return `0`.
+- `QTextCursor QTextFrame::firstCursorPosition() const`: Returns the first cursor position inside the frame.
+- `int QTextFrame::firstPosition() const`: Returns the first document position inside the frame.
+- `QTextFrameFormat QTextFrame::frameFormat() const`: Returns the frame's format.
+- `QTextCursor QTextFrame::lastCursorPosition() const`: Returns the last cursor position inside the frame.
+- `int QTextFrame::lastPosition() const`: Returns the last document position inside the frame.
+- `QTextFrame * QTextFrame::parentFrame() const`: Returns the frame's parent frame. If the frame is the root frame of a document, this will return `0`.
 - `void QTextFrame::setFrameFormat(const QTextFrameFormat & format)`: Sets the frame's `format`.
