@@ -70,8 +70,8 @@ message.exec();
 &emsp;&emsp;最后来说一下怎么处理对话框的交互。我们使用`QMessageBox`类的时候有两种方式，一是使用`static`函数，另外是使用构造函数。首先来说一下`static`函数的方式。注意，`static`函数都是要返回一个`StandardButton`，我们可以通过判断这个返回值来对用户的操作做出响应：
 
 ``` cpp
-QMessageBox::StandardButton rb = QMessageBox::question (
-    NULL, "Show Qt", "Do you want to show Qt dialog?",
+QMessageBox::StandardButton rb = QMessageBox::question (   \
+    NULL, "Show Qt", "Do you want to show Qt dialog?",     \
     QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes );
 ​
 if ( rb == QMessageBox::Yes ) {
@@ -82,8 +82,8 @@ if ( rb == QMessageBox::Yes ) {
 如果要使用构造函数的方式，那么就要自己判断：
 
 ``` cpp
-QMessageBox message (
-    QMessageBox::NoIcon, "Show Qt", "Do you want to show Qt dialog?",
+QMessageBox message (                                                 \
+    QMessageBox::NoIcon, "Show Qt", "Do you want to show Qt dialog?", \
     QMessageBox::Yes | QMessageBox::No, NULL );
 ​
 if ( message.exec() == QMessageBox::Yes ) {
@@ -94,7 +94,8 @@ if ( message.exec() == QMessageBox::Yes ) {
 实际用法如下：
 
 ``` cpp
-int ret1 = QMessageBox::question ( /* 问题对话框(参数：父窗口、标题栏、显示信息、拥有的按钮) */
+/* 问题对话框(参数：父窗口、标题栏、显示信息、拥有的按钮) */
+int ret1 = QMessageBox::question (
     this, tr ( "问题对话框" ), tr ( "你了解Qt吗？" ),
     QMessageBox::Yes, QMessageBox::No );
 ​
@@ -146,13 +147,10 @@ int ret = msgBox.exec();
 switch ( ret ) {
     case QMessageBox::Save: /* Save was clicked */
         break;
-​
     case QMessageBox::Discard: /* Don't Save was clicked */
         break;
-​
     case QMessageBox::Cancel: /* Cancel was clicked */
         break;
-​
     default: /* should never be reached */
         break;
 }
@@ -169,8 +167,7 @@ msgBox.exec();
 ​
 if ( msgBox.clickedButton() == connectButton ) {
     /* connect */
-}
-else if ( msgBox.clickedButton() == abortButton ) {
+} else if ( msgBox.clickedButton() == abortButton ) {
     /* abort */
 }
 ```
