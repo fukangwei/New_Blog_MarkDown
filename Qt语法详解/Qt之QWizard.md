@@ -521,7 +521,7 @@ void LicenseWizard::showHelp() {
 }
 ```
 
-- `void QWizard::initializePage(int id) [virtual protected]`: This virtual function is called by QWizard to prepare page `id` just before it is shown either as a result of `QWizard::restart()` being called, or as a result of the user clicking `Next`. (However, if the `QWizard::IndependentPages` option is set, this function is only called the first time the page is shown) By reimplementing this function, you can ensure that the page's fields are properly initialized based on fields from previous pages. The default implementation calls `QWizardPage::initializePage()` on `page(id)`.
+- `void QWizard::initializePage(int id) [virtual protected]`: This virtual function is called by `QWizard` to prepare page `id` just before it is shown either as a result of `QWizard::restart()` being called, or as a result of the user clicking `Next`. (However, if the `QWizard::IndependentPages` option is set, this function is only called the first time the page is shown) By reimplementing this function, you can ensure that the page's fields are properly initialized based on fields from previous pages. The default implementation calls `QWizardPage::initializePage()` on `page(id)`.
 - `void QWizard::next() [slot]`: Advances to the next page. This is equivalent to pressing the Next or `Commit` button.
 - `int QWizard::nextId() const [virtual]`: This virtual function is called by `QWizard` to find out which page to show when the user clicks the `Next` button. The return value is the `ID` of the next page, or `-1` if no page follows. The default implementation calls `QWizardPage::nextId()` on the `currentPage()`. By reimplementing this function, you can specify a dynamic page order.
 - `QWizardPage * QWizard::page(int id) const`: Returns the page with the given `id`, or `0` if there is no such page.
@@ -538,12 +538,12 @@ void LicenseWizard::showHelp() {
 
 ``` cpp
 MyWizard::MyWizard ( QWidget *parent ) : QWizard ( parent ) {
-    ...
-    QList<QWizard::WizardButton> layout;
-    layout << QWizard::Stretch << QWizard::BackButton << QWizard::CancelButton
-           << QWizard::NextButton << QWizard::FinishButton;
-    setButtonLayout ( layout );
-    ...
+    ...
+    QList<QWizard::WizardButton> layout;
+    layout << QWizard::Stretch << QWizard::BackButton << QWizard::CancelButton
+           << QWizard::NextButton << QWizard::FinishButton;
+    setButtonLayout ( layout );
+    ...
 }
 ```
 
