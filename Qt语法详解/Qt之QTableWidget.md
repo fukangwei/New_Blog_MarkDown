@@ -53,7 +53,7 @@ rowLabels << "Line1" << "Line2" << "Line3" << "Line4";
 table->setVerticalHeaderLabels ( rowLabels );
 ​
 for ( int i = 0; i < 4; i++ ) { /* 设置每一行的高度 */
-    table->setRowHeight ( i, 22 );
+    table->setRowHeight ( i, 22 );
 }
 ​
 /* 自动调整最后一列的宽度使它和表格的右边界对齐 */
@@ -64,15 +64,15 @@ table->setSelectionBehavior ( QAbstractItemView::SelectItems );
 table->setEditTriggers ( QAbstractItemView::DoubleClicked );
 ​
 for ( int row = 0; row < 4; ++row ) { /* 设置表格的内容 */
-    QTableWidgetItem *item0, *item1;
-    item0 = new QTableWidgetItem;
-    item1 = new QTableWidgetItem;
-    QString txt = QString ( "%1" ).arg ( row + 1 );
-    item0->setText ( txt );
-    table->setItem ( row, 0, item0 );
-    txt = QString ( "%1" ).arg ( ( row + 1 ) * 2 );
-    item1->setText ( txt );
-    table->setItem ( row, 1, item1 );
+    QTableWidgetItem *item0, *item1;
+    item0 = new QTableWidgetItem;
+    item1 = new QTableWidgetItem;
+    QString txt = QString ( "%1" ).arg ( row + 1 );
+    item0->setText ( txt );
+    table->setItem ( row, 0, item0 );
+    txt = QString ( "%1" ).arg ( ( row + 1 ) * 2 );
+    item1->setText ( txt );
+    table->setItem ( row, 1, item1 );
 }
 ​
 /* 增加一行 */
@@ -289,11 +289,11 @@ void setRowCount ( int rows )
 - `QTableWidgetItem * QTableWidget::itemAt(const QPoint & point) const`: Returns a pointer to the item at the given `point`, or returns `0` if `point` is not covered by an item in the table widget.
 - `QTableWidgetItem * QTableWidget::itemAt(int ax, int ay) const`: Returns the item at the position equivalent to `QPoint(ax, ay)` in the table widget's coordinate system, or returns `0` if the specified point is not covered by an item in the table widget.
 - `void QTableWidget::itemChanged(QTableWidgetItem * item) [signal]`: This signal is emitted whenever the data of `item` has changed.
-- `void QTableWidget::itemClicked(QTableWidgetItem * item) [signal]`: This signal is emitted whenever an item in the table is clicked. The `item` specified is the item that was clicked.
-- `void QTableWidget::itemDoubleClicked(QTableWidgetItem * item) [signal]`: This signal is emitted whenever an item in the table is double clicked. The `item` specified is the item that was double clicked.
-- `void QTableWidget::itemEntered(QTableWidgetItem * item) [signal]`: This signal is emitted when the mouse cursor enters an item. The `item` is the item entered. This signal is only emitted when `mouseTracking` is turned on, or when a mouse button is pressed while moving into an item.
+- `void QTableWidget::itemClicked(QTableWidgetItem * item) [signal]`: This signal is emitted whenever an item in the table is clicked. The item specified is the `item` that was clicked.
+- `void QTableWidget::itemDoubleClicked(QTableWidgetItem * item) [signal]`: This signal is emitted whenever an item in the table is double clicked. The item specified is the `item` that was double clicked.
+- `void QTableWidget::itemEntered(QTableWidgetItem * item) [signal]`: This signal is emitted when the mouse cursor enters an item. The item is the `item` entered. This signal is only emitted when `mouseTracking` is turned on, or when a mouse button is pressed while moving into an item.
 - `QTableWidgetItem * QTableWidget::itemFromIndex(const QModelIndex & index) const [protected]`: Returns a pointer to the QTableWidgetItem assocated with the given `index`.
-- `void QTableWidget::itemPressed(QTableWidgetItem * item) [signal]`: This signal is emitted whenever an item in the table is pressed. The `item` specified is the item that was pressed.
+- `void QTableWidget::itemPressed(QTableWidgetItem * item) [signal]`: This signal is emitted whenever an item in the table is pressed. The item specified is the `item` that was pressed.
 - `const QTableWidgetItem * QTableWidget::itemPrototype() const`: Returns the item prototype used by the table.
 - `void QTableWidget::itemSelectionChanged() [signal]`: This signal is emitted whenever the selection changes.
 - `QList<QTableWidgetItem *> QTableWidget::items(const QMimeData * data) const [protected]`: Returns a list of pointers to the items contained in the `data` object. If the object was not created by a `QTreeWidget` in the same process, the list is empty.
