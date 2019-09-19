@@ -127,26 +127,26 @@ Constant                            | Value | Description
 - `void QTextCharFormat::setAnchorHref(const QString & value)`: Sets the hypertext link for the text format to the given `value`. This is typically a `URL` like `http://example.com/index.html`. The anchor will be displayed with the value as its display text; if you want to display different text call `setAnchorNames()`. To format the text as a hypertext link use `setAnchor()`.
 - `void QTextCharFormat::setAnchorNames(const QStringList & names)`: Sets the text format's anchor `names`. For the anchor to work as a hyperlink, the destination must be set with `setAnchorHref()` and the anchor must be enabled with `setAnchor()`.
 - `void QTextCharFormat::setFont(const QFont & font)`: Sets the text format's `font`.
-- `void QTextCharFormat::setFontCapitalization(QFont::Capitalization capitalization)`: Sets the `capitalization` of the text that apppears in this font to `capitalization`. A font's `capitalization` makes the text appear in the selected `capitalization` mode.
+- `void QTextCharFormat::setFontCapitalization(QFont::Capitalization capitalization)`: Sets the capitalization of the text that apppears in this font to `capitalization`. A font's capitalization makes the text appear in the selected capitalization mode.
 - `void QTextCharFormat::setFontFamily(const QString & family)`: Sets the text format's font `family`.
 - `void QTextCharFormat::setFontFixedPitch(bool fixedPitch)`: If `fixedPitch` is `true`, sets the text format's font to be fixed pitch; otherwise a `non-fixed` pitch font is used.
 - `void QTextCharFormat::setFontHintingPreference(QFont::HintingPreference hintingPreference)`: Sets the hinting preference of the text format's font to be `hintingPreference`.
 - `void QTextCharFormat::setFontItalic(bool italic)`: If `italic` is `true`, sets the text format's font to be italic; otherwise the font will be `non-italic`.
 - `void QTextCharFormat::setFontKerning(bool enable)`: Enables kerning for this font if `enable` is `true`; otherwise disables it. When kerning is enabled, glyph metrics do not add up anymore, even for `Latin` text. In other words, the assumption that `width('a') + width('b')` is equal to `width("ab")` is not neccesairly `true`.
-- `void QTextCharFormat::setFontLetterSpacing(qreal spacing)`: Sets the letter `spacing` of this format to the given `spacing`, in percent. A value of `100` indicates default `spacing`; a value of `200` doubles the amount of space a letter takes.
+- `void QTextCharFormat::setFontLetterSpacing(qreal spacing)`: Sets the letter spacing of this format to the given `spacing`, in percent. A value of `100` indicates default `spacing`; a value of `200` doubles the amount of space a letter takes.
 - `void QTextCharFormat::setFontOverline(bool overline)`: If `overline` is `true`, sets the text format's font to be overlined; otherwise the font is displayed `non-overlined`.
 - `void QTextCharFormat::setFontPointSize(qreal size)`: Sets the text format's font `size`.
 - `void QTextCharFormat::setFontStrikeOut(bool strikeOut)`: If `strikeOut` is `true`, sets the text format's font with `strike-out` enabled (with a horizontal line through it); otherwise it is displayed without strikeout.
 - `void QTextCharFormat::setFontStyleHint(QFont::StyleHint hint, QFont::StyleStrategy strategy = QFont::PreferDefault)`: Sets the font style `hint` and `strategy`. `Qt` does not support style hints on `X11` since this information is not provided by the window system.
 - `void QTextCharFormat::setFontStyleStrategy(QFont::StyleStrategy strategy)`: Sets the font style `strategy`.
 - `void QTextCharFormat::setFontUnderline(bool underline)`: If `underline` is `true`, sets the text format's font to be underlined; otherwise it is displayed `non-underlined`.
-- `void QTextCharFormat::setFontWeight(int weight)`: Sets the text format's font `weight` to `weight`.
-- `void QTextCharFormat::setFontWordSpacing(qreal spacing)`: Sets the word `spacing` of this format to the given `spacing`, in pixels.
-- `void QTextCharFormat::setTextOutline(const QPen & pen)`: Sets the `pen` used to draw the outlines of characters to the given `pen`.
-- `void QTextCharFormat::setToolTip(const QString & text)`: Sets the tool tip for a fragment of `text` to the given `text`.
-- `void QTextCharFormat::setUnderlineColor(const QColor & color)`: Sets the underline `color` used for the characters with this format to the `color` specified.
-- `void QTextCharFormat::setUnderlineStyle(UnderlineStyle style)`: Sets the `style` of underlining the text to `style`.
-- `void QTextCharFormat::setVerticalAlignment(VerticalAlignment alignment)`: Sets the vertical `alignment` used for the characters with this format to the `alignment` specified.
+- `void QTextCharFormat::setFontWeight(int weight)`: Sets the text format's font weight to `weight`.
+- `void QTextCharFormat::setFontWordSpacing(qreal spacing)`: Sets the word spacing of this format to the given `spacing`, in pixels.
+- `void QTextCharFormat::setTextOutline(const QPen & pen)`: Sets the pen used to draw the outlines of characters to the given `pen`.
+- `void QTextCharFormat::setToolTip(const QString & text)`: Sets the tool tip for a fragment of text to the given `text`.
+- `void QTextCharFormat::setUnderlineColor(const QColor & color)`: Sets the underline color used for the characters with this format to the `color` specified.
+- `void QTextCharFormat::setUnderlineStyle(UnderlineStyle style)`: Sets the style of underlining the text to `style`.
+- `void QTextCharFormat::setVerticalAlignment(VerticalAlignment alignment)`: Sets the vertical alignment used for the characters with this format to the `alignment` specified.
 - `QPen QTextCharFormat::textOutline() const`: Returns the pen used to draw the outlines of characters in this format.
 - `QString QTextCharFormat::toolTip() const`: Returns the tool tip that is displayed for a fragment of text.
 - `QColor QTextCharFormat::underlineColor() const`: Returns the color used to underline the characters with this format.
