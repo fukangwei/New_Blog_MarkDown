@@ -11,18 +11,18 @@ categories: Qt语法详解
 
 ### Public Functions
 
-``` cpp
-     QReadWriteLock()
-     QReadWriteLock(RecursionMode recursionMode)
-     ~QReadWriteLock()
-void lockForRead()
-void lockForWrite()
-bool tryLockForRead()
-bool tryLockForRead(int timeout)
-bool tryLockForWrite()
-bool tryLockForWrite(int timeout)
-void unlock()
-```
+Return | Function
+-------|---------
+       | `QReadWriteLock()`
+       | `QReadWriteLock(RecursionMode recursionMode)`
+       | `~QReadWriteLock()`
+`void` | `lockForRead()`
+`void` | `lockForWrite()`
+`bool` | `tryLockForRead()`
+`bool` | `tryLockForRead(int timeout)`
+`bool` | `tryLockForWrite()`
+`bool` | `tryLockForWrite(int timeout)`
+`void` | `unlock()`
 
 ### Detailed Description
 
@@ -66,11 +66,11 @@ Constant                       | Value | Description
 
 - `QReadWriteLock::QReadWriteLock()`: Constructs a `QReadWriteLock` object in `NonRecursive` mode.
 - `QReadWriteLock::QReadWriteLock(RecursionMode recursionMode)`: Constructs a `QReadWriteLock` object in the given `recursionMode`.
-- `QReadWriteLock::~QReadWriteLock()`: Destroys the `QReadWriteLock` object. **Warning**: Destroying a `read-write` `lock` that is in use may result in undefined behavior.
-- `void QReadWriteLock::lockForRead()`: Locks the `lock` for `reading`. This function will block the current thread if any thread (including the current) has locked for `writing`.
-- `void QReadWriteLock::lockForWrite()`: Locks the `lock` for `writing`. This function will block the current thread if another thread has locked for `reading` or `writing`.
-- `bool QReadWriteLock::tryLockForRead()`: `Attempts` to `lock` for `reading`. If the lock was obtained, this function returns `true`, otherwise it returns `false` instead of waiting for the lock to become available, i.e. it does not block. The lock attempt will fail if another thread has locked for `writing`. If the lock was obtained, the lock must be unlocked with `unlock()` before another thread can successfully lock it.
-- `bool QReadWriteLock::tryLockForRead(int timeout)`: This is an overloaded function. `Attempts` to `lock` for `reading`. This function returns `true` if the lock was obtained; otherwise it returns `false`. If another thread has locked for `writing`, this function will wait for at most `timeout` milliseconds for the lock to become available. **Note**: Passing a negative number as the `timeout` is equivalent to calling `lockForRead()`, i.e. this function will wait forever until lock can be locked for `reading` when `timeout` is negative. If the lock was obtained, the lock must be unlocked with `unlock()` before another thread can successfully lock it.
-- `bool QReadWriteLock::tryLockForWrite()`: `Attempts` to `lock` for `writing`. If the lock was obtained, this function returns `true`; otherwise, it returns `false` immediately. The lock attempt will fail if another thread has locked for `reading` or `writing`. If the lock was obtained, the lock must be unlocked with `unlock()` before another thread can successfully lock it.
-- `bool QReadWriteLock::tryLockForWrite(int timeout)`: This is an overloaded function. `Attempts` to `lock` for `writing`. This function returns `true` if the lock was obtained; otherwise it returns `false`. If another thread has locked for `reading` or `writing`, this function will wait for at most `timeout` milliseconds for the lock to become available. **Note**: Passing a negative number as the `timeout` is equivalent to calling `lockForWrite()`, i.e. this function will wait forever until lock can be locked for `writing` when `timeout` is negative. If the lock was obtained, the lock must be unlocked with `unlock()` before another thread can successfully lock it.
-- `void QReadWriteLock::unlock()`: `Unlocks` the lock. Attempting to unlock a lock that is not locked is an error, and will result in program termination.
+- `QReadWriteLock::~QReadWriteLock()`: Destroys the `QReadWriteLock` object. **Warning**: Destroying a read-write `lock` that is in use may result in undefined behavior.
+- `void QReadWriteLock::lockForRead()`: Locks the lock for reading. This function will block the current thread if any thread (including the current) has locked for writing.
+- `void QReadWriteLock::lockForWrite()`: Locks the lock for writing. This function will block the current thread if another thread has locked for reading or writing.
+- `bool QReadWriteLock::tryLockForRead()`: Attempts to lock for reading. If the lock was obtained, this function returns `true`, otherwise it returns `false` instead of waiting for the lock to become available, i.e. it does not block. The lock attempt will fail if another thread has locked for writing. If the lock was obtained, the lock must be unlocked with `unlock()` before another thread can successfully lock it.
+- `bool QReadWriteLock::tryLockForRead(int timeout)`: This is an overloaded function. Attempts to lock for reading. This function returns `true` if the lock was obtained; otherwise it returns `false`. If another thread has locked for writing, this function will wait for at most `timeout` milliseconds for the lock to become available. **Note**: Passing a negative number as the `timeout` is equivalent to calling `lockForRead()`, i.e. this function will wait forever until lock can be locked for reading when `timeout` is negative. If the lock was obtained, the lock must be unlocked with `unlock()` before another thread can successfully lock it.
+- `bool QReadWriteLock::tryLockForWrite()`: Attempts to lock for writing. If the lock was obtained, this function returns `true`; otherwise, it returns `false` immediately. The lock attempt will fail if another thread has locked for reading or writing. If the lock was obtained, the lock must be unlocked with `unlock()` before another thread can successfully lock it.
+- `bool QReadWriteLock::tryLockForWrite(int timeout)`: This is an overloaded function. Attempts to lock for writing. This function returns `true` if the lock was obtained; otherwise it returns `false`. If another thread has locked for reading or writing, this function will wait for at most `timeout` milliseconds for the lock to become available. **Note**: Passing a negative number as the `timeout` is equivalent to calling `lockForWrite()`, i.e. this function will wait forever until lock can be locked for writing when `timeout` is negative. If the lock was obtained, the lock must be unlocked with `unlock()` before another thread can successfully lock it.
+- `void QReadWriteLock::unlock()`: Unlocks the lock. Attempting to unlock a lock that is not locked is an error, and will result in program termination.
