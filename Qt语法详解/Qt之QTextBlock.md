@@ -8,7 +8,7 @@ categories: Qt语法详解
 ### Public Functions
 
 Return                  | Function
-------------------------|--------------
+------------------------|---------
                         | `QTextBlock(const QTextBlock & other)`
 `iterator`              | `begin() const`
 `QTextBlockFormat`      | `blockFormat() const`
@@ -85,8 +85,8 @@ Return                  | Function
 - `int QTextBlock::revision() const`: Returns the blocks revision.
 - `void QTextBlock::setLineCount(int count)`: Sets the line count to `count`.
 - `void QTextBlock::setRevision(int rev)`: Sets a blocks revision to `rev`.
-- `void QTextBlock::setUserData(QTextBlockUserData * data)`: Attaches the given `data` object to the text block. `QTextBlockUserData` can be used to store custom settings. The ownership is passed to the underlying text document, i.e. the provided `QTextBlockUserData` object will be deleted if the corresponding text block gets deleted. The user data object is not stored in the undo history, so it will not be available after undoing the deletion of a text block. For example, if you write a programming editor in an `IDE`, you may want to let your user set breakpoints visually in your code for an integrated debugger. In a programming editor a line of text usually corresponds to one `QTextBlock`. The `QTextBlockUserData` interface allows the developer to store data for each `QTextBlock`, like for example in which lines of the source code the user has a breakpoint set. Of course this could also be stored externally, but by storing it inside the `QTextDocument`, it will for example be automatically deleted when the user deletes the associated line. It's really just a way to store custom information in the `QTextDocument` without using custom properties in `QTextFormat` which would affect the `undo/redo` stack.
-- `void QTextBlock::setUserState(int state)`: Stores the specified `state` integer value in the text block. This may be useful for example in a syntax highlighter to store a text parsing `state`.
+- `void QTextBlock::setUserData(QTextBlockUserData * data)`: Attaches the given `data` object to the text block. `QTextBlockUserData` can be used to store custom settings. The ownership is passed to the underlying text document, i.e. the provided `QTextBlockUserData` object will be deleted if the corresponding text block gets deleted. The user data object is not stored in the undo history, so it will not be available after undoing the deletion of a text block. For example, if you write a programming editor in an `IDE`, you may want to let your user set breakpoints visually in your code for an integrated debugger. In a programming editor a line of text usually corresponds to one `QTextBlock`. The `QTextBlockUserData` interface allows the developer to store data for each `QTextBlock`, like for example in which lines of the source code the user has a breakpoint set. Of course this could also be stored externally, but by storing it inside the `QTextDocument`, it will for example be automatically deleted when the user deletes the associated line. It's really just a way to store custom information in the `QTextDocument` without using custom properties in `QTextFormat` which would affect the undo/redo stack.
+- `void QTextBlock::setUserState(int state)`: Stores the specified `state` integer value in the text block. This may be useful for example in a syntax highlighter to store a text parsing state.
 - `void QTextBlock::setVisible(bool visible)`: Sets the block's visibility to `visible`.
 - `QString QTextBlock::text() const`: Returns the block's contents as plain text.
 - `Qt::LayoutDirection QTextBlock::textDirection() const`: Returns the resolved text direction. If the block has no explicit direction set, it will resolve the direction from the blocks content. Returns either `Qt::LeftToRight` or `Qt::RightToLeft`.
