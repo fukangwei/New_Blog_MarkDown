@@ -6,13 +6,13 @@ categories: Qt语法详解
 &emsp;&emsp;The `QMenu` class provides a menu widget for use in menu bars, context menus, and other popup menus.
 
 Header  | Inherits  | Inherited By
---------|-----------|-----------------
+--------|-----------|-------------
 `QMenu` | `QWidget` | `Q3PopupMenu`
 
 ### Public Functions
 
 Return      | Function
-------------|-------
+------------|---------
             | `QMenu(QWidget * parent = 0)`
             | `QMenu(const QString & title, QWidget * parent = 0)`
             | `~QMenu()`
@@ -112,7 +112,7 @@ Return         | Function
 &emsp;&emsp;There are four kinds of action items: separators, actions that show a submenu, widgets, and actions that perform an action. Separators are inserted with `addSeparator()`, submenus with `addMenu()`, and all other items are considered action items.
 &emsp;&emsp;When inserting action items you usually specify a receiver and a slot. The receiver will be notifed whenever the item is `triggered()`. In addition, `QMenu` provides two signals, `activated()` and `highlighted()`, which signal the `QAction` that was triggered from the menu.
 &emsp;&emsp;You clear a menu with `clear()` and remove individual action items with `removeAction()`.
-&emsp;&emsp;A QMenu can also provide a tear-off menu. A `tear-off` menu is a `top-level` window that contains a copy of the menu. This makes it possible for the user to `tear off` frequently used menus and position them in a convenient place on the screen. If you want this functionality for a particular menu, insert a `tear-off` handle with `setTearOffEnabled()`. When using `tear-off` menus, bear in mind that the concept isn't typically used on `Microsoft Windows` so some users may not be familiar with it. Consider using a `QToolBar` instead.
+&emsp;&emsp;A `QMenu` can also provide a `tear-off` menu. A `tear-off` menu is a `top-level` window that contains a copy of the menu. This makes it possible for the user to `tear off` frequently used menus and position them in a convenient place on the screen. If you want this functionality for a particular menu, insert a `tear-off` handle with `setTearOffEnabled()`. When using `tear-off` menus, bear in mind that the concept isn't typically used on `Microsoft Windows` so some users may not be familiar with it. Consider using a `QToolBar` instead.
 &emsp;&emsp;Widgets can be inserted into menus with the `QWidgetAction` class. Instances of this class are used to hold widgets, and are inserted into menus with the `addAction()` overload that takes a `QAction`.
 &emsp;&emsp;Conversely, actions can be added to widgets with the `addAction()`, `addActions()` and `insertAction()` functions.
 &emsp;&emsp;**Warning**: To make `QMenu` visible on the screen, `exec()` or `popup()` should be used instead of `show()`.
@@ -164,8 +164,8 @@ void setTitle ( const QString &title );
 - `QAction * QMenu::addAction(const QIcon & icon, const QString & text, const QObject * receiver, const char * member, const QKeySequence & shortcut = 0)`: This is an overloaded function. This convenience function creates a new action with an `icon` and some `text` and an optional `shortcut`. The action's `triggered()` signal is connected to the `member` slot of the `receiver` object. The function adds the newly created action to the menu's list of actions, and returns it.
 - `void QMenu::addAction(QAction * action)`: This is an overloaded function. Appends the `action` to the menu's list of actions.
 - `QAction * QMenu::addMenu(QMenu * menu)`: This convenience function adds `menu` as a submenu to this menu. It returns menu's `menuAction()`. This `menu` does not take ownership of menu.
-- `QMenu * QMenu::addMenu(const QString & title)`: Appends a new `QMenu` with `title` to the menu. The `menu` takes ownership of the menu. Returns the new menu.
-- `QMenu * QMenu::addMenu(const QIcon & icon, const QString & title)`: Appends a new `QMenu` with `icon` and `title` to the menu. The `menu` takes ownership of the menu. Returns the new menu.
+- `QMenu * QMenu::addMenu(const QString & title)`: Appends a new `QMenu` with `title` to the menu. The menu takes ownership of the menu. Returns the new menu.
+- `QMenu * QMenu::addMenu(const QIcon & icon, const QString & title)`: Appends a new `QMenu` with `icon` and `title` to the menu. The menu takes ownership of the menu. Returns the new menu.
 - `QAction * QMenu::addSeparator()`: This convenience function creates a new separator action, i.e. an action with `QAction::isSeparator()` returning `true`, and adds the new action to this menu's list of actions. It returns the newly created action.
 - `void QMenu::changeEvent(QEvent * e) [virtual protected]`: Reimplemented from `QWidget::changeEvent()`.
 - `void QMenu::clear()`: Removes all the menu's actions. Actions owned by the menu and not shown in any other widget are deleted.
@@ -197,7 +197,7 @@ exec ( e->globalPos() );
 exec ( QCursor::pos() );
 ```
 
-or aligned to a `widget`:
+or aligned to a widget:
 
 ``` cpp
 exec ( somewidget.mapToGlobal ( QPoint ( 0, 0 ) ) );
