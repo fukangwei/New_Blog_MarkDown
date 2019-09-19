@@ -220,8 +220,8 @@ int topLevelItemCount() const
 - `int QTreeWidget::currentColumn() const`: Returns the current column in the tree widget.
 - `QTreeWidgetItem * QTreeWidget::currentItem() const`: Returns the current item in the tree widget.
 - `void QTreeWidget::currentItemChanged(QTreeWidgetItem * current, QTreeWidgetItem * previous) [signal]`: This signal is emitted when the current item changes. The current item is specified by `current`, and this replaces the `previous` current item.
-- `void QTreeWidget::dropEvent(QDropEvent * event) [virtual protected]`: Reimplemented from QWidget::dropEvent().
-- `bool QTreeWidget::dropMimeData(QTreeWidgetItem * parent, int index, const QMimeData * data, Qt::DropAction action) [virtual protected]`: Handles the `data` supplied by a drag and drop operation that ended with the given `action` in the `index` in the given `parent` item. The default implementation returns true if the drop was successfully handled by decoding the mime data and inserting it into the model; otherwise it returns false.
+- `void QTreeWidget::dropEvent(QDropEvent * event) [virtual protected]`: Reimplemented from `QWidget::dropEvent()`.
+- `bool QTreeWidget::dropMimeData(QTreeWidgetItem * parent, int index, const QMimeData * data, Qt::DropAction action) [virtual protected]`: Handles the `data` supplied by a drag and drop operation that ended with the given `action` in the `index` in the given `parent` item. The default implementation returns `true` if the drop was successfully handled by decoding the mime data and inserting it into the model; otherwise it returns `false`.
 - `void QTreeWidget::editItem(QTreeWidgetItem * item, int column = 0)`: Starts editing the `item` in the given `column` if it is editable.
 - `bool QTreeWidget::event(QEvent * e) [virtual protected]`: Reimplemented from `QObject::event()`.
 - `void QTreeWidget::expandItem(const QTreeWidgetItem * item) [slot]`: Expands the `item`. This causes the tree containing the item's children to be expanded.

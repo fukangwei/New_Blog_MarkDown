@@ -175,7 +175,7 @@ You can define new user types in `QTreeWidgetItem` subclasses to ensure that cus
 - `void QTreeWidgetItem::read(QDataStream & in) [virtual]`: Reads the item from stream `in`. This only reads data into a single item.
 - `void QTreeWidgetItem::removeChild(QTreeWidgetItem * child)`: Removes the given item indicated by `child`. The removed item will not be deleted.
 - `void QTreeWidgetItem::setBackground(int column, const QBrush & brush)`: Sets the background `brush` of the label in the given `column` to the specified `brush`.
-- `void QTreeWidgetItem::setCheckState(int column, Qt::CheckState state)`: Sets the item in the given column check `state` to be `state`.
+- `void QTreeWidgetItem::setCheckState(int column, Qt::CheckState state)`: Sets the item in the given `column` check state to be `state`.
 - `void QTreeWidgetItem::setChildIndicatorPolicy(QTreeWidgetItem::ChildIndicatorPolicy policy)`: Sets the item indicator `policy`. This `policy` decides when the tree branch `expand/collapse` indicator is shown. The default value is `ShowForChildren`.
 - `void QTreeWidgetItem::setData(int column, int role, const QVariant & value) [virtual]`: Sets the `value` for the item's `column` and `role` to the given `value`. The `role` describes the type of data specified by `value`, and is defined by the `Qt::ItemDataRole` enum.
 - `void QTreeWidgetItem::setDisabled(bool disabled)`: Disables the item if `disabled` is `true`; otherwise enables the item.
@@ -185,12 +185,12 @@ You can define new user types in `QTreeWidgetItem` subclasses to ensure that cus
 - `void QTreeWidgetItem::setFont(int column, const QFont & font)`: Sets the `font` used to display the text in the given `column` to the given `font`.
 - `void QTreeWidgetItem::setForeground(int column, const QBrush & brush)`: Sets the foreground `brush` of the label in the given `column` to the specified `brush`.
 - `void QTreeWidgetItem::setHidden(bool hide)`: Hides the item if `hide` is `true`, otherwise shows the item.
-- `void QTreeWidgetItem::setIcon(int column, const QIcon & icon)`: Sets the `icon` to be displayed in the given `column` to `icon`.
+- `void QTreeWidgetItem::setIcon(int column, const QIcon & icon)`: Sets the icon to be displayed in the given `column` to `icon`.
 - `void QTreeWidgetItem::setSelected(bool select)`: Sets the selected state of the item to `select`.
-- `void QTreeWidgetItem::setSizeHint(int column, const QSize & size)`: Sets the `size` hint for the tree item in the given `column` to be `size`. If no `size` hint is set, the item delegate will compute the `size` hint based on the item data.
+- `void QTreeWidgetItem::setSizeHint(int column, const QSize & size)`: Sets the size hint for the tree item in the given `column` to be `size`. If no `size` hint is set, the item delegate will compute the `size` hint based on the item data.
 - `void QTreeWidgetItem::setStatusTip(int column, const QString & statusTip)`: Sets the status tip for the given `column` to the given `statusTip`. `QTreeWidget` mouse tracking needs to be enabled for this feature to work.
-- `void QTreeWidgetItem::setText(int column, const QString & text)`: Sets the `text` to be displayed in the given `column` to the given `text`.
-- `void QTreeWidgetItem::setTextAlignment(int column, int alignment)`: Sets the text `alignment` for the label in the given `column` to the `alignment` specified.
+- `void QTreeWidgetItem::setText(int column, const QString & text)`: Sets the text to be displayed in the given `column` to the given `text`.
+- `void QTreeWidgetItem::setTextAlignment(int column, int alignment)`: Sets the text alignment for the label in the given `column` to the `alignment` specified.
 - `void QTreeWidgetItem::setToolTip(int column, const QString & toolTip)`: Sets the tooltip for the given `column` to `toolTip`.
 - `void QTreeWidgetItem::setWhatsThis(int column, const QString & whatsThis)`: Sets the `What's This?` help for the given `column` to `whatsThis`.
 - `QSize QTreeWidgetItem::sizeHint(int column) const`: Returns the size hint set for the tree item in the given `column`.
@@ -210,5 +210,5 @@ You can define new user types in `QTreeWidgetItem` subclasses to ensure that cus
 
 ### Related Non-Members
 
-- `QDataStream & operator<<(QDataStream & out, const QTreeWidgetItem & item)`: Writes the tree widget item item to stream out. This operator uses `QTreeWidgetItem::write()`.
-- `QDataStream & operator>>(QDataStream & in, QTreeWidgetItem & item)`: Reads a tree widget item from stream in into item. This operator uses `QTreeWidgetItem::read()`.
+- `QDataStream & operator<<(QDataStream & out, const QTreeWidgetItem & item)`: Writes the tree widget item `item` to stream `out`. This operator uses `QTreeWidgetItem::write()`.
+- `QDataStream & operator>>(QDataStream & in, QTreeWidgetItem & item)`: Reads a tree widget item from stream `in` into `item`. This operator uses `QTreeWidgetItem::read()`.
