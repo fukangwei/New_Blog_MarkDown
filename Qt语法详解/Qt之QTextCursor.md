@@ -109,7 +109,7 @@ Return                  | Function
 - Frames are inserted by calling `insertFrame()` with a specified format.
 
 &emsp;&emsp;Actions can be grouped (i.e. treated as a single action for undo/redo) using `beginEditBlock()` and `endEditBlock()`.
-&emsp;&emsp;Cursor movements are limited to valid cursor positions. In `Latin` writing this is between any two consecutive characters in the text, before the first character, or after the last character. In some other writing systems cursor movements are limited to `clusters` (e.g. a syllable in Devanagari, or a base letter plus diacritics). Functions such as `movePosition()` and `deleteChar()` limit cursor movement to these valid positions.
+&emsp;&emsp;Cursor movements are limited to valid cursor positions. In `Latin` writing this is between any two consecutive characters in the text, before the first character, or after the last character. In some other writing systems cursor movements are limited to `clusters` (e.g. a syllable in `Devanagari`, or a base letter plus diacritics). Functions such as `movePosition()` and `deleteChar()` limit cursor movement to these valid positions.
 
 ### Member Type Documentation
 
@@ -188,7 +188,7 @@ textDocument->undo();
 
 The call to `undo()` will cause both insertions to be undone, causing both `World` and `Hello` to be removed. It is possible to nest calls to `beginEditBlock` and `endEditBlock`. The `top-most` pair will determine the scope of the undo/redo operation.
 
-- `QTextBlock QTextCursor::block() const` -- Returns the block that contains the cursor.
+- `QTextBlock QTextCursor::block() const`: Returns the block that contains the cursor.
 - `QTextCharFormat QTextCursor::blockCharFormat() const`: Returns the block character format of the block the cursor is in. The block char format is the format used when inserting text at the beginning of an empty block.
 - `QTextBlockFormat QTextCursor::blockFormat() const`: Returns the block format of the block the cursor is in.
 - `int QTextCursor::blockNumber() const`: Returns the number of the block the cursor is in, or `0` if the cursor is invalid. Note that this function only makes sense in documents without complex objects such as tables or frames.
@@ -238,7 +238,7 @@ cursor.insertText ( "Hello World" );
 This clears any existing selection, selects the word at the cursor (i.e. from `position()` forward), and replaces the selection with the phrase `Hello World`. Any `ASCII` linefeed characters (`\n`) in the inserted text are transformed into unicode block separators, corresponding to `insertBlock()` calls.
 
 - `void QTextCursor::insertText(const QString & text, const QTextCharFormat & format)`: This is an overloaded function. Inserts `text` at the current position with the given `format`.
-- `bool QTextCursor::isCopyOf(const QTextCursor & other) const`: Returns true if this cursor and `other` are copies of each `other`, i.e. one of them was created as a copy of the `other` and neither has moved since. This is much stricter than equality.
+- `bool QTextCursor::isCopyOf(const QTextCursor & other) const`: Returns `true` if this cursor and `other` are copies of each other, i.e. one of them was created as a copy of the `other` and neither has moved since. This is much stricter than equality.
 - `bool QTextCursor::isNull() const`: Returns `true` if the cursor is null; otherwise returns `false`. A null cursor is created by the default constructor.
 - `void QTextCursor::joinPreviousEditBlock()`: Like `beginEditBlock()` indicates the start of a block of editing operations that should appear as a single operation for undo/redo. However unlike `beginEditBlock()` it does not start a new block but reverses the previous call to `endEditBlock()` and therefore makes following operations part of the previous edit block created. For example:
 
@@ -270,14 +270,14 @@ The call to `undo()` will cause all three insertions to be undone.
 - `void QTextCursor::selectedTableCells(int * firstRow, int * numRows, int * firstColumn, int * numColumns) const`: If the selection spans over table cells, `firstRow` is populated with the number of the first row in the selection, `firstColumn` with the number of the first column in the selection, and `numRows` and `numColumns` with the number of rows and columns in the selection. If the selection does not span any table cells the results are harmless but undefined.
 - `QString QTextCursor::selectedText() const`: Returns the current selection's text (which may be empty). This only returns the text, with no rich text formatting information. If you want a document fragment (i.e. formatted rich text) use `selection()` instead. **Note**: If the selection obtained from an editor spans a line break, the text will contain a `Unicode U+2029` paragraph separator character instead of a newline `\n` character. Use `QString::replace()` to replace these characters with newlines.
 - `QTextDocumentFragment QTextCursor::selection() const`: Returns the current selection (which may be empty) with all its formatting information. If you just want the selected text (i.e. plain text) use `selectedText()` instead. **Note**: Unlike `QTextDocumentFragment::toPlainText()`, `selectedText()` may include special unicode characters such as `QChar::ParagraphSeparator`.
-- `int QTextCursor::selectionEnd() const`: Returns the end of the `selection` or `position()` if the cursor doesn't have a selection.
-- `int QTextCursor::selectionStart() const`: Returns the start of the `selection` or `position()` if the cursor doesn't have a selection.
-- `void QTextCursor::setBlockCharFormat(const QTextCharFormat & format)`: Sets the block char `format` of the current block (or all blocks that are contained in the selection) to `format`.
-- `void QTextCursor::setBlockFormat(const QTextBlockFormat & format)`: Sets the block `format` of the current block (or all blocks that are contained in the selection) to `format`.
-- `void QTextCursor::setCharFormat(const QTextCharFormat & format)`: Sets the cursor's current character `format` to the given `format`. If the cursor has a selection, the given `format` is applied to the current selection.
+- `int QTextCursor::selectionEnd() const`: Returns the end of the selection or `position()` if the cursor doesn't have a selection.
+- `int QTextCursor::selectionStart() const`: Returns the start of the selection or `position()` if the cursor doesn't have a selection.
+- `void QTextCursor::setBlockCharFormat(const QTextCharFormat & format)`: Sets the block char format of the current block (or all blocks that are contained in the selection) to `format`.
+- `void QTextCursor::setBlockFormat(const QTextBlockFormat & format)`: Sets the block format of the current block (or all blocks that are contained in the selection) to `format`.
+- `void QTextCursor::setCharFormat(const QTextCharFormat & format)`: Sets the cursor's current character format to the given `format`. If the cursor has a selection, the given `format` is applied to the current selection.
 - `void QTextCursor::setKeepPositionOnInsert(bool b)`: Defines whether the cursor should keep its current position when text gets inserted at the current position of the cursor. If `b` is `true`, the cursor keeps its current position when text gets inserted at the positing of the cursor. If `b` is `false`, the cursor moves along with the inserted text. The default is `false`. Note that a cursor always moves when text is inserted before the current position of the cursor, and it always keeps its position when text is inserted after the current position of the cursor.
 - `void QTextCursor::setPosition(int pos, MoveMode m = MoveAnchor)`: Moves the cursor to the absolute position in the document specified by `pos` using a `MoveMode` specified by `m`. The cursor is positioned between characters.
-- `void QTextCursor::setVerticalMovementX(int x)`: Sets the visual `x` position for vertical cursor movements to `x`. The vertical movement `x` position is cleared automatically when the cursor moves horizontally, and kept unchanged when the cursor moves vertically. The mechanism allows the cursor to move up and down on a visually straight line with proportional fonts, and to gently `jump` over short lines. A value of `-1` indicates no predefined `x` position. It will then be set automatically the next time the cursor moves up or down.
+- `void QTextCursor::setVerticalMovementX(int x)`: Sets the visual `x` position for vertical cursor movements to `x`. The vertical movement `x` position is cleared automatically when the cursor moves horizontally, and kept unchanged when the cursor moves vertically. The mechanism allows the cursor to move up and down on a visually straight line with proportional fonts, and to gently jump over short lines. A value of `-1` indicates no predefined `x` position. It will then be set automatically the next time the cursor moves up or down.
 - `void QTextCursor::setVisualNavigation(bool b)`: Sets visual navigation to `b`. Visual navigation means skipping over hidden text pragraphs. The default is `false`.
 - `int QTextCursor::verticalMovementX() const`: Returns the visual `x` position for vertical cursor movements. A value of `-1` indicates no predefined `x` position. It will then be set automatically the next time the cursor moves up or down.
 - `bool QTextCursor::visualNavigation() const`: Returns `true` if the cursor does visual navigation; otherwise returns `false`. Visual navigation means skipping over hidden text pragraphs. The default is `false`.
