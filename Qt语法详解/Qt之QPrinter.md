@@ -114,14 +114,14 @@ Return               | Function
 - enum `QPrinter::ColorMode`: This enum type is used to indicate whether `QPrinter` should print in color or not.
 
 Constant              | Value | Description
-----------------------|-------|---------------------------
+----------------------|-------|------------
 `QPrinter::Color`     | `1`   | print in color if available, otherwise in grayscale.
 `QPrinter::GrayScale` | `0`   | print in grayscale, even on color printers.
 
 - enum `QPrinter::DuplexMode`: This enum is used to indicate whether printing will occur on one or both sides of each sheet of paper (simplex or duplex printing).
 
 Constant                    | Value | Description
-----------------------------|-------|---------------
+----------------------------|-------|-------------
 `QPrinter::DuplexNone`      | `0`   | Single sided (simplex) printing only.
 `QPrinter::DuplexAuto`      | `1`   | The printer's default setting is used to determine whether duplex printing is used.
 `QPrinter::DuplexLongSide`  | `2`   | Both sides of each sheet of paper are used for printing. The paper is turned over its longest edge before the second side is printed
