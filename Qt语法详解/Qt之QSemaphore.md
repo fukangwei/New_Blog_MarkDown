@@ -7,15 +7,15 @@ categories: Qt语法详解
 
 ### Public Functions
 
-``` cpp
-     QSemaphore(int n = 0)
-     ~QSemaphore()
-void acquire(int n = 1)
-int  available() const
-void release(int n = 1)
-bool tryAcquire(int n = 1)
-bool tryAcquire(int n, int timeout)
-```
+Return | Function
+-------|---------
+       | `QSemaphore(int n = 0)`
+       | `~QSemaphore()`
+`void` | `acquire(int n = 1)`
+`int`  | `available() const`
+`void` | `release(int n = 1)`
+`bool` | `tryAcquire(int n = 1)`
+`bool` | `tryAcquire(int n, int timeout)`
 
 ### Detailed Description
 
@@ -45,9 +45,9 @@ sem.tryAcquire ( 250 ); /* sem.available() = 9, returns false */
 
 - `QSemaphore::QSemaphore(int n = 0)`: Creates a new semaphore and initializes the number of resources it guards to `n` (by default, `0`).
 - `QSemaphore::~QSemaphore()`: Destroys the semaphore. Warning: Destroying a semaphore that is in use may result in undefined behavior.
-- `void QSemaphore::acquire(int n = 1)`: Tries to `acquire` `n` resources guarded by the semaphore. If `n` > `available()`, this call will block until enough resources are available.
-- `int QSemaphore::available() const`: Returns the number of resources currently `available` to the semaphore. This number can never be negative.
-- `void QSemaphore::release(int n = 1)`: `Releases` `n` resources guarded by the semaphore. This function can be used to `"create"` resources as well. For example:
+- `void QSemaphore::acquire(int n = 1)`: Tries to acquire `n` resources guarded by the semaphore. If `n` > `available()`, this call will block until enough resources are available.
+- `int QSemaphore::available() const`: Returns the number of resources currently available to the semaphore. This number can never be negative.
+- `void QSemaphore::release(int n = 1)`: Releases `n` resources guarded by the semaphore. This function can be used to `"create"` resources as well. For example:
 
 ``` cpp
 QSemaphore sem ( 5 ); /* a semaphore that guards 5 resources */
@@ -56,7 +56,7 @@ sem.release ( 5 ); /* release the 5 resources */
 sem.release ( 10 ); /* "create" 10 new resources */
 ```
 
-- `bool QSemaphore::tryAcquire(int n = 1)`: Tries to `acquire` `n` resources guarded by the semaphore and returns `true` on success. If `available()` < `n`, this call immediately returns `false` without acquiring any resources. Example:
+- `bool QSemaphore::tryAcquire(int n = 1)`: Tries to acquire `n` resources guarded by the semaphore and returns `true` on success. If `available()` < `n`, this call immediately returns `false` without acquiring any resources. Example:
 
 ``` cpp
 QSemaphore sem ( 5 ); /* sem.available() = 5 */
@@ -64,7 +64,7 @@ sem.tryAcquire ( 250 ); /* sem.available() = 5, returns false */
 sem.tryAcquire ( 3 ); /* sem.available() = 2, returns true */
 ```
 
-- `bool QSemaphore::tryAcquire(int n, int timeout)`: Tries to `acquire` `n` resources guarded by the semaphore and returns `true` on success. If `available()` < `n`, this call will wait for at most `timeout` milliseconds for resources to become `available`. **Note**: Passing a negative number as the `timeout` is equivalent to calling `acquire()`, i.e. this function will wait forever for resources to become available if `timeout` is negative. Example:
+- `bool QSemaphore::tryAcquire(int n, int timeout)`: Tries to acquire `n` resources guarded by the semaphore and returns `true` on success. If `available()` < `n`, this call will wait for at most `timeout` milliseconds for resources to become available. **Note**: Passing a negative number as the `timeout` is equivalent to calling `acquire()`, i.e. this function will wait forever for resources to become available if `timeout` is negative. Example:
 
 ``` cpp
 QSemaphore sem ( 5 ); /* sem.available() = 5 */
