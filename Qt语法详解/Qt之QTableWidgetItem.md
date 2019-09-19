@@ -107,18 +107,18 @@ You can define new user types in `QTableWidgetItem` subclasses to ensure that cu
 - `bool QTableWidgetItem::isSelected() const`: Returns `true` if the item is selected, otherwise returns `false`.
 - `void QTableWidgetItem::read(QDataStream & in) [virtual]`: Reads the item from stream `in`.
 - `int QTableWidgetItem::row() const`: Returns the row of the item in the table. If the item is not in a table, this function will return `-1`.
-- `void QTableWidgetItem::setBackground(const QBrush & brush)`: Sets the item's background `brush` to the specified `brush`.
-- `void QTableWidgetItem::setCheckState(Qt::CheckState state)`: Sets the check `state` of the table item to be `state`.
+- `void QTableWidgetItem::setBackground(const QBrush & brush)`: Sets the item's background brush to the specified `brush`.
+- `void QTableWidgetItem::setCheckState(Qt::CheckState state)`: Sets the check state of the table item to be `state`.
 - `void QTableWidgetItem::setData(int role, const QVariant & value) [virtual]`: Sets the item's data for the given role to the specified `value`.
-- `void QTableWidgetItem::setFlags(Qt::ItemFlags flags)`: Sets the `flags` for the item to the given `flags`. These determine whether the item can be selected or modified.
-- `void QTableWidgetItem::setFont(const QFont & font)`: Sets the `font` used to display the item's text to the given `font`.
-- `void QTableWidgetItem::setForeground(const QBrush & brush)`: Sets the item's foreground `brush` to the specified `brush`.
-- `void QTableWidgetItem::setIcon(const QIcon & icon)`: Sets the item's `icon` to the `icon` specified.
+- `void QTableWidgetItem::setFlags(Qt::ItemFlags flags)`: Sets the flags for the item to the given `flags`. These determine whether the item can be selected or modified.
+- `void QTableWidgetItem::setFont(const QFont & font)`: Sets the font used to display the item's text to the given `font`.
+- `void QTableWidgetItem::setForeground(const QBrush & brush)`: Sets the item's foreground brush to the specified `brush`.
+- `void QTableWidgetItem::setIcon(const QIcon & icon)`: Sets the item's icon to the `icon` specified.
 - `void QTableWidgetItem::setSelected(bool select)`: Sets the selected state of the item to `select`.
-- `void QTableWidgetItem::setSizeHint(const QSize & size)` -- Sets the `size` hint for the table item to be size. If no `size` hint is set, the item delegate will compute the `size` hint based on the item data.
+- `void QTableWidgetItem::setSizeHint(const QSize & size)` -- Sets the size hint for the table item to be size. If no `size` hint is set, the item delegate will compute the size hint based on the item data.
 - `void QTableWidgetItem::setStatusTip(const QString & statusTip)`: Sets the status tip for the table item to the text specified by `statusTip`. `QTableWidget` mouse tracking needs to be enabled for this feature to work.
-- `void QTableWidgetItem::setText(const QString & text)`: Sets the item's `text` to the `text` specified.
-- `void QTableWidgetItem::setTextAlignment(int alignment)`: Sets the text `alignment` for the item's text to the alignment specified.
+- `void QTableWidgetItem::setText(const QString & text)`: Sets the item's text to the `text` specified.
+- `void QTableWidgetItem::setTextAlignment(int alignment)`: Sets the text alignment for the item's text to the `alignment` specified.
 - `void QTableWidgetItem::setToolTip(const QString & toolTip)`: Sets the item's tooltip to the string specified by `toolTip`.
 - `void QTableWidgetItem::setWhatsThis(const QString & whatsThis)`: Sets the item's `What's This?` help to the string specified by `whatsThis`.
 - `QSize QTableWidgetItem::sizeHint() const`: Returns the size hint set for the table item.
