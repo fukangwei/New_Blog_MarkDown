@@ -6,9 +6,6 @@ categories: Qt语法详解
 ### QNetworkAccessManager
 
 &emsp;&emsp;这个类的所有函数都是可重入的，它是从`Qt 4.4`引入的。
-
-#### 详细描述
-
 &emsp;&emsp;`QNetworkAccessManager`类允许应用程序发送网络请求和接收网络应答。`Network Access API`都是围绕着一个`QNetworkAccessManager`对象构造的，这个对象包含着发送请求的一些通用配置和设置。它包含着代理和缓存的配置，以及和这些事物相关的一些信号，并且应答信号可以作为我们检测一个网络操作的进度。一个`QNetworkAccessManager`对于一整个`Qt`应用程序来说已经足够了！
 &emsp;&emsp;一旦一个`QNetworkAccessManager`对象被创建了，那么应用程序就可以使用它在网络上发送请求。它提供了一组标准的函数，可以承载网络请求和一些可选的数据，并且每一个请求返回一个`QNetworkReply`对象。该返回的对象包含着返回的请求应带的所有数据。
 &emsp;&emsp;一个简单的从网络下载的例子可如下完成：
@@ -42,7 +39,7 @@ connect ( reply, SIGNAL ( sslErrors ( QList<QSslError> ) ), \
 
 #### 成员类型文档
 
-- `enum QNetworkAccessManager::NetworkAccessibility`：表明是否可以通过网络管理接入网络。
+- enum `QNetworkAccessManager::NetworkAccessibility`：表明是否可以通过网络管理接入网络。
 
 Constant                                      | Value | Description
 ----------------------------------------------|-------|-----------------
@@ -50,7 +47,7 @@ Constant                                      | Value | Description
 `QNetworkAccessManager::NotAccessible`        | `0`   | The network is not currently accessible, either because there is currently no network coverage or network access has been explicitly disabled by a call to `setNetworkAccessible()`.
 `QNetworkAccessManager::Accessible`           | `1`   | The network is accessible.
 
-- `enum QNetworkAccessManager::Operation`表明这个对于一个应答的处理过程。
+- enum `QNetworkAccessManager::Operation`表明这个对于一个应答的处理过程。
 
 Constant                                 | Value | Description
 -----------------------------------------|-------|-------------
@@ -120,8 +117,6 @@ Return              | Function
 `QNetworkRequest &` | `operator= ( const QNetworkRequest &other )`
 `bool`              | `operator== ( const QNetworkRequest &other ) const`
 
-#### 详细描述
-
 &emsp;&emsp;`QNetworkRequest`类包含一个和`QNetworkAccessManager`一起发送的请求。`QNetworkRequest`是`Network Access API`的一部分，并且这个类包含着在网络上发送请求的必要信息。它包含了一个`URL`和一些可以用来修改请求的附加信息。
 
 #### 成员类型文档
@@ -137,9 +132,6 @@ Return              | Function
 ### QNetworkReply
 
 &emsp;&emsp;这个类是从`Qt 4.4`引入的，其中的所有函数都是可重入的。
-
-#### 详细描述
-
 &emsp;&emsp;`QNetworkReply`类包含了发送给`QNetworkManager`的数据和首部。`QNetworkReply`类包含了发送给`QNetworkAccessManager`请求的所有应答数据。和`QNetworkRequest`类似，这些数据包含了一个`URL`和一些首部信息(同时包含解析后的和原始形式的)，以及一些和应答状态相关的信息，再加上应答信息自身的内容。
 &emsp;&emsp;`QNetworkReply`是一个顺序访问的`QIODevice`，这也意味着一旦数据从该对象中读取出来，那么该对象就不再持有这些数据。因此当需要保存数据时，这个工作应该由应用程序完成。无论什么时候从网络中获得数据，`readyRead`信号都会被触发。`downloadProgress`信号在接收到数据时也会被发送，但是它所持有的数据量不一定就是真实接收到的数据量。`QNetworkReply`是一个与应答信息关联的`QIODevice`，它同样触发`uploadProgress`信号，这表明`upload`操作拥有这些数据。注意，不要在连接到`error`或者`finished`的槽函数里删除该对象，应该使用`deleteLater`。
 
