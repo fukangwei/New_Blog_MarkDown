@@ -7,7 +7,7 @@ categories: Qt语法详解
 
 ### Public Types
 
-- `enum`: RecursionMode { `Recursive`, `NonRecursive` }
+- enum: `RecursionMode` { `Recursive`, `NonRecursive` }
 
 ### Public Functions
 
@@ -34,19 +34,19 @@ void unlock()
 QReadWriteLock lock;
 ​
 void ReaderThread::run() {
-    ...
-    lock.lockForRead();
-    read_file();
-    lock.unlock();
-    ...
+    ...
+    lock.lockForRead();
+    read_file();
+    lock.unlock();
+    ...
 }
 ​
 void WriterThread::run() {
-    ...
-    lock.lockForWrite();
-    write_file();
-    lock.unlock();
-    ...
+    ...
+    lock.lockForWrite();
+    write_file();
+    lock.unlock();
+    ...
 }
 ```
 
@@ -55,12 +55,12 @@ To ensure that writers aren't blocked forever by readers, readers attempting to 
 
 ### Member Type Documentation
 
-- `enum`: `QReadWriteLock::RecursionMode`
+- enum: `QReadWriteLock::RecursionMode`
 
-Constant | Value | Description
----------|-------|------------
-`QReadWriteLock::Recursive` | `1` | In this mode, a thread can lock the same `QReadWriteLock` multiple times and the mutex won't be unlocked until a corresponding number of `unlock()` calls have been made.
-`QReadWriteLock::NonRecursive` | `0` | In this mode, a thread may only lock a `QReadWriteLock` once.
+Constant                       | Value | Description
+-------------------------------|-------|------------
+`QReadWriteLock::Recursive`    | `1`   | In this mode, a thread can lock the same `QReadWriteLock` multiple times and the mutex won't be unlocked until a corresponding number of `unlock()` calls have been made.
+`QReadWriteLock::NonRecursive` | `0`   | In this mode, a thread may only lock a `QReadWriteLock` once.
 
 ### Member Function Documentation
 
