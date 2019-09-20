@@ -225,11 +225,9 @@ void TsignalApp::mySlotParam ( int x, int y ) { /* 定义槽函数mySlotParam(in
 }
 
 void TsignalApp::slotFileNew() {
-    emit mySignal(); /* 发射信号mySignal */
-    /* 发射信号mySignal(int) */
-    emit mySignal ( 5 );
-    /* 发射信号mySignalParam(int, int) */
-    emit mySignalParam ( 5, 100 );
+    emit mySignal();               /* 发射信号mySignal                */
+    emit mySignal ( 5 );           /* 发射信号mySignal(int)           */
+    emit mySignalParam ( 5, 100 ); /* 发射信号mySignalParam(int, int) */
 }
 ```
 
@@ -327,7 +325,6 @@ public:
     public slots: /* 在嵌套类中声明槽不合语法 */
         void b();
     };
-​
 signals:
     class B {
         void b(); /* 在信号区内声明嵌套类不合语法 */
