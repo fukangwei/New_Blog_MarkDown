@@ -65,7 +65,7 @@ The current item is "Circle"
 &emsp;&emsp;The `QComboBox` widget is a combined button and popup list.
 
 Header      | Inherits  | Inherited By
-------------|-----------|------------------
+------------|-----------|-------------
 `QComboBox` | `QWidget` | `QFontComboBox`
 
 ### Public Functions

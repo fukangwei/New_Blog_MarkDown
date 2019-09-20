@@ -20,7 +20,6 @@ bool is_open = QDesktopServices::openUrl ( QUrl ( path, QUrl::TolerantMode ) );
 ```
 
 `local_path`可以是文件(或文件夹)路径、可执行程序路径。`local_path`为文件时，会选择默认打开方式进行打开。
-
 &emsp;&emsp;3. 获取桌面、我的文档、`Home`等目录的路径：
 
 ``` cpp
