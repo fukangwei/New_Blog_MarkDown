@@ -1,7 +1,7 @@
 ---
 title: Qt之QCustomPlot
 date: 2019-07-22 20:50:50
-tags:
+categories: Qt语法详解
 ---
 ### 简述
 
