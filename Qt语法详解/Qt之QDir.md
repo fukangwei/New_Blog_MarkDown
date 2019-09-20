@@ -58,8 +58,7 @@ int main ( int argc, char *argv[] ) {
     if ( !kDir.exists ( mPath ) ) { /* 判断指定目录下是否存在指定目录 */
         kDir.mkpath ( mPath ); /* 生成指定目录 */
         qDebug() << "Create";
-    }
-    else {
+    } else {
         qDebug() << "Already exits";
     }
 ​
