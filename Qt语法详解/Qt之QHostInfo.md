@@ -8,7 +8,7 @@ categories: Qt语法详解
 
 ### 查询本机主机名
 
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` cpp
 QString strLocalHostName = QHostInfo::localHostName();
@@ -40,11 +40,9 @@ void MainWindow::lookedUp ( const QHostInfo &host ) {
         /* 输出IPV4、IPv6地址 */
         if ( address.protocol() == QAbstractSocket::IPv4Protocol ) {
             qDebug() << "Found IPv4 address:" << address.toString();
-        }
-        else if ( address.protocol() == QAbstractSocket::IPv6Protocol ) {
+        } else if ( address.protocol() == QAbstractSocket::IPv6Protocol ) {
             qDebug() << "Found IPv6 address:" << address.toString();
-        }
-        else {
+        } else {
             qDebug() << "Found other address:" << address.toString();
         }
     }
@@ -104,7 +102,7 @@ QHostInfo::abortHostLookup ( nId );
 
 ### 错误处理
 
-&emsp;&emsp;如果查询失败，`error`返回发生错误的类型，`errorString`返回一个能够读懂的查询错误描述。枚举变量`QHostInfo::HostInfoError`如下所示：
+&emsp;&emsp;如果查询失败，`error`返回发生错误的类型，`errorString`返回一个能够读懂的查询错误描述。枚举变量`QHostInfo::HostInfoError`如下：
 
 常量                      | 值   | 描述
 --------------------------|-----|------

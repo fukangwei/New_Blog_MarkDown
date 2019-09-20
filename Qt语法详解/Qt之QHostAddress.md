@@ -5,7 +5,7 @@ categories: Qt语法详解
 ---
 ### 简述
 
-&emsp;&emsp;`QHostAddress`类提供一个`IP`地址。这个类提供一种独立于平台和协议的方式来保存`IPv4`和`IPv6`地址。`QHostAddress`通常与`QTcpSocket`、QTcpServer、QUdpSocket一起使用，来连接到主机或建立一个服务器。
+&emsp;&emsp;`QHostAddress`类提供一个`IP`地址。这个类提供一种独立于平台和协议的方式来保存`IPv4`和`IPv6`地址。`QHostAddress`通常与`QTcpSocket`、`QTcpServer`、`QUdpSocket`一起使用，来连接到主机或建立一个服务器。
 &emsp;&emsp;可以通过`setAddress`来设置一个主机地址，使用`toIPv4Address`、`toIPv6Address`或`toString`来检索主机地址，你可以通过`protocol`来检查协议类型。注意，`QHostAddress`不做`DNS`查询，而`QHostInfo`是有必要的。这个类还支持通用的预定义地址：`Null`、`LocalHost`、`LocalHostIPv6`、`Broadcast`和`Any`。
 
 ### 常用接口
@@ -13,7 +13,7 @@ categories: Qt语法详解
 &emsp;&emsp;枚举变量为`QHostAddress::SpecialAddress`，取值范围如下：
 
 常量                          | 值  | 描述
-------------------------------|-----|-------------------------------
+------------------------------|-----|----
 `QHostAddress::Null`          | `0` | 空地址对象，相当于`QHostAddress`
 `QHostAddress::LocalHost`     | `2` | `IPv4`本地主机地址，相当于`QHostAddress("127.0.0.1")`
 `QHostAddress::LocalHostIPv6` | `3` | `IPv6`本地主机地址，相当于`QHostAddress("::1")`
@@ -84,8 +84,7 @@ foreach ( QHostAddress address, list ) {
         if ( bOk ) {
             qDebug() << "IPV4 : " << nIPV4;
         }
-    }
-    else if ( nProtocol == QAbstractSocket::IPv6Protocol ) { /* 如果是IPv6 */
+    } else if ( nProtocol == QAbstractSocket::IPv6Protocol ) { /* 如果是IPv6 */
         QStringList IPV6List ( "" );
         Q_IPV6ADDR IPV6 = address.toIPv6Address();
 ​
@@ -144,8 +143,7 @@ bool isLinkLocalAddress ( QHostAddress addr ) {
 ​
     if ( ( nIPv4 >= nMinRange ) && ( nIPv4 <= nMaxRange ) ) {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }

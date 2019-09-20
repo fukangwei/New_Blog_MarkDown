@@ -393,7 +393,7 @@ QVector<QString> vect = list.toVector(); /* vect: ["Sven", "Kim", "Ola"] */
 
 - `T QList::value(int i) const`: Returns the value at index position `i` in the list. If the index `i` is out of bounds, the function returns a `default-constructed` value. If you are certain that the index is going to be within bounds, you can use `at()` instead, which is slightly faster.
 - `T QList::value(int i, const T & defaultValue) const`: This is an overloaded function. If the index `i` is out of bounds, the function returns `defaultValue`.
-- `bool QList::operator!=(const QList<T> & other) const`: Returns `true` if other is not equal to this list; otherwise returns `false`. Two lists are considered equal if they contain the same values in the same order. This function requires the value type to have an implementation of `operator==()`.
+- `bool QList::operator!=(const QList<T> & other) const`: Returns `true` if `other` is not equal to this list; otherwise returns `false`. Two lists are considered equal if they contain the same values in the same order. This function requires the value type to have an implementation of `operator==()`.
 - `QList<T> QList::operator+(const QList<T> & other) const`: Returns a list that contains all the items in this list followed by all the items in the `other` list.
 - `QList<T> & QList::operator+=(const QList<T> & other)`: Appends the items of the `other` list to this list and returns a reference to this list.
 - `QList<T> & QList::operator+=(const T & value)`: This is an overloaded function. Appends `value` to the list.

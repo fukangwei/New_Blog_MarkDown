@@ -35,8 +35,7 @@ double res = QInputDialog::getDouble (
 ​
 if ( ok ) {
     /* 用户输入一些东西并且按下OK */
-}
-else {
+} else {
     /* 用户按下Cancel */
 }
 ```
@@ -71,8 +70,7 @@ int res = QInputDialog::getInteger (
 ​
 if ( ok ) {
     /* 用户输入一些东西并且按下OK  */
-}
-else {
+} else {
     /* 用户按下Cancel */
 }
 ```
@@ -110,8 +108,7 @@ QString res = QInputDialog::getItem (
 ​
 if ( ok ) {
     /* 用户选择一项并且按下OK */
-}
-else {
+} else {
     /* 用户按下Cancel */
 }
 ```
@@ -146,8 +143,7 @@ QString text = QInputDialog::getText (
 ​
 if ( ok && !text.isEmpty() ) {
     /* 用户输入一些东西并且按下OK */
-}
-else {
+} else {
     /* 用户不输入任何东西或者按下Cancel */
 }
 ```
