@@ -1,7 +1,7 @@
 ---
 title: Linux基本文本处理
 date: 2019-01-22 08:41:35
-tags:
+categories: Shell编程
 ---
 ### fold命令
 

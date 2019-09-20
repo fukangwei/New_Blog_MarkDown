@@ -1,7 +1,7 @@
 ---
 title: patch命令
 date: 2019-01-20 19:55:04
-tags:
+categories: Shell编程
 ---
 &emsp;&emsp;`patch`指令让用户利用修补文件更新原始文件。倘若一次仅修改一个文件，可直接在指令列中下达指令依序执行；如果配合修补文件的方式，则能一次修补大批文件，这也是`Linux`系统核心的升级方法之一。
 
@@ -78,7 +78,7 @@ $ cat testfile.patch  # 查看补丁包的内容
 >Hello, This is the second file!
 ```
 
-用补丁包升级testfile1文件：
+用补丁包升级`testfile1`文件：
 
 ``` bash
 $ patch -p0 testfile1 testfile.patch

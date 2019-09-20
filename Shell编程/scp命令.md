@@ -1,7 +1,7 @@
 ---
 title: scp命令
 date: 2019-01-19 18:11:43
-tags:
+categories: Shell编程
 ---
 &emsp;&emsp;`scp`是`secure copy`的缩写，它是`Linux`系统下安全的远程文件拷贝命令。
 
