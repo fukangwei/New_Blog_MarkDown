@@ -197,23 +197,23 @@ QBuffer::~QBuffer ()
 
 &emsp;&emsp;其它函数如下：
 
-Return | Function
----------|--------
+Return               | Function
+---------------------|--------
 `bool`               | `QBuffer::atEnd () const [virtual]`
 `QByteArray &`       | `QBuffer::buffer ()`
 `const QByteArray &` | `QBuffer::buffer () const`
-bool QBuffer::canReadLine () const [virtual]
-void QBuffer::close () [virtual]
-const QByteArray &QBuffer::data () const
-bool QBuffer::open ( OpenMode flags ) [virtual]
-qint64 QBuffer::pos () const [virtual]
-qint64 QBuffer::readData ( char *data, qint64 len ) [virtual protected]
-bool QBuffer::seek ( qint64 pos ) [virtual]
-void QBuffer::setBuffer ( QByteArray *byteArray )
-void QBuffer::setData ( const QByteArray &data )
-void QBuffer::setData ( const char *data, int size )
-qint64 QBuffer::size () const [virtual]
-qint64 QBuffer::writeData ( const char *data, qint64 len ) [virtual protected]
+`bool`               | `QBuffer::canReadLine () const [virtual]`
+`void`               | `QBuffer::close () [virtual]`
+`const QByteArray &` | `QBuffer::data () const`
+`bool`               | `QBuffer::open ( OpenMode flags ) [virtual]`
+`qint64`             | `QBuffer::pos () const [virtual]`
+`qint64`             | `QBuffer::readData ( char *data, qint64 len ) [virtual protected]`
+`bool`               | `QBuffer::seek ( qint64 pos ) [virtual]`
+`void`               | `QBuffer::setBuffer ( QByteArray *byteArray )`
+`void`               | `QBuffer::setData ( const QByteArray &data )`
+`void`               | `QBuffer::setData ( const char *data, int size )`
+`qint64`             | `QBuffer::size () const [virtual]`
+`qint64`             | `QBuffer::writeData ( const char *data, qint64 len ) [virtual protected]`
 
 &emsp;&emsp;示例如下：
 
