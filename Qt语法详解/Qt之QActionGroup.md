@@ -11,25 +11,25 @@ Header         | Inherits
 
 ### Properties
 
-- `enabled`: bool
-- `exclusive`: bool
-- `visible`: bool
+- `enabled`: `bool`
+- `exclusive`: `bool`
+- `visible`: `bool`
 
 ### Public Functions
 
-``` cpp
-                 QActionGroup(QObject * parent)
-                 ~QActionGroup()
-QList<QAction *> actions() const
-QAction *        addAction(QAction * action)
-QAction *        addAction(const QString & text)
-QAction *        addAction(const QIcon & icon, const QString & text)
-QAction *        checkedAction() const
-bool             isEnabled() const
-bool             isExclusive() const
-bool             isVisible() const
-void             removeAction(QAction * action)
-```
+Return             | Function
+-------------------|----------
+                   | `QActionGroup(QObject * parent)`
+                   | `~QActionGroup()`
+`QList<QAction *>` | `actions() const`
+`QAction *`        | `addAction(QAction * action)`
+`QAction *`        | `addAction(const QString & text)`
+`QAction *`        | `addAction(const QIcon & icon, const QString & text)`
+`QAction *`        | `checkedAction() const`
+`bool`             | `isEnabled() const`
+`bool`             | `isExclusive() const`
+`bool`             | `isVisible() const`
+`void`             | `removeAction(QAction * action)`
 
 ### Public Slots
 
@@ -65,21 +65,21 @@ Here we create a new action group. Since the action group is exclusive by defaul
 
 ### Property Documentation
 
-&emsp;&emsp;`enabled`(bool): This property holds whether the action group is `enabled`. Each action in the group will be `enabled` or `disabled` unless it has been explicitly `disabled`. Access functions:
+&emsp;&emsp;`enabled`(`bool`): This property holds whether the action group is `enabled`. Each action in the group will be `enabled` or `disabled` unless it has been explicitly `disabled`. Access functions:
 
 ``` cpp
 bool isEnabled() const;
 void setEnabled ( bool );
 ```
 
-&emsp;&emsp;`exclusive`(bool): This property holds whether the action group does `exclusive` checking. If `exclusive` is `true`, only one checkable action in the action group can ever be `active` at any time. If the user chooses another checkable action in the group, the one they chose becomes `active` and the one that was `active` becomes `inactive`. Access functions:
+&emsp;&emsp;`exclusive`(`bool`): This property holds whether the action group does `exclusive` checking. If `exclusive` is `true`, only one checkable action in the action group can ever be `active` at any time. If the user chooses another checkable action in the group, the one they chose becomes `active` and the one that was `active` becomes `inactive`. Access functions:
 
 ``` cpp
 bool isExclusive() const;
 void setExclusive ( bool );
 ```
 
-&emsp;&emsp;`visible`(bool): This property holds whether the action group is `visible`. Each action in the action group will match the `visible` state of this group unless it has been explicitly `hidden`. Access functions:
+&emsp;&emsp;`visible`(`bool`): This property holds whether the action group is `visible`. Each action in the action group will match the `visible` state of this group unless it has been explicitly `hidden`. Access functions:
 
 ``` cpp
 bool isVisible() const;
@@ -90,12 +90,12 @@ void setVisible ( bool );
 
 - `QActionGroup::QActionGroup(QObject * parent)`: Constructs an action group for the `parent` object. The action group is `exclusive` by default. Call `setExclusive(false)` to make the action group `non-exclusive`.
 - `QActionGroup::~QActionGroup()`: Destroys the action group.
-- `QList<QAction *> QActionGroup::actions() const`: Returns the list of this groups's `actions`. This may be empty.
-- `QAction * QActionGroup::addAction(QAction * action)`: Adds the `action` to this group, and returns it. Normally an `action` is added to a group by creating it with the group as its parent, so this function is not usually used.
+- `QList<QAction *> QActionGroup::actions() const`: Returns the list of this groups's actions. This may be empty.
+- `QAction * QActionGroup::addAction(QAction * action)`: Adds the `action` to this group, and returns it. Normally an action is added to a group by creating it with the group as its parent, so this function is not usually used.
 - `QAction * QActionGroup::addAction(const QString & text)`: Creates and returns an action with `text`. The newly created action is a child of this action group. Normally an action is added to a group by creating it with the group as parent, so this function is not usually used.
 - `QAction * QActionGroup::addAction(const QIcon & icon, const QString & text)`: Creates and returns an action with `text` and an `icon`. The newly created action is a child of this action group. Normally an action is added to a group by creating it with the group as its parent, so this function is not usually used.
 - `QAction * QActionGroup::checkedAction() const`: Returns the currently `checked` action in the group, or `0` if `none` are `checked`.
-- `void QActionGroup::hovered(QAction * action) [signal]`: This `signal` is emitted when the given `action` in the action group is highlighted by the user; for example, when the user pauses with the cursor over a menu option, toolbar button, or presses an action's shortcut key combination.
+- `void QActionGroup::hovered(QAction * action) [signal]`: This signal is emitted when the given `action` in the action group is highlighted by the user; for example, when the user pauses with the cursor over a menu option, toolbar button, or presses an action's shortcut key combination.
 - `void QActionGroup::removeAction(QAction * action)`: Removes the `action` from this group. The `action` will have no parent as a result.
-- `void QActionGroup::setDisabled(bool b) [slot]`: This is a convenience function for the `enabled` property, that is useful for `signals--slots` connections. If `b` is `true`, the action group is `disabled`; otherwise it is `enabled`.
-- `void QActionGroup::triggered(QAction * action) [signal]`: This `signal` is emitted when the given `action` in the action group is `activated` by the user; for example, when the user clicks a menu option, toolbar button, or presses an action's shortcut key combination. Connect to this `signal` for command actions.
+- `void QActionGroup::setDisabled(bool b) [slot]`: This is a convenience function for the `enabled` property, that is useful for `signals <--> slots` connections. If `b` is `true`, the action group is `disabled`; otherwise it is `enabled`.
+- `void QActionGroup::triggered(QAction * action) [signal]`: This signal is emitted when the given `action` in the action group is activated by the user; for example, when the user clicks a menu option, toolbar button, or presses an action's shortcut key combination. Connect to this signal for command actions.

@@ -141,12 +141,12 @@ addWidget ( QWidget *, int stretch = 0, Qt::Alignment alignment = 0 );
 QHBoxLayout *pHLayout = new QHBoxLayout();
 pHLayout->addStretch();
 /* 水平居左，垂直居上 */
-pHLayout->addWidget ( pButton1, 0 , Qt::AlignLeft | Qt::AlignTop );
-pHLayout->addWidget ( pButton2, 0 , Qt::AlignLeft | Qt::AlignTop );
+pHLayout->addWidget ( pButton1, 0, Qt::AlignLeft | Qt::AlignTop );
+pHLayout->addWidget ( pButton2, 0, Qt::AlignLeft | Qt::AlignTop );
 pHLayout->addWidget ( pButton3 );
 /* 水平居左，垂直居下 */
-pHLayout->addWidget ( pButton4, 0 , Qt::AlignLeft | Qt::AlignBottom );
-pHLayout->addWidget ( pButton5, 0 , Qt::AlignLeft | Qt::AlignBottom );
+pHLayout->addWidget ( pButton4, 0, Qt::AlignLeft | Qt::AlignBottom );
+pHLayout->addWidget ( pButton5, 0, Qt::AlignLeft | Qt::AlignBottom );
 pHLayout->setSpacing ( 10 );
 ```
 
