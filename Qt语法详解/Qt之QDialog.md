@@ -43,19 +43,16 @@ int main ( int argc, char *argv[] ) {
 #include <QWidget>
 ​
 namespace Ui {
-class MyWidget;
+    class MyWidget;
 }
 ​
 class MyWidget : public QWidget {
     Q_OBJECT
-​
 public:
     explicit MyWidget ( QWidget *parent = 0 );
     ~MyWidget();
-​
 private:
     Ui::MyWidget *ui;
-​
 public slots:
     void showChildDialog();
 };
@@ -111,14 +108,11 @@ namespace Ui {
 ​
 class MyDialog : public QDialog {
     Q_OBJECT
-​
 public:
     explicit MyDialog ( QWidget *parent = 0 );
     ~MyDialog();
-​
 private slots:
     void on_pushButton_clicked();
-​
 private:
     Ui::MyDialog *ui;
 };
@@ -140,18 +134,14 @@ namespace Ui {
 ​
 class MyWidget : public QWidget {
     Q_OBJECT
-​
 public:
     explicit MyWidget ( QWidget *parent = 0 );
     ~MyWidget();
-​
 private:
     Ui::MyWidget *ui;
-​
 public slots:
     void on_showChildButton_clicked();
-​
-  private slots:
+private slots:
     void on_pushButton_clicked();
 };
 ​
@@ -226,8 +216,7 @@ int main ( int argc, char *argv[] ) {
     if ( dialog.exec() == QDialog::Accepted ) { /* 判断dialog执行结果 */
         w.show(); /* 如果是按下了“进入主界面”按钮，则显示主界面 */
         return a.exec(); /* 程序正常运行 */
-    }
-    else {
+    } else {
         return 0; /* 否则，退出程序 */
     }
 }
