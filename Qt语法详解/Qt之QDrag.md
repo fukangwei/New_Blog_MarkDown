@@ -6,7 +6,7 @@ categories: Qt语法详解
 &emsp;&emsp;The `QDrag` class provides support for `MIME-based` drag and drop data transfer.
 
 Header  | Inherits
---------|------------
+--------|---------
 `QDrag` | `QObject`
 
 ### Public Functions
@@ -35,7 +35,7 @@ Return           | Function
 ### Detailed Description
 
 &emsp;&emsp;The `QDrag` class provides support for `MIME-based` drag and drop data transfer.
-&emsp;&emsp;`Drag` and drop is an intuitive way for users to copy or move data around in an application, and is used in many desktop environments as a mechanism for copying data between applications. `Drag` and drop support in `Qt` is centered around the `QDrag` class that handles most of the details of a drag and drop operation.
+&emsp;&emsp;Drag and drop is an intuitive way for users to copy or move data around in an application, and is used in many desktop environments as a mechanism for copying data between applications. Drag and drop support in `Qt` is centered around the `QDrag` class that handles most of the details of a drag and drop operation.
 &emsp;&emsp;The data to be transferred by the drag and drop operation is contained in a `QMimeData` object. This is specified with the `setMimeData()` function in the following way:
 
 ``` cpp
@@ -69,8 +69,8 @@ drag->setHotSpot ( QPoint ( drag->pixmap().width() / 2, drag->pixmap().height() 
 - `QPixmap QDrag::pixmap() const`: Returns the pixmap used to represent the data in a drag and drop operation.
 - `void QDrag::setDragCursor(const QPixmap & cursor, Qt::DropAction action)`: Sets the drag `cursor` for the `action`. This allows you to override the default native cursors. To revert to using the native `cursor` for `action` pass in a null `QPixmap` as `cursor`. The `action` can only be `CopyAction`, `MoveAction` or `LinkAction`. All other values of `DropAction` are ignored.
 - `void QDrag::setHotSpot(const QPoint & hotspot)`: Sets the position of the hot spot relative to the `top-left` corner of the pixmap used to the point specified by `hotspot`. **Note**: on `X11`, the pixmap may not be able to keep up with the mouse movements if the hot spot causes the pixmap to be displayed directly under the cursor.
-- `void QDrag::setMimeData(QMimeData * data)`: Sets the `data` to be sent to the given `MIME` data. Ownership of the data is transferred to the `QDrag` object.
-- `void QDrag::setPixmap(const QPixmap & pixmap)`: Sets `pixmap` as the `pixmap` used to represent the data in a drag and drop operation. You can only set a `pixmap` before the drag is started.
+- `void QDrag::setMimeData(QMimeData * data)`: Sets the data to be sent to the given `MIME` `data`. Ownership of the data is transferred to the `QDrag` object.
+- `void QDrag::setPixmap(const QPixmap & pixmap)`: Sets pixmap as the `pixmap` used to represent the data in a drag and drop operation. You can only set a pixmap before the drag is started.
 - `QWidget * QDrag::source() const`: Returns the source of the drag object. This is the widget where the drag and drop operation originated.
 - `QWidget * QDrag::target() const`: Returns the target of the drag and drop operation. This is the widget where the drag object was dropped.
 - `void QDrag::targetChanged(QWidget * newTarget) [signal]`: This `signal` is emitted when the target of the drag and drop operation changes, with `newTarget` the new target.
