@@ -6,7 +6,7 @@ categories: Qt语法详解
 &emsp;&emsp;The `QHash` class is a template class that provides a `hash-table-based` dictionary.
 
 Header  | Inherited By
---------|----------------
+--------|-------------
 `QHash` | `QMultiHash`
 
 **Note**: All functions in this class are reentrant.
@@ -139,7 +139,7 @@ if ( hash.contains ( "TIMEOUT" ) ) {
 int timeout = hash.value ( "TIMEOUT", 30 );
 ```
 
-&emsp;&emsp;In general, we recommend that you use `contains()` and `value()` rather than `operator[]()` for looking up a key in a hash. The reason is that `operator[]()` silently inserts an item into the hash if no item exists with the same key (unless the hash is const). For example, the following code snippet will create `1000` items in memory:
+&emsp;&emsp;In general, we recommend that you use `contains()` and `value()` rather than `operator[]()` for looking up a key in a hash. The reason is that `operator[]()` silently inserts an item into the hash if no item exists with the same key (unless the hash is `const`). For example, the following code snippet will create `1000` items in memory:
 
 ``` cpp
 /* WRONG */
@@ -219,7 +219,6 @@ foreach ( int value, hash ) {
 &emsp;&emsp;Items can be removed from the hash in several ways. One way is to call `remove()`; this will remove any item with the given key. Another way is to use `QMutableHashIterator::remove()`. In addition, you can clear the entire hash using `clear()`.
 &emsp;&emsp;`QHash's` key and value data types must be assignable data types. You cannot, for example, store a `QWidget` as a value; instead, store a `QWidget *`. In addition, `QHash's` key type must provide `operator==()`, and there must also be a global `qHash()` function that returns a hash value for an argument of the key's type.
 &emsp;&emsp;Here's a list of the `C++` and `Qt` types that can serve as keys in a `QHash`: any integer type (`char`, `unsigned long`, etc.), any pointer type, `QChar`, `QString`, and `QByteArray`. For all of these, the `QHash` header defines a `qHash()` function that computes an adequate hash value. If you want to use other types as the key, make sure that you provide `operator==()` and a `qHash()` implementation.
-&emsp;&emsp;Example:
 
 ``` cpp
 #ifndef EMPLOYEE_H
@@ -230,7 +229,6 @@ public:
     Employee() {}
     Employee ( const QString &name, const QDate &dateOfBirth );
     ...
-​
 private:
     QString myName;
     QDate myDateOfBirth;
@@ -258,7 +256,7 @@ inline uint qHash ( const Employee &key ) {
 - typedef `QHash::difference_type`: Typedef for `ptrdiff_t`. Provided for `STL` compatibility.
 - typedef `QHash::key_type`: Typedef for `Key`. Provided for `STL` compatibility.
 - typedef `QHash::mapped_type`: Typedef for `T`. Provided for `STL` compatibility.
-- typedef `QHash::size_type` -- Typedef for int. Provided for STL compatibility.
+- typedef `QHash::size_type`: Typedef for `int`. Provided for `STL` compatibility.
 
 ### Member Function Documentation
 
@@ -288,8 +286,7 @@ QHash<QObject *, int>::iterator i = objectHash.find ( obj );
 while ( i != objectHash.end() && i.key() == obj ) {
     if ( i.value() == 0 ) {
         i = objectHash.erase ( i );
-    }
-    else {
+    } else {
         ++i;
     }
 }
