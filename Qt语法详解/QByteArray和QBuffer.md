@@ -42,7 +42,7 @@ for ( int i = 0; i < array.size(); ++i ) {
 
 &emsp;&emsp;4. 可以使用`left`、`right`或者`mid`来实现一次取出多个字符：
 
-- `QByteArray QByteArray::left(int len) const`: Returns a byte array that contains the leftmost `len` bytes of this byte array. The entire byte array is returned if len is greater than `size()`. Example:
+- `QByteArray QByteArray::left(int len) const`: Returns a byte array that contains the leftmost `len` bytes of this byte array. The entire byte array is returned if `len` is greater than `size()`. Example:
 
 ``` cpp
 QByteArray x ( "Pineapple" );
@@ -197,10 +197,11 @@ QBuffer::~QBuffer ()
 
 &emsp;&emsp;其它函数如下：
 
-``` cpp
-bool QBuffer::atEnd () const [virtual]
-QByteArray &QBuffer::buffer ()
-const QByteArray &QBuffer::buffer () const
+Return | Function
+---------|--------
+`bool`               | `QBuffer::atEnd () const [virtual]`
+`QByteArray &`       | `QBuffer::buffer ()`
+`const QByteArray &` | `QBuffer::buffer () const`
 bool QBuffer::canReadLine () const [virtual]
 void QBuffer::close () [virtual]
 const QByteArray &QBuffer::data () const
@@ -213,7 +214,6 @@ void QBuffer::setData ( const QByteArray &data )
 void QBuffer::setData ( const char *data, int size )
 qint64 QBuffer::size () const [virtual]
 qint64 QBuffer::writeData ( const char *data, qint64 len ) [virtual protected]
-```
 
 &emsp;&emsp;示例如下：
 
