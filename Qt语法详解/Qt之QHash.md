@@ -325,7 +325,7 @@ for ( int i = 0; i < 20000; ++i ) {
 }
 ```
 
-&emsp;&emsp;Ideally, size should be slightly more than the maximum number of items expected in the hash. size doesn't have to be prime, because `QHash` will use a prime number internally anyway. If size is an underestimate, the worst that will happen is that the `QHash` will be a bit slower. In general, you will rarely ever need to call this function. `QHash's` internal hash table automatically shrinks or grows to provide good performance without wasting too much memory.
+Ideally, `size` should be slightly more than the maximum number of items expected in the hash. `size` doesn't have to be prime, because `QHash` will use a prime number internally anyway. If `size` is an underestimate, the worst that will happen is that the `QHash` will be a bit slower. In general, you will rarely ever need to call this function. `QHash's` internal hash table automatically shrinks or grows to provide good performance without wasting too much memory.
 
 - `int QHash::size() const`: Returns the number of items in the hash.
 - `void QHash::squeeze()`: Reduces the size of the `QHash's` internal hash table to save memory. The sole purpose of this function is to provide a means of fine tuning `QHash's` memory usage. In general, you will rarely ever need to call this function.
