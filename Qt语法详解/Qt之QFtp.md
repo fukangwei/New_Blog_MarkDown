@@ -67,7 +67,7 @@ done ( false )
 ```
 
 如果要显示进度条以通知用户下载进度，上述示例中的`dataTransferProgress`信号就会很有用。`readyRead`信号告诉你有数据准备好被读取，然后可以使用`bytesAvailable`函数查询数据量，并且可以使用`read`或`readAll`函数读取数据量。
-&emsp;&emsp;如果上述示例登录失败(例如用户名或密码错误)，信号将如下所示：
+&emsp;&emsp;如果上述示例登录失败(例如用户名或密码错误)，信号的流程显示如下：
 
 ``` cpp
 commandStarted ( 1 )
@@ -122,10 +122,10 @@ ftp->list();
 这里只列出文件的一部分信息，其他更多信息请参考`QUrlInfo`。输出如下：
 
 ``` cpp
-"c++"      29 "1000" "1000" "十一月 28 2016" true
-"hello.sh" 55 "1000" "1000" "十月 20 2016"   false
-"Linux"    30 "1000" "1000" "十一月 28 2016" true
-"Python"   21 "1000" "1000" "十一月 28 2016" true
+"c++"      29 "1000" "1000" "十一月 28 2016" true
+"hello.sh" 55 "1000" "1000" "十月 20 2016"   false
+"Linux"    30 "1000" "1000" "十一月 28 2016" true
+"Python"   21 "1000" "1000" "十一月 28 2016" true
 ```
 
 可以和服务端比对一下：
@@ -216,8 +216,7 @@ if ( !m_file->open ( QIODevice::WriteOnly ) ) {
     m_file->remove();
     delete m_file;
     m_file = NULL;
-}
-else {
+} else {
     ftp->get ( "Qt.zip", m_file ); /* 下载文件 */
 }
 ```
@@ -225,7 +224,7 @@ else {
 &emsp;&emsp;当前的状态`QFtp::State`由`state`返回，当状态改变时，发出`stateChanged`信号，参数是连接的新状态。该信号通常用于`connectToHost`或者`close`命令，也可以`自发地`发射，例如当服务器意外关闭连接时。
 
 常量                | 值  | 描述
---------------------|-----|---------------------
+--------------------|-----|----
 `QFtp::Unconnected` | `0` | 没有连接到主机
 `QFtp::HostLookup`  | `1` | 正在进行主机名查找
 `QFtp::Connecting`  | `2` | 正在尝试连接到主机
@@ -238,36 +237,24 @@ else {
 ``` cpp
 void FtpWindow::stateChanged ( int state ) {
     switch ( state ) {
-        case QFtp::Unconnected: {
-                stateLabel->setText ( QStringLiteral ( "没有连接到主机" ) );
-                break;
-            }
-​
-        case QFtp::HostLookup: {
-                stateLabel->setText ( QStringLiteral ( "正在进行主机名查找" ) );
-                break;
-            }
-​
-        case QFtp::Connecting: {
-                stateLabel->setText ( QStringLiteral ( "正在尝试连接到主机" ) );
-                break;
-            }
-​
-        case QFtp::Connected: {
-                stateLabel->setText ( QStringLiteral ( "已实现与主机的连接" ) );
-                break;
-            }
-​
-        case QFtp::LoggedIn: {
-                stateLabel->setText ( QStringLiteral ( "已实现连接和用户登录" ) );
-                break;
-            }
-​
-        case QFtp::Closing: {
-                stateLabel->setText ( QStringLiteral ( "连接正在关闭•" ) );
-                break;
-            }
-​
+        case QFtp::Unconnected:
+            stateLabel->setText ( QStringLiteral ( "没有连接到主机" ) );
+            break;
+        case QFtp::HostLookup:
+            stateLabel->setText ( QStringLiteral ( "正在进行主机名查找" ) );
+            break;
+        case QFtp::Connecting:
+            stateLabel->setText ( QStringLiteral ( "正在尝试连接到主机" ) );
+            break;
+        case QFtp::Connected:
+            stateLabel->setText ( QStringLiteral ( "已实现与主机的连接" ) );
+            break;
+        case QFtp::LoggedIn:
+            stateLabel->setText ( QStringLiteral ( "已实现连接和用户登录" ) );
+            break;​
+        case QFtp::Closing:
+            stateLabel->setText ( QStringLiteral ( "连接正在关闭•" ) );
+            break;
         default:
             break;
     }
@@ -277,7 +264,7 @@ void FtpWindow::stateChanged ( int state ) {
 &emsp;&emsp;`currentId`和`currentCommand`提供了有关当前执行命令的信息。`currentCommand`返回当前`FTP`的命令类型`QFtp::Command`，如果没有命令正在执行，则返回`None`。
 
 常量                    | 值   | 描述
-------------------------|------|--------------
+------------------------|------|-----
 `QFtp::None`            | `0`  | 未执行任何命令
 `QFtp::SetTransferMode` | `1`  | 设置传输模式
 `QFtp::SetProxy`        | `2`  | 切换代理打开或关闭
@@ -301,11 +288,9 @@ void FtpWindow::commandStarted ( int id ) {
     QFtp::Command command = ftp->currentCommand();
 ​
     switch ( command ) {
-        case QFtp::List: { /* 正在执行list：列出目录下的文件 */
-                fileListTree->clear(); /* 清除目录视图QTreeWidget */
-                break;
-            }
-​
+        case QFtp::List: /* 正在执行list：列出目录下的文件 */
+            fileListTree->clear(); /* 清除目录视图QTreeWidget */
+            break;
         default:
             break;
     }
@@ -317,7 +302,7 @@ void FtpWindow::commandStarted ( int id ) {
 &emsp;&emsp;通过`error`和`errorString`返回最后一次发生的错误。当接收到`commandFinished`或者`done`信号时，如果标识`error`的`bool`参数为`true`，这就非常有用了。`error`返回的是一个`QFtp::Error`枚举类型，用来标识发生的错误：
 
 常量                      | 值  | 描述
---------------------------|-----|-----------
+--------------------------|-----|----
 `QFtp::NoError`           | `0` | 没有发生错误
 `QFtp::HostNotFound`      | `2` | 主机名查找失败
 `QFtp::ConnectionRefused` | `3` | 服务器拒绝连接
@@ -333,23 +318,19 @@ void FtpWindow::commandFinished ( int id, bool error ) {
     QFtp::Command command = ftp->currentCommand();
 ​
     switch ( command ) {
-        case QFtp::ConnectToHost: { /* 连接FTP服务器 */
-                if ( error ) { /* 发生错误 */
-                    qDebug() << "Error " << ftp->error() << "ErrorString " << ftp->errorString();
-                    QMessageBox::information (
-                        this, "FTP",
-                        QStringLiteral ( "无法连接到FTP服务器，请检查主机名是否正确！" ) );
-                    ftp->abort();
-                    ftp->deleteLater();
-                    ftp = NULL;
-                }
-                else {
-                    qDebug() << QStringLiteral ( "登录FTP服务器" );
-                }
-​
-                break;
+        case QFtp::ConnectToHost: /* 连接FTP服务器 */
+            if ( error ) { /* 发生错误 */
+                qDebug() << "Error " << ftp->error() << "ErrorString " << ftp->errorString();
+                QMessageBox::information (
+                    this, "FTP", QStringLiteral ( "无法连接到FTP服务器，请检查主机名是否正确！" ) );
+                ftp->abort();
+                ftp->deleteLater();
+                ftp = NULL;
+            } else {
+                qDebug() << QStringLiteral ( "登录FTP服务器" );
             }
 ​
+            break;
         default:
             break;
     }
@@ -359,7 +340,7 @@ void FtpWindow::commandFinished ( int id, bool error ) {
 &emsp;&emsp;设置文件传输模式是枚举变量`QFtp::TransferMode`。`FTP`使用两个套接字连接：一个用于命令，另一个用于发送数据。虽然命令连接始终由客户端发起，但第二个连接可以由客户端或服务器发起。此枚举定义客户端(被动模式)还是服务器(活动模式)应设置数据连接。
 
 常量            | 值  | 描述
-----------------|-----|------------------
+----------------|-----|-----
 `QFtp::Passive` | `1` | 客户端连接到服务器以传输其数据
 `QFtp::Active`  | `0` | 服务器连接到客户端以传输其数据
 
