@@ -269,16 +269,16 @@ echo '输入 1 到 4 之间的数字:'
 echo '你输入的数字为:'
 read aNum
 case $aNum in
-    1) echo '你选择了 1'
-    ;;
-    2) echo '你选择了 2'
-    ;;
-    3) echo '你选择了 3'
-    ;;
-    4) echo '你选择了 4'
-    ;;
-    *) echo '你没有输入 1 到 4 之间的数字'
-    ;;
+    1) echo '你选择了 1'
+    ;;
+    2) echo '你选择了 2'
+    ;;
+    3) echo '你选择了 3'
+    ;;
+    4) echo '你选择了 4'
+    ;;
+    *) echo '你没有输入 1 到 4 之间的数字'
+    ;;
 esac
 ```
 
@@ -293,8 +293,8 @@ read Keypress  
 case "$Keypress" in
     [[:lower:]] ) echo "Lowercase letter";;  # 小写字母
     [[:upper:]] ) echo "Uppercase letter";;  # 大写字母
-    [0-9]       ) echo "Digit";;  # 单个数字
-    *           ) echo "Punctuation, whitespace, or other";;  # 其他字符  
+    [0-9]       ) echo "Digit";;  # 单个数字
+    *           ) echo "Punctuation, whitespace, or other";;  # 其他字符  
 esac
 ​
 exit 0
@@ -310,15 +310,15 @@ exit 0
 ​
 while :
 do
-    echo -n "输入 1 到 5 之间的数字:"
-    read aNum
-    case $aNum in
-        1|2|3|4|5) echo "你输入的数字为 $aNum!"
-        ;;
-        *) echo "你输入的数字不是 1 到 5 之间的! 游戏结束"
-            break
-        ;;
-    esac
+    echo -n "输入 1 到 5 之间的数字:"
+    read aNum
+    case $aNum in
+        1|2|3|4|5) echo "你输入的数字为 $aNum!"
+        ;;
+        *) echo "你输入的数字不是 1 到 5 之间的! 游戏结束"
+            break
+        ;;
+    esac
 done
 ```
 
@@ -328,16 +328,16 @@ done
 #!/bin/bash
 while :
 do
-    echo -n "输入 1 到 5 之间的数字: "
-    read aNum
-    case $aNum in
-        1|2|3|4|5) echo "你输入的数字为 $aNum!"
-        ;;
-        *) echo "你输入的数字不是 1 到 5 之间的!"
-            continue
-            echo "游戏结束"
-        ;;
-    esac
+    echo -n "输入 1 到 5 之间的数字: "
+    read aNum
+    case $aNum in
+        1|2|3|4|5) echo "你输入的数字为 $aNum!"
+        ;;
+        *) echo "你输入的数字不是 1 到 5 之间的!"
+            continue
+            echo "游戏结束"
+        ;;
+    esac
 done
 ```
 
@@ -348,8 +348,8 @@ done
 &emsp;&emsp;列表`for`循环如下：
 
 ``` bash
-#!/bin/bash  
-​
+#!/bin/bash
+
 for varible1 in {1..5}  # for varible1 in 1 2 3 4 5  
 do
     echo "Hello, Welcome $varible1 times"
@@ -360,7 +360,7 @@ done
 
 ``` bash
 #!/bin/bash
-sum=0  
+sum=0
 ​
 for i in {1..100..2}  
 do
@@ -401,7 +401,7 @@ done
 
 ``` bash
 #!/bin/bash
-​
+
 echo "number of arguments is $#"
 echo "What you input is: "
 ​
@@ -415,7 +415,7 @@ done
 &emsp;&emsp;类`C`风格的`for`循环也被称为`计次循环`：
 
 ``` bash
-#!/bin/bash  
+#!/bin/bash
 
 for((integer=1; integer<=5; integer++))  
 do  
