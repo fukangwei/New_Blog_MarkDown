@@ -1,7 +1,7 @@
 ---
 title: Shell流程控制
 date: 2019-01-21 09:41:20
-tags:
+categories: Shell编程
 ---
 ### if else
 
@@ -10,10 +10,10 @@ tags:
 ``` bash
 if condition
 then
-    command1
-    command2
-    ...
-    commandN
+    command1
+    command2
+    ...
+    commandN
 fi
 ```
 
@@ -28,12 +28,12 @@ if [ $(ps -ef | grep -c "ssh") -gt 1 ]; then echo "true"; fi
 ``` bash
 if condition
 then
-    command1
-    command2
-    ...
-    commandN
+    command1
+    command2
+    ...
+    commandN
 else
-    command
+    command
 fi
 ```
 
@@ -42,12 +42,12 @@ fi
 ``` bash
 if condition1
 then
-    command1
+    command1
 elif condition2
 then
-    command2
+    command2
 else
-    commandN
+    commandN
 fi
 ```
 
@@ -60,13 +60,13 @@ a=10
 b=20
 if [ $a == $b ]
 then
-   echo "a 等于 b"
+    echo "a 等于 b"
 elif [ $a -gt $b ]
 then
-   echo "a 大于 b"
+    echo "a 大于 b"
 elif [ $a -lt $b ]
 then
-   echo "a 小于 b"
+    echo "a 小于 b"
 else
    echo "没有符合的条件"
 fi
@@ -83,9 +83,9 @@ num2=$[1+5]
 ​
 if test $[num1] -eq $[num2]
 then
-    echo '两个数字相等!'
+    echo '两个数字相等!'
 else
-    echo '两个数字不相等!'
+    echo '两个数字不相等!'
 fi
 ```
 
@@ -98,10 +98,10 @@ fi
 ``` bash
 for var in item1 item2 ... itemN
 do
-    command1
-    command2
-    ...
-    commandN
+    command1
+    command2
+    ...
+    commandN
 done
 ```
 
@@ -116,7 +116,7 @@ for var in item1 item2 ... itemN; do command1; command2… done;
 ``` bash
 for loop in 1 2 3 4 5
 do
-    echo "The value is: $loop"
+    echo "The value is: $loop"
 done
 ```
 
@@ -135,7 +135,7 @@ The value is: 5
 ``` bash
 for str in 'This is a string'
 do
-    echo $str
+    echo $str
 done
 ```
 
@@ -148,7 +148,7 @@ done
 ``` bash
 while condition
 do
-    command
+    command
 done
 ```
 
@@ -183,7 +183,7 @@ echo '按下 <CTRL-D> 退出'
 echo -n '输入你最喜欢的电影名: '
 while read FILM
 do
-    echo "是的！$FILM 是一部好电影"
+    echo "是的！$FILM 是一部好电影"
 done
 ```
 
@@ -202,12 +202,12 @@ done
 ``` bash
 while :
 do
-    command
+    command
 done
 # 或者
 while true
 do
-    command
+    command
 done
 # 或者
 for (( ; ; ))
@@ -220,7 +220,7 @@ for (( ; ; ))
 ``` bash
 until condition
 do
-    command
+    command
 done
 ```
 
@@ -233,9 +233,9 @@ i=0
 ​
 until [[ "$i" -gt 5 ]]
 do
-    let "square=i*i"
-    echo "$i * $i = $square"
-    let "i++"
+    let "square=i*i"
+    echo "$i * $i = $square"
+    let "i++"
 done
 ```
 
@@ -246,17 +246,17 @@ done
 ``` bash
 case 值 in
 模式1)
-    command1
-    command2
-    # ...
-    commandN
-    ;;
+    command1
+    command2
+    # ...
+    commandN
+    ;;
 模式2)
-    command1
-    command2
-    # ...
-    commandN
-    ;;
+    command1
+    command2
+    # ...
+    commandN
+    ;;
 esac
 ```
 

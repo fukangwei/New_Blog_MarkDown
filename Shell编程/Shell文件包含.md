@@ -1,7 +1,7 @@
 ---
 title: Shell文件包含
 date: 2019-01-22 08:22:03
-tags:
+categories: Shell编程
 ---
 &emsp;&emsp;`Shell`可以包含外部脚本，这样可以很方便地封装一些公用的代码。`Shell`文件包含的语法格式如下：
 

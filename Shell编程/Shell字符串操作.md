@@ -1,7 +1,7 @@
 ---
 title: Shell字符串操作
 date: 2019-01-19 19:23:09
-tags:
+categories: Shell编程
 ---
 &emsp;&emsp;读取字符串值：
 

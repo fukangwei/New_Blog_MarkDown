@@ -1,7 +1,7 @@
 ---
 title: ssh命令
 date: 2019-01-19 18:26:24
-tags:
+categories: Shell编程
 ---
 ### 基本用法
 

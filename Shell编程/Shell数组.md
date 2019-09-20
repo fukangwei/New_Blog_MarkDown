@@ -1,7 +1,7 @@
 ---
 title: Shell数组
 date: 2019-01-21 15:46:11
-tags:
+categories: Shell编程
 ---
 &emsp;&emsp;`bash`支持一维数组，不支持多维数组，并且没有限定数组的大小。类似于`C`语言，数组元素的下标由`0`开始编号。获取数组中的元素要利用下标，下标可以是整数或算术表达式，其值应大于或等于`0`。
 
@@ -17,12 +17,12 @@ tags:
 
 ``` bash
 array_name=(value0 value1 value2 value3)
-# 或者如下所示
+# 或者如下
 array_name=(
-value0
-value1
-value2
-value3
+    value0
+    value1
+    value2
+    value3
 )
 ```
 
