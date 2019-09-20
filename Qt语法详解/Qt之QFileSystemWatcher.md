@@ -36,19 +36,15 @@ categories: Qt语法详解
 ​
 class FileSystemWatcher : public QObject {
     Q_OBJECT
-​
 public:
     static void addWatchPath ( QString path );
-​
 public slots:
     /* 目录更新时调用，path是监控的路径 */
     void directoryUpdated ( const QString &path );
     /* 文件被修改时调用，path是监控的路径 */
     void fileUpdated ( const QString &path );
-​
 private:
     explicit FileSystemWatcher ( QObject *parent = 0 );
-​
 private:
     static FileSystemWatcher *m_pInstance;
     QFileSystemWatcher *m_pSystemWatcher;
@@ -102,7 +98,7 @@ void FileSystemWatcher::directoryUpdated ( const QString &path ) {
     QStringList currEntryList = m_currentContentsMap[path];
     const QDir dir ( path );
     QStringList newEntryList = \
-        dir.entryList ( QDir::NoDotAndDotDot  | QDir::AllDirs | QDir::Files, QDir::DirsFirst );
+        dir.entryList ( QDir::NoDotAndDotDot | QDir::AllDirs | QDir::Files, QDir::DirsFirst );
     QSet<QString> newDirSet = QSet<QString>::fromList ( newEntryList );
     QSet<QString> currentDirSet = QSet<QString>::fromList ( currEntryList );
     /* 添加了文件 */
@@ -120,8 +116,7 @@ void FileSystemWatcher::directoryUpdated ( const QString &path ) {
             qDebug() << QString ( "File Renamed from %1 to %2" ).arg (
                 deleteFile.first() ).arg ( newFile.first() );
         }
-    }
-    else {
+    } else {
         /* 添加新文件/目录至Dir */
         if ( !newFile.isEmpty() ) {
             qDebug() << "New Files/Dirs added: " << newFile;

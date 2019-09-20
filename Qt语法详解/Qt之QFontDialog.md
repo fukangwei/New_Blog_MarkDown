@@ -18,8 +18,7 @@ QFont font = QFontDialog::getFont ( &ok, QFont ( "Helvetica [Cronyx]", 10 ), thi
 ​
 if ( ok ) {
     /* font被设置为用户选择的字体 */
-}
-else {
+} else {
     /* 用户取消这个对话框，font被设置为初始值，在这里就是“Helvetica [Cronyx], 10” */
 }
 ```
@@ -49,8 +48,7 @@ QFont font = QFontDialog::getFont ( &ok, this );
 ​
 if ( ok ) {
     /* font被设置为用户选择的字体 */
-}
-else {
+} else {
     /* 用户取消这个对话框，font被设置为默认应用程序字体，QApplication::font */
 }
 ```
