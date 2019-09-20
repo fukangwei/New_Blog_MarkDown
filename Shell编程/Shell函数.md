@@ -1,15 +1,15 @@
 ---
 title: Shell函数
 date: 2019-01-20 10:47:04
-tags:
+categories: Shell编程
 ---
 &emsp;&emsp;`shell`可以用户定义函数，然后在`shell`脚本中可以随便调用。`shell`中函数的定义格式如下：
 
 ``` bash
 [ function ] funname [()]
 {
-    action;
-    [return int;]
+    action;
+    [return int;]
 }
 ```
 
@@ -22,7 +22,7 @@ tags:
 #!/bin/bash
 
 demoFun() {
-    echo "这是我的第一个 shell 函数!"
+    echo "这是我的第一个 shell 函数!"
 }
 
 echo "-----函数开始执行-----"
@@ -44,13 +44,13 @@ echo "-----函数执行完毕-----"
 #!/bin/bash
 
 funWithReturn(){
-    echo "这个函数会对输入的两个数字进行相加运算..."
-    echo "输入第一个数字: "
-    read aNum
-    echo "输入第二个数字: "
-    read anotherNum
-    echo "两个数字分别为 $aNum 和 $anotherNum !"
-    return $(($aNum+$anotherNum))
+    echo "这个函数会对输入的两个数字进行相加运算..."
+    echo "输入第一个数字: "
+    read aNum
+    echo "输入第二个数字: "
+    read anotherNum
+    echo "两个数字分别为 $aNum 和 $anotherNum !"
+    return $(($aNum+$anotherNum))
 }
 ​
 funWithReturn
@@ -79,13 +79,13 @@ echo "输入的两个数字之和为 $? !"
 #!/bin/bash
 
 funWithParam(){
-    echo "第一个参数为 $1 !"
-    echo "第二个参数为 $2 !"
-    echo "第十个参数为 $10 !"
-    echo "第十个参数为 ${10} !"
-    echo "第十一个参数为 ${11} !"
-    echo "参数总数有 $# 个!"
-    echo "作为一个字符串输出所有参数 $* !"
+    echo "第一个参数为 $1 !"
+    echo "第二个参数为 $2 !"
+    echo "第十个参数为 $10 !"
+    echo "第十个参数为 ${10} !"
+    echo "第十一个参数为 ${11} !"
+    echo "参数总数有 $# 个!"
+    echo "作为一个字符串输出所有参数 $* !"
 }
 ​
 funWithParam 1 2 3 4 5 6 7 8 9 34 73
@@ -135,20 +135,20 @@ name
 
 ### 数组参数
 
-&emsp;&emsp;`Shell`使用数组作为函数参数的方法如下所示：
+&emsp;&emsp;`Shell`使用数组作为函数参数的方法如下：
 
 ``` bash
 #!/bin/bash
 ​
 function showArr(){
-    arr=$1
-    for i in ${arr[*]}; do
-        echo $i
-    done
+    arr=$1
+
+    for i in ${arr[*]}; do
+        echo $i
+    done
 }
 ​
 regions=("GZ" "SH" "BJ")
-​
 showArr "${regions[*]}"
 ​
 exit 0
