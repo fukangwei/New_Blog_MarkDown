@@ -3,7 +3,7 @@ title: Qt之QCloseEvent
 date: 2019-01-02 10:40:04
 categories: Qt语法详解
 ---
-&emsp;&emsp;使用软件时常常会遇到这样的情况：点击关闭选项后，程序没有马上退出，而是跳出一个对话框，问是否确定退出软件。`Qt`同样提供了一个函数来实现这个功能，那就是`QCloseEvent`，其函数原型如下所示：
+&emsp;&emsp;使用软件时常常会遇到这样的情况：点击关闭选项后，程序没有马上退出，而是跳出一个对话框，问是否确定退出软件。`Qt`同样提供了一个函数来实现这个功能，那就是`QCloseEvent`：
 
 ``` cpp
 void QMainFrame::closeEvent ( QCloseEvent *event ) [virtual protected]
@@ -26,8 +26,7 @@ void MainWindow::closeEvent ( QCloseEvent *event ) {
 ​
     if ( ret == QMessageBox::Yes ) {
         event->accept(); /* 接受该信号，窗口关闭 */
-    }
-    else {
+    } else {
         event->ignore(); /* 忽略该信号，窗口不关闭 */
     }
 }

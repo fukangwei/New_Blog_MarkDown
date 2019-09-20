@@ -65,11 +65,9 @@ connect ( pCheckBox, SIGNAL ( stateChanged ( int ) ), this, SLOT ( onStateChange
 void MainWindow::onStateChanged ( int state ) {
     if ( state == Qt::Checked ) { /* 选中 */
         m_pLabel->setText ( "Checked" );
-    }
-    else if ( state == Qt::PartiallyChecked ) { /* 半选 */
+    } else if ( state == Qt::PartiallyChecked ) { /* 半选 */
         m_pLabel->setText ( "PartiallyChecked" );
-    }
-    else { /* 未选中，即Qt::Unchecked */
+    } else { /* 未选中，即Qt::Unchecked */
         m_pLabel->setText ( "Unchecked" );
     }
 }
