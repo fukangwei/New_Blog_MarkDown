@@ -127,7 +127,6 @@ int main ( int argc, char **argv ) {
 class ListWidget : public QWidget {
 public:
     ListWidget();
-​
 private:
     QLabel *label;
     QListWidget *list;
@@ -232,7 +231,6 @@ namespace Ui {
 ​
 class MainWindow : public QMainWindow {
     Q_OBJECT
-​
 public:
     explicit MainWindow ( QWidget *parent = 0 );
     ~MainWindow();
@@ -256,74 +254,74 @@ private slots:
 #include "ui_mainwindow.h"
 ​
 MainWindow::MainWindow ( QWidget *parent ) : QMainWindow ( parent ), ui ( new Ui::MainWindow ) {
-    ui->setupUi ( this );
-    this->setWindowTitle ( tr ( "listWidget学习" ) ); /* 设置标题框文本 */
-    ui->listWidget->setViewMode ( QListView::IconMode ); /* 设置显示模式为图标模式 */
-    // ui->listWidget->setViewMode ( QListView::ListMode ); /* 设置显示模式为列表模式 */
-    QObject::connect ( ui->AddButton, SIGNAL ( clicked() ), this, SLOT ( addbtn() ) );
-    QObject::connect ( ui->lineEdit, SIGNAL ( returnPressed() ), this, SLOT ( addbtn() ) );
-    QObject::connect ( ui->DeleteButton, SIGNAL ( clicked() ), this, SLOT ( deletebtn() ) );
-    QObject::connect ( ui->DelAllButton, SIGNAL ( clicked() ), this, SLOT ( delallbtn() ) );
-    QObject::connect ( ui->ShowDirButton, SIGNAL ( clicked() ), this, SLOT ( addallbtn() ) );
-    QObject::connect (
+    ui->setupUi ( this );
+    this->setWindowTitle ( tr ( "listWidget学习" ) ); /* 设置标题框文本 */
+    ui->listWidget->setViewMode ( QListView::IconMode ); /* 设置显示模式为图标模式 */
+    // ui->listWidget->setViewMode ( QListView::ListMode ); /* 设置显示模式为列表模式 */
+    QObject::connect ( ui->AddButton, SIGNAL ( clicked() ), this, SLOT ( addbtn() ) );
+    QObject::connect ( ui->lineEdit, SIGNAL ( returnPressed() ), this, SLOT ( addbtn() ) );
+    QObject::connect ( ui->DeleteButton, SIGNAL ( clicked() ), this, SLOT ( deletebtn() ) );
+    QObject::connect ( ui->DelAllButton, SIGNAL ( clicked() ), this, SLOT ( delallbtn() ) );
+    QObject::connect ( ui->ShowDirButton, SIGNAL ( clicked() ), this, SLOT ( addallbtn() ) );
+    QObject::connect (
         ui->listWidget, SIGNAL ( itemDoubleClicked ( QListWidgetItem * ) ),
         this, SLOT ( doubleclicked ( QListWidgetItem * ) ) );
 }
-​
+
 MainWindow::~MainWindow() {
     delete ui;
 }
 ​
 void MainWindow::addbtn() { /* 添加单个列表项 */
-    QString str = ui->lineEdit->text(); /* 获取行编辑框文本 */
-    QListWidgetItem *item = new QListWidgetItem;
-    item->setText ( str ); /* 设置列表项的文本 */
-    ui->listWidget->addItem ( item ); /* 加载列表项到列表框 */
-    // delete item; /* 此处若解除注释，将无法添加到列表框 */
-    // item = NULL;
-    ui->lineEdit->clear(); /* 清空行编辑框 */
+    QString str = ui->lineEdit->text(); /* 获取行编辑框文本 */
+    QListWidgetItem *item = new QListWidgetItem;
+    item->setText ( str ); /* 设置列表项的文本 */
+    ui->listWidget->addItem ( item ); /* 加载列表项到列表框 */
+    // delete item; /* 此处若解除注释，将无法添加到列表框 */
+    // item = NULL;
+    ui->lineEdit->clear(); /* 清空行编辑框 */
 }
 ​
 void MainWindow::deletebtn() { /* 删除单个列表项 */
     /* 获取列表项的指针 */
-    QListWidgetItem *item = ui->listWidget->takeItem ( ui->listWidget->currentRow() );
-    delete item; /* 释放指针所指向的列表项 */
+    QListWidgetItem *item = ui->listWidget->takeItem ( ui->listWidget->currentRow() );
+    delete item; /* 释放指针所指向的列表项 */
 }
 ​
 void MainWindow::delallbtn() { /* 删除多个列表项 */
-    int num = ui->listWidget->count(); /* 获取列表项的总数目 */
+    int num = ui->listWidget->count(); /* 获取列表项的总数目 */
     /* 将光标设置到列表框上，若注释该语句，则删除时，要手动将焦点设置到列表框，即点击列表项 */
-    ui->listWidget->setFocus();
+    ui->listWidget->setFocus();
 ​
-    for ( int i = 0; i < num; i++ ) { /* 逐个获取列表项的指针，并删除 */
-        QListWidgetItem *item = ui->listWidget->takeItem ( ui->listWidget->currentRow() );
-        delete item;
-    }
+    for ( int i = 0; i < num; i++ ) { /* 逐个获取列表项的指针，并删除 */
+        QListWidgetItem *item = ui->listWidget->takeItem ( ui->listWidget->currentRow() );
+        delete item;
+    }
 }
 ​
 void MainWindow::addallbtn() { /* 添加多个列表项 */
-    QStringList FileNames = QFileDialog::getOpenFileNames (
+    QStringList FileNames = QFileDialog::getOpenFileNames (
         this, "打开", QDir::currentPath(), "所有文件(*.*);;文本文档(*.txt)" );
-    //ui->listWidget->addItems ( FileNames ); /* 方法1：整体添加 */
-    /* 方法2：逐个添加 */
-    int index = 0, count = 0;
-    count = FileNames.count(); /* 获取打开文件的总数目 */
+    //ui->listWidget->addItems ( FileNames ); /* 方法1：整体添加 */
+    /* 方法2：逐个添加 */
+    int index = 0, count = 0;
+    count = FileNames.count(); /* 获取打开文件的总数目 */
 ​
-    // for(index = 0; index < count; index++) /* 这样会报错，无法先取出栈底元素 */
-    for ( index = count - 1; index >= 0; index-- ) { /* QList<QString>的数据结构是栈，只能从栈顶取元素 */
-        QListWidgetItem *item = new QListWidgetItem;
-        item->setText ( FileNames.takeAt ( index ) ); /* 逐个设置列表项的文本 */
-        // qDebug() << FileNames.takeAt( index );
-        ui->listWidget->addItem ( item ); /* 加载列表项到列表框 */
-    }
+    // for(index = 0; index < count; index++) /* 这样会报错，无法先取出栈底元素 */
+    for ( index = count - 1; index >= 0; index-- ) { /* QList<QString>的数据结构是栈，只能从栈顶取元素 */
+        QListWidgetItem *item = new QListWidgetItem;
+        item->setText ( FileNames.takeAt ( index ) ); /* 逐个设置列表项的文本 */
+        // qDebug() << FileNames.takeAt( index );
+        ui->listWidget->addItem ( item ); /* 加载列表项到列表框 */
+    }
 }
 ​
 void MainWindow::singleclicked ( QListWidgetItem *item ) { /* 列表项单击操作 */
-    QMessageBox::information ( this, "单击消息", "单击" + item->text() );
+    QMessageBox::information ( this, "单击消息", "单击" + item->text() );
 }
 ​
 void MainWindow::doubleclicked ( QListWidgetItem *item ) { /* 列表项双击操作 */
-    QMessageBox::information ( this, "双击消息", "双击" + item->text() );
+    QMessageBox::information ( this, "双击消息", "双击" + item->text() );
 }
 ```
 
@@ -357,7 +355,7 @@ Header        | Inherits
 ### Public Functions
 
 Return                     | Function
----------------------------|----------------------
+---------------------------|---------
                            | `QListWidget(QWidget * parent = 0)`
                            | `~QListWidget()`
 `void`                     | `addItem(const QString & label)`

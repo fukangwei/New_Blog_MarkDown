@@ -6,7 +6,7 @@ categories: Qt语法详解
 &emsp;&emsp;The `QList` class is a template class that provides lists.
 
 Header   | Inherited By
----------|----------------
+---------|-------------
 `QList`  | `QItemSelection`, `QQueue`, `QSignalSpy`, `QStringList` and `QTestEventList`
 
 **Note**: All functions in this class are reentrant.
@@ -305,7 +305,7 @@ list << "A" << "B" << "C" << "D" << "E" << "F";
 list.move ( 1, 4 ); /* list: ["A", "C", "D", "E", "B", "F"] */
 ```
 
-This is the same as `insert(to, takeAt(from))`. This function assumes that both from and to are at least `0` but less than `size()`. To avoid failure, test that both from and to are at least `0` and less than `size()`.
+This is the same as `insert(to, takeAt(from))`. This function assumes that both `from` and `to` are at least `0` but less than `size()`. To avoid failure, test that both `from` and `to` are at least `0` and less than `size()`.
 
 - `void QList::pop_back()`: This function is provided for `STL` compatibility. It is equivalent to `removeLast()`. The list must not be empty. If the list can be empty, call `isEmpty()` before calling this function.
 - `void QList::pop_front()`: This function is provided for `STL` compatibility. It is equivalent to `removeFirst()`. The list must not be empty. If the list can be empty, call `isEmpty()` before calling this function.
