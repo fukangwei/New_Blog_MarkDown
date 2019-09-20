@@ -242,9 +242,9 @@ bool QString::isEmpty () const;
 例如：
 
 ``` cpp
-QString().isEmpty(); /* returns true */
-QString ( "" ).isEmpty(); /* returns true */
-QString ( "x" ).isEmpty(); /* returns false */
+QString().isEmpty();         /* returns true  */
+QString ( "" ).isEmpty();    /* returns true  */
+QString ( "x" ).isEmpty();   /* returns false */
 QString ( "abc" ).isEmpty(); /* returns false */
 ```
 
@@ -257,8 +257,8 @@ bool QString::isNull () const;
 例如：
 
 ``` cpp
-QString().isNull(); /* returns true */
-QString ( "" ).isNull(); /* returns false */
+QString().isNull();         /* returns true  */
+QString ( "" ).isNull();    /* returns false */
 QString ( "abc" ).isNull(); /* returns false */
 ```
 
@@ -285,8 +285,8 @@ QString QString::mid ( int position, int n = -1 ) const;
 
 ``` cpp
 QString x = "Nine pineapples";
-QString y = x.mid ( 5, 4 ); /* y is "pine" */
-QString z = x.mid ( 5 ); /* z is "pineapples" */
+QString y = x.mid ( 5, 4 ); /* y is "pine"       */
+QString z = x.mid ( 5 );    /* z is "pineapples" */
 ```
 
 &emsp;&emsp;8. 删除字符串中的某个字符：
