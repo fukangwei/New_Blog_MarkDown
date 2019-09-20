@@ -202,7 +202,7 @@ Return             | Function
 - enum `QComboBox::InsertPolicy`: This enum specifies what the `QComboBox` should do when a new string is entered by the user.
 
 Constant                          | Value | Description
-----------------------------------|-------|----------------
+----------------------------------|-------|------------
 `QComboBox::NoInsert`             | `0`   | The string will not be inserted into the combobox.
 `QComboBox::InsertAtTop`          | `1`   | The string will be inserted as the first item in the combobox.
 `QComboBox::InsertAtCurrent`      | `2`   | The current item will be replaced by the string.
@@ -348,25 +348,24 @@ void setSizeAdjustPolicy ( SizeAdjustPolicy policy )
 - `void QComboBox::insertItem(int index, const QString & text, const QVariant & userData = QVariant())`: Inserts the `text` and `userData` (stored in the `Qt::UserRole`) into the combobox at the given `index`. If the `index` is equal to or higher than the total number of items, the new item is appended to the list of existing items. If the `index` is `0` or negative, the new item is prepended to the list of existing items.
 - `void QComboBox::insertItem(int index, const QIcon & icon, const QString & text, const QVariant & userData = QVariant())`: Inserts the `icon`, `text` and `userData` (stored in the `Qt::UserRole`) into the combobox at the given `index`. If the `index` is equal to or higher than the total number of items, the new item is appended to the list of existing items. If the `index` is `0` or negative, the new item is prepended to the list of existing items.
 - `void QComboBox::insertItems(int index, const QStringList & list)`: Inserts the strings from the `list` into the combobox as separate items, starting at the `index` specified. If the `index` is equal to or higher than the total number of items, the new items are appended to the list of existing items. If the `index` is `0` or negative, the new items are prepended to the list of existing items.
-
 - `void QComboBox::insertSeparator(int index)`: Inserts a separator item into the combobox at the given index. If the index is equal to or higher than the total number of items, the new item is appended to the list of existing items. If the index is zero or negative, the new item is prepended to the list of existing items.
 - `QVariant QComboBox::itemData(int index, int role = Qt::UserRole) const`: Returns the data for the given role in the given index in the combobox, or QVariant::Invalid if there is no data for this role.
 - `QAbstractItemDelegate * QComboBox::itemDelegate() const`: Returns the item delegate used by the popup list view.
 - `QIcon QComboBox::itemIcon(int index) const`: Returns the icon for the given index in the combobox.
 - `QString QComboBox::itemText(int index) const`: Returns the text for the given index in the combobox.
-- `void QComboBox::keyPressEvent(QKeyEvent * e) [virtual protected]`: Reimplemented from QWidget::keyPressEvent().
-- `void QComboBox::keyReleaseEvent(QKeyEvent * e) [virtual protected]`: Reimplemented from QWidget::keyReleaseEvent().
+- `void QComboBox::keyPressEvent(QKeyEvent * e) [virtual protected]`: Reimplemented from `QWidget::keyPressEvent()`.
+- `void QComboBox::keyReleaseEvent(QKeyEvent * e) [virtual protected]`: Reimplemented from `QWidget::keyReleaseEvent()`.
 - `QLineEdit * QComboBox::lineEdit() const`: Returns the line edit used to edit items in the combobox, or 0 if there is no line edit. Only editable combo boxes have a line edit.
-- `QSize QComboBox::minimumSizeHint() const [virtual]`: Reimplemented from QWidget::minimumSizeHint().
+- `QSize QComboBox::minimumSizeHint() const [virtual]`: Reimplemented from `QWidget::minimumSizeHint()`.
 - `QAbstractItemModel * QComboBox::model() const`: Returns the model used by the combobox.
-- `void QComboBox::mousePressEvent(QMouseEvent * e) [virtual protected]`: Reimplemented from QWidget::mousePressEvent().
-- `void QComboBox::mouseReleaseEvent(QMouseEvent * e) [virtual protected]`: Reimplemented from QWidget::mouseReleaseEvent().
-- `void QComboBox::paintEvent(QPaintEvent * e) [virtual protected]`: Reimplemented from QWidget::paintEvent().
+- `void QComboBox::mousePressEvent(QMouseEvent * e) [virtual protected]`: Reimplemented from `QWidget::mousePressEvent()`.
+- `void QComboBox::mouseReleaseEvent(QMouseEvent * e) [virtual protected]`: Reimplemented from `QWidget::mouseReleaseEvent()`.
+- `void QComboBox::paintEvent(QPaintEvent * e) [virtual protected]`: Reimplemented from `QWidget::paintEvent()`.
 - `void QComboBox::removeItem(int index)`: Removes the item at the given index from the combobox. This will update the current index if the index is removed. This function does nothing if index is out of range.
-- `void QComboBox::resizeEvent(QResizeEvent * e) [virtual protected]`: Reimplemented from QWidget::resizeEvent().
+- `void QComboBox::resizeEvent(QResizeEvent * e) [virtual protected]`: Reimplemented from `QWidget::resizeEvent()`.
 - `QModelIndex QComboBox::rootModelIndex() const`: Returns the root model item index for the items in the combobox.
-- `void QComboBox::setCompleter(QCompleter * completer)`: Sets the completer to use instead of the current completer. If completer is 0, auto completion is disabled. By default, for an editable combo box, a QCompleter that performs case insensitive inline completion is automatically created.
-- `void QComboBox::setEditText(const QString & text) [slot]`: Sets the text in the combobox's text edit.
+- `void QComboBox::setCompleter(QCompleter * completer)`: Sets the completer to use instead of the current completer. If completer is `0`, auto completion is disabled. By default, for an editable combo box, a QCompleter that performs case insensitive inline completion is automatically created.
+- `void QComboBox::setEditText(const QString & text) [slot]`: Sets the `text` in the combobox's text edit.
 - `void QComboBox::setItemData(int index, const QVariant & value, int role = Qt::UserRole)`: Sets the data role for the item on the given index in the combobox to the specified value.
 - `void QComboBox::setItemDelegate(QAbstractItemDelegate * delegate)`: Sets the item delegate for the popup list view. The combobox takes ownership of the delegate. Warning: You should not share the same instance of a delegate between comboboxes, widget mappers or views. Doing so can cause incorrect or unintuitive editing behavior since each view connected to a given delegate may receive the closeEditor() signal, and attempt to access, modify or close an editor that has already been closed.
 - `void QComboBox::setItemIcon(int index, const QIcon & icon)`: Sets the icon for the item on the given index in the combobox.
