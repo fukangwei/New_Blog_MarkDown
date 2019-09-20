@@ -85,8 +85,7 @@ int main ( int argc, char *argv[] ) {
     if ( !file.open ( QIODevice::ReadOnly | QIODevice::Text ) ) {
         qDebug() << "Open file failed.";
         return -1;
-    }
-    else {
+    } else {
         while ( !file.atEnd() ) {
             qDebug() << file.readLine();
         }
@@ -200,8 +199,7 @@ if ( version > 123 ) {
 ​
 if ( version <= 110 ) {
     in.setVersion ( QDataStream::Qt_3_2 );
-}
-else {
+} else {
     in.setVersion ( QDataStream::Qt_4_0 );
 }
 ​
@@ -283,31 +281,32 @@ if ( !file.open ( QIODevice::ReadOnly | QIODevice::Text ) ) {
 }
 ​
 QTextStream in ( &file );
-QString QTextStream::read ( qint64 maxlen ) -- 读取txt文件maxlen个字符：
-QString line1 = in.read ( 1 ); /* 读取一个字符 */
-QString line2 = in.read ( 1 ); /* 自动读取下一个字符 */
-QString line1 = in.read ( 20 ); /* 读取20个字符，归为一个字符串 */
+QString QTextStream::read ( qint64 maxlen ); /* 读取txt文件maxlen个字符    */
+QString line1 = in.read ( 1 );               /* 读取一个字符               */
+QString line2 = in.read ( 1 );               /* 自动读取下一个字符          */
+QString line1 = in.read ( 20 );              /* 读取20个字符，归为一个字符串 */
 QString QTextStream::readLine ( qint64 maxlen = 0 )：
-QString line1 = in.readLine ( 0 ); /* 读取第0行文档 */
-QString line2 = in.readLine ( 5 ); /* 读取第0行5个文档 */
-QString line1 = in.readLine(); /* 读取第0行文档 */
-QString line2 = in.readLine(); /* 自动读取第1行文档 */
+QString line1 = in.readLine ( 0 ); /* 读取第0行文档     */
+QString line2 = in.readLine ( 5 ); /* 读取第0行5个文档  */
+QString line1 = in.readLine();     /* 读取第0行文档     */
+QString line2 = in.readLine();     /* 自动读取第1行文档 */
 QString QTextStream::readAll ()：
 QString line1 = in.readAll(); /* 读取全部txt文档，并归为一个字符串 */
 bool QTextStream::seek ( qint64 pos )：
-bool a = in.seek ( 6 ); /* 定位文本中的第6个位置 */
-QString line2 = in.read ( 1 ) ; /* 读取该位的1字符 */
+bool a = in.seek ( 6 );         /* 定位文本中的第6个位置 */
+QString line2 = in.read ( 1 ) ; /* 读取该位的1字符       */
 ```
 
 &emsp;&emsp;读取`txt`文本全部内容的方法：
 
 ``` cpp
-/* 两种方法读取txt文档 */
+/* 方法1 */
 while ( !in.atEnd() ) {
     QString line = in.readLine();
     qDebug() << line;
 }
 /*-------------------------------*/
+/* 方法2 */
 QString line3 = in.readLine();
 ​
 while ( !line3.isNull() ) {
@@ -346,12 +345,12 @@ fileInfo.setFile ( path );
 
 ``` cpp
 QFileInfo fileInfo ( "/home/dipper/xyz.tar.gz" );
-fileInfo.path();             /* returns "/home/dipper" */
-fileInfo.fileName();         /* returns "xyz.tar.gz" */
-fileInfo.baseName();         /* returns "xyz" */
-fileInfo.completeBaseName(); /* returns "xyz.tar" */
-fileInfo.suffix();           /* returns "gz" */
-fileInfo.completeSuffix();   /* returns "tar.gz" */
+fileInfo.path();             /* returns "/home/dipper" */
+fileInfo.fileName();         /* returns "xyz.tar.gz"   */
+fileInfo.baseName();         /* returns "xyz"          */
+fileInfo.completeBaseName(); /* returns "xyz.tar"      */
+fileInfo.suffix();           /* returns "gz"           */
+fileInfo.completeSuffix();   /* returns "tar.gz"       */
 ```
 
 &emsp;&emsp;类型：

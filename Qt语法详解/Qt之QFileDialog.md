@@ -3,7 +3,7 @@ title: Qt之QFileDialog
 date: 2019-01-24 14:05:36
 categories: Qt语法详解
 ---
-&emsp;&emsp;`QFileDialog`是`Qt`中的文件对话框，以下资料来源于`Qt`官方文档。使用QFileDialog可以调用当前系统的文件对话框，需要包含头文件`QFileDialog`。最简单的方法是调用静态函数来对话框获取文件：
+&emsp;&emsp;`QFileDialog`是`Qt`中的文件对话框，以下资料来源于`Qt`官方文档。使用`QFileDialog`可以调用当前系统的文件对话框，需要包含头文件`QFileDialog`。最简单的方法是调用静态函数来对话框获取文件：
 
 ``` cpp
 QString file = QFileDialog::getOpenFileName ( "/home/foxman", "Images (*.png *.xpm *.jpg)", this );
@@ -17,7 +17,7 @@ QStringList files = QFileDialog::getOpenFileNames (
     QDesktopServices::storageLocation ( QDesktopServices::MusicLocation ) );
 ```
 
-&emsp;&emsp;常见的用法如下所示：
+&emsp;&emsp;常见的用法如下：
 
 ``` cpp
 /* 指定父窗口、设置对话框标题、指定默认打开的目录路径、设置文件类型过滤器 */
@@ -120,7 +120,8 @@ QString fileName = QFileDialog::getSaveFileName ( this, tr ( "Open Config" ), \
                                                   "", tr ( "Config Files (*.ifg)" ) );
 ​
 if ( !fileName.isNull() ) {
-}
-else { /* 点击取消按钮 */
+    /* User Code */
+} else { /* 点击取消按钮 */
+    /* User Code */
 }
 ```
