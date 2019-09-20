@@ -1,7 +1,7 @@
 ---
 title: Shell脚本的特殊符号
 date: 2019-01-21 16:37:52
-tags:
+categories: Shell编程
 ---
 ### 井号
 
@@ -32,9 +32,9 @@ tags:
 
 ``` bash
 case \"$fop\" inhelp)
-    echo \"Usage: Command -help -version filename\";;version)
-    echo \"version 0.1\"
-    ;;
+    echo \"Usage: Command -help -version filename\";;version)
+    echo \"version 0.1\"
+    ;;
 esac
 ```
 
@@ -104,8 +104,8 @@ who | wc -l
 ``` bash
 if [ \"$?\" != 0 ]
 then
-    echo \"Executes error\"
-    exit 1
+    echo \"Executes error\"
+    exit 1
 fi
 ```
 
@@ -119,7 +119,7 @@ ls a[!0-9]
 
 ### 冒号
 
-&emsp;&emsp;在bash中，这是一个内建指令，表示什么事都不干，但返回状态值0。
+&emsp;&emsp;在bash中，这是一个内建指令，表示什么事都不干，但返回状态值`0`。
 
 ``` bash
 :
@@ -269,8 +269,8 @@ mkdir {userA, userB, userC}-{home, bin, data}
 ``` bash
 if [ \"$?\" != 0 ]
 then
-    echo \"Executes error\"
-    exit 1
+    echo \"Executes error\"
+    exit 1
 fi
 ```
 
@@ -292,7 +292,7 @@ read ak
 ​
 if [[ $ak > 5 || $ak< 9 ]]
 then
-    echo $ak
+    echo $ak
 fi
 ```
 
