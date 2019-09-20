@@ -72,21 +72,21 @@ connect ( buttonGroup, static_cast<void ( QButtonGroup::* ) ( QAbstractButton * 
         ( &QButtonGroup::buttonPressed ), [ = ] ( QAbstractButton *button ) { /* ... */ } );
 ```
 
-- `void QButtonGroup::buttonPressed(int id) [signal]`: This `signal` is emitted when a `button` with the given `id` is pressed down. **Note**: `Signal` buttonPressed is overloaded in this class. To connect to this one using the function pointer syntax, you must specify the `signal` type in a static cast, as shown in this example:
+- `void QButtonGroup::buttonPressed(int id) [signal]`: This signal is emitted when a button with the given `id` is pressed down. **Note**: Signal `buttonPressed` is overloaded in this class. To connect to this one using the function pointer syntax, you must specify the signal type in a static cast, as shown in this example:
 
 ``` cpp
 connect ( buttonGroup, static_cast<void ( QButtonGroup::* ) ( int ) > \
         ( &QButtonGroup::buttonPressed ), [ = ] ( int id ) { /* ... */ } );
 ```
 
-- `void QButtonGroup::buttonReleased(QAbstractButton * button) [signal]`: This `signal` is emitted when the given `button` is released. **Note**: `Signal` buttonReleased is overloaded in this class. To connect to this one using the function pointer syntax, you must specify the `signal` type in a static cast, as shown in this example:
+- `void QButtonGroup::buttonReleased(QAbstractButton * button) [signal]`: This signal is emitted when the given `button` is released. **Note**: Signal `buttonReleased` is overloaded in this class. To connect to this one using the function pointer syntax, you must specify the signal type in a static cast, as shown in this example:
 
 ``` cpp
 connect ( buttonGroup, static_cast<void ( QButtonGroup::* ) ( QAbstractButton * ) > \
         ( &QButtonGroup::buttonReleased ), [ = ] ( QAbstractButton *button ) { /* ... */ } );
 ```
 
-- `void QButtonGroup::buttonReleased(int id) [signal]`: This `signal` is emitted when a button with the given `id` is released. **Note**: `Signal` buttonReleased is overloaded in this class. To connect to this one using the function pointer syntax, you must specify the `signal` type in a static cast, as shown in this example:
+- `void QButtonGroup::buttonReleased(int id) [signal]`: This signal is emitted when a button with the given `id` is released. **Note**: Signal `buttonReleased` is overloaded in this class. To connect to this one using the function pointer syntax, you must specify the signal type in a static cast, as shown in this example:
 
 ``` cpp
 connect ( buttonGroup, static_cast<void ( QButtonGroup::* ) ( int ) > \
@@ -96,6 +96,6 @@ connect ( buttonGroup, static_cast<void ( QButtonGroup::* ) ( int ) > \
 - `QList<QAbstractButton *> QButtonGroup::buttons() const`: Returns the list of this groups's buttons. This may be empty.
 - `QAbstractButton * QButtonGroup::checkedButton() const`: Returns the button group's checked button, or `0` if no buttons are checked.
 - `int QButtonGroup::checkedId() const`: Returns the id of the `checkedButton()`, or `-1` if no button is checked.
-- `int QButtonGroup::id(QAbstractButton * button) const`: Returns the id for the specified `button`, or `-1` if no such `button` exists.
-- `void QButtonGroup::removeButton(QAbstractButton * button)`: Removes the given `button` from the `button` group.
+- `int QButtonGroup::id(QAbstractButton * button) const`: Returns the id for the specified `button`, or `-1` if no such button exists.
+- `void QButtonGroup::removeButton(QAbstractButton * button)`: Removes the given `button` from the button group.
 - `void QButtonGroup::setId(QAbstractButton * button, int id)`: Sets the `id` for the specified `button`. Note that `id` can not be `-1`.
