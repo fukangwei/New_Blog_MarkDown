@@ -66,16 +66,14 @@ public:
     Employee() {
         mySalary = 0;
     }
+
     int salary() const {
         return mySalary;
     }
-
 public slots:
     void setSalary ( int newSalary );
-
 signals:
     void salaryChanged ( int newSalary );
-
 private:
     int mySalary;
 };
@@ -190,22 +188,14 @@ bool QObject::disconnect ( const QObject *sender, const char *signal, \
 class TsignalApp: public QMainWindow {
     Q_OBJECT
     ...
-
 signals: /* 信号声明区 */
-    /* 声明信号mySignal() */
-    void mySignal();
-    /* 声明信号mySignal(int) */
-    void mySignal ( int x );
-    /* 声明信号mySignalParam(int, int) */
-    void mySignalParam ( int x, int y );
-
+    void mySignal();                     /* 声明信号mySignal()              */
+    void mySignal ( int x );             /* 声明信号mySignal(int)           */
+    void mySignalParam ( int x, int y ); /* 声明信号mySignalParam(int, int) */
 public slots: /* 槽声明区 */
-    /* 声明槽函数mySlot() */
-    void mySlot();
-    /* 声明槽函数mySlot(int) */
-    void mySlot ( int x );
-    /* 声明槽函数mySignalParam (int, int) */
-    void mySignalParam ( int x, int y );
+    void mySlot();                       /* 声明槽函数mySlot()                 */
+    void mySlot ( int x );               /* 声明槽函数mySlot(int)              */
+    void mySignalParam ( int x, int y ); /* 声明槽函数mySignalParam (int, int) */
 }
 ​
 /* tsignal.cpp */
@@ -235,8 +225,7 @@ void TsignalApp::mySlotParam ( int x, int y ) { /* 定义槽函数mySlotParam(in
 }
 
 void TsignalApp::slotFileNew() {
-    /* 发射信号mySignal */
-    emit mySignal();
+    emit mySignal(); /* 发射信号mySignal */
     /* 发射信号mySignal(int) */
     emit mySignal ( 5 );
     /* 发射信号mySignalParam(int, int) */
