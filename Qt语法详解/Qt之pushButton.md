@@ -38,7 +38,8 @@ int main ( int argc, char *argv[] ) {
 
 ``` cpp
 ui->pushButton->setFocus(); /* 设置默认焦点 */
-ui->pushButton->setShortcut ( QKeySequence::InsertParagraphSeparator ); /* 设置快捷键为键盘的“回车”键 */
+/* 设置快捷键为键盘的“回车”键 */
+ui->pushButton->setShortcut ( QKeySequence::InsertParagraphSeparator );
 ui->pushButton->setShortcut ( Qt::Key_Enter ); /* 设置快捷键为enter键 */
 ui->pushButton->setShortcut ( Qt::Key_Return ); /* 设置快捷键为小键盘上的enter键 */
 ```

@@ -19,15 +19,12 @@ namespace Ui {
 ​
 class MyWidget : public QWidget {
     Q_OBJECT
-​
 public:
     explicit MyWidget ( QWidget *parent = 0 );
     ~MyWidget();
-​
 private slots:
     void on_lineEdit2_returnPressed();
     void on_lineEdit3_returnPressed();
-​
 private:
     Ui::MyWidget *ui;
 };
