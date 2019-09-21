@@ -1,7 +1,7 @@
 ---
 title: find命令
 date: 2019-01-20 20:53:42
-tags:
+categories: Shell编程
 ---
 &emsp;&emsp;`find`命令如下：
 
@@ -68,6 +68,6 @@ find path -option [-print] [-exec -ok command {} \;]
 - `find /home -size -512k`：查找小于`512k`的文件。
 - `find /home -links +2`：查找硬连接数大于`2`的文件或目录。
 - `find /home -perm 0700`：查找权限为`700`的文件或目录。
-- `find / -amin -10`：查找在系统中最后10分钟访问的文件。
+- `find / -amin -10`：查找在系统中最后`10`分钟访问的文件。
 - `find / -mmin -5`：查找在系统中最后`5`分钟里修改过的文件。
 - `find / -mtime -1`：查找在系统中最后`24`小时里修改过的文件。
