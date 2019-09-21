@@ -1,12 +1,12 @@
 ---
 title: ucos系统基本用法
 date: 2018-12-29 12:39:06
-tags:
+categories: ucos和ucgui
 ---
 &emsp;&emsp;在任务中创建任务：
 
 ``` c
-#define STARTUP_TASK_PRIO     8
+#define STARTUP_TASK_PRIO     8
 #define STARTUP_TASK_STK_SIZE 80
 ​
 void SysTick_init ( void ) {
@@ -46,7 +46,7 @@ int main ( void ) {
 &emsp;&emsp;创建单次任务：
 
 ``` c
-#define STARTUP_TASK_PRIO     8
+#define STARTUP_TASK_PRIO     8
 #define STARTUP_TASK_STK_SIZE 80
 ​
 void SysTick_init ( void ) {
@@ -296,7 +296,7 @@ static OS_STK task_testled[STARTUP_TASK_STK_SIZE];
 static OS_STK task_testluart1[STARTUP_TASK_STK_SIZE];
 static OS_STK task_testluart2[STARTUP_TASK_STK_SIZE];
 ​
-#define N_MESSAGES    128
+#define N_MESSAGES     128
 void *MsgGrp[N_MESSAGES]; /* 定义消息指针数组 */
 OS_EVENT *Str_Q;
 u8 err = 0;
