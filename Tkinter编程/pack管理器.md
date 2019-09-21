@@ -1,7 +1,7 @@
 ---
 title: pack管理器
 date: 2019-03-31 08:25:05
-tags:
+categories: Tkinter编程
 ---
 &emsp;&emsp;`pack`、`grid`和`place`均用于管理同在一个父组件下的所有组件的布局：
 
@@ -27,7 +27,7 @@ listbox = Listbox(root)
 listbox.pack(fill=BOTH, expand=True)
 ​
 for i in range(10):
-    listbox.insert(END, str(i))
+    listbox.insert(END, str(i))
 ​
 mainloop()
 ```
