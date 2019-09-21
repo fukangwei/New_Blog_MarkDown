@@ -393,7 +393,7 @@ editmenu.add_radiobutton(label="拷贝", command=callback, variable=editVar, val
 editmenu.add_radiobutton(label="粘贴", command=callback, variable=editVar, value=3)
 menubar.add_cascade(label="编辑", menu=editmenu)
 ​
-root.config(menu=menubar) # 显示菜单
+root.config(menu=menubar)  # 显示菜单
 ​
 mainloop()
 ```
@@ -408,7 +408,7 @@ from tkinter import *
 root = Tk()
 ​
 def callback():
-    print("~被调用了~")
+    print("~被调用了~")
 ​
 mb = Menubutton(root, text="点我", relief=RAISED)
 mb.pack()
