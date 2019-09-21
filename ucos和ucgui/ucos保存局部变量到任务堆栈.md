@@ -1,7 +1,7 @@
 ---
 title: ucos保存局部变量到任务堆栈
 date: 2018-12-29 09:49:02
-tags:
+categories: ucos和ucgui
 ---
 &emsp;&emsp;1. 没有`OS`时，任务如何保存局部变量？
 &emsp;&emsp;在我的知识体系里，我一直以为单片机中就只有一个栈。以`stm32`为例，在启动文件中有这么一段代码：
@@ -13,9 +13,9 @@ tags:
 ; <o> Stack Size (in Bytes) <0x0-0xFFFFFFFF:8>
 ; </h>
 
-Stack_Size    EQU    0x00000400
-AREA   STACK, NOINIT, READWRITE, ALIGN=3
-Stack_Mem   SPACE   Stack_Size
+Stack_Size    EQU     0x00000400
+AREA   STACK, NOINIT, READWRITE, ALIGN=3
+Stack_Mem   SPACE   Stack_Size
 __initial_sp
 ```
 
