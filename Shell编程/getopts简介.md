@@ -1,9 +1,9 @@
 ---
 title: getopts简介
 date: 2019-01-20 06:40:00
-tags:
+categories: Shell编程
 ---
-&emsp;&emsp;由于shell命令行的灵活性，自己编写代码判断时，复杂度会比较高。使用内部命令getopts可以很方便地处理命令行参数。
+&emsp;&emsp;由于`shell`命令行的灵活性，自己编写代码判断时，复杂度会比较高。使用内部命令`getopts`可以很方便地处理命令行参数。
 
 ``` bash
 getopts options variable
@@ -16,27 +16,27 @@ getopts options variable
 ​
 while getopts h:ms option
 do
-    case "$option" in
-        h)
-            echo "option:h, value $OPTARG"
-            echo "next arg index:$OPTIND"
+    case "$option" in
+        h)
+            echo "option:h, value $OPTARG"
+            echo "next arg index:$OPTIND"
             ;;
-        m)
-            echo "option:m"
-            echo "next arg index:$OPTIND"
+        m)
+            echo "option:m"
+            echo "next arg index:$OPTIND"
             ;;
-        s)
-            echo "option:s"
-            echo "next arg index:$OPTIND"
+        s)
+            echo "option:s"
+            echo "next arg index:$OPTIND"
             ;;
-        \?)
-            echo "Usage: args [-h n] [-m] [-s]"
-            echo "-h means hours"
-            echo "-m means minutes"
-            echo "-s means seconds"
-            exit 1
+        \?)
+            echo "Usage: args [-h n] [-m] [-s]"
+            echo "-h means hours"
+            echo "-m means minutes"
+            echo "-s means seconds"
+            exit 1
             ;;
-    esac
+    esac
 done
 ​
 echo "*** do something now ***"
