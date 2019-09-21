@@ -92,6 +92,8 @@ Line 5: 2
 Lcase(String)
 ```
 
+示例如下：
+
 ``` vbscript
 Private Sub Constant_demo_Click()
     var = "Microsoft VBScript"

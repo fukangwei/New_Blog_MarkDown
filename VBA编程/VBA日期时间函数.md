@@ -1,7 +1,7 @@
 ---
 title: VBA日期时间函数
 date: 2019-07-22 18:51:08
-tags:
+categories: VBA编程
 ---
 &emsp;&emsp;`VBScript`日期和时间函数帮助开发人员将日期和时间从一种格式转换为另一种格式，或以适合特定条件的格式表示日期或时间值。
 <!--more-->
@@ -14,6 +14,8 @@ tags:
 ``` vbscript
 date()
 ```
+
+示例如下：
 
 ``` vbscript
 Private Sub Constant_demo_Click()
@@ -36,6 +38,8 @@ The Value of a: 07/18/19
 ``` vbscript
 CDate(date)
 ```
+
+示例如下：
 
 ``` vbscript
 Private Sub Constant_demo_Click()
@@ -276,6 +280,8 @@ Line 5: 20:25
 IsDate(expression)
 ```
 
+示例如下：
+
 ``` vbscript
 Private Sub Constant_demo()
     MsgBox("Line 1: " & IsDate("Nov 03, 1950"))
@@ -300,6 +306,8 @@ Line 3: True
 Day(date)
 ```
 
+示例如下：
+
 ``` vbscript
 Private Sub Constant_demo_Click()
     MsgBox(Day("2018-06-30"))
@@ -320,6 +328,8 @@ End Sub
 Month(date)
 ```
 
+示例如下：
+
 ``` vbscript
 Private Sub Constant_demo_Click()
     MsgBox("Current month is: " & Month("2018-06-30"))
@@ -339,6 +349,8 @@ Current month is: 6
 ``` vbscript
 Year(date)
 ```
+
+示例如下：
 
 ``` vbscript
 Private Sub Constant_demo_Click()
@@ -387,6 +399,8 @@ Line 2: January
 Now()
 ```
 
+示例如下：
+
 ``` vbscript
 Private Sub Constant_demo_Click()
     Dim a as Variant
@@ -408,6 +422,8 @@ End Sub
 ``` vbscript
 Hour(time)
 ```
+
+示例如下：
 
 ``` vbscript
 Private Sub Constant_demo_Click()
@@ -433,6 +449,8 @@ Line 3: 14
 Minute(time)
 ```
 
+示例如下：
+
 ``` vbscript
 Private Sub Constant_demo_Click()
     MsgBox ("Line 1: " & Minute("3:13:45 PM"))
@@ -456,6 +474,8 @@ Line 3: 20
 ``` vbscript
 Second(time)
 ```
+
+示例如下：
 
 ``` vbscript
 Private Sub Constant_demo_Click()
@@ -481,6 +501,8 @@ Line 3: 0
 Time()
 ```
 
+示例如下：
+
 ``` vbscript
 Private Sub Constant_demo_Click()
     MsgBox ("当前的系统时间是：" & Time())
@@ -500,6 +522,8 @@ End Sub
 ``` vbscript
 Timer()
 ```
+
+示例如下：
 
 ``` vbscript
 Private Sub Constant_demo_Click()
@@ -550,6 +574,8 @@ End Sub
 ``` vbscript
 TimeValue(StringTime)
 ```
+
+示例如下：
 
 ``` vbscript
 Private Sub Constant_demo_Click()
