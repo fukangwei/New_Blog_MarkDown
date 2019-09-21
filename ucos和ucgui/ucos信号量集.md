@@ -115,20 +115,21 @@ void YouTask ( void *pdata ) {
 ​
 void HerTask ( void *pdata ) {
 #if OS_CRITICAL_METHOD == 3
-    OS_CPU_SR  cpu_sr;
+    OS_CPU_SR cpu_sr;
 #endif
-    pdata = pdata;
+    pdata = pdata;
 ​
-    for ( ; ; ) {
-        PC_DispStr ( 10, ++y, s3, DISP_BGND_BLACK + DISP_FGND_WHITE ); /* 显示信息 */
-        OSTimeDlyHMSM ( 0, 0, 8, 0 ); /* 等待8s */
-        OSFlagPost ( /* 向信号量集发信号 */
-            Sem_F,
-            ( OS_FLAGS ) 1, /* 给第0位发信号，即0001，把1强制转化为OS_FLAGS型 */
-            OS_FLAG_SET, /* 信号置1 */
-            &err
-        );
-        OSTimeDlyHMSM ( 0, 0, 1, 0 ); /* 等待1s */
-    }
+    for ( ; ; ) {
+        PC_DispStr ( 10, ++y, s3, DISP_BGND_BLACK + DISP_FGND_WHITE ); /* 显示信息 */
+        OSTimeDlyHMSM ( 0, 0, 8, 0 ); /* 等待8s */
+        OSFlagPost ( /* 向信号量集发信号 */
+            Sem_F,
+            ( OS_FLAGS ) 1, /* 给第0位发信号，即0001，把1强制转化为OS_FLAGS型 */
+            OS_FLAG_SET, /* 信号置1 */
+            &err
+        );
+
+        OSTimeDlyHMSM ( 0, 0, 1, 0 ); /* 等待1s */
+    }
 }
 ```
