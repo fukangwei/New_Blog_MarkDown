@@ -5,7 +5,7 @@ categories: ucos和ucgui
 ---
 &emsp;&emsp;代码如下：
 
-``` cPP
+``` cpp
 #include "INCLUDES.h"
 ​
 #define TASK_STK_SIZE 512
@@ -132,22 +132,21 @@ void HerTask ( void *pdata ) {
     pdata = pdata;
 ​
     for ( ; ; ) {
-        PC_DispStr ( 10, ++y, s3, DISP_BGND_BLACK + DISP_FGND_WHITE );
-        IntBlkPtr = OSMemGet ( /* 请求内存块 */
-                        IntBuffer, /* 内存分区的指针 */
-                        &err /* 错误信息 */ );
-        OSMemQuery ( /* 查询内存控制块信息 */
-            IntBuffer, /* 待查询内存控制块指针 */
-            &MemInfo );
-        sprintf ( s, "%0x", MemInfo.OSFreeList ); /* 显示头指针 */
-        PC_DispStr ( 30, y, s, DISP_BGND_BLACK + DISP_FGND_WHITE );
-        sprintf ( s, "%d", MemInfo.OSNUsed ); /* 显示已用的内存块数目 */
-        PC_DispStr ( 40, y, s, DISP_BGND_BLACK + DISP_FGND_WHITE );
-        OSMemPut (
-            IntBuffer, /*内存块所属内存分区的指针 */
-            IntBlkPtr /* 待释放内存块指针 */
-        );
-        OSTimeDlyHMSM ( 0, 0, 1, 0 ); /* 等待1s */
-    }
+        PC_DispStr ( 10, ++y, s3, DISP_BGND_BLACK + DISP_FGND_WHITE );
+        IntBlkPtr = OSMemGet ( /* 请求内存块 */
+                        IntBuffer, /* 内存分区的指针 */
+                        &err /* 错误信息 */ );
+        OSMemQuery ( /* 查询内存控制块信息 */
+            IntBuffer, /* 待查询内存控制块指针 */
+            &MemInfo );
+        sprintf ( s, "%0x", MemInfo.OSFreeList ); /* 显示头指针 */
+        PC_DispStr ( 30, y, s, DISP_BGND_BLACK + DISP_FGND_WHITE );
+        sprintf ( s, "%d", MemInfo.OSNUsed ); /* 显示已用的内存块数目 */
+        PC_DispStr ( 40, y, s, DISP_BGND_BLACK + DISP_FGND_WHITE );
+        OSMemPut (
+            IntBuffer, /*内存块所属内存分区的指针 */
+            IntBlkPtr /* 待释放内存块指针 */ );
+        OSTimeDlyHMSM ( 0, 0, 1, 0 ); /* 等待1s */
+    }
 }
 ```
