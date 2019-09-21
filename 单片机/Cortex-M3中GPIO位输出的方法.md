@@ -1,7 +1,7 @@
 ---
 title: Cortex-M3中GPIO位输出的方法
 date: 2019-01-19 14:53:57
-tags:
+categories: 单片机
 ---
 ### 端口位设置/清除
 

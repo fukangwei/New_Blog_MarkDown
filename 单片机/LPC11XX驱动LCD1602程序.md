@@ -1,9 +1,9 @@
 ---
 title: LPC11XX驱动LCD1602程序
 date: 2018-12-29 18:31:29
-tags:
+categories: 单片机
 ---
-&emsp;&emsp;`LCD.c`如下所示(单片机时钟频率为`12MHz`)：
+&emsp;&emsp;`LCD.c`如下(单片机时钟频率为`12MHz`)：
 
 ``` c
 #include "LPC11XX.h"
@@ -109,8 +109,7 @@ void Write_LCD_command ( unsigned char gcmd, unsigned char gvalue ) {
             Delay_Us ( 15 );
             LCD_EN_Low();
         }
-    }
-    else {
+    } else {
         LCD_RS_Low(); /* 选择指令 */
         LCD_RW_Low(); /* 选择写 */
         LCD_EN_High(); /* 使能 */
@@ -159,8 +158,7 @@ void Display_LCD_string (
 ​
     if ( !gline ) { /* 第0行 */
         gaddress = 0x80 + gadd_start; /* 地址对应 */
-    }
-    else {
+    } else {
         gaddress = 0xc0 + gadd_start; /* 第一行 */
     }
 ​
@@ -178,8 +176,7 @@ void DispChar_XY_LCD ( unsigned char x, unsigned char y, unsigned char gdata ) {
 ​
     if ( !y ) {
         gaddress = 0x80 + x;
-    }
-    else {
+    } else {
         gaddress = 0xc0 + x;
     }
 ​
@@ -193,8 +190,7 @@ void DispNum_XY_LCD ( unsigned char x, unsigned char y, unsigned char gdata ) {
 ​
     if ( !y ) {
         gaddress = 0x80 + x;
-    }
-    else {
+    } else {
         gaddress = 0xc0 + x;
     }
 ​
@@ -208,7 +204,7 @@ void Clear_Display ( void ) {
 }
 ```
 
-&emsp;&emsp;`LCD.h`如下所示：
+&emsp;&emsp;`LCD.h`如下：
 
 ``` c
 #ifndef __LCD_H__
@@ -216,10 +212,10 @@ void Clear_Display ( void ) {
 ​
 #define TESTBIT(a, b) ((a) & (1 << (b)))
 ​
-#define LCD_RS_Low()  LPC_GPIO2->DATA &= ~(1<<8)  /* 给P2.8位写0 */
-#define LCD_RS_High() LPC_GPIO2->DATA |=  (1<<8)  /* 给P2.8位写1 */
-#define LCD_RW_Low()  LPC_GPIO2->DATA &= ~(1<<9)  /* 给P2.9位写0 */
-#define LCD_RW_High() LPC_GPIO2->DATA |=  (1<<9)  /* 给P2.9位写1 */
+#define LCD_RS_Low()  LPC_GPIO2->DATA &= ~(1<<8)  /* 给P2.8位写0  */
+#define LCD_RS_High() LPC_GPIO2->DATA |=  (1<<8)  /* 给P2.8位写1  */
+#define LCD_RW_Low()  LPC_GPIO2->DATA &= ~(1<<9)  /* 给P2.9位写0  */
+#define LCD_RW_High() LPC_GPIO2->DATA |=  (1<<9)  /* 给P2.9位写1  */
 #define LCD_EN_Low()  LPC_GPIO2->DATA &= ~(1<<10) /* 给P2.10位写0 */
 #define LCD_EN_High() LPC_GPIO2->DATA |=  (1<<10) /* 给P2.10位写1 */
 ​
