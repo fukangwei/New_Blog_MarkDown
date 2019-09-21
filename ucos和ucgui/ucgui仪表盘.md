@@ -1,9 +1,9 @@
 ---
 title: ucgui仪表盘
 date: 2018-12-29 09:43:31
-tags:
+categories: ucos和ucgui
 ---
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` c
 #include <stdlib.h>
@@ -52,8 +52,7 @@ void _DrawScale ( void ) {
 ​
         if ( c <= 1 ) {
             GUI_DispCharAt ( '0' + c * 7, xt - 4, yt - 4 );
-        }
-        else {
+        } else {
             GUI_DispDecAt ( c * 7, xt - 4, yt - 4, 2 );
         }
 ​

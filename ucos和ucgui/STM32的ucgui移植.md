@@ -1,7 +1,7 @@
 ---
 title: STM32的ucgui移植
 date: 2019-03-19 09:18:14
-tags:
+categories: ucos和ucgui
 ---
 &emsp;&emsp;这里移植的是`UCGUI3.90a`版本，虽然已经有更新的版本，例如`UCGUI3.98`、甚至`4.04`版本，但目前只有这个版本的代码是最全的，包括`JPEG`、`MULTILAYER`、`MEMDEV`、`AntiAlias`等模块。
 &emsp;&emsp;`UCGUI`的文件数量很大，主要用到`UCGUI390a/Start/Config`和`UCGUI390a/Start/GUI`两个文件夹下文件，相关文件介绍如下。将`Config`和`GUI`下的所有文件加入工程，这是`UCGUI`官方推荐的结构：
@@ -34,26 +34,26 @@ tags:
 #include "GUIDebug.h"
 ​
 /* #if (LCD_CONTROLLER == -1) \
-    && (!defined(WIN32) | defined(LCD_SIMCONTROLLER)) */ /* 必须注释，否则不会编译 */
+    && (!defined(WIN32) | defined(LCD_SIMCONTROLLER)) */ /* 必须注释，否则不会编译 */
 #include "ili93xx.h" /* 包含你的LCD驱动函数声明 */
 #if (LCD_CONTROLLER == -1) /* 这句对应“Config/LCDConf.h” */
 ​
 void LCD_L0_SetPixelIndex ( int x, int y, int PixelIndex ) {
-    POINT_COLOR = PixelIndex; /* 我的画点函数使用了一个全局变量设定颜色 */
-    LCD_DrawPoint ( x, y ); /* 画点函数 */
+    POINT_COLOR = PixelIndex; /* 我的画点函数使用了一个全局变量设定颜色 */
+    LCD_DrawPoint ( x, y ); /* 画点函数 */
 }
 ​
 unsigned int LCD_L0_GetPixelIndex ( int x, int y ) {
-    return LCD_ReadPoint ( x, y ); /* 我的读取像素颜色函数 */
+    return LCD_ReadPoint ( x, y ); /* 我的读取像素颜色函数 */
 }
 ​
 void LCD_L0_FillRect ( int x0, int y0, int x1, int y1 ) {
-    LCD_Fill ( x0, y0, x1, y1, LCD_COLORINDEX ); /* 填充矩形函数 */
-    /*------------------------
-    for ( ; y0 <= y1; y0++ ) {
-        LCD_L0_DrawHLine ( x0, y0, x1 );
-    }
-    ------------------------*/
+    LCD_Fill ( x0, y0, x1, y1, LCD_COLORINDEX ); /* 填充矩形函数 */
+    /*------------------------
+    for ( ; y0 <= y1; y0++ ) {
+        LCD_L0_DrawHLine ( x0, y0, x1 );
+    }
+    ------------------------*/
 }
 ```
 
@@ -65,23 +65,22 @@ void LCD_L0_FillRect ( int x0, int y0, int x1, int y1 ) {
 #ifndef GUICONF_H
 #define GUICONF_H
 ​
-#define GUI_OS              (0) /* 操作系统的支持，当用到ucos时需要打开 */
-#define GUI_SUPPORT_TOUCH   (0) /* 触摸屏的支持 */
+#define GUI_OS              (0) /* 操作系统的支持，当用到ucos时需要打开 */
+#define GUI_SUPPORT_TOUCH   (0) /* 触摸屏的支持 */
 #define GUI_SUPPORT_UNICODE (0) /* 用汉字库时再打开 */
 ​
-#define GUI_DEFAULT_FONT   &GUI_Font6x8 /* 定义字体大小 */
-#define GUI_ALLOC_SIZE     12500 /* 分配的动态内存空间 */
+#define GUI_DEFAULT_FONT &GUI_Font6x8 /* 定义字体大小 */
+#define GUI_ALLOC_SIZE   12500 /* 分配的动态内存空间 */
 ​
 /*********************************************************************
 *
-*         Configuration of available packages
+*        Configuration of available packages
 */
-​
-#define GUI_WINSUPPORT     0 /* 窗口功能支持  要使用指针图标时必须打开 */
+#define GUI_WINSUPPORT     0 /* 窗口功能支持  要使用指针图标时必须打开 */
 #define GUI_SUPPORT_MEMDEV 0 /* 内存管理 */
-#define GUI_SUPPORT_AA     0 /* 抗锯齿功能，打开后可以提高显示效果 */
+#define GUI_SUPPORT_AA     0 /* 抗锯齿功能，打开后可以提高显示效果 */
 ​
-#endif  /* Avoid multiple inclusion */
+#endif /* Avoid multiple inclusion */
 ```
 
 &emsp;&emsp;`LCDConf.h`如下：
@@ -90,11 +89,11 @@ void LCD_L0_FillRect ( int x0, int y0, int x1, int y1 ) {
 #ifndef LCDCONF_H
 #define LCDCONF_H
 ​
-#define LCD_XSIZE  (320) /* lcd的水平分辨率 */
-#define LCD_YSIZE  (480) /* lcd的垂直分辨率 */
+#define LCD_XSIZE (320) /* lcd的水平分辨率 */
+#define LCD_YSIZE (480) /* lcd的垂直分辨率 */
 ​
 #define LCD_BITSPERPIXEL (16) /* 16位颜色RGB值(颜色深度) */
-#define LCD_SWAP_RB      (1)  /* 红蓝反色交换 */
+#define LCD_SWAP_RB      (1)  /* 红蓝反色交换 */
 ​
 /* lcd控制器的具体型号
  *
@@ -106,9 +105,8 @@ void LCD_L0_FillRect ( int x0, int y0, int x1, int y1 ) {
  *
  * #if (LCD_CONTROLLER == -1) && (!defined(WIN32) |defined(LCD_SIMCONTROLLER))
  * 改为#if (LCD_CONTROLLER == -1)
-*/
+ */
 #define LCD_CONTROLLER  -1 /* 设置为“-1”或“-2”，因为UCGUI没有相应LCD控制IC驱动 */
-​
 #define LCD_INIT_CONTROLLER() LCD_Config(); /* 绑定相关LCD底层驱动的初始化函数 */
 ```
 
@@ -132,14 +130,14 @@ while ( 1 );
 #ifndef GUITOUCH_CONF_H
 #define GUITOUCH_CONF_H
 ​
-#define GUI_TOUCH_AD_LEFT     0
-#define GUI_TOUCH_AD_RIGHT    240
-#define GUI_TOUCH_AD_TOP      0
-#define GUI_TOUCH_AD_BOTTOM   320
+#define GUI_TOUCH_AD_LEFT   0
+#define GUI_TOUCH_AD_RIGHT  240
+#define GUI_TOUCH_AD_TOP    0
+#define GUI_TOUCH_AD_BOTTOM 320
 ​
-#define GUI_TOUCH_SWAP_XY    0
-#define GUI_TOUCH_MIRROR_X   0
-#define GUI_TOUCH_MIRROR_Y   0
+#define GUI_TOUCH_SWAP_XY  0
+#define GUI_TOUCH_MIRROR_X 0
+#define GUI_TOUCH_MIRROR_Y 0
 ​
 #endif
 ```
@@ -179,23 +177,23 @@ int  GUI_TOUCH_X_MeasureY ( void ) {
 #include "touch.h"
 ​
 int main ( void ) {
-    SystemInit();
-    delay_init ( 72 );
-    NVIC_Configuration();
-    uart_init ( 9600 );
-    LED_Init();
-    GUI_Init();
-    Touch_Init();
-    GUI_SetBkColor ( GUI_RED ); /* 设置背景颜色 */
-    GUI_SetColor ( GUI_WHITE ); /* 设置前景颜色，即字体和绘图的颜色 */
-    GUI_Clear(); /* 按指定颜色清屏 */
-    GUI_DispStringAt ( "Hello World ..", 10, 10 ); /* 显示字符 */
-    GUI_CURSOR_Show(); /* 显示鼠标来测试触摸屏，必须打开窗口功能GUI_WINSUPPORT */
+    SystemInit();
+    delay_init ( 72 );
+    NVIC_Configuration();
+    uart_init ( 9600 );
+    LED_Init();
+    GUI_Init();
+    Touch_Init();
+    GUI_SetBkColor ( GUI_RED ); /* 设置背景颜色 */
+    GUI_SetColor ( GUI_WHITE ); /* 设置前景颜色，即字体和绘图的颜色 */
+    GUI_Clear(); /* 按指定颜色清屏 */
+    GUI_DispStringAt ( "Hello World ..", 10, 10 ); /* 显示字符 */
+    GUI_CURSOR_Show(); /* 显示鼠标来测试触摸屏，必须打开窗口功能GUI_WINSUPPORT */
 ​
-    while ( 1 ) {
-        GUI_TOUCH_Exec(); /* 调用UCGUI的TOUCH相关函数 */
-        GUI_Exec(); /* GUI事件更新 */
-    }
+    while ( 1 ) {
+        GUI_TOUCH_Exec(); /* 调用UCGUI的TOUCH相关函数 */
+        GUI_Exec(); /* GUI事件更新 */
+    }
 }
 ```
 
@@ -210,20 +208,19 @@ LCD_Display_Dir ( 1 ); /* 0为竖屏，1为横屏 */
 
 ``` cpp
 int GUI_TOUCH_X_MeasureX ( void ) {
-    tp_dev.scan ( 0 );
-    // return tp_dev.x; /* 竖屏显示 */
-    return tp_dev.y; /* 横屏显示 */
+    tp_dev.scan ( 0 );
+    // return tp_dev.x; /* 竖屏显示 */
+    return tp_dev.y; /* 横屏显示 */
 }
 ​
 int GUI_TOUCH_X_MeasureY ( void ) {
-    tp_dev.scan ( 0 );
-    // return tp_dev.y; /* 竖屏显示 */
-    return tp_dev.x; /* 横屏显示 */
+    tp_dev.scan ( 0 );
+    // return tp_dev.y; /* 竖屏显示 */
+    return tp_dev.x; /* 横屏显示 */
 }
 ```
 
 &emsp;&emsp;3. 修改`ucgui`中触摸屏的相关设置：在`LCDConf.h`中修改`LCD_XSIZE`与`LCD_YSIZE`，在`GUITouchConf.h`中修改`GUI_TOUCH_AD_RIGHT`与`GUI_TOUCH_AD_BOTTOM`。如果`X`轴触摸是反的，需要修改一下`GUI_TOUCH_MIRROR`。
-
 &emsp;&emsp;如果需要将`UCOS`系统移植到`ucgui`上，可以参考以下步骤：
 &emsp;&emsp;1. 首先将`ucos`系统移植到`STM32`上，并通过信号量、消息邮箱等机制的测试。
 &emsp;&emsp;2. 将`GUIConf.h`文件中的`GUI_OS`设置为`1`，同时在`Config`文件夹下添加`GUI_X_uCOS.c`文件，并加入到工程中。
@@ -239,8 +236,8 @@ void GUI_X_ExecIdle ( void ) {
 同时在该文件中增加宏定义：
 
 ``` cpp
-#define TRUE   1
-#define FALSE  0
+#define TRUE  1
+#define FALSE 0
 ```
 
 将`GUI_X.c`文件中的如下`4`个函数注释掉：
