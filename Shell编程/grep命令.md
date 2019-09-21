@@ -1,7 +1,7 @@
 ---
 title: grep命令
 date: 2019-01-21 19:02:28
-tags:
+categories: Shell编程
 ---
 ### 基本用法
 
@@ -12,8 +12,6 @@ tags:
 ``` bash
 grep [-acinv] [--color=auto] '搜寻字符串' filename
 ```
-
-选项如下：
 
 - `-a`：将`binary`文件以`text`文件的方式搜寻数据。
 - `-c`：计算找到`搜寻字符串`的次数。
@@ -95,7 +93,7 @@ $ grep -n '[^g]oo' regular_express.txt
 grep -n '[^a-z]oo' regular_express.txt
 ```
 
-也就是说，当我们在一组集合字节中，如果该字节组是连续的，例如大写英文/小写英文/数字等等，就可以使用`[a-z]`、`[A-Z]`、`[0-9]`等方式来书写。那么如果我们的要求字串是数字与英文，那就将它们全部写在一起，变成`[a-zA-Z0-9]`。我们要取得有数字的那一行，如下所示：
+也就是说，当我们在一组集合字节中，如果该字节组是连续的，例如大写英文/小写英文/数字等等，就可以使用`[a-z]`、`[A-Z]`、`[0-9]`等方式来书写。那么如果我们的要求字串是数字与英文，那就将它们全部写在一起，变成`[a-zA-Z0-9]`。我们要取得有数字的那一行：
 
 ``` bash
 grep -n '[0-9]' regular_express.txt
@@ -145,13 +143,13 @@ grep -n '^$' regular_express.txt
 grep -n 'g..d' regular_express.txt
 ```
 
-&emsp;&emsp;如果想要列出有`oo`、`ooo`、`oooo`等等的数据，也就是说至少要有两个`o`，该怎么办？因为`*`代表的是`重复0个或多个前面的RE字符`的意义，因此`o*`代表的是`拥有空字节或一个“o”以上的字节`，因此`grep -n 'o*' regular_express.txt`将会把所有的数据都列印出来终端上。当我们需要`至少两个“o”以上的字串`时，如下所示：
+&emsp;&emsp;如果想要列出有`oo`、`ooo`、`oooo`等等的数据，也就是说至少要有两个`o`，该怎么办？因为`*`代表的是`重复0个或多个前面的RE字符`的意义，因此`o*`代表的是`拥有空字节或一个“o”以上的字节`，因此`grep -n 'o*' regular_express.txt`将会把所有的数据都列印出来终端上。当我们需要`至少两个“o”以上的字串`时：
 
 ``` bash
 grep -n 'ooo*' regular_express.txt
 ```
 
-&emsp;&emsp;如果想要字串开头与结尾都是`g`，但是两个`g`之间能存在至少一个`o`，亦即是`gog`、`goog`、`gooog...`等等，如下所示：
+&emsp;&emsp;如果想要字串开头与结尾都是`g`，但是两个`g`之间能存在至少一个`o`，亦即是`gog`、`goog`、`gooog...`等：
 
 ``` bash
 grep -n 'goo*g' regular_express.txt
@@ -165,7 +163,7 @@ grep -n 'g.*g' regular_express.txt
 
 这个`.*`的`RE`表示任意字符。
 &emsp;&emsp;我们可以利用`.`与`RE`字符及`*`来配置`0`个到无限多个重复字节，那如果想要限制一个范围区间内的重复字节数呢？这时候就得要使用到限定范围的字符`{}`了。 但因为`{`与`}`的符号在`shell`是有特殊意义的，因此必须要使用字符`\`来让它失去特殊意义才行。
-&emsp;&emsp;假设要找到两个`o`的字串，如下所示：
+&emsp;&emsp;假设要找到两个`o`的字串：
 
 ``` bash
 grep -n 'o\{2\}' regular_express.txt
