@@ -1,7 +1,7 @@
 ---
 title: Tkinter事件绑定
 date: 2019-04-09 13:59:19
-tags:
+categories: Tkinter编程
 ---
 &emsp;&emsp;正如我们此前提到的，一个`Tkinter`应用程序大部分时间花费在事件循环中(通过`mainloop`方法进入)。事件可以有各种来源，包括用户触发的鼠标和键盘操作和窗口管理器触发的重绘事件(在多数情况下是由用户间接引起的)。
 &emsp;&emsp;`Tkinter`提供一个强大的机制可以让你自由地处理事件，对于每个组件来说，你可以通过`bind`方法将函数或方法绑定到具体的事件上。
@@ -20,7 +20,7 @@ from tkinter import *
 root = Tk()
 ​
 def callback(event):
-    print("点击位置：", event.x, event.y)
+    print("点击位置：", event.x, event.y)
 ​
 frame = Frame(root, width=200, height=200)
 frame.bind("<Button-1>", callback)
@@ -40,7 +40,7 @@ from tkinter import *
 root = Tk()
 ​
 def callback(event):
-    print("敲击位置：", repr(event.char))
+    print("敲击位置：", repr(event.char))
 ​
 frame = Frame(root, width=200, height=200)
 frame.bind("<Key>", callback)
@@ -60,7 +60,7 @@ from tkinter import *
 root = Tk()
 ​
 def callback(event):
-    print("当前位置：", event.x, event.y)
+    print("当前位置：", event.x, event.y)
 ​
 frame = Frame(root, width=200, height=200)
 frame.bind("<Motion>", callback)
@@ -146,7 +146,7 @@ modifier  | 含义
 &emsp;&emsp;当事件为`Key`、`KeyPress`和`KeyRelease`的时候，`detail`可以通过设定具体的按键名(`keysym`)来筛选。例如`Key-H`表示按下键盘上的大写字母`H`时候触发事件，`Key-Tab`表示按下键盘上的`Tab`按键的时候触发事件。下表列举了键盘所有特殊按键的`keysym`和`keycode`(下边按键码是对应美国标准`101`键盘的`Latin-1`字符集，键盘标准不同对应的按键码不同，但按键名是一样的)：
 
 按键名(keysym) | 按键码(keycode) | 代表的按键
---------------|-----------------|---------------
+--------------|-----------------|----------
 `Alt_L`       | `64`            | 左边的`Alt`按键
 `Alt_R`       | `113`           | 右边的`Alt`按键
 `BackSpace`   | `22`            | `Backspace`(退格)按键

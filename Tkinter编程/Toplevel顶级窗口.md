@@ -1,7 +1,7 @@
 ---
 title: Toplevel顶级窗口
 date: 2019-04-10 16:57:46
-tags:
+categories: Tkinter编程
 ---
 &emsp;&emsp;`Toplevel`(顶级窗口)组件类似于`Frame`组件，但`Toplevel`组件是一个独立的顶级窗口，这种窗口通常拥有标题栏、边框等部件。
 &emsp;&emsp;`Toplevel`组件通常用在显示额外的窗口、对话框和其他弹出窗口上。
@@ -17,11 +17,10 @@ from tkinter import *
 root = Tk()
 ​
 def create():
-    top = Toplevel()
-    top.title("FishC Demo")
-​
-    msg = Message(top, text="I love FishC.com!")
-    msg.pack()
+    top = Toplevel()
+    top.title("FishC Demo")
+    msg = Message(top, text="I love FishC.com!")
+    msg.pack()
 ​
 Button(root, text="创建顶级窗口", command=create).pack()
 ​
@@ -57,7 +56,7 @@ mainloop()
 
 ### 方法
 
-&emsp;&emsp;下边这一系列方法用于与窗口管理器进行交互。它们可以被Tk(根窗口)进行调用，同样也适用于Toplevel(顶级窗口)。注意，并非所有操作系统均完全支持下方所有方法的实现。
+&emsp;&emsp;下边这一系列方法用于与窗口管理器进行交互。它们可以被`Tk`(根窗口)进行调用，同样也适用于`Toplevel`(顶级窗口)。注意，并非所有操作系统均完全支持下方所有方法的实现。
 
 - `aspect(minNumer=None, minDenom=None, maxNumer=None, maxDenom=None)`：控制该窗口的宽高比(`width：height`)。宽高比限制在`minNumer/minDenom`至`maxNumer/maxDenom`。如果忽略参数，则返回一个`4`元组表示当前的限制(如果有的话)。
 - `attributes(*args)`：设置和获取窗口属性，如果你只给出选项名，将返回当前窗口该选项的值。注意，以下选项不支持关键字参数，你需要在选项前添加横杠`-`并用字符串的方式表示，用逗号`,`隔开选项和值。例如你希望设置窗口的透明度为`50%`，你应该使用`attribute("-alpha", 0.5)`代替`attribute(alpha=0.5)`。下方表格列举了`args`可以使用各个选项的具体含义及用法：

@@ -247,9 +247,9 @@ def test(content, reason, name):
         print(content, reason, name)
         return True
     else:
-        print("错误！")
-        print(content, reason, name)
-        return False
+        print("错误！")
+        print(content, reason, name)
+        return False
 ​
 testCMD = master.register(test)
 e1 = Entry(master, textvariable=v, validate="focusout", validatecommand=(testCMD, '%P', '%v', '%W'))
