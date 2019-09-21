@@ -82,39 +82,38 @@ void MyTask ( void *pdata ) {
         OSMemQuery ( /* 查询内存控制块信息 */
             IntBuffer, /* 带查询内存控制块指针 */
             &MemInfo );
-        sprintf ( s, "%0x", MemInfo.OSFreeList ); /* 显示头指针，把得到的空闲内存块链表首地址的指针放到指针s所指的空间中 */
-        PC_DispStr ( 30, y, s, DISP_BGND_BLACK + DISP_FGND_WHITE ); /* 把空闲内存块链表首地址的指针显示出来 */
-        sprintf ( s, "%d", MemInfo.OSNUsed ); /* 显示已用的内存块数目 */
-        PC_DispStr ( 40, y, s, DISP_BGND_BLACK + DISP_FGND_WHITE );
+        sprintf ( s, "%0x", MemInfo.OSFreeList ); /* 显示头指针，把得到的空闲内存块链表首地址的指针放到指针s所指的空间中 */
+        PC_DispStr ( 30, y, s, DISP_BGND_BLACK + DISP_FGND_WHITE ); /* 把空闲内存块链表首地址的指针显示出来 */
+        sprintf ( s, "%d", MemInfo.OSNUsed ); /* 显示已用的内存块数目 */
+        PC_DispStr ( 40, y, s, DISP_BGND_BLACK + DISP_FGND_WHITE );
 ​
-        if ( Times >= 5 ) { /* 运行六次后 */
-            OSMemPut ( /* 释放内存块函数 */
-                IntBuffer, /* 内存块所属内存分区的指针 */
-                IntBlkPtr /* 待释放内存块指针 */
-                /* 此次释放，只能释放最后一次申请到的内存块，前面因为IntBlkPtr被后面的给覆盖掉了，所以释放不了 */
-            );
-        }
+        if ( Times >= 5 ) { /* 运行六次后 */
+            OSMemPut ( /* 释放内存块函数 */
+                IntBuffer, /* 内存块所属内存分区的指针 */
+                IntBlkPtr /* 待释放内存块指针 */
+                /* 此次释放，只能释放最后一次申请到的内存块，前面因为IntBlkPtr被后面的给覆盖掉了，所以释放不了 */
+            );
+        }
 ​
-        Times++; /* 运行次数加1 */
-        OSTimeDlyHMSM ( 0, 0, 1, 0 ); /* 等待1s */
-    }
+        Times++; /* 运行次数加1 */
+        OSTimeDlyHMSM ( 0, 0, 1, 0 ); /* 等待1s */
+    }
 }
 ​
 void YouTask ( void *pdata ) {
 #if OS_CRITICAL_METHOD == 3
-    OS_CPU_SR cpu_sr;
+    OS_CPU_SR cpu_sr;
 #endif
-    pdata = pdata;
+    pdata = pdata;
 ​
-    for ( ; ; ) {
-        PC_DispStr ( 10, ++y, s2, DISP_BGND_BLACK + DISP_FGND_WHITE );
-        IntBlkPtr = OSMemGet ( /* 请求内存块 */
-                        IntBuffer, /* 内存分区的指针 */
-                        &err /* 错误信息 */
-                    );
-        OSMemQuery ( /* 查询内存控制块信息 */
-            IntBuffer, /* 待查询内存控制块指针 */
-            &MemInfo );
+    for ( ; ; ) {
+        PC_DispStr ( 10, ++y, s2, DISP_BGND_BLACK + DISP_FGND_WHITE );
+        IntBlkPtr = OSMemGet ( /* 请求内存块 */
+                        IntBuffer, /* 内存分区的指针 */
+                        &err /* 错误信息 */);
+        OSMemQuery ( /* 查询内存控制块信息 */
+            IntBuffer, /* 待查询内存控制块指针 */
+            &MemInfo );
         sprintf ( s, "%0x", MemInfo.OSFreeList ); /* 显示头指针 */
         PC_DispStr ( 30, y, s, DISP_BGND_BLACK + DISP_FGND_WHITE );
         sprintf ( s, "%d", MemInfo.OSNUsed ); /* 显示已用的内存块数目 */
