@@ -186,8 +186,8 @@ v.set(1)
 
 for lang, num in LANGS:
     # indicatoron是指示器，即前面的小圆点
-    b = Radiobutton(master, text=lang, variable=v, value=num, indicatoron=False)
-    b.pack(fill=X)
+    b = Radiobutton(master, text=lang, variable=v, value=num, indicatoron=False)
+    b.pack(fill=X)
 ​
 mainloop()
 ```
@@ -205,17 +205,17 @@ group = LabelFrame(root, text="最好的脚本语言是？", padx=5, pady=5)
 group.pack(padx=10, pady=10)
 ​
 LANGS = [
-    ("Python", 1),
-    ("Perl", 2),
-    ("Ruby", 3),
-    ("Lua", 4)
-]
+    ("Python", 1),
+    ("Perl", 2),
+    ("Ruby", 3),
+    ("Lua", 4)]
 ​
 v = IntVar()
 v.set(1)
+
 for lang, num in LANGS:
-    b = Radiobutton(group, text=lang, variable=v, value=num)
-    b.pack(anchor=W)
+    b = Radiobutton(group, text=lang, variable=v, value=num)
+    b.pack(anchor=W)
 ​
 mainloop()
 ```
@@ -232,8 +232,8 @@ root = Tk()
 e = Entry(root)
 e.pack(padx=20, pady=20)
 ​
-e.delete(0, END)  # 把输入框的内容清空
-e.insert(0, "默认文本")  # 填充输入框
+e.delete(0, END)  # 把输入框的内容清空
+e.insert(0, "默认文本")  # 填充输入框
 ​
 mainloop()
 ```
@@ -246,8 +246,8 @@ mainloop()
 from tkinter import *
 ​
 def show():
-    print("作品：《%s》" % e1.get())
-    print("作者：%s" % e2.get())
+    print("作品：《%s》" % e1.get())
+    print("作者：%s" % e2.get())
 ​
 root = Tk()
 ​
@@ -260,10 +260,10 @@ e1.grid(row=0, column=1, padx=10, pady=5)
 e2.grid(row=1, column=1, padx=10, pady=5)
 ​
 Button(root, text="获取信息", width=10, command=show) \
-    .grid(row=3, column=0, sticky=W, padx=10, pady=5)
+    .grid(row=3, column=0, sticky=W, padx=10, pady=5)
 ​
 Button(root, text="退出", width=10, command=root.quit) \
-    .grid(row=3, column=1, sticky=E, padx=10, pady=5)
+    .grid(row=3, column=1, sticky=E, padx=10, pady=5)
 ​
 mainloop()
 ```
@@ -276,8 +276,8 @@ mainloop()
 from tkinter import *
 ​
 def show():
-    print("账号：%s" % e1.get())
-    print("密码：%s" % e2.get())
+    print("账号：%s" % e1.get())
+    print("密码：%s" % e2.get())
 ​
 root = Tk()
 ​
@@ -293,10 +293,10 @@ e1.grid(row=0, column=1, padx=10, pady=5)
 e2.grid(row=1, column=1, padx=10, pady=5)
 ​
 Button(root, text="芝麻开门", width=10, command=show) \
-    .grid(row=3, column=0, sticky=W, padx=10, pady=5)
+    .grid(row=3, column=0, sticky=W, padx=10, pady=5)
 ​
 Button(root, text="退出", width=10, command=root.quit) \
-    .grid(row=3, column=1, sticky=E, padx=10, pady=5)
+    .grid(row=3, column=1, sticky=E, padx=10, pady=5)
 ​
 mainloop()
 ```
@@ -318,7 +318,7 @@ v2 = StringVar()
 v3 = StringVar()
 ​
 def test(content):
-    return content.isdigit()
+    return content.isdigit()
 ​
 testCMD = master.register(test)
 ​
@@ -329,8 +329,8 @@ Label(frame, text="=").grid(row=0, column=3)
 e3 = Entry(frame, width=10, textvariable=v3, state="readonly").grid(row=0, column=4)
 ​
 def cal():
-    result = int(v1.get()) + int(v2.get())
-    v3.set(str(result))
+    result = int(v1.get()) + int(v2.get())
+    v3.set(str(result))
 ​
 Button(frame, text="计算结果", command=cal).grid(row=1, column=2, pady=5)
 ​
@@ -352,7 +352,7 @@ theLB.pack()
 ​
 # 往列表里添加数据
 for item in ["鸡蛋", "鸭蛋", "鹅蛋", "李狗蛋"]:
-    theLB.insert(END, item)
+    theLB.insert(END, item)
 ​
 theButton = Button(master, text="删除", command=lambda x=theLB: x.delete(ACTIVE))
 theButton.pack()
@@ -370,7 +370,7 @@ from tkinter import *
 root = Tk()
 ​
 def callback():
-    print("~被调用了~")
+    print("~被调用了~")
 ​
 menubar = Menu(root)
 ​
