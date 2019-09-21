@@ -57,59 +57,60 @@ void StartTask ( void *pdata ) {
     OSTaskCreate ( HerTask, ( void * ) 0, &HerTaskStk[TASK_STK_SIZE - 1], 5 );
 ​
     for ( ;; ) {
-        if ( PC_GetKey ( &key ) == TRUE ) {
-            if ( key == 0x1B ) { /* 如果按下ESC键，则退出UC/OS-II */
-                PC_DOSReturn();
-            }
-        }
+        if ( PC_GetKey ( &key ) == TRUE ) {
+            if ( key == 0x1B ) { /* 如果按下ESC键，则退出UC/OS-II */
+                PC_DOSReturn();
+            }
+        }
 ​
-        OSTimeDlyHMSM ( 0, 0, 3, 0 );
+        OSTimeDlyHMSM ( 0, 0, 3, 0 );
     }
 }
 ​
 void MyTask ( void *pdata ) {
 #if OS_CRITICAL_METHOD == 3
-    OS_CPU_SR  cpu_sr;
+    OS_CPU_SR cpu_sr;
 #endif
-    pdata = pdata;
+    pdata = pdata;
 ​
-    for ( ; ; ) {
-        OSFlagPend ( /* 请求信号量集 */
-            Sem_F, /* 请求信号量集指针 */
+    for ( ; ; ) {
+        OSFlagPend ( /* 请求信号量集 */
+            Sem_F, /* 请求信号量集指针 */
             /* 过滤器，请求第0和第1位信号，即0011。这里是把数据3强制转化为OS_FLAGS
                类型的数据，因为过滤器和信号量集中的信号都是OS_FLAGS类型的数据 */
-            ( OS_FLAGS ) 3,
-            /* “OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME”的意思是信号全是1时有效，
+            ( OS_FLAGS ) 3,
+            /* “OS_FLAG_WAIT_SET_ALL + OS_FLAG_CONSUME”的意思是信号全是1时有效，
                参数OS_FLAG_CONSUME表示当任务等待的事件发生后，清除相应的事件标志位 */
-            OS_FLAG_WAIT_SET_ALL, /* 只有当信号全是1时信号有效，没有加参数OS_FLAG_CONSUME，所以不会清除标志位 */
-            0, /* 表示等待时限，0表示无限等待 */
-            &err /* 错误信息 */
-        );
-        /* 任务MyTask在这里请求信号量集，如果请求到了信号量集，就继续运行，在下面显示信息；
-           如果请求不到信号量集，MyTask就挂起，处于等待状态，只到请求到了信号量集才继续往下运行 */
-        PC_DispStr ( 10, ++y, s1, DISP_BGND_BLACK + DISP_FGND_WHITE ); /* 显示信息 */
-        OSTimeDlyHMSM ( 0, 0, 2, 0 ); /* 等待2s */
-    }
+            OS_FLAG_WAIT_SET_ALL, /* 只有当信号全是1时信号有效，没有加参数OS_FLAG_CONSUME，所以不会清除标志位 */
+            0, /* 表示等待时限，0表示无限等待 */
+            &err /* 错误信息 */
+        );
+        /* 任务MyTask在这里请求信号量集，如果请求到了信号量集，就继续运行，在下面显示信息；
+           如果请求不到信号量集，MyTask就挂起，处于等待状态，只到请求到了信号量集才继续往下运行 */
+        PC_DispStr ( 10, ++y, s1, DISP_BGND_BLACK + DISP_FGND_WHITE ); /* 显示信息 */
+        OSTimeDlyHMSM ( 0, 0, 2, 0 ); /* 等待2s */
+    }
 }
 ​
 void YouTask ( void *pdata ) {
 #if OS_CRITICAL_METHOD == 3
-    OS_CPU_SR  cpu_sr;
+    OS_CPU_SR cpu_sr;
 #endif
-    pdata = pdata;
+    pdata = pdata;
 ​
-    for ( ; ; ) {
-        PC_DispStr ( 10, ++y, s2, DISP_BGND_BLACK + DISP_FGND_WHITE ); /* 显示信息 */
-        OSTimeDlyHMSM ( 0, 0, 8, 0 ); /* 等待8s */
-        OSFlagPost ( /* 向信号量集发信号 */
-            Sem_F, /* 发送信号量集的指针 */
+    for ( ; ; ) {
+        PC_DispStr ( 10, ++y, s2, DISP_BGND_BLACK + DISP_FGND_WHITE ); /* 显示信息 */
+        OSTimeDlyHMSM ( 0, 0, 8, 0 ); /* 等待8s */
+        OSFlagPost ( /* 向信号量集发信号 */
+            Sem_F, /* 发送信号量集的指针 */
             /* 选择要发送的信号，给第1位发信号，即0010。同样把2强制转化为OS_FLAGS型的数据，因为信号为OS_FLAGS型的 */
-            ( OS_FLAGS ) 2,
-            OS_FLAG_SET, /* 信号有效的选项，信号置1。OS_FLAG_SET为置1，OS_FLAG_CLR为置0 */
-            &err /* 错误信息 */
-        );
-        OSTimeDlyHMSM ( 0, 0, 2, 0 ); /* 等待2s */
-    }
+            ( OS_FLAGS ) 2,
+            OS_FLAG_SET, /* 信号有效的选项，信号置1。OS_FLAG_SET为置1，OS_FLAG_CLR为置0 */
+            &err /* 错误信息 */
+        );
+
+        OSTimeDlyHMSM ( 0, 0, 2, 0 ); /* 等待2s */
+    }
 }
 ​
 void HerTask ( void *pdata ) {
