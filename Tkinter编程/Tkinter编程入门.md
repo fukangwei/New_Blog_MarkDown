@@ -9,15 +9,14 @@ tags:
 import tkinter as tk
 ​
 class APP:
-    def __init__(self, master):
-        frame = tk.Frame(master)
-        frame.pack()
+    def __init__(self, master):
+        frame = tk.Frame(master)
+        frame.pack()
+        self.hi_there = tk.Button(frame, text="打招呼", bg="green", fg="red", command=self.hello)
+        self.hi_there.pack()
 ​
-        self.hi_there = tk.Button(frame, text="打招呼", bg="green", fg="red", command=self.hello)
-        self.hi_there.pack()
-​
-    def hello(self):
-        print("hello!")
+    def hello(self):
+        print("hello!")
 ​
 root = tk.Tk()
 app = APP(root)
@@ -36,7 +35,7 @@ root = Tk()
 textLabel = Label(root, text="重装机兵", justify=LEFT, padx=10)
 textLabel.pack(side=LEFT)
 ​
-photo = PhotoImage(file="zzjb.gif")  # 目前支持GIF格式
+photo = PhotoImage(file="zzjb.gif")  # 目前支持GIF格式
 imageLabel = Label(root, image=photo)
 imageLabel.pack(side=RIGHT)
 ​
@@ -44,7 +43,6 @@ mainloop()
 ```
 
 <img src="./Tkinter编程入门/2.png">
-
 
 &emsp;&emsp;代码如下：
 
@@ -55,14 +53,13 @@ root = Tk()
 ​
 photo = PhotoImage(file="bg.gif")
 theLabel = Label(
-    root,
-    text="学Python\n到FishC",
-    justify=LEFT,
-    image=photo,
-    compound=CENTER,
-    font=("华康少女字体", 20),
-    fg="white"
-)
+    root,
+    text="学Python\n到FishC",
+    justify=LEFT,
+    image=photo,
+    compound=CENTER,
+    font=("华康少女字体", 20),
+    fg="white")
 theLabel.pack()
 ​
 mainloop()
@@ -76,20 +73,19 @@ mainloop()
 from tkinter import *
 ​
 def callback():
-    var.set("吹吧你，我才不信呢~")
+    var.set("吹吧你，我才不信呢~")
 ​
 root = Tk()
 ​
 frame1 = Frame(root)
 frame2 = Frame(root)
 ​
-var = StringVar()  # 创建一个文本Label对象
+var = StringVar()  # 创建一个文本Label对象
 var.set("您所下载的影片含有未成年人限制内容，\n请满18岁后再点击观看！")
 textLabel = Label(
-    frame1,
-    textvariable=var,
-    justify=LEFT
-)
+    frame1,
+    textvariable=var,
+    justify=LEFT)
 textLabel.pack(side=LEFT)
 ​
 # 创建一个图像Label对象，用PhotoImage实例化一个图片对象(支持gif格式的图片)
@@ -97,7 +93,7 @@ photo = PhotoImage(file="18.gif")
 imgLabel = Label(frame1, image=photo)
 imgLabel.pack(side=RIGHT)
 ​
-theButton = Button(frame2, text="已满18周岁", command=callback)  # 加一个按钮
+theButton = Button(frame2, text="已满18周岁", command=callback)  # 加一个按钮
 theButton.pack()
 ​
 frame1.pack(padx=10, pady=10)
@@ -115,11 +111,10 @@ from tkinter import *
 ​
 root = Tk()
 ​
-v = IntVar()  # 需要一个Tkinter变量，用于表示该按钮是否被选中
+v = IntVar()  # 需要一个Tkinter变量，用于表示该按钮是否被选中
 ​
 c = Checkbutton(root, text="测试一下", variable=v)
 c.pack()
-​
 # 如果选项被选中，那么变量v被赋值为1，否则为0
 # 我们可以用个Label标签动态地给大家展示：
 l = Label(root, textvariable=v)
@@ -142,9 +137,9 @@ GIRLS = ["西施", "王昭君", "貂蝉", "杨玉环"]
 v = []
 ​
 for girl in GIRLS:
-    v.append(IntVar())
-    b = Checkbutton(root, text=girl, variable=v[-1])
-    b.pack(anchor=W)  # anchor表示方向
+    v.append(IntVar())
+    b = Checkbutton(root, text=girl, variable=v[-1])
+    b.pack(anchor=W)  # anchor表示方向
 ​
 mainloop()
 ```
@@ -181,14 +176,14 @@ from tkinter import *
 master = Tk()
 ​
 LANGS = [
-    ("Python", 1),
-    ("Perl", 2),
-    ("Ruby", 3),
-    ("Lua", 4)
-]
+    ("Python", 1),
+    ("Perl", 2),
+    ("Ruby", 3),
+    ("Lua", 4)]
 ​
 v = IntVar()
 v.set(1)
+
 for lang, num in LANGS:
     # indicatoron是指示器，即前面的小圆点
     b = Radiobutton(master, text=lang, variable=v, value=num, indicatoron=False)
