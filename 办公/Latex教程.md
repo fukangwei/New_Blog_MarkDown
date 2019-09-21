@@ -1,7 +1,7 @@
 ---
 title: Latex教程
 date: 2019-05-10 20:44:46
-tags:
+categories: 办公
 ---
 ### Hello World
 
@@ -296,21 +296,21 @@ TeX是高德纳教授做出来的排版引擎，同时也是该引擎使用的�
 
 size            | 10pt (default) | 11pt option | 12pt option
 ----------------|----------------|-------------|------------
-`\tiny`         | 5pt            | 6pt         | 6pt
-`\scriptsize`   | 7pt            | 8pt         | 8pt
-`\footnotesize` | 8pt            | 9pt         | 10pt
-`\small`        | 9pt            | 10pt        | 11pt
-`\normalsize`   | 10pt           | 11pt        | 12pt
-`\large`        | 12pt           | 12pt        | 14pt
-`\Large`        | 14pt           | 14pt        | 17pt
-`\LARGE`        | 17pt           | 17pt        | 20pt
-`\huge`         | 20pt           | 20pt        | 25pt
-`\Huge`         | 25pt           | 25pt        | 25pt
+`\tiny`         | `5pt`          | `6pt`       | `6pt`
+`\scriptsize`   | `7pt`          | `8pt`       | `8pt`
+`\footnotesize` | `8pt`          | `9pt`       | `10pt`
+`\small`        | `9pt`          | `10pt`      | `11pt`
+`\normalsize`   | `10pt`         | `11pt`      | `12pt`
+`\large`        | `12pt`         | `12pt`      | `14pt`
+`\Large`        | `14pt`         | `14pt`      | `17pt`
+`\LARGE`        | `17pt`         | `17pt`      | `20pt`
+`\huge`         | `20pt`         | `20pt`      | `25pt`
+`\Huge`         | `25pt`         | `25pt`      | `25pt`
 
 中英文字号对照表如下：
 
-中文字号 | 英文字号
---------|--------
+中文字号 | 英文字号 | 中文字号 | 英文字号
+--------|----------|---------|--------
 初号    | 42pt
 小初    | 36pt
 一号    | 26pt
