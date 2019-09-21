@@ -1,9 +1,9 @@
 ---
 title: ucos信号量集
 date: 2018-12-29 11:48:15
-tags:
+categories: ucos和ucgui
 ---
-&emsp;&emsp;信号量集又称`事件标志组`，代码如下所示：
+&emsp;&emsp;信号量集又称`事件标志组`，代码如下：
 
 ``` c
 #include "INCLUDES.h"
@@ -29,34 +29,34 @@ void YouTask ( void *data );
 void HerTask ( void *data );
 ​
 void main ( void ) {
-    OSInit();
-    PC_DOSSaveReturn();
-    PC_VectSet ( uCOS, OSCtxSw );
+    OSInit();
+    PC_DOSSaveReturn();
+    PC_VectSet ( uCOS, OSCtxSw );
     /* 创建信号量集，函数的原型为：OS_FLAG_GRP *OSFlagCreate(OS_FLAGS flags, INT8U *err) */
     /* 参数OS_FLAGS flags是信号的初始值，在这里指定为0，即信号初始值为0。参数“*err”是错误信息，前面已经定义了。
        返回值为OS_FLAG_GRP型的指针，即为创建的信号量集的标志组的指针，前面已经定义了 */
-    Sem_F = OSFlagCreate ( 0, &err );
-    OSTaskCreate ( StartTask, ( void * ) 0, &StartTaskStk[TASK_STK_SIZE - 1], 0 ); /* 创建起始任务 */
-    OSStart();
+    Sem_F = OSFlagCreate ( 0, &err );
+    OSTaskCreate ( StartTask, ( void * ) 0, &StartTaskStk[TASK_STK_SIZE - 1], 0 ); /* 创建起始任务 */
+    OSStart();
 }
 ​
 void StartTask ( void *pdata ) {
 #if OS_CRITICAL_METHOD == 3
-    OS_CPU_SR cpu_sr;
+    OS_CPU_SR cpu_sr;
 #endif
-    INT16S key;
-    pdata = pdata;
-    OS_ENTER_CRITICAL(); /* 进入临界段 */
-    PC_VectSet ( 0x08, OSTickISR );
-    PC_SetTickRate ( OS_TICKS_PER_SEC );
-    OS_EXIT_CRITICAL(); /* 退出临界段 */
-    OSStatInit();
+    INT16S key;
+    pdata = pdata;
+    OS_ENTER_CRITICAL(); /* 进入临界段 */
+    PC_VectSet ( 0x08, OSTickISR );
+    PC_SetTickRate ( OS_TICKS_PER_SEC );
+    OS_EXIT_CRITICAL(); /* 退出临界段 */
+    OSStatInit();
     /* 在起始任务中创建三个任务 */
-    OSTaskCreate ( MyTask, ( void * ) 0, &MyTaskStk[TASK_STK_SIZE - 1], 3 );
-    OSTaskCreate ( YouTask, ( void * ) 0, &YouTaskStk[TASK_STK_SIZE - 1], 4 );
-    OSTaskCreate ( HerTask, ( void * ) 0, &HerTaskStk[TASK_STK_SIZE - 1], 5 );
+    OSTaskCreate ( MyTask, ( void * ) 0, &MyTaskStk[TASK_STK_SIZE - 1], 3 );
+    OSTaskCreate ( YouTask, ( void * ) 0, &YouTaskStk[TASK_STK_SIZE - 1], 4 );
+    OSTaskCreate ( HerTask, ( void * ) 0, &HerTaskStk[TASK_STK_SIZE - 1], 5 );
 ​
-    for ( ;; ) {
+    for ( ;; ) {
         if ( PC_GetKey ( &key ) == TRUE ) {
             if ( key == 0x1B ) { /* 如果按下ESC键，则退出UC/OS-II */
                 PC_DOSReturn();
@@ -64,7 +64,7 @@ void StartTask ( void *pdata ) {
         }
 ​
         OSTimeDlyHMSM ( 0, 0, 3, 0 );
-    }
+    }
 }
 ​
 void MyTask ( void *pdata ) {
