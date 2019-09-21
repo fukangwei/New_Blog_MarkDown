@@ -1,15 +1,15 @@
 ---
 title: ucos消息队列
 date: 2018-12-29 11:27:56
-tags:
+categories: ucos和ucgui
 ---
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` c
 #include "includes.h"
 ​
 #define TASK_STK_SIZE 512
-#define N_MESSAGES    128
+#define N_MESSAGES    128
 ​
 OS_STK StartTaskStk[TASK_STK_SIZE];
 OS_STK MyTaskStk[TASK_STK_SIZE];
@@ -32,45 +32,45 @@ void StartTask ( void *data );
 void YouTask ( void *data );
 ​
 void main ( void ) {
-    OSInit();
-    PC_DOSSaveReturn();
-    PC_VectSet ( uCOS, OSCtxSw );
-    Str_Q = OSQCreate ( &MsgGrp[0], N_MESSAGES ); /* 创建消息队列 */
-    /* 函数的第一个参数“&MsgGrp[0]”是“void **start”，是存放消息缓冲区指针数组的地址。
+    OSInit();
+    PC_DOSSaveReturn();
+    PC_VectSet ( uCOS, OSCtxSw );
+    Str_Q = OSQCreate ( &MsgGrp[0], N_MESSAGES ); /* 创建消息队列 */
+    /* 函数的第一个参数“&MsgGrp[0]”是“void **start”，是存放消息缓冲区指针数组的地址。
        它是指向指针数组的指针，可以用指针数组的首个元素的地址表示 */
-    /* N_MESSAGES是该数组的大小，返回值是消息队列的指针。Str_Q是OS_EVENT型的指针，是事件控制块型的指针 */
-    OSTaskCreate ( StartTask, ( void * ) 0, &StartTaskStk[TASK_STK_SIZE - 1], 0 );
-    OSStart();
+    /* N_MESSAGES是该数组的大小，返回值是消息队列的指针。Str_Q是OS_EVENT型的指针，是事件控制块型的指针 */
+    OSTaskCreate ( StartTask, ( void * ) 0, &StartTaskStk[TASK_STK_SIZE - 1], 0 );
+    OSStart();
 }
 ​
 void StartTask ( void *pdata ) {
 #if OS_CRITICAL_METHOD == 3
-    OS_CPU_SR cpu_sr;
+    OS_CPU_SR cpu_sr;
 #endif
-    INT16S key;
-    pdata = pdata;
-    OS_ENTER_CRITICAL();
-    PC_VectSet ( 0x08, OSTickISR );
-    PC_SetTickRate ( OS_TICKS_PER_SEC );
-    OS_EXIT_CRITICAL();
-    OSStatInit();
-    OSTaskCreate ( MyTask, ( void * ) 0, &MyTaskStk[TASK_STK_SIZE - 1], 3 );
-    OSTaskCreate ( YouTask, ( void * ) 0, &YouTaskStk[TASK_STK_SIZE - 1], 4 );
+    INT16S key;
+    pdata = pdata;
+    OS_ENTER_CRITICAL();
+    PC_VectSet ( 0x08, OSTickISR );
+    PC_SetTickRate ( OS_TICKS_PER_SEC );
+    OS_EXIT_CRITICAL();
+    OSStatInit();
+    OSTaskCreate ( MyTask, ( void * ) 0, &MyTaskStk[TASK_STK_SIZE - 1], 3 );
+    OSTaskCreate ( YouTask, ( void * ) 0, &YouTaskStk[TASK_STK_SIZE - 1], 4 );
 ​
-    // s = "How many strings could be geted?";
+    // s = "How many strings could be geted?";
     // /* 发送消息，以LIFO后进先出的方式发送。第一个参数Str_Q是消息队列的指针，
     //    是OSQCreate的返回值，第二个参数s是消息指针 */
-    // OSQPostFront( Str_Q, s );
-    for ( ;; ) {
-        s_flag = "The StartTask is running!";
-        PC_DispStr ( 50, ++y, s_flag, DISP_FGND_RED + DISP_BGND_LIGHT_GRAY ); /* 提示哪个任务在运行 */
+    // OSQPostFront( Str_Q, s );
+    for ( ;; ) {
+        s_flag = "The StartTask is running!";
+        PC_DispStr ( 50, ++y, s_flag, DISP_FGND_RED + DISP_BGND_LIGHT_GRAY ); /* 提示哪个任务在运行 */
 ​
-        if ( OSTimeGet() > 100 && OSTimeGet() < 500 ) {
+        if ( OSTimeGet() > 100 && OSTimeGet() < 500 ) {
             s100 = "The value of OSTIME is from 100 to 500 NOW!!";
             OSQPostFront ( Str_Q, s100 ); /* 发送消息，以LIFO后进先出的方式发送 */
             s = "The string belongs to which task.";
             OSQPostFront ( Str_Q, s ); /* 发送消息，以LIFO方式发送。所以如果要申请消息时，会先得到s，然后才是s100 */
-        }
+        }
 ​
         if ( OSTimeGet() > 1000 && OSTimeGet() < 1500 ) {
             s500 = "The value of OSTIME is from 1000 to 1500 NOW!!";
