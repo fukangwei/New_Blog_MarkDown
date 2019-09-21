@@ -1,7 +1,7 @@
 ---
 title: Markdown教程
 date: 2019-01-14 15:25:43
-tags:
+categories: 办公
 ---
 &emsp;&emsp;`Markdown`的优点主要有：纯文本，所以兼容性极强，可以用所有文本编辑器打开；让你专注于文字而不是排版；格式转换方便，`Markdown`的文本你可以轻松转换为`html`、电子书等；`Markdown`的标记语法有极好的可读性。
 
@@ -126,19 +126,13 @@ if (condition) {
 Language                       | key
 -------------------------------|----
 `C`                            | `c`
-`ActionScript`                 | `actionscript`
 `Apache`                       | `apache`
 `AppleScript`                  | `applescript`
 `AsciiDoc`                     | `asciidoc`
-`AspectJ`                      | `asciidoc`
 `AutoHotkey`                   | `autohotkey`
 `AVR Assembler`                | `avrasm`
-`Axapta`                       | `axapta`
 `Bash`                         | `bash`
 `BrainFuck`                    | `brainfuck`
-`Cap'n Proto`                  | `capnproto`
-`Clojure REPL`                 | `clojure`
-`Clojure`                      | `clojure`
 `CMake`                        | `cmake`
 `CoffeeScript`                 | `coffeescript`
 `C++`                          | `cpp`
@@ -150,84 +144,54 @@ Language                       | key
 `Diff`                         | `diff`
 `Django`                       | `django`
 `DOS .bat`                     | `dos`
-`Dust`                         | `dust`
-`Elixir`                       | `elixir`
-`ERB (Embedded Ruby)`          | `erb`
 `Erlang REPL`                  | `erlang-repl`
 `Erlang`                       | `erlang`
 `FIX`                          | `fix`
 `F#`                           | `fsharp`
 `G-code (ISO 6983)`            | `gcode`
-`Gherkin`                      | `gherkin`
-`GLSL`                         | `glsl`
 `Go`                           | `go`
 `Gradle`                       | `gradle`
-`Groovy`                       | `groovy`
-`Haml`                         | `haml`
-`Handlebars`                   | `handlebars`
 `Haskell`                      | `haskell`
 `Haxe`                         | `haxe`
 `HTTP`                         | `http`
-`Ini file`                      | `ini`
+`Ini file`                     | `ini`
 `Java`                         | `java`
 `JavaScript`                   | `javascript`
 `JSON`                         | `json`
-`Lasso`                        | `lasso`
-`Less`                         | `less`
 `Lisp`                         | `lisp`
 `LiveCode`                     | `livecodeserver`
 `LiveScript`                   | `livescript`
 `Lua`                          | `lua`
-`Makefile`                      | `makefile`
+`Makefile`                     | `makefile`
 `Markdown`                     | `markdown`
 `Mathematica`                  | `mathematica`
 `Matlab`                       | `matlab`
-`MEL (Maya Embedded Language)` | `mel`
-`Mercury`                      | `mercury`
-`Mizar`                        | `mizar`
 `Monkey`                       | `monkey`
 `nginx`                        | `nginx`
-`Nimrod`                       | `nimrod`
-`Nix`                          | `nix`
-`NSIS`                         | `nsis`
 `Objective C`                  | `objectivec`
-`OCaml`                        | `ocaml`
 `Oxygene`                      | `oxygene`
-`Parser 3`                     | `parser3`
 `Perl`                         | `perl`
 `PHP`                          | `php`
 `PowerShell`                   | `powershell`
 `Processing`                   | `processing`
-`Python's profiler output`      | `profile`
+`Python's profiler output`     | `profile`
 `Protocol Buffers`             | `protobuf`
 `Puppet`                       | `puppet`
 `Python`                       | `python`
 `Q`                            | `q`
 `R`                            | `r`
-`RenderMan RIB`                | `rib`
-`Roboconf`                     | `roboconf`
-`RenderMan RSL`                | `rsl`
 `Ruby`                         | `ruby`
 `Oracle Rules Language`        | `ruleslanguage`
 `Rust`                         | `rust`
 `Scala`                        | `scala`
 `Scheme`                       | `scheme`
-`Scilab`                       | `scilab`
-`SCSS`                         | `scss`
-`Smali`                        | `smali`
 `SmallTalk`                    | `smalltalk`
-`SML`                          | `sml`
 `SQL`                          | `sql`
-`Stata`                        | `stata`
-`STEP Part 21 (ISO 10303-21)`  | `step21`
-`Stylus`                       | `stylus`
 `Swift`                        | `swift`
 `Tcl`                          | `tcl`
 `TeX`                          | `tex`
-`Thrift`                       | `thrift`
 `Twig`                         | `twig`
 `TypeScript`                   | `typescript`
-`Vala`                         | `vala`
 `VB.NET`                       | `vbnet`
 `VBScript in HTML`             | `vbscript-html`
 `VBScript`                     | `vbscript`
@@ -235,7 +199,6 @@ Language                       | key
 `VHDL`                         | `vhdl`
 `Vim Script`                   | `vim`
 `Intel x86 Assembly`           | `x86asm`
-`XL`                           | `xl`
 `XML`或`HTML`                  | `xml`
 
 ### 表格
