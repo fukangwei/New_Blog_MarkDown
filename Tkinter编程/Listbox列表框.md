@@ -1,7 +1,7 @@
 ---
 title: Listbox列表框
 date: 2019-03-31 17:56:15
-tags:
+categories: Tkinter编程
 ---
 &emsp;&emsp;`Listbox`(列表框)组件用于显示一个选择列表。`Listbox`只能包含文本项目，并且所有的项目都需要使用相同的字体和颜色。根据组件的配置，用户可以从列表中选择一个或多个选项。
 &emsp;&emsp;`Listbox`组件通常被用于显示一组文本选项，`Listbox`组件跟`Checkbutton`和`Radiobutton`组件类似，不过`Listbox`是以列表的形式来提供选项的，后两个是通过按钮的形式。
@@ -22,7 +22,7 @@ theLB.pack()
 ​
 # 往列表里添加数据
 for item in ["鸡蛋", "鸭蛋", "鹅蛋", "李狗蛋"]:
-    theLB.insert(END, item)
+    theLB.insert(END, item)
 ​
 mainloop()
 ```
@@ -47,9 +47,9 @@ theButton.pack()
 &emsp;&emsp;获取索引以及值：
 
 ``` python
-print(listbox.get(1))  # 返回制定索引的项值
-print(listbox.get(0, 2))  # 返回多个项值,返回元组
-print(listbox.curselection())  # 返回当前选中项的索引
+print(listbox.get(1))  # 返回制定索引的项值
+print(listbox.get(0, 2))  # 返回多个项值,返回元组
+print(listbox.curselection())  # 返回当前选中项的索引
 ```
 
 &emsp;&emsp;双击选项：

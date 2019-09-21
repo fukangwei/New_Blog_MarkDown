@@ -1,7 +1,7 @@
 ---
 title: Tkinter编程入门
 date: 2019-04-12 13:28:06
-tags:
+categories: Tkinter编程
 ---
 &emsp;&emsp;代码如下：
 
