@@ -70,20 +70,18 @@ void StartTask ( void *pdata ) {
 ​
 void MyTask ( void *pdata ) {
 #if OS_CRITICAL_METHOD == 3
-    OS_CPU_SR cpu_sr;
+    OS_CPU_SR cpu_sr;
 #endif
-    pdata = pdata;
+    pdata = pdata;
 ​
-    for ( ; ; ) {
-        PC_DispStr ( 10, ++y, s1, DISP_BGND_BLACK + DISP_FGND_WHITE ); /* 显示信息 */
-        IntBlkPtr = OSMemGet ( /* 请求内存块*/
-                        IntBuffer, /* 内存分区的指针 */
-                        &err /* 错误信息 */
-                    );
-        OSMemQuery ( /* 查询内存控制块信息 */
-            IntBuffer, /* 带查询内存控制块指针 */
-            &MemInfo
-        );
+    for ( ; ; ) {
+        PC_DispStr ( 10, ++y, s1, DISP_BGND_BLACK + DISP_FGND_WHITE ); /* 显示信息 */
+        IntBlkPtr = OSMemGet ( /* 请求内存块*/
+                        IntBuffer, /* 内存分区的指针 */
+                        &err /* 错误信息 */ );
+        OSMemQuery ( /* 查询内存控制块信息 */
+            IntBuffer, /* 带查询内存控制块指针 */
+            &MemInfo );
         sprintf ( s, "%0x", MemInfo.OSFreeList ); /* 显示头指针，把得到的空闲内存块链表首地址的指针放到指针s所指的空间中 */
         PC_DispStr ( 30, y, s, DISP_BGND_BLACK + DISP_FGND_WHITE ); /* 把空闲内存块链表首地址的指针显示出来 */
         sprintf ( s, "%d", MemInfo.OSNUsed ); /* 显示已用的内存块数目 */
