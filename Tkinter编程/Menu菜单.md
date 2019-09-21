@@ -1,7 +1,7 @@
 ---
 title: Menu菜单
 date: 2019-03-31 13:51:42
-tags:
+categories: Tkinter编程
 ---
 &emsp;&emsp;`Menu`(菜单)组件用于实现顶级菜单、下拉菜单和弹出菜单。`Menu`组件通常被用于实现应用程序上的各种菜单，由于该组件是底层代码实现，所以不建议你自行通过按钮和其他组件来实现菜单功能。
 <!--more-->
@@ -16,14 +16,14 @@ from tkinter import *
 root = Tk()
 ​
 def callback():
-    print("~被调用了~")
+    print("~被调用了~")
 ​
 # 创建一个顶级菜单
 menubar = Menu(root)
 menubar.add_command(label="Hello", command=callback)
 menubar.add_command(label="Quit", command=root.quit)
 ​
-root.config(menu=menubar)  # 显示菜单
+root.config(menu=menubar)  # 显示菜单
 ​
 mainloop()
 ```
@@ -38,7 +38,7 @@ from tkinter import *
 root = Tk()
 ​
 def callback():
-    print("~被调用了~")
+    print("~被调用了~")
 ​
 # 创建一个顶级菜单
 menubar = Menu(root)
@@ -58,7 +58,7 @@ editmenu.add_command(label="拷贝", command=callback)
 editmenu.add_command(label="粘贴", command=callback)
 menubar.add_cascade(label="编辑", menu=editmenu)
 ​
-root.config(menu=menubar)  # 显示菜单
+root.config(menu=menubar)  # 显示菜单
 ​
 mainloop()
 ```
@@ -73,7 +73,7 @@ from tkinter import *
 root = Tk()
 ​
 def callback():
-    print("~被调用了~")
+    print("~被调用了~")
 ​
 # 创建一个弹出菜单
 menu = Menu(root, tearoff=False)
@@ -84,9 +84,9 @@ frame = Frame(root, width=512, height=512)
 frame.pack()
 ​
 def popup(event):
-    menu.post(event.x_root, event.y_root)
+    menu.post(event.x_root, event.y_root)
 ​
-frame.bind("<Button-3>", popup)  # 绑定鼠标右键
+frame.bind("<Button-3>", popup)  # 绑定鼠标右键
 ​
 mainloop()
 ```
