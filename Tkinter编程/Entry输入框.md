@@ -242,11 +242,11 @@ master = Tk()
 v = StringVar()
 ​
 def test(content, reason, name):
-    if content == "小甲鱼":
-        print("正确！")
-        print(content, reason, name)
-        return True
-    else:
+    if content == "小甲鱼":
+        print("正确！")
+        print(content, reason, name)
+        return True
+    else:
         print("错误！")
         print(content, reason, name)
         return False
