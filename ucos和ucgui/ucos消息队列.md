@@ -114,12 +114,12 @@ void YouTask ( void *pdata ) {
     pdata = pdata;
 ​
     for ( ;; ) {
-        s_flag = "The YouTask is running!";
-        PC_DispStr ( 50, ++y, s_flag, DISP_FGND_RED + DISP_BGND_LIGHT_GRAY ); /* 提示哪个任务在运行 */
-        ss = OSQPend ( Str_Q, 0, &err ); /* 请求消息队列 */
-        PC_DispStr ( 3, y, ss, DISP_FGND_BLACK + DISP_BGND_LIGHT_GRAY ); /* 显示得到的消息 */
-        PC_DispStr ( 0, y, "You", DISP_FGND_RED + DISP_BGND_LIGHT_GRAY ); /* 显示是哪一个任务显示的 */
-        OSTimeDlyHMSM ( 0, 0, 1, 0 );
-    }
+        s_flag = "The YouTask is running!";
+        PC_DispStr ( 50, ++y, s_flag, DISP_FGND_RED + DISP_BGND_LIGHT_GRAY ); /* 提示哪个任务在运行 */
+        ss = OSQPend ( Str_Q, 0, &err ); /* 请求消息队列 */
+        PC_DispStr ( 3, y, ss, DISP_FGND_BLACK + DISP_BGND_LIGHT_GRAY ); /* 显示得到的消息 */
+        PC_DispStr ( 0, y, "You", DISP_FGND_RED + DISP_BGND_LIGHT_GRAY ); /* 显示是哪一个任务显示的 */
+        OSTimeDlyHMSM ( 0, 0, 1, 0 );
+    }
 }
 ```
