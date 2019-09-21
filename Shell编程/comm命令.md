@@ -39,16 +39,16 @@ ttt
 jjj
 $ comm aaa.txt bbb.txt
 aaa
-              bbb
-              ccc
-       aaa
+              bbb
+              ccc
+       aaa
 ddd
 eee
 111
 222
-       hhh
-       ttt
-       jjj
+       hhh
+       ttt
+       jjj
 第一列 第二列 第三列
 ```
 
