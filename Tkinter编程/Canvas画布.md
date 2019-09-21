@@ -1,7 +1,7 @@
 ---
 title: Canvas画布
 date: 2019-04-11 14:07:21
-tags:
+categories: Tkinter编程
 ---
 &emsp;&emsp;`Canvas`(画布)组件为`Tkinter`的图形绘制提供了基础。`Canvas`是一个高度灵活的组件，你可以用它绘制图形和图表，创建图形编辑器，并实现各种自定义的小部件。
 &emsp;&emsp;`Canvas`是一个通用的组件，通常用于显示和编辑图形。你可以用它来绘制线段、圆形、多边形，甚至是绘制其它组件。
@@ -19,9 +19,9 @@ root = Tk()
 w = Canvas(root, width=200, height=100)
 w.pack()
 ​
-w.create_line(0, 50, 200, 50, fill="yellow")  # 画一条黄色的横线
-w.create_line(100, 0, 100, 100, fill="red", dash=(4, 4))  # 画一条红色的竖线(虚线)
-w.create_rectangle(50, 25, 150, 75, fill="blue")  # 中间画一个蓝色的矩形
+w.create_line(0, 50, 200, 50, fill="yellow")  # 画一条黄色的横线
+w.create_line(100, 0, 100, 100, fill="red", dash=(4, 4))  # 画一条红色的竖线(虚线)
+w.create_rectangle(50, 25, 150, 75, fill="blue")  # 中间画一个蓝色的矩形
 ​
 mainloop()
 ```
@@ -83,21 +83,21 @@ center_y = 50
 r = 50
 ​
 points = [
-    # 左上点
-    center_x - int(r * m.sin(2 * m.pi / 5)),
-    center_y - int(r * m.cos(2 * m.pi / 5)),
-    # 右上点
-    center_x + int(r * m.sin(2 * m.pi / 5)),
-    center_y - int(r * m.cos(2 * m.pi / 5)),
-    # 左下点
-    center_x - int(r * m.sin(m.pi / 5)),
-    center_y + int(r * m.cos(m.pi / 5)),
-    # 顶点
-    center_x,
-    center_y - r,
-    # 右下点
-    center_x + int(r * m.sin(m.pi / 5)),
-    center_y + int(r * m.cos(m.pi / 5)),
+    # 左上点
+    center_x - int(r * m.sin(2 * m.pi / 5)),
+    center_y - int(r * m.cos(2 * m.pi / 5)),
+    # 右上点
+    center_x + int(r * m.sin(2 * m.pi / 5)),
+    center_y - int(r * m.cos(2 * m.pi / 5)),
+    # 左下点
+    center_x - int(r * m.sin(m.pi / 5)),
+    center_y + int(r * m.cos(m.pi / 5)),
+    # 顶点
+    center_x,
+    center_y - r,
+    # 右下点
+    center_x + int(r * m.sin(m.pi / 5)),
+    center_y + int(r * m.cos(m.pi / 5)),
 ]
 ​
 w.create_polygon(points, outline="green", fill="yellow")
@@ -122,9 +122,9 @@ w = Canvas(root, width=400, height=200)
 w.pack()
 ​
 def paint(event):
-    x1, y1 = (event.x - 1), (event.y - 1)
-    x2, y2 = (event.x + 1), (event.y + 1)
-    w.create_oval(x1, y1, x2, y2, fill="red")
+    x1, y1 = (event.x - 1), (event.y - 1)
+    x2, y2 = (event.x + 1), (event.y + 1)
+    w.create_oval(x1, y1, x2, y2, fill="red")
 ​
 w.bind("<B1-Motion>", paint)
 ​
@@ -160,10 +160,10 @@ mainloop()
 
 ``` python
 def callback(event):
-    canvas = event.widget
-    x = canvas.canvasx(event.x)
-    y = canvas.canvasy(event.y)
-    print(canvas.find_closest(x, y))
+    canvas = event.widget
+    x = canvas.canvasx(event.x)
+    y = canvas.canvasy(event.y)
+    print(canvas.find_closest(x, y))
 ```
 
 ### 画布对象显示的顺序
