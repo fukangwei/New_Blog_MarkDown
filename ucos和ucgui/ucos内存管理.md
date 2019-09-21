@@ -114,29 +114,28 @@ void YouTask ( void *pdata ) {
         OSMemQuery ( /* 查询内存控制块信息 */
             IntBuffer, /* 待查询内存控制块指针 */
             &MemInfo );
-        sprintf ( s, "%0x", MemInfo.OSFreeList ); /* 显示头指针 */
-        PC_DispStr ( 30, y, s, DISP_BGND_BLACK + DISP_FGND_WHITE );
-        sprintf ( s, "%d", MemInfo.OSNUsed ); /* 显示已用的内存块数目 */
-        PC_DispStr ( 40, y, s, DISP_BGND_BLACK + DISP_FGND_WHITE );
-        OSMemPut ( /* 释放内存块 */
-            IntBuffer, /* 内存块所属内存分区的指针 */
-            IntBlkPtr /* 待释放内存块指针 */ );
-        OSTimeDlyHMSM ( 0, 0, 2, 0 ); /* 等待2s */
-    }
+        sprintf ( s, "%0x", MemInfo.OSFreeList ); /* 显示头指针 */
+        PC_DispStr ( 30, y, s, DISP_BGND_BLACK + DISP_FGND_WHITE );
+        sprintf ( s, "%d", MemInfo.OSNUsed ); /* 显示已用的内存块数目 */
+        PC_DispStr ( 40, y, s, DISP_BGND_BLACK + DISP_FGND_WHITE );
+        OSMemPut ( /* 释放内存块 */
+            IntBuffer, /* 内存块所属内存分区的指针 */
+            IntBlkPtr /* 待释放内存块指针 */ );
+        OSTimeDlyHMSM ( 0, 0, 2, 0 ); /* 等待2s */
+    }
 }
 ​
 void HerTask ( void *pdata ) {
 #if OS_CRITICAL_METHOD == 3
-    OS_CPU_SR cpu_sr;
+    OS_CPU_SR cpu_sr;
 #endif
-    pdata = pdata;
+    pdata = pdata;
 ​
-    for ( ; ; ) {
+    for ( ; ; ) {
         PC_DispStr ( 10, ++y, s3, DISP_BGND_BLACK + DISP_FGND_WHITE );
         IntBlkPtr = OSMemGet ( /* 请求内存块 */
                         IntBuffer, /* 内存分区的指针 */
-                        &err /* 错误信息 */
-                    );
+                        &err /* 错误信息 */ );
         OSMemQuery ( /* 查询内存控制块信息 */
             IntBuffer, /* 待查询内存控制块指针 */
             &MemInfo );
