@@ -1,9 +1,9 @@
 ---
 title: 51单片机printf函数
 date: 2018-12-29 17:21:55
-tags:
+categories: 单片机
 ---
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` c
 #include <reg52.h>

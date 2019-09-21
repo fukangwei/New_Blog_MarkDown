@@ -1,7 +1,7 @@
 ---
 title: STM32的assert_param函数
 date: 2019-07-05 06:41:26
-tags:
+categories: 单片机
 ---
 &emsp;&emsp;我们在分析库函数时，几乎每一个函数的实现都有`assert_param`。下面以`assert_param(IS_GPIO_ALL_PERIPH(GPIOx));`为例说一下我的理解。函数的参数是`IS_GPIO_ALL_PERIPH(GPIOx)`，可以寻找到其原型：
 
