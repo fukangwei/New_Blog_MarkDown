@@ -1,11 +1,11 @@
 ---
 title: ucos内存管理
 date: 2018-12-29 11:22:58
-tags:
+categories: ucos和ucgui
 ---
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
-``` c
+``` cPP
 #include "INCLUDES.h"
 ​
 #define TASK_STK_SIZE 512
@@ -34,38 +34,38 @@ void YouTask ( void *data );
 void HerTask ( void *data );
 ​
 void main ( void ) {
-    OSInit();
-    PC_DOSSaveReturn();
-    PC_VectSet ( uCOS, OSCtxSw );
-    IntBuffer = OSMemCreate ( IntPart, 8, 6, &err ); /* 创建动态内存区 */
-    OSTaskCreate ( StartTask, ( void * ) 0, &StartTaskStk[TASK_STK_SIZE - 1], 0 ); /* 创建起始函数 */
-    OSStart();
+    OSInit();
+    PC_DOSSaveReturn();
+    PC_VectSet ( uCOS, OSCtxSw );
+    IntBuffer = OSMemCreate ( IntPart, 8, 6, &err ); /* 创建动态内存区 */
+    OSTaskCreate ( StartTask, ( void * ) 0, &StartTaskStk[TASK_STK_SIZE - 1], 0 ); /* 创建起始函数 */
+    OSStart();
 }
 ​
 void StartTask ( void *pdata ) {
 #if OS_CRITICAL_METHOD == 3
-    OS_CPU_SR cpu_sr;
+    OS_CPU_SR cpu_sr;
 #endif
-    INT16S key;
-    pdata = pdata;
-    OS_ENTER_CRITICAL();
-    PC_VectSet ( 0x08, OSTickISR );
-    PC_SetTickRate ( OS_TICKS_PER_SEC );
-    OS_EXIT_CRITICAL();
-    OSStatInit();
-    OSTaskCreate ( MyTask, ( void * ) 0, &MyTaskStk[TASK_STK_SIZE - 1], 3 ); /* 创建任务 */
-    OSTaskCreate ( YouTask, ( void * ) 0, &YouTaskStk[TASK_STK_SIZE - 1], 4 );
-    OSTaskCreate ( HerTask, ( void * ) 0, &HerTaskStk[TASK_STK_SIZE - 1], 5 );
+    INT16S key;
+    pdata = pdata;
+    OS_ENTER_CRITICAL();
+    PC_VectSet ( 0x08, OSTickISR );
+    PC_SetTickRate ( OS_TICKS_PER_SEC );
+    OS_EXIT_CRITICAL();
+    OSStatInit();
+    OSTaskCreate ( MyTask, ( void * ) 0, &MyTaskStk[TASK_STK_SIZE - 1], 3 ); /* 创建任务 */
+    OSTaskCreate ( YouTask, ( void * ) 0, &YouTaskStk[TASK_STK_SIZE - 1], 4 );
+    OSTaskCreate ( HerTask, ( void * ) 0, &HerTaskStk[TASK_STK_SIZE - 1], 5 );
 ​
-    for ( ;; ) {
-        if ( PC_GetKey ( &key ) == TRUE ) {
-            if ( key == 0x1B ) { /* 如果按下ESC键，则退出UC/OS-II */
-                PC_DOSReturn();
-            }
-        }
+    for ( ;; ) {
+        if ( PC_GetKey ( &key ) == TRUE ) {
+            if ( key == 0x1B ) { /* 如果按下ESC键，则退出UC/OS-II */
+                PC_DOSReturn();
+            }
+        }
 ​
-        OSTimeDlyHMSM ( 0, 0, 3, 0 );
-    }
+        OSTimeDlyHMSM ( 0, 0, 3, 0 );
+    }
 }
 ​
 void MyTask ( void *pdata ) {
@@ -116,16 +116,14 @@ void YouTask ( void *pdata ) {
                     );
         OSMemQuery ( /* 查询内存控制块信息 */
             IntBuffer, /* 待查询内存控制块指针 */
-            &MemInfo
-        );
+            &MemInfo );
         sprintf ( s, "%0x", MemInfo.OSFreeList ); /* 显示头指针 */
         PC_DispStr ( 30, y, s, DISP_BGND_BLACK + DISP_FGND_WHITE );
         sprintf ( s, "%d", MemInfo.OSNUsed ); /* 显示已用的内存块数目 */
         PC_DispStr ( 40, y, s, DISP_BGND_BLACK + DISP_FGND_WHITE );
         OSMemPut ( /* 释放内存块 */
             IntBuffer, /* 内存块所属内存分区的指针 */
-            IntBlkPtr /* 待释放内存块指针 */
-        );
+            IntBlkPtr /* 待释放内存块指针 */ );
         OSTimeDlyHMSM ( 0, 0, 2, 0 ); /* 等待2s */
     }
 }
