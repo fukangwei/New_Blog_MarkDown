@@ -1,7 +1,7 @@
 ---
 title: PanedWindow空间管理
 date: 2019-04-10 21:52:42
-tags:
+categories: Tkinter编程
 ---
 &emsp;&emsp;`PanedWindow`组件是一个空间管理组件。跟`Frame`组件类似，都是为组件提供一个框架，不过`PanedWindow`允许让用户调整应用程序的空间划分。
 &emsp;&emsp;当你需要提供一个可供用户调整的多空间框架的时候，可以使用`PanedWindow`组件。`PanedWindow`组件会为每一个子组件生成一个独立地窗格，用户可以自由调整窗格的大小。

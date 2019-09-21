@@ -1,7 +1,7 @@
 ---
 title: Scrollbar滚动条
 date: 2019-04-09 06:47:56
-tags:
+categories: Tkinter编程
 ---
 &emsp;&emsp;`Scrollbar`(滚动条)组件用于滚动一些组件的可见范围，根据方向可分为垂直滚动条和水平滚动条。`Scrollbar`组件常常被用于实现文本、画布和列表框的滚动。
 &emsp;&emsp;`Scrollbar`组件通常几乎与`Text`组件、`Canvas`组件和`Listbox`组件一起使用，水平滚动条还能跟`Entry`组件配合。
@@ -19,10 +19,9 @@ sb.pack(side=RIGHT, fill=Y)
 lb = Listbox(root, yscrollcommand=sb.set)
 ​
 for i in range(1000):
-    lb.insert(END, str(i))
+    lb.insert(END, str(i))
 
 lb.pack(side=LEFT, fill=BOTH)
-​
 sb.config(command=lb.yview)
 ​
 mainloop()
@@ -35,7 +34,7 @@ mainloop()
 - `Scrollbar(master=None, **options) (class)`：`master`是父组件；`options`是组件选项，下方表格列举了各个选项的具体含义和用法：
 
 选项                  | 含义
-----------------------|-------
+----------------------|----
 `activebackground`    | 指定当鼠标在上方飘过的时候滑块和箭头的背景颜色，默认值由系统指定
 `activerelief`        | 指定当鼠标在上方飘过的时候滑块的样式，可以选择`FLAT`、`SUNKEN`、`GROOVE`和`RIDGE`，默认值是`RAISED`
 `background`          | 指定背景颜色，默认值由系统指定

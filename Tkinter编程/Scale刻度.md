@@ -1,7 +1,7 @@
 ---
 title: Scale刻度
 date: 2019-04-08 22:52:32
-tags:
+categories: Tkinter编程
 ---
 &emsp;&emsp;`Scale`(刻度)组件看起来像是一个带数据的`Scrollbar`(滚动条)组件，但事实上它们是不同的两个事物。`Scale`组件允许用于通过滑动滑块来选择一个范围内的数字，你可以控制该组件的最大值、最小值以及分辨率。
 &emsp;&emsp;当你希望用户输入某个范围内的一个数值，使用`Scale`组件可以很好的代替`Entry`组件。
@@ -35,7 +35,7 @@ s2 = Scale(root, from_=0, to=200, orient=HORIZONTAL)
 s2.pack()
 ​
 def show():
-    print(s1.get(), s2.get())
+    print(s1.get(), s2.get())
 ​
 Button(root, text="获得位置", command=show).pack()
 ​
@@ -52,9 +52,9 @@ from tkinter import *
 root = Tk()
 ​
 Scale(root, from_=0, to=42, tickinterval=5, length=200, \
-      resolution=5, orient=VERTICAL).pack()
+      resolution=5, orient=VERTICAL).pack()
 Scale(root, from_=0, to=200, tickinterval=10, length=600, \
-      orient=HORIZONTAL).pack()
+      orient=HORIZONTAL).pack()
 ​
 mainloop()
 ```
@@ -64,7 +64,7 @@ mainloop()
 - `Scale(master=None, **options) (class)`：`master`是父组件；`options`是组件选项，下方表格列举了各个选项的具体含义和用法：
 
 选项                  | 含义
-----------------------|--------
+----------------------|----
 `activebackground`    | 指定当鼠标在上方飘过的时候滑块的背景颜色，默认值由系统指定
 `background`          | 滚动槽外部的背景颜色，默认值由系统指定
 `bg`                  | 跟`background`一样

@@ -1,7 +1,7 @@
 ---
 title: Spinbox下拉菜单
 date: 2019-03-31 08:45:57
-tags:
+categories: Tkinter编程
 ---
 &emsp;&emsp;`Spinbox`组件是`Entry`组件的变体，用于从一些固定的值中选取一个。`Spinbox`组件通常用于在限定数字中选取的情况下代替普通的`Entry`组件。`Spinbox`组件跟`Entry`组件用法非常相似，主要区别是使用`Spinbox`组件，你可以通过范围或者元组指定允许用户输入的内容。
 <!--more-->
@@ -39,7 +39,7 @@ mainloop()
 &emsp;&emsp;`Spinbox(master=None, **options) (class)`：`master`是父组件；`options`是组件选项，下方表格列举了各个选项的具体含义和用法：
 
 选项                  | 含义
-----------------------|-------
+----------------------|----
 `activebackground`    | 设置当`Spinbox`处于`ACTIVE`状态下的背景颜色
 `background`          | 设置背景颜色，默认值由系统指定
 `bg`                  | 跟`background`一样
@@ -101,7 +101,6 @@ mainloop()
 - `invoke(element)`：调用该方法的效果相当于用户点击调节箭头，`element`参数的值必须是`buttonup`或`buttondown`。
 - `scan_dragto(x)`：见下方`scan_mark(x)`。
 - `scan_mark(x)`：使用这种方式来实现输入框内容的滚动。需要将鼠标按下事件绑定到`scan_mark(x)`方法(`x`是鼠标当前的水平位置)，然后再将`motion`事件绑定到`scan_dragto(x)`方法(`x`是鼠标当前的水平位置)，就可以实现输入框在当前位置和`sacn_mack(x)`指定位置之间的水平滚动。
-
 - `selection('from', index)`：设置选中范围的起始位置是`index`参数指定的值。
 - `selection('to', index)`：设置选中范围的结束位置是`index`参数指定的值。
 - `selection('range', start, end)`：设置选中范围是`start`到`end`参数之间的值。
