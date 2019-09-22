@@ -1,10 +1,10 @@
 ---
 title: STM32的C++开发
 date: 2018-12-29 18:17:31
-tags:
+categories: 单片机
 ---
 &emsp;&emsp;`Options for ...` -> `C/C++` -> `Misc Control`, input `--cpp`.
-&emsp;&emsp;`led.h`如下所示：
+&emsp;&emsp;`led.h`如下：
 
 ``` cpp
 #ifndef LED_H
@@ -14,7 +14,7 @@ tags:
 #include "stm32f10x.h"
 ​
 class Led {
-  public:
+public:
     Led() {
         ledInit();
     };
@@ -23,7 +23,7 @@ class Led {
     void led_Off();
     void led_Delay();
 
-  private:
+private:
     void ledInit ( void );
     GPIO_InitTypeDef GPIO_InitStruct;
 };
@@ -51,7 +51,7 @@ void Led::led_Delay() {
 #endif
 ```
 
-&emsp;&emsp;`main.c`(或`main.cpp`)如下所示：
+&emsp;&emsp;`main.c`(或`main.cpp`)如下：
 
 ``` cpp
 #include "led.h"

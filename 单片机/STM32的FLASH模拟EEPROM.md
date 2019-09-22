@@ -1,7 +1,7 @@
 ---
 title: STM32的FLASH模拟EEPROM
 date: 2019-01-19 17:11:01
-tags:
+categories: 单片机
 ---
 &emsp;&emsp;内置闪存模块可以在通用地址空间直接寻址，任何`32`位数据的读操作都能访问闪存模块的内容并得到相应的数据。读接口在闪存端包含一个读控制器，还包含一个`AHB`接口与`CPU`衔接。这个接口的主要工作是产生读闪存的控制信号并预取`CPU`要求的指令块，预取指令块仅用于在`I-Code`总线上的取指操作，数据常量是通过`D-Code`总线访问的。这两条总线的访问目标是相同的闪存模块，访问`D-Code`将比预取指令优先级高。
 &emsp;&emsp;这里要特别注意闪存等待时间，因为`CPU`运行速度比`FLASH`快得多，`STM32F103`的`FLASH`最快访问速度为`24Mhz`。如果`CPU`频率超过这个速度，那么必须加入等待时间。例如一般使用`72MHz`的主频，那么`FLASH`等待周期就必须设置为`2`，该设置使用`FLASH_ACR`寄存器。
@@ -55,11 +55,11 @@ FLASH_Status FLASH_GetStatus ( void );
 
 ``` c
 typedef enum {
-    FLASH_BUSY = 1,  /* 忙        */
-    FLASH_ERROR_PG,  /* 编程错误   */
-    FLASH_ERROR_WRP, /* 写保护错误 */
-    FLASH_COMPLETE,  /* 操作完成   */
-    FLASH_TIMEOUT    /* 操作超时   */
+    FLASH_BUSY = 1,  /* 忙        */
+    FLASH_ERROR_PG,  /* 编程错误   */
+    FLASH_ERROR_WRP, /* 写保护错误 */
+    FLASH_COMPLETE,  /* 操作完成   */
+    FLASH_TIMEOUT    /* 操作超时   */
 } FLASH_Status;
 ```
 
@@ -120,24 +120,24 @@ void Test_Write ( u32 WriteAddr, u16 WriteData ); /* 测试写入 */
 #include "usart.h"
 ​
 /* 功能：读取指定地址的半字(16位数据)
-   faddr：读地址(此地址必须为2的倍数)
-   返回值：对应数据 */
+   faddr：读地址(此地址必须为2的倍数)
+   返回值：对应数据 */
 u16 STMFLASH_ReadHalfWord ( u32 faddr ) {
-    return * ( vu16 * ) faddr;
+    return * ( vu16 * ) faddr;
 }
 ​
 #if STM32_FLASH_WREN /* 如果使能了写 */
 /* 功能：不检查的写入
-   WriteAddr：起始地址
-   pBuffer：数据指针
-   NumToWrite：半字(16位)数 */
+   WriteAddr：起始地址
+   pBuffer：数据指针
+   NumToWrite：半字(16位)数 */
 void STMFLASH_Write_NoCheck ( u32 WriteAddr, u16 *pBuffer, u16 NumToWrite ) {
-    u16 i;
+    u16 i;
 ​
-    for ( i = 0; i < NumToWrite; i++ ) {
-        FLASH_ProgramHalfWord ( WriteAddr, pBuffer[i] );
-        WriteAddr += 2; /* 地址增加2 */
-    }
+    for ( i = 0; i < NumToWrite; i++ ) {
+        FLASH_ProgramHalfWord ( WriteAddr, pBuffer[i] );
+        WriteAddr += 2; /* 地址增加2 */
+    }
 }
 ​
 /* 功能：从指定地址开始写入指定长度的数据
@@ -145,9 +145,9 @@ void STMFLASH_Write_NoCheck ( u32 WriteAddr, u16 *pBuffer, u16 NumToWrite ) {
    pBuffer：数据指针
    NumToWrite：半字(16位)数(就是要写入的16位数据的个数) */
 #if STM32_FLASH_SIZE < 256
-    #define STM_SECTOR_SIZE 1024 /* 字节 */
+    #define STM_SECTOR_SIZE 1024 /* 字节 */
 #else
-    #define STM_SECTOR_SIZE 2048
+    #define STM_SECTOR_SIZE 2048
 #endif
 ​
 u16 STMFLASH_BUF[STM_SECTOR_SIZE / 2]; /* 最多是2K字节 */
@@ -226,21 +226,21 @@ void STMFLASH_Write ( u32 WriteAddr, u16 *pBuffer, u16 NumToWrite ) {
 #endif
 ​
 /* 功能：从指定地址开始读出指定长度的数据
-   ReadAddr：始地址
-   pBuffer：数据指针
-   NumToWrite：半字(16位)数 */
+   ReadAddr：始地址
+   pBuffer：数据指针
+   NumToWrite：半字(16位)数 */
 void STMFLASH_Read ( u32 ReadAddr, u16 *pBuffer, u16 NumToRead ) {
-    u16 i;
+    u16 i;
 ​
-    for ( i = 0; i < NumToRead; i++ ) {
-        pBuffer[i] = STMFLASH_ReadHalfWord ( ReadAddr ); /* 读取2个字节 */
-        ReadAddr += 2; /* 偏移2个字节 */
-    }
+    for ( i = 0; i < NumToRead; i++ ) {
+        pBuffer[i] = STMFLASH_ReadHalfWord ( ReadAddr ); /* 读取2个字节 */
+        ReadAddr += 2; /* 偏移2个字节 */
+    }
 }
 ​
 /* WriteAddr：起始地址；WriteData：要写入的数据 */
 void Test_Write ( u32 WriteAddr, u16 WriteData ) {
-    STMFLASH_Write ( WriteAddr, &WriteData, 1 ); /* 写入一个字 */
+    STMFLASH_Write ( WriteAddr, &WriteData, 1 ); /* 写入一个字 */
 }
 ```
 
