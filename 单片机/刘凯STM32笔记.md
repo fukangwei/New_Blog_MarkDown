@@ -540,24 +540,24 @@ const u8 week_table[12] = {0, 3, 3, 6, 1, 4, 6, 2, 5, 0, 3, 5};
 ​
 /* 输入公历日期得到星期(只允许1901至2099年) */
 u8 RTC_GetWeek ( u16 year, u8 month, u8 day ) {
-    u16 temp;
-    u8 yearH, yearL;
-    yearH = year / 100;
-    yearL = year % 100;
+    u16 temp;
+    u8 yearH, yearL;
+    yearH = year / 100;
+    yearL = year % 100;
 ​
-    if ( yearH > 19 ) { /* 如果为21世纪，年份数加100 */
-        yearL += 100;
-    }
+    if ( yearH > 19 ) { /* 如果为21世纪，年份数加100 */
+        yearL += 100;
+    }
 ​
-    /* 所过闰年数只算1900年之后的 */
-    temp = yearL + yearL / 4;
-    temp = temp % 7;
-    temp = temp + day + week_table[month - 1];
+    /* 所过闰年数只算1900年之后的 */
+    temp = yearL + yearL / 4;
+    temp = temp % 7;
+    temp = temp + day + week_table[month - 1];
 ​
-    if ( yearL % 4 == 0 && month < 3 ) {
-        temp--;
-    }
+    if ( yearL % 4 == 0 && month < 3 ) {
+        temp--;
+    }
 ​
-    return ( temp % 7 );
+    return ( temp % 7 );
 }
 ```
