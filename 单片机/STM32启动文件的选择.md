@@ -1,7 +1,7 @@
 ---
 title: STM32启动文件的选择
 date: 2019-03-18 22:40:41
-tags:
+categories: 单片机
 ---
 &emsp;&emsp;`STM32`启动文件选择如下：
 
@@ -27,7 +27,7 @@ startup_stm32f10x_cl.s:    for STM32 Connectivity line devices
 &emsp;&emsp;1. 建立中断服务入口地址，即把中断向量与中断服务函数链接起来。
 &emsp;&emsp;在串口`NVIC`配置中，我们只定义了`NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQn;`，也就是中断服务向量。然后在`stm32f10x_it.c`文件的`USART2_IRQHandler`函数里添加串口的服务程序。但是`MCU`怎么知道中断向量`USART2_IRQn`对应的是`USART2_IRQHandler`呢，这个就是启动文件所起的作用。在`启动文件.s`中以`g_pfnVectors:`开头。
 &emsp;&emsp;2. 从`SystemInit`函数进入到`main`函数。
-&emsp;&emsp;对于`stm32`，我们定义系统时钟的时候直接在system_stm32f10x.c文件里修改宏定义即可，而事实上到底是从哪开始执行的呢？system_stm32f10x.c文件里有个SystemInit函数，就是对时钟的设置。而这个SystemInit在哪调用的呢？就是启动文件先调用了，然后才进入到main函数。
+&emsp;&emsp;对于`stm32`，我们定义系统时钟的时候直接在`system_stm32f10x.c`文件里修改宏定义即可，而事实上到底是从哪开始执行的呢？`system_stm32f10x.c`文件里有个`SystemInit`函数，就是对时钟的设置。而这个`SystemInit`在哪调用的呢？就是启动文件先调用了，然后才进入到`main`函数。
 &emsp;&emsp;在`启动文件.s`中有以下一段话可以解释：
 
 ``` cpp

@@ -1,10 +1,10 @@
 ---
 title: STM32的GPIO库函数
 date: 2019-01-19 08:42:45
-tags:
+categories: 单片机
 ---
-&emsp;&emsp;操作步骤如下所示：
-&emsp;&emsp;1. 使能GPIO对应的外设时钟：
+&emsp;&emsp;操作步骤如下：
+&emsp;&emsp;1. 使能`GPIO`对应的外设时钟：
 
 ``` c
 /* 使能GPIOA、GPIOB、GPIOC对应的外设时钟 */
