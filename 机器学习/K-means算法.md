@@ -108,25 +108,28 @@ def kMeans(dataSet, k, distMeas=distEclud, createCent=randCent):
     return centroids, clusterAssment
 ​
 def showCluster(dataSet, k, centroids, clusterAssment):
-    numSamples, dim = dataSet.shape
-    if dim != 2:
-        print("Sorry! I can not draw because the dimension of your data is not 2!")
-        return 1
+    numSamples, dim = dataSet.shape
+
+    if dim != 2:
+        print("Sorry! I can not draw because the dimension of your data is not 2!")
+        return 1
 ​
-    mark = ['or', 'ob', 'og', 'ok', '^r', '+r', 'sr', 'dr', '<r', 'pr']
-    if k > len(mark):
-        print("Sorry! Your k is too large! ")
-        return 1
+    mark = ['or', 'ob', 'og', 'ok', '^r', '+r', 'sr', 'dr', '<r', 'pr']
+
+    if k > len(mark):
+        print("Sorry! Your k is too large! ")
+        return 1
 ​
-    for i in range(numSamples):  # draw all samples
-        markIndex = int(clusterAssment[i, 0])  # 为样本指定颜色
-        plt.plot(dataSet[i, 0], dataSet[i, 1], mark[markIndex])
+    for i in range(numSamples):  # draw all samples
+        markIndex = int(clusterAssment[i, 0])  # 为样本指定颜色
+        plt.plot(dataSet[i, 0], dataSet[i, 1], mark[markIndex])
 ​
-    mark = ['Dr', 'Db', 'Dg', 'Dk', '^b', '+b', 'sb', 'db', '<b', 'pb']
-    for i in range(k):  # draw the centroids
-        plt.plot(centroids[i, 0], centroids[i, 1], mark[i], markersize=12)
+    mark = ['Dr', 'Db', 'Dg', 'Dk', '^b', '+b', 'sb', 'db', '<b', 'pb']
+
+    for i in range(k):  # draw the centroids
+        plt.plot(centroids[i, 0], centroids[i, 1], mark[i], markersize=12)
 ​
-    plt.show()
+    plt.show()
 ​
 datMAt = mat(loadDataSet("testSet.txt"))
 k = 4
