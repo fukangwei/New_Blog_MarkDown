@@ -30,14 +30,14 @@ void TIM_Configuration ( void ) {
     /* TIM_OCMode选择定时器模式(在这个程序中可有可无)：TIM输出比较时间模式 */
     TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_Timing;
     /* 根据TIM_OCInitStruct中指定的参数初始化外设TIMx */
-    TIM_OC1Init ( TIM2, &TIM_OCInitStructure );
-    TIM_Cmd ( TIM2, ENABLE ); /* 使能TIM2 */
+    TIM_OC1Init ( TIM2, &TIM_OCInitStructure );
+    TIM_Cmd ( TIM2, ENABLE ); /* 使能TIM2 */
     /* 设置TIMx预分频(TIM预分频值即时装入) */
-    TIM_PrescalerConfig ( TIM2, 35999, TIM_PSCReloadMode_Immediate );
+    TIM_PrescalerConfig ( TIM2, 35999, TIM_PSCReloadMode_Immediate );
     /* 清除TIMx的待处理标志位(TIM更新标志位) */
-    TIM_ClearFlag ( TIM2, TIM_FLAG_Update );
+    TIM_ClearFlag ( TIM2, TIM_FLAG_Update );
     /* 使能或者失能指定的TIM中断(TIM中断源) */
-    TIM_ITConfig ( TIM2, TIM_IT_Update, ENABLE );
+    TIM_ITConfig ( TIM2, TIM_IT_Update, ENABLE );
 }
 ```
 
@@ -47,23 +47,23 @@ void TIM_Configuration ( void ) {
 
 ``` c
 void SMG_Init ( void ) {
-    GPIO_InitTypeDef GPIO_InitStructure;
-    SPI_74HC595_Init();
-    RCC_APB2PeriphClockCmd ( RCC_APB2Periph_GPIOB, ENABLE );
-    RCC_APB2PeriphClockCmd ( RCC_APB2Periph_GPIOC, ENABLE );
-    RCC_APB2PeriphClockCmd ( RCC_APB2Periph_GPIOE, ENABLE );
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-    GPIO_Init ( GPIOE, &GPIO_InitStructure );
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-    GPIO_Init ( GPIOC, &GPIO_InitStructure );
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_15;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-    GPIO_Init ( GPIOB, &GPIO_InitStructure );
+    GPIO_InitTypeDef GPIO_InitStructure;
+    SPI_74HC595_Init();
+    RCC_APB2PeriphClockCmd ( RCC_APB2Periph_GPIOB, ENABLE );
+    RCC_APB2PeriphClockCmd ( RCC_APB2Periph_GPIOC, ENABLE );
+    RCC_APB2PeriphClockCmd ( RCC_APB2Periph_GPIOE, ENABLE );
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+    GPIO_Init ( GPIOE, &GPIO_InitStructure );
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+    GPIO_Init ( GPIOC, &GPIO_InitStructure );
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_15;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+    GPIO_Init ( GPIOB, &GPIO_InitStructure );
 }
 ​
 void SPI_74HC595_Init ( void ) {
