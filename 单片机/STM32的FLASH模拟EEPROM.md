@@ -141,9 +141,9 @@ void STMFLASH_Write_NoCheck ( u32 WriteAddr, u16 *pBuffer, u16 NumToWrite ) {
 }
 ​
 /* 功能：从指定地址开始写入指定长度的数据
-   WriteAddr：起始地址(此地址必须为2的倍数)
-   pBuffer：数据指针
-   NumToWrite：半字(16位)数(就是要写入的16位数据的个数) */
+   WriteAddr：起始地址(此地址必须为2的倍数)
+   pBuffer：数据指针
+   NumToWrite：半字(16位)数(就是要写入的16位数据的个数) */
 #if STM32_FLASH_SIZE < 256
     #define STM_SECTOR_SIZE 1024 /* 字节 */
 #else
@@ -194,11 +194,11 @@ void STMFLASH_Write ( u32 WriteAddr, u16 *pBuffer, u16 NumToWrite ) {
             }
 ​
             /* 写入整个扇区 */
-            STMFLASH_Write_NoCheck ( secpos * STM_SECTOR_SIZE + STM32_FLASH_BASE, \
+            STMFLASH_Write_NoCheck ( secpos * STM_SECTOR_SIZE + STM32_FLASH_BASE, \
                                      STMFLASH_BUF, STM_SECTOR_SIZE / 2 );
-        } else {
-            STMFLASH_Write_NoCheck ( WriteAddr, pBuffer, secremain );
-        }
+        } else {
+            STMFLASH_Write_NoCheck ( WriteAddr, pBuffer, secremain );
+        }
 ​
         if ( NumToWrite == secremain ) {
             break; /* 写入结束了 */
@@ -209,15 +209,15 @@ void STMFLASH_Write ( u32 WriteAddr, u16 *pBuffer, u16 NumToWrite ) {
             WriteAddr += secremain; /* 写地址偏移 */
             NumToWrite -= secremain; /* 字节(16位)数递减 */
 ​
-            if ( NumToWrite > ( STM_SECTOR_SIZE / 2 ) ) {
-                secremain = STM_SECTOR_SIZE / 2; /* 下一个扇区还是写不完 */
-            } else {
-                secremain = NumToWrite; /* 下一个扇区可以写完了 */
-            }
-        }
-    };
+            if ( NumToWrite > ( STM_SECTOR_SIZE / 2 ) ) {
+                secremain = STM_SECTOR_SIZE / 2; /* 下一个扇区还是写不完 */
+            } else {
+                secremain = NumToWrite; /* 下一个扇区可以写完了 */
+            }
+        }
+    };
 ​
-    FLASH_Lock(); /* 上锁 */
+    FLASH_Lock(); /* 上锁 */
 }
 #endif
 ​
