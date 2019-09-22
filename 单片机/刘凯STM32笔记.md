@@ -101,16 +101,16 @@ void SPI_74HC595_Init ( void ) {
 
 ``` c
 void I2C_BufferWrite ( u8 *pBuffer, u8 WriteAddr, u16 NumByteToWrite ) {
-    u8 NumOfPage = 0, NumOfSingle = 0, Addr = 0, count = 0;
-    Addr = WriteAddr % I2C_PageSize;
-    count = I2C_PageSize - Addr;
-    NumOfPage = NumByteToWrite / I2C_PageSize;
-    NumOfSingle = NumByteToWrite % I2C_PageSize;
-    I2C_WaitEepromStandbyState(); /* 等EEPROM处于空闲状态 */
+    u8 NumOfPage = 0, NumOfSingle = 0, Addr = 0, count = 0;
+    Addr = WriteAddr % I2C_PageSize;
+    count = I2C_PageSize - Addr;
+    NumOfPage = NumByteToWrite / I2C_PageSize;
+    NumOfSingle = NumByteToWrite % I2C_PageSize;
+    I2C_WaitEepromStandbyState(); /* 等EEPROM处于空闲状态 */
 ​
-    if ( Addr == 0 ) { /* If WriteAddr is I2C_PageSize aligned */
-        /* If NumByteToWrite < I2C_PageSize */
-        if ( NumOfPage == 0 ) { /* 只有1页的情况下 */
+    if ( Addr == 0 ) { /* If WriteAddr is I2C_PageSize aligned */
+        /* If NumByteToWrite < I2C_PageSize */
+        if ( NumOfPage == 0 ) { /* 只有1页的情况下 */
             /* 对页进行写操作 */
             I2C_PageWrite ( pBuffer, WriteAddr, NumOfSingle );
             I2C_WaitEepromStandbyState();
