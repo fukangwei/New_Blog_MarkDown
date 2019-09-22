@@ -414,23 +414,23 @@ void RTC_Init ( void ) {
         /* 向RTC后备寄存器1写入“0x5555”表示时钟已经配置过了 */
         BKP_WriteBackupRegister ( BKP_DR1, 0x5555 );
         USART1_SendString ( "系统未设置时间" );
-    } else { /* 如果RTC已经设置 */
-        RTC_WaitForSynchro(); /* 等待RTC与APB同步 */
-        RTC_WaitForLastTask();
-        RTC_ITConfig ( RTC_IT_SEC, ENABLE ); /* 使能秒中断 */
-        RTC_WaitForLastTask();
-        USART1_SendString ( "系统已设置时间" );
-    }
+    } else { /* 如果RTC已经设置 */
+        RTC_WaitForSynchro(); /* 等待RTC与APB同步 */
+        RTC_WaitForLastTask();
+        RTC_ITConfig ( RTC_IT_SEC, ENABLE ); /* 使能秒中断 */
+        RTC_WaitForLastTask();
+        USART1_SendString ( "系统已设置时间" );
+    }
 ​
-    RCC_ClearFlag(); /* 清除标志 */
+    RCC_ClearFlag(); /* 清除标志 */
 }
 ​
 u8 Is_LeapYear ( u16 year ) { /* 该年份是不是闰年：1为是；0为不是 */
-    if ( ( year % 4 == 0 ) && ( year % 100 != 0 ) || ( year % 400 == 0 ) ) {
-        return 1;
-    } else {
-        return 0;
-    }
+    if ( ( year % 4 == 0 ) && ( year % 100 != 0 ) || ( year % 400 == 0 ) ) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 ​
 /* 平年的月份日期表 */
@@ -438,20 +438,20 @@ const u8 month_table[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 ​
 /* 把输入的时钟转换为秒钟，以1970年1月1日为基准，1970至2099年为合法年份 */
 u8 RTC_Set ( u16 year, u8 month, u8 day, u8 hour, u8 min, u8 sec ) {
-    u16 i;
-    u32 seccount;
+    u16 i;
+    u32 seccount;
 ​
-    if ( year < 1970 || year > 2099 ) { /* 超限 */
-        return 0;
-    }
+    if ( year < 1970 || year > 2099 ) { /* 超限 */
+        return 0;
+    }
 ​
-    for ( i = 1970; i < year; i++ ) { /* 计算年份的秒数 */
-        if ( Is_LeapYear ( i ) ) {
+    for ( i = 1970; i < year; i++ ) { /* 计算年份的秒数 */
+        if ( Is_LeapYear ( i ) ) {
             seccount += 31622400; /* 闰年的秒钟数 */
-        } else {
+        } else {
             seccount += 31536000; /* 平年的秒钟数 */
-        }
-    }
+        }
+    }
 ​
     month -= 1;
 ​
