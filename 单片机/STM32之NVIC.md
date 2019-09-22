@@ -55,23 +55,23 @@ void NVIC_Config ( void ) {
     NVIC_SetVectorTable ( NVIC_VectTab_FLASH, 0x0 );
 #endif
     /* 中断优先级组：1组(整个系统为同一组) */
-    NVIC_PriorityGroupConfig ( NVIC_PriorityGroup_1 );
-    /* 设置抢占式优先级0至1，响应式优先级0至7 */
-    NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-    NVIC_Init ( &NVIC_InitStructure );
-    // Enable the TIM3 Interrupt
-    NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn; /* TIM3全局中断 */
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1; /* 抢占式优先级为1 */
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1; /* 响应式优先级为1 */
-    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; /* IRQ通道被使能 */
-    NVIC_Init ( &NVIC_InitStructure );
-    NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0; /* 抢占式优先级为0 */
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1; /* 响应式优先级为0 */
-    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-    NVIC_Init ( &NVIC_InitStructure );
+    NVIC_PriorityGroupConfig ( NVIC_PriorityGroup_1 );
+    /* 设置抢占式优先级0至1，响应式优先级0至7 */
+    NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init ( &NVIC_InitStructure );
+    // Enable the TIM3 Interrupt
+    NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn; /* TIM3全局中断 */
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1; /* 抢占式优先级为1 */
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1; /* 响应式优先级为1 */
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; /* IRQ通道被使能 */
+    NVIC_Init ( &NVIC_InitStructure );
+    NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0; /* 抢占式优先级为0 */
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1; /* 响应式优先级为0 */
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init ( &NVIC_InitStructure );
 }
 ```
