@@ -1,7 +1,7 @@
 ---
 title: 手写数字识别sklearn
 date: 2019-02-27 15:07:09
-tags:
+categories: 机器学习
 ---
 &emsp;&emsp;在`sklearn`的手写数字集中，一共有`1797`个样本数，每个样本有`64`个特征数，即`8 * 8`像素，每个像素由`0`到`16`之间的整数表示：
 
@@ -10,9 +10,9 @@ import numpy as np
 from sklearn import datasets
 ​
 digits = datasets.load_digits()
-print(digits.data.shape)  # 输出数据集的样本数与特征数
-print(np.unique(digits.target))  # 输出所有目标类别
-print(digits.data)  # 输出数据集
+print(digits.data.shape)  # 输出数据集的样本数与特征数
+print(np.unique(digits.target))  # 输出所有目标类别
+print(digits.data)  # 输出数据集
 ```
 
 执行结果：
@@ -20,32 +20,33 @@ print(digits.data)  # 输出数据集
 ``` python
 (1797, 64)
 [0 1 2 3 4 5 6 7 8 9]
-[[ 0.  0.  5. ...  0.  0.  0.]
- [ 0.  0.  0. ... 10.  0.  0.]
- [ 0.  0.  0. ... 16.  9.  0.]
+[[ 0.  0.  5. ...  0.  0.  0.]
+ [ 0.  0.  0. ... 10.  0.  0.]
+ [ 0.  0.  0. ... 16.  9.  0.]
  ...
- [ 0.  0.  1. ...  6.  0.  0.]
- [ 0.  0.  2. ... 12.  0.  0.]
- [ 0.  0. 10. ... 12.  1.  0.]]
+ [ 0.  0.  1. ...  6.  0.  0.]
+ [ 0.  0.  2. ... 12.  0.  0.]
+ [ 0.  0. 10. ... 12.  1.  0.]]
 ```
 
 数据集可视化如下：
 
 ``` python
 import matplotlib.pyplot as plt
-import matplotlib.font_manager as fm  # 导入字体管理器，用于提供中文支持
+import matplotlib.font_manager as fm  # 导入字体管理器，用于提供中文支持
 from sklearn import datasets
 ​
 digits = datasets.load_digits()
 font_set = fm.FontProperties(fname='C:/Windows/Fonts/msyh.ttc', size=14)
-images_and_labels = list(zip(digits.images, digits.target))  # 将图像和目标标签合并到一个列表中
+images_and_labels = list(zip(digits.images, digits.target))  # 将图像和目标标签合并到一个列表中
 ​
 plt.figure(figsize=(8, 6))
-for index, (image, label) in enumerate(images_and_labels[:4]):  # 打印数据集的前4个图像
-    plt.subplot(1, 4, index + 1)
-    plt.axis('off')
-    plt.imshow(image, cmap=plt.cm.gray_r, interpolation='nearest')
-    plt.title(u'训练样本：' + str(label), fontproperties=font_set)
+
+for index, (image, label) in enumerate(images_and_labels[:4]):  # 打印数据集的前4个图像
+    plt.subplot(1, 4, index + 1)
+    plt.axis('off')
+    plt.imshow(image, cmap=plt.cm.gray_r, interpolation='nearest')
+    plt.title(u'训练样本：' + str(label), fontproperties=font_set)
 ​
 plt.show()
 ```
@@ -76,9 +77,9 @@ from sklearn import datasets
 from sklearn.decomposition import *
 ​
 digits = datasets.load_digits()
-pca = PCA(n_components=2)  # 创建一个PCA模型
-reduced_data_pca = pca.fit_transform(digits.data)  # 将数据应用到模型上
-print(reduced_data_pca.shape)  # 查看维度
+pca = PCA(n_components=2)  # 创建一个PCA模型
+reduced_data_pca = pca.fit_transform(digits.data)  # 将数据应用到模型上
+print(reduced_data_pca.shape)  # 查看维度
 ```
 
 执行结果：
@@ -98,15 +99,16 @@ from sklearn.decomposition import *
 font_set = fm.FontProperties(fname='C:/Windows/Fonts/msyh.ttc', size=14)
 ​
 digits = datasets.load_digits()
-pca = PCA(n_components=2)  # 创建一个PCA模型
+pca = PCA(n_components=2)  # 创建一个PCA模型
 reduced_data_pca = pca.fit_transform(digits.data)
-colors = ['black', 'blue', 'purple', 'yellow', 'white', 'red', 'lime', 'cyan', 'orange', 'gray']
+colors = ['black', 'blue', 'purple', 'yellow', 'white', \
+          'red', 'lime', 'cyan', 'orange', 'gray']
 plt.figure(figsize=(8, 6))
 
 for i in range(len(colors)):
-    x = reduced_data_pca[:, 0][digits.target == i]
-    y = reduced_data_pca[:, 1][digits.target == i]
-    plt.scatter(x, y, c=colors[i])
+    x = reduced_data_pca[:, 0][digits.target == i]
+    y = reduced_data_pca[:, 1][digits.target == i]
+    plt.scatter(x, y, c=colors[i])
 ​
 plt.legend(digits.target_names, bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
 plt.xlabel(u'第一个主成分', fontproperties=font_set)
