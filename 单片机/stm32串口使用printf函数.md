@@ -1,7 +1,7 @@
 ---
 title: stm32串口使用printf函数
 date: 2018-12-30 07:06:17
-tags:
+categories: 单片机
 ---
 &emsp;&emsp;标准库函数的默认输出设备是显示器，要实现在串口或`LCD`输出，必须重定义标准库函数里与输出设备相关的函数。例如`printf`输出到串口，需要将`fputc`里面的输出指向串口(重定向)。只要添加一个`int fputc(int ch, FILE *f)`函数，能够输出字符就可以了：
 

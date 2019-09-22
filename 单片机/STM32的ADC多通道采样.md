@@ -1,9 +1,9 @@
 ---
 title: STM32的ADC多通道采样
 date: 2018-12-29 18:22:01
-tags:
+categories: 单片机
 ---
-&emsp;&emsp;用`ADC`连续采集`11`路模拟信号，并由`DMA`传输到内存。`ADC`配置为扫描并且连续转换模式，`ADC`的时钟配置为`12MHz`。在每次转换结束后，由DMA循环将转换的数据传输到内存中。`ADC`可以连续采集`N`次并求平均值，最后通过串口传输出最后转换的结果。程序如下所示：
+&emsp;&emsp;用`ADC`连续采集`11`路模拟信号，并由`DMA`传输到内存。`ADC`配置为扫描并且连续转换模式，`ADC`的时钟配置为`12MHz`。在每次转换结束后，由`DMA`循环将转换的数据传输到内存中。`ADC`可以连续采集`N`次并求平均值，最后通过串口传输出最后转换的结果。
 
 ``` c
 #include "stm32f10x.h"
@@ -19,37 +19,37 @@ vu16 AD_Value[N][M]; /* 用来存放ADC转换结果，也是DMA的目标地址 *
 vu16 After_filter[M]; /* 用来存放求平均值之后的结果 */
 ​
 void GPIO_Configuration ( void ) {
-    GPIO_InitTypeDef GPIO_InitStructure;
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
+    GPIO_InitTypeDef GPIO_InitStructure;
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
     /* 因为USART1管脚是以复用的形式接到GPIO口上的，所以使用复用推挽式输出 */
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_Init ( GPIOA, &GPIO_InitStructure );
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-    GPIO_Init ( GPIOA, &GPIO_InitStructure );
-    /* PA0/1/2 作为模拟通道输入引脚 */
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN; /* 模拟输入引脚 */
-    GPIO_Init ( GPIOA, &GPIO_InitStructure );
-    /* PB0/1 作为模拟通道输入引脚 */
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN; /* 模拟输入引脚 */
-    GPIO_Init ( GPIOB, &GPIO_InitStructure );
-    /* PC0/1/2/3/4/5 作为模拟通道输入引脚 */
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 |
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init ( GPIOA, &GPIO_InitStructure );
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+    GPIO_Init ( GPIOA, &GPIO_InitStructure );
+    /* PA0/1/2 作为模拟通道输入引脚 */
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN; /* 模拟输入引脚 */
+    GPIO_Init ( GPIOA, &GPIO_InitStructure );
+    /* PB0/1 作为模拟通道输入引脚 */
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN; /* 模拟输入引脚 */
+    GPIO_Init ( GPIOB, &GPIO_InitStructure );
+    /* PC0/1/2/3/4/5 作为模拟通道输入引脚 */
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 |
                                   GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN; /* 模拟输入引脚 */
-    GPIO_Init ( GPIOC, &GPIO_InitStructure );
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN; /* 模拟输入引脚 */
+    GPIO_Init ( GPIOC, &GPIO_InitStructure );
 }
 ​
 void RCC_Configuration ( void ) {
-    ErrorStatus HSEStartUpStatus;
-    RCC_DeInit(); /* RCC系统复位 */
-    RCC_HSEConfig ( RCC_HSE_ON ); /* 开启HSE */
-    HSEStartUpStatus = RCC_WaitForHSEStartUp(); /* 等待HSE准备好 */
+    ErrorStatus HSEStartUpStatus;
+    RCC_DeInit(); /* RCC系统复位 */
+    RCC_HSEConfig ( RCC_HSE_ON ); /* 开启HSE */
+    HSEStartUpStatus = RCC_WaitForHSEStartUp(); /* 等待HSE准备好 */
 ​
-    if ( HSEStartUpStatus == SUCCESS ) {
+    if ( HSEStartUpStatus == SUCCESS ) {
         FLASH_PrefetchBufferCmd ( FLASH_PrefetchBuffer_Enable ); /* Enable Prefetch Buffer */
         FLASH_SetLatency ( FLASH_Latency_2 ); /* Set 2 Latency cycles */
         RCC_HCLKConfig ( RCC_SYSCLK_Div1 ); /* AHB clock = SYSCLK */
@@ -69,7 +69,7 @@ void RCC_Configuration ( void ) {
                                  | RCC_APB2Periph_AFIO | RCC_APB2Periph_USART1, ENABLE );
         RCC_ADCCLKConfig ( RCC_PCLK2_Div6 ); /* 72M/6 = 12，ADC最大时间不能超过14M */
         RCC_AHBPeriphClockCmd ( RCC_AHBPeriph_DMA1, ENABLE ); /* 使能DMA传输 */
-    }
+    }
 }
 ​
 void ADC1_Configuration ( void ) {
