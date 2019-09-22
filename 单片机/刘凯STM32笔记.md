@@ -112,22 +112,22 @@ void I2C_BufferWrite ( u8 *pBuffer, u8 WriteAddr, u16 NumByteToWrite ) {
         /* If NumByteToWrite < I2C_PageSize */
         if ( NumOfPage == 0 ) { /* 只有1页的情况下 */
             /* 对页进行写操作 */
-            I2C_PageWrite ( pBuffer, WriteAddr, NumOfSingle );
-            I2C_WaitEepromStandbyState();
-        } else { /* If NumByteToWrite > I2C_PageSize */
-            while ( NumOfPage-- ) { /* 否则一直对页进行写操作 */
-                I2C_PageWrite ( pBuffer, WriteAddr, I2C_PageSize );
-                I2C_WaitEepromStandbyState();
-                WriteAddr +=  I2C_PageSize;
-                pBuffer += I2C_PageSize;
-            }
+            I2C_PageWrite ( pBuffer, WriteAddr, NumOfSingle );
+            I2C_WaitEepromStandbyState();
+        } else { /* If NumByteToWrite > I2C_PageSize */
+            while ( NumOfPage-- ) { /* 否则一直对页进行写操作 */
+                I2C_PageWrite ( pBuffer, WriteAddr, I2C_PageSize );
+                I2C_WaitEepromStandbyState();
+                WriteAddr +=  I2C_PageSize;
+                pBuffer += I2C_PageSize;
+            }
 ​
-            if ( NumOfSingle != 0 ) { /* 如果不够1页，也单独写一下 */
-                I2C_PageWrite ( pBuffer, WriteAddr, NumOfSingle );
-                I2C_WaitEepromStandbyState();
-            }
-        }
-    } else { /* If WriteAddr is not I2C_PageSize aligned */
+            if ( NumOfSingle != 0 ) { /* 如果不够1页，也单独写一下 */
+                I2C_PageWrite ( pBuffer, WriteAddr, NumOfSingle );
+                I2C_WaitEepromStandbyState();
+            }
+        }
+    } else { /* If WriteAddr is not I2C_PageSize aligned */
         if ( NumOfPage == 0 ) { /* If NumByteToWrite < I2C_PageSize */
             I2C_PageWrite ( pBuffer, WriteAddr, NumOfSingle );
             I2C_WaitEepromStandbyState();
