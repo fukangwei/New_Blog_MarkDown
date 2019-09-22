@@ -115,11 +115,11 @@ array([[ 0.40..., -0.40...,  0.81...],
 >>> normalizer
 Normalizer(copy=True, norm='l2')
 >>> normalizer.transform(X)
-array([[ 0.40..., -0.40...,  0.81...],
-       [ 1.  ...,  0.  ...,  0.  ...],
-       [ 0.  ...,  0.70..., -0.70...]])
->>> normalizer.transform([[-1.,  1., 0.]])
-array([[-0.70...,  0.70...,  0.  ...]])
+array([[ 0.40..., -0.40...,  0.81...],
+       [ 1.  ...,  0.  ...,  0.  ...],
+       [ 0.  ...,  0.70..., -0.70...]])
+>>> normalizer.transform([[-1.,  1., 0.]])
+array([[-0.70...,  0.70...,  0.  ...]])
 ```
 
 ### 二值化(Binarization)
@@ -127,16 +127,16 @@ array([[-0.70...,  0.70...,  0.  ...]])
 &emsp;&emsp;二值化可以将数值形(`numerical`)的`feature`进行阀值化：
 
 ``` python
->>> X = [[ 1., -1.,  2.],
-...      [ 2.,  0.,  0.],
-...      [ 0.,  1., -1.]]
+>>> X = [[ 1., -1.,  2.],
+...      [ 2.,  0.,  0.],
+...      [ 0.,  1., -1.]]
 >>> binarizer = preprocessing.Binarizer().fit(X)
 >>> binarizer
-Binarizer(copy=True, threshold=0.0)  # 调整binarizer的threshold
+Binarizer(copy=True, threshold=0.0)  # 调整binarizer的threshold
 >>> binarizer.transform(X)
-array([[ 1.,  0.,  1.],
-       [ 1.,  0.,  0.],
-       [ 0.,  1.,  0.]])
+array([[ 1.,  0.,  1.],
+       [ 1.,  0.,  0.],
+       [ 0.,  1.,  0.]])
 ```
 
 ### 补充缺失值
@@ -153,9 +153,9 @@ array([[ 1.,  0.,  1.],
 Imputer(axis=0, copy=True, missing_values='NaN', strategy='mean', verbose=0)
 >>> X = [[np.nan, 2], [6, np.nan], [7, 6]]
 >>> print(imp.transform(X))
-[[ 4.          2.        ]
- [ 6.          3.666...]
- [ 7.          6.        ]]
+[[ 4.          2.      ]
+ [ 6.          3.666...]
+ [ 7.          6.      ]]
 ```
 
 ### 多项式特征生成
@@ -168,8 +168,8 @@ Imputer(axis=0, copy=True, missing_values='NaN', strategy='mean', verbose=0)
 >>> X = np.arange(6).reshape(3, 2)
 >>> X
 array([[0, 1],
-       [2, 3],
-       [4, 5]])
+       [2, 3],
+       [4, 5]])
 >>> poly = PolynomialFeatures(2)
 >>> poly.fit_transform(X)
 array([[  1.,   0.,   1.,   0.,   0.,   1.],
