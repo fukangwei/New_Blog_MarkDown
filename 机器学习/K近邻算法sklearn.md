@@ -1,12 +1,12 @@
 ---
 title: K近邻算法sklearn
 date: 2019-02-12 11:28:15
-tags:
+categories: 机器学习
 ---
 &emsp;&emsp;`sklearn.neighbors`模块实现了`k`近邻算法：
 
-方法 | 说明
-----------------------------------------------------|------
+方法                                                | 说明
+----------------------------------------------------|-----
 `neighbors.NearestNeighbors([n_neighbors, ...])`    | Unsupervised learner for implementing neighbor searches
 `neighbors.KNeighborsClassifier([...])`             | Classifier implementing the `k-nearest` neighbors vote
 `neighbors.RadiusNeighborsClassifier([...])`        | Classifier implementing a vote among neighbors within a given radius
