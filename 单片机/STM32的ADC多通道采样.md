@@ -50,53 +50,53 @@ void RCC_Configuration ( void ) {
     HSEStartUpStatus = RCC_WaitForHSEStartUp(); /* 等待HSE准备好 */
 ​
     if ( HSEStartUpStatus == SUCCESS ) {
-        FLASH_PrefetchBufferCmd ( FLASH_PrefetchBuffer_Enable ); /* Enable Prefetch Buffer */
-        FLASH_SetLatency ( FLASH_Latency_2 ); /* Set 2 Latency cycles */
-        RCC_HCLKConfig ( RCC_SYSCLK_Div1 ); /* AHB clock = SYSCLK */
-        RCC_PCLK2Config ( RCC_HCLK_Div1 ); /* APB2 clock = HCLK */
-        RCC_PCLK1Config ( RCC_HCLK_Div2 ); /* APB1 clock = HCLK/2 */
-        RCC_PLLConfig ( RCC_PLLSource_HSE_Div1, RCC_PLLMul_6 ); /* PLLCLK = 12MHz * 6 = 72 MHz */
-        RCC_PLLCmd ( ENABLE ); /* Enable PLL */
+        FLASH_PrefetchBufferCmd ( FLASH_PrefetchBuffer_Enable ); /* Enable Prefetch Buffer */
+        FLASH_SetLatency ( FLASH_Latency_2 ); /* Set 2 Latency cycles */
+        RCC_HCLKConfig ( RCC_SYSCLK_Div1 ); /* AHB clock = SYSCLK */
+        RCC_PCLK2Config ( RCC_HCLK_Div1 ); /* APB2 clock = HCLK */
+        RCC_PCLK1Config ( RCC_HCLK_Div2 ); /* APB1 clock = HCLK/2 */
+        RCC_PLLConfig ( RCC_PLLSource_HSE_Div1, RCC_PLLMul_6 ); /* PLLCLK = 12MHz * 6 = 72 MHz */
+        RCC_PLLCmd ( ENABLE ); /* Enable PLL */
 ​
-        while ( RCC_GetFlagStatus ( RCC_FLAG_PLLRDY ) == RESET ); /* Wait till PLL is ready */
+        while ( RCC_GetFlagStatus ( RCC_FLAG_PLLRDY ) == RESET ); /* Wait till PLL is ready */
 ​
-        RCC_SYSCLKConfig ( RCC_SYSCLKSource_PLLCLK ); /* Select PLL as system clock source */
+        RCC_SYSCLKConfig ( RCC_SYSCLKSource_PLLCLK ); /* Select PLL as system clock source */
 ​
-        while ( RCC_GetSYSCLKSource() != 0x08 ); /* Wait till PLL is used as system clock source */
+        while ( RCC_GetSYSCLKSource() != 0x08 ); /* Wait till PLL is used as system clock source */
 ​        /* 使能ADC1通道时钟，各个管脚时钟 */
-        RCC_APB2PeriphClockCmd ( RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOB
-                                 | RCC_APB2Periph_GPIOC | RCC_APB2Periph_ADC1
-                                 | RCC_APB2Periph_AFIO | RCC_APB2Periph_USART1, ENABLE );
-        RCC_ADCCLKConfig ( RCC_PCLK2_Div6 ); /* 72M/6 = 12，ADC最大时间不能超过14M */
-        RCC_AHBPeriphClockCmd ( RCC_AHBPeriph_DMA1, ENABLE ); /* 使能DMA传输 */
+        RCC_APB2PeriphClockCmd ( RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOB
+                                 | RCC_APB2Periph_GPIOC | RCC_APB2Periph_ADC1
+                                 | RCC_APB2Periph_AFIO | RCC_APB2Periph_USART1, ENABLE );
+        RCC_ADCCLKConfig ( RCC_PCLK2_Div6 ); /* 72M/6 = 12，ADC最大时间不能超过14M */
+        RCC_AHBPeriphClockCmd ( RCC_AHBPeriph_DMA1, ENABLE ); /* 使能DMA传输 */
     }
 }
 ​
 void ADC1_Configuration ( void ) {
-    ADC_InitTypeDef ADC_InitStructure;
-    ADC_DeInit ( ADC1 ); /* 将外设ADC1的全部寄存器重设为缺省值 */
-    ADC_InitStructure.ADC_Mode = ADC_Mode_Independent; /* ADC工作模式：ADC1和ADC2工作在独立模式 */
-    ADC_InitStructure.ADC_ScanConvMode = ENABLE; /* 模数转换工作在扫描模式 */
-    ADC_InitStructure.ADC_ContinuousConvMode = ENABLE; /* 模数转换工作在连续转换模式 */
-    ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None; /* 外部触发转换关闭 */
-    ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right; /* ADC数据右对齐 */
-    ADC_InitStructure.ADC_NbrOfChannel = M; /* 顺序进行规则转换的ADC通道的数目 */
-    ADC_Init ( ADC1, &ADC_InitStructure ); /* 根据ADC_InitStruct中指定的参数初始化外设ADCx的寄存器 */
-    ADC_RegularChannelConfig ( ADC1, ADC_Channel_0, 1, ADC_SampleTime_239Cycles5 );
-    ADC_RegularChannelConfig ( ADC1, ADC_Channel_1, 2, ADC_SampleTime_239Cycles5 );
-    ADC_RegularChannelConfig ( ADC1, ADC_Channel_2, 3, ADC_SampleTime_239Cycles5 );
-    ADC_RegularChannelConfig ( ADC1, ADC_Channel_3, 4, ADC_SampleTime_239Cycles5 );
-    ADC_RegularChannelConfig ( ADC1, ADC_Channel_8, 5, ADC_SampleTime_239Cycles5 );
-    ADC_RegularChannelConfig ( ADC1, ADC_Channel_9, 6, ADC_SampleTime_239Cycles5 );
-    ADC_RegularChannelConfig ( ADC1, ADC_Channel_10, 7, ADC_SampleTime_239Cycles5 );
-    ADC_RegularChannelConfig ( ADC1, ADC_Channel_11, 8, ADC_SampleTime_239Cycles5 );
-    ADC_RegularChannelConfig ( ADC1, ADC_Channel_12, 9, ADC_SampleTime_239Cycles5 );
-    ADC_RegularChannelConfig ( ADC1, ADC_Channel_13, 10, ADC_SampleTime_239Cycles5 );
-    ADC_RegularChannelConfig ( ADC1, ADC_Channel_14, 11, ADC_SampleTime_239Cycles5 );
-    ADC_RegularChannelConfig ( ADC1, ADC_Channel_15, 12, ADC_SampleTime_239Cycles5 );
-    ADC_DMACmd ( ADC1, ENABLE ); /* 开启ADC的DMA支持(要实现DMA功能，还需独立配置DMA通道等参数) */
-    ADC_Cmd ( ADC1, ENABLE ); /* 使能指定的ADC1 */
-    ADC_ResetCalibration ( ADC1 ); /* 复位指定的ADC1的校准寄存器 */
+    ADC_InitTypeDef ADC_InitStructure;
+    ADC_DeInit ( ADC1 ); /* 将外设ADC1的全部寄存器重设为缺省值 */
+    ADC_InitStructure.ADC_Mode = ADC_Mode_Independent; /* ADC工作模式：ADC1和ADC2工作在独立模式 */
+    ADC_InitStructure.ADC_ScanConvMode = ENABLE; /* 模数转换工作在扫描模式 */
+    ADC_InitStructure.ADC_ContinuousConvMode = ENABLE; /* 模数转换工作在连续转换模式 */
+    ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None; /* 外部触发转换关闭 */
+    ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right; /* ADC数据右对齐 */
+    ADC_InitStructure.ADC_NbrOfChannel = M; /* 顺序进行规则转换的ADC通道的数目 */
+    ADC_Init ( ADC1, &ADC_InitStructure ); /* 根据ADC_InitStruct中指定的参数初始化外设ADCx的寄存器 */
+    ADC_RegularChannelConfig ( ADC1, ADC_Channel_0, 1, ADC_SampleTime_239Cycles5 );
+    ADC_RegularChannelConfig ( ADC1, ADC_Channel_1, 2, ADC_SampleTime_239Cycles5 );
+    ADC_RegularChannelConfig ( ADC1, ADC_Channel_2, 3, ADC_SampleTime_239Cycles5 );
+    ADC_RegularChannelConfig ( ADC1, ADC_Channel_3, 4, ADC_SampleTime_239Cycles5 );
+    ADC_RegularChannelConfig ( ADC1, ADC_Channel_8, 5, ADC_SampleTime_239Cycles5 );
+    ADC_RegularChannelConfig ( ADC1, ADC_Channel_9, 6, ADC_SampleTime_239Cycles5 );
+    ADC_RegularChannelConfig ( ADC1, ADC_Channel_10, 7, ADC_SampleTime_239Cycles5 );
+    ADC_RegularChannelConfig ( ADC1, ADC_Channel_11, 8, ADC_SampleTime_239Cycles5 );
+    ADC_RegularChannelConfig ( ADC1, ADC_Channel_12, 9, ADC_SampleTime_239Cycles5 );
+    ADC_RegularChannelConfig ( ADC1, ADC_Channel_13, 10, ADC_SampleTime_239Cycles5 );
+    ADC_RegularChannelConfig ( ADC1, ADC_Channel_14, 11, ADC_SampleTime_239Cycles5 );
+    ADC_RegularChannelConfig ( ADC1, ADC_Channel_15, 12, ADC_SampleTime_239Cycles5 );
+    ADC_DMACmd ( ADC1, ENABLE ); /* 开启ADC的DMA支持(要实现DMA功能，还需独立配置DMA通道等参数) */
+    ADC_Cmd ( ADC1, ENABLE ); /* 使能指定的ADC1 */
+    ADC_ResetCalibration ( ADC1 ); /* 复位指定的ADC1的校准寄存器 */
 ​
     while ( ADC_GetResetCalibrationStatus ( ADC1 ) ); /* 获取ADC1复位校准寄存器的状态,设置状态则等待 */
 ​
