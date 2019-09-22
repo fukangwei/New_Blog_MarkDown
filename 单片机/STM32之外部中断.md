@@ -1,7 +1,7 @@
 ---
 title: STM32之外部中断
 date: 2018-12-30 07:24:02
-tags:
+categories: 单片机
 ---
 &emsp;&emsp;`STM32`的每个`IO`都可以作为外部中断的中断输入口，其中断控制器支持`19`个外部中断/事件请求。每个中断设有状态位，每个中断/事件都有独立的触发和屏蔽设置。`STM32F103`的`19`个外部中断为：
 
@@ -23,7 +23,7 @@ GPIO_EXTILineConfig ( GPIO_PortSourceGPIOE, GPIO_PinSource2 );
 ```
 
 将中断线`2`与`GPIOE`映射起来，那么很显然是`GPIOE.2`与`EXTI2`中断线连接了。设置好中断线映射之后，那么到底来自这个`IO`口的中断是通过什么方式触发的呢？接下来就要设置该中断线上中断的初始化参数了。
-&emsp;&emsp;中断线上中断的初始化是通过函数`EXTI_Init`实现的，其函数原型为：
+&emsp;&emsp;中断线上中断的初始化是通过函数`EXTI_Init`实现的：
 
 ``` c
 void EXTI_Init ( EXTI_InitTypeDef *EXTI_InitStruct );
@@ -99,7 +99,7 @@ void EXTI2_IRQHandler ( void ) {
 4. 配置中断分组(`NVIC`)，并使能中断。
 5. 编写中断服务函数。
 
-&emsp;&emsp;**补充说明**：`STM32`外部中断实现`在需要的时候打开，不需要的时候屏蔽`的功能如下所示：
+&emsp;&emsp;**补充说明**：`STM32`外部中断实现`在需要的时候打开，不需要的时候屏蔽`的功能如下：
 
 ``` c
 EXTI->IMR &= ~( EXTI_Line4 ); /* 屏蔽外部中断4 */
