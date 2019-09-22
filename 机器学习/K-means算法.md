@@ -1,7 +1,7 @@
 ---
 title: K-means算法
 date: 2019-02-27 09:49:14
-tags:
+categories: 机器学习
 ---
 &emsp;&emsp;俗话说`物以类聚，人以群分`，而聚类算法就是体现这样的思想。聚类是一种非监督学习，与之前学习的分类和回归算法不同(监督学习)，监督学习是有有`label`标签的，而非监督学习没有。
 &emsp;&emsp;聚类是把相似的对象归到同一簇中，有点像全自动分类。聚类的应用场景有很多，例如在电商行业，通过用户的购买历史进行聚类，针对不同的用户群体推送不同的广告。
@@ -13,11 +13,11 @@ tags:
 ``` python
 创建k个点作为起始质心(通常是随机选择)
 当任意一个点的簇分配结果发生改变时(不改变时算法结束)
-    对数据集中的每个数据点
-        对每个质心
-            计算质心与数据点之间的距离
-        将数据点分配到距其最近的簇
-    对每一个簇，计算簇中所有点的均值并将均值作为质心
+    对数据集中的每个数据点
+        对每个质心
+            计算质心与数据点之间的距离
+        将数据点分配到距其最近的簇
+    对每一个簇，计算簇中所有点的均值并将均值作为质心
 ```
 
 数据集`testSet.txt`的部分数据如下：
@@ -43,53 +43,63 @@ tags:
 from numpy import *
 import matplotlib.pyplot as plt
 ​
-def loadDataSet(filename):  # 将文本文件导入到一个列表中
-    dataMat = []
-    fr = open(filename)
-    for line in fr.readlines():
-        curLine = line.strip().split('\t')
-        fltLine = list(map(float, curLine))
-        dataMat.append(fltLine)
-    return dataMat
+def loadDataSet(filename):  # 将文本文件导入到一个列表中
+    dataMat = []
+    fr = open(filename)
+
+    for line in fr.readlines():
+        curLine = line.strip().split('\t')
+        fltLine = list(map(float, curLine))
+        dataMat.append(fltLine)
+
+    return dataMat
 ​
-def distEclud(vecA, vecB):  # 计算两个向量的欧式距离
-    return sqrt(sum(power(vecA - vecB, 2)))
+def distEclud(vecA, vecB):  # 计算两个向量的欧式距离
+    return sqrt(sum(power(vecA - vecB, 2)))
 ​
 # 为给定数据集构建一个包含k个随机质心的集合。随机质心必须要在整个
 # 数据集的边界之内，这可以通过找到数据集每一维的最小和最大值来完成
 def randCent(dataSet, k):
-    n = shape(dataSet)[1]  # 列的数量
-    centroids = mat(zeros((k, n)))  # 创建k个质心矩阵
-    for j in range(n):  # 创建随机簇质心，并且在每一维的边界内
-        minJ = min(dataSet[:, j])  # 最小值
-        rangeJ = float(max(dataSet[:, j]) - minJ)  # 范围 = 最大值 - 最小值
-        centroids[:, j] = mat(minJ + rangeJ * random.rand(k, 1))  # 随机生成
-    return centroids
+    n = shape(dataSet)[1]  # 列的数量
+    centroids = mat(zeros((k, n)))  # 创建k个质心矩阵
+
+    for j in range(n):  # 创建随机簇质心，并且在每一维的边界内
+        minJ = min(dataSet[:, j])  # 最小值
+        rangeJ = float(max(dataSet[:, j]) - minJ)  # 范围 = 最大值 - 最小值
+        centroids[:, j] = mat(minJ + rangeJ * random.rand(k, 1))  # 随机生成
+
+    return centroids
 ​
 # k-means聚类算法，该算法会创建k个质心，然后将每个点分配到最近的质心，
 # 再重新计算质心。这个过程重复数次，直到数据点的簇分配结果不再改变位置
 def kMeans(dataSet, k, distMeas=distEclud, createCent=randCent):
-    m = shape(dataSet)[0]  # 行数
-    clusterAssment = mat(zeros((m, 2)))  # 一列记录簇索引值，一列存储误差(指的是当前点到簇质心的距离)
-    centroids = createCent(dataSet, k)  # 创建质心，随机k个质心
-    clusterChanged = True
-    while clusterChanged:
-        clusterChanged = False
-        for i in range(m):  # 循环每一个数据点，并分配到最近的质心中去
+    m = shape(dataSet)[0]  # 行数
+    clusterAssment = mat(zeros((m, 2)))  # 一列记录簇索引值，一列存储误差(指的是当前点到簇质心的距离)
+    centroids = createCent(dataSet, k)  # 创建质心，随机k个质心
+    clusterChanged = True
+
+    while clusterChanged:
+        clusterChanged = False
+
+        for i in range(m):  # 循环每一个数据点，并分配到最近的质心中去
             minDist = inf
             minIndex = -1
+
             for j in range(k):
                 distJI = distMeas(centroids[j, :], dataSet[i, :])  # 计算数据点到质心的距离
                 # 如果距离比minDist(最小距离)还小，更新minDist(最小距离)和最小质心的index(索引)
                 if distJI < minDist:
                     minDist = distJI
                     minIndex = j
+
             # 在k个簇里面与第i个样本距离最小的的标号和距离保存在clusterAssment中
             if clusterAssment[i, 0] != minIndex:  # 簇分配结果改变
                 clusterChanged = True  # 簇改变
                 # 更新簇分配结果为最小质心的index(索引)、minDist(最小距离)的平方
                 clusterAssment[i, :] = minIndex, minDist ** 2
+
         print(centroids)
+
         for cent in range(k):  # 更新质心
             # “clusterAssment[:,0].A == cent”是找出矩阵clusterAssment中第一列元素中等于cent的行的下标
             ptsInClust = dataSet[nonzero(clusterAssment[:, 0].A == cent)[0]]  # 将dataSet矩阵中相对应的样本提取出来
