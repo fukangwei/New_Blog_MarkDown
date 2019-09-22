@@ -9,10 +9,10 @@ categories: 单片机
 
 ``` c
 #define delayUs(x) { unsigned int _dcnt; \
-        _dcnt = (x * 16); \
-        while(_dcnt-- > 0) \
-        { continue; }\
-    }
+        _dcnt = (x * 16); \
+        while(_dcnt-- > 0) \
+        { continue; }\
+    }
 ```
 
 其中`x`为延时时间(单位为`us`)。在实际编程中，我认为`x * 16`应该改为`x * 5`，并且`_dcnt`用`static`关键词修饰。
