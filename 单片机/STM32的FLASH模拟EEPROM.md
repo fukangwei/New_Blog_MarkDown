@@ -176,16 +176,16 @@ void STMFLASH_Write ( u32 WriteAddr, u16 *pBuffer, u16 NumToWrite ) {
 ​
     while ( 1 ) {
         /* 读出整个扇区的内容 */
-        STMFLASH_Read ( secpos * STM_SECTOR_SIZE + STM32_FLASH_BASE, \
+        STMFLASH_Read ( secpos * STM_SECTOR_SIZE + STM32_FLASH_BASE, \
                         STMFLASH_BUF, STM_SECTOR_SIZE / 2 );
 ​
-        for ( i = 0; i < secremain; i++ ) { /* 校验数据 */
+        for ( i = 0; i < secremain; i++ ) { /* 校验数据 */
             if ( STMFLASH_BUF[secoff + i] != 0XFFFF ) { /* 检验需要擦除 */
                 break;
             }
         }
 ​
-        if ( i < secremain ) { /* 如果需要擦除 */
+        if ( i < secremain ) { /* 如果需要擦除 */
             /* 擦除这个扇区 */
             FLASH_ErasePage ( secpos * STM_SECTOR_SIZE + STM32_FLASH_BASE );
 ​
@@ -200,14 +200,14 @@ void STMFLASH_Write ( u32 WriteAddr, u16 *pBuffer, u16 NumToWrite ) {
             STMFLASH_Write_NoCheck ( WriteAddr, pBuffer, secremain );
         }
 ​
-        if ( NumToWrite == secremain ) {
-            break; /* 写入结束了 */
-        } else { /* 写入未结束 */
-            secpos++; /* 扇区地址增1 */
-            secoff = 0; /* 偏移位置为0 */
-            pBuffer += secremain; /* 指针偏移 */
-            WriteAddr += secremain; /* 写地址偏移 */
-            NumToWrite -= secremain; /* 字节(16位)数递减 */
+        if ( NumToWrite == secremain ) {
+            break; /* 写入结束了 */
+        } else { /* 写入未结束 */
+            secpos++; /* 扇区地址增1 */
+            secoff = 0; /* 偏移位置为0 */
+            pBuffer += secremain; /* 指针偏移 */
+            WriteAddr += secremain; /* 写地址偏移 */
+            NumToWrite -= secremain; /* 字节(16位)数递减 */
 ​
             if ( NumToWrite > ( STM_SECTOR_SIZE / 2 ) ) {
                 secremain = STM_SECTOR_SIZE / 2; /* 下一个扇区还是写不完 */
