@@ -213,22 +213,24 @@ def kMeans(dataSet, k, distMeas=distEclud, createCent=randCent):
     while clusterChanged:
         clusterChanged = False
 
-        for i in range(m):  # 循环每一个数据点，并分配到最近的质心中去
-            minDist = inf
-            minIndex = -1
+        for i in range(m):  # 循环每一个数据点，并分配到最近的质心中去
+            minDist = inf
+            minIndex = -1
 
-            for j in range(k):
-                distJI = distMeas(centroids[j, :], dataSet[i, :])  # 计算数据点到质心的距离
+            for j in range(k):
+                distJI = distMeas(centroids[j, :], dataSet[i, :])  # 计算数据点到质心的距离
                 # 如果距离比minDist(最小距离)还小，更新minDist(最小距离)和最小质心的index(索引)
-                if distJI < minDist:
-                    minDist = distJI
-                    minIndex = j
-            # 在k个簇里面与第i个样本距离最小的的标号和距离保存在clusterAssment中
-            if clusterAssment[i, 0] != minIndex:  # 簇分配结果改变
-                clusterChanged = True  # 簇改变
+                if distJI < minDist:
+                    minDist = distJI
+                    minIndex = j
+            # 在k个簇里面与第i个样本距离最小的的标号和距离保存在clusterAssment中
+            if clusterAssment[i, 0] != minIndex:  # 簇分配结果改变
+                clusterChanged = True  # 簇改变
                 # 更新簇分配结果为最小质心的index(索引)、minDist(最小距离)的平方
                 clusterAssment[i, :] = minIndex, minDist ** 2
+
         print(centroids)
+
         for cent in range(k):  # 更新质心
             # “clusterAssment[:,0].A == cent”是找出矩阵clusterAssment中第一列元素中等于cent的行的下标
             ptsInClust = dataSet[nonzero(clusterAssment[:, 0].A == cent)[0]]  # 将dataSet矩阵中相对应的样本提取出来
