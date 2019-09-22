@@ -180,18 +180,18 @@ void STMFLASH_Write ( u32 WriteAddr, u16 *pBuffer, u16 NumToWrite ) {
                         STMFLASH_BUF, STM_SECTOR_SIZE / 2 );
 ​
         for ( i = 0; i < secremain; i++ ) { /* 校验数据 */
-            if ( STMFLASH_BUF[secoff + i] != 0XFFFF ) { /* 检验需要擦除 */
-                break;
-            }
-        }
+            if ( STMFLASH_BUF[secoff + i] != 0XFFFF ) { /* 检验需要擦除 */
+                break;
+            }
+        }
 ​
         if ( i < secremain ) { /* 如果需要擦除 */
             /* 擦除这个扇区 */
-            FLASH_ErasePage ( secpos * STM_SECTOR_SIZE + STM32_FLASH_BASE );
+            FLASH_ErasePage ( secpos * STM_SECTOR_SIZE + STM32_FLASH_BASE );
 ​
-            for ( i = 0; i < secremain; i++ ) { /* 复制 */
-                STMFLASH_BUF[i + secoff] = pBuffer[i];
-            }
+            for ( i = 0; i < secremain; i++ ) { /* 复制 */
+                STMFLASH_BUF[i + secoff] = pBuffer[i];
+            }
 ​
             /* 写入整个扇区 */
             STMFLASH_Write_NoCheck ( secpos * STM_SECTOR_SIZE + STM32_FLASH_BASE, \
