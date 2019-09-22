@@ -62,24 +62,20 @@ void PWM0_change ( uchar type, uchar change ) {
 }
 ​
 void main ( void ) {
-    init_PWM(); /* 初始化，PWM输出 */
+    init_PWM(); /* 初始化，PWM输出 */
 ​
-    while ( 1 ) { /* 按键增减PWM占空比 */
-        if ( AddPWM == 0 ) {
-            DelayMs ( 500 ); /* 按键消抖 */
+    while ( 1 ) { /* 按键增减PWM占空比 */
+        if ( AddPWM == 0 ) {
+            DelayMs ( 500 ); /* 按键消抖 */
+            while ( AddPWM == 0 ); /* 按键释放才跳出循环 */
+            PWM0_change ( 1, 0X0C );
+        }
 ​
-            while ( AddPWM == 0 ); /* 按键释放才跳出循环 */
-​
-            PWM0_change ( 1, 0X0C );
-        }
-​
-        if ( CutPWM == 0 ) {
-            DelayMs ( 500 );
-​
-            while ( CutPWM == 0 );
-​
-            PWM0_change ( 0, 0X0C );
-        }
-    }
+        if ( CutPWM == 0 ) {
+            DelayMs ( 500 );
+            while ( CutPWM == 0 );
+            PWM0_change ( 0, 0X0C );
+        }
+    }
 }
 ```
