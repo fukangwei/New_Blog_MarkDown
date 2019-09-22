@@ -391,29 +391,29 @@ RTC_WaitForLastTask(); /* 等待最近一次对RTC寄存器的写操作完成 */
 rtc rtc_real;
 ​
 void RTC_Init ( void ) {
-    RCC_APB1PeriphClockCmd ( RCC_APB1Periph_PWR | RCC_APB1Periph_BKP, ENABLE );
-    PWR_BackupAccessCmd ( ENABLE ); /* 使能RTC和后备寄存器访问 */
+    RCC_APB1PeriphClockCmd ( RCC_APB1Periph_PWR | RCC_APB1Periph_BKP, ENABLE );
+    PWR_BackupAccessCmd ( ENABLE ); /* 使能RTC和后备寄存器访问 */
 ​
     /* 读取后备寄存器1的数据 */
-    if ( BKP_ReadBackupRegister ( BKP_DR1 ) != 0x5555 ) {
-        BKP_DeInit(); /* Reset Backup Domain */
-        RCC_LSEConfig ( RCC_LSE_ON ); /* Enable LSE，打开外部低速晶振 */
+    if ( BKP_ReadBackupRegister ( BKP_DR1 ) != 0x5555 ) {
+        BKP_DeInit(); /* Reset Backup Domain */
+        RCC_LSEConfig ( RCC_LSE_ON ); /* Enable LSE，打开外部低速晶振 */
 ​
         /* 等待外部低速晶振震荡 需要等待比较长的时间 */
-        while ( RCC_GetFlagStatus ( RCC_FLAG_LSERDY ) == RESET );
+        while ( RCC_GetFlagStatus ( RCC_FLAG_LSERDY ) == RESET );
 ​
-        RCC_RTCCLKConfig ( RCC_RTCCLKSource_LSE ); /* 使用外部晶振32768作为时钟源 */
-        RCC_RTCCLKCmd ( ENABLE ); /* 允许RTC */
-        RTC_WaitForSynchro(); /* 等待RTC寄存器同步 */
-        RTC_WaitForLastTask(); /* 等待最近一次对RTC寄存器的写操作完成 */
-        RTC_ITConfig ( RTC_IT_SEC, ENABLE ); /* 允许RTC的秒中断(还有闹钟中断和溢出中断可设置) */
-        RTC_WaitForLastTask(); /* 等待最近一次对RTC寄存器的写操作完成 */
+        RCC_RTCCLKConfig ( RCC_RTCCLKSource_LSE ); /* 使用外部晶振32768作为时钟源 */
+        RCC_RTCCLKCmd ( ENABLE ); /* 允许RTC */
+        RTC_WaitForSynchro(); /* 等待RTC寄存器同步 */
+        RTC_WaitForLastTask(); /* 等待最近一次对RTC寄存器的写操作完成 */
+        RTC_ITConfig ( RTC_IT_SEC, ENABLE ); /* 允许RTC的秒中断(还有闹钟中断和溢出中断可设置) */
+        RTC_WaitForLastTask(); /* 等待最近一次对RTC寄存器的写操作完成 */
         /* 32768晶振预分频值是32767，不过一般来说晶振都不那么准；如果需要校准晶振，可修改此分频值 */
-        RTC_SetPrescaler ( 32776 );
-        RTC_WaitForLastTask(); /* 等待最近一次对RTC寄存器的写操作完成 */
+        RTC_SetPrescaler ( 32776 );
+        RTC_WaitForLastTask(); /* 等待最近一次对RTC寄存器的写操作完成 */
         /* 向RTC后备寄存器1写入“0x5555”表示时钟已经配置过了 */
-        BKP_WriteBackupRegister ( BKP_DR1, 0x5555 );
-        USART1_SendString ( "系统未设置时间" );
+        BKP_WriteBackupRegister ( BKP_DR1, 0x5555 );
+        USART1_SendString ( "系统未设置时间" );
     } else { /* 如果RTC已经设置 */
         RTC_WaitForSynchro(); /* 等待RTC与APB同步 */
         RTC_WaitForLastTask();
