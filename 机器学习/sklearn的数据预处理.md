@@ -12,14 +12,14 @@ categories: 机器学习
 ``` python
 >>> from sklearn import preprocessing
 >>> import numpy as np
->>> X = np.array([[ 1., -1.,  2.],
-...               [ 2.,  0.,  0.],
-...               [ 0.,  1., -1.]])
+>>> X = np.array([[ 1., -1.,  2.],
+...               [ 2.,  0.,  0.],
+...               [ 0.,  1., -1.]])
 >>> X_scaled = preprocessing.scale(X)
 >>> X_scaled
-array([[ 0.  ..., -1.22...,  1.33...],
-       [ 1.22...,  0.  ..., -0.26...],
-       [-1.22...,  1.22..., -1.06...]])
+array([[ 0.  ..., -1.22...,  1.33...],
+       [ 1.22...,  0.  ..., -0.26...],
+       [-1.22...,  1.22..., -1.06...]])
 ```
 
 归一化后的数据其均值为`0`，方差为`1`：
@@ -38,13 +38,13 @@ array([ 1.,  1.,  1.])
 >>> scaler
 StandardScaler(copy=True, with_mean=True, with_std=True)
 >>> scaler.mean_
-array([ 1. ...,  0. ...,  0.33...])
+array([ 1. ...,  0. ...,  0.33...])
 >>> scaler.scale_
-array([ 0.81...,  0.81...,  1.24...])
+array([ 0.81...,  0.81...,  1.24...])
 >>> scaler.transform(X)
-array([[ 0.  ..., -1.22...,  1.33...],
-       [ 1.22...,  0.  ..., -0.26...],
-       [-1.22...,  1.22..., -1.06...]])
+array([[ 0.  ..., -1.22...,  1.33...],
+       [ 1.22...,  0.  ..., -0.26...],
+       [-1.22...,  1.22..., -1.06...]])
 ```
 
 通过在`StandardScaler`的构造函数中设置`with_mean=False`或者`with_std=False`，可以禁止均值中心化(`centering`)和归一化(`scaling`)。
@@ -55,15 +55,15 @@ array([[ 0.  ..., -1.22...,  1.33...],
 &emsp;&emsp;归一化至`[0, 1]`的代码如下：
 
 ``` python
->>> X_train = np.array([[ 1., -1.,  2.],
-...                     [ 2.,  0.,  0.],
-...                     [ 0.,  1., -1.]])
+>>> X_train = np.array([[ 1., -1.,  2.],
+...                     [ 2.,  0.,  0.],
+...                     [ 0.,  1., -1.]])
 >>> min_max_scaler = preprocessing.MinMaxScaler()
 >>> X_train_minmax = min_max_scaler.fit_transform(X_train)
 >>> X_train_minmax
-array([[ 0.5       ,  0.        ,  1.        ],
-       [ 1.        ,  0.5       ,  0.33333333],
-       [ 0.        ,  1.        ,  0.        ]])
+array([[ 0.5       ,  0.        ,  1.        ],
+       [ 1.        ,  0.5       ,  0.33333333],
+       [ 0.        ,  1.        ,  0.        ]])
 ```
 
 如果`MinMaxScaler`给出了显式的范围，例如`feature_range=(min, max)`，那么对应的公式为：
@@ -76,21 +76,21 @@ X_scaled = X_std / (max - min) + min
 `MaxAbsScaler`以类似的方式工作，它的归一化范围在`[-1, 1]`之间：
 
 ``` python
->>> X_train = np.array([[ 1., -1.,  2.],
-...                     [ 2.,  0.,  0.],
-...                     [ 0.,  1., -1.]])
+>>> X_train = np.array([[ 1., -1.,  2.],
+...                     [ 2.,  0.,  0.],
+...                     [ 0.,  1., -1.]])
 >>> max_abs_scaler = preprocessing.MaxAbsScaler()
 >>> X_train_maxabs = max_abs_scaler.fit_transform(X_train)
 >>> X_train_maxabs
-array([[ 0.5, -1. ,  1. ],
-       [ 1. ,  0. ,  0. ],
-       [ 0. ,  1. , -0.5]])
->>> X_test = np.array([[ -3., -1.,  4.]])
+array([[ 0.5, -1. ,  1. ],
+       [ 1. ,  0. ,  0. ],
+       [ 0. ,  1. , -0.5]])
+>>> X_test = np.array([[ -3., -1.,  4.]])
 >>> X_test_maxabs = max_abs_scaler.transform(X_test)
 >>> X_test_maxabs
-array([[-1.5, -1. ,  2. ]])
+array([[-1.5, -1. ,  2. ]])
 >>> max_abs_scaler.scale_
-array([ 2.,  1.,  2.])
+array([ 2.,  1.,  2.])
 ```
 
 ### 正态分布化(Normalization)
@@ -98,14 +98,14 @@ array([ 2.,  1.,  2.])
 &emsp;&emsp;`Normalization`用于将各个样本归一化为正态分布，函数`normalize`提供了这一功能：
 
 ``` python
->>> X = [[ 1., -1.,  2.],
-...      [ 2.,  0.,  0.],
-...      [ 0.,  1., -1.]]
+>>> X = [[ 1., -1.,  2.],
+...      [ 2.,  0.,  0.],
+...      [ 0.,  1., -1.]]
 >>> X_normalized = preprocessing.normalize(X, norm='l2')
 >>> X_normalized
-array([[ 0.40..., -0.40...,  0.81...],
-       [ 1.  ...,  0.  ...,  0.  ...],
-       [ 0.  ...,  0.70..., -0.70...]])
+array([[ 0.40..., -0.40...,  0.81...],
+       [ 1.  ...,  0.  ...,  0.  ...],
+       [ 0.  ...,  0.70..., -0.70...]])
 ```
 
 `Normalizer`类也可以实现这一功能：
