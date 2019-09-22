@@ -241,9 +241,9 @@ data = scale(digits.data)
 X_train, X_test, y_train, y_test, images_train, images_test = \
     train_test_split(data, digits.target, digits.images, test_size=0.25, random_state=42)
 ​
-svc_model = svm.SVC(gamma=0.001, C=100, kernel='linear')  # 创建SVC模型
-svc_model.fit(X_train, y_train)  # 将训练集应用到SVC模型上
-predicted = svc_model.predict(X_test)  # 使用创建的SVC模型对测试集进行预测
+svc_model = svm.SVC(gamma=0.001, C=100, kernel='linear')  # 创建SVC模型
+svc_model.fit(X_train, y_train)  # 将训练集应用到SVC模型上
+predicted = svc_model.predict(X_test)  # 使用创建的SVC模型对测试集进行预测
 ​
 X = np.arange(len(y_test))
 # 生成比较列表，如果预测的结果正确，则对应位置为0，错误则为1
@@ -282,9 +282,9 @@ data = scale(digits.data)
 X_train, X_test, y_train, y_test, images_train, images_test = \
     train_test_split(data, digits.target, digits.images, test_size=0.25, random_state=42)
 ​
-svc_model = svm.SVC(gamma=0.001, C=100, kernel='linear')  # 创建SVC模型
-svc_model.fit(X_train, y_train)  # 将训练集应用到SVC模型上
-predicted = svc_model.predict(X_test)  # 使用创建的SVC模型对测试集进行预测
+svc_model = svm.SVC(gamma=0.001, C=100, kernel='linear')  # 创建SVC模型
+svc_model.fit(X_train, y_train)  # 将训练集应用到SVC模型上
+predicted = svc_model.predict(X_test)  # 使用创建的SVC模型对测试集进行预测
 ​
 X = np.arange(len(y_test))
 # 生成比较列表，如果预测的结果正确，则对应位置为0，错误则为1
@@ -293,19 +293,19 @@ comp = [0 if y1 == y2 else 1 for y1, y2 in zip(y_test, predicted)]
 wrong_index = []
 
 for i, value in enumerate(comp):
-    if value:
-        wrong_index.append(i)
+    if value:
+        wrong_index.append(i)
 ​
 plt.figure(figsize=(8, 6))
 
-for plot_index, image_index in enumerate(wrong_index):  # 输出错误识别的样本图像
-    image = images_test[image_index]
-    plt.subplot(2, 5, plot_index + 1)
-    plt.axis('off')
-    plt.imshow(image, cmap=plt.cm.gray_r, interpolation='nearest')
+for plot_index, image_index in enumerate(wrong_index):  # 输出错误识别的样本图像
+    image = images_test[image_index]
+    plt.subplot(2, 5, plot_index + 1)
+    plt.axis('off')
+    plt.imshow(image, cmap=plt.cm.gray_r, interpolation='nearest')
     # “8->9”表示正确值为8，被错误地识别成了9
-    info = "{right}->{wrong}".format(right=y_test[image_index], wrong=predicted[image_index])
-    plt.title(info, fontsize=16)
+    info = "{right}->{wrong}".format(right=y_test[image_index], wrong=predicted[image_index])
+    plt.title(info, fontsize=16)
 ​
 plt.show()
 ```

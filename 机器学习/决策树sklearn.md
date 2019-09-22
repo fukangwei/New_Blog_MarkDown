@@ -1,7 +1,7 @@
 ---
 title: 决策树sklearn
 date: 2019-02-27 08:43:33
-tags:
+categories: 机器学习
 ---
 &emsp;&emsp;`sklearn.tree`模块提供了决策树模型，用于解决分类问题和回归问题。方法如下：
 
@@ -91,28 +91,28 @@ headers = next(reader)
 到此我们已经拿到数据了，但是这些数据是不能直接使用的，因为计算机不认识字符，它只认识数字，所以要把字符串转换成数组。这里怎样进行转换呢？例如我们把`age`分为了三类，即`youth`、`middle_aged`和`senior`，如果第一条数据是`youth`，就转换为`0 0 1`。当然还有另外的转换方法，也可以使用`1`、`2`、`3`来分别表示三类数据。下面使用`sklearn`自带的工具进行转换，它就使用第一种转换方式，即`youth = 0 0 1`：
 
 ``` python
-featureList = [] # save feature Dict
-labelList = [] # save label
+featureList = []  # save feature Dict
+labelList = []  # save label
 ​
 for row in reader:
-    labelList.append(row[len(row) - 1])  # 将每一行的label标记存到labellist
-    rowDict = {}
+    labelList.append(row[len(row) - 1])  # 将每一行的label标记存到labellist
+    rowDict = {}
 
-    for i in range(1, len(row) - 1):
-        rowDict[headers[i]] = row[i]
+    for i in range(1, len(row) - 1):
+        rowDict[headers[i]] = row[i]
 
-    featureList.append(rowDict)  # 将每一行的特征向量存到featurelist
+    featureList.append(rowDict)  # 将每一行的特征向量存到featurelist
 ```
 
 转换数据集如下：
 
 ``` python
-vec = DictVectorizer()  # 将数据集转换为0和1的格式
-dummyX = vec.fit_transform(featureList).toarray()  # 对特征向量进行转换
+vec = DictVectorizer()  # 将数据集转换为0和1的格式
+dummyX = vec.fit_transform(featureList).toarray()  # 对特征向量进行转换
 print("dummyX: " + str(dummyX))
 print(vec.get_feature_names())
 print("labelList: " + str(labelList))
-lb = preprocessing.LabelBinarizer()  # 对标记进行转换
+lb = preprocessing.LabelBinarizer()  # 对标记进行转换
 dummyY = lb.fit_transform(labelList)
 print("dummyY: " + str(dummyY))
 ```
@@ -120,11 +120,12 @@ print("dummyY: " + str(dummyY))
 到此为止我们的数据已经准好了，下面就可以开始训练数据，然后建立模型了。建立决策树模型的方法非常简单，直接调用函数即可：
 
 ``` python
-clf = tree.DecisionTreeClassifier(criterion='entropy')  # entropy(使用信息熵)
-clf = clf.fit(dummyX, dummyY)  # 建模
+clf = tree.DecisionTreeClassifier(criterion='entropy')  # entropy(使用信息熵)
+clf = clf.fit(dummyX, dummyY)  # 建模
 print("clf: " + str(clf))
-with open("allElectronicInformationGainOri.dot", 'w') as f:  # save clf to dot
-    f = tree.export_graphviz(clf, feature_names=vec.get_feature_names(), out_file=f)
+
+with open("allElectronicInformationGainOri.dot", 'w') as f:  # save clf to dot
+    f = tree.export_graphviz(clf, feature_names=vec.get_feature_names(), out_file=f)
 ```
 
 上面的代码执行之后，决策树模型就建立好了，并且已经保存在`allElectronicInformationGainOri.dot`文件中了。怎么来进行预测呢？代码如下：
@@ -136,8 +137,8 @@ newRowX = oneRowX
 newRowX[0] = 1
 newRowX[2] = 0
 print("newRowX: " + str(newRowX))
-predictedY = clf.predict(newRowX.reshape(1, -1))  # 开始预测
-print("predictedY: " + str(predictedY))  # 打印预测结果
+predictedY = clf.predict(newRowX.reshape(1, -1))  # 开始预测
+print("predictedY: " + str(predictedY))  # 打印预测结果
 ```
 
 到此为止，基本的决策树应用就算完成了。其实在建模部分，有一些参数是需要调整的，要根据正确率，不断地进行调整。如果特征值比较多的话，还有可能牵扯到降维，那就比较复杂了。
@@ -159,20 +160,21 @@ featureList = []
 labelList = []
 ​
 for row in reader:
-    labelList.append(row[len(row) - 1])
-    rowDict = {}
-    for i in range(1, len(row) - 1):
-        rowDict[headers[i]] = row[i]
-    featureList.append(rowDict)
+    labelList.append(row[len(row) - 1])
+    rowDict = {}
+
+    for i in range(1, len(row) - 1):
+        rowDict[headers[i]] = row[i]
+
+    featureList.append(rowDict)
 ​
 print(featureList)
 ​
-vec = DictVectorizer()  # Vetorize features
+vec = DictVectorizer()  # Vetorize features
 dummyX = vec.fit_transform(featureList).toarray()
 ​
 print("dummyX: " + str(dummyX))
 print(vec.get_feature_names())
-​
 print("labelList: " + str(labelList))
 ​
 # vectorize class labels
@@ -185,8 +187,8 @@ clf = tree.DecisionTreeClassifier(criterion='entropy')
 clf = clf.fit(dummyX, dummyY)
 print("clf: " + str(clf))
 ​
-with open("allElectronicInformationGainOri.dot", 'w') as f:  # Visualize model
-    f = tree.export_graphviz(clf, feature_names=vec.get_feature_names(), out_file=f)
+with open("allElectronicInformationGainOri.dot", 'w') as f:  # Visualize model
+    f = tree.export_graphviz(clf, feature_names=vec.get_feature_names(), out_file=f)
 ​
 oneRowX = dummyX[0, :]
 print("oneRowX: " + str(oneRowX))
