@@ -1,7 +1,7 @@
 ---
 title: sklearn之pipeline
 date: 2019-02-27 09:27:08
-tags:
+categories: 机器学习
 ---
 &emsp;&emsp;我们经常需要在训练集和测试集上同时进行训练：
 
@@ -24,13 +24,13 @@ predicted = clf.fit_predict(tfidfX)
 
 ``` python
 pipeline = Pipeline([
-    ('vect', CountVectorizer()),
-    ('tfidf', TfidfTransformer()),
-    ('clf', SGDClassifier()),
+    ('vect', CountVectorizer()),
+    ('tfidf', TfidfTransformer()),
+    ('clf', SGDClassifier()),
 ])
 ​
 predicted = pipeline.fit(Xtrain).predict(Xtrain)
-predicted = pipeline.predict(Xtest)  # Now evaluate all steps on test set
+predicted = pipeline.predict(Xtest)  # Now evaluate all steps on test set
 ```
 
 <img src="./sklearn之pipeline/1.jpg" height="215" width="295">

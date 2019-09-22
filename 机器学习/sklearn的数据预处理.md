@@ -1,7 +1,7 @@
 ---
 title: sklearn的数据预处理
 date: 2019-02-12 12:04:27
-tags:
+categories: 机器学习
 ---
 &emsp;&emsp;`klearn.preprocessing`提供了各种公共函数，用于将`raw feature vector`转换成另外一种更适合评估器工作的格式。
 
