@@ -267,39 +267,42 @@ def biKMeans(dataSet, k, distMeas=distEclud):  # 二分KMeans聚类算法，基�
 
         # 找出最好的簇分配结果
         # 调用二分kMeans的结果，默认簇是0和1，当然也可以改成其它的数字
-        bestClustAss[nonzero(bestClustAss[:, 0].A == 1)[0], 0] = len(centList)
-        bestClustAss[nonzero(bestClustAss[:, 0].A == 0)[0], 0] = bestCentToSplit  # 更新为最佳质心
-        print('the bestCentToSplit is: ', bestCentToSplit)
-        print('the len of bestClustAss is: ', len(bestClustAss))
-        # 更新质心列表
+        bestClustAss[nonzero(bestClustAss[:, 0].A == 1)[0], 0] = len(centList)
+        bestClustAss[nonzero(bestClustAss[:, 0].A == 0)[0], 0] = bestCentToSplit  # 更新为最佳质心
+        print('the bestCentToSplit is: ', bestCentToSplit)
+        print('the len of bestClustAss is: ', len(bestClustAss))
+        # 更新质心列表
         # 更新原质心list中的第i个质心为使用二分kMeans后，bestNewCents的第一个质心
-        centList[bestCentToSplit] = bestNewCents[0, :].tolist()[0]
-        centList.append(bestNewCents[1, :].tolist()[0])  # 添加bestNewCents的第二个质心
+        centList[bestCentToSplit] = bestNewCents[0, :].tolist()[0]
+        centList.append(bestNewCents[1, :].tolist()[0])  # 添加bestNewCents的第二个质心
         # 重新分配最好簇下的数据(质心)以及SSE
-        clusterAssment[nonzero(clusterAssment[:, 0].A == bestCentToSplit)[0], :] = bestClustAss
+        clusterAssment[nonzero(clusterAssment[:, 0].A == bestCentToSplit)[0], :] = bestClustAss
 
-    return mat(centList), clusterAssment
+    return mat(centList), clusterAssment
 ​
 def showCluster(dataSet, k, centroids, clusterAssment):
-    numSamples, dim = dataSet.shape
-    if dim != 2:
-        print("Sorry! I can not draw because the dimension of your data is not 2!")
-        return 1
+    numSamples, dim = dataSet.shape
+
+    if dim != 2:
+        print("Sorry! I can not draw because the dimension of your data is not 2!")
+        return 1
 ​
-    mark = ['or', 'ob', 'og', 'ok', '^r', '+r', 'sr', 'dr', '<r', 'pr']
-    if k > len(mark):
-        print("Sorry! Your k is too large! ")
-        return 1
+    mark = ['or', 'ob', 'og', 'ok', '^r', '+r', 'sr', 'dr', '<r', 'pr']
+
+    if k > len(mark):
+        print("Sorry! Your k is too large! ")
+        return 1
 ​
-    for i in range(numSamples):  # draw all samples
-        markIndex = int(clusterAssment[i, 0])  # 为样本指定颜色
-        plt.plot(dataSet[i, 0], dataSet[i, 1], mark[markIndex])
+    for i in range(numSamples):  # draw all samples
+        markIndex = int(clusterAssment[i, 0])  # 为样本指定颜色
+        plt.plot(dataSet[i, 0], dataSet[i, 1], mark[markIndex])
 ​
-    mark = ['Dr', 'Db', 'Dg', 'Dk', '^b', '+b', 'sb', 'db', '<b', 'pb']
-    for i in range(k):  # draw the centroids
-        plt.plot(centroids[i, 0], centroids[i, 1], mark[i], markersize=12)
+    mark = ['Dr', 'Db', 'Dg', 'Dk', '^b', '+b', 'sb', 'db', '<b', 'pb']
+
+    for i in range(k):  # draw the centroids
+        plt.plot(centroids[i, 0], centroids[i, 1], mark[i], markersize=12)
 ​
-    plt.show()
+    plt.show()
 ​
 datMAt = mat(loadDataSet("testSet.txt"))
 k = 4
