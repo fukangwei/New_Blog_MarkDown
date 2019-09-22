@@ -7,12 +7,12 @@ categories: 单片机
 
 ``` cpp
 startup_stm32f10x_ld_vl.s: for STM32 Low density Value line devices
-startup_stm32f10x_ld.s:    for STM32 Low density devices
+startup_stm32f10x_ld.s:    for STM32 Low density devices
 startup_stm32f10x_md_vl.s: for STM32 Medium density Value line devices
-startup_stm32f10x_md.s:    for STM32 Medium density devices
-startup_stm32f10x_hd.s:    for STM32 High density devices
-startup_stm32f10x_xl.s:    for STM32 XL density devices
-startup_stm32f10x_cl.s:    for STM32 Connectivity line devices
+startup_stm32f10x_md.s:    for STM32 Medium density devices
+startup_stm32f10x_hd.s:    for STM32 High density devices
+startup_stm32f10x_xl.s:    for STM32 XL density devices
+startup_stm32f10x_cl.s:    for STM32 Connectivity line devices
 ```
 
 - `cl`：互联型产品，`stm32f105/107`系列。
@@ -32,12 +32,12 @@ startup_stm32f10x_cl.s:    for STM32 Connectivity line devices
 
 ``` cpp
 /* Call the clock system intitialization function */
-    bl  SystemInit
+    bl SystemInit
 /* Call static constructors */
-    bl __libc_init_array
+    bl __libc_init_array
 /* Call the application's entry point */
-    bl main
-    bx lr
+    bl main
+    bx lr
 ```
 
 &emsp;&emsp;3. 有些启动文件定义了堆栈大小，可以在这里进行修改(有些是在`.ld`文件进行定义的)。
