@@ -135,13 +135,13 @@ print(data)
 执行结果：
 
 ``` python
-[[ 0.         -0.33501649 -0.04308102 ... -1.14664746 -0.5056698 -0.19600752]
- [ 0.         -0.33501649 -1.09493684 ...  0.54856067 -0.5056698 -0.19600752]
- [ 0.         -0.33501649 -1.09493684 ...  1.56568555  1.6951369 -0.19600752]
+[[ 0.         -0.33501649 -0.04308102 ... -1.14664746 -0.5056698 -0.19600752]
+ [ 0.         -0.33501649 -1.09493684 ...  0.54856067 -0.5056698 -0.19600752]
+ [ 0.         -0.33501649 -1.09493684 ...  1.56568555  1.6951369 -0.19600752]
  ...
- [ 0.         -0.33501649 -0.88456568 ... -0.12952258 -0.5056698 -0.19600752]
- [ 0.         -0.33501649 -0.67419451 ...  0.8876023  -0.5056698 -0.19600752]
- [ 0.         -0.33501649  1.00877481 ...  0.8876023  -0.2611357 -0.19600752]]
+ [ 0.         -0.33501649 -0.88456568 ... -0.12952258 -0.5056698 -0.19600752]
+ [ 0.         -0.33501649 -0.67419451 ...  0.8876023  -0.5056698 -0.19600752]
+ [ 0.         -0.33501649  1.00877481 ...  0.8876023  -0.2611357 -0.19600752]]
 ```
 
 将数据集拆分成训练集和测试集：
@@ -183,8 +183,8 @@ data = scale(digits.data)
 X_train, X_test, y_train, y_test, images_train, images_test = \
     train_test_split(data, digits.target, digits.images, test_size=0.25, random_state=42)
 svc_model = svm.SVC(gamma=0.001, C=100, kernel='linear')  # 创建SVC模型
-svc_model.fit(X_train, y_train)  # 将训练集应用到SVC模型上
-print(svc_model.score(X_test, y_test))  # 评估模型的预测效果
+svc_model.fit(X_train, y_train)  # 将训练集应用到SVC模型上
+print(svc_model.score(X_test, y_test))  # 评估模型的预测效果
 ```
 
 ### 预测结果
@@ -205,19 +205,19 @@ data = scale(digits.data)
 ​
 X_train, X_test, y_train, y_test, images_train, images_test = \
     train_test_split(data, digits.target, digits.images, test_size=0.25, random_state=42)
-svc_model = svm.SVC(gamma=0.001, C=100, kernel='linear')  # 创建SVC模型
-svc_model.fit(X_train, y_train)  # 将训练集应用到SVC模型上
-predicted = svc_model.predict(X_test)  # 使用创建的SVC模型对测试集进行预测
+svc_model = svm.SVC(gamma=0.001, C=100, kernel='linear')  # 创建SVC模型
+svc_model.fit(X_train, y_train)  # 将训练集应用到SVC模型上
+predicted = svc_model.predict(X_test)  # 使用创建的SVC模型对测试集进行预测
 # 将测试集的图像与预测的标签合并到一个列表中
 images_and_predictions = list(zip(images_test, predicted))
 ​
 plt.figure(figsize=(8, 2))
 
 for index, (image, prediction) in enumerate(images_and_predictions[:4]):
-    plt.subplot(1, 4, index + 1)
-    plt.axis('off')
-    plt.imshow(image, cmap=plt.cm.gray_r, interpolation='nearest')
-    plt.title(u'预测结果: ' + str(prediction), fontproperties=font_set)
+    plt.subplot(1, 4, index + 1)
+    plt.axis('off')
+    plt.imshow(image, cmap=plt.cm.gray_r, interpolation='nearest')
+    plt.title(u'预测结果: ' + str(prediction), fontproperties=font_set)
 ​
 plt.show()
 ```
