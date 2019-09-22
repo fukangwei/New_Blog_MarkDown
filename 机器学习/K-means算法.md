@@ -227,25 +227,30 @@ def kMeans(dataSet, k, distMeas=distEclud, createCent=randCent):
             if clusterAssment[i, 0] != minIndex:  # 簇分配结果改变
                 clusterChanged = True  # 簇改变
                 # 更新簇分配结果为最小质心的index(索引)、minDist(最小距离)的平方
-                clusterAssment[i, :] = minIndex, minDist ** 2
+                clusterAssment[i, :] = minIndex, minDist ** 2
 
-        print(centroids)
+        print(centroids)
 
-        for cent in range(k):  # 更新质心
-            # “clusterAssment[:,0].A == cent”是找出矩阵clusterAssment中第一列元素中等于cent的行的下标
-            ptsInClust = dataSet[nonzero(clusterAssment[:, 0].A == cent)[0]]  # 将dataSet矩阵中相对应的样本提取出来
-            centroids[cent, :] = mean(ptsInClust, axis=0)  # 将质心修改为簇中所有点的平均值，mean就是求平均值
-    return centroids, clusterAssment
+        for cent in range(k):  # 更新质心
+            # “clusterAssment[:,0].A == cent”是找出矩阵clusterAssment中第一列元素中等于cent的行的下标
+            # 将dataSet矩阵中相对应的样本提取出来
+            ptsInClust = dataSet[nonzero(clusterAssment[:, 0].A == cent)[0]]
+            centroids[cent, :] = mean(ptsInClust, axis=0)  # 将质心修改为簇中所有点的平均值，mean就是求平均值
+
+    return centroids, clusterAssment
 ​
 def biKMeans(dataSet, k, distMeas=distEclud):  # 二分KMeans聚类算法，基于kMeans基础之上的优化，以避免陷入局部最小值
     m = shape(dataSet)[0]
     clusterAssment = mat(zeros((m, 2)))  # 保存每个数据点的簇分配结果和平方误差
     centroid0 = mean(dataSet, axis=0).tolist()[0]  # 质心初始化为所有数据点的均值
     centList = [centroid0]  # 初始化只有1个质心的list
+
     for j in range(m):  # 计算所有数据点到初始质心的距离平方误差
         clusterAssment[j, 1] = distMeas(mat(centroid0), dataSet[j, :]) ** 2
+
     while (len(centList) < k):  # 当质心数量小于k时
         lowestSSE = inf
+
         for i in range(len(centList)):  # 对每一个质心
             ptsInCurrCluster = dataSet[nonzero(clusterAssment[:, 0].A == i)[0], :]  # 获取当前簇i下的所有数据点
             centroidMat, splitClustAss = kMeans(ptsInCurrCluster, 2, distMeas)  # 将当前簇i进行二分kMeans处理
@@ -253,11 +258,13 @@ def biKMeans(dataSet, k, distMeas=distEclud):  # 二分KMeans聚类算法，基
             # 将未参与二分kMeans分配结果中的平方和的距离进行求和
             sseNotSplit = sum(clusterAssment[nonzero(clusterAssment[:, 0].A != i)[0], 1])
             print("sseSplit, and notSplit: ", sseSplit, sseNotSplit)
+
             if (sseSplit + sseNotSplit) < lowestSSE:
                 bestCentToSplit = i
                 bestNewCents = centroidMat
                 bestClustAss = splitClustAss.copy()
                 lowestSSE = sseSplit + sseNotSplit
+
         # 找出最好的簇分配结果
         # 调用二分kMeans的结果，默认簇是0和1，当然也可以改成其它的数字
         bestClustAss[nonzero(bestClustAss[:, 0].A == 1)[0], 0] = len(centList)
@@ -270,6 +277,7 @@ def biKMeans(dataSet, k, distMeas=distEclud):  # 二分KMeans聚类算法，基
         centList.append(bestNewCents[1, :].tolist()[0])  # 添加bestNewCents的第二个质心
         # 重新分配最好簇下的数据(质心)以及SSE
         clusterAssment[nonzero(clusterAssment[:, 0].A == bestCentToSplit)[0], :] = bestClustAss
+
     return mat(centList), clusterAssment
 ​
 def showCluster(dataSet, k, centroids, clusterAssment):
