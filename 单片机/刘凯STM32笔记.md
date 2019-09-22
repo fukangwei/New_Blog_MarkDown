@@ -150,12 +150,12 @@ void I2C_BufferWrite ( u8 *pBuffer, u8 WriteAddr, u16 NumByteToWrite ) {
                 pBuffer += I2C_PageSize;
             }
 ​
-            if ( NumOfSingle != 0 ) {
-                I2C_PageWrite ( pBuffer, WriteAddr, NumOfSingle );
-                I2C_WaitEepromStandbyState();
-            }
-        }
-    }
+            if ( NumOfSingle != 0 ) {
+                I2C_PageWrite ( pBuffer, WriteAddr, NumOfSingle );
+                I2C_WaitEepromStandbyState();
+            }
+        }
+    }
 }
 ```
 
@@ -170,20 +170,20 @@ Addr = WriteAddr % I2C_PageSize; /* 得到WriteAddr(起始地址)在某一页中
 
 ``` c
 void I2C_WaitEepromStandbyState ( void ) {
-    vu16 SR1_Tmp = 0;
+    vu16 SR1_Tmp = 0;
 ​
-    do {
+    do {
         /* Send START condition，发送开始信号 */
-        I2C_GenerateSTART ( I2C2, ENABLE );
-        /* Read I2C1 SR1 register */
+        I2C_GenerateSTART ( I2C2, ENABLE );
+        /* Read I2C1 SR1 register */
         /* 读寄存器I2C_SR1，这个读操作实际上是让SR的某些标志位清零 */
-        SR1_Tmp = I2C_ReadRegister ( I2C2, I2C_Register_SR1 );
+        SR1_Tmp = I2C_ReadRegister ( I2C2, I2C_Register_SR1 );
         /* Send EEPROM address for write */
-        I2C_Send7bitAddress ( I2C2, EEPROM_ADDRESS, I2C_Direction_Transmitter );
-        /* 读寄存器I2C_SR1的ADDR位。如果ADDR为0，则地址发送没有结束，继续发送“EEPROM address” */
-    } while ( ! ( I2C_ReadRegister ( I2C2, I2C_Register_SR1 ) & 0x0002 ) );
+        I2C_Send7bitAddress ( I2C2, EEPROM_ADDRESS, I2C_Direction_Transmitter );
+        /* 读寄存器I2C_SR1的ADDR位。如果ADDR为0，则地址发送没有结束，继续发送“EEPROM address” */
+    } while ( ! ( I2C_ReadRegister ( I2C2, I2C_Register_SR1 ) & 0x0002 ) );
 ​
-    I2C_ClearFlag ( I2C2, I2C_FLAG_AF ); /* Clear AF flag，清除应答错误标志位 */
+    I2C_ClearFlag ( I2C2, I2C_FLAG_AF ); /* Clear AF flag，清除应答错误标志位 */
 }
 ```
 
