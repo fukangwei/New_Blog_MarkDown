@@ -447,93 +447,93 @@ u8 RTC_Set ( u16 year, u8 month, u8 day, u8 hour, u8 min, u8 sec ) {
 ​
     for ( i = 1970; i < year; i++ ) { /* 计算年份的秒数 */
         if ( Is_LeapYear ( i ) ) {
-            seccount += 31622400; /* 闰年的秒钟数 */
+            seccount += 31622400; /* 闰年的秒钟数 */
         } else {
-            seccount += 31536000; /* 平年的秒钟数 */
+            seccount += 31536000; /* 平年的秒钟数 */
         }
     }
 ​
-    month -= 1;
+    month -= 1;
 ​
-    for ( i = 0; i < month; i++ ) {
-        seccount += ( u32 ) month_table[i] * 86400; /* 月份秒钟数相加 */
+    for ( i = 0; i < month; i++ ) {
+        seccount += ( u32 ) month_table[i] * 86400; /* 月份秒钟数相加 */
 ​
-        if ( Is_LeapYear ( year ) && i == 1 ) {
-            seccount += 86400; /* 闰年2月份增加一天的秒钟数 */
-        }
-    }
+        if ( Is_LeapYear ( year ) && i == 1 ) {
+            seccount += 86400; /* 闰年2月份增加一天的秒钟数 */
+        }
+    }
 ​
-    seccount += ( u32 ) ( day - 1 ) * 86400; /* 把前面日期的秒钟数相加 */
-    seccount += ( u32 ) hour * 3600; /* 小时秒钟数 */
-    seccount += ( u32 ) min * 60; /* 分钟秒钟数 */
-    seccount += sec; /* 最后的秒钟加上去 */
-    /* 设置时钟 */
+    seccount += ( u32 ) ( day - 1 ) * 86400; /* 把前面日期的秒钟数相加 */
+    seccount += ( u32 ) hour * 3600; /* 小时秒钟数 */
+    seccount += ( u32 ) min * 60; /* 分钟秒钟数 */
+    seccount += sec; /* 最后的秒钟加上去 */
+    /* 设置时钟 */
     /* 使能电源时钟，使能备份时钟 */
-    RCC_APB1PeriphClockCmd ( RCC_APB1Periph_PWR | RCC_APB1Periph_BKP, ENABLE );
-    PWR_BackupAccessCmd ( ENABLE ); /* 使能RTC和后备寄存器访问 */
-    RTC_EnterConfigMode(); /* 进入RTC配置模式 */
-    RTC_SetCounter ( seccount ); /* 设置RTC计数器的值 */
-    RTC_ExitConfigMode(); /* 退出配置模式 */
-    RTC_WaitForLastTask(); /* 等待对RTC寄存器的写操作完成 */
-    return 1;
+    RCC_APB1PeriphClockCmd ( RCC_APB1Periph_PWR | RCC_APB1Periph_BKP, ENABLE );
+    PWR_BackupAccessCmd ( ENABLE ); /* 使能RTC和后备寄存器访问 */
+    RTC_EnterConfigMode(); /* 进入RTC配置模式 */
+    RTC_SetCounter ( seccount ); /* 设置RTC计数器的值 */
+    RTC_ExitConfigMode(); /* 退出配置模式 */
+    RTC_WaitForLastTask(); /* 等待对RTC寄存器的写操作完成 */
+    return 1;
 }
 ​
-/* 得到当前的时间。返回1表示成功，其他值表示错误 */
-u8 RTC_Get ( void ) {
-    u32 temp = 0;
-    u16 temp1 = 0;
-    u32 seccount = 0;
-    seccount = RTC_GetCounter(); /* 获取秒计数器的值 */
-    temp = seccount / 86400; /* 得到天数(秒钟数对应的) */
+u8 RTC_Get ( void ) { /* 得到当前的时间。返回1表示成功，其他值表示错误 */
+    u32 temp = 0;
+    u16 temp1 = 0;
+    u32 seccount = 0;
+
+    seccount = RTC_GetCounter(); /* 获取秒计数器的值 */
+    temp = seccount / 86400; /* 得到天数(秒钟数对应的) */
 ​
-    if ( temp > 0 ) { /* 超过一天 */
-        temp1 = 1970;
+    if ( temp > 0 ) { /* 超过一天 */
+        temp1 = 1970;
 ​
-        while ( temp >= 365 ) {
-            if ( Is_LeapYear ( temp1 ) ) { /* 闰年 */
-                if ( temp >= 366 ) {
-                    temp -= 366;
-                } else { /* 当前年份即为此闰年 */
-                    break;
-                }
-            } else {
-                temp -= 365;
-            }
+        while ( temp >= 365 ) {
+            if ( Is_LeapYear ( temp1 ) ) { /* 闰年 */
+                if ( temp >= 366 ) {
+                    temp -= 366;
+                } else { /* 当前年份即为此闰年 */
+                    break;
+                }
+            } else {
+                temp -= 365;
+            }
 ​
-            temp1++;
-        }
-    }
+            temp1++;
+        }
+    }
 ​
-    rtc_real.syear = temp1; /* 得到年份 */
-    temp1 = 0;
+    rtc_real.syear = temp1; /* 得到年份 */
+    temp1 = 0;
 ​
-    while ( temp >= 28 ) { /* 超过了一个月 */
+    while ( temp >= 28 ) { /* 超过了一个月 */
         /* 当年是不是闰年(2月份) */
-        if ( Is_LeapYear ( rtc_real.syear ) && temp1 == 1 ) {
-            if ( temp >= 29 ) {
-                temp -= 29; /* 闰年的秒钟数 */
-            } else {
-                break;
-            }
-        } else {
-            if ( temp >= month_table[temp1] ) {
-                temp -= month_table[temp1]; /* 平年 */
-            } else {
-                break;
-            }
-        }
+        if ( Is_LeapYear ( rtc_real.syear ) && temp1 == 1 ) {
+            if ( temp >= 29 ) {
+                temp -= 29; /* 闰年的秒钟数 */
+            } else {
+                break;
+            }
+        } else {
+            if ( temp >= month_table[temp1] ) {
+                temp -= month_table[temp1]; /* 平年 */
+            } else {
+                break;
+            }
+        }
 ​
-        temp1++;
-    }
+        temp1++;
+    }
 ​
-    rtc_real.smonth = temp1 + 1; /* 得到月份 */
-    rtc_real.sday = temp + 1; /* 得到日期 */
-    temp = seccount % 86400; /* 得到秒钟数 */
-    rtc_real.hour = temp / 3600; /* 小时 */
-    rtc_real.min = ( temp % 3600 ) / 60; /* 分钟 */
-    rtc_real.sec = ( temp % 3600 ) % 60; /* 秒钟 */
-    rtc_real.week = RTC_GetWeek ( rtc_real.syear, rtc_real.smonth, rtc_real.sday );
-    return 1;
+    rtc_real.smonth = temp1 + 1; /* 得到月份 */
+    rtc_real.sday = temp + 1; /* 得到日期 */
+    temp = seccount % 86400; /* 得到秒钟数 */
+    rtc_real.hour = temp / 3600; /* 小时 */
+    rtc_real.min = ( temp % 3600 ) / 60; /* 分钟 */
+    rtc_real.sec = ( temp % 3600 ) % 60; /* 秒钟 */
+    rtc_real.week = RTC_GetWeek ( rtc_real.syear, rtc_real.smonth, rtc_real.sday );
+    return 1;
 }
 ​
 const u8 week_table[12] = {0, 3, 3, 6, 1, 4, 6, 2, 5, 0, 3, 5};
