@@ -5,30 +5,30 @@ categories: 单片机
 ---
 ### 定时器
 
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` c
 void TIM_Configuration ( void ) {
-    TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure; /* 定义结构体变量 */
-    TIM_OCInitTypeDef TIM_OCInitStructure;
-    RCC_APB1PeriphClockCmd ( RCC_APB1Periph_TIM2, ENABLE ); /* 开启定时器2时钟 */
-    TIM_DeInit ( TIM2 ); /* 将外设TIMx寄存器重设为缺省值 */
-    TIM_InternalClockConfig ( TIM2 ); /* 设置TIMx内部时钟 */
+    TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure; /* 定义结构体变量 */
+    TIM_OCInitTypeDef TIM_OCInitStructure;
+    RCC_APB1PeriphClockCmd ( RCC_APB1Periph_TIM2, ENABLE ); /* 开启定时器2时钟 */
+    TIM_DeInit ( TIM2 ); /* 将外设TIMx寄存器重设为缺省值 */
+    TIM_InternalClockConfig ( TIM2 ); /* 设置TIMx内部时钟 */
     /* TIM_Period设置了在下一个更新事件装入活动的自动重装载寄存器周期的值 */
-    TIM_TimeBaseStructure.TIM_Period = 2000;
-    /* TIM_Prescaler设置了用来作为TIMx时钟频率除数的预分频值。时钟的分频值为35999，
+    TIM_TimeBaseStructure.TIM_Period = 2000;
+    /* TIM_Prescaler设置了用来作为TIMx时钟频率除数的预分频值。时钟的分频值为35999，
        则时钟分频36000；时钟的分频值为0，则时钟分频1 */
-    /* PSC是用来设置分频的，系统时钟是72M，这里就是分频值，你设置7199就是7200分频，
+    /* PSC是用来设置分频的，系统时钟是72M，这里就是分频值，你设置7199就是7200分频，
        那么定时器计数频率就是10KHz了(72M / 7200 = 10k) */
-    TIM_TimeBaseStructure.TIM_Prescaler = 35999;
+    TIM_TimeBaseStructure.TIM_Prescaler = 35999;
     /* TIM_ClockDivision设置了时钟分割 */
-    TIM_TimeBaseStructure.TIM_ClockDivision = 0x0;
+    TIM_TimeBaseStructure.TIM_ClockDivision = 0x0;
     /* TIM_CounterMode选择了计数器模式：向上计数 */
-    TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+    TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
     /* 根据TIM_TimeBaseInitStruct中指定的参数初始化TIMx的时间基数单位 */
-    TIM_TimeBaseInit ( TIM2, &TIM_TimeBaseStructure );
+    TIM_TimeBaseInit ( TIM2, &TIM_TimeBaseStructure );
     /* TIM_OCMode选择定时器模式(在这个程序中可有可无)：TIM输出比较时间模式 */
-    TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_Timing;
+    TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_Timing;
     /* 根据TIM_OCInitStruct中指定的参数初始化外设TIMx */
     TIM_OC1Init ( TIM2, &TIM_OCInitStructure );
     TIM_Cmd ( TIM2, ENABLE ); /* 使能TIM2 */
@@ -43,7 +43,7 @@ void TIM_Configuration ( void ) {
 
 ### 数码管
 
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` c
 void SMG_Init ( void ) {
@@ -388,7 +388,7 @@ RTC_SetCounter ( ( u32 ) t );
 RTC_WaitForLastTask(); /* 等待最近一次对RTC寄存器的写操作完成 */
 ```
 
-&emsp;&emsp;STM32的内部RTC只提供了一个秒计数器，若需要当前日期，还需进行一番运算，比较麻烦。相关代码如下所示：
+&emsp;&emsp;`STM32`的内部`RTC`只提供了一个秒计数器，若需要当前日期，还需进行一番运算，比较麻烦。
 
 ``` c
 rtc rtc_real;
