@@ -128,27 +128,27 @@ void I2C_BufferWrite ( u8 *pBuffer, u8 WriteAddr, u16 NumByteToWrite ) {
             }
         }
     } else { /* If WriteAddr is not I2C_PageSize aligned */
-        if ( NumOfPage == 0 ) { /* If NumByteToWrite < I2C_PageSize */
-            I2C_PageWrite ( pBuffer, WriteAddr, NumOfSingle );
-            I2C_WaitEepromStandbyState();
-        } else { /* If NumByteToWrite > I2C_PageSize */
-            NumByteToWrite -= count;
-            NumOfPage =  NumByteToWrite / I2C_PageSize;
-            NumOfSingle = NumByteToWrite % I2C_PageSize;
+        if ( NumOfPage == 0 ) { /* If NumByteToWrite < I2C_PageSize */
+            I2C_PageWrite ( pBuffer, WriteAddr, NumOfSingle );
+            I2C_WaitEepromStandbyState();
+        } else { /* If NumByteToWrite > I2C_PageSize */
+            NumByteToWrite -= count;
+            NumOfPage =  NumByteToWrite / I2C_PageSize;
+            NumOfSingle = NumByteToWrite % I2C_PageSize;
 ​
-            if ( count != 0 ) {
-                I2C_PageWrite ( pBuffer, WriteAddr, count );
-                I2C_WaitEepromStandbyState();
-                WriteAddr += count;
-                pBuffer += count;
-            }
+            if ( count != 0 ) {
+                I2C_PageWrite ( pBuffer, WriteAddr, count );
+                I2C_WaitEepromStandbyState();
+                WriteAddr += count;
+                pBuffer += count;
+            }
 ​
-            while ( NumOfPage-- ) {
-                I2C_PageWrite ( pBuffer, WriteAddr, I2C_PageSize );
-                I2C_WaitEepromStandbyState();
-                WriteAddr +=  I2C_PageSize;
-                pBuffer += I2C_PageSize;
-            }
+            while ( NumOfPage-- ) {
+                I2C_PageWrite ( pBuffer, WriteAddr, I2C_PageSize );
+                I2C_WaitEepromStandbyState();
+                WriteAddr +=  I2C_PageSize;
+                pBuffer += I2C_PageSize;
+            }
 ​
             if ( NumOfSingle != 0 ) {
                 I2C_PageWrite ( pBuffer, WriteAddr, NumOfSingle );
