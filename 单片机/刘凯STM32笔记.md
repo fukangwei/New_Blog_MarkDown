@@ -191,43 +191,42 @@ void I2C_WaitEepromStandbyState ( void ) {
 
 ``` c
 void I2C_PageWrite ( u8 *pBuffer, u8 WriteAddr, u8 NumByteToWrite ) { /* 页写操作 */
-    I2C_WaitEepromStandbyState();
-    I2C_GenerateSTART ( I2C2, ENABLE ); /* [1]Send START condition 发送起始信号 */
+    I2C_WaitEepromStandbyState();
+    I2C_GenerateSTART ( I2C2, ENABLE ); /* [1]Send START condition 发送起始信号 */
 ​
-    /* [2]Test on EV5 and clear it 起始信号已发送并清除该事件 */
-    /* 检查起始信号是否已经发送，如果没有完成，则程序保持I2C_EVENT_MASTER_MODE_SELECT状态 */
-    while ( !I2C_CheckEvent ( I2C2, I2C_EVENT_MASTER_MODE_SELECT /* 主模式下的选择 */ ) );
+    /* [2]Test on EV5 and clear it 起始信号已发送并清除该事件 */
+    /* 检查起始信号是否已经发送，如果没有完成，则程序保持I2C_EVENT_MASTER_MODE_SELECT状态 */
+    while ( !I2C_CheckEvent ( I2C2, I2C_EVENT_MASTER_MODE_SELECT /* 主模式下的选择 */ ) );
 ​
-    /* [3]Send EEPROM address for write 发送器件地址 */
-    /* EEPROM_ADDRESS是EEPROM器件的地址；EEPROM有片内存储空间，存储空间又有存储地址WriteAddr */
-    I2C_Send7bitAddress ( I2C2, EEPROM_ADDRESS, I2C_Direction_Transmitter );
+    /* [3]Send EEPROM address for write 发送器件地址 */
+    /* EEPROM_ADDRESS是EEPROM器件的地址；EEPROM有片内存储空间，存储空间又有存储地址WriteAddr */
+    I2C_Send7bitAddress ( I2C2, EEPROM_ADDRESS, I2C_Direction_Transmitter );
 ​
-    /* [4]Test on EV6 and clear it */
+    /* [4]Test on EV6 and clear it */
     /* 地址发送完成 */
-    while ( !I2C_CheckEvent ( I2C2, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED ) );
+    while ( !I2C_CheckEvent ( I2C2, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED ) );
 ​
-    /* [5]Send EEPROM'S internal address to write to */
-    I2C_SendData ( I2C2, WriteAddr ); /* 发送器件内部写入地址 */
+    /* [5]Send EEPROM'S internal address to write to */
+    I2C_SendData ( I2C2, WriteAddr ); /* 发送器件内部写入地址 */
 ​
-    /* [6]Test on EV8 and clear it */
+    /* [6]Test on EV8 and clear it */
     /* 等待移位寄存器是否为空 */
-    while ( !I2C_CheckEvent ( I2C2, I2C_EVENT_MASTER_BYTE_TRANSMITTED ) );
+    while ( !I2C_CheckEvent ( I2C2, I2C_EVENT_MASTER_BYTE_TRANSMITTED ) );
 ​
-    /* [7]Send data to Written */
-    while ( NumByteToWrite-- ) { /* 要写的字节数 */
-        /* Send the current byte */
-        /* 发送当前一个字节。注意u8是char型，一个字节；在1页中，
+    /* [7]Send data to Written */
+    while ( NumByteToWrite-- ) { /* 要写的字节数 */
+        /* Send the current byte */
+        /* 发送当前一个字节。注意u8是char型，一个字节；在1页中，
            EEPROM中的WriteAddr具有自增功能，不需要写“WriteAddr++” */
-        I2C_SendData ( I2C2, *pBuffer );
-        pBuffer++; /* Point to the next byte to be written */
-​
-        /*Test on EV8 and clear it */
+        I2C_SendData ( I2C2, *pBuffer );
+        pBuffer++; /* Point to the next byte to be written */
+        /*Test on EV8 and clear it */
         /* 等待发送缓冲区是否为空 */
-        while ( !I2C_CheckEvent ( I2C2, I2C_EVENT_MASTER_BYTE_TRANSMITTED ) );
-    }
+        while ( !I2C_CheckEvent ( I2C2, I2C_EVENT_MASTER_BYTE_TRANSMITTED ) );
+    }
 ​
-    /* 写完1页的数据 */
-    I2C_GenerateSTOP ( I2C2, ENABLE ); /* [8]Send STOP condition */
+    /* 写完1页的数据 */
+    I2C_GenerateSTOP ( I2C2, ENABLE ); /* [8]Send STOP condition */
 }
 ```
 
