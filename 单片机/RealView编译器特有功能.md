@@ -1,7 +1,7 @@
 ---
 title: RealView编译器特有功能
 date: 2019-01-19 15:27:22
-tags:
+categories: 单片机
 ---
 ### 关键字和运算符
 
@@ -83,7 +83,7 @@ int g ( int x, int y ) {
 
 #### \_\_packed
 
-&emsp;&emsp;将所有有效类型的对齐边界设置为1。这就意味着不会插入填充以对齐压缩对象，使用未对齐的访问读取或写入压缩类型的对象。使用`__packed`限定符声明结构或联合后，`__packed`将应用于该结构或联合的所有成员。成员之间或结构末尾均没有填充。必须使用`__packed`声明压缩结构的所有子结构。可以单独压缩非压缩结构的整型子字段。
+&emsp;&emsp;将所有有效类型的对齐边界设置为`1`。这就意味着不会插入填充以对齐压缩对象，使用未对齐的访问读取或写入压缩类型的对象。使用`__packed`限定符声明结构或联合后，`__packed`将应用于该结构或联合的所有成员。成员之间或结构末尾均没有填充。必须使用`__packed`声明压缩结构的所有子结构。可以单独压缩非压缩结构的整型子字段。
 &emsp;&emsp;若要将结构映射到外部数据结构或访问未对齐数据，`__packed`限定符非常有用；但由于访问开销相对较高，通常对节省数据大小并没有什么帮助。通过仅对需要压缩的结构中的字段进行压缩，可以减少未对齐访问的数量。注意，在硬件中不支持未对齐访问的`ARM`处理器(例如`ARMv6`之前的处理器)上，访问未对齐的数据时可能会在代码大小和执行速度方面产生较高的成本。必须最大限度减少通过压缩结构进行的数据访问，以避免增加代码大小和降低性能。
 &emsp;&emsp;用法举例`1`(压缩结构)：
 
@@ -271,16 +271,16 @@ void func ( void ) {
 #pragma anon_unions
 ​
 typedef union {
-    unsigned int num;
-    struct {
-        unsigned int nLow : 8;
-        unsigned int nHigh : 8;
-    };
+    unsigned int num;
+    struct {
+        unsigned int nLow : 8;
+        unsigned int nHigh : 8;
+    };
 } kkTypedef;
 ​
 void jjj ( void ) {
-    kkTypedef kknum;
-    kknum.num = 99;
-    kknum.nLow = 10;
+    kkTypedef kknum;
+    kknum.num = 99;
+    kknum.nLow = 10;
 }
 ```
