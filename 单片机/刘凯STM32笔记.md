@@ -312,24 +312,22 @@ void RCC_Configuration ( void ) {
     HSEStartUpStatus = RCC_WaitForHSEStartUp();
 ​
     if ( HSEStartUpStatus == SUCCESS ) {
-        RCC_HCLKConfig ( RCC_SYSCLK_Div1 );
-        RCC_PCLK2Config ( RCC_HCLK_Div1 );
-        RCC_PCLK1Config ( RCC_HCLK_Div2 );
-        FLASH_SetLatency ( FLASH_Latency_2 );
-        FLASH_PrefetchBufferCmd ( FLASH_PrefetchBuffer_Enable );
-        RCC_PLLConfig ( RCC_PLLSource_HSE_Div1, RCC_PLLMul_9 );
-        RCC_PLLCmd ( ENABLE );
+        RCC_HCLKConfig ( RCC_SYSCLK_Div1 );
+        RCC_PCLK2Config ( RCC_HCLK_Div1 );
+        RCC_PCLK1Config ( RCC_HCLK_Div2 );
+        FLASH_SetLatency ( FLASH_Latency_2 );
+        FLASH_PrefetchBufferCmd ( FLASH_PrefetchBuffer_Enable );
+        RCC_PLLConfig ( RCC_PLLSource_HSE_Div1, RCC_PLLMul_9 );
+        RCC_PLLCmd ( ENABLE );
 ​
-        while ( RCC_GetFlagStatus ( RCC_FLAG_PLLRDY ) == RESET );
-​
-        RCC_SYSCLKConfig ( RCC_SYSCLKSource_PLLCLK );
-​
-        while ( RCC_GetSYSCLKSource() != 0x08 );
+        while ( RCC_GetFlagStatus ( RCC_FLAG_PLLRDY ) == RESET );
+        RCC_SYSCLKConfig ( RCC_SYSCLKSource_PLLCLK );
+        while ( RCC_GetSYSCLKSource() != 0x08 );
     }
 ​
-    /* 这一句很重要，它决定RTC能不能正常工作(开启相应的时钟) */
-    RCC_APB1PeriphClockCmd ( RCC_APB1Periph_PWR | RCC_APB1Periph_BKP, ENABLE );
-    RCC_APB2PeriphClockCmd ( RCC_APB2Periph_USART1 | RCC_APB2Periph_GPIOA, ENABLE );
+    /* 这一句很重要，它决定RTC能不能正常工作(开启相应的时钟) */
+    RCC_APB1PeriphClockCmd ( RCC_APB1Periph_PWR | RCC_APB1Periph_BKP, ENABLE );
+    RCC_APB2PeriphClockCmd ( RCC_APB2Periph_USART1 | RCC_APB2Periph_GPIOA, ENABLE );
 }
 ```
 
@@ -337,25 +335,25 @@ void RCC_Configuration ( void ) {
 
 ``` c
 void RTC_Configuration ( void ) {
-    /* 使能或者失能RTC和后备寄存器访问(使能)；后备电源要打开，
+    /* 使能或者失能RTC和后备寄存器访问(使能)；后备电源要打开，
        PWR_CR的DBP设置为1(允许写入RTC和后备寄存器) */
-    PWR_BackupAccessCmd ( ENABLE );
-    BKP_DeInit(); /* 复位备份寄存器设置，将外设RCC寄存器重设为缺省值 */
-    // RCC_LSEConfig ( RCC_LSE_ON ); /* 设置外部低速晶振(LSE) */
-    RCC_LSICmd ( ENABLE ); /* 使能或者失能内部低速晶振(LSI) */
+    PWR_BackupAccessCmd ( ENABLE );
+    BKP_DeInit(); /* 复位备份寄存器设置，将外设RCC寄存器重设为缺省值 */
+    // RCC_LSEConfig ( RCC_LSE_ON ); /* 设置外部低速晶振(LSE) */
+    RCC_LSICmd ( ENABLE ); /* 使能或者失能内部低速晶振(LSI) */
 ​
     /* 等待LSI晶振就绪 */
-    while ( RCC_GetFlagStatus ( RCC_FLAG_LSIRDY ) == RESET );
+    while ( RCC_GetFlagStatus ( RCC_FLAG_LSIRDY ) == RESET );
 ​
-    RCC_RTCCLKConfig ( RCC_RTCCLKSource_LSI ); /* 设置RTC时钟(RTCCLK) */
-    RCC_RTCCLKCmd ( ENABLE ); /* 使能或者失能RTC时钟 */
-    RTC_WaitForSynchro(); /* 等待RTC寄存器同步完成 */
-    RTC_WaitForLastTask(); /* 等待最近一次对RTC寄存器的写操作完成 */
-    RTC_ITConfig ( RTC_IT_SEC, ENABLE ); /* 使能或者失能指定的RTC中断 */
-    RTC_WaitForLastTask(); /* 等待最近一次对RTC寄存器的写操作完成 */
+    RCC_RTCCLKConfig ( RCC_RTCCLKSource_LSI ); /* 设置RTC时钟(RTCCLK) */
+    RCC_RTCCLKCmd ( ENABLE ); /* 使能或者失能RTC时钟 */
+    RTC_WaitForSynchro(); /* 等待RTC寄存器同步完成 */
+    RTC_WaitForLastTask(); /* 等待最近一次对RTC寄存器的写操作完成 */
+    RTC_ITConfig ( RTC_IT_SEC, ENABLE ); /* 使能或者失能指定的RTC中断 */
+    RTC_WaitForLastTask(); /* 等待最近一次对RTC寄存器的写操作完成 */
     /* 设置RTC预分频的值为32767，则计数频率 = (32.768kHz)/(32767 + 1) = 1Hz */
-    RTC_SetPrescaler ( 32767 );
-    RTC_WaitForLastTask(); /* 等待最近一次对RTC寄存器的写操作完成 */
+    RTC_SetPrescaler ( 32767 );
+    RTC_WaitForLastTask(); /* 等待最近一次对RTC寄存器的写操作完成 */
 }
 ```
 
