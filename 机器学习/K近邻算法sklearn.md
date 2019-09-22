@@ -126,34 +126,36 @@ def getResponse(neighbors):
     return sortedVotes[0][0]
 ​
 def getAccuracy(testSet, predictions):
-    correct = 0
+    correct = 0
 
-    for x in range(len(testSet)):
-        if testSet[x][-1] == predictions[x]:
-            correct += 1
+    for x in range(len(testSet)):
+        if testSet[x][-1] == predictions[x]:
+            correct += 1
 
-    return (correct / float(len(testSet))) * 100.0
+    return (correct / float(len(testSet))) * 100.0
 ​
 def main():
-    trainingSet = []
-    testSet = []
-    split = 0.67
-    loadDataset(r'irisdata.txt', split, trainingSet, testSet)
-    print('Train set: ' + repr(len(trainingSet)))
-    print('Test set: ' + repr(len(testSet)))
-    predictions = []
-    k = 3
-    for x in range(len(testSet)):
-        neighbors = getNeighbors(trainingSet, testSet[x], k)
-        result = getResponse(neighbors)
-        predictions.append(result)
-        print('>predicted=' + repr(result) + ', actual=' + repr(testSet[x][-1]))
-    print('predictions: ' + repr(predictions))
-    accuracy = getAccuracy(testSet, predictions)
-    print('Accuracy: ' + repr(accuracy) + '%')
+    trainingSet = []
+    testSet = []
+    split = 0.67
+    loadDataset(r'irisdata.txt', split, trainingSet, testSet)
+    print('Train set: ' + repr(len(trainingSet)))
+    print('Test set: ' + repr(len(testSet)))
+    predictions = []
+    k = 3
+
+    for x in range(len(testSet)):
+        neighbors = getNeighbors(trainingSet, testSet[x], k)
+        result = getResponse(neighbors)
+        predictions.append(result)
+        print('>predicted=' + repr(result) + ', actual=' + repr(testSet[x][-1]))
+
+    print('predictions: ' + repr(predictions))
+    accuracy = getAccuracy(testSet, predictions)
+    print('Accuracy: ' + repr(accuracy) + '%')
 ​
 if __name__ == '__main__':
-    main()
+    main()
 ```
 
 ---
@@ -165,8 +167,8 @@ from sklearn.datasets import load_iris
 from sklearn import neighbors, metrics
 from sklearn.model_selection import train_test_split
 ​
-knn = neighbors.KNeighborsClassifier(n_neighbors=5)  # 实例化KNN对象，选择K为5
-iris = load_iris()  # 加载iris数据集
+knn = neighbors.KNeighborsClassifier(n_neighbors=5)  # 实例化KNN对象，选择K为5
+iris = load_iris()  # 加载iris数据集
 print(iris)
 ​
 # 对数据集进行切割分类，分别为训练数据、测试数据、训练标记、测试标记，比例是“4:1”。
@@ -174,14 +176,14 @@ print(iris)
 train_data, test_data, train_target, test_target = \
     train_test_split(iris.data, iris.target, test_size=0.2, random_state=0)
 ​
-knn.fit(train_data, train_target)  # 建立模型
+knn.fit(train_data, train_target)  # 建立模型
 print(knn)
-print(knn.classes_)  # 打印种类
-print(iris.target_names)  # 打印三类花的名字
+print(knn.classes_)  # 打印种类
+print(iris.target_names)  # 打印三类花的名字
 ​
-test_res = knn.predict(test_data)  # 开始预测
+test_res = knn.predict(test_data)  # 开始预测
 # 打印准确的标记和预测的标记
 print(test_target)
 print(test_res)
-print(metrics.accuracy_score(test_res, test_target))  # 打印预测准确率
+print(metrics.accuracy_score(test_res, test_target))  # 打印预测准确率
 ```
