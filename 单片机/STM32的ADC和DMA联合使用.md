@@ -1,7 +1,7 @@
 ---
 title: STM32的ADC和DMA联合使用
 date: 2018-12-29 18:06:16
-tags:
+categories: 单片机
 ---
 &emsp;&emsp;该程序使用`DMA`来传输`ADC`转换值，调高了读取速度：
 
