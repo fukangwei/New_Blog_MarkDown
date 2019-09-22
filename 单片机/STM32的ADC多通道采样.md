@@ -149,25 +149,25 @@ void filter ( void ) {
 }
 ​
 int main ( void ) {
-    u16 value[M];
+    u16 value[M];
     int i = 0;
-    init_All_Periph();
-    SysTick_Initaize();
-    ADC_SoftwareStartConvCmd ( ADC1, ENABLE );
-    DMA_Cmd ( DMA1_Channel1, ENABLE ); /* 启动DMA通道 */
+    init_All_Periph();
+    SysTick_Initaize();
+    ADC_SoftwareStartConvCmd ( ADC1, ENABLE );
+    DMA_Cmd ( DMA1_Channel1, ENABLE ); /* 启动DMA通道 */
 ​
-    while ( 1 ) {
+    while ( 1 ) {
         /* 等待传输完成，否则第一位数据容易丢失 */
-        while ( USART_GetFlagStatus ( USART1, USART_FLAG_TXE ) == RESET );
+        while ( USART_GetFlagStatus ( USART1, USART_FLAG_TXE ) == RESET );
 ​
-        filter();
+        filter();
 ​
-        for ( i = 0; i < 12; i++ ) {
-            value[i] = GetVolt ( After_filter[i] );
-            printf ( "value[%d]:\t%d.%dv\n", i, value[i] / 100, value[i]0 );
-            delay_ms ( 100 );
-        }
-    }
+        for ( i = 0; i < 12; i++ ) {
+            value[i] = GetVolt ( After_filter[i] );
+            printf ( "value[%d]:\t%d.%dv\n", i, value[i] / 100, value[i]0 );
+            delay_ms ( 100 );
+        }
+    }
 }
 ```
 
