@@ -283,19 +283,19 @@ void I2C_EE_SequentialWrite ( u8 *pBuffer, u8 WriteAddr, u16 NumByteToWrite ) {
             }
 ​
             while ( NumOfPage-- ) {
-                I2C_EE_PageWrite ( pBuffer, WriteAddr, I2C_PageSize );
-                I2C_EE_WaitEepromStandbyState();
-                WriteAddr += I2C_PageSize;
-                pBuffer += I2C_PageSize;
+                I2C_EE_PageWrite ( pBuffer, WriteAddr, I2C_PageSize );
+                I2C_EE_WaitEepromStandbyState();
+                WriteAddr += I2C_PageSize;
+                pBuffer += I2C_PageSize;
             }
 ​
-            if ( NumOfSingle != 0 ) {
+            if ( NumOfSingle != 0 ) {
                 /* 写入余下不足一页的数据 */
-                I2C_EE_PageWrite ( pBuffer, WriteAddr, NumOfSingle );
-                I2C_EE_WaitEepromStandbyState();
-            }
-        }
-    }
+                I2C_EE_PageWrite ( pBuffer, WriteAddr, NumOfSingle );
+                I2C_EE_WaitEepromStandbyState();
+            }
+        }
+    }
 }
 ```
 
@@ -306,12 +306,12 @@ void I2C_EE_SequentialWrite ( u8 *pBuffer, u8 WriteAddr, u16 NumByteToWrite ) {
 
 ``` c
 void RCC_Configuration ( void ) {
-    ErrorStatus HSEStartUpStatus;
-    RCC_DeInit();
-    RCC_HSEConfig ( RCC_HSE_ON );
-    HSEStartUpStatus = RCC_WaitForHSEStartUp();
+    ErrorStatus HSEStartUpStatus;
+    RCC_DeInit();
+    RCC_HSEConfig ( RCC_HSE_ON );
+    HSEStartUpStatus = RCC_WaitForHSEStartUp();
 ​
-    if ( HSEStartUpStatus == SUCCESS ) {
+    if ( HSEStartUpStatus == SUCCESS ) {
         RCC_HCLKConfig ( RCC_SYSCLK_Div1 );
         RCC_PCLK2Config ( RCC_HCLK_Div1 );
         RCC_PCLK1Config ( RCC_HCLK_Div2 );
@@ -325,7 +325,7 @@ void RCC_Configuration ( void ) {
         RCC_SYSCLKConfig ( RCC_SYSCLKSource_PLLCLK );
 ​
         while ( RCC_GetSYSCLKSource() != 0x08 );
-    }
+    }
 ​
     /* 这一句很重要，它决定RTC能不能正常工作(开启相应的时钟) */
     RCC_APB1PeriphClockCmd ( RCC_APB1Periph_PWR | RCC_APB1Periph_BKP, ENABLE );
