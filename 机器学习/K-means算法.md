@@ -254,18 +254,18 @@ def biKMeans(dataSet, k, distMeas=distEclud):  # 二分KMeans聚类算法，基�
         for i in range(len(centList)):  # 对每一个质心
             ptsInCurrCluster = dataSet[nonzero(clusterAssment[:, 0].A == i)[0], :]  # 获取当前簇i下的所有数据点
             centroidMat, splitClustAss = kMeans(ptsInCurrCluster, 2, distMeas)  # 将当前簇i进行二分kMeans处理
-            sseSplit = sum(splitClustAss[:, 1])  # 将二分kMeans结果中的平方和的距离进行求和
+            sseSplit = sum(splitClustAss[:, 1])  # 将二分kMeans结果中的平方和的距离进行求和
             # 将未参与二分kMeans分配结果中的平方和的距离进行求和
             sseNotSplit = sum(clusterAssment[nonzero(clusterAssment[:, 0].A != i)[0], 1])
             print("sseSplit, and notSplit: ", sseSplit, sseNotSplit)
 
-            if (sseSplit + sseNotSplit) < lowestSSE:
-                bestCentToSplit = i
-                bestNewCents = centroidMat
-                bestClustAss = splitClustAss.copy()
-                lowestSSE = sseSplit + sseNotSplit
+            if (sseSplit + sseNotSplit) < lowestSSE:
+                bestCentToSplit = i
+                bestNewCents = centroidMat
+                bestClustAss = splitClustAss.copy()
+                lowestSSE = sseSplit + sseNotSplit
 
-        # 找出最好的簇分配结果
+        # 找出最好的簇分配结果
         # 调用二分kMeans的结果，默认簇是0和1，当然也可以改成其它的数字
         bestClustAss[nonzero(bestClustAss[:, 0].A == 1)[0], 0] = len(centList)
         bestClustAss[nonzero(bestClustAss[:, 0].A == 0)[0], 0] = bestCentToSplit  # 更新为最佳质心
