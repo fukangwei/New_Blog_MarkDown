@@ -234,23 +234,23 @@ void I2C_PageWrite ( u8 *pBuffer, u8 WriteAddr, u8 NumByteToWrite ) { /* 页写�
 
 ``` c
 void I2C_EE_SequentialWrite ( u8 *pBuffer, u8 WriteAddr, u16 NumByteToWrite ) {
-    u8 NumOfPage = 0; /* 页数 */
-    u8 NumOfSingle = 0; /* 不足一页字节数 */
-    u8 Addr = 0; /* 字节地址 */
-    u8 count = 0; /* 字节计数器 */
-    Addr = WriteAddr % I2C_PageSize; /* 字节地址(不到一页) */
-    count = I2C_PageSize - Addr; /* 一页中的剩余字节数 */
-    NumOfPage = NumByteToWrite / I2C_PageSize; /* 欲写入数据所占的页数 */
+    u8 NumOfPage = 0; /* 页数 */
+    u8 NumOfSingle = 0; /* 不足一页字节数 */
+    u8 Addr = 0; /* 字节地址 */
+    u8 count = 0; /* 字节计数器 */
+    Addr = WriteAddr % I2C_PageSize; /* 字节地址(不到一页) */
+    count = I2C_PageSize - Addr; /* 一页中的剩余字节数 */
+    NumOfPage = NumByteToWrite / I2C_PageSize; /* 欲写入数据所占的页数 */
     /* 欲写入数据所占的字节数(不足一页) */
-    NumOfSingle = NumByteToWrite % I2C_PageSize;
+    NumOfSingle = NumByteToWrite % I2C_PageSize;
 ​
-    /* If WriteAddr is I2C_PageSize aligned */
-    if ( Addr == 0 ) { /* 起始地址为某页的第一个字节地址处 */
-        /* If NumByteToWrite < I2C_PageSize */
-        if ( NumOfPage == 0 ) { /* 写入的数据字节数不足一页 */
-            I2C_EE_PageWrite ( pBuffer, WriteAddr, NumOfSingle );
-            I2C_EE_WaitEepromStandbyState(); /* 等待EEPROM自编程结束 */
-        } else { /* If NumByteToWrite > I2C_PageSize */
+    /* If WriteAddr is I2C_PageSize aligned */
+    if ( Addr == 0 ) { /* 起始地址为某页的第一个字节地址处 */
+        /* If NumByteToWrite < I2C_PageSize */
+        if ( NumOfPage == 0 ) { /* 写入的数据字节数不足一页 */
+            I2C_EE_PageWrite ( pBuffer, WriteAddr, NumOfSingle );
+            I2C_EE_WaitEepromStandbyState(); /* 等待EEPROM自编程结束 */
+        } else { /* If NumByteToWrite > I2C_PageSize */
             while ( NumOfPage-- ) { /* 写入的数据超过一页 */
                 I2C_EE_PageWrite ( pBuffer, WriteAddr, I2C_PageSize );
                 I2C_EE_WaitEepromStandbyState();
