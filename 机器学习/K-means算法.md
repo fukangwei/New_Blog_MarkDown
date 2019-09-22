@@ -239,25 +239,25 @@ def kMeans(dataSet, k, distMeas=distEclud, createCent=randCent):
 
     return centroids, clusterAssment
 ​
-def biKMeans(dataSet, k, distMeas=distEclud):  # 二分KMeans聚类算法，基于kMeans基础之上的优化，以避免陷入局部最小值
-    m = shape(dataSet)[0]
-    clusterAssment = mat(zeros((m, 2)))  # 保存每个数据点的簇分配结果和平方误差
-    centroid0 = mean(dataSet, axis=0).tolist()[0]  # 质心初始化为所有数据点的均值
-    centList = [centroid0]  # 初始化只有1个质心的list
+def biKMeans(dataSet, k, distMeas=distEclud):  # 二分KMeans聚类算法，基于kMeans基础之上的优化，以避免陷入局部最小值
+    m = shape(dataSet)[0]
+    clusterAssment = mat(zeros((m, 2)))  # 保存每个数据点的簇分配结果和平方误差
+    centroid0 = mean(dataSet, axis=0).tolist()[0]  # 质心初始化为所有数据点的均值
+    centList = [centroid0]  # 初始化只有1个质心的list
 
-    for j in range(m):  # 计算所有数据点到初始质心的距离平方误差
-        clusterAssment[j, 1] = distMeas(mat(centroid0), dataSet[j, :]) ** 2
+    for j in range(m):  # 计算所有数据点到初始质心的距离平方误差
+        clusterAssment[j, 1] = distMeas(mat(centroid0), dataSet[j, :]) ** 2
 
-    while (len(centList) < k):  # 当质心数量小于k时
-        lowestSSE = inf
+    while (len(centList) < k):  # 当质心数量小于k时
+        lowestSSE = inf
 
-        for i in range(len(centList)):  # 对每一个质心
-            ptsInCurrCluster = dataSet[nonzero(clusterAssment[:, 0].A == i)[0], :]  # 获取当前簇i下的所有数据点
-            centroidMat, splitClustAss = kMeans(ptsInCurrCluster, 2, distMeas)  # 将当前簇i进行二分kMeans处理
-            sseSplit = sum(splitClustAss[:, 1])  # 将二分kMeans结果中的平方和的距离进行求和
+        for i in range(len(centList)):  # 对每一个质心
+            ptsInCurrCluster = dataSet[nonzero(clusterAssment[:, 0].A == i)[0], :]  # 获取当前簇i下的所有数据点
+            centroidMat, splitClustAss = kMeans(ptsInCurrCluster, 2, distMeas)  # 将当前簇i进行二分kMeans处理
+            sseSplit = sum(splitClustAss[:, 1])  # 将二分kMeans结果中的平方和的距离进行求和
             # 将未参与二分kMeans分配结果中的平方和的距离进行求和
-            sseNotSplit = sum(clusterAssment[nonzero(clusterAssment[:, 0].A != i)[0], 1])
-            print("sseSplit, and notSplit: ", sseSplit, sseNotSplit)
+            sseNotSplit = sum(clusterAssment[nonzero(clusterAssment[:, 0].A != i)[0], 1])
+            print("sseSplit, and notSplit: ", sseSplit, sseNotSplit)
 
             if (sseSplit + sseNotSplit) < lowestSSE:
                 bestCentToSplit = i
