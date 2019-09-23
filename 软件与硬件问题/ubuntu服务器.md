@@ -1,7 +1,7 @@
 ---
 title: ubuntu服务器
 date: 2019-02-14 16:37:15
-tags:
+categories: 软件与硬件问题
 ---
 ### FTP服务器
 
@@ -35,19 +35,19 @@ passwd ftpname
 &emsp;&emsp;4. 修改`vsftpd`配置文件，该文件位于`/etc`目录下，相关的配置如下：
 
 ``` bash
-listen=YES                     # 服务器监听
-anonymous_enable=NO            # 匿名访问允许。此选项很危险，默认不要开启
-local_enable=YES               # 本地主机访问允许
-write_enable=YES               # 写允许
-# anon_upload_enable=YES       # 匿名上传允许
+listen=YES                     # 服务器监听
+anonymous_enable=NO            # 匿名访问允许。此选项很危险，默认不要开启
+local_enable=YES               # 本地主机访问允许
+write_enable=YES               # 写允许
+# anon_upload_enable=YES       # 匿名上传允许
 # anon_mkdir_write_enable=YES  # 匿名创建文件夹允许
-dirmessage_enable=YES          # 进入文件夹允许
-xferlog_enable=YES             # ftp日志记录允许
-connect_from_port_20=YES       # 允许使用端口号20作为数据传送的端口
+dirmessage_enable=YES          # 进入文件夹允许
+xferlog_enable=YES             # ftp日志记录允许
+connect_from_port_20=YES       # 允许使用端口号20作为数据传送的端口
 secure_chroot_dir=/var/run/vsftpd/empty
 pam_service_name=vsftpd
 rsa_cert_file=/etc/ssl/private/vsftpd.pem
-local_root=/home/ftp           # 设置ftp的根目录为“/home/ftp”
+local_root=/home/ftp           # 设置ftp的根目录为“/home/ftp”
 ```
 
 设置好之后，保存退出，然后使用如下命令重启`ftp`服务器：
@@ -252,10 +252,10 @@ sudo apt-get install openssh-server
 &emsp;&emsp;`sftp`是`Secure File Transfer Protocol`的缩写，意思是安全文件传送协议，可以为传输文件提供一种安全的加密方法，与`ftp`有着几乎一样的语法和功能。`SFTP`本身没有单独的守护进程，它必须使用`sshd`守护进程(端口号默认是`22`)来完成相应的连接操作。所以从某种意义上来说，`SFTP`并不像一个服务器程序，而更像是一个客户端程序。`SFTP`使用加密传输认证信息和数据，所以是非常安全的。但由于这种传输方式使用了加密和解密技术，所以传输效率比普通的FTP要低得多。常用的命令如下：
 
 ``` bash
-sftp user@host                      # 登陆远程主机
-lcd或lpwd                           # 针对本机的命令都加上“l”
+sftp user@host                      # 登陆远程主机
+lcd或lpwd                           # 针对本机的命令都加上“l”
 put filename.txt directory          # 将本机文件上传到远程
-mput *.*                            # 将当前文件夹下的文件上传到远程
+mput *.*                            # 将当前文件夹下的文件上传到远程
 get filename.file directory         # 下载远程文件到本地
 mget *.* directory                  # 下载目录下所有远程文件到本地
 ?                                   # 帮助
