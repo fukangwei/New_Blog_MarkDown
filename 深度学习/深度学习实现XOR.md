@@ -23,14 +23,14 @@ label = tf.placeholder(tf.float32, shape=(4, 1))
 
 ``` python
 with tf.variable_scope('layer1') as scope:
-    weight = tf.get_variable(name='weight', shape=(2, 2))
-    bias = tf.get_variable(name='bias', shape=(2,))
-    x = tf.nn.sigmoid(tf.matmul(data, weight) + bias)
+    weight = tf.get_variable(name='weight', shape=(2, 2))
+    bias = tf.get_variable(name='bias', shape=(2,))
+    x = tf.nn.sigmoid(tf.matmul(data, weight) + bias)
 
 with tf.variable_scope('layer2') as scope:
-    weight = tf.get_variable(name='weight', shape=(2, 1))
-    bias = tf.get_variable(name='bias', shape=(1,))
-    x = tf.matmul(x, weight) + bias
+    weight = tf.get_variable(name='weight', shape=(2, 1))
+    bias = tf.get_variable(name='bias', shape=(1,))
+    x = tf.matmul(x, weight) + bias
 ```
 
 因为后面的`loss`要使用`sigmoid_cross_entropy_with_logits`函数，所以第二层网络的输出没有使用`sigmoid`函数。
@@ -38,8 +38,7 @@ with tf.variable_scope('layer2') as scope:
 
 ``` python
 preds = tf.nn.sigmoid(x)
-loss = tf.reduce_mean(
-    tf.nn.sigmoid_cross_entropy_with_logits(labels=label, logits=x))
+loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=label, logits=x))
 ```
 
 &emsp;&emsp;定义`Optimizer`：
@@ -57,21 +56,24 @@ train_data = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
 train_label = np.array([[0], [1], [1], [0]])
 ​
 with tf.Session() as sess:
-    sess.run(tf.global_variables_initializer())
-    for step in range(10000):
-        if step < 3000:
-            lr = 1
-        elif step < 6000:
-            lr = 0.1
-        else:
-            lr = 0.01
-        _, l, pred = sess.run([optimizer, loss, preds],
+    sess.run(tf.global_variables_initializer())
+
+    for step in range(10000):
+        if step < 3000:
+            lr = 1
+        elif step < 6000:
+            lr = 0.1
+        else:
+            lr = 0.01
+
+        _, l, pred = sess.run([optimizer, loss, preds],
                                 feed_dict={
                                     data: train_data,
                                     label: train_label,
                                     learning_rate: lr})
-        if step % 500:
-            print('Step: {} -> Loss: {} -> Predictions: {}'.format(step, l, pred))
+
+        if step % 500:
+            print('Step: {} -> Loss: {} -> Predictions: {}'.format(step, l, pred))
 ```
 
 &emsp;&emsp;**补充说明**：对于`sess.run`函数，其第一个参数是你期望看到的输出信息，函数执行完以后，将这些信息对应地赋值给等号右边的变量；对于`feed_dict`，就是向自定义的神经网络中的变量赋值，例如：
@@ -86,7 +88,7 @@ _, l, pred = sess.run([optimizer, loss, preds],
 
 ---
 
-&emsp;&emsp;`Keras`实现`XOR`的代码如下所示：
+&emsp;&emsp;`Keras`实现`XOR`的代码如下：
 
 ``` python
 from keras.models import Sequential
@@ -121,7 +123,7 @@ print(model.predict_proba(X))
 
 ---
 
-&emsp;&emsp;`Pytorch`实现`XOR`的代码如下所示：
+&emsp;&emsp;`Pytorch`实现`XOR`的代码如下：
 
 ``` python
 import torch
@@ -135,7 +137,7 @@ X = torch.Tensor([[0, 0], [0, 1], [1, 0], [1, 1]])
 Y = torch.Tensor([0, 1, 1, 0]).view(-1, 1)
 ​
 class XOR(nn.Module):
-    def __init__(self, input_dim=2, output_dim=1):
+    def __init__(self, input_dim=2, output_dim=1):
         super(XOR, self).__init__()
         self.lin1 = nn.Linear(input_dim, 2)
         self.lin2 = nn.Linear(2, output_dim)
