@@ -314,27 +314,27 @@ int cgiMain ( void ) {
        此处的含义是在cgi程序所在的目录(当前目录)建立新文件 */
     targetFile = open ( fileNameOnServer, O_RDWR | O_CREAT | O_TRUNC | O_APPEND, mode );
 ​
-    if ( targetFile < 0 ) {
-        fprintf ( stderr, "could not create the new file,%s/n", fileNameOnServer );
-        goto FAIL;
-    }
+    if ( targetFile < 0 ) {
+        fprintf ( stderr, "could not create the new file,%s/n", fileNameOnServer );
+        goto FAIL;
+    }
 ​
-    /* 从系统临时文件中读出文件内容，并放到刚创建的目标文件中 */
-    while ( cgiFormFileRead ( file, buffer, BufferLen, &got ) == cgiFormSuccess ) {
-        if ( got > 0 ) {
-            write ( targetFile, buffer, got );
-        }
-    }
+    /* 从系统临时文件中读出文件内容，并放到刚创建的目标文件中 */
+    while ( cgiFormFileRead ( file, buffer, BufferLen, &got ) == cgiFormSuccess ) {
+        if ( got > 0 ) {
+            write ( targetFile, buffer, got );
+        }
+    }
 ​
-    cgiFormFileClose ( file );
-    close ( targetFile );
-    goto END;
+    cgiFormFileClose ( file );
+    close ( targetFile );
+    goto END;
 FAIL:
-    fprintf ( stderr, "Failed to upload" );
-    return 1;
+    fprintf ( stderr, "Failed to upload" );
+    return 1;
 END:
-    printf ( "File \"%s\" has been uploaded", fileNameOnServer );
-    return 0;
+    printf ( "File \"%s\" has been uploaded", fileNameOnServer );
+    return 0;
 }
 ```
 
