@@ -127,16 +127,16 @@ conda update conda  # 检查更新当前的conda
 &emsp;&emsp;使用激活(或切换不同`python`版本)的虚拟环境：
 
 ``` bash
-source activate your_env_name  # Linux系统
-activate your_env_name  # Windows系统
+source activate your_env_name  # Linux系统
+activate your_env_name  # Windows系统
 ```
 
 &emsp;&emsp;使用命令`conda install -n your_env_name package`即可安装`package`到`your_env_name`中。或者进入`conda`虚拟环境，使用`conda install package`(或者`conda install package=版本`)安装`package`。
 &emsp;&emsp;关闭虚拟环境(即从当前虚拟环境中退出，使用`PATH`环境中的默认`python`)：
 
 ``` bash
-source deactivate  # Linux系统
-deactivate  # Windows系统
+source deactivate  # Linux系统
+deactivate  # Windows系统
 ```
 
 &emsp;&emsp;使用命令`conda remove -n your_env_name --all`即可删除指定的虚拟环境。
