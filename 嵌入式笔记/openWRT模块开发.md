@@ -1,7 +1,7 @@
 ---
 title: openWRT模块开发
 date: 2019-01-18 09:09:08
-tags:
+categories: 嵌入式笔记
 ---
 &emsp;&emsp;在`openwrt`源码目录下`make menuconfig`时，选择`[*] Build the OpenWrt SDK`，之后就会在其`bin/ar71xx/`下产生`SDK`文件`OpenWrt-SDK-ar71xx-for-linux-i686-gcc-4.6-linaro_uClibc-0.9.33.2.tar.bz2`”。解压之后就是`OpenWrt-SDK-ar71xx-for-linux-i686-gcc-4.6-linaro_uClibc-0.9.33.2`，此目录结构跟`openwrt`的目录结构基本一致。
 &emsp;&emsp;注意，模块的源码在`SDK/pakage`目录，生成的`ipk`文件在`SDK/bin/ar71xx/packages`目录。如果没有`SDK/bin/ar71xx/packages`目录，也可手动创建。主要步骤如下：
