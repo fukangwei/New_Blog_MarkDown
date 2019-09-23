@@ -78,15 +78,15 @@ class FeatureVisualization():
         print("get_single_feature_3:", feature.shape)
         return feature
 ​
-    def save_feature_to_img(self):
-        feature = self.get_single_feature()
-        feature = feature.data.numpy()
-        feature = 1.0 / (1 + np.exp(-1 * feature))  # use sigmod to [0, 1]
-        feature = np.round(feature * 255)  # to [0, 255]
-        cv2.imwrite('./img.jpg', feature)
+    def save_feature_to_img(self):
+        feature = self.get_single_feature()
+        feature = feature.data.numpy()
+        feature = 1.0 / (1 + np.exp(-1 * feature))  # use sigmod to [0, 1]
+        feature = np.round(feature * 255)  # to [0, 255]
+        cv2.imwrite('./img.jpg', feature)
 ​
 if __name__ == '__main__':
-    myClass = FeatureVisualization('./tu.jpg', 5)
-    print(myClass.pretrained_model)
-    myClass.save_feature_to_img()
+    myClass = FeatureVisualization('./tu.jpg', 5)
+    print(myClass.pretrained_model)
+    myClass.save_feature_to_img()
 ```
