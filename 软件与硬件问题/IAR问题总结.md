@@ -1,7 +1,7 @@
 ---
 title: IAR问题总结
 date: 2019-03-01 09:51:01
-tags:
+categories: 软件与硬件问题
 ---
 ### IAR的有用的快捷键
 

@@ -1,7 +1,7 @@
 ---
 title: Java环境搭建
 date: 2019-01-13 19:44:15
-tags:
+categories: 软件与硬件问题
 ---
 ### Java官方JDK
 

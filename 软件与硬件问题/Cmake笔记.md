@@ -1,7 +1,7 @@
 ---
 title: Cmake笔记
 date: 2019-07-05 19:49:41
-tags:
+categories: 软件与硬件问题
 ---
 ### 什么是cmake
 
@@ -173,6 +173,7 @@ int main ( int argc, char* argv[] ) {
 double power ( double base, int exponent ) {
     int result = base;
     int i;
+
     if ( exponent == 0 ) {
         return 1;
     }
