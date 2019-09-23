@@ -88,7 +88,7 @@ What happened? You probably got something that looks like this:
 
 ``` python
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1, in <module>
 TypeError: recognize_google() missing 1 required positional argument: 'audio_data'
 ```
 
@@ -112,7 +112,7 @@ TypeError: recognize_google() missing 1 required positional argument: 'audio_dat
 ``` python
 >>> harvard = sr.AudioFile('harvard.wav')
 >>> with harvard as source:
-...    audio = r.record(source)
+...     audio = r.record(source)
 ```
 
 The context manager opens the file and reads its contents, storing the data in an `AudioFile` instance called source. Then the `record()` method records the data from the entire file into an `AudioData` instance. You can confirm this by checking the type of audio:
@@ -142,7 +142,7 @@ Congratulations! You've just transcribed your first audio file!
 
 ``` python
 >>> with harvard as source:
-...     audio = r.record(source, duration=4)
+...     audio = r.record(source, duration=4)
 >>> r.recognize_google(audio)
 'the stale smell of old beer lingers'
 ```
@@ -151,8 +151,8 @@ Congratulations! You've just transcribed your first audio file!
 
 ``` python
 >>> with harvard as source:
-...     audio1 = r.record(source, duration=4)
-...     audio2 = r.record(source, duration=4)
+...     audio1 = r.record(source, duration=4)
+...     audio2 = r.record(source, duration=4)
 >>> r.recognize_google(audio1)
 'the stale smell of old beer lingers'
 >>> r.recognize_google(audio2)
@@ -165,7 +165,7 @@ Congratulations! You've just transcribed your first audio file!
 
 ``` python
 >>> with harvard as source:
-...     audio = r.record(source, offset=4, duration=3)
+...     audio = r.record(source, offset=4, duration=3)
 >>> recognizer.recognize_google(audio)
 'it takes heat to bring out the odor'
 ```
@@ -174,7 +174,7 @@ Congratulations! You've just transcribed your first audio file!
 
 ``` python
 >>> with harvard as source:
-...     audio = r.record(source, offset=4.7, duration=2.8)
+...     audio = r.record(source, offset=4.7, duration=2.8)
 >>> recognizer.recognize_google(audio)
 'Mesquite to bring out the odor Aiko'
 ```
@@ -192,7 +192,7 @@ Congratulations! You've just transcribed your first audio file!
 ``` python
 >>> jackhammer = sr.AudioFile('jackhammer.wav')
 >>> with jackhammer as source:
-...     audio = r.record(source)
+...     audio = r.record(source)
 >>> r.recognize_google(audio)
 'the snail smell of old gear vendors'
 ```
@@ -201,8 +201,8 @@ Congratulations! You've just transcribed your first audio file!
 
 ``` python
 >>> with jackhammer as source:
-...     r.adjust_for_ambient_noise(source)
-...     audio = r.record(source)
+...     r.adjust_for_ambient_noise(source)
+...     audio = r.record(source)
 >>> r.recognize_google(audio)
 'still smell of old beer vendors'
 ```
@@ -213,8 +213,8 @@ Congratulations! You've just transcribed your first audio file!
 
 ``` python
 >>> with jackhammer as source:
-...     r.adjust_for_ambient_noise(source, duration=0.5)
-...     audio = r.record(source)
+...     r.adjust_for_ambient_noise(source, duration=0.5)
+...     audio = r.record(source)
 >>> r.recognize_google(audio)
 'the snail smell like old Beer Mongers'
 ```
@@ -341,7 +341,7 @@ For most projects, though, you'll probably want to use the default system microp
 
 ``` python
 >>> with mic as source:
-...     audio = r.listen(source)
+...     audio = r.listen(source)
 ```
 
 &emsp;&emsp;Once you execute the with block, try speaking `hello` into your microphone. Wait a moment for the interpreter prompt to display again. Once the `>>>` prompt returns, you're ready to recognize the speech.
@@ -356,8 +356,8 @@ For most projects, though, you'll probably want to use the default system microp
 
 ``` python
 >>> with mic as source:
-...     r.adjust_for_ambient_noise(source)
-...     audio = r.listen(source)
+...     r.adjust_for_ambient_noise(source)
+...     audio = r.listen(source)
 ```
 
 &emsp;&emsp;After running the above code, wait a second for `adjust_for_ambient_noise()` to do its thing, then try speaking `hello` into the microphone. Again, you will have to wait a moment for the interpreter prompt to return before trying to recognize the speech.
@@ -370,12 +370,12 @@ For most projects, though, you'll probably want to use the default system microp
 
 ``` python
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "/home/david/real_python/speech_recognition_primer/
+  File "<stdin>", line 1, in <module>
+  File "/home/david/real_python/speech_recognition_primer/
        venv/lib/python3.5/site-packages/speech_recognition/__init__.py",
        line 858, in recognize_google
 
-    if not isinstance(actual_result, dict) or len(actual_result.get("alternative", [])) == 0:
+    if not isinstance(actual_result, dict) or len(actual_result.get("alternative", [])) == 0:
         raise UnknownValueError()
 speech_recognition.UnknownValueError
 ```
