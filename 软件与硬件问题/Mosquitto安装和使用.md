@@ -1,7 +1,7 @@
 ---
 title: Mosquitto安装和使用
 date: 2019-03-19 13:15:26
-tags:
+categories: 软件与硬件问题
 ---
 ### 前言
 

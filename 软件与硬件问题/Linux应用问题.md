@@ -1,7 +1,7 @@
 ---
 title: Linux应用问题
 date: 2019-02-14 19:36:40
-tags:
+categories: 软件与硬件问题
 ---
 ### command not found
 
@@ -83,7 +83,7 @@ tar -zxvf eclipse-jee-indigo-SR2-linux-gtk-x86_64.tar.gz -C /usr
 
 ``` bash
 $ fuser <程序文件名>
-<程序文件名>:         50340
+<程序文件名>:         50340
 $ kill -TERM 50340
 ```
 
@@ -189,15 +189,15 @@ sudo apt-get install libncurses5-dev
 #include <curses.h>
 ​
 int main() {
-    initscr();
-    clear();
-    move ( 10, 20 );
-    addstr ( "Hello world" );
-    move ( LINES - 1, 0 );
-    refresh();
-    getch();
-    endwin();
-    return 0;
+    initscr();
+    clear();
+    move ( 10, 20 );
+    addstr ( "Hello world" );
+    move ( LINES - 1, 0 );
+    refresh();
+    getch();
+    endwin();
+    return 0;
 }
 ```
 
