@@ -580,7 +580,7 @@ from naoqi import ALProxy
 ​
 motionProxy = ALProxy("ALMotion", "127.0.0.1", 3749)
 postureProxy = ALProxy("ALRobotPosture", "127.0.0.1", 3749)
-postureProxy.goToPosture("StandInit", 0.5)  # Send NAO to Pose Init
+postureProxy.goToPosture("StandInit", 0.5)  # Send NAO to Pose Init
 motionProxy.rest()
 ```
 
@@ -599,8 +599,8 @@ from naoqi import ALProxy
 ​
 motionProxy = ALProxy("ALMotion", "127.0.0.1", 3749)
 postureProxy = ALProxy("ALRobotPosture", "127.0.0.1", 3749)
-postureProxy.goToPosture("Stand", 0.5)  # Send NAO to Pose Init
-motionProxy.moveInit()  # Example showing how Initialize move process
+postureProxy.goToPosture("Stand", 0.5)  # Send NAO to Pose Init
+motionProxy.moveInit()  # Example showing how Initialize move process
 ```
 
 ### setStiffnesses
@@ -625,7 +625,7 @@ motionProxy = ALProxy("ALMotion", "127.0.0.1", 3749)
 # Beware, doing this could be dangerous, it is safer to use the
 # stiffnessInterpolation method which takes a duration parameter
 names = 'Body'
-stiffnesses = 1.0  # If only one parameter is received, this is applied to all joints
+stiffnesses = 1.0  # If only one parameter is received, this is applied to all joints
 motionProxy.setStiffnesses(names, stiffnesses)
 ```
 
