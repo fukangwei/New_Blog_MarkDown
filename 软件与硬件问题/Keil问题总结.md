@@ -9,17 +9,19 @@ categories: 软件与硬件问题
 
 ``` cpp
 int main ( void ) {
-    int choice = 1;
-    int z = 1;
-    switch ( choice ) {
-        case 1:
-            int y = 1;
-            z = y + z;
-            break;
-        case 2:
-            break;
-    }
-    return 0;
+    int choice = 1;
+    int z = 1;
+
+    switch ( choice ) {
+        case 1:
+            int y = 1;
+            z = y + z;
+            break;
+        case 2:
+            break;
+    }
+
+    return 0;
 }
 ```
 
@@ -28,8 +30,8 @@ int main ( void ) {
 
 ``` cpp
 case 1: {
-    int y = 1;
-    z = y + z;
+    int y = 1;
+    z = y + z;
 }
 
 break;
@@ -39,11 +41,10 @@ break;
 
 ``` cpp
 case 1:
-    int y;
-    y = 1;
-    z = y + z;
-
-break;
+    int y;
+    y = 1;
+    z = y + z;
+    break;
 ```
 
 ### warning: \#1293-D: assignment in condition
