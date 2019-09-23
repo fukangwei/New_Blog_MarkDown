@@ -1,7 +1,7 @@
 ---
 title: cgic教程
 date: 2019-01-18 11:34:34
-tags:
+categories: 嵌入式笔记
 ---
 ### 使用CGIC的基本思路
 
@@ -20,7 +20,7 @@ tags:
 
 ``` makefile
 test.cgi: cgictest.c cgic.h cgic.c
-    gcc -wall cgictest.c cgic.c -o test.cgi
+    gcc -wall cgictest.c cgic.c -o test.cgi
 ```
 
 保存好`Makefile`的内容之后，执行`make`命令。可以看到当前目录下应该多了一个`test.cgi`文件。
@@ -49,7 +49,7 @@ cgiHeaderContentType ( "text/html" );
 
 ``` c
 void cgiHeaderContentType ( char *mimeType ) {
-    fprintf ( cgiOut, "Content-type: %s\r\n\r\n", mimeType );
+    fprintf ( cgiOut, "Content-type: %s\r\n\r\n", mimeType );
 }
 ```
 
@@ -62,12 +62,12 @@ void cgiHeaderContentType ( char *mimeType ) {
 #include <stdlib.h>
 ​
 int cgiMain ( void ) {
-    cgiHeaderContentType ( "text/html" );
-    fprintf ( cgiOut, "<HTML><HEAD>\n" );
-    fprintf ( cgiOut, "<TITLE>My First CGI</TITLE></HEAD>\n" );
-    fprintf ( cgiOut, "<BODY><H1>Hello CGIC</H1></BODY>\n" );
-    fprintf ( cgiOut, "</HTML>\n" );
-    return 0;
+    cgiHeaderContentType ( "text/html" );
+    fprintf ( cgiOut, "<HTML><HEAD>\n" );
+    fprintf ( cgiOut, "<TITLE>My First CGI</TITLE></HEAD>\n" );
+    fprintf ( cgiOut, "<BODY><H1>Hello CGIC</H1></BODY>\n" );
+    fprintf ( cgiOut, "</HTML>\n" );
+    return 0;
 }
 ```
 
