@@ -99,14 +99,14 @@ extern char *cgiQueryString;
 extern char *cgiQueryString;
 ​
 int cgiMain() {
-    cgiHeaderContentType ( "text/html" );
-    fprintf ( cgiOut, "<HTML><HEAD>\n" );
-    fprintf ( cgiOut, "<TITLE>My CGIC</TITLE></HEAD>\n" );
-    fprintf ( cgiOut, "<BODY>" );
-    fprintf ( cgiOut, "<H1>%s</H1>", cgiQueryString );
-    fprintf ( cgiOut, "</BODY>\n" );
-    fprintf ( cgiOut, "</HTML>\n" );
-    return 0;
+    cgiHeaderContentType ( "text/html" );
+    fprintf ( cgiOut, "<HTML><HEAD>\n" );
+    fprintf ( cgiOut, "<TITLE>My CGIC</TITLE></HEAD>\n" );
+    fprintf ( cgiOut, "<BODY>" );
+    fprintf ( cgiOut, "<H1>%s</H1>", cgiQueryString );
+    fprintf ( cgiOut, "</BODY>\n" );
+    fprintf ( cgiOut, "</HTML>\n" );
+    return 0;
 }
 ```
 
@@ -160,8 +160,8 @@ static cgiUnescapeResultType cgiUnescapeChars ( char **sp, char *cp, int len );
 
 ``` c
 typedef enum {
-    cgiUnescapeSuccess,
-    cgiUnescapeMemory
+    cgiUnescapeSuccess,
+    cgiUnescapeMemory
 } cgiUnescapeResultType;
 ```
 
