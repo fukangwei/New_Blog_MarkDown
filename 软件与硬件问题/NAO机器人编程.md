@@ -184,22 +184,22 @@ subscriber = videoproxy.subscribeCamera(
     "demo", AL_kTopCamera, AL_kVGA, AL_kBGRColorSpace, Fps)
 ​
 while True:
-    imageNAO = videoproxy.getImageRemote(subscriber)
+    imageNAO = videoproxy.getImageRemote(subscriber)
 ​
-    if imageNAO == None:
-        print('cannot capture.')
-    elif imageNAO[6] == None:
-        print('no image data string.')
-    else:
-        frameArray = np.frombuffer(imageNAO[6], dtype=np.uint8).reshape(
+    if imageNAO == None:
+        print('cannot capture.')
+    elif imageNAO[6] == None:
+        print('no image data string.')
+    else:
+        frameArray = np.frombuffer(imageNAO[6], dtype=np.uint8).reshape(
                                    [imageNAO[1], imageNAO[0], imageNAO[2]])
-        cv2.imshow("pepper-top-camera-320x240", frameArray)
+        cv2.imshow("pepper-top-camera-320x240", frameArray)
 
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
 ```
 
-&emsp;&emsp;`subscribeCamera`的函数原型如下所示：
+&emsp;&emsp;`subscribeCamera`的函数原型如下：
 
 ``` cpp
 std::string ALVideoDeviceProxy::subscribeCamera (
@@ -273,7 +273,7 @@ proxyMo.stiffnessInterpolation('Body', 0.0, 1.0)
 
 ### 控制关节角度
 
-&emsp;&emsp;关节角度由`ALMotion`模块进行控制。`NAO`准备了许多控制关节角度的方法，可以根据情况使用`angleInterpolation`、`angleInterpolationWithSpeed`和`setAngles`等。`angleInterpolation`的函数原型如下所示：
+&emsp;&emsp;关节角度由`ALMotion`模块进行控制。`NAO`准备了许多控制关节角度的方法，可以根据情况使用`angleInterpolation`、`angleInterpolationWithSpeed`和`setAngles`等。`angleInterpolation`的函数原型如下：
 
 ``` cpp
 void angleInterpolation (
@@ -307,7 +307,7 @@ timeLists = [[1.0], [1.0]]
 proxyMo.angleInterpolation(names, angleLists, timeLists, True)
 ```
 
-`HeadPitch`表示围绕`y`轴旋转头部连杆的关节，`angleLists`和`timeLists`的元素数必须等于指定关节的数量。稍微复杂的实例如下所示：
+`HeadPitch`表示围绕`y`轴旋转头部连杆的关节，`angleLists`和`timeLists`的元素数必须等于指定关节的数量。稍微复杂的实例如下：
 
 ``` python
 names = ['HeadYaw', 'HeadPitch']
@@ -321,16 +321,14 @@ proxyMo.angleInterpolation(names, angleLists, timeLists, True)
 ``` python
 angleLists = [
     [0.0, 1.0], [0.0, 1.0], [0.0, -1.0],
-    [0.0, -1.0], [0.0, -1.0], [0.0, 1.0]
-]
+    [0.0, -1.0], [0.0, -1.0], [0.0, 1.0]]
 
 timeLists = [[1.0, 2.0]] * 6
 proxyMo.post.angleInterpolation('LArm', angleLists, timeLists, True)
 ​
 angleLists = [
     [0.0, -1.0], [0.0, -1.0], [0.0, 1.0],
-    [0.0, 1.0], [0.0, 1.0], [0.0, 1.0]
-]
+    [0.0, 1.0], [0.0, 1.0], [0.0, 1.0]]
 
 timeLists = [[1.0, 2.0]] * 6
 proxyMo.angleInterpolation('RArm', angleLists, timeLists, True)
@@ -352,11 +350,10 @@ Gets the list of `sensors` supported on your robot. The function returns the vec
 from naoqi import ALProxy
 ​
 motionProxy = ALProxy("ALMotion", "127.0.0.1", 3164)
-​
 sensorList = motionProxy.getSensorNames()
 
 for sensor in sensorList:
-    print(sensor)
+    print(sensor)
 ```
 
 ### getPosition
@@ -443,8 +440,9 @@ print str(sensorAngles)
 print ""
 ​
 errors = []
+
 for i in range(0, len(commandAngles)):
-    errors.append(commandAngles[i] - sensorAngles[i])
+    errors.append(commandAngles[i] - sensorAngles[i])
 ​
 print "Errors"
 print errors
@@ -485,7 +483,7 @@ Returns a string `representation` of the Model's `state`.
 from naoqi import ALProxy
 ​
 motionProxy = ALProxy("ALMotion", "127.0.0.1", 3749)
-print motionProxy.getSummary()  # Example showing how to get a summary of Nao's state
+print motionProxy.getSummary()  # Example showing how to get a summary of Nao's state
 ```
 
 The result is:
