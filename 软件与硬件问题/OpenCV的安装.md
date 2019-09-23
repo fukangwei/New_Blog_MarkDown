@@ -1,7 +1,7 @@
 ---
 title: OpenCV的安装
 date: 2019-02-28 19:16:28
-tags:
+categories: 软件与硬件问题
 ---
 ### Linux下的安装(2.4.9版)
 

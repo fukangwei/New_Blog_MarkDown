@@ -1,7 +1,7 @@
 ---
 title: OpenWRT之USB挂载
 date: 2019-02-06 11:40:02
-tags:
+categories: 软件与硬件问题
 ---
 &emsp;&emsp;1. 更新路由器软件源(路由器需要联网)：
 
@@ -37,7 +37,7 @@ ls -l /dev | grep sda
 
 ``` cpp
 root@Openwrt:/#ls -l /dev | grep sda
-brw-r--r--    1    root    root    8,    0    Jan    1    1970    sda
+brw-r--r--    1    root    root    8,    0    Jan    1    1970    sda
 ```
 
 观察里面是否出现`sda`、`sda1`、`sda2`、`sda3`等字样。`sda`说明是名为`sda`的设备，而`sda1`是它的第一个分区，后面依次类推。

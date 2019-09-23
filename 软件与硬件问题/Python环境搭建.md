@@ -1,7 +1,7 @@
 ---
 title: Python环境搭建
 date: 2019-01-13 19:00:42
-tags:
+categories: 软件与硬件问题
 ---
 ### pip安装和入门
 

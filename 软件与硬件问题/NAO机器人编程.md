@@ -1,7 +1,7 @@
 ---
 title: NAO机器人编程
 date: 2019-01-07 13:45:49
-tags:
+categories: 软件与硬件问题
 ---
 ### NAO开发环境搭建
 
