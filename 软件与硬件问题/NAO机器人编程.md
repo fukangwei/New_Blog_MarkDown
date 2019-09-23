@@ -490,33 +490,33 @@ The result is:
 
 ``` python
 ---------------------- Model ---------------------------
-        BodyName   Stiffness     Command      Sensor
-         HeadYaw    1.000000    0.000000    0.000000
-       HeadPitch    1.000000   -0.170000   -0.170000
-  LShoulderPitch    1.000000    1.459484    1.459484
-   LShoulderRoll    1.000000    0.210143    0.210143
-       LElbowYaw    1.000000   -1.196481   -1.196481
-      LElbowRoll    1.000000   -0.415050   -0.415050
-    LHipYawPitch    1.000000   -0.170000   -0.170000
-        LHipRoll    1.000000    0.100000    0.100000
-       LHipPitch    1.000000    0.130000    0.130000
-      LKneePitch    1.000000   -0.090000   -0.090000
-     LAnklePitch    1.000000    0.090000    0.090000
-      LAnkleRoll    1.000000   -0.130000   -0.130000
-    RHipYawPitch    1.000000   -0.170000   -0.170000
-        RHipRoll    1.000000   -0.100000   -0.100000
-       RHipPitch    1.000000    0.130000    0.130000
-      RKneePitch    1.000000   -0.090000   -0.090000
-     RAnklePitch    1.000000    0.090000    0.090000
-      RAnkleRoll    1.000000    0.130000    0.130000
-  RShoulderPitch    1.000000    1.459484    1.459484
-   RShoulderRoll    1.000000   -0.210143   -0.210143
-       RElbowYaw    1.000000    1.196481    1.196481
-      RElbowRoll    1.000000    0.415050    0.415050
+        BodyName   Stiffness     Command      Sensor
+         HeadYaw    1.000000    0.000000    0.000000
+       HeadPitch    1.000000   -0.170000   -0.170000
+  LShoulderPitch    1.000000    1.459484    1.459484
+   LShoulderRoll    1.000000    0.210143    0.210143
+       LElbowYaw    1.000000   -1.196481   -1.196481
+      LElbowRoll    1.000000   -0.415050   -0.415050
+    LHipYawPitch    1.000000   -0.170000   -0.170000
+        LHipRoll    1.000000    0.100000    0.100000
+       LHipPitch    1.000000    0.130000    0.130000
+      LKneePitch    1.000000   -0.090000   -0.090000
+     LAnklePitch    1.000000    0.090000    0.090000
+      LAnkleRoll    1.000000   -0.130000   -0.130000
+    RHipYawPitch    1.000000   -0.170000   -0.170000
+        RHipRoll    1.000000   -0.100000   -0.100000
+       RHipPitch    1.000000    0.130000    0.130000
+      RKneePitch    1.000000   -0.090000   -0.090000
+     RAnklePitch    1.000000    0.090000    0.090000
+      RAnkleRoll    1.000000    0.130000    0.130000
+  RShoulderPitch    1.000000    1.459484    1.459484
+   RShoulderRoll    1.000000   -0.210143   -0.210143
+       RElbowYaw    1.000000    1.196481    1.196481
+      RElbowRoll    1.000000    0.415050    0.415050
 ---------------------- Tasks  --------------------------
-            Name          ID    BrokerID    Priority
+            Name          ID    BrokerID    Priority
 ----------------- Motion Cycle Time --------------------
-              20 ms
+            20 ms
 ```
 
 ### wakeUp
