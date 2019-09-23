@@ -20,47 +20,49 @@ from torch.autograd import Variable
 from torchvision import models
 ​
 def preprocess_image(cv2im, resize_im=True):
-    """
-    function: Processes image for CNNs.
+    """
+    function: Processes image for CNNs.
     Args: PIL_img (PIL_img): Image to process; resize_im (bool): Resize to 224 or not.
-    returns: im_as_var (Pytorch variable): Variable that contains processed float tensor
-    """
-    # mean and std list for channels (Imagenet)
-    mean = [0.485, 0.456, 0.406]
-    std = [0.229, 0.224, 0.225]
+    returns: im_as_var (Pytorch variable): Variable that contains processed float tensor
+    """
+    # mean and std list for channels (Imagenet)
+    mean = [0.485, 0.456, 0.406]
+    std = [0.229, 0.224, 0.225]
 
-    if resize_im:  # Resize image
-        cv2im = cv2.resize(cv2im, (224, 224))
+    if resize_im:  # Resize image
+        cv2im = cv2.resize(cv2im, (224, 224))
 
-    im_as_arr = np.float32(cv2im)
-    im_as_arr = np.ascontiguousarray(im_as_arr[..., ::-1])
-    im_as_arr = im_as_arr.transpose(2, 0, 1)  # Convert array to D,W,H
+    im_as_arr = np.float32(cv2im)
+    im_as_arr = np.ascontiguousarray(im_as_arr[..., ::-1])
+    im_as_arr = im_as_arr.transpose(2, 0, 1)  # Convert array to D,W,H
 ​
-    for channel, _ in enumerate(im_as_arr):  # Normalize the channels
-        im_as_arr[channel] /= 255
-        im_as_arr[channel] -= mean[channel]
-        im_as_arr[channel] /= std[channel]
+    for channel, _ in enumerate(im_as_arr):  # Normalize the channels
+        im_as_arr[channel] /= 255
+        im_as_arr[channel] -= mean[channel]
+        im_as_arr[channel] /= std[channel]
 ​
-    im_as_ten = torch.from_numpy(im_as_arr).float()  # Convert to float tensor
-    im_as_ten.unsqueeze_(0)  # Add one more channel to the beginning. Tensor shape = 1,3,224,224
-    im_as_var = Variable(im_as_ten, requires_grad=True)  # Convert to Pytorch variable
-    return im_as_var
+    im_as_ten = torch.from_numpy(im_as_arr).float()  # Convert to float tensor
+    im_as_ten.unsqueeze_(0)  # Add one more channel to the beginning. Tensor shape = 1,3,224,224
+    im_as_var = Variable(im_as_ten, requires_grad=True)  # Convert to Pytorch variable
+    return im_as_var
 ​
 class FeatureVisualization():
-    def __init__(self, img_path, selected_layer):
-        self.img_path = img_path
-        self.selected_layer = selected_layer
-        self.pretrained_model = models.vgg16(pretrained=True).features
+    def __init__(self, img_path, selected_layer):
+        self.img_path = img_path
+        self.selected_layer = selected_layer
+        self.pretrained_model = models.vgg16(pretrained=True).features
 ​
-    def process_image(self):
-        img = cv2.imread(self.img_path)
-        img = preprocess_image(img)
-        return img
+    def process_image(self):
+        img = cv2.imread(self.img_path)
+        img = preprocess_image(img)
+        return img
 ​
-    def get_feature(self):
-        input = self.process_image()
-        print("get_feature:", input.shape)
-        x = input
+    def get_feature(self):
+        input = self.process_image()
+        print("get_feature:", input.shape)
+
+        x = input
+
         for index, layer in enumerate(self.pretrained_model):
             x = layer(x)
             if (index == self.selected_layer):
