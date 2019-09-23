@@ -430,34 +430,35 @@ def recognize_speech_from_mic(recognizer, microphone):
 ​
 if __name__ == "__main__":
     # set the list of words, maxnumber of guesses, and prompt limit
-    WORDS = ["apple", "banana", "grape", "orange", "mango", "lemon"]
-    NUM_GUESSES = 3
-    PROMPT_LIMIT = 5
+    WORDS = ["apple", "banana", "grape", "orange", "mango", "lemon"]
+    NUM_GUESSES = 3
+    PROMPT_LIMIT = 5
 ​
-    # create recognizer and mic instances
-    recognizer = sr.Recognizer()
-    microphone = sr.Microphone()
+    # create recognizer and mic instances
+    recognizer = sr.Recognizer()
+    microphone = sr.Microphone()
 ​
-    word = random.choice(WORDS)  # get a random word from the list
+    word = random.choice(WORDS)  # get a random word from the list
 ​
-    instructions = (  # format the instructions string
-        "I'm thinking of one of these words:\n"
-        "{words}\n"
-        "You have {n} tries to guess which one.\n"
-    ).format(words=', '.join(WORDS), n=NUM_GUESSES)
+    instructions = (  # format the instructions string
+        "I'm thinking of one of these words:\n"
+        "{words}\n"
+        "You have {n} tries to guess which one.\n"
+    ).format(words=', '.join(WORDS), n=NUM_GUESSES)
 ​
-    print(instructions)  # show instructions and wait 3 seconds before starting the game
-    time.sleep(3)
+    print(instructions)  # show instructions and wait 3 seconds before starting the game
+    time.sleep(3)
 ​
-    for i in range(NUM_GUESSES):
-        # get the guess from the user
-        # if a transcription is returned, break out of the loop and continue
-        # if no transcription returned and API request failed, break loop and continue
-        # if API request succeeded but no transcription was returned, re-prompt the user
+    for i in range(NUM_GUESSES):
+        # get the guess from the user
+        # if a transcription is returned, break out of the loop and continue
+        # if no transcription returned and API request failed, break loop and continue
+        # if API request succeeded but no transcription was returned, re-prompt the user
         # to say their guess again. Do this up to PROMPT_LIMIT times
-        for j in range(PROMPT_LIMIT):
-            print('Guess {}. Speak!'.format(i + 1))
-            guess = recognize_speech_from_mic(recognizer, microphone)
+        for j in range(PROMPT_LIMIT):
+            print('Guess {}. Speak!'.format(i + 1))
+            guess = recognize_speech_from_mic(recognizer, microphone)
+
             if guess["transcription"]:
                 break
             if not guess["success"]:
