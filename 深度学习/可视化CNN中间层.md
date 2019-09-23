@@ -63,19 +63,20 @@ class FeatureVisualization():
 
         x = input
 
-        for index, layer in enumerate(self.pretrained_model):
-            x = layer(x)
-            if (index == self.selected_layer):
-                return x
+        for index, layer in enumerate(self.pretrained_model):
+            x = layer(x)
+
+            if (index == self.selected_layer):
+                return x
 ​
-    def get_single_feature(self):
-        features = self.get_feature()
-        print("get_single_feature_1:", features.shape)
-        feature = features[:, 0, :, :]
-        print("get_single_feature_2:", feature.shape)
-        feature = feature.view(feature.shape[1], feature.shape[2])
-        print("get_single_feature_3:", feature.shape)
-        return feature
+    def get_single_feature(self):
+        features = self.get_feature()
+        print("get_single_feature_1:", features.shape)
+        feature = features[:, 0, :, :]
+        print("get_single_feature_2:", feature.shape)
+        feature = feature.view(feature.shape[1], feature.shape[2])
+        print("get_single_feature_3:", feature.shape)
+        return feature
 ​
     def save_feature_to_img(self):
         feature = self.get_single_feature()
