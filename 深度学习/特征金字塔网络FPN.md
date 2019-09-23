@@ -120,32 +120,33 @@ class FPN(nn.Module):
         return F.interpolate(x, size=(H, W), mode='bilinear', align_corners=True) + y
 ​
     def forward(self, x):
-        # Bottom-up
-        c1 = F.relu(self.bn1(self.conv1(x)))
-        c1 = F.max_pool2d(c1, kernel_size=3, stride=2, padding=1)
-        c2 = self.layer1(c1)
-        c3 = self.layer2(c2)
-        c4 = self.layer3(c3)
-        c5 = self.layer4(c4)
-        # Top-down
-        p5 = self.toplayer(c5)
-        p4 = self._upsample_add(p5, self.latlayer1(c4))  # P4是上一层p5加上侧边来的c4
-        p3 = self._upsample_add(p4, self.latlayer2(c3))
-        p2 = self._upsample_add(p3, self.latlayer3(c2))
-        # Smooth
-        p4 = self.smooth1(p4)
-        p3 = self.smooth2(p3)
-        p2 = self.smooth3(p2)
-        return p2, p3, p4, p5
+        # Bottom-up
+        c1 = F.relu(self.bn1(self.conv1(x)))
+        c1 = F.max_pool2d(c1, kernel_size=3, stride=2, padding=1)
+        c2 = self.layer1(c1)
+        c3 = self.layer2(c2)
+        c4 = self.layer3(c3)
+        c5 = self.layer4(c4)
+        # Top-down
+        p5 = self.toplayer(c5)
+        p4 = self._upsample_add(p5, self.latlayer1(c4))  # P4是上一层p5加上侧边来的c4
+        p3 = self._upsample_add(p4, self.latlayer2(c3))
+        p2 = self._upsample_add(p3, self.latlayer3(c2))
+        # Smooth
+        p4 = self.smooth1(p4)
+        p3 = self.smooth2(p3)
+        p2 = self.smooth3(p2)
+        return p2, p3, p4, p5
 ​
 def FPN101():
     return FPN(Bottleneck, [2, 2, 2, 2])
 ​
 def test():
-    net = FPN101()
-    fms = net(Variable(torch.randn(1, 3, 600, 900)))
-    for fm in fms:
-        print(fm.size())
+    net = FPN101()
+    fms = net(Variable(torch.randn(1, 3, 600, 900)))
+
+    for fm in fms:
+        print(fm.size())
 ​
 test()
 ```
