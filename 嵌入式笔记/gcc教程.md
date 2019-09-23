@@ -1,7 +1,7 @@
 ---
 title: gcc教程
 date: 2019-01-18 09:42:36
-tags:
+categories: 嵌入式笔记
 ---
 ### arm-linux-gcc的安装
 

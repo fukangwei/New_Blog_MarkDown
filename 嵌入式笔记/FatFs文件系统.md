@@ -1,7 +1,7 @@
 ---
 title: FatFs文件系统
 date: 2019-02-24 21:10:05
-tags:
+categories: 嵌入式笔记
 ---
 ### FatFs
 
@@ -117,10 +117,13 @@ void main ( void ) {
 
     for ( ;; ) { /* 拷贝源文件到目标文件 */
         res = f_read ( &fsrc, buffer, sizeof ( buffer ), &br );
+
         if ( res || br == 0 ) {
             break; /* 文件结束错误 */
         }
+
         res = f_write ( &fdst, buffer, br, &bw );
+
         if ( res || bw < br ) {
             break; /* 磁盘满错误 */
         }
@@ -187,12 +190,15 @@ if ( !res ) {
     br = 1;
     a = 0;
     Debug ( "文件内容:" );
+
     for ( ;; ) {
         for ( a = 0; a < 512; a++ ) {
             buffer[a] = 0;
         }
+
         res = f_read ( &fsrc, buffer, sizeof ( buffer ), &br );
         Debug ( "%s\r\n", buffer );
+
         if ( res || br < sizeof ( buffer ) ) { /* error or eof */
             break;
         }
@@ -232,12 +238,15 @@ res = f_open ( &fsrc, "new/NewText.txt", FA_WRITE | FA_CREATE_ALWAYS );
 
 if ( res == FR_OK ) {
     Debug ( "create file ok!\r\n" );
+
     do {
         res = f_write ( &fsrc, buffer, 100, &bw );
+
         if ( res ) {
             Debug ( "write error : %d\r\n", res );
             break;
         }
+
         Debug ( "write ok!\r\n" );
     } while ( bw < 100 ); /* 判断是否写完(“bw>100”表示写入完成) */
 }
@@ -395,6 +404,7 @@ FRESULT scan_files ( char *path ) {
     fno.lfsize = sizeof ( lfn );
 #endif
     res = f_opendir ( &dir, path );
+
     if ( res == FR_OK ) {
         i = strlen ( path );
 
@@ -416,15 +426,18 @@ FRESULT scan_files ( char *path ) {
             if ( fno.fattrib & AM_DIR ) {
                 sprintf ( &path[i], "/%s", fn );
                 res = scan_files ( path );
+
                 if ( res != FR_OK ) {
                     break;
                 }
+
                 path[i] = 0;
             } else {
                 printf ( "%s/%s\n", path, fn );
             }
         }
     }
+
     return res;
 }
 ```
@@ -437,6 +450,7 @@ if ( f_opendir ( &dirs, "folder/move" ) == FR_OK ) { /* 打开文件夹 */
         if ( !finfo.fname[0] ) {
             break; /* 如果文件名为0，结束 */
         }
+
         if ( finfo.fattrib == AM_ARC ) { /* 判断文件属性 */
             Debug ( "文件名: %s\r\n", finfo.fname );
         }
@@ -522,6 +536,7 @@ FRESULT f_stat (
 ``` cpp
 /* 读取folder目录下newname.txt文件的信息 */
 res = f_stat ( "folder/newname.txt", &finfo );
+
 if ( res ) {
     Debug ( "newname.txt err: %d\r\n", res );
 } else {
@@ -646,6 +661,7 @@ FRESULT f_chmod (
 
 ``` cpp
 res = f_chmod ( "folder/newname.txt", AM_ARC | AM_SYS, AM_ARC | AM_RDO | AM_HID | AM_SYS );
+
 if ( res ) {
     Debug ( "err:%d\r\n", res );
 } else {
@@ -658,6 +674,7 @@ if ( res ) {
 
 ``` cpp
 res = f_chmod ( "new", AM_SYS | AM_ARC, AM_ARC | AM_RDO | AM_HID | AM_SYS );
+
 if ( res ) {
     Debug ( "err:%d\r\n", res );
 } else {
@@ -815,6 +832,7 @@ UINT out_stream ( /* 返回已发送字节数或流状态 */
             cnt++;
         } while ( cnt < btf && FIFO_READY );
     }
+
     return cnt;
 }
 
@@ -1045,7 +1063,7 @@ DRESULT disk_ioctl (
 
 &emsp;&emsp;`FatFs`模块只使用下述与设备无关的命令，没有使用任何设备相关功能。
 
-命令                | 描述
+命令               | 描述
 -------------------|-----
 `CTRL_SYNC`        | 确保磁盘驱动器已经完成等待写过程。当磁盘`I/O`模块有一个写回高速缓存时，立即冲洗脏扇区。在只读配置中，不需要该命令
 `GET_SECTOR_SIZE`  | 返回驱动器的扇区大小赋给`Buffer`指向的`WORD`变量。在单个扇区大小配置中(`_MAX_SS`为`512`)，不需要该命令
