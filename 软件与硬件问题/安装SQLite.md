@@ -158,42 +158,42 @@ sqlite>
 ​
 /* 执行到sqlite3_exec的回调函数 */
 static int callback ( void *NotUsed, int argc, char **argv, char **azColName ) {
-    int i;
+    int i;
 ​
-    for ( i = 0; i < argc; i++ ) {
-        printf ( "%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL" );
-    }
+    for ( i = 0; i < argc; i++ ) {
+        printf ( "%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL" );
+    }
 ​
-    printf ( "\n" );
-    return 0;
+    printf ( "\n" );
+    return 0;
 }
 ​
 int main ( int argc, char **argv ) {
-    sqlite3 *db; /* sqlite里最常用的是“sqlite3 *”类型 */
-    char *zErrMsg = 0;
-    int rc;
+    sqlite3 *db; /* sqlite里最常用的是“sqlite3 *”类型 */
+    char *zErrMsg = 0;
+    int rc;
 ​
-    if ( argc != 3 ) { /* 可执行程序有三个参数 */
-        fprintf ( stderr, "Usage: %s DATABASE SQL-STATEMENT\n", argv[0] );
-    }
+    if ( argc != 3 ) { /* 可执行程序有三个参数 */
+        fprintf ( stderr, "Usage: %s DATABASE SQL-STATEMENT\n", argv[0] );
+    }
 ​
-    rc = sqlite3_open ( argv[1], &db );
+    rc = sqlite3_open ( argv[1], &db );
 ​
-    /* main第一个参数是可执行文件名，第二个参数是打开或创建的数据库文件名 */
-    if ( rc ) {
-        fprintf ( stderr, "Can't open database: %s\n", sqlite3_errmsg ( db ) );
-        sqlite3_close ( db ); /* 打开或创建数据库失败就关闭数据库 */
-    }
+    /* main第一个参数是可执行文件名，第二个参数是打开或创建的数据库文件名 */
+    if ( rc ) {
+        fprintf ( stderr, "Can't open database: %s\n", sqlite3_errmsg ( db ) );
+        sqlite3_close ( db ); /* 打开或创建数据库失败就关闭数据库 */
+    }
 ​
-    rc = sqlite3_exec ( db, argv[2], callback, 0, &zErrMsg );
+    rc = sqlite3_exec ( db, argv[2], callback, 0, &zErrMsg );
 ​
-    /* main第三个参数argv[2]传入到上面这条执行sql语句，查询数据库 */
-    if ( rc != SQLITE_OK ) { /* SQLITE_OK表示操作正常 */
-        fprintf ( stderr, "SQL error: %s\n", zErrMsg );
-    }
+    /* main第三个参数argv[2]传入到上面这条执行sql语句，查询数据库 */
+    if ( rc != SQLITE_OK ) { /* SQLITE_OK表示操作正常 */
+        fprintf ( stderr, "SQL error: %s\n", zErrMsg );
+    }
 ​
-    sqlite3_close ( db ); /* 关闭数据库 */
-    return 0;
+    sqlite3_close ( db ); /* 关闭数据库 */
+    return 0;
 }
 ```
 
