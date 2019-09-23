@@ -1,7 +1,7 @@
 ---
 title: ads中C和汇编混合编译
 date: 2019-01-18 15:49:35
-tags:
+categories: 嵌入式笔记
 ---
 &emsp;&emsp;在稍大规模的嵌入式程序设计中，大部分的代码都是用`C`来编写的，主要是因为`C`语言具有较强的结构性，便于人的理解，并且具有大量的库支持。但对于一些硬件上的操作，很多地方还是要用到汇编语言，例如硬件系统的初始化中的`CPU`状态的设定、中断的使能、主频的设定、`RAM`控制参数等。另外在一些对性能非常敏感的代码块，基于汇编与机器码一一对应的关系，这时不能依靠`C`编译器的生成代码，而要手工编写汇编，从而达到优化的目的。汇编语言是和`CPU`的指令集紧密相连的，作为涉及底层的嵌入式系统开发，熟练对应汇编语言的使用也是必须的。单纯的`C`或者汇编编程请参考相关的书籍或者手册，这里主要讨论`C`和汇编的混合编程，包括相互之间的函数调用。
 
@@ -67,15 +67,15 @@ int main() {
     AREA asmfile, CODE, READONLY
 
     EXPORT asmDouble
-    IMPORT gVar
+    IMPORT gVar
 asmDouble
-       ldr r0, =gVar
-       ldr r1, [r0]
-       mov r2, #2
-       mul r3, r1, r2
-       str r3, [r0]
-       mov pc, lr
-       END
+        ldr r0, =gVar
+        ldr r1, [r0]
+        mov r2, #2
+        mul r3, r1, r2
+        str r3, [r0]
+        mov pc, lr
+        END
 ```
 
 在此例中，汇编文件与`C`文件之间相互传递了全局变量`gVar`和函数`asmDouble`，留意声明的关键字`extern`和`IMPORT`。
@@ -104,17 +104,17 @@ int main() {
 
 ``` c
     AREA asmfile, CODE, READONLY
-    EXPORT asm_strcpy
+    EXPORT asm_strcpy
 asm_strcpy
     loop:
-        ldrb r4, [r0], #1
-        cmp r4, #0
-        beq over
-        strb r4, [r1], #1
-        b loop
+        ldrb r4, [r0], #1
+        cmp r4, #0
+        beq over
+        strb r4, [r1], #1
+        b loop
     over:
-        mov pc, lr
-        END
+        mov pc, lr
+        END
 ```
 
 在此例中，`C`语言和汇编语言之间的参数传递是通过对应的用`R0`至`R3`来进行传递，即`R0`传递第一个参数，`R1`传递第二个参数，多于`4`个时借助栈完成，函数的返回值通过`R0`来传递。这个规定叫作`ATPCS(ARM Thumb Procedure Call Standard)`，具体见`ATPCS`规范。
@@ -134,16 +134,16 @@ int cFun ( int a, int b, int c ) {
 
 ``` c
     AREA asmfile, CODE, READONLY
-    IMPORT cFun
+    IMPORT cFun
 start
     mov r0, #0x1
-    mov r1, #0x2
-    mov r2, #0x3
-    bl cFun ;如果希望返回，则用BL；否则用B。
-    nop
-    nop
-    b start
-    END
+    mov r1, #0x2
+    mov r2, #0x3
+    bl cFun ; 如果希望返回，则用BL；否则用B。
+    nop
+    nop
+    b start
+    END
 ```
 
 在汇编语言中调用`C`语言的函数，参数的传递也是按照`ATPCS`规范来实现的。在这里简单介绍一下部分`ATPCS`规范：
