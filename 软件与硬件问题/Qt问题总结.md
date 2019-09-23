@@ -1,7 +1,7 @@
 ---
 title: Qt问题总结
 date: 2019-03-01 17:24:52
-tags:
+categories: 软件与硬件问题
 ---
 ### undefined reference to vtable
 
@@ -23,9 +23,9 @@ list.h:1117: warning: `allocator<LogOutput*> list<LogOutput*, allocator<LogOutpu
 
 ``` cpp
 Class C {
-    int a;
-    int b;
-    C() : b ( 1 ), a ( 2 ) {} /* warning, should be “C(): a(2), b(1)” */
+    int a;
+    int b;
+    C() : b ( 1 ), a ( 2 ) {} /* warning, should be "C(): a(2), b(1)" */
 }
 ```
 
@@ -74,7 +74,7 @@ Object::connect: No such slot FindDialog::enbleFindButton(const QString &) no su
 
 ``` cpp
 private slots:
-    void xxxx();
+    void xxxx();
 ```
 
 同时不要忘记检查`slot`函数是否出现了拼写错误，如果有，可能也会出现上述问题。

@@ -1,7 +1,7 @@
 ---
 title: Python问题总结
 date: 2019-01-10 16:01:38
-tags:
+categories: 软件与硬件问题
 ---
 ### HTTP Error 403: Forbidden
 
@@ -38,11 +38,11 @@ urllib.request.urlopen(req).read()
 
 ### serial.serialutil.SerialException: could not open port
 
-&emsp;&emsp;`Question`：I tried to communicate `Python` and `Arduino` with `pyserial` on Win8, but it had error like this：
+&emsp;&emsp;`Question`: I tried to communicate `Python` and `Arduino` with `pyserial` on `Win8`, but it had error like this：
 
 ``` python
 Traceback (most recent call last):
-File "C:\Users\Fon\Desktop\x.py", line 7, in <module> ser.open() # open serial port
+File "C:\Users\Fon\Desktop\x.py", line 7, in <module> ser.open()  # open serial port
 File "C:\Python27\lib\site-packages\serial\serialwin32.py", line 66, \
 in open raise SerialException("could not open port %r: %r" % (self.portstr, ctypes.WinError())) \
 serial.serialutil.SerialException: could not open port 'COM4': \
@@ -55,19 +55,19 @@ this is my code：
 import serial
 ​
 ser = serial.Serial()
-ser.port = 3  # serial port
-ser.baudrate = 115200  # set baudrate 115200
-ser.timeout = 60  # timeout 60 second
-ser.open()  # open serial port
+ser.port = 3  # serial port
+ser.baudrate = 115200  # set baudrate 115200
+ser.timeout = 60  # timeout 60 second
+ser.open()  # open serial port
 ​
 while True:
-    ser.write('l')  # send '1' to port to get light
-    light = ser.read(4)
-    print "light", light
+    ser.write('l')  # send '1' to port to get light
+    light = ser.read(4)
+    print "light", light
 ```
 
-in this code，I tried to open port `COM4`，I already check this port is available and I already tried another port but it not worked any port. Am I using wrong port？or something？
-&emsp;&emsp;`Answer`：Does the port even exist? Maybe there is something already connected to it. If you ran the program before and the serial port didn't close correctly that old program may still be connected to it. If it doesn't exist then you will have to use a program to create a virtual serial port.
+in this code, I tried to open port `COM4`, I already check this port is available and I already tried another port but it not worked any port. Am I using wrong port? or something?
+&emsp;&emsp;`Answer`: Does the port even exist? Maybe there is something already connected to it. If you ran the program before and the serial port didn't close correctly that old program may still be connected to it. If it doesn't exist then you will have to use a program to create a virtual serial port.
 
 ### TypeError: a bytes-like object is required, not str
 
