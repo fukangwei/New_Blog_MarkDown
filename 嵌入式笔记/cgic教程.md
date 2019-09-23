@@ -369,31 +369,32 @@ gcc -Wall upload.c cgic.c -o upload.cgi
 ``` c
 else if ( cgiStrEqNc ( cgiContentType, "multipart/form-data" ) ) {
 #ifdef CGICDEBUG
-    CGICDEBUGSTART
-    fprintf ( dout, "Calling PostMultipartInput\n" );
-    CGICDEBUGEND
+    CGICDEBUGSTART
+    fprintf ( dout, "Calling PostMultipartInput\n" );
+    CGICDEBUGEND
 #endif
-    /* UpSize为文件长度上限值，以byte为单位。UpSize是
+    /* UpSize为文件长度上限值，以byte为单位。UpSize是
        一个int变量，因为cgiContentLength的类型为int */
-    if ( cgiContentLength > UpSize ) {
-        cgiHeaderContentType ( "text/html" );
-        printf ( "File too large!\n" );
-        cgiFreeResources();
-        return -1;
-    }
-    if ( cgiParsePostMultipartInput() != cgiParseSuccess ) {
+    if ( cgiContentLength > UpSize ) {
+        cgiHeaderContentType ( "text/html" );
+        printf ( "File too large!\n" );
+        cgiFreeResources();
+        return -1;
+    }
+
+    if ( cgiParsePostMultipartInput() != cgiParseSuccess ) {
 #ifdef CGICDEBUG
-        CGICDEBUGSTART
-        fprintf ( dout, "PostMultipartInput failed\n" );
-        CGICDEBUGEND
+        CGICDEBUGSTART
+        fprintf ( dout, "PostMultipartInput failed\n" );
+        CGICDEBUGEND
 #endif
-        cgiFreeResources();
-        return -1;
-    }
+        cgiFreeResources();
+        return -1;
+    }
 #ifdef CGICDEBUG
-    CGICDEBUGSTART
-    fprintf ( dout, "PostMultipartInput succeeded\n" );
-    CGICDEBUGEND
+    CGICDEBUGSTART
+    fprintf ( dout, "PostMultipartInput succeeded\n" );
+    CGICDEBUGEND
 #endif
 }
 ```
