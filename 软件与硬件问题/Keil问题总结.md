@@ -120,13 +120,13 @@ unsigned int value = 2147483648u;
 &emsp;&emsp;打开`STM32F103RB`的启动文件`starup_stm32f10x_md.s`，里面有如下内容：
 
 ``` cpp
-DCD TIM1_BRK_IRQHandler     ; TIM1 Break
-DCD TIM1_UP_IRQHandler      ; TIM1 Update
+DCD TIM1_BRK_IRQHandler     ; TIM1 Break
+DCD TIM1_UP_IRQHandler      ; TIM1 Update
 DCD TIM1_TRG_COM_IRQHandler ; TIM1 Trigger and Commutation
-DCD TIM1_CC_IRQHandler      ; TIM1 Capture Compare
-DCD TIM2_IRQHandler         ; TIM2
-DCD TIM3_IRQHandler         ; TIM3
-DCD TIM4_IRQHandler         ; TIM4
+DCD TIM1_CC_IRQHandler      ; TIM1 Capture Compare
+DCD TIM2_IRQHandler         ; TIM2
+DCD TIM3_IRQHandler         ; TIM3
+DCD TIM4_IRQHandler         ; TIM4
 ```
 
 这里面只有`TIM1`至`TIM4`的定时器中断事件，而`TIM6`是没有中断响应这个功能，这是因为`STM32F103RB`芯片没有`TIM6`。
