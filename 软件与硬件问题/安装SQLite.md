@@ -1,7 +1,7 @@
 ---
 title: 安装SQLite
 date: 2019-02-06 18:02:14
-tags:
+categories: 软件与硬件问题
 ---
 ### Linux下的安装
 
@@ -69,10 +69,10 @@ select * from mytable;
 执行结果：
 
 ``` sql
-id    name  age
+id    name  age
 ----- ----- -----
-1     张三  21
-2     李四  23
+1     张三  21
+2     李四  23
 ```
 
 &emsp;&emsp;执行命令`.exit`，用于退出数据库。
