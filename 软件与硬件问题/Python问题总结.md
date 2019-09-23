@@ -80,15 +80,15 @@ in this code, I tried to open port `COM4`, I already check this port is availabl
 
 ``` python
 while (cap.isOpened()):
-    ret, frame = cap.read()
+    ret, frame = cap.read()
 ​
-    if not ret:  # 如果不能抓取到一帧，说明我们到了视频的结尾
-        print("over!")
-        break
-    else:
-        cv2.imshow('frame', frame)
+    if not ret:  # 如果不能抓取到一帧，说明我们到了视频的结尾
+        print("over!")
+        break
+    else:
+        cv2.imshow('frame', frame)
 
-    if cv2.waitKey(1) & 0xFF == 27:  # 按下ESC键则退出
+    if cv2.waitKey(1) & 0xFF == 27:  # 按下ESC键则退出
         break
 ```
 
@@ -129,7 +129,7 @@ train, test, dicts = pickle.load(open("./dataset/atis.pkl", "rb"), encoding='iso
 
 ### AttributeError: _csv.reader object has no attribute next
 
-&emsp;&emsp;原来的代码如下所示：
+&emsp;&emsp;原来的代码如下：
 
 ``` python
 allElectronicsData = open('test.csv', 'rb')
@@ -206,7 +206,7 @@ X, Xt, y, yt = train_test_split(X, y)
 
 ### 打印array全部元素
 
-&emsp;&emsp;方法如下所示：
+&emsp;&emsp;方法如下：
 
 ``` python
 import numpy as np
@@ -296,7 +296,7 @@ sudo pip install --upgrade Pillow
 
 ### No module named apt_pkg
 
-&emsp;&emsp;解决方法如下所示：
+&emsp;&emsp;解决方法如下：
 
 ``` bash
 sudo apt-get remove --purge python-apt
@@ -331,7 +331,7 @@ import struct
 ​
 a = struct.pack("2I3sI", 12, 34, b"abc", 56)
 b = struct.unpack("2I3sI", a)
-print(b)  # 结果为(12, 34, b'abc', 56)
+print(b)  # 结果为(12, 34, b'abc', 56)
 ```
 
 ### TypeError: must be str, not bytes
@@ -452,7 +452,7 @@ sudo apt-get install python3-dev
 
 ### unexpected keyword argument keepdims
 
-&emsp;&emsp;I got the same error, and I found that according to the TensorFlow docs, the option has to be `keep_dims` instead of `keepdims` in the latest version, and Tensorflow `1.4.1` also.
+&emsp;&emsp;I got the same error, and I found that according to the `TensorFlow` docs, the option has to be `keep_dims` instead of `keepdims` in the latest version, and `Tensorflow 1.4.1` also.
 
 ### unexpected keyword argument serialized_options
 
@@ -477,7 +477,7 @@ pip install -U protobuf
 (2, 3)
 >>> B
 array([[2, 3, 0],
-       [0, 3, 1]], dtype=int64)
+       [0, 3, 1]], dtype=int64)
 ```
 
 ### got an unexpected keyword argument include_top
@@ -541,7 +541,7 @@ export LANG="en_US.UTF-8"
 
 ### Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X
 
-&emsp;&emsp;原始代码如下所示：
+&emsp;&emsp;原始代码如下：
 
 ``` python
 softmax = F.softmax(enout_att.squeeze(2))
@@ -566,10 +566,11 @@ print(t['d'])
 
 ``` python
 t = {'a': '1', 'b': '2', 'c': '3'}
+
 if 'd' in t:
     print(t['d'])
 else:
-    print('not exist')  # 输出“not exist”
+    print('not exist')  # 输出“not exist”
 ```
 
 &emsp;&emsp;第二种解决方法：利用`dict`内置的`get(key[, default])`方法，如果`key`存在，返回其`value`，否则返回`default`。使用这个方法永远不会触发`KeyError`：
