@@ -184,17 +184,17 @@ extern char *cgiQueryString;
 extern cgiUnescapeResultType cgiUnescapeChars ( char **sp, char *cp, int len );
 ​
 int cgiMain() {
-    char *buffer;
-    cgiHeaderContentType ( "text/html" );
-    fprintf ( cgiOut, "<HTML><HEAD>\n" );
-    fprintf ( cgiOut, "<TITLE>My CGI</TITLE></HEAD>\n" );
-    fprintf ( cgiOut, "<BODY>" );
-    cgiUnescapeChars ( &buffer, cgiQueryString, strlen ( cgiQueryString ) );
-    fprintf ( cgiOut, "<H1>%s</H1>", buffer );
-    fprintf ( cgiOut, "</BODY>\n" );
-    fprintf ( cgiOut, "</HTML>\n" );
-    free ( buffer );
-    return 0;
+    char *buffer;
+    cgiHeaderContentType ( "text/html" );
+    fprintf ( cgiOut, "<HTML><HEAD>\n" );
+    fprintf ( cgiOut, "<TITLE>My CGI</TITLE></HEAD>\n" );
+    fprintf ( cgiOut, "<BODY>" );
+    cgiUnescapeChars ( &buffer, cgiQueryString, strlen ( cgiQueryString ) );
+    fprintf ( cgiOut, "<H1>%s</H1>", buffer );
+    fprintf ( cgiOut, "</BODY>\n" );
+    fprintf ( cgiOut, "</HTML>\n" );
+    free ( buffer );
+    return 0;
 }
 ```
 
@@ -228,19 +228,19 @@ http://127.0.0.1/cgi-bin/chat.cgi? "this is a cgi user"
 #include <stdlib.h>
 ​
 int cgiMain() {
-    char name[241];
-    char number[241];
-    cgiHeaderContentType ( "text/html" );
-    fprintf ( cgiOut, "<HTML><HEAD>\n" );
-    fprintf ( cgiOut, "<TITLE>My CGI</TITLE></HEAD>\n" );
-    fprintf ( cgiOut, "<BODY>" );
-    cgiFormString ( "name", name, 241 );
-    cgiFormString ( "number", number, 241 );
-    fprintf ( cgiOut, "<H1>%s</H1>", name );
-    fprintf ( cgiOut, "<H1>%s</H1>", number );
-    fprintf ( cgiOut, "</BODY>\n" );
-    fprintf ( cgiOut, "</HTML>\n" );
-    return 0;
+    char name[241];
+    char number[241];
+    cgiHeaderContentType ( "text/html" );
+    fprintf ( cgiOut, "<HTML><HEAD>\n" );
+    fprintf ( cgiOut, "<TITLE>My CGI</TITLE></HEAD>\n" );
+    fprintf ( cgiOut, "<BODY>" );
+    cgiFormString ( "name", name, 241 );
+    cgiFormString ( "number", number, 241 );
+    fprintf ( cgiOut, "<H1>%s</H1>", name );
+    fprintf ( cgiOut, "<H1>%s</H1>", number );
+    fprintf ( cgiOut, "</BODY>\n" );
+    fprintf ( cgiOut, "</HTML>\n" );
+    return 0;
 }
 ```
 
