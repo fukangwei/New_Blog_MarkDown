@@ -568,30 +568,30 @@ print(t['d'])
 t = {'a': '1', 'b': '2', 'c': '3'}
 
 if 'd' in t:
-    print(t['d'])
+    print(t['d'])
 else:
-    print('not exist')  # 输出“not exist”
+    print('not exist')  # 输出“not exist”
 ```
 
 &emsp;&emsp;第二种解决方法：利用`dict`内置的`get(key[, default])`方法，如果`key`存在，返回其`value`，否则返回`default`。使用这个方法永远不会触发`KeyError`：
 
 ``` python
 t = {'a': '1', 'b': '2', 'c': '3'}
-print(t.get('d', 'not exist'))  # 输出“not exist”
-print(t)  # 输出“{'a': '1', 'b': '2', 'c': '3'}”
+print(t.get('d', 'not exist'))  # 输出“not exist”
+print(t)  # 输出“{'a': '1', 'b': '2', 'c': '3'}”
 ```
 
 &emsp;&emsp;第三种解决方法：利用`dict`内置的`setdefault(key[, default])`方法，如果`key`存在，返回其`value`，否则插入此`key`，其`value`为`default`，并返回`default`。使用这个方法也永远不会触发`KeyError`：
 
 ``` python
 t = {'a': '1', 'b': '2', 'c': '3'}
-print(t.setdefault('d'))  # 输出“None”
-print(t)  # 输出“{'a': '1', 'b': '2', 'c': '3', 'd': None}”
+print(t.setdefault('d'))  # 输出“None”
+print(t)  # 输出“{'a': '1', 'b': '2', 'c': '3', 'd': None}”
 ```
 
 ### ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
 
-&emsp;&emsp;原来的代码如下所示：
+&emsp;&emsp;原来的代码如下：
 
 ``` python
 import numpy as np
@@ -602,9 +602,9 @@ a[1] = 1
 a[2] = 2
 ​
 if a == [1, 2, 3]:
-    print("OK")
+    print("OK")
 else:
-    print("NOT OK")
+    print("NOT OK")
 ```
 
 `Numpy`可以认为等号两边两个式子是数值不相等，返回`False`；也可以认为等号两边两个式子是逻辑相等，返回`True`。它觉得这是模棱两可的，因此放弃做判断。最好统一用`any`进行`或比较`，或者用`all`进行`与比较`。
@@ -616,12 +616,12 @@ a = np.zeros(3)
 a[0] = 0
 a[1] = 1
 a[2] = 2
-print((a == [0, 1, 2]).any())  # True
-print((a == [0, 1, 2]).all())  # True
-print((a == [1, 2, 3]).any())  # False
-print((a == [1, 2, 3]).all())  # False
-print((a == [0, 2, 3]).any())  # True
-print((a == [0, 2, 3]).all())  # False
+print((a == [0, 1, 2]).any())  # True
+print((a == [0, 1, 2]).all())  # True
+print((a == [1, 2, 3]).any())  # False
+print((a == [1, 2, 3]).all())  # False
+print((a == [0, 2, 3]).any())  # True
+print((a == [0, 2, 3]).all())  # False
 ```
 
 ### 添加PYTHONPATH
