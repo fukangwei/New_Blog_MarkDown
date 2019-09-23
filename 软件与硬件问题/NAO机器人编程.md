@@ -19,18 +19,18 @@ import naoqi
 &emsp;&emsp;在`python`文件中输入以下代码：
 
 ``` python
-from naoqi import ALProxy  # Import ALProxy
+from naoqi import ALProxy  # Import ALProxy
 ​
 # Create an ALProxy to the module you want to use
 tts = ALProxy("ALTextToSpeech", "10.16.20.43", 9559)
-tts.say("Hello, world!")  # Call a method
+tts.say("Hello, world!")  # Call a method
 ```
 
 执行结果是机器人说出`Hello, world!`。注意`10.16.20.43`是配置好的机器人`IP`地址，`9559`是机器人的端口号。
 
 ### Walk功能
 
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` python
 from naoqi import ALProxy
@@ -64,12 +64,12 @@ proxyMo.walkTo(x, y, theta)
 x = -0.2
 y = 0.0
 theta = 0.0
-proxyMo.walkTo(x, y, theta)  # 後ろに0.2[m]下がる
+proxyMo.walkTo(x, y, theta)  # 後ろに0.2[m]下がる
 ​
 x = 0.0
 y = 0.0
 theta = -1.5709
-proxyMo.walkTo(x, y, theta)  # 右に90度回転
+proxyMo.walkTo(x, y, theta)  # 右に90度回転
 ```
 
 &emsp;&emsp;`setWalkTargetVelocity`用于设置`NAO`的步行速度以及旋转速度：
@@ -94,23 +94,23 @@ y = 0.0
 theta = 0.0
 frequency = 0.6
 proxyMo.setWalkTargetVelocity(x, y, theta, frequency)
-time.sleep(2)  # 前方に歩行(2秒間)
+time.sleep(2)  # 前方に歩行(2秒間)
 ​
 x = 0.0
 theta = 0.5
 proxyMo.setWalkTargetVelocity(x, y, theta, frequency)
-time.sleep(2)  # 左方向に回転(2秒間)
+time.sleep(2)  # 左方向に回転(2秒間)
 ​
 x = 1.0
 theta = -0.5
 proxyMo.setWalkTargetVelocity(x, y, theta, frequency)
-time.sleep(5)  # 前進しながら右方向に回転(5秒間)
+time.sleep(5)  # 前進しながら右方向に回転(5秒間)
 ​
 x = 1.0
 theta = 0.0
 frequency = 1.0
 proxyMo.setWalkTargetVelocity(x, y, theta, frequency)
-time.sleep(5)  # やや早く前進(5秒間)
+time.sleep(5)  # やや早く前進(5秒間)
 ​
 # 速度ゼロ(ストップ)
 proxyMo.setWalkTargetVelocity(0.0, 0.0, 0.0, frequency)
@@ -145,7 +145,7 @@ proxy = ALProxy("ALRobotPosture", "10.16.20.43", 9559)
 print "Current posture: " + proxy.getPostureFamily()
 ```
 
-&emsp;&emsp;`NAO`机器人有`Posture family`的概念，如下所示：
+&emsp;&emsp;`NAO`机器人有`Posture family`的概念：
 &emsp;&emsp;As the number of possible postures is infinite, postures are grouped in `Posture families` in order to ease the interpretation of the current `posture`.
 &emsp;&emsp;For example, the posture family `Sitting` contains the postures `SitRelax` and `Sit` as well as all the approaching `postures`.
 &emsp;&emsp;Using `ALRobotPostureProxy::getPostureFamilyList` you can find out what are the available `posture families` on your robot. Here is the list of `posture families`:
@@ -167,7 +167,7 @@ Posture Family   | Description
 
 ### 调用摄像头
 
-&emsp;&emsp;代码如下所示：
+&emsp;&emsp;代码如下：
 
 ``` python
 from naoqi import ALProxy
@@ -194,6 +194,7 @@ while True:
         frameArray = np.frombuffer(imageNAO[6], dtype=np.uint8).reshape(
                                    [imageNAO[1], imageNAO[0], imageNAO[2]])
         cv2.imshow("pepper-top-camera-320x240", frameArray)
+
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 ```
