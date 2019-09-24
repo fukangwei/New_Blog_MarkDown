@@ -459,21 +459,23 @@ if __name__ == "__main__":
             print('Guess {}. Speak!'.format(i + 1))
             guess = recognize_speech_from_mic(recognizer, microphone)
 
-            if guess["transcription"]:
-                break
-            if not guess["success"]:
-                break
-            print("I didn't catch that. What did you say?\n")
+            if guess["transcription"]:
+                break
+
+            if not guess["success"]:
+                break
+
+            print("I didn't catch that. What did you say?\n")
 ​
-        if guess["error"]:  # if there was an error, stop the game
-            print("ERROR: {}".format(guess["error"]))
-            break
+        if guess["error"]:  # if there was an error, stop the game
+            print("ERROR: {}".format(guess["error"]))
+            break
 ​
-        print("You said: {}".format(guess["transcription"]))  # show the user the transcription
+        print("You said: {}".format(guess["transcription"]))  # show the user the transcription
 ​
-        # determine if guess is correct and if any attempts remain
-        guess_is_correct = guess["transcription"].lower() == word.lower()
-        user_has_more_attempts = i < NUM_GUESSES - 1
+        # determine if guess is correct and if any attempts remain
+        guess_is_correct = guess["transcription"].lower() == word.lower()
+        user_has_more_attempts = i < NUM_GUESSES - 1
 ​
         # determine if the user has won the game. if not, repeat the loop if user has
         # more attempts; if no attempts left, the user loses the game
