@@ -89,20 +89,20 @@ def read_and_decode(filename):  # 读入dog_train.tfrecords
 &emsp;&emsp;有时我们希望检查分类是否有误，或者在之后的网络训练过程中可以监视、输出图片，来观察分类等操作的结果，那么就可以在`session`回话中，将`tfrecord`的图片从流中读取出来，再保存：
 
 ``` python
-filename_queue = tf.train.string_input_producer(["dog_train.tfrecords"])  # 读入流中
+filename_queue = tf.train.string_input_producer(["dog_train.tfrecords"])  # 读入流中
 reader = tf.TFRecordReader()
-_, serialized_example = reader.read(filename_queue)  # 返回文件名和文件
+_, serialized_example = reader.read(filename_queue)  # 返回文件名和文件
 features = tf.parse_single_example(
     serialized_example,
     features={
         'label': tf.FixedLenFeature([], tf.int64),
-        'img_raw': tf.FixedLenFeature([], tf.string),})  # 取出包含image和label的feature对象
+        'img_raw': tf.FixedLenFeature([], tf.string),})  # 取出包含image和label的feature对象
 ​
 image = tf.decode_raw(features['img_raw'], tf.uint8)
 image = tf.reshape(image, [128, 128, 3])
 label = tf.cast(features['label'], tf.int32)
 ​
-with tf.Session() as sess:  # 开始一个会话
+with tf.Session() as sess:  # 开始一个会话
     init_op = tf.initialize_all_variables()
     sess.run(init_op)
     coord = tf.train.Coordinator()
