@@ -75,13 +75,13 @@ coord = tf.train.Coordinator()  # Create a coordinator, launch the queue runner 
 enqueue_threads = qr.create_threads(sess, coord=coord, start=True)
 
 for step in xrange(1000000):  # Run the training loop, controlling termination with the coordinator
-    if coord.should_stop():
-        break
+    if coord.should_stop():
+        break
 
-    sess.run(train_op)
+    sess.run(train_op)
 ​
-coord.request_stop()  # When done, ask the threads to stop
-coord.join(threads)  # And wait for them to actually do it
+coord.request_stop()  # When done, ask the threads to stop
+coord.join(threads)  # And wait for them to actually do it
 ```
 
 ### 异常处理
@@ -90,12 +90,13 @@ coord.join(threads)  # And wait for them to actually do it
 
 ``` python
 try:
-    for step in xrange(1000000):
-        if coord.should_stop():
-            break
-        sess.run(train_op)
+    for step in xrange(1000000):
+        if coord.should_stop():
+            break
+
+        sess.run(train_op)
 except Exception, e:
-   coord.request_stop(e)  # Report exceptions to the coordinator
+    coord.request_stop(e)  # Report exceptions to the coordinator
 ​
 # Terminate as usual. It is innocuous to request stop twice
 coord.request_stop()
