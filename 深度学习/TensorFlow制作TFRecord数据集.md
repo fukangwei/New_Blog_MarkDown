@@ -36,23 +36,23 @@ import tensorflow as tf
 from PIL import Image
 ​
 cwd = '/home/data/'
-classes = {'husky', 'chihuahua'}  # 人为设定为2类
-writer = tf.python_io.TFRecordWriter("dog_train.tfrecords")  # 要生成的文件
+classes = {'husky', 'chihuahua'}  # 人为设定为2类
+writer = tf.python_io.TFRecordWriter("dog_train.tfrecords")  # 要生成的文件
 ​
 for index, name in enumerate(classes):
-    class_path = cwd + name + '/'
-    for img_name in os.listdir(class_path):
-        img_path = class_path + img_name  # 每一个图片的地址
-​
-        img = Image.open(img_path)
-        img = img.resize((128, 128))
-        img_raw = img.tobytes()  # 将图片转化为二进制格式
+    class_path = cwd + name + '/'
+
+    for img_name in os.listdir(class_path):
+        img_path = class_path + img_name  # 每一个图片的地址
+        img = Image.open(img_path)
+        img = img.resize((128, 128))
+        img_raw = img.tobytes()  # 将图片转化为二进制格式
         # example对象对label和image数据进行封装
-        example = tf.train.Example(features=tf.train.Features(feature={
-            "label": tf.train.Feature(int64_list=tf.train.Int64List(value=[index])),
-            'img_raw': tf.train.Feature(bytes_list=tf.train.BytesList(value=[img_raw]))
-        }))
-        writer.write(example.SerializeToString())  # 序列转化为字符串
+        example = tf.train.Example(features=tf.train.Features(feature={
+            "label": tf.train.Feature(int64_list=tf.train.Int64List(value=[index])),
+            'img_raw': tf.train.Feature(bytes_list=tf.train.BytesList(value=[img_raw]))
+        }))
+        writer.write(example.SerializeToString())  # 序列转化为字符串
 ​
 writer.close()
 ```
@@ -74,11 +74,11 @@ def read_and_decode(filename):  # 读入dog_train.tfrecords
          'label': tf.FixedLenFeature([], tf.int64),
          'img_raw': tf.FixedLenFeature([], tf.string),})  # 将image数据和label取出来
 ​
-    img = tf.decode_raw(features['img_raw'], tf.uint8)
-    img = tf.reshape(img, [128, 128, 3])  # reshape为“128 * 128”的3通道图片
-    img = tf.cast(img, tf.float32) * (1. / 255) - 0.5  # 在流中抛出img张量
-    label = tf.cast(features['label'], tf.int32)  # 在流中抛出label张量
-    return img, label
+    img = tf.decode_raw(features['img_raw'], tf.uint8)
+    img = tf.reshape(img, [128, 128, 3])  # reshape为“128 * 128”的3通道图片
+    img = tf.cast(img, tf.float32) * (1. / 255) - 0.5  # 在流中抛出img张量
+    label = tf.cast(features['label'], tf.int32)  # 在流中抛出label张量
+    return img, label
 ```
 
 注意，`feature`的属性`label`和`img_raw`名称要和制作时统一，返回的`img`数据和`label`数据一一对应，它们是`2`个`tf`张量。

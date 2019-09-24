@@ -5,7 +5,7 @@ categories: 深度学习
 ---
 ### 支持的设备
 
-&emsp;&emsp;在一套标准的系统上通常有多个计算设备，`TensorFlow`支持`CPU`和GPU这两种设备。我们用指定字符串`strings`来标识这些设备：
+&emsp;&emsp;在一套标准的系统上通常有多个计算设备，`TensorFlow`支持`CPU`和`GPU`这两种设备。我们用指定字符串`strings`来标识这些设备：
 
 - `/cpu:0`：机器中的`CPU`。
 - `/gpu:0`：机器中的`GPU`，如果你有一个的话。
@@ -26,7 +26,7 @@ b = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[3, 2], name='b')
 c = tf.matmul(a, b)
 # 新建“session with log_device_placement”，并设置为True
 sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
-print(sess.run(c))  # 运行这个op
+print(sess.run(c))  # 运行这个op
 ```
 
 执行结果：
@@ -51,8 +51,8 @@ a: (Const): /job:localhost/replica:0/task:0/device:GPU:0
 import tensorflow as tf
 ​
 with tf.device('/cpu:0'):
-    a = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[2, 3], name='a')
-    b = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[3, 2], name='b')
+    a = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[2, 3], name='a')
+    b = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[3, 2], name='b')
 ​
 c = tf.matmul(a, b)
 sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
@@ -80,8 +80,8 @@ a: (Const): /job:localhost/replica:0/task:0/device:CPU:0
 import tensorflow as tf
 ​
 with tf.device('/gpu:2'):
-    a = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[2, 3], name='a')
-    b = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[3, 2], name='b')
+    a = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[2, 3], name='a')
+    b = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[3, 2], name='b')
 
 c = tf.matmul(a, b)
 sess = tf.Session(config=tf.ConfigProto(allow_soft_placement=True,
@@ -97,18 +97,19 @@ print(sess.run(c))
 import tensorflow as tf
 ​
 c = []
+
 for d in ['/gpu:2', '/gpu:3']:
-    with tf.device(d):
-        a = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[2, 3])
-        b = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[3, 2])
-        c.append(tf.matmul(a, b))
+    with tf.device(d):
+        a = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[2, 3])
+        b = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[3, 2])
+        c.append(tf.matmul(a, b))
 ​
 with tf.device('/cpu:0'):
-    sum = tf.add_n(c)
+    sum = tf.add_n(c)
 ​
 # 新建“session with log_device_placement”，并设置为True
 sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
-print(sess.run(sum))  # 运行这个op
+print(sess.run(sum))  # 运行这个op
 ```
 
 执行结果：
@@ -162,8 +163,8 @@ session = tf.Session(config=config)
 &emsp;&emsp;设置使用哪块`GPU`，可以是在`python`程序中设置：
 
 ``` python
-os.environ['CUDA_VISIBLE_DEVICES'] = '0'  # 使用“GPU 0”
-os.environ['CUDA_VISIBLE_DEVICES'] = '0,1'  # 使用“GPU 0”和“GPU 1”
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'  # 使用“GPU 0”
+os.environ['CUDA_VISIBLE_DEVICES'] = '0,1'  # 使用“GPU 0”和“GPU 1”
 ```
 
 ---
@@ -176,19 +177,19 @@ os.environ['CUDA_VISIBLE_DEVICES'] = '0,1'  # 使用“GPU 0”和“GPU 1”
 
 ``` python
 with g.device('/device:GPU:0'):
-    # All operations constructed in this context will be placed on GPU 0
+    # All operations constructed in this context will be placed on GPU 0
 with g.device(None):
-    # All operations constructed in this context will have no assigned device
+    # All operations constructed in this context will have no assigned device
 ​
 # Defines a function from "Operation" to device string
 def matmul_on_gpu(n):
-    if n.type == "MatMul":
-        return "/device:GPU:0"
-    else:
-        return "/cpu:0"
+    if n.type == "MatMul":
+        return "/device:GPU:0"
+    else:
+        return "/cpu:0"
 ​
 with g.device(matmul_on_gpu):
-    # All operations of type "MatMul" constructed in this context will be
+    # All operations of type "MatMul" constructed in this context will be
     # placed on GPU 0; all other operations will be placed on CPU 0
 ```
 
