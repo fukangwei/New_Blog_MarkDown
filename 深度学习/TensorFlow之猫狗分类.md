@@ -159,34 +159,36 @@ def inference(images, batch_size, n_classes):
     with tf.variable_scope("conv2") as scope:  # conv2
         weights = tf.get_variable("weights", shape=[3, 3, 16, 16], dtype=tf.float32, \
                                   initializer=tf.truncated_normal_initializer(stddev=0.1, dtype=tf.float32))
-        biases = tf.get_variable("biases", shape=[16], dtype=tf.float32, initializer=tf.constant_initializer(0.1))
-        conv = tf.nn.conv2d(norm1, weights, strides=[1, 1, 1, 1], padding="SAME")
-        pre_activation = tf.nn.bias_add(conv, biases)
-        conv2 = tf.nn.relu(pre_activation, name="conv2")
+        biases = tf.get_variable("biases", shape=[16], dtype=tf.float32, initializer=tf.constant_initializer(0.1))
+        conv = tf.nn.conv2d(norm1, weights, strides=[1, 1, 1, 1], padding="SAME")
+        pre_activation = tf.nn.bias_add(conv, biases)
+        conv2 = tf.nn.relu(pre_activation, name="conv2")
 
-    with tf.variable_scope("pooling2_lrn") as scope:  # pool2 && norm2
-        pool2 = tf.nn.max_pool(conv2, ksize=[1, 3, 3, 1], strides=[1, 2, 2, 1], padding="SAME", name="pooling2")
-        norm2 = tf.nn.lrn(pool2, depth_radius=4, bias=1.0, alpha=0.001 / 9.0, beta=0.75, name='norm2')
+    with tf.variable_scope("pooling2_lrn") as scope:  # pool2 && norm2
+        pool2 = tf.nn.max_pool(conv2, ksize=[1, 3, 3, 1], strides=[1, 2, 2, 1], padding="SAME", name="pooling2")
+        norm2 = tf.nn.lrn(pool2, depth_radius=4, bias=1.0, alpha=0.001 / 9.0, beta=0.75, name='norm2')
 
-    with tf.variable_scope("fc1") as scope:  # full-connect1
-        reshape = tf.reshape(norm2, shape=[batch_size, -1])
-        dim = reshape.get_shape()[1].value
-        weights = tf.get_variable("weights", shape=[dim, 128], dtype=tf.float32, \
+    with tf.variable_scope("fc1") as scope:  # full-connect1
+        reshape = tf.reshape(norm2, shape=[batch_size, -1])
+        dim = reshape.get_shape()[1].value
+        weights = tf.get_variable("weights", shape=[dim, 128], dtype=tf.float32, \
                                   initializer=tf.truncated_normal_initializer(stddev=0.005, dtype=tf.float32))
-        biases = tf.get_variable("biases", shape=[128], dtype=tf.float32, initializer=tf.constant_initializer(0.1))
-        fc1 = tf.nn.relu(tf.matmul(reshape, weights) + biases, name="fc1")
+        biases = tf.get_variable("biases", shape=[128], dtype=tf.float32, initializer=tf.constant_initializer(0.1))
+        fc1 = tf.nn.relu(tf.matmul(reshape, weights) + biases, name="fc1")
 
-    with tf.variable_scope("fc2") as scope:  # full_connect2
-        weights = tf.get_variable("weights", shape=[128, 128], dtype=tf.float32, \
+    with tf.variable_scope("fc2") as scope:  # full_connect2
+        weights = tf.get_variable("weights", shape=[128, 128], dtype=tf.float32, \
                                   initializer=tf.truncated_normal_initializer(stddev=0.005, dtype=tf.float32))
-        biases = tf.get_variable("biases", shape=[128], dtype=tf.float32, initializer=tf.constant_initializer(0.1))
-        fc2 = tf.nn.relu(tf.matmul(fc1, weights) + biases, name="fc2")
-    with tf.variable_scope("softmax_linear") as scope:  # softmax
-        weights = tf.get_variable("weights", shape=[128, n_classes], dtype=tf.float32, \
+        biases = tf.get_variable("biases", shape=[128], dtype=tf.float32, initializer=tf.constant_initializer(0.1))
+        fc2 = tf.nn.relu(tf.matmul(fc1, weights) + biases, name="fc2")
+
+    with tf.variable_scope("softmax_linear") as scope:  # softmax
+        weights = tf.get_variable("weights", shape=[128, n_classes], dtype=tf.float32, \
                                   initializer=tf.truncated_normal_initializer(stddev=0.005, dtype=tf.float32))
-        biases = tf.get_variable("biases", shape=[n_classes], dtype=tf.float32, initializer=tf.constant_initializer(0.1))
-        softmax_linear = tf.add(tf.matmul(fc2, weights), biases, name="softmax_linear")
-    return softmax_linear
+        biases = tf.get_variable("biases", shape=[n_classes], dtype=tf.float32, initializer=tf.constant_initializer(0.1))
+        softmax_linear = tf.add(tf.matmul(fc2, weights), biases, name="softmax_linear")
+
+    return softmax_linear
 ```
 
 发现程序里面有很多`with tf.variable_scope("name")`的语句，这其实是`TensorFlow`中的变量作用域机制，目的是有效便捷地管理需要的变量。变量作用域机制在`TensorFlow`中主要由两部分组成：
@@ -198,27 +200,30 @@ def inference(images, batch_size, n_classes):
 
 ``` python
 def losses(logits, labels):
-    with tf.variable_scope("loss") as scope:
-        cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(
+    with tf.variable_scope("loss") as scope:
+        cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(
                             logits=logits, labels=labels, name="xentropy_per_example")
-        loss = tf.reduce_mean(cross_entropy, name="loss")
-        tf.summary.scalar(scope.name + "loss", loss)
-    return loss
+        loss = tf.reduce_mean(cross_entropy, name="loss")
+        tf.summary.scalar(scope.name + "loss", loss)
+
+    return loss
 ​
 def trainning(loss, learning_rate):
-    with tf.name_scope("optimizer"):
-        optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate)
-        global_step = tf.Variable(0, name="global_step", trainable=False)
-        train_op = optimizer.minimize(loss, global_step=global_step)
-    return train_op
+    with tf.name_scope("optimizer"):
+        optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate)
+        global_step = tf.Variable(0, name="global_step", trainable=False)
+        train_op = optimizer.minimize(loss, global_step=global_step)
+
+    return train_op
 ​
 def evaluation(logits, labels):
-    with tf.variable_scope("accuracy") as scope:
-        correct = tf.nn.in_top_k(logits, labels, 1)
-        correct = tf.cast(correct, tf.float16)
-        accuracy = tf.reduce_mean(correct)
-        tf.summary.scalar(scope.name + "accuracy", accuracy)
-    return accuracy
+    with tf.variable_scope("accuracy") as scope:
+        correct = tf.nn.in_top_k(logits, labels, 1)
+        correct = tf.cast(correct, tf.float16)
+        accuracy = tf.reduce_mean(correct)
+        tf.summary.scalar(scope.name + "accuracy", accuracy)
+
+    return accuracy
 ```
 
 函数`losses`用于计算训练过程中的`loss`，这里输入参数`logtis`是函数`inference`的输出，代表图片对猫和狗的预测概率，`labels`则是图片对应的标签。
