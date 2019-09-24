@@ -479,14 +479,14 @@ if __name__ == "__main__":
 ​
         # determine if the user has won the game. if not, repeat the loop if user has
         # more attempts; if no attempts left, the user loses the game
-        if guess_is_correct:
-            print("Correct! You win!".format(word))
-            break
-        elif user_has_more_attempts:
-            print("Incorrect. Try again.\n")
-        else:
-            print("Sorry, you lose!\nI was thinking of '{}'.".format(word))
-            break
+        if guess_is_correct:
+            print("Correct! You win!".format(word))
+            break
+        elif user_has_more_attempts:
+            print("Incorrect. Try again.\n")
+        else:
+            print("Sorry, you lose!\nI was thinking of '{}'.".format(word))
+            break
 ```
 
 &emsp;&emsp;The `recognize_speech_from_mic()` function takes a `Recognizer` and `Microphone` instance as arguments and returns a dictionary with three keys. The first key, `success`, is a boolean that indicates whether or not the `API` request was successful. The second key, `error`, is either `None` or an error message indicating that the `API` is unavailable or the speech was unintelligible. Finally, the `transcription` key contains the transcription of the audio recorded by the microphone.
@@ -494,18 +494,18 @@ if __name__ == "__main__":
 
 ``` python
 if not isinstance(recognizer, sr.Recognizer):
-    raise TypeError('`recognizer` must be `Recognizer` instance')
+    raise TypeError('`recognizer` must be `Recognizer` instance')
 ​
 if not isinstance(microphone, sr.Microphone):
-    raise TypeError('`microphone` must be a `Microphone` instance')
+    raise TypeError('`microphone` must be a `Microphone` instance')
 ```
 
 The `listen()` method is then used to record microphone input:
 
 ``` python
 with microphone as source:
-    recognizer.adjust_for_ambient_noise(source)
-    audio = recognizer.listen(source)
+    recognizer.adjust_for_ambient_noise(source)
+    audio = recognizer.listen(source)
 ```
 
 The `adjust_for_ambient_noise()` method is used to calibrate the recognizer for changing noise conditions each time the `recognize_speech_from_mic()` function is called.
@@ -515,12 +515,12 @@ The `adjust_for_ambient_noise()` method is used to calibrate the recognizer for 
 response = {"success": True, "error": None, "transcription": None}
 ​
 try:
-    response["transcription"] = recognizer.recognize_google(audio)
-except sr.RequestError:  # API was unreachable or unresponsive
-    response["success"] = False
-    response["error"] = "API unavailable"
+    response["transcription"] = recognizer.recognize_google(audio)
+except sr.RequestError:  # API was unreachable or unresponsive
+    response["success"] = False
+    response["error"] = "API unavailable"
 except sr.UnknownValueError:
-    response["error"] = "Unable to recognize speech"  # speech was unintelligible
+    response["error"] = "Unable to recognize speech"  # speech was unintelligible
 ​
 return response
 ```
@@ -563,8 +563,10 @@ for j in range(PROMPT_LIMIT):
 
     if guess["transcription"]:
         break
+
     if not guess["success"]:
         break
+
     print("I didn't catch that. What did you say?\n")
 ```
 
