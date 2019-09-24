@@ -69,23 +69,23 @@ def get_files(file_dir):
 ``` python
 # 生成相同大小的批次，参数capacity队列容量，返回值是图像和标签的batch
 def get_batch(image, label, image_W, image_H, batch_size, capacity):
-    # 将python.list类型转换成tf能够识别的格式
-    image = tf.cast(image, tf.string)
-    label = tf.cast(label, tf.int32)
+    # 将python.list类型转换成tf能够识别的格式
+    image = tf.cast(image, tf.string)
+    label = tf.cast(label, tf.int32)
 
-    input_queue = tf.train.slice_input_producer([image, label])  # 生成队列
-    image_contents = tf.read_file(input_queue[0])
-    label = input_queue[1]
-    image = tf.image.decode_jpeg(image_contents, channels=3)
+    input_queue = tf.train.slice_input_producer([image, label])  # 生成队列
+    image_contents = tf.read_file(input_queue[0])
+    label = input_queue[1]
+    image = tf.image.decode_jpeg(image_contents, channels=3)
     # 统一图片大小
-    image = tf.image.resize_images(image, [image_H, image_W], \
+    image = tf.image.resize_images(image, [image_H, image_W], \
                                    method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
-    image = tf.cast(image, tf.float32)
-    image_batch, label_batch = tf.train.batch([image, label], batch_size=batch_size, \
+    image = tf.cast(image, tf.float32)
+    image_batch, label_batch = tf.train.batch([image, label], batch_size=batch_size, \
                                               num_threads=64, capacity=capacity)
 ​
-    # label_batch = tf.reshape(label_batch, [batch_size])
-    return image_batch, label_batch
+    # label_batch = tf.reshape(label_batch, [batch_size])
+    return image_batch, label_batch
 ```
 
 &emsp;&emsp;函数`get_batch`用于将图片分批次，因为一次性将所有`25000`张图片载入内存不现实也不必要，所以将图片分成不同批次进行训练。对于把训练数据集设置成一个个`batch`，其解释为：如果损失函数是非凸的话，整个训练样本尽管算的动，可能会卡在局部最优解上；分批训练表示全样本的抽样实现，也就是相当于人为地引入了修正梯度上的采样噪声，使得`一路不同，找别路`的方法，更有可能搜索到全局最优解。这里传入的`image`和`label`参数就是函数`get_files`返回的`image_list`和`label_list`，是`python`中的`list`类型，所以需要将其转为`TensorFlow`可以识别的`tensor`格式。
@@ -116,6 +116,7 @@ with tf.Session() as sess:
     i = 0
     coord = tf.train.Coordinator()
     threads = tf.train.start_queue_runners(coord=coord)
+
     try:
         while not coord.should_stop() and i < 1:
             img, label = sess.run([image_batch, label_batch])
