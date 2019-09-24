@@ -31,32 +31,35 @@ import os
 ``` python
 # 获取文件路径和标签，file_dir是文件夹路径，该函数返回乱序后的图片和标签
 def get_files(file_dir):
-    cats = []
-    label_cats = []
-    dogs = []
-    label_dogs = []
-    for file in os.listdir(file_dir):  # 载入数据路径并写入标签值
-        name = file.split(sep='.')
-        if name[0] == 'cat':
-            cats.append(file_dir + file)
-            label_cats.append(0)
-        else:
-            dogs.append(file_dir + file)
-            label_dogs.append(1)
-    print("There are %d cats\nThere are %d dogs" % (len(cats), len(dogs)))
+    cats = []
+    label_cats = []
+    dogs = []
+    label_dogs = []
+
+    for file in os.listdir(file_dir):  # 载入数据路径并写入标签值
+        name = file.split(sep='.')
+
+        if name[0] == 'cat':
+            cats.append(file_dir + file)
+            label_cats.append(0)
+        else:
+            dogs.append(file_dir + file)
+            label_dogs.append(1)
+
+    print("There are %d cats\nThere are %d dogs" % (len(cats), len(dogs)))
 ​
-    # 打乱文件顺序
-    image_list = np.hstack((cats, dogs))
-    label_list = np.hstack((label_cats, label_dogs))
-    temp = np.array([image_list, label_list])
-    temp = temp.transpose()  # 转置
-    np.random.shuffle(temp)
+    # 打乱文件顺序
+    image_list = np.hstack((cats, dogs))
+    label_list = np.hstack((label_cats, label_dogs))
+    temp = np.array([image_list, label_list])
+    temp = temp.transpose()  # 转置
+    np.random.shuffle(temp)
 ​
-    image_list = list(temp[:, 0])
-    label_list = list(temp[:, 1])
-    label_list = [int(i) for i in label_list]
+    image_list = list(temp[:, 0])
+    label_list = list(temp[:, 1])
+    label_list = [int(i) for i in label_list]
 ​
-    return image_list, label_list
+    return image_list, label_list
 ```
 
 &emsp;&emsp;函数`get_files`的功能是获取给定路径`file_dir`下的所有的训练数据(包括图片和标签)，以`list`的形式返回。由于训练数据前`12500`张是猫，后`12500`张是狗，如果直接按这个顺序训练，训练效果可能会受影响(猜测的)，所以需要将顺序打乱。因为图片和标签是一一对应的，所以要整合到一起乱序。
