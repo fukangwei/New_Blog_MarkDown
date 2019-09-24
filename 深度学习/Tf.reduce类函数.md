@@ -28,7 +28,7 @@ Return the reduced tensor.
 ``` python
 import tensorflow as tf
 ​
-x = tf.constant([[1, 4, 3], [4, 2, 6]], dtype=tf.float32)  # x.shape=(2, 3)
+x = tf.constant([[1, 4, 3], [4, 2, 6]], dtype=tf.float32)  # x.shape=(2, 3)
 y = tf.reduce_max(x, axis=1, keepdims=True)
 # 2行3列，“axis = 1”就在列维度操作，n列变成1列，即每一行求max，合到一列里
 # 相当于只有第1维有值，而其他几维没东西了，第1维存的是其他几维的max
@@ -48,7 +48,7 @@ print("----------")
 x = tf.constant([
         [[1, 2, 3], [4, 5, 6]],
         [[22, 33, 44], [55, 66, 77]]
-    ], dtype=tf.float32)  # x.shape=(2, 2, 3)
+    ], dtype=tf.float32)  # x.shape=(2, 2, 3)
 y = tf.reduce_max(x, axis=0, keepdims=True)
 sess = tf.Session()
 print(sess.run(y))
@@ -111,9 +111,9 @@ Defined in `tensorflow/python/ops/math_ops.py`. Computes the mean of elements a
 
 ``` python
 x = tf.constant([[1., 1.], [2., 2.]])
-tf.reduce_mean(x)  # 1.5
-tf.reduce_mean(x, 0)  # [1.5, 1.5]
-tf.reduce_mean(x, 1)  # [1.,  2.]
+tf.reduce_mean(x)  # 1.5
+tf.reduce_mean(x, 0)  # [1.5, 1.5]
+tf.reduce_mean(x, 1)  # [1.,  2.]
 ```
 
 - `input_tensor`: The tensor to reduce. Should have numeric type.
@@ -128,9 +128,9 @@ Return the reduced tensor. Equivalent to `np.mean`.
 
 ``` python
 x = tf.constant([1, 0, 1, 0])
-tf.reduce_mean(x)  # 0
+tf.reduce_mean(x)  # 0
 y = tf.constant([1., 0., 1., 0.])
-tf.reduce_mean(y)  # 0.5
+tf.reduce_mean(y)  # 0.5
 ```
 
 ### tf.reduce_sum
@@ -150,11 +150,11 @@ Computes the sum of elements across dimensions of a tensor.
 
 ``` python
 x = tf.constant([[1, 1, 1], [1, 1, 1]])
-tf.reduce_sum(x)  # 6
-tf.reduce_sum(x, 0)  # [2, 2, 2]
-tf.reduce_sum(x, 1)  # [3, 3]
-tf.reduce_sum(x, 1, keep_dims=True)  # [[3], [3]]
-tf.reduce_sum(x, [0, 1])  # 6
+tf.reduce_sum(x)  # 6
+tf.reduce_sum(x, 0)  # [2, 2, 2]
+tf.reduce_sum(x, 1)  # [3, 3]
+tf.reduce_sum(x, 1, keep_dims=True)  # [[3], [3]]
+tf.reduce_sum(x, [0, 1])  # 6
 ```
 
 - `input_tensor`: The tensor to reduce. Should have numeric type.
