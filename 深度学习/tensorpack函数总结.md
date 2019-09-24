@@ -6,7 +6,6 @@ categories: 深度学习
 ### dataflow.TestDataSpeed
 
 &emsp;&emsp;class `dataflow.TestDataSpeed(ds, size=5000, warmup=0)`: Test the speed of some `DataFlow`.
-&emsp;&emsp;Parameters:
 
 - `ds` (`DataFlow`): the `DataFlow` to test.
 - `size` (`int`): number of datapoints to fetch.
@@ -21,7 +20,7 @@ categories: 深度学习
 ### dataflow.MultiThreadMapData
 
 &emsp;&emsp;class `dataflow.MultiThreadMapData(ds, nr_thread, map_func, buffer_size=200, strict=False)`: Same as `MapData`, but start threads to run the mapping function. This is useful when the mapping function is the bottleneck, but you don't want to start processes for the entire dataflow pipeline.
-&emsp;&emsp;**Note**: There is tiny communication overhead with threads, but you should avoid starting many threads in your main process to reduce GIL contention.
+&emsp;&emsp;**Note**: There is tiny communication overhead with threads, but you should avoid starting many threads in your main process to reduce `GIL` contention.
 &emsp;&emsp;The threads will only start in the process which calls `reset_state()`. Therefore you can use `PrefetchDataZMQ(MultiThreadMapData(...), 1)` to reduce `GIL` contention.
 &emsp;&emsp;Threads run in parallel and can take different time to run the mapping function. Therefore the order of datapoints won't be preserved, and datapoints from one pass of `df.get_data()` might get mixed with datapoints from the next pass.
 &emsp;&emsp;You can use strict mode, where `MultiThreadMapData.get_data()` is guaranteed to produce the exact set which `df.get_data()` produces. Although the order of data still isn't preserved.
@@ -40,17 +39,13 @@ categories: 深度学习
 &emsp;&emsp;**Note**: This dataflow itself doesn't modify the datapoints. But please make sure func doesn't modify the components unless you're certain it's safe.
 &emsp;&emsp;If you discard some datapoints, `ds.size()` will be incorrect.
 
-&emsp;&emsp;Parameters:
-
-- `ds` (`DataFlow`): input DataFlow.
+- `ds` (`DataFlow`): input `DataFlow`.
 - `func` (`TYPE -> TYPE | None`): takes `dp[index]`, returns a new value for `dp[index]`. return `None` to discard this datapoint.
 - `index` (`int`): index of the component.
 
 ### dataflow.BatchData
 
 &emsp;&emsp;class `dataflow.BatchData(ds, batch_size, remainder=False, use_list=False)`: Stack datapoints into batches. It produces datapoints of the same number of components as `ds`, but each component has one new extra dimension of size `batch_size`. The batch can be either a list of original components, or (by default) a numpy array of original components.
-
-&emsp;&emsp;Parameters:
 
 - `ds` (`DataFlow`): When `use_list=False`, the components of `ds` must be either scalars or `np.ndarray`, and have to be consistent in shapes.
 - `batch_size` (`int`): batch size.
@@ -59,14 +54,13 @@ categories: 深度学习
 
 &emsp;&emsp;Function:
 
-- `get_data()`: Yields: Batched data by stacking each component on an extra 0th dimension.
+- `get_data()`: Yields: Batched data by stacking each component on an extra `0_th` dimension.
 
 ### dataflow.MapData
 
 &emsp;&emsp;class `dataflow.MapData(ds, func)`: Apply a `mapper/filter` on the `DataFlow`.
 &emsp;&emsp;**Note**: Please make sure `func` doesn't modify the components unless you're certain it's safe.
 &emsp;&emsp;If you discard some datapoints, `ds.size()` will be incorrect.
-&emsp;&emsp;Parameters:
 
 - `ds` (`DataFlow`): input `DataFlow`.
 - `func` (`datapoint -> datapoint | None`): takes a datapoint and returns a new datapoint. Return `None` to discard this datapoint.
@@ -84,7 +78,6 @@ categories: 深度学习
 &emsp;&emsp;This has more serialization overhead than `PrefetchDataZMQ` when data is large.
 &emsp;&emsp;You can nest like this: `PrefetchDataZMQ(PrefetchData(df, nr_proc = a), nr_proc = b)`. A total of a instances of df worker processes will be created.
 &emsp;&emsp;fork happens in `__init__`. `reset_state()` is a `no-op`. The worker processes won't get called.
-&emsp;&emsp;Parameters:
 
 - `ds` (`DataFlow`): input `DataFlow`.
 - `nr_prefetch` (`int`): size of the queue to hold prefetched datapoints.
@@ -104,7 +97,6 @@ categories: 深度学习
 ### dataflow.RemoteDataZMQ
 
 &emsp;&emsp;class `dataflow.RemoteDataZMQ(addr1, addr2=None, hwm=50, bind=True)`: Produce data from `ZMQ PULL socket(s)`. It is the `receiver-side` counterpart of `send_dataflow_zmq()`, which uses `tensorpack.utils.serialize` for serialization. See `http://tensorpack.readthedocs.io/en/latest/tutorial/efficient-dataflow.html#distributed-dataflow`.
-&emsp;&emsp;Parameters:
 
 - `addr1`, `addr2` (`str`): addr of the `zmq` endpoint to connect to. Use both if you need two protocols (e.g. both `IPC` and `TCP`). I don't think you'll ever need `3`.
 - `hwm` (`int`): `ZMQ` `high-water` mark (buffer size).
