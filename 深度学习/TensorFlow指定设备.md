@@ -200,9 +200,9 @@ with g.device(matmul_on_gpu):
 device_spec = DeviceSpec(job="ps", device_type="GPU", device_index=0)
 
 with tf.device(device_spec):
-    # Both my_var and squared_var will be placed on /job:ps/device:GPU:0
-    my_var = tf.Variable(..., name="my_variable")
-    squared_var = tf.square(my_var)
+    # Both my_var and squared_var will be placed on /job:ps/device:GPU:0
+    my_var = tf.Variable(..., name="my_variable")
+    squared_var = tf.square(my_var)
 ```
 
 如果一个`DeviceSpec`被部分指定，将根据定义的范围与其他`DeviceSpecs`合并，在内部内定义的`DeviceSpec`组件优先于在外层内定义的组件：
