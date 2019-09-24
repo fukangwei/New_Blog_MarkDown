@@ -117,7 +117,6 @@ categories: 深度学习
 ### dataflow.imgaug.RotationAndCropValid
 
 &emsp;&emsp;class `dataflow.imgaug.RotationAndCropValid(max_deg, interp=cv2.INTER_LINEAR, step_deg=None)`: Random rotate and then crop the largest possible rectangle. Note that this will produce images of different shapes.
-
 &emsp;&emsp;Function:
 
 - `largest_rotated_rect(w, h, angle)`: Get largest rectangle after rotation.
