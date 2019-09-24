@@ -143,27 +143,31 @@ with tf.Session() as sess:
 import tensorflow as tf
 ​
 def inference(images, batch_size, n_classes):
-    # conv1, shape = [kernel_size, kernel_size, channels, kernel_numbers]
-    with tf.variable_scope("conv1") as scope:
-        weights = tf.get_variable("weights", shape=[3, 3, 3, 16], dtype=tf.float32, \
+    # conv1, shape = [kernel_size, kernel_size, channels, kernel_numbers]
+    with tf.variable_scope("conv1") as scope:
+        weights = tf.get_variable("weights", shape=[3, 3, 3, 16], dtype=tf.float32, \
                                   initializer=tf.truncated_normal_initializer(stddev=0.1, dtype=tf.float32))
-        biases = tf.get_variable("biases", shape=[16], dtype=tf.float32, initializer=tf.constant_initializer(0.1))
-        conv = tf.nn.conv2d(images, weights, strides=[1, 1, 1, 1], padding="SAME")
-        pre_activation = tf.nn.bias_add(conv, biases)
-        conv1 = tf.nn.relu(pre_activation, name="conv1")
-    with tf.variable_scope("pooling1_lrn") as scope:  # pool1 && norm1
-        pool1 = tf.nn.max_pool(conv1, ksize=[1, 3, 3, 1], strides=[1, 2, 2, 1], padding="SAME", name="pooling1")
-        norm1 = tf.nn.lrn(pool1, depth_radius=4, bias=1.0, alpha=0.001 / 9.0, beta=0.75, name='norm1')
-    with tf.variable_scope("conv2") as scope:  # conv2
-        weights = tf.get_variable("weights", shape=[3, 3, 16, 16], dtype=tf.float32, \
+        biases = tf.get_variable("biases", shape=[16], dtype=tf.float32, initializer=tf.constant_initializer(0.1))
+        conv = tf.nn.conv2d(images, weights, strides=[1, 1, 1, 1], padding="SAME")
+        pre_activation = tf.nn.bias_add(conv, biases)
+        conv1 = tf.nn.relu(pre_activation, name="conv1")
+
+    with tf.variable_scope("pooling1_lrn") as scope:  # pool1 && norm1
+        pool1 = tf.nn.max_pool(conv1, ksize=[1, 3, 3, 1], strides=[1, 2, 2, 1], padding="SAME", name="pooling1")
+        norm1 = tf.nn.lrn(pool1, depth_radius=4, bias=1.0, alpha=0.001 / 9.0, beta=0.75, name='norm1')
+
+    with tf.variable_scope("conv2") as scope:  # conv2
+        weights = tf.get_variable("weights", shape=[3, 3, 16, 16], dtype=tf.float32, \
                                   initializer=tf.truncated_normal_initializer(stddev=0.1, dtype=tf.float32))
         biases = tf.get_variable("biases", shape=[16], dtype=tf.float32, initializer=tf.constant_initializer(0.1))
         conv = tf.nn.conv2d(norm1, weights, strides=[1, 1, 1, 1], padding="SAME")
         pre_activation = tf.nn.bias_add(conv, biases)
         conv2 = tf.nn.relu(pre_activation, name="conv2")
+
     with tf.variable_scope("pooling2_lrn") as scope:  # pool2 && norm2
         pool2 = tf.nn.max_pool(conv2, ksize=[1, 3, 3, 1], strides=[1, 2, 2, 1], padding="SAME", name="pooling2")
         norm2 = tf.nn.lrn(pool2, depth_radius=4, bias=1.0, alpha=0.001 / 9.0, beta=0.75, name='norm2')
+
     with tf.variable_scope("fc1") as scope:  # full-connect1
         reshape = tf.reshape(norm2, shape=[batch_size, -1])
         dim = reshape.get_shape()[1].value
@@ -171,6 +175,7 @@ def inference(images, batch_size, n_classes):
                                   initializer=tf.truncated_normal_initializer(stddev=0.005, dtype=tf.float32))
         biases = tf.get_variable("biases", shape=[128], dtype=tf.float32, initializer=tf.constant_initializer(0.1))
         fc1 = tf.nn.relu(tf.matmul(reshape, weights) + biases, name="fc1")
+
     with tf.variable_scope("fc2") as scope:  # full_connect2
         weights = tf.get_variable("weights", shape=[128, 128], dtype=tf.float32, \
                                   initializer=tf.truncated_normal_initializer(stddev=0.005, dtype=tf.float32))
