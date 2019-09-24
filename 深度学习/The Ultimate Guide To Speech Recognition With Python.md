@@ -558,24 +558,24 @@ word = random.choice(WORDS)
 
 ``` python
 for j in range(PROMPT_LIMIT):
-    print('Guess {}. Speak!'.format(i + 1))
-    guess = recognize_speech_from_mic(recognizer, microphone)
+    print('Guess {}. Speak!'.format(i + 1))
+    guess = recognize_speech_from_mic(recognizer, microphone)
 
-    if guess["transcription"]:
-        break
+    if guess["transcription"]:
+        break
 
-    if not guess["success"]:
-        break
+    if not guess["success"]:
+        break
 
-    print("I didn't catch that. What did you say?\n")
+    print("I didn't catch that. What did you say?\n")
 ```
 
 Once the inner for loop terminates, the guess dictionary is checked for errors. If any occurred, the error message is displayed and the outer for loop is terminated with break, which will end the program execution.
 
 ``` python
 if guess['error']:
-    print("ERROR: {}".format(guess["error"]))
-    break
+    print("ERROR: {}".format(guess["error"]))
+    break
 ```
 
 &emsp;&emsp;If there weren't any errors, the transcription is compared to the randomly selected word. The `lower()` method for string objects is used to ensure better matching of the guess to the chosen word. The `API` may return speech matched to the word `apple` as `Apple` or `apple`, and either response should count as a correct answer.
@@ -586,13 +586,13 @@ guess_is_correct = guess["transcription"].lower() == word.lower()
 user_has_more_attempts = i < NUM_GUESSES - 1
 ​
 if guess_is_correct:
-    print('Correct! You win!'.format(word))
-    break
+    print('Correct! You win!'.format(word))
+    break
 elif user_has_more_attempts:
-    print('Incorrect. Try again.\n')
+    print('Incorrect. Try again.\n')
 else:
-    print("Sorry, you lose!\nI was thinking of '{}'.".format(word))
-    break
+    print("Sorry, you lose!\nI was thinking of '{}'.".format(word))
+    break
 ```
 
 When run, the output will look something like this:
@@ -626,7 +626,7 @@ import speech_recognition as sr
 r = sr.Recognizer()
 ​
 with sr.AudioFile('path/to/audiofile.wav') as source:
-    audio = r.record(source)
+    audio = r.record(source)
 ​
 r.recognize_google(audio, language='fr-FR')
 ```
