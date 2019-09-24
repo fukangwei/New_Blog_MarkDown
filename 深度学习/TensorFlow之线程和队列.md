@@ -146,13 +146,15 @@ y = x + 2
 q_inc = q.enqueue([y])
 ​
 with tf.Session() as sess:
-    sess.run(init)
-    for i in range(2):
-        sess.run(q_inc)  # 执行2次操作，队列的值变为0.3,、2.1、2.2
+    sess.run(init)
+
+    for i in range(2):
+        sess.run(q_inc)  # 执行2次操作，队列的值变为0.3、2.1、2.2
 ​
-    quelen = sess.run(q.size())
-    for i in range(quelen):
-        print(sess.run(q.dequeue()))
+    quelen = sess.run(q.size())
+
+    for i in range(quelen):
+        print(sess.run(q.dequeue()))
 ```
 
 执行结果：
@@ -177,10 +179,12 @@ tf.InteractiveSession()
 q = tf.RandomShuffleQueue(capacity=10, min_after_dequeue=2, dtypes='float')
 ​
 sess = tf.Session()
+
 for i in range(0, 10):
-    sess.run(q.enqueue(i))
+    sess.run(q.enqueue(i))
+
 for i in range(0, 8):
-    print(sess.run(q.dequeue()))
+    print(sess.run(q.dequeue()))
 ```
 
 执行结果是乱序的：
@@ -205,17 +209,17 @@ for i in range(0, 8):
 import tensorflow as tf
 ​
 q = tf.FIFOQueue(10, "float")
-counter = tf.Variable(0.0)  # 计数器
-increment_op = tf.assign_add(counter, 1.0)  # 给计数器加一
-enqueue_op = q.enqueue(counter)  # 将计数器加入队列
+counter = tf.Variable(0.0)  # 计数器
+increment_op = tf.assign_add(counter, 1.0)  # 给计数器加一
+enqueue_op = q.enqueue(counter)  # 将计数器加入队列
 # 创建QueueRunner，用多个线程向队列添加数据。这里实际创建了4个线程，两个增加计数，两个执行入队
 qr = tf.train.QueueRunner(q, enqueue_ops=[increment_op, enqueue_op] * 2)
-sess = tf.InteractiveSession()  # 主线程
+sess = tf.InteractiveSession()  # 主线程
 tf.global_variables_initializer().run()
-qr.create_threads(sess, start=True)  # 启动入队线程
+qr.create_threads(sess, start=True)  # 启动入队线程
 ​
 for i in range(20):
-    print(sess.run(q.dequeue()))
+    print(sess.run(q.dequeue()))
 ```
 
 执行结果：
@@ -243,10 +247,10 @@ for i in range(20):
 import tensorflow as tf
 ​
 q = tf.FIFOQueue(1000, 'float')
-counter = tf.Variable(0.0)  # 计数器
-increment_op = tf.assign_add(counter, tf.constant(1.0))  # 计数器加一
-enqueue_op = q.enqueue(counter)  # 入队
-# 线程面向队列q，启动2个线程，每个线程中是[in,en]两个操作
+counter = tf.Variable(0.0)  # 计数器
+increment_op = tf.assign_add(counter, tf.constant(1.0))  # 计数器加一
+enqueue_op = q.enqueue(counter)  # 入队
+# 线程面向队列q，启动2个线程，每个线程中是[in, en]两个操作
 qr = tf.train.QueueRunner(q, enqueue_ops=[increment_op, enqueue_op] * 2)
 ​
 sess = tf.Session()
@@ -257,10 +261,10 @@ coord = tf.train.Coordinator()
 enqueue_thread = qr.create_threads(sess, coord=coord, start=True)
 ​
 for i in range(0, 10):
-    print(sess.run(q.dequeue()))
+    print(sess.run(q.dequeue()))
 ​
-coord.request_stop()  # 向各个线程发终止信号
-coord.join(enqueue_thread)  # 等待各个线程成功结束
+coord.request_stop()  # 向各个线程发终止信号
+coord.join(enqueue_thread)  # 等待各个线程成功结束
 ```
 
 执行结果：
