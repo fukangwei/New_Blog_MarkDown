@@ -209,10 +209,10 @@ with tf.device(device_spec):
 
 ``` python
 with tf.device(DeviceSpec(job="train",)):
-    with tf.device(DeviceSpec(job="ps", device_type="GPU", device_index=0):
-        # Nodes created here will be assigned to /job:ps/device:GPU:0
-    with tf.device(DeviceSpec(device_type="GPU", device_index=1):
-        # Nodes created here will be assigned to /job:train/device:GPU:1
+    with tf.device(DeviceSpec(job="ps", device_type="GPU", device_index=0):
+        # Nodes created here will be assigned to /job:ps/device:GPU:0
+    with tf.device(DeviceSpec(device_type="GPU", device_index=1):
+        # Nodes created here will be assigned to /job:train/device:GPU:1
 ```
 
 &emsp;&emsp;`DeviceSpec`的参数如下：

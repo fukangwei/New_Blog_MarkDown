@@ -31,17 +31,19 @@ categories: 深度学习
 首先创建一个`Coordinator`对象，然后建立一些使用`Coordinator`对象的线程。这些线程通常一直循环运行，一直到`should_stop`返回`True`时停止。任何线程都可以决定计算什么时候应该停止。它只需要调用`request_stop`，同时其他线程的`should_stop`将会返回`True`，然后都停下来。
 
 ``` python
-def MyLoop(coord):  # 循环执行，直到Coordinator收到了停止请求
-    while not coord.should_stop():
-        do something
-        if some condition: # 如果某些条件为真，请求Coordinator去停止其他线程
-            coord.request_stop()
+def MyLoop(coord):  # 循环执行，直到Coordinator收到了停止请求
+    while not coord.should_stop():
+        do something
+
+        if some condition:  # 如果某些条件为真，请求Coordinator去停止其他线程
+            coord.request_stop()
 ​
-coord = Coordinator()  # Main code: create a coordinator
+coord = Coordinator()  # Main code: create a coordinator
 # Create 10 threads that run 'MyLoop()'
 threads = [threading.Thread(target=MyLoop, args=(coord)) for i in range(10)]
-for t in threads:  # Start the threads and wait for all of them to stop
-    t.start()
+
+for t in threads:  # Start the threads and wait for all of them to stop
+    t.start()
 ​
 coord.join(threads)
 ```
@@ -68,12 +70,14 @@ train_op = ...use 'inputs' to build the training part of the graph...
 # Create a queue runner that will run 4 threads in parallel to enqueue examples
 qr = tf.train.QueueRunner(queue, [enqueue_op] * 4)
 ​
-sess = tf.Session()  # Launch the graph
-coord = tf.train.Coordinator()  # Create a coordinator, launch the queue runner threads
+sess = tf.Session()  # Launch the graph
+coord = tf.train.Coordinator()  # Create a coordinator, launch the queue runner threads
 enqueue_threads = qr.create_threads(sess, coord=coord, start=True)
-for step in xrange(1000000):  # Run the training loop, controlling termination with the coordinator
+
+for step in xrange(1000000):  # Run the training loop, controlling termination with the coordinator
     if coord.should_stop():
         break
+
     sess.run(train_op)
 ​
 coord.request_stop()  # When done, ask the threads to stop
