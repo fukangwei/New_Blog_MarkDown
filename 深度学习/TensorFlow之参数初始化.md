@@ -3,7 +3,7 @@ title: TensorFlow之参数初始化
 date: 2019-01-01 14:23:16
 categories: 深度学习
 ---
-&emsp;&emsp;CNN中最重要的就是参数了，包括`W`和`b`。训练`CNN`的最终目的就是得到最好的参数，使得目标函数取得最小值。参数的初始化也同样重要，因此微调受到很多人的重视。`tf`提供的所有初始化方法都定义在`tensorflow/python/ops/init_ops.py`。
+&emsp;&emsp;`CNN`中最重要的就是参数了，包括`W`和`b`。训练`CNN`的最终目的就是得到最好的参数，使得目标函数取得最小值。参数的初始化也同样重要，因此微调受到很多人的重视。`tf`提供的所有初始化方法都定义在`tensorflow/python/ops/init_ops.py`。
 
 ### tf.constant_initializer
 
@@ -16,13 +16,12 @@ categories: 深度学习
 
 ``` python
 conv1 = tf.layers.conv2d(  # 方法1
-    batch_images, filters=64, kernel_size=7, strides=2, activation=tf.nn.relu,
-    kernel_initializer=tf.TruncatedNormal(stddev=0.01), bias_initializer=tf.Constant(0)
-)
+    batch_images, filters=64, kernel_size=7, strides=2, activation=tf.nn.relu,
+    kernel_initializer=tf.TruncatedNormal(stddev=0.01), bias_initializer=tf.Constant(0))
 
-bias_initializer = tf.constant_initializer(0)  # 方法2
-bias_initializer = tf.zeros_initializer()  # 方法3
-bias_initializer = tf.Zeros()  # 方法4
+bias_initializer = tf.constant_initializer(0)  # 方法2
+bias_initializer = tf.zeros_initializer()  # 方法3
+bias_initializer = tf.Zeros()  # 方法4
 ```
 
 将`W`初始化成拉普拉斯算子的方法如下：
@@ -44,14 +43,14 @@ tf.TruncatedNormal(mean=0.0, stddev=1.0, seed=None, dtype=dtypes.float32)
 这四个参数分别用于指定均值、标准差、随机数种子和随机数的数据类型，一般只需要设置`stddev`这一个参数。
 
 ``` python
-conv1 = tf.layers.conv2d(  # 代码示例1
-    batch_images, filters=64, kernel_size=7, strides=2, activation=tf.nn.relu,
-    kernel_initializer=tf.TruncatedNormal(stddev=0.01), bias_initializer=tf.Constant(0))
+conv1 = tf.layers.conv2d(  # 代码示例1
+    batch_images, filters=64, kernel_size=7, strides=2, activation=tf.nn.relu,
+    kernel_initializer=tf.TruncatedNormal(stddev=0.01), bias_initializer=tf.Constant(0))
 ​
-conv1 = tf.layers.conv2d(  # 代码示例2
-    batch_images, filters=64, kernel_size=7, strides=2, activation=tf.nn.relu,
-    kernel_initializer=tf.truncated_normal_initializer(stddev=0.01),
-    bias_initializer=tf.zero_initializer())
+conv1 = tf.layers.conv2d(  # 代码示例2
+    batch_images, filters=64, kernel_size=7, strides=2, activation=tf.nn.relu,
+    kernel_initializer=tf.truncated_normal_initializer(stddev=0.01),
+    bias_initializer=tf.zero_initializer())
 ```
 
 ### tf.random_normal_initializer
@@ -80,7 +79,7 @@ tf.UniformUnitScaling(factor=1.0, seed=None, dtype=dtypes.float32)
 
 ``` python
 max_val = math.sqrt(3 / input_size) * factor
-min_val = - max_val
+min_val = -max_val
 ```
 
 这里的`input_size`是指输入数据的维数，假设输入为`x`，运算为`x * W`，则`input_size= W.shape[0]`，它的分布区间为`[-max_val, max_val]`。
