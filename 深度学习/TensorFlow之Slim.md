@@ -226,10 +226,11 @@ with slim.arg_scope(
     [slim.conv2d, slim.fully_connected], activation_fn=tf.nn.relu,
     weights_initializer=tf.truncated_normal_initializer(stddev=0.01),
     weights_regularizer=slim.l2_regularizer(0.0005)):
-    with slim.arg_scope([slim.conv2d], stride=1, padding='SAME'):
-        net = slim.conv2d(inputs, 64, [11, 11], 4, padding='VALID', scope='conv1')
-        net = slim.conv2d(net, 256, [5, 5], weights_initializer=tf.truncated_normal_initializer(stddev=0.03), scope='conv2')
-        net = slim.fully_connected(net, 1000, activation_fn=None, scope='fc')
+
+    with slim.arg_scope([slim.conv2d], stride=1, padding='SAME'):
+        net = slim.conv2d(inputs, 64, [11, 11], 4, padding='VALID', scope='conv1')
+        net = slim.conv2d(net, 256, [5, 5], weights_initializer=tf.truncated_normal_initializer(stddev=0.03), scope='conv2')
+        net = slim.fully_connected(net, 1000, activation_fn=None, scope='fc')
 ```
 
 在第一个`arg_scope`中，卷积层和全连接层被应用于相同的权重初始化和权重正则化；在第二个`arg_scope`中，额外的参数仅仅对卷积层`conv2d`起作用。
@@ -244,22 +245,23 @@ def vgg16(inputs):
      [slim.conv2d, slim.fully_connected], activation_fn=tf.nn.relu,
      weights_initializer=tf.truncated_normal_initializer(0.0, 0.01),
      weights_regularizer=slim.l2_regularizer(0.0005)):
-        net = slim.repeat(inputs, 2, slim.conv2d, 64, [3, 3], scope='conv1')
-        net = slim.max_pool2d(net, [2, 2], scope='pool1')
-        net = slim.repeat(net, 2, slim.conv2d, 128, [3, 3], scope='conv2')
-        net = slim.max_pool2d(net, [2, 2], scope='pool2')
-        net = slim.repeat(net, 3, slim.conv2d, 256, [3, 3], scope='conv3')
-        net = slim.max_pool2d(net, [2, 2], scope='pool3')
-        net = slim.repeat(net, 3, slim.conv2d, 512, [3, 3], scope='conv4')
-        net = slim.max_pool2d(net, [2, 2], scope='pool4')
-        net = slim.repeat(net, 3, slim.conv2d, 512, [3, 3], scope='conv5')
-        net = slim.max_pool2d(net, [2, 2], scope='pool5')
-        net = slim.fully_connected(net, 4096, scope='fc6')
-        net = slim.dropout(net, 0.5, scope='dropout6')
-        net = slim.fully_connected(net, 4096, scope='fc7')
-        net = slim.dropout(net, 0.5, scope='dropout7')
-        net = slim.fully_connected(net, 1000, activation_fn=None, scope='fc8')
-    return net
+        net = slim.repeat(inputs, 2, slim.conv2d, 64, [3, 3], scope='conv1')
+        net = slim.max_pool2d(net, [2, 2], scope='pool1')
+        net = slim.repeat(net, 2, slim.conv2d, 128, [3, 3], scope='conv2')
+        net = slim.max_pool2d(net, [2, 2], scope='pool2')
+        net = slim.repeat(net, 3, slim.conv2d, 256, [3, 3], scope='conv3')
+        net = slim.max_pool2d(net, [2, 2], scope='pool3')
+        net = slim.repeat(net, 3, slim.conv2d, 512, [3, 3], scope='conv4')
+        net = slim.max_pool2d(net, [2, 2], scope='pool4')
+        net = slim.repeat(net, 3, slim.conv2d, 512, [3, 3], scope='conv5')
+        net = slim.max_pool2d(net, [2, 2], scope='pool5')
+        net = slim.fully_connected(net, 4096, scope='fc6')
+        net = slim.dropout(net, 0.5, scope='dropout6')
+        net = slim.fully_connected(net, 4096, scope='fc7')
+        net = slim.dropout(net, 0.5, scope='dropout7')
+        net = slim.fully_connected(net, 1000, activation_fn=None, scope='fc8')
+
+    return net
 ```
 
 ### Training Models
@@ -277,8 +279,8 @@ import tensorflow as tf
 import tensorflow.contrib.slim.nets as nets
 ​
 vgg = nets.vgg
-images, labels = ...  # Load the images and labels
-predictions, _ = vgg.vgg_16(images)  # Create the model
+images, labels = ...  # Load the images and labels
+predictions, _ = vgg.vgg_16(images)  # Create the model
 # Define the loss functions and get the total loss
 loss = slim.losses.softmax_cross_entropy(predictions, labels)
 ```
@@ -286,8 +288,8 @@ loss = slim.losses.softmax_cross_entropy(predictions, labels)
 在上面这个例子中，我们首先创建一个模型(利用`TF-Slim`的`VGG`实现)，然后增加了标准的分类`loss`。现在来看看当我们有一个多个输出的多任务模型的情况：
 
 ``` python
-images, scene_labels, depth_labels = ...  # Load the images and labels
-scene_predictions, depth_predictions = CreateMultiTaskModel(images)  # Create the model
+images, scene_labels, depth_labels = ...  # Load the images and labels
+scene_predictions, depth_predictions = CreateMultiTaskModel(images)  # Create the model
 # Define the loss functions and get the total loss
 classification_loss = slim.losses.softmax_cross_entropy(scene_predictions, scene_labels)
 sum_of_squares_loss = slim.losses.sum_of_squares(depth_predictions, depth_labels)
@@ -300,20 +302,20 @@ total_loss = slim.losses.get_total_loss(add_regularization_losses=False)
 &emsp;&emsp;如果你想让`TF-Slim`为你管理`losses`，但是你有一个自己实现的`loss`该怎么办？`loss_ops.py`也有一个函数可以将你自己实现的`loss`加到`TF-Slims collection`中：
 
 ``` python
-images, scene_labels, depth_labels, pose_labels = ...  # Load the images and labels
-scene_predictions, depth_predictions, pose_predictions = CreateMultiTaskModel(images)  # Create the model
+images, scene_labels, depth_labels, pose_labels = ...  # Load the images and labels
+scene_predictions, depth_predictions, pose_predictions = CreateMultiTaskModel(images)  # Create the model
 ​
 # Define the loss functions and get the total loss
 classification_loss = slim.losses.softmax_cross_entropy(scene_predictions, scene_labels)
 sum_of_squares_loss = slim.losses.sum_of_squares(depth_predictions, depth_labels)
 pose_loss = MyCustomLossFunction(pose_predictions, pose_labels)
-slim.losses.add_loss(pose_loss)  # Letting TF-Slim know about the additional loss.
+slim.losses.add_loss(pose_loss)  # Letting TF-Slim know about the additional loss.
 ​
 # The following two ways to compute the total loss are equivalent:
 regularization_loss = tf.add_n(slim.losses.get_regularization_losses())
 total_loss1 = classification_loss + sum_of_squares_loss + pose_loss + regularization_loss
 ​
-total_loss2 = slim.losses.get_total_loss()  # (Regularization Loss is included in the total loss by default)
+total_loss2 = slim.losses.get_total_loss()  # (Regularization Loss is included in the total loss by default)
 ```
 
 在这个例子中，我们既可以手动地计算的出全部的`loss function`，也可以让`TF-Slim`知道这个额外的`loss`，然后让`TF-Slim`处理这个`loss`。
@@ -332,7 +334,7 @@ optimizer = tf.train.GradientDescentOptimizer(learning_rate)
 # create_train_op ensures that each time we ask for the loss,
 # the update_ops are run and the gradients being computed are applied too
 train_op = slim.learning.create_train_op(total_loss, optimizer)
-logdir = ...  # Where checkpoints are stored.
+logdir = ...  # Where checkpoints are stored.
 slim.learning.train(train_op, logdir, number_of_steps=1000, save_summaries_secs=300, save_interval_secs=600):
 ```
 
