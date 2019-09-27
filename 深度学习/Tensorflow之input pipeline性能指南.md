@@ -19,15 +19,15 @@ categories: 深度学习
 
 ``` python
 def parse_fn(example):
-    """ Parse TFExample records and perform simple data augmentation """
-    example_fmt = {
-        "image": tf.FixedLengthFeature((), tf.string, ""),
-        "label": tf.FixedLengthFeature((), tf.int64, -1)
-    }
-    parsed = tf.parse_single_example(example, example_fmt)
-    image = tf.image.decode_image(parsed["image"])
-    image = _augment_helper(image)  # augments image using slice, reshape, resize_bilinear
-    return image, parsed["label"]
+    """ Parse TFExample records and perform simple data augmentation """
+    example_fmt = {
+        "image": tf.FixedLengthFeature((), tf.string, ""),
+        "label": tf.FixedLengthFeature((), tf.int64, -1)
+    }
+    parsed = tf.parse_single_example(example, example_fmt)
+    image = tf.image.decode_image(parsed["image"])
+    image = _augment_helper(image)  # augments image using slice, reshape, resize_bilinear
+    return image, parsed["label"]
 ​
 def input_fn():
     files = tf.data.Dataset.list_files("/path/to/dataset/train-*.tfrecord")
