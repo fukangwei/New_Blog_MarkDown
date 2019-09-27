@@ -619,8 +619,9 @@ dummy_input = torch.Tensor(1, n_letters)
 hidden = torch.Tensor(1, n_hidden)
 ​
 out, hidden = rnn(cat, dummy_input, hidden)
+
 with SummaryWriter(comment='RNN') as w:
-    w.add_graph(rnn, (cat, dummy_input, hidden), verbose=False)
+    w.add_graph(rnn, (cat, dummy_input, hidden), verbose=False)
 ```
 
 ---
@@ -643,16 +644,16 @@ write_op = tf.summary.merge_all()
 ​
 session = tf.InteractiveSession()
 session.run(tf.global_variables_initializer())
-​
+
 for i in range(100):
-    # for writer 1
-    summary = session.run(write_op, {log_var: random.rand()})
-    writer_1.add_summary(summary, i)
-    writer_1.flush()
-    # for writer 2
-    summary = session.run(write_op, {log_var: random.rand()})
-    writer_2.add_summary(summary, i)
-    writer_2.flush()
+    # for writer 1
+    summary = session.run(write_op, {log_var: random.rand()})
+    writer_1.add_summary(summary, i)
+    writer_1.flush()
+    # for writer 2
+    summary = session.run(write_op, {log_var: random.rand()})
+    writer_2.add_summary(summary, i)
+    writer_2.flush()
 ```
 
 使用`tensorboard.exe --logdir=./logs`来加载`tensorboard`运行环境：
