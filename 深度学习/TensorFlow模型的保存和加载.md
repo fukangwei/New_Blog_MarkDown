@@ -469,16 +469,16 @@ if not tf.gfile.Exists(MODEL_DIR):  # 创建目录
     tf.gfile.MakeDirs(MODEL_DIR)
 ​
 def freeze_graph(model_folder):
-    checkpoint = tf.train.get_checkpoint_state(model_folder)  # 检查目录下ckpt文件状态是否可用
-    input_checkpoint = checkpoint.model_checkpoint_path  # 得到ckpt文件路径
-    output_graph = os.path.join(MODEL_DIR, MODEL_NAME)  # PB模型保存路径
+    checkpoint = tf.train.get_checkpoint_state(model_folder)  # 检查目录下ckpt文件状态是否可用
+    input_checkpoint = checkpoint.model_checkpoint_path  # 得到ckpt文件路径
+    output_graph = os.path.join(MODEL_DIR, MODEL_NAME)  # PB模型保存路径
 ​
-    output_node_names = "predictions"  # 原模型输出操作节点的名字
+    output_node_names = "predictions"  # 原模型输出操作节点的名字
     # 得到图、clear_devices：Whether or not to clear the device field for an 'Operation' or 'Tensor' during import
-    saver = tf.train.import_meta_graph(input_checkpoint + '.meta', clear_devices=True)
+    saver = tf.train.import_meta_graph(input_checkpoint + '.meta', clear_devices=True)
 ​
-    graph = tf.get_default_graph()  # 获得默认的图
-    input_graph_def = graph.as_graph_def()  # 返回一个序列化的图代表当前的图
+    graph = tf.get_default_graph()  # 获得默认的图
+    input_graph_def = graph.as_graph_def()  # 返回一个序列化的图代表当前的图
 ​
     with tf.Session() as sess:
         saver.restore(sess, input_checkpoint)  # 恢复图并得到数据
