@@ -42,8 +42,8 @@ summary(model, (3, 224, 224))
          MaxPool2d-3         [-1, 64, 112, 112]               0
             Conv2d-4        [-1, 128, 112, 112]          73,856
               ReLU-5        [-1, 128, 112, 112]               0
-         MaxPool2d-6          [-1, 128, 56, 56]               0
-            Conv2d-7          [-1, 256, 56, 56]         295,168
+         MaxPool2d-6          [-1, 128, 56, 56]               0
+            Conv2d-7          [-1, 256, 56, 56]         295,168
               ReLU-8          [-1, 256, 56, 56]               0
             Conv2d-9          [-1, 256, 56, 56]         590,080
              ReLU-10          [-1, 256, 56, 56]               0
@@ -103,8 +103,9 @@ class Net(nn.Module):
         return F.log_softmax(x, dim=1)
 ​
 model = Net()
+
 if torch.cuda.is_available():
-    model = model.cuda()
+    model = model.cuda()
 ​
 summary(model, (1, 28, 28))
 ```
@@ -131,7 +132,7 @@ Params size (MB): 0.08
 Estimated Total Size (MB): 0.15
 ```
 
-&emsp;&emsp;多输入代码如下所示：
+&emsp;&emsp;多输入代码如下：
 
 ``` python
 import torch
