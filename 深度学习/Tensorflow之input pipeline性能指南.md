@@ -30,12 +30,12 @@ def parse_fn(example):
     return image, parsed["label"]
 ​
 def input_fn():
-    files = tf.data.Dataset.list_files("/path/to/dataset/train-*.tfrecord")
-    dataset = files.interleave(tf.data.TFRecordDataset)
-    dataset = dataset.shuffle(buffer_size=FLAGS.shuffle_buffer_size)
-    dataset = dataset.map(map_func=parse_fn)
-    dataset = dataset.batch(batch_size=FLAGS.batch_size)
-    return dataset
+    files = tf.data.Dataset.list_files("/path/to/dataset/train-*.tfrecord")
+    dataset = files.interleave(tf.data.TFRecordDataset)
+    dataset = dataset.shuffle(buffer_size=FLAGS.shuffle_buffer_size)
+    dataset = dataset.map(map_func=parse_fn)
+    dataset = dataset.batch(batch_size=FLAGS.batch_size)
+    return dataset
 ```
 
 ### 性能优化
