@@ -3,7 +3,7 @@ title: Pytorch模型可视化
 date: 2019-01-09 17:04:20
 categories: 深度学习
 ---
-&emsp;&emsp;`torchsummary`可以用于模型的可视化，它会输出模型各层的详细参数以及输出尺寸。其安装方法如下所示：
+&emsp;&emsp;`torchsummary`可以用于模型的可视化，它会输出模型各层的详细参数以及输出尺寸。其安装方法如下：
 
 ``` bash
 pip install torchsummary
@@ -16,7 +16,7 @@ from torchsummary import summary
 summary(your_model, input_size=(channels, H, W))
 ```
 
-简单的例子如下所示：
+简单的例子如下：
 
 ``` python
 import torch
@@ -24,8 +24,9 @@ from torchsummary import summary
 from torchvision.models import vgg11
 ​
 model = vgg11(pretrained=False)
+
 if torch.cuda.is_available():
-    model = model.cuda()
+    model = model.cuda()
 ​
 summary(model, (3, 224, 224))
 ```
@@ -34,13 +35,13 @@ summary(model, (3, 224, 224))
 
 ``` python
 ----------------------------------------------------------------
-        Layer (type)               Output Shape         Param #
+        Layer (type)               Output Shape         Param #
 ================================================================
-            Conv2d-1         [-1, 64, 224, 224]           1,792
-              ReLU-2         [-1, 64, 224, 224]               0
-         MaxPool2d-3         [-1, 64, 112, 112]               0
-            Conv2d-4        [-1, 128, 112, 112]          73,856
-              ReLU-5        [-1, 128, 112, 112]               0
+            Conv2d-1         [-1, 64, 224, 224]           1,792
+              ReLU-2         [-1, 64, 224, 224]               0
+         MaxPool2d-3         [-1, 64, 112, 112]               0
+            Conv2d-4        [-1, 128, 112, 112]          73,856
+              ReLU-5        [-1, 128, 112, 112]               0
          MaxPool2d-6          [-1, 128, 56, 56]               0
             Conv2d-7          [-1, 256, 56, 56]         295,168
               ReLU-8          [-1, 256, 56, 56]               0
