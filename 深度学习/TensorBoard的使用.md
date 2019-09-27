@@ -209,19 +209,19 @@ for i in range(max_step):
         test_writer.add_summary(summary, i)
         print('Accuracy at step %s: %s' % (i, acc))
     else:
-        if i % 100 == 99:
-            run_options = tf.RunOptions(trace_level=tf.RunOptions.FULL_TRACE)
-            run_metadata = tf.RunMetadata()
-            summary, _ = sess.run(
+        if i % 100 == 99:
+            run_options = tf.RunOptions(trace_level=tf.RunOptions.FULL_TRACE)
+            run_metadata = tf.RunMetadata()
+            summary, _ = sess.run(
                             [merged, train_step], feed_dict=feed_dict(True),
                             options=run_options, run_metadata=run_metadata)
-            train_writer.add_run_metadata(run_metadata, 'step%03d' % i)
-            train_writer.add_summary(summary, i)
-            saver.save(sess, log_dir + "/model.ckpt", i)
-            print('Adding run metadata for', i)
-        else:
-            summary, _ = sess.run([merged, train_step], feed_dict=feed_dict(True))
-            train_writer.add_summary(summary, i)
+            train_writer.add_run_metadata(run_metadata, 'step%03d' % i)
+            train_writer.add_summary(summary, i)
+            saver.save(sess, log_dir + "/model.ckpt", i)
+            print('Adding run metadata for', i)
+        else:
+            summary, _ = sess.run([merged, train_step], feed_dict=feed_dict(True))
+            train_writer.add_summary(summary, i)
 ​
 train_writer.close()
 test_writer.close()
@@ -255,6 +255,7 @@ import numpy as np
 def add_layer(inputs, in_size, out_size, n_layer, activation_function=None):
     # add one more layer and return the output of this layer
     layer_name = 'layer%s' % n_layer
+
     with tf.name_scope(layer_name):
         with tf.name_scope('weights'):
             Weights = tf.Variable(tf.random_normal([in_size, out_size]), name='W')
@@ -264,11 +265,14 @@ def add_layer(inputs, in_size, out_size, n_layer, activation_function=None):
             tf.summary.histogram(layer_name + '/biases', biases)
         with tf.name_scope('Wx_plus_b'):
             Wx_plus_b = tf.add(tf.matmul(inputs, Weights), biases)
+
         if activation_function is None:
             outputs = Wx_plus_b
         else:
             outputs = activation_function(Wx_plus_b, )
+
         tf.summary.histogram(layer_name + '/outputs', outputs)
+
     return outputs
 ​
 # Make up some real data
