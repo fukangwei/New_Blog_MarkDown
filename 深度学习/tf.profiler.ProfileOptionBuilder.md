@@ -287,6 +287,7 @@ import keras.backend as K
 from keras.applications.mobilenet import MobileNet
 ​
 run_meta = tf.RunMetadata()
+
 with tf.Session(graph=tf.Graph()) as sess:
     K.set_session(sess)
     net = MobileNet(alpha=.75, input_tensor=tf.placeholder('float32', shape=(1, 32, 32, 3)))
