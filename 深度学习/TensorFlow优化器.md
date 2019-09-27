@@ -51,13 +51,15 @@ loss = tf.square(Y - X * w - b)
 train_op = tf.train.GradientDescentOptimizer(0.01).minimize(loss)
 ​
 with tf.Session() as sess:
-    sess.run(tf.global_variables_initializer())
-    epoch = 1
-    for i in range(10):
-        for (x, y) in zip(train_X, train_Y):
-            _, w_value, b_value = sess.run([train_op, w, b], feed_dict={X: x, Y: y})
-        print("Epoch: {}, w: {}, b: {}".format(epoch, w_value, b_value))
-        epoch += 1
+    sess.run(tf.global_variables_initializer())
+    epoch = 1
+
+    for i in range(10):
+        for (x, y) in zip(train_X, train_Y):
+            _, w_value, b_value = sess.run([train_op, w, b], feed_dict={X: x, Y: y})
+
+        print("Epoch: {}, w: {}, b: {}".format(epoch, w_value, b_value))
+        epoch += 1
 ​
 plt.plot(train_X, train_Y, "+")
 plt.plot(train_X, train_X.dot(w_value) + b_value)
@@ -92,9 +94,9 @@ x = tf.Variable(tf.truncated_normal([1]), name="x")
 goal = tf.pow(x - 3, 2, name="goal")
 ​
 with tf.Session() as sess:
-    x.initializer.run()
-    print(x.eval())
-    print(goal.eval())
+    x.initializer.run()
+    print(x.eval())
+    print(goal.eval())
 ```
 
 执行结果：
@@ -116,12 +118,13 @@ optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.1)
 train_step = optimizer.minimize(goal)
 ​
 def train():
-    with tf.Session() as sess:
-        x.initializer.run()
-        for i in range(5):
-            print("x:", x.eval())
-            train_step.run()
-            print("goal:", goal.eval())
+    with tf.Session() as sess:
+        x.initializer.run()
+
+        for i in range(5):
+            print("x:", x.eval())
+            train_step.run()
+            print("goal:", goal.eval())
 ​
 train()
 ```
