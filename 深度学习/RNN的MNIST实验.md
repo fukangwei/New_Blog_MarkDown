@@ -257,16 +257,16 @@ accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
 init = tf.global_variables_initializer()
 ​
 with tf.Session() as sess:
-    sess.run(init)
-    step = 0
+    sess.run(init)
+    step = 0
 
-    while step * batch_size < training_iters:
-        batch_xs, batch_ys = mnist.train.next_batch(batch_size)
-        batch_xs = batch_xs.reshape([batch_size, n_steps, n_inputs])
-        sess.run([train_op], feed_dict={x: batch_xs, y: batch_ys, })
+    while step * batch_size < training_iters:
+        batch_xs, batch_ys = mnist.train.next_batch(batch_size)
+        batch_xs = batch_xs.reshape([batch_size, n_steps, n_inputs])
+        sess.run([train_op], feed_dict={x: batch_xs, y: batch_ys, })
 
-        if step % 20 == 0:
-            print(sess.run(accuracy, feed_dict={x: batch_xs, y: batch_ys, }))
+        if step % 20 == 0:
+            print(sess.run(accuracy, feed_dict={x: batch_xs, y: batch_ys, }))
 
-        step += 1
+        step += 1
 ```
