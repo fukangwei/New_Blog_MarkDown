@@ -332,20 +332,20 @@ with tf.Session() as sess:
 import tensorflow as tf
 ​
 with tf.Session() as sess:
-    with open('./graph.pb', 'rb') as f:
-        graph_def = tf.GraphDef()
-        graph_def.ParseFromString(f.read())
-        output = tf.import_graph_def(
+    with open('./graph.pb', 'rb') as f:
+        graph_def = tf.GraphDef()
+        graph_def.ParseFromString(f.read())
+        output = tf.import_graph_def(
                     graph_def, input_map={'input:0': 4.},
                     return_elements=['out:0'], name='a')
-        print(sess.run(output))
+        print(sess.run(output))
 ````
 
 执行结果：
 
 ``` python
 [array([[11.],
-       [12.]], dtype=float32)]
+        [12.]], dtype=float32)]
 ```
 
 &emsp;&emsp;当然也可以在`input_map`那里可以替换为自定义的`placeholder`：
@@ -356,13 +356,13 @@ import tensorflow as tf
 new_input = tf.placeholder(tf.float32, shape=())
 ​
 with tf.Session() as sess:
-    with open('./graph.pb', 'rb') as f:
-        graph_def = tf.GraphDef()
-        graph_def.ParseFromString(f.read())
-        output = tf.import_graph_def(
+    with open('./graph.pb', 'rb') as f:
+        graph_def = tf.GraphDef()
+        graph_def.ParseFromString(f.read())
+        output = tf.import_graph_def(
                     graph_def, input_map={'input:0': new_input},
                     return_elements=['out:0'], name='a')
-        print(sess.run(output, feed_dict={new_input: 4}))
+        print(sess.run(output, feed_dict={new_input: 4}))
 ```
 
 ---
@@ -384,8 +384,8 @@ import os.path
 MODEL_DIR = "model/ckpt"
 MODEL_NAME = "model.ckpt"
 ​
-if not tf.gfile.Exists(MODEL_DIR):  # 创建目录
-    tf.gfile.MakeDirs(MODEL_DIR)
+if not tf.gfile.Exists(MODEL_DIR):  # 创建目录
+    tf.gfile.MakeDirs(MODEL_DIR)
 ​
 # 下面的过程你可以替换成CNN、RNN等你想做的训练过程，这里只是简单的一个计算公式
 # 输入占位符，并指定名字，后续模型读取可能会用的
@@ -397,7 +397,7 @@ _y = (input_holder * W1) + B1
 predictions = tf.greater(_y, 50, name="predictions")
 ​
 init = tf.global_variables_initializer()
-saver = tf.train.Saver()  # 声明saver用于保存模型
+saver = tf.train.Saver()  # 声明saver用于保存模型
 ​
 with tf.Session() as sess:
     sess.run(init)
