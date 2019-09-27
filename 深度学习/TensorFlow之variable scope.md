@@ -293,12 +293,12 @@ with tf.variable_scope("scope1") as scope1:
 import tensorflow as tf
 ​
 with tf.name_scope('hidden') as scope:
-    a = tf.constant(5, name='alpha')
-    W = tf.Variable(tf.random_uniform([1, 2], -1.0, 1.0), name='weights')
-    b = tf.Variable(tf.zeros([1]), name='biases')
-    print(a.name)
-    print(W.name)
-    print(b.name)
+    a = tf.constant(5, name='alpha')
+    W = tf.Variable(tf.random_uniform([1, 2], -1.0, 1.0), name='weights')
+    b = tf.Variable(tf.zeros([1]), name='biases')
+    print(a.name)
+    print(W.name)
+    print(b.name)
 ```
 
 执行结果：
@@ -316,15 +316,15 @@ hidden/biases:0
 import tensorflow as tf
 ​
 def test(name=None):
-    with tf.variable_scope(name, default_name="scope") as scope:
-        w = tf.get_variable("w", shape=[2, 10])
+    with tf.variable_scope(name, default_name="scope") as scope:
+        w = tf.get_variable("w", shape=[2, 10])
 ​
 test()
 test()
 ws = tf.trainable_variables()
 
 for w in ws:
-    print(w.name)
+    print(w.name)
 ```
 
 执行结果：
@@ -341,9 +341,10 @@ scope_1/w:0
 import tensorflow as tf
 ​
 with tf.name_scope("hehe"):
-    w1 = tf.Variable(1.0)
-    with tf.name_scope(None):
-        w2 = tf.Variable(2.0)
+    w1 = tf.Variable(1.0)
+
+    with tf.name_scope(None):
+        w2 = tf.Variable(2.0)
 ​
 print(w1.name)
 print(w2.name)
