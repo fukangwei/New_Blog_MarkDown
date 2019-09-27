@@ -135,31 +135,33 @@ File Name  | Label | Extra Operation
 
 ``` python
 class CustomDatasetFromImages(Dataset):
-    def __init__(self, csv_path):
-        """ 参数csv_path是csv文件路径 """
-        self.to_tensor = transforms.ToTensor()  # Transforms
-        self.data_info = pd.read_csv(csv_path, header=None)  # 读取csv文件
-        self.image_arr = np.asarray(self.data_info.iloc[:, 0])  # 文件第一列包含图像文件的名称
-        self.label_arr = np.asarray(self.data_info.iloc[:, 1])  # 第二列是图像的label
-        self.operation_arr = np.asarray(self.data_info.iloc[:, 2])  # 第三列是决定是否进行额外操作
-        self.data_len = len(self.data_info.index)  # 计算length
+    def __init__(self, csv_path):
+        """ 参数csv_path是csv文件路径 """
+        self.to_tensor = transforms.ToTensor()  # Transforms
+        self.data_info = pd.read_csv(csv_path, header=None)  # 读取csv文件
+        self.image_arr = np.asarray(self.data_info.iloc[:, 0])  # 文件第一列包含图像文件的名称
+        self.label_arr = np.asarray(self.data_info.iloc[:, 1])  # 第二列是图像的label
+        self.operation_arr = np.asarray(self.data_info.iloc[:, 2])  # 第三列是决定是否进行额外操作
+        self.data_len = len(self.data_info.index)  # 计算length
 ​
-    def __getitem__(self, index):
+    def __getitem__(self, index):
         single_image_name = self.image_arr[index]  # 得到文件名
         img_as_img = Image.open(single_image_name)  # 读取图像文件
         some_operation = self.operation_arr[index]  # 检查需不需要额外操作
+
         if some_operation:  # 如果需要额外操作
             # ...
             pass
+
         img_as_tensor = self.to_tensor(img_as_img)  # 把图像转换成tensor
         single_image_label = self.label_arr[index]  # 得到图像的label
         return (img_as_tensor, single_image_label)
 ​
-    def __len__(self):
-        return self.data_len
+    def __len__(self):
+        return self.data_len
 ​
 if __name__ == "__main__":
-    custom_mnist_from_images = CustomDatasetFromImages('../data/mnist_labels.csv')
+    custom_mnist_from_images = CustomDatasetFromImages('../data/mnist_labels.csv')
 ```
 
 &emsp;&emsp;另一种情况是`csv`文件中保存了我们需要的图像文件的像素值，这里需要改动一下`__getitem__()`函数：
