@@ -134,9 +134,9 @@ def nn_layer(input_tensor, input_dim, output_dim, layer_name, act=tf.nn.relu):
 hidden1 = nn_layer(x, 784, 500, 'layer1')
 
 with tf.name_scope('dropout'):
-    keep_prob = tf.placeholder(tf.float32)
-    tf.summary.scalar('dropout_keep_probability', keep_prob)
-    dropped = tf.nn.dropout(hidden1, keep_prob)
+    keep_prob = tf.placeholder(tf.float32)
+    tf.summary.scalar('dropout_keep_probability', keep_prob)
+    dropped = tf.nn.dropout(hidden1, keep_prob)
 ​
 y1 = nn_layer(dropped, 500, 10, 'layer2', act=tf.identity)
 ​
@@ -145,9 +145,10 @@ y1 = nn_layer(dropped, 500, 10, 'layer2', act=tf.identity)
 并计算交叉熵损失cross_entropy。计算平均损失，并使用tf.summary.saclar进行统计汇总
 """
 with tf.name_scope('cross_entropy'):
-    diff = tf.nn.softmax_cross_entropy_with_logits(logits=y1, labels=y)
-    with tf.name_scope('total'):
-        cross_entropy = tf.reduce_mean(diff)
+    diff = tf.nn.softmax_cross_entropy_with_logits(logits=y1, labels=y)
+
+    with tf.name_scope('total'):
+        cross_entropy = tf.reduce_mean(diff)
 ​
 tf.summary.scalar('cross_entropy', cross_entropy)
 ​
@@ -156,12 +157,13 @@ tf.summary.scalar('cross_entropy', cross_entropy)
 计算正确率accuray，再使用tf.summary.scalar对accuracy进行统计汇总
 """
 with tf.name_scope('train'):
-    train_step = tf.train.AdamOptimizer(learning_rate).minimize(cross_entropy)
+    train_step = tf.train.AdamOptimizer(learning_rate).minimize(cross_entropy)
+
 with tf.name_scope('accuracy'):
-    with tf.name_scope('correct_prediction'):
-        correct_prediction = tf.equal(tf.argmax(y1, 1), tf.arg_max(y, 1))
-    with tf.name_scope('accuracy'):
-        accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+    with tf.name_scope('correct_prediction'):
+        correct_prediction = tf.equal(tf.argmax(y1, 1), tf.arg_max(y, 1))
+    with tf.name_scope('accuracy'):
+        accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 ​
 tf.summary.scalar('accuracy', accuracy)
 ​
@@ -182,13 +184,14 @@ tf.global_variables_initializer().run()
 并设置dropout值；如果训练标记为False，则获取测试数据，并设置keep_prob为1，即等于没有dropout效果
 """
 def feed_dict(train):
-    if train:
-        xs, ys = mnist.train.next_batch(100)
-        k = dropout
-    else:
-        xs, ys = mnist.test.images, mnist.test.labels
-        k = 1.0
-    return {x: xs, y: ys, keep_prob: k}
+    if train:
+        xs, ys = mnist.train.next_batch(100)
+        k = dropout
+    else:
+        xs, ys = mnist.test.images, mnist.test.labels
+        k = 1.0
+
+    return {x: xs, y: ys, keep_prob: k}
 ​
 """
 首先使用tf.train.Saver创建模型的保存器，然后进入训练的循环中，每隔10步执行一次merged(数据汇总)
