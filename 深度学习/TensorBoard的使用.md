@@ -288,11 +288,11 @@ l1 = add_layer(xs, 1, 10, n_layer=1, activation_function=tf.nn.relu)  # add hidd
 prediction = add_layer(l1, 10, 1, n_layer=2, activation_function=None)  # add output layer
 ​
 with tf.name_scope('loss'):  # the error between prediciton and real data
-    loss = tf.reduce_mean(tf.reduce_sum(tf.square(ys - prediction), reduction_indices=[1]))
-    tf.summary.scalar('loss', loss)
+    loss = tf.reduce_mean(tf.reduce_sum(tf.square(ys - prediction), reduction_indices=[1]))
+    tf.summary.scalar('loss', loss)
 ​
 with tf.name_scope('train'):
-    train_step = tf.train.GradientDescentOptimizer(0.1).minimize(loss)
+    train_step = tf.train.GradientDescentOptimizer(0.1).minimize(loss)
 ​
 sess = tf.Session()
 merged = tf.summary.merge_all()
@@ -302,10 +302,11 @@ init = tf.global_variables_initializer()
 sess.run(init)
 ​
 for i in range(1000):
-    sess.run(train_step, feed_dict={xs: x_data, ys: y_data})
-    if i % 50 == 0:
-        result = sess.run(merged, feed_dict={xs: x_data, ys: y_data})
-        writer.add_summary(result, i)
+    sess.run(train_step, feed_dict={xs: x_data, ys: y_data})
+
+    if i % 50 == 0:
+        result = sess.run(merged, feed_dict={xs: x_data, ys: y_data})
+        writer.add_summary(result, i)
 ```
 
 ---
@@ -331,7 +332,7 @@ nb_epoch = 20
 nb_data = 28 * 28
 log_filepath = './log_test'
 ​
-(X_train, y_train), (X_test, y_test) = mnist.load_data()  # load data
+(X_train, y_train), (X_test, y_test) = mnist.load_data()  # load data
 ​
 # reshape
 X_train = X_train.reshape(X_train.shape[0], X_train.shape[1] * X_train.shape[2])
@@ -350,33 +351,33 @@ Y_test = np_utils.to_categorical(y_test, nb_classes)
 old_session = KTF.get_session()
 ​
 with tf.Graph().as_default():
-    session = tf.Session('')
-    KTF.set_session(session)
-    KTF.set_learning_phase(1)
-    # build model
-    model = Sequential()
-    model.add(Dense(512, input_shape=(nb_data,), init='normal', name='dense1'))
-    model.add(Activation('relu', name='relu1'))
-    model.add(Dropout(0.2, name='dropout1'))
-    model.add(Dense(512, init='normal', name='dense2'))
-    model.add(Activation('relu', name='relu2'))
-    model.add(Dropout(0.2, name='dropout2'))
-    model.add(Dense(10, init='normal', name='dense3'))
-    model.add(Activation('softmax', name='softmax1'))
-    model.summary()
+    session = tf.Session('')
+    KTF.set_session(session)
+    KTF.set_learning_phase(1)
+    # build model
+    model = Sequential()
+    model.add(Dense(512, input_shape=(nb_data,), init='normal', name='dense1'))
+    model.add(Activation('relu', name='relu1'))
+    model.add(Dropout(0.2, name='dropout1'))
+    model.add(Dense(512, init='normal', name='dense2'))
+    model.add(Activation('relu', name='relu2'))
+    model.add(Dropout(0.2, name='dropout2'))
+    model.add(Dense(10, init='normal', name='dense3'))
+    model.add(Activation('softmax', name='softmax1'))
+    model.summary()
 ​
-    model.compile(loss='categorical_crossentropy', optimizer=SGD(lr=0.01), metrics=['accuracy'])
+    model.compile(loss='categorical_crossentropy', optimizer=SGD(lr=0.01), metrics=['accuracy'])
 ​
-    tb_cb = keras.callbacks.TensorBoard(log_dir=log_filepath, histogram_freq=1)
-    cbks = [tb_cb]
+    tb_cb = keras.callbacks.TensorBoard(log_dir=log_filepath, histogram_freq=1)
+    cbks = [tb_cb]
 ​
-    history = model.fit(
+    history = model.fit(
                 X_train, Y_train, batch_size=batch_size, nb_epoch=nb_epoch,
                 verbose=1, callbacks=cbks, validation_data=(X_test, Y_test))
 ​
-    score = model.evaluate(X_test, Y_test, verbose=0)
-    print('Test score:', score[0])
-    print('Test accuracy;', score[1])
+    score = model.evaluate(X_test, Y_test, verbose=0)
+    print('Test score:', score[0])
+    print('Test accuracy;', score[1])
 ​
 KTF.set_session(old_session)
 ```
@@ -405,12 +406,12 @@ sample_rate = 44100
 freqs = [262, 294, 330, 349, 392, 440, 440, 440, 440, 440, 440]
 ​
 for n_iter in range(100):
-    dummy_s1 = torch.rand(1)
-    dummy_s2 = torch.rand(1)
-    # data grouping by slash
-    writer.add_scalar('data/scalar1', dummy_s1[0], n_iter)
-    writer.add_scalar('data/scalar2', dummy_s2[0], n_iter)
-    writer.add_scalars(
+    dummy_s1 = torch.rand(1)
+    dummy_s2 = torch.rand(1)
+    # data grouping by slash
+    writer.add_scalar('data/scalar1', dummy_s1[0], n_iter)
+    writer.add_scalar('data/scalar2', dummy_s2[0], n_iter)
+    writer.add_scalars(
         'data/scalar_group',
         {
             'xsinx': n_iter * np.sin(n_iter),
@@ -419,13 +420,14 @@ for n_iter in range(100):
         },
         n_iter)
 ​
-    dummy_img = torch.rand(32, 3, 64, 64)  # output from network
+    dummy_img = torch.rand(32, 3, 64, 64)  # output from network
 ​
     if n_iter % 10 == 0:
         x = vutils.make_grid(dummy_img, normalize=True, scale_each=True)
         writer.add_image('Image', x, n_iter)
 ​
         dummy_audio = torch.zeros(sample_rate * 2)
+
         for i in range(x.size(0)):
             # amplitude of sound should in [-1, 1]
             dummy_audio[i] = np.cos(freqs[n_iter // 10] * np.pi * float(i) / float(sample_rate))
