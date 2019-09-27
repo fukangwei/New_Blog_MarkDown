@@ -146,7 +146,7 @@ reduce_sum(
 
 Computes the sum of elements across dimensions of a tensor.
 &emsp;&emsp;Reduces `input_tensor` along the dimensions given in `axis`. Unless `keep_dims` is `true`, the rank of the tensor is reduced by `1` for each entry in `axis`. If `keep_dims` is `true`, the reduced dimensions are retained with length `1`.
-&emsp;&emsp;If axis has no entries, all dimensions are reduced, and a tensor with a single element is returned.
+&emsp;&emsp;If `axis` has no entries, all dimensions are reduced, and a tensor with a single element is returned.
 
 ``` python
 x = tf.constant([[1, 1, 1], [1, 1, 1]])
@@ -159,7 +159,7 @@ tf.reduce_sum(x, [0, 1])  # 6
 
 - `input_tensor`: The tensor to reduce. Should have numeric type.
 - `axis`: The dimensions to reduce. If `None` (the default), reduces all dimensions. Must be in the range `[-rank(input_tensor), rank(input_tensor))`.
-- `keep_dims`: If true, retains reduced dimensions with length `1`.
+- `keep_dims`: If `true`, retains reduced dimensions with length `1`.
 - `name`: A `name` for the operation (optional).
 - `reduction_indices`: The old (deprecated) name for `axis`.
 
