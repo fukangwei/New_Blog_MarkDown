@@ -136,19 +136,19 @@ with tf.Session() as sess:
         sess.run(opt, feed_dict={x: batch_x, y: batch_y})
 
         if iter % 10 == 0:
-            acc = sess.run(accuracy, feed_dict={x: batch_x, y: batch_y})
-            los = sess.run(loss, feed_dict={x: batch_x, y: batch_y})
-            print("For iter ", iter)
-            print("Accuracy ", acc)
-            print("Loss ", los)
-            print("-------------------")
+            acc = sess.run(accuracy, feed_dict={x: batch_x, y: batch_y})
+            los = sess.run(loss, feed_dict={x: batch_x, y: batch_y})
+            print("For iter ", iter)
+            print("Accuracy ", acc)
+            print("Loss ", los)
+            print("-------------------")
 
-        iter = iter + 1
+        iter = iter + 1
 ​
-    # calculating test accuracy
-    test_data = mnist.test.images[:128].reshape((-1, time_steps, n_input))
-    test_label = mnist.test.labels[:128]
-    print("Testing Accuracy:", sess.run(accuracy, feed_dict={x: test_data, y: test_label}))
+    # calculating test accuracy
+    test_data = mnist.test.images[:128].reshape((-1, time_steps, n_input))
+    test_label = mnist.test.labels[:128]
+    print("Testing Accuracy:", sess.run(accuracy, feed_dict={x: test_data, y: test_label}))
 ```
 
 ---
@@ -163,13 +163,13 @@ from tensorflow.examples.tutorials.mnist import input_data
 ​
 mnist = input_data.read_data_sets('./MNIST_data', one_hot=True)
 ​
-lr = 0.001  # learning rate
-training_iters = 100000  # train step(上限)
+lr = 0.001  # learning rate
+training_iters = 100000  # train step(上限)
 batch_size = 128
-n_inputs = 28  # 每一步输入的序列长度为28(img shape: 28*28)
-n_steps = 28  # 输入的步数是28步
-n_hidden_units = 128  # 隐藏层的神经元个数
-n_classes = 10  # 分类的类别
+n_inputs = 28  # 每一步输入的序列长度为28(img shape: 28*28)
+n_steps = 28  # 输入的步数是28步
+n_hidden_units = 128  # 隐藏层的神经元个数
+n_classes = 10  # 分类的类别
 ```
 
 接着定义`x`、`y`的`placeholder`以及`weights`、`biases`的初始状况：
@@ -179,14 +179,14 @@ n_classes = 10  # 分类的类别
 x = tf.placeholder(tf.float32, [None, n_steps, n_inputs])
 y = tf.placeholder(tf.float32, [None, n_classes])
 ​
-weights = {  # 定义权重
-    'in': tf.Variable(tf.random_normal([n_inputs, n_hidden_units])),  # shape (28, 128)
-    'out': tf.Variable(tf.random_normal([n_hidden_units, n_classes]))  # shape (128, 10)
+weights = {  # 定义权重
+    'in': tf.Variable(tf.random_normal([n_inputs, n_hidden_units])),  # shape (28, 128)
+    'out': tf.Variable(tf.random_normal([n_hidden_units, n_classes]))  # shape (128, 10)
 }
 ​
 biases = {
-    'in': tf.Variable(tf.constant(0.1, shape=[n_hidden_units, ])),  # shape (128, )
-    'out': tf.Variable(tf.constant(0.1, shape=[n_classes, ]))  # shape (10, )
+    'in': tf.Variable(tf.constant(0.1, shape=[n_hidden_units, ])),  # shape (128, )
+    'out': tf.Variable(tf.constant(0.1, shape=[n_classes, ]))  # shape (10, )
 }
 ```
 
@@ -196,15 +196,15 @@ biases = {
 
 ``` python
 def RNN(X, weights, biases):
-    # 原始的X是3维数据，我们需要把它变成2维数据，才能使用weights的矩阵乘法
-    X = tf.reshape(X, [-1, n_inputs])  # X ==> (128 batches * 28 steps, 28 inputs)
+    # 原始的X是3维数据，我们需要把它变成2维数据，才能使用weights的矩阵乘法
+    X = tf.reshape(X, [-1, n_inputs])  # X ==> (128 batches * 28 steps, 28 inputs)
 ​
-    # 进入隐藏层
-    # X_in = W * X + b
+    # 进入隐藏层
+    # X_in = W * X + b
     # X_in = (128 batches, 28 steps, 128 hidden)
-    X_in = tf.matmul(X, weights['in']) + biases['in']
+    X_in = tf.matmul(X, weights['in']) + biases['in']
     # X_in ==> (128 batches, 28 steps, 128 hidden) 换回3维
-    X_in = tf.reshape(X_in, [-1, n_steps, n_hidden_units])
+    X_in = tf.reshape(X_in, [-1, n_steps, n_hidden_units])
 ```
 
 接着是`cell`中的计算，这里使用`tf.nn.dynamic_rnn(cell, inputs)`。因`TensorFlow`版本升级原因，`state_is_tuple = True`将在之后的版本中变为默认。对于`lstm`来说，`state`可被分为`(c_state, h_state)`：
@@ -226,7 +226,7 @@ init_state = lstm_cell.zero_state(batch_size, dtype=tf.float32)
 outputs, final_state = tf.nn.dynamic_rnn(lstm_cell, X_in, initial_state=init_state, time_major=False)
 ```
 
-`return`值的求解如下所示，直接调用`final_state`中的`h_state(final_state[1])`来进行运算：
+`return`值的求解如下，直接调用`final_state`中的`h_state(final_state[1])`来进行运算：
 
 ``` python
 results = tf.matmul(final_state[1], weights['out']) + biases['out']
@@ -259,11 +259,14 @@ init = tf.global_variables_initializer()
 with tf.Session() as sess:
     sess.run(init)
     step = 0
+
     while step * batch_size < training_iters:
         batch_xs, batch_ys = mnist.train.next_batch(batch_size)
         batch_xs = batch_xs.reshape([batch_size, n_steps, n_inputs])
         sess.run([train_op], feed_dict={x: batch_xs, y: batch_ys, })
+
         if step % 20 == 0:
             print(sess.run(accuracy, feed_dict={x: batch_xs, y: batch_ys, }))
+
         step += 1
 ```
