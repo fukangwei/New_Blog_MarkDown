@@ -434,18 +434,18 @@ def name_in_checkpoint(var):
 # Assuming than 'conv1/weights' and 'conv1/bias' should be
 # restored from 'conv1/params1' and 'conv1/params2'
 def name_in_checkpoint(var):
-    if "weights" in var.op.name:
-        return var.op.name.replace("weights", "params1")
+    if "weights" in var.op.name:
+        return var.op.name.replace("weights", "params1")
 
-    if "bias" in var.op.name:
-        return var.op.name.replace("bias", "params2")
+    if "bias" in var.op.name:
+        return var.op.name.replace("bias", "params2")
 ​
 variables_to_restore = slim.get_model_variables()
 variables_to_restore = {name_in_checkpoint(var): var for var in variables_to_restore}
 restorer = tf.train.Saver(variables_to_restore)
 ​
 with tf.Session() as sess:
-    restorer.restore(sess, "/tmp/model.ckpt")  # Restore variables from disk
+    restorer.restore(sess, "/tmp/model.ckpt")  # Restore variables from disk
 ```
 
 #### Fine-Tuning a Model on a different task
@@ -453,18 +453,18 @@ with tf.Session() as sess:
 &emsp;&emsp;考虑这么一种情况：我们有一个预训练好的`VGG16`模型，该模型是在`ImageNet`数据集上训练好的，有`1000`类。然而我们想要将其应用到只有`20`类的`Pascal VOC`数据集上。为了实现这个功能，我们可以使用不包括最后一层的预训练模型来初始化新模型：
 
 ``` python
-image, label = MyPascalVocDataLoader(...)  # Load the Pascal VOC data
+image, label = MyPascalVocDataLoader(...)  # Load the Pascal VOC data
 images, labels = tf.train.batch([image, label], batch_size=32)
 ​
-predictions = vgg.vgg_16(images)  # Create the model
+predictions = vgg.vgg_16(images)  # Create the model
 train_op = slim.learning.create_train_op(...)
 # Specify where the Model, trained on ImageNet, was saved
 model_path = '/path/to/pre_trained_on_imagenet.checkpoint'
-log_dir = '/path/to/my_pascal_model_dir/'  # Specify where the new model will live
+log_dir = '/path/to/my_pascal_model_dir/'  # Specify where the new model will live
 # Restore only the convolutional layers
 variables_to_restore = slim.get_variables_to_restore(exclude=['fc6', 'fc7', 'fc8'])
 init_fn = assign_from_checkpoint_fn(model_path, variables_to_restore)
-slim.learning.train(train_op, log_dir, init_fn=init_fn)  # Start training
+slim.learning.train(train_op, log_dir, init_fn=init_fn)  # Start training
 ```
 
 ### Evaluating Models
@@ -503,8 +503,8 @@ value_ops, update_ops = slim.metrics.aggregate_metrics(
 ​
 # Aggregates the value and update ops in two dictionaries
 names_to_values, names_to_updates = slim.metrics.aggregate_metric_map({
-    "eval/mean_absolute_error": slim.metrics.streaming_mean_absolute_error(predictions, labels),
-    "eval/mean_squared_error": slim.metrics.streaming_mean_squared_error(predictions, labels),
+    "eval/mean_absolute_error": slim.metrics.streaming_mean_absolute_error(predictions, labels),
+    "eval/mean_squared_error": slim.metrics.streaming_mean_squared_error(predictions, labels),
 })
 ```
 
@@ -519,31 +519,29 @@ import tensorflow.contrib.slim.nets as nets
 slim = tf.contrib.slim
 vgg = nets.vgg
 ​
-# Load the data
-images, labels = load_data(...)
-​
-# Define the network
-predictions = vgg.vgg_16(images)
+images, labels = load_data(...)  # Load the data
+predictions = vgg.vgg_16(images)  # Define the network
 ​
 # Choose the metrics to compute:
 names_to_values, names_to_updates = slim.metrics.aggregate_metric_map({
-    "eval/mean_absolute_error": slim.metrics.streaming_mean_absolute_error(predictions, labels),
-    "eval/mean_squared_error": slim.metrics.streaming_mean_squared_error(predictions, labels),
+    "eval/mean_absolute_error": slim.metrics.streaming_mean_absolute_error(predictions, labels),
+    "eval/mean_squared_error": slim.metrics.streaming_mean_squared_error(predictions, labels),
 })
 ​
 # Evaluate the model using 1000 batches of data:
 num_batches = 1000
 ​
 with tf.Session() as sess:
-    sess.run(tf.global_variables_initializer())
-    sess.run(tf.local_variables_initializer())
+    sess.run(tf.global_variables_initializer())
+    sess.run(tf.local_variables_initializer())
 ​
-    for batch_id in range(num_batches):
-        sess.run(names_to_updates.values())
+    for batch_id in range(num_batches):
+        sess.run(names_to_updates.values())
 ​
-    metric_values = sess.run(names_to_values.values())
-    for metric, value in zip(names_to_values.keys(), metric_values):
-        print('Metric %s has value: %f' % (metric, value))
+    metric_values = sess.run(names_to_values.values())
+
+    for metric, value in zip(names_to_values.keys(), metric_values):
+        print('Metric %s has value: %f' % (metric, value))
 ```
 
 ### Evaluation Loop
