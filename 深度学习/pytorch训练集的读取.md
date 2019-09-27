@@ -180,27 +180,27 @@ class CustomDatasetFromCSV(Dataset):
         """
         参数csv_path是csv文件路径，height是图像高度，width是图像宽度，transform是transform操作
         """
-        self.data = pd.read_csv(csv_path)
-        self.labels = np.asarray(self.data.iloc[:, 0])
-        self.height = height
-        self.width = width
-        self.transforms = transform
+        self.data = pd.read_csv(csv_path)
+        self.labels = np.asarray(self.data.iloc[:, 0])
+        self.height = height
+        self.width = width
+        self.transforms = transform
 ​
-    def __getitem__(self, index):
-        single_image_label = self.labels[index]
+    def __getitem__(self, index):
+        single_image_label = self.labels[index]
         # 读取所有像素值，并将“1D array ([784])”reshape成为“2D array ([28,28])”
-        img_as_np = np.asarray(self.data.iloc[index][1:]).reshape(28, 28).astype('uint8')
-        # 把“numpy array”格式的图像转换成灰度“PIL image”
-        img_as_img = Image.fromarray(img_as_np)
-        img_as_img = img_as_img.convert('L')
+        img_as_np = np.asarray(self.data.iloc[index][1:]).reshape(28, 28).astype('uint8')
+        # 把“numpy array”格式的图像转换成灰度“PIL image”
+        img_as_img = Image.fromarray(img_as_np)
+        img_as_img = img_as_img.convert('L')
 
-        if self.transforms is not None:
-            img_as_tensor = self.transforms(img_as_img)  # 将图像转换成tensor
+        if self.transforms is not None:
+            img_as_tensor = self.transforms(img_as_img)  # 将图像转换成tensor
 
-        return (img_as_tensor, single_image_label)  # 返回图像及其label
+        return (img_as_tensor, single_image_label)  # 返回图像及其label
 ​
-    def __len__(self):
-        return len(self.data.index)
+    def __len__(self):
+        return len(self.data.index)
 ​
 if __name__ == "__main__":
     transformations = transforms.Compose([transforms.ToTensor()])
@@ -211,16 +211,16 @@ if __name__ == "__main__":
 
 ``` python
 if __name__ == "__main__":
-    transformations = transforms.Compose([transforms.ToTensor()])  # 定义transforms
+    transformations = transforms.Compose([transforms.ToTensor()])  # 定义transforms
     # 自定义数据集
-    custom_mnist_from_csv = CustomDatasetFromCSV('./data/mnist_in_csv.csv',
+    custom_mnist_from_csv = CustomDatasetFromCSV('./data/mnist_in_csv.csv',
                                                  28, 28, transformations)
     # 定义“data loader”
-    mn_dataset_loader = torch.utils.data.DataLoader(dataset=custom_mnist_from_csv,
+    mn_dataset_loader = torch.utils.data.DataLoader(dataset=custom_mnist_from_csv,
                                                     batch_size=10, shuffle=False)
 ​
-    for images, labels in mn_dataset_loader:
-        # 将数据传给网络模型
+    for images, labels in mn_dataset_loader:
+        # 将数据传给网络模型
 ```
 
 需要注意的是使用多`GPU`训练时，`PyTorch`的`dataloader`会将每个`batch`平均分配到各个`GPU`。所以如果`batch size`过小，可能发挥不了多`GPU`的效果。
