@@ -400,15 +400,15 @@ init = tf.global_variables_initializer()
 saver = tf.train.Saver()  # 声明saver用于保存模型
 ​
 with tf.Session() as sess:
-    sess.run(init)
+    sess.run(init)
     # 输入一个数据测试一下
-    print("predictions : ", sess.run(predictions, feed_dict={input_holder: [10.0]}))
-    saver.save(sess, os.path.join(MODEL_DIR, MODEL_NAME))  # 模型保存
+    print("predictions : ", sess.run(predictions, feed_dict={input_holder: [10.0]}))
+    saver.save(sess, os.path.join(MODEL_DIR, MODEL_NAME))  # 模型保存
     # 得到当前图有几个操作节点
-    print("%d ops in the final graph." % len(tf.get_default_graph().as_graph_def().node))
+    print("%d ops in the final graph." % len(tf.get_default_graph().as_graph_def().node))
 ​
-for op in tf.get_default_graph().get_operations():  # 打印模型节点信息
-    print(op.name, op.values())
+for op in tf.get_default_graph().get_operations():  # 打印模型节点信息
+    print(op.name, op.values())
 ```
 
 运行后生成的文件如下：
@@ -432,20 +432,22 @@ input_holder = tf.placeholder(tf.float32, shape=[1], name="input_holder")
 W1 = tf.Variable(tf.constant(5.0, shape=[1]), name="W1")
 B1 = tf.Variable(tf.constant(1.0, shape=[1]), name="B1")
 _y = (input_holder * W1) + B1
-predictions = tf.add(_y, 10, name="predictions")  # 做一个加法运算(输出节点名是“predictions”)
+predictions = tf.add(_y, 10, name="predictions")  # 做一个加法运算(输出节点名是“predictions”)
 ​
 init = tf.global_variables_initializer()
 ​
 with tf.Session() as sess:
-    sess.run(init)
-    print("predictions : ", sess.run(predictions, feed_dict={input_holder: [10.0]}))
+    sess.run(init)
+    print("predictions : ", sess.run(predictions, feed_dict={input_holder: [10.0]}))
     # 得到当前的图的GraphDef部分，通过这个部分就可以完成重输入层到输出层的计算过程
-    graph_def = tf.get_default_graph().as_graph_def()
-    output_graph_def = graph_util.convert_variables_to_constants(sess, graph_def, ["predictions"])
-    with tf.gfile.GFile(output_graph, "wb") as f:  # 保存模型
-        f.write(output_graph_def.SerializeToString())  # 序列化输出
-    print("%d ops in the final graph." % len(output_graph_def.node))
-    print(predictions)
+    graph_def = tf.get_default_graph().as_graph_def()
+    output_graph_def = graph_util.convert_variables_to_constants(sess, graph_def, ["predictions"])
+
+    with tf.gfile.GFile(output_graph, "wb") as f:  # 保存模型
+        f.write(output_graph_def.SerializeToString())  # 序列化输出
+
+    print("%d ops in the final graph." % len(output_graph_def.node))
+    print(predictions)
 ```
 
 `GraphDef`这个属性记录了`TensorFlow`计算图上节点的信息。`add_model.pb`里面保存了从输入层到输出层这个计算过程的计算图和相关变量的值，我们得到这个模型后传入一个输入，即可以得到一个预估的输出值。
@@ -463,8 +465,8 @@ from tensorflow.python.framework import graph_util
 MODEL_DIR = "model/"
 MODEL_NAME = "frozen_model.pb"
 ​
-if not tf.gfile.Exists(MODEL_DIR):  # 创建目录
-    tf.gfile.MakeDirs(MODEL_DIR)
+if not tf.gfile.Exists(MODEL_DIR):  # 创建目录
+    tf.gfile.MakeDirs(MODEL_DIR)
 ​
 def freeze_graph(model_folder):
     checkpoint = tf.train.get_checkpoint_state(model_folder)  # 检查目录下ckpt文件状态是否可用
