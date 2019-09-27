@@ -202,12 +202,13 @@ def feed_dict(train):
 平时，则执行merged操作和train_step操作，并添加summary到trian_writer。所有训练全部结束后，关闭train_writer和test_writer
 """
 saver = tf.train.Saver()
+
 for i in range(max_step):
-    if i % 10 == 0:
-        summary, acc = sess.run([merged, accuracy], feed_dict=feed_dict(False))
-        test_writer.add_summary(summary, i)
-        print('Accuracy at step %s: %s' % (i, acc))
-    else:
+    if i % 10 == 0:
+        summary, acc = sess.run([merged, accuracy], feed_dict=feed_dict(False))
+        test_writer.add_summary(summary, i)
+        print('Accuracy at step %s: %s' % (i, acc))
+    else:
         if i % 100 == 99:
             run_options = tf.RunOptions(trace_level=tf.RunOptions.FULL_TRACE)
             run_metadata = tf.RunMetadata()
@@ -229,7 +230,7 @@ test_writer.close()
 之后切换到终端下，执行`TensorBoard`程序，并通过`--logdir`指定`TensorFlow`日志路径，然后`TensorBoard`就可以自动生成所有汇总数据的可视化结果：
 
 ``` python
-tensorboard --logdir=./  # 我是在mnist_with_summaries目录下执行该命令
+tensorboard --logdir=./  # 我是在mnist_with_summaries目录下执行该命令
 ```
 
 执行结果：
