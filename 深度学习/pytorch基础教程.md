@@ -328,11 +328,11 @@ import torch.nn.functional as F
 import matplotlib.pyplot as plt
 ​
 # make fake data
-n_data = torch.ones(100, 2)  # 数据的基本形态
-x0 = torch.normal(2 * n_data, 1)  # 类型0，x data (tensor)，shape=(100, 2)
-y0 = torch.zeros(100)  # 类型0，y data (tensor)，shape=(100, 1)
-x1 = torch.normal(-2 * n_data, 1)  # 类型1，x data (tensor)，shape=(100, 2)
-y1 = torch.ones(100)  # 类型1，y data (tensor)，shape=(100, 1)
+n_data = torch.ones(100, 2)  # 数据的基本形态
+x0 = torch.normal(2 * n_data, 1)  # 类型0，x data (tensor)，shape=(100, 2)
+y0 = torch.zeros(100)  # 类型0，y data (tensor)，shape=(100, 1)
+x1 = torch.normal(-2 * n_data, 1)  # 类型1，x data (tensor)，shape=(100, 2)
+y1 = torch.ones(100)  # 类型1，y data (tensor)，shape=(100, 1)
 ​
 # 注意x和y的数据形式是一定要像下面一样(torch.cat是在合并数据)
 # shape (200, 2) FloatTensor = 32-bit floating
@@ -345,27 +345,27 @@ y = torch.cat((y0, y1), ).type(torch.LongTensor)
 
 ``` python
 class Net(torch.nn.Module):
-    def __init__(self, n_feature, n_hidden, n_output):
-        super(Net, self).__init__()
-        self.hidden = torch.nn.Linear(n_feature, n_hidden)  # hidden layer
-        self.out = torch.nn.Linear(n_hidden, n_output)  # output layer
+    def __init__(self, n_feature, n_hidden, n_output):
+        super(Net, self).__init__()
+        self.hidden = torch.nn.Linear(n_feature, n_hidden)  # hidden layer
+        self.out = torch.nn.Linear(n_hidden, n_output)  # output layer
 ​
-    def forward(self, x):
-        x = F.relu(self.hidden(x))  # activation function for hidden layer
-        x = self.out(x)  # 输出值，但是这个不是预测值，预测值还需要再另外计算
-        return x
+    def forward(self, x):
+        x = F.relu(self.hidden(x))  # activation function for hidden layer
+        x = self.out(x)  # 输出值，但是这个不是预测值，预测值还需要再另外计算
+        return x
 ​
-net = Net(n_feature=2, n_hidden=10, n_output=2)  # define the network
-print(net)  # net architecture
+net = Net(n_feature=2, n_hidden=10, n_output=2)  # define the network
+print(net)  # net architecture
 ```
 
 训练步骤如下：
 
 ``` python
 optimizer = torch.optim.SGD(net.parameters(), lr=0.02)
-loss_func = torch.nn.CrossEntropyLoss()  # the target label is NOT an one-hotted
+loss_func = torch.nn.CrossEntropyLoss()  # the target label is NOT an one-hotted
 ​
-plt.ion()  # something about plotting
+plt.ion()  # something about plotting
 ​
 for t in range(100):
     out = net(x)  # 喂给net训练数据x，输出分析值
