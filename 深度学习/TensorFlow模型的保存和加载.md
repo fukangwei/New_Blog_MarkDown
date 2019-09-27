@@ -121,11 +121,11 @@ for variables in tf.global_variables():
 saver = tf.train.Saver()
 ​
 with tf.Session() as sess:
-    sess.run(tf.global_variables_initializer())
-    sess.run(tf.assign(v, 10))
-    sess.run(maintain_averages_op)
-    saver.save(sess, "Model/model_ema.ckpt")
-    print(sess.run([v, ema.average(v)]))  # 结果为[10.0, 0.099999905]
+    sess.run(tf.global_variables_initializer())
+    sess.run(tf.assign(v, 10))
+    sess.run(maintain_averages_op)
+    saver.save(sess, "Model/model_ema.ckpt")
+    print(sess.run([v, ema.average(v)]))  # 结果为[10.0, 0.099999905]
 ```
 
 &emsp;&emsp;通过变量重命名直接读取变量的滑动平均值：
@@ -137,8 +137,8 @@ v = tf.Variable(0, dtype=tf.float32, name="v")
 saver = tf.train.Saver({"v/ExponentialMovingAverage": v})
 ​
 with tf.Session() as sess:
-    saver.restore(sess, "./Model/model_ema.ckpt")
-    print(sess.run(v))  # 结果为0.0999999
+    saver.restore(sess, "./Model/model_ema.ckpt")
+    print(sess.run(v))  # 结果为0.0999999
 ```
 
 &emsp;&emsp;通过`tf.train.ExponentialMovingAverage`的`variables_to_restore`函数获取变量重命名字典：
@@ -155,8 +155,8 @@ print(ema.variables_to_restore())  
 saver = tf.train.Saver(ema.variables_to_restore())
 ​
 with tf.Session() as sess:
-    saver.restore(sess, "./Model/model_ema.ckpt")
-    print(sess.run(v))  # 0.0999999
+    saver.restore(sess, "./Model/model_ema.ckpt")
+    print(sess.run(v))  # 0.0999999
 ```
 
 &emsp;&emsp;如果变量定义在`name_scope`的里面：
