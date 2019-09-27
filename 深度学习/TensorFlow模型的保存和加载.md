@@ -50,8 +50,8 @@ result = v1 + v2
 saver = tf.train.Saver()
 ​
 with tf.Session() as sess:
-    sess.run(tf.global_variables_initializer())
-    saver.save(sess, "Model/model.ckpt")
+    sess.run(tf.global_variables_initializer())
+    saver.save(sess, "Model/model.ckpt")
 ```
 
 &emsp;&emsp;加载`TensorFlow`模型的方法：
@@ -66,8 +66,8 @@ result = v1 + v2
 saver = tf.train.Saver()
 ​
 with tf.Session() as sess:
-    saver.restore(sess, "./Model/model.ckpt")  # 注意此处路径前添加“./”
-    print(sess.run(result))  # 结果为[ 3.]
+    saver.restore(sess, "./Model/model.ckpt")  # 注意此处路径前添加“./”
+    print(sess.run(result))  # 结果为[ 3.]
 ```
 
 &emsp;&emsp;若不希望重复定义计算图上的运算，可直接加载已经持久化的图：
@@ -78,8 +78,8 @@ import tensorflow as tf
 saver = tf.train.import_meta_graph("Model/model.ckpt.meta")
 ​
 with tf.Session() as sess:
-    saver.restore(sess, "./Model/model.ckpt")  # 注意路径写法
-    print(sess.run(tf.get_default_graph().get_tensor_by_name("add:0")))  # 结果为[ 3.]
+    saver.restore(sess, "./Model/model.ckpt")  # 注意路径写法
+    print(sess.run(tf.get_default_graph().get_tensor_by_name("add:0")))  # 结果为[ 3.]
 ```
 
 &emsp;&emsp;`tf.train.Saver`类也支持在保存和加载时给变量重命名：
@@ -98,8 +98,8 @@ result = u1 + u2
 saver = tf.train.Saver({"v1": u1, "v2": u2})
 ​
 with tf.Session() as sess:
-    saver.restore(sess, "./Model/model.ckpt")
-    print(sess.run(result))  # [ 3.]
+    saver.restore(sess, "./Model/model.ckpt")
+    print(sess.run(result))  # [ 3.]
 ```
 
 &emsp;&emsp;保存滑动平均模型：
@@ -108,13 +108,15 @@ with tf.Session() as sess:
 import tensorflow as tf
 ​
 v = tf.Variable(0, dtype=tf.float32, name="v")
+
 for variables in tf.global_variables():
-    print(variables.name)  # 结果为“v:0”
+    print(variables.name)  # 结果为“v:0”
 ​
 ema = tf.train.ExponentialMovingAverage(0.99)
 maintain_averages_op = ema.apply(tf.global_variables())
+
 for variables in tf.global_variables():
-    print(variables.name)  # 结果为“v:0(换行)v/ExponentialMovingAverage:0”
+    print(variables.name)  # 结果为“v:0(换行)v/ExponentialMovingAverage:0”
 ​
 saver = tf.train.Saver()
 ​

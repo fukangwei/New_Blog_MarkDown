@@ -71,18 +71,20 @@ cross_entropy = tf.reduce_mean(-tf.reduce_sum(y_ * tf.log(y), axis=1))
 train_step = tf.train.AdagradOptimizer(0.3).minimize(cross_entropy)
 ```
 
-&emsp;&emsp;训练步骤如下所示，这里加入`keep_prob`作为计算图的输入，并且在训练时设为`0.75`，即保留`75%`的节点，其余的`25%`置为`0`：
+&emsp;&emsp;训练步骤如下，这里加入`keep_prob`作为计算图的输入，并且在训练时设为`0.75`，即保留`75%`的节点，其余的`25%`置为`0`：
 
 ``` python
 correct_prediction = tf.equal(tf.argmax(y, axis=1), tf.argmax(y_, axis=1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 ​
 tf.global_variables_initializer().run()
+
 for i in range(3000):
-    batch_xs, batch_ys = mnist.train.next_batch(100)
-    train_step.run({x: batch_xs, y_: batch_ys, keep_prob: 0.75})
-    if i % 100 == 0:
-        print('当前迭代次数{0}，当前准确率{1:.3f}'.format(i, accuracy.eval({x: batch_xs, y_: batch_ys, keep_prob: 1.0})))
+    batch_xs, batch_ys = mnist.train.next_batch(100)
+    train_step.run({x: batch_xs, y_: batch_ys, keep_prob: 0.75})
+
+    if i % 100 == 0:
+        print('当前迭代次数{0}，当前准确率{1:.3f}'.format(i, accuracy.eval({x: batch_xs, y_: batch_ys, keep_prob: 1.0})))
 
 print(accuracy.eval({x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}))
 ```
