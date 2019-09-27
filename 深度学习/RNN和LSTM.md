@@ -51,7 +51,7 @@ categories: 深度学习
 
 ``` python
 import numpy as np
-np.random.seed(1337)  # for reproducibility
+np.random.seed(1337)  # for reproducibility
 ​
 from keras.datasets import mnist
 from keras.utils import np_utils
@@ -63,8 +63,8 @@ from keras.optimizers import Adam
 `MNIST`的图像分辨率是`28 * 28`，为了使用`RNN`，我们将图像理解为序列化数据。每一行作为一个输入单元，所以输入数据大小`INPUT_SIZE`为`28`。先是第`1`行输入，再是第`2`行，直到第`28`行输入，一张图片也就是一个序列，所以步长`TIME_STEPS`为`28`。训练数据要进行归一化处理，因为原始数据是`8bit`灰度图像所以需要除以`255`：
 
 ``` python
-TIME_STEPS = 28  # same as the height of the image
-INPUT_SIZE = 28  # same as the width of the image
+TIME_STEPS = 28  # same as the height of the image
+INPUT_SIZE = 28  # same as the width of the image
 BATCH_SIZE = 50
 BATCH_INDEX = 0
 OUTPUT_SIZE = 10
@@ -72,11 +72,12 @@ CELL_SIZE = 50
 LR = 0.001
 ​
 # download the mnist to the path '~/.keras/datasets/' if it is the first time to be called
-(X_train, y_train), (X_test, y_test) = mnist.load_data()  # X shape (60,000 28x28), y shape (10,000, )
+# X shape (60,000 28x28), y shape (10,000, )
+(X_train, y_train), (X_test, y_test) = mnist.load_data()
 ​
 # data pre-processing
-X_train = X_train.reshape(-1, 28, 28) / 255.  # normalize
-X_test = X_test.reshape(-1, 28, 28) / 255.  # normalize
+X_train = X_train.reshape(-1, 28, 28) / 255.  # normalize
+X_test = X_test.reshape(-1, 28, 28) / 255.  # normalize
 y_train = np_utils.to_categorical(y_train, num_classes=10)
 y_test = np_utils.to_categorical(y_test, num_classes=10)
 ```
@@ -84,30 +85,30 @@ y_test = np_utils.to_categorical(y_test, num_classes=10)
 &emsp;&emsp;首先添加`RNN`层，输入为训练数据，输出数据大小由`CELL_SIZE`定义：
 
 ``` python
-model = Sequential()  # build RNN model
+model = Sequential()  # build RNN model
 ​
-model.add(SimpleRNN(  # RNN cell
+model.add(SimpleRNN(  # RNN cell
     # for batch_input_shape, if using tensorflow as the backend, we have to
     # put None for the batch_size. Otherwise, model.evaluate() will get error.
-    batch_input_shape=(None, TIME_STEPS, INPUT_SIZE),  # Or: input_dim = INPUT_SIZE, input_length = TIME_STEPS
-    output_dim=CELL_SIZE,
-    unroll=True,
+    batch_input_shape=(None, TIME_STEPS, INPUT_SIZE),  # Or: input_dim = INPUT_SIZE, input_length = TIME_STEPS
+    output_dim=CELL_SIZE,
+    unroll=True,
 ))
 ```
 
 然后添加输出层，激励函数选择`softmax`：
 
 ``` python
-model.add(Dense(OUTPUT_SIZE))  # output layer
+model.add(Dense(OUTPUT_SIZE))  # output layer
 model.add(Activation('softmax'))
-adam = Adam(LR)  # optimizer
+adam = Adam(LR)  # optimizer
 model.compile(optimizer=adam, loss='categorical_crossentropy', metrics=['accuracy'])
 ```
 
 设置优化方法、`loss`函数和`metrics`方法之后就可以开始训练了。每次训练的时候并不是取所有的数据，只是取`BATCH_SIZE`个序列，或者称为`BATCH_SIZE`张图片，这样可以大大降低运算时间，提高训练效率：
 
 ``` python
-for step in range(4001):  # training
+for step in range(4001):  # training
     # data shape = (batch_num, steps, inputs/outputs)
     X_batch = X_train[BATCH_INDEX: BATCH_INDEX + BATCH_SIZE, :, :]
     Y_batch = y_train[BATCH_INDEX: BATCH_INDEX + BATCH_SIZE, :]
