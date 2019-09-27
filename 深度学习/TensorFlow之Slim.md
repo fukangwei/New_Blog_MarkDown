@@ -566,18 +566,18 @@ names_to_values, names_to_updates = slim.metrics.aggregate_metric_map({
 summary_ops = []
 
 for metric_name, metric_value in names_to_values.iteritems():
-    op = tf.summary.scalar(metric_name, metric_value)
-    op = tf.Print(op, [metric_value], metric_name)
-    summary_ops.append(op)
+    op = tf.summary.scalar(metric_name, metric_value)
+    op = tf.Print(op, [metric_value], metric_name)
+    summary_ops.append(op)
 ​
 num_examples = 10000
 batch_size = 32
 num_batches = math.ceil(num_examples / float(batch_size))
 ​
-slim.get_or_create_global_step()  # Setup the global step
+slim.get_or_create_global_step()  # Setup the global step
 ​
-output_dir = ...  # Where the summaries are stored.
-eval_interval_secs = ...  # How often to run the evaluation.
+output_dir = ...  # Where the summaries are stored.
+eval_interval_secs = ...  # How often to run the evaluation.
 slim.evaluation.evaluation_loop(
     'local', checkpoint_dir, log_dir, num_evals=num_batches, eval_op=names_to_updates.values(),
     summary_op=tf.summary.merge(summary_ops), eval_interval_secs=eval_interval_secs)
@@ -636,13 +636,13 @@ convolution(
 
 ``` python
 tf.contrib.slim.conv2d(
-    inputs,
-    num_outputs,  # [卷积核个数]
-    kernel_size,  # [卷积核的高度，卷积核的宽度]
-    stride=1, padding='SAME',)
+    inputs,
+    num_outputs,  # [卷积核个数]
+    kernel_size,  # [卷积核的高度, 卷积核的宽度]
+    stride=1, padding='SAME',)
 ​
 tf.nn.conv2d(
-    input,  # 与上述一致
-    filter,  # [卷积核的高度，卷积核的宽度，图像通道数，卷积核个数]
-    strides, padding,)
+    input,  # 与上述一致
+    filter,  # [卷积核的高度, 卷积核的宽度, 图像通道数, 卷积核个数]
+    strides, padding,)
 ```
