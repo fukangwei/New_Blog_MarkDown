@@ -129,9 +129,9 @@ print(variable)
 
 ``` python
 tensor([[1., 2.],
-        [3., 4.]])
+        [3., 4.]])
 tensor([[1., 2.],
-        [3., 4.]], requires_grad=True)
+        [3., 4.]], requires_grad=True)
 ```
 
 #### Variable计算梯度
@@ -168,15 +168,15 @@ tensor = torch.FloatTensor([[1, 2], [3, 4]])
 variable = Variable(tensor, requires_grad=True)
 ​
 v_out = torch.mean(variable * variable)
-v_out.backward()  # 模拟v_out的误差反向传递
-print(variable.grad)  # 初始Variable的梯度
+v_out.backward()  # 模拟v_out的误差反向传递
+print(variable.grad)  # 初始Variable的梯度
 ```
 
 执行结果：
 
 ``` python
 tensor([[0.5000, 1.0000],
-        [1.5000, 2.0000]])
+        [1.5000, 2.0000]])
 ```
 
 #### 获取Variable里面的数据
@@ -190,9 +190,9 @@ from torch.autograd import Variable
 tensor = torch.FloatTensor([[1, 2], [3, 4]])
 variable = Variable(tensor, requires_grad=True)
 ​
-print(variable)  # Variable形式
-print(variable.data)  # tensor形式
-print(variable.data.numpy())  # numpy形式
+print(variable)  # Variable形式
+print(variable.data)  # tensor形式
+print(variable.data.numpy())  # numpy形式
 ```
 
 #### 激励函数(Activation)
@@ -201,13 +201,13 @@ print(variable.data.numpy())  # numpy形式
 
 ``` python
 import torch
-import torch.nn.functional as F  # 激励函数都定义在这里
+import torch.nn.functional as F  # 激励函数都定义在这里
 from torch.autograd import Variable
 import matplotlib.pyplot as plt
 ​
 x = torch.linspace(-5, 5, 200)
 x = Variable(x)
-x_np = x.data.numpy()  # 转换成“numpy array”，出图时使用
+x_np = x.data.numpy()  # 转换成“numpy array”，出图时使用
 ​
 # 几种常用的激励函数
 y_relu = F.relu(x).data.numpy()
@@ -261,20 +261,20 @@ y = x.pow(2) + 0.2 * torch.rand(x.size())
 &emsp;&emsp;可以直接运用`torch`中的体系建立一个神经网络。先定义所有的层属性(`__init__()`)，然后再一层层搭建(`forward(x)`)层与层的关系链接。建立关系的时候，我们会用到激励函数：
 
 ``` python
-class Net(torch.nn.Module):  # 继承torch的Module
-    def __init__(self, n_feature, n_hidden, n_output):
-        super(Net, self).__init__()  # 继承“__init__”功能
-        self.hidden = torch.nn.Linear(n_feature, n_hidden)  # 隐藏层线性输出
-        self.predict = torch.nn.Linear(n_hidden, n_output)  # 输出层线性输出
+class Net(torch.nn.Module):  # 继承torch的Module
+    def __init__(self, n_feature, n_hidden, n_output):
+        super(Net, self).__init__()  # 继承“__init__”功能
+        self.hidden = torch.nn.Linear(n_feature, n_hidden)  # 隐藏层线性输出
+        self.predict = torch.nn.Linear(n_hidden, n_output)  # 输出层线性输出
 ​
-    def forward(self, x):  # 这同时也是Module中的forward功能
-        # 正向传播输入值，神经网络分析出输出值
-        x = F.relu(self.hidden(x))  # 激励函数
-        x = self.predict(x)  # 输出值
-        return x
+    def forward(self, x):  # 这同时也是Module中的forward功能
+        # 正向传播输入值，神经网络分析出输出值
+        x = F.relu(self.hidden(x))  # 激励函数
+        x = self.predict(x)  # 输出值
+        return x
 ​
-net = Net(n_feature=1, n_hidden=10, n_output=1)  # define the network
-print(net)  # 打印net的结构
+net = Net(n_feature=1, n_hidden=10, n_output=1)  # define the network
+print(net)  # 打印net的结构
 ```
 
 执行结果：
@@ -291,7 +291,7 @@ Net(
 ``` python
 # 传入net的所有参数以及学习率
 optimizer = torch.optim.SGD(net.parameters(), lr=0.2)
-loss_func = torch.nn.MSELoss()  # 预测值和真实值的误差计算公式(均方差)
+loss_func = torch.nn.MSELoss()  # 预测值和真实值的误差计算公式(均方差)
 ​
 plt.ion()
 ​
