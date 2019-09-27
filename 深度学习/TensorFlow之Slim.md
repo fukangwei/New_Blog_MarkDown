@@ -380,15 +380,15 @@ with tf.Graph().as_default():
 # Create some variables
 v1 = tf.Variable(..., name="v1")
 v2 = tf.Variable(..., name="v2")
-restorer = tf.train.Saver()  # Add ops to restore all the variables
-restorer = tf.train.Saver([v1, v2])  # Add ops to restore some variables
+restorer = tf.train.Saver()  # Add ops to restore all the variables
+restorer = tf.train.Saver([v1, v2])  # Add ops to restore some variables
 ​
 # Later, launch the model, use the saver to restore variables
 # from disk, and do some work with the model
 with tf.Session() as sess:
-    restorer.restore(sess, "/tmp/model.ckpt")  # Restore variables from disk
-    print("Model restored.")
-    # Do some work with the model
+    restorer.restore(sess, "/tmp/model.ckpt")  # Restore variables from disk
+    print("Model restored.")
+    # Do some work with the model
 ```
 
 #### Partially Restoring Models
@@ -416,9 +416,9 @@ variables_to_restore = slim.get_variables_to_restore(exclude=["v1"])
 restorer = tf.train.Saver(variables_to_restore)
 ​
 with tf.Session() as sess:
-    restorer.restore(sess, "/tmp/model.ckpt")  # Restore variables from disk
-    print("Model restored.")
-    # Do some work with the model
+    restorer.restore(sess, "/tmp/model.ckpt")  # Restore variables from disk
+    print("Model restored.")
+    # Do some work with the model
 ```
 
 #### Restoring models with different variable names
@@ -429,12 +429,14 @@ with tf.Session() as sess:
 ``` python
 # Assuming than 'conv1/weights' should be restored from 'vgg16/conv1/weights'
 def name_in_checkpoint(var):
-    return 'vgg16/' + var.op.name
+    return 'vgg16/' + var.op.name
 ​
-# Assuming than 'conv1/weights' and 'conv1/bias' should be restored from 'conv1/params1' and 'conv1/params2'
+# Assuming than 'conv1/weights' and 'conv1/bias' should be
+# restored from 'conv1/params1' and 'conv1/params2'
 def name_in_checkpoint(var):
     if "weights" in var.op.name:
         return var.op.name.replace("weights", "params1")
+
     if "bias" in var.op.name:
         return var.op.name.replace("bias", "params2")
 ​
