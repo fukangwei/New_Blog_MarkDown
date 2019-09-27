@@ -66,12 +66,12 @@ from tensorflow.examples.tutorials.mnist import input_data
 ​
 mnist = input_data.read_data_sets("./data/", one_hot=True)
 ​
-time_steps = 28  # unrolled through 28 time steps
-num_units = 128  # hidden LSTM units
-n_input = 28  # rows of 28 pixels
-learning_rate = 0.001  # learning rate for adam
-n_classes = 10  # mnist is meant to be classified in 10 classes(0 - 9)
-batch_size = 128  # size of batch
+time_steps = 28  # unrolled through 28 time steps
+num_units = 128  # hidden LSTM units
+n_input = 28  # rows of 28 pixels
+learning_rate = 0.001  # learning rate for adam
+n_classes = 10  # mnist is meant to be classified in 10 classes(0 - 9)
+batch_size = 128  # size of batch
 ```
 
 现在设置占位、权重以及偏置变量(用于将输出的形态从`[batch_size, num_units]`转换为`[batch_size, n_classes]`)，从而可以预测正确的类别：
@@ -81,8 +81,8 @@ batch_size = 128  # size of batch
 out_weights = tf.Variable(tf.random_normal([num_units, n_classes]))
 out_bias = tf.Variable(tf.random_normal([n_classes]))
 ​
-x = tf.placeholder("float", [None, time_steps, n_input])  # input image placeholder
-y = tf.placeholder("float", [None, n_classes])  # input label placeholder
+x = tf.placeholder("float", [None, time_steps, n_input])  # input image placeholder
+y = tf.placeholder("float", [None, n_classes])  # input label placeholder
 ```
 
 现在我们得到了形态为`[batch_size, time_steps, n_input]`的输入，我们需要将其转换成形态为`[batch_size, n_inputs]`，长度为`time_steps`的张量列表，从而可以将其输入`static_rnn`：
@@ -124,22 +124,25 @@ accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 &emsp;&emsp;现在我们已经完成定义，可以开始运行了。需要注意的是，我们的每一张图像在开始时被平坦化为`784`维的单一向量，函数`next_batch(batch_size)`必须返回这些`784`维向量的`batch_size`批次数。因此它们的形态要被改造成`[batch_size, time_steps, n_input]`，从而可以被占位符接受：
 
 ``` python
-init = tf.global_variables_initializer()  # initialize variables
+init = tf.global_variables_initializer()  # initialize variables
 ​
 with tf.Session() as sess:
-    sess.run(init)
-    iter = 1
-    while iter < 800:
-        batch_x, batch_y = mnist.train.next_batch(batch_size=batch_size)
-        batch_x = batch_x.reshape((batch_size, time_steps, n_input))
-        sess.run(opt, feed_dict={x: batch_x, y: batch_y})
-        if iter % 10 == 0:
+    sess.run(init)
+    iter = 1
+
+    while iter < 800:
+        batch_x, batch_y = mnist.train.next_batch(batch_size=batch_size)
+        batch_x = batch_x.reshape((batch_size, time_steps, n_input))
+        sess.run(opt, feed_dict={x: batch_x, y: batch_y})
+
+        if iter % 10 == 0:
             acc = sess.run(accuracy, feed_dict={x: batch_x, y: batch_y})
             los = sess.run(loss, feed_dict={x: batch_x, y: batch_y})
             print("For iter ", iter)
             print("Accuracy ", acc)
             print("Loss ", los)
             print("-------------------")
+
         iter = iter + 1
 ​
     # calculating test accuracy

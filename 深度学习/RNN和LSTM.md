@@ -181,15 +181,15 @@ model.compile(optimizer=adam, loss='mse', )
 print('Training ------------')
 
 for step in range(501):
-    # data shape = (batch_num, steps, inputs/outputs)
-    X_batch, Y_batch, xs = get_batch()
-    cost = model.train_on_batch(X_batch, Y_batch)
-    pred = model.predict(X_batch, BATCH_SIZE)
-    plt.plot(xs[0, :], Y_batch[0].flatten(), 'r', xs[0, :], pred.flatten()[:TIME_STEPS], 'b--')
-    plt.ylim((-1.2, 1.2))
-    plt.draw()
-    plt.pause(0.1)
+    # data shape = (batch_num, steps, inputs/outputs)
+    X_batch, Y_batch, xs = get_batch()
+    cost = model.train_on_batch(X_batch, Y_batch)
+    pred = model.predict(X_batch, BATCH_SIZE)
+    plt.plot(xs[0, :], Y_batch[0].flatten(), 'r', xs[0, :], pred.flatten()[:TIME_STEPS], 'b--')
+    plt.ylim((-1.2, 1.2))
+    plt.draw()
+    plt.pause(0.1)
 
-    if step % 10 == 0:
-        print('train cost: ', cost)
+    if step % 10 == 0:
+        print('train cost: ', cost)
 ```
