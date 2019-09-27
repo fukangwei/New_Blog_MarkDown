@@ -435,11 +435,11 @@ for n_iter in range(100):
         writer.add_audio('myAudio', dummy_audio, n_iter, sample_rate=sample_rate)
         writer.add_text('Text', 'text logged at step:' + str(n_iter), n_iter)
 ​
-        for name, param in resnet18.named_parameters():
-            writer.add_histogram(name, param.clone().cpu().data.numpy(), n_iter)
+        for name, param in resnet18.named_parameters():
+            writer.add_histogram(name, param.clone().cpu().data.numpy(), n_iter)
 ​
         # needs tensorboard 0.4RC or later
-        writer.add_pr_curve('xoxo', np.random.randint(2, size=100), np.random.rand(100), n_iter)
+        writer.add_pr_curve('xoxo', np.random.randint(2, size=100), np.random.rand(100), n_iter)
 ​
 dataset = datasets.MNIST('mnist', train=False, download=True)
 images = dataset.test_data[:100].float()
@@ -447,8 +447,8 @@ label = dataset.test_labels[:100]
 ​
 features = images.view(100, 784)
 writer.add_embedding(features, metadata=label, label_img=images.unsqueeze(1))
-​
-writer.export_scalars_to_json("./all_scalars.json")  # export scalar data to JSON for external processing
+# export scalar data to JSON for external processing
+writer.export_scalars_to_json("./all_scalars.json")
 writer.close()
 ```
 
