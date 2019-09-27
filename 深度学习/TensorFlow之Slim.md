@@ -66,7 +66,8 @@ regular_variables_and_model_variables = slim.get_variables()
 
 ``` python
 my_model_variable = CreateViaCustomCode()
-slim.add_model_variable(my_model_variable)  # Letting TF-Slim know about the additional variable
+# Letting TF-Slim know about the additional variable
+slim.add_model_variable(my_model_variable)
 ```
 
 #### Layers
@@ -82,12 +83,13 @@ slim.add_model_variable(my_model_variable)  # Letting TF-Slim know about the ad
 
 ``` python
 input = ...
+
 with tf.name_scope('conv1_1') as scope:
-    kernel = tf.Variable(tf.truncated_normal([3, 3, 64, 128], dtype=tf.float32, stddev=1e-1), name='weights')
-    conv = tf.nn.conv2d(input, kernel, [1, 1, 1, 1], padding='SAME')
-    biases = tf.Variable(tf.constant(0.0, shape=[128], dtype=tf.float32), trainable=True, name='biases')
-    bias = tf.nn.bias_add(conv, biases)
-    conv1 = tf.nn.relu(bias, name=scope)
+    kernel = tf.Variable(tf.truncated_normal([3, 3, 64, 128], dtype=tf.float32, stddev=1e-1), name='weights')
+    conv = tf.nn.conv2d(input, kernel, [1, 1, 1, 1], padding='SAME')
+    biases = tf.Variable(tf.constant(0.0, shape=[128], dtype=tf.float32), trainable=True, name='biases')
+    bias = tf.nn.bias_add(conv, biases)
+    conv1 = tf.nn.relu(bias, name=scope)
 ```
 
 为了减少重复代码，`TF-Slim`提供了一些方便的、高级别的、更抽象的神经网络层。例如卷积层实现如下：
@@ -129,8 +131,9 @@ net = slim.max_pool2d(net, [2, 2], scope='pool2')
 
 ``` python
 net = ...
+
 for i in range(3):
-    net = slim.conv2d(net, 256, [3, 3], scope='conv3_%d' % (i + 1))
+    net = slim.conv2d(net, 256, [3, 3], scope='conv3_%d' % (i + 1))
 
 net = slim.max_pool2d(net, [2, 2], scope='pool2')
 ```
@@ -210,9 +213,9 @@ with slim.arg_scope(
     [slim.conv2d], padding='SAME',
     weights_initializer=tf.truncated_normal_initializer(stddev=0.01),
     weights_regularizer=slim.l2_regularizer(0.0005)):
-    net = slim.conv2d(inputs, 64, [11, 11], scope='conv1')
-    net = slim.conv2d(net, 128, [11, 11], padding='VALID', scope='conv2')
-    net = slim.conv2d(net, 256, [11, 11], scope='conv3')
+    net = slim.conv2d(inputs, 64, [11, 11], scope='conv1')
+    net = slim.conv2d(net, 128, [11, 11], padding='VALID', scope='conv2')
+    net = slim.conv2d(net, 256, [11, 11], scope='conv3')
 ```
 
 上面的例子表明，使用`arg_scope`可以使得代码变得更整洁、更干净并且更加容易维护。注意到，在`arg_scope`中规定的参数值，它们可以被局部覆盖。例如上面的`padding`参数被设置成`SAME`，但是在第二个卷积层中用`VALID`覆盖了这个参数。
