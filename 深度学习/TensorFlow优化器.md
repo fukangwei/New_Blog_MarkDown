@@ -158,12 +158,13 @@ gra_and_var = optimizer.compute_gradients(goal)
 train_step = optimizer.apply_gradients(gra_and_var)
 ​
 def train():
-    with tf.Session() as sess:
-        x.initializer.run()
-        for i in range(5):
-            print("x: ", x.eval())
-            train_step.run()
-            print("goal:", goal.eval())
+    with tf.Session() as sess:
+        x.initializer.run()
+
+        for i in range(5):
+            print("x: ", x.eval())
+            train_step.run()
+            print("goal:", goal.eval())
 ​
 train()
 ```
