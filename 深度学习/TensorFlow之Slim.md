@@ -354,20 +354,20 @@ vgg = nets.vgg
 train_log_dir = ...
 ​
 if not tf.gfile.Exists(train_log_dir):
-    tf.gfile.MakeDirs(train_log_dir)
+    tf.gfile.MakeDirs(train_log_dir)
 ​
 with tf.Graph().as_default():
-    images, labels = ...  # Set up the data loading
-    predictions = vgg.vgg_16(images, is_training=True)  # Define the model
-    # Specify the loss function:
-    slim.losses.softmax_cross_entropy(predictions, labels)
-    total_loss = slim.losses.get_total_loss()
-    tf.summary.scalar('losses/total_loss', total_loss)
-    optimizer = tf.train.GradientDescentOptimizer(learning_rate=.001)  # Specify the optimization scheme
-    # create_train_op that ensures that when we evaluate it to get the loss,
+    images, labels = ...  # Set up the data loading
+    predictions = vgg.vgg_16(images, is_training=True)  # Define the model
+    # Specify the loss function:
+    slim.losses.softmax_cross_entropy(predictions, labels)
+    total_loss = slim.losses.get_total_loss()
+    tf.summary.scalar('losses/total_loss', total_loss)
+    optimizer = tf.train.GradientDescentOptimizer(learning_rate=.001)  # Specify the optimization scheme
+    # create_train_op that ensures that when we evaluate it to get the loss,
     # the update_ops are done and the gradient updates are computed
-    train_tensor = slim.learning.create_train_op(total_loss, optimizer)
-    slim.learning.train(train_tensor, train_log_dir)  # Actually runs training
+    train_tensor = slim.learning.create_train_op(total_loss, optimizer)
+    slim.learning.train(train_tensor, train_log_dir)  # Actually runs training
 ```
 
 ### Fine-Tuning Existing Models
@@ -383,7 +383,8 @@ v2 = tf.Variable(..., name="v2")
 restorer = tf.train.Saver()  # Add ops to restore all the variables
 restorer = tf.train.Saver([v1, v2])  # Add ops to restore some variables
 ​
-# Later, launch the model, use the saver to restore variables from disk, and do some work with the model
+# Later, launch the model, use the saver to restore variables
+# from disk, and do some work with the model
 with tf.Session() as sess:
     restorer.restore(sess, "/tmp/model.ckpt")  # Restore variables from disk
     print("Model restored.")
