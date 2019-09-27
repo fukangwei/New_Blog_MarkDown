@@ -465,35 +465,35 @@ from tensorboardX import SummaryWriter
 dummy_input = (torch.zeros(1, 3),)
 ​
 class LinearLanpa(nn.Module):
-    def __init__(self):
-        super(LinearLanpa, self).__init__()
-        self.l = nn.Linear(3, 5)
+    def __init__(self):
+        super(LinearLanpa, self).__init__()
+        self.l = nn.Linear(3, 5)
 ​
-    def forward(self, x):
-        return self.l(x)
+    def forward(self, x):
+        return self.l(x)
 ​
 with SummaryWriter(comment='LinearModel') as w:
-    w.add_graph(LinearLanpa(), dummy_input, True)
+    w.add_graph(LinearLanpa(), dummy_input, True)
 # -----------------------------
 class SimpleModel(nn.Module):
-    def __init__(self):
-        super(SimpleModel, self).__init__()
+    def __init__(self):
+        super(SimpleModel, self).__init__()
 ​
-    def forward(self, x):
-        return x * 2
+    def forward(self, x):
+        return x * 2
 ​
 model = SimpleModel()
 dummy_input = (torch.zeros(1, 2, 3),)
 ​
 with SummaryWriter(comment='constantModel') as w:
-    w.add_graph(model, dummy_input, True)
+    w.add_graph(model, dummy_input, True)
 # -----------------------------
 def conv3x3(in_planes, out_planes, stride=1):
     # 3x3 convolution with padding
-    return nn.Conv2d(in_planes, out_planes, kernel_size=3, stride=stride, padding=1, bias=False)
+    return nn.Conv2d(in_planes, out_planes, kernel_size=3, stride=stride, padding=1, bias=False)
 ​
 class BasicBlock(nn.Module):
-    def __init__(self, inplanes, planes, stride=1, downsample=None):
+    def __init__(self, inplanes, planes, stride=1, downsample=None):
         super(BasicBlock, self).__init__()
         self.conv1 = conv3x3(inplanes, planes, stride)
         self.bn1 = nn.BatchNorm2d(planes)
