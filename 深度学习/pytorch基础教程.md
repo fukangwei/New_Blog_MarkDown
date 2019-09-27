@@ -296,22 +296,21 @@ loss_func = torch.nn.MSELoss()  # 预测值和真实值的误差计算公式(均
 plt.ion()
 ​
 for t in range(200):
-    prediction = net(x)  # 喂给net训练数据x，输出预测值
-    loss = loss_func(prediction, y)  # 计算两者的误差
+    prediction = net(x)  # 喂给net训练数据x，输出预测值
+    loss = loss_func(prediction, y)  # 计算两者的误差
 ​
-    optimizer.zero_grad()  # 清空上一步的残余更新参数值
-    loss.backward()  # 误差反向传播，计算参数更新值
-    optimizer.step()  # 将参数更新值施加到net的parameters上
+    optimizer.zero_grad()  # 清空上一步的残余更新参数值
+    loss.backward()  # 误差反向传播，计算参数更新值
+    optimizer.step()  # 将参数更新值施加到net的parameters上
 ​
-    if t % 5 == 0:
-        # plot and show learning process
-        plt.cla()
-        plt.scatter(x.data.numpy(), y.data.numpy())
-        plt.plot(x.data.numpy(), prediction.data.numpy(), 'r-', lw=5)
-        plt.text(
-            0.5, 0, 'Loss=%.4f' % loss.data.numpy(),
-            fontdict={'size': 20, 'color': 'red'})
-        plt.pause(0.1)
+    if t % 5 == 0:
+        # plot and show learning process
+        plt.cla()
+        plt.scatter(x.data.numpy(), y.data.numpy())
+        plt.plot(x.data.numpy(), prediction.data.numpy(), 'r-', lw=5)
+        plt.text(0.5, 0, 'Loss=%.4f' % loss.data.numpy(),
+                 fontdict={'size': 20, 'color': 'red'})
+        plt.pause(0.1)
 ​
 plt.ioff()
 plt.show()
