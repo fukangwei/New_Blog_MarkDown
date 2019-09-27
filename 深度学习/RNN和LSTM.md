@@ -109,16 +109,16 @@ model.compile(optimizer=adam, loss='categorical_crossentropy', metrics=['accurac
 
 ``` python
 for step in range(4001):  # training
-    # data shape = (batch_num, steps, inputs/outputs)
-    X_batch = X_train[BATCH_INDEX: BATCH_INDEX + BATCH_SIZE, :, :]
-    Y_batch = y_train[BATCH_INDEX: BATCH_INDEX + BATCH_SIZE, :]
-    cost = model.train_on_batch(X_batch, Y_batch)
-    BATCH_INDEX += BATCH_SIZE
-    BATCH_INDEX = 0 if BATCH_INDEX >= X_train.shape[0] else BATCH_INDEX
+    # data shape = (batch_num, steps, inputs/outputs)
+    X_batch = X_train[BATCH_INDEX: BATCH_INDEX + BATCH_SIZE, :, :]
+    Y_batch = y_train[BATCH_INDEX: BATCH_INDEX + BATCH_SIZE, :]
+    cost = model.train_on_batch(X_batch, Y_batch)
+    BATCH_INDEX += BATCH_SIZE
+    BATCH_INDEX = 0 if BATCH_INDEX >= X_train.shape[0] else BATCH_INDEX
 ​
-    if step % 500 == 0:
-        cost, accuracy = model.evaluate(X_test, y_test, batch_size=y_test.shape[0], verbose=False)
-        print('test cost: ', cost, 'test accuracy: ', accuracy)
+    if step % 500 == 0:
+        cost, accuracy = model.evaluate(X_test, y_test, batch_size=y_test.shape[0], verbose=False)
+        print('test cost: ', cost, 'test accuracy: ', accuracy)
 ```
 
 ### RNN之Regressor
@@ -127,7 +127,7 @@ for step in range(4001):  # training
 
 ``` python
 import numpy as np
-np.random.seed(1337)  # for reproducibility
+np.random.seed(1337)  # for reproducibility
 ​
 import matplotlib.pyplot as plt
 from keras.models import Sequential
@@ -143,14 +143,14 @@ CELL_SIZE = 20
 LR = 0.006
 ​
 def get_batch():
-    global BATCH_START, TIME_STEPS
-    # xs shape (50 batch, 20 steps)
-    xs = np.arange(BATCH_START, BATCH_START + TIME_STEPS * BATCH_SIZE) \
+    global BATCH_START, TIME_STEPS
+    # xs shape (50 batch, 20 steps)
+    xs = np.arange(BATCH_START, BATCH_START + TIME_STEPS * BATCH_SIZE) \
             .reshape((BATCH_SIZE, TIME_STEPS)) / (10 * np.pi)
-    seq = np.sin(xs)
-    res = np.cos(xs)
-    BATCH_START += TIME_STEPS
-    return [seq[:, :, np.newaxis], res[:, :, np.newaxis], xs]
+    seq = np.sin(xs)
+    res = np.cos(xs)
+    BATCH_START += TIME_STEPS
+    return [seq[:, :, np.newaxis], res[:, :, np.newaxis], xs]
 ```
 
 &emsp;&emsp;然后添加`LSTM`层，输入为训练数据，输出数据大小由`CELL_SIZE`定义。因为每一个输入都对应一个输出，所以`return_sequences=True`。每一个点的当前输出都受前面所有输出的影响，`BATCH`之间的参数也需要记忆，故`stateful=True`：
@@ -158,12 +158,12 @@ def get_batch():
 ``` python
 model = Sequential()
 ​
-model.add(LSTM(  # build a LSTM RNN
+model.add(LSTM(  # build a LSTM RNN
     # Or: input_dim=INPUT_SIZE, input_length=TIME_STEPS
-    batch_input_shape=(BATCH_SIZE, TIME_STEPS, INPUT_SIZE),
-    output_dim=CELL_SIZE,
-    return_sequences=True,  # True: output at all steps. False: output as last step.
-    stateful=True,  # True: the final state of batch1 is feed into the initial state of batch2
+    batch_input_shape=(BATCH_SIZE, TIME_STEPS, INPUT_SIZE),
+    output_dim=CELL_SIZE,
+    return_sequences=True,  # True: output at all steps. False: output as last step.
+    stateful=True,  # True: the final state of batch1 is feed into the initial state of batch2
 ))
 ```
 
@@ -179,6 +179,7 @@ model.compile(optimizer=adam, loss='mse', )
 
 ``` python
 print('Training ------------')
+
 for step in range(501):
     # data shape = (batch_num, steps, inputs/outputs)
     X_batch, Y_batch, xs = get_batch()
