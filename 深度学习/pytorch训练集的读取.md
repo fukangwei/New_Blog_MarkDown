@@ -94,42 +94,42 @@ from torch.utils.data.dataset import Dataset
 from torchvision import transforms
 ​
 class MyCustomDataset(Dataset):
-    def __init__(self, ...):
-        # stuff
-        ...
-        # (2) 一种方法是单独定义transform
-        self.center_crop = transforms.CenterCrop(100)
-        self.to_tensor = transforms.ToTensor()
-        # (3) 或者写成下面这样
-        self.transformations = transforms.Compose([transforms.CenterCrop(100),
+    def __init__(self, ...):
+        # stuff
+        ...
+        # (2) 一种方法是单独定义transform
+        self.center_crop = transforms.CenterCrop(100)
+        self.to_tensor = transforms.ToTensor()
+        # (3) 或者写成下面这样
+        self.transformations = transforms.Compose([transforms.CenterCrop(100),
                                                    transforms.ToTensor()])
 ​
-    def __getitem__(self, index):
-        # stuff
-        ...
-        data =  # 一些读取的数据
-        # 当第二次调用transform时，调用的是“__call__()”
-        data = self.center_crop(data)  # (2)
-        data = self.to_tensor(data)  # (2)
-        # 或者写成下面这样
-        data = self.trasnformations(data)  # (3)
-        # 注意(2)和(3)中只需要实现一种
-        return (img, label)
+    def __getitem__(self, index):
+        # stuff
+        ...
+        data = ...  # 一些读取的数据
+        # 当第二次调用transform时，调用的是“__call__()”
+        data = self.center_crop(data)  # (2)
+        data = self.to_tensor(data)  # (2)
+        # 或者写成下面这样
+        data = self.trasnformations(data)  # (3)
+        # 注意(2)和(3)中只需要实现一种
+        return (img, label)
 ​
-    def __len__(self):
-        return count
+    def __len__(self):
+        return count
 ​
 if __name__ == '__main__':
-    custom_dataset = MyCustomDataset(...)
+    custom_dataset = MyCustomDataset(...)
 ```
 
 &emsp;&emsp;假如说我们想从一个`csv`文件中读取数据，一个`csv`示例如下：
 
-File Name   | Label   | Extra Operation
-------------|---------|----------------
-`tr_0.png`  | `5`     | `TRUE`
-`tr_1.png`  | `0`     | `FALSE`
-`tr_1.png`  | `4`     | `FALSE`
+File Name  | Label | Extra Operation
+-----------|-------|----------------
+`tr_0.png` | `5`   | `TRUE`
+`tr_1.png` | `0`   | `FALSE`
+`tr_1.png` | `4`   | `FALSE`
 
 如果我们需要在自定义数据集里从这个`csv`文件读取文件名，可以这样做：
 
