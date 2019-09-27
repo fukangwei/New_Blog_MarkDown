@@ -368,24 +368,24 @@ loss_func = torch.nn.CrossEntropyLoss()  # the target label is NOT an one-hotted
 plt.ion()  # something about plotting
 ​
 for t in range(100):
-    out = net(x)  # 喂给net训练数据x，输出分析值
+    out = net(x)  # 喂给net训练数据x，输出分析值
     # must be (1. nn output, 2. target), the target label is NOT one-hotted
-    loss = loss_func(out, y)
+    loss = loss_func(out, y)
 ​
-    optimizer.zero_grad()  # clear gradients for next train
-    loss.backward()  # backpropagation, compute gradients
-    optimizer.step()  # apply gradients
+    optimizer.zero_grad()  # clear gradients for next train
+    loss.backward()  # backpropagation, compute gradients
+    optimizer.step()  # apply gradients
 ​
-    if t % 2 == 0:
-        # plot and show learning process
-        plt.cla()
-        prediction = torch.max(out, 1)[1]
-        pred_y = prediction.data.numpy().squeeze()
-        target_y = y.data.numpy()
-        plt.scatter(x.data.numpy()[:, 0], x.data.numpy()[:, 1], c=pred_y, s=100, lw=0, cmap='RdYlGn')
-        accuracy = float((pred_y == target_y).astype(int).sum()) / float(target_y.size)
-        plt.text(1.5, -4, 'Accuracy=%.2f' % accuracy, fontdict={'size': 20, 'color': 'red'})
-        plt.pause(0.1)
+    if t % 2 == 0:
+        # plot and show learning process
+        plt.cla()
+        prediction = torch.max(out, 1)[1]
+        pred_y = prediction.data.numpy().squeeze()
+        target_y = y.data.numpy()
+        plt.scatter(x.data.numpy()[:, 0], x.data.numpy()[:, 1], c=pred_y, s=100, lw=0, cmap='RdYlGn')
+        accuracy = float((pred_y == target_y).astype(int).sum()) / float(target_y.size)
+        plt.text(1.5, -4, 'Accuracy=%.2f' % accuracy, fontdict={'size': 20, 'color': 'red'})
+        plt.pause(0.1)
 ​
 plt.ioff()
 plt.show()
@@ -400,10 +400,10 @@ import torch
 import torch.nn.functional as F
 ​
 class Net(torch.nn.Module):
-    def __init__(self, n_feature, n_hidden, n_output):
-        super(Net, self).__init__()
-        self.hidden = torch.nn.Linear(n_feature, n_hidden)  # hidden layer
-        self.predict = torch.nn.Linear(n_hidden, n_output)  # output layer
+    def __init__(self, n_feature, n_hidden, n_output):
+        super(Net, self).__init__()
+        self.hidden = torch.nn.Linear(n_feature, n_hidden)  # hidden layer
+        self.predict = torch.nn.Linear(n_hidden, n_output)  # output layer
 ​
     def forward(self, x):
         x = F.relu(self.hidden(x))  # activation function for hidden layer
