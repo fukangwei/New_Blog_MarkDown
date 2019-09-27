@@ -63,6 +63,7 @@ tf.random_normal(shape, mean=0.0, stddev=1.0, dtype=tf.float32, seed=None, name=
 import tensorflow as tf
 
 w1 = tf.Variable(tf.random_normal([2, 3], stddev=1, seed=1))
+
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     print(w1)
@@ -83,7 +84,7 @@ with tf.Session() as sess:
 
 &emsp;&emsp;`TensorFlow`的算术操作如下：
 
-操作 | 描述
+操作                                          | 描述
 ----------------------------------------------|-------
 `tf.add(x, y, name=None)`                     | 求和
 `tf.multiply(x, y, name=None)`                | 减法
@@ -125,6 +126,7 @@ init = tf.global_variables_initializer()
 
 with tf.Session() as sess:
     sess.run(init)
+
     for _ in range(3):
         sess.run(update)
         print(sess.run(state))
@@ -190,14 +192,14 @@ Returns a `Tensor` representing the output of the operation.
 
 &emsp;&emsp;Aliases:
 
-- tf.contrib.layers.xavier_initializer
-- tf.contrib.layers.xavier_initializer_conv2d
+- `tf.contrib.layers.xavier_initializer`
+- `tf.contrib.layers.xavier_initializer_conv2d`
 
 ``` python
 tf.contrib.layers.xavier_initializer(uniform=True, seed=None, dtype=tf.float32)
 ```
 
-Defined in `tensorflow/contrib/layers/python/layers/initializers.py`. Returns an initializer performing `Xavier` initialization for weights. This function implements the weight initialization from `Xavier Glorot` and `Yoshua Bengio` (2010): Understanding the difficulty of training deep feedforward neural networks. International conference on artificial intelligence and statistics.
+Defined in `tensorflow/contrib/layers/python/layers/initializers.py`. Returns an initializer performing `Xavier` initialization for weights. This function implements the weight initialization from `Xavier Glorot` and `Yoshua Bengio`: Understanding the difficulty of training deep feedforward neural networks. International conference on artificial intelligence and statistics.
 &emsp;&emsp;This initializer is designed to keep the scale of the gradients roughly the same in all layers.
 
 - `uniform`: Whether to use uniform or normal distributed random initialization.
