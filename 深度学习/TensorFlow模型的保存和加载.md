@@ -276,11 +276,11 @@ a = tf.Variable([[3], [4]], dtype=tf.float32, name='a')
 b = tf.Variable(4, dtype=tf.float32, name='b')
 output = tf.add(a, b, name='out')  # 一定要给输出tensor取一个名字
 ​
-with tf.Session() as sess:  # 转换Variable为constant，并将网络写入到文件
-    sess.run(tf.global_variables_initializer())
-    # 这里需要填入输出tensor的名字
-    graph = convert_variables_to_constants(sess, sess.graph_def, ["out"])
-    tf.train.write_graph(graph, '.', 'graph.pb', as_text=False)
+with tf.Session() as sess:  # 转换Variable为constant，并将网络写入到文件
+    sess.run(tf.global_variables_initializer())
+    # 这里需要填入输出tensor的名字
+    graph = convert_variables_to_constants(sess, sess.graph_def, ["out"])
+    tf.train.write_graph(graph, '.', 'graph.pb', as_text=False)
 ```
 
 执行结果：
@@ -295,18 +295,18 @@ Converted 2 variables to const ops.
 import tensorflow as tf
 ​
 with tf.Session() as sess:
-    with open('./graph.pb', 'rb') as f:
-        graph_def = tf.GraphDef()
-        graph_def.ParseFromString(f.read())
-        output = tf.import_graph_def(graph_def, return_elements=['out:0'])
-        print(sess.run(output))
+    with open('./graph.pb', 'rb') as f:
+        graph_def = tf.GraphDef()
+        graph_def.ParseFromString(f.read())
+        output = tf.import_graph_def(graph_def, return_elements=['out:0'])
+        print(sess.run(output))
 ```
 
 执行结果：
 
 ``` python
 [array([[7.],
-       [8.]], dtype=float32)]
+        [8.]], dtype=float32)]
 ```
 
 &emsp;&emsp;如果我们的网络需要有一个输入自定义数据的接口，可以采用如下方法：
@@ -321,9 +321,9 @@ input_tensor = tf.placeholder(tf.float32, name='input')
 output = tf.add((a + b), input_tensor, name='out')
 ​
 with tf.Session() as sess:
-    sess.run(tf.global_variables_initializer())
-    graph = convert_variables_to_constants(sess, sess.graph_def, ["out"])
-    tf.train.write_graph(graph, '.', 'graph.pb', as_text=False)
+    sess.run(tf.global_variables_initializer())
+    graph = convert_variables_to_constants(sess, sess.graph_def, ["out"])
+    tf.train.write_graph(graph, '.', 'graph.pb', as_text=False)
 ```
 
 上述代码重新保存网络至`graph.pb`，这次我们有了一个输入`placeholder`，下面来看看怎么恢复网络并输入自定义数据：
