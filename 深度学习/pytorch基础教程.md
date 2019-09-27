@@ -25,13 +25,13 @@ print('tensor to array:\n', tensor2array)
 ``` python
 numpy array:
  [[0 1 2]
- [3 4 5]]
+  [3 4 5]]
 torch tensor:
  tensor([[0, 1, 2],
         [3, 4, 5]], dtype=torch.int32)
 tensor to array:
  [[0 1 2]
- [3 4 5]]
+  [3 4 5]]
 ```
 
 #### Torch中的数学运算
@@ -43,23 +43,23 @@ import torch
 import numpy as np
 ​
 data = [-1, -2, 1, 2]
-tensor = torch.FloatTensor(data)  # 转换成32位浮点tensor
-print(  # abs绝对值计算
-    'abs',
-    '\nnumpy:', np.abs(data),
-    '\ntorch:', torch.abs(tensor)
+tensor = torch.FloatTensor(data)  # 转换成32位浮点tensor
+print(  # abs绝对值计算
+    'abs',
+    '\nnumpy:', np.abs(data),
+    '\ntorch:', torch.abs(tensor)
 )
 ​
-print(  # sin三角函数
-    '\nsin',
-    '\nnumpy:', np.sin(data),
-    '\ntorch:', torch.sin(tensor)
+print(  # sin三角函数
+    '\nsin',
+    '\nnumpy:', np.sin(data),
+    '\ntorch:', torch.sin(tensor)
 )
 ​
-print(  # mean均值
-    '\nmean',
-    '\nnumpy:', np.mean(data),
-    '\ntorch:', torch.mean(tensor)
+print(  # mean均值
+    '\nmean',
+    '\nnumpy:', np.mean(data),
+    '\ntorch:', torch.mean(tensor)
 )
 ```
 
@@ -87,12 +87,12 @@ import numpy as np
 ​
 # 矩阵点乘(matrix multiplication)
 data = [[1, 2], [3, 4]]
-tensor = torch.FloatTensor(data)  # 转换成32位浮点tensor
+tensor = torch.FloatTensor(data)  # 转换成32位浮点tensor
 ​
-print(  # correct method
-    'matrix multiplication (matmul)',
-    '\nnumpy:\n', np.matmul(data, data),
-    '\ntorch:\n', torch.mm(tensor, tensor)
+print(  # correct method
+    'matrix multiplication (matmul)',
+    '\nnumpy:\n', np.matmul(data, data),
+    '\ntorch:\n', torch.mm(tensor, tensor)
 )
 ```
 
@@ -102,10 +102,10 @@ print(  # correct method
 matrix multiplication (matmul)
 numpy:
  [[ 7 10]
- [15 22]]
+  [15 22]]
 torch:
  tensor([[ 7., 10.],
-        [15., 22.]])
+         [15., 22.]])
 ```
 
 ### 变量(Variable)
