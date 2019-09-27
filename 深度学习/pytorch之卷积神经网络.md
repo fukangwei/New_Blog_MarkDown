@@ -157,16 +157,16 @@ print(test_y[:10].numpy(), 'real number')
 
 ``` python
 class NET(nn.Module):
-    def __init__(self, batch_size):
-        super(NET, self).__init__()
-        self.conv = nn.Conv2d(outchannels=3, in_channels=64,
+    def __init__(self, batch_size):
+        super(NET, self).__init__()
+        self.conv = nn.Conv2d(outchannels=3, in_channels=64,
                               kernel_size=3, stride=1)
-        self.fc = nn.Linear(64 * batch_size, 10)
+        self.fc = nn.Linear(64 * batch_size, 10)
 ​
-    def forward(self,x):
-        x = self.conv(x)
-        x = x.view(x.size(0), -1)
-        out = self.fc(x)
+    def forward(self, x):
+        x = self.conv(x)
+        x = x.view(x.size(0), -1)
+        out = self.fc(x)
 ```
 
 上面是个简单的网络结构，包含一个卷积层和一个线性层。在`forward`函数中，`input`首先经过卷积层，此时的输出`x`是包含`batch size`维度为`4`的`tensor`，即`(batchsize, channels, height, width)`，`x.size(0)`指的是`batch size`的值，`x = x.view(x.size(0), -1)`可以简化为`x = x.view(batchsize, -1)`。
