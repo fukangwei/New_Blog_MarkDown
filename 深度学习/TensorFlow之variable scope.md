@@ -215,16 +215,16 @@ scope_name:
 import tensorflow as tf
 ​
 with tf.variable_scope("hello") as variable_scope:
-    arr1 = tf.get_variable("arr1", shape=[2, 10], dtype=tf.float32)
-    print(variable_scope)
-    print(variable_scope.name)  # 打印出变量空间名字
-    print(arr1.name)
+    arr1 = tf.get_variable("arr1", shape=[2, 10], dtype=tf.float32)
+    print(variable_scope)
+    print(variable_scope.name)  # 打印出变量空间名字
+    print(arr1.name)
     # tf.get_variable_scope获取的就是variable_scope
-    print(tf.get_variable_scope().original_name_scope)
+    print(tf.get_variable_scope().original_name_scope)
 ​
-    with tf.variable_scope("xixi") as v_scope2:
+    with tf.variable_scope("xixi") as v_scope2:
         # tf.get_variable_scope获取的就是v_scope2
-        print(tf.get_variable_scope().original_name_scope)
+        print(tf.get_variable_scope().original_name_scope)
 ```
 
 执行结果：
@@ -244,9 +244,9 @@ hello/xixi/
 import tensorflow as tf
 ​
 with tf.name_scope("name1"):
-    with tf.variable_scope("var1"):
-        w = tf.get_variable("w", shape=[2])
-        res = tf.add(w, [3])
+    with tf.variable_scope("var1"):
+        w = tf.get_variable("w", shape=[2])
+        res = tf.add(w, [3])
 ​
 print(w.name)
 print(res.name)
@@ -271,8 +271,8 @@ name1/var1/Add:0
 import tensorflow as tf
 ​
 with tf.name_scope("scope1") as scope1:
-    with tf.name_scope("scope2") as scope2:
-        print(scope2)  # 结果为“scope1/scope2/”
+    with tf.name_scope("scope2") as scope2:
+        print(scope2)  # 结果为“scope1/scope2/”
 ```
 
 另外一个：
@@ -281,8 +281,8 @@ with tf.name_scope("scope1") as scope1:
 import tensorflow as tf
 ​
 with tf.variable_scope("scope1") as scope1:
-    with tf.variable_scope("scope2") as scope2:
-        print(scope2.name)  # 结果为“scope1/scope2”
+    with tf.variable_scope("scope2") as scope2:
+        print(scope2.name)  # 结果为“scope1/scope2”
 ```
 
 ### name_scope可以用来干什么？
