@@ -48,12 +48,12 @@ sess = tf.InteractiveSession()
 
 ``` python
 def weight_variable(shape):
-    initial = tf.truncated_normal(shape, stddev=0.1)
-    return tf.Variable(initial)
+    initial = tf.truncated_normal(shape, stddev=0.1)
+    return tf.Variable(initial)
 ​
 def bias_variable(shape):
-    initial = tf.constant(0.1, shape=shape)
-    return tf.Variable(initial)
+    initial = tf.constant(0.1, shape=shape)
+    return tf.Variable(initial)
 ```
 
 &emsp;&emsp;卷积层、池化层是接下来重复使用的，这里的`tf.nn.conv2d`是`TensorFlow`中的`2`维卷积函数，参数`x`是输入，`W`是卷积的参数，比如`[5, 5, 1, 32]`，前两个数字代表卷积核的尺寸，第三个数字代表有多少个`channel`(这里用灰度图像，所以设为`1`，彩色图像则设为`3`)。最后一个数字代表卷积核的数量，也就是这个卷积层会提取多少类的特征。`Strides`代表卷积模板移动的步长，都是`1`代表会不遗漏地划过图片的每一个点。`Padding`代表边界的处理方式，这里的`SAME`代表给边界加上`Padding`，让卷积的输出和输入保持同样的尺寸。
@@ -61,17 +61,17 @@ def bias_variable(shape):
 
 ``` python
 def conv2d(x, W):
-    return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding='SAME')
+    return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding='SAME')
 ​
 def max_pool_2x2(x):
-    return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
+    return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
 ```
 
 &emsp;&emsp;在正式设计卷积神经网络之前，先定义输入的`placeholder`，其中`x`是特征，`y`是真实的`label`。因为卷积神经网络会利用到空间结构信息，因此需要将`1D`的输入向量转为`2D`的图片结构，即从`1 * 784`的形式转为`28 * 28`的结构。因为只有一个颜色通道，故最终尺寸为`[-1, 28, 28, 1]`，`-1`代表样本数量不固定，第`2`和第`3`维对应图片的宽、高，`1`代表颜色通道数量。这里我们使用`tensor`变形函数是`tf.reshape`：
 
 ``` python
-n_input  = 784 # “28 * 28”的灰度图，像素个数784
-n_output = 10  # 10分类问题
+n_input  = 784  # “28 * 28”的灰度图，像素个数784
+n_output = 10   # 10分类问题
 ​
 x = tf.placeholder(tf.float32, [None, n_input])
 y = tf.placeholder(tf.float32, [None, n_output])
@@ -143,12 +143,13 @@ batch_size = 100
 display_step = 10
 ​
 for i in range(training_epochs):
-    batch = mnist.train.next_batch(batch_size)
-    optm.run(feed_dict={x: batch[0], y: batch[1], keep_prob: 0.7})
-    if i % display_step == 0:
-        train_accuracy = accuracy.eval(feed_dict={x: batch[0], y: batch[1], keep_prob: 1.0})
-        test_accuracy = accuracy.eval(feed_dict={x: mnist.test.images, y: mnist.test.labels, keep_prob: 1.0})
-        print("step: %d TRAIN ACCURACY: %.3f TEST ACCURACY: %.3f" % (i, train_accuracy, test_accuracy))
+    batch = mnist.train.next_batch(batch_size)
+    optm.run(feed_dict={x: batch[0], y: batch[1], keep_prob: 0.7})
+
+    if i % display_step == 0:
+        train_accuracy = accuracy.eval(feed_dict={x: batch[0], y: batch[1], keep_prob: 1.0})
+        test_accuracy = accuracy.eval(feed_dict={x: mnist.test.images, y: mnist.test.labels, keep_prob: 1.0})
+        print("step: %d TRAIN ACCURACY: %.3f TEST ACCURACY: %.3f" % (i, train_accuracy, test_accuracy))
 ```
 
 最后，这个`CNN`模型的准确率为`99.2%`，基本上可以满足手写数字识别的要求。
