@@ -102,12 +102,13 @@ def te2():
         var2 = tf.get_variable("var2", shape=[2], dtype=tf.float32)
         print(var2.name)
 ​
-        def te1():
-            with tf.variable_scope("te1"):
-                var1 = tf.get_variable("var1", shape=[2], dtype=tf.float32)
-            return var1
+        def te1():
+            with tf.variable_scope("te1"):
+                var1 = tf.get_variable("var1", shape=[2], dtype=tf.float32)
 
-    return te1()  # 在scope的te2外面调用的
+            return var1
+
+    return te1()  # 在scope的te2外面调用的
 ​
 res = te2()
 print(res.name)
@@ -126,11 +127,12 @@ te1/var1:0
 import tensorflow as tf
 ​
 with tf.variable_scope("scope"):
-    var1 = tf.get_variable("w", shape=[1])
-    print(var1.name)  # 执行结果“scope/w”
-    with tf.variable_scope("scope"):
-        var2 = tf.get_variable("w", shape=[1])
-        print(var2.name)  # 执行结果“scope/scope/w”
+    var1 = tf.get_variable("w", shape=[1])
+    print(var1.name)  # 执行结果“scope/w”
+
+    with tf.variable_scope("scope"):
+        var2 = tf.get_variable("w", shape=[1])
+        print(var2.name)  # 执行结果“scope/scope/w”
 ```
 
 代码`2`如下：
@@ -139,13 +141,13 @@ with tf.variable_scope("scope"):
 import tensorflow as tf
 ​
 with tf.variable_scope("scope"):
-    var1 = tf.get_variable("w", shape=[1])
-    print(var1.name)  # 执行结果“scope/w”
-    scope = tf.get_variable_scope()
+    var1 = tf.get_variable("w", shape=[1])
+    print(var1.name)  # 执行结果“scope/w”
+    scope = tf.get_variable_scope()
 ​
-    with tf.variable_scope(scope):  # 这种方式设置的scope，是用的外部的scope
-        var2 = tf.get_variable("w", shape=[1])  # 这个变量的name也是“scope/w”，因此会报出错误
-        print(var2.name)
+    with tf.variable_scope(scope):  # 这种方式设置的scope，是用的外部的scope
+        var2 = tf.get_variable("w", shape=[1])  # 这个变量的name也是“scope/w”，因此会报出错误
+        print(var2.name)
 ```
 
 ### 共享变量
@@ -156,20 +158,22 @@ with tf.variable_scope("scope"):
 import tensorflow as tf
 ​
 with tf.variable_scope("level1"):
-    var1 = tf.get_variable("w", shape=[1])
-    print(var1.name)
-    scope = tf.get_variable_scope()
-    with tf.variable_scope("level2"):
-        var2 = tf.get_variable("w", shape=[1])
-        print(var2.name)
+    var1 = tf.get_variable("w", shape=[1])
+    print(var1.name)
+    scope = tf.get_variable_scope()
+
+    with tf.variable_scope("level2"):
+        var2 = tf.get_variable("w", shape=[1])
+        print(var2.name)
 ​
-with tf.variable_scope("level1", reuse=True):  # 即使嵌套variable_scop，e也会被reuse
-    var1 = tf.get_variable("w", shape=[1])
-    print(var1.name)
-    scope = tf.get_variable_scope()
-    with tf.variable_scope(scope):
-        var2 = tf.get_variable("w", shape=[1])
-        print(var2.name)
+with tf.variable_scope("level1", reuse=True):
+    var1 = tf.get_variable("w", shape=[1])
+    print(var1.name)
+    scope = tf.get_variable_scope()
+
+    with tf.variable_scope(scope):
+        var2 = tf.get_variable("w", shape=[1])
+        print(var2.name)
 ```
 
 执行结果：
@@ -190,10 +194,10 @@ level1/w:0
 import tensorflow as tf
 ​
 with tf.name_scope("hello") as name_scope:
-    arr1 = tf.get_variable("arr1", shape=[2, 10], dtype=tf.float32)
-    print(name_scope)
-    print(arr1.name)
-    print("scope_name:%s " % tf.get_variable_scope().original_name_scope)
+    arr1 = tf.get_variable("arr1", shape=[2, 10], dtype=tf.float32)
+    print(name_scope)
+    print(arr1.name)
+    print("scope_name:%s " % tf.get_variable_scope().original_name_scope)
 ```
 
 执行结果：
@@ -215,10 +219,12 @@ with tf.variable_scope("hello") as variable_scope:
     print(variable_scope)
     print(variable_scope.name)  # 打印出变量空间名字
     print(arr1.name)
-    print(tf.get_variable_scope().original_name_scope)  # tf.get_variable_scope获取的就是variable_scope
+    # tf.get_variable_scope获取的就是variable_scope
+    print(tf.get_variable_scope().original_name_scope)
 ​
     with tf.variable_scope("xixi") as v_scope2:
-        print(tf.get_variable_scope().original_name_scope)  # tf.get_variable_scope获取的就是v_scope2
+        # tf.get_variable_scope获取的就是v_scope2
+        print(tf.get_variable_scope().original_name_scope)
 ```
 
 执行结果：
