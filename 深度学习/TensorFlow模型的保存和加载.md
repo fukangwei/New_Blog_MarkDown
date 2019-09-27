@@ -230,25 +230,26 @@ is_train = False
 saver = tf.train.Saver(max_to_keep=3)
 ​
 if is_train:  # 训练阶段
-    max_acc = 0
-    f = open('ckpt/acc.txt', 'w')
+    max_acc = 0
+    f = open('ckpt/acc.txt', 'w')
 
-    for i in range(100):
-        batch_xs, batch_ys = mnist.train.next_batch(100)
-        sess.run(train_op, feed_dict={x: batch_xs, y_: batch_ys})
-        val_loss, val_acc = sess.run([loss, acc], feed_dict={x: mnist.test.images, y_: mnist.test.labels})
-        print('epoch:%d, val_loss:%f, val_acc:%f' % (i, val_loss, val_acc))
-        f.write(str(i + 1) + ', val_acc: ' + str(val_acc) + '\n')
-        if val_acc > max_acc:
-            max_acc = val_acc
-            saver.save(sess, 'ckpt/mnist.ckpt', global_step=i + 1)
+    for i in range(100):
+        batch_xs, batch_ys = mnist.train.next_batch(100)
+        sess.run(train_op, feed_dict={x: batch_xs, y_: batch_ys})
+        val_loss, val_acc = sess.run([loss, acc], feed_dict={x: mnist.test.images, y_: mnist.test.labels})
+        print('epoch:%d, val_loss:%f, val_acc:%f' % (i, val_loss, val_acc))
+        f.write(str(i + 1) + ', val_acc: ' + str(val_acc) + '\n')
 
-    f.close()
-else:  # 验证阶段
-    model_file = tf.train.latest_checkpoint('ckpt/')
-    saver.restore(sess, model_file)
-    val_loss, val_acc = sess.run([loss, acc], feed_dict={x: mnist.test.images, y_: mnist.test.labels})
-    print('val_loss:%f, val_acc:%f' % (val_loss, val_acc))
+        if val_acc > max_acc:
+            max_acc = val_acc
+            saver.save(sess, 'ckpt/mnist.ckpt', global_step=i + 1)
+
+    f.close()
+else:  # 验证阶段
+    model_file = tf.train.latest_checkpoint('ckpt/')
+    saver.restore(sess, model_file)
+    val_loss, val_acc = sess.run([loss, acc], feed_dict={x: mnist.test.images, y_: mnist.test.labels})
+    print('val_loss:%f, val_acc:%f' % (val_loss, val_acc))
 
 sess.close()
 ```
@@ -273,7 +274,7 @@ from tensorflow.python.framework.graph_util import convert_variables_to_constant
 # 构造网络
 a = tf.Variable([[3], [4]], dtype=tf.float32, name='a')
 b = tf.Variable(4, dtype=tf.float32, name='b')
-output = tf.add(a, b, name='out')  # 一定要给输出tensor取一个名字
+output = tf.add(a, b, name='out')  # 一定要给输出tensor取一个名字
 ​
 with tf.Session() as sess:  # 转换Variable为constant，并将网络写入到文件
     sess.run(tf.global_variables_initializer())
