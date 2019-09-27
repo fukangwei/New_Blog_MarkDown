@@ -11,31 +11,31 @@ import os
 import torch
 import torch.nn as nn
 import torch.utils.data as Data
-import torchvision  # 数据库模块
+import torchvision  # 数据库模块
 import matplotlib.pyplot as plt
 ​
 # Hyper Parameters
 EPOCH = 1
 BATCH_SIZE = 50
-LR = 0.001  # learning rate
-DOWNLOAD_MNIST = False  # 如果你已经下载好了mnist数据，就写上False
+LR = 0.001  # learning rate
+DOWNLOAD_MNIST = False  # 如果你已经下载好了mnist数据，就写上False
 
 if not (os.path.exists('./mnist/')) or not os.listdir('./mnist/'):
-    # not mnist dir or mnist is empyt dir
-    DOWNLOAD_MNIST = True
+    # not mnist dir or mnist is empyt dir
+    DOWNLOAD_MNIST = True
 ​
-train_data = torchvision.datasets.MNIST(  # Mnist手写数字
-    root='./mnist/',  # 保存或者提取位置
-    train=True,  # this is training data
-    # 转换“PIL.Image”或“numpy.ndarray”成“torch.FloatTensor(C * H * W)”，
+train_data = torchvision.datasets.MNIST(  # Mnist手写数字
+    root='./mnist/',  # 保存或者提取位置
+    train=True,  # this is training data
+    # 转换“PIL.Image”或“numpy.ndarray”成“torch.FloatTensor(C * H * W)”，
     # 训练的时候normalize成[0.0, 1.0]区间
-    transform=torchvision.transforms.ToTensor(),
-    download=DOWNLOAD_MNIST,  # 没下载mnist数据集就进行下载，下载了就不用再下了
+    transform=torchvision.transforms.ToTensor(),
+    download=DOWNLOAD_MNIST,  # 没下载mnist数据集就进行下载，下载了就不用再下了
 )
 ​
 # plot one example
-print(train_data.train_data.size())  # (60000, 28, 28)
-print(train_data.train_labels.size())  # (60000)
+print(train_data.train_data.size())  # (60000, 28, 28)
+print(train_data.train_labels.size())  # (60000)
 plt.imshow(train_data.train_data[0].numpy(), cmap='gray')
 plt.title('%i' % train_data.train_labels[0])
 plt.show()
@@ -62,9 +62,9 @@ test_y = test_data.test_labels[:2000]
 
 ``` python
 class CNN(nn.Module):
-    def __init__(self):
-        super(CNN, self).__init__()
-        self.conv1 = nn.Sequential(  # input shape (1, 28, 28)
+    def __init__(self):
+        super(CNN, self).__init__()
+        self.conv1 = nn.Sequential(  # input shape (1, 28, 28)
             nn.Conv2d(
                 in_channels=1,  # input height
                 out_channels=16,  # n_filters
