@@ -9,17 +9,17 @@ categories: 深度学习
 ``` python
 import tensorflow as tf
 ​
-b = tf.Variable(tf.zeros([100]))  # 生成100维的向量，初始化为0
-W = tf.Variable(tf.random_uniform([784, 100], -1, 1))  # 生成“784 * 100”的随机矩阵W
-x = tf.placeholder(name = "x")  # 输入的Placeholder
-relu = tf.nn.relu(tf.matmul(W, x) + b)  # ReLU(Wx+b)
-C = [...]  # 根据ReLU函数的结果计算Cost
+b = tf.Variable(tf.zeros([100]))  # 生成100维的向量，初始化为0
+W = tf.Variable(tf.random_uniform([784, 100], -1, 1))  # 生成“784 * 100”的随机矩阵W
+x = tf.placeholder(name = "x")  # 输入的Placeholder
+relu = tf.nn.relu(tf.matmul(W, x) + b)  # ReLU(Wx+b)
+C = [...]  # 根据ReLU函数的结果计算Cost
 s = tf.Session()
 ​
 for step in range(0, 10):
-    input = construct 100-D input array  # 为输入创建一个100维的向量
-    result = s.run(C, feed_dict = {x: input})  # 获取Cost，供给输入x
-    print(step, result)
+    input = construct 100-D input array  # 为输入创建一个100维的向量
+    result = s.run(C, feed_dict = {x: input})  # 获取Cost，供给输入x
+    print(step, result)
 ```
 
 <img src="./TensorFlow编程模型/1.png" height="380" width="194">
@@ -58,22 +58,22 @@ product = tf.matmul(matrix1, matrix2)
 &emsp;&emsp;构造阶段完成后，才能启动图。启动图的第一步是创建一个`Session`对象，如果无任何创建参数，会话构造器将启动默认图。
 
 ``` python
-sess = tf.Session()  # 启动默认图
+sess = tf.Session()  # 启动默认图
 # 调用sess的run方法来执行矩阵乘法op，传入product作为该方法的参数。product代表了矩阵乘法op的输出，
 # 传入它是向run方法表明，我们希望取回矩阵乘法op的输出。整个执行过程是自动化的，会话负责传递op所需的
 # 全部输入，op通常是并发执行的函数调用run(product)触发了图中三个op(两个常量op和一个矩阵乘法op)
 # 的执行，返回值result是一个numpy的ndarray对象
 result = sess.run(product)
-print(result)  # 结果为[[ 12.]]
-sess.close()  # 任务完成，关闭会话
+print(result)  # 结果为[[ 12.]]
+sess.close()  # 任务完成，关闭会话
 ```
 
 `Session`对象在使用完后，需要关闭以释放资源。除了显式调用`close`外，也可以使用`with`代码块来自动完成关闭动作：
 
 ``` python
 with tf.Session() as sess:
-    result = sess.run([product])
-    print(result)
+    result = sess.run([product])
+    print(result)
 ```
 
 &emsp;&emsp;`TensorFlow`将图形定义转换成分布式执行的操作，以充分利用可用的计算资源(如`CPU`或`GPU`)。一般你不需要显式指定使用`CPU`还是`GPU`，`TensorFlow`能自动检测。如果检测到`GPU`，`TensorFlow`会尽可能地利用找到的第一个`GPU`来执行操作。如果机器上有超过一个可用的`GPU`，除第一个外的其它`GPU`默认是不参与计算的。为了让`TensorFlow`使用这些`GPU`，你必须将`op`明确指派给它们执行。`with ... Device`语句用来指派特定的`CPU`或`GPU`执行操作：

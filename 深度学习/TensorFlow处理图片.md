@@ -20,9 +20,9 @@ x = tf.Variable(image, name='x')
 model = tf.global_variables_initializer()
 ​
 with tf.Session() as session:
-    x = tf.transpose(x, perm=[1, 0, 2])
-    session.run(model)
-    result = session.run(x)
+    x = tf.transpose(x, perm=[1, 0, 2])
+    session.run(model)
+    result = session.run(x)
 ​
 cv2.imshow('result', result)
 cv2.waitKey(0)
@@ -43,8 +43,8 @@ image = tf.placeholder("uint8", [None, None, 3])
 slice = tf.slice(image, [100, 0, 0], [200, -1, -1])
 ​
 with tf.Session() as session:
-    result = session.run(slice, feed_dict={image: raw_image_data})
-    print(result.shape)
+    result = session.run(slice, feed_dict={image: raw_image_data})
+    print(result.shape)
 ​
 cv2.imshow('result', result)
 cv2.waitKey(0)
@@ -61,14 +61,14 @@ import cv2
 file_name = "call.1.png"
 file_contents = tf.read_file(file_name)
 ​
-image = tf.image.decode_png(file_contents)  # 解码png格式
+image = tf.image.decode_png(file_contents)  # 解码png格式
 ​
 with tf.Session() as sess:
-    sess.run(tf.global_variables_initializer())
-    img = sess.run(image)
-    print(img.shape)
-    cv2.imshow("show", img)
-    cv2.waitKey(0)
+    sess.run(tf.global_variables_initializer())
+    img = sess.run(image)
+    print(img.shape)
+    cv2.imshow("show", img)
+    cv2.waitKey(0)
 ```
 
 <img src="./TensorFlow处理图片/3.png" height="239" width="359">
