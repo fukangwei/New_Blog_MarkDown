@@ -165,15 +165,15 @@ with tf.Session() as sess:
 import tensorflow as tf
 ​
 with tf.name_scope('input'):
-    v1 = tf.Variable(tf.constant(1.0, shape=[1]), name="v1")
-    v2 = tf.Variable(tf.constant(2.0, shape=[1]), name="v2")
+    v1 = tf.Variable(tf.constant(1.0, shape=[1]), name="v1")
+    v2 = tf.Variable(tf.constant(2.0, shape=[1]), name="v2")
 ​
 result = v1 + v2
 saver = tf.train.Saver()
 ​
 with tf.Session() as sess:
-    sess.run(tf.global_variables_initializer())
-    saver.save(sess, "./model.ckpt")
+    sess.run(tf.global_variables_initializer())
+    saver.save(sess, "./model.ckpt")
 ```
 
 提取变量时使用如下语句：
@@ -182,9 +182,10 @@ with tf.Session() as sess:
 import tensorflow as tf
 ​
 saver = tf.train.import_meta_graph("Model/model.ckpt.meta")
+
 with tf.Session() as sess:
-    saver.restore(sess, "./Model/model.ckpt")  # 注意路径写法
-    print(sess.run(tf.get_default_graph().get_tensor_by_name("input/v2:0")))  # 结果为[2.]
+    saver.restore(sess, "./Model/model.ckpt")  # 注意路径写法
+    print(sess.run(tf.get_default_graph().get_tensor_by_name("input/v2:0")))  # 结果为[2.]
 ```
 
 &emsp;&emsp;我们可以使用`tf.train.latest_checkpoint`来自动获取最后一次保存的模型：
@@ -228,9 +229,10 @@ sess.run(tf.global_variables_initializer())
 is_train = False
 saver = tf.train.Saver(max_to_keep=3)
 ​
-if is_train:  # 训练阶段
+if is_train:  # 训练阶段
     max_acc = 0
     f = open('ckpt/acc.txt', 'w')
+
     for i in range(100):
         batch_xs, batch_ys = mnist.train.next_batch(100)
         sess.run(train_op, feed_dict={x: batch_xs, y_: batch_ys})
@@ -240,12 +242,14 @@ if is_train:  # 训练阶段
         if val_acc > max_acc:
             max_acc = val_acc
             saver.save(sess, 'ckpt/mnist.ckpt', global_step=i + 1)
+
     f.close()
 else:  # 验证阶段
     model_file = tf.train.latest_checkpoint('ckpt/')
     saver.restore(sess, model_file)
     val_loss, val_acc = sess.run([loss, acc], feed_dict={x: mnist.test.images, y_: mnist.test.labels})
     print('val_loss:%f, val_acc:%f' % (val_loss, val_acc))
+
 sess.close()
 ```
 
