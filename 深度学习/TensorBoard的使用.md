@@ -422,18 +422,18 @@ for n_iter in range(100):
 ​
     dummy_img = torch.rand(32, 3, 64, 64)  # output from network
 ​
-    if n_iter % 10 == 0:
-        x = vutils.make_grid(dummy_img, normalize=True, scale_each=True)
-        writer.add_image('Image', x, n_iter)
+    if n_iter % 10 == 0:
+        x = vutils.make_grid(dummy_img, normalize=True, scale_each=True)
+        writer.add_image('Image', x, n_iter)
 ​
-        dummy_audio = torch.zeros(sample_rate * 2)
+        dummy_audio = torch.zeros(sample_rate * 2)
 
-        for i in range(x.size(0)):
+        for i in range(x.size(0)):
             # amplitude of sound should in [-1, 1]
-            dummy_audio[i] = np.cos(freqs[n_iter // 10] * np.pi * float(i) / float(sample_rate))
+            dummy_audio[i] = np.cos(freqs[n_iter // 10] * np.pi * float(i) / float(sample_rate))
 ​
-        writer.add_audio('myAudio', dummy_audio, n_iter, sample_rate=sample_rate)
-        writer.add_text('Text', 'text logged at step:' + str(n_iter), n_iter)
+        writer.add_audio('myAudio', dummy_audio, n_iter, sample_rate=sample_rate)
+        writer.add_text('Text', 'text logged at step:' + str(n_iter), n_iter)
 ​
         for name, param in resnet18.named_parameters():
             writer.add_histogram(name, param.clone().cpu().data.numpy(), n_iter)
