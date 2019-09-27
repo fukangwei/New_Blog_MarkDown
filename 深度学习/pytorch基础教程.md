@@ -405,21 +405,21 @@ class Net(torch.nn.Module):
         self.hidden = torch.nn.Linear(n_feature, n_hidden)  # hidden layer
         self.predict = torch.nn.Linear(n_hidden, n_output)  # output layer
 ​
-    def forward(self, x):
-        x = F.relu(self.hidden(x))  # activation function for hidden layer
-        x = self.predict(x)  # linear output
-        return x
+    def forward(self, x):
+        x = F.relu(self.hidden(x))  # activation function for hidden layer
+        x = self.predict(x)  # linear output
+        return x
 ​
 net1 = Net(1, 10, 1)
 ​
-net2 = torch.nn.Sequential(  # easy and fast way to build your network
-    torch.nn.Linear(1, 10),
-    torch.nn.ReLU(),
-    torch.nn.Linear(10, 1)
+net2 = torch.nn.Sequential(  # easy and fast way to build your network
+    torch.nn.Linear(1, 10),
+    torch.nn.ReLU(),
+    torch.nn.Linear(10, 1)
 )
 ​
-print(net1)  # net1 architecture
-print(net2)  # net2 architecture
+print(net1)  # net1 architecture
+print(net2)  # net2 architecture
 ```
 
 执行结果：
@@ -447,8 +447,8 @@ import torch
 import matplotlib.pyplot as plt
 ​
 # fake data
-x = torch.unsqueeze(torch.linspace(-1, 1, 100), dim=1)  # x data (tensor), shape=(100, 1)
-y = x.pow(2) + 0.2 * torch.rand(x.size())  # noisy y data (tensor), shape=(100, 1)
+x = torch.unsqueeze(torch.linspace(-1, 1, 100), dim=1)  # x data (tensor), shape=(100, 1)
+y = x.pow(2) + 0.2 * torch.rand(x.size())  # noisy y data (tensor), shape=(100, 1)
 ​
 def save():
     # save net1
