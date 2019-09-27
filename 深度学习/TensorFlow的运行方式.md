@@ -25,7 +25,7 @@ import numpy as np
 x_data = np.linspace(-1, 1, 300)[:, np.newaxis]
 # 加入一些噪声点，使它与x_data的维度一致，并且均为均值为0，方差为0.05的正态分布
 noise = np.random.normal(0, 0.05, x_data.shape)
-y_data = np.square(x_data) - 0.5 + noise  # y = x^2 - 0.5 + 噪声
+y_data = np.square(x_data) - 0.5 + noise  # y = x^2 - 0.5 + 噪声
 ```
 
 接下来定义`x`和`y`的占位符来作为将要输入神经网络的变量：
@@ -43,17 +43,17 @@ ys = tf.placeholder(tf.float32, [None, 1])
 ``` python
 def add_layer(inputs, in_size, out_size, activation_function=None):
     # 构建权重：“in_size * out_size”大小的矩阵
-    weights = tf.Variable(tf.random_normal([in_size, out_size]))
+    weights = tf.Variable(tf.random_normal([in_size, out_size]))
     # 构建偏置：“1 * out_size”的矩阵
-    biases = tf.Variable(tf.zeros([1, out_size]) + 0.1)
-    Wx_plus_b = tf.matmul(inputs, weights) + biases  # 矩阵相乘
+    biases = tf.Variable(tf.zeros([1, out_size]) + 0.1)
+    Wx_plus_b = tf.matmul(inputs, weights) + biases  # 矩阵相乘
 ​
-    if activation_function is None:
-        out_puts = Wx_plus_b
-    else:
-        out_puts = activation_function(Wx_plus_b)
+    if activation_function is None:
+        out_puts = Wx_plus_b
+    else:
+        out_puts = activation_function(Wx_plus_b)
 ​
-    return out_puts  # 输出得到的数据
+    return out_puts  # 输出得到的数据
 ​
 # 构建隐藏层，假设隐藏层有20个神经元
 h1 = add_layer(xs, 1, 20, activation_function=tf.nn.relu)
@@ -79,9 +79,10 @@ sess = tf.Session()
 sess.run(init)
 ​
 for i in range(1000):
-    sess.run(train_step, feed_dict={xs: x_data, ys: y_data})
-    if i % 50 == 0:  # 每50次打印出一次损失值
-        print(sess.run(loss, feed_dict={xs: x_data, ys: y_data}))
+    sess.run(train_step, feed_dict={xs: x_data, ys: y_data})
+
+    if i % 50 == 0:  # 每50次打印出一次损失值
+        print(sess.run(loss, feed_dict={xs: x_data, ys: y_data}))
 ```
 
 &emsp;&emsp;以上就是最简单的利用`TensorFlow`的神经网络训练一个模型的过程，目标就是要训练出权重值来使模型拟合`y = x^2 - 0.5`的系数`1`和`-0.5`。通过损失值越来越小的现象，可以看出训练的参数越来越逼近目标结果。
