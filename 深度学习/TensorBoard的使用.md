@@ -60,7 +60,7 @@ log_dir = 'mnist_with_summaries'
 ​
 # 使用input_data.read_data_sets下载MNIST数据
 mnist = input_data.read_data_sets(data_dir, one_hot=True)
-sess = tf.InteractiveSession()  # 创建Tensorflow的默认Session
+sess = tf.InteractiveSession()  # 创建Tensorflow的默认Session
 ​
 """
 为了在TensorBoard中展示节点名称，设计网络时会常使用tf.name_scope限制命名空间，
@@ -69,20 +69,21 @@ sess = tf.InteractiveSession()  # 创建Tensorflow的默认Session
 这样就可以使用tf.summary.image将图片数据汇总给TensorBoard展示
 """
 with tf.name_scope('input'):
-    x = tf.placeholder(tf.float32, [None, 784], name='x_input')
-    y = tf.placeholder(tf.float32, [None, 10], name='y_input')
+    x = tf.placeholder(tf.float32, [None, 784], name='x_input')
+    y = tf.placeholder(tf.float32, [None, 10], name='y_input')
+
 with tf.name_scope('input_reshape'):
-    image_shaped_input = tf.reshape(x, [-1, 28, 28, 1])
-    tf.summary.image('input', image_shaped_input, 10)
+    image_shaped_input = tf.reshape(x, [-1, 28, 28, 1])
+    tf.summary.image('input', image_shaped_input, 10)
 ​
 # 定义神经网络模型参数的初始化方法，权重使用常用的truncated_normal进行初始化，偏置则赋值为0.1
 def weight_variable(shape):
-    initial = tf.truncated_normal(shape, stddev=0.1)
-    return tf.Variable(initial)
+    initial = tf.truncated_normal(shape, stddev=0.1)
+    return tf.Variable(initial)
 ​
 def bias_variable(shape):
-    initial = tf.constant(0.1, shape=shape)
-    return tf.Variable(initial)
+    initial = tf.constant(0.1, shape=shape)
+    return tf.Variable(initial)
 ​
 """
 定义对Variable变量的数据汇总函数。计算出Variable的mean、stddev、max和min，对这些标量数据使用
@@ -92,8 +93,10 @@ def variable_summaries(var):
     with tf.name_scope('summaries'):
         mean = tf.reduce_mean(var)
         tf.summary.scalar('mean', mean)
+
         with tf.name_scope('stddev'):
             stddev = tf.sqrt(tf.reduce_mean(tf.square(var - mean)))
+
         tf.summary.scalar('stddev', stddev)
         tf.summary.scalar('max', tf.reduce_max(var))
         tf.summary.scalar('min', tf.reduce_min(var))
