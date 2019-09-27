@@ -494,29 +494,29 @@ def conv3x3(in_planes, out_planes, stride=1):
 ​
 class BasicBlock(nn.Module):
     def __init__(self, inplanes, planes, stride=1, downsample=None):
-        super(BasicBlock, self).__init__()
-        self.conv1 = conv3x3(inplanes, planes, stride)
-        self.bn1 = nn.BatchNorm2d(planes)
-        self.conv2 = conv3x3(planes, planes)
-        self.bn2 = nn.BatchNorm2d(planes)
-        self.stride = stride
+        super(BasicBlock, self).__init__()
+        self.conv1 = conv3x3(inplanes, planes, stride)
+        self.bn1 = nn.BatchNorm2d(planes)
+        self.conv2 = conv3x3(planes, planes)
+        self.bn2 = nn.BatchNorm2d(planes)
+        self.stride = stride
 ​
-    def forward(self, x):
-        residual = x
-        out = self.conv1(x)
-        out = self.bn1(out)
-        out = F.relu(out)
-        out = self.conv2(out)
-        out = self.bn2(out)
-        out += residual
-        out = F.relu(out)
-        return out
+    def forward(self, x):
+        residual = x
+        out = self.conv1(x)
+        out = self.bn1(out)
+        out = F.relu(out)
+        out = self.conv2(out)
+        out = self.bn2(out)
+        out += residual
+        out = F.relu(out)
+        return out
 ​
 dummy_input = torch.rand(1, 3, 224, 224)
 ​
 with SummaryWriter(comment='basicblock') as w:
-    model = BasicBlock(3, 3)
-    w.add_graph(model, (dummy_input,), verbose=True)
+    model = BasicBlock(3, 3)
+    w.add_graph(model, (dummy_input,), verbose=True)
 # -----------------------------
 class Net1(nn.Module):
     def __init__(self):
