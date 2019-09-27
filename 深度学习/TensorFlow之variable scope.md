@@ -74,12 +74,12 @@ def te2():
         print(var2.name)
 ​
         def te1():
-            with tf.variable_scope("te1"):
-                var1 = tf.get_variable("var1", shape=[2], dtype=tf.float32)
+            with tf.variable_scope("te1"):
+                var1 = tf.get_variable("var1", shape=[2], dtype=tf.float32)
 
-            return var1
+            return var1
 ​
-        return te1()  # 在scope的te2内调用的
+        return te1()  # 在scope的te2内调用的
 ​
 res = te2()
 print(res.name)
@@ -98,15 +98,16 @@ te2/te1/var1:0
 import tensorflow as tf
 ​
 def te2():
-    with tf.variable_scope("te2"):
-        var2 = tf.get_variable("var2", shape=[2], dtype=tf.float32)
-        print(var2.name)
+    with tf.variable_scope("te2"):
+        var2 = tf.get_variable("var2", shape=[2], dtype=tf.float32)
+        print(var2.name)
 ​
         def te1():
             with tf.variable_scope("te1"):
                 var1 = tf.get_variable("var1", shape=[2], dtype=tf.float32)
             return var1
-    return te1()  # 在scope的te2外面调用的
+
+    return te1()  # 在scope的te2外面调用的
 ​
 res = te2()
 print(res.name)
