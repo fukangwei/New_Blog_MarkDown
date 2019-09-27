@@ -145,17 +145,17 @@ class CustomDatasetFromImages(Dataset):
         self.data_len = len(self.data_info.index)  # 计算length
 ​
     def __getitem__(self, index):
-        single_image_name = self.image_arr[index]  # 得到文件名
-        img_as_img = Image.open(single_image_name)  # 读取图像文件
-        some_operation = self.operation_arr[index]  # 检查需不需要额外操作
+        single_image_name = self.image_arr[index]  # 得到文件名
+        img_as_img = Image.open(single_image_name)  # 读取图像文件
+        some_operation = self.operation_arr[index]  # 检查需不需要额外操作
 
-        if some_operation:  # 如果需要额外操作
-            # ...
-            pass
+        if some_operation:  # 如果需要额外操作
+            # ...
+            pass
 
-        img_as_tensor = self.to_tensor(img_as_img)  # 把图像转换成tensor
-        single_image_label = self.label_arr[index]  # 得到图像的label
-        return (img_as_tensor, single_image_label)
+        img_as_tensor = self.to_tensor(img_as_img)  # 把图像转换成tensor
+        single_image_label = self.label_arr[index]  # 得到图像的label
+        return (img_as_tensor, single_image_label)
 ​
     def __len__(self):
         return self.data_len
@@ -193,16 +193,18 @@ class CustomDatasetFromCSV(Dataset):
         # 把“numpy array”格式的图像转换成灰度“PIL image”
         img_as_img = Image.fromarray(img_as_np)
         img_as_img = img_as_img.convert('L')
+
         if self.transforms is not None:
             img_as_tensor = self.transforms(img_as_img)  # 将图像转换成tensor
+
         return (img_as_tensor, single_image_label)  # 返回图像及其label
 ​
     def __len__(self):
         return len(self.data.index)
 ​
 if __name__ == "__main__":
-    transformations = transforms.Compose([transforms.ToTensor()])
-    custom_mnist_from_csv = CustomDatasetFromCSV('./data/mnist_in_csv.csv', 28, 28, transformations)
+    transformations = transforms.Compose([transforms.ToTensor()])
+    custom_mnist_from_csv = CustomDatasetFromCSV('./data/mnist_in_csv.csv', 28, 28, transformations)
 ```
 
 &emsp;&emsp;`PyTorch`中的`Dataloader`只是调用`__getitem__()`方法并组合成`batch`，我们可以这样调用：
