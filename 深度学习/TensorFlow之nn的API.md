@@ -466,8 +466,7 @@ with tf.Session() as sess:
 tf.nn.local_response_normalization(input, depth_radius=None, bias=None, alpha=None, beta=None, name=None)
 ```
 
-这个函数的作用是计算局部数据标准化。输入的数据`input`是一个四维的张量，但该张量被看做是一个一维的向量(`input`的最后一维作为向量)，向量中的每一个元素都是一个三维的数组(对应`input`的前三维)。向量的每一个元素都是独立的被标准化的。具体数学形式如下：
-&emsp;&emsp;使用示例如下：
+这个函数的作用是计算局部数据标准化。输入的数据`input`是一个四维的张量，但该张量被看做是一个一维的向量(`input`的最后一维作为向量)，向量中的每一个元素都是一个三维的数组(对应`input`的前三维)。向量的每一个元素都是独立的被标准化的。
 
 ``` python
 import numpy as np
@@ -488,7 +487,7 @@ with tf.Session() as sess:
 - `depth_radius`：可选项，一个整型，默认情况下是`5`。
 - `bias`：可选项，一个浮点型，默认情况下是`1`。一个偏移项，为了避免除`0`，一般情况下取正值。
 - `alpha`：可选项，一个浮点型，默认情况下是`1`。一个比例因子，一般情况下取正值。
-- `beta`：可选项，一个浮点型，默认情况下是0.5。一个指数。
+- `beta`：可选项，一个浮点型，默认情况下是`0.5`。一个指数。
 - `name`：可选项，为这个操作取一个名字。
 
 输出一个`Tensor`，数据类型是`float32`。
