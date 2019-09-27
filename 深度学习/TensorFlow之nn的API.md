@@ -40,12 +40,13 @@ tf.nn.relu6(features, name = None)
 import tensorflow as tf
 
 a = tf.constant([-1.0, 12.0])
+
 with tf.Session() as sess:
     b = tf.nn.relu6(a)
     print(sess.run(b))  # 结果为[0. 6.]
 ```
 
-- `features`：一个`Tensor`，数据类型必须是float、double、int32、int64、uint8、int16或者int8。
+- `features`：一个`Tensor`，数据类型必须是`float`、`double`、`int32`、`int64`、`uint8`、`int16`或者`int8`。
 - `name`：可选项，为这个操作取一个名字。
 
 输出一个`Tensor`，数据类型和`features`相同。
@@ -61,6 +62,7 @@ tf.nn.softplus(features, name = None)
 import tensorflow as tf
 
 a = tf.constant([-1.0, 12.0])
+
 with tf.Session() as sess:
     b = tf.nn.softplus(a)
     print(sess.run(b))  # 结果为[ 0.31326166 12.000006 ]
@@ -84,6 +86,7 @@ tf.nn.dropout(x, keep_prob, noise_shape = None, seed = None, name = None)
 import tensorflow as tf
 
 a = tf.constant([[-1.0, 2.0, 3.0, 4.0]])
+
 with tf.Session() as sess:
     b = tf.nn.dropout(a, 0.5, noise_shape=[1, 4])
     print(sess.run(b))  # 结果为[[-2.  0.  6.  0.]]
@@ -108,6 +111,7 @@ tf.nn.bias_add(value, bias, name = None)
 
 ``` python
 import tensorflow as tf
+
 a = tf.constant([[1.0, 2.0], [1.0, 2.0], [1.0, 2.0]])
 b = tf.constant([2.0, 1.0])
 c = tf.constant([1.0])
@@ -241,9 +245,11 @@ tf.nn.depthwise_conv2d(input, filter, strides, padding, name=None)
 ``` python
 import numpy as np
 import tensorflow as tf
+
 input_data = tf.Variable(np.random.rand(10, 6, 6, 3), dtype=np.float32)
 filter_data = tf.Variable(np.random.rand(2, 2, 3, 5), dtype=np.float32)
 y = tf.nn.depthwise_conv2d(input_data, filter_data, strides=[1, 1, 1, 1], padding='SAME')
+
 with tf.Session() as sess:
     init = tf.global_variables_initializer()
     sess.run(init)
@@ -280,7 +286,9 @@ input_data = tf.Variable(np.random.rand(10, 6, 6, 3), dtype=np.float32)
 depthwise_filter = tf.Variable(np.random.rand(2, 2, 3, 5), dtype=np.float32)
 pointwise_filter = tf.Variable(np.random.rand(1, 1, 15, 20), dtype=np.float32)
 # out_channels >= channel_multiplier * in_channels
-y = tf.nn.separable_conv2d(input_data, depthwise_filter, pointwise_filter, strides=[1, 1, 1, 1], padding='SAME')
+y = tf.nn.separable_conv2d(input_data, depthwise_filter, \
+        pointwise_filter, strides=[1, 1, 1, 1], padding='SAME')
+
 with tf.Session() as sess:
     init = tf.global_variables_initializer()
     sess.run(init)
@@ -438,6 +446,7 @@ import tensorflow as tf
 
 input_data = tf.Variable(np.random.rand(2, 3), dtype=tf.float32)
 output = tf.nn.l2_normalize(input_data, dim=0)
+
 with tf.Session() as sess:
     init = tf.global_variables_initializer()
     sess.run(init)
@@ -450,7 +459,7 @@ with tf.Session() as sess:
 - `epsilon`：一个很小的值，确定标准化的下边界。如果`norm < sqrt(epsilon)`，那么我们将使用`sqrt(epsilon)`进行标准化。
 - `name`：可选项，为这个操作取一个名字。
 
-输出一个`Tensor`，数据维度和x相同。
+输出一个`Tensor`，数据维度和`x`相同。
 &emsp;&emsp;`local_response_normalization`函数原型为：
 
 ``` python
