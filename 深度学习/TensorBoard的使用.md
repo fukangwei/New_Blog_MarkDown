@@ -112,19 +112,19 @@ def variable_summaries(var):
 """
 def nn_layer(input_tensor, input_dim, output_dim, layer_name, act=tf.nn.relu):
     with tf.name_scope(layer_name):
-        with tf.name_scope('weight'):
-            weights = weight_variable([input_dim, output_dim])
-            variable_summaries(weights)
-        with tf.name_scope('biases'):
-            biases = bias_variable([output_dim])
-            variable_summaries(biases)
-        with tf.name_scope('Wx_plus_b'):
-            preactivate = tf.matmul(input_tensor, weights) + biases
-            tf.summary.histogram('pre_activations', preactivate)
+        with tf.name_scope('weight'):
+            weights = weight_variable([input_dim, output_dim])
+            variable_summaries(weights)
+        with tf.name_scope('biases'):
+            biases = bias_variable([output_dim])
+            variable_summaries(biases)
+        with tf.name_scope('Wx_plus_b'):
+            preactivate = tf.matmul(input_tensor, weights) + biases
+            tf.summary.histogram('pre_activations', preactivate)
 
-        activations = act(preactivate, name='actvations')
-        tf.summary.histogram('activations', activations)
-        return activations
+        activations = act(preactivate, name='actvations')
+        tf.summary.histogram('activations', activations)
+        return activations
 ​
 """
 使用nn_layer创建一层神经网络，输入维度是图片的尺寸(784 = 28 * 28)，输出的维度是隐藏节点数500。
@@ -132,6 +132,7 @@ def nn_layer(input_tensor, input_dim, output_dim, layer_name, act=tf.nn.relu):
 激活函数为全等映射，此层暂时不使用softmax，在后面会处理
 """
 hidden1 = nn_layer(x, 784, 500, 'layer1')
+
 with tf.name_scope('dropout'):
     keep_prob = tf.placeholder(tf.float32)
     tf.summary.scalar('dropout_keep_probability', keep_prob)
