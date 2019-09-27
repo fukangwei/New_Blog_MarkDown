@@ -90,17 +90,17 @@ def bias_variable(shape):
 tf.summary.scalar进行记录和汇总。同时使用tf.summary.histogram直接记录变量var的直方图
 """
 def variable_summaries(var):
-    with tf.name_scope('summaries'):
-        mean = tf.reduce_mean(var)
-        tf.summary.scalar('mean', mean)
+    with tf.name_scope('summaries'):
+        mean = tf.reduce_mean(var)
+        tf.summary.scalar('mean', mean)
 
-        with tf.name_scope('stddev'):
-            stddev = tf.sqrt(tf.reduce_mean(tf.square(var - mean)))
+        with tf.name_scope('stddev'):
+            stddev = tf.sqrt(tf.reduce_mean(tf.square(var - mean)))
 
-        tf.summary.scalar('stddev', stddev)
-        tf.summary.scalar('max', tf.reduce_max(var))
-        tf.summary.scalar('min', tf.reduce_min(var))
-        tf.summary.histogram('histogram', var)
+        tf.summary.scalar('stddev', stddev)
+        tf.summary.scalar('max', tf.reduce_max(var))
+        tf.summary.scalar('min', tf.reduce_min(var))
+        tf.summary.histogram('histogram', var)
 ​
 """
 设计一个MLP多层神经网络来训练数据，在每一层中都会对模型参数进行数据汇总。定义一个创建一层神经网络
@@ -111,7 +111,7 @@ def variable_summaries(var):
 同时，在使用激活函数后，再使用tf.summary.histogram统计一次
 """
 def nn_layer(input_tensor, input_dim, output_dim, layer_name, act=tf.nn.relu):
-    with tf.name_scope(layer_name):
+    with tf.name_scope(layer_name):
         with tf.name_scope('weight'):
             weights = weight_variable([input_dim, output_dim])
             variable_summaries(weights)
@@ -121,6 +121,7 @@ def nn_layer(input_tensor, input_dim, output_dim, layer_name, act=tf.nn.relu):
         with tf.name_scope('Wx_plus_b'):
             preactivate = tf.matmul(input_tensor, weights) + biases
             tf.summary.histogram('pre_activations', preactivate)
+
         activations = act(preactivate, name='actvations')
         tf.summary.histogram('activations', activations)
         return activations
