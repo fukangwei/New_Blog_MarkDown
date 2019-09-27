@@ -27,12 +27,12 @@ categories: 深度学习
 import tensorflow as tf
 ​
 with tf.variable_scope("tet1"):
-    var3 = tf.get_variable("var3", shape=[2], dtype=tf.float32)
-    print(var3.name)
+    var3 = tf.get_variable("var3", shape=[2], dtype=tf.float32)
+    print(var3.name)
 ​
 with tf.variable_scope("tet2"):
-    var4 = tf.get_variable("var4", shape=[2], dtype=tf.float32)
-    print(var4.name)
+    var4 = tf.get_variable("var4", shape=[2], dtype=tf.float32)
+    print(var4.name)
 ```
 
 执行结果：
@@ -48,11 +48,12 @@ tet2/var4:0
 import tensorflow as tf
 ​
 with tf.variable_scope("tet1"):
-    var3 = tf.get_variable("var3", shape=[2], dtype=tf.float32)
-    print(var3.name)
-    with tf.variable_scope("tet2"):
-        var4 = tf.get_variable("var4", shape=[2], dtype=tf.float32)
-        print(var4.name)
+    var3 = tf.get_variable("var3", shape=[2], dtype=tf.float32)
+    print(var3.name)
+
+    with tf.variable_scope("tet2"):
+        var4 = tf.get_variable("var4", shape=[2], dtype=tf.float32)
+        print(var4.name)
 ```
 
 执行结果：
@@ -68,13 +69,14 @@ tet1/tet2/var4:0
 import tensorflow as tf
 ​
 def te2():
-    with tf.variable_scope("te2"):
-        var2 = tf.get_variable("var2", shape=[2], dtype=tf.float32)
-        print(var2.name)
+    with tf.variable_scope("te2"):
+        var2 = tf.get_variable("var2", shape=[2], dtype=tf.float32)
+        print(var2.name)
 ​
-        def te1():
+        def te1():
             with tf.variable_scope("te1"):
                 var1 = tf.get_variable("var1", shape=[2], dtype=tf.float32)
+
             return var1
 ​
         return te1()  # 在scope的te2内调用的
