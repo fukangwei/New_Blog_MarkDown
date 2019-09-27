@@ -552,18 +552,19 @@ with tf.Session() as sess:
 import tensorflow as tf
 ​
 slim = tf.contrib.slim
-images, labels = load_data(...)  # Load the data
-predictions = MyModel(images)  # Define the network
+images, labels = load_data(...)  # Load the data
+predictions = MyModel(images)  # Define the network
 ​
 # Choose the metrics to compute:
 names_to_values, names_to_updates = slim.metrics.aggregate_metric_map({
-    'accuracy': slim.metrics.accuracy(predictions, labels),
-    'precision': slim.metrics.precision(predictions, labels),
-    'recall': slim.metrics.recall(mean_relative_errors, 0.3),
+    'accuracy': slim.metrics.accuracy(predictions, labels),
+    'precision': slim.metrics.precision(predictions, labels),
+    'recall': slim.metrics.recall(mean_relative_errors, 0.3),
 })
 ​
 # Create the summary ops such that they also print out to std output:
 summary_ops = []
+
 for metric_name, metric_value in names_to_values.iteritems():
     op = tf.summary.scalar(metric_name, metric_value)
     op = tf.Print(op, [metric_value], metric_name)
