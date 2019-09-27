@@ -114,13 +114,13 @@ summary(model, (1, 28, 28))
 
 ``` python
 ----------------------------------------------------------------
-        Layer (type)               Output Shape         Param #
+        Layer (type)               Output Shape         Param #
 ================================================================
-            Conv2d-1           [-1, 10, 24, 24]             260
-            Conv2d-2             [-1, 20, 8, 8]           5,020
-         Dropout2d-3             [-1, 20, 8, 8]               0
-            Linear-4                   [-1, 50]          16,050
-            Linear-5                   [-1, 10]             510
+            Conv2d-1           [-1, 10, 24, 24]             260
+            Conv2d-2             [-1, 20, 8, 8]           5,020
+         Dropout2d-3             [-1, 20, 8, 8]               0
+            Linear-4                   [-1, 50]          16,050
+            Linear-5                   [-1, 10]             510
 ================================================================
 Total params: 21,840
 Trainable params: 21,840
@@ -140,7 +140,7 @@ import torch.nn as nn
 from torchsummary import summary
 ​
 class SimpleConv(nn.Module):
-    def __init__(self):
+    def __init__(self):
         super(SimpleConv, self).__init__()
         self.features = nn.Sequential(
             nn.Conv2d(1, 1, kernel_size=3, stride=1, padding=1),
