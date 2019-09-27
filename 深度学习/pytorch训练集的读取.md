@@ -38,15 +38,15 @@ None (32, 32) RGB
 from torch.utils.data.dataset import Dataset
 ​
 class MyCustomDataset(Dataset):
-    def __init__(self, ...):
-        # stuff
+    def __init__(self, ...):
+        # stuff
 ​
-    def __getitem__(self, index):
-        # stuff
-        return (img, label)
+    def __getitem__(self, index):
+        # stuff
+        return (img, label)
 ​
-    def __len__(self):
-        return count
+    def __len__(self):
+        return count
 ```
 
 在这个代码中，`__init__()`用于一些初始化过程，`__len__()`返回所有数据的数量，`__getitem__()`返回数据和标签，可以这样显式调用：
@@ -62,28 +62,29 @@ from torch.utils.data.dataset import Dataset
 from torchvision import transforms
 ​
 class MyCustomDataset(Dataset):
-    def __init__(self, ..., transforms=None):
-        # stuff
-        ...
-        self.transforms = transforms
+    def __init__(self, ..., transforms=None):
+        # stuff
+        ...
+        self.transforms = transforms
 ​
-    def __getitem__(self, index):
-        # stuff
-        ...
-        data =  # 一些读取的数据
+    def __getitem__(self, index):
+        # stuff
+        ...
+        data = ...  # 一些读取的数据
         # 如果transform不为None，则进行transform操作
-        if self.transforms is not None:
-            data = self.transforms(data)
-        return (img, label)
+        if self.transforms is not None:
+            data = self.transforms(data)
+
+        return (img, label)
 ​
-    def __len__(self):
-        return count
+    def __len__(self):
+        return count
 ​
 if __name__ == '__main__':
-    # 定义我们的transforms(1)
-    transformations = transforms.Compose([transforms.CenterCrop(100),
+    # 定义我们的transforms(1)
+    transformations = transforms.Compose([transforms.CenterCrop(100),
                                           transforms.ToTensor()])
-    custom_dataset = MyCustomDataset(..., transformations)  # 创建dataset
+    custom_dataset = MyCustomDataset(..., transformations)  # 创建dataset
 ```
 
 &emsp;&emsp;有些人不喜欢把`transform`操作写在`Dataset`外面(上面代码里的注释`1`)，所以还有一种写法：
