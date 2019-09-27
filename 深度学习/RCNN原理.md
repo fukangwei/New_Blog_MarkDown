@@ -55,7 +55,7 @@ categories: 深度学习
 &emsp;&emsp;有监督预训练的样本如下：
 
 样本   | 来源
-------|-----
+-------|-----
 正样本 | `ILSVRC2012`
 负样本 | `ILSVRC2012`
 
@@ -63,7 +63,7 @@ categories: 深度学习
 
 &emsp;&emsp;特定样本下的微调样本如下：
 
-样本 | 来源
+样本   | 来源
 ------|-----
 正样本 | `Ground Truth`加上与`Ground Truth`相交`IoU > 0.5`的候选框(由于`Ground Truth`太少了)
 负样本 | 与`Ground Truth`相交`IoU ≤ 0.5`的候选框
