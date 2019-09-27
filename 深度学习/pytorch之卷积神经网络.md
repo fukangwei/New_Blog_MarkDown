@@ -103,14 +103,14 @@ print(cnn)  # net architecture
 ``` python
 CNN(
   (conv1): Sequential(
-    (0): Conv2d(1, 16, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
-    (1): ReLU()
-    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (0): Conv2d(1, 16, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
   )
   (conv2): Sequential(
-    (0): Conv2d(16, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
-    (1): ReLU()
-    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    (0): Conv2d(16, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
   )
   (out): Linear(in_features=1568, out_features=10, bias=True)
 )
@@ -119,31 +119,31 @@ CNN(
 &emsp;&emsp;下面开始训练，将`x`、`y`都用`Variable`包起来，然后放入`cnn`中计算`output`，最后再计算误差：
 
 ``` python
-optimizer = torch.optim.Adam(cnn.parameters(), lr=LR)  # optimize all cnn parameters
-loss_func = nn.CrossEntropyLoss()  # the target label is not one-hotted
+optimizer = torch.optim.Adam(cnn.parameters(), lr=LR)  # optimize all cnn parameters
+loss_func = nn.CrossEntropyLoss()  # the target label is not one-hotted
 ​
 for epoch in range(EPOCH):
     # gives batch data, normalize x when iterate train_loader
-    for step, (b_x, b_y) in enumerate(train_loader):
-        output = cnn(b_x)  # cnn output
-        loss = loss_func(output, b_y)  # cross entropy loss
-        optimizer.zero_grad()  # clear gradients for this training step
-        loss.backward()  # backpropagation, compute gradients
-        optimizer.step()  # apply gradients
+    for step, (b_x, b_y) in enumerate(train_loader):
+        output = cnn(b_x)  # cnn output
+        loss = loss_func(output, b_y)  # cross entropy loss
+        optimizer.zero_grad()  # clear gradients for this training step
+        loss.backward()  # backpropagation, compute gradients
+        optimizer.step()  # apply gradients
 ​
-        if step % 50 == 0:
-            test_output = cnn(test_x)
-            pred_y = torch.max(test_output, 1)[1].data.squeeze().numpy()
-            accuracy = float((pred_y == test_y.data.numpy()).astype(int).sum()) \
+        if step % 50 == 0:
+            test_output = cnn(test_x)
+            pred_y = torch.max(test_output, 1)[1].data.squeeze().numpy()
+            accuracy = float((pred_y == test_y.data.numpy()).astype(int).sum()) \
                              / float(test_y.size(0))
-            print('Epoch:', epoch, '| train loss: %.4f' % loss.data.numpy(),
+            print('Epoch:', epoch, '| train loss: %.4f' % loss.data.numpy(),
                   '| test accuracy: %.2f' % accuracy)
 ```
 
 最后再来取`10`个数据，看看预测的值到底对不对：
 
 ``` python
-test_output = cnn(test_x[:10])  # print 10 predictions from test data
+test_output = cnn(test_x[:10])  # print 10 predictions from test data
 pred_y = torch.max(test_output, 1)[1].data.numpy().squeeze()
 print(pred_y, 'prediction number')
 print(test_y[:10].numpy(), 'real number')
