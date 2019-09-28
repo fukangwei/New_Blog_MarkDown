@@ -704,42 +704,42 @@ loss_func = torch.nn.MSELoss()
 plt.ion()  # something about plotting
 ​
 for t in range(500):
-    pred_ofit = net_overfitting(x)
-    pred_drop = net_dropped(x)
-    loss_ofit = loss_func(pred_ofit, y)
-    loss_drop = loss_func(pred_drop, y)
+    pred_ofit = net_overfitting(x)
+    pred_drop = net_dropped(x)
+    loss_ofit = loss_func(pred_ofit, y)
+    loss_drop = loss_func(pred_drop, y)
 ​
-    optimizer_ofit.zero_grad()
-    optimizer_drop.zero_grad()
-    loss_ofit.backward()
-    loss_drop.backward()
-    optimizer_ofit.step()
-    optimizer_drop.step()
+    optimizer_ofit.zero_grad()
+    optimizer_drop.zero_grad()
+    loss_ofit.backward()
+    loss_drop.backward()
+    optimizer_ofit.step()
+    optimizer_drop.step()
 ​
-    if t % 10 == 0:
-        # 将神经网络转换成测试形式，画好图之后改回训练形式。因为drop网络在train的时候和test的时候参数不一样
-        net_overfitting.eval()
-        net_dropped.eval()
+    if t % 10 == 0:
+        # 将神经网络转换成测试形式，画好图之后改回训练形式。因为drop网络在train的时候和test的时候参数不一样
+        net_overfitting.eval()
+        net_dropped.eval()
 ​
-        # plotting
-        plt.cla()
-        test_pred_ofit = net_overfitting(test_x)
-        test_pred_drop = net_dropped(test_x)
-        plt.scatter(x.data.numpy(), y.data.numpy(), c='magenta', s=50, alpha=0.3, label='train')
-        plt.scatter(test_x.data.numpy(), test_y.data.numpy(), c='cyan', s=50, alpha=0.3, label='test')
-        plt.plot(test_x.data.numpy(), test_pred_ofit.data.numpy(), 'r-', lw=3, label='overfitting')
-        plt.plot(test_x.data.numpy(), test_pred_drop.data.numpy(), 'b--', lw=3, label='dropout(50%)')
-        plt.text(0, -1.2, 'overfitting loss=%.4f' % loss_func(test_pred_ofit, test_y).data.numpy(),
+        # plotting
+        plt.cla()
+        test_pred_ofit = net_overfitting(test_x)
+        test_pred_drop = net_dropped(test_x)
+        plt.scatter(x.data.numpy(), y.data.numpy(), c='magenta', s=50, alpha=0.3, label='train')
+        plt.scatter(test_x.data.numpy(), test_y.data.numpy(), c='cyan', s=50, alpha=0.3, label='test')
+        plt.plot(test_x.data.numpy(), test_pred_ofit.data.numpy(), 'r-', lw=3, label='overfitting')
+        plt.plot(test_x.data.numpy(), test_pred_drop.data.numpy(), 'b--', lw=3, label='dropout(50%)')
+        plt.text(0, -1.2, 'overfitting loss=%.4f' % loss_func(test_pred_ofit, test_y).data.numpy(),
                  fontdict={'size': 20, 'color': 'red'})
-        plt.text(0, -1.5, 'dropout loss=%.4f' % loss_func(test_pred_drop, test_y).data.numpy(),
+        plt.text(0, -1.5, 'dropout loss=%.4f' % loss_func(test_pred_drop, test_y).data.numpy(),
                  fontdict={'size': 20, 'color': 'blue'})
-        plt.legend(loc='upper left')
-        plt.ylim((-2.5, 2.5))
-        plt.pause(0.1)
+        plt.legend(loc='upper left')
+        plt.ylim((-2.5, 2.5))
+        plt.pause(0.1)
 ​
-        # change back to train mode
-        net_overfitting.train()
-        net_dropped.train()
+        # change back to train mode
+        net_overfitting.train()
+        net_dropped.train()
 ​
 plt.ioff()
 plt.show()
