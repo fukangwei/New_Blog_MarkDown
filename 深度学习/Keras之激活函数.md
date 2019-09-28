@@ -41,7 +41,7 @@ softmax(x, axis=-1)
 
 #### elu
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 elu(x, alpha=1.0)
@@ -60,7 +60,7 @@ selu(x)
 
 #### softplus
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 softplus(x)
@@ -68,7 +68,7 @@ softplus(x)
 
 #### softsign
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 softsign(x)
@@ -76,7 +76,7 @@ softsign(x)
 
 #### relu
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 relu(x, alpha=0.0, max_value=None)
@@ -84,7 +84,7 @@ relu(x, alpha=0.0, max_value=None)
 
 #### tanh
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 tanh(x)
@@ -92,7 +92,7 @@ tanh(x)
 
 #### sigmoid
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 sigmoid(x)
@@ -100,7 +100,7 @@ sigmoid(x)
 
 #### hard_sigmoid
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 hard_sigmoid(x)
@@ -108,7 +108,7 @@ hard_sigmoid(x)
 
 #### linear
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 linear(x)

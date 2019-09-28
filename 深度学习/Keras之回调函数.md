@@ -65,8 +65,8 @@ keras.callbacks.ModelCheckpoint(
 
 `filepath`可以是格式化的字符串，里面的占位符将会被`epoch`值和传入`on_epoch_end`的`logs`关键字所填入。例如，如果`filepath`是`weights.{epoch:02d}-{val_loss:.2f}.hdf5`，那么会生成对应`epoch`和验证集`loss`的多个文件。
 
-- filepath：字符串，保存模型的路径。
-- monitor：被监测的数据。
+- `filepath`：字符串，保存模型的路径。
+- `monitor`：被监测的数据。
 - `verbose`：详细信息模式，`0`或者`1`。
 - `save_best_only`：当设置为`True`时，将只保存在验证集上性能最好的模型。
 - `mode`：`auto`、`min`和`max`其中之一。在`save_best_only=True`时决定性能最佳模型的评判准则，例如当监测值为`val_acc`时，模式应为`max`；当检测值为`val_loss`时，模式应为`min`。在`auto`模式下，评价准则由被监测值的名字自动推断。
@@ -180,11 +180,11 @@ model.fit(X_train, Y_train, callbacks=[csv_logger])
 
 ``` python
 class LossHistory(keras.callbacks.Callback):
-    def on_train_begin(self, logs={}):
-        self.losses = []
+    def on_train_begin(self, logs={}):
+        self.losses = []
 ​
-    def on_batch_end(self, batch, logs={}):
-        self.losses.append(logs.get('loss'))
+    def on_batch_end(self, batch, logs={}):
+        self.losses.append(logs.get('loss'))
 ​
 model = Sequential()
 model.add(Dense(10, input_dim=784, kernel_initializer='uniform'))
