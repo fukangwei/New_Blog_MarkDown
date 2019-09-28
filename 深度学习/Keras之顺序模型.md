@@ -10,10 +10,10 @@ from keras.models import Sequential
 from keras.layers import Dense, Activation
 ​
 model = Sequential([
-    Dense(32, input_shape=(784,)),
-    Activation('relu'),
-    Dense(10),
-    Activation('softmax'),
+    Dense(32, input_shape=(784,)),
+    Activation('relu'),
+    Dense(10),
+    Activation('softmax'),
 ])
 ```
 
@@ -52,14 +52,17 @@ model.add(Dense(32, input_dim=784))
 - 评估标准`metrics`：对于任何分类问题，你都希望将其设置为`metrics = ['accuracy']`。评估标准可以是现有的标准的字符串标识符，也可以是自定义的评估标准函数。评估标准应该返回单个张量，或一个完成`metric_name -> metric_value`映射的字典。
 
 ``` python
-model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])  # 多分类问题
-model.compile(optimizer='rmsprop', loss='binary_crossentropy', metrics=['accuracy'])  # 二分类问题
-model.compile(optimizer='rmsprop', loss='mse')  # 均方误差回归问题
-​
+# 多分类问题
+model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
+# 二分类问题
+model.compile(optimizer='rmsprop', loss='binary_crossentropy', metrics=['accuracy'])
+# 均方误差回归问题
+model.compile(optimizer='rmsprop', loss='mse')
+# 自定义评估标准函数
 import keras.backend as K
 ​
-def mean_pred(y_true, y_pred):  # 自定义评估标准函数
-    return K.mean(y_pred)
+def mean_pred(y_true, y_pred):
+    return K.mean(y_pred)
 ​
 model.compile(optimizer='rmsprop', loss='binary_crossentropy', metrics=['accuracy', mean_pred])
 ```
@@ -79,7 +82,7 @@ import numpy as np
 data = np.random.random((1000, 100))
 labels = np.random.randint(2, size=(1000, 1))
 ​
-model.fit(data, labels, epochs=10, batch_size=32)  # 训练模型，以32个样本为一个batch进行迭代
+model.fit(data, labels, epochs=10, batch_size=32)  # 训练模型，以32个样本为一个batch进行迭代
 # -----------------------------------------
 # 10分类的单输入模型：
 model = Sequential()
@@ -91,7 +94,7 @@ import numpy as np
 data = np.random.random((1000, 100))
 labels = np.random.randint(10, size=(1000, 1))
 ​
-one_hot_labels = keras.utils.to_categorical(labels, num_classes=10)  # 将标签转换为分类的one-hot编码
+one_hot_labels = keras.utils.to_categorical(labels, num_classes=10)  # 将标签转换为分类的one-hot编码
 model.fit(data, one_hot_labels, epochs=10, batch_size=32)
 ```
 
@@ -238,8 +241,8 @@ num_classes = 10
 model = Sequential()
 # 返回维度为32的向量序列
 model.add(LSTM(32, return_sequences=True, input_shape=(timesteps, data_dim)))
-model.add(LSTM(32, return_sequences=True))  # 返回维度为32的向量序列
-model.add(LSTM(32))  # 返回维度为32的单个向量
+model.add(LSTM(32, return_sequences=True))  # 返回维度为32的向量序列
+model.add(LSTM(32))  # 返回维度为32的单个向量
 model.add(Dense(10, activation='softmax'))
 ​
 model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
@@ -453,13 +456,14 @@ fit_generator(
 
 ``` python
 def generate_arrays_from_file(path):
-    while 1:
-        f = open(path)
+    while 1:
+        f = open(path)
         # create Numpy arrays of input data and labels, from each line in the file
-        for line in f:
-            x, y = process_line(line)
-            yield (x, y)
-        f.close()
+        for line in f:
+            x, y = process_line(line)
+            yield (x, y)
+
+        f.close()
 ​
 model.fit_generator(generate_arrays_from_file('/my_file.txt'), steps_per_epoch=1000, epochs=10)
 ```
