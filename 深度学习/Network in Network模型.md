@@ -38,31 +38,35 @@ weight_decay = 0.0001
 log_filepath = './nin_bn'
 ​
 if ('tensorflow' == K.backend()):
-    import tensorflow as tf
+    import tensorflow as tf
 ​
-    config = tf.ConfigProto()
-    config.gpu_options.allow_growth = True
-    sess = tf.Session(config=config)
+    config = tf.ConfigProto()
+    config.gpu_options.allow_growth = True
+    sess = tf.Session(config=config)
 ​
 def color_preprocessing(x_train, x_test):
-    x_train = x_train.astype('float32')
-    x_test = x_test.astype('float32')
-    mean = [125.307, 122.95, 113.865]
-    std = [62.9932, 62.0887, 66.7048]
-    for i in range(3):
-        x_train[:, :, :, i] = (x_train[:, :, :, i] - mean[i]) / std[i]
-        x_test[:, :, :, i] = (x_test[:, :, :, i] - mean[i]) / std[i]
+    x_train = x_train.astype('float32')
+    x_test = x_test.astype('float32')
+    mean = [125.307, 122.95, 113.865]
+    std = [62.9932, 62.0887, 66.7048]
+
+    for i in range(3):
+        x_train[:, :, :, i] = (x_train[:, :, :, i] - mean[i]) / std[i]
+        x_test[:, :, :, i] = (x_test[:, :, :, i] - mean[i]) / std[i]
 ​
-    return x_train, x_test
+    return x_train, x_test
 ​
 def scheduler(epoch):
-    if epoch <= 60:
-        return 0.05
-    if epoch <= 120:
-        return 0.01
-    if epoch <= 160:
-        return 0.002
-    return 0.0004
+    if epoch <= 60:
+        return 0.05
+
+    if epoch <= 120:
+        return 0.01
+
+    if epoch <= 160:
+        return 0.002
+
+    return 0.0004
 ​
 def build_model():
     model = Sequential()
