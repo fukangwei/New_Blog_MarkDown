@@ -451,63 +451,63 @@ x = torch.unsqueeze(torch.linspace(-1, 1, 100), dim=1)  # x data (tensor), shape
 y = x.pow(2) + 0.2 * torch.rand(x.size())  # noisy y data (tensor), shape=(100, 1)
 ​
 def save():
-    # save net1
-    net1 = torch.nn.Sequential(
-        torch.nn.Linear(1, 10),
-        torch.nn.ReLU(),
-        torch.nn.Linear(10, 1)
-    )
-    optimizer = torch.optim.SGD(net1.parameters(), lr=0.5)
-    loss_func = torch.nn.MSELoss()
+    # save net1
+    net1 = torch.nn.Sequential(
+        torch.nn.Linear(1, 10),
+        torch.nn.ReLU(),
+        torch.nn.Linear(10, 1)
+    )
+    optimizer = torch.optim.SGD(net1.parameters(), lr=0.5)
+    loss_func = torch.nn.MSELoss()
 ​
-    for t in range(100):
-        prediction = net1(x)
-        loss = loss_func(prediction, y)
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
+    for t in range(100):
+        prediction = net1(x)
+        loss = loss_func(prediction, y)
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
 ​
-    # plot result
-    plt.figure(1, figsize=(10, 3))
-    plt.subplot(131)
-    plt.title('Net1')
-    plt.scatter(x.data.numpy(), y.data.numpy())
-    plt.plot(x.data.numpy(), prediction.data.numpy(), 'r-', lw=5)
+    # plot result
+    plt.figure(1, figsize=(10, 3))
+    plt.subplot(131)
+    plt.title('Net1')
+    plt.scatter(x.data.numpy(), y.data.numpy())
+    plt.plot(x.data.numpy(), prediction.data.numpy(), 'r-', lw=5)
 ​
-    # 2 ways to save the net
-    torch.save(net1, 'net.pkl')  # 保存整个网络
-    torch.save(net1.state_dict(), 'net_params.pkl')  # 只保存网络中的参数(速度快，占内存少)
+    # 2 ways to save the net
+    torch.save(net1, 'net.pkl')  # 保存整个网络
+    torch.save(net1.state_dict(), 'net_params.pkl')  # 只保存网络中的参数(速度快，占内存少)
 ​
 def restore_net():
-    net2 = torch.load('net.pkl')  # restore entire net1 to net2
-    prediction = net2(x)
+    net2 = torch.load('net.pkl')  # restore entire net1 to net2
+    prediction = net2(x)
 ​
-    # plot result
-    plt.subplot(132)
-    plt.title('Net2')
-    plt.scatter(x.data.numpy(), y.data.numpy())
-    plt.plot(x.data.numpy(), prediction.data.numpy(), 'r-', lw=5)
+    # plot result
+    plt.subplot(132)
+    plt.title('Net2')
+    plt.scatter(x.data.numpy(), y.data.numpy())
+    plt.plot(x.data.numpy(), prediction.data.numpy(), 'r-', lw=5)
 ​
 def restore_params():
-    # restore only the parameters in net1 to net3
-    net3 = torch.nn.Sequential(
-        torch.nn.Linear(1, 10),
-        torch.nn.ReLU(),
-        torch.nn.Linear(10, 1)
-    )
-    net3.load_state_dict(torch.load('net_params.pkl'))  # copy net1's parameters into net3
-    prediction = net3(x)
+    # restore only the parameters in net1 to net3
+    net3 = torch.nn.Sequential(
+        torch.nn.Linear(1, 10),
+        torch.nn.ReLU(),
+        torch.nn.Linear(10, 1)
+    )
+    net3.load_state_dict(torch.load('net_params.pkl'))  # copy net1's parameters into net3
+    prediction = net3(x)
 ​
-    # plot result
-    plt.subplot(133)
-    plt.title('Net3')
-    plt.scatter(x.data.numpy(), y.data.numpy())
-    plt.plot(x.data.numpy(), prediction.data.numpy(), 'r-', lw=5)
-    plt.show()
+    # plot result
+    plt.subplot(133)
+    plt.title('Net3')
+    plt.scatter(x.data.numpy(), y.data.numpy())
+    plt.plot(x.data.numpy(), prediction.data.numpy(), 'r-', lw=5)
+    plt.show()
 ​
-save()  # save net1
-restore_net()  # restore entire net (may slow)
-restore_params()  # restore only the net parameters
+save()  # save net1
+restore_net()  # restore entire net (may slow)
+restore_params()  # restore only the net parameters
 ```
 
 <img src="./pytorch基础教程/3.png" height="190" width="542">
@@ -520,30 +520,30 @@ restore_params()  # restore only the net parameters
 import torch
 import torch.utils.data as Data
 ​
-torch.manual_seed(1)  # reproducible
+torch.manual_seed(1)  # reproducible
 ​
-BATCH_SIZE = 5  # 批训练的数据个数
+BATCH_SIZE = 5  # 批训练的数据个数
 ​
 x = torch.linspace(1, 10, 10)  # this is x data (torch tensor)
 y = torch.linspace(10, 1, 10)  # this is y data (torch tensor)
 ​
-torch_dataset = Data.TensorDataset(x, y)  # 先转换成torch能识别的Dataset
+torch_dataset = Data.TensorDataset(x, y)  # 先转换成torch能识别的Dataset
 loader = Data.DataLoader(
-    dataset=torch_dataset,  # torch TensorDataset format
-    batch_size=BATCH_SIZE,  # mini batch size
-    shuffle=True,  # random shuffle for training
-    num_workers=2,  # subprocesses for loading data
+    dataset=torch_dataset,  # torch TensorDataset format
+    batch_size=BATCH_SIZE,  # mini batch size
+    shuffle=True,  # random shuffle for training
+    num_workers=2,  # subprocesses for loading data
 )
 ​
 def show_batch():
-    for epoch in range(3):  # train entire dataset 3 times
-        for step, (batch_x, batch_y) in enumerate(loader):  # for each training step
-            # train your data...
-            print('Epoch:', epoch, '| Step:', step,
+    for epoch in range(3):  # train entire dataset 3 times
+        for step, (batch_x, batch_y) in enumerate(loader):  # for each training step
+            # train your data...
+            print('Epoch:', epoch, '| Step:', step,
                   '| batch x:', batch_x.numpy(), '| batch y:', batch_y.numpy())
 ​
 if __name__ == '__main__':
-    show_batch()
+    show_batch()
 ```
 
 执行结果：
