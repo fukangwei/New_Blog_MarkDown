@@ -25,7 +25,7 @@ model.compile(loss=losses.mean_squared_error, optimizer='sgd')
 
 #### mean_squared_error
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 mean_squared_error(y_true, y_pred)
@@ -33,7 +33,7 @@ mean_squared_error(y_true, y_pred)
 
 #### mean_absolute_error
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 mean_absolute_error(y_true, y_pred)
@@ -41,7 +41,7 @@ mean_absolute_error(y_true, y_pred)
 
 #### mean_absolute_percentage_error
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 mean_absolute_percentage_error(y_true, y_pred)
@@ -49,7 +49,7 @@ mean_absolute_percentage_error(y_true, y_pred)
 
 #### mean_squared_logarithmic_error
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 mean_squared_logarithmic_error(y_true, y_pred)
@@ -57,7 +57,7 @@ mean_squared_logarithmic_error(y_true, y_pred)
 
 #### squared_hinge
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 squared_hinge(y_true, y_pred)
@@ -65,7 +65,7 @@ squared_hinge(y_true, y_pred)
 
 #### hinge
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 hinge(y_true, y_pred)
@@ -73,7 +73,7 @@ hinge(y_true, y_pred)
 
 #### categorical_hinge
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 categorical_hinge(y_true, y_pred)
@@ -81,7 +81,7 @@ categorical_hinge(y_true, y_pred)
 
 #### logcosh
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 logcosh(y_true, y_pred)
@@ -92,7 +92,7 @@ logcosh(y_true, y_pred)
 
 #### categorical_crossentropy
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 categorical_crossentropy(y_true, y_pred)
@@ -108,7 +108,7 @@ categorical_labels = to_categorical(int_labels, num_classes=None)
 
 #### sparse_categorical_crossentropy
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 sparse_categorical_crossentropy(y_true, y_pred)
@@ -116,7 +116,7 @@ sparse_categorical_crossentropy(y_true, y_pred)
 
 #### binary_crossentropy
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 binary_crossentropy(y_true, y_pred)
@@ -124,7 +124,7 @@ binary_crossentropy(y_true, y_pred)
 
 #### kullback_leibler_divergence
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 kullback_leibler_divergence(y_true, y_pred)
@@ -134,7 +134,7 @@ kullback_leibler_divergence(y_true, y_pred)
 
 #### poisson
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 poisson(y_true, y_pred)
@@ -142,7 +142,7 @@ poisson(y_true, y_pred)
 
 #### cosine_proximity
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 cosine_proximity(y_true, y_pred)
@@ -156,14 +156,14 @@ cosine_proximity(y_true, y_pred)
 
 ``` python
 def mean_squared_error(y_true, y_pred):
-    return K.mean(K.square(y_pred - y_true), axis=-1)
+    return K.mean(K.square(y_pred - y_true), axis=-1)
 ```
 
 其中`y_true`为网络给出的预测值，`y_true`即是标签，两者均为`tensor`。在`loss`中直接操作这两个变量即可实现自己想要的`loss`函数，例如将其改为四次方的平均值来作为新的`loss`：
 
 ``` python
 def mean_squared_error2(y_true, y_pred):
-    return K.mean(K.square(K.square(y_pred - y_true)), axis=-1)
+    return K.mean(K.square(K.square(y_pred - y_true)), axis=-1)
 ```
 
 在`model`编译阶段将`loss`指定为自定义的函数：
@@ -198,7 +198,7 @@ model.compile(
 
 #### binary_accuracy
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 binary_accuracy(y_true, y_pred)
@@ -208,7 +208,7 @@ binary_accuracy(y_true, y_pred)
 
 #### categorical_accuracy
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 categorical_accuracy(y_true, y_pred)
@@ -218,7 +218,7 @@ categorical_accuracy(y_true, y_pred)
 
 #### sparse_categorical_accuracy
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 sparse_categorical_accuracy(y_true, y_pred)
@@ -228,7 +228,7 @@ sparse_categorical_accuracy(y_true, y_pred)
 
 #### top_k_categorical_accuracy
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 top_k_categorical_accuracy(y_true, y_pred, k=5)
@@ -238,7 +238,7 @@ top_k_categorical_accuracy(y_true, y_pred, k=5)
 
 #### sparse_top_k_categorical_accuracy
 
-&emsp;&emsp;函数原型如下所示：
+&emsp;&emsp;函数原型如下：
 
 ``` python
 sparse_top_k_categorical_accuracy(y_true, y_pred, k=5)
@@ -254,7 +254,7 @@ sparse_top_k_categorical_accuracy(y_true, y_pred, k=5)
 import keras.backend as K
 ​
 def mean_pred(y_true, y_pred):
-    return K.mean(y_pred)
+    return K.mean(y_pred)
 ​
 model.compile(optimizer='rmsprop', loss='binary_crossentropy', metrics=['accuracy', mean_pred])
 ```
