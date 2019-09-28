@@ -12,7 +12,7 @@ categories: 深度学习
 bin\OpenPoseDemo.exe --help
 ```
 
-&emsp;&emsp;使用OpenPose分析视频文件如下所示：
+&emsp;&emsp;使用OpenPose分析视频文件如下：
 
 ``` bash
 bin\OpenPoseDemo.exe --video .\examples\media\video.avi
@@ -42,42 +42,42 @@ bin\OpenPoseDemo.exe --image_dir .\examples\media\ --write_images .\examples\med
 bin\OpenPoseDemo.exe --image_dir .\examples\media\ --write_keypoint_json .\examples\media\json\
 ```
 
-保存的`json`文件如下所示：
+保存的`json`文件如下：
 
 ``` json
 {
-    "version": 1.2,
-    "people": [
-        {
-            "pose_keypoints_2d": [
-                385.895, 130.626, 0.784749,
-                429.924, 246.015, 0.480111,
-                334.069, 253.87, 0.492662,
-                303.744, 357.555, 0.417447,
-                268.541, 309.6, 0.721677,
-                510.142, 239.183, 0.364753,
-                564.929, 294.949, 0.189901,
-                528.75, 197.12, 0.278824,
-                0, 0, 0,
-                0, 0, 0,
-                0, 0, 0,
-                0, 0, 0,
-                0, 0, 0,
-                0, 0, 0,
-                369.297, 113.999, 0.89678,
-                418.163, 115.94, 0.88171,
-                0, 0, 0,
-                473.962, 159.959, 0.743814
-            ],
-            "face_keypoints_2d": [ ],
-            "hand_left_keypoints_2d": [ ],
-            "hand_right_keypoints_2d": [ ],
-            "pose_keypoints_3d": [ ],
-            "face_keypoints_3d": [ ],
-            "hand_left_keypoints_3d": [ ],
-            "hand_right_keypoints_3d": [ ]
-        }
-    ]
+    "version": 1.2,
+    "people": [
+        {
+            "pose_keypoints_2d": [
+                385.895, 130.626, 0.784749,
+                429.924, 246.015, 0.480111,
+                334.069, 253.87, 0.492662,
+                303.744, 357.555, 0.417447,
+                268.541, 309.6, 0.721677,
+                510.142, 239.183, 0.364753,
+                564.929, 294.949, 0.189901,
+                528.75, 197.12, 0.278824,
+                0, 0, 0,
+                0, 0, 0,
+                0, 0, 0,
+                0, 0, 0,
+                0, 0, 0,
+                0, 0, 0,
+                369.297, 113.999, 0.89678,
+                418.163, 115.94, 0.88171,
+                0, 0, 0,
+                473.962, 159.959, 0.743814
+            ],
+            "face_keypoints_2d": [ ],
+            "hand_left_keypoints_2d": [ ],
+            "hand_right_keypoints_2d": [ ],
+            "pose_keypoints_3d": [ ],
+            "face_keypoints_3d": [ ],
+            "hand_left_keypoints_3d": [ ],
+            "hand_right_keypoints_3d": [ ]
+        }
+    ]
 }
 ```
 
