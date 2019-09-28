@@ -17,7 +17,7 @@ categories: 深度学习
 from keras.layers import Input, Dense
 from keras.models import Model
 ​
-inputs = Input(shape=(784,))  # 这部分返回一个张量
+inputs = Input(shape=(784,))  # 这部分返回一个张量
 ​
 # 层的实例是可调用的，它以张量为参数，并且返回一个张量
 x = Dense(64, activation='relu')(inputs)
@@ -27,14 +27,14 @@ predictions = Dense(10, activation='softmax')(x)
 # 这部分创建了一个包含输入层和三个全连接层的模型
 model = Model(inputs=inputs, outputs=predictions)
 model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
-model.fit(data, labels)  # 开始训练
+model.fit(data, labels)  # 开始训练
 ```
 
 &emsp;&emsp;利用函数式`API`，可以轻松地重用训练好的模型：可以将任何模型看作是一个层，然后通过传递一个张量来调用它。注意，在调用模型时，您不仅重用模型的结构，还重用了它的权重：
 
 ``` python
 x = Input(shape=(784,))
-y = model(x)  # 这是可行的，并且返回上面定义的“10-way softmax”。
+y = model(x)  # 这是可行的，并且返回上面定义的“10-way softmax”。
 ```
 
 这种方式能允许我们快速创建可以处理序列输入的模型。只需一行代码，你就将图像分类模型转换为视频分类模型：
@@ -117,10 +117,8 @@ input_img = Input(shape=(256, 256, 3))
 ​
 tower_1 = Conv2D(64, (1, 1), padding='same', activation='relu')(input_img)
 tower_1 = Conv2D(64, (3, 3), padding='same', activation='relu')(tower_1)
-​
 tower_2 = Conv2D(64, (1, 1), padding='same', activation='relu')(input_img)
 tower_2 = Conv2D(64, (5, 5), padding='same', activation='relu')(tower_2)
-​
 tower_3 = MaxPooling2D((3, 3), strides=(1, 1), padding='same')(input_img)
 tower_3 = Conv2D(64, (1, 1), padding='same', activation='relu')(tower_3)
 ​
@@ -134,10 +132,10 @@ output = keras.layers.concatenate([tower_1, tower_2, tower_3], axis=1)
 ``` python
 from keras.layers import Conv2D, Input
 ​
-x = Input(shape=(256, 256, 3))  # 输入张量为3通道“256 * 256”图像
+x = Input(shape=(256, 256, 3))  # 输入张量为3通道“256 * 256”图像
 # 3输出通道(与输入通道相同)的“3 * 3”卷积核
 y = Conv2D(3, (3, 3), padding='same')(x)
-z = keras.layers.add([x, y])  # 返回“x + y”
+z = keras.layers.add([x, y])  # 返回“x + y”
 ```
 
 ---
