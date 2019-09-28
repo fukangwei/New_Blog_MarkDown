@@ -71,14 +71,14 @@ image {
 
 ``` json
 "image": {
-    "license":3,
-    "file_name":"COCO_val2014_000000391895.jpg",
-    "coco_url":"http:\\mscoco.org\images\391895",
-    "height":360,
-    "width":640,
-    "date_captured":"2013-11-14 11:18:45",
-    "flickr_url":"http:\\farm9.staticflickr.com\8186\8119368305_4e622c8349_z.jpg",
-    "id":391895
+    "license":3,
+    "file_name":"COCO_val2014_000000391895.jpg",
+    "coco_url":"http:\\mscoco.org\images\391895",
+    "height":360,
+    "width":640,
+    "date_captured":"2013-11-14 11:18:45",
+    "flickr_url":"http:\\farm9.staticflickr.com\8186\8119368305_4e622c8349_z.jpg",
+    "id":391895
 }
 ```
 
@@ -86,9 +86,9 @@ image {
 
 ``` json
 "license": {
-    "url":"http:\\creativecommons.org\licenses\by-nc-sa\2.0\",
-    "id":1,
-    "name":"Attribution-NonCommercial-ShareAlike License"
+    "url":"http:\\creativecommons.org\licenses\by-nc-sa\2.0\",
+    "id":1,
+    "name":"Attribution-NonCommercial-ShareAlike License"
 }
 ```
 
@@ -100,11 +100,11 @@ image {
 
 ``` json
 {
-    "info": info,
-    "licenses": [license],
-    "images": [image],
-    "annotations": [annotation],
-    "categories": [category]
+    "info": info,
+    "licenses": [license],
+    "images": [image],
+    "annotations": [annotation],
+    "categories": [category]
 }
 ```
 
@@ -116,7 +116,7 @@ from pycocotools.coco import COCO
 dataDir = '..'
 dataType = 'val2017'
 annFile = '{}/annotations/instances_{}.json'.format(dataDir, dataType)
-coco_train = COCO(annFile)  # initialize COCO api for instance annotations
+coco_train = COCO(annFile)  # initialize COCO api for instance annotations
 ​
 print(len(coco_train.dataset['categories']))
 print(len(coco_train.dataset['images']))
@@ -129,13 +129,13 @@ print(len(coco_train.dataset['annotations']))
 
 ``` json
 annotation {
-    "id": int,
-    "image_id": int,
-    "category_id": int,
-    "segmentation": RLE or [polygon],
-    "area": float,
-    "bbox": [x,y,width,height],
-    "iscrowd": 0 or 1,
+    "id": int,
+    "image_id": int,
+    "category_id": int,
+    "segmentation": RLE or [polygon],
+    "area": float,
+    "bbox": [x,y,width,height],
+    "iscrowd": 0 or 1,
 }
 ```
 
@@ -145,13 +145,13 @@ annotation {
 
 ``` json
 {
-    "segmentation": [[510.66, 423.01, 511.72, 420.03, 510.45, ...]],
-    "area": 702.1057499999998,
-    "iscrowd": 0,
-    "image_id": 289343,
-    "bbox": [473.07,395.93,38.65,28.67],
-    "category_id": 18,
-    "id": 1768
+    "segmentation": [[510.66, 423.01, 511.72, 420.03, 510.45, ...]],
+    "area": 702.1057499999998,
+    "iscrowd": 0,
+    "image_id": 289343,
+    "bbox": [473.07,395.93,38.65,28.67],
+    "category_id": 18,
+    "id": 1768
 }
 ```
 
@@ -167,9 +167,9 @@ from matplotlib.collections import PatchCollection
 _, ax = plt.subplots()
 polygons = []
 gemfield_polygons = [
-    [239.97, 260.24, 222.04, 270.49, 199.84, 253.41, 213.5,
-     227.79, 259.62, 200.46, 274.13, 202.17, 277.55, 210.71,
-     249.37, 253.41, 237.41, 264.51, 242.54, 261.95, 228.87, 271.34]
+    [239.97, 260.24, 222.04, 270.49, 199.84, 253.41, 213.5,
+     227.79, 259.62, 200.46, 274.13, 202.17, 277.55, 210.71,
+     249.37, 253.41, 237.41, 264.51, 242.54, 261.95, 228.87, 271.34]
 ]
 
 gemfield_polygon = gemfield_polygons[0]
