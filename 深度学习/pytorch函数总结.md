@@ -270,7 +270,7 @@ torch.max(input, dim, max=None, max_indices=None) -> (Tensor, LongTensor)
 [torch.FloatTensor of size 4x4]
 >>> torch.max(a, 1)
 (1.2513 0.9288 1.0695 0.7426 [torch.FloatTensor of size 4x1],
- 2      0      0      0      [torch.LongTensor of size 4x1])
+ 2      0      0      0      [torch.LongTensor of size 4x1])
 ```
 
 第三个函数原型如下：
@@ -401,24 +401,24 @@ torch.linspace(start, end, steps=100, out=None) -> Tensor
 
 ``` python
 >>> torch.linspace(3, 10, steps=5)
-  3.0000
-  4.7500
-  6.5000
-  8.2500
+  3.0000
+  4.7500
+  6.5000
+  8.2500
  10.0000
 [torch.FloatTensor of size 5]
 >>> torch.linspace(-10, 10, steps=5)
 -10
  -5
-  0
-  5
+  0
+  5
  10
 [torch.FloatTensor of size 5]
 >>> torch.linspace(start=-10, end=10, steps=5)
 -10
  -5
-  0
-  5
+  0
+  5
  10
 [torch.FloatTensor of size 5]
 ```
@@ -450,7 +450,7 @@ torch.unsqueeze(input, dim, out=None)
 ``` python
 >>> x = torch.Tensor([1, 2, 3, 4])
 >>> torch.unsqueeze(x, 0)
- 1  2  3  4
+ 1  2  3  4
 [torch.FloatTensor of size 1x4]
 >>> torch.unsqueeze(x, 1)
  1
@@ -566,7 +566,6 @@ torch.nn.BatchNorm1d(num_features, eps=1e-05, momentum=0.1, affine=True)
 - `affine`：一个布尔值，当设为`True`时，给该层添加可学习的仿射变换参数。
 
 对小批量(`mini-batch`)的`2d`或`3d`输入进行批标准化(`Batch Normalization`)。在每一个小批量(`mini-batch`)数据中，计算输入各个维度的均值和标准差。
-
 &emsp;&emsp;在训练时，该层计算每次输入的均值与方差，并进行移动平均，移动平均默认的动量值为`0.1`；在验证时，训练求得的均值和方差将用于标准化验证数据。
 &emsp;&emsp;对于`Shape`，输入(`N, C`)或者(`N, C, L`)，输出(`N, C`)或者(`N, C, L`)，即输入输出都相同。
 
