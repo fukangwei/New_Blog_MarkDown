@@ -186,8 +186,8 @@ plt.show()
 
 ``` json
 segmentation: {
-    u'counts': [272, 2, 4, 4, 4, 4, 2, 9, 1, 2, 16, 43, 143, 24, ...],
-    u'size': [240, 320]
+    u'counts': [272, 2, 4, 4, 4, 4, 2, 9, 1, 2, 16, 43, 143, 24, ...],
+    u'size': [240, 320]
 }
 ```
 
@@ -205,7 +205,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 ​
 rle = [
-    66083, 9, 627, 14, 618, 23, 616, 25, 614,
+    66083, 9, 627, 14, 618, 23, 616, 25, 614,
     26, 613, 27, 612, 28, 611, 30, 610, 31, ...
 ]
 ​
@@ -216,10 +216,11 @@ n = 0
 val = 1
 
 for pos in range(N):
-    val = not val
-    for c in range(rle[pos]):
-        M[n] = val
-        n += 1
+    val = not val
+
+    for c in range(rle[pos]):
+        M[n] = val
+        n += 1
 ​
 GEMFIELD = M.reshape(([640, 480]), order='F')
 plt.imshow(GEMFIELD)
@@ -232,9 +233,9 @@ plt.show()
 
 ``` json
 {
-    "id": int,
-    "name": str,
-    "supercategory": str,
+    "id": int,
+    "name": str,
+    "supercategory": str,
 }
 ```
 
@@ -263,11 +264,11 @@ plt.show()
 
 ``` json
 {
-    "info": info,
-    "licenses": [license],
-    "images": [image],
-    "annotations": [annotation],
-    "categories": [category]
+    "info": info,
+    "licenses": [license],
+    "images": [image],
+    "annotations": [annotation],
+    "categories": [category]
 }
 ```
 
@@ -280,15 +281,15 @@ plt.show()
 
 ``` json
 annotation {
-    "keypoints": [x1,y1,v1,...],
-    "num_keypoints": int,
-    "id": int,
-    "image_id": int,
-    "category_id": int,
-    "segmentation": RLE or [polygon],
-    "area": float,
-    "bbox": [x,y,width,height],
-    "iscrowd": 0 or 1,
+    "keypoints": [x1,y1,v1,...],
+    "num_keypoints": int,
+    "id": int,
+    "image_id": int,
+    "category_id": int,
+    "segmentation": RLE or [polygon],
+    "area": float,
+    "bbox": [x,y,width,height],
+    "iscrowd": 0 or 1,
 }
 ```
 
@@ -296,14 +297,16 @@ annotation {
 
 ``` json
 {
-    "segmentation": [[125.12, 539.69, 140.94, 522.43, ...]],
-    "num_keypoints": 10,
-    "area": 47803.27955,
-    "iscrowd": 0,
-    "keypoints": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    "segmentation": [[125.12, 539.69, 140.94, 522.43, ...]],
+    "num_keypoints": 10,
+    "area": 47803.27955,
+    "iscrowd": 0,
+    "keypoints": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                   142, 309, 1, 177, 320, 2, 191, 398, ...],
-    "image_id": 425226, "bbox": [73.35,206.02,300.58,372.5], "category_id": 1,
-    "id": 183126
+    "image_id": 425226,
+    "bbox": [73.35,206.02,300.58,372.5],
+    "category_id": 1,
+    "id": 183126
 }
 ```
 
@@ -314,11 +317,11 @@ annotation {
 
 ``` json
 {
-    "id": int,
-    "name": str,
-    "supercategory": str,
-    "keypoints": [str],
-    "skeleton": [edge]
+    "id": int,
+    "name": str,
+    "supercategory": str,
+    "keypoints": [str],
+    "skeleton": [edge]
 }
 ```
 
@@ -326,14 +329,14 @@ annotation {
 
 ``` json
 {
-    "supercategory": "person",
-    "id": 1,
-    "name": "person",
-    "keypoints": ["nose", "left_eye", "right_eye", "left_ear", "right_ear",
+    "supercategory": "person",
+    "id": 1,
+    "name": "person",
+    "keypoints": ["nose", "left_eye", "right_eye", "left_ear", "right_ear",
                   "left_shoulder", "right_shoulder", "left_elbow", "right_elbow",
                   "left_wrist", "right_wrist", "left_hip", "right_hip",
                   "left_knee", "right_knee", "left_ankle", "right_ankle"],
-    "skeleton": [[16, 14], [14, 12], [17, 15], [15, 13], [12, 13], [6, 12], [7, 13],
+    "skeleton": [[16, 14], [14, 12], [17, 15], [15, 13], [12, 13], [6, 12], [7, 13],
                  [6, 7], [6, 8], [7, 9], [8, 10], [9, 11], [2, 3], [1, 2], [1, 3],
                  [2, 4], [3, 5], [4, 6], [5, 7]]
 }
@@ -352,10 +355,10 @@ annotation {
 
 ``` json
 {
-    "info": info,
-    "licenses": [license],
-    "images": [image],
-    "annotations": [annotation]
+    "info": info,
+    "licenses": [license],
+    "images": [image],
+    "annotations": [annotation]
 }
 ```
 
@@ -367,9 +370,9 @@ annotation {
 
 ``` json
 annotation {
-    "id": int,
-    "image_id": int,
-    "caption": str
+    "id": int,
+    "image_id": int,
+    "caption": str
 }
 ```
 
@@ -379,6 +382,6 @@ annotation {
 {
     "image_id": 179765,
     "id": 38,
-    "caption": "A black Honda motorcycle parked in front of a garage."
+    "caption": "A black Honda motorcycle parked in front of a garage."
 }
 ```
