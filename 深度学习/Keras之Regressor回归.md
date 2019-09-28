@@ -3,7 +3,7 @@ title: Keras之Regressor回归
 date: 2019-02-13 11:00:46
 categories: 深度学习
 ---
-&emsp;&emsp;神经网络可以用来模拟回归问题(`regression`)，例如给一组数据，用一条线来对数据进行拟合，并可以预测新输入x的输出值。
+&emsp;&emsp;神经网络可以用来模拟回归问题(`regression`)，例如给一组数据，用一条线来对数据进行拟合，并可以预测新输入`x`的输出值。
 
 ### 导入模块并创建数据
 
@@ -13,20 +13,20 @@ categories: 深度学习
 import numpy as np
 from keras.models import Sequential
 from keras.layers import Dense
-import matplotlib.pyplot as plt  # 可视化模块
+import matplotlib.pyplot as plt  # 可视化模块
 ​
-np.random.seed(1337)  # for reproducibility
+np.random.seed(1337)  # for reproducibility
 ​
 # create some data
 X = np.linspace(-1, 1, 200)
-np.random.shuffle(X)  # randomize the data
+np.random.shuffle(X)  # randomize the data
 Y = 0.5 * X + 2 + np.random.normal(0, 0.05, (200,))
 # plot data
 plt.scatter(X, Y)
 plt.show()
 ​
-X_train, Y_train = X[:160], Y[:160]  # train前160个“data points”
-X_test, Y_test = X[160:], Y[160:]  # test后40个“data points”
+X_train, Y_train = X[:160], Y[:160]  # train前160个“data points”
+X_test, Y_test = X[160:], Y[160:]  # test后40个“data points”
 ```
 
 ### 建立模型
@@ -57,10 +57,12 @@ model.compile(loss='mse', optimizer='sgd')
 ``` python
 # training
 print('Training -----------')
+
 for step in range(301):
-    cost = model.train_on_batch(X_train, Y_train)
-    if step % 100 == 0:
-        print('train cost: ', cost)
+    cost = model.train_on_batch(X_train, Y_train)
+
+    if step % 100 == 0:
+        print('train cost: ', cost)
 ```
 
 ### 检验模型
