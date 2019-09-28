@@ -115,7 +115,6 @@ keras.layers.Conv2DTranspose(
 ```
 
 需要反卷积的情况通常发生在用户想要对一个普通卷积的结果做反方向的变换，例如将具有该卷积层输出`shape`的`tensor`转换为具有该卷积层输入`shape`的`tensor`，同时保留与卷积层兼容的连接模式。当使用该层作为第一层时，应提供`input_shape`参数。例如`input_shape = (3, 128, 128)`代表`128 * 128`的彩色`RGB`图像。
-
 &emsp;&emsp;输入尺寸(注意这里的输入`shape`指的是函数内部实现的输入`shape`，而非函数接口应指定的`input_shape`)：
 
 - 如果`data_format='channels_first'`，输入`4D`张量，尺寸为(`batch, channels, rows, cols`)。
@@ -166,7 +165,6 @@ keras.layers.Cropping1D(cropping=(1, 1))
 ```
 
 它沿着时间维度(第`1`个轴)对输入进行裁剪。参数`cropping`是整数或整数元组(长度为`2`)，决定在裁剪维度(第`1`个轴)的开始和结束位置应该裁剪多少个单位。如果只提供了一个整数，那么这两个位置将使用相同的值。
-
 &emsp;&emsp;输入尺寸：`3D`张量，尺寸为(`batch, axis_to_crop, features`)。
 &emsp;&emsp;输出尺寸：`3D`张量，尺寸为(`batch, cropped_axis, features`)。
 
