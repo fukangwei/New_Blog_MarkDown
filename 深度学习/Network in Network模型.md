@@ -97,54 +97,54 @@ def build_model():
     model.add(Activation('relu'))
     model.add(Conv2D(192, (1, 1), padding='same', kernel_regularizer=keras.regularizers.l2(weight_decay), \
                      kernel_initializer="he_normal"))
-    model.add(BatchNormalization())
-    model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(3, 3), strides=(2, 2), padding='same'))
+    model.add(BatchNormalization())
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(3, 3), strides=(2, 2), padding='same'))
 ​
-    model.add(Dropout(dropout))
+    model.add(Dropout(dropout))
 ​
-    model.add(Conv2D(192, (3, 3), padding='same', kernel_regularizer=keras.regularizers.l2(weight_decay), \
+    model.add(Conv2D(192, (3, 3), padding='same', kernel_regularizer=keras.regularizers.l2(weight_decay), \
                      kernel_initializer="he_normal"))
-    model.add(BatchNormalization())
-    model.add(Activation('relu'))
-    model.add(Conv2D(192, (1, 1), padding='same', kernel_regularizer=keras.regularizers.l2(weight_decay), \
+    model.add(BatchNormalization())
+    model.add(Activation('relu'))
+    model.add(Conv2D(192, (1, 1), padding='same', kernel_regularizer=keras.regularizers.l2(weight_decay), \
                      kernel_initializer="he_normal"))
-    model.add(BatchNormalization())
-    model.add(Activation('relu'))
-    model.add(Conv2D(10, (1, 1), padding='same', kernel_regularizer=keras.regularizers.l2(weight_decay), \
+    model.add(BatchNormalization())
+    model.add(Activation('relu'))
+    model.add(Conv2D(10, (1, 1), padding='same', kernel_regularizer=keras.regularizers.l2(weight_decay), \
                      kernel_initializer="he_normal"))
-    model.add(BatchNormalization())
-    model.add(Activation('relu'))
+    model.add(BatchNormalization())
+    model.add(Activation('relu'))
 ​
-    model.add(GlobalAveragePooling2D())
-    model.add(Activation('softmax'))
+    model.add(GlobalAveragePooling2D())
+    model.add(Activation('softmax'))
 ​
-    sgd = optimizers.SGD(lr=.1, momentum=0.9, nesterov=True)
-    model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
-    return model
+    sgd = optimizers.SGD(lr=.1, momentum=0.9, nesterov=True)
+    model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
+    return model
 ​
 if __name__ == '__main__':
-    (x_train, y_train), (x_test, y_test) = cifar10.load_data()
-    y_train = keras.utils.to_categorical(y_train, num_classes)
-    y_test = keras.utils.to_categorical(y_test, num_classes)
+    (x_train, y_train), (x_test, y_test) = cifar10.load_data()
+    y_train = keras.utils.to_categorical(y_train, num_classes)
+    y_test = keras.utils.to_categorical(y_test, num_classes)
 ​
-    x_train, x_test = color_preprocessing(x_train, x_test)
-    model = build_model()
-    print(model.summary())
+    x_train, x_test = color_preprocessing(x_train, x_test)
+    model = build_model()
+    print(model.summary())
 ​
-    tb_cb = TensorBoard(log_dir=log_filepath, histogram_freq=0)
-    change_lr = LearningRateScheduler(scheduler)
-    cbks = [change_lr, tb_cb]
+    tb_cb = TensorBoard(log_dir=log_filepath, histogram_freq=0)
+    change_lr = LearningRateScheduler(scheduler)
+    cbks = [change_lr, tb_cb]
 ​
-    print('Using real-time data augmentation.')
-    datagen = ImageDataGenerator(
+    print('Using real-time data augmentation.')
+    datagen = ImageDataGenerator(
                 horizontal_flip=True, width_shift_range=0.125,
                 height_shift_range=0.125, fill_mode='constant', cval=0.)
-    datagen.fit(x_train)
+    datagen.fit(x_train)
 ​
-    model.fit_generator(
+    model.fit_generator(
         datagen.flow(x_train, y_train, batch_size=batch_size),
         steps_per_epoch=iterations, epochs=epochs,
         callbacks=cbks, validation_data=(x_test, y_test))
-    model.save('nin_bn.h5')
+    model.save('nin_bn.h5')
 ```
