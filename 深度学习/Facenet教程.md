@@ -5,7 +5,7 @@ categories: 深度学习
 ---
 ### 安装和配置Facenet
 
-&emsp;&emsp;在cmd命令行，定位到自己想要下载的文件夹，用git下载FaceNet源代码工程：
+&emsp;&emsp;在`cmd`命令行，定位到自己想要下载的文件夹，用`git`下载`FaceNet`源代码工程：
 
 ``` python
 git clone --recursive https://github.com/davidsandberg/facenet.git

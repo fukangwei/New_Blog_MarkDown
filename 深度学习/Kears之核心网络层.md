@@ -20,7 +20,7 @@ keras.layers.Dense(
 model = Sequential()
 # 现在模型就会以尺寸为(*, 16)的数组作为输入，其输出数组的尺寸为(*, 32)
 model.add(Dense(32, input_shape=(16,)))
-model.add(Dense(32))  # 在第一层之后，你就不再需要指定输入的尺寸了
+model.add(Dense(32))  # 在第一层之后，你就不再需要指定输入的尺寸了
 ```
 
 - `units`：正整数，输出空间维度。
@@ -77,7 +77,7 @@ keras.layers.Flatten()
 model = Sequential()
 # 现在“model.output_shape == (None, 64, 32, 32)”
 model.add(Conv2D(64, 3, 3, border_mode='same', input_shape=(3, 32, 32)))
-model.add(Flatten())  # 现在“model.output_shape == (None, 65536)”
+model.add(Flatten())  # 现在“model.output_shape == (None, 65536)”
 ```
 
 ### Reshape
@@ -96,7 +96,7 @@ keras.layers.Reshape(target_shape)
 model = Sequential()
 # 现在“model.output_shape == (None, 3, 4)”，None是批表示的维度
 model.add(Reshape((3, 4), input_shape=(12,)))
-model.add(Reshape((6, 2)))  # 现在“model.output_shape == (None, 6, 2)”
+model.add(Reshape((6, 2)))  # 现在“model.output_shape == (None, 6, 2)”
 # 还支持使用“-1”表示维度的尺寸推断，现在“model.output_shape == (None, 3, 2, 2)”
 model.add(Reshape((-1, 2, 2)))
 ```
@@ -135,7 +135,7 @@ keras.layers.RepeatVector(n)
 model = Sequential()
 # 现在“model.output_shape == (None, 32)”，None是批表示的维度
 model.add(Dense(32, input_dim=32))
-model.add(RepeatVector(3))  # 现在“model.output_shape == (None, 3, 32)”
+model.add(RepeatVector(3))  # 现在“model.output_shape == (None, 3, 32)”
 ```
 
 ### Lambda
@@ -151,20 +151,20 @@ keras.layers.Lambda(function, output_shape=None, mask=None, arguments=None)
 - `arguments`：需要传递给函数的关键字参数。
 
 ``` python
-model.add(Lambda(lambda x: x ** 2))  # 添加一个“x -> x^2”层
+model.add(Lambda(lambda x: x ** 2))  # 添加一个“x -> x^2”层
 ​
-def antirectifier(x):  # 添加一个网络层，返回输入的正数部分与负数部分的反面的连接
-    x -= K.mean(x, axis=1, keepdims=True)
-    x = K.l2_normalize(x, axis=1)
-    pos = K.relu(x)
-    neg = K.relu(-x)
-    return K.concatenate([pos, neg], axis=1)
+def antirectifier(x):  # 添加一个网络层，返回输入的正数部分与负数部分的反面的连接
+    x -= K.mean(x, axis=1, keepdims=True)
+    x = K.l2_normalize(x, axis=1)
+    pos = K.relu(x)
+    neg = K.relu(-x)
+    return K.concatenate([pos, neg], axis=1)
 ​
 def antirectifier_output_shape(input_shape):
-    shape = list(input_shape)
-    assert len(shape) == 2  # only valid for 2D tensors
-    shape[-1] *= 2
-    return tuple(shape)
+    shape = list(input_shape)
+    assert len(shape) == 2  # only valid for 2D tensors
+    shape[-1] *= 2
+    return tuple(shape)
 ​
 model.add(Lambda(antirectifier, output_shape=antirectifier_output_shape))
 ```

@@ -4,7 +4,7 @@ date: 2019-02-17 14:49:45
 categories: 深度学习
 ---
 &emsp;&emsp;`COCO`的全称是`Common Objects in Context`，是微软团队提供的一个可以用来进行图像识别的数据集。`MS COCO`数据集中的图像分为训练、验证和测试集。
-&emsp;&emsp;`COCO`数据集现在有3种标注类型：`object instances`(目标实例)、`object keypoints`(目标上的关键点)和`image captions`(看图说话)，使用`JSON`文件存储。比如下面就是`COCO`的`2017`年训练集中的标注文件：
+&emsp;&emsp;`COCO`数据集现在有`3`种标注类型：`object instances`(目标实例)、`object keypoints`(目标上的关键点)和`image captions`(看图说话)，使用`JSON`文件存储。比如下面就是`COCO`的`2017`年训练集中的标注文件：
 
 - `captions_train2017.json`
 - `captions_val2017.json`
@@ -22,36 +22,36 @@ categories: 深度学习
 
 ``` json
 {
-    "info": info,
-    "licenses": [license],
-    "images": [image],
-    "annotations": [annotation],
+    "info": info,
+    "licenses": [license],
+    "images": [image],
+    "annotations": [annotation],
 }
 
 info {
-    "year": int,
-    "version": str,
-    "description": str,
-    "contributor": str,
-    "url": str,
-    "date_created": datetime,
+    "year": int,
+    "version": str,
+    "description": str,
+    "contributor": str,
+    "url": str,
+    "date_created": datetime,
 }
 ​
 license {
-    "id": int,
-    "name": str,
-    "url": str,
+    "id": int,
+    "name": str,
+    "url": str,
 }
 ​
 image {
-    "id": int,
-    "width": int,
-    "height": int,
-    "file_name": str,
-    "license": int,
-    "flickr_url": str,
-    "coco_url": str,
-    "date_captured": datetime,
+    "id": int,
+    "width": int,
+    "height": int,
+    "file_name": str,
+    "license": int,
+    "flickr_url": str,
+    "coco_url": str,
+    "date_captured": datetime,
 }
 ```
 
@@ -59,11 +59,11 @@ image {
 
 ``` json
 "info": {
-    "description":"This is stable 1.0 version of the 2014 MS COCO dataset.",
-    "url":"http:\\mscoco.org",
-    "version":"1.0","year":2014,
-    "contributor":"Microsoft COCO group",
-    "date_created":"2015-01-27 09:11:52.357475"
+    "description":"This is stable 1.0 version of the 2014 MS COCO dataset.",
+    "url":"http:\\mscoco.org",
+    "version":"1.0","year":2014,
+    "contributor":"Microsoft COCO group",
+    "date_created":"2015-01-27 09:11:52.357475"
 }
 ```
 
