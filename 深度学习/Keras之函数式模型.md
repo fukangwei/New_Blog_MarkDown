@@ -308,13 +308,15 @@ fit_generator(
 
 ``` python
 def generate_arrays_from_file(path):
-    while 1:
-        f = open(path)
-        for line in f:
-            # 从文件中的每一行生成输入数据和标签的numpy数组
-            x1, x2, y = process_line(line)
-            yield ({'input_1': x1, 'input_2': x2}, {'output': y})
-        f.close()
+    while 1:
+        f = open(path)
+
+        for line in f:
+            # 从文件中的每一行生成输入数据和标签的numpy数组
+            x1, x2, y = process_line(line)
+            yield ({'input_1': x1, 'input_2': x2}, {'output': y})
+
+        f.close()
 ​
 model.fit_generator(generate_arrays_from_file('/my_file.txt'), steps_per_epoch=10000, epochs=10)
 ```
