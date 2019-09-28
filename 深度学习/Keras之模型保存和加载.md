@@ -15,9 +15,9 @@ categories: 深度学习
 ``` python
 from keras.models import load_model
 ​
-model.save('my_model.h5')  # 创建HDF5文件“my_model.h5”
-del model  # 删除现有模型
-model = load_model('my_model.h5')  # 返回一个编译好的模型，与之前那个相同
+model.save('my_model.h5')  # 创建HDF5文件“my_model.h5”
+del model  # 删除现有模型
+model = load_model('my_model.h5')  # 返回一个编译好的模型，与之前那个相同
 ```
 
 示例代码如下：
@@ -28,24 +28,25 @@ from keras.models import Sequential
 from keras.layers import Dense
 from keras.models import load_model
 ​
-np.random.seed(1337)  # for reproducibility
-X = np.linspace(-1, 1, 200)  # create some data
-np.random.shuffle(X)  # randomize the data
+np.random.seed(1337)  # for reproducibility
+X = np.linspace(-1, 1, 200)  # create some data
+np.random.shuffle(X)  # randomize the data
 Y = 0.5 * X + 2 + np.random.normal(0, 0.05, (200,))
-X_train, Y_train = X[:160], Y[:160]  # first 160 data points
-X_test, Y_test = X[160:], Y[160:]  # last 40 data points
+X_train, Y_train = X[:160], Y[:160]  # first 160 data points
+X_test, Y_test = X[160:], Y[160:]  # last 40 data points
 ​
 model = Sequential()
 model.add(Dense(output_dim=1, input_dim=1))
 model.compile(loss='mse', optimizer='sgd')
 ​
 for step in range(301):
-    cost = model.train_on_batch(X_train, Y_train)
+    cost = model.train_on_batch(X_train, Y_train)
 ​
 # save
 print('test before save: ', model.predict(X_test[0:2]))
-model.save('my_model.h5')  # HDF5 file, you have to pip3 install h5py if don't have it
-del model  # deletes the existing model
+# HDF5 file, you have to pip3 install h5py if don't have it
+model.save('my_model.h5')
+del model  # deletes the existing model
 ​
 # load
 model = load_model('my_model.h5')
@@ -57,8 +58,8 @@ print('test after load: ', model.predict(X_test[0:2]))
 &emsp;&emsp;如果你只需要保存模型的结构，而非其权重或训练配置项，则可以执行以下操作：
 
 ``` python
-json_string = model.to_json() # 保存为JSON
-yaml_string = model.to_yaml() # 保存为YAML
+json_string = model.to_json()  # 保存为JSON
+yaml_string = model.to_yaml()  # 保存为YAML
 ```
 
 生成的`JSON`或`YAML`文件是人类可读的，如果需要的话还可以手动编辑。
@@ -97,15 +98,15 @@ model.load_weights('my_model_weights.h5', by_name=True)
 
 ``` python
 """
-假设原始模型如下所示：
+假设原始模型如下：
 model = Sequential()
 model.add(Dense(2, input_dim=3, name='dense_1'))
 model.add(Dense(3, name='dense_2'))
 ...
 model.save_weights(fname)
 """
-model = Sequential()  # 新模型
-model.add(Dense(2, input_dim=3, name='dense_1'))  # 将被加载
-model.add(Dense(10, name='new_dense'))  # 将不被加载
-model.load_weights(fname, by_name=True)  # 从第一个模型加载权重，只会影响第一层(dense_1)
+model = Sequential()  # 新模型
+model.add(Dense(2, input_dim=3, name='dense_1'))  # 将被加载
+model.add(Dense(10, name='new_dense'))  # 将不被加载
+model.load_weights(fname, by_name=True)  # 从第一个模型加载权重，只会影响第一层(dense_1)
 ```
