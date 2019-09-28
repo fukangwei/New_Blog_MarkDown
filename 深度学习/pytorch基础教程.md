@@ -802,29 +802,28 @@ optimizer = torch.optim.Adam(cnn.parameters(), lr=LR)
 loss_func = nn.CrossEntropyLoss()
 ​
 for epoch in range(EPOCH):
-    for step, (x, y) in enumerate(train_loader):
-        # Change in here
-        b_x = x.cuda()  # Tensor on GPU
-        b_y = y.cuda()  # Tensor on GPU
+    for step, (x, y) in enumerate(train_loader):
+        # Change in here
+        b_x = x.cuda()  # Tensor on GPU
+        b_y = y.cuda()  # Tensor on GPU
 ​
-        output = cnn(b_x)
-        loss = loss_func(output, b_y)
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
+        output = cnn(b_x)
+        loss = loss_func(output, b_y)
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
 ​
-        if step % 50 == 0:
-            test_output = cnn(test_x)
-​
-            # Change in here
-            pred_y = torch.max(test_output, 1)[1].cuda().data.squeeze()  # move the computation in GPU
-            accuracy = torch.sum(pred_y == test_y).type(torch.FloatTensor) / test_y.size(0)
-            print('Epoch:', epoch, '| train loss: %.4f' % loss.data.cpu().numpy(), '| test accuracy: %.2f' % accuracy)
+        if step % 50 == 0:
+            test_output = cnn(test_x)
+            # Change in here
+            pred_y = torch.max(test_output, 1)[1].cuda().data.squeeze()  # move the computation in GPU
+            accuracy = torch.sum(pred_y == test_y).type(torch.FloatTensor) / test_y.size(0)
+            print('Epoch:', epoch, '| train loss: %.4f' % loss.data.cpu().numpy(), '| test accuracy: %.2f' % accuracy)
 ​
 test_output = cnn(test_x[:10])
 ​
 # Change in here
-pred_y = torch.max(test_output, 1)[1].cuda().data.squeeze()  # move the computation in GPU
+pred_y = torch.max(test_output, 1)[1].cuda().data.squeeze()  # move the computation in GPU
 ​
 print(pred_y, 'prediction number')
 print(test_y[:10], 'real number')
