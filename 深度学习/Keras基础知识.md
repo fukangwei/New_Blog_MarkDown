@@ -23,7 +23,7 @@ categories: 深度学习
 ### 快速开始：30秒上手Keras
 
 &emsp;&emsp;`Keras`的核心数据结构是`model`，一种组织网络层的方式。最简单的模型是`Sequential`顺序模型，它是由多个网络层线性堆叠的栈。对于更复杂的结构，你应该使用`Keras`函数式`API`，它允许构建任意的神经网络图。
-&emsp;&emsp;`Sequential`顺序模型如下所示：
+&emsp;&emsp;`Sequential`顺序模型如下：
 
 ``` python
 from keras.models import Sequential

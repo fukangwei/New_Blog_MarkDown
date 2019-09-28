@@ -18,8 +18,8 @@ from keras.optimizers import RMSprop
 ​
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
 # data pre-processing
-X_train = X_train.reshape(X_train.shape[0], -1) / 255.  # normalize
-X_test = X_test.reshape(X_test.shape[0], -1) / 255.  # normalize
+X_train = X_train.reshape(X_train.shape[0], -1) / 255.  # normalize
+X_test = X_test.reshape(X_test.shape[0], -1) / 255.  # normalize
 y_train = np_utils.to_categorical(y_train, num_classes=10)
 y_test = np_utils.to_categorical(y_test, num_classes=10)
 ​
@@ -33,10 +33,10 @@ print(y_train[:3])
 
 ``` python
 model = Sequential([
-    Dense(32, input_dim=784),
-    Activation('relu'),
-    Dense(10),
-    Activation('softmax'),
+    Dense(32, input_dim=784),
+    Activation('relu'),
+    Dense(10),
+    Activation('softmax'),
 ])
 ```
 
@@ -93,22 +93,22 @@ from keras import backend as K
 batch_size = 128
 nb_classes = 10
 epochs = 12
-img_rows, img_cols = 28, 28  # input image dimensions
-nb_filters = 32  # number of convolutional filters to use
-pool_size = (2, 2)  # size of pooling area for max pooling
-kernel_size = (3, 3)  # convolution kernel size
+img_rows, img_cols = 28, 28  # input image dimensions
+nb_filters = 32  # number of convolutional filters to use
+pool_size = (2, 2)  # size of pooling area for max pooling
+kernel_size = (3, 3)  # convolution kernel size
 ​
 # the data, shuffled and split between train and test sets
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
 ​
-if K.image_dim_ordering() == 'th':  # 根据不同的backend，决定不同的格式
-    X_train = X_train.reshape(X_train.shape[0], 1, img_rows, img_cols)
-    X_test = X_test.reshape(X_test.shape[0], 1, img_rows, img_cols)
-    input_shape = (1, img_rows, img_cols)
+if K.image_dim_ordering() == 'th':  # 根据不同的backend，决定不同的格式
+    X_train = X_train.reshape(X_train.shape[0], 1, img_rows, img_cols)
+    X_test = X_test.reshape(X_test.shape[0], 1, img_rows, img_cols)
+    input_shape = (1, img_rows, img_cols)
 else:
-    X_train = X_train.reshape(X_train.shape[0], img_rows, img_cols, 1)
-    X_test = X_test.reshape(X_test.shape[0], img_rows, img_cols, 1)
-    input_shape = (img_rows, img_cols, 1)
+    X_train = X_train.reshape(X_train.shape[0], img_rows, img_cols, 1)
+    X_test = X_test.reshape(X_test.shape[0], img_rows, img_cols, 1)
+    input_shape = (img_rows, img_cols, 1)
 ​
 X_train = X_train.astype('float32')
 X_test = X_test.astype('float32')
@@ -122,29 +122,29 @@ print(X_test.shape[0], 'test samples')
 Y_train = np_utils.to_categorical(y_train, nb_classes)
 Y_test = np_utils.to_categorical(y_test, nb_classes)
 ​
-model = Sequential()  # 构建模型
-model.add(  # 卷积层1
-    Convolution2D(nb_filters, (kernel_size[0], kernel_size[1]),
+model = Sequential()  # 构建模型
+model.add(  # 卷积层1
+    Convolution2D(nb_filters, (kernel_size[0], kernel_size[1]),
                   padding='same', input_shape=input_shape)
 )
 ​
-model.add(Activation('relu'))  # 激活层
-model.add(Convolution2D(nb_filters, (kernel_size[0], kernel_size[1])))  # 卷积层2
-model.add(Activation('relu'))  # 激活层
-model.add(MaxPooling2D(pool_size=pool_size))  # 池化层
-model.add(Dropout(0.25))  # 神经元随机失活
-model.add(Flatten())  # 拉成一维数据
-model.add(Dense(128))  # 全连接层1
-model.add(Activation('relu'))  # 激活层
-model.add(Dropout(0.5))  # 随机失活
-model.add(Dense(nb_classes))  # 全连接层2
-model.add(Activation('softmax'))  # Softmax评分
+model.add(Activation('relu'))  # 激活层
+model.add(Convolution2D(nb_filters, (kernel_size[0], kernel_size[1])))  # 卷积层2
+model.add(Activation('relu'))  # 激活层
+model.add(MaxPooling2D(pool_size=pool_size))  # 池化层
+model.add(Dropout(0.25))  # 神经元随机失活
+model.add(Flatten())  # 拉成一维数据
+model.add(Dense(128))  # 全连接层1
+model.add(Activation('relu'))  # 激活层
+model.add(Dropout(0.5))  # 随机失活
+model.add(Dense(nb_classes))  # 全连接层2
+model.add(Activation('softmax'))  # Softmax评分
 ​
 model.compile(loss='categorical_crossentropy',
               optimizer='adadelta', metrics=['accuracy'])
 model.fit(X_train, Y_train, batch_size=batch_size, epochs=epochs,
           verbose=1, validation_data=(X_test, Y_test))
-score = model.evaluate(X_test, Y_test, verbose=0)  # 评估模型
+score = model.evaluate(X_test, Y_test, verbose=0)  # 评估模型
 print('Test score:', score[0])
 print('Test accuracy:', score[1])
 ```
