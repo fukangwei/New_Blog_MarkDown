@@ -3,8 +3,7 @@ title: Keras之VGG模型
 date: 2018-12-03 19:10:57
 categories: 深度学习
 ---
-&emsp;&emsp;该博客从网上整理了keras中的VGG16模型代码，感谢分享资料的人们！
-&emsp;&emsp;查看VGG16的模型结构：
+&emsp;&emsp;查看`VGG16`的模型结构：
 
 ``` python
 from keras.applications.vgg16 import VGG16
@@ -60,7 +59,7 @@ print(model.summary())
 plot_model(model, to_file='a simple convnet.png')
 ```
 
-&emsp;&emsp;使用VGG16模型对图片进行预测：
+&emsp;&emsp;使用`VGG16`模型对图片进行预测：
 
 ``` python
 from keras.applications.vgg16 import VGG16, preprocess_input, decode_predictions
@@ -76,9 +75,10 @@ x = image.img_to_array(img)
 
 # 将3维张量(rows, cols, channels)转换为4维张量(samples, rows, cols, channels)
 # samples等于1，是因为只有一个输入图像
-x = np.expand_dims(x, axis=0)  
+x = np.expand_dims(x, axis=0)
 preds = model.predict(preprocess_input(x))
 results = decode_predictions(preds, top=5)[0]
+
 for result in results:
     print(result)
 ```
@@ -93,7 +93,7 @@ for result in results:
 ('n02971356', 'carton', 0.011312529)
 ```
 
-&emsp;&emsp;从VGG16的任意中间层中抽取特征：
+&emsp;&emsp;从`VGG16`的任意中间层中抽取特征：
 
 ``` python
 from keras.applications.vgg16 import VGG16
@@ -113,4 +113,4 @@ block4_pool_features = model.predict(x)
 print(block4_pool_features.shape)  # 输出“(1, 14, 14, 512)”
 ```
 
-&emsp;&emsp;**补充说明**：preprocess_input函数完成数据预处理的工作，它能够提高算法的运行效果，常用的预处理包括数据归一化和白化(whitening)。
+&emsp;&emsp;**补充说明**：`preprocess_input`函数完成数据预处理的工作，它能够提高算法的运行效果，常用的预处理包括数据归一化和白化(`whitening`)。
