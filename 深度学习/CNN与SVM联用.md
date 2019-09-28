@@ -139,33 +139,34 @@ for file_num in range(10):
                                                             keep_prob: 1.0}))
 ​
         # 以下两步都是为了将源数据的“one hot”编码改为1和0，数字“5”可以改为其他值
-        for h in range(len(y_test2)):
-            if np.argmax(y_test2[h]) == 5:
-                y_test2[h] = 1
-            else:
-                y_test2[h] = 0
+        for h in range(len(y_test2)):
+            if np.argmax(y_test2[h]) == 5:
+                y_test2[h] = 1
+            else:
+                y_test2[h] = 0
 
-        for h in range(len(y_test3)):
-            if np.argmax(y_test3[h]) == 5:
-                y_test3[h] = 1
-            else:
-                y_test3[h] = 0
+        for h in range(len(y_test3)):
+            if np.argmax(y_test3[h]) == 5:
+                y_test3[h] = 1
+            else:
+                y_test3[h] = 0
 ​
-        # 将原来的x带入训练好的CNN中，计算出来全连接层的特征向量，将结果作为SVM中的特征向量
-        x_temp = []
+        # 将原来的x带入训练好的CNN中，计算出来全连接层的特征向量，将结果作为SVM中的特征向量
+        x_temp = []
 
-        for g in x_test2:
-            x_temp.append(sess.run(h_fc1, feed_dict={x: np.array(g).reshape((1, 256))})[0])  
+        for g in x_test2:
+            x_temp.append(sess.run(h_fc1, feed_dict={x: np.array(g).reshape((1, 256))})[0])  
 
-        x_temp2 = []
+        x_temp2 = []
 
-        for g in x_test3:
-            x_temp2.append(sess.run(h_fc1, feed_dict={x: np.array(g).reshape((1, 256))})[0])
+        for g in x_test3:
+            x_temp2.append(sess.run(h_fc1, feed_dict={x: np.array(g).reshape((1, 256))})[0])
 ​
-        clf = svm.SVC(C=0.9, kernel='linear')
-        clf.fit(x_temp, y_test2)
+        clf = svm.SVC(C=0.9, kernel='linear')
+        clf.fit(x_temp, y_test2)
 ​
-        print('svm testing accuracy:', clf.score(x_temp2, y_test3))
+        print('svm testing accuracy:', clf.score(x_temp2, y_test3))
+
         for j in range(len(x_temp2)):
             # 在验证时，对出现的四种情况分别使用四个变量进行存储
             if clf.predict(x_temp2[j].reshape(1, -1))[0] == y_test3[j] == 1:
