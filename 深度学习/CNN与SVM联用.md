@@ -167,16 +167,16 @@ for file_num in range(10):
 ​
         print('svm testing accuracy:', clf.score(x_temp2, y_test3))
 
-        for j in range(len(x_temp2)):
-            # 在验证时，对出现的四种情况分别使用四个变量进行存储
-            if clf.predict(x_temp2[j].reshape(1, -1))[0] == y_test3[j] == 1:
-                right0 += 1
-            elif clf.predict(x_temp2[j].reshape(1, -1))[0] == y_test3[j] == 0:
-                right1 += 1
-            elif clf.predict(x_temp2[j].reshape(1, -1))[0] == 1 and y_test3[j] == 0:
-                error0 += 1
-            else:
-                error1 += 1
+        for j in range(len(x_temp2)):
+            # 在验证时，对出现的四种情况分别使用四个变量进行存储
+            if clf.predict(x_temp2[j].reshape(1, -1))[0] == y_test3[j] == 1:
+                right0 += 1
+            elif clf.predict(x_temp2[j].reshape(1, -1))[0] == y_test3[j] == 0:
+                right1 += 1
+            elif clf.predict(x_temp2[j].reshape(1, -1))[0] == 1 and y_test3[j] == 0:
+                error0 += 1
+            else:
+                error1 += 1
 ​
 accuracy = right0 / (right0 + error0)  # 准确率
 recall = right0 / (right0 + error1)  # 召回率
