@@ -118,7 +118,7 @@ from keras.datasets import fashion_mnist
 (x_train, y_train), (x_test, y_test) = fashion_mnist.load_data()
 ```
 
-该函数返回2个元组：
+该函数返回`2`个元组：
 
 - `(x_train, x_test)`：`uint8`数组表示的灰度图像，尺寸为`(num_samples, 28, 28)`。
 - `(y_train, y_test)`：`uint8`数组表示的数字标签(范围在`0`至`9`之间的整数)，尺寸为`(num_samples,)`。
