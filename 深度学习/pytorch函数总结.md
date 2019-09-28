@@ -45,8 +45,8 @@ torch.zeros(*sizes, out=None) -> Tensor
 
 ``` python
 >>> torch.zeros(2, 3)
- 0  0  0
- 0  0  0
+ 0  0  0
+ 0  0  0
 [torch.FloatTensor of size 2x3]
 >>> torch.zeros(5)
  0
@@ -126,8 +126,8 @@ torch.normal(mean=0.0, std, out=None)
 
 ``` python
 >>> torch.normal(mean=0.5, std=torch.arange(1, 6))
-  0.5723
-  0.0871
+  0.5723
+  0.0871
  -0.3783
  -2.5689
  10.7893
@@ -182,8 +182,8 @@ torch.cat(inputs, dimension=0) -> Tensor
  1.5981 -0.5265 -0.8735
 [torch.FloatTensor of size 6x3]
 >>> torch.cat((x, x, x), 1)
- 0.5983 -0.0341  2.4918  0.5983 -0.0341  2.4918  0.5983 -0.0341  2.4918
- 1.5981 -0.5265 -0.8735  1.5981 -0.5265 -0.8735  1.5981 -0.5265 -0.8735
+ 0.5983 -0.0341  2.4918  0.5983 -0.0341  2.4918  0.5983 -0.0341  2.4918
+ 1.5981 -0.5265 -0.8735  1.5981 -0.5265 -0.8735  1.5981 -0.5265 -0.8735
 [torch.FloatTensor of size 2x9]
 ```
 
@@ -223,7 +223,7 @@ torch.randn(*sizes, out=None) -> Tensor
  0.9846
 [torch.FloatTensor of size 4]
 >>> torch.randn(2, 3)
- 1.4339  0.3351 -1.0999
+ 1.4339  0.3351 -1.0999
  1.5458 -0.9643 -0.3558
 [torch.FloatTensor of size 2x3]
 ```
