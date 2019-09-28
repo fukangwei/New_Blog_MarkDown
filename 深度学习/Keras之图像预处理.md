@@ -77,14 +77,16 @@ datagen.fit(x_train)
 model.fit_generator(datagen.flow(x_train, y_train, batch_size=32),
                     steps_per_epoch=len(x_train) / 32, epochs=epochs)
 ​
-for e in range(epochs):  # 这里有一个更“手动”的例子
-    print('Epoch', e)
-    batches = 0
-    for x_batch, y_batch in datagen.flow(x_train, y_train, batch_size=32):
-        model.fit(x_batch, y_batch)
-        batches += 1
-        if batches >= len(x_train) / 32:
-            break  # 我们需要手动打破循环，因为生成器会无限循环
+for e in range(epochs):  # 这里有一个更“手动”的例子
+    print('Epoch', e)
+    batches = 0
+
+    for x_batch, y_batch in datagen.flow(x_train, y_train, batch_size=32):
+        model.fit(x_batch, y_batch)
+        batches += 1
+
+        if batches >= len(x_train) / 32:
+            break  # 我们需要手动打破循环，因为生成器会无限循环
 ```
 
 &emsp;&emsp;使用`flow_from_directory`的示例：
@@ -179,7 +181,6 @@ keras.preprocessing.image.flow_from_directory(
 - `color_mode`：`grayscale`和`rbg`之一，图像是否被转换成`1`或`3`个颜色通道。
 - `classes`：可选的类的子目录列表(例如`['dogs', 'cats']`)。如果未提供，类的列表将自动从`directory`下的子目录名称或结构中推断出来，其中每个子目录都将被作为不同的类(类名将按字典序映射到标签的索引)。包含从类名到类索引的映射的字典可以通过`class_indices`属性获得。
 - `class_mode`：`categorical`、`binary`、`sparse`、`input`或`None`之一，决定返回的标签数组的类型：`categorical`是`2`维`one-hot`编码标签，`binary`是一维二进制标签，`sparse`是一维整数标签，`input`是与输入图像相同的图像(主要用于自动编码器)。如果为`None`，则不返回标签(生成器将只产生批量的图像数据，对于`model.predict_generator`、`model.evaluate_generator`等很有用)。请注意，如果`class_mode`为`None`，那么数据仍然需要驻留在`directory`的子目录中才能正常工作。
-
 - `batch_size`：一批数据的大小。
 - `shuffle`：是否混洗数据。
 - `seed`：随机种子，用于混洗和转换。
