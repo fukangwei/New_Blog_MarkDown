@@ -20,7 +20,8 @@ model.compile(loss='mean_squared_error', optimizer=sgd)
 你可以先实例化一个优化器对象，然后将它传入`model.compile`，像上述示例中一样；或者你可以通过名称来调用优化器。在后一种情况下，将使用优化器的默认参数：
 
 ``` python
-model.compile(loss='mean_squared_error', optimizer='sgd')  # 传入优化器名称，默认参数将被采用
+# 传入优化器名称，默认参数将被采用
+model.compile(loss='mean_squared_error', optimizer='sgd')
 ```
 
 ### Keras优化器的公共参数
@@ -91,10 +92,10 @@ keras.optimizers.Adadelta(lr=1.0, rho=0.95, epsilon=None, decay=0.0)
 
 建议使用优化器的默认参数。
 
-`lr`：`float >= 0`，学习率，建议保留默认值。
-`rho`：`float >= 0`，`Adadelta`梯度平方移动均值的衰减率。
-`epsilon`：`float >= 0`，模糊因子。若为`None`，默认为`K.epsilon`。
-`decay`：`float >= 0`，每次参数更新后学习率衰减值。
+- `lr`：`float >= 0`，学习率，建议保留默认值。
+- `rho`：`float >= 0`，`Adadelta`梯度平方移动均值的衰减率。
+- `epsilon`：`float >= 0`，模糊因子。若为`None`，默认为`K.epsilon`。
+- `decay`：`float >= 0`，每次参数更新后学习率衰减值。
 
 ### Adam
 

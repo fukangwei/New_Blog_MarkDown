@@ -3,7 +3,7 @@ title: Lenet模型
 date: 2019-02-11 16:17:14
 categories: 深度学习
 ---
-&emsp;&emsp;`Lenet-5`是卷积神经网络中很适合入门的网络结构，它在`1998`年由`Yann LeCuu`等人在论文`Gradient-Based Learning Applied to Document Recognition`中提出，用于解决`mnist`数据集的字符识别问题。网络结构如下所示：
+&emsp;&emsp;`Lenet-5`是卷积神经网络中很适合入门的网络结构，它在`1998`年由`Yann LeCuu`等人在论文`Gradient-Based Learning Applied to Document Recognition`中提出，用于解决`mnist`数据集的字符识别问题。网络结构如下：
 
 <img src="./Lenet模型/1.png" height="186" width="701">
 
@@ -50,20 +50,20 @@ print(data_test.shape)
 
 ``` python
 def lenet_5(input_shape=(32, 32, 1)):
-    X_input = Input(input_shape)
-    X = ZeroPadding2D((1, 1))(X_input)
-    X = Conv2D(6, (5, 5), strides=(1, 1), padding='valid', name='conv1')(X)
-    X = Activation('tanh')(X)
-    X = MaxPooling2D((2, 2), strides=(2, 2))(X)
-    X = Conv2D(6, (5, 5), strides=(1, 1), padding='valid', name='conv2')(X)
-    X = Activation('tanh')(X)
-    X = MaxPooling2D((2, 2), strides=(2, 2))(X)
-    X = Flatten()(X)
-    X = Dense(120, activation='tanh', name='fc1')(X)
-    X = Dense(84, activation='tanh', name='fc2')(X)
-    X = Dense(10, activation='softmax')(X)
-    model = Model(inputs=X_input, outputs=X, name='lenet_5')
-    return model
+    X_input = Input(input_shape)
+    X = ZeroPadding2D((1, 1))(X_input)
+    X = Conv2D(6, (5, 5), strides=(1, 1), padding='valid', name='conv1')(X)
+    X = Activation('tanh')(X)
+    X = MaxPooling2D((2, 2), strides=(2, 2))(X)
+    X = Conv2D(6, (5, 5), strides=(1, 1), padding='valid', name='conv2')(X)
+    X = Activation('tanh')(X)
+    X = MaxPooling2D((2, 2), strides=(2, 2))(X)
+    X = Flatten()(X)
+    X = Dense(120, activation='tanh', name='fc1')(X)
+    X = Dense(84, activation='tanh', name='fc2')(X)
+    X = Dense(10, activation='softmax')(X)
+    model = Model(inputs=X_input, outputs=X, name='lenet_5')
+    return model
 ​
 model = lenet_5(input_shape=(28, 28, 1))
 model.compile(optimizer='sgd', loss='categorical_crossentropy', metrics=['accuracy'])
