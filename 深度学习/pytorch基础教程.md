@@ -676,21 +676,21 @@ test_y = test_x + 0.3 * torch.normal(torch.zeros(N_SAMPLES, 1), torch.ones(N_SAM
 
 ``` python
 net_overfitting = torch.nn.Sequential(
-    torch.nn.Linear(1, N_HIDDEN),
-    torch.nn.ReLU(),
-    torch.nn.Linear(N_HIDDEN, N_HIDDEN),
-    torch.nn.ReLU(),
-    torch.nn.Linear(N_HIDDEN, 1),
+    torch.nn.Linear(1, N_HIDDEN),
+    torch.nn.ReLU(),
+    torch.nn.Linear(N_HIDDEN, N_HIDDEN),
+    torch.nn.ReLU(),
+    torch.nn.Linear(N_HIDDEN, 1),
 )
 ​
 net_dropped = torch.nn.Sequential(
-    torch.nn.Linear(1, N_HIDDEN),
-    torch.nn.Dropout(0.5),  # drop 50% of the neuron
-    torch.nn.ReLU(),
-    torch.nn.Linear(N_HIDDEN, N_HIDDEN),
-    torch.nn.Dropout(0.5),  # drop 50% of the neuron
-    torch.nn.ReLU(),
-    torch.nn.Linear(N_HIDDEN, 1),
+    torch.nn.Linear(1, N_HIDDEN),
+    torch.nn.Dropout(0.5),  # drop 50% of the neuron
+    torch.nn.ReLU(),
+    torch.nn.Linear(N_HIDDEN, N_HIDDEN),
+    torch.nn.Dropout(0.5),  # drop 50% of the neuron
+    torch.nn.ReLU(),
+    torch.nn.Linear(N_HIDDEN, 1),
 )
 ```
 
@@ -701,7 +701,7 @@ optimizer_ofit = torch.optim.Adam(net_overfitting.parameters(), lr=0.01)
 optimizer_drop = torch.optim.Adam(net_dropped.parameters(), lr=0.01)
 loss_func = torch.nn.MSELoss()
 ​
-plt.ion()  # something about plotting
+plt.ion()  # something about plotting
 ​
 for t in range(500):
     pred_ofit = net_overfitting(x)
