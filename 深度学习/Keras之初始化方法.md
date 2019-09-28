@@ -188,7 +188,7 @@ he_normal(seed=None)
 from keras import backend as K
 ​
 def my_init(shape, dtype=None):
-    return K.random_normal(shape, dtype=dtype)
+    return K.random_normal(shape, dtype=dtype)
 ​
 model.add(Dense(64, init=my_init))
 ```
