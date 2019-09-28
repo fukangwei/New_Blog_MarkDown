@@ -36,7 +36,7 @@ keras.layers.PReLU(alpha_initializer='zeros', alpha_regularizer=None, alpha_cons
 - `alpha_constraint`：权重的约束。
 - `shared_axes`：激活函数共享可学习参数的轴。例如假如输入特征图是从`2D`卷积过来的，具有形如`(batch, height, width, channels)`这样的`shape`；或许你会希望在空域共享参数，这样每个`filter`就只有一组参数，设定`shared_axes = [1, 2]`可完成该目标。
 
-&emsp;&emsp;形式如下所示：
+&emsp;&emsp;形式如下：
 
 ``` python
 f(x) = alpha * x for x < 0
@@ -55,7 +55,7 @@ f(x) = x for x >= 0
 keras.layers.ELU(alpha=1.0)
 ```
 
-参数`alpha`是负因子的尺度。形式如下所示：
+参数`alpha`是负因子的尺度。形式如下：
 
 ``` python
 f(x) = alpha * (exp(x) - 1) for x < 0
@@ -73,7 +73,7 @@ f(x) = x for x >= 0
 keras.layers.ThresholdedReLU(theta=1.0)
 ```
 
-该函数`theta`(float型，并且`≥ 0`)是激活的阈值位。形式如下所示：
+该函数`theta`(float型，并且`≥ 0`)是激活的阈值位。形式如下：
 
 ``` python
 f(x) = x for x > theta, f(x) = 0 otherwise.
