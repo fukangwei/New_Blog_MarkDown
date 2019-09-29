@@ -1,7 +1,8 @@
 ---
 title: functools模块
-date: 2019-01-09 09:57:39
 categories: Python语法
+abbrlink: b53bda20
+date: 2019-01-09 09:57:39
 ---
 &emsp;&emsp;`Python`的`functools`模块可以说主要是为函数式编程而设计，用于增强函数功能。
 

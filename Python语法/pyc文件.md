@@ -1,7 +1,8 @@
 ---
 title: pyc文件
-date: 2018-12-28 08:49:26
 categories: Python语法
+abbrlink: 7ae6b6a3
+date: 2018-12-28 08:49:26
 ---
 ### pyc文件是什么？
 

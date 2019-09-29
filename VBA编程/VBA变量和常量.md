@@ -1,7 +1,8 @@
 ---
 title: VBA变量和常量
-date: 2019-07-21 21:14:24
 categories: VBA编程
+abbrlink: 8fc6a54b
+date: 2019-07-21 21:14:24
 ---
 ### 变量
 

@@ -1,7 +1,8 @@
 ---
 title: Spinbox下拉菜单
-date: 2019-03-31 08:45:57
 categories: Tkinter编程
+abbrlink: 40712c4a
+date: 2019-03-31 08:45:57
 ---
 &emsp;&emsp;`Spinbox`组件是`Entry`组件的变体，用于从一些固定的值中选取一个。`Spinbox`组件通常用于在限定数字中选取的情况下代替普通的`Entry`组件。`Spinbox`组件跟`Entry`组件用法非常相似，主要区别是使用`Spinbox`组件，你可以通过范围或者元组指定允许用户输入的内容。
 <!--more-->

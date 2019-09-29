@@ -1,7 +1,8 @@
 ---
 title: Keras之正则化和约束
-date: 2018-12-30 21:04:31
 categories: 深度学习
+abbrlink: fb002d1
+date: 2018-12-30 21:04:31
 ---
 ### 正则化
 

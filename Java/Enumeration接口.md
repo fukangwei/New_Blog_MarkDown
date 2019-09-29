@@ -1,7 +1,8 @@
 ---
 title: Enumeration接口
-date: 2018-12-21 18:58:34
 categories: Java
+abbrlink: 87c4b16
+date: 2018-12-21 18:58:34
 ---
 &emsp;&emsp;`Enumeration`接口中定义了一些方法，通过这些方法可以枚举(一次获得一个)对象集合中的元素。
 &emsp;&emsp;这种传统接口已被迭代器取代，虽然`Enumeration`还未被遗弃，但在现代代码中已经被很少使用了。尽管如此，它还是使用在诸如`Vector`和`Properties`这些传统类所定义的方法中。除此之外，还用在一些`API`类，并且在应用程序中也广泛被使用。以下是一些`Enumeration`声明的方法：

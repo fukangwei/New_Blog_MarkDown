@@ -1,7 +1,8 @@
 ---
 title: Proteus仿真LM3229
-date: 2018-12-04 11:33:04
 categories: 硬件电路笔记
+abbrlink: 3644fa43
+date: 2018-12-04 11:33:04
 ---
 &emsp;&emsp;使用`Proteus`仿真`LM3229`(液晶驱动器为`T6963C`)，图片数据是由软件`PICtoCODE`转化的，其效果如下图：
 

@@ -1,7 +1,8 @@
 ---
 title: fgrep指令实现
-date: 2018-12-26 21:32:04
 categories: C语言应用代码
+abbrlink: 523391ca
+date: 2018-12-26 21:32:04
 ---
 &emsp;&emsp;`fgrep`命令实现在文件中查找并打印所有包含指定字符串的文本行：
 

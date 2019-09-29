@@ -1,7 +1,8 @@
 ---
 title: Qt之鼠标事件
-date: 2018-12-28 16:17:19
 categories: Qt应用示例
+abbrlink: a99b52a0
+date: 2018-12-28 16:17:19
 ---
 &emsp;&emsp;`widget.h`如下：
 

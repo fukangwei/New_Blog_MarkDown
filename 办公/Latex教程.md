@@ -1,7 +1,8 @@
 ---
 title: Latex教程
-date: 2019-05-10 20:44:46
 categories: 办公
+abbrlink: ca99a37d
+date: 2019-05-10 20:44:46
 ---
 ### Hello World
 

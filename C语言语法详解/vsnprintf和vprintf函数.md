@@ -1,7 +1,8 @@
 ---
 title: vsnprintf和vprintf函数
-date: 2018-12-14 16:35:26
 categories: C语言语法详解
+abbrlink: e80182e6
+date: 2018-12-14 16:35:26
 ---
 ### vsnprintf函数
 

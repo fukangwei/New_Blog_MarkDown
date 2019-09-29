@@ -1,7 +1,8 @@
 ---
 title: qsort函数
-date: 2018-12-12 18:38:58
 categories: C语言语法详解
+abbrlink: fcb23fd1
+date: 2018-12-12 18:38:58
 ---
 &emsp;&emsp;`qsort`函数是编译器函数库自带的快速排序函数：
 

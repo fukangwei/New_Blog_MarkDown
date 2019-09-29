@@ -1,7 +1,8 @@
 ---
 title: 全卷积网络FCN
-date: 2019-02-28 12:21:42
 categories: 深度学习
+abbrlink: 2e817fff
+date: 2019-02-28 12:21:42
 ---
 &emsp;&emsp;神经网络大神`Jonathan Long`发表了论文`Fully Convolutional Networks for Semantic Segmentation`，使得图像语义分割成为了现实。
 &emsp;&emsp;通常`CNN`网络在卷积层之后会接上若干个全连接层，将卷积层产生的特征图(`feature map`)映射成一个固定长度的特征向量。以`AlexNet`为代表的经典`CNN`结构适合于图像级的分类和回归任务，因为它们最后都期望得到整个输入图像的一个数值描述(概率)，比如`AlexNet`的`ImageNet`模型输出一个`1000`维的向量表示输入图像属于每一类的概率(`softmax`归一化)。

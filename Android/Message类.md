@@ -1,7 +1,8 @@
 ---
 title: Message类
-date: 2018-12-28 13:59:46
 categories: Android
+abbrlink: 88e73f03
+date: 2018-12-28 13:59:46
 ---
 &emsp;&emsp;`Message`对象可以包含一些简单的数据，并且可以通过`Handler`进行发送和处理。`Message`对象可以通过`Message.what(int)`方法中的`int`参数进行标志。`Message`对象使用两个`int`类型的字段来存储需要发送的信息，也可以使用一个`Object`类型的对象来存储一个简单对象的信息。
 

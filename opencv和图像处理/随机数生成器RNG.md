@@ -1,7 +1,8 @@
 ---
 title: 随机数生成器RNG
-date: 2018-12-30 18:43:42
 categories: opencv和图像处理
+abbrlink: d90408a1
+date: 2018-12-30 18:43:42
 ---
 &emsp;&emsp;`C`语言和`C++`中产生随机数的方法(`rand`和`srand`等)在`OpenCV`中仍可以用。此外，`OpenCV`还特地编写了`C++`的随机数类`RNG`，`C`的随机数类`CvRNG`，以及一些相关的函数。注意如下说明：
 

@@ -1,7 +1,8 @@
 ---
 title: strdup函数
-date: 2018-12-10 16:31:53
 categories: C语言语法详解
+abbrlink: 5d7e6ffd
+date: 2018-12-10 16:31:53
 ---
 &emsp;&emsp;函数原型如下：
 

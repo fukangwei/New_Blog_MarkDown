@@ -1,7 +1,8 @@
 ---
 title: socket模块
-date: 2019-02-09 18:47:09
 categories: Python语法
+abbrlink: ffd7bf2b
+date: 2019-02-09 18:47:09
 ---
 ### socket方法
 

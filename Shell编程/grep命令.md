@@ -1,7 +1,8 @@
 ---
 title: grep命令
-date: 2019-01-21 19:02:28
 categories: Shell编程
+abbrlink: 471198f0
+date: 2019-01-21 19:02:28
 ---
 ### 基本用法
 

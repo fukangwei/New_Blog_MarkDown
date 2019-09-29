@@ -1,7 +1,8 @@
 ---
 title: Qt之QNetworkInterface
-date: 2019-01-23 16:56:20
 categories: Qt语法详解
+abbrlink: cd8f13a1
+date: 2019-01-23 16:56:20
 ---
 ### 简述
 

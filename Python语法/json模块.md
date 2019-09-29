@@ -1,7 +1,8 @@
 ---
 title: json模块
-date: 2018-12-28 09:16:28
 categories: Python语法
+abbrlink: '4e133423'
+date: 2018-12-28 09:16:28
 ---
 &emsp;&emsp;`JSON`(`JavaScript Object Notation`)是一种轻量级的数据交换格式，它是基于`ECMAScript`的一个子集。`Python 3`中可以使用`json`模块来对`JSON`数据进行编解码，它包含了两个函数：
 

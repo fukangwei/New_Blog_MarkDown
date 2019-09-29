@@ -1,7 +1,8 @@
 ---
 title: visdom模块
-date: 2019-04-13 15:26:26
 categories: Python语法
+abbrlink: '14508994'
+date: 2019-04-13 15:26:26
 ---
 &emsp;&emsp;`visdom`可以创造、组织和共享多种数据的可视化，包括数值、图像、文本，甚至是视频，支持`PyTorch`、`Torch`及`Numpy`。用户可通过编程组织可视化空间，或通过用户接口为数据打造仪表板，检查实验结果或调试代码。
 &emsp;&emsp;`visdom`中有两个重要概念：

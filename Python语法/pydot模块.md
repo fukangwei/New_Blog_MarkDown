@@ -1,7 +1,8 @@
 ---
 title: pydot模块
-date: 2019-03-02 18:27:33
 categories: Python语法
+abbrlink: ffaa6999
+date: 2019-03-02 18:27:33
 ---
 &emsp;&emsp;`pydot`工具包是功能强大的`GraphViz`图形库的`Python`接口，因此需要首先安装`GraphViz`。安装`pydot`的命令如下：
 

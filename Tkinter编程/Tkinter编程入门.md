@@ -1,7 +1,8 @@
 ---
 title: Tkinter编程入门
-date: 2019-04-12 13:28:06
 categories: Tkinter编程
+abbrlink: 2f934778
+date: 2019-04-12 13:28:06
 ---
 &emsp;&emsp;代码如下：
 

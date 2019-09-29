@@ -1,7 +1,8 @@
 ---
 title: Qt之pushButton
-date: 2019-02-18 19:16:34
 categories: Qt语法详解
+abbrlink: 9a46db49
+date: 2019-02-18 19:16:34
 ---
 - `setEnabled(true/false)`：设置按键使能与否的函数(即可不可以被按下)。
 - `boolisEnabled() const`：判断按键是否使能，使能返回`true`，否则为`false`。

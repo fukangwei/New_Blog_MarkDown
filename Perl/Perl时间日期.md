@@ -1,7 +1,8 @@
 ---
 title: Perl时间日期
-date: 2018-12-19 11:28:44
 categories: Perl
+abbrlink: b0303927
+date: 2018-12-19 11:28:44
 ---
 &emsp;&emsp;`Perl`中处理时间的函数有如下几种：`time`函数(返回从`1970`年`1`月`1`日起累计的秒数)；`localtime`函数(获取本地时区时间)；`gmtime`函数(获取格林威治时间)。
 &emsp;&emsp;`localtime`函数在没有参数的情况下返回当前的时间和日期。以下`9`个符号代表不同的时间日期参数：

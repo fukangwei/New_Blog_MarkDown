@@ -1,7 +1,8 @@
 ---
 title: printf输出
-date: 2018-12-13 15:32:18
 categories: C语言语法详解
+abbrlink: 8ab41815
+date: 2018-12-13 15:32:18
 ---
 ### printf输出格式
 

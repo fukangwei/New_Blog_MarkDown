@@ -1,7 +1,8 @@
 ---
 title: TensorFlow实现卷积神经网络
-date: 2019-02-17 11:17:50
 categories: 深度学习
+abbrlink: ce8dd399
+date: 2019-02-17 11:17:50
 ---
 ### 卷积神经网络概述
 

@@ -1,7 +1,8 @@
 ---
 title: STM32的ADC以及内部温度传感器
-date: 2019-03-19 09:58:57
 categories: 单片机
+abbrlink: 16bacc6d
+date: 2019-03-19 09:58:57
 ---
 &emsp;&emsp;`STM32`自带`1`至`3`个`ADC`模块，采样精度达到了`12`位。在`STM32F103RBT6`中，`ADC1`和`ADC2`共用一组管脚。总体编程思路如下：
 

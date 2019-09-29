@@ -1,7 +1,8 @@
 ---
 title: urllib模块
-date: 2019-04-14 21:28:47
 categories: Python语法
+abbrlink: b34319f8
+date: 2019-04-14 21:28:47
 ---
 &emsp;&emsp;`Urllib`库是`Python`中的一个功能强大、用于操作`URL`，并在做爬虫时经常要用到的库。在`Python2.x`中，分为`Urllib`库和`Urllin2`库，`Python3.x`之后都合并到`Urllib`库中，使用方法稍有不同。本文介绍的是`Python3`中的`urllib`库。
 <!--more-->

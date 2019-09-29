@@ -1,7 +1,8 @@
 ---
 title: max和min函数
-date: 2019-02-05 20:21:24
 categories: C++语法详解
+abbrlink: 4cdcdbb2
+date: 2019-02-05 20:21:24
 ---
 ### max函数
 

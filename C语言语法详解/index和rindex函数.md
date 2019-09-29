@@ -1,7 +1,8 @@
 ---
 title: index和rindex函数
-date: 2018-12-12 06:46:23
 categories: C语言语法详解
+abbrlink: 4b2a704b
+date: 2018-12-12 06:46:23
 ---
 ### index
 

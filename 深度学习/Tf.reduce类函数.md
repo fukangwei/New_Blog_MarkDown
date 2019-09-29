@@ -1,7 +1,8 @@
 ---
 title: Tf.reduce类函数
-date: 2019-02-13 14:52:25
 categories: 深度学习
+abbrlink: 97189acf
+date: 2019-02-13 14:52:25
 ---
 ### tf.reduce_max(tf.reduce_min相对)
 

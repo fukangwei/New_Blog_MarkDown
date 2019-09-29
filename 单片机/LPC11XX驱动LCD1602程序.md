@@ -1,7 +1,8 @@
 ---
 title: LPC11XX驱动LCD1602程序
-date: 2018-12-29 18:31:29
 categories: 单片机
+abbrlink: 45f4c52e
+date: 2018-12-29 18:31:29
 ---
 &emsp;&emsp;`LCD.c`如下(单片机时钟频率为`12MHz`)：
 

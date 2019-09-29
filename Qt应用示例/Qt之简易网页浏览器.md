@@ -1,7 +1,8 @@
 ---
 title: Qt之简易网页浏览器
-date: 2019-02-06 13:29:23
 categories: Qt应用示例
+abbrlink: 59d2e135
+date: 2019-02-06 13:29:23
 ---
 &emsp;&emsp;`mainwindow.h`如下：
 

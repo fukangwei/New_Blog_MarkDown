@@ -1,7 +1,8 @@
 ---
 title: Perl引用
-date: 2018-12-18 17:35:04
 categories: Perl
+abbrlink: 96a446fa
+date: 2018-12-18 17:35:04
 ---
 &emsp;&emsp;引用就是指针，`Perl`引用是一个标量类型可以指向变量、数组、哈希表甚至子程序，可以应用在程序的任何地方。
 

@@ -1,7 +1,8 @@
 ---
 title: static_cast、dynamic_cast、const_cast和reinterpret_cast
-date: 2019-02-07 15:20:55
 categories: C++语法详解
+abbrlink: b9b7ed75
+date: 2019-02-07 15:20:55
 ---
 ### static_cast
 

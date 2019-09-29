@@ -1,7 +1,8 @@
 ---
 title: memdev设备驱动_具有等待队列
-date: 2019-02-04 11:04:47
 categories: Linux驱动程序
+abbrlink: 22df4bae
+date: 2019-02-04 11:04:47
 ---
 &emsp;&emsp;`memdev.h`如下：
 

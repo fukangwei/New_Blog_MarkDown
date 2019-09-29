@@ -1,7 +1,8 @@
 ---
 title: K近邻算法sklearn
-date: 2019-02-12 11:28:15
 categories: 机器学习
+abbrlink: '47596074'
+date: 2019-02-12 11:28:15
 ---
 &emsp;&emsp;`sklearn.neighbors`模块实现了`k`近邻算法：
 

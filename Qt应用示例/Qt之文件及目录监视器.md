@@ -1,7 +1,8 @@
 ---
 title: Qt之文件及目录监视器
-date: 2019-02-06 13:34:51
 categories: Qt应用示例
+abbrlink: f82797bd
+date: 2019-02-06 13:34:51
 ---
 &emsp;&emsp;`mainwindow.h`如下：
 

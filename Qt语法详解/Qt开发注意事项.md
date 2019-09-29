@@ -1,7 +1,8 @@
 ---
 title: Qt开发注意事项
-date: 2019-01-24 16:12:55
 categories: Qt语法详解
+abbrlink: 9fecaf1e
+date: 2019-01-24 16:12:55
 ---
 1. 如果出现`'tr' was not declared in this scope`的问题，将`tr`替换为`QObject::tr`即可。
 2. `Qt`设置控件随窗口大小变化的方法：拖一个控件到窗体上(任何控件都可以)；在窗体空白处`右键 -> 布局 -> 栅格布局`即可。

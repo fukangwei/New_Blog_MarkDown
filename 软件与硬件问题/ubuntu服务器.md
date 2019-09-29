@@ -1,7 +1,8 @@
 ---
 title: ubuntu服务器
-date: 2019-02-14 16:37:15
 categories: 软件与硬件问题
+abbrlink: f0f5b525
+date: 2019-02-14 16:37:15
 ---
 ### FTP服务器
 

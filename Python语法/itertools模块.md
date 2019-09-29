@@ -1,7 +1,8 @@
 ---
 title: itertools模块
-date: 2019-02-10 20:31:27
 categories: Python语法
+abbrlink: cc8e6fb
+date: 2019-02-10 20:31:27
 ---
 &emsp;&emsp;`Python`提供了一个非常棒的模块用于创建自定义的迭代器，这个模块就是`itertools`。`itertools`提供的工具相当高效且节省内存，使用这些工具，你将能够创建自己定制的迭代器用于高效率的循环。
 

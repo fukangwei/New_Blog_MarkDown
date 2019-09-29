@@ -1,7 +1,8 @@
 ---
 title: OpenCV for Android编程
-date: 2019-02-06 11:55:28
 categories: opencv和图像处理
+abbrlink: aba41a69
+date: 2019-02-06 11:55:28
 ---
 ### 显示图片
 

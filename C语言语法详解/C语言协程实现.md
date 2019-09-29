@@ -1,7 +1,8 @@
 ---
 title: C语言协程实现
-date: 2018-12-08 14:34:40
 categories: C语言语法详解
+abbrlink: a4f8e522
+date: 2018-12-08 14:34:40
 ---
 &emsp;&emsp;先看这段代码：
 

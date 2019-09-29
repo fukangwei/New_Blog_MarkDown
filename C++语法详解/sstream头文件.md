@@ -1,7 +1,8 @@
 ---
 title: sstream头文件
-date: 2019-02-05 21:27:27
 categories: C++语法详解
+abbrlink: ce7c2fa0
+date: 2019-02-05 21:27:27
 ---
 &emsp;&emsp;`C++`的输入输出分为三种：
 &emsp;&emsp;1. 基于控制台的`I/O`，头文件是`iostream`：

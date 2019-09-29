@@ -1,7 +1,8 @@
 ---
 title: DisplayMetrics类
-date: 2018-12-28 11:43:40
 categories: Android
+abbrlink: f77a65cd
+date: 2018-12-28 11:43:40
 ---
 &emsp;&emsp;`Android`开发经常需要获取手机屏幕的大小，常用的方法就是用`DisplayMetrics`类来获取手机画面宽高：
 

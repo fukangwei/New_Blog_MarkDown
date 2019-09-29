@@ -1,7 +1,8 @@
 ---
 title: LED驱动_字符设备
-date: 2019-02-04 10:59:29
 categories: Linux驱动程序
+abbrlink: 50f6dbfb
+date: 2019-02-04 10:59:29
 ---
 &emsp;&emsp;实现`LED`驱动测试案例及要求：
 

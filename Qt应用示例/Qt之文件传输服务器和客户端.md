@@ -1,7 +1,8 @@
 ---
 title: Qt之文件传输服务器和客户端
-date: 2019-02-06 14:36:21
 categories: Qt应用示例
+abbrlink: 268499d8
+date: 2019-02-06 14:36:21
 ---
 ### tcp_client
 

@@ -1,7 +1,8 @@
 ---
 title: map容器
-date: 2019-02-07 20:47:32
 categories: C++语法详解
+abbrlink: 854fa047
+date: 2019-02-07 20:47:32
 ---
 &emsp;&emsp;1. 构造最基本的`map`容器：
 

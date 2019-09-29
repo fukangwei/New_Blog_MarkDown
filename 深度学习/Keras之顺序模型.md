@@ -1,7 +1,8 @@
 ---
 title: Keras之顺序模型
-date: 2019-02-11 16:28:48
 categories: 深度学习
+abbrlink: ae53a39f
+date: 2019-02-11 16:28:48
 ---
 &emsp;&emsp;顺序模型是多个网络层的线性堆叠，也就是`一条路走到黑`。你可以通过将层的列表传递给`Sequential`的构造函数，来创建一个`Sequential`模型：
 

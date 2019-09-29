@@ -1,7 +1,8 @@
 ---
 title: c_str函数
-date: 2018-12-27 09:25:53
 categories: C++语法详解
+abbrlink: b0022c5d
+date: 2018-12-27 09:25:53
 ---
 &emsp;&emsp;函数原型为：
 

@@ -1,7 +1,8 @@
 ---
 title: LinearLayout线性布局
-date: 2019-04-12 14:08:13
 categories: Android
+abbrlink: 91cc57b2
+date: 2019-04-12 14:08:13
 ---
 &emsp;&emsp;`LinearLayout`如下：
 <!--more-->

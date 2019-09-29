@@ -1,7 +1,8 @@
 ---
 title: Qt之QDialog
-date: 2019-02-19 17:12:19
 categories: Qt语法详解
+abbrlink: 30c22dc8
+date: 2019-02-19 17:12:19
 ---
 ### QDialog基础
 

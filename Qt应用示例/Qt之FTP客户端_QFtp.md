@@ -1,7 +1,8 @@
 ---
 title: Qt之FTP客户端_QFtp
-date: 2019-02-23 15:50:52
 categories: Qt应用示例
+abbrlink: c41a7961
+date: 2019-02-23 15:50:52
 ---
 ### Ftp文件阅读器(匿名登录)
 

@@ -1,7 +1,8 @@
 ---
 title: numpy基础教程三
-date: 2019-08-04 08:11:52
 categories: Python语法
+abbrlink: c5b9e42b
+date: 2019-08-04 08:11:52
 ---
 ### Broadcasting机制
 

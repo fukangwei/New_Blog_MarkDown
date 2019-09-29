@@ -1,7 +1,8 @@
 ---
 title: Qt之QGridLayout
-date: 2019-02-19 17:52:20
 categories: Qt语法详解
+abbrlink: 671a2fe
+date: 2019-02-19 17:52:20
 ---
 ### 简述
 

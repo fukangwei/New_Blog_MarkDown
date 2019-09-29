@@ -1,7 +1,8 @@
 ---
 title: Keras之初始化方法
-date: 2019-01-01 13:03:30
 categories: 深度学习
+abbrlink: dd547720
+date: 2019-01-01 13:03:30
 ---
 &emsp;&emsp;初始化方法定义了对`Keras`层设置初始化权重的方法。不同的层可能使用不同的关键字来传递初始化方法，一般来说，指定初始化方法的关键字是`kernel_initializer`和`bias_initializer`：
 

@@ -1,7 +1,8 @@
 ---
 title: Qt之QMapIterator
-date: 2019-02-18 18:27:49
 categories: Qt语法详解
+abbrlink: 45cafe4a
+date: 2019-02-18 18:27:49
 ---
 &emsp;&emsp;The `QMapIterator` class provides a `Java-style` const iterator for `QMap` and `QMultiMap`. The header file is `QMapIterator`.
 

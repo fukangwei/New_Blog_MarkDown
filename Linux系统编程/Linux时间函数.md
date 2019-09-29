@@ -1,7 +1,8 @@
 ---
 title: Linux时间函数
-date: 2019-02-03 00:24:17
 categories: Linux系统编程
+abbrlink: b7141969
+date: 2019-02-03 00:24:17
 ---
 ### Linux常用时间类型
 

@@ -1,7 +1,8 @@
 ---
 title: Qt之进度条
-date: 2019-03-17 10:33:10
 categories: Qt语法详解
+abbrlink: bf1a1d01
+date: 2019-03-17 10:33:10
 ---
 &emsp;&emsp;`Qt`可以用`QProgressBar`或着`QProgressDialog`来实现进度条。
 

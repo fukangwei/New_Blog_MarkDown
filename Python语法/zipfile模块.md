@@ -1,7 +1,8 @@
 ---
 title: zipfile模块
-date: 2018-12-27 18:27:46
 categories: Python语法
+abbrlink: c6c57f67
+date: 2018-12-27 18:27:46
 ---
 &emsp;&emsp;`zipfile`模块里有两个非常重要的`class`，分别是`ZipFile`和`ZipInfo`。`ZipFile`是主要的类，用来创建和读取`zip`文件，而`ZipInfo`是存储的`zip`文件的每个文件的信息的。
 &emsp;&emsp;`zipFile`的原型为：

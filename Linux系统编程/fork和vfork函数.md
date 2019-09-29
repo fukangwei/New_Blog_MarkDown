@@ -1,7 +1,8 @@
 ---
 title: fork和vfork函数
-date: 2019-03-16 15:40:43
 categories: Linux系统编程
+abbrlink: 8b298d50
+date: 2019-03-16 15:40:43
 ---
 ### fork
 

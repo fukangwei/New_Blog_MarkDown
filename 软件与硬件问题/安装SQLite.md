@@ -1,7 +1,8 @@
 ---
 title: 安装SQLite
-date: 2019-02-06 18:02:14
 categories: 软件与硬件问题
+abbrlink: 2dca5f6
+date: 2019-02-06 18:02:14
 ---
 ### Linux下的安装
 

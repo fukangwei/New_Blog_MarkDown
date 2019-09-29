@@ -1,7 +1,8 @@
 ---
 title: grep命令实现
-date: 2018-12-26 21:25:47
 categories: C语言应用代码
+abbrlink: ce9b82e9
+date: 2018-12-26 21:25:47
 ---
 &emsp;&emsp;代码如下：
 

@@ -1,7 +1,8 @@
 ---
 title: Qt之QAction
-date: 2019-01-02 12:51:57
 categories: Qt语法详解
+abbrlink: 326f7938
+date: 2019-01-02 12:51:57
 ---
 &emsp;&emsp;`QAction::QAction ( const QString &text, QObject *parent )`：`QAction`类的构造函数之一，利用`text`、`parent`创建`QAction`对象。`QAction`对象一般为菜单中的菜单项，比如`文件`菜单中`新建`选项就是一个`QAction`对象，上述构造函数中`text`成员变量即为菜单项所表示的内容：
 

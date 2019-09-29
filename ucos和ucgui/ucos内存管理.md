@@ -1,7 +1,8 @@
 ---
 title: ucos内存管理
-date: 2018-12-29 11:22:58
 categories: ucos和ucgui
+abbrlink: fd867811
+date: 2018-12-29 11:22:58
 ---
 &emsp;&emsp;代码如下：
 

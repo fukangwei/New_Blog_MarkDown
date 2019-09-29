@@ -1,7 +1,8 @@
 ---
 title: QString用法
-date: 2019-02-01 16:01:27
 categories: Qt语法详解
+abbrlink: 12800ee1
+date: 2019-02-01 16:01:27
 ---
 &emsp;&emsp;从字符串`one, two, three, four`中获取第二个由`,`分隔的子串，即`two`：
 

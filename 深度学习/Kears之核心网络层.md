@@ -1,7 +1,8 @@
 ---
 title: Kears之核心网络层
-date: 2019-01-15 14:59:09
 categories: 深度学习
+abbrlink: 9046eb20
+date: 2019-01-15 14:59:09
 ---
 ### Dense
 

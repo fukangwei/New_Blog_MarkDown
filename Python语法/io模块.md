@@ -1,7 +1,8 @@
 ---
 title: io模块
-date: 2018-12-27 17:59:47
 categories: Python语法
+abbrlink: a748eaa6
+date: 2018-12-27 17:59:47
 ---
 ### StringIO
 

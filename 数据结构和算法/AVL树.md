@@ -1,7 +1,8 @@
 ---
 title: AVL树
-date: 2019-05-12 15:26:43
 mathjax: true
+abbrlink: 973716ad
+date: 2019-05-12 15:26:43
 ---
 ### AVL树简介
 

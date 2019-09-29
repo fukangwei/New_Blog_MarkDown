@@ -1,7 +1,8 @@
 ---
 title: sftp下载器
-date: 2018-12-29 08:00:34
 categories: Python应用代码
+abbrlink: b5b053fb
+date: 2018-12-29 08:00:34
 ---
 &emsp;&emsp;代码如下：
 

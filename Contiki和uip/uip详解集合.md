@@ -1,7 +1,8 @@
 ---
 title: uip详解集合
-date: 2019-07-22 21:27:18
 categories: Contiki和uip
+abbrlink: c7ac0859
+date: 2019-07-22 21:27:18
 ---
 ### 初始化函数
 

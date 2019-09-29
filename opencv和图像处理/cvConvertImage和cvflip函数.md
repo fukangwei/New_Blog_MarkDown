@@ -1,7 +1,8 @@
 ---
 title: cvConvertImage和cvflip函数
-date: 2019-03-06 15:05:07
 categories: opencv和图像处理
+abbrlink: e033396d
+date: 2019-03-06 15:05:07
 ---
 ### cvflip
 

@@ -1,7 +1,8 @@
 ---
 title: Qt之日期时间
-date: 2018-12-28 15:56:45
 categories: Qt应用示例
+abbrlink: b7f7698e
+date: 2018-12-28 15:56:45
 ---
 &emsp;&emsp;获取系统当前时间，并设置显示格式：
 

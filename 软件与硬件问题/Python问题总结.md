@@ -1,7 +1,8 @@
 ---
 title: Python问题总结
-date: 2019-01-10 16:01:38
 categories: 软件与硬件问题
+abbrlink: 17c2c8b8
+date: 2019-01-10 16:01:38
 ---
 ### HTTP Error 403: Forbidden
 

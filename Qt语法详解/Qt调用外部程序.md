@@ -1,7 +1,8 @@
 ---
 title: Qt调用外部程序
-date: 2019-01-02 11:18:45
 categories: Qt语法详解
+abbrlink: 7b5a8c43
+date: 2019-01-02 11:18:45
 ---
 &emsp;&emsp;`QT`调用外部程序有下面几种方法：
 

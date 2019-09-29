@@ -1,7 +1,8 @@
 ---
 title: Python编程注意
-date: 2019-01-11 19:41:59
 categories: Python语法
+abbrlink: c66eb693
+date: 2019-01-11 19:41:59
 ---
 1. 由于`Python`没有变量的检查，在程序中可能会出现变量名近似的错误，例如将`girl`误写为`gril`。
 2. `python`打印序列前几个数据可以采取分片的方式，例如`for index in suit_list[0:5]`。

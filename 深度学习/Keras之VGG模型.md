@@ -1,7 +1,8 @@
 ---
 title: Keras之VGG模型
-date: 2018-12-03 19:10:57
 categories: 深度学习
+abbrlink: 471d4aad
+date: 2018-12-03 19:10:57
 ---
 &emsp;&emsp;查看`VGG16`的模型结构：
 

@@ -1,5 +1,6 @@
 ---
 title: FTP问题总结
+abbrlink: 41b62577
 date: 2019-01-16 20:42:58
 tags:
 ---

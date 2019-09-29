@@ -1,7 +1,8 @@
 ---
 title: SeekBar拖动条
-date: 2018-12-28 12:51:25
 categories: Android
+abbrlink: 145d8718
+date: 2018-12-28 12:51:25
 ---
 &emsp;&emsp;`SeekBar`是`ProgressBar`的子类，因此`ProgressBar`的属性都可以用。它还有`android:thumb`属性，该属性允许我们自定义滑块。
 &emsp;&emsp;常用的属性如下：

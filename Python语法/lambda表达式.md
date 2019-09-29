@@ -1,7 +1,8 @@
 ---
 title: lambda表达式
-date: 2018-12-28 09:50:03
 categories: Python语法
+abbrlink: 330a6169
+date: 2018-12-28 09:50:03
 ---
 &emsp;&emsp;`lambda`表达式也叫`匿名函数`，其语法如下：
 

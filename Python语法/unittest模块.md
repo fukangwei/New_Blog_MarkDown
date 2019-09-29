@@ -1,7 +1,8 @@
 ---
 title: unittest模块
-date: 2019-02-10 08:51:32
 categories: Python语法
+abbrlink: 13fc34f8
+date: 2019-02-10 08:51:32
 ---
 ### 单元测试
 

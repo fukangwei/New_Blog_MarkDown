@@ -1,7 +1,8 @@
 ---
 title: cvSeq的用法
-date: 2018-12-30 18:13:46
 categories: opencv和图像处理
+abbrlink: 914f0b14
+date: 2018-12-30 18:13:46
 ---
 ### cvCreateSeq
 

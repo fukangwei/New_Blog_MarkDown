@@ -1,7 +1,8 @@
 ---
 title: Qt之打印pdf文档
-date: 2019-02-06 13:47:27
 categories: Qt应用示例
+abbrlink: 37a5a65c
+date: 2019-02-06 13:47:27
 ---
 &emsp;&emsp;`mainwindow.h`如下：
 

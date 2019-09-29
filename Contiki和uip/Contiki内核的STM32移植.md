@@ -1,7 +1,8 @@
 ---
 title: Contiki内核的STM32移植
-date: 2019-02-05 07:24:14
 categories: Contiki和uip
+abbrlink: 186f8332
+date: 2019-02-05 07:24:14
 ---
 &emsp;&emsp;1. 找一个`STM32`的`UART`的打印例程，最好是支持`printf`函数的。
 &emsp;&emsp;2. 接下来拷贝`contiki\core`中的文件。要加入工程的文件只有如下几个：`core\sys`目录下的`autostart.c`、`etimer.c`、`process.c`和`timer.c`。

@@ -1,7 +1,8 @@
 ---
 title: Menu菜单
-date: 2018-12-28 15:22:00
 categories: Android
+abbrlink: 7a5d1ebe
+date: 2018-12-28 15:22:00
 ---
 &emsp;&emsp;`Android`提供了标准的`XML`格式的资源文件来定义菜单项，并且对所有菜单类型都支持，推荐使用`XML`资源文件来定义菜单。之后再把它`Inflater`到`Activity`或者`Fragment`中，而不是在`Activity`中使用代码声明。
 &emsp;&emsp;菜单的`XML`资源文件需要创建在`/res/menu/`目录下，并且包含一下几个元素：

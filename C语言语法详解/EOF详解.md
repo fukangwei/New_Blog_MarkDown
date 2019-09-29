@@ -1,7 +1,8 @@
 ---
 title: EOF详解
-date: 2018-12-09 09:54:08
 categories: C语言语法详解
+abbrlink: cc624cf1
+date: 2018-12-09 09:54:08
 ---
 &emsp;&emsp;`EOF`是`end of file`的缩写，表示`文字流`(`stream`)的结尾。这里的`文字流`可以是文件(`file`)，也可以是标准输入(`stdin`)。例如下面这段代码就表示，如果不是文件结尾，就把文件的内容复制到屏幕上：
 

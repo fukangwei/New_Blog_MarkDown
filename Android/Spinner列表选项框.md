@@ -1,7 +1,8 @@
 ---
 title: Spinner列表选项框
-date: 2018-12-28 14:14:16
 categories: Android
+abbrlink: 2b16ab30
+date: 2018-12-28 14:14:16
 ---
 &emsp;&emsp;`Spinner`相关属性如下：
 

@@ -1,7 +1,8 @@
 ---
 title: 决策树sklearn
-date: 2019-02-27 08:43:33
 categories: 机器学习
+abbrlink: e31b3edf
+date: 2019-02-27 08:43:33
 ---
 &emsp;&emsp;`sklearn.tree`模块提供了决策树模型，用于解决分类问题和回归问题。方法如下：
 

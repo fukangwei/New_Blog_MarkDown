@@ -1,7 +1,8 @@
 ---
 title: shutil模块
-date: 2018-12-27 19:21:58
 categories: Python语法
+abbrlink: 8cbb1141
+date: 2018-12-27 19:21:58
 ---
 &emsp;&emsp;`shutil`是高级的文件、文件夹、压缩包处理模块。
 

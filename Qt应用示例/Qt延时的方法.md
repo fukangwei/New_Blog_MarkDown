@@ -1,7 +1,8 @@
 ---
 title: Qt延时的方法
-date: 2018-12-28 16:01:08
 categories: Qt应用示例
+abbrlink: 4bd9ba2
+date: 2018-12-28 16:01:08
 ---
 &emsp;&emsp;1. 使用`QTimer::singleShot`的方法：
 

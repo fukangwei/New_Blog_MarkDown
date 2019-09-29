@@ -1,7 +1,8 @@
 ---
 title: Feature Matching
-date: 2019-03-06 17:47:16
 categories: opencv和图像处理
+abbrlink: 64ae4899
+date: 2019-03-06 17:47:16
 ---
 ### Basics of Brute-Force Matcher
 

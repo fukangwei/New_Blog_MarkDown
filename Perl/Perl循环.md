@@ -1,7 +1,8 @@
 ---
 title: Perl循环
-date: 2018-12-20 09:37:04
 categories: Perl
+abbrlink: 6a659215
+date: 2018-12-20 09:37:04
 ---
 ### while循环
 

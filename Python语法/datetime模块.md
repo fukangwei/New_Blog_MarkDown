@@ -1,7 +1,8 @@
 ---
 title: datetime模块
-date: 2019-02-09 21:14:50
 categories: Python语法
+abbrlink: 7c528cb9
+date: 2019-02-09 21:14:50
 ---
 &emsp;&emsp;`datetime`是`Python`处理日期和时间的标准库。
 

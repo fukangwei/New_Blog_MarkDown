@@ -1,7 +1,8 @@
 ---
 title: Cmake笔记
-date: 2019-07-05 19:49:41
 categories: 软件与硬件问题
+abbrlink: cf838727
+date: 2019-07-05 19:49:41
 ---
 ### 什么是cmake
 

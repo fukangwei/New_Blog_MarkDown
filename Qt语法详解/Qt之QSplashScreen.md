@@ -1,7 +1,8 @@
 ---
 title: Qt之QSplashScreen
-date: 2019-01-27 14:56:49
 categories: Qt语法详解
+abbrlink: 90f31620
+date: 2019-01-27 14:56:49
 ---
 &emsp;&emsp;The `QSplashScreen` widget provides a splash screen that can be shown during application startup. The header file is `QSplashScreen`.
 

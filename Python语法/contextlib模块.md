@@ -1,7 +1,8 @@
 ---
 title: contextlib模块
-date: 2018-12-27 19:15:21
 categories: Python语法
+abbrlink: c5d79316
+date: 2018-12-27 19:15:21
 ---
 &emsp;&emsp;在`Python`中，读写文件这类资源时要特别注意，必须在使用完毕后正确关闭它们。其中一个方法是使用`try...finally`：
 

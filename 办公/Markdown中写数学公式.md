@@ -1,8 +1,9 @@
 ---
 title: Markdown中写数学公式
-date: 2019-03-14 10:09:21
 mathjax: true
 categories: 办公
+abbrlink: 4675177d
+date: 2019-03-14 10:09:21
 ---
 &emsp;&emsp;一些扩展的`Markdown`语法支持采用`LaTex`语法写数学公式，而在网页中使用`Mathjax`插件来显示数学公式。在`Markdown`中插入数学公式的语法是`$数学公式$`和`$$数学公式$$`。
 &emsp;&emsp;行内公式是可以让公式在文中与文字或其他东西混编，不独占一行：

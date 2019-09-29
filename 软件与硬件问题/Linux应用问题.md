@@ -1,7 +1,8 @@
 ---
 title: Linux应用问题
-date: 2019-02-14 19:36:40
 categories: 软件与硬件问题
+abbrlink: db791014
+date: 2019-02-14 19:36:40
 ---
 ### command not found
 

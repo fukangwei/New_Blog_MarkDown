@@ -1,7 +1,8 @@
 ---
 title: TensorFlow制作TFRecord数据集
-date: 2019-02-15 19:50:47
 categories: 深度学习
+abbrlink: '88377901'
+date: 2019-02-15 19:50:47
 ---
 &emsp;&emsp;关于`TensorFlow`读取数据，官网给出了三种方法：
 

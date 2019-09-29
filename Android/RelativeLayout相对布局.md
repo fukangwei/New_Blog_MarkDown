@@ -1,7 +1,8 @@
 ---
 title: RelativeLayout相对布局
-date: 2019-08-11 20:29:22
 categories: Android
+abbrlink: 979c1321
+date: 2019-08-11 20:29:22
 ---
 &emsp;&emsp;使用`LinearLayout`有一个问题，就是当界面比较复杂的时候，需要嵌套多层的`LinearLayout`，这样就会降低`UI Render`的效率(渲染速度)。而且如果是`listview`或者`GridView`上的`item`，效率会更低。另外，太多层`LinearLayout`嵌套会占用更多的系统资源，还有可能引发`StackOverflow`。如果使用`RelativeLayout`的话，可能仅仅需要一层就可以完成了，以`父容器或者兄弟组件参考 + margin + padding`就可以设置组件的显示位置。尽量使用`RelativeLayout + LinearLayout`的`weight`属性搭配。<!--more-->
 &emsp;&emsp;父容器定位属性示意图如下：

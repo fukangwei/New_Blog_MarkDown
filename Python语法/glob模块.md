@@ -1,7 +1,8 @@
 ---
 title: glob模块
-date: 2019-02-09 14:53:05
 categories: Python语法
+abbrlink: f345847
+date: 2019-02-09 14:53:05
 ---
 ### glob: Unix style pathname pattern expansion
 

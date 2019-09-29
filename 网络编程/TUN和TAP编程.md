@@ -1,5 +1,6 @@
 ---
 title: TUN和TAP编程
+abbrlink: 85998e3a
 date: 2019-01-17 13:45:20
 tags:
 ---

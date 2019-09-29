@@ -1,7 +1,8 @@
 ---
 title: Python运算符
-date: 2019-01-09 18:33:38
 categories: Python语法
+abbrlink: 51f98000
+date: 2019-01-09 18:33:38
 ---
 ### Python算术运算符
 

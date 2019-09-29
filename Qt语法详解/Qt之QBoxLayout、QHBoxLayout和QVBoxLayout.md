@@ -1,7 +1,8 @@
 ---
 title: Qt之QBoxLayout、QHBoxLayout和QVBoxLayout
-date: 2019-03-17 17:43:03
 categories: Qt语法详解
+abbrlink: b357168c
+date: 2019-03-17 17:43:03
 ---
 ### 简述
 

@@ -1,7 +1,8 @@
 ---
 title: Camera拍照
-date: 2018-12-28 12:17:46
 categories: Android
+abbrlink: e7d8fb9a
+date: 2018-12-28 12:17:46
 ---
 &emsp;&emsp;`MainActivity.java`如下：
 

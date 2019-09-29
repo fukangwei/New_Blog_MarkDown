@@ -1,7 +1,8 @@
 ---
 title: Chronometer计时器
-date: 2018-12-28 12:26:19
 categories: Android
+abbrlink: ceffc04d
+date: 2018-12-28 12:26:19
 ---
 &emsp;&emsp;`Android`给我们提供了一个计时组件`Chronometer`，该组件继承自`TextView`，因此它会显示一段文本内容。但是`Chronometer`并不显示当前时间，它显示的是从某个起始时间开始，一共过去了多长时间。
 &emsp;&emsp;`Chronometer`的用法也很简单，它提供了一个`android:format`属性，用于指定计时器的计时格式。除此之外，`Chronometer`支持下面比较常用的方法：

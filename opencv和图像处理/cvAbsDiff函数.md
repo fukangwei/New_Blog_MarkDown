@@ -1,7 +1,8 @@
 ---
 title: cvAbsDiff函数
-date: 2019-03-04 15:09:31
 categories: opencv和图像处理
+abbrlink: c930b36
+date: 2019-03-04 15:09:31
 ---
 &emsp;&emsp;函数原型如下：
 

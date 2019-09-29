@@ -1,7 +1,8 @@
 ---
 title: Qt之iterator
-date: 2019-01-25 11:41:26
 categories: Qt语法详解
+abbrlink: 7d8fa9c5
+date: 2019-01-25 11:41:26
 ---
 &emsp;&emsp;The `QList::iterator` class provides an `STL-style` `non-const` iterator for `QList` and `QQueue`. The header file is `iterator`.
 

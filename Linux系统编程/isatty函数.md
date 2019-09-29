@@ -1,7 +1,8 @@
 ---
 title: isatty函数
-date: 2018-12-29 14:29:33
 categories: Linux系统编程
+abbrlink: ab014234
+date: 2018-12-29 14:29:33
 ---
 &emsp;&emsp;`isatty`主要功能是检查设备类型，判断文件描述词是否是为终端机：
 

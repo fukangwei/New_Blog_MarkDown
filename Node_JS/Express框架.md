@@ -1,7 +1,8 @@
 ---
 title: Express框架
-date: 2019-03-02 12:19:37
 categories: Node.js笔记
+abbrlink: 4d62b629
+date: 2019-03-02 12:19:37
 ---
 &emsp;&emsp;`Express`是一个简洁而灵活的`Web`应用框架，使用`Express`可以快速地搭建一个完整功能的网站。`Express`框架核心特性如下：
 

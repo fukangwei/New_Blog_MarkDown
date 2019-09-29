@@ -1,7 +1,8 @@
 ---
 title: Keras之卷积层
-date: 2019-01-16 08:06:29
 categories: 深度学习
+abbrlink: 7bff645d
+date: 2019-01-16 08:06:29
 ---
 ### Conv1D
 

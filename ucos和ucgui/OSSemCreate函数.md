@@ -1,7 +1,8 @@
 ---
 title: OSSemCreate函数
-date: 2018-12-29 14:20:28
 categories: ucos和ucgui
+abbrlink: c16137d9
+date: 2018-12-29 14:20:28
 ---
 &emsp;&emsp;信号量在创建时，调用`OSSemCreate(INT16U cnt)`函数，`cnt`为信号量的初始值。对`cnt`赋予不同的值，所起到的作用不同。如果`Semp = OSSemCreate(0)`，表示该信号量等待一个事件或者多个事件的发生。
 &emsp;&emsp;如果我们想对一个公共资源进行互斥访问，例如让两个任务`Task1`和`Task2`都可以调用`Fun`函数，但不能同时调用，最好定义`Semp = OSSemCreate(1)`。在各自的任务中都需要调用`OSSemPend(Semp, 0, &err)`请求此信号量。如果可用，则调用`Fun`，然后再调用`OSSemPost(Semp)`释放该信号量，这样就实现了对一个资源的互斥访问。对于`OSSemCreate(1)`，如果一个任务中有`OSSemPend`，那么可以执行，执行之后`cnt`等于`0`。其他任务的`OSSemPend`无法获得`sem`，只能等待，除非任务一有`OSSemPost`，使其`cnt`加`1`，这样其他任务的`OSSemPend`可以执行。同理，如果一个任务要等待`n`个事件发生后才能执行，则应定义为`Semp = OSSemCreate(n)`，然后在这`n`个任务分别运行时调用`OSSemPost(Semp)`，直到这`n`个事件均发生后，这个任务才能运行。

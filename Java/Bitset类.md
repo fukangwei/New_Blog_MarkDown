@@ -1,7 +1,8 @@
 ---
 title: Bitset类
-date: 2018-12-26 09:49:13
 categories: Java
+abbrlink: f417f3c6
+date: 2018-12-26 09:49:13
 ---
 &emsp;&emsp;`Bitset`类创建一种特殊类型的数组来保存位值。`BitSet`的数组大小会随需要增加，这和`位向量`(`vector of bits`)类似。它是一个传统的类，但在`Java 2`中被完全重新设计。
 &emsp;&emsp;`BitSet`定义了两个构造方法，第一个构造方法创建一个默认的对象：

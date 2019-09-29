@@ -1,7 +1,8 @@
 ---
 title: STM32移植uip
-date: 2019-02-05 12:31:16
 categories: Contiki和uip
+abbrlink: 84becb
+date: 2019-02-05 12:31:16
 ---
 &emsp;&emsp;`uIP`由瑞典计算机科学学院的`Adam Dunkels`(`http://dunkels.com/adam/uip/`)开发，其源代码由`C`语言编写，并完全公开。有了这个`TCP/IP`协议栈，让嵌入式可以实现的功能更为丰富。可以作为`WebClient`向指定网站提交数据，也可以作为`WebServer`作为网页服务器，提供一个小型的动态页面访问功能。由于是开源的免费协议栈，据说`Uip`没有考虑协议安全的问题。
 &emsp;&emsp;首先介绍下移植的环境：`stm32`开发板和`ENC28J60`网络模块。`ENC28J60`是带`SPI`接口的独立以太网控制器，可以用`mcu`控制`spi`来实现`tcp/ip`数据流的收发，所以要先完成`ENC28J60`的驱动程序，再整合`Uip`。`Uip`是用标准的`C`语言实现，所以移植`Uip`在`51`单片机和`stm32`上类似。

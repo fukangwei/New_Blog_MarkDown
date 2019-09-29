@@ -1,7 +1,8 @@
 ---
 title: ImageSwitcher图片切换
-date: 2018-12-28 12:46:29
 categories: Android
+abbrlink: 2a456f10
+date: 2018-12-28 12:46:29
 ---
 &emsp;&emsp;`XML`文件如下：
 

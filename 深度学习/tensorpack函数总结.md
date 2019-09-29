@@ -1,7 +1,8 @@
 ---
 title: tensorpack函数总结
-date: 2019-02-12 15:46:41
 categories: 深度学习
+abbrlink: 216d1da
+date: 2019-02-12 15:46:41
 ---
 ### dataflow.TestDataSpeed
 

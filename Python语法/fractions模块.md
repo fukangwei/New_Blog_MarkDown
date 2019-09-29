@@ -1,7 +1,8 @@
 ---
 title: fractions模块
-date: 2018-12-27 18:14:41
 categories: Python语法
+abbrlink: b8bdd2ef
+date: 2018-12-27 18:14:41
 ---
 &emsp;&emsp;`fractions`模块提供了分数类型的支持，构造函数如下：
 

@@ -1,7 +1,8 @@
 ---
 title: Matplotlib基础教程
-date: 2019-07-21 14:52:25
 categories: Python语法
+abbrlink: 8153bf86
+date: 2019-07-21 14:52:25
 ---
 &emsp;&emsp;`Matplotlib`是`Python`的一个绘图库，它包含了大量的工具，你可以使用这些工具创建各种图形，包括简单的散点图、正弦曲线、甚至是三维图形。`Python`科学计算社区经常使用它完成数据可视化的工作。
 <!--more-->

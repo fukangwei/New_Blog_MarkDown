@@ -1,7 +1,8 @@
 ---
 title: Keras之图像预处理
-date: 2019-01-15 18:04:55
 categories: 深度学习
+abbrlink: 68f5fea8
+date: 2019-01-15 18:04:55
 ---
 ### ImageDataGenerator类
 

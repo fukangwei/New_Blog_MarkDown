@@ -1,7 +1,8 @@
 ---
 title: LED驱动_杂项设备
-date: 2019-02-04 10:27:51
 categories: Linux驱动程序
+abbrlink: cd42adf
+date: 2019-02-04 10:27:51
 ---
 &emsp;&emsp;`memdev.h`如下：
 

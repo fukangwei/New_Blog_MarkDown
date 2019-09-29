@@ -1,7 +1,8 @@
 ---
 title: C语言实现消息队列
-date: 2019-02-04 12:34:58
 categories: C语言应用代码
+abbrlink: 77811cc9
+date: 2019-02-04 12:34:58
 ---
 &emsp;&emsp;`GM_Queue.h`如下：
 

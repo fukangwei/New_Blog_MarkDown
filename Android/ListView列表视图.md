@@ -1,7 +1,8 @@
 ---
 title: ListView列表视图
-date: 2018-12-28 12:14:22
 categories: Android
+abbrlink: 44b24f56
+date: 2018-12-28 12:14:22
 ---
 &emsp;&emsp;`array.xml`如下：
 

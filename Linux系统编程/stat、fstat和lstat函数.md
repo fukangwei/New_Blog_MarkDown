@@ -1,7 +1,8 @@
 ---
 title: stat、fstat和lstat函数
-date: 2019-02-03 16:33:46
 categories: Linux系统编程
+abbrlink: 2e0ceaf9
+date: 2019-02-03 16:33:46
 ---
 &emsp;&emsp;使用函数`stat`、`fstat`和`lstat`来检查文件的属性，这些函数使用`struct stat`对象来返回属性信息。所有这三个函数声明在头文件`sys/stat.h`。
 &emsp;&emsp;`stat`函数原型如下：

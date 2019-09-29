@@ -1,7 +1,8 @@
 ---
 title: Qt之启动线程
-date: 2019-02-23 11:56:41
 categories: Qt应用示例
+abbrlink: 7bcefc10
+date: 2019-02-23 11:56:41
 ---
 &emsp;&emsp;`mythread.h`如下：
 

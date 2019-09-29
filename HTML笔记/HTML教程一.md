@@ -1,7 +1,8 @@
 ---
 title: HTML教程一
-date: 2019-07-15 21:57:22
 categories: HTML笔记
+abbrlink: 4c0b651
+date: 2019-07-15 21:57:22
 ---
 ### 什么是HTML
 

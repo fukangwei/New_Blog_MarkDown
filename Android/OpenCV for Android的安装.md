@@ -1,7 +1,8 @@
 ---
 title: OpenCV for Android的安装
-date: 2019-03-02 11:42:04
 categories: Android
+abbrlink: c101d7b7
+date: 2019-03-02 11:42:04
 ---
 &emsp;&emsp;首先下载`OpenCV sdk for Android`，并进行解压操作(我的目录是`D:\AndroidSDK`)。然后将`opencv`导入`Android Studio`中，方法是`File -> New -> Import Module`，选择`D:\AndroidSDK\OpenCV-android-sdk\sdk\java`。对于`Module name`，`Android studio`会自动填充这项为`openCVLibrary341`：
 

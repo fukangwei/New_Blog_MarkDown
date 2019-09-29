@@ -1,7 +1,8 @@
 ---
 title: dup和dup2函数
-date: 2019-02-03 00:13:39
 categories: Linux系统编程
+abbrlink: a12dbcf8
+date: 2019-02-03 00:13:39
 ---
 &emsp;&emsp;这两个函数的作用都是复制一个现存的文件描述符：
 

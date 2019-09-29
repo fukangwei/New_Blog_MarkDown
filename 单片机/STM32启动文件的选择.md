@@ -1,7 +1,8 @@
 ---
 title: STM32启动文件的选择
-date: 2019-03-18 22:40:41
 categories: 单片机
+abbrlink: f48b6ab6
+date: 2019-03-18 22:40:41
 ---
 &emsp;&emsp;`STM32`启动文件选择如下：
 

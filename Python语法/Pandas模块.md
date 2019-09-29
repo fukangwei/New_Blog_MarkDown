@@ -1,7 +1,8 @@
 ---
 title: Pandas模块
-date: 2019-02-11 10:03:42
 categories: Python语法
+abbrlink: a9a4e930
+date: 2019-02-11 10:03:42
 ---
 ### Pandas基本介绍
 

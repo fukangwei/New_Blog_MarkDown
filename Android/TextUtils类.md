@@ -1,7 +1,8 @@
 ---
 title: TextUtils类
-date: 2018-12-28 11:55:06
 categories: Android
+abbrlink: 2f683b3d
+date: 2018-12-28 11:55:06
 ---
 &emsp;&emsp;对于字符串处理，`Android`为我们提供了一个简单实用的`TextUtils`类，其主要功能如下：
 

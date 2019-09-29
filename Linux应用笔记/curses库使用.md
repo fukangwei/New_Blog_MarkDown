@@ -1,7 +1,8 @@
 ---
 title: curses库使用
-date: 2019-02-25 14:02:21
 categories: Linux应用笔记
+abbrlink: f7746409
+date: 2019-02-25 14:02:21
 ---
 ### curses术语和概念
 

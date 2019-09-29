@@ -1,7 +1,8 @@
 ---
 title: synchronized的用法
-date: 2018-12-20 21:17:28
 categories: Java
+abbrlink: 2cf6c0cf
+date: 2018-12-20 21:17:28
 ---
 &emsp;&emsp;`synchronized`是`Java`中的关键字，它是一种同步锁，修饰的对象有以下几种：
 

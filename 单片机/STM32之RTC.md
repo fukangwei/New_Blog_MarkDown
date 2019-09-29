@@ -1,7 +1,8 @@
 ---
 title: STM32之RTC
-date: 2019-02-06 20:29:56
 categories: 单片机
+abbrlink: d5275821
+date: 2019-02-06 20:29:56
 ---
 &emsp;&emsp;先熟悉一下几个知识点：
 

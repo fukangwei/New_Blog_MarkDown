@@ -1,7 +1,8 @@
 ---
 title: Vector类
-date: 2018-12-24 15:22:17
 categories: Java
+abbrlink: '82332071'
+date: 2018-12-24 15:22:17
 ---
 &emsp;&emsp;`Vector`类实现了一个动态数组，和`ArrayList`类似，但两者是不同的：
 

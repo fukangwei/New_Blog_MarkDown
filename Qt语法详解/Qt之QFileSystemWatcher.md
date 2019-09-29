@@ -1,7 +1,8 @@
 ---
 title: Qt之QFileSystemWatcher
-date: 2019-01-24 13:40:43
 categories: Qt语法详解
+abbrlink: 21a9b68
+date: 2019-01-24 13:40:43
 ---
 ### 简述
 

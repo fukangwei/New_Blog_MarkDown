@@ -1,7 +1,8 @@
 ---
 title: LinkedList类
-date: 2018-12-20 19:53:50
 categories: Java
+abbrlink: ff7cfcb
+date: 2018-12-20 19:53:50
 ---
 &emsp;&emsp;`LinkedList`其实也就是我们在数据结构中的链表，这种数据结构有如下特性：
 

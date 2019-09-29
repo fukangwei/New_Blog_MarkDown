@@ -1,7 +1,8 @@
 ---
 title: Qt添加资源文件
-date: 2019-03-16 16:51:49
 categories: Qt应用示例
+abbrlink: 4b3ead3b
+date: 2019-03-16 16:51:49
 ---
 &emsp;&emsp;编写`gui`时，可能需要一些额外的资源(比如贴图用的图片)，可以使用`Qt`的资源文件进行统一管理。
 &emsp;&emsp;1. 右击项目文件夹，选择添加新文件，然后选择`Qt`，最后是`Qt resource file`。

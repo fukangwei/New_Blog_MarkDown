@@ -1,7 +1,8 @@
 ---
 title: STM32的GPIO库函数
-date: 2019-01-19 08:42:45
 categories: 单片机
+abbrlink: 68dba9f8
+date: 2019-01-19 08:42:45
 ---
 &emsp;&emsp;操作步骤如下：
 &emsp;&emsp;1. 使能`GPIO`对应的外设时钟：

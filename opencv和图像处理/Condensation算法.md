@@ -1,7 +1,8 @@
 ---
 title: Condensation算法
-date: 2019-02-24 10:18:45
 categories: opencv和图像处理
+abbrlink: b61002ae
+date: 2019-02-24 10:18:45
 ---
 &emsp;&emsp;自`opencv 2.3`以后，`condensation`算法放在`legacy`中了，也就是说要引入下面的头文件：
 

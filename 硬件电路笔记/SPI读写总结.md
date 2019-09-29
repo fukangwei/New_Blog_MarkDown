@@ -1,7 +1,8 @@
 ---
 title: SPI读写总结
-date: 2018-12-03 17:07:32
 categories: 硬件电路笔记
+abbrlink: e9991f0c
+date: 2018-12-03 17:07:32
 ---
 &emsp;&emsp;`SPI`(`Serial Peripheral interface`，串行外围设备接口)协议是主从模式，即从机不主动发起访问，总是被动执行操作。其接口如下：
 

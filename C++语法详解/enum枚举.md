@@ -1,7 +1,8 @@
 ---
 title: enum枚举
-date: 2019-02-05 17:55:40
 categories: C++语法详解
+abbrlink: 9cccedcc
+date: 2019-02-05 17:55:40
 ---
 &emsp;&emsp;请看下面的语句：
 

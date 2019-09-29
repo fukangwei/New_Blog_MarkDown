@@ -1,7 +1,8 @@
 ---
 title: TensorFlow之函数总结
-date: 2019-02-13 19:48:39
 categories: 深度学习
+abbrlink: aa17735e
+date: 2019-02-13 19:48:39
 ---
 ### get_shape函数
 

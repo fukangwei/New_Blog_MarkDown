@@ -1,7 +1,8 @@
 ---
 title: Qt之QSpinBox和QDoubleSpinBox
-date: 2019-03-16 17:08:43
 categories: Qt语法详解
+abbrlink: e42f7f35
+date: 2019-03-16 17:08:43
 ---
 ### 简述
 

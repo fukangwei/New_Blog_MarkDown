@@ -1,7 +1,8 @@
 ---
 title: Qt的安装
-date: 2019-02-28 20:48:51
 categories: 软件与硬件问题
+abbrlink: 179d57fa
+date: 2019-02-28 20:48:51
 ---
 ### Windows安装Qt
 

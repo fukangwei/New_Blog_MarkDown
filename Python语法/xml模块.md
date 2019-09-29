@@ -1,7 +1,8 @@
 ---
 title: xml模块
-date: 2019-01-12 14:08:01
 categories: Python语法
+abbrlink: daba54cb
+date: 2019-01-12 14:08:01
 ---
 ### 什么是XML？
 

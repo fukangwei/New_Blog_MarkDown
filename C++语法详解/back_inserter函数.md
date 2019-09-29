@@ -1,7 +1,8 @@
 ---
 title: back_inserter函数
-date: 2018-12-27 10:35:19
 categories: C++语法详解
+abbrlink: 8cf4d061
+date: 2018-12-27 10:35:19
 ---
 &emsp;&emsp;It is a function template, in the header file `<iterator>`.
 

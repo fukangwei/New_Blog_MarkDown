@@ -1,7 +1,8 @@
 ---
 title: adb使用教程
-date: 2019-08-05 15:11:58
 categories: Android
+abbrlink: 5fcab6f1
+date: 2019-08-05 15:11:58
 ---
 &emsp;&emsp;`adb`工具位于`SDK`的`platform-tools`目录下，因此需要将`platform-tools`的路径添加到系统环境变量中。常用的`adb`命令如下：
 

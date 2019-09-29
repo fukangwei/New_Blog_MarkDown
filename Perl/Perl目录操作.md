@@ -1,7 +1,8 @@
 ---
 title: Perl目录操作
-date: 2018-12-18 07:52:52
 categories: Perl
+abbrlink: 74aa2817
+date: 2018-12-18 07:52:52
 ---
 &emsp;&emsp;以下列出了一些操作目录的标准函数：
 

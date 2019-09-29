@@ -1,7 +1,8 @@
 ---
 title: Contiki的rtimer移植
-date: 2019-02-04 23:00:12
 categories: Contiki和uip
+abbrlink: 3ce9b023
+date: 2019-02-04 23:00:12
 ---
 ### 移植基础
 

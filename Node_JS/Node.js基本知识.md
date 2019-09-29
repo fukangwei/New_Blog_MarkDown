@@ -1,7 +1,8 @@
 ---
 title: Node.js基本知识
-date: 2019-02-08 16:08:36
 categories: Node.js笔记
+abbrlink: 774ce312
+date: 2019-02-08 16:08:36
 ---
 ### Node.js基础
 

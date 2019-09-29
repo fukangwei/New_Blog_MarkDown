@@ -1,7 +1,8 @@
 ---
 title: Qt之QCheckBox
-date: 2019-02-18 10:45:00
 categories: Qt语法详解
+abbrlink: bf09695e
+date: 2019-02-18 10:45:00
 ---
 ### 简述
 

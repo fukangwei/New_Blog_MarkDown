@@ -1,7 +1,8 @@
 ---
 title: Stack类
-date: 2018-12-21 17:42:56
 categories: Java
+abbrlink: 5a714dcc
+date: 2018-12-21 17:42:56
 ---
 &emsp;&emsp;栈是`Vector`的一个子类，它实现了一个标准的后进先出的栈。堆栈只定义了默认构造函数，用来创建一个空栈：
 

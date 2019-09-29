@@ -1,7 +1,8 @@
 ---
 title: Qt之QHostAddress
-date: 2019-01-24 14:57:19
 categories: Qt语法详解
+abbrlink: 1d8e7f5d
+date: 2019-01-24 14:57:19
 ---
 ### 简述
 

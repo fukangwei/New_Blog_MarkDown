@@ -1,7 +1,8 @@
 ---
 title: DatePicker日期选择器
-date: 2018-12-28 12:31:05
 categories: Android
+abbrlink: 4761eb81
+date: 2018-12-28 12:31:05
 ---
 &emsp;&emsp;日期选择器可供我们使用的属性如下：
 

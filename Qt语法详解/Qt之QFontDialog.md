@@ -1,7 +1,8 @@
 ---
 title: Qt之QFontDialog
-date: 2019-02-06 20:55:52
 categories: Qt语法详解
+abbrlink: a67c4ab1
+date: 2019-02-06 20:55:52
 ---
 &emsp;&emsp;`QFontDialog`类提供了可以选择字体的对话框窗口部件，继承了`QDialog`，其头文件为`qfontdialog.h`。静态公有成员如下：
 

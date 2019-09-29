@@ -1,7 +1,8 @@
 ---
 title: pytorch函数总结
-date: 2019-01-13 20:05:19
 categories: 深度学习
+abbrlink: bbe38406
+date: 2019-01-13 20:05:19
 ---
 ### torch.ones
 

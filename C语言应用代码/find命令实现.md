@@ -1,7 +1,8 @@
 ---
 title: find命令实现
-date: 2018-12-26 21:59:07
 categories: C语言应用代码
+abbrlink: c1e3dd68
+date: 2018-12-26 21:59:07
 ---
 &emsp;&emsp;版本`1`如下：
 

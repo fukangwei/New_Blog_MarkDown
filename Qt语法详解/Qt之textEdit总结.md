@@ -1,7 +1,8 @@
 ---
 title: Qt之textEdit总结
-date: 2019-01-02 20:18:03
 categories: Qt语法详解
+abbrlink: 90c3b44c
+date: 2019-01-02 20:18:03
 ---
 - `QString str = ui->textedit->toPlainText()`：获取普通文本。
 - `QString str = ui->textedit->toHtml()`：获取富文本，即获取的是`HTML`字符串。

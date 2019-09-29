@@ -1,7 +1,8 @@
 ---
 title: RNN和LSTM
-date: 2019-02-28 16:41:09
 categories: 深度学习
+abbrlink: '688e8733'
+date: 2019-02-28 16:41:09
 ---
 ### RNN的用途
 

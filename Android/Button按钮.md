@@ -1,7 +1,8 @@
 ---
 title: Button按钮
-date: 2018-12-28 14:37:00
 categories: Android
+abbrlink: 5827f2c0
+date: 2018-12-28 14:37:00
 ---
 &emsp;&emsp;我们可以为按钮建立单击事件监听器，这样就可以处理单击事件。`XML`文件如下：
 

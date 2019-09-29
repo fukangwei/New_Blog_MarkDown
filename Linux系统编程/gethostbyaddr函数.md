@@ -1,7 +1,8 @@
 ---
 title: gethostbyaddr函数
-date: 2018-12-29 15:04:18
 categories: Linux系统编程
+abbrlink: ce05d358
+date: 2018-12-29 15:04:18
 ---
 &emsp;&emsp;函数`gethostbyaddr`取一个二进制的`IP`地址并试图找到对应于此地址的主机名，与`gethostbyname`的行为恰好相反。
 

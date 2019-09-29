@@ -1,7 +1,8 @@
 ---
 title: Linux汇编
-date: 2018-12-16 18:05:16
 categories: Intel汇编
+abbrlink: 553408a9
+date: 2018-12-16 18:05:16
 ---
 ### 显示字符串(AT&T汇编)
 

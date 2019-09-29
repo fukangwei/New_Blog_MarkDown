@@ -1,7 +1,8 @@
 ---
 title: kobject和kset基础
-date: 2019-02-04 10:22:53
 categories: Linux驱动程序
+abbrlink: c54b6599
+date: 2019-02-04 10:22:53
 ---
 &emsp;&emsp;`kobject.c`如下：
 

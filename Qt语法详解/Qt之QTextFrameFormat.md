@@ -1,7 +1,8 @@
 ---
 title: Qt之QTextFrameFormat
-date: 2019-02-20 13:00:40
 categories: Qt语法详解
+abbrlink: 2761c5f
+date: 2019-02-20 13:00:40
 ---
 &emsp;&emsp;The `QTextFrameFormat` class provides formatting information for frames in a `QTextDocument`.
 

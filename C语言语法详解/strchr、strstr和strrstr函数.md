@@ -1,7 +1,8 @@
 ---
 title: strchr、strstr和strrstr函数
-date: 2018-12-14 21:56:15
 categories: C语言语法详解
+abbrlink: 45eae9dc
+date: 2018-12-14 21:56:15
 ---
 ### strchr函数
 

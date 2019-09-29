@@ -1,7 +1,8 @@
 ---
 title: Qt之QProcess
-date: 2019-01-24 16:31:18
 categories: Qt语法详解
+abbrlink: b06bf195
+date: 2019-01-24 16:31:18
 ---
 ### QProcess进程类
 

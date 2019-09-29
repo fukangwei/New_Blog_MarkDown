@@ -1,7 +1,8 @@
 ---
 title: AlertDialog对话框
-date: 2018-12-28 15:48:39
 categories: Android
+abbrlink: ef042740
+date: 2018-12-28 15:48:39
 ---
 &emsp;&emsp;`AlertDialog`对话框基本使用流程如下：
 

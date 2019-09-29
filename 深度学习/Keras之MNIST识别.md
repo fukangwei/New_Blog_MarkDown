@@ -1,7 +1,8 @@
 ---
 title: Keras之MNIST识别
-date: 2019-01-15 14:38:35
 categories: 深度学习
+abbrlink: 171fee44
+date: 2019-01-15 14:38:35
 ---
 ### 数据预处理
 

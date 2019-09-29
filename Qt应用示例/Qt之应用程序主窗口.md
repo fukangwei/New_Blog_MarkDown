@@ -1,7 +1,8 @@
 ---
 title: Qt之应用程序主窗口
-date: 2019-02-23 15:28:43
 categories: Qt应用示例
+abbrlink: c0f249d4
+date: 2019-02-23 15:28:43
 ---
 &emsp;&emsp;`mainwindow.h`如下：
 

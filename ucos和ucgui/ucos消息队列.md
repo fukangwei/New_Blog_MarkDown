@@ -1,7 +1,8 @@
 ---
 title: ucos消息队列
-date: 2018-12-29 11:27:56
 categories: ucos和ucgui
+abbrlink: 42ac754c
+date: 2018-12-29 11:27:56
 ---
 &emsp;&emsp;代码如下：
 

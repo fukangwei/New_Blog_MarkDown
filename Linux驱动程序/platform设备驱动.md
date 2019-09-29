@@ -1,7 +1,8 @@
 ---
 title: platform设备驱动
-date: 2019-02-04 10:00:45
 categories: Linux驱动程序
+abbrlink: 5b8f0348
+date: 2019-02-04 10:00:45
 ---
 &emsp;&emsp;`device.c`如下：
 

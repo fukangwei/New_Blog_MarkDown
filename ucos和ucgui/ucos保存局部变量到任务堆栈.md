@@ -1,7 +1,8 @@
 ---
 title: ucos保存局部变量到任务堆栈
-date: 2018-12-29 09:49:02
 categories: ucos和ucgui
+abbrlink: e1e9e29a
+date: 2018-12-29 09:49:02
 ---
 &emsp;&emsp;1. 没有`OS`时，任务如何保存局部变量？
 &emsp;&emsp;在我的知识体系里，我一直以为单片机中就只有一个栈。以`stm32`为例，在启动文件中有这么一段代码：

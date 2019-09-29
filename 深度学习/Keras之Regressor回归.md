@@ -1,7 +1,8 @@
 ---
 title: Keras之Regressor回归
-date: 2019-02-13 11:00:46
 categories: 深度学习
+abbrlink: bc8688e4
+date: 2019-02-13 11:00:46
 ---
 &emsp;&emsp;神经网络可以用来模拟回归问题(`regression`)，例如给一组数据，用一条线来对数据进行拟合，并可以预测新输入`x`的输出值。
 

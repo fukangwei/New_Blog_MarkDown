@@ -1,7 +1,8 @@
 ---
 title: Sobel算子
-date: 2019-03-06 22:39:24
 categories: opencv和图像处理
+abbrlink: acf1e423
+date: 2019-03-06 22:39:24
 ---
 &emsp;&emsp;`Sobel`算子依然是一种过滤器，只是其是带有方向的。在`OpenCV`中，使用`Sobel`算子的函数原型如下：
 

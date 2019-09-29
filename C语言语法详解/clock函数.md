@@ -1,7 +1,8 @@
 ---
 title: clock函数
-date: 2018-12-13 08:25:29
 categories: C语言语法详解
+abbrlink: fd0a452c
+date: 2018-12-13 08:25:29
 ---
 &emsp;&emsp;`clock`是`C/C++`中的计时函数，而与其相关的数据类型是`clock_t`。在`MSDN`中，`clock`函数定义为：
 

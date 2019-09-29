@@ -1,7 +1,8 @@
 ---
 title: uip的ICMP
-date: 2019-02-04 22:48:47
 categories: Contiki和uip
+abbrlink: 2b9a7fb9
+date: 2019-02-04 22:48:47
 ---
 &emsp;&emsp;下面是`IP`和`ICMP`报文的结构体：
 

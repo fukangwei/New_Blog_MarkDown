@@ -1,7 +1,8 @@
 ---
 title: operator模块
-date: 2018-12-28 10:43:00
 categories: Python语法
+abbrlink: 36dff267
+date: 2018-12-28 10:43:00
 ---
 &emsp;&emsp;本模块主要包括一些`Python`内部操作符对应的函数。这些函数主要分为几类：`对象比较`、`逻辑比较`、`算术运算`和`序列操作`：
 

@@ -1,7 +1,8 @@
 ---
 title: gzip模块
-date: 2019-02-09 15:04:04
 categories: Python语法
+abbrlink: e6c0e7dc
+date: 2019-02-09 15:04:04
 ---
 ### gzip module
 

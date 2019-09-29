@@ -1,7 +1,8 @@
 ---
 title: 网站添加favicon.ico
-date: 2019-03-08 10:49:06
 categories: HTML笔记
+abbrlink: 89b25779
+date: 2019-03-08 10:49:06
 ---
 &emsp;&emsp;`favicon.ico`图标是网站的缩略标志，可以显示在浏览器标签、地址栏左边和收藏夹。它是展示网站个性的缩略`logo`标志，也可以说是网站头像。
 &emsp;&emsp;准备一张长宽一样的图片，然后打开在线工具`aTool`(`http://www.atool.org/ico.php`)生成`ico`图标。点击选择文件，可以浏览你刚刚生成的宽高相同的图片。选择生成的图片尺寸大小，建议采用`32 * 32`的大小。点击`生成favicon.ico图标`按钮，即可结束。

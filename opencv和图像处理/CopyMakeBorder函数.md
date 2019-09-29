@@ -1,7 +1,8 @@
 ---
 title: CopyMakeBorder函数
-date: 2019-03-04 17:13:55
 categories: opencv和图像处理
+abbrlink: b2e1e310
+date: 2019-03-04 17:13:55
 ---
 &emsp;&emsp;其作用是复制图像并且制作边界(处理边界卷积)：
 

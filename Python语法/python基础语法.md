@@ -1,7 +1,8 @@
 ---
 title: python基础语法
-date: 2019-01-10 08:54:28
 categories: Python语法
+abbrlink: e5e567ea
+date: 2019-01-10 08:54:28
 ---
 ### 编码
 

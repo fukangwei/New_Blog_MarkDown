@@ -1,7 +1,8 @@
 ---
 title: TensorFlow的运行方式
-date: 2019-01-15 14:05:11
 categories: 深度学习
+abbrlink: 20514fba
+date: 2019-01-15 14:05:11
 ---
 &emsp;&emsp;`TensorFlow`的运行方式分如下`4`步：
 

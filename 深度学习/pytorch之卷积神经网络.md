@@ -1,7 +1,8 @@
 ---
 title: pytorch之卷积神经网络
-date: 2019-01-15 10:55:19
 categories: 深度学习
+abbrlink: 41d32d78
+date: 2019-01-15 10:55:19
 ---
 
 &emsp;&emsp;这是使用`MNIST`手写数据来演示`pytorch`的卷积神经网络功能。首先加载数据集：

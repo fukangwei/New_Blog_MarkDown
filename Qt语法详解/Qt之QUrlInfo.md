@@ -1,7 +1,8 @@
 ---
 title: Qt之QUrlInfo
-date: 2019-01-23 13:52:53
 categories: Qt语法详解
+abbrlink: 459dbe02
+date: 2019-01-23 13:52:53
 ---
 &emsp;&emsp;The `QUrlInfo` class stores information about `URLs`. The header file is `QUrlInfo`.
 

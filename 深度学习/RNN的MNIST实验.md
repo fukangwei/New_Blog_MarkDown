@@ -1,7 +1,8 @@
 ---
 title: RNN的MNIST实验
-date: 2019-02-15 17:54:49
 categories: 深度学习
+abbrlink: '785927e5'
+date: 2019-02-15 17:54:49
 ---
 ### 在TensorFlow上实现基础LSTM网络
 

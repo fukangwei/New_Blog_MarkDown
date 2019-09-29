@@ -1,7 +1,8 @@
 ---
 title: udp之client和server
-date: 2019-02-05 09:47:51
 categories: Contiki和uip
+abbrlink: d3cab822
+date: 2019-02-05 09:47:51
 ---
 &emsp;&emsp;对于`udp-client.c`进行分析：
 

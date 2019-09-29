@@ -1,7 +1,8 @@
 ---
 title: Qt向导设置
-date: 2019-02-23 16:15:54
 categories: Qt应用示例
+abbrlink: d6a62e9b
+date: 2019-02-23 16:15:54
 ---
 &emsp;&emsp;`ClassWizard.h`如下：
 

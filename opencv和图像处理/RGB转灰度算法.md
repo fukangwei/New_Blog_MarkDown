@@ -1,7 +1,8 @@
 ---
 title: RGB转灰度算法
-date: 2018-12-30 19:54:48
 categories: opencv和图像处理
+abbrlink: e671b1b7
+date: 2018-12-30 19:54:48
 ---
 &emsp;&emsp;对于彩色转灰度，有一个很著名的公式：
 

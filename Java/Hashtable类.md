@@ -1,7 +1,8 @@
 ---
 title: Hashtable类
-date: 2018-12-25 18:48:25
 categories: Java
+abbrlink: 3b388b71
+date: 2018-12-25 18:48:25
 ---
 &emsp;&emsp;`Hashtable`是原始的`java.util`的一部分，是一个`Dictionary`具体的实现。然而`Java 2`重构的`Hashtable`实现了`Map`接口，因此`Hashtable`现在集成到了集合框架中。它和`HashMap`类很相似，但是它支持同步。
 &emsp;&emsp;像`HashMap`一样，`Hashtable`在哈希表中存储键值对。当使用一个哈希表时，要指定用作键的对象，以及要链接到该键的值。然后该键经过哈希处理，所得到的散列码被用作存储在该表中值的索引。

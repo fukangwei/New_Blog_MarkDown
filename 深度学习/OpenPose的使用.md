@@ -1,7 +1,8 @@
 ---
 title: OpenPose的使用
-date: 2018-12-30 22:15:58
 categories: 深度学习
+abbrlink: 65a0e96c
+date: 2018-12-30 22:15:58
 ---
 ### Windows版本
 

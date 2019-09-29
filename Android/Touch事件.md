@@ -1,7 +1,8 @@
 ---
 title: Touch事件
-date: 2018-12-28 15:01:05
 categories: Android
+abbrlink: b927025a
+date: 2018-12-28 15:01:05
 ---
 &emsp;&emsp;重写`Touch`事件回调函数如下：
 

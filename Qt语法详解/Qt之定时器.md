@@ -1,7 +1,8 @@
 ---
 title: Qt之定时器
-date: 2019-01-23 20:44:20
 categories: Qt语法详解
+abbrlink: a819cd2a
+date: 2019-01-23 20:44:20
 ---
 &emsp;&emsp;`Qt`使用定时器有两种方法，一种是使用`QObiect`类的定时器，一种是使用`QTimer`类。定时器的精确性依赖于操作系统和硬件，大多数平台支持`20ms`的精确度。
 

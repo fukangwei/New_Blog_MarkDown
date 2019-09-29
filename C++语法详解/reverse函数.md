@@ -1,7 +1,8 @@
 ---
 title: reverse函数
-date: 2018-12-27 10:45:07
 categories: C++语法详解
+abbrlink: a11fcc86
+date: 2018-12-27 10:45:07
 ---
 &emsp;&emsp;This is a function template, in the header file `algorithm`.
 

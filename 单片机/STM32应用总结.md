@@ -1,7 +1,8 @@
 ---
 title: STM32应用总结
-date: 2018-12-30 04:29:19
 categories: 单片机
+abbrlink: 17f4a15b
+date: 2018-12-30 04:29:19
 ---
 ### STM32软件延时函数
 

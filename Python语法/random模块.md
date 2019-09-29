@@ -1,7 +1,8 @@
 ---
 title: random模块
-date: 2018-12-28 09:00:41
 categories: Python语法
+abbrlink: 7fc559f6
+date: 2018-12-28 09:00:41
 ---
 &emsp;&emsp;Python中的`random`模块用于生成随机数。下面介绍一下`random`模块中最常用的几个函数。
 

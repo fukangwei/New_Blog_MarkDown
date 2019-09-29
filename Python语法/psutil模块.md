@@ -1,7 +1,8 @@
 ---
 title: psutil模块
-date: 2019-02-10 17:08:38
 categories: Python语法
+abbrlink: 76f2803e
+date: 2019-02-10 17:08:38
 ---
 &emsp;&emsp;用`Python`编写脚本简化日常的运维工作是`Python`的一个重要用途。在`Linux`下，有许多系统命令可以让我们时刻监控系统运行的状态，如`ps`、`top`、`free`等。要获取这些系统信息，`Python`可以通过`subprocess`模块调用并获取结果。但这样做显得很麻烦，尤其是要写很多解析代码。
 &emsp;&emsp;在`Python`中获取系统信息的另一个好办法是使用`psutil`这个第三方模块。顾名思义，`psutil`等于`process and system utilities`，它不仅可以通过一两行代码实现系统监控，还可以跨平台使用，支持`Linux`、`UNIX`、`OSX`、`Windows`等，是系统管理员和运维小伙伴的必备模块。

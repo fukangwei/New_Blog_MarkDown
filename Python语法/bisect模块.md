@@ -1,7 +1,8 @@
 ---
 title: bisect模块
-date: 2019-02-09 16:18:36
 categories: Python语法
+abbrlink: a9dc8706
+date: 2019-02-09 16:18:36
 ---
 &emsp;&emsp;本模块实现已经排序的队列列表插入元素之后保持排序。对于个大量数据的列表来看，插入元素并保持排序，计算量是非常大的。本模块实现了`bisect`算法，主要基于二分算法来实现。
 &emsp;&emsp;`bisect_left`函数原型如下：

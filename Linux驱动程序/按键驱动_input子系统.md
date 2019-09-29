@@ -1,7 +1,8 @@
 ---
 title: 按键驱动_input子系统
-date: 2019-02-04 10:50:27
 categories: Linux驱动程序
+abbrlink: 433b008a
+date: 2019-02-04 10:50:27
 ---
 &emsp;&emsp;`input_button.c`如下：
 

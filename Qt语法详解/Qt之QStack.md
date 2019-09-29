@@ -1,7 +1,8 @@
 ---
 title: Qt之QStack
-date: 2019-01-02 19:05:18
 categories: Qt语法详解
+abbrlink: 88fe4da8
+date: 2019-01-02 19:05:18
 ---
 ### QStack Class
 

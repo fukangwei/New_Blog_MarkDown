@@ -1,7 +1,8 @@
 ---
 title: Linux系统编程基础
-date: 2019-03-19 13:43:45
 categories: Linux系统编程
+abbrlink: 6b4693c0
+date: 2019-03-19 13:43:45
 ---
 ### 系统调用之文件访问
 

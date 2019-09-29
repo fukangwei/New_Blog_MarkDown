@@ -1,7 +1,8 @@
 ---
 title: Scrollbar滚动条
-date: 2019-04-09 06:47:56
 categories: Tkinter编程
+abbrlink: 960b7283
+date: 2019-04-09 06:47:56
 ---
 &emsp;&emsp;`Scrollbar`(滚动条)组件用于滚动一些组件的可见范围，根据方向可分为垂直滚动条和水平滚动条。`Scrollbar`组件常常被用于实现文本、画布和列表框的滚动。
 &emsp;&emsp;`Scrollbar`组件通常几乎与`Text`组件、`Canvas`组件和`Listbox`组件一起使用，水平滚动条还能跟`Entry`组件配合。

@@ -1,7 +1,8 @@
 ---
 title: Map接口
-date: 2018-12-21 20:11:33
 categories: Java
+abbrlink: d16efb36
+date: 2018-12-21 20:11:33
 ---
 &emsp;&emsp;在`Map`接口中，键和值一一映射，可以通过键来获取值。
 

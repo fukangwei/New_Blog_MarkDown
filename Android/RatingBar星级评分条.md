@@ -1,7 +1,8 @@
 ---
 title: RatingBar星级评分条
-date: 2018-12-28 12:37:59
 categories: Android
+abbrlink: 9dc82128
+date: 2018-12-28 12:37:59
 ---
 &emsp;&emsp;`RatingBar`和`SeekBar`的类结构是一样的，也是`ProgressBar`的子类，也就是说它同样有用`ProgressBar`的相关属性。
 &emsp;&emsp;常用的属性如下：

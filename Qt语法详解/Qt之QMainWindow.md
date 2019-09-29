@@ -1,7 +1,8 @@
 ---
 title: Qt之QMainWindow
-date: 2019-03-18 15:59:28
 categories: Qt语法详解
+abbrlink: 91b081f2
+date: 2019-03-18 15:59:28
 ---
 ### 主窗口简介
 

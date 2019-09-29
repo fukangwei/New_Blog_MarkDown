@@ -1,7 +1,8 @@
 ---
 title: Contiki的SPI接口
-date: 2019-02-04 23:50:56
 categories: Contiki和uip
+abbrlink: ad1986fb
+date: 2019-02-04 23:50:56
 ---
 ### SPI宏定义
 

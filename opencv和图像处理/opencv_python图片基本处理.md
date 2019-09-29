@@ -1,7 +1,8 @@
 ---
 title: opencv_python图片基本处理
-date: 2019-01-18 13:22:19
 categories: opencv和图像处理
+abbrlink: f03ec7df
+date: 2019-01-18 13:22:19
 ---
 ### 图像的载入、显示和保存
 

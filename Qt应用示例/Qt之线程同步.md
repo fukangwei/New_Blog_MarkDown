@@ -1,7 +1,8 @@
 ---
 title: Qt之线程同步
-date: 2019-02-06 16:46:00
 categories: Qt应用示例
+abbrlink: 3bdc08c4
+date: 2019-02-06 16:46:00
 ---
 &emsp;&emsp;代码如下：
 

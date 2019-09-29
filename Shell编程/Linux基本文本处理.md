@@ -1,7 +1,8 @@
 ---
 title: Linux基本文本处理
-date: 2019-01-22 08:41:35
 categories: Shell编程
+abbrlink: 128720d6
+date: 2019-01-22 08:41:35
 ---
 ### fold命令
 

@@ -1,7 +1,8 @@
 ---
 title: multiprocessing模块
-date: 2019-02-10 16:54:23
 categories: Python语法
+abbrlink: ec61b344
+date: 2019-02-10 16:54:23
 ---
 &emsp;&emsp;`Python`提供了多进程包`multiprocessing`，它支持子进程调度、通信以及共享内存，执行不同形式的同步，提供了`Process`、`Lock`等组件。
 &emsp;&emsp;多进程和多线程区别：多线程使用的是`CPU`的一个核，适合`IO`密集型任务；多进程使用的是`CPU`的多个核，适合运算密集型任务。

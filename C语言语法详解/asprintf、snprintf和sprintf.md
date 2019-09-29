@@ -1,7 +1,8 @@
 ---
 title: asprintf、snprintf和sprintf
-date: 2018-12-06 17:49:34
 categories: C语言语法详解
+abbrlink: 9a3d87f8
+date: 2018-12-06 17:49:34
 ---
 ### 用snprintf/asprintf取代不安全的sprintf
 

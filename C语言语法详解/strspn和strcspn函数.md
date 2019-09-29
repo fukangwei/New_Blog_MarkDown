@@ -1,7 +1,8 @@
 ---
 title: strspn和strcspn函数
-date: 2018-12-13 13:25:52
 categories: C语言语法详解
+abbrlink: b30a0322
+date: 2018-12-13 13:25:52
 ---
 ### strcspn函数
 

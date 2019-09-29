@@ -1,7 +1,8 @@
 ---
 title: Properties类
-date: 2018-12-21 20:41:14
 categories: Java
+abbrlink: 112fb5c5
+date: 2018-12-21 20:41:14
 ---
 &emsp;&emsp;`Properties`继承于`Hashtable`，表示一个持久的属性集，属性列表中每个键及其对应值都是一个字符串。`Properties`类被许多`Java`类使用，例如在获取环境变量时，它就作为`System.getProperties`方法的返回值。
 &emsp;&emsp;`Properties`定义如下实例变量，这个变量持有一个`Properties`对象相关的默认属性列表：

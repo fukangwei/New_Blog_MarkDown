@@ -1,7 +1,8 @@
 ---
 title: util模块
-date: 2019-02-08 15:33:19
 categories: Node.js笔记
+abbrlink: ad279b21
+date: 2019-02-08 15:33:19
 ---
 &emsp;&emsp;`util`是一个`Node.js`核心模块，提供常用函数的集合，用于弥补核心`JavaScript`的功能不足。
 

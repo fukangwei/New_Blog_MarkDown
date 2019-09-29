@@ -1,7 +1,8 @@
 ---
 title: numpy基础教程二
-date: 2019-08-06 18:34:06
 categories: Python语法
+abbrlink: '87e57226'
+date: 2019-08-06 18:34:06
 ---
 ### argsort
 

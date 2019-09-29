@@ -1,7 +1,8 @@
 ---
 title: Qt之QListIterator
-date: 2019-02-18 15:24:17
 categories: Qt语法详解
+abbrlink: 814025c6
+date: 2019-02-18 15:24:17
 ---
 &emsp;&emsp;The `QListIterator` class provides a `Java-style` const iterator for `QList` and `QQueue`. The header file is `QListIterator`.
 

@@ -1,7 +1,8 @@
 ---
 title: 51单片机printf函数
-date: 2018-12-29 17:21:55
 categories: 单片机
+abbrlink: ff571887
+date: 2018-12-29 17:21:55
 ---
 &emsp;&emsp;代码如下：
 

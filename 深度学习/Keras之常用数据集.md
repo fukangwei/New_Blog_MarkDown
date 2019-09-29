@@ -1,7 +1,8 @@
 ---
 title: Keras之常用数据集
-date: 2019-01-01 15:49:45
 categories: 深度学习
+abbrlink: df5fbbbc
+date: 2019-01-01 15:49:45
 ---
 ### CIFAR10小图像分类数据集
 

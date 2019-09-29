@@ -1,7 +1,8 @@
 ---
 title: math模块
-date: 2018-12-27 19:35:46
 categories: Python语法
+abbrlink: 6cf85dea
+date: 2018-12-27 19:35:46
 ---
 ### 数学常量
 

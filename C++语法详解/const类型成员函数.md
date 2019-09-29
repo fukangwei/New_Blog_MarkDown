@@ -1,7 +1,8 @@
 ---
 title: const类型成员函数
-date: 2019-02-05 18:46:18
 categories: C++语法详解
+abbrlink: f547c7ee
+date: 2019-02-05 18:46:18
 ---
 &emsp;&emsp;在`C++`中，若一个变量声明为`const`类型，则试图修改该变量的值的操作都被视编译错误：
 

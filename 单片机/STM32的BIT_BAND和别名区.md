@@ -1,7 +1,8 @@
 ---
 title: STM32的BIT_BAND和别名区
-date: 2019-01-19 12:37:59
 categories: 单片机
+abbrlink: 4a674abd
+date: 2019-01-19 12:37:59
 ---
 ### 什么是位段和别名区
 

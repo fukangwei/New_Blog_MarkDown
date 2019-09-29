@@ -1,7 +1,8 @@
 ---
 title: string模板类
-date: 2019-02-07 11:41:33
 categories: C++语法详解
+abbrlink: 1df918a5
+date: 2019-02-07 11:41:33
 ---
 ### 访问字符串中的字符
 

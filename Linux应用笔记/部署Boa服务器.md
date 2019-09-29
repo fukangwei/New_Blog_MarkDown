@@ -1,7 +1,8 @@
 ---
 title: 部署Boa服务器
-date: 2019-02-02 17:29:37
 categories: Linux应用笔记
+abbrlink: aeebde75
+date: 2019-02-02 17:29:37
 ---
 &emsp;&emsp;部署详细步骤如下：
 &emsp;&emsp;1. 到`http://www.boa.org/`下载`boa-0.94.13.tar.gz`，解压后得到`boa-0.94.13`文件夹。

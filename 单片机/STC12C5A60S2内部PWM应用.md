@@ -1,7 +1,8 @@
 ---
 title: STC12C5A60S2内部PWM应用
-date: 2018-12-29 17:24:11
 categories: 单片机
+abbrlink: 8567deb
+date: 2018-12-29 17:24:11
 ---
 &emsp;&emsp;代码如下：
 

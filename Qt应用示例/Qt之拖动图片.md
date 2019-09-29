@@ -1,7 +1,8 @@
 ---
 title: Qt之拖动图片
-date: 2019-02-06 15:33:55
 categories: Qt应用示例
+abbrlink: 999d5d8f
+date: 2019-02-06 15:33:55
 ---
 &emsp;&emsp;`mainwindow.h`如下：
 

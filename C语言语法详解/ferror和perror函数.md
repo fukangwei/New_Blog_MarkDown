@@ -1,7 +1,8 @@
 ---
 title: ferror和perror函数
-date: 2018-12-13 11:30:24
 categories: C语言语法详解
+abbrlink: 67cbc58f
+date: 2018-12-13 11:30:24
 ---
 ### ferror函数
 

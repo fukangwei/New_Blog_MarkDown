@@ -1,7 +1,8 @@
 ---
 title: getaddrinfo函数
-date: 2019-02-02 21:03:58
 categories: Linux系统编程
+abbrlink: 1564a6fd
+date: 2019-02-02 21:03:58
 ---
 ### 概述
 

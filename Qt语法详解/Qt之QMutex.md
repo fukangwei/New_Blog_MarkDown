@@ -1,7 +1,8 @@
 ---
 title: Qt之QMutex
-date: 2019-01-03 20:22:01
 categories: Qt语法详解
+abbrlink: 279b84ed
+date: 2019-01-03 20:22:01
 ---
 &emsp;&emsp;The `QMutex` class provides access serialization between threads. The header file is `QMutex`. **Note**: All functions in this class are `thread-safe`.
 

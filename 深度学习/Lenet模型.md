@@ -1,7 +1,8 @@
 ---
 title: Lenet模型
-date: 2019-02-11 16:17:14
 categories: 深度学习
+abbrlink: db8a48fe
+date: 2019-02-11 16:17:14
 ---
 &emsp;&emsp;`Lenet-5`是卷积神经网络中很适合入门的网络结构，它在`1998`年由`Yann LeCuu`等人在论文`Gradient-Based Learning Applied to Document Recognition`中提出，用于解决`mnist`数据集的字符识别问题。网络结构如下：
 

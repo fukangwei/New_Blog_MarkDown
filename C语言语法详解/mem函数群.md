@@ -1,7 +1,8 @@
 ---
 title: mem函数群
-date: 2019-03-12 17:51:29
 categories: C语言语法详解
+abbrlink: 639644b3
+date: 2019-03-12 17:51:29
 ---
 ### memchr
 

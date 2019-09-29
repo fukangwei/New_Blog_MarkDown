@@ -1,7 +1,8 @@
 ---
 title: subprocess模块
-date: 2019-02-09 15:30:45
 categories: Python语法
+abbrlink: 509ff702
+date: 2019-02-09 15:30:45
 ---
 &emsp;&emsp;`subprocess`的目的就是启动一个新的进程并且与之通信。`subprocess`模块中只定义了一个类`Popen`，可以使用`Popen`来创建进程，并与进程进行复杂的交互。
 

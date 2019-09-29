@@ -1,7 +1,8 @@
 ---
 title: Number和Math类
-date: 2019-02-08 10:37:12
 categories: Java
+abbrlink: bce3110b
+date: 2019-02-08 10:37:12
 ---
 &emsp;&emsp;一般情况下，当需要使用数字的时候，我们通常使用内置数据类型，例如`byte`、`int`、`long`、`double`等：
 

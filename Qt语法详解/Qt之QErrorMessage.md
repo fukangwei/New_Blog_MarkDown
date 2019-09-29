@@ -1,7 +1,8 @@
 ---
 title: Qt之QErrorMessage
-date: 2019-02-18 11:03:47
 categories: Qt语法详解
+abbrlink: 23a29c10
+date: 2019-02-18 11:03:47
 ---
 &emsp;&emsp;`QErrorMessage`类提供了错误消息显示对话框，其头文件为`qerrormessage.h`，它继承了`QDialog`。所有成员函数的列表如下：
 

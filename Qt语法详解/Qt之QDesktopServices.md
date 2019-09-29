@@ -1,7 +1,8 @@
 ---
 title: Qt之QDesktopServices
-date: 2019-01-02 09:56:28
 categories: Qt语法详解
+abbrlink: d36ebcbd
+date: 2019-01-02 09:56:28
 ---
 &emsp;&emsp;如果使用`Qt`开发界面，往往离不开`QDesktopServices`。`QDesktopServices`不仅可以打开本地浏览器，而且还可以打开本地文件(或文件夹)，可以获取桌面、我的文档、`Home`等目录。
 &emsp;&emsp;1. 打开浏览器网页：

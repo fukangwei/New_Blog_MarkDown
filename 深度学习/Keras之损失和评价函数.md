@@ -1,7 +1,8 @@
 ---
 title: Keras之损失和评价函数
-date: 2019-01-01 19:48:08
 categories: 深度学习
+abbrlink: 2f875a36
+date: 2019-01-01 19:48:08
 ---
 ### 损失函数
 

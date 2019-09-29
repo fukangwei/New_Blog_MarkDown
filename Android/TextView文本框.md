@@ -1,7 +1,8 @@
 ---
 title: TextView文本框
-date: 2019-03-01 18:58:18
 categories: Android
+abbrlink: 80f04846
+date: 2019-03-01 18:58:18
 ---
 &emsp;&emsp;先介绍几个单位：
 

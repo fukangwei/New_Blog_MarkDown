@@ -1,7 +1,8 @@
 ---
 title: uname函数
-date: 2018-12-29 14:40:07
 categories: Linux系统编程
+abbrlink: 32cb2964
+date: 2018-12-29 14:40:07
 ---
 &emsp;&emsp;其功能是获取当前内核名称和其它信息：
 

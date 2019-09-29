@@ -1,7 +1,8 @@
 ---
 title: Keras之循环层
-date: 2019-01-15 17:19:11
 categories: 深度学习
+abbrlink: ba6580b8
+date: 2019-01-15 17:19:11
 ---
 ### RNN
 

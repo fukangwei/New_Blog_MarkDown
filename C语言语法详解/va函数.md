@@ -1,7 +1,8 @@
 ---
 title: va函数
-date: 2018-12-10 09:08:20
 categories: C语言语法详解
+abbrlink: e2b3111a
+date: 2018-12-10 09:08:20
 ---
 &emsp;&emsp;`va_list`、`va_start`、`va_arg`和`va_end`这几个宏都是用于函数的可变参数的：
 

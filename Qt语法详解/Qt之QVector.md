@@ -1,7 +1,8 @@
 ---
 title: Qt之QVector
-date: 2019-01-30 20:04:17
 categories: Qt语法详解
+abbrlink: 6ecdbdf1
+date: 2019-01-30 20:04:17
 ---
 &emsp;&emsp;The `QVector` class is a template class that provides a dynamic array.
 

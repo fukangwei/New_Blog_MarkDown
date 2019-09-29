@@ -1,7 +1,8 @@
 ---
 title: Linux串口终端编程
-date: 2019-02-03 20:52:30
 categories: Linux系统编程
+abbrlink: ac7242a0
+date: 2019-02-03 20:52:30
 ---
 ### 串口概述
 

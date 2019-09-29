@@ -1,5 +1,6 @@
 ---
 title: CGI编程
+abbrlink: 5990a09
 date: 2019-01-17 10:13:37
 tags:
 ---

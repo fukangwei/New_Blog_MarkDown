@@ -1,7 +1,8 @@
 ---
 title: errno和strerror
-date: 2019-02-03 13:52:53
 categories: Linux系统编程
+abbrlink: 501b0301
+date: 2019-02-03 13:52:53
 ---
 &emsp;&emsp;经常在调用`Linux`系统`API`的时候出现一些错误，比如使用`open`、`write`、`creat`之类的函数有些时候会返回`-1`，也就是调用失败。这个时候往往需要知道失败的原因，使用`errno`这个全局变量就相当有用了。
 &emsp;&emsp;在程序代码中包含头文件`errno.h`，然后每次程序调用失败的时候，系统会自动用用错误代码填充`errno`这个全局变量，这样你只需要读`errno`这个全局变量就可以获得失败原因了。

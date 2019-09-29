@@ -1,7 +1,8 @@
 ---
 title: ucos信号量集
-date: 2018-12-29 11:48:15
 categories: ucos和ucgui
+abbrlink: ae48ceda
+date: 2018-12-29 11:48:15
 ---
 &emsp;&emsp;信号量集又称`事件标志组`，代码如下：
 

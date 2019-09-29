@@ -1,5 +1,6 @@
 ---
 title: ifreq结构体
+abbrlink: fc22a71d
 date: 2019-01-16 20:33:54
 tags:
 ---

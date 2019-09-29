@@ -1,7 +1,8 @@
 ---
 title: The Ultimate Guide To Speech Recognition With Python
-date: 2019-02-13 16:11:08
 categories: 深度学习
+abbrlink: b1cbe546
+date: 2019-02-13 16:11:08
 ---
 &emsp;&emsp;Have you ever wondered how to add speech recognition to your `Python` project? If so, then keep reading! It's easier than you might think.
 &emsp;&emsp;Far from a being a fad, the overwhelming success of `speech-enabled` products like `Amazon Alexa` has proven that some degree of speech support will be an essential aspect of household tech for the foreseeable future. If you think about it, the reasons why are pretty obvious. Incorporating speech recognition into your `Python` application offers a level of interactivity and accessibility that few technologies can match.

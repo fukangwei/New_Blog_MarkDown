@@ -1,5 +1,6 @@
 ---
 title: IP数据报首部checksum
+abbrlink: b0023368
 date: 2019-01-16 21:35:28
 tags:
 ---

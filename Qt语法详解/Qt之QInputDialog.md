@@ -1,7 +1,8 @@
 ---
 title: Qt之QInputDialog
-date: 2019-02-19 14:24:05
 categories: Qt语法详解
+abbrlink: 7252f654
+date: 2019-02-19 14:24:05
 ---
 &emsp;&emsp;`QInputDialog`类提供了从用户那里得到一个单一值的简单方便的对话框，输入值可以是字符串、数字或者列表中的一项，必须设置标签来告诉用户应该输入什么。其头文件为`qinputdialog.h`，它继承了`QDialog`。
 

@@ -1,7 +1,8 @@
 ---
 title: sklearn之pipeline
-date: 2019-02-27 09:27:08
 categories: 机器学习
+abbrlink: '7e889026'
+date: 2019-02-27 09:27:08
 ---
 &emsp;&emsp;我们经常需要在训练集和测试集上同时进行训练：
 

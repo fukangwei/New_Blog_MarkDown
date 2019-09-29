@@ -1,7 +1,8 @@
 ---
 title: STM32的GPIO工作原理
-date: 2019-03-19 07:08:42
 categories: 单片机
+abbrlink: '5e552037'
+date: 2019-03-19 07:08:42
 ---
 &emsp;&emsp;`STM32F103ZET6`一共有`7`组`IO`口，即`GPIOA`至`GPIOG`，每组`IO`口有`16`个`IO`，一共有`16 * 7 = 112`个`IO`口。`STM32`的大部分引脚除了当`GPIO`使用外，还可以复用为外设功能引脚(如串口)。
 &emsp;&emsp;`STM32`共有`8`种模式：`4`种输入模式，分别是浮空输入模式(`GPIO_Mode_IN_FLOATING`)、上拉输入模式(`GPIO_Mode_IPU`)、下拉输入模式(`GPIO_Mode_IPD`)、模拟输入模式(`GPIO_Mode_AIN`)；`4`种输出模式，分别是普通推挽输出模式(`GPIO_Mode_Out_PP`)、普通开漏输出模式(`GPIO_Mode_Out_OD`)、复用推挽输出模式(`GPIO_Mode_AF_PP`)、复用开漏输出模式(`GPIO_Mode_AF_OD`)。

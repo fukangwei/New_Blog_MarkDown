@@ -1,7 +1,8 @@
 ---
 title: Python属性集合
-date: 2019-02-06 12:35:53
 categories: Python语法
+abbrlink: '3565e905'
+date: 2019-02-06 12:35:53
 ---
 ### \_\_file\_\_属性
 

@@ -1,7 +1,8 @@
 ---
 title: class和struct的区别
-date: 2018-12-27 09:11:47
 categories: C++语法详解
+abbrlink: b9638ae2
+date: 2018-12-27 09:11:47
 ---
 &emsp;&emsp;在`C++`中，`class`和`struct`做类型定义时只有两点区别：
 

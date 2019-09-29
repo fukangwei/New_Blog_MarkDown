@@ -1,7 +1,8 @@
 ---
 title: Python环境搭建
-date: 2019-01-13 19:00:42
 categories: 软件与硬件问题
+abbrlink: 13c36235
+date: 2019-01-13 19:00:42
 ---
 ### pip安装和入门
 

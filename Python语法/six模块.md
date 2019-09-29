@@ -1,7 +1,8 @@
 ---
 title: six模块
-date: 2019-02-10 17:38:51
 categories: Python语法
+abbrlink: 4f347c31
+date: 2019-02-10 17:38:51
 ---
 ### Six: Python 2 and 3 Compatibility Library
 

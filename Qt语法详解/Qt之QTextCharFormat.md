@@ -1,7 +1,8 @@
 ---
 title: Qt之QTextCharFormat
-date: 2019-01-25 20:51:00
 categories: Qt语法详解
+abbrlink: 633c3018
+date: 2019-01-25 20:51:00
 ---
 &emsp;&emsp;The `QTextCharFormat` class provides formatting information for characters in a `QTextDocument`.
 

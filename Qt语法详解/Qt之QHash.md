@@ -1,7 +1,8 @@
 ---
 title: Qt之QHash
-date: 2019-01-28 18:27:15
 categories: Qt语法详解
+abbrlink: 8bae26cb
+date: 2019-01-28 18:27:15
 ---
 &emsp;&emsp;The `QHash` class is a template class that provides a `hash-table-based` dictionary.
 

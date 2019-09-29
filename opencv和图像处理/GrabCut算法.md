@@ -1,7 +1,8 @@
 ---
 title: GrabCut算法
-date: 2019-03-04 16:08:04
 categories: opencv和图像处理
+abbrlink: 5e18e2d3
+date: 2019-03-04 16:08:04
 ---
 &emsp;&emsp;在`opencv`中，`GrabCut`算法由`grabCut`函数实现：
 

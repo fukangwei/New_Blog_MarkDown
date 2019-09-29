@@ -1,7 +1,8 @@
 ---
 title: VBA基础知识
-date: 2019-07-21 21:48:47
 categories: VBA编程
+abbrlink: a0c0b6ea
+date: 2019-07-21 21:48:47
 ---
 &emsp;&emsp;`VBA`代表`Visual Basic for Applications`，这是一种来自`Microsoft`的事件驱动编程语言，现在主要与`Microsoft Office`应用程序(如`MS-Excel`、`MS-Word`和`MS-Access`)一起使用。
 <!--more-->

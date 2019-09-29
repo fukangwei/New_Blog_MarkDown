@@ -1,7 +1,8 @@
 ---
 title: Qt之QLable
-date: 2019-02-06 17:14:43
 categories: Qt语法详解
+abbrlink: 6fef65c7
+date: 2019-02-06 17:14:43
 ---
 - `setText( string )`：设置`label`显示的文本。
 - `move(x, y)`：移动`label`到指定位置。

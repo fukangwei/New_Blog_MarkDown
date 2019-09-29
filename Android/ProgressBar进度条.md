@@ -1,7 +1,8 @@
 ---
 title: ProgressBar进度条
-date: 2019-02-08 17:56:00
 categories: Android
+abbrlink: 4cfb7ca8
+date: 2019-02-08 17:56:00
 ---
 &emsp;&emsp;进度条常用属性如下：
 

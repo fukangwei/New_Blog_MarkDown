@@ -1,7 +1,8 @@
 ---
 title: Intent
-date: 2019-02-10 10:20:19
 categories: Android
+abbrlink: b9c0fe27
+date: 2019-02-10 10:20:19
 ---
 &emsp;&emsp;`Android`中提供了`Intent`机制来协助应用间的交互与通讯。`Intent`负责对应用中一次操作的动作以及附加数据进行描述，`Android`则根据此`Intent`的描述，负责找到对应的组件，将`Intent`传递给调用的组件，并完成组件的调用。
 &emsp;&emsp;`Intent`不仅可用于应用程序之间，也可用于应用程序内部的`Activity`或`Service`之间的交互。因此`Intent`在这里起着一个媒体中介的作用，专门提供组件互相调用的相关信息，实现调用者与被调用者之间的解耦。`SDK`给出了`Intent`作用的表现形式：

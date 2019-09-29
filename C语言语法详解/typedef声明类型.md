@@ -1,7 +1,8 @@
 ---
 title: typedef声明类型
-date: 2018-12-10 16:50:56
 categories: C语言语法详解
+abbrlink: be687acb
+date: 2018-12-10 16:50:56
 ---
 &emsp;&emsp;`typedef`的作用是声明一个新的类型名来代替已有的类型：
 

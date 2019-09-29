@@ -1,7 +1,8 @@
 ---
 title: setjmp和longjmp函数
-date: 2018-12-13 08:58:46
 categories: C语言语法详解
+abbrlink: 36ada062
+date: 2018-12-13 08:58:46
 ---
 &emsp;&emsp;非局部跳转语句是`setjmp`和`longjmp`函数。非局部指的是：不是由`C`语言`goto`语句在一个函数内实施的跳转，而是在栈上跳过若干调用帧，返回到当前函数调用路径上的某一个函数中。
 

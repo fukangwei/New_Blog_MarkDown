@@ -1,7 +1,8 @@
 ---
 title: Contiki协议栈框架
-date: 2019-03-12 09:25:02
 categories: Contiki和uip
+abbrlink: '45156455'
+date: 2019-03-12 09:25:02
 ---
 ### 协议栈总体框架
 

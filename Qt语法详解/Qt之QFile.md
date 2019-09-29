@@ -1,7 +1,8 @@
 ---
 title: Qt之QFile
-date: 2019-03-17 18:04:17
 categories: Qt语法详解
+abbrlink: d6897263
+date: 2019-03-17 18:04:17
 ---
 &emsp;&emsp;基础代码如下：
 

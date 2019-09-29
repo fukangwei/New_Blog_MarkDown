@@ -1,7 +1,8 @@
 ---
 title: stdint和inttypes头文件
-date: 2018-12-13 20:25:31
 categories: C语言语法详解
+abbrlink: 14cfcbc3
+date: 2018-12-13 20:25:31
 ---
 &emsp;&emsp;`stdint.h`是`C99`引进的一个标准`C`库的头文件。`stdint.h`中定义了几种扩展的整数类型和宏，规则如下(其中`N`可以为`8`、`16`、`32`或`64`)：`intN_t`、`int_leastN_t`、`int_fastN_t`表示长度为`N`位的整型数；`uintN_t`、`uint_leastN_t`、`uint_fastN_t`表示长度为`N`位的无符号整型数。
 &emsp;&emsp;在`stdint.h`中的常量，定义了以上各类型数的最大最小值(其中`n`可以为`8`、`16`、`32`或`64`)：`INTn_MIN`、`UINTn_MIN`、`INTn_MAX`、`UITn_MAX`、`INT_LEASEn_MIN`、`INT_LEASEn_MAX`、`INT_FASTn_MIN`或`INT_FASTn_MAX`。

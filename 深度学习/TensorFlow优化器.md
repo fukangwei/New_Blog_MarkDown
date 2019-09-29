@@ -1,7 +1,8 @@
 ---
 title: TensorFlow优化器
-date: 2019-02-12 17:59:27
 categories: 深度学习
+abbrlink: 17fd3a51
+date: 2019-02-12 17:59:27
 ---
 &emsp;&emsp;深度学习常见的是对于梯度的优化，优化器最后其实就是各种对于梯度下降算法的优化。`TensorFLow`提供了很多优化器的支持。
 

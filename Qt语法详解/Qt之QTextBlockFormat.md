@@ -1,7 +1,8 @@
 ---
 title: Qt之QTextBlockFormat
-date: 2019-01-23 10:19:56
 categories: Qt语法详解
+abbrlink: 6bf6c7b
+date: 2019-01-23 10:19:56
 ---
 &emsp;&emsp;The `QTextBlockFormat` class provides formatting information for blocks of text in a `QTextDocument`.
 

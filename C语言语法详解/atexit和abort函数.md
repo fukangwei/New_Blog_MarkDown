@@ -1,7 +1,8 @@
 ---
 title: atexit和abort函数
-date: 2018-12-10 21:39:36
 categories: C语言语法详解
+abbrlink: 56c152af
+date: 2018-12-10 21:39:36
 ---
 ### atexit函数
 

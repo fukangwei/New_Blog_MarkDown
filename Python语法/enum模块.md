@@ -1,7 +1,8 @@
 ---
 title: enum模块
-date: 2018-12-28 09:30:36
 categories: Python语法
+abbrlink: 3e04fdf6
+date: 2018-12-28 09:30:36
 ---
 ### 枚举的定义
 

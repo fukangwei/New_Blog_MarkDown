@@ -1,7 +1,8 @@
 ---
 title: 协议栈NV操作
-date: 2019-02-05 13:11:58
 categories: CC2530和zigbee笔记
+abbrlink: 77a4179a
+date: 2019-02-05 13:11:58
 ---
 &emsp;&emsp;1. 配置串口：
 

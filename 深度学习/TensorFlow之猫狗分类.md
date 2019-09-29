@@ -1,7 +1,8 @@
 ---
 title: TensorFlow之猫狗分类
-date: 2019-02-16 15:24:58
 categories: 深度学习
+abbrlink: 4012f201
+date: 2019-02-16 15:24:58
 ---
 ### 猫狗大战数据集
 

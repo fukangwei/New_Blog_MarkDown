@@ -1,7 +1,8 @@
 ---
 title: Qt设置字体和更改字体颜色
-date: 2019-01-02 11:05:22
 categories: Qt语法详解
+abbrlink: 23b15004
+date: 2019-01-02 11:05:22
 ---
 &emsp;&emsp;对文本框`lineEdit`设置字体，首先建立一个按钮`setFontButton`，并定义了它的槽函数`setFont`，将`setFontButton`添加到布局中，通过`connect`与`setFont`关联。定义的`setFont`如下：
 

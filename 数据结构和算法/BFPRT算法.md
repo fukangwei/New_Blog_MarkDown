@@ -1,7 +1,8 @@
 ---
 title: BFPRT算法
-date: 2019-03-03 10:24:35
 categories: 数据结构和算法
+abbrlink: c2effb3e
+date: 2019-03-03 10:24:35
 ---
 &emsp;&emsp;在一堆数中求其前`k`大或前`k`小的问题，简称`TOP-K`问题。而目前解决`TOP-K`问题最有效的算法即是`BFPRT`算法，又称为`中位数的中位数`算法，该算法由`Blum`、`Floyd`、`Pratt`、`Rivest`、`Tarjan`提出，最坏时间复杂度为`O(n)`。
 &emsp;&emsp;在首次接触`TOP-K`问题时，我们的第一反应就是可以先对所有数据进行一次排序，然后取其前`k`即可，但是这么做有两个问题：

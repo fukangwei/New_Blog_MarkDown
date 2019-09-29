@@ -1,7 +1,8 @@
 ---
 title: Pytorch模型可视化
-date: 2019-01-09 17:04:20
 categories: 深度学习
+abbrlink: 14ed466a
+date: 2019-01-09 17:04:20
 ---
 &emsp;&emsp;`torchsummary`可以用于模型的可视化，它会输出模型各层的详细参数以及输出尺寸。其安装方法如下：
 

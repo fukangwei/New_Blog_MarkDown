@@ -1,7 +1,8 @@
 ---
 title: Qt之简易UDP服务器
-date: 2019-02-06 15:07:46
 categories: Qt应用示例
+abbrlink: c2a11b2
+date: 2019-02-06 15:07:46
 ---
 ### udp_receiver
 

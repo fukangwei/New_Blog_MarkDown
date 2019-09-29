@@ -1,7 +1,8 @@
 ---
 title: getuid和getpwuid函数
-date: 2018-12-29 16:34:02
 categories: Linux系统编程
+abbrlink: 7b40a3a0
+date: 2018-12-29 16:34:02
 ---
 &emsp;&emsp;`getuid`函数原型如下：
 

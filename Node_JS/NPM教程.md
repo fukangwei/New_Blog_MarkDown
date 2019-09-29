@@ -1,7 +1,8 @@
 ---
 title: NPM教程
-date: 2019-02-08 13:11:48
 categories: Node.js笔记
+abbrlink: 29097ff9
+date: 2019-02-08 13:11:48
 ---
 ### NPM基础
 

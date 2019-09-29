@@ -1,7 +1,8 @@
 ---
 title: Qt之QPrinter
-date: 2019-02-18 11:15:19
 categories: Qt语法详解
+abbrlink: bb3a90ee
+date: 2019-02-18 11:15:19
 ---
 &emsp;&emsp;The `QPrinter` class is a paint device that paints on a printer.
 

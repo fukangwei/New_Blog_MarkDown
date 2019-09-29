@@ -1,7 +1,8 @@
 ---
 title: ucos系统基本用法
-date: 2018-12-29 12:39:06
 categories: ucos和ucgui
+abbrlink: '23213704'
+date: 2018-12-29 12:39:06
 ---
 &emsp;&emsp;在任务中创建任务：
 

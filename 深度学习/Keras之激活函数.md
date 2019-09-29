@@ -1,7 +1,8 @@
 ---
 title: Keras之激活函数
-date: 2018-12-30 20:52:21
 categories: 深度学习
+abbrlink: a0cec28e
+date: 2018-12-30 20:52:21
 ---
 &emsp;&emsp;激活函数可以通过设置单独的激活层实现，也可以在构造层对象时通过传递`activation`参数实现：
 

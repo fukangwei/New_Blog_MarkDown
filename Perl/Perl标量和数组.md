@@ -1,7 +1,8 @@
 ---
 title: Perl标量和数组
-date: 2018-12-20 15:33:48
 categories: Perl
+abbrlink: 5f4f3693
+date: 2018-12-20 15:33:48
 ---
 ### 创建变量
 

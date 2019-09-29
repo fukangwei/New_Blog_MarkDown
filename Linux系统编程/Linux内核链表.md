@@ -1,7 +1,8 @@
 ---
 title: Linux内核链表
-date: 2018-12-29 14:32:07
 categories: Linux系统编程
+abbrlink: e9e80e14
+date: 2018-12-29 14:32:07
 ---
 &emsp;&emsp;`linux`内核链表不是在链表节点中包含数据，而是在数据结构中包含链表节点。其在`linux`内核中的定义为：
 

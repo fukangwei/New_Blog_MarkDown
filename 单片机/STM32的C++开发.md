@@ -1,7 +1,8 @@
 ---
 title: STM32的C++开发
-date: 2018-12-29 18:17:31
 categories: 单片机
+abbrlink: c652c843
+date: 2018-12-29 18:17:31
 ---
 &emsp;&emsp;`Options for ...` -> `C/C++` -> `Misc Control`, input `--cpp`.
 &emsp;&emsp;`led.h`如下：

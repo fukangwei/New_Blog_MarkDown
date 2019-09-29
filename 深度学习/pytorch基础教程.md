@@ -1,7 +1,8 @@
 ---
 title: pytorch基础教程
-date: 2019-01-14 11:37:28
 categories: 深度学习
+abbrlink: 232df0e4
+date: 2019-01-14 11:37:28
 ---
 ### Torch或Numpy
 

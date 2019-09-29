@@ -1,7 +1,8 @@
 ---
 title: Qt之QSplitter
-date: 2019-03-18 15:18:56
 categories: Qt语法详解
+abbrlink: c89a1cca
+date: 2019-03-18 15:18:56
 ---
 &emsp;&emsp;分割窗口在应用程序中经常用到，它可以灵活分布窗口布局，经常用于类似文件资源管理器的窗口设计中。
 

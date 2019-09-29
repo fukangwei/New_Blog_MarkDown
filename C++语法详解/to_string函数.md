@@ -1,7 +1,8 @@
 ---
 title: to_string函数
-date: 2019-02-05 18:08:38
 categories: C++语法详解
+abbrlink: fb0ca44b
+date: 2019-02-05 18:08:38
 ---
 &emsp;&emsp;Defined in header `string`:
 

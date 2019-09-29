@@ -1,5 +1,6 @@
 ---
 title: 安装MySQL数据库
+abbrlink: 61cbe787
 date: 2019-07-05 07:09:01
 tags:
 ---

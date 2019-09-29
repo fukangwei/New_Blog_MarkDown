@@ -1,7 +1,8 @@
 ---
 title: Qt之QActionGroup
-date: 2019-01-03 17:21:25
 categories: Qt语法详解
+abbrlink: 859caffc
+date: 2019-01-03 17:21:25
 ---
 &emsp;&emsp;The `QActionGroup` class groups actions together.
 

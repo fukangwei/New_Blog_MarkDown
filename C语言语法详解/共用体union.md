@@ -1,7 +1,8 @@
 ---
 title: 共用体union
-date: 2018-12-12 06:21:36
 categories: C语言语法详解
+abbrlink: a9e20fac
+date: 2018-12-12 06:21:36
 ---
 &emsp;&emsp;`union`的一些妙用如下：
 &emsp;&emsp;1. 为了方便看懂代码。比如说写一个`3*3`的矩阵：

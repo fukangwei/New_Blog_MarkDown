@@ -1,7 +1,8 @@
 ---
 title: Keras之优化器
-date: 2019-01-01 10:04:12
 categories: 深度学习
+abbrlink: ec0a05c1
+date: 2019-01-01 10:04:12
 ---
 &emsp;&emsp;优化器(`optimizer`)是编译`Keras`模型的所需的两个参数之一：
 

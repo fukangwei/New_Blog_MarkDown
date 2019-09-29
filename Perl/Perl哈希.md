@@ -1,7 +1,8 @@
 ---
 title: Perl哈希
-date: 2018-12-20 14:49:22
 categories: Perl
+abbrlink: 71f02a7c
+date: 2018-12-20 14:49:22
 ---
 ### 哈希变量
 

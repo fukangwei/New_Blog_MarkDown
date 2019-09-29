@@ -1,7 +1,8 @@
 ---
 title: 构造String类
-date: 2018-12-16 13:07:07
 categories: C++应用代码
+abbrlink: 666e5f2
+date: 2018-12-16 13:07:07
 ---
 &emsp;&emsp;编写类`String`的构造函数、析构函数和赋值函数，已知类`String`的原型为：
 

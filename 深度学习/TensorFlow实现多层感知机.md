@@ -1,7 +1,8 @@
 ---
 title: TensorFlow实现多层感知机
-date: 2019-02-15 16:09:29
 categories: 深度学习
+abbrlink: af0f033e
+date: 2019-02-15 16:09:29
 ---
 ### 多层感知机简介
 

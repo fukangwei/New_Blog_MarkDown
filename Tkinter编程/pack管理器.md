@@ -1,7 +1,8 @@
 ---
 title: pack管理器
-date: 2019-03-31 08:25:05
 categories: Tkinter编程
+abbrlink: 23d83996
+date: 2019-03-31 08:25:05
 ---
 &emsp;&emsp;`pack`、`grid`和`place`均用于管理同在一个父组件下的所有组件的布局：
 

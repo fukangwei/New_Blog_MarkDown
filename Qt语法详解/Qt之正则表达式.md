@@ -1,7 +1,8 @@
 ---
 title: Qt之正则表达式
-date: 2019-01-02 21:39:17
 categories: Qt语法详解
+abbrlink: '70487973'
+date: 2019-01-02 21:39:17
 ---
 &emsp;&emsp;代码如下：
 

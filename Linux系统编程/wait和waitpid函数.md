@@ -1,7 +1,8 @@
 ---
 title: wait和waitpid函数
-date: 2019-02-03 15:08:47
 categories: Linux系统编程
+abbrlink: a1938eee
+date: 2019-02-03 15:08:47
 ---
 &emsp;&emsp;`wait`函数原型如下：
 

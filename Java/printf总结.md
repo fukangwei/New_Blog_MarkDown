@@ -1,7 +1,8 @@
 ---
 title: printf总结
-date: 2018-12-26 12:05:28
 categories: Java
+abbrlink: f9eccdae
+date: 2018-12-26 12:05:28
 ---
 &emsp;&emsp;代码如下：
 

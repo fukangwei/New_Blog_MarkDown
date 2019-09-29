@@ -1,7 +1,8 @@
 ---
 title: openpyxl模块
-date: 2019-02-24 18:44:09
 categories: Python语法
+abbrlink: ea8f764b
+date: 2019-02-24 18:44:09
 ---
 ### 基本概念
 

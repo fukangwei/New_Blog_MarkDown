@@ -1,7 +1,8 @@
 ---
 title: Qt之LineEdit
-date: 2019-02-23 10:45:35
 categories: Qt语法详解
+abbrlink: fe581a02
+date: 2019-02-23 10:45:35
 ---
 ### 行编辑器
 

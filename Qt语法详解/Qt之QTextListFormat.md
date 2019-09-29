@@ -1,7 +1,8 @@
 ---
 title: Qt之QTextListFormat
-date: 2019-01-03 10:19:23
 categories: Qt语法详解
+abbrlink: d8027cba
+date: 2019-01-03 10:19:23
 ---
 &emsp;&emsp;The `QTextListFormat` class provides formatting information for lists in a `QTextDocument`.
 

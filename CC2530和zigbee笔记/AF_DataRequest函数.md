@@ -1,7 +1,8 @@
 ---
 title: AF_DataRequest函数
-date: 2019-02-05 14:21:35
 categories: CC2530和zigbee笔记
+abbrlink: d3d20d13
+date: 2019-02-05 14:21:35
 ---
 &emsp;&emsp;`Zigbee`协议栈进行数据发送是调用`AF_DataRequest`这个函数，该函数会调用协议栈里面与硬件相关的函数最终将数据通过天线发送出去。
 

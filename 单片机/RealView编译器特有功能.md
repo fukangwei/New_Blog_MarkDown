@@ -1,7 +1,8 @@
 ---
 title: RealView编译器特有功能
-date: 2019-01-19 15:27:22
 categories: 单片机
+abbrlink: 4b2bdb96
+date: 2019-01-19 15:27:22
 ---
 ### 关键字和运算符
 

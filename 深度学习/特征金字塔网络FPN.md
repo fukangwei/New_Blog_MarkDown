@@ -1,7 +1,8 @@
 ---
 title: 特征金字塔网络FPN
-date: 2019-02-17 10:53:46
 categories: 深度学习
+abbrlink: 68f7dbc1
+date: 2019-02-17 10:53:46
 ---
 ### Feature Pyramid Networks for Object Detection
 

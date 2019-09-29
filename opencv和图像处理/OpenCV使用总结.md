@@ -1,7 +1,8 @@
 ---
 title: OpenCV使用总结
-date: 2018-12-30 14:31:59
 categories: opencv和图像处理
+abbrlink: 6f05000e
+date: 2018-12-30 14:31:59
 ---
 ### saturate_cast的作用
 

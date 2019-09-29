@@ -1,7 +1,8 @@
 ---
 title: collections模块
-date: 2019-01-09 14:04:31
 categories: Python语法
+abbrlink: 3bcab8ee
+date: 2019-01-09 14:04:31
 ---
 &emsp;&emsp;`collections`是`Python`内建的一个集合模块，提供了许多有用的集合类。
 

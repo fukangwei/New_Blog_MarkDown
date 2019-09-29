@@ -1,7 +1,8 @@
 ---
 title: Qt之简易截图工具
-date: 2018-12-28 16:08:14
 categories: Qt应用示例
+abbrlink: b4e8099a
+date: 2018-12-28 16:08:14
 ---
 &emsp;&emsp;`widget.h`如下：
 

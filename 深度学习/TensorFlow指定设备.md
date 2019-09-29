@@ -1,7 +1,8 @@
 ---
 title: TensorFlow指定设备
-date: 2019-01-16 14:08:23
 categories: 深度学习
+abbrlink: d6eecfcd
+date: 2019-01-16 14:08:23
 ---
 ### 支持的设备
 

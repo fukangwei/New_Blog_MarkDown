@@ -1,7 +1,8 @@
 ---
 title: inspect模块
-date: 2018-12-27 17:20:16
 categories: Python语法
+abbrlink: f67fbd90
+date: 2018-12-27 17:20:16
 ---
 ### inspect -- Inspect live objects
 

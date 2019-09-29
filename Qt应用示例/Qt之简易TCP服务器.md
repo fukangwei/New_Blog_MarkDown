@@ -1,7 +1,8 @@
 ---
 title: Qt之简易TCP服务器
-date: 2019-02-06 15:25:30
 categories: Qt应用示例
+abbrlink: beb4485e
+date: 2019-02-06 15:25:30
 ---
 ### tcp_client
 

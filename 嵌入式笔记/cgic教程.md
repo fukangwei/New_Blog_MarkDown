@@ -1,7 +1,8 @@
 ---
 title: cgic教程
-date: 2019-01-18 11:34:34
 categories: 嵌入式笔记
+abbrlink: 3d08823d
+date: 2019-01-18 11:34:34
 ---
 ### 使用CGIC的基本思路
 

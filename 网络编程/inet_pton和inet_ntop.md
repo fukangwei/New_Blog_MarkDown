@@ -1,5 +1,6 @@
 ---
 title: inet_pton和inet_ntop
+abbrlink: 997a84b0
 date: 2019-01-17 09:12:00
 tags:
 ---

@@ -1,7 +1,8 @@
 ---
 title: HTML教程二
-date: 2019-07-20 20:19:17
 categories: HTML笔记
+abbrlink: 3f4098f8
+date: 2019-07-20 20:19:17
 ---
 ### HTML列表
 

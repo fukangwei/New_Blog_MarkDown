@@ -1,7 +1,8 @@
 ---
 title: Qt之Qmap
-date: 2019-01-28 10:46:17
 categories: Qt语法详解
+abbrlink: b87b84a5
+date: 2019-01-28 10:46:17
 ---
 &emsp;&emsp;The `QMap` class is a template class that provides a `skip-list-based` dictionary.
 

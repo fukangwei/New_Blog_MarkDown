@@ -1,7 +1,8 @@
 ---
 title: TensorFlow模型的保存和加载
-date: 2019-02-15 14:31:21
 categories: 深度学习
+abbrlink: 711c35c7
+date: 2019-02-15 14:31:21
 ---
 &emsp;&emsp;将训练好的模型参数保存起来，以便以后进行验证或测试，这是我们经常要做的事情。`tf`里面提供模型保存的函数是`tf.train.Saver`模块。模型保存先要创建一个`Saver`对象：
 

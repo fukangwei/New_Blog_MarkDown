@@ -1,7 +1,8 @@
 ---
 title: decimal模块
-date: 2018-12-27 17:38:32
 categories: Python语法
+abbrlink: 184060c5
+date: 2018-12-27 17:38:32
 ---
 &emsp;&emsp;`decimal`模块支持快速正确舍入的十进制浮点运算。它相对于`float`数据类型提供了如下几个优点：
 

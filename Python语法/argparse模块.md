@@ -1,7 +1,8 @@
 ---
 title: argparse模块
-date: 2019-02-10 15:02:32
 categories: Python语法
+abbrlink: d338ca5c
+date: 2019-02-10 15:02:32
 ---
 &emsp;&emsp;`argparse`是`Python`内置的一个用于命令项选项与参数解析的模块，通过在程序中定义好我们需要的参数，`argparse`将会从`sys.argv`中解析出这些参数，并自动生成帮助和使用信息。
 

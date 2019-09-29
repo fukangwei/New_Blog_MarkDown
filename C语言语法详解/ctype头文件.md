@@ -1,7 +1,8 @@
 ---
 title: ctype头文件
-date: 2018-12-06 17:38:46
 categories: C语言语法详解
+abbrlink: c4d418ff
+date: 2018-12-06 17:38:46
 ---
 &emsp;&emsp;`ctype.h`提供了几个有用的测试和转换函数：
 

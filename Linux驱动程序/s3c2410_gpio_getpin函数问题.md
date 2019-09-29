@@ -1,7 +1,8 @@
 ---
 title: s3c2410_gpio_getpin函数问题
-date: 2019-02-04 09:52:58
 categories: Linux驱动程序
+abbrlink: e647a7e5
+date: 2019-02-04 09:52:58
 ---
 &emsp;&emsp;在调试`NRF24L01`的`Linux`驱动时，发送程序调试的很顺利，但是接收驱动一直有问题。最后确定`S3C2440`通过`SPI`接口读取`NRF24L01`时的`MISO`存在问题，问题集中在`tmp |= MISO_STU;`。
 &emsp;&emsp;`MSIO_STU`定义如下：

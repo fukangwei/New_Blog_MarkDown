@@ -1,7 +1,8 @@
 ---
 title: tempfile模块
-date: 2019-02-09 21:33:45
 categories: Python语法
+abbrlink: 7bb834ec
+date: 2019-02-09 21:33:45
 ---
 ### tempfile: Generate temporary files and directories
 

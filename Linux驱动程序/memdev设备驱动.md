@@ -1,7 +1,8 @@
 ---
 title: memdev设备驱动
-date: 2019-02-04 10:45:51
 categories: Linux驱动程序
+abbrlink: 2f56af49
+date: 2019-02-04 10:45:51
 ---
 &emsp;&emsp;`memdev.h`如下：
 

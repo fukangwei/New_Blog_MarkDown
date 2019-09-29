@@ -1,7 +1,8 @@
 ---
 title: OSAL原理
-date: 2019-03-11 20:09:28
 categories: CC2530和zigbee笔记
+abbrlink: d5338b8c
+date: 2019-03-11 20:09:28
 ---
 ### 概述
 

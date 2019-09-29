@@ -1,7 +1,8 @@
 ---
 title: ucgui仪表盘
-date: 2018-12-29 09:43:31
 categories: ucos和ucgui
+abbrlink: 2dd4064
+date: 2018-12-29 09:43:31
 ---
 &emsp;&emsp;代码如下：
 

@@ -1,7 +1,8 @@
 ---
 title: Scanner类
-date: 2018-12-24 21:39:51
 categories: Java
+abbrlink: bc55b219
+date: 2018-12-24 21:39:51
 ---
 &emsp;&emsp;`java.util.Scanner`是`Java 5`的新特征，我们可以通过`Scanner`类来获取用户的输入。下面是创建`Scanner`对象的基本语法：
 

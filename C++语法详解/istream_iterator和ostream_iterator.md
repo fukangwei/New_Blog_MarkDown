@@ -1,7 +1,8 @@
 ---
 title: istream_iterator和ostream_iterator
-date: 2019-03-11 12:10:03
 categories: C++语法详解
+abbrlink: 19d58faa
+date: 2019-03-11 12:10:03
 ---
 ### std::istream_iterator
 

@@ -1,7 +1,8 @@
 ---
 title: TensorFlow处理图片
-date: 2019-02-28 08:45:16
 categories: 深度学习
+abbrlink: 9e26fd76
+date: 2019-02-28 08:45:16
 ---
 ### TensorFlow与OpenCV
 
