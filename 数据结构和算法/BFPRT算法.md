@@ -92,11 +92,9 @@ int BFPRT(int array[], int left, int right, const int &k) {
 ​
     if (num == k) {
         return divide_index;
-    }
-    else if (num > k) {
+    } else if (num > k) {
         return BFPRT(array, left, divide_index - 1, k);
-    }
-    else {
+    } else {
         return BFPRT(array, divide_index + 1, right, k - num);
     }
 }

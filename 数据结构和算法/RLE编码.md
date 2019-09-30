@@ -63,22 +63,22 @@ void Print ( char sz[] ) {
     int nCount = 1;
     cout << one << " ";
 ​
-    while ( *temp ) {
-        temp++;
+    while ( *temp ) {
+        temp++;
 ​
-        if ( one == *temp ) {
-            nCount++;
-        } else {
-            cout << nCount << " ";
-            nCount = 1;
-            one = *temp;
-            cout << one << " ";
-        }
-    }
+        if ( one == *temp ) {
+            nCount++;
+        } else {
+            cout << nCount << " ";
+            nCount = 1;
+            one = *temp;
+            cout << one << " ";
+        }
+    }
 }
 ​
 int main() {
-    Print ( "aaaaaabbbbccc" );
-    return 0;
+    Print ( "aaaaaabbbbccc" );
+    return 0;
 }
 ```
