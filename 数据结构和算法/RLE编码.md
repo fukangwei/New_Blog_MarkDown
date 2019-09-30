@@ -22,7 +22,7 @@ AAAAAAAAAAAAAAA AAAAAAAAAAAAAAA AAA
 
 ``` cpp
 1111 01000001 1111 01000001 0011 01000001
- 15      A     15     A      3      A
+ 15      A     15      A      3      A
 ```
 
 #### 8位元表示法
@@ -42,7 +42,7 @@ for i = 1:size(input)
     if(Q = input(i))
         计数器 + 1
     else
-        output的前项 = 计数器的值，output的下一项 = Q值,
+        output的前项 = 计数器的值，output的下一项 = Q值
         换成input(i)，计数器值换成0
     end
 end
@@ -58,10 +58,10 @@ end
 using namespace std;
 ​
 void Print ( char sz[] ) {
-    char *temp = sz;
-    char one = temp[0];
-    int nCount = 1;
-    cout << one << " ";
+    char *temp = sz;
+    char one = temp[0];
+    int nCount = 1;
+    cout << one << " ";
 ​
     while ( *temp ) {
         temp++;
