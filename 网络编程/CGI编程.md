@@ -189,14 +189,14 @@ name1=value1&name2=value2&name3=value3&name4=value4&...
 int htoi ( char * );
 ​
 int main() {
-    int i, n;
-    char c;
-    printf ( "Content-type:text/plain\n\n" );
-    n = 0;
+    int i, n;
+    char c;
+    printf ( "Content-type:text/plain\n\n" );
+    n = 0;
 ​
-    if ( getenv ( "CONTENT_LENGTH" ) ) {
-        n = atoi ( getenv ( "CONTENT_LENGTH" ) );
-    }
+    if ( getenv ( "CONTENT_LENGTH" ) ) {
+        n = atoi ( getenv ( "CONTENT_LENGTH" ) );
+    }
 ​
     for ( i = 0; i < n; i++ ) {
         int is_eq = 0;
@@ -234,17 +234,17 @@ int main() {
 ​
 /* convert hex string to int */
 int htoi ( char *s ) {
-    char *digits = "0123456789ABCDEF";
+    char *digits = "0123456789ABCDEF";
 ​
-    if ( islower ( s[0] ) ) {
-        s[0] = toupper ( s[0] );
-    }
+    if ( islower ( s[0] ) ) {
+        s[0] = toupper ( s[0] );
+    }
 ​
-    if ( islower ( s[1] ) ) {
-        s[1] = toupper ( s[1] );
-    }
+    if ( islower ( s[1] ) ) {
+        s[1] = toupper ( s[1] );
+    }
 ​
-    return 16 * ( strchr ( digits, s[0] ) - strchr ( digits, '0' ) ) + \
+    return 16 * ( strchr ( digits, s[0] ) - strchr ( digits, '0' ) ) + \
                 ( strchr ( digits, s[1] ) - strchr ( digits, '0' ) );
 }
 ```
@@ -260,16 +260,16 @@ int htoi ( char *s ) {
 #include <string.h>
 ​
 int main() {
-    printf ( "Contenttype:text/html\n\n" );
-    printf ( "<html>\n" );
-    printf ( "<head><title>An HTML Page From a CGI</title> </head>n" );
-    printf ( "<body><br>\n" );
-    printf ( "<h2> This is an HTML page generated from within a CGI program... </h2>\n" );
-    printf ( "<hr><p>\n" );
-    printf ( "<a href = \"../output.html#two\"><b> Go back to output.html page </b> </a>\n" );
-    printf ( "</body>\n" );
-    printf ( "</html>\n" );
-    fflush ( stdout );
+    printf ( "Contenttype:text/html\n\n" );
+    printf ( "<html>\n" );
+    printf ( "<head><title>An HTML Page From a CGI</title> </head>n" );
+    printf ( "<body><br>\n" );
+    printf ( "<h2> This is an HTML page generated from within a CGI program... </h2>\n" );
+    printf ( "<hr><p>\n" );
+    printf ( "<a href = \"../output.html#two\"><b> Go back to output.html page </b> </a>\n" );
+    printf ( "</body>\n" );
+    printf ( "</html>\n" );
+    fflush ( stdout );
 }
 ```
 
