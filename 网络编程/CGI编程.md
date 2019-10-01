@@ -2,7 +2,7 @@
 title: CGI编程
 abbrlink: 5990a09
 date: 2019-01-17 10:13:37
-tags:
+categories: 网络编程
 ---
 ### 为什么要进行CGI编程？
 
@@ -17,10 +17,10 @@ tags:
 
 ``` xml
 <form action="/cgi-bin/hello.cgi">
-    <p> 请在下面填入乘数和被乘数，按下确定后可以看到结果 </p>
-    <input name="m" size="5">
-    <input name="n" size="5"><br>
-    <input type="submit" value="确定">
+    <p> 请在下面填入乘数和被乘数，按下确定后可以看到结果 </p>
+    <input name="m" size="5">
+    <input name="n" size="5"><br>
+    <input type="submit" value="确定">
 </form>
 ```
 
@@ -108,7 +108,7 @@ printf ( "Content-type:text/plain\n\n" );
 
 ``` cpp
 if ( getenv ( "CONTENT_LENGTH" ) ) {
-    n = atoi ( getenv ( "CONTENT_LENGTH" ) );
+    n = atoi ( getenv ( "CONTENT_LENGTH" ) );
 }
 ```
 
@@ -116,7 +116,7 @@ if ( getenv ( "CONTENT_LENGTH" ) ) {
 
 ``` cpp
 for ( i = 0; i < n; i++ ) {
-    putchar ( getchar() );
+    putchar ( getchar() );
 }
 ```
 
@@ -159,7 +159,7 @@ for ( i = 0; i < n; i++ ) {
 
 ``` cpp
 if ( getenv ( "CONTENT_LENGTH" ) ) {
-    n = atoi ( getenv ( "CONTENT_LENGTH" ) );
+    n = atoi ( getenv ( "CONTENT_LENGTH" ) );
 }
 ```
 
@@ -203,14 +203,8 @@ int main() {
         c = getchar();
 ​
         switch ( c ) {
-            case '&':
-                c = '\n';
-                break;
-​
-            case '+':
-                c = ' ';
-                break;
-​
+            case '&': c = '\n'; break;
+            case '+': c = ' ';  break;​
             case '%': {
                 char s[3];
                 s[0] = getchar();
@@ -234,8 +228,8 @@ int main() {
         }　　
     }
 ​
-    putchar ( '\n' );
-    fflush ( stdout );
+    putchar ( '\n' );
+    fflush ( stdout );
 }
 ​
 /* convert hex string to int */
