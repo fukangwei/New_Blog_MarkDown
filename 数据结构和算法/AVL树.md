@@ -152,7 +152,7 @@ int AVLTree<T>::height ( AVLTreeNode<T> *pnode ) {
 ​
 template <typename T>
 int AVLTree<T>::height() {
-    return height ( root );
+    return height ( root );
 };
 ```
 
@@ -246,32 +246,32 @@ AVLTreeNode<T> *AVLTree<T>::leftRightRotation ( AVLTreeNode<T> *proot ) {
 /* 插入操作，递归地进行插入，该函数返回插入后的根节点 */
 template <typename T>
 AVLTreeNode<T> *AVLTree<T>::insert ( AVLTreeNode<T> *&pnode, T key ) {
-    if ( pnode == nullptr ) { /* 寻找到插入的位置 */
-        pnode = new AVLTreeNode<T> ( key, nullptr, nullptr );
-    } else if ( key > pnode->key ) { /* 插入值比当前结点值大，插入到当前结点的右子树上 */
-        pnode->rchild = insert ( pnode->rchild, key );
+    if ( pnode == nullptr ) { /* 寻找到插入的位置 */
+        pnode = new AVLTreeNode<T> ( key, nullptr, nullptr );
+    } else if ( key > pnode->key ) { /* 插入值比当前结点值大，插入到当前结点的右子树上 */
+        pnode->rchild = insert ( pnode->rchild, key );
 ​
-        if ( height ( pnode->rchild ) - height ( pnode->lchild ) == 2 ) { /* 插入后出现失衡 */
-            if ( key > pnode->rchild->key ) { /* 情况一：插入右子树的右节点，进行左旋 */
-                pnode = leftRotation ( pnode );
-            } else if ( key < pnode->rchild->key ) { /* 情况三：插入右子树的左节点,进行先右再左旋转 */
-                pnode = rightLeftRotation ( pnode );
-            }
-        }
-    } else if ( key < pnode->key ) { /* 插入值比当前节点值小，插入到当前结点的左子树上 */
-        pnode->lchild = insert ( pnode->lchild, key );
+        if ( height ( pnode->rchild ) - height ( pnode->lchild ) == 2 ) { /* 插入后出现失衡 */
+            if ( key > pnode->rchild->key ) { /* 情况一：插入右子树的右节点，进行左旋 */
+                pnode = leftRotation ( pnode );
+            } else if ( key < pnode->rchild->key ) { /* 情况三：插入右子树的左节点，进行先右再左旋转 */
+                pnode = rightLeftRotation ( pnode );
+            }
+        }
+    } else if ( key < pnode->key ) { /* 插入值比当前节点值小，插入到当前结点的左子树上 */
+        pnode->lchild = insert ( pnode->lchild, key );
 ​
-        if ( height ( pnode->lchild ) - height ( pnode->rchild ) == 2 ) { /* 如果插入导致失衡 */
-            if ( key < pnode->lchild->key ) { /* 情况二：插入到左子树的左孩子节点上，进行右旋 */
-                pnode = rightRotation ( pnode );
-            } else if ( key > pnode->lchild->key ) {
-                pnode = leftRightRotation ( pnode ); /* 情况四：插入到左子树的右孩子节点上，进行先左后右旋转 */
-            }
-        }
-    }
+        if ( height ( pnode->lchild ) - height ( pnode->rchild ) == 2 ) { /* 如果插入导致失衡 */
+            if ( key < pnode->lchild->key ) { /* 情况二：插入到左子树的左孩子节点上，进行右旋 */
+                pnode = rightRotation ( pnode );
+            } else if ( key > pnode->lchild->key ) {
+                pnode = leftRightRotation ( pnode ); /* 情况四：插入到左子树的右孩子节点上，进行先左后右旋转 */
+            }
+        }
+    }
 ​
-    pnode->height = max ( height ( pnode->lchild ), height ( pnode->rchild ) ) + 1;
-    return pnode;
+    pnode->height = max ( height ( pnode->lchild ), height ( pnode->rchild ) ) + 1;
+    return pnode;
 };
 ```
 
@@ -354,45 +354,45 @@ AVLTreeNode<T> *AVLTree<T>::remove ( AVLTreeNode<T> *&pnode, T key ) {
 /* 递归查找指定元素 */
 template <typename T>
 AVLTreeNode<T> *AVLTree<T>::search_recurse ( T key ) {
-    return search_recurse ( root, key );
+    return search_recurse ( root, key );
 };
 ​
 template <typename T>
 AVLTreeNode<T> *AVLTree<T>::search_recurse ( AVLTreeNode<T> *pnode, T key ) const {
-    if ( pnode != nullptr ) {
-        if ( key == pnode->key ) {
-            return pnode;
-        }
+    if ( pnode != nullptr ) {
+        if ( key == pnode->key ) {
+            return pnode;
+        }
 ​
-        if ( key > pnode->key ) {
-            return search_recurse ( pnode->rchild, key );
-        } else {
-            return search_recurse ( pnode->lchild, key );
-        }
-    }
+        if ( key > pnode->key ) {
+            return search_recurse ( pnode->rchild, key );
+        } else {
+            return search_recurse ( pnode->lchild, key );
+        }
+    }
 ​
-    return nullptr;
+    return nullptr;
 };
 ​
 /* 非递归查找指定元素 */
 template <typename T>
 AVLTreeNode<T> *AVLTree<T>::search_iterator ( T key ) {
-    return search_iterator ( root, key );
+    return search_iterator ( root, key );
 };
 ​
 template <typename T>
 AVLTreeNode<T> *AVLTree<T>::search_iterator ( AVLTreeNode<T> *pnode, T key ) const {
-    while ( pnode != nullptr ) {
-        if ( pnode->key == key ) {
-            return pnode;
-        } else if ( key > pnode->key ) {
-            pnode = pnode->rchild;
-        } else {
-            pnode = pnode->lchild;
-        }
-    }
+    while ( pnode != nullptr ) {
+        if ( pnode->key == key ) {
+            return pnode;
+        } else if ( key > pnode->key ) {
+            pnode = pnode->rchild;
+        } else {
+            pnode = pnode->lchild;
+        }
+    }
 ​
-    return nullptr;
+    return nullptr;
 };
 ```
 
