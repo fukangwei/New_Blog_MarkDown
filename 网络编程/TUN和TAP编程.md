@@ -2,7 +2,7 @@
 title: TUN和TAP编程
 abbrlink: 85998e3a
 date: 2019-01-17 13:45:20
-tags:
+categories: 网络编程
 ---
 &emsp;&emsp;`TUN/TAP`虚拟网络设备为用户空间程序提供了网络数据包的发送和接收能力。它既可以当做点对点设备`TUN`，也可以当做以太网设备`TAP`。实际上，不仅`Linux`支持`TUN/TAP`虚拟网络设备，其他`UNIX`也支持。
 
@@ -61,7 +61,7 @@ int tun_create ( char *dev, int flags ) {
 为了使用`TUN/TAP`设备，必须包含特定的头文件`linux/if_tun.h`。第`8`行打开了字符设备`/dev/net/tun`，接下来需要为`ioctl`的`TUNSETIFF`命令初始化一个结构体`ifr`，一般只需要关心其中的两个成员`ifr_name`和`ifr_flags`：
 
 - `ifr_name`定义了要创建或者是打开的虚拟网络设备的名字，如果它为空或者是此网络设备不存在，内核将新建一个虚拟网络设备，并返回新建的虚拟网络设备的名字，同时文件描述符`fd`也将和此网络设备建立起关联。如果并没有指定网络设备的名字，内核将根据其类型自动选择`tunXX`和`tapXX`作为其名字。
-- `ifr_flags`用来描述网络设备的一些属性，比如说是点对点设备还是以太网设备。详细的选项解释如下所示：
+- `ifr_flags`用来描述网络设备的一些属性，比如说是点对点设备还是以太网设备。详细的选项解释如下：
 
 1. `IFF_TUN`：创建一个点对点设备。
 2. `IFF_TAP`：创建一个以太网设备。
@@ -137,7 +137,7 @@ int main ( int argc, char *argv[] ) {
 &emsp;&emsp;首先运行这个程序(在`root`权限下)：
 
 ``` cpp
-root@gentux test # ./a.out
+$ ./a.out
 TUN name is tun0
 ```
 

@@ -2,7 +2,7 @@
 title: ping通ipv6地址
 abbrlink: c8e178ef
 date: 2019-01-17 08:48:53
-tags:
+categories: 网络编程
 ---
 ### Windows
 

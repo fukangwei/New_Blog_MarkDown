@@ -2,7 +2,7 @@
 title: IP数据报首部checksum
 abbrlink: b0023368
 date: 2019-01-16 21:35:28
-tags:
+categories: 网络编程
 ---
 &emsp;&emsp;`IP`数据报`checksum`的计算方法为：将校验和字段置为`0`；对首部中每个`16`位字进行二进制反码求和；对第二步得到的和再取反码，就得到`checksum`，写入校验和字段中。
 &emsp;&emsp;抓取一个`IP`数据包，取出`IP`数据报报头部分，数据为`45 00 00 30 80 4c 40 00 80 06 b5 2e d3 43 11 7b cb 51 15 3d`，下面来计算一下校验和：
@@ -19,19 +19,19 @@ tags:
 #include <stdio.h>
 ​
 void main ( void ) {
-    int buff[10] = {0x4500, 0x0030, 0x804c, 0x4000, 0x8006, \
+    int buff[10] = {0x4500, 0x0030, 0x804c, 0x4000, 0x8006, \
                     0x0000, 0xd343, 0x117b, 0xcb51, 0x153d};
-    int checksum = 0, i = 0;
+    int checksum = 0, i = 0;
 ​
-    for ( i = 0; i < 10; i++ ) {
-        checksum += buff[i];
-    }
+    for ( i = 0; i < 10; i++ ) {
+        checksum += buff[i];
+    }
 ​
-    printf ( "checksum = %x\n", checksum );
-    checksum = ( checksum >> 16 ) + ( checksum & 0xffff );
-    checksum += ( checksum >> 16 );
-    checksum = 0xffff - checksum;
-    printf ( "checksum = %04x\n", checksum );
+    printf ( "checksum = %x\n", checksum );
+    checksum = ( checksum >> 16 ) + ( checksum & 0xffff );
+    checksum += ( checksum >> 16 );
+    checksum = 0xffff - checksum;
+    printf ( "checksum = %04x\n", checksum );
 }
 ```
 

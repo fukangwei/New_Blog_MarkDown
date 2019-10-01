@@ -2,7 +2,7 @@
 title: UDP服务器
 abbrlink: 47e5811b
 date: 2019-01-16 21:28:24
-tags:
+categories: 网络编程
 ---
 &emsp;&emsp;`udp_client.c`如下：
 
