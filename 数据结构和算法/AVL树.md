@@ -234,7 +234,7 @@ AVLTreeNode<T> *AVLTree<T>::leftRightRotation ( AVLTreeNode<T> *proot ) {
 &emsp;&emsp;四种失衡调整如下：
 
 类型        | 使用情形
-------------|-------
+------------|--------
 单左旋      | 在左子树插入左孩子节点，使得平衡因子绝对值由`1`增至`2`
 单右旋      | 在右子树插入右孩子节点，使得平衡因子绝对值由`1`增至`2`
 先左旋后右旋 | 在左子树插入右孩子节点，使得平衡因子绝对值由`1`增至`2`
@@ -286,12 +286,12 @@ AVLTreeNode<T> *AVLTree<T>::insert ( AVLTreeNode<T> *&pnode, T key ) {
 /* 删除指定元素 */
 template<typename T>
 AVLTreeNode<T> *AVLTree<T>::remove ( AVLTreeNode<T> *&pnode, T key ) {
-    if ( pnode != nullptr ) {
-        if ( key == pnode->key ) { /* 找到删除的节点 */
-            /* 因AVL也是二叉排序树，删除节点要维护其二叉排序树的条件 */
-            if ( pnode->lchild != nullptr && pnode->rchild != nullptr ) { /* 若左右都不为空 */
-                /* 左子树比右子树高，在左子树上选择节点进行替换 */
-                if ( height ( pnode->lchild ) > height ( pnode->rchild ) ) {
+    if ( pnode != nullptr ) {
+        if ( key == pnode->key ) { /* 找到删除的节点 */
+            /* 因AVL也是二叉排序树，删除节点要维护其二叉排序树的条件 */
+            if ( pnode->lchild != nullptr && pnode->rchild != nullptr ) { /* 若左右都不为空 */
+                /* 左子树比右子树高，在左子树上选择节点进行替换 */
+                if ( height ( pnode->lchild ) > height ( pnode->rchild ) ) {
                     /* 使用左子树最大节点来代替被删节点，而删除该最大节点 */
                     AVLTreeNode<T> *ppre = maximum ( pnode->lchild ); /* 左子树最大节点 */
                     pnode->key = ppre->key; /* 将最大节点的值覆盖当前结点 */
@@ -340,10 +340,10 @@ AVLTreeNode<T> *AVLTree<T>::remove ( AVLTreeNode<T> *&pnode, T key ) {
             }
         }
 ​
-        return pnode;
-    }
+        return pnode;
+    }
 ​
-    return nullptr;
+    return nullptr;
 };
 ```
 
