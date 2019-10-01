@@ -329,14 +329,14 @@ AVLTreeNode<T> *AVLTree<T>::remove ( AVLTreeNode<T> *&pnode, T key ) {
         } else if ( key < pnode->key ) { /* 要删除的节点比当前节点小，则在左子树进行删除 */
             pnode->lchild = remove ( pnode->lchild, key );
 ​
-            /* 删除左子树节点导致不平衡：相当于情况三或情况一 */
-            if ( height ( pnode->rchild ) - height ( pnode->lchild ) == 2 ) {
-                /* 相当于在右子树上插入左节点造成的失衡(情况三) */
-                if ( height ( pnode->rchild->lchild ) > height ( pnode->rchild->rchild ) ) {
-                    pnode = rightLeftRotation ( pnode );
-                } else { /* 相当于在右子树上插入右节点造成的失衡(情况一) */
-                    pnode = leftRotation ( pnode );
-                }
+            /* 删除左子树节点导致不平衡：相当于情况三或情况一 */
+            if ( height ( pnode->rchild ) - height ( pnode->lchild ) == 2 ) {
+                /* 相当于在右子树上插入左节点造成的失衡(情况三) */
+                if ( height ( pnode->rchild->lchild ) > height ( pnode->rchild->rchild ) ) {
+                    pnode = rightLeftRotation ( pnode );
+                } else { /* 相当于在右子树上插入右节点造成的失衡(情况一) */
+                    pnode = leftRotation ( pnode );
+                }
             }
         }
 ​
