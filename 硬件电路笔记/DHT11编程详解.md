@@ -70,7 +70,6 @@ uchar Read_Byte ( void ) {
 
         if ( k == 1 ) { /* 如果读到的数据是1 */
             in_data = in_data | 0x01;
-
             while ( DHT11_DATA );
         } else {
             in_data = in_data | 0x00;
