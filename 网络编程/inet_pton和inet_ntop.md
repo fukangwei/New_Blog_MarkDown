@@ -2,7 +2,7 @@
 title: inet_pton和inet_ntop
 abbrlink: 997a84b0
 date: 2019-01-17 09:12:00
-tags:
+categories: 网络编程
 ---
 &emsp;&emsp;`Linux`下这`2`个`IP`地址转换函数，可以将`IP`地址在`点分十进制`和`整数`之间进行转换。而且，`inet_pton`和`inet_ntop`能够处理`IPv4`地址和`IPv6`地址。
 &emsp;&emsp;`inet_pton`函数原型如下(将`点分十进制`转为`整数`)：
@@ -42,13 +42,13 @@ const char *inet_ntop ( int af, const void *src, char *dst, socklen_t cnt );
 #include <netinet/in.h>
 ​
 int main ( void ) {
-    char IPdotdec[20]; /* 存放点分十进制IP地址 */
-    struct in_addr s; /* IPv4地址结构体 */
-    printf ( "Please input IP address: " );
-    scanf ( "%s", IPdotdec );
-    inet_pton ( AF_INET, IPdotdec, ( void * ) &s ); /* 转换 */
-    printf ( "inet_pton: 0x%x\n", s.s_addr ); /* 注意得到的字节序 */
-    inet_ntop ( AF_INET, ( void * ) &s, IPdotdec, 16 ); /* 反转换 */
-    printf ( "inet_ntop: %s\n", IPdotdec );
+    char IPdotdec[20]; /* 存放点分十进制IP地址 */
+    struct in_addr s; /* IPv4地址结构体 */
+    printf ( "Please input IP address: " );
+    scanf ( "%s", IPdotdec );
+    inet_pton ( AF_INET, IPdotdec, ( void * ) &s ); /* 转换 */
+    printf ( "inet_pton: 0x%x\n", s.s_addr ); /* 注意得到的字节序 */
+    inet_ntop ( AF_INET, ( void * ) &s, IPdotdec, 16 ); /* 反转换 */
+    printf ( "inet_ntop: %s\n", IPdotdec );
 }
 ```

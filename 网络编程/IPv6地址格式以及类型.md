@@ -2,7 +2,7 @@
 title: IPv6地址格式以及类型
 abbrlink: 39bbe8cb
 date: 2019-01-17 09:29:00
-tags:
+categories: 网络编程
 ---
 ### IPv6地址格式
 
