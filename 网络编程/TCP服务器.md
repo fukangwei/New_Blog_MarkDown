@@ -2,7 +2,7 @@
 title: TCP服务器
 abbrlink: f57bd8f7
 date: 2019-01-17 12:58:23
-tags:
+categories: 网络编程
 ---
 &emsp;&emsp;`tcp_client.c`如下：
 
@@ -70,7 +70,7 @@ int main ( int argc, char *argv[] ) {
 }
 ```
 
-tcp_server.c：
+`tcp_server.c`如下：
 
 ``` cpp
 #include <stdlib.h>
@@ -285,8 +285,7 @@ int main ( int argc, char **argv ) {
 ​
     if ( len > 0 ) {
         printf ( "I receieve %s\r\n", buffer );
-    }
-    else {
+    } else {
         printf ( "%d %s\n", errno, strerror ( errno ) );
     }
 ​
@@ -322,8 +321,7 @@ int main ( int argc, char **argv ) {
     if ( ( sockfd = socket ( PF_INET6, SOCK_STREAM, 0 ) ) == -1 ) {
         perror ( "socket error" );
         exit ( 1 );
-    }
-    else {
+    } else {
         printf ( "socket created\r\n" );
     }
 ​
@@ -335,16 +333,14 @@ int main ( int argc, char **argv ) {
     if ( bind ( sockfd, ( struct sockaddr * ) &my_addr, sizeof ( struct sockaddr_in6 ) ) == -1 ) {
         perror ( "bind error" );
         exit ( 1 );
-    }
-    else {
+    } else {
         printf ( "binded\r\n" );
     }
 ​
     if ( listen ( sockfd, LISTEN_NUM ) == -1 ) {
         perror ( "listen error" );
         exit ( 1 );
-    }
-    else {
+    } else {
         printf ( "begin listen\r\n" );
     }
 ​
@@ -354,8 +350,7 @@ int main ( int argc, char **argv ) {
         if ( ( new_fd = accept ( sockfd, ( struct sockaddr * ) &their_addr, &len ) ) == -1 ) {
             perror ( "accept error" );
             exit ( errno );
-        }
-        else {
+        } else {
             printf ( "server: got connection from %s, port %d, socket %d\r\n", \
                      inet_ntop ( AF_INET6, &their_addr.sin6_addr, buf, sizeof ( buf ) ), \
                      their_addr.sin6_port, new_fd );
@@ -367,8 +362,7 @@ int main ( int argc, char **argv ) {
 ​
         if ( len < 0 ) {
             perror ( "send error!" );
-        }
-        else {
+        } else {
             printf ( "send succeed\r\n" );
         }
     }
