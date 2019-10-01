@@ -9,6 +9,9 @@ categories: AI_付康为
 说明     | 链接         | 说明     | 链接
 ---------|-------------|----------|-----
 基础语法  | [C基础语法]  | 数据类型 | [C数据类型]
+类型转换  | [C类型转换]  | 变量     | [C变量]
 
 [C基础语法]: https://fukangwei.github.io/C语言语法详解/C基础语法
 [C数据类型]: https://fukangwei.github.io/C语言语法详解/C数据类型
+[C类型转换]: https://fukangwei.github.io/C语言语法详解/类型转换
+[C变量]: https://fukangwei.github.io/C语言语法详解/C变量
