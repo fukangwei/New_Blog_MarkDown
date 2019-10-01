@@ -31,28 +31,28 @@ categories: 网络编程
 #include <stdlib.h>
 ​
 int main ( void ) {
-    char *data;
-    long m, n;
-    printf ( "%s%c%c ", "Content-Type:text/html;charset=utf-8\n\n", 13, 10 );
-    printf ( "<html>\n" );
-    printf ( "<head>\n" );
-    printf ( "<tile>乘法结果</tile>\n" );
-    printf ( "</head>\n" );
-    printf ( "<body>\n" );
-    printf ( "<h3>乘法结果</h3>\n" );
-    data = getenv ( "QUERY_STRING" );
+    char *data;
+    long m, n;
+    printf ( "%s%c%c ", "Content-Type:text/html;charset=utf-8\n\n", 13, 10 );
+    printf ( "<html>\n" );
+    printf ( "<head>\n" );
+    printf ( "<tile>乘法结果</tile>\n" );
+    printf ( "</head>\n" );
+    printf ( "<body>\n" );
+    printf ( "<h3>乘法结果</h3>\n" );
+    data = getenv ( "QUERY_STRING" );
 ​
-    if ( data == NULL ) {
-        printf ( "<p>错误！数据没有被输入或者数据传输有问题\n" );
-    } else if ( sscanf ( data, "m=%ld&n=%ld", &m, &n ) != 2 ) {
-        printf ( "<p>错误！输入数据非法。表单中输入的必须是数字。\n" );
-    } else {
-        printf ( "<p>%ld和%ld的成绩是：%ld.\n", m, n, m * n );
-    }
+    if ( data == NULL ) {
+        printf ( "<p>错误！数据没有被输入或者数据传输有问题\n" );
+    } else if ( sscanf ( data, "m=%ld&n=%ld", &m, &n ) != 2 ) {
+        printf ( "<p>错误！输入数据非法。表单中输入的必须是数字。\n" );
+    } else {
+        printf ( "<p>%ld和%ld的成绩是：%ld.\n", m, n, m * n );
+    }
 ​
-    printf ( "</body>\n" );
-    printf ( "</html>\n" );
-    return 0;
+    printf ( "</body>\n" );
+    printf ( "</html>\n" );
+    return 0;
 }
 ```
 
