@@ -3,6 +3,7 @@ title: AVL树
 mathjax: true
 abbrlink: 973716ad
 date: 2019-05-12 15:26:43
+categories: 数据结构和算法
 ---
 ### AVL树简介
 
