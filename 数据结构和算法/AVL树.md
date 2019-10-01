@@ -537,23 +537,23 @@ T AVLTree<T>::minimum() {
 
 ``` cpp
 /* 打印二叉查找树
-key       -- 节点的键值
+key       -- 节点的键值
 direction -- 0，表示该节点是根节点；
-            -1，表示该节点是它的父结点的左孩子；
-             1，表示该节点是它的父结点的右孩子 */
+            -1，表示该节点是它的父结点的左孩子；
+             1，表示该节点是它的父结点的右孩子 */
 template <class T>
 void AVLTree<T>::print_tree ( AVLTreeNode<T> *tree, T key, int direction ) const {
-    if ( tree != nullptr ) {
-        if ( direction == 0 ) { /* tree是根节点 */
-            cout << setw ( 2 ) << tree->key << " is root" << endl;
-        } else { /* tree是分支节点 */
-            cout << setw ( 2 ) << tree->key << " is " << setw ( 2 ) << key << "'s " \
+    if ( tree != nullptr ) {
+        if ( direction == 0 ) { /* tree是根节点 */
+            cout << setw ( 2 ) << tree->key << " is root" << endl;
+        } else { /* tree是分支节点 */
+            cout << setw ( 2 ) << tree->key << " is " << setw ( 2 ) << key << "'s " \
                  << setw ( 12 ) << ( direction == 1 ? "right child" : "left child" ) << endl;
-        }
+        }
 ​
-        print_tree ( tree->lchild, tree->key, -1 );
-        print_tree ( tree->rchild, tree->key, 1 );
-    }
+        print_tree ( tree->lchild, tree->key, -1 );
+        print_tree ( tree->rchild, tree->key, 1 );
+    }
 }
 ​
 template <class T>
@@ -573,32 +573,32 @@ void AVLTree<T>::print_tree() const {
 using namespace std;
 ​
 int main ( void ) {
-    AVLTree<int> a;
+    AVLTree<int> a;
 ​
-    for ( int i = 0; i <= 8; i++ ) {
-        a.insert ( i );
-    }
+    for ( int i = 0; i <= 8; i++ ) {
+        a.insert ( i );
+    }
 ​
-    cout << "树高：" << a.height() << endl;
-    cout << "前序遍历:" << endl;
-    a.preOrder();
-    cout << "中序遍历:" << endl;
-    a.InOrder();
-    cout << "后序遍历:" << endl;
-    a.postOrder();
-    a.print_tree();
-    cout << "删除元素10" << endl;
-    a.remove ( 10 );
-    AVLTreeNode<int> *b = a.search_iterator ( 10 );
+    cout << "树高：" << a.height() << endl;
+    cout << "前序遍历:" << endl;
+    a.preOrder();
+    cout << "中序遍历:" << endl;
+    a.InOrder();
+    cout << "后序遍历:" << endl;
+    a.postOrder();
+    a.print_tree();
+    cout << "删除元素10" << endl;
+    a.remove ( 10 );
+    AVLTreeNode<int> *b = a.search_iterator ( 10 );
 ​
-    if ( b != nullptr ) {
-        cout << b->key;
-    } else {
-        cout << "无此元素" << endl;
-    }
+    if ( b != nullptr ) {
+        cout << b->key;
+    } else {
+        cout << "无此元素" << endl;
+    }
 ​
-    getchar();
-    return 0;
+    getchar();
+    return 0;
 }
 ```
 
