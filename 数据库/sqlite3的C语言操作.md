@@ -4,7 +4,7 @@ abbrlink: a51fb893
 date: 2019-01-17 14:16:50
 tags:
 ---
-   下面的代码包含了创建数据表、添加数据以及查询数据等功能：
+&emsp;&emsp;下面的代码包含了创建数据表、添加数据以及查询数据等功能：
 
 ``` cpp
 #include <stdio.h>
@@ -260,12 +260,12 @@ headers[0]: ID; headers[1]: NAME; headers[2]:  ADDRESS; headers[3]: AGE
 
 ``` c
 int sqlite3_get_table (
-    sqlite3 *,        /* 打开的数据库对象指针 */
-    const char *sql,  /* 要查询的sql语句 */
-    char *** resultp, /* 查询结果 */
-    int *nrow,        /* 查询出多少条记录(即查出多少行) */
-    int *ncolumn,     /* 多少个字段(多少列) */
-    char **errmsg     /* 错误信息 */
+    sqlite3 *db,      /* 打开的数据库对象指针          */
+    const char *sql,  /* 要查询的sql语句              */
+    char *** resultp, /* 查询结果                     */
+    int *nrow,        /* 查询出多少条记录(即查出多少行) */
+    int *ncolumn,     /* 多少个字段(多少列)            */
+    char **errmsg     /* 错误信息                     */
 );
 ```
 
