@@ -2,7 +2,7 @@
 title: sqlite3的C语言操作
 abbrlink: a51fb893
 date: 2019-01-17 14:16:50
-tags:
+categories: 数据库
 ---
 &emsp;&emsp;下面的代码包含了创建数据表、添加数据以及查询数据等功能：
 
