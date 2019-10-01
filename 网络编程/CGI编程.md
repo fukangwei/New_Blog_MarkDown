@@ -81,20 +81,20 @@ printf( "%s%c%c ", "Content-Type:text/html;charset=utf-8\n\n", 13, 10 );
 #include <stdib.h>
 ​
 int main ( void ) {
-    int i, n;
-    printf ( "Content-type:text/plain\n\n" );
-    n = 0;
+    int i, n;
+    printf ( "Content-type:text/plain\n\n" );
+    n = 0;
 ​
-    if ( getenv ( "CONTENT_LENGTH" ) ) {
-        n = atoi ( getenv ( "CONTENT_LENGTH" ) );
-    }
+    if ( getenv ( "CONTENT_LENGTH" ) ) {
+        n = atoi ( getenv ( "CONTENT_LENGTH" ) );
+    }
 ​
-    for ( i = 0; i < n; i++ ) {
-        putchar ( getchar() );
-    }
+    for ( i = 0; i < n; i++ ) {
+        putchar ( getchar() );
+    }
 ​
-    putchar ( '\n' );
-    fflush ( stdout );
+    putchar ( '\n' );
+    fflush ( stdout );
 }
 ```
 
