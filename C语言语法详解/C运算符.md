@@ -131,3 +131,16 @@ A ^ B = 0011 0001
 ### 三元运算符
 
 &emsp;&emsp;三元运算符是`?:`，例如`value = Con ? X : Y`表示如果`Con`为真，则`value`的值为`X`，否则为`Y`。
+
+``` cpp
+#include <stdio.h>
+
+int main() {
+    int a, b;
+    a = 10;
+    b = ( a == 1 ) ? 20 : 30;
+    printf ( "b的值是%d\n", b ); /* b的值是30 */
+    b = ( a == 10 ) ? 20 : 30;
+    printf ( "b的值是%d\n", b ); /* b的值是20 */
+}
+```
