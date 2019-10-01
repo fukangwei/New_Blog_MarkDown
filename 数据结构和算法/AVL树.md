@@ -292,17 +292,17 @@ AVLTreeNode<T> *AVLTree<T>::remove ( AVLTreeNode<T> *&pnode, T key ) {
             if ( pnode->lchild != nullptr && pnode->rchild != nullptr ) { /* 若左右都不为空 */
                 /* 左子树比右子树高，在左子树上选择节点进行替换 */
                 if ( height ( pnode->lchild ) > height ( pnode->rchild ) ) {
-                    /* 使用左子树最大节点来代替被删节点，而删除该最大节点 */
-                    AVLTreeNode<T> *ppre = maximum ( pnode->lchild ); /* 左子树最大节点 */
-                    pnode->key = ppre->key; /* 将最大节点的值覆盖当前结点 */
-                    pnode->lchild = remove ( pnode->lchild, ppre->key ); /* 递归地删除最大节点 */
-                } else { /* 在右子树上选择节点进行替换 */
-                    /* 使用最小节点来代替被删节点，而删除该最小节点 */
-                    AVLTreeNode<T> *psuc = minimum ( pnode->rchild ); /* 右子树的最小节点 */
-                    pnode->key = psuc->key; /* 将最小节点值覆盖当前结点 */
-                    pnode->rchild = remove ( pnode->rchild, psuc->key ); /* 递归地删除最小节点 */
-                }
-            } else {
+                    /* 使用左子树最大节点来代替被删节点，而删除该最大节点 */
+                    AVLTreeNode<T> *ppre = maximum ( pnode->lchild ); /* 左子树最大节点 */
+                    pnode->key = ppre->key; /* 将最大节点的值覆盖当前结点 */
+                    pnode->lchild = remove ( pnode->lchild, ppre->key ); /* 递归地删除最大节点 */
+                } else { /* 在右子树上选择节点进行替换 */
+                    /* 使用最小节点来代替被删节点，而删除该最小节点 */
+                    AVLTreeNode<T> *psuc = minimum ( pnode->rchild ); /* 右子树的最小节点 */
+                    pnode->key = psuc->key; /* 将最小节点值覆盖当前结点 */
+                    pnode->rchild = remove ( pnode->rchild, psuc->key ); /* 递归地删除最小节点 */
+                }
+            } else {
                 AVLTreeNode<T> *ptemp = pnode;
 ​
                 if ( pnode->lchild != nullptr ) {
