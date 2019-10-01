@@ -303,31 +303,31 @@ AVLTreeNode<T> *AVLTree<T>::remove ( AVLTreeNode<T> *&pnode, T key ) {
                     pnode->rchild = remove ( pnode->rchild, psuc->key ); /* 递归地删除最小节点 */
                 }
             } else {
-                AVLTreeNode<T> *ptemp = pnode;
+                AVLTreeNode<T> *ptemp = pnode;
 ​
-                if ( pnode->lchild != nullptr ) {
-                    pnode = pnode->lchild;
-                } else if ( pnode->rchild != nullptr ) {
-                    pnode = pnode->rchild;
-                }
+                if ( pnode->lchild != nullptr ) {
+                    pnode = pnode->lchild;
+                } else if ( pnode->rchild != nullptr ) {
+                    pnode = pnode->rchild;
+                }
 ​
-                delete ptemp;
-                return nullptr;
-            }
-        } else if ( key > pnode->key ) { /* 要删除的节点比当前节点大，则在右子树进行删除 */
-            pnode->rchild =  remove ( pnode->rchild, key );
+                delete ptemp;
+                return nullptr;
+            }
+        } else if ( key > pnode->key ) { /* 要删除的节点比当前节点大，则在右子树进行删除 */
+            pnode->rchild =  remove ( pnode->rchild, key );
 ​
-            /* 删除右子树节点导致不平衡：相当于情况二或情况四 */
-            if ( height ( pnode->lchild ) - height ( pnode->rchild ) == 2 ) {
-                /* 相当于在左子树上插入右节点造成的失衡(情况四) */
-                if ( height ( pnode->lchild->rchild ) > height ( pnode->lchild->lchild ) ) {
-                    pnode = leftRightRotation ( pnode );
-                } else { /* 相当于在左子树上插入左节点造成的失衡(情况二) */
-                    pnode = rightRotation ( pnode );
-                }
-            }
-        } else if ( key < pnode->key ) { /* 要删除的节点比当前节点小，则在左子树进行删除 */
-            pnode->lchild = remove ( pnode->lchild, key );
+            /* 删除右子树节点导致不平衡：相当于情况二或情况四 */
+            if ( height ( pnode->lchild ) - height ( pnode->rchild ) == 2 ) {
+                /* 相当于在左子树上插入右节点造成的失衡(情况四) */
+                if ( height ( pnode->lchild->rchild ) > height ( pnode->lchild->lchild ) ) {
+                    pnode = leftRightRotation ( pnode );
+                } else { /* 相当于在左子树上插入左节点造成的失衡(情况二) */
+                    pnode = rightRotation ( pnode );
+                }
+            }
+        } else if ( key < pnode->key ) { /* 要删除的节点比当前节点小，则在左子树进行删除 */
+            pnode->lchild = remove ( pnode->lchild, key );
 ​
             /* 删除左子树节点导致不平衡：相当于情况三或情况一 */
             if ( height ( pnode->rchild ) - height ( pnode->lchild ) == 2 ) {
@@ -337,8 +337,8 @@ AVLTreeNode<T> *AVLTree<T>::remove ( AVLTreeNode<T> *&pnode, T key ) {
                 } else { /* 相当于在右子树上插入右节点造成的失衡(情况一) */
                     pnode = leftRotation ( pnode );
                 }
-            }
-        }
+            }
+        }
 ​
         return pnode;
     }
