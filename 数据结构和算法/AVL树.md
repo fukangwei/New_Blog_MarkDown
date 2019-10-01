@@ -167,14 +167,14 @@ int AVLTree<T>::height() {
 /* 左旋转操作，返回旋转后的根节点 */
 template<typename T>
 AVLTreeNode<T> *AVLTree<T>::leftRotation ( AVLTreeNode<T> *proot ) {
-    AVLTreeNode<T> *prchild = proot->rchild;
-    proot->rchild = prchild->lchild;
-    prchild->lchild = proot;
+    AVLTreeNode<T> *prchild = proot->rchild;
+    proot->rchild = prchild->lchild;
+    prchild->lchild = proot;
     /* 更新节点的高度值 */
-    proot->height = max ( height ( proot->lchild ), height ( proot->rchild ) ) + 1;
+    proot->height = max ( height ( proot->lchild ), height ( proot->rchild ) ) + 1;
     /* 更新节点的高度值 */
-    prchild->height = max ( height ( prchild->lchild ), height ( prchild->rchild ) ) + 1;
-    return prchild;
+    prchild->height = max ( height ( prchild->lchild ), height ( prchild->rchild ) ) + 1;
+    return prchild;
 };
 ```
 
@@ -189,12 +189,12 @@ AVLTreeNode<T> *AVLTree<T>::leftRotation ( AVLTreeNode<T> *proot ) {
 /* 右旋转操作，返回旋转后的根节点 */
 template <typename  T>
 AVLTreeNode<T> *AVLTree<T>::rightRotation ( AVLTreeNode<T> *proot ) {
-    AVLTreeNode<T> *plchild = proot->lchild;
-    proot->lchild = plchild->rchild;
-    plchild->rchild = proot;
-    proot->height = max ( height ( proot->lchild ), height ( proot->rchild ) ) + 1; /* 更新节点的高度值 */
-    plchild->height = max ( height ( plchild->lchild ), height ( plchild->rchild ) ) + 1; /* 更新节点的高度值 */
-    return plchild;
+    AVLTreeNode<T> *plchild = proot->lchild;
+    proot->lchild = plchild->rchild;
+    plchild->rchild = proot;
+    proot->height = max ( height ( proot->lchild ), height ( proot->rchild ) ) + 1; /* 更新节点的高度值 */
+    plchild->height = max ( height ( plchild->lchild ), height ( plchild->rchild ) ) + 1; /* 更新节点的高度值 */
+    return plchild;
 };
 ```
 
@@ -209,8 +209,8 @@ AVLTreeNode<T> *AVLTree<T>::rightRotation ( AVLTreeNode<T> *proot ) {
 /* 先右旋再左旋，参数proot为最小失衡子树的根节点，返回旋转后的根节点 */
 template<typename T>
 AVLTreeNode<T> *AVLTree<T>::rightLeftRotation ( AVLTreeNode<T> *proot ) {
-    proot->rchild = rightRotation ( proot->rchild );
-    return leftRotation ( proot );
+    proot->rchild = rightRotation ( proot->rchild );
+    return leftRotation ( proot );
 };
 ```
 
@@ -225,8 +225,8 @@ AVLTreeNode<T> *AVLTree<T>::rightLeftRotation ( AVLTreeNode<T> *proot ) {
 /* 先左后右做旋转，参数proot为最小失衡子树的根节点，该函数返回旋转后的根节点 */
 template <typename T>
 AVLTreeNode<T> *AVLTree<T>::leftRightRotation ( AVLTreeNode<T> *proot ) {
-    proot->lchild = leftRotation ( proot->lchild );
-    return rightRotation ( proot );
+    proot->lchild = leftRotation ( proot->lchild );
+    return rightRotation ( proot );
 };
 ```
 
@@ -411,16 +411,16 @@ AVLTreeNode<T> *AVLTree<T>::search_iterator ( AVLTreeNode<T> *pnode, T key ) con
 ``` cpp
 template<typename T>
 void AVLTree<T>::preOrder ( AVLTreeNode<T> *pnode ) const {
-    if ( pnode != nullptr ) {
-        cout << pnode->key << endl;
-        preOrder ( pnode->lchild );
-        preOrder ( pnode->rchild );
-    }
+    if ( pnode != nullptr ) {
+        cout << pnode->key << endl;
+        preOrder ( pnode->lchild );
+        preOrder ( pnode->rchild );
+    }
 };
 ​
 template<typename T>
 void AVLTree<T>::preOrder() {
-    preOrder ( root );
+    preOrder ( root );
 };
 ```
 
@@ -430,16 +430,16 @@ void AVLTree<T>::preOrder() {
 ``` cpp
 template<typename T>
 void AVLTree<T>::inOrder ( AVLTreeNode<T> *pnode ) const {
-    if ( pnode != nullptr ) {
-        inOrder ( pnode->lchild );
-        cout << pnode->key << endl;
-        inOrder ( pnode->rchild );
-    }
+    if ( pnode != nullptr ) {
+        inOrder ( pnode->lchild );
+        cout << pnode->key << endl;
+        inOrder ( pnode->rchild );
+    }
 };
 ​
 template<typename T>
 void AVLTree<T>::InOrder() {
-    inOrder ( root );
+    inOrder ( root );
 };
 ```
 
