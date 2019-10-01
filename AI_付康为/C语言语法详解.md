@@ -6,8 +6,8 @@ categories: AI_付康为
 ---
 ### C语言基础
 
-说明  | 链接
-------|---
-Test  | [test]
+说明     | 链接
+---------|---
+基础语法  | [C基础语法]
 
-[test]: https://fukangwei.github.io/C语言语法详解/assert函数
+[C基础语法]: https://fukangwei.github.io/C语言语法详解/C基础语法
