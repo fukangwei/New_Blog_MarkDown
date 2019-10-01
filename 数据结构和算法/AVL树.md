@@ -449,16 +449,16 @@ void AVLTree<T>::InOrder() {
 ``` cpp
 template<typename T>
 void AVLTree<T>::postOrder ( AVLTreeNode<T> *pnode ) const {
-    if ( pnode != nullptr ) {
-        postOrder ( pnode->lchild );
-        postOrder ( pnode->rchild );
-        cout << pnode->key << endl;
-    }
+    if ( pnode != nullptr ) {
+        postOrder ( pnode->lchild );
+        postOrder ( pnode->rchild );
+        cout << pnode->key << endl;
+    }
 }
-​
+
 template<typename T>
 void AVLTree<T>::postOrder() {
-    postOrder ( root );
+    postOrder ( root );
 };
 ```
 
@@ -469,17 +469,17 @@ void AVLTree<T>::postOrder() {
 /* 销毁AVL树 */
 template<typename T>
 void AVLTree<T>::destory ( AVLTreeNode<T> *&pnode ) {
-    if ( pnode != nullptr ) {
-        destory ( pnode->lchild ); /* 递归销毁左子树 */
-        destory ( pnode->rchild ); /* 递归销毁右子树 */
-        delete pnode; /* 销毁根节点 */
-        pnode = nullptr;
-    }
+    if ( pnode != nullptr ) {
+        destory ( pnode->lchild ); /* 递归销毁左子树 */
+        destory ( pnode->rchild ); /* 递归销毁右子树 */
+        delete pnode; /* 销毁根节点 */
+        pnode = nullptr;
+    }
 };
 ​
 template<typename T>
 void AVLTree<T>::destory() {
-    destory ( root );
+    destory ( root );
 }
 ```
 
@@ -489,47 +489,47 @@ void AVLTree<T>::destory() {
 /* 返回树中最大节点值 */
 template <typename T>
 AVLTreeNode<T> *AVLTree<T>::maximum ( AVLTreeNode<T> *pnode ) const {
-    if ( pnode != nullptr ) {
-        while ( pnode->rchild != nullptr ) {
-            pnode = pnode->rchild;
-        }
+    if ( pnode != nullptr ) {
+        while ( pnode->rchild != nullptr ) {
+            pnode = pnode->rchild;
+        }
 ​
-        return pnode;
-    }
+        return pnode;
+    }
 ​
-    return nullptr;
+    return nullptr;
 };
 ​
 template<typename T>
 T AVLTree<T>::maximum() {
-    AVLTreeNode<T> *presult = maximum ( root );
+    AVLTreeNode<T> *presult = maximum ( root );
 ​
-    if ( presult != nullptr ) {
-        return presult->key;
-    }
+    if ( presult != nullptr ) {
+        return presult->key;
+    }
 };
 ​
 /* 返回树中最小节点值 */
 template <typename T>
 AVLTreeNode<T> *AVLTree<T>::minimum ( AVLTreeNode<T> *pnode ) const {
-    if ( pnode != nullptr ) {
-        while ( pnode->lchild != nullptr ) {
-            pnode = pnode->lchild;
-        }
+    if ( pnode != nullptr ) {
+        while ( pnode->lchild != nullptr ) {
+            pnode = pnode->lchild;
+        }
 ​
-        return pnode;
-    }
+        return pnode;
+    }
 ​
-    return nullptr;
+    return nullptr;
 };
 ​
 template<typename T>
 T AVLTree<T>::minimum() {
-    AVLTreeNode<T> *presult = minimum ( root );
+    AVLTreeNode<T> *presult = minimum ( root );
 ​
-    if ( presult != nullptr ) {
-        return presult->key;
-    }
+    if ( presult != nullptr ) {
+        return presult->key;
+    }
 };
 ```
 
@@ -558,9 +558,9 @@ void AVLTree<T>::print_tree ( AVLTreeNode<T> *tree, T key, int direction ) const
 ​
 template <class T>
 void AVLTree<T>::print_tree() const {
-    if ( root != nullptr ) {
-        print_tree ( root, root->key, 0 );
-    }
+    if ( root != nullptr ) {
+        print_tree ( root, root->key, 0 );
+    }
 }
 ```
 
