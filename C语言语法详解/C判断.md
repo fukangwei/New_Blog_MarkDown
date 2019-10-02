@@ -47,3 +47,46 @@ if ( boolean_expression_1 ) {
     /* 当上面条件都不为真时执行 */
 }
 ```
+
+### 嵌套if语句
+
+&emsp;&emsp;在`C`语言中，嵌套`if-else`语句是合法的，这意味着你可以在一个`if`或`else if`语句内使用另一个`if`或`else if`语句。
+
+``` cpp
+if ( boolean_expression_1 ) {
+    /* 当boolean_expression_1为真时执行 */
+    if ( boolean_expression_2 ) {
+        /* 当boolean_expression_2为真时执行 */
+    }
+}
+```
+
+可以嵌套`else if-else`，方式与嵌套`if`语句相似。
+
+### switch语句
+
+&emsp;&emsp;`switch`语句允许测试一个变量等于多个值时的情况，每个值称为一个`case`：
+
+``` cpp
+switch ( expression ) {
+    case constant-expression :
+        statement(s);
+        break; /* 可选的 */
+    case constant-expression :
+        statement(s);
+        break; /* 可选的 */
+    /* 可以有任意数量的case语句 */
+    default : /* 可选的 */
+        statement(s);
+}
+```
+
+`switch`语句必须遵循下面的规则：
+
+switch语句中的 expression 是一个常量表达式，必须是一个整型或枚举类型。
+在一个switch中可以有任意数量的case语句。每个case后跟一个要比较的值和一个冒号。
+case的constant-expression必须与switch中的变量具有相同的数据类型，且必须是一个常量或字面量。
+当被测试的变量等于case中的常量时，case后跟的语句将被执行，直到遇到break语句为止。
+当遇到break语句时，switch终止，控制流将跳转到switch语句后的下一行。
+不是每一个case都需要包含break。如果case语句不包含break，控制流将会`继续`后续的case，直到遇到break为止。
+一个 switch 语句可以有一个可选的 default case，出现在 switch 的结尾。default case 可用于在上面所有 case 都不为真时执行一个任务。default case 中的 break 语句不是必需的。
