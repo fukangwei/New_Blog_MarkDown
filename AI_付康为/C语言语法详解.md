@@ -121,6 +121,7 @@ ungetc          | [ungetc函数]
 [assert函数]: https://fukangwei.github.io/C语言语法详解/assert函数
 [atexit和abort函数]: https://fukangwei.github.io/C语言语法详解/atexit和abort函数
 [bsearch函数]: https://fukangwei.github.io/C语言语法详解/bsearch函数
+[clearerr函数]: https://fukangwei.github.io/C语言语法详解/clearerr函数
 [clock函数]: https://fukangwei.github.io/C语言语法详解/clock函数
 [getch和ungetch函数]: https://fukangwei.github.io/C语言语法详解/getch和ungetch函数
 [index和rindex函数]: https://fukangwei.github.io/C语言语法详解/index和rindex函数
@@ -128,4 +129,5 @@ ungetc          | [ungetc函数]
 [mem函数群]: https://fukangwei.github.io/C语言语法详解/mem函数群
 [qsort函数]: https://fukangwei.github.io/C语言语法详解/qsort函数
 [setbuf和setvbuf函数]: https://fukangwei.github.io/C语言语法详解/setbuf和setvbuf函数
+[setjmp和longjmp函数]: https://fukangwei.github.io/C语言语法详解/setjmp和longjmp函数
 [ungetc函数]: https://fukangwei.github.io/C语言语法详解/ungetc函数
