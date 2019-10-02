@@ -103,34 +103,25 @@ int main() {
 }
 ```
 
-将整数转换为枚举
-以下实例将整数转换为枚举：
+### 将整数转换为枚举
 
-实例
+&emsp;&emsp;以下实例将整数转换为枚举：
+
+``` cpp
 #include <stdio.h>
 #include <stdlib.h>
 
-int main()
-{
-
-    enum day
-    {
-        saturday,
-        sunday,
-        monday,
-        tuesday,
-        wednesday,
-        thursday,
-        friday
+int main() {
+    enum day {
+        saturday,  sunday,   monday, tuesday,
+        wednesday, thursday, friday
     } workday;
 
     int a = 1;
     enum day weekend;
-    weekend = ( enum day ) a;  //类型转换
-    //weekend = a; //错误
-    printf("weekend:%d",weekend);
+    weekend = ( enum day ) a; /* 类型转换 */
+    // weekend = a; /* 错误 */
+    printf ( "weekend: %d", weekend ); /* 输出“weekend: 1” */
     return 0;
 }
-以上实例输出结果为：
-
-weekend:1
+```
