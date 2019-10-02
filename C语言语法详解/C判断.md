@@ -83,10 +83,29 @@ switch ( expression ) {
 
 `switch`语句必须遵循下面的规则：
 
-switch语句中的 expression 是一个常量表达式，必须是一个整型或枚举类型。
-在一个switch中可以有任意数量的case语句。每个case后跟一个要比较的值和一个冒号。
-case的constant-expression必须与switch中的变量具有相同的数据类型，且必须是一个常量或字面量。
-当被测试的变量等于case中的常量时，case后跟的语句将被执行，直到遇到break语句为止。
-当遇到break语句时，switch终止，控制流将跳转到switch语句后的下一行。
-不是每一个case都需要包含break。如果case语句不包含break，控制流将会`继续`后续的case，直到遇到break为止。
-一个 switch 语句可以有一个可选的 default case，出现在 switch 的结尾。default case 可用于在上面所有 case 都不为真时执行一个任务。default case 中的 break 语句不是必需的。
+- `switch`语句中的`expression`是一个常量表达式，必须是一个`整型`或`枚举类型`。
+- 在一个`switch`中可以有任意数量的`case`语句。每个`case`后跟一个要比较的值和一个冒号。
+- `case`的`constant-expression`必须与`switch`中的变量具有相同的数据类型，且必须是一个常量或字面量。
+- 当被测试的变量等于`case`中的常量时，`case`后跟的语句将被执行，直到遇到`break`语句为止。
+- 当遇到`break`语句时，`switch`终止，控制流将跳转到`switch`语句后的下一行。
+- 不是每一个`case`都需要包含`break`。如果`case`语句不包含`break`，控制流将会`继续`后续的`case`，直到遇到`break`为止。
+- 一个`switch`语句可以有一个可选的`default case`，出现在`switch`的结尾。`default case`可用于在上面所有`case`都不为真时执行一个任务。`default case`中的`break`语句不是必需的。
+
+### 嵌套switch语句
+
+&emsp;&emsp;可以把一个`switch`作为一个外部`switch`的语句序列的一部分，即可以在一个`switch`语句内使用另一个`switch`语句。即使内部和外部`switch`的`case`常量包含共同的值，也没有矛盾。
+
+``` cpp
+switch(ch1) {
+    case 'A':
+        printf("这个 A 是外部 switch 的一部分" );
+        switch(ch2) {
+            case 'A':
+                printf("这个A是内部switch的一部分" );
+                break;
+            case 'B': /* 内部 B case 代码 */
+        }
+        break;
+    case 'B': /* 外部 B case 代码 */
+}
+```
