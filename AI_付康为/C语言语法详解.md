@@ -17,6 +17,7 @@ categories: AI_付康为
 枚举      | [C枚举]      | 指针    | [C指针]
 字符串    | [C字符串]    | 结构体  | [C结构体]
 共用体    | [C共用体]    | 位域    | [C位域]
+文件操作  | [文件读写操作]
 
 [C基础语法]: https://fukangwei.github.io/C语言语法详解/C基础语法
 [C数据类型]: https://fukangwei.github.io/C语言语法详解/C数据类型
@@ -36,3 +37,4 @@ categories: AI_付康为
 [C结构体]: https://fukangwei.github.io/C语言语法详解/C结构体
 [C共用体]: https://fukangwei.github.io/C语言语法详解/C共用体
 [C位域]: https://fukangwei.github.io/C语言语法详解/C位域
+[文件读写操作]: https://fukangwei.github.io/C语言语法详解/文件读写操作
