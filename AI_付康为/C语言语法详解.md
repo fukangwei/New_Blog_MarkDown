@@ -16,7 +16,7 @@ categories: AI_付康为
 作用域    | [C作用域规则] | 数组    | [C数组]
 枚举      | [C枚举]      | 指针    | [C指针]
 字符串    | [C字符串]    | 结构体  | [C结构体]
-共用体    | [C共用体]
+共用体    | [C共用体]    | 位域    | [C位域]
 
 [C基础语法]: https://fukangwei.github.io/C语言语法详解/C基础语法
 [C数据类型]: https://fukangwei.github.io/C语言语法详解/C数据类型
@@ -35,3 +35,4 @@ categories: AI_付康为
 [C字符串]: https://fukangwei.github.io/C语言语法详解/C字符串
 [C结构体]: https://fukangwei.github.io/C语言语法详解/C结构体
 [C共用体]: https://fukangwei.github.io/C语言语法详解/C共用体
+[C位域]: https://fukangwei.github.io/C语言语法详解/C位域
