@@ -42,3 +42,20 @@ do {
     statements;
 } while ( condition );
 ```
+
+### C嵌套循环
+
+&emsp;&emsp;`C`语言允许在一个循环内使用另一个循环，举个例子：
+
+``` cpp
+for ( initialization; condition; increment/decrement ) {
+    statements;
+
+    for ( initialization; condition; increment/decrement ) {
+        statements;
+        ...
+    }
+
+    ...
+}
+```
