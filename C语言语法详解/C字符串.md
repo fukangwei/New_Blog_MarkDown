@@ -16,19 +16,20 @@ char greeting[6] = {'H', 'e', 'l', 'l', 'o', '\0'};
 char greeting[] = "Hello";
 ```
 
-实际上不需要把 null 字符放在字符串常量的末尾。C 编译器会在初始化数组时，自动把 '\0' 放在字符串的末尾。让我们尝试输出上面的字符串：
+实际上不需要把`NUL`字符放在字符串常量的末尾。`C`编译器会在初始化数组时，自动把`'\0'`放在字符串的末尾。
 
-实例
+``` cpp
 #include <stdio.h>
 
-int main ()
-{
-   char greeting[6] = {'H', 'e', 'l', 'l', 'o', '\0'};
-
-   printf("Greeting message: %s\n", greeting );
-
-   return 0;
+int main () {
+    char greeting[6] = {'H', 'e', 'l', 'l', 'o', '\0'};
+    printf("Greeting message: %s\n", greeting );
+    return 0;
 }
-当上面的代码被编译和执行时，它会产生下列结果：
+```
 
+执行结果：
+
+``` cpp
 Greeting message: Hello
+```
