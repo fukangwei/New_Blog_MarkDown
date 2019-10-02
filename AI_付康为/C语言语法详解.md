@@ -52,3 +52,18 @@ cplusplus     | [头文件cplusplus的解释]
 [宏与单井号和双井号]: https://fukangwei.github.io/C语言语法详解/宏与单井号和双井号
 [可变参数宏]: https://fukangwei.github.io/C语言语法详解/可变参数宏
 [头文件cplusplus的解释]: https://fukangwei.github.io/C语言语法详解/头文件cplusplus的解释
+
+### 字符串函数
+
+说明           | 链接                 | 说明                    | 链接
+---------------|----------------------|------------------------|-----
+strcasecmp     | [strcasecmp函数]     | strchr、strstr和strrstr | [strchr、strstr和strrstr函数]
+strdup         | [strdup函数]         | strspn和strcspn         | [strspn和strcspn函数]
+strtok和strsep | [strtok和strsep函数] | strtol                  | [strtol函数]
+
+[strcasecmp函数]: https://fukangwei.github.io/C语言语法详解/strcasecmp函数
+[strchr、strstr和strrstr函数]: https://fukangwei.github.io/C语言语法详解/strchr、strstr和strrstr函数
+[strdup函数]: https://fukangwei.github.io/C语言语法详解/strdup函数
+[strspn和strcspn函数]: https://fukangwei.github.io/C语言语法详解/strspn和strcspn函数
+[strtok和strsep函数]: https://fukangwei.github.io/C语言语法详解/strtok和strsep函数
+[strtol函数]: https://fukangwei.github.io/C语言语法详解/strtol函数
