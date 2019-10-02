@@ -3,7 +3,7 @@ title: C数组
 date: 2019-10-02 10:11:55
 categories: C语言语法详解
 ---
-&emsp;&emsp;`C`语言支持数组数据结构，它可以存储一个固定大小的相同类型元素的顺序集合。数组是用来存储一系列数据，但它往往被认为是一系列相同类型的变量。
+&emsp;&emsp;`C`语言支持数组数据结构，它可以存储一个固定大小的相同类型元素的顺序集合。
 &emsp;&emsp;数组的声明并不是声明一个个单独的变量，比如`number0`、`number1`、`...`、`number99`，而是声明一个数组变量，比如`numbers`，然后使用`numbers[0]`、`numbers[1]`、`...`、`numbers[99]`来代表一个个单独的变量。数组中的特定元素可以通过索引访问。
 &emsp;&emsp;所有的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。
 
@@ -12,10 +12,10 @@ categories: C语言语法详解
 &emsp;&emsp;在`C`中要声明一个数组，需要指定元素的类型和元素的数量：
 
 ``` cpp
-type arrayName [arraySize];
+type arrayName[arraySize];
 ```
 
-这叫做一维数组。`arraySize`必须是一个大于`0`的整数常量，`type`可以是任意有效的`C`数据类型。例如，要声明一个类型为`double`的包含`10`个元素的数组`balance`：
+这叫做`一维数组`。`arraySize`必须是一个大于`0`的整数常量，`type`可以是任意有效的`C`数据类型。例如，要声明一个类型为`double`的包含`10`个元素的数组`balance`：
 
 ``` cpp
 double balance[10];
