@@ -79,3 +79,9 @@ for ( initialization; condition; increment/decrement ) {
 ``` cpp
 continue;
 ```
+
+### goto语句
+
+&emsp;&emsp;goto语句的用法可以参考[goto语句]。
+
+[goto语句]: https://fukangwei.github.io/C语言语法详解/goto语句
