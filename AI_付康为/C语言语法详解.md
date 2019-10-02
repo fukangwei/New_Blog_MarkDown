@@ -38,3 +38,12 @@ categories: AI_付康为
 [C共用体]: https://fukangwei.github.io/C语言语法详解/C共用体
 [C位域]: https://fukangwei.github.io/C语言语法详解/C位域
 [文件读写操作]: https://fukangwei.github.io/C语言语法详解/文件读写操作
+
+### 预处理总结
+
+说明     | 链接         | 说明     | 链接
+---------|-------------|----------|-----
+内置宏    | [内置宏]    | if头文件注释 | [if头文件注释]
+
+[内置宏]: https://fukangwei.github.io/C语言语法详解/内置宏
+[if头文件注释]: https://fukangwei.github.io/C语言语法详解/if头文件注释
