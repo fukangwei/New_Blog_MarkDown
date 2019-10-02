@@ -59,3 +59,23 @@ for ( initialization; condition; increment/decrement ) {
     ...
 }
 ```
+
+### break语句
+
+&emsp;&emsp;`C`语言中`break`语句有以下两种用法：
+
+- 当`break`语句出现在一个循环内时，循环会立即终止，且程序流将继续执行紧接着循环的下一条语句。
+- 用于终止`switch`语句中的一个`case`。
+
+如果使用的是嵌套循环，`break`语句会停止执行该层的循环，然后开始执行该层循环之后的下一行代码。
+
+### continue语句
+
+&emsp;&emsp;`C`语言中的`continue`语句有点像`break`语句。但它不是强制终止，`continue`会跳过当前循环中的代码，强迫开始下一次循环。
+
+- 对于`for`循环，`continue`语句执行后自增语句仍然会执行。
+- 对于`while`和`do-while`循环，`continue`语句重新执行条件判断语句。
+
+``` cpp
+continue;
+```
