@@ -91,3 +91,17 @@ stdint和inttypes | [stdint和inttypes头文件]
 [ctype头文件]: https://fukangwei.github.io/C语言语法详解/ctype头文件
 [limits和float头文件]: https://fukangwei.github.io/C语言语法详解/limits和float头文件
 [stdint和inttypes头文件]: https://fukangwei.github.io/C语言语法详解/stdint和inttypes头文件
+
+### scanf与sprintf
+
+说明                        | 链接                          | 说明   | 链接
+----------------------------|------------------------------|--------|-----
+asprintf、snprintf和sprintf | [asprintf、snprintf和sprintf] | printf | [printf输出]
+scanf与fscanf               | [scanf与fscanf]               | sscanf | [sscanf函数]
+vsnprintf和vprintf          | [vsnprintf和vprintf函数]
+
+[asprintf、snprintf和sprintf]: https://fukangwei.github.io/C语言语法详解/asprintf、snprintf和sprintf
+[printf输出]: https://fukangwei.github.io/C语言语法详解/printf输出
+[scanf与fscanf]: https://fukangwei.github.io/C语言语法详解/scanf与fscanf
+[sscanf函数]: https://fukangwei.github.io/C语言语法详解/sscanf函数
+[vsnprintf和vprintf函数]: https://fukangwei.github.io/C语言语法详解/vsnprintf和vprintf函数
