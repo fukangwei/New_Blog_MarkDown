@@ -105,3 +105,23 @@ vsnprintf和vprintf          | [vsnprintf和vprintf函数]
 [scanf与fscanf]: https://fukangwei.github.io/C语言语法详解/scanf与fscanf
 [sscanf函数]: https://fukangwei.github.io/C语言语法详解/sscanf函数
 [vsnprintf和vprintf函数]: https://fukangwei.github.io/C语言语法详解/vsnprintf和vprintf函数
+
+### 其他函数
+
+说明   | 链接            | 说明          | 链接
+-------|----------------|---------------|-----
+assert        | [assert函数]       | atexit和abort | [atexit和abort函数]
+bsearch       | [bsearch函数]      | clearerr      | [clearerr函数]
+clock         | [clock函数]        | getch和ungetch | [getch和ungetch函数]
+index和rindex | [index和rindex函数] | itoa          | [itoa函数]
+mem函数群     | [mem函数群]         | qsort         | [qsort函数]
+
+[assert函数]: https://fukangwei.github.io/C语言语法详解/assert函数
+[atexit和abort函数]: https://fukangwei.github.io/C语言语法详解/atexit和abort函数
+[bsearch函数]: https://fukangwei.github.io/C语言语法详解/bsearch函数
+[clock函数]: https://fukangwei.github.io/C语言语法详解/clock函数
+[getch和ungetch函数]: https://fukangwei.github.io/C语言语法详解/getch和ungetch函数
+[index和rindex函数]: https://fukangwei.github.io/C语言语法详解/index和rindex函数
+[itoa函数]: https://fukangwei.github.io/C语言语法详解/itoa函数
+[mem函数群]: https://fukangwei.github.io/C语言语法详解/mem函数群
+[qsort函数]: https://fukangwei.github.io/C语言语法详解/qsort函数
