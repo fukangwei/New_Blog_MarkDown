@@ -68,3 +68,15 @@ strtok和strsep | [strtok和strsep函数] | strtol                  | [strtol函
 [strspn和strcspn函数]: https://fukangwei.github.io/C语言语法详解/strspn和strcspn函数
 [strtok和strsep函数]: https://fukangwei.github.io/C语言语法详解/strtok和strsep函数
 [strtol函数]: https://fukangwei.github.io/C语言语法详解/strtol函数
+
+### 文件函数
+
+说明    | 链接             | 说明             | 链接
+--------|-----------------|------------------|-----
+fdopen  | [fdopen函数详解] | ferror和perror   | [ferror和perror函数]
+freopen | [freopen函数]    | fsetpos和fgetpos | [fsetpos和fgetpos函数]
+
+[fdopen函数详解]: https://fukangwei.github.io/C语言语法详解/fdopen函数详解
+[ferror和perror函数]: https://fukangwei.github.io/C语言语法详解/ferror和perror函数
+[freopen函数]: https://fukangwei.github.io/C语言语法详解/freopen函数
+[fsetpos和fgetpos函数]: https://fukangwei.github.io/C语言语法详解/fsetpos和fgetpos函数
