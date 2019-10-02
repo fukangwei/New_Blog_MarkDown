@@ -108,13 +108,15 @@ vsnprintf和vprintf          | [vsnprintf和vprintf函数]
 
 ### 其他函数
 
-说明   | 链接            | 说明          | 链接
--------|----------------|---------------|-----
-assert        | [assert函数]       | atexit和abort | [atexit和abort函数]
-bsearch       | [bsearch函数]      | clearerr      | [clearerr函数]
-clock         | [clock函数]        | getch和ungetch | [getch和ungetch函数]
-index和rindex | [index和rindex函数] | itoa          | [itoa函数]
-mem函数群     | [mem函数群]         | qsort         | [qsort函数]
+说明            | 链接                  | 说明           | 链接
+----------------|----------------------|----------------|-----
+assert          | [assert函数]          | atexit和abort  | [atexit和abort函数]
+bsearch         | [bsearch函数]         | clearerr       | [clearerr函数]
+clock           | [clock函数]           | getch和ungetch | [getch和ungetch函数]
+index和rindex   | [index和rindex函数]   | itoa            | [itoa函数]
+mem函数群       | [mem函数群]            | qsort          | [qsort函数]
+setbuf和setvbuf | [setbuf和setvbuf函数] | setjmp和longjmp | [setjmp和longjmp函数]
+ungetc          | [ungetc函数]
 
 [assert函数]: https://fukangwei.github.io/C语言语法详解/assert函数
 [atexit和abort函数]: https://fukangwei.github.io/C语言语法详解/atexit和abort函数
@@ -125,3 +127,5 @@ mem函数群     | [mem函数群]         | qsort         | [qsort函数]
 [itoa函数]: https://fukangwei.github.io/C语言语法详解/itoa函数
 [mem函数群]: https://fukangwei.github.io/C语言语法详解/mem函数群
 [qsort函数]: https://fukangwei.github.io/C语言语法详解/qsort函数
+[setbuf和setvbuf函数]: https://fukangwei.github.io/C语言语法详解/setbuf和setvbuf函数
+[ungetc函数]: https://fukangwei.github.io/C语言语法详解/ungetc函数
