@@ -13,7 +13,7 @@ categories: AI_付康为
 常量      | [C常量]     | 存储类   | [C存储类]
 运算符    | [C运算符]    | 判断    | [C判断]
 循环      | [C循环]      | 函数    | [C函数]
-作用域    | [C作用域规则]
+作用域    | [C作用域规则] | 数组    | [C数组]
 
 [C基础语法]: https://fukangwei.github.io/C语言语法详解/C基础语法
 [C数据类型]: https://fukangwei.github.io/C语言语法详解/C数据类型
@@ -26,3 +26,4 @@ categories: AI_付康为
 [C循环]: https://fukangwei.github.io/C语言语法详解/C循环
 [C函数]: https://fukangwei.github.io/C语言语法详解/C函数
 [C作用域规则]: https://fukangwei.github.io/C语言语法详解/C作用域规则
+[C数组]: https://fukangwei.github.io/C语言语法详解/C数组
