@@ -12,7 +12,7 @@ categories: AI_付康为
 类型转换  | [C类型转换]  | 变量     | [C变量]
 常量      | [C常量]     | 存储类   | [C存储类]
 运算符    | [C运算符]    | 判断    | [C判断]
-循环      | [C循环]
+循环      | [C循环]      | 函数    | [C函数]
 
 [C基础语法]: https://fukangwei.github.io/C语言语法详解/C基础语法
 [C数据类型]: https://fukangwei.github.io/C语言语法详解/C数据类型
@@ -23,3 +23,4 @@ categories: AI_付康为
 [C运算符]: https://fukangwei.github.io/C语言语法详解/C运算符
 [C判断]: https://fukangwei.github.io/C语言语法详解/C判断
 [C循环]: https://fukangwei.github.io/C语言语法详解/C循环
+[C函数]: https://fukangwei.github.io/C语言语法详解/C函数
