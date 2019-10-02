@@ -36,119 +36,92 @@ struct Books {
 } book;
 ```
 
-结构体的成员可以包含其他结构体，也可以包含指向自己结构体类型的指针，而通常这种指针的应用是为了实现一些更高级的数据结构，如链表和树等。
+&emsp;&emsp;结构体的成员可以包含其他结构体，也可以包含指向自己结构体类型的指针，通常这种指针的应用是为了实现一些更高级的数据结构，例如链表和树：
 
-//此结构体的声明包含了其他的结构体
-struct COMPLEX
-{
+``` cpp
+struct SIMPLE {
+    int a;
+    char b;
+    double c;
+};
+
+/* 此结构体包含了其他的结构体 */
+struct COMPLEX {
     char string[100];
     struct SIMPLE a;
 };
 
-//此结构体的声明包含了指向自己类型的指针
-struct NODE
-{
+/* 此结构体包含了指向自己类型的指针 */
+struct NODE {
     char string[100];
     struct NODE *next_node;
 };
-如果两个结构体互相包含，则需要对其中一个结构体进行不完整声明，如下所示：
+```
 
-struct B;    //对结构体B进行不完整声明
+如果两个结构体互相包含，则需要对其中一个结构体进行不完整声明：
 
-//结构体A中包含指向结构体B的指针
-struct A
-{
+``` cpp
+struct B; /* 对结构体B进行不完整声明 */
+
+/* 结构体A中包含指向结构体B的指针 */
+struct A {
     struct B *partner;
-    //other members;
+    // other members;
 };
 
-//结构体B中包含指向结构体A的指针，在A声明完后，B也随之进行声明
-struct B
-{
+/* 结构体B中包含指向结构体A的指针，在A声明完后，B也随之进行声明 */
+struct B {
     struct A *partner;
-    //other members;
+    // other members;
 };
-结构体变量的初始化
-和其它类型变量一样，对结构体变量可以在定义时指定初始值。
+```
 
-实例
+### 结构体变量的初始化
+
+&emsp;&emsp;和其它类型变量一样，对结构体变量可以在定义时指定初始值：
+
+``` cpp
 #include <stdio.h>
 
-struct Books
-{
-   char  title[50];
-   char  author[50];
-   char  subject[100];
-   int   book_id;
-} book = {"C 语言", "RUNOOB", "编程语言", 123456};
+struct Books {
+    char title[50];
+    char author[50];
+    char subject[100];
+    int  book_id;
+} book = { "C语言", "RUNOOB", "编程语言", 123456 };
+```
 
-int main()
-{
-    printf("title : %s\nauthor: %s\nsubject: %s\nbook_id: %d\n", book.title, book.author, book.subject, book.book_id);
+### 访问结构成员
+
+&emsp;&emsp;为了访问结构体中的成员，可以使用成员访问运算符`.`：
+
+``` cpp
+#include <stdio.h>
+
+struct Books {
+    char title[50];
+    char author[50];
+    char subject[100];
+    int  book_id;
+} book = { "C语言", "RUNOOB", "编程语言", 123456 };
+
+int main() {
+    printf ( "title: %s\nauthor: %s\nsubject: %s\nbook_id: %d\n", \
+             book.title, book.author, book.subject, book.book_id );
 }
-执行输出结果为：
+```
 
-title : C 语言
+执行结果：
+
+``` cpp
+title: C语言
 author: RUNOOB
 subject: 编程语言
 book_id: 123456
-访问结构成员
-为了访问结构的成员，我们使用成员访问运算符（.）。成员访问运算符是结构变量名称和我们要访问的结构成员之间的一个句号。您可以使用 struct 关键字来定义结构类型的变量。下面的实例演示了结构的用法：
+```
 
-实例
-#include <stdio.h>
-#include <string.h>
+### 结构作为函数参数
 
-struct Books
-{
-   char  title[50];
-   char  author[50];
-   char  subject[100];
-   int   book_id;
-};
-
-int main( )
-{
-   struct Books Book1;        /* 声明 Book1，类型为 Books */
-   struct Books Book2;        /* 声明 Book2，类型为 Books */
-
-   /* Book1 详述 */
-   strcpy( Book1.title, "C Programming");
-   strcpy( Book1.author, "Nuha Ali");
-   strcpy( Book1.subject, "C Programming Tutorial");
-   Book1.book_id = 6495407;
-
-   /* Book2 详述 */
-   strcpy( Book2.title, "Telecom Billing");
-   strcpy( Book2.author, "Zara Ali");
-   strcpy( Book2.subject, "Telecom Billing Tutorial");
-   Book2.book_id = 6495700;
-
-   /* 输出 Book1 信息 */
-   printf( "Book 1 title : %s\n", Book1.title);
-   printf( "Book 1 author : %s\n", Book1.author);
-   printf( "Book 1 subject : %s\n", Book1.subject);
-   printf( "Book 1 book_id : %d\n", Book1.book_id);
-
-   /* 输出 Book2 信息 */
-   printf( "Book 2 title : %s\n", Book2.title);
-   printf( "Book 2 author : %s\n", Book2.author);
-   printf( "Book 2 subject : %s\n", Book2.subject);
-   printf( "Book 2 book_id : %d\n", Book2.book_id);
-
-   return 0;
-}
-当上面的代码被编译和执行时，它会产生下列结果：
-
-Book 1 title : C Programming
-Book 1 author : Nuha Ali
-Book 1 subject : C Programming Tutorial
-Book 1 book_id : 6495407
-Book 2 title : Telecom Billing
-Book 2 author : Zara Ali
-Book 2 subject : Telecom Billing Tutorial
-Book 2 book_id : 6495700
-结构作为函数参数
 您可以把结构作为函数参数，传参方式与其他类型的变量或指针类似。您可以使用上面实例中的方式来访问结构变量：
 
 实例
