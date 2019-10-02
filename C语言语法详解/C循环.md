@@ -1,7 +1,8 @@
 ---
 title: C循环
-date: 2019-10-02 08:20:06
 categories: C语言语法详解
+abbrlink: 55800
+date: 2019-10-02 08:20:06
 ---
 ### while循环
 
