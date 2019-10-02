@@ -131,3 +131,12 @@ ungetc          | [ungetc函数]
 [setbuf和setvbuf函数]: https://fukangwei.github.io/C语言语法详解/setbuf和setvbuf函数
 [setjmp和longjmp函数]: https://fukangwei.github.io/C语言语法详解/setjmp和longjmp函数
 [ungetc函数]: https://fukangwei.github.io/C语言语法详解/ungetc函数
+
+### C语言新标准
+
+说明    | 链接              | 说明                   | 链接
+--------|------------------|------------------------|-----
+复合文字 | [C语言的复合文字] | Linux下C语言结构体初始化 | [Linux下C语言结构体初始化]
+
+[C语言的复合文字]: https://fukangwei.github.io/C语言语法详解/C语言的复合文字
+[Linux下C语言结构体初始化]: https://fukangwei.github.io/C语言语法详解/Linux下C语言结构体初始化
