@@ -122,7 +122,71 @@ book_id: 123456
 
 ### 结构作为函数参数
 
-&emsp;&emsp;可以把结构作为函数参数，传参方式与其他类型的变量类似：
+&emsp;&emsp;可以把结构体作为函数参数，传参方式与其他类型的变量类似：
+
+``` cpp
+#include <stdio.h>
+#include <string.h>
+
+struct Books {
+    char title[50];
+    char author[50];
+    char subject[100];
+    int  book_id;
+};
+
+void printBook ( struct Books book );
+
+int main() {
+    struct Books Book1; /* 定义Book1，类型为Books */
+
+    strcpy ( Book1.title, "C Programming" );
+    strcpy ( Book1.author, "Nuha Ali" );
+    strcpy ( Book1.subject, "C Programming Tutorial" );
+    Book1.book_id = 6495407;
+
+    printBook ( Book1 ); /* 输出Book1信息 */
+    return 0;
+}
+
+void printBook ( struct Books book ) {
+    printf ( "Book title : %s\n", book.title );
+    printf ( "Book author : %s\n", book.author );
+    printf ( "Book subject : %s\n", book.subject );
+    printf ( "Book book_id : %d\n", book.book_id );
+}
+```
+
+执行结果：
+
+``` cpp
+Book title : C Programming
+Book author : Nuha Ali
+Book subject : C Programming Tutorial
+Book book_id : 6495407
+```
+
+### 指向结构的指针
+
+&emsp;&emsp;你可以定义指向结构的指针，方式与定义指向其他类型变量的指针相似：
+
+``` cpp
+struct Books *struct_pointer;
+```
+
+现在就可以在上述定义的指针变量中存储结构体变量的地址。为了查找结构变量的地址，请把`&`运算符放在结构名称的前面：
+
+``` cpp
+struct_pointer = &Book1;
+```
+
+为了使用指向该结构的指针访问结构的成员，你必须使用`->`运算符：
+
+``` cpp
+struct_pointer->title;
+```
+
+使用结构指针来重写上面的实例：
 
 ``` cpp
 #include <stdio.h>
@@ -135,107 +199,33 @@ struct Books {
    int  book_id;
 };
 
-void printBook( struct Books book );
-
-int main() {
-   struct Books Book1;        /* 声明 Book1，类型为 Books */
-   struct Books Book2;        /* 声明 Book2，类型为 Books */
-
-   /* Book1 详述 */
-   strcpy( Book1.title, "C Programming");
-   strcpy( Book1.author, "Nuha Ali");
-   strcpy( Book1.subject, "C Programming Tutorial");
-   Book1.book_id = 6495407;
-
-   /* 输出 Book1 信息 */
-   printBook( Book1 );
-   return 0;
-}
-
-void printBook( struct Books book )
-{
-   printf( "Book title : %s\n", book.title);
-   printf( "Book author : %s\n", book.author);
-   printf( "Book subject : %s\n", book.subject);
-   printf( "Book book_id : %d\n", book.book_id);
-}
-```
-
-当上面的代码被编译和执行时，它会产生下列结果：
-
-Book title : C Programming
-Book author : Nuha Ali
-Book subject : C Programming Tutorial
-Book book_id : 6495407
-Book title : Telecom Billing
-Book author : Zara Ali
-Book subject : Telecom Billing Tutorial
-Book book_id : 6495700
-指向结构的指针
-您可以定义指向结构的指针，方式与定义指向其他类型变量的指针相似，如下所示：
-
-struct Books *struct_pointer;
-现在，您可以在上述定义的指针变量中存储结构变量的地址。为了查找结构变量的地址，请把 & 运算符放在结构名称的前面，如下所示：
-
-struct_pointer = &Book1;
-为了使用指向该结构的指针访问结构的成员，您必须使用 -> 运算符，如下所示：
-
-struct_pointer->title;
-让我们使用结构指针来重写上面的实例，这将有助于您理解结构指针的概念：
-
-实例
-#include <stdio.h>
-#include <string.h>
-
-struct Books
-{
-   char  title[50];
-   char  author[50];
-   char  subject[100];
-   int   book_id;
-};
-
-/* 函数声明 */
 void printBook( struct Books *book );
-int main( )
-{
-   struct Books Book1;        /* 声明 Book1，类型为 Books */
-   struct Books Book2;        /* 声明 Book2，类型为 Books */
 
-   /* Book1 详述 */
+int main () {
+   struct Books Book1;
+
    strcpy( Book1.title, "C Programming");
    strcpy( Book1.author, "Nuha Ali");
    strcpy( Book1.subject, "C Programming Tutorial");
    Book1.book_id = 6495407;
 
-   /* Book2 详述 */
-   strcpy( Book2.title, "Telecom Billing");
-   strcpy( Book2.author, "Zara Ali");
-   strcpy( Book2.subject, "Telecom Billing Tutorial");
-   Book2.book_id = 6495700;
-
-   /* 通过传 Book1 的地址来输出 Book1 信息 */
    printBook( &Book1 );
-
-   /* 通过传 Book2 的地址来输出 Book2 信息 */
-   printBook( &Book2 );
-
    return 0;
 }
-void printBook( struct Books *book )
-{
+
+void printBook( struct Books *book ) {
    printf( "Book title : %s\n", book->title);
    printf( "Book author : %s\n", book->author);
    printf( "Book subject : %s\n", book->subject);
    printf( "Book book_id : %d\n", book->book_id);
 }
-当上面的代码被编译和执行时，它会产生下列结果：
+```
 
+执行结果：
+
+``` cpp
 Book title : C Programming
 Book author : Nuha Ali
 Book subject : C Programming Tutorial
 Book book_id : 6495407
-Book title : Telecom Billing
-Book author : Zara Ali
-Book subject : Telecom Billing Tutorial
-Book book_id : 6495700
+```
