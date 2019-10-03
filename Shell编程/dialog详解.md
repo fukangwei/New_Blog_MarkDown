@@ -27,38 +27,56 @@ categories: Shell编程
 
 &emsp;&emsp;常见的对话框控件选项有：
 
---calendar：提供了一个日历，让你可以选择日期。
---checklist：允许你显示一个选项列表，每个选项都可以被单独的选择(复选框)。
---from：允许您建立一个带标签的文本字段，并要求填写。
---fselect：提供一个路径，让你选择浏览的文件。
---gauge：显示一个表，呈现出完成的百分比，就是显示出进度。
---infobox：显示消息后，(没有等待响应)对话框立刻返回，但不清除屏幕(信息框)。
---inputbox：让用户输入文本(输入框)。
---inputmenu：提供一个可供用户编辑的菜单(可编辑的菜单框)。
---menu：显示一个列表供用户选择(菜单框)。
---msgbox：显示一条消息，并要求用户选择一个确定按钮(消息框)。
---pause：显示一个表格用来显示一个指定的暂停期的状态。
---passwordbox：显示一个输入框，它隐藏文本。
---passwordfrom：显示一个来源于标签并且隐藏的文本字段。
---radiolist：提供一个菜单项目组，只有一个项目，可以选择(单选框)。
---tailbox：在一个滚动窗口文件中使用tail命令来显示文本。
---tailboxbg：跟tailbox类似，但是在background模式下操作。
---textbox：在带有滚动条的文本框中显示文件的内容(文本框)。
---timebox：提供一个窗口，选择小时、分钟和秒。
---yesno：提供一个带有yes和no按钮的简单信息框(是/否框)。
+- `--calendar`：提供了一个日历，让你可以选择日期。
+- `--checklist`：允许你显示一个选项列表，每个选项都可以被单独的选择(复选框)。
+- `--from`：允许您建立一个带标签的文本字段，并要求填写。
+- `--fselect`：提供一个路径，让你选择浏览的文件。
+- `--gauge`：显示一个表，呈现出完成的百分比，就是显示出进度。
+- `--infobox`：显示消息后，(没有等待响应)对话框立刻返回，但不清除屏幕(信息框)。
+- `--inputbox`：让用户输入文本(输入框)。
+- `--inputmenu`：提供一个可供用户编辑的菜单(可编辑的菜单框)。
+- `--menu`：显示一个列表供用户选择(菜单框)。
+- `--msgbox`：显示一条消息，并要求用户选择一个确定按钮(消息框)。
+- `--pause`：显示一个表格用来显示一个指定的暂停期的状态。
+- `--passwordbox`：显示一个输入框，它隐藏文本。
+- `--passwordfrom`：显示一个来源于标签并且隐藏的文本字段。
+- `--radiolist`：提供一个菜单项目组，只有一个项目，可以选择(单选框)。
+- `--tailbox`：在一个滚动窗口文件中使用`tail`命令来显示文本。
+- `--tailboxbg`：跟`tailbox`类似，但是在`background`模式下操作。
+- `--textbox`：在带有滚动条的文本框中显示文件的内容(文本框)。
+- `--timebox`：提供一个窗口，选择小时、分钟和秒。
+- `--yesno`：提供一个带有`yes`和`no`按钮的简单信息框(是/否框)。
 
-    消息框格式如下所示：
+&emsp;&emsp;消息框格式如下：
+
+``` shell
 dialog --msgbox text height width
+```
+
 示例为：
+
+``` shell
 dialog --title TESTING --msgbox "this is a test" 10 20
+```
 
-    yesno框格式如下所示：
+&emsp;&emsp;`yesno`框格式如下：
+
+``` shell
 dialog --yesno text height width
-示例为：
-dialog --title "yes/no" --no-shadow --yesno "Delete the file /tmp/chensiyao.txt?" 10 30
+```
 
-    输入框格式如下所示：
+示例为：
+
+``` shell
+dialog --title "yes/no" --no-shadow --yesno "Delete the file /tmp/chensiyao.txt?" 10 30
+```
+
+&emsp;&emsp;输入框格式如下：
+
+``` shell
 dialog --inputbox text height width
+```
+
 示例为：
 dialog --title "Input your name" --inputbox "Please input your name:" 10 30 2> /tmp/name.txt #(这里的“2>”是将错误信息输出重定向到了“/tmp/name.txt”文件中)
 
