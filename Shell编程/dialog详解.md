@@ -91,34 +91,73 @@ dialog --passwordbox text height width
 ```
 
 示例为：
+
+``` shell
 dialog --title "Password" --passwordbox "Please give a password for the new user:" 10 35
+```
 
-这样密码就暴露出来了，通常会加上一个安全选项“--insecure”，将每个字符用“*”来显示出来：
+这样密码就暴露出来了，通常会加上一个安全选项`--insecure`，将每个字符用`*`来显示出来：
+
+``` shell
 dialog --title "Password" --insecure --passwordbox "Please give a password for the new user:" 10 30
+```
 
-    文本框格式如下所示：
+&emsp;&emsp;文本框格式如下：
+
+``` shell
 dialog --textbox file height width
+```
+
 示例为：
+
+``` shell
 dialog --title "The fstab" --textbox /etc/fstab 17 40
+```
 
-    菜单框格式如下所示：
-dialog --menu text height width menu-height tag1 item1 tag2 item2 …
+&emsp;&emsp;菜单框格式如下：
+
+``` shell
+dialog --menu text height width menu-height tag1 item1 tag2 item2 ...
+```
+
 示例为：
+
+``` shell
 dialog --title "Pick a choice" --menu "Choose one" 12 35 5 1 "say hello to everyone" 2 "thanks for your support" 3 "exit"
+```
 
-    Fselect框(文件选框)格式如下所示：
+&emsp;&emsp;`Fselect`框(文件选框)格式如下：
+
+``` shell
 dialog --fselect filepath height width
+```
+
 示例为：
+
+``` shell
 dialog --title "Pick one file" --fselect /root/ 7 40
+```
 
-    复选框格式如下所示：
-dialog --checklist "Test" height width menu-height tag1 item1 tag2 item2 …
+&emsp;&emsp;复选框格式如下：
+
+``` shell
+dialog --checklist "Test" height width menu-height tag1 item1 tag2 item2 ...
+```
+
 示例为：
+
+``` shell
 dialog --backtitle "Checklist" --checklist "Test" 20 50 10 Memory Memory_Size 1 Dsik Disk_Size 2
+```
 
-    显示日历格式如下所示：
+&emsp;&emsp;显示日历格式如下：
+
+``` shell
 dialog --calendar "Date" height width day month year
+```
+
 示例为：
+
 dialog --title "Calendar" --calendar "Date" 5 50 #显示当前日期
 
 dialog --title "Calendar" --calendar "Date" 5 50 1 2 2013 #显示指定日期
