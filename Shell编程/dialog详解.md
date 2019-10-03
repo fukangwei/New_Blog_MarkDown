@@ -1,7 +1,8 @@
 ---
 title: dialog详解
-date: 2019-10-03 14:58:05
 categories: Shell编程
+abbrlink: 49157
+date: 2019-10-03 14:58:05
 ---
 &emsp;&emsp;`Liunx`下的`dialog`工具是一个可以和`shell`脚本配合使用的文本界面下的创建对话框的工具，每个对话框提供的输出有两种形式：
 
