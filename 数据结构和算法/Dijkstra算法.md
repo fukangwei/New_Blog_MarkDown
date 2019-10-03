@@ -32,8 +32,9 @@ v1    v2    无                ∞
       v6    {v1, v5, v4, v6}  60
 ```
 
-&emsp;&emsp;Dijkstra.h如下所示：
+&emsp;&emsp;`Dijkstra.h`如下：
 
+``` cpp
 #pragma once
 ​
 #include <iostream>
@@ -69,7 +70,11 @@ public:
     void Dijkstra(int begin); /* 求最短路径 */
     void print_path(int); /* 打印最短路径 */
 };
-    Dijkstra.cpp如下所示：
+```
+
+&emsp;&emsp;`Dijkstra.cpp`如下：
+
+```
 #include "Dijkstra.h"
 ​
 Graph_DG::Graph_DG(int vexnum, int edge) { /* 构造函数 */
@@ -141,8 +146,7 @@ void Graph_DG::print() {
         while (count_col != this->vexnum) {
             if (arc[count_row][count_col] == INT_MAX) {
                 cout << "∞" << " ";
-            }
-            else {
+            } else {
                 cout << arc[count_row][count_col] << " ";
             }
 ​
@@ -205,13 +209,16 @@ void Graph_DG::print_path(int begin) {
     for (int i = 0; i != this->vexnum; i++) {
         if (dis[i].value != INT_MAX) {
             cout << dis[i].path << "=" << dis[i].value << endl;
-        }
-        else {
+        } else {
             cout << dis[i].path << "是无最短路径的" << endl;
         }
     }
 }
-main.cpp如下所示：
+```
+
+`main.cpp`如下：
+
+``` cpp
 #include "Dijkstra.h"
 ​
 /* 检验输入边数和顶点数的值是否有效，顶点数和边数的关系是：((Vexnum*(Vexnum - 1)) / 2) < edge */
@@ -242,3 +249,4 @@ int main() {
     system("pause");
     return 0;
 }
+```
