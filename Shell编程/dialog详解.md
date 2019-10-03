@@ -78,10 +78,18 @@ dialog --inputbox text height width
 ```
 
 示例为：
-dialog --title "Input your name" --inputbox "Please input your name:" 10 30 2> /tmp/name.txt #(这里的“2>”是将错误信息输出重定向到了“/tmp/name.txt”文件中)
 
-    密码框格式如下所示：
+``` shell
+# 这里的“2>”是将错误信息输出重定向到了“/tmp/name.txt”文件中
+dialog --title "Input your name" --inputbox "Please input your name:" 10 30 2> /tmp/name.txt
+```
+
+&emsp;&emsp;密码框格式如下：
+
+``` shell
 dialog --passwordbox text height width
+```
+
 示例为：
 dialog --title "Password" --passwordbox "Please give a password for the new user:" 10 35
 
