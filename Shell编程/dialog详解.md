@@ -53,6 +53,8 @@ categories: Shell编程
 dialog --msgbox text height width
 ```
 
+<img src="./dialog详解/1.png">
+
 示例为：
 
 ``` shell
@@ -71,6 +73,8 @@ dialog --yesno text height width
 dialog --title "yes/no" --no-shadow --yesno "Delete the file /tmp/chensiyao.txt?" 10 30
 ```
 
+<img src="./dialog详解/2.png">
+
 &emsp;&emsp;输入框格式如下：
 
 ``` shell
@@ -84,6 +88,8 @@ dialog --inputbox text height width
 dialog --title "Input your name" --inputbox "Please input your name:" 10 30 2> /tmp/name.txt
 ```
 
+<img src="./dialog详解/3.png">
+
 &emsp;&emsp;密码框格式如下：
 
 ``` shell
@@ -96,11 +102,15 @@ dialog --passwordbox text height width
 dialog --title "Password" --passwordbox "Please give a password for the new user:" 10 35
 ```
 
+<img src="./dialog详解/4.png">
+
 这样密码就暴露出来了，通常会加上一个安全选项`--insecure`，将每个字符用`*`来显示出来：
 
 ``` shell
 dialog --title "Password" --insecure --passwordbox "Please give a password for the new user:" 10 30
 ```
+
+<img src="./dialog详解/5.png">
 
 &emsp;&emsp;文本框格式如下：
 
@@ -114,6 +124,8 @@ dialog --textbox file height width
 dialog --title "The fstab" --textbox /etc/fstab 17 40
 ```
 
+<img src="./dialog详解/6.png">
+
 &emsp;&emsp;菜单框格式如下：
 
 ``` shell
@@ -125,6 +137,8 @@ dialog --menu text height width menu-height tag1 item1 tag2 item2 ...
 ``` shell
 dialog --title "Pick a choice" --menu "Choose one" 12 35 5 1 "say hello to everyone" 2 "thanks for your support" 3 "exit"
 ```
+
+<img src="./dialog详解/7.png">
 
 &emsp;&emsp;`Fselect`框(文件选框)格式如下：
 
@@ -138,6 +152,8 @@ dialog --fselect filepath height width
 dialog --title "Pick one file" --fselect /root/ 7 40
 ```
 
+<img src="./dialog详解/8.png">
+
 &emsp;&emsp;复选框格式如下：
 
 ``` shell
@@ -149,6 +165,8 @@ dialog --checklist "Test" height width menu-height tag1 item1 tag2 item2 ...
 ``` shell
 dialog --backtitle "Checklist" --checklist "Test" 20 50 10 Memory Memory_Size 1 Dsik Disk_Size 2
 ```
+
+<img src="./dialog详解/9.png">
 
 &emsp;&emsp;显示日历格式如下：
 
@@ -163,10 +181,14 @@ dialog --calendar "Date" height width day month year
 dialog --title "Calendar" --calendar "Date" 5 50
 ```
 
+<img src="./dialog详解/10.png">
+
 ``` shell
 # 显示指定日期
 dialog --title "Calendar" --calendar "Date" 5 50 1 2 2013
 ```
+
+<img src="./dialog详解/11.png">
 
 &emsp;&emsp;进度框架格式：
 
@@ -181,10 +203,14 @@ dialog --gauge text height width [<percent>]
 dialog --title "installation pro" --gauge "installation" 10 30 10
 ```
 
+<img src="./dialog详解/12.png">
+
 ``` cpp
 # 实时动度进度
 for i in {1..100} ;do echo $i;done | dialog --title "installation pro" --gauge "installation" 10 30
 ```
+
+<img src="./dialog详解/13.png">
 
 &emsp;&emsp;`form`框架(表单)格式如下：
 
@@ -201,6 +227,8 @@ dialog --title "Add a user" --form "Please input the infomation of new user:" 12
   "Home Dir:" 3  1 "" 3  15  15  0  \
   "Shell:"    4   1 "" 4  15  15  0
 ```
+
+<img src="./dialog详解/14.png">
 
 &emsp;&emsp;为了能够访问用户输入的结果，对于文本输入，你只需要重定向标准错误流或检查环境变量`$?`的内容，`$?`的值实际上就是前一个命令的退出状态：
 
