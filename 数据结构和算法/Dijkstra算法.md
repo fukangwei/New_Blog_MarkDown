@@ -72,9 +72,9 @@ public:
 };
 ```
 
-&emsp;&emsp;`Dijkstra.cpp`如下：
+`Dijkstra.cpp`如下：
 
-```
+``` cpp
 #include "Dijkstra.h"
 ​
 Graph_DG::Graph_DG(int vexnum, int edge) { /* 构造函数 */
