@@ -158,40 +158,67 @@ dialog --calendar "Date" height width day month year
 
 示例为：
 
-dialog --title "Calendar" --calendar "Date" 5 50 #显示当前日期
+``` shell
+# 显示当前日期
+dialog --title "Calendar" --calendar "Date" 5 50
+```
 
-dialog --title "Calendar" --calendar "Date" 5 50 1 2 2013 #显示指定日期
+``` shell
+# 显示指定日期
+dialog --title "Calendar" --calendar "Date" 5 50 1 2 2013
+```
 
-    进度框架格式：
+&emsp;&emsp;进度框架格式：
+
+``` shell
 dialog --gauge text height width [<percent>]
+```
+
 示例为：
-dialog --title "installation pro" --gauge "installation" 10 30 10 #固定进度显示
 
-for i in {1..100} ;do echo $i;done | dialog --title "installation pro" --gauge "installation" 10 30 #实时动度进度
+``` cpp
+# 固定进度显示
+dialog --title "installation pro" --gauge "installation" 10 30 10
+```
 
-    form框架(表单)格式如下所示：
+``` cpp
+# 实时动度进度
+for i in {1..100} ;do echo $i;done | dialog --title "installation pro" --gauge "installation" 10 30
+```
+
+&emsp;&emsp;`form`框架(表单)格式如下：
+
+``` shell
 dialog --form text height width formheight [ label y x item y x flen ilen ] ...
-其中flen表示“field length”，定义了选定字段中显示的长度；ilen表示input-length，定义了在外地输入的数据允许的长度。使用up/down(或ctrl-N、ctrl-P)在使用领域之间移动。使用tab键在窗口之间切换。示例为：
+```
+
+其中`flen`表示`field length`，定义了选定字段中显示的长度；`ilen`表示`input-length`，定义了在外地输入的数据允许的长度。使用`up/down`(或`Ctrl-N`、`Ctrl-P`)在使用领域之间移动。使用`tab`键在窗口之间切换。示例为：
+
+``` shell
 dialog --title "Add a user" --form "Please input the infomation of new user:" 12 40 4  \
   "Username:" 1  1 "" 1  15  15  0  \
   "Full name:" 2  1 "" 2  15  15  0  \
   "Home Dir:" 3  1 "" 3  15  15  0  \
   "Shell:"    4   1 "" 4  15  15  0
+```
 
-    为了能够访问用户输入的结果，对于文本输入，你只需要重定向标准错误流或检查环境变量“$?”的内容，“$?”的值实际上就是前一个命令的退出状态，示例如下所示：
+&emsp;&emsp;为了能够访问用户输入的结果，对于文本输入，你只需要重定向标准错误流或检查环境变量`$?`的内容，`$?`的值实际上就是前一个命令的退出状态：
+
+``` shell
 #!/bin/sh
 ​
 dialog --title "Questionnaire" --msgbox "Welcome to my simple survey" 9 18
 dialog --title "Confirm" --yesno "Are you willing to take part?" 9 18
 ​
-if [ $? !=0 ]; then #yes的返回码为0，“$?”为上一个命令的退出状态。
+if [ $? !=0 ]; then  # yes的返回码为0，“$?”为上一个命令的退出状态。
     dialog --infobox "Thank you anyway!" 5 20
     sleep 2
-    dialog --clear #“-clear”作用为清屏。
+    dialog --clear  # “-clear”作用为清屏。
     exit 0
 fi
 ​
-dialog --title "Questionnaire" --inputbox "Please enter your name" 9 30 2>_1.txt #重定向标准错误输出流(2)到“_1.txt”。
+# 重定向标准错误输出流(2)到“_1.txt”。
+dialog --title "Questionnaire" --inputbox "Please enter your name" 9 30 2>_1.txt
 Q_NAME=$(cat _1.txt)
 dialog --menu "$Q_NAME,what music do you like best?" 15 30 4 1 "Classical" 2 "Jazz" 3 "Country" 4 "Other" 2>_1.txt
 Q_MUSIC=$(cat _1.txt)
@@ -205,3 +232,4 @@ fi
 sleep 5
 dialog --clear
 exit 0
+```
