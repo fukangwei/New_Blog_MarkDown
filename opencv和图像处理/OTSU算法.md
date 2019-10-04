@@ -53,6 +53,8 @@ int main ( int argc, char *argv[] ) {
 }
 ```
 
+<img src="./OTSU算法/1.png" width=50%>
+
 &emsp;&emsp;`python`实现代码如下：
 
 ``` python
@@ -68,3 +70,5 @@ if __name__ == '__main__':
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 ```
+
+<img src="./OTSU算法/2.png" width=50%>
