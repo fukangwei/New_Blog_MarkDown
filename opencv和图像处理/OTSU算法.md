@@ -22,8 +22,8 @@ $$
 g = ω0 * ω1(μ0 - μ1)^2
 $$
 
-这就是类间方差。采用遍历的方法得到使类间方差g最大的阈值T，即为所求。
-    C++实现代码如下所示：
+这就是类间方差。采用遍历的方法得到使类间方差$g$最大的阈值$T$，即为所求。
+&emsp;&emsp;`C++`实现代码如下：
 
 ``` cpp
 #include <iostream>
@@ -53,7 +53,7 @@ int main ( int argc, char *argv[] ) {
 }
 ```
 
-    python实现代码如下所示：
+&emsp;&emsp;`python`实现代码如下：
 
 ``` python
 import cv2
