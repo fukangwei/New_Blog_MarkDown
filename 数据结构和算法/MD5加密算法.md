@@ -248,10 +248,13 @@ c：CA 26 77 51
 d：FE E5 B6 1B
 ```
 
-a、b、c、d按内存顺序输出即为最终结果：603F52D844017E83CA267751FEE5B61B。这就是字符串“jklmn”的MD5值。
+`a`、`b`、`c`、`d`按内存顺序输出即为最终结果：`603F52D844017E83CA267751FEE5B61B`。这就是字符串`jklmn`的`MD5`值。
 
-MD5加密代码的C语言实现
-    md5.h如下所示：
+### MD5加密代码的C语言实现
+
+&emsp;&emsp;`md5.h`如下：
+
+``` cpp
 #ifndef MD5_H
 #define MD5_H
 ​
@@ -303,15 +306,19 @@ void MD5Encode ( unsigned char *output, unsigned int *input, unsigned int len );
 void MD5Decode ( unsigned int *output, unsigned char *input, unsigned int len );
 ​
 #endif
-    md5.c如下所示：
+```
+
+&emsp;&emsp;`md5.c`如下：
+
+``` cpp
 #include <memory.h>
 #include "md5.h"
 ​
-unsigned char PADDING[] = {0x80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-                          };
+unsigned char PADDING[] = {
+    0x80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 ​
 void MD5Init ( MD5_CTX *context ) {
     context->count[0] = 0;
@@ -391,53 +398,53 @@ void MD5Transform ( unsigned int state[4], unsigned char block[64] ) {
     unsigned int d = state[3];
     unsigned int x[64];
     MD5Decode ( x, block, 64 );
-    FF ( a, b, c, d, x[ 0], 7, 0xd76aa478 ); /* 1 */
-    FF ( d, a, b, c, x[ 1], 12, 0xe8c7b756 ); /* 2 */
-    FF ( c, d, a, b, x[ 2], 17, 0x242070db ); /* 3 */
-    FF ( b, c, d, a, x[ 3], 22, 0xc1bdceee ); /* 4 */
-    FF ( a, b, c, d, x[ 4], 7, 0xf57c0faf ); /* 5 */
-    FF ( d, a, b, c, x[ 5], 12, 0x4787c62a ); /* 6 */
-    FF ( c, d, a, b, x[ 6], 17, 0xa8304613 ); /* 7 */
-    FF ( b, c, d, a, x[ 7], 22, 0xfd469501 ); /* 8 */
-    FF ( a, b, c, d, x[ 8], 7, 0x698098d8 ); /* 9 */
+    FF ( a, b, c, d, x[ 0], 7, 0xd76aa478 );  /* 1  */
+    FF ( d, a, b, c, x[ 1], 12, 0xe8c7b756 ); /* 2  */
+    FF ( c, d, a, b, x[ 2], 17, 0x242070db ); /* 3  */
+    FF ( b, c, d, a, x[ 3], 22, 0xc1bdceee ); /* 4  */
+    FF ( a, b, c, d, x[ 4], 7, 0xf57c0faf );  /* 5  */
+    FF ( d, a, b, c, x[ 5], 12, 0x4787c62a ); /* 6  */
+    FF ( c, d, a, b, x[ 6], 17, 0xa8304613 ); /* 7  */
+    FF ( b, c, d, a, x[ 7], 22, 0xfd469501 ); /* 8  */
+    FF ( a, b, c, d, x[ 8], 7, 0x698098d8 );  /* 9  */
     FF ( d, a, b, c, x[ 9], 12, 0x8b44f7af ); /* 10 */
     FF ( c, d, a, b, x[10], 17, 0xffff5bb1 ); /* 11 */
     FF ( b, c, d, a, x[11], 22, 0x895cd7be ); /* 12 */
-    FF ( a, b, c, d, x[12], 7, 0x6b901122 ); /* 13 */
+    FF ( a, b, c, d, x[12], 7, 0x6b901122 );  /* 13 */
     FF ( d, a, b, c, x[13], 12, 0xfd987193 ); /* 14 */
     FF ( c, d, a, b, x[14], 17, 0xa679438e ); /* 15 */
     FF ( b, c, d, a, x[15], 22, 0x49b40821 ); /* 16 */
     /* Round 2 */
-    GG ( a, b, c, d, x[ 1], 5, 0xf61e2562 ); /* 17 */
-    GG ( d, a, b, c, x[ 6], 9, 0xc040b340 ); /* 18 */
+    GG ( a, b, c, d, x[ 1], 5, 0xf61e2562 );  /* 17 */
+    GG ( d, a, b, c, x[ 6], 9, 0xc040b340 );  /* 18 */
     GG ( c, d, a, b, x[11], 14, 0x265e5a51 ); /* 19 */
     GG ( b, c, d, a, x[ 0], 20, 0xe9b6c7aa ); /* 20 */
-    GG ( a, b, c, d, x[ 5], 5, 0xd62f105d ); /* 21 */
-    GG ( d, a, b, c, x[10], 9,  0x2441453 ); /* 22 */
+    GG ( a, b, c, d, x[ 5], 5, 0xd62f105d );  /* 21 */
+    GG ( d, a, b, c, x[10], 9,  0x2441453 );  /* 22 */
     GG ( c, d, a, b, x[15], 14, 0xd8a1e681 ); /* 23 */
     GG ( b, c, d, a, x[ 4], 20, 0xe7d3fbc8 ); /* 24 */
-    GG ( a, b, c, d, x[ 9], 5, 0x21e1cde6 ); /* 25 */
-    GG ( d, a, b, c, x[14], 9, 0xc33707d6 ); /* 26 */
+    GG ( a, b, c, d, x[ 9], 5, 0x21e1cde6 );  /* 25 */
+    GG ( d, a, b, c, x[14], 9, 0xc33707d6 );  /* 26 */
     GG ( c, d, a, b, x[ 3], 14, 0xf4d50d87 ); /* 27 */
     GG ( b, c, d, a, x[ 8], 20, 0x455a14ed ); /* 28 */
-    GG ( a, b, c, d, x[13], 5, 0xa9e3e905 ); /* 29 */
-    GG ( d, a, b, c, x[ 2], 9, 0xfcefa3f8 ); /* 30 */
+    GG ( a, b, c, d, x[13], 5, 0xa9e3e905 );  /* 29 */
+    GG ( d, a, b, c, x[ 2], 9, 0xfcefa3f8 );  /* 30 */
     GG ( c, d, a, b, x[ 7], 14, 0x676f02d9 ); /* 31 */
     GG ( b, c, d, a, x[12], 20, 0x8d2a4c8a ); /* 32 */
     /* Round 3 */
-    HH ( a, b, c, d, x[ 5], 4, 0xfffa3942 ); /* 33 */
+    HH ( a, b, c, d, x[ 5], 4, 0xfffa3942 );  /* 33 */
     HH ( d, a, b, c, x[ 8], 11, 0x8771f681 ); /* 34 */
     HH ( c, d, a, b, x[11], 16, 0x6d9d6122 ); /* 35 */
     HH ( b, c, d, a, x[14], 23, 0xfde5380c ); /* 36 */
-    HH ( a, b, c, d, x[ 1], 4, 0xa4beea44 ); /* 37 */
+    HH ( a, b, c, d, x[ 1], 4, 0xa4beea44 );  /* 37 */
     HH ( d, a, b, c, x[ 4], 11, 0x4bdecfa9 ); /* 38 */
     HH ( c, d, a, b, x[ 7], 16, 0xf6bb4b60 ); /* 39 */
     HH ( b, c, d, a, x[10], 23, 0xbebfbc70 ); /* 40 */
-    HH ( a, b, c, d, x[13], 4, 0x289b7ec6 ); /* 41 */
+    HH ( a, b, c, d, x[13], 4, 0x289b7ec6 );  /* 41 */
     HH ( d, a, b, c, x[ 0], 11, 0xeaa127fa ); /* 42 */
     HH ( c, d, a, b, x[ 3], 16, 0xd4ef3085 ); /* 43 */
     HH ( b, c, d, a, x[ 6], 23,  0x4881d05 ); /* 44 */
-    HH ( a, b, c, d, x[ 9], 4, 0xd9d4d039 ); /* 45 */
+    HH ( a, b, c, d, x[ 9], 4, 0xd9d4d039 );  /* 45 */
     HH ( d, a, b, c, x[12], 11, 0xe6db99e5 ); /* 46 */
     HH ( c, d, a, b, x[15], 16, 0x1fa27cf8 ); /* 47 */
     HH ( b, c, d, a, x[ 2], 23, 0xc4ac5665 ); /* 48 */
@@ -463,7 +470,9 @@ void MD5Transform ( unsigned int state[4], unsigned char block[64] ) {
     state[2] += c;
     state[3] += d;
 }
-    main.c如下所示：
+```
+
+&emsp;&emsp;`main.c`如下：
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
