@@ -1,7 +1,7 @@
 ---
 title: imutils模块
 date: 2019-10-04 09:36:52
-tags:
+categories: 数据结构和算法
 ---
 &emsp;&emsp;A series of convenience functions to make basic image processing functions such as translation, rotation, resizing, skeletonization, and displaying `Matplotlib` images easier with `OpenCV` and both `Python 2.7` and `Python 3`.
 
@@ -48,6 +48,8 @@ And from there, you would need to apply the `cv2.warpAffine` function. Instead o
 translated = imutils.translate(workspace, 25, -75)
 ```
 
+<img src="./imutils模块/1.png">
+
 ### Rotation
 
 &emsp;&emsp;Rotating an image in `OpenCV` is accomplished by making a call to `cv2.getRotationMatrix2D` and `cv2.warpAffine`. Further care has to be taken to supply the `(x, y)-coordinate` of the point the image is to be rotated about. These calculation calls can quickly add up and make your code bulky and less readable. The rotate function in `imutils` helps resolve this problem.
@@ -59,6 +61,10 @@ for angle in range(0, 360, 90):
     rotated = imutils.rotate(bridge, angle=angle)
     cv2.imshow("Angle=%d" % (angle), rotated)
 ```
+
+<img src="./imutils模块/2.png">
+
+<img src="./imutils模块/3.png">
 
 ### Resizing
 
@@ -73,6 +79,8 @@ for width in (400, 300, 200, 100):
     cv2.imshow("Width=%dpx" % (width), resized)
 ```
 
+<img src="./imutils模块/4.png">
+
 ### Skeletonization
 
 &emsp;&emsp;Skeletonization is the process of constructing the `topological skeleton` of an object in an image, where the object is presumed to be white on a black background. `OpenCV` does not provide a function to explicitly construct the skeleton, but does provide the morphological and binary functions to do so.
@@ -85,6 +93,10 @@ gray = cv2.cvtColor(logo, cv2.COLOR_BGR2GRAY)
 skeleton = imutils.skeletonize(gray, size=(3, 3))
 cv2.imshow("Skeleton", skeleton)
 ```
+
+<img src="./imutils模块/5.png">
+
+<img src="./imutils模块/6.png">
 
 ### Displaying with Matplotlib
 
@@ -100,6 +112,8 @@ plt.imshow(imutils.opencv2matplotlib(cactus))
 plt.show()
 ```
 
+<img src="./imutils模块/7.png">
+
 ### URL to Image
 
 &emsp;&emsp;This the `url_to_image` function accepts a single parameter: the url of the image we want to download and convert to a `NumPy` array in `OpenCV` format. This function performs the download `in-memory`. The `url_to_image` function has been detailed here (`https://www.pyimagesearch.com/2015/03/02/convert-url-to-image-with-python-and-opencv/`) on the `PyImageSearch` blog.
@@ -110,6 +124,8 @@ logo = imutils.url_to_image(url)
 cv2.imshow("URL to Image", logo)
 cv2.waitKey(0)
 ```
+
+<img src="./imutils模块/8.png">
 
 ### Checking OpenCV Versions
 
@@ -140,13 +156,21 @@ cv2.imshow("Original", logo)
 cv2.imshow("Automatic Edge Map", edgeMap)
 ```
 
+<img src="./imutils模块/9.png">
+
+<img src="./imutils模块/10.png">
+
 ### 4-point Perspective Transform
 
 &emsp;&emsp;A common task in computer vision and image processing is to perform a `4-point` perspective transform of a `ROI` in an image and obtain a `top-down`, `birds eye view` of the `ROI`. The perspective module takes care of this for you. A `real-world` example of applying a `4-point` perspective transform can be bound in this blog on on building a `kick-ass` mobile document scanner(`https://www.pyimagesearch.com/2014/09/01/build-kick-ass-mobile-document-scanner-just-5-minutes/`). See the contents of `demos/perspective_transform.py`.
 
+<img src="./imutils模块/11.png">
+
 ### Sorting Contours
 
 &emsp;&emsp;The contours returned from `cv2.findContours` are unsorted. By using the contours module the the `sort_contours` function we can sort a list of contours from `left-to-right`, `right-to-left`, `top-to-bottom`, and `bottom-to-top`, respectively. See the contents of `demos/sorting_contours.py`.
+
+<img src="./imutils模块/12.png">
 
 ### (Recursively) Listing Paths to Images
 
