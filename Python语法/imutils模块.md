@@ -1,7 +1,8 @@
 ---
 title: imutils模块
-date: 2019-10-04 09:36:52
 categories: Python语法
+abbrlink: 51939
+date: 2019-10-04 09:36:52
 ---
 &emsp;&emsp;A series of convenience functions to make basic image processing functions such as translation, rotation, resizing, skeletonization, and displaying `Matplotlib` images easier with `OpenCV` and both `Python 2.7` and `Python 3`.
 
@@ -44,7 +45,7 @@ The `contourArea` function could therefore be accessed via: `cv2.contourArea`.
 $$
 M = \begin{bmatrix}
 1 & 0 & t_x\\
-0 & 1 &  t_y
+0 & 1 & t_y
 \end{bmatrix}
 $$
 
@@ -55,7 +56,7 @@ And from there, you would need to apply the `cv2.warpAffine` function. Instead o
 translated = imutils.translate(workspace, 25, -75)
 ```
 
-<img src="./imutils模块/1.png">
+<img src="./imutils模块/1.png" width=70%>
 
 ### Rotation
 
@@ -119,7 +120,7 @@ plt.imshow(imutils.opencv2matplotlib(cactus))
 plt.show()
 ```
 
-<img src="./imutils模块/7.png">
+<img src="./imutils模块/7.png" width=70%>
 
 ### URL to Image
 
@@ -171,13 +172,13 @@ cv2.imshow("Automatic Edge Map", edgeMap)
 
 &emsp;&emsp;A common task in computer vision and image processing is to perform a `4-point` perspective transform of a `ROI` in an image and obtain a `top-down`, `birds eye view` of the `ROI`. The perspective module takes care of this for you. A `real-world` example of applying a `4-point` perspective transform can be bound in this blog on on building a `kick-ass` mobile document scanner(`https://www.pyimagesearch.com/2014/09/01/build-kick-ass-mobile-document-scanner-just-5-minutes/`). See the contents of `demos/perspective_transform.py`.
 
-<img src="./imutils模块/11.png">
+<img src="./imutils模块/11.png" width=70%>
 
 ### Sorting Contours
 
 &emsp;&emsp;The contours returned from `cv2.findContours` are unsorted. By using the contours module the the `sort_contours` function we can sort a list of contours from `left-to-right`, `right-to-left`, `top-to-bottom`, and `bottom-to-top`, respectively. See the contents of `demos/sorting_contours.py`.
 
-<img src="./imutils模块/12.png">
+<img src="./imutils模块/12.png" width=70%>
 
 ### (Recursively) Listing Paths to Images
 
