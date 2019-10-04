@@ -146,13 +146,18 @@ cv2.imshow("Automatic Edge Map", edgeMap)
 
 ### Sorting Contours
 
-&emsp;&emsp;The contours returned from `cv2.findContours` are unsorted. By using the contours module the the `sort_contours` function we can sort a list of contours from `left-to-right`, right-to-left, top-to-bottom, and bottom-to-top, respectively. See the contents of demos/sorting_contours.py.
+&emsp;&emsp;The contours returned from `cv2.findContours` are unsorted. By using the contours module the the `sort_contours` function we can sort a list of contours from `left-to-right`, `right-to-left`, `top-to-bottom`, and `bottom-to-top`, respectively. See the contents of `demos/sorting_contours.py`.
 
-(Recursively) Listing Paths to Images
-    The paths sub-module of imutils includes a function to recursively find images based on a root directory. Assuming we are in the demos directory, let's list the contents of the '../demo_images':
+### (Recursively) Listing Paths to Images
+
+&emsp;&emsp;The paths `sub-module` of `imutils` includes a function to recursively find images based on a root directory. Assuming we are in the demos directory, let's list the contents of the `../demo_images`:
+
+``` python
 from imutils import paths
 for imagePath in paths.list_images("../demo_images"):
     print(imagePath)
+```
+
 Output:
 
 ``` python
