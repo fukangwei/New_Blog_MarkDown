@@ -62,22 +62,29 @@ for angle in range(0, 360, 90):
 
 ### Resizing
 
-    Resizing an image in OpenCV is accomplished by calling the cv2.resize function. However, special care needs to be taken to ensure that the aspect ratio is maintained. This resize function of imutils maintains the aspect ratio and provides the keyword arguments width and height so the image can be resized to the intended width/height while (1) maintaining aspect ratio and (2) ensuring the dimensions of the image do not have to be explicitly computed by the developer.
-    Another optional keyword argument, inter, can be used to specify interpolation method as well.
-for width in (400, 300, 200, 100):  # loop over varying widths to resize the image to
+&emsp;&emsp;Resizing an image in `OpenCV` is accomplished by calling the `cv2.resize` function. However, special care needs to be taken to ensure that the aspect ratio is maintained. This resize function of `imutils` maintains the aspect ratio and provides the keyword arguments width and height so the image can be resized to the intended `width/height` while (1) maintaining aspect ratio and (2) ensuring the dimensions of the image do not have to be explicitly computed by the developer.
+&emsp;&emsp;Another optional keyword argument, inter, can be used to specify interpolation method as well.
+
+``` python
+# loop over varying widths to resize the image to
+for width in (400, 300, 200, 100):
     # resize the image and display it
     resized = imutils.resize(workspace, width=width)
     cv2.imshow("Width=%dpx" % (width), resized)
+```
 
+### Skeletonization
 
-Skeletonization
-    Skeletonization is the process of constructing the "topological skeleton" of an object in an image, where the object is presumed to be white on a black background. OpenCV does not provide a function to explicitly construct the skeleton, but does provide the morphological and binary functions to do so.
-    For convenience, the skeletonize function of imutils can be used to construct the topological skeleton of the image.
-    The first argument, size is the size of the structuring element kernel. An optional argument, structuring, can be used to control the structuring element -- it defaults to cv2.MORPH_RECT, but can be any valid structuring element.
+&emsp;&emsp;Skeletonization is the process of constructing the `topological skeleton` of an object in an image, where the object is presumed to be white on a black background. `OpenCV` does not provide a function to explicitly construct the skeleton, but does provide the morphological and binary functions to do so.
+&emsp;&emsp;For convenience, the skeletonize function of `imutils` can be used to construct the topological skeleton of the image.
+&emsp;&emsp;The first argument, size is the size of the structuring element kernel. An optional argument, structuring, can be used to control the structuring element -- it defaults to cv2.MORPH_RECT, but can be any valid structuring element.
+
+``` python
 gray = cv2.cvtColor(logo, cv2.COLOR_BGR2GRAY)
-skeleton = imutils.skeletonize(gray, size=(3, 3))  # skeletonize the image
+# skeletonize the image
+skeleton = imutils.skeletonize(gray, size=(3, 3))
 cv2.imshow("Skeleton", skeleton)
-
+```
 
 Displaying with Matplotlib
     In the Python bindings of OpenCV, images are represented as NumPy arrays in BGR order. This works fine when using the cv2.imshow function. However, if you intend on using Matplotlib, the plt.imshow function assumes the image is in RGB order. A simple call to cv2.cvtColor will resolve this problem, or you can use the opencv2matplotlib convenience function.
