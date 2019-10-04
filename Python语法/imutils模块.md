@@ -86,8 +86,9 @@ skeleton = imutils.skeletonize(gray, size=(3, 3))
 cv2.imshow("Skeleton", skeleton)
 ```
 
-Displaying with Matplotlib
-    In the Python bindings of OpenCV, images are represented as NumPy arrays in BGR order. This works fine when using the cv2.imshow function. However, if you intend on using Matplotlib, the plt.imshow function assumes the image is in RGB order. A simple call to cv2.cvtColor will resolve this problem, or you can use the opencv2matplotlib convenience function.
+### Displaying with Matplotlib
+
+&emsp;&emsp;In the `Python` bindings of `OpenCV`, images are represented as `NumPy` arrays in `BGR` order. This works fine when using the `cv2.imshow` function. However, if you intend on using `Matplotlib`, the `plt.imshow` function assumes the image is in `RGB` order. A simple call to `cv2.cvtColor` will resolve this problem, or you can use the `opencv2matplotlib` convenience function.
 
 ``` python
 # INCORRECT: show the image without converting color spaces
@@ -99,13 +100,14 @@ plt.imshow(imutils.opencv2matplotlib(cactus))
 plt.show()
 ```
 
-URL to Image
-    This the url_to_image function accepts a single parameter: the url of the image we want to download and convert to a NumPy array in OpenCV format. This function performs the download in-memory. The url_to_image function has been detailed here(https://www.pyimagesearch.com/2015/03/02/convert-url-to-image-with-python-and-opencv/) on the PyImageSearch blog.
+### URL to Image
+
+&emsp;&emsp;This the `url_to_image` function accepts a single parameter: the url of the image we want to download and convert to a NumPy array in OpenCV format. This function performs the download in-memory. The url_to_image function has been detailed here (`https://www.pyimagesearch.com/2015/03/02/convert-url-to-image-with-python-and-opencv/`) on the `PyImageSearch` blog.
+
 url = "http://pyimagesearch.com/static/pyimagesearch_logo_github.png"
 logo = imutils.url_to_image(url)
 cv2.imshow("URL to Image", logo)
 cv2.waitKey(0)
-
 
 Checking OpenCV Versions
     OpenCV 3 has finally been released! But with the major release becomes backward compatibility issues (such as with the cv2.findContours and cv2.normalize functions). If you want your OpenCV 3 code to be backwards compatible with OpenCV 2.4.X, you'll need to take special care to check which version of OpenCV is currently being used and then take appropriate action. The is_cv2() and is_cv3() are simple functions that can be used to automatically determine the OpenCV version of the current environment.
