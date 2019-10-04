@@ -102,34 +102,47 @@ plt.show()
 
 ### URL to Image
 
-&emsp;&emsp;This the `url_to_image` function accepts a single parameter: the url of the image we want to download and convert to a NumPy array in OpenCV format. This function performs the download in-memory. The url_to_image function has been detailed here (`https://www.pyimagesearch.com/2015/03/02/convert-url-to-image-with-python-and-opencv/`) on the `PyImageSearch` blog.
+&emsp;&emsp;This the `url_to_image` function accepts a single parameter: the url of the image we want to download and convert to a `NumPy` array in `OpenCV` format. This function performs the download `in-memory`. The `url_to_image` function has been detailed here (`https://www.pyimagesearch.com/2015/03/02/convert-url-to-image-with-python-and-opencv/`) on the `PyImageSearch` blog.
 
+``` python
 url = "http://pyimagesearch.com/static/pyimagesearch_logo_github.png"
 logo = imutils.url_to_image(url)
 cv2.imshow("URL to Image", logo)
 cv2.waitKey(0)
+```
 
-Checking OpenCV Versions
-    OpenCV 3 has finally been released! But with the major release becomes backward compatibility issues (such as with the cv2.findContours and cv2.normalize functions). If you want your OpenCV 3 code to be backwards compatible with OpenCV 2.4.X, you'll need to take special care to check which version of OpenCV is currently being used and then take appropriate action. The is_cv2() and is_cv3() are simple functions that can be used to automatically determine the OpenCV version of the current environment.
+### Checking OpenCV Versions
+
+&emsp;&emsp;`OpenCV 3` has finally been released! But with the major release becomes backward compatibility issues (such as with the `cv2.findContours` and `cv2.normalize` functions). If you want your `OpenCV 3` code to be backwards compatible with `OpenCV 2.4.X`, you'll need to take special care to check which version of `OpenCV` is currently being used and then take appropriate action. The `is_cv2()` and `is_cv3()` are simple functions that can be used to automatically determine the `OpenCV` version of the current environment.
+
+``` python
 print("Your OpenCV version: {}".format(cv2.__version__))
 print("Are you using OpenCV 2.X? {}".format(imutils.is_cv2()))
 print("Are you using OpenCV 3.X? {}".format(imutils.is_cv3()))
+```
+
 Output:
+
+``` python
 Your OpenCV version: 3.0.0
 Are you using OpenCV 2.X? False
 Are you using OpenCV 3.X? True
+```
 
-Automatic Canny Edge Detection
-    The Canny edge detector requires two parameters when performing hysteresis. However, tuning these two parameters to obtain an optimal edge map is non-trivial, especially when working with a dataset of images. Instead, we can use the auto_canny function which uses the median of the grayscale pixel intensities to derive the upper and lower thresholds. You can read more about the auto_canny function here.
+### Automatic Canny Edge Detection
+
+&emsp;&emsp;The `Canny` edge detector requires two parameters when performing hysteresis. However, tuning these two parameters to obtain an optimal edge map is `non-trivial`, especially when working with a dataset of images. Instead, we can use the `auto_canny` function which uses the median of the grayscale pixel intensities to derive the upper and lower thresholds. You can read more about the `auto_canny` function here.
+
+``` python
 gray = cv2.cvtColor(logo, cv2.COLOR_BGR2GRAY)
 edgeMap = imutils.auto_canny(gray)
 cv2.imshow("Original", logo)
 cv2.imshow("Automatic Edge Map", edgeMap)
+```
 
+### 4-point Perspective Transform
 
-4-point Perspective Transform
-    A common task in computer vision and image processing is to perform a 4-point perspective transform of a ROI in an image and obtain a top-down, "birds eye view" of the ROI. The perspective module takes care of this for you. A real-world example of applying a 4-point perspective transform can be bound in this blog on on building a kick-ass mobile document scanner(https://www.pyimagesearch.com/2014/09/01/build-kick-ass-mobile-document-scanner-just-5-minutes/). See the contents of demos/perspective_transform.py.
-
+&emsp;&emsp;A common task in computer vision and image processing is to perform a `4-point` perspective transform of a `ROI` in an image and obtain a `top-down`, `birds eye view` of the `ROI`. The perspective module takes care of this for you. A `real-world` example of applying a `4-point` perspective transform can be bound in this blog on on building a `kick-ass` mobile document scanner(`https://www.pyimagesearch.com/2014/09/01/build-kick-ass-mobile-document-scanner-just-5-minutes/`). See the contents of `demos/perspective_transform.py`.
 
 Sorting Contours
     The contours returned from cv2.findContours are unsorted. By using the contours module the the sort_contours function we can sort a list of contours from left-to-right, right-to-left, top-to-bottom, and bottom-to-top, respectively. See the contents of demos/sorting_contours.py.
