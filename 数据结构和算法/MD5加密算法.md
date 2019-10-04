@@ -449,19 +449,19 @@ void MD5Transform ( unsigned int state[4], unsigned char block[64] ) {
     HH ( c, d, a, b, x[15], 16, 0x1fa27cf8 ); /* 47 */
     HH ( b, c, d, a, x[ 2], 23, 0xc4ac5665 ); /* 48 */
     /* Round 4 */
-    II ( a, b, c, d, x[ 0], 6, 0xf4292244 ); /* 49 */
+    II ( a, b, c, d, x[ 0], 6, 0xf4292244 );  /* 49 */
     II ( d, a, b, c, x[ 7], 10, 0x432aff97 ); /* 50 */
     II ( c, d, a, b, x[14], 15, 0xab9423a7 ); /* 51 */
     II ( b, c, d, a, x[ 5], 21, 0xfc93a039 ); /* 52 */
-    II ( a, b, c, d, x[12], 6, 0x655b59c3 ); /* 53 */
+    II ( a, b, c, d, x[12], 6, 0x655b59c3 );  /* 53 */
     II ( d, a, b, c, x[ 3], 10, 0x8f0ccc92 ); /* 54 */
     II ( c, d, a, b, x[10], 15, 0xffeff47d ); /* 55 */
     II ( b, c, d, a, x[ 1], 21, 0x85845dd1 ); /* 56 */
-    II ( a, b, c, d, x[ 8], 6, 0x6fa87e4f ); /* 57 */
+    II ( a, b, c, d, x[ 8], 6, 0x6fa87e4f );  /* 57 */
     II ( d, a, b, c, x[15], 10, 0xfe2ce6e0 ); /* 58 */
     II ( c, d, a, b, x[ 6], 15, 0xa3014314 ); /* 59 */
     II ( b, c, d, a, x[13], 21, 0x4e0811a1 ); /* 60 */
-    II ( a, b, c, d, x[ 4], 6, 0xf7537e82 ); /* 61 */
+    II ( a, b, c, d, x[ 4], 6, 0xf7537e82 );  /* 61 */
     II ( d, a, b, c, x[11], 10, 0xbd3af235 ); /* 62 */
     II ( c, d, a, b, x[ 2], 15, 0x2ad7d2bb ); /* 63 */
     II ( b, c, d, a, x[ 9], 21, 0xeb86d391 ); /* 64 */
@@ -473,6 +473,8 @@ void MD5Transform ( unsigned int state[4], unsigned char block[64] ) {
 ```
 
 &emsp;&emsp;`main.c`如下：
+
+``` cpp
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -495,18 +497,22 @@ int main ( int argc, char *argv[] ) {
     getchar();
     return 0;
 }
-    MD5加密常用字符
-7a57a5a743894a0e admin(16位MD5小写加密)
-972130B75066C825 ADMIN(16位MD5大写加密)
-21232f297a57a5a743894a0e4a801fc3 admin(32位MD5小写加密)
-73ACD9A5972130B75066C82595A1FAE3 ADMIN(32位MD5大写加密)
-49ba59abbe56e057 123456(16位MD5小写加密)
-e10adc3949ba59abbe56e057f20f883e 123456(32位MD5小写加密)
-469e80d32c0559f8 admin888(16位MD5小写加密)
-2299413865C28A35 ADMIN888(16位MD5大写加密)
-7fef6171469e80d32c0559f88b377245 admin888(32位MD5小写加密)
-A1F63A962299413865C28A3593D359B0 ADMIN888(32位MD5大写加密)
+```
 
-    补充说明：
-    1、MD5加密算法是不可逆的算法，即没有解密算法，因此非常安全。
-    2、MD5加密算法存在碰撞冲突的风险，这是被山东大学王小云教授发现的。
+### MD5加密常用字符
+
+- `7a57a5a743894a0e`：`admin`(`16`位`MD5`小写加密)
+- `972130B75066C825`：`ADMIN`(`16`位`MD5`大写加密)
+- `21232f297a57a5a743894a0e4a801fc3`：`admin`(`32`位`MD5`小写加密)
+- `73ACD9A5972130B75066C82595A1FAE3`：`ADMIN`(`32`位`MD5`大写加密)
+- `49ba59abbe56e057`：`123456`(`16`位`MD5`小写加密)
+- `e10adc3949ba59abbe56e057f20f883e`：`123456`(`32`位`MD5`小写加密)
+- `469e80d32c0559f8`：`admin888`(`16`位`MD5`小写加密)
+- `2299413865C28A35`：`ADMIN888`(`16`位`MD5`大写加密)
+- `7fef6171469e80d32c0559f88b377245`：`admin888`(`32`位`MD5`小写加密)
+- `A1F63A962299413865C28A3593D359B0`：`ADMIN888`(`32`位`MD5`大写加密)
+
+&emsp;&emsp;**补充说明**：
+
+1. `MD5`加密算法是不可逆的算法，即没有解密算法，因此非常安全。
+2. `MD5`加密算法存在碰撞冲突的风险，这是被山东大学王小云教授发现的。
