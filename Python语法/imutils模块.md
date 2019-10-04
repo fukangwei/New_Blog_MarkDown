@@ -41,6 +41,13 @@ The `contourArea` function could therefore be accessed via: `cv2.contourArea`.
 
 &emsp;&emsp;Translation is the shifting of an image in either the `x` or `y` direction. To translate an image in `OpenCV` you would need to supply the `(x, y)-shift`, denoted as `(tx, ty)` to construct the translation matrix `M`:
 
+$$
+M = \begin{bmatrix}
+1 & 0 & t_x\\
+0 & 1 &  t_y
+\end{bmatrix}
+$$
+
 And from there, you would need to apply the `cv2.warpAffine` function. Instead of manually constructing the translation matrix `M` and calling `cv2.warpAffine`, you can simply make a call to the translate function of `imutils`.
 
 ``` python
