@@ -16,10 +16,16 @@ $$ ω0 + ω1 = 1                     \tag{4}$$
 $$ μ = ω0 * μ0 + ω1 * μ1           \tag{5}$$
 $$ g = ω0(μ0 - μ)^2 + ω1(μ1 - μ)^2 \tag{6}$$
 
-将公式5代入公式6，得到等价公式：
+将公式`5`代入公式`6`，得到等价公式：
+
+$$
 g = ω0 * ω1(μ0 - μ1)^2
+$$
+
 这就是类间方差。采用遍历的方法得到使类间方差g最大的阈值T，即为所求。
     C++实现代码如下所示：
+
+``` cpp
 #include <iostream>
 #include <cv.h>
 #include <highgui.h>
@@ -45,8 +51,11 @@ int main ( int argc, char *argv[] ) {
     waitKey ( 0 );
     return 0;
 }
+```
 
     python实现代码如下所示：
+
+``` python
 import cv2
 ​
 if __name__ == '__main__':
@@ -58,3 +67,4 @@ if __name__ == '__main__':
     cv2.imshow("dst", dst)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+```
