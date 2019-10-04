@@ -77,7 +77,7 @@ for width in (400, 300, 200, 100):
 
 &emsp;&emsp;Skeletonization is the process of constructing the `topological skeleton` of an object in an image, where the object is presumed to be white on a black background. `OpenCV` does not provide a function to explicitly construct the skeleton, but does provide the morphological and binary functions to do so.
 &emsp;&emsp;For convenience, the skeletonize function of `imutils` can be used to construct the topological skeleton of the image.
-&emsp;&emsp;The first argument, size is the size of the structuring element kernel. An optional argument, structuring, can be used to control the structuring element -- it defaults to cv2.MORPH_RECT, but can be any valid structuring element.
+&emsp;&emsp;The first argument, `size` is the size of the structuring element kernel. An optional argument, `structuring`, can be used to control the structuring element: it defaults to `cv2.MORPH_RECT`, but can be any valid structuring element.
 
 ``` python
 gray = cv2.cvtColor(logo, cv2.COLOR_BGR2GRAY)
@@ -88,6 +88,8 @@ cv2.imshow("Skeleton", skeleton)
 
 Displaying with Matplotlib
     In the Python bindings of OpenCV, images are represented as NumPy arrays in BGR order. This works fine when using the cv2.imshow function. However, if you intend on using Matplotlib, the plt.imshow function assumes the image is in RGB order. A simple call to cv2.cvtColor will resolve this problem, or you can use the opencv2matplotlib convenience function.
+
+``` python
 # INCORRECT: show the image without converting color spaces
 plt.figure("Incorrect")
 plt.imshow(cactus)
@@ -95,7 +97,7 @@ plt.imshow(cactus)
 plt.figure("Correct")
 plt.imshow(imutils.opencv2matplotlib(cactus))
 plt.show()
-
+```
 
 URL to Image
     This the url_to_image function accepts a single parameter: the url of the image we want to download and convert to a NumPy array in OpenCV format. This function performs the download in-memory. The url_to_image function has been detailed here(https://www.pyimagesearch.com/2015/03/02/convert-url-to-image-with-python-and-opencv/) on the PyImageSearch blog.
