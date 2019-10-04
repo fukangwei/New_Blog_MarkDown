@@ -144,9 +144,9 @@ cv2.imshow("Automatic Edge Map", edgeMap)
 
 &emsp;&emsp;A common task in computer vision and image processing is to perform a `4-point` perspective transform of a `ROI` in an image and obtain a `top-down`, `birds eye view` of the `ROI`. The perspective module takes care of this for you. A `real-world` example of applying a `4-point` perspective transform can be bound in this blog on on building a `kick-ass` mobile document scanner(`https://www.pyimagesearch.com/2014/09/01/build-kick-ass-mobile-document-scanner-just-5-minutes/`). See the contents of `demos/perspective_transform.py`.
 
-Sorting Contours
-    The contours returned from cv2.findContours are unsorted. By using the contours module the the sort_contours function we can sort a list of contours from left-to-right, right-to-left, top-to-bottom, and bottom-to-top, respectively. See the contents of demos/sorting_contours.py.
+### Sorting Contours
 
+&emsp;&emsp;The contours returned from `cv2.findContours` are unsorted. By using the contours module the the `sort_contours` function we can sort a list of contours from `left-to-right`, right-to-left, top-to-bottom, and bottom-to-top, respectively. See the contents of demos/sorting_contours.py.
 
 (Recursively) Listing Paths to Images
     The paths sub-module of imutils includes a function to recursively find images based on a root directory. Assuming we are in the demos directory, let's list the contents of the '../demo_images':
@@ -154,9 +154,12 @@ from imutils import paths
 for imagePath in paths.list_images("../demo_images"):
     print(imagePath)
 Output:
+
+``` python
 ../demo_images/bridge.jpg
 ../demo_images/cactus.jpg
 ../demo_images/notecard.png
 ../demo_images/pyimagesearch_logo.jpg
 ../demo_images/shapes.png
 ../demo_images/workspace.jpg
+```
