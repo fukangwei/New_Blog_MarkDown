@@ -484,20 +484,28 @@ typedef struct {
 } NodePowerDescriptorFormat_t;
 ```
 
-本地节点在`ZDApp.c`中调用ZDConfig_UpdatePowerDescriptor初始化电源描述符，本例应用层或ZDO层均未注册Power_Desc_rsp信息。调用ZDP_PowerDescReq可以根据已明确了的网络地址请求远程节点的节点描述符。远程节点接收到该请求信息(该信息从属于AF_DATA_CONFIRM_CMD)，根据“Cluster ID”选择处理函数，会使用zdpProcessPowerDescReq来处理电源描述符请求。当处理完之后，通过调用ZDP_PowerDescMsg将响应信息发送至本地节点。详细流程如下图所示：
+本地节点在`ZDApp.c`中调用`ZDConfig_UpdatePowerDescriptor`初始化电源描述符，本例应用层或`ZDO`层均未注册`Power_Desc_rsp`信息。调用`ZDP_PowerDescReq`可以根据已明确了的网络地址请求远程节点的节点描述符。远程节点接收到该请求信息(该信息从属于`AF_DATA_CONFIRM_CMD`)，根据`Cluster ID`选择处理函数，会使用`zdpProcessPowerDescReq`来处理电源描述符请求。当处理完之后，通过调用`ZDP_PowerDescMsg`将响应信息发送至本地节点。详细流程如下图所示：
 
-    2.1.4.13 ZDP_SimpleDescReq
-    ZDP_SimpleDescReq函数建立和发送一个简单描述符(Simple Descriptor)请求至已明确网络地址的远程节点。
+#### ZDP_SimpleDescReq
 
+&emsp;&emsp;`ZDP_SimpleDescReq`函数建立和发送一个简单描述符(`Simple Descriptor`)请求至已明确网络地址的远程节点。
+
+``` cpp
 afStatus_t ZDP_SimpleDescReq ( zAddrType_t *dstAddr, uint16 nwkAddr, byte endPoint, byte SecurityEnable )
-dstAddr -- 目的地址。
-NWKAddr -- 远程节点的16位网络地址。
-Endpoint -- 端点号。
-SecuritySuite -- 安全要求。
-返回值ZStatus_t为状态。
+```
 
-    2.1.4.14 ZDP_SimpleDescMsg
-    调用此函数响应简单描述符的请求。函数原型如下所示：
+- `dstAddr`：目的地址。
+- `NWKAddr`：远程节点的`16`位网络地址。
+- `Endpoint`：端点号。
+- `SecuritySuite`：安全要求。
+
+返回值`ZStatus_t`为状态。
+
+#### ZDP_SimpleDescMsg
+
+&emsp;&emsp;调用此函数响应简单描述符的请求。
+
+``` cpp
 afStatus_t ZDP_SimpleDescMsg (
     byte TransSeq,
     zAddrType_t *dstAddr,
@@ -505,15 +513,23 @@ afStatus_t ZDP_SimpleDescMsg (
     SimpleDescriptorFormat_t *pSimpleDesc,
     byte SecuritySuite
 );
+```
+
 TranSeq -- 传输序号。
 DstAddr -- 目的地址。
-Status -- “UCCESS = 0”、“INVALID_EP = 1”、“NOT_ACTIVE = 2”、“DEVICE_NOT_FOUND = 3”。
+
+Status：
+“UCCESS = 0”、“INVALID_EP = 1”、“NOT_ACTIVE = 2”、“DEVICE_NOT_FOUND = 3”。
+
 pSimpleDesc -- 简单描述符。
 SecuritySuite -- 安全要求。
+
 返回值ZStatus_t为状态。
 
     2.1.4.15 简单描述符请求和响应应用举例分析
     简单描述符包含该节点所含每个端点的具体信息，其数据结构如下(AF.h)：
+
+``` cpp
 typedef struct {
     byte EndPoint;             /* 端点 */
     uint16 AppProfId;          /* 应用规范标识符 */
@@ -525,6 +541,8 @@ typedef struct {
     byte AppNumOutClusters;    /* 应用输出簇个数 */
     cId_t *pAppOutClusterList; /* 应用输出簇列表 */
 } SimpleDescriptionFormat_t;
+```
+
 本例应用层或ZDO层均未注册Simple_Desc_rsp信息。调用ZDP_SimpleDescReq可以根据已明确了的网络地址请求远程节点的某个指定端点的简单描述符。远程节点接收到该请求信息(该信息从属于AF_DATA_CONFIRM_CMD)，根据“Cluster ID”选择处理函数，会使用zdpProcessSimpleDescReq来处理简单描述符请求。当处理完之后，通过调用ZDP_SimpleDescMsg将响应信息发送至本地节点。详细流程如下图所示：
 
 
