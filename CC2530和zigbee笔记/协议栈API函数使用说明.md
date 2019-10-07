@@ -880,30 +880,51 @@ const SimpleDescriptionFormat_t zb_SimpleDesc = {
 endPointDesc_t *afFindEndPointDesc ( byte endPoint );
 ```
 
-参数endPoint为端点号。返回值“endPointDesc_t *”为端点描述符。
+参数`endPoint`为端点号。返回值`endPointDesc_t *`为端点描述符。
 
-    2.2.2.3 afFindSimpleDesc
-    这个函数用来从一个端点查找相应的简单描述符。函数原型如下所示：
+#### afFindSimpleDesc
+
+&emsp;&emsp;这个函数用来从一个端点查找相应的简单描述符。
+
+``` cpp
 byte afFindSimpleDesc ( SimpleDescriptionFormat_t **ppDesc, byte EP );
-ppDesc -- 简单描述符。
-EP -- 端点号。
+```
+
+- `ppDesc`：简单描述符。
+- `EP`：端点号。
+
 返回值为简单描述符内存地址。
 
-    2.2.2.4 afGetMatch
-    默认情况下，节点将响应ZDO匹配描述符请求，可以使用这个函数获得ZDO匹配描述符响应信息的设置。函数原型如下所示：
+#### afGetMatch
+
+&emsp;&emsp;默认情况下，节点将响应`ZDO`匹配描述符请求，可以使用这个函数获得`ZDO`匹配描述符响应信息的设置。
+
+``` cpp
 uint8 afGetMatch ( uint8 ep );
-参数ep为得到ZDO匹配描述符响应信息的端点号。返回值为true表示允许响应，为false表示不允许或未找到。
+```
 
-    2.2.2.4 afSetMatch
-    默认情况下，节点将响应ZDO匹配描述符请求，可以使用这个函数改变此行为。函数原型如下所示：
+参数`ep`为得到`ZDO`匹配描述符响应信息的端点号。返回值为`true`表示允许响应，为`false`表示不允许或未找到。
+
+#### afSetMatch
+
+&emsp;&emsp;默认情况下，节点将响应ZDO匹配描述符请求，可以使用这个函数改变此行为。
+
+``` cpp
 uint8 afSetMatch ( uint8 ep, uint8 action );
-ep -- 改变ZDO匹配描述符响应信息行为的端点号。
-action -- true表示允许响应(默认值)，false表示该端点不允许响应。
-返回值为true表示成功，为false表示未找到。
+```
 
-    2.2.3 发送数据
-    2.2.3.1 AF_DataRequest
-    调用此函数发送数据。函数原型如下所示：
+- `ep`：改变`ZDO`匹配描述符响应信息行为的端点号。
+- `action`：`true`表示允许响应(默认值)，`false`表示该端点不允许响应。
+
+返回值为`true`表示成功，为`false`表示未找到。
+
+### 发送数据
+
+#### AF_DataRequest
+
+&emsp;&emsp;调用此函数发送数据。
+
+``` cpp
 afStatus_t AF_DataRequest (
     afAddrType_t *dstAddr,
     endPointDesc_t *srcEP,
@@ -914,14 +935,23 @@ afStatus_t AF_DataRequest (
     uint8 options,
     uint8 radius
 );
+```
+
 dstAddr -- 目的地址。其中地址模式可以是：afAddrNotPresent绑定模式地址、afAddrGroup组播地址、afAddrBroadcast广播地址、afAddr16Bit直接传输(单播)地址。
 srcEP -- 源端点。
 cID -- 簇ID号(Cluster ID)。
 len -- buf域的长度，发送数据的字节数。
 buf -- 准备发送的数据。
 transID -- 传输序列号。
-options -- 0x10：AF_ACK_REQUEST、0x20：AF_DISCV_ROUTE、0x40：AF_EN_SECURITY、0x80：AF_SKIP_ROUTING。
+options --
+
+0x10：AF_ACK_REQUEST
+0x20：AF_DISCV_ROUTE
+0x40：AF_EN_SECURITY
+0x80：AF_SKIP_ROUTING。
+
 radius -- 最大的跳数。
+
 返回值afStatus_t为状态。
 
     2.2.4 接收数据
