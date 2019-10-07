@@ -1249,18 +1249,26 @@ ZStatus_t NLME_JoinRequest ( uint8 *ExtendedPANID, uint16 PanId, byte Channel, b
 
 返回值`ZStatus_t`为状态。
 
-    2.4.1.6 网络层-加入网络请求举例分析
+#### 网络层：加入网络请求举例分析
 
-    调用加入网络请求函数的必要条件是：“devStartMode == MODE_JOIN”。本例中NLME_JoinRequest各参数设置如下：
-( ZDO_NetworkDiscoveryCfm_t * ) msgPtr )->extendedPANID  /* 试图加入的网络的扩展“PAN ID”号 */
+&emsp;&emsp;调用加入网络请求函数的必要条件是：“devStartMode == MODE_JOIN”。本例中NLME_JoinRequest各参数设置如下：
+
+``` cpp
+( ZDO_NetworkDiscoveryCfm_t * ) msgPtr )->extendedPANID  /* 试图加入的网络的扩展“PAN ID”号  */
 ( ZDO_NetworkDiscoveryCfm_t * ) msgPtr )->panIdLSB       /* 试图加入的网络的"PAN ID"号高8位 */
 ( ZDO_NetworkDiscoveryCfm_t * ) msgPtr )->panIdMSB       /* 试图加入的网络的"PAN ID"号低8位 */
-( ZDO_NetworkDiscoveryCfm_t * ) msgPtr )->logicalChannel /* 频道号 */
-ZDO_Config_Node_Descriptor.CapabilityFlags               /* 节点描述符中的节点能力 */
+( ZDO_NetworkDiscoveryCfm_t * ) msgPtr )->logicalChannel /* 频道号                         */
+ZDO_Config_Node_Descriptor.CapabilityFlags               /* 节点描述符中的节点能力          */
+```
+
 返回函数ZDO_JoinConfirmCB设置加入网络消息事件ZDO_NWK_JOIN_IND，交由ZDApp任务事件处理函数做下一步处理：
+
+``` cpp
 void ZDO_JoinConfirmCB ( uint16 PanId, ZStatus_t Status ) {
     ZDApp_SendMsg ( ZDAppTaskID, ZDO_NWK_JOIN_IND, sizeof ( osal_event_hdr_t ), ( byte * ) NULL );
 }
+```
+
 加入网络请求和反馈发生在路由器或终端设备的ZDO层与NWK层之间：
 
 
