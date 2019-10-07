@@ -212,13 +212,16 @@ static void appLight() {
 - 第`20`行：程序开始进行不断扫描的循环。
 - 第`21`行：`Basic RF`接收的第`1`步，`while(!basicRfPacketIsReady())`检查是否接收上层数据。
 - 第`23`行：`Basic RF`接收的第`2`步，`if(basicRfReceive(pRxData, APP_PAYLOAD_LENGTH, NULL) > 0)`判断否接收到有效数据。
-- 第`24`行：“if(pRxData[0] == LIGHT_TOGGLE_CMD)”判断接收到的数据是否就是发送函数里面的LIGHT_TOGGLE_CMD。如果是，则执行第25行。
-- 第25行：“halLedToggle(1)”改变Led1的状态。
+- 第`24`行：`if(pRxData[0] == LIGHT_TOGGLE_CMD)`判断接收到的数据是否就是发送函数里面的`LIGHT_TOGGLE_CMD`。如果是，则执行第`25`行。
+- 第`25`行：`halLedToggle(1)`改变`Led1`的状态。
 
-&emsp;&emsp;完成烧写后上电，按下发射模块的S1按键，可以看到接收模块的LED1被点亮。
+&emsp;&emsp;完成烧写后上电，按下发射模块的`S1`按键，可以看到接收模块的`LED1`被点亮。
 
-信号传输质量检测
-   PER(误包率检测)实验是“BasicRF”的第二个实验，和无线点灯一样是没有使用协议栈的点对点通讯。实验现象：两块WeBee模块通信，一个模块作发射，另外一个模块接收，接收模块通过串口在PC机上显示当前的误包率、RSSI值和接收到数据包的个数。代码如下所示：
+### 信号传输质量检测
+
+&emsp;&emsp;PER(误包率检测)实验是“BasicRF”的第二个实验，和无线点灯一样是没有使用协议栈的点对点通讯。实验现象：两块WeBee模块通信，一个模块作发射，另外一个模块接收，接收模块通过串口在PC机上显示当前的误包率、RSSI值和接收到数据包的个数。
+
+``` cpp
 void main ( void ) {
     uint8 appMode;
     appState = IDLE;
@@ -228,10 +231,12 @@ void main ( void ) {
     basicRfConfig.ackRequest = FALSE;
     /* Initialise board peripherals 初始化外围硬件 */
     halBoardInit();
+
     /* Initalise hal_rf 初始化hal_rf */
     if ( halRfInit() == FAILED ) {
         HAL_ASSERT ( FALSE );
     }
+
     /* Indicate that device is powered */
     halLedSet ( 1 );
     /* Print Logo and splash screen on LCD */
@@ -248,12 +253,14 @@ void main ( void ) {
     /* Transmitter application */
     if ( appMode == MODE_TX ) {
         appTransmitter(); /* No return from here 如果“define MODE_SEND”，则进入appTransmitter发射模式 */
-    }
-    else if ( appMode == MODE_RX ) { /* Receiver application */
+    } else if ( appMode == MODE_RX ) { /* Receiver application */
         appReceiver(); /* No return from here 如果没有“define MODE_SEND”，则进入appReceiver接收模式 */
     }
+
     HAL_ASSERT ( FALSE ); /* Role is undefined. This code should not be reached */
 }
+```
+
 大家看注释也应该知道main.c做了哪些事情：一大堆的初始化(都是必须的)；设置信道，发射和接收模块的信道必须一致；选择为发射或者接收模式。
    发射函数“define MODE_SEND”则进入appTransmitter，如下所示：
 static void appTransmitter() {
