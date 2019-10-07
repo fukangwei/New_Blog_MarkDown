@@ -75,7 +75,11 @@ uint8 basicRfInit ( basicRfCfg_t *pRfConfig );
 
 函数功能是对“Basic RF”的数据结构初始化，设置模块的传输通道、短地址和“PAD ID”。
    发送过程有：1、创建一个buffer，把payload放入其中。Payload大为103个字节。2、调用basicRfSendPacket函数发送，并查看其返回值。在basic_rf.c中可以找到：
+
+``` cpp
 uint8 basicRfSendPacket ( uint16 destAddr, uint8 *pPayload, uint8 length )
+```
+
 参数destAddr是目的短地址，pPayload是指向发送缓冲区的指针，length是发送数据长度。函数功能是给目的短地址发送指定长度的数据，发送成功刚返回SUCCESS，失败则返回FAILED。
    接收过程有：1、上层通过 basicRfPacketIsReady函数来检查是否收到一个新数据包。在basic_rf.c中可以找到：
 uint8 basicRfPacketIsReady ( void );
@@ -87,6 +91,8 @@ uint8 basicRfReceive ( uint8 *pRxData, uint8 len, int16 *pRssi );
 无线点灯示例
 
    light_switch.c代码详解：无论你看哪个实验的代码，首先要找的就是main函数。从main函数开始(部分已经屏蔽的代码并未贴出，详细的代码请看打开工程)：
+
+``` cpp
 void main ( void ) {
     uint8 appMode = NONE; /* 不设置模块的模式 */
     /* Config basicRF */
@@ -112,6 +118,8 @@ void main ( void ) {
     /* Role is undefined. This code should not be reached */
     HAL_ASSERT ( FALSE );
 }
+```
+
 第20至21行：关闭WeBee底板的LED2和LED1。halLedSet(x)是使灯点亮，halLedClear(x)是使灯熄灭。
 第23至24行：选择其中的一行，并把另外一行屏蔽掉。一个是实现发射按键信息的功能，另一个是接收按键信息并改变LED状态，分别为“Basic RF”发射和接收。不同模块在烧写程序时选择不同功能。
    注意：程序会在appSwitch函数或者appLight函数里面循环或者等待，不会执行到第26行。
