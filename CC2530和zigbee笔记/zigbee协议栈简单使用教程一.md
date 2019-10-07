@@ -24,27 +24,31 @@ categories: CC2530和zigbee笔记
 
 &emsp;&emsp;由于协议栈都把这些函数都封装好了，因此我们用起来比较方便。大家可以了解一下下面的关键字：
 
-CCM：Counter with CBC-MAC(mode of operation)
-HAL：Hardware Abstraction Layer(硬件抽象层)
-PAN：Personal Area Network(个人局域网)
-RF：Radio Frequency(射频)
-RSSI：Received Signal Strength Indicator(接收信号强度指示)
+- `CCM`：`Counter with CBC-MAC`(`mode of operation`)
+- `HAL`：`Hardware Abstraction Layer`(硬件抽象层)
+- `PAN`：`Personal Area Network`(个人局域网)
+- `RF`：`Radio Frequency`(射频)
+- `RSSI`：`Received Signal Strength Indicator`(接收信号强度指示)
 
 &emsp;&emsp;`CC2530 BasicRF`文件夹结构如下图：
 
-docs文件夹：打开文件夹，里面仅有一个名为CC2530_Software_Examples的PDF文档，文档的主要内容是介绍“Basic RF”的特点、结构及使用。从中我们可以知道，里面“Basic RF”包含三个实验例程：无线点灯、传输质量检测、谱分析应用。
-Ide文件夹：打开文件夹后会有三个文件夹，以及一个cc2530_sw_examples.eww工程，这个工程是上面提及的三个实验例程工程的集合。在IAR环境中打开该工程，在workspace看到如下文件夹：“Ide\Settings”文件夹是在每个基础实验的文件夹里都会有的，它用于保存读者自己的IAR环境设置；“Ide\srf05_CC2530”文件夹里面放有三个工程，即light_switch.eww、per_test.eww、spectrum_analyzer.eww。
-Source文件夹：该文件夹里面有apps文件夹和components文件夹。“Source\apps”文件夹存放“Basic RF”三个实验的应用实现的源代码；“Source\components”文件夹包含着“Basic RF”的应用程序使用不同组件的源代码。
-   打开文件夹“WeBee CC2530 BasicRF\ide\srf05_cc2530\iar”路径里面的工程light_switch.eww(无线点灯)，我们的实验就是对它进行修改的。在介绍“Basic RF”之前，来看看这个实验例程设计的大体结构。
+- `docs`文件夹：打开文件夹，里面仅有一个名为`CC2530_Software_Examples`的`PDF`文档，文档的主要内容是介绍`Basic RF`的特点、结构及使用。从中我们可以知道，里面`Basic RF`包含三个实验例程：无线点灯、传输质量检测、谱分析应用。
+- `Ide`文件夹：打开文件夹后会有三个文件夹，以及一个`cc2530_sw_examples.eww`工程，这个工程是上面提及的三个实验例程工程的集合。在`IAR`环境中打开该工程，在`workspace`看到如下文件夹：`Ide\Settings`文件夹是在每个基础实验的文件夹里都会有的，它用于保存读者自己的IAR环境设置；`Ide\srf05_CC2530`文件夹里面放有三个工程，即`light_switch.eww`、`per_test.eww`和`spectrum_analyzer.eww`。
+- `Source`文件夹：该文件夹里面有`apps`文件夹和`components`文件夹。`Source\apps`文件夹存放`Basic RF`三个实验的应用实现的源代码；`Source\components`文件夹包含着`Basic RF`的应用程序使用不同组件的源代码。
 
-Hardware layer -- 这是实现数据传输的基础。
-Hardware Abstraction layer -- 它提供了一种接口来访问TIMER、GPIO、UART、ADC等，这些接口都通过相应的函数进行实现。
-Basic RF layer -- 为双向无线传输提供一种简单的协议。
-Application layer -- 它是用户应用层，相当于用户使用“Basic RF”层和HAL的接口。我们通过在“Application layer”就可以使用到封装好的“Basic RF”和HAL的函数。
+&emsp;&emsp;打开文件夹`WeBee CC2530 BasicRF\ide\srf05_cc2530\iar`路径里面的工程`light_switch.eww`(无线点灯)，我们的实验就是对它进行修改的。在介绍`Basic RF`之前，来看看这个实验例程设计的大体结构。
+
+- `Hardware layer`：这是实现数据传输的基础。
+- `Hardware Abstraction layer`：它提供了一种接口来访问`TIMER`、`GPIO`、`UART`、`ADC`等，这些接口都通过相应的函数进行实现。
+- `Basic RF layer`：为双向无线传输提供一种简单的协议。
+- `Application layer`：它是用户应用层，相当于用户使用`Basic RF`层和`HAL`的接口。我们通过在`Application layer`就可以使用到封装好的`Basic RF`和`HAL`的函数。
+
    “Basic RF”由TI公司提供，它包含了“IEEE 802.15.4”标准的数据包的收发功能，但并没有使用到协议栈，仅仅让两个结点进行简单的通信。也就是说，“Basic RF”仅仅是包含“IEEE 802.15.4”标准的一小部分。其主要特点有：
+
 不会自动加入协议，也不会自动扫描其他节点也没有组网指示灯(LED3)。
 没有协议栈里面所说的协调器、路由器或者终端的区分，节点的地位都是相等的。
 没有自动重发的功能。
+
    “Basic RF layer”为双向无线通信提供了一个简单的协议，通过这个协议能够进行数据的发送和接收。“Basic RF”还提供了安全通信所使用的CCM-64身份验证和数据加密，它的安全性读者可以通过在工程文件里面定义SECURITY_CCM，在“Project”->“Option”里面就可以选择。本次实验并不是什么高度机密，所以在SECURITY_CCM前面带“x”了，如下图所示：
 
    “Basic RF”的工作过程有启动、发射和接收。使用“Basic RF”实现无线传输只要学会使用这些过程的相应函数就可以了。
