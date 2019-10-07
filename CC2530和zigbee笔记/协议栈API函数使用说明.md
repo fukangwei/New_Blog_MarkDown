@@ -549,23 +549,27 @@ typedef struct {
 } SimpleDescriptionFormat_t;
 ```
 
-本例应用层或ZDO层均未注册Simple_Desc_rsp信息。调用ZDP_SimpleDescReq可以根据已明确了的网络地址请求远程节点的某个指定端点的简单描述符。远程节点接收到该请求信息(该信息从属于AF_DATA_CONFIRM_CMD)，根据“Cluster ID”选择处理函数，会使用zdpProcessSimpleDescReq来处理简单描述符请求。当处理完之后，通过调用ZDP_SimpleDescMsg将响应信息发送至本地节点。详细流程如下图所示：
+本例应用层或`ZDO`层均未注册`Simple_Desc_rsp`信息。调用`ZDP_SimpleDescReq`可以根据已明确了的网络地址请求远程节点的某个指定端点的简单描述符。远程节点接收到该请求信息(该信息从属于`AF_DATA_CONFIRM_CMD`)，根据`Cluster ID`选择处理函数，会使用`zdpProcessSimpleDescReq`来处理简单描述符请求。当处理完之后，通过调用`ZDP_SimpleDescMsg`将响应信息发送至本地节点。详细流程如下图所示：
 
 #### ZDP_ActiveEPIFReq
 
-&emsp;&emsp;ZDP_ActiveEPIFReq实际上是调用宏定义ZDP_NWKAddrOfInterestReq。这个函数建立和发送一个活动端点请求至已明确网络地址的远程节点。使用这个宏定义请求远程节点所有活动的端点。
+&emsp;&emsp;`ZDP_ActiveEPIFReq`实际上是调用宏定义`ZDP_NWKAddrOfInterestReq`。这个函数建立和发送一个活动端点请求至已明确网络地址的远程节点。使用这个宏定义请求远程节点所有活动的端点。
 
 ``` cpp
 afStatus_t ZDP_ActiveEPIFReq ( zAddrType_t *dstAddr, uint16 NWKAddrOfInterest, byte SecuritySuite );
 ```
 
-DstAddr -- 目的地址。
-NWKAddrOfInterest -- 远程节点的16位网络地址。
-SecuritySuite -- 安全要求。
-返回值ZStatus_t为状态。
+- `DstAddr`：目的地址。
+- `NWKAddrOfInterest`：远程节点的`16`位网络地址。
+- `SecuritySuite`：安全要求。
 
-    2.1.4.17 ZDP_ActiveEPIFRsp
-    该函数实际上是调用宏定义ZDP_EPIFRsp，调用此函数响应活动端点请求。函数原型如下所示：
+返回值`ZStatus_t`为状态。
+
+#### ZDP_ActiveEPIFRsp
+
+&emsp;&emsp;该函数实际上是调用宏定义`ZDP_EPIFRsp`，调用此函数响应活动端点请求。
+
+``` cpp
 afStatus_t ZDP_ActiveEPIFRsp (
     byte TranSeq,
     zAddrType_t *dstAddr,
@@ -575,20 +579,33 @@ afStatus_t ZDP_ActiveEPIFRsp (
     byte *pEPIntfList,
     byte SecuritySuite
 );
-TranSeq -- 传输序号。
-DstAddr -- 目的地址。
-Status -- “ZDP_SUCCESS = 0”、“ZDP_DEVICE_NOT_FOUND = 1”。
-nwkAddr -- 已明确的远程节点的16位网络地址。
-Count -- 活动端点个数。
-pEPIntfList -- 活动端点列表。
-SecuritySuite -- 安全要求。
-返回值ZStatus_t为状态。
+```
 
-    2.1.4.18 活动端点请求和响应应用举例分析
-    本例应用层或ZDO层均未注册Active_EP_rsp信息。调用ZDP_ActiveEPIFReq可以根据已明确了的网络地址请求远程节点的活动端点。远程节点接收到该请求信息(该信息从属于AF_DATA_CONFIRM_CMD)，根据“Cluster ID”选择处理函数，会使用zdpProcessActiveEPReq来处理活动端点请求。当处理完之后，通过调用如下函数：
+- `TranSeq`：传输序号。
+- `DstAddr`：目的地址。
+- `Status`：有如下状态：
+
+状态                   | 数值
+-----------------------|-----
+`ZDP_SUCCESS`          | `0`
+`ZDP_DEVICE_NOT_FOUND` | `1`
+
+- `nwkAddr`：已明确的远程节点的`16`位网络地址。
+- `Count`：活动端点个数。
+- `pEPIntfList`：活动端点列表。
+- `SecuritySuite`：安全要求。
+
+返回值`ZStatus_t`为状态。
+
+#### 活动端点请求和响应应用举例分析
+
+&emsp;&emsp;本例应用层或ZDO层均未注册Active_EP_rsp信息。调用ZDP_ActiveEPIFReq可以根据已明确了的网络地址请求远程节点的活动端点。远程节点接收到该请求信息(该信息从属于AF_DATA_CONFIRM_CMD)，根据“Cluster ID”选择处理函数，会使用zdpProcessActiveEPReq来处理活动端点请求。当处理完之后，通过调用如下函数：
+
+``` cpp
 ZDP_ActiveEPRsp ( inMsg->TransSeq, & ( inMsg->srcAddr ), stat, aoi, cnt, ( uint8 * ) ZDOBuildBuf, inMsg->SecurityUse );
-将响应信息发送至本地节点。详细流程如下图所示。
+```
 
+将响应信息发送至本地节点。详细流程如下图所示。
 
     2.1.4.19 ZDP_MatchDescReq
     这个函数将建立和发送一个匹配描述符请求。使用这个函数查询与本地节点的输入或输出簇列表相匹配的远程节点。函数原型如下所示：
