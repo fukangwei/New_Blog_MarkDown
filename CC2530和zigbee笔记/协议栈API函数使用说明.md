@@ -1251,7 +1251,7 @@ ZStatus_t NLME_JoinRequest ( uint8 *ExtendedPANID, uint16 PanId, byte Channel, b
 
 #### 网络层：加入网络请求举例分析
 
-&emsp;&emsp;调用加入网络请求函数的必要条件是：“devStartMode == MODE_JOIN”。本例中NLME_JoinRequest各参数设置如下：
+&emsp;&emsp;调用加入网络请求函数的必要条件是：`devStartMode == MODE_JOIN`。本例中`NLME_JoinRequest`各参数设置如下：
 
 ``` cpp
 ( ZDO_NetworkDiscoveryCfm_t * ) msgPtr )->extendedPANID  /* 试图加入的网络的扩展“PAN ID”号  */
@@ -1261,7 +1261,7 @@ ZStatus_t NLME_JoinRequest ( uint8 *ExtendedPANID, uint16 PanId, byte Channel, b
 ZDO_Config_Node_Descriptor.CapabilityFlags               /* 节点描述符中的节点能力          */
 ```
 
-返回函数ZDO_JoinConfirmCB设置加入网络消息事件ZDO_NWK_JOIN_IND，交由ZDApp任务事件处理函数做下一步处理：
+返回函数`ZDO_JoinConfirmCB`设置加入网络消息事件`ZDO_NWK_JOIN_IND`，交由`ZDApp`任务事件处理函数做下一步处理：
 
 ``` cpp
 void ZDO_JoinConfirmCB ( uint16 PanId, ZStatus_t Status ) {
@@ -1269,12 +1269,16 @@ void ZDO_JoinConfirmCB ( uint16 PanId, ZStatus_t Status ) {
 }
 ```
 
-加入网络请求和反馈发生在路由器或终端设备的ZDO层与NWK层之间：
+加入网络请求和反馈发生在路由器或终端设备的`ZDO`层与`NWK`层之间：
 
+#### NLME_ReJoinRequest
 
-    2.4.1.7 NLME_ReJoinRequest
-    此函数请求节点重新加入到一个已经加入过的网络中。这个行为的结果返回到ZDO_JoinConfirmCB中。函数原型如下所示：
+&emsp;&emsp;此函数请求节点重新加入到一个已经加入过的网络中。这个行为的结果返回到ZDO_JoinConfirmCB中。
+
+``` cpp
 ZStatus_t NLME_ReJoinRequest ( uint8 *ExtendedPANID, byte Channel );
+```
+
 ExtendedPANID -- 试图加入的网络的扩展“PAN ID”号。
 Channel -- 频道号，其值为11至26。
 返回值ZStatus_t为状态。
