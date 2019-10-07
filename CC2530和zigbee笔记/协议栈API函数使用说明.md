@@ -212,17 +212,17 @@ API函数               | ZDP命令
 `ZDP_NWKAddrRsp`     | `NWK_addr_rsp`
 `ZDP_IEEEAddrReq`    | `IEEE_addr_req`
 `ZDP_IEEEAddrRsp`    | `IEEE_addr_rsp`
-ZDP_NodeDescReq       Node_Desc_req
-ZDP_NodeDescRsp       Node_Desc_rsp
-ZDP_PowerDescReq      Power_Desc_req
-ZDP_PowerDescRsp      Power_Desc_rsp
-ZDP_SimpleDescReq     Simple_Desc_req
-ZDP_SimpleDescRsp     Simple_Desc_rsp
-ZDP_ComplexDescReq    Complex_Desc_req
-ZDP_ActiveEPIFReq     Active_EP_req
-ZDP_ActiveEPIFRsp     Active_EP_rsp
-ZDP_MatchDescReq      Match_Desc_req
-ZDP_MatchDescRsp      Match_Desc_rsp
+`ZDP_NodeDescReq`    | `Node_Desc_req`
+`ZDP_NodeDescRsp`    | `Node_Desc_rsp`
+`ZDP_PowerDescReq`   | `Power_Desc_req`
+`ZDP_PowerDescRsp`   | `Power_Desc_rsp`
+`ZDP_SimpleDescReq`  | `Simple_Desc_req`
+`ZDP_SimpleDescRsp`  | `Simple_Desc_rsp`
+`ZDP_ComplexDescReq` | `Complex_Desc_req`
+`ZDP_ActiveEPIFReq`  | `Active_EP_req`
+`ZDP_ActiveEPIFRsp`  | `Active_EP_rsp`
+`ZDP_MatchDescReq`   | `Match_Desc_req`
+`ZDP_MatchDescRsp`   | `Match_Desc_rsp`
 ZDP_UserDescSet       User_Desc_set
 ZDP_UserDescConf      User_Desc_conf
 ZDP_UserDescReq       User_Desc_req
