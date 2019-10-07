@@ -263,8 +263,8 @@ void main ( void ) {
 }
 ```
 
-大家看注释也应该知道main.c做了哪些事情：一大堆的初始化(都是必须的)；设置信道，发射和接收模块的信道必须一致；选择为发射或者接收模式。
-   发射函数“define MODE_SEND”则进入appTransmitter：
+大家看注释也应该知道`main.c`做了哪些事情：一大堆的初始化(都是必须的)；设置信道，发射和接收模块的信道必须一致；选择为发射或者接收模式。
+&emsp;&emsp;发射函数`define MODE_SEND`则进入`appTransmitter`：
 
 ``` cpp
 static void appTransmitter() {
@@ -318,6 +318,8 @@ static void appTransmitter() {
 ```
 
 总结appTransmitter函数完成的任务：初始化“Basic RF”；设置发射功率；设定测试的数据包量；配置定时器和IO；初始化数据包载荷；进行循环函数，不断地发送数据包，每发送完一次，下一个数据包的序列号自加1再发送。
+
+``` cpp
 static void appReceiver() {
     uint32 segNumber = 0; /* 数据包序列号 */
     int16 perRssiBuf[RSSI_AVG_WINDOW_SIZE] = {0}; /* Ring buffer for RSSI 存储RSSI的环形缓冲区 */
@@ -334,40 +336,46 @@ static void appReceiver() {
     /*-----------------------------------------------------------------------*/
     initUART();
     basicRfConfig.myAddr = RX_ADDR;
+
     if ( basicRfInit ( &basicRfConfig ) == FAILED )  { /* 初始化“Basic RF” */
         HAL_ASSERT ( FALSE );
     }
+
     basicRfReceiveOn();
+
     while ( TRUE ) {
         while ( !basicRfPacketIsReady() ); /* 等待新的数据包 */
         if ( basicRfReceive ( ( uint8 * ) &rxPacket, MAX_PAYLOAD_LENGTH, &rssi ) > 0 ) {
             halLedSet ( 3 ); /* 对应的引脚为P1_4 */
             UINT32_NTOH ( rxPacket.seqNumber ); /* 改变接收序号的字节顺序 */
             segNumber = rxPacket.seqNumber
+
             if ( resetStats ) { /* 若统计被复位，设置期望收到的数据包序号为已经收到的数据包序号 */
                 rxStats.expectedSeqNum = segNumber;
                 resetStats = FALSE;
             }
+
             rxStats.rssiSum -= perRssiBuf[perRssiBufCounter]; /* 从sum中减去旧的RSSI值 */
             perRssiBuf[perRssiBufCounter] = rssi; /* 存储新的RSSI值到环形缓冲区，之后它将被加入sum */
             rxStats.rssiSum += perRssiBuf[perRssiBufCounter]; /* 增加新的RSSI值到sum */
+
             if ( ++perRssiBufCounter == RSSI_AVG_WINDOW_SIZE ) {
                 perRssiBufCounter = 0; /* Wrap ring buffer counter */
             }
+
             /* Check if received packet is the expected packet 检查接收到的数据包是否是所期望收到的数据包 */
             if ( rxStats.expectedSeqNum == segNumber ) { /* 是所期望收到的数据包 */
                 rxStats.expectedSeqNum++;
-            }
-            /* If there is a jump in the sequence numbering this means some packets inbetween has been lost. */
-            else if ( rxStats.expectedSeqNum < segNumber ) { /* 大于期望收到的数据包的序号，则认为丢包 */
+            } else if ( rxStats.expectedSeqNum < segNumber ) { /* 大于期望收到的数据包的序号，则认为丢包 */
+                /* If there is a jump in the sequence numbering this means some packets inbetween has been lost. */
                 rxStats.lostPkts += segNumber – rxStats.expectedSeqNum;
                 rxStats.expectedSeqNum = segNumber + 1;
-            }
-            else { /* 小于期望收到的数据包的序号 */
+            } else { /* 小于期望收到的数据包的序号 */
                 rxStats.expectedSeqNum = segNumber + 1;
                 rxStats.rcvdPkts = 0;
                 rxStats.lostPkts = 0;
             }
+
             rxStats.rcvdPkts++;
             /*---------------以下为串口打印部分的函数---------------*/
             temp_receive = ( int32 ) rxStats.rcvdPkts;
@@ -378,6 +386,7 @@ static void appReceiver() {
                     rxStats.lostPkts = 0;
                 }
             }
+
             Myreceive[0] = temp_receive / 100 + '0'; /* 打印接收到数据包的个数 */
             Myreceive[1] = temp_receive % 100 / 10 + '0';
             Myreceive[2] = temp_receive % 10 + '0';
@@ -408,6 +417,8 @@ static void appReceiver() {
         }
     }
 }
+```
+
    接收函数的作用：串口初始化；初始化“Basic RF”；不断地接收数据包，并检查数据包序号是否为期望值，作出相应处理；串口打印出接收包的个数、误包率及上32个数据包的RSSI值的平均值。有几个比较重要的数据作个简要的说明一下：为了获取传输的性能参数，接收器中包含了如下几个数据(包含在rxStats变量中，其类型为perRxStats_t)：
 rxStats.expectedSeqNum -- 预计下一个数据包的序号，其值等于“成功接收的数据包”+“丢失的数据包”+1。
 rxStats.rssiSum -- 上32个数据包的RSSI值的和。
