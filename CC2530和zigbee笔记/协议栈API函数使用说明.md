@@ -1413,34 +1413,48 @@ byte *NLME_GetCoordExtAddr ( void );
 
 返回值为指向父节点`64`位`IEEE`地址的指针。
 
-    2.4.2.5 NLME_IsAddressBroadcast
-    此函数根据设备能力来评估提供的地址是否是一个有效的广播地址。
-addr_filter_t NLME_IsAddressBroadcast ( uint16 shortAddress );
-参数shortAddress为被测试的16位网络地址。返回值addr_filter_t为ADDR_NOT_BCAST、ADDR_BCAST_FOR_ME、ADDR_BCAST_NOT_ME。
+#### NLME_IsAddressBroadcast
 
-    2.4.2.6 NLME_SetBroadCastFilter
-    此函数根据设备能力设置掩码，用于处理有效的广播地址。
+&emsp;&emsp;此函数根据设备能力来评估提供的地址是否是一个有效的广播地址。
+
+``` cpp
+addr_filter_t NLME_IsAddressBroadcast ( uint16 shortAddress );
+```
+
+参数`shortAddress`为被测试的`16`位网络地址。返回值`addr_filter_t`为`ADDR_NOT_BCAST`、`ADDR_BCAST_FOR_ME`、`ADDR_BCAST_NOT_ME`。
+
+#### NLME_SetBroadCastFilter
+
+&emsp;&emsp;此函数根据设备能力设置掩码，用于处理有效的广播地址。
+
+``` cpp
 void NLME_SetBroadcastFilter ( byte capabilities );
-参数capabilities为该设备的能力用于确定该设备处理的广播信息类型。
+```
+
+参数`capabilities`为该设备的能力用于确定该设备处理的广播信息类型。
 
 ---
 
 # ZDO解析函数
 
-    ZDO解析函数用来解析接收到的消息。
+&emsp;&emsp;`ZDO`解析函数用来解析接收到的消息。
 
 ``` cpp
 ZDO_NwkIEEEAddrResp_t *ZDO_ParseAddrRsp ( zdoIncomingMsg_t *inMsg );
 ```
 
-用于解析NWK_addr_rsp和IEEE_addr_rsp消息。参数inMsg指向接收到的消息的指针，返回值ZDO_NwkIEEEAddrResp_t指向解析后的结构的指针，结构体由osal_mem_alloc分配空间，所以需要调用osal_mem_free来释放空间。
+用于解析`NWK_addr_rsp`和`IEEE_addr_rsp`消息。参数`inMsg`指向接收到的消息的指针，返回值`ZDO_NwkIEEEAddrResp_t`指向解析后的结构的指针，结构体由`osal_mem_alloc`分配空间，所以需要调用`osal_mem_free`来释放空间。
 
 ``` cpp
 void ZDO_ParseNodeDescRsp ( zdoIncomingMsg_t *inMsg, ZDO_NodeDescRsp_t *pNDRsp );
 ```
 
-用于解析Node_Desc_rsp消息。参数pNDRsp是解析消息存放的地方。
+用于解析`Node_Desc_rsp`消息。参数`pNDRsp`是解析消息存放的地方。
+
+``` cpp
 void ZDO_ParsePowerDescRsp ( zdoIncomingMsg_t *inMsg, ZDO_PowerRsp_t *pNPRsp );
+```
+
 用于解析Power_Desc_rsp消息。
 void ZDO_ParseSimpleDescRsp ( zdoIncomingMsg_t *inMsg, ZDO_SimpleDescRsp_t *pSimpleDescRsp );
 用于解析SimpleDescRsp消息，参数pSimpleDescRsp用于存放解析后的消息。
