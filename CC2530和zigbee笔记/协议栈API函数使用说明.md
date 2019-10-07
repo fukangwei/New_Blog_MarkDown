@@ -204,14 +204,14 @@ ZStatus_t ZDO_RemoveRegistedCB ( uint8 taskID, uint16 clusterID );
 
 ### ZDO发现API
 
-&emsp;&emsp;ZDO发现API包含建立和发送ZDO设备和服务发现请求和响应。所有这些API函数和ZDP命令(ZigBee Device Profile Command)如下表：
+&emsp;&emsp;`ZDO`发现`API`包含建立和发送`ZDO`设备和服务发现请求和响应。所有这些`API`函数和`ZDP`命令(`ZigBee Device Profile Command`)如下表：
 
-API函数               ZDP命令
------------------------------
-ZDP_NwkAddrReq        NWK_addr_req
-ZDP_NWKAddrRsp        NWK_addr_rsp
-ZDP_IEEEAddrReq       IEEE_addr_req
-ZDP_IEEEAddrRsp       IEEE_addr_rsp
+API函数               | ZDP命令
+---------------------|-------
+`ZDP_NwkAddrReq`     | `NWK_addr_req`
+`ZDP_NWKAddrRsp`     | `NWK_addr_rsp`
+`ZDP_IEEEAddrReq`    | `IEEE_addr_req`
+`ZDP_IEEEAddrRsp`    | `IEEE_addr_rsp`
 ZDP_NodeDescReq       Node_Desc_req
 ZDP_NodeDescRsp       Node_Desc_rsp
 ZDP_PowerDescReq      Power_Desc_req
