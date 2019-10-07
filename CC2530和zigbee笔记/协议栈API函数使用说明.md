@@ -828,18 +828,33 @@ afStatus_t ZDP_EndDeviceBindRsp ( byte TranSeq, zAddrType_t *dstAddr, byte Statu
 afStatus_t afRegister ( endPointDesc_t *epDesc );
 ```
 
-参数epDesc为端点描述符。返回值afStatus_t为状态。应用举例(ZDApp.c)：
+参数`epDesc`为端点描述符。返回值`afStatus_t`为状态。应用举例(`ZDApp.c`)：
+
+``` cpp
 afRegister ( ( endPointDesc_t * ) &ZDApp_epDesc );
-其中，ZDApp_epDesc为端点0的端点描述符：
+```
+
+其中，`ZDApp_epDesc`为端点`0`的端点描述符：
+
+``` cpp
 endPointDesc_t ZDApp_epDesc = {
     ZDO_EP,
     &ZDAppTaskID,
-    ( SimpleDescriptionFormat_t * ) NULL, /* No Simple description for ZDO */
+    /* No Simple description for ZDO */
+    ( SimpleDescriptionFormat_t * ) NULL,
     ( afNetworkLatencyReq_t ) 0 /* No Network Latency req */
 };
-Sapi.c例子如下所示：
+```
+
+`Sapi.c`例子如下：
+
+``` cpp
 afRegister ( &sapi_epDesc );
-其中，sapi_epDesc为应用端点2的端点描述符：
+```
+
+其中，`sapi_epDesc`为应用端点`2`的端点描述符：
+
+``` cpp
 sapi_epDesc.endPoint = zb_SimpleDesc.EndPoint;
 sapi_epDesc.task_id = &sapi_TaskID;
 sapi_epDesc.simpleDesc = ( SimpleDescriptionFormat_t * ) &zb_SimpleDesc;
@@ -855,10 +870,16 @@ const SimpleDescriptionFormat_t zb_SimpleDesc = {
     NUM_OUT_CMD_CONTROLLER, /* Number of Output Commands */
     ( cId_t * ) NULL /* Output Command List */
 };
+```
 
-    2.2.2.2 afFindEndPointDesc
-    这个函数用来从一个端点查找相应的端点描述符。函数原型如下所示：
+#### afFindEndPointDesc
+
+&emsp;&emsp;这个函数用来从一个端点查找相应的端点描述符。
+
+``` cpp
 endPointDesc_t *afFindEndPointDesc ( byte endPoint );
+```
+
 参数endPoint为端点号。返回值“endPointDesc_t *”为端点描述符。
 
     2.2.2.3 afFindSimpleDesc
