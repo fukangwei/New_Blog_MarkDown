@@ -30,12 +30,12 @@ PAN -- Personal Area Network(个人局域网)
 RF -- Radio Frequency(射频)
 RSSI -- Received Signal Strength Indicator(接收信号强度指示)
 
-    “CC2530 BasicRF”文件夹结构如下图所示：
+&emsp;&emsp;`CC2530 BasicRF`文件夹结构如下图：
 
 docs文件夹：打开文件夹，里面仅有一个名为CC2530_Software_Examples的PDF文档，文档的主要内容是介绍“Basic RF”的特点、结构及使用。从中我们可以知道，里面“Basic RF”包含三个实验例程：无线点灯、传输质量检测、谱分析应用。
 Ide文件夹：打开文件夹后会有三个文件夹，以及一个cc2530_sw_examples.eww工程，这个工程是上面提及的三个实验例程工程的集合。在IAR环境中打开该工程，在workspace看到如下文件夹：“Ide\Settings”文件夹是在每个基础实验的文件夹里都会有的，它用于保存读者自己的IAR环境设置；“Ide\srf05_CC2530”文件夹里面放有三个工程，即light_switch.eww、per_test.eww、spectrum_analyzer.eww。
 Source文件夹：该文件夹里面有apps文件夹和components文件夹。“Source\apps”文件夹存放“Basic RF”三个实验的应用实现的源代码；“Source\components”文件夹包含着“Basic RF”的应用程序使用不同组件的源代码。
-   打开文件夹“WeBee CC2530 BasicRF\ide\srf05_cc2530\iar”路径里面的工程light_switch.eww(无线点灯)，我们的实验就是对它进行修改的。在介绍“Basic RF”之前，来看看这个实验例程设计的大体结构，如下图所示。
+   打开文件夹“WeBee CC2530 BasicRF\ide\srf05_cc2530\iar”路径里面的工程light_switch.eww(无线点灯)，我们的实验就是对它进行修改的。在介绍“Basic RF”之前，来看看这个实验例程设计的大体结构。
 
 Hardware layer -- 这是实现数据传输的基础。
 Hardware Abstraction layer -- 它提供了一种接口来访问TIMER、GPIO、UART、ADC等，这些接口都通过相应的函数进行实现。
@@ -49,18 +49,26 @@ Application layer -- 它是用户应用层，相当于用户使用“Basic RF”
 
    “Basic RF”的工作过程有启动、发射和接收。使用“Basic RF”实现无线传输只要学会使用这些过程的相应函数就可以了。
    启动的要求有：1、确保外围器件没有问题。2、创建一个basicRfCfg_t的数据结构，并初始化其中的成员，在basic_rf.h代码中可以找到：
+
+``` cpp
 typedef struct {
     uint16 myAddr;    /* 16位的短地址(就是节点的地址) */
-    uint16 panId;     /* 节点的“PAN ID” */
-    uint8 channel;    /* RF通道(必须在11至26之间*/
-    uint8 ackRequest; /* 目标确认就置为true */
+    uint16 panId;     /* 节点的“PAN ID”             */
+    uint8 channel;    /* RF通道(必须在11至26之间     */
+    uint8 ackRequest; /* 目标确认就置为true          */
 #ifdef SECURITY_CCM   /* 是否加密，预定义里取消了加密 */
     uint8 *securityKey;
     uint8 *securityNonce;
 #endif
 } basicRfCfg_t;
+```
+
    3、调用basicRfInit函数进行协议的初始化，在basic_rf.c代码中可以找到：
+
+``` cpp
 uint8 basicRfInit ( basicRfCfg_t *pRfConfig );
+```
+
 函数功能是对“Basic RF”的数据结构初始化，设置模块的传输通道、短地址和“PAD ID”。
    发送过程有：1、创建一个buffer，把payload放入其中。Payload大为103个字节。2、调用basicRfSendPacket函数发送，并查看其返回值。在basic_rf.c中可以找到：
 uint8 basicRfSendPacket ( uint16 destAddr, uint8 *pPayload, uint8 length )
@@ -73,6 +81,7 @@ uint8 basicRfReceive ( uint8 *pRxData, uint8 len, int16 *pRssi );
 函数功能是接收来自“Basic RF”层的数据包，并为所接收的数据和RSSI值配缓冲区。
 
 无线点灯示例
+
    light_switch.c代码详解：无论你看哪个实验的代码，首先要找的就是main函数。从main函数开始(部分已经屏蔽的代码并未贴出，详细的代码请看打开工程)：
 void main ( void ) {
     uint8 appMode = NONE; /* 不设置模块的模式 */
