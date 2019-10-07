@@ -1359,35 +1359,59 @@ SuperframeOrder=0
 BatteryLifeExtension=False
 ```
 
-返回函数ZStatus_t ZDO_StartRouterConfirmCB设置路由启动事件ZDO_ROUTER_START，交由ZDApp任务事件处理函数做下一步处理：
+返回函数`ZStatus_t ZDO_StartRouterConfirmCB`设置路由启动事件`ZDO_ROUTER_START`，交由`ZDApp`任务事件处理函数做下一步处理：
+
+``` cpp
 void ZDO_StartRouterConfirmCB ( ZStatus_t Status ) {
     osal_set_event ( ZDAppTaskID, ZDO_ROUTER_START );
 }
-路由启动请求和反馈发生在路由器或终端设备的ZDO层与NWK层之间：
+```
 
+路由启动请求和反馈发生在路由器或终端设备的`ZDO`层与`NWK`层之间：
 
-    2.4.2 地址管理
-    查询并存储在本地设备的远程地址。
+### 地址管理
 
-    2.4.2.1 NLME_GetExtAddr
-    调用此函数得到节点自身的64位IEEE地址。
+&emsp;&emsp;查询并存储在本地设备的远程地址。
+
+#### NLME_GetExtAddr
+
+&emsp;&emsp;调用此函数得到节点自身的`64`位`IEEE`地址。
+
+``` cpp
 byte *NLME_GetExtAddr ( void );
-返回值为指向64位IEEE地址的指针。
+```
 
-    2.4.2.2 NLME_GetShortAddr
-    调用此函数得到节点自身的16位网络地址。
+返回值为指向`64`位`IEEE`地址的指针。
+
+#### NLME_GetShortAddr
+
+&emsp;&emsp;调用此函数得到节点自身的`16`位网络地址。
+
+``` cpp
 byte *NLME_GetShortAddr ( void );
-返回值为16位网络地址。
+```
 
-    2.4.2.3 NLME_GetCoordShortAddr
-    调用此函数得到父节点的16位网络地址。
+返回值为`16`位网络地址。
+
+#### NLME_GetCoordShortAddr
+
+&emsp;&emsp;调用此函数得到父节点的`16`位网络地址。
+
+``` cpp
 byte *NLME_GetCoordShortAddr ( void );
-返回值为父节点16位网络地址。
+```
 
-    2.4.2.4 NLME_GetCoordExtAddr
-    调用此函数得到父节点的64位IEEE地址。
+返回值为父节点`16`位网络地址。
+
+#### NLME_GetCoordExtAddr
+
+&emsp;&emsp;调用此函数得到父节点的`64`位`IEEE`地址。
+
+``` cpp
 byte *NLME_GetCoordExtAddr ( void );
-返回值为指向父节点64位IEEE地址的指针。
+```
+
+返回值为指向父节点`64`位`IEEE`地址的指针。
 
     2.4.2.5 NLME_IsAddressBroadcast
     此函数根据设备能力来评估提供的地址是否是一个有效的广播地址。
