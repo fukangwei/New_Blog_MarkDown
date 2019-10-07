@@ -1166,15 +1166,21 @@ void ZDO_NetworkFormationConfirmCB ( ZStatus_t Status ) {
 
 #### NLME_NetworkDiscoveryRequest
 
-&emsp;&emsp;此函数请求网络层寻找相邻的路由器。这个函数应该在加入并执行网络扫描之前调用。这个行为的结果返回到ZDO_NetworkDiscoveryConfirmCB中，返回结果包含：发现的路由个数和网络描述列表。函数原型如下所示：
+&emsp;&emsp;此函数请求网络层寻找相邻的路由器。这个函数应该在加入并执行网络扫描之前调用。这个行为的结果返回到`ZDO_NetworkDiscoveryConfirmCB`中，返回结果包含：发现的路由个数和网络描述列表。
 
+``` cpp
 ZStatus_t NLME_NetworkDiscoveryRequest ( uint32 ScanChannels, byte ScanDuration );
-ScanChannels -- 扫描的频道，其值为11至26。
-ScanDuration -- 扫描时间。
-返回值ZStatus_t为状态。
+```
 
-    2.4.1.4 网络层 -- 发现网络请求举例分析
-    调用发现网络请求函数的必要条件是：“logicalType == NODETYPE_ROUTER || logicalType == NODETYPE_DEVICE”并且“startMode == MODE_JOIN || startMode == MODE_REJOIN”。本例中NLME_NetworkDiscoveryRequest各参数设置如下(在f8wConfig.cfg中定义)：
+- `ScanChannels`：扫描的频道，其值为`11`至`26`。
+- `ScanDuration`：扫描时间。
+
+返回值`ZStatus_t`为状态。
+
+#### 网络层：发现网络请求举例分析
+
+&emsp;&emsp;调用发现网络请求函数的必要条件是：“logicalType == NODETYPE_ROUTER || logicalType == NODETYPE_DEVICE”并且“startMode == MODE_JOIN || startMode == MODE_REJOIN”。本例中NLME_NetworkDiscoveryRequest各参数设置如下(在f8wConfig.cfg中定义)：
+
 DDEFAULT_CHANLIST=0x00000800 /* 11 - 0x0B */
 #define STARTING_SCAN_DURATION 5
 uint8 zgDefaultStartingScanDuration = STARTING_SCAN_DURATION;
