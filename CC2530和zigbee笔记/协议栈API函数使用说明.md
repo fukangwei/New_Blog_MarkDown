@@ -265,12 +265,19 @@ afStatus_t ZDP_NWKAddrRsp (
 );
 ```
 
-TranSeq -- 传输序号。
-DstAddr -- 目的地址。
-Status -- “ZDP_SUCCESS = 0”、“ZDP_INVALID_REQTYPE = 1”、“ZDP_DEVICE_NOT_FOUND = 2”。
-IEEEAddrRemoteDev -- 远程节点的64位IEEE地址。
-ReqType -- 请求的类型。
-nwkAddr -- 远程节点的16位网络地址。
+- `TranSeq`：传输序号。
+- `DstAddr`：目的地址。
+- `Status`：
+
+状态                   | 数值
+-----------------------|-------
+`ZDP_SUCCESS`          | `0`
+`ZDP_INVALID_REQTYPE`  | `1`
+`ZDP_DEVICE_NOT_FOUND` | `2`
+
+- `IEEEAddrRemoteDev`：远程节点的`64`位`IEEE`地址。
+- `ReqType`：请求的类型。
+- `nwkAddr`：远程节点的`16`位网络地址。
 NumAssocDev -- 与远程节点关联的节点数目。
 StartIndex -- 响应节点的响应信息可以有很多的响应选项，请求程序可以指定一个起始索引号，该索引号是响应信息的起始索引号。
 NWKAddrAssocDevList -- 与远程节点关联的节点16位网络地址列表。
