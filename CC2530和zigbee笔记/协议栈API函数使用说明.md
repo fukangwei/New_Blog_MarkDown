@@ -240,7 +240,13 @@ afStatus_t ZDP_NwkAddrReq ( byte *IEEEAddress, byte ReqType, byte StartIndex, by
 ```
 
 - `IEEEAddress`：远程节点的`IEEE`地址。
-- `ReqType`：`ZDP_NWKADDR_REQTYPE_SINGLE`(只返回节点的短地址和扩展地址)、`ZDP_NWKADDR_REQTYPE_EXTENDED`(返回节点的短地址和扩展地址以及所有相关节点的短地址)。
+- `ReqType`：有如下选项：
+
+选项                           | 说明
+-------------------------------|-----
+`ZDP_NWKADDR_REQTYPE_SINGLE`   | 只返回节点的短地址和扩展地址
+`ZDP_NWKADDR_REQTYPE_EXTENDED` | 返回节点的短地址和扩展地址以及所有相关节点的短地址
+
 - `StartIndex`：响应节点的响应信息可以有很多的响应选项，请求程序可以指定一个起始索引号，索引从`0`开始。
 - `SecuritySuite`：安全要求。
 
@@ -267,10 +273,10 @@ afStatus_t ZDP_NWKAddrRsp (
 
 - `TranSeq`：传输序号。
 - `DstAddr`：目的地址。
-- `Status`：
+- `Status`：有如下状态：
 
 状态                   | 数值
------------------------|-------
+-----------------------|-----
 `ZDP_SUCCESS`          | `0`
 `ZDP_INVALID_REQTYPE`  | `1`
 `ZDP_DEVICE_NOT_FOUND` | `2`
@@ -278,28 +284,43 @@ afStatus_t ZDP_NWKAddrRsp (
 - `IEEEAddrRemoteDev`：远程节点的`64`位`IEEE`地址。
 - `ReqType`：请求的类型。
 - `nwkAddr`：远程节点的`16`位网络地址。
-NumAssocDev -- 与远程节点关联的节点数目。
-StartIndex -- 响应节点的响应信息可以有很多的响应选项，请求程序可以指定一个起始索引号，该索引号是响应信息的起始索引号。
-NWKAddrAssocDevList -- 与远程节点关联的节点16位网络地址列表。
-SecuritySuite -- 安全要求。
+- `NumAssocDev`：与远程节点关联的节点数目。
+- `StartIndex`：响应节点的响应信息可以有很多的响应选项，请求程序可以指定一个起始索引号，该索引号是响应信息的起始索引号。
+- `NWKAddrAssocDevList`：与远程节点关联的节点`16`位网络地址列表。
+- `SecuritySuite`：安全要求。
 
 返回值`ZStatus_t`为状态。
 
-    2.1.4.3 网络地址请求和响应应用举例分析
-    本地节点首先需要在应用层或ZDO层注册响应信息，本例中在sapi.c中注册了NWK_addr_rsp信息，然后调用ZDP_NwkAddrReq请求远程节点的网络地址。远程节点接收到该请求信息(该信息从属于AF_DATA_CONFIRM_CMD)，则根据“Cluster ID”选择处理函数，本例中使用zdpProcessAddrReq来处理网络地址请求。当处理完之后，通过调用fillAndSend将响应信息发送至本地节点。由于在应用层中注册了该响应信息，因此调用SAPI_ProcessZDOMsgs来处理响应信息。详细流程如下图所示：
+#### 网络地址请求和响应应用举例分析
 
+&emsp;&emsp;本地节点首先需要在应用层或`ZDO`层注册响应信息，本例中在`sapi.c`中注册了`NWK_addr_rsp`信息，然后调用`ZDP_NwkAddrReq`请求远程节点的网络地址。远程节点接收到该请求信息(该信息从属于`AF_DATA_CONFIRM_CMD`)，则根据`Cluster ID`选择处理函数，本例中使用`zdpProcessAddrReq`来处理网络地址请求。当处理完之后，通过调用`fillAndSend`将响应信息发送至本地节点。由于在应用层中注册了该响应信息，因此调用`SAPI_ProcessZDOMsgs`来处理响应信息。详细流程如下图所示：
 
-    2.1.4.4 ZDP_IEEEAddrReq
-    调用此函数将生成一个根据已知16位网络地址询问远程节点64位IEEE地址的消息，这个消息直接单播发送至该远程节点。函数原型如下所示：
+#### ZDP_IEEEAddrReq
+
+&emsp;&emsp;调用此函数将生成一个根据已知`16`位网络地址询问远程节点`64`位`IEEE`地址的消息，这个消息直接单播发送至该远程节点。
+
+``` cpp
 afStatus_t ZDP_IEEEAddrReq ( uint16 shortAddr, byte ReqType, byte StartIndex, byte SecuritySuite );
-shortAddr -- 远程节点的16位网络地址。
-ReqType -- ZDP_NWKADDR_REQTYPE_SINGLE(只返回节点的短地址和扩展地址)、ZDP_NWKADDR_REQTYPE_EXTENDED(返回节点的短地址和扩展地址以及所有相关节点的短地址)。
-StartIndex -- 响应节点的响应信息可以有很多的响应选项，请求程序可以指定一个起始索引号，索引从0开始。
-SecuritySuite -- 安全要求。
-返回值ZStatus_t为状态。
+```
 
-    2.1.4.5 ZDP_IEEEAddrRsp
-    ZDP_IEEEAddrRsp实际上是调用ZDP_ADDRRsp这个宏定义，用于建立和发送64位IEEE地址响应。函数原型如下所示：
+- `shortAddr`：远程节点的`16`位网络地址。
+- `ReqType`：有如下选项：
+
+选项                           | 说明
+-------------------------------|------
+`ZDP_NWKADDR_REQTYPE_SINGLE`   | 只返回节点的短地址和扩展地址
+`ZDP_NWKADDR_REQTYPE_EXTENDED` | 返回节点的短地址和扩展地址以及所有相关节点的短地址
+
+- `StartIndex`：响应节点的响应信息可以有很多的响应选项，请求程序可以指定一个起始索引号，索引从`0`开始。
+- `SecuritySuite`：安全要求。
+
+返回值`ZStatus_t`为状态。
+
+#### ZDP_IEEEAddrRsp
+
+&emsp;&emsp;`ZDP_IEEEAddrRsp`实际上是调用`ZDP_ADDRRsp`这个宏定义，用于建立和发送`64`位`IEEE`地址响应。
+
+``` cpp
 afStatus_t ZDP_IEEEAddrRsp (
     byte TranSeq,
     zAddrType_t *dstAddr,
@@ -312,24 +333,34 @@ afStatus_t ZDP_IEEEAddrRsp (
     uint16 *NWKAddrAssocDevList,
     byte SecuritySuite
 );
-TranSeq -- 传输序号。
-DstAddr -- 目的地址。
-Status -- “ZDP_SUCCESS = 0”、“ZDP_INVALID_REQTYPE = 1”、“ZDP_DEVICE_NOT_FOUND = 2”。
-IEEEAddrRemoteDev -- 远程节点的64位IEEE地址。
-ReqType -- 请求的类型。
-nwkAddr -- 远程节点的16位网络地址。
-NumAssocDev -- 与远程节点关联的节点数目。
-StartIndex -- 响应节点的响应信息可以有很多的响应选项，请求程序可以指定一个起始索引号，该索引号是响应信息的起始索引号。
-NWKAddrAssocDevList -- 与远程节点关联的节点16位网络地址列表。
-SecuritySuite -- 安全要求。
-返回值ZStatus_t为状态。
+```
 
-    2.1.4.6 IEEE地址请求和响应应用举例分析
-    本地节点首先需要在应用层或ZDO层注册响应信息，本例在ZDApp.c中注册了IEEE_addr_rsp信息，然后调用ZDP_IEEEAddrReq请求远程节点的网络地址。远程节点接收到该请求信息(该信息从属于AF_DATA_CONFIRM_CMD)，根据“Cluster ID”选择处理函数，本例使用zdpProcessAddrReq来处理IEEE地址请求。当处理完之后，通过调用fillAndSend将响应信息发送至本地节点。由于在ZDO中注册了该响应信息，因此调用ZDApp_ProcessMsgCBs来处理响应信息。详细流程如下图所示：
+- `TranSeq`：传输序号。
+- `DstAddr`：目的地址。
+- `Status`：有如下状态：
 
+状态                   | 数值
+-----------------------|-----
+`ZDP_SUCCESS`          | `0`
+`ZDP_INVALID_REQTYPE`  | `1`
+`ZDP_DEVICE_NOT_FOUND` | `2`
+
+- `IEEEAddrRemoteDev`：远程节点的`64`位`IEEE`地址。
+- `ReqType`：请求的类型。
+- `nwkAddr`：远程节点的`16`位网络地址。
+- `NumAssocDev`：与远程节点关联的节点数目。
+- `StartIndex`：响应节点的响应信息可以有很多的响应选项，请求程序可以指定一个起始索引号，该索引号是响应信息的起始索引号。
+- `NWKAddrAssocDevList`：与远程节点关联的节点`16`位网络地址列表。
+- `SecuritySuite`：安全要求。
+
+返回值`ZStatus_t`为状态。
+
+#### IEEE地址请求和响应应用举例分析
+
+&emsp;&emsp;本地节点首先需要在应用层或ZDO层注册响应信息，本例在ZDApp.c中注册了IEEE_addr_rsp信息，然后调用ZDP_IEEEAddrReq请求远程节点的网络地址。远程节点接收到该请求信息(该信息从属于AF_DATA_CONFIRM_CMD)，根据“Cluster ID”选择处理函数，本例使用zdpProcessAddrReq来处理IEEE地址请求。当处理完之后，通过调用fillAndSend将响应信息发送至本地节点。由于在ZDO中注册了该响应信息，因此调用ZDApp_ProcessMsgCBs来处理响应信息。详细流程如下图所示：
 
     2.1.4.7 ZDP_NodeDescReq
-    ZDP_NodeDescReq实际上是调用宏定义ZDP_NWKAddrOfInterestReq，这个函数建立和发送一个节点描述符(Node Descriptor)请求至已明确网络地址的远程节点。函数原型如下所示：
+    ZDP_NodeDescReq实际上是调用宏定义ZDP_NWKAddrOfInterestReq，这个函数建立和发送一个节点描述符(Node Descriptor)请求至已明确网络地址的远程节点。
 afStatus_t ZDP_NodeDescReq ( zAddrType_t *dstAddr, uint16 NWKAddrOfInterest, byte SecuritySuite );
 DstAddr -- 目的地址。
 NWKAddrOfInterest -- 远程节点的16位网络地址。
@@ -337,7 +368,7 @@ SecuritySuite -- 安全要求。
 返回值ZStatus_t为状态。
 
     2.1.4.8 ZDP_NodeDescMsg
-    调用此函数响应节点描述符的请求。函数原型如下所示：
+    调用此函数响应节点描述符的请求。
 afStatus_t ZDP_NodeDescMsg (
     byte TransSeq,
     zAddrType_t *dstAddr,
