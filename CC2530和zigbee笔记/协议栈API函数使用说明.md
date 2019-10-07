@@ -1455,12 +1455,28 @@ void ZDO_ParseNodeDescRsp ( zdoIncomingMsg_t *inMsg, ZDO_NodeDescRsp_t *pNDRsp )
 void ZDO_ParsePowerDescRsp ( zdoIncomingMsg_t *inMsg, ZDO_PowerRsp_t *pNPRsp );
 ```
 
-用于解析Power_Desc_rsp消息。
+用于解析`Power_Desc_rsp`消息。
+
+``` cpp
 void ZDO_ParseSimpleDescRsp ( zdoIncomingMsg_t *inMsg, ZDO_SimpleDescRsp_t *pSimpleDescRsp );
-用于解析SimpleDescRsp消息，参数pSimpleDescRsp用于存放解析后的消息。
+```
+
+用于解析`SimpleDescRsp`消息，参数`pSimpleDescRsp`用于存放解析后的消息。
+
+``` cpp
 ZDO_ActiveEndpointRsp_t *ZDO_ParseEPListRsp ( zdoIncomingMsg_t *inMsg );
-用于解析Active_EP_rsp或者Match_Desc_rsp的消息。
+```
+
+用于解析`Active_EP_rsp`或者`Match_Desc_rsp`的消息。
+
+``` cpp
 #define ZDO_ParseBindRsp(a) ((uint8)(*(a->asdu)))
-用于解析Bind_rsp、Unbind_rsp或End_Device_Bind_rsp消息。参数a指向要解析的消息的指针。
+```
+
+用于解析`Bind_rsp`、`Unbind_rsp`或`End_Device_Bind_rsp`消息。参数`a`指向要解析的消息的指针。
+
+``` cpp
 ZDO_MgmNwkDiscRsp_t *ZDO_ParseMgmNwkDiscRsp ( zdoIncomingMsg_t *inMsg );
-解析Mgmt_NWK_Disc_rsp消息。
+```
+
+解析`Mgmt_NWK_Disc_rsp`消息。
