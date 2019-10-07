@@ -754,12 +754,13 @@ afStatus_t ZDP_EndDeviceBindRsp ( byte TranSeq, zAddrType_t *dstAddr, byte Statu
 
 #### 终端设备绑定请求和响应应用举例分析
 
-&emsp;&emsp;协调器首先需要在`ZDO`层注册`End_Device_Bind_req`信息。然后本地节点调用ZDP_EndDeviceBindReq发送终端设备绑定请求至协调器。协调器接收到该请求信息(该信息从属于ZDO_CB_MSG)，调用ZDO_MatchEndDeviceBind处理终端设备绑定请求。处理完毕之后，调用ZDP_EndDeviceBindRsp将反馈信息发送给本地节点。详细流程如下图所示：
+&emsp;&emsp;协调器首先需要在`ZDO`层注册`End_Device_Bind_req`信息。然后本地节点调用`ZDP_EndDeviceBindReq`发送终端设备绑定请求至协调器。协调器接收到该请求信息(该信息从属于`ZDO_CB_MSG`)，调用`ZDO_MatchEndDeviceBind`处理终端设备绑定请求。处理完毕之后，调用`ZDP_EndDeviceBindRsp`将反馈信息发送给本地节点。详细流程如下图所示：
 
 #### ZDP_BindReq
 
-&emsp;&emsp;这个宏定义实际上是调用了函数ZDP_BindUnbindReq，该函数将建立和发送一个绑定请求。
+&emsp;&emsp;这个宏定义实际上是调用了函数`ZDP_BindUnbindReq`，该函数将建立和发送一个绑定请求。
 
+``` cpp
 afStatus_t ZDP_BindReq (
     zAddrType_t *dstAddr,
     byte *SourceAddr,
@@ -769,42 +770,64 @@ afStatus_t ZDP_BindReq (
     byte DstEP,
     byte SecuritySuite
 );
+```
 
-DstAddr -- 目的地址。
-SourceAddr -- 本地节点64位IEEE地址。
-SrcEP -- 本地节点的端点。
-ClusterID -- 绑定簇的ID号。
-DestinationAddr -- 远程节点的64位IEEE地址。
-DstEP -- 远程节点的端点。
-SecuritySuite -- 安全要求。
-返回值ZStatus_t为状态。
+- `DstAddr`：目的地址。
+- `SourceAddr`：本地节点`64`位`IEEE`地址。
+- `SrcEP`：本地节点的端点。
+- `ClusterID`：绑定簇的`ID`号。
+- `DestinationAddr`：远程节点的`64`位`IEEE`地址。
+- `DstEP`：远程节点的端点。
+- `SecuritySuite`：安全要求。
 
-    2.1.5.5 ZDP_BindRsp
-    这个宏定义直接调用ZDP_SendData，调用此函数响应绑定请求。函数原型如下所示：
+返回值`ZStatus_t`为状态。
+
+#### ZDP_BindRsp
+
+&emsp;&emsp;这个宏定义直接调用`ZDP_SendData`，调用此函数响应绑定请求。
+
+``` cpp
 afStatus_t ZDP_EndDeviceBindRsp ( byte TranSeq, zAddrType_t *dstAddr, byte Status, byte SecurityEnable );
-参数如下所示：
-TranSeq -- 传输序列号。
-DstAddr -- 目的地址。
-Status -- “SUCCESS = 0”、“NOT_SUPPORT = 1”、“TABLE_FULL = 2”。
-SecuritySuite -- 安全要求。
-返回值ZStatus_t为状态。
+```
 
-    2.1.5.6 绑定请求和响应应用举例分析
-    本例中协调器欲与远程节点建立绑定连接，协调器在ZDO层注册Bind_rsp消息事件，而远程节点在ZDO层注册Bind_Req消息事件。协调器调用函数ZDP_BindReq发起绑定请求，远程节点接收到绑定请求后，根据ZDO_CB_MSG消息事件调用函数ZDO_ProcessBindUnbindReq处理绑定请求，建立绑定表，并且通过调用函数ZDP_SendData发送响应信息至协调器。协调器接收到绑定反馈消息后，根据ZDO_CB_MSG消息事件调用函数ZDMatchSendState处理绑定绑定反馈信息。
+- `TranSeq`：传输序列号。
+- `DstAddr`：目的地址。
+- `Status`：有如下状态：
 
+状态          | 数值
+--------------|-----
+`SUCCESS`     | `0`
+`NOT_SUPPORT` | `1`
+`TABLE_FULL`  | `2`
 
-    2.2 应用框架(AF)
-    应用框架层是APS层应用程序的无线数据接口。应用程序使用该层提供的功能(通过APS层和NWK层)来无线收发数据。
+- `SecuritySuite`：安全要求。
 
-    2.2.1 概述
-    AF提供以下2个应用：端点管理和收发数据。
+返回值`ZStatus_t`为状态。
 
-    2.2.2 端点管理
-    在ZigBee网络中，每个设备都是一个节点，每个节点具有唯一的一个IEEE地址(64位)和一个网络地址(16位)。网络中的其他节点发送数据时必须指定目标节点的短地址，数据才能被接收。每个节点有241个端点，其中端点0由ZDO层使用，它是不可缺少的。端点1至240由应用程序分配使用，在ZigBee网络中应用程序必须登记注册一个或多个端点，这样才能发送和接收数据。
+#### 绑定请求和响应应用举例分析
 
-    2.2.2.1 afRegister
-    这个函数用来为节点登记注册一个新的端点。应用程序会为每个端点调用这个函数。函数原型如下所示：
+&emsp;&emsp;本例中协调器欲与远程节点建立绑定连接，协调器在`ZDO`层注册`Bind_rsp`消息事件，而远程节点在`ZDO`层注册`Bind_Req`消息事件。协调器调用函数`ZDP_BindReq`发起绑定请求，远程节点接收到绑定请求后，根据`ZDO_CB_MSG`消息事件调用函数`ZDO_ProcessBindUnbindReq`处理绑定请求，建立绑定表，并且通过调用函数`ZDP_SendData`发送响应信息至协调器。协调器接收到绑定反馈消息后，根据`ZDO_CB_MSG`消息事件调用函数`ZDMatchSendState`处理绑定绑定反馈信息。
+
+## 应用框架(AF)
+
+&emsp;&emsp;应用框架层是`APS`层应用程序的无线数据接口。应用程序使用该层提供的功能(通过`APS`层和`NWK`层)来无线收发数据。
+
+### 概述
+
+&emsp;&emsp;`AF`提供以下`2`个应用：端点管理和收发数据。
+
+### 端点管理
+
+&emsp;&emsp;在`ZigBee`网络中，每个设备都是一个节点，每个节点具有唯一的一个`IEEE`地址(`64`位)和一个网络地址(`16`位)。网络中的其他节点发送数据时必须指定目标节点的短地址，数据才能被接收。每个节点有`241`个端点，其中端点`0`由`ZDO`层使用，它是不可缺少的。端点`1`至`240`由应用程序分配使用，在`ZigBee`网络中应用程序必须登记注册一个或多个端点，这样才能发送和接收数据。
+
+#### afRegister
+
+&emsp;&emsp;这个函数用来为节点登记注册一个新的端点。应用程序会为每个端点调用这个函数。
+
+``` cpp
 afStatus_t afRegister ( endPointDesc_t *epDesc );
+```
+
 参数epDesc为端点描述符。返回值afStatus_t为状态。应用举例(ZDApp.c)：
 afRegister ( ( endPointDesc_t * ) &ZDApp_epDesc );
 其中，ZDApp_epDesc为端点0的端点描述符：
