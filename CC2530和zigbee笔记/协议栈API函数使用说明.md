@@ -425,19 +425,27 @@ typedef struct {
 } NodeDescriptorFormat_t;
 ```
 
-本地节点在`ZDApp.c`中调用ZDConfig_UpdateNodeDescriptor初始化节点描述符，本例在应用层或ZDO层均未注册Node_Desc_rsp信息。调用ZDP_NodeDescReq可以根据已明确了的网络地址请求远程节点的节点描述符。远程节点接收到该请求信息(该信息从属于AF_DATA_CONFIRM_CMD)，根据“Cluster ID”选择处理函数，会使用zdpProcessNodeDescReq来处理节点描述符请求。当处理完之后，通过调用ZDP_NodeDescMsg将响应信息发送至本地节点。详细流程如下图所示：
+本地节点在`ZDApp.c`中调用`ZDConfig_UpdateNodeDescriptor`初始化节点描述符，本例在应用层或`ZDO`层均未注册`Node_Desc_rsp`信息。调用`ZDP_NodeDescReq`可以根据已明确了的网络地址请求远程节点的节点描述符。远程节点接收到该请求信息(该信息从属于`AF_DATA_CONFIRM_CMD`)，根据`Cluster ID`选择处理函数，会使用`zdpProcessNodeDescReq`来处理节点描述符请求。当处理完之后，通过调用`ZDP_NodeDescMsg`将响应信息发送至本地节点。详细流程如下图所示：
 
+#### 2.1.4.10 ZDP_PowerDescReq
 
-    2.1.4.10 ZDP_PowerDescReq
-    ZDP_PowerDescReq实际上是调用宏定义ZDP_NWKAddrOfInterestReq。这个函数建立和发送一个电源描述符(Power Descriptor)请求至已明确网络地址的远程节点。函数原型如下所示：
+&emsp;&emsp;`ZDP_PowerDescReq`实际上是调用宏定义`ZDP_NWKAddrOfInterestReq`。这个函数建立和发送一个电源描述符(`Power Descriptor`)请求至已明确网络地址的远程节点。
+
+``` cpp
 afStatus_t ZDP_PowerDescReq ( zAddrType_t *dstAddr, uint16 NWKAddrOfInterest, byte SecuritySuite );
-DstAddr -- 目的地址。
-NWKAddrOfInterest -- 远程节点的16位网络地址。
-SecuritySuite -- 安全要求。
-返回值ZStatus_t为状态。
+```
 
-    2.1.4.11 ZDP_PowerDescMsg
-    调用此函数响应电源描述符的请求。函数原型如下所示：
+- `DstAddr`：目的地址。
+- `NWKAddrOfInterest`：远程节点的`16`位网络地址。
+- `SecuritySuite`：安全要求。
+
+返回值`ZStatus_t`为状态。
+
+#### ZDP_PowerDescMsg
+
+&emsp;&emsp;调用此函数响应电源描述符的请求。
+
+``` cpp
 afStatus_t ZDP_PowerDescMsg (
     byte TransSeq,
     zAddrType_t *dstAddr,
@@ -446,27 +454,41 @@ afStatus_t ZDP_PowerDescMsg (
     NodePowerDescriptorFormat_t *pPowerDesc,
     byte SecuritySuite
 );
-TranSeq -- 传输序号。
-DstAddr -- 目的地址。
-Status -- “ZDP_SUCCESS = 0”、“ZDP_DEVICE_NOT_FOUND = 1”。
-nwkAddr -- 已明确的远程节点的16位网络地址。
-pPowerDesc -- 电源描述符。
-SecuritySuite -- 安全要求。
-返回值ZStatus_t为状态。
+```
 
-    2.1.4.12 电源描述符请求和响应应用举例分析
-    电源描述符动态指示ZigBee节点的电源状态信息，每个节点只有唯一的一个电源描述符，其数据结构如下所示(AF.h)：
+- `TranSeq`：传输序号。
+- `DstAddr`：目的地址。
+- `Status`：有如下状态：
+
+状态                   | 数值
+-----------------------|-----
+`ZDP_SUCCESS`          | `0`
+`ZDP_DEVICE_NOT_FOUND` | `1`
+
+- `nwkAddr`：已明确的远程节点的`16`位网络地址。
+- `pPowerDesc`：电源描述符。
+- `SecuritySuite`：安全要求。
+
+返回值`ZStatus_t`为状态。
+
+#### 电源描述符请求和响应应用举例分析
+
+&emsp;&emsp;电源描述符动态指示`ZigBee`节点的电源状态信息，每个节点只有唯一的一个电源描述符，其数据结构如下(`AF.h`)：
+
+``` cpp
 typedef struct {
-    unsigned int PowerMode: 4;               /* 电源模式 */
-    unsigned int AvailablePowerSources: 4;   /* 可用电源来源 */
-    unsigned int CurrentPowerSource: 4;      /* 当前电源来源 */
+    unsigned int PowerMode: 4;               /* 电源模式          */
+    unsigned int AvailablePowerSources: 4;   /* 可用电源来源      */
+    unsigned int CurrentPowerSource: 4;      /* 当前电源来源      */
     unsigned int CurrentPowerSourceLevel: 4; /* 当前电源来源的电量 */
 } NodePowerDescriptorFormat_t;
-本地节点在ZDApp.c中调用ZDConfig_UpdatePowerDescriptor初始化电源描述符，本例应用层或ZDO层均未注册Power_Desc_rsp信息。调用ZDP_PowerDescReq可以根据已明确了的网络地址请求远程节点的节点描述符。远程节点接收到该请求信息(该信息从属于AF_DATA_CONFIRM_CMD)，根据“Cluster ID”选择处理函数，会使用zdpProcessPowerDescReq来处理电源描述符请求。当处理完之后，通过调用ZDP_PowerDescMsg将响应信息发送至本地节点。详细流程如下图所示：
+```
 
+本地节点在`ZDApp.c`中调用ZDConfig_UpdatePowerDescriptor初始化电源描述符，本例应用层或ZDO层均未注册Power_Desc_rsp信息。调用ZDP_PowerDescReq可以根据已明确了的网络地址请求远程节点的节点描述符。远程节点接收到该请求信息(该信息从属于AF_DATA_CONFIRM_CMD)，根据“Cluster ID”选择处理函数，会使用zdpProcessPowerDescReq来处理电源描述符请求。当处理完之后，通过调用ZDP_PowerDescMsg将响应信息发送至本地节点。详细流程如下图所示：
 
     2.1.4.13 ZDP_SimpleDescReq
-    ZDP_SimpleDescReq函数建立和发送一个简单描述符(Simple Descriptor)请求至已明确网络地址的远程节点。函数原型如下所示：
+    ZDP_SimpleDescReq函数建立和发送一个简单描述符(Simple Descriptor)请求至已明确网络地址的远程节点。
+
 afStatus_t ZDP_SimpleDescReq ( zAddrType_t *dstAddr, uint16 nwkAddr, byte endPoint, byte SecurityEnable )
 dstAddr -- 目的地址。
 NWKAddr -- 远程节点的16位网络地址。
