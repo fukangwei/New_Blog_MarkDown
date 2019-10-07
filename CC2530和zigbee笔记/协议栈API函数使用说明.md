@@ -357,18 +357,27 @@ afStatus_t ZDP_IEEEAddrRsp (
 
 #### IEEE地址请求和响应应用举例分析
 
-&emsp;&emsp;本地节点首先需要在应用层或ZDO层注册响应信息，本例在ZDApp.c中注册了IEEE_addr_rsp信息，然后调用ZDP_IEEEAddrReq请求远程节点的网络地址。远程节点接收到该请求信息(该信息从属于AF_DATA_CONFIRM_CMD)，根据“Cluster ID”选择处理函数，本例使用zdpProcessAddrReq来处理IEEE地址请求。当处理完之后，通过调用fillAndSend将响应信息发送至本地节点。由于在ZDO中注册了该响应信息，因此调用ZDApp_ProcessMsgCBs来处理响应信息。详细流程如下图所示：
+&emsp;&emsp;本地节点首先需要在应用层或`ZDO`层注册响应信息，本例在`ZDApp.c`中注册了`IEEE_addr_rsp`信息，然后调用`ZDP_IEEEAddrReq`请求远程节点的网络地址。远程节点接收到该请求信息(该信息从属于`AF_DATA_CONFIRM_CMD`)，根据`Cluster ID`选择处理函数，本例使用`zdpProcessAddrReq`来处理`IEEE`地址请求。当处理完之后，通过调用`fillAndSend`将响应信息发送至本地节点。由于在`ZDO`中注册了该响应信息，因此调用`ZDApp_ProcessMsgCBs`来处理响应信息。详细流程如下图所示：
 
-    2.1.4.7 ZDP_NodeDescReq
-    ZDP_NodeDescReq实际上是调用宏定义ZDP_NWKAddrOfInterestReq，这个函数建立和发送一个节点描述符(Node Descriptor)请求至已明确网络地址的远程节点。
+#### ZDP_NodeDescReq
+
+&emsp;&emsp;`ZDP_NodeDescReq`实际上是调用宏定义`ZDP_NWKAddrOfInterestReq`，这个函数建立和发送一个节点描述符(`Node Descriptor`)请求至已明确网络地址的远程节点。
+
+``` cpp
 afStatus_t ZDP_NodeDescReq ( zAddrType_t *dstAddr, uint16 NWKAddrOfInterest, byte SecuritySuite );
-DstAddr -- 目的地址。
-NWKAddrOfInterest -- 远程节点的16位网络地址。
-SecuritySuite -- 安全要求。
-返回值ZStatus_t为状态。
+```
 
-    2.1.4.8 ZDP_NodeDescMsg
-    调用此函数响应节点描述符的请求。
+- `DstAddr`：目的地址。
+- `NWKAddrOfInterest`：远程节点的`16`位网络地址。
+- `SecuritySuite`：安全要求。
+
+返回值`ZStatus_t`为状态。
+
+#### ZDP_NodeDescMsg
+
+&emsp;&emsp;调用此函数响应节点描述符的请求。
+
+``` cpp
 afStatus_t ZDP_NodeDescMsg (
     byte TransSeq,
     zAddrType_t *dstAddr,
@@ -377,6 +386,8 @@ afStatus_t ZDP_NodeDescMsg (
     NodeDescriptorFormat_t *pNodeDesc,
     byte SecuritySuite
 );
+```
+
 TranSeq -- 传输序号。
 DstAddr -- 目的地址。
 Status -- “ZDP_SUCCESS = 0”、“ZDP_DEVICE_NOT_FOUND = 1”。
