@@ -635,8 +635,11 @@ afStatus_t ZDP_MatchDescReq (
 
 返回值`ZStatus_t`为状态。
 
-    2.1.4.20 ZDP_MatchDescRsp
-    该函数实际上是调用宏定义ZDP_EPIFRsp，调用此函数响应匹配描述符请求。函数原型如下所示：
+#### ZDP_MatchDescRsp
+
+&emsp;&emsp;该函数实际上是调用宏定义`ZDP_EPIFRsp`，调用此函数响应匹配描述符请求。
+
+``` cpp
 afStatus_t ZDP_MatchDescRsp (
     byte TranSeq,
     zAddrType_t *dstAddr,
@@ -646,6 +649,8 @@ afStatus_t ZDP_MatchDescRsp (
     byte *pEPIntfList,
     byte SecuritySuite
 );
+```
+
 TranSeq -- 传输序号。
 DstAddr -- 目的地址。
 Status -- “ZDP_SUCCESS = 0”、“ZDP_DEVICE_NOT_FOUND = 1”。
@@ -653,10 +658,12 @@ nwkAddr -- 已明确的远程节点的16位网络地址。
 Count -- 活动端点个数。
 pEPIntfList -- 活动端点列表。
 SecuritySuite -- 安全要求。
+
 返回值ZStatus_t为状态。
 
-    2.1.4.21 匹配描述符请求和响应应用举例分析
-    本地节点首先需要在应用层或ZDO层注册响应信息，本例在sapi.c中注册了Match_Desc_rsp信息。另外，远程节点需要开启匹配描述符响应。然后调用ZDP_MatchDescReq请求远程节点的匹配描述符。远程节点接收到该请求信息(该信息从属于AF_DATA_CONFIRM_CMD)，根据“Cluster ID”选择处理函数，本例中使用ZDO_ProcessMatchDescReq来处理匹配描述符请求。当处理完之后，通过调用fillAndSend将响应信息发送至本地节点。由于在应用层中注册了该响应信息，因此调用SAPI_ProcessZDOMsgs来处理响应信息。最后通过调用应用支持子层的函数APSME_BindReques建立绑定表。详细流程如下图所示：
+#### 匹配描述符请求和响应应用举例分析
+
+&emsp;&emsp;本地节点首先需要在应用层或ZDO层注册响应信息，本例在sapi.c中注册了Match_Desc_rsp信息。另外，远程节点需要开启匹配描述符响应。然后调用ZDP_MatchDescReq请求远程节点的匹配描述符。远程节点接收到该请求信息(该信息从属于AF_DATA_CONFIRM_CMD)，根据“Cluster ID”选择处理函数，本例中使用ZDO_ProcessMatchDescReq来处理匹配描述符请求。当处理完之后，通过调用fillAndSend将响应信息发送至本地节点。由于在应用层中注册了该响应信息，因此调用SAPI_ProcessZDOMsgs来处理响应信息。最后通过调用应用支持子层的函数APSME_BindReques建立绑定表。详细流程如下图所示：
 
 
     2.1.4.22 ZDP_DeviceAnnce
