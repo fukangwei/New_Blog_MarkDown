@@ -214,7 +214,8 @@ static void appLight() {
 第23行：“Basic RF”接收的第2步，“if(basicRfReceive(pRxData, APP_PAYLOAD_LENGTH, NULL) > 0)”判断否接收到有效数据。
 第24行：“if(pRxData[0] == LIGHT_TOGGLE_CMD)”判断接收到的数据是否就是发送函数里面的LIGHT_TOGGLE_CMD。如果是，则执行第25行。
 第25行：“halLedToggle(1)”改变Led1的状态。
-   完成烧写后上电，按下发射模块的S1按键，可以看到接收模块的LED1被点亮。
+
+&emsp;&emsp;完成烧写后上电，按下发射模块的S1按键，可以看到接收模块的LED1被点亮。
 
 信号传输质量检测
    PER(误包率检测)实验是“BasicRF”的第二个实验，和无线点灯一样是没有使用协议栈的点对点通讯。实验现象：两块WeBee模块通信，一个模块作发射，另外一个模块接收，接收模块通过串口在PC机上显示当前的误包率、RSSI值和接收到数据包的个数。代码如下所示：
