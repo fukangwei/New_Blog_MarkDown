@@ -1179,12 +1179,17 @@ ZStatus_t NLME_NetworkDiscoveryRequest ( uint32 ScanChannels, byte ScanDuration 
 
 #### 网络层：发现网络请求举例分析
 
-&emsp;&emsp;调用发现网络请求函数的必要条件是：“logicalType == NODETYPE_ROUTER || logicalType == NODETYPE_DEVICE”并且“startMode == MODE_JOIN || startMode == MODE_REJOIN”。本例中NLME_NetworkDiscoveryRequest各参数设置如下(在f8wConfig.cfg中定义)：
+&emsp;&emsp;发现网络请求举例分析调用发现网络请求函数的必要条件是：`logicalType == NODETYPE_ROUTER || logicalType == NODETYPE_DEVICE`并且`startMode == MODE_JOIN || startMode == MODE_REJOIN`。本例中`NLME_NetworkDiscoveryRequest`各参数设置如下(在`f8wConfig.cfg`中定义)：
 
+``` cpp
 DDEFAULT_CHANLIST=0x00000800 /* 11 - 0x0B */
 #define STARTING_SCAN_DURATION 5
 uint8 zgDefaultStartingScanDuration = STARTING_SCAN_DURATION;
-返回函数ZDO_NetworkDiscoveryConfirmCB中网络描述列表定义如下：
+```
+
+返回函数`ZDO_NetworkDiscoveryConfirmCB`中网络描述列表定义如下：
+
+``` cpp
 typedef struct {
     uint16 panId;
     byte logicalChannel;
@@ -1201,7 +1206,11 @@ typedef struct {
     byte updateId;
     void *nextDesc;
 } networkDesc_t;
-该函数将网络列表的部分元素传递至发现网络反馈消息ZDO_NetworkDiscoveryCfm_t，并设置发现网络消息事件ZDO_NWK_DISC_CNF，交由ZDApp任务事件处理函数做下一步处理：
+```
+
+该函数将网络列表的部分元素传递至发现网络反馈消息`ZDO_NetworkDiscoveryCfm_t`，并设置发现网络消息事件`ZDO_NWK_DISC_CNF`，交由`ZDApp`任务事件处理函数做下一步处理：
+
+``` cpp
 typedef struct {
     osal_event_hdr_t hdr;
     uint8 panIdLSB;
@@ -1210,6 +1219,7 @@ typedef struct {
     uint8 version;
     uint8 extendedPANID[Z_EXTADDR_LEN];
 } ZDO_NetworkDiscoveryCfm_t;
+
 ZStatus_t ZDO_NetworkDiscoveryConfirmCB ( uint8 ResultCount, networkDesc_t *NetworkList ) {
     networkDesc_t *pNwkDesc = NetworkList;
     msg.hdr.status = ZDO_SUCCESS;
@@ -1220,19 +1230,27 @@ ZStatus_t ZDO_NetworkDiscoveryConfirmCB ( uint8 ResultCount, networkDesc_t *Netw
     osal_cpyExtAddr ( msg.extendedPANID, pNwkDesc->extendedPANID );
     ZDApp_SendMsg ( ZDAppTaskID, ZDO_NWK_DISC_CNF, sizeof ( ZDO_NetworkDiscoveryCfm_t ), ( uint8 * ) &msg );
 }
-发现网络请求和反馈发生在路由器或终端设备的ZDO层与NWK层之间：
+```
 
+发现网络请求和反馈发生在路由器或终端设备的`ZDO`层与`NWK`层之间：
 
-    2.4.1.5 NLME_JoinRequest
-    此函数请求节点将自己加入到一个网络中。这个行为的结果返回到ZDO_JoinConfirmCB中。函数原型如下所示：
+#### NLME_JoinRequest
+
+&emsp;&emsp;此函数请求节点将自己加入到一个网络中。这个行为的结果返回到`ZDO_JoinConfirmCB`中。
+
+``` cpp
 ZStatus_t NLME_JoinRequest ( uint8 *ExtendedPANID, uint16 PanId, byte Channel, byte CapabilityInfo );
-ExtendedPANID -- 试图加入的网络的扩展“PAN ID”号。
-PanId -- 试图加入的网络的“PAN ID”号。
-Channel -- 频道号，其值为11至26。
-CapabilityInfo -- 正在加入网络的设备的能力。
-返回值ZStatus_t为状态。
+```
+
+- `ExtendedPANID`：试图加入的网络的扩展`PAN ID`号。
+- `PanId`：试图加入的网络的`PAN ID`号。
+- `Channel`：频道号，其值为`11`至`26`。
+- `CapabilityInfo`：正在加入网络的设备的能力。
+
+返回值`ZStatus_t`为状态。
 
     2.4.1.6 网络层-加入网络请求举例分析
+
     调用加入网络请求函数的必要条件是：“devStartMode == MODE_JOIN”。本例中NLME_JoinRequest各参数设置如下：
 ( ZDO_NetworkDiscoveryCfm_t * ) msgPtr )->extendedPANID  /* 试图加入的网络的扩展“PAN ID”号 */
 ( ZDO_NetworkDiscoveryCfm_t * ) msgPtr )->panIdLSB       /* 试图加入的网络的"PAN ID"号高8位 */
@@ -1334,8 +1352,11 @@ addr_filter_t NLME_IsAddressBroadcast ( uint16 shortAddress );
     此函数根据设备能力设置掩码，用于处理有效的广播地址。函数原型如下所示：
 void NLME_SetBroadcastFilter ( byte capabilities );
 参数capabilities为该设备的能力用于确定该设备处理的广播信息类型。
-/*-----------------------------------------------------------------------------------------------------------------------------*/
-ZDO解析函数
+
+---
+
+# ZDO解析函数
+
     ZDO解析函数用来解析接收到的消息。
 ZDO_NwkIEEEAddrResp_t *ZDO_ParseAddrRsp ( zdoIncomingMsg_t *inMsg );
 用于解析NWK_addr_rsp和IEEE_addr_rsp消息。参数inMsg指向接收到的消息的指针，返回值ZDO_NwkIEEEAddrResp_t指向解析后的结构的指针，结构体由osal_mem_alloc分配空间，所以需要调用osal_mem_free来释放空间。
