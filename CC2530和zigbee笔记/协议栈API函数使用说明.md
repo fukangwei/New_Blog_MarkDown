@@ -673,31 +673,37 @@ afStatus_t ZDP_MatchDescRsp (
 
 #### ZDP_DeviceAnnce
 
-&emsp;&emsp;这个函数为`ZigBee`终端设备建立和发送一个`End_Device_annce`命令，来通知网络中的其他`ZigBee`节点。该命令包含终端设备的`16`位网络地址和`64`位`IEEE`地址以及容量。接收到End_Device_annce命令的节点将检查IEEE地址并更新相应的网络地址，但不会对此命令返回响应信息。
+&emsp;&emsp;这个函数为`ZigBee`终端设备建立和发送一个`End_Device_annce`命令，来通知网络中的其他`ZigBee`节点。该命令包含终端设备的`16`位网络地址和`64`位`IEEE`地址以及容量。接收到`End_Device_annce`命令的节点将检查`IEEE`地址并更新相应的网络地址，但不会对此命令返回响应信息。
 
 ``` cpp
 afStatus_t ZDP_DeviceAnnce ( uint16 nwkAddr, byte *IEEEAddr, byte capabilities, byte SecurityEnable );
 ```
 
-nwkAddr -- 本地节点的16位网络地址。
-IEEEAddr -- 本地节点的64位IEEE地址。
-Capabilities -- 本地节点的容量。
-SecurityEnable -- 安全要求。
-返回值ZStatus_t为状态。
+- `nwkAddr`：本地节点的`16`位网络地址。
+- `IEEEAddr`：本地节点的`64`位`IEEE`地址。
+- `Capabilities`：本地节点的容量。
+- `SecurityEnable`：安全要求。
 
-    2.1.5 ZDO绑定API
-    ZDO绑定API建立和发送ZDO绑定请求和响应。所有的绑定表建立在ZigBee协调器中。因此，只有ZigBee协调器可以接收绑定请求。
-ZDO绑定API                ZDP绑定服务命令
------------------------------------------
-ZDP_EndDeviceBindReq      End_Device_Bind_req
-ZDP_EndDeviceBindRsp      End_Device_Bind_rsp
-ZDP_BindReq               Bind_req
-ZDP_BindRsp               Bind_rsp
-ZDP_UnbindReq             Unbind_req
-ZDP_UnbindRsp             Unbind_rsp
+返回值`ZStatus_t`为状态。
 
-    2.1.5.1 ZDP_EndDeviceBindReq
-    调用这个函数将建立和发送一个终端设备绑定请求(手动绑定)。在手动绑定建立之后，我们可以间接发送信息(无地址)至协调器，协调器将发送此消息至绑定的节点。通过同样的方式，我们也可以接收到绑定节点的信息。函数原型如下所示：
+### ZDO绑定API
+
+&emsp;&emsp;`ZDO`绑定`API`建立和发送`ZDO`绑定请求和响应。所有的绑定表建立在`ZigBee`协调器中。因此，只有`ZigBee`协调器可以接收绑定请求。
+
+ZDO绑定API             | ZDP绑定服务命令
+-----------------------|---------------
+`ZDP_EndDeviceBindReq` | `End_Device_Bind_req`
+`ZDP_EndDeviceBindRsp` | `End_Device_Bind_rsp`
+`ZDP_BindReq`          | `Bind_req`
+`ZDP_BindRsp`          | `Bind_rsp`
+`ZDP_UnbindReq`        | `Unbind_req`
+`ZDP_UnbindRsp`        | `Unbind_rsp`
+
+#### ZDP_EndDeviceBindReq
+
+&emsp;&emsp;调用这个函数将建立和发送一个终端设备绑定请求(手动绑定)。在手动绑定建立之后，我们可以间接发送信息(无地址)至协调器，协调器将发送此消息至绑定的节点。通过同样的方式，我们也可以接收到绑定节点的信息。
+
+``` cpp
 afStatus_t ZDP_EndDeviceBindReq (
     zAddrType_t *dstAddr,
     uint16 LocalCoordinator,
@@ -709,24 +715,33 @@ afStatus_t ZDP_EndDeviceBindReq (
     byte *OutClusterList,
     byte SecuritySuite
 );
-DstAddr -- 目的地址。
-LocalCoordinator -- 已知协调器的16位网络地址。
-ep -- 端点。
-ProfileID -- 应用规范ID号。
-NumInClusters -- 输入簇的个数。
-InClusterList -- 输入簇列表，每个元素1byte。
-NumOutClusters -- 输出簇的个数。
-OutClusterList -- 输出簇列表，每个元素1byte。
-SecuritySuite -- 安全要求。
-返回值ZStatus_t为状态。
+```
 
-    2.1.5.2 ZDP_EndDeviceBindRsp
-    这个宏定义直接调用ZDP_SendData，调用此函数响应终端设备绑定请求。函数原型如下所示：
+- `DstAddr`：目的地址。
+- `LocalCoordinator`：已知协调器的`16`位网络地址。
+- `ep`：端点。
+- `ProfileID`：应用规范`ID`号。
+- `NumInClusters`：输入簇的个数。
+- `InClusterList`：输入簇列表，每个元素`1 byte`。
+- `NumOutClusters`：输出簇的个数。
+- `OutClusterList`：输出簇列表，每个元素`1 byte`。
+- `SecuritySuite`：安全要求。
+
+返回值`ZStatus_t`为状态。
+
+#### ZDP_EndDeviceBindRsp
+
+&emsp;&emsp;这个宏定义直接调用ZDP_SendData，调用此函数响应终端设备绑定请求。
+
+``` cpp
 afStatus_t ZDP_EndDeviceBindRsp ( byte TranSeq, zAddrType_t *dstAddr, byte Status, byte SecurityEnable );
+```
+
 TranSeq -- 传输序列号。
 DstAddr -- 目的地址。
 Status -- “SUCCESS = 0”、“NOT_SUPPORT = 1”、“TIMEOUT = 2”、“NO_MATCH = 3”。
 SecuritySuite -- 安全要求。
+
 返回值ZStatus_t为状态。
 
     2.1.5.3 终端设备绑定请求和响应应用举例分析
@@ -734,7 +749,7 @@ SecuritySuite -- 安全要求。
 
 
     2.1.5.4 ZDP_BindReq
-    这个宏定义实际上是调用了函数ZDP_BindUnbindReq，该函数将建立和发送一个绑定请求。函数原型如下所示：
+    这个宏定义实际上是调用了函数ZDP_BindUnbindReq，该函数将建立和发送一个绑定请求。
 afStatus_t ZDP_BindReq (
     zAddrType_t *dstAddr,
     byte *SourceAddr,
