@@ -731,25 +731,35 @@ afStatus_t ZDP_EndDeviceBindReq (
 
 #### ZDP_EndDeviceBindRsp
 
-&emsp;&emsp;这个宏定义直接调用ZDP_SendData，调用此函数响应终端设备绑定请求。
+&emsp;&emsp;这个宏定义直接调用`ZDP_SendData`，调用此函数响应终端设备绑定请求。
 
 ``` cpp
 afStatus_t ZDP_EndDeviceBindRsp ( byte TranSeq, zAddrType_t *dstAddr, byte Status, byte SecurityEnable );
 ```
 
-TranSeq -- 传输序列号。
-DstAddr -- 目的地址。
-Status -- “SUCCESS = 0”、“NOT_SUPPORT = 1”、“TIMEOUT = 2”、“NO_MATCH = 3”。
-SecuritySuite -- 安全要求。
+- `TranSeq`：传输序列号。
+- `DstAddr`：目的地址。
+- `Status`：有如下状态：
 
-返回值ZStatus_t为状态。
+状态          | 数值
+--------------|-----
+`SUCCESS`     | `0`
+`NOT_SUPPORT` | `1`
+`TIMEOUT`     | `2`
+`NO_MATCH`    | `3`
 
-    2.1.5.3 终端设备绑定请求和响应应用举例分析
-    协调器首先需要在ZDO层注册End_Device_Bind_req信息。然后本地节点调用ZDP_EndDeviceBindReq发送终端设备绑定请求至协调器。协调器接收到该请求信息(该信息从属于ZDO_CB_MSG)，调用ZDO_MatchEndDeviceBind处理终端设备绑定请求。处理完毕之后，调用ZDP_EndDeviceBindRsp将反馈信息发送给本地节点。详细流程如下图所示：
+- `SecuritySuite`：安全要求。
 
+返回值`ZStatus_t`为状态。
 
-    2.1.5.4 ZDP_BindReq
-    这个宏定义实际上是调用了函数ZDP_BindUnbindReq，该函数将建立和发送一个绑定请求。
+#### 终端设备绑定请求和响应应用举例分析
+
+&emsp;&emsp;协调器首先需要在`ZDO`层注册`End_Device_Bind_req`信息。然后本地节点调用ZDP_EndDeviceBindReq发送终端设备绑定请求至协调器。协调器接收到该请求信息(该信息从属于ZDO_CB_MSG)，调用ZDO_MatchEndDeviceBind处理终端设备绑定请求。处理完毕之后，调用ZDP_EndDeviceBindRsp将反馈信息发送给本地节点。详细流程如下图所示：
+
+#### ZDP_BindReq
+
+&emsp;&emsp;这个宏定义实际上是调用了函数ZDP_BindUnbindReq，该函数将建立和发送一个绑定请求。
+
 afStatus_t ZDP_BindReq (
     zAddrType_t *dstAddr,
     byte *SourceAddr,
@@ -759,6 +769,7 @@ afStatus_t ZDP_BindReq (
     byte DstEP,
     byte SecuritySuite
 );
+
 DstAddr -- 目的地址。
 SourceAddr -- 本地节点64位IEEE地址。
 SrcEP -- 本地节点的端点。
