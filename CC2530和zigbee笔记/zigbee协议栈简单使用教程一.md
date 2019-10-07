@@ -171,12 +171,14 @@ static void appSwitch() {
 - 第`7`至`11`行：`Basic RF`启动中的初始化，就是上面所讲的`Basic RF`启动的第`3`步。
 - 第`13`行：`Basic RF`发射第`1`步，把要发射的数据或者命令放入一个数据`buffer`，此处把灯状态改变的命令`LIGHT_TOGGLE_CMD`放到`pTxData`中。
 - 第`15`行：由于模块只需要发射，所以把接收屏蔽掉以降低功耗。
-- 第`19`行：`if(halButtonPushed() == HAL_BUTTON_1)`判断按键S1是否被按下。函数halButtonPushed是halButton.c里面的，它的功能是：按键S1有被按动时，就回返回true，则进入“basicRfSendPacket(LIGHT_ADDR, pTxData, APP_PAYLOAD_LENGTH);”。
-第20行：“Basic RF”发射第2步，也是发送数据最关键的一步，函数功能在前面已经讲述。“basicRfSendPacket(LIGHT_ADDR, pTxData, APP_PAYLOAD_LENGTH)”将LIGHT_ADDR、pTxData、 APP_PAYLOAD_LENGTH的实参写出来就是“basicRfSendPacket(0xBEEF ,pTxData[0] ,1)”，即把字节长度为1的命令，发送到地址0xBEEF。
-第22至23行：WeBee开发板暂时还没有joystick(多方向按键)，不用理它。
-第25行：使能中断。
+- 第`19`行：`if(halButtonPushed() == HAL_BUTTON_1)`判断按键`S1`是否被按下。函数`halButtonPushed`是`halButton.c`里面的，它的功能是：按键`S1`有被按动时，就回返回`true`，则进入`basicRfSendPacket(LIGHT_ADDR, pTxData, APP_PAYLOAD_LENGTH);`。
+- 第`20`行：`Basic RF`发射第`2`步，也是发送数据最关键的一步，函数功能在前面已经讲述。`basicRfSendPacket(LIGHT_ADDR, pTxData, APP_PAYLOAD_LENGTH)`将`LIGHT_ADDR`、`pTxData`、`APP_PAYLOAD_LENGTH`的实参写出来就是`basicRfSendPacket(0xBEEF, pTxData[0], 1)`，实际上就是把字节长度为`1`的命令，发送到地址`0xBEEF`。
+- 第`22`至`23`行：`WeBee`开发板暂时还没有`joystick`(多方向按键)，不用理它。
+- 第`25`行：使能中断。
 
-   发送的appSwitch讲解完毕，接下来就到我们的接收appLight函数了：
+&emsp;&emsp;发送的`appSwitch`讲解完毕，接下来就到接收函数`appLight`：
+
+``` cpp
 static void appLight() {
     /*-----------------------------------------
     halLcdWriteLine(HAL_LCD_LINE_1, “Light”);
@@ -202,6 +204,8 @@ static void appLight() {
         }
     }
 }
+```
+
 第7至9行：这是LCD显示的内容，暂时不用理它。
 第11至15行：“Basic RF”启动中的初始化，上面“Basic RF”启动的第3步。
 第17行：函数basicRfReceiveOn开启无线接收功能，调用这个函数后模块一直会接收，除非再调用basicRfReceiveOff使它关闭接收。
