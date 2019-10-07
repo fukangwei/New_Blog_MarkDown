@@ -603,7 +603,9 @@ afStatus_t ZDP_ActiveEPIFRsp (
 &emsp;&emsp;本例应用层或`ZDO`层均未注册`Active_EP_rsp`信息。调用`ZDP_ActiveEPIFReq`可以根据已明确了的网络地址请求远程节点的活动端点。远程节点接收到该请求信息(该信息从属于`AF_DATA_CONFIRM_CMD`)，根据`Cluster ID`选择处理函数，会使用`zdpProcessActiveEPReq`来处理活动端点请求。当处理完之后，通过调用如下函数：
 
 ``` cpp
-ZDP_ActiveEPRsp ( inMsg->TransSeq, & ( inMsg->srcAddr ), stat, aoi, cnt, ( uint8 * ) ZDOBuildBuf, inMsg->SecurityUse );
+ZDP_ActiveEPRsp (
+    inMsg->TransSeq, & ( inMsg->srcAddr ), stat, aoi,
+    cnt, ( uint8 * ) ZDOBuildBuf, inMsg->SecurityUse );
 ```
 
 将响应信息发送至本地节点。
@@ -1146,7 +1148,7 @@ ZStatus_t NLME_NetworkFormationRequest (
 ``` cpp
 -DZDAPP_CONFIG_PAN_ID=0xFFFF
 uint16 zgConfigPANID = ZDAPP_CONFIG_PAN_ID;
-uint8 zgApsUseExtendedPANID[Z_EXTADDR_LEN] = {00,00,00,00,00,00,00,00};
+uint8 zgApsUseExtendedPANID[Z_EXTADDR_LEN] = {00, 00, 00, 00, 00, 00, 00, 00};
 -DDEFAULT_CHANLIST=0x00000800 /* 11 - 0x0B */
 #define STARTING_SCAN_DURATION 5
 uint8 zgDefaultStartingScanDuration = STARTING_SCAN_DURATION;
