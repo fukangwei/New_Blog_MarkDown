@@ -74,7 +74,7 @@ uint8 ZDOInitDevice ( uint16 startDelay );
 参数`startDelay`为设备启动延时(毫秒)，返回值如下：
 
 返回值                                | 说明
--------------------------------------|-----------
+-------------------------------------|-----
 `ZDO_INITDEV_RESTORED_NETWORK_STATE` | 网络状态为恢复
 `ZDO_INITDEV_NEW_NETWORK_STATE`      | 网络状态为初始化
 `ZDO_INITDEV_LEAVE_NOT_STARTED`      | 网络状态为未启动
@@ -93,17 +93,22 @@ zgWriteStartupOptions ( ZG_STARTUP_SET, ZCD_STARTOPT_DEFAULT_NETWORK_STATE );
 
 #### ZDO_RegisterForZDOMsg
 
-&emsp;&emsp;调用该函数可以将接收到的无线传输信息复制一份到OSAL层的某个任务。该任务接收到消息后，可以自行解析此消息或者通过ZDO解析函数解析此消息，只有响应消息需要使用ZDO解析函数。函数原型如下所示：
+&emsp;&emsp;调用该函数可以将接收到的无线传输信息复制一份到`OSAL`层的某个任务。该任务接收到消息后，可以自行解析此消息或者通过`ZDO`解析函数解析此消息，只有响应消息需要使用`ZDO`解析函数。
 
 ``` cpp
 ZStatus_t ZDO_RegisterForZDOMsg ( uint8 taskID, uint16 clusterID );
 ```
 
-taskID -- 任务ID，该任务发送OSAL消息。
-clustered -- 簇ID(例如NWK_addr_rsp)，在ZDProfile.h定义了相关的簇。
-返回值ZStatus_t为状态。
-    消息接收到之后作为ZDO_CB_Msg(一种系统消息)发送至应用或者任务。消息结构体zdoIncomingMsg_t定义在ZDProfile.h中：
+- `taskID`：任务`ID`，该任务发送`OSAL`消息。
+- `clustered`：簇`ID`(例如`NWK_addr_rsp`)，在`ZDProfile.h`定义了相关的簇。
+
+返回值`ZStatus_t`为状态。
+
+&emsp;&emsp;消息接收到之后作为`ZDO_CB_Msg`(一种系统消息)发送至应用或者任务。消息结构体`zdoIncomingMsg_t`定义在`ZDProfile.h`中：
+
+``` cpp
 #define ZDO_CB_MSG 0xD3 /* ZDO incoming message callback */
+
 typedef struct {
     osal_event_hdr_t hdr;
     zAddrType_t srcAddr;
@@ -115,17 +120,27 @@ typedef struct {
     uint16 macDestAddr;
     uint8 *asdu;
 } zdoIncomingMsg_t;
+```
+
 在应用层使用该函数注册的消息有：
+
+``` cpp
 void SAPI_Init ( byte task_id ) {
     /* Register callback evetns from the ZDApp */
     ZDO_RegisterForZDOMsg ( sapi_TaskID, NWK_addr_rsp );
     ZDO_RegisterForZDOMsg ( sapi_TaskID, Match_Desc_rsp );
 }
-调用ZDO_RegisterForZDOMsg在应用层注册后，应用层处理接收到的消息方式如下：
+```
+
+调用`ZDO_RegisterForZDOMsg`在应用层注册后，应用层处理接收到的消息方式如下：
+
+``` cpp
 UINT16 SAPI_ProcessEvent ( byte task_id, UINT16 events ) {
     osal_event_hdr_t *pMsg;
+
     if ( events & SYS_EVENT_MSG ) {
         pMsg = ( osal_event_hdr_t * ) osal_msg_receive ( task_id );
+
         while ( pMsg ) {
             switch ( pMsg->event ) {
                 case ZDO_CB_MSG:
@@ -135,25 +150,36 @@ UINT16 SAPI_ProcessEvent ( byte task_id, UINT16 events ) {
         }
     }
 }
-在ZDO层使用该函数注册的消息有：
+```
+
+在`ZDO`层使用该函数注册的消息有：
+
+``` cpp
 void ZDApp_RegisterCBs ( void ) {
 #if defined ( ZDO_IEEEADDR_REQUEST ) || defined ( REFLECTOR )
     ZDO_RegisterForZDOMsg ( ZDAppTaskID, IEEE_addr_rsp );
 #endif
+
 #if defined ( ZDO_NWKADDR_REQUEST ) || defined ( REFLECTOR )
     ZDO_RegisterForZDOMsg ( ZDAppTaskID, NWK_addr_rsp );
 #endif
+
 #if ZG_BUILD_COORDINATOR_TYPE
     ZDO_RegisterForZDOMsg ( ZDAppTaskID, Bind_rsp );
     ZDO_RegisterForZDOMsg ( ZDAppTaskID, Unbind_rsp );
     ZDO_RegisterForZDOMsg ( ZDAppTaskID, End_Device_Bind_req );
 #endif
+
 #if defined ( REFLECTOR )
     ZDO_RegisterForZDOMsg ( ZDAppTaskID, Bind_req );
     ZDO_RegisterForZDOMsg ( ZDAppTaskID, Unbind_req );
 #endif
 }
-调用ZDO_RegisterForZDOMsg在ZDO层注册后，ZDO层处理接收到的消息方式如下：
+```
+
+调用`ZDO_RegisterForZDOMsg`在`ZDO`层注册后，`ZDO`层处理接收到的消息方式如下：
+
+``` cpp
 void ZDApp_ProcessOSALMsg ( osal_event_hdr_t *msgPtr ) {
     switch ( msgPtr->event ) {
         case ZDO_CB_MSG:
@@ -161,16 +187,25 @@ void ZDApp_ProcessOSALMsg ( osal_event_hdr_t *msgPtr ) {
             break;
     }
 }
+```
 
-    2.1.3.2 ZDO_RemoveRegistedCB
-    调用此函数取消请求无线传输的消息。函数原型如下所示：
+#### ZDO_RemoveRegistedCB
+
+&emsp;&emsp;调用此函数取消请求无线传输的消息。
+
+``` cpp
 ZStatus_t ZDO_RemoveRegistedCB ( uint8 taskID, uint16 clusterID );
-taskID -- 任务ID，该任务ID必须与ZDO_RegisterForZDOMsg所注册的任务ID相同。
-clustered -- 簇ID，该簇ID必须与ZDO_RegisterForZDOMsg所使用的簇ID相同。
-返回值ZStatus_t为状态。
+```
 
-    2.1.4 ZDO发现API
-    ZDO发现API包含建立和发送ZDO设备和服务发现请求和响应。所有这些API函数和ZDP命令(ZigBee Device Profile Command)如下表所示：
+- `taskID`：任务`ID`，该任务`ID`必须与`ZDO_RegisterForZDOMsg`所注册的任务`ID`相同。
+- `clustered`：簇`ID`，该簇`ID`必须与`ZDO_RegisterForZDOMsg`所使用的簇`ID`相同。
+
+返回值`ZStatus_t`为状态。
+
+### ZDO发现API
+
+&emsp;&emsp;ZDO发现API包含建立和发送ZDO设备和服务发现请求和响应。所有这些API函数和ZDP命令(ZigBee Device Profile Command)如下表：
+
 API函数               ZDP命令
 -----------------------------
 ZDP_NwkAddrReq        NWK_addr_req
