@@ -1110,10 +1110,13 @@ aps_Group_t *aps_FindGroup ( uint8 endpoint, uint16 groupID );
 
 &emsp;&emsp;网络层为上层提供如下功能：网络管理、地址管理、网络参数与功能函数。
 
-    2.4.1 网络管理
+### 网络管理
 
-    2.4.1.1 NLME_NetworkFormationRequest
-    此函数请求组建一个新网络并允许自身成为该网络的ZigBee协调器。这个行为的结果返回到ZDO_NetworkFormationConfirmCB中。函数原型如下所示：
+#### NLME_NetworkFormationRequest
+
+&emsp;&emsp;此函数请求组建一个新网络并允许自身成为该网络的`ZigBee`协调器。这个行为的结果返回到`ZDO_NetworkFormationConfirmCB`中。
+
+``` cpp
 ZStatus_t NLME_NetworkFormationRequest (
     uint16 PanId,
     uint8 *ExtendedPANID,
@@ -1123,17 +1126,23 @@ ZStatus_t NLME_NetworkFormationRequest (
     byte SuperframeOrder,
     byte BatteryLifeExtension
 );
-PanId -- 个域网ID号，有效值为0至0xFFFE。如果为0xFFFF，则网络层将选择PANID供网络使用。
-ExtendedPANID -- 扩展的个域网ID号。
-ScanChannels -- 扫描的频道，其值为11至26。
-ScanDuration -- 扫描时间。
-BeaconOrder -- 该值为BEACON_ORDER_NO_BEACONS。
-SuperframeOrder -- 该值为BEACON_ORDER_NO_BEACONS。
-BatteryLifeExtension -- 电池寿命延长模式。
-返回值ZStatus_t为状态。
+```
 
-    2.4.1.2 网络层 -- 组建网络请求举例分析
-    调用组建网络请求函数的必要条件是：“logicalType == NODETYPE_COORDINATOR”并且“startMode == MODE_HARD”。本例中NLME_NetworkFormationRequest各参数设置如下(在f8wConfig.cfg中定义)：
+- `PanId`：个域网`ID`号，有效值为`0`至`0xFFFE`。如果为`0xFFFF`，则网络层将选择`PANID`供网络使用。
+- `ExtendedPANID`：扩展的个域网`ID`号。
+- `ScanChannels`：扫描的频道，其值为`11`至`26`。
+- `ScanDuration`：扫描时间。
+- `BeaconOrder`：该值为`BEACON_ORDER_NO_BEACONS`。
+- `SuperframeOrder`：该值为`BEACON_ORDER_NO_BEACONS`。
+- `BatteryLifeExtension`：电池寿命延长模式。
+
+返回值`ZStatus_t`为状态。
+
+#### 网络层：组建网络请求举例分析
+
+&emsp;&emsp;调用组建网络请求函数的必要条件是：“logicalType == NODETYPE_COORDINATOR”并且“startMode == MODE_HARD”。本例中NLME_NetworkFormationRequest各参数设置如下(在f8wConfig.cfg中定义)：
+
+``` cpp
 -DZDAPP_CONFIG_PAN_ID=0xFFFF
 uint16 zgConfigPANID = ZDAPP_CONFIG_PAN_ID;
 uint8 zgApsUseExtendedPANID[Z_EXTADDR_LEN] = {00,00,00,00,00,00,00,00};
@@ -1143,10 +1152,16 @@ uint8 zgDefaultStartingScanDuration = STARTING_SCAN_DURATION;
 #define BEACON_ORDER_NO_BEACONS 15
 beaconOrder = BEACON_ORDER_NO_BEACONS;
 superFrameOrder = BEACON_ORDER_NO_BEACONS;
+```
+
 返回函数ZDO_NetworkFormationConfirmCB将设置网络启动事件，交给操作系统做下一步处理：
+
+``` cpp
 void ZDO_NetworkFormationConfirmCB ( ZStatus_t Status ) {
     osal_set_event ( ZDAppTaskID, ZDO_NETWORK_START );
 }
+```
+
 组建网络请求和反馈发生在协调器的ZDO层与NWK层之间：
 
 
