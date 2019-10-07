@@ -206,14 +206,14 @@ static void appLight() {
 }
 ```
 
-第7至9行：这是LCD显示的内容，暂时不用理它。
-第11至15行：“Basic RF”启动中的初始化，上面“Basic RF”启动的第3步。
-第17行：函数basicRfReceiveOn开启无线接收功能，调用这个函数后模块一直会接收，除非再调用basicRfReceiveOff使它关闭接收。
-第20行：程序开始进行不断扫描的循环。
-第21行：“Basic RF”接收的第1步，“while(!basicRfPacketIsReady())”检查是否接收上层数据。
-第23行：“Basic RF”接收的第2步，“if(basicRfReceive(pRxData, APP_PAYLOAD_LENGTH, NULL) > 0)”判断否接收到有效数据。
-第24行：“if(pRxData[0] == LIGHT_TOGGLE_CMD)”判断接收到的数据是否就是发送函数里面的LIGHT_TOGGLE_CMD。如果是，则执行第25行。
-第25行：“halLedToggle(1)”改变Led1的状态。
+- 第`7`至`9`行：这是`LCD`显示的内容，暂时不用理它。
+- 第`11`至`15`行：`Basic RF`启动中的初始化，上面`Basic RF`启动的第`3`步。
+- 第`17`行：函数`basicRfReceiveOn`开启无线接收功能，调用这个函数后模块一直会接收，除非再调用`basicRfReceiveOff`使它关闭接收。
+- 第`20`行：程序开始进行不断扫描的循环。
+- 第`21`行：`Basic RF`接收的第`1`步，`while(!basicRfPacketIsReady())`检查是否接收上层数据。
+- 第`23`行：`Basic RF`接收的第`2`步，`if(basicRfReceive(pRxData, APP_PAYLOAD_LENGTH, NULL) > 0)`判断否接收到有效数据。
+- 第`24`行：“if(pRxData[0] == LIGHT_TOGGLE_CMD)”判断接收到的数据是否就是发送函数里面的LIGHT_TOGGLE_CMD。如果是，则执行第25行。
+- 第25行：“halLedToggle(1)”改变Led1的状态。
 
 &emsp;&emsp;完成烧写后上电，按下发射模块的S1按键，可以看到接收模块的LED1被点亮。
 
