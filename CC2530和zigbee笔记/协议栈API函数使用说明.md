@@ -1293,7 +1293,7 @@ ZDO_UseExtendedPANID: /* 试图加入的网络的扩展“PAN ID”号 */
 ( ZDO_NetworkDiscoveryCfm_t * ) msgPtr )->logicalChannel /* 频道号 */
 ```
 
-返回函数ZStatus_t ZDO_JoinConfirmCB设置加入网络消息事件ZDO_NWK_JOIN_IND，交由ZDApp任务事件处理函数做下一步处理：
+返回函数`ZStatus_t ZDO_JoinConfirmCB`设置加入网络消息事件`ZDO_NWK_JOIN_IND`，交由ZDApp任务事件处理函数做下一步处理：
 
 ``` cpp
 void ZDO_JoinConfirmCB ( uint16 PanId, ZStatus_t Status ) {
@@ -1301,13 +1301,19 @@ void ZDO_JoinConfirmCB ( uint16 PanId, ZStatus_t Status ) {
 }
 ```
 
-重新加入网络请求和反馈发生在路由器或终端设备的ZDO层与NWK层之间：
+重新加入网络请求和反馈发生在路由器或终端设备的`ZDO`层与`NWK`层之间：
 
-    2.4.1.9 NLME_OrphanJoinRequest
-    此函数请求孤立节点连接到一个父节点。这个行为的结果返回到ZDO_JoinConfirmCB中。函数原型如下所示：
+#### NLME_OrphanJoinRequest
+
+&emsp;&emsp;此函数请求孤立节点连接到一个父节点。这个行为的结果返回到`ZDO_JoinConfirmCB`中。
+
+``` cpp
 ZStatus_t NLME_OrphanJoinRequest ( uint32 ScanChannels, byte ScanDuration );
+```
+
 ScanChannels -- 频道号，其值为11至26。
 ScanDuration -- 扫描时间。
+
 返回值ZStatus_t为状态。
 
     2.4.1.10 网络层 -- 孤立节点连接父节点请求举例分析
