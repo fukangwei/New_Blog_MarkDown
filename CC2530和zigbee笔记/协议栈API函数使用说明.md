@@ -515,16 +515,21 @@ afStatus_t ZDP_SimpleDescMsg (
 );
 ```
 
-TranSeq -- 传输序号。
-DstAddr -- 目的地址。
+- `TranSeq`：传输序号。
+- `DstAddr`：目的地址。
+- `Status`：有如下状态：
 
-Status：
-“UCCESS = 0”、“INVALID_EP = 1”、“NOT_ACTIVE = 2”、“DEVICE_NOT_FOUND = 3”。
+状态               | 数值
+-------------------|-----
+`UCCESS`           | 0
+`INVALID_EP`       | 1
+`NOT_ACTIVE`       | 2
+`DEVICE_NOT_FOUND` | `3`
 
-pSimpleDesc -- 简单描述符。
-SecuritySuite -- 安全要求。
+- `pSimpleDesc`：简单描述符。
+- `SecuritySuite`：安全要求。
 
-返回值ZStatus_t为状态。
+返回值`ZStatus_t`为状态。
 
     2.1.4.15 简单描述符请求和响应应用举例分析
     简单描述符包含该节点所含每个端点的具体信息，其数据结构如下(AF.h)：
