@@ -651,23 +651,29 @@ afStatus_t ZDP_MatchDescRsp (
 );
 ```
 
-TranSeq -- 传输序号。
-DstAddr -- 目的地址。
-Status -- “ZDP_SUCCESS = 0”、“ZDP_DEVICE_NOT_FOUND = 1”。
-nwkAddr -- 已明确的远程节点的16位网络地址。
-Count -- 活动端点个数。
-pEPIntfList -- 活动端点列表。
-SecuritySuite -- 安全要求。
+- `TranSeq`：传输序号。
+- `DstAddr`：目的地址。
+- `Status`：有如下状态：
 
-返回值ZStatus_t为状态。
+状态                   | 数值
+-----------------------|-----
+`ZDP_SUCCESS`          | `0`
+`ZDP_DEVICE_NOT_FOUND` | `1`
+
+- `nwkAddr`：已明确的远程节点的`16`位网络地址。
+- `Count`：活动端点个数。
+- `pEPIntfList`：活动端点列表。
+- `SecuritySuite`：安全要求。
+
+返回值`ZStatus_t`为状态。
 
 #### 匹配描述符请求和响应应用举例分析
 
-&emsp;&emsp;本地节点首先需要在应用层或ZDO层注册响应信息，本例在sapi.c中注册了Match_Desc_rsp信息。另外，远程节点需要开启匹配描述符响应。然后调用ZDP_MatchDescReq请求远程节点的匹配描述符。远程节点接收到该请求信息(该信息从属于AF_DATA_CONFIRM_CMD)，根据“Cluster ID”选择处理函数，本例中使用ZDO_ProcessMatchDescReq来处理匹配描述符请求。当处理完之后，通过调用fillAndSend将响应信息发送至本地节点。由于在应用层中注册了该响应信息，因此调用SAPI_ProcessZDOMsgs来处理响应信息。最后通过调用应用支持子层的函数APSME_BindReques建立绑定表。详细流程如下图所示：
+&emsp;&emsp;本地节点首先需要在应用层或`ZDO`层注册响应信息，本例在`sapi.c`中注册了`Match_Desc_rsp`信息。另外，远程节点需要开启匹配描述符响应。然后调用`ZDP_MatchDescReq`请求远程节点的匹配描述符。远程节点接收到该请求信息(该信息从属于`AF_DATA_CONFIRM_CMD`)，根据`Cluster ID`选择处理函数，本例中使用`ZDO_ProcessMatchDescReq`来处理匹配描述符请求。当处理完之后，通过调用`fillAndSend`将响应信息发送至本地节点。由于在应用层中注册了该响应信息，因此调用`SAPI_ProcessZDOMsgs`来处理响应信息。最后通过调用应用支持子层的函数`APSME_BindReques`建立绑定表。详细流程如下图所示：
 
 #### ZDP_DeviceAnnce
 
-&emsp;&emsp;这个函数为ZigBee终端设备建立和发送一个End_Device_annce命令，来通知网络中的其他ZigBee节点。该命令包含终端设备的16位网络地址和64位IEEE地址以及容量。接收到End_Device_annce命令的节点将检查IEEE地址并更新相应的网络地址，但不会对此命令返回响应信息。
+&emsp;&emsp;这个函数为`ZigBee`终端设备建立和发送一个`End_Device_annce`命令，来通知网络中的其他`ZigBee`节点。该命令包含终端设备的`16`位网络地址和`64`位`IEEE`地址以及容量。接收到End_Device_annce命令的节点将检查IEEE地址并更新相应的网络地址，但不会对此命令返回响应信息。
 
 ``` cpp
 afStatus_t ZDP_DeviceAnnce ( uint16 nwkAddr, byte *IEEEAddr, byte capabilities, byte SecurityEnable );
