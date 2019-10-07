@@ -1318,14 +1318,14 @@ ZStatus_t NLME_OrphanJoinRequest ( uint32 ScanChannels, byte ScanDuration );
 
 #### 网络层：孤立节点连接父节点请求举例分析
 
-&emsp;&emsp;调用孤立节点连接父节点请求函数的必要条件是：“startMode == MODE_RESUME”并且“logicalType == NODETYPE_DEVICE”。本例中NLME_OrphanJoinRequest各参数设置如下：
+&emsp;&emsp;调用孤立节点连接父节点请求函数的必要条件是：`startMode == MODE_RESUME`并且`logicalType == NODETYPE_DEVICE`。本例中`NLME_OrphanJoinRequest`各参数设置如下：
 
 ``` cpp
 zgDefaultChannelList = DEFAULT_CHANLIST /* 频道号 = 11 */
 zgDefaultStartingScanDuration = STARTING_SCAN_DURATION /* 扫描时间 = 5 */
 ```
 
-返回函数ZStatus_t ZDO_JoinConfirmCB设置加入网络消息事件ZDO_NWK_JOIN_IND，交由ZDApp任务事件处理函数做下一步处理：
+返回函数`ZStatus_t ZDO_JoinConfirmCB`设置加入网络消息事件`ZDO_NWK_JOIN_IND`，交由`ZDApp`任务事件处理函数做下一步处理：
 
 ``` cpp
 void ZDO_JoinConfirmCB ( uint16 PanId, ZStatus_t Status ) {
@@ -1333,11 +1333,16 @@ void ZDO_JoinConfirmCB ( uint16 PanId, ZStatus_t Status ) {
 }
 ```
 
-孤立节点连接父节点请求和反馈发生在路由器或终端设备的ZDO层与NWK层之间：
+孤立节点连接父节点请求和反馈发生在路由器或终端设备的`ZDO`层与`NWK`层之间：
 
-    2.4.1.11 NLME_StartRouterRequest
-    此函数请求启动路由器。这个行为的结果返回到ZDO_StartRouterConfirmCB中。函数原型如下所示：
+#### NLME_StartRouterRequest
+
+&emsp;&emsp;此函数请求启动路由器。这个行为的结果返回到ZDO_StartRouterConfirmCB中。
+
+``` cpp
 ZStatus_t NLME_StartRouterRequest ( byte BeaconOrder, byte SuperframeOrder, byte BatteryLifeExtension );
+```
+
 BeaconOrder -- BEACON_ORDER_NO_BEACONS
 SuperframeOrder -- BEACON_ORDER_NO_BEACONS
 BatteryLifeExtension -- TRUE为电池供电，FALSE为电源供电
