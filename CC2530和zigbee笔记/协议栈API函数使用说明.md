@@ -388,32 +388,44 @@ afStatus_t ZDP_NodeDescMsg (
 );
 ```
 
-TranSeq -- 传输序号。
-DstAddr -- 目的地址。
-Status -- “ZDP_SUCCESS = 0”、“ZDP_DEVICE_NOT_FOUND = 1”。
-nwkAddr -- 已明确的远程节点的16位网络地址。
-pNodeDesc -- 节点描述符。
-SecuritySuite -- 安全要求。
-返回值ZStatus_t为状态。
+- `TranSeq`：传输序号。
+- `DstAddr`：目的地址。
+- `Status`：有如下状态：
 
-    2.1.4.9 节点描述符请求和响应应用举例分析
-    节点描述符包含ZigBee节点的功能信息，每个节点只有唯一的一个节点描述符，其数据结构如下所示(AF.h)：
+状态                   | 数值
+-----------------------|-----
+`ZDP_SUCCESS`          | `0`
+`ZDP_DEVICE_NOT_FOUND` | `1`
+
+- `nwkAddr`：已明确的远程节点的`16`位网络地址。
+- `pNodeDesc`：节点描述符。
+- `SecuritySuite`：安全要求。
+
+返回值`ZStatus_t`为状态。
+
+#### 节点描述符请求和响应应用举例分析
+
+&emsp;&emsp;节点描述符包含ZigBee节点的功能信息，每个节点只有唯一的一个节点描述符，其数据结构如下所示(AF.h)：
+
+``` cpp
 typedef struct {
-    uint8 LogicalType: 3;        /* 节点逻辑类型。000：协调器；001：路由器；010：终端设备 */
-    uint8 ComplexDescAvail: 1;   /* 可否使用复杂描述符。1：可以；0：不可以 */
-    uint8 UserDescAvail: 1;      /* 可否使用用户描述符。1：可以；0：不可以 */
-    uint8 Reserved: 3;           /* 保留位 */
-    uint8 APSFlags: 3;           /* 应用支持子层功能标志位。一般为0，表示不使用 */
-    uint8 FrequencyBand: 5;      /* 频段位。0：868至868.6MHz；2：902至928MHz；3：2400至2483.5MHz */
+    uint8 LogicalType: 3;        /* 节点逻辑类型。000：协调器；001：路由器；010：终端设备           */
+    uint8 ComplexDescAvail: 1;   /* 可否使用复杂描述符。1：可以；0：不可以                         */
+    uint8 UserDescAvail: 1;      /* 可否使用用户描述符。1：可以；0：不可以                         */
+    uint8 Reserved: 3;           /* 保留位                                                      */
+    uint8 APSFlags: 3;           /* 应用支持子层功能标志位。一般为0，表示不使用                    */
+    uint8 FrequencyBand: 5;      /* 频段位。0：868至868.6MHz；2：902至928MHz；3：2400至2483.5MHz  */
     uint8 CapabilityFlags;       /* 功能标志位。备用协调器、设备类型、电源来源、RXON、安全、分配地址 */
-    uint8 ManufacturerCode[2];   /* 制造商代码。由ZigBee联盟分配 */
-    uint8 MaxBufferSize;         /* 最大缓冲区。网络层数据单元(NSDU)的最大值，以字节为单位 */
-    uint8 MaxInTransferSize[2];  /* 最大输入。应用支持子层数据单元(ASDU)的最大值，以字节为单位 */
-    uint16 ServerMask;           /* 服务器掩码。第0至6位可用，其他位保留 */
-    uint8 MaxOutTransferSize[2]; /* 最大输出。应用支持子层数据单元(ASDU)的最大值，以字节为单位 */
-    uint8 DescriptorCapability;  /* 描述符能力域。第0至1位可用，其他位保留 */
+    uint8 ManufacturerCode[2];   /* 制造商代码。由ZigBee联盟分配                                  */
+    uint8 MaxBufferSize;         /* 最大缓冲区。网络层数据单元(NSDU)的最大值，以字节为单位          */
+    uint8 MaxInTransferSize[2];  /* 最大输入。应用支持子层数据单元(ASDU)的最大值，以字节为单位      */
+    uint16 ServerMask;           /* 服务器掩码。第0至6位可用，其他位保留                          */
+    uint8 MaxOutTransferSize[2]; /* 最大输出。应用支持子层数据单元(ASDU)的最大值，以字节为单位      */
+    uint8 DescriptorCapability;  /* 描述符能力域。第0至1位可用，其他位保留                        */
 } NodeDescriptorFormat_t;
-本地节点在ZDApp.c中调用ZDConfig_UpdateNodeDescriptor初始化节点描述符，本例在应用层或ZDO层均未注册Node_Desc_rsp信息。调用ZDP_NodeDescReq可以根据已明确了的网络地址请求远程节点的节点描述符。远程节点接收到该请求信息(该信息从属于AF_DATA_CONFIRM_CMD)，根据“Cluster ID”选择处理函数，会使用zdpProcessNodeDescReq来处理节点描述符请求。当处理完之后，通过调用ZDP_NodeDescMsg将响应信息发送至本地节点。详细流程如下图所示：
+```
+
+本地节点在`ZDApp.c`中调用ZDConfig_UpdateNodeDescriptor初始化节点描述符，本例在应用层或ZDO层均未注册Node_Desc_rsp信息。调用ZDP_NodeDescReq可以根据已明确了的网络地址请求远程节点的节点描述符。远程节点接收到该请求信息(该信息从属于AF_DATA_CONFIRM_CMD)，根据“Cluster ID”选择处理函数，会使用zdpProcessNodeDescReq来处理节点描述符请求。当处理完之后，通过调用ZDP_NodeDescMsg将响应信息发送至本地节点。详细流程如下图所示：
 
 
     2.1.4.10 ZDP_PowerDescReq
