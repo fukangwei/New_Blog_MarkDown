@@ -1101,14 +1101,17 @@ ZStatus_t aps_RemoveGroup ( uint8 endpoint, uint16 groupID );
 aps_Group_t *aps_FindGroup ( uint8 endpoint, uint16 groupID );
 ```
 
-endpoint -- 查找组的端点。
-groupID -- 查找组的组号。
-若找到，则函数指向组的指针；未找到则返回NULL。
+- `endpoint`：查找组的端点。
+- `groupID`：查找组的组号。
 
-    2.4 网络层(NWK)
-    网络层为上层提供如下功能：网络管理、地址管理、网络参数与功能函数。
+若找到，则函数指向组的指针；未找到则返回`NULL`。
+
+## 网络层(NWK)
+
+&emsp;&emsp;网络层为上层提供如下功能：网络管理、地址管理、网络参数与功能函数。
 
     2.4.1 网络管理
+
     2.4.1.1 NLME_NetworkFormationRequest
     此函数请求组建一个新网络并允许自身成为该网络的ZigBee协调器。这个行为的结果返回到ZDO_NetworkFormationConfirmCB中。函数原型如下所示：
 ZStatus_t NLME_NetworkFormationRequest (
