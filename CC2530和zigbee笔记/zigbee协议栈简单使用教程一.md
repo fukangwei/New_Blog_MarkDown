@@ -252,9 +252,11 @@ void main ( void ) {
 #endif
     /* Transmitter application */
     if ( appMode == MODE_TX ) {
-        appTransmitter(); /* No return from here 如果“define MODE_SEND”，则进入appTransmitter发射模式 */
+        /* No return from here 如果“define MODE_SEND”，则进入appTransmitter发射模式 */
+        appTransmitter();
     } else if ( appMode == MODE_RX ) { /* Receiver application */
-        appReceiver(); /* No return from here 如果没有“define MODE_SEND”，则进入appReceiver接收模式 */
+        /* No return from here 如果没有“define MODE_SEND”，则进入appReceiver接收模式 */
+        appReceiver();
     }
 
     HAL_ASSERT ( FALSE ); /* Role is undefined. This code should not be reached */
