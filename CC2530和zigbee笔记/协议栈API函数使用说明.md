@@ -937,15 +937,25 @@ afStatus_t AF_DataRequest (
 );
 ```
 
-dstAddr -- 目的地址。其中地址模式可以是：afAddrNotPresent绑定模式地址、afAddrGroup组播地址、afAddrBroadcast广播地址、afAddr16Bit直接传输(单播)地址。
-srcEP -- 源端点。
-cID -- 簇ID号(Cluster ID)。
-len -- buf域的长度，发送数据的字节数。
-buf -- 准备发送的数据。
-transID -- 传输序列号。
-options --
+- `dstAddr`：目的地址。其中地址模式可以是：
 
-0x10：AF_ACK_REQUEST
+模式               | 说明
+-------------------|--------
+`afAddrNotPresent` | 绑定模式地址
+`afAddrGroup`      | 组播地址
+`afAddrBroadcast`  | 广播地址
+`afAddr16Bit`      | 直接传输(单播)地址
+
+- `srcEP`：源端点。
+- `cID`：簇`ID`号(`Cluster ID`)。
+- `len`：`buf`域的长度，发送数据的字节数。
+- `buf`：准备发送的数据。
+- `transID`：传输序列号。
+- `options`：有如下选项：
+
+选项 | 说明
+------|------
+`0x10` | `AF_ACK_REQUEST`
 0x20：AF_DISCV_ROUTE
 0x40：AF_EN_SECURITY
 0x80：AF_SKIP_ROUTING。
