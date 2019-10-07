@@ -1022,11 +1022,12 @@ typedef struct {
 
 ### 绑定表管理
 
-&emsp;&emsp;绑定表定义在静态RAM区中。表的大小由f8wConfig.cfg中的NWK_MAX_BINDING_ENTRIES(表的条目数)和MAX_BINDING_CLUSTER_IDS(每个条目中簇的个数)决定，该表可以从nwk_globals.c中获得。在APS层中使用编译指令REFLFCTOR启用绑定功能。绑定表结构如下：
+&emsp;&emsp;绑定表定义在静态`RAM`区中。表的大小由`f8wConfig.cfg`中的`NWK_MAX_BINDING_ENTRIES`(表的条目数)和`MAX_BINDING_CLUSTER_IDS`(每个条目中簇的个数)决定，该表可以从`nwk_globals.c`中获得。在`APS`层中使用编译指令`REFLFCTOR`启用绑定功能。绑定表结构如下：
 
 ``` cpp
 BindingEntry_t BindingTable[NWK_MAX_BINDING_ENTRIES]; /* Binding Table */
 -DNWK_MAX_BINDING_ENTRIES = 4 /* Maximum number of entries in the Binding table. */
+
 typedef struct {
     /* No src address since the src is always the local device */
     uint8 srcEP;
@@ -1040,12 +1041,13 @@ typedef struct {
     uint8 numClusterIds;
     uint16 clusterIdList[MAX_BINDING_CLUSTER_IDS];
 } BindingEntry_t;
+
 -DMAX_BINDING_CLUSTER_IDS = 4
 ```
 
 ### 组表管理
 
-    组表是一个分配在RAM[osal_mem_alloc]中的一个链表，因此随着表中组个数增加，所分配的堆栈也随之增长。表的最大尺寸由定义在f8wConfig.cfg中的APS_MAX_GROUPS确定。组表可以从nwk_globals.c中获得。
+&emsp;&emsp;组表是一个分配在`RAM[osal_mem_alloc]`中的一个链表，因此随着表中组个数增加，所分配的堆栈也随之增长。表的最大尺寸由定义在`f8wConfig.cfg`中的`APS_MAX_GROUPS`确定。组表可以从`nwk_globals.c`中获得。
 
 ``` cpp
 typedef struct apsGroupItem {
@@ -1060,16 +1062,26 @@ typedef struct {
 } aps_Group_t;
 ```
 
-    2.3.2.1 aps_AddGroup
-    调用此函数可以增加一个组至组表中。函数原型如下所示：
+#### aps_AddGroup
+
+&emsp;&emsp;调用此函数可以增加一个组至组表中。
+
+``` cpp
 ZStatus_t aps_AddGroup ( uint8 endpoint, aps_Group_t *group );
-endpoint -- 新增组的端点。
-group -- 增加至组表的组号和组名。
-返回值为如下所示：
-成功 -- ZSuccess
-失败 -- ZApsDuplicateEntry、ZApsTableFull或ZMemError
+```
+
+- `endpoint`：新增组的端点。
+- `group`：增加至组表的组号和组名。
+
+返回值如下：
+
+返回值                                             | 说明
+---------------------------------------------------|-----
+`ZSuccess`                                         | 成功
+`ZApsDuplicateEntry`、`ZApsTableFull`或`ZMemError` | 失败
 
     2.3.2.2 aps_RemoveGroup
+
     调用此函数可以从组表中删除一个组。函数原型如下所示：
 ZStatus_t aps_RemoveGroup ( uint8 endpoint, uint16 groupID );
 endpoint -- 删除组的端点。
