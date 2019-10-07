@@ -1337,22 +1337,28 @@ void ZDO_JoinConfirmCB ( uint16 PanId, ZStatus_t Status ) {
 
 #### NLME_StartRouterRequest
 
-&emsp;&emsp;此函数请求启动路由器。这个行为的结果返回到ZDO_StartRouterConfirmCB中。
+&emsp;&emsp;此函数请求启动路由器。这个行为的结果返回到`ZDO_StartRouterConfirmCB`中。
 
 ``` cpp
 ZStatus_t NLME_StartRouterRequest ( byte BeaconOrder, byte SuperframeOrder, byte BatteryLifeExtension );
 ```
 
-BeaconOrder -- BEACON_ORDER_NO_BEACONS
-SuperframeOrder -- BEACON_ORDER_NO_BEACONS
-BatteryLifeExtension -- TRUE为电池供电，FALSE为电源供电
-返回值ZStatus_t为状态。
+- `BeaconOrder`：`BEACON_ORDER_NO_BEACONS`。
+- `SuperframeOrder`：`BEACON_ORDER_NO_BEACONS`。
+- `BatteryLifeExtension`：`TRUE`为电池供电，`FALSE`为电源供电。
 
-    2.4.1.12 网络层-路由器启动请求举例分析
-    调用路由器启动请求函数的必要条件是：“logicalType == NODETYPE_COORDINATOR”并且“startMode == MODE_RESUME”，或者“LogicalType == NODETYPE_ROUTER”并且“devState == DEV_NWK_JOINING || devState == DEV_NWK_ORPHAN || devState == DEV_NWK_REJOIN”。本例中NLME_StartRouterRequest各参数设置如下：
+返回值`ZStatus_t`为状态。
+
+#### 网络层：路由器启动请求举例分析
+
+&emsp;&emsp;调用路由器启动请求函数的必要条件是：`logicalType == NODETYPE_COORDINATOR`并且`startMode == MODE_RESUME`，或者`LogicalType == NODETYPE_ROUTER`并且`devState == DEV_NWK_JOINING || devState == DEV_NWK_ORPHAN || devState == DEV_NWK_REJOIN`。本例中`NLME_StartRouterRequest`各参数设置如下：
+
+``` cpp
 BeaconOrder=0
 SuperframeOrder=0
 BatteryLifeExtension=False
+```
+
 返回函数ZStatus_t ZDO_StartRouterConfirmCB设置路由启动事件ZDO_ROUTER_START，交由ZDApp任务事件处理函数做下一步处理：
 void ZDO_StartRouterConfirmCB ( ZStatus_t Status ) {
     osal_set_event ( ZDAppTaskID, ZDO_ROUTER_START );
