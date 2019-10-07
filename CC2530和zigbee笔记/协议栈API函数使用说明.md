@@ -294,7 +294,7 @@ afStatus_t ZDP_NWKAddrRsp (
 
 #### 网络地址请求和响应应用举例分析
 
-&emsp;&emsp;本地节点首先需要在应用层或`ZDO`层注册响应信息，本例中在`sapi.c`中注册了`NWK_addr_rsp`信息，然后调用`ZDP_NwkAddrReq`请求远程节点的网络地址。远程节点接收到该请求信息(该信息从属于`AF_DATA_CONFIRM_CMD`)，则根据`Cluster ID`选择处理函数，本例中使用`zdpProcessAddrReq`来处理网络地址请求。当处理完之后，通过调用`fillAndSend`将响应信息发送至本地节点。由于在应用层中注册了该响应信息，因此调用`SAPI_ProcessZDOMsgs`来处理响应信息。详细流程如下图所示：
+&emsp;&emsp;本地节点首先需要在应用层或`ZDO`层注册响应信息，本例中在`sapi.c`中注册了`NWK_addr_rsp`信息，然后调用`ZDP_NwkAddrReq`请求远程节点的网络地址。远程节点接收到该请求信息(该信息从属于`AF_DATA_CONFIRM_CMD`)，则根据`Cluster ID`选择处理函数，本例中使用`zdpProcessAddrReq`来处理网络地址请求。当处理完之后，通过调用`fillAndSend`将响应信息发送至本地节点。由于在应用层中注册了该响应信息，因此调用`SAPI_ProcessZDOMsgs`来处理响应信息。
 
 #### ZDP_IEEEAddrReq
 
@@ -358,7 +358,7 @@ afStatus_t ZDP_IEEEAddrRsp (
 
 #### IEEE地址请求和响应应用举例分析
 
-&emsp;&emsp;本地节点首先需要在应用层或`ZDO`层注册响应信息，本例在`ZDApp.c`中注册了`IEEE_addr_rsp`信息，然后调用`ZDP_IEEEAddrReq`请求远程节点的网络地址。远程节点接收到该请求信息(该信息从属于`AF_DATA_CONFIRM_CMD`)，根据`Cluster ID`选择处理函数，本例使用`zdpProcessAddrReq`来处理`IEEE`地址请求。当处理完之后，通过调用`fillAndSend`将响应信息发送至本地节点。由于在`ZDO`中注册了该响应信息，因此调用`ZDApp_ProcessMsgCBs`来处理响应信息。详细流程如下图所示：
+&emsp;&emsp;本地节点首先需要在应用层或`ZDO`层注册响应信息，本例在`ZDApp.c`中注册了`IEEE_addr_rsp`信息，然后调用`ZDP_IEEEAddrReq`请求远程节点的网络地址。远程节点接收到该请求信息(该信息从属于`AF_DATA_CONFIRM_CMD`)，根据`Cluster ID`选择处理函数，本例使用`zdpProcessAddrReq`来处理`IEEE`地址请求。当处理完之后，通过调用`fillAndSend`将响应信息发送至本地节点。由于在`ZDO`中注册了该响应信息，因此调用`ZDApp_ProcessMsgCBs`来处理响应信息。
 
 #### ZDP_NodeDescReq
 
@@ -406,7 +406,7 @@ afStatus_t ZDP_NodeDescMsg (
 
 #### 节点描述符请求和响应应用举例分析
 
-&emsp;&emsp;节点描述符包含ZigBee节点的功能信息，每个节点只有唯一的一个节点描述符，其数据结构如下所示(AF.h)：
+&emsp;&emsp;节点描述符包含`ZigBee`节点的功能信息，每个节点只有唯一的一个节点描述符，其数据结构如下(`AF.h`)：
 
 ``` cpp
 typedef struct {
@@ -426,7 +426,7 @@ typedef struct {
 } NodeDescriptorFormat_t;
 ```
 
-本地节点在`ZDApp.c`中调用`ZDConfig_UpdateNodeDescriptor`初始化节点描述符，本例在应用层或`ZDO`层均未注册`Node_Desc_rsp`信息。调用`ZDP_NodeDescReq`可以根据已明确了的网络地址请求远程节点的节点描述符。远程节点接收到该请求信息(该信息从属于`AF_DATA_CONFIRM_CMD`)，根据`Cluster ID`选择处理函数，会使用`zdpProcessNodeDescReq`来处理节点描述符请求。当处理完之后，通过调用`ZDP_NodeDescMsg`将响应信息发送至本地节点。详细流程如下图所示：
+本地节点在`ZDApp.c`中调用`ZDConfig_UpdateNodeDescriptor`初始化节点描述符，本例在应用层或`ZDO`层均未注册`Node_Desc_rsp`信息。调用`ZDP_NodeDescReq`可以根据已明确了的网络地址请求远程节点的节点描述符。远程节点接收到该请求信息(该信息从属于`AF_DATA_CONFIRM_CMD`)，根据`Cluster ID`选择处理函数，会使用`zdpProcessNodeDescReq`来处理节点描述符请求。当处理完之后，通过调用`ZDP_NodeDescMsg`将响应信息发送至本地节点。
 
 #### 2.1.4.10 ZDP_PowerDescReq
 
@@ -485,7 +485,7 @@ typedef struct {
 } NodePowerDescriptorFormat_t;
 ```
 
-本地节点在`ZDApp.c`中调用`ZDConfig_UpdatePowerDescriptor`初始化电源描述符，本例应用层或`ZDO`层均未注册`Power_Desc_rsp`信息。调用`ZDP_PowerDescReq`可以根据已明确了的网络地址请求远程节点的节点描述符。远程节点接收到该请求信息(该信息从属于`AF_DATA_CONFIRM_CMD`)，根据`Cluster ID`选择处理函数，会使用`zdpProcessPowerDescReq`来处理电源描述符请求。当处理完之后，通过调用`ZDP_PowerDescMsg`将响应信息发送至本地节点。详细流程如下图所示：
+本地节点在`ZDApp.c`中调用`ZDConfig_UpdatePowerDescriptor`初始化电源描述符，本例应用层或`ZDO`层均未注册`Power_Desc_rsp`信息。调用`ZDP_PowerDescReq`可以根据已明确了的网络地址请求远程节点的节点描述符。远程节点接收到该请求信息(该信息从属于`AF_DATA_CONFIRM_CMD`)，根据`Cluster ID`选择处理函数，会使用`zdpProcessPowerDescReq`来处理电源描述符请求。当处理完之后，通过调用`ZDP_PowerDescMsg`将响应信息发送至本地节点。
 
 #### ZDP_SimpleDescReq
 
@@ -550,7 +550,7 @@ typedef struct {
 } SimpleDescriptionFormat_t;
 ```
 
-本例应用层或`ZDO`层均未注册`Simple_Desc_rsp`信息。调用`ZDP_SimpleDescReq`可以根据已明确了的网络地址请求远程节点的某个指定端点的简单描述符。远程节点接收到该请求信息(该信息从属于`AF_DATA_CONFIRM_CMD`)，根据`Cluster ID`选择处理函数，会使用`zdpProcessSimpleDescReq`来处理简单描述符请求。当处理完之后，通过调用`ZDP_SimpleDescMsg`将响应信息发送至本地节点。详细流程如下图所示：
+本例应用层或`ZDO`层均未注册`Simple_Desc_rsp`信息。调用`ZDP_SimpleDescReq`可以根据已明确了的网络地址请求远程节点的某个指定端点的简单描述符。远程节点接收到该请求信息(该信息从属于`AF_DATA_CONFIRM_CMD`)，根据`Cluster ID`选择处理函数，会使用`zdpProcessSimpleDescReq`来处理简单描述符请求。当处理完之后，通过调用`ZDP_SimpleDescMsg`将响应信息发送至本地节点。
 
 #### ZDP_ActiveEPIFReq
 
@@ -606,7 +606,7 @@ afStatus_t ZDP_ActiveEPIFRsp (
 ZDP_ActiveEPRsp ( inMsg->TransSeq, & ( inMsg->srcAddr ), stat, aoi, cnt, ( uint8 * ) ZDOBuildBuf, inMsg->SecurityUse );
 ```
 
-将响应信息发送至本地节点。详细流程如下图所示。
+将响应信息发送至本地节点。
 
 #### ZDP_MatchDescReq
 
@@ -670,7 +670,7 @@ afStatus_t ZDP_MatchDescRsp (
 
 #### 匹配描述符请求和响应应用举例分析
 
-&emsp;&emsp;本地节点首先需要在应用层或`ZDO`层注册响应信息，本例在`sapi.c`中注册了`Match_Desc_rsp`信息。另外，远程节点需要开启匹配描述符响应。然后调用`ZDP_MatchDescReq`请求远程节点的匹配描述符。远程节点接收到该请求信息(该信息从属于`AF_DATA_CONFIRM_CMD`)，根据`Cluster ID`选择处理函数，本例中使用`ZDO_ProcessMatchDescReq`来处理匹配描述符请求。当处理完之后，通过调用`fillAndSend`将响应信息发送至本地节点。由于在应用层中注册了该响应信息，因此调用`SAPI_ProcessZDOMsgs`来处理响应信息。最后通过调用应用支持子层的函数`APSME_BindReques`建立绑定表。详细流程如下图所示：
+&emsp;&emsp;本地节点首先需要在应用层或`ZDO`层注册响应信息，本例在`sapi.c`中注册了`Match_Desc_rsp`信息。另外，远程节点需要开启匹配描述符响应。然后调用`ZDP_MatchDescReq`请求远程节点的匹配描述符。远程节点接收到该请求信息(该信息从属于`AF_DATA_CONFIRM_CMD`)，根据`Cluster ID`选择处理函数，本例中使用`ZDO_ProcessMatchDescReq`来处理匹配描述符请求。当处理完之后，通过调用`fillAndSend`将响应信息发送至本地节点。由于在应用层中注册了该响应信息，因此调用`SAPI_ProcessZDOMsgs`来处理响应信息。最后通过调用应用支持子层的函数`APSME_BindReques`建立绑定表。
 
 #### ZDP_DeviceAnnce
 
@@ -755,7 +755,7 @@ afStatus_t ZDP_EndDeviceBindRsp ( byte TranSeq, zAddrType_t *dstAddr, byte Statu
 
 #### 终端设备绑定请求和响应应用举例分析
 
-&emsp;&emsp;协调器首先需要在`ZDO`层注册`End_Device_Bind_req`信息。然后本地节点调用`ZDP_EndDeviceBindReq`发送终端设备绑定请求至协调器。协调器接收到该请求信息(该信息从属于`ZDO_CB_MSG`)，调用`ZDO_MatchEndDeviceBind`处理终端设备绑定请求。处理完毕之后，调用`ZDP_EndDeviceBindRsp`将反馈信息发送给本地节点。详细流程如下图所示：
+&emsp;&emsp;协调器首先需要在`ZDO`层注册`End_Device_Bind_req`信息。然后本地节点调用`ZDP_EndDeviceBindReq`发送终端设备绑定请求至协调器。协调器接收到该请求信息(该信息从属于`ZDO_CB_MSG`)，调用`ZDO_MatchEndDeviceBind`处理终端设备绑定请求。处理完毕之后，调用`ZDP_EndDeviceBindRsp`将反馈信息发送给本地节点。
 
 #### ZDP_BindReq
 
@@ -908,7 +908,7 @@ uint8 afGetMatch ( uint8 ep );
 
 #### afSetMatch
 
-&emsp;&emsp;默认情况下，节点将响应ZDO匹配描述符请求，可以使用这个函数改变此行为。
+&emsp;&emsp;默认情况下，节点将响应`ZDO`匹配描述符请求，可以使用这个函数改变此行为。
 
 ``` cpp
 uint8 afSetMatch ( uint8 ep, uint8 action );
