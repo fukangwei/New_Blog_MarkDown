@@ -1140,7 +1140,7 @@ ZStatus_t NLME_NetworkFormationRequest (
 
 #### 网络层：组建网络请求举例分析
 
-&emsp;&emsp;调用组建网络请求函数的必要条件是：“logicalType == NODETYPE_COORDINATOR”并且“startMode == MODE_HARD”。本例中NLME_NetworkFormationRequest各参数设置如下(在f8wConfig.cfg中定义)：
+&emsp;&emsp;调用组建网络请求函数的必要条件是：`logicalType == NODETYPE_COORDINATOR`并且`startMode == MODE_HARD`。本例中`NLME_NetworkFormationRequest`各参数设置如下(在`f8wConfig.cfg`中定义)：
 
 ``` cpp
 -DZDAPP_CONFIG_PAN_ID=0xFFFF
@@ -1154,7 +1154,7 @@ beaconOrder = BEACON_ORDER_NO_BEACONS;
 superFrameOrder = BEACON_ORDER_NO_BEACONS;
 ```
 
-返回函数ZDO_NetworkFormationConfirmCB将设置网络启动事件，交给操作系统做下一步处理：
+返回函数`ZDO_NetworkFormationConfirmCB`将设置网络启动事件，交给操作系统做下一步处理：
 
 ``` cpp
 void ZDO_NetworkFormationConfirmCB ( ZStatus_t Status ) {
@@ -1162,11 +1162,12 @@ void ZDO_NetworkFormationConfirmCB ( ZStatus_t Status ) {
 }
 ```
 
-组建网络请求和反馈发生在协调器的ZDO层与NWK层之间：
+组建网络请求和反馈发生在协调器的`ZDO`层与`NWK`层之间：
 
+#### NLME_NetworkDiscoveryRequest
 
-    2.4.1.3 NLME_NetworkDiscoveryRequest
-    此函数请求网络层寻找相邻的路由器。这个函数应该在加入并执行网络扫描之前调用。这个行为的结果返回到ZDO_NetworkDiscoveryConfirmCB中，返回结果包含：发现的路由个数和网络描述列表。函数原型如下所示：
+&emsp;&emsp;此函数请求网络层寻找相邻的路由器。这个函数应该在加入并执行网络扫描之前调用。这个行为的结果返回到ZDO_NetworkDiscoveryConfirmCB中，返回结果包含：发现的路由个数和网络描述列表。函数原型如下所示：
+
 ZStatus_t NLME_NetworkDiscoveryRequest ( uint32 ScanChannels, byte ScanDuration );
 ScanChannels -- 扫描的频道，其值为11至26。
 ScanDuration -- 扫描时间。
