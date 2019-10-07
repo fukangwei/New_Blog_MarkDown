@@ -1080,17 +1080,27 @@ ZStatus_t aps_AddGroup ( uint8 endpoint, aps_Group_t *group );
 `ZSuccess`                                         | 成功
 `ZApsDuplicateEntry`、`ZApsTableFull`或`ZMemError` | 失败
 
-    2.3.2.2 aps_RemoveGroup
+#### aps_RemoveGroup
 
-    调用此函数可以从组表中删除一个组。函数原型如下所示：
+&emsp;&emsp;调用此函数可以从组表中删除一个组。
+
+``` cpp
 ZStatus_t aps_RemoveGroup ( uint8 endpoint, uint16 groupID );
-endpoint -- 删除组的端点。
-groupID -- 被删除组的组号。
-若成功，则函数返回true；失败则返回false。
+```
 
-    2.3.2.3 aps_FindGroup
-    调用此函数可以根据端点和组号从组表中查找到一个组。函数原型如下所示：
+- `endpoint`：删除组的端点。
+- `groupID`：被删除组的组号。
+
+若成功，则函数返回`true`；失败则返回`false`。
+
+#### aps_FindGroup
+
+&emsp;&emsp;调用此函数可以根据端点和组号从组表中查找到一个组。
+
+``` cpp
 aps_Group_t *aps_FindGroup ( uint8 endpoint, uint16 groupID );
+```
+
 endpoint -- 查找组的端点。
 groupID -- 查找组的组号。
 若找到，则函数指向组的指针；未找到则返回NULL。
