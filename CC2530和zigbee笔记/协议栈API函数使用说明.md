@@ -1273,26 +1273,35 @@ void ZDO_JoinConfirmCB ( uint16 PanId, ZStatus_t Status ) {
 
 #### NLME_ReJoinRequest
 
-&emsp;&emsp;此函数请求节点重新加入到一个已经加入过的网络中。这个行为的结果返回到ZDO_JoinConfirmCB中。
+&emsp;&emsp;此函数请求节点重新加入到一个已经加入过的网络中。这个行为的结果返回到`ZDO_JoinConfirmCB`中。
 
 ``` cpp
 ZStatus_t NLME_ReJoinRequest ( uint8 *ExtendedPANID, byte Channel );
 ```
 
-ExtendedPANID -- 试图加入的网络的扩展“PAN ID”号。
-Channel -- 频道号，其值为11至26。
-返回值ZStatus_t为状态。
+- `ExtendedPANID`：试图加入的网络的扩展`PAN ID`号。
+- `Channel`：频道号，其值为`11`至`26`。
 
-    2.4.1.8 网络层 -- 重新加入网络请求举例分析
-    调用重新加入网络请求函数的必要条件是：“devStartMode == MODE_ReJOIN”。本例中NLME_JoinRequest各参数设置如下：
+返回值`ZStatus_t`为状态。
+
+#### 网络层：重新加入网络请求举例分析
+
+&emsp;&emsp;调用重新加入网络请求函数的必要条件是：`devStartMode == MODE_ReJOIN`。本例中`NLME_JoinRequest`各参数设置如下：
+
+``` cpp
 ZDO_UseExtendedPANID: /* 试图加入的网络的扩展“PAN ID”号 */
 ( ZDO_NetworkDiscoveryCfm_t * ) msgPtr )->logicalChannel /* 频道号 */
+```
+
 返回函数ZStatus_t ZDO_JoinConfirmCB设置加入网络消息事件ZDO_NWK_JOIN_IND，交由ZDApp任务事件处理函数做下一步处理：
+
+``` cpp
 void ZDO_JoinConfirmCB ( uint16 PanId, ZStatus_t Status ) {
     ZDApp_SendMsg ( ZDAppTaskID, ZDO_NWK_JOIN_IND, sizeof ( osal_event_hdr_t ), ( byte * ) NULL );
 }
-重新加入网络请求和反馈发生在路由器或终端设备的ZDO层与NWK层之间：
+```
 
+重新加入网络请求和反馈发生在路由器或终端设备的ZDO层与NWK层之间：
 
     2.4.1.9 NLME_OrphanJoinRequest
     此函数请求孤立节点连接到一个父节点。这个行为的结果返回到ZDO_JoinConfirmCB中。函数原型如下所示：
@@ -1370,9 +1379,17 @@ void NLME_SetBroadcastFilter ( byte capabilities );
 # ZDO解析函数
 
     ZDO解析函数用来解析接收到的消息。
+
+``` cpp
 ZDO_NwkIEEEAddrResp_t *ZDO_ParseAddrRsp ( zdoIncomingMsg_t *inMsg );
+```
+
 用于解析NWK_addr_rsp和IEEE_addr_rsp消息。参数inMsg指向接收到的消息的指针，返回值ZDO_NwkIEEEAddrResp_t指向解析后的结构的指针，结构体由osal_mem_alloc分配空间，所以需要调用osal_mem_free来释放空间。
+
+``` cpp
 void ZDO_ParseNodeDescRsp ( zdoIncomingMsg_t *inMsg, ZDO_NodeDescRsp_t *pNDRsp );
+```
+
 用于解析Node_Desc_rsp消息。参数pNDRsp是解析消息存放的地方。
 void ZDO_ParsePowerDescRsp ( zdoIncomingMsg_t *inMsg, ZDO_PowerRsp_t *pNPRsp );
 用于解析Power_Desc_rsp消息。
