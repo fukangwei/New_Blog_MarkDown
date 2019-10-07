@@ -953,19 +953,22 @@ afStatus_t AF_DataRequest (
 - `transID`：传输序列号。
 - `options`：有如下选项：
 
-选项 | 说明
-------|------
+选项   | 说明
+-------|-----
 `0x10` | `AF_ACK_REQUEST`
-0x20：AF_DISCV_ROUTE
-0x40：AF_EN_SECURITY
-0x80：AF_SKIP_ROUTING。
+`0x20` | `AF_DISCV_ROUTE`
+`0x40` | `AF_EN_SECURITY`
+`0x80` | `AF_SKIP_ROUTING`
 
-radius -- 最大的跳数。
+- `radius`：最大的跳数。
 
-返回值afStatus_t为状态。
+返回值`afStatus_t`为状态。
 
-    2.2.4 接收数据
-    数据封包发送至登记注册过的端点。应用程序将通过AF_INCOMING_MSG_CMD的OSAL消息事件处理接收到的数据封包。接收到的数据封包结构如下：
+### 接收数据
+
+&emsp;&emsp;数据封包发送至登记注册过的端点。应用程序将通过`AF_INCOMING_MSG_CMD`的`OSAL`消息事件处理接收到的数据封包。接收到的数据封包结构如下：
+
+``` cpp
 typedef struct {
     osal_event_hdr_t hdr;     /* OSAL Message header */
     uint16 groupId;           /* Message's group ID - 0 if not set */
@@ -981,19 +984,23 @@ typedef struct {
     uint32 timestamp;         /* receipt timestamp from MAC */
     afMSGCommandFormat_t cmd; /* Application Data */
 } afIncomingMSGPacket_t;
+
 typedef struct {
     uint8 event;
     uint8 status;
 } osal_event_hdr_t;
+
 typedef struct {
     union {
         uint16 shortAddr;
         ZLongAddr_t extAddr;
     } addr;
+
     afAddrMode_t addrMode;
     byte endPoint;
     uint16 panId; /* used for the INTER_PAN feature */
 } afAddrType_t;
+
 typedef enum {
     afAddrNotPresent = AddrNotPresent,
     afAddr16Bit = Addr16Bit,
@@ -1001,24 +1008,32 @@ typedef enum {
     afAddrGroup = AddrGroup,
     afAddrBroadcast = AddrBroadcast
 } afAddrMode_t;
+
 typedef struct {
     byte TransSeqNumber;
     uint16 DataLength; /* Number of bytes in TransData */
     byte *Data;
 } afMSGCommandFormat_t;
+```
 
-    2.3 应用支持子层(APS)
-    APS层提供以下管理功能：绑定表管理、组表管理、快速地址查询。
+## 应用支持子层(APS)
 
-    2.3.1 绑定表管理
-    绑定表定义在静态RAM区中。表的大小由f8wConfig.cfg中的NWK_MAX_BINDING_ENTRIES(表的条目数)和MAX_BINDING_CLUSTER_IDS(每个条目中簇的个数)决定，该表可以从nwk_globals.c中获得。在APS层中使用编译指令REFLFCTOR启用绑定功能。绑定表结构如下：
+&emsp;&emsp;`APS`层提供以下管理功能：绑定表管理、组表管理、快速地址查询。
+
+### 绑定表管理
+
+&emsp;&emsp;绑定表定义在静态RAM区中。表的大小由f8wConfig.cfg中的NWK_MAX_BINDING_ENTRIES(表的条目数)和MAX_BINDING_CLUSTER_IDS(每个条目中簇的个数)决定，该表可以从nwk_globals.c中获得。在APS层中使用编译指令REFLFCTOR启用绑定功能。绑定表结构如下：
+
+``` cpp
 BindingEntry_t BindingTable[NWK_MAX_BINDING_ENTRIES]; /* Binding Table */
 -DNWK_MAX_BINDING_ENTRIES = 4 /* Maximum number of entries in the Binding table. */
 typedef struct {
     /* No src address since the src is always the local device */
     uint8 srcEP;
-    uint8 dstGroupMode; /* Destination address type; 0 - Normal address index, 1 - Group address */
-    uint16 dstIdx; /* This field is used in both modes (group and non-group) to save NV and RAM space */
+    /* Destination address type; 0 - Normal address index, 1 - Group address */
+    uint8 dstGroupMode;
+    /* This field is used in both modes (group and non-group) to save NV and RAM space */
+    uint16 dstIdx;
     /* dstGroupMode = 0 - Address Manager index
        dstGroupMode = 1 - Group Address */
     uint8 dstEP;
@@ -1026,18 +1041,24 @@ typedef struct {
     uint16 clusterIdList[MAX_BINDING_CLUSTER_IDS];
 } BindingEntry_t;
 -DMAX_BINDING_CLUSTER_IDS = 4
+```
 
-    2.3.2 组表管理
+### 组表管理
+
     组表是一个分配在RAM[osal_mem_alloc]中的一个链表，因此随着表中组个数增加，所分配的堆栈也随之增长。表的最大尺寸由定义在f8wConfig.cfg中的APS_MAX_GROUPS确定。组表可以从nwk_globals.c中获得。
+
+``` cpp
 typedef struct apsGroupItem {
     struct apsGroupItem *next;
     uint8 endpoint;
     aps_Group_t group;
 } apsGroupItem_t;
+
 typedef struct {
     uint16 ID; /* Unique to this table */
     uint8 name[APS_GROUP_NAME_LEN]; /* Human readable name of group */
 } aps_Group_t;
+```
 
     2.3.2.1 aps_AddGroup
     调用此函数可以增加一个组至组表中。函数原型如下所示：
