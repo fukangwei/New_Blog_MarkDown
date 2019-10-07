@@ -49,10 +49,12 @@ categories: CC2530和zigbee笔记
 2. 没有协议栈里面所说的协调器、路由器或者终端的区分，节点的地位都是相等的。
 3. 没有自动重发的功能。
 
-&emsp;&emsp;“Basic RF layer”为双向无线通信提供了一个简单的协议，通过这个协议能够进行数据的发送和接收。“Basic RF”还提供了安全通信所使用的CCM-64身份验证和数据加密，它的安全性读者可以通过在工程文件里面定义SECURITY_CCM，在“Project”->“Option”里面就可以选择。本次实验并不是什么高度机密，所以在SECURITY_CCM前面带“x”了，如下图所示：
+&emsp;&emsp;`Basic RF layer`为双向无线通信提供了一个简单的协议，通过这个协议能够进行数据的发送和接收。`Basic RF`还提供了安全通信所使用的`CCM-64`身份验证和数据加密，它的安全性读者可以通过在工程文件里面定义`SECURITY_CCM`，在`Project -> Option`里面就可以选择。本次实验并不是什么高度机密，所以在`SECURITY_CCM`前面带`x`了，如下图所示：
 
-   “Basic RF”的工作过程有启动、发射和接收。使用“Basic RF”实现无线传输只要学会使用这些过程的相应函数就可以了。
-   启动的要求有：1、确保外围器件没有问题。2、创建一个basicRfCfg_t的数据结构，并初始化其中的成员，在basic_rf.h代码中可以找到：
+&emsp;&emsp;`Basic RF`的工作过程有启动、发射和接收。使用`Basic RF`实现无线传输只要学会使用这些过程的相应函数就可以了。
+&emsp;&emsp;启动的要求如下：
+&emsp;&emsp;1. 确保外围器件没有问题。
+&emsp;&emsp;2. 创建一个basicRfCfg_t的数据结构，并初始化其中的成员，在basic_rf.h代码中可以找到：
 
 ``` cpp
 typedef struct {
