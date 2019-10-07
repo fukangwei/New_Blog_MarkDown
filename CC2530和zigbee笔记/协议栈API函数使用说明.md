@@ -599,7 +599,7 @@ afStatus_t ZDP_ActiveEPIFRsp (
 
 #### 活动端点请求和响应应用举例分析
 
-&emsp;&emsp;本例应用层或ZDO层均未注册Active_EP_rsp信息。调用ZDP_ActiveEPIFReq可以根据已明确了的网络地址请求远程节点的活动端点。远程节点接收到该请求信息(该信息从属于AF_DATA_CONFIRM_CMD)，根据“Cluster ID”选择处理函数，会使用zdpProcessActiveEPReq来处理活动端点请求。当处理完之后，通过调用如下函数：
+&emsp;&emsp;本例应用层或`ZDO`层均未注册`Active_EP_rsp`信息。调用`ZDP_ActiveEPIFReq`可以根据已明确了的网络地址请求远程节点的活动端点。远程节点接收到该请求信息(该信息从属于`AF_DATA_CONFIRM_CMD`)，根据`Cluster ID`选择处理函数，会使用`zdpProcessActiveEPReq`来处理活动端点请求。当处理完之后，通过调用如下函数：
 
 ``` cpp
 ZDP_ActiveEPRsp ( inMsg->TransSeq, & ( inMsg->srcAddr ), stat, aoi, cnt, ( uint8 * ) ZDOBuildBuf, inMsg->SecurityUse );
@@ -607,8 +607,11 @@ ZDP_ActiveEPRsp ( inMsg->TransSeq, & ( inMsg->srcAddr ), stat, aoi, cnt, ( uint8
 
 将响应信息发送至本地节点。详细流程如下图所示。
 
-    2.1.4.19 ZDP_MatchDescReq
-    这个函数将建立和发送一个匹配描述符请求。使用这个函数查询与本地节点的输入或输出簇列表相匹配的远程节点。函数原型如下所示：
+#### ZDP_MatchDescReq
+
+&emsp;&emsp;这个函数将建立和发送一个匹配描述符请求。使用这个函数查询与本地节点的输入或输出簇列表相匹配的远程节点。
+
+``` cpp
 afStatus_t ZDP_MatchDescReq (
     zAddrType_t *dstAddr,
     uint16 nwkAddr,
@@ -619,15 +622,18 @@ afStatus_t ZDP_MatchDescReq (
     byte *OutClusterList,
     byte SecuritySuite
 );
-DstAddr -- 目的地址。
-nwkAddr -- 已明确的16位网络地址。
-ProfileID -- 应用规范ID号。
-NumInClusters -- 输入簇的个数。
-InClusterList -- 输入簇列表，每个元素1byte。
-NumOutClusters -- 输出簇的个数。
-OutClusterList -- 输出簇列表，每个元素1byte。
-SecuritySuite -- 安全要求。
-返回值ZStatus_t为状态。
+```
+
+- `DstAddr`：目的地址。
+- `nwkAddr`：已明确的`16`位网络地址。
+- `ProfileID`：应用规范`ID`号。
+- `NumInClusters`：输入簇的个数。
+- `InClusterList`：输入簇列表，每个元素`1 byte`。
+- `NumOutClusters`：输出簇的个数。
+- `OutClusterList`：输出簇列表，每个元素`1 byte`。
+- `SecuritySuite`：安全要求。
+
+返回值`ZStatus_t`为状态。
 
     2.1.4.20 ZDP_MatchDescRsp
     该函数实际上是调用宏定义ZDP_EPIFRsp，调用此函数响应匹配描述符请求。函数原型如下所示：
@@ -654,7 +660,7 @@ SecuritySuite -- 安全要求。
 
 
     2.1.4.22 ZDP_DeviceAnnce
-    这个函数为ZigBee终端设备建立和发送一个End_Device_annce命令，来通知网络中的其他ZigBee节点。该命令包含终端设备的16位网络地址和64位IEEE地址以及容量。接收到End_Device_annce命令的节点将检查IEEE地址并更新相应的网络地址，但不会对此命令返回响应信息。函数原型：
+    这个函数为ZigBee终端设备建立和发送一个End_Device_annce命令，来通知网络中的其他ZigBee节点。该命令包含终端设备的16位网络地址和64位IEEE地址以及容量。接收到End_Device_annce命令的节点将检查IEEE地址并更新相应的网络地址，但不会对此命令返回响应信息。
 afStatus_t ZDP_DeviceAnnce ( uint16 nwkAddr, byte *IEEEAddr, byte capabilities, byte SecurityEnable );
 nwkAddr -- 本地节点的16位网络地址。
 IEEEAddr -- 本地节点的64位IEEE地址。
