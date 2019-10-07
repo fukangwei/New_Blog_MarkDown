@@ -521,9 +521,9 @@ afStatus_t ZDP_SimpleDescMsg (
 
 状态               | 数值
 -------------------|-----
-`UCCESS`           | 0
-`INVALID_EP`       | 1
-`NOT_ACTIVE`       | 2
+`UCCESS`           | `0`
+`INVALID_EP`       | `1`
+`NOT_ACTIVE`       | `2`
 `DEVICE_NOT_FOUND` | `3`
 
 - `pSimpleDesc`：简单描述符。
@@ -531,16 +531,17 @@ afStatus_t ZDP_SimpleDescMsg (
 
 返回值`ZStatus_t`为状态。
 
-    2.1.4.15 简单描述符请求和响应应用举例分析
-    简单描述符包含该节点所含每个端点的具体信息，其数据结构如下(AF.h)：
+#### 简单描述符请求和响应应用举例分析
+
+&emsp;&emsp;简单描述符包含该节点所含每个端点的具体信息，其数据结构如下(`AF.h`)：
 
 ``` cpp
 typedef struct {
-    byte EndPoint;             /* 端点 */
+    byte EndPoint;             /* 端点          */
     uint16 AppProfId;          /* 应用规范标识符 */
     uint16 AppDeviceId;        /* 应用设备标识符 */
-    byte AppDevVer: 4;         /* 应用设备版本 */
-    byte Reserved: 4;          /* 保留 */
+    byte AppDevVer: 4;         /* 应用设备版本   */
+    byte Reserved: 4;          /* 保留          */
     byte AppNumInClusters;     /* 应用输入簇个数 */
     cId_t *pAppInClusterList;  /* 应用输入簇列表 */
     byte AppNumOutClusters;    /* 应用输出簇个数 */
@@ -550,10 +551,14 @@ typedef struct {
 
 本例应用层或ZDO层均未注册Simple_Desc_rsp信息。调用ZDP_SimpleDescReq可以根据已明确了的网络地址请求远程节点的某个指定端点的简单描述符。远程节点接收到该请求信息(该信息从属于AF_DATA_CONFIRM_CMD)，根据“Cluster ID”选择处理函数，会使用zdpProcessSimpleDescReq来处理简单描述符请求。当处理完之后，通过调用ZDP_SimpleDescMsg将响应信息发送至本地节点。详细流程如下图所示：
 
+#### ZDP_ActiveEPIFReq
 
-    2.1.4.16 ZDP_ActiveEPIFReq
-    ZDP_ActiveEPIFReq实际上是调用宏定义ZDP_NWKAddrOfInterestReq。这个函数建立和发送一个活动端点请求至已明确网络地址的远程节点。使用这个宏定义请求远程节点所有活动的端点。函数原型如下所示：
+&emsp;&emsp;ZDP_ActiveEPIFReq实际上是调用宏定义ZDP_NWKAddrOfInterestReq。这个函数建立和发送一个活动端点请求至已明确网络地址的远程节点。使用这个宏定义请求远程节点所有活动的端点。
+
+``` cpp
 afStatus_t ZDP_ActiveEPIFReq ( zAddrType_t *dstAddr, uint16 NWKAddrOfInterest, byte SecuritySuite );
+```
+
 DstAddr -- 目的地址。
 NWKAddrOfInterest -- 远程节点的16位网络地址。
 SecuritySuite -- 安全要求。
