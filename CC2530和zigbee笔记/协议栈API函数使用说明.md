@@ -1311,21 +1311,29 @@ void ZDO_JoinConfirmCB ( uint16 PanId, ZStatus_t Status ) {
 ZStatus_t NLME_OrphanJoinRequest ( uint32 ScanChannels, byte ScanDuration );
 ```
 
-ScanChannels -- 频道号，其值为11至26。
-ScanDuration -- 扫描时间。
+- `ScanChannels`：频道号，其值为`11`至`26`。
+- `ScanDuration`：扫描时间。
 
-返回值ZStatus_t为状态。
+返回值`ZStatus_t`为状态。
 
-    2.4.1.10 网络层 -- 孤立节点连接父节点请求举例分析
-    调用孤立节点连接父节点请求函数的必要条件是：“startMode == MODE_RESUME”并且“logicalType == NODETYPE_DEVICE”。本例中NLME_OrphanJoinRequest各参数设置如下：
+#### 网络层：孤立节点连接父节点请求举例分析
+
+&emsp;&emsp;调用孤立节点连接父节点请求函数的必要条件是：“startMode == MODE_RESUME”并且“logicalType == NODETYPE_DEVICE”。本例中NLME_OrphanJoinRequest各参数设置如下：
+
+``` cpp
 zgDefaultChannelList = DEFAULT_CHANLIST /* 频道号 = 11 */
 zgDefaultStartingScanDuration = STARTING_SCAN_DURATION /* 扫描时间 = 5 */
+```
+
 返回函数ZStatus_t ZDO_JoinConfirmCB设置加入网络消息事件ZDO_NWK_JOIN_IND，交由ZDApp任务事件处理函数做下一步处理：
+
+``` cpp
 void ZDO_JoinConfirmCB ( uint16 PanId, ZStatus_t Status ) {
     ZDApp_SendMsg ( ZDAppTaskID, ZDO_NWK_JOIN_IND, sizeof ( osal_event_hdr_t ), ( byte * ) NULL );
 }
-孤立节点连接父节点请求和反馈发生在路由器或终端设备的ZDO层与NWK层之间：
+```
 
+孤立节点连接父节点请求和反馈发生在路由器或终端设备的ZDO层与NWK层之间：
 
     2.4.1.11 NLME_StartRouterRequest
     此函数请求启动路由器。这个行为的结果返回到ZDO_StartRouterConfirmCB中。函数原型如下所示：
@@ -1351,32 +1359,32 @@ void ZDO_StartRouterConfirmCB ( ZStatus_t Status ) {
     查询并存储在本地设备的远程地址。
 
     2.4.2.1 NLME_GetExtAddr
-    调用此函数得到节点自身的64位IEEE地址。函数原型如下所示：
+    调用此函数得到节点自身的64位IEEE地址。
 byte *NLME_GetExtAddr ( void );
 返回值为指向64位IEEE地址的指针。
 
     2.4.2.2 NLME_GetShortAddr
-    调用此函数得到节点自身的16位网络地址。函数原型如下所示：
+    调用此函数得到节点自身的16位网络地址。
 byte *NLME_GetShortAddr ( void );
 返回值为16位网络地址。
 
     2.4.2.3 NLME_GetCoordShortAddr
-    调用此函数得到父节点的16位网络地址。函数原型如下所示：
+    调用此函数得到父节点的16位网络地址。
 byte *NLME_GetCoordShortAddr ( void );
 返回值为父节点16位网络地址。
 
     2.4.2.4 NLME_GetCoordExtAddr
-    调用此函数得到父节点的64位IEEE地址。函数原型如下所示：
+    调用此函数得到父节点的64位IEEE地址。
 byte *NLME_GetCoordExtAddr ( void );
 返回值为指向父节点64位IEEE地址的指针。
 
     2.4.2.5 NLME_IsAddressBroadcast
-    此函数根据设备能力来评估提供的地址是否是一个有效的广播地址。函数原型如下所示：
+    此函数根据设备能力来评估提供的地址是否是一个有效的广播地址。
 addr_filter_t NLME_IsAddressBroadcast ( uint16 shortAddress );
 参数shortAddress为被测试的16位网络地址。返回值addr_filter_t为ADDR_NOT_BCAST、ADDR_BCAST_FOR_ME、ADDR_BCAST_NOT_ME。
 
     2.4.2.6 NLME_SetBroadCastFilter
-    此函数根据设备能力设置掩码，用于处理有效的广播地址。函数原型如下所示：
+    此函数根据设备能力设置掩码，用于处理有效的广播地址。
 void NLME_SetBroadcastFilter ( byte capabilities );
 参数capabilities为该设备的能力用于确定该设备处理的广播信息类型。
 
