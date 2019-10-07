@@ -219,7 +219,7 @@ static void appLight() {
 
 ### 信号传输质量检测
 
-&emsp;&emsp;PER(误包率检测)实验是“BasicRF”的第二个实验，和无线点灯一样是没有使用协议栈的点对点通讯。实验现象：两块WeBee模块通信，一个模块作发射，另外一个模块接收，接收模块通过串口在PC机上显示当前的误包率、RSSI值和接收到数据包的个数。
+&emsp;&emsp;`PER`(误包率检测)实验是`Basic RF`的第二个实验，和无线点灯一样是没有使用协议栈的点对点通讯。实验现象：两块`WeBee`模块通信，一个模块作发射，另外一个模块接收，接收模块通过串口在`PC`机上显示当前的误包率、`RSSI`值和接收到数据包的个数。
 
 ``` cpp
 void main ( void ) {
@@ -264,7 +264,9 @@ void main ( void ) {
 ```
 
 大家看注释也应该知道main.c做了哪些事情：一大堆的初始化(都是必须的)；设置信道，发射和接收模块的信道必须一致；选择为发射或者接收模式。
-   发射函数“define MODE_SEND”则进入appTransmitter，如下所示：
+   发射函数“define MODE_SEND”则进入appTransmitter：
+
+``` cpp
 static void appTransmitter() {
     uint32 burstSize = 0;
     uint32 pktsSent = 0;
@@ -272,9 +274,11 @@ static void appTransmitter() {
     uint8 n;
     /* Initialize BasicRF 初始化“Basic RF” */
     basicRfConfig.myAddr = TX_ADDR;
+
     if ( basicRfInit ( &basicRfConfig ) == FAILED ) {
         HAL_ASSERT ( FALSE );
     }
+
     /* Set TX output power 设置输出功率 */
     halRfSetTxPower ( 2 ); /* HAL_RF_TXPOWER_4_DBM */
     /* Set burst size 设置进行一次测试所发送的数据包数量 */
@@ -285,9 +289,11 @@ static void appTransmitter() {
     appConfigTimer ( 0xC8 );
     /* Initalise packet payload 初始化数据包载荷 */
     txPacket.seqNumber = 0;
+
     for ( n = 0; n < sizeof ( txPacket.padding ); n++ ) {
         txPacket.padding[n] = n;
     }
+
     while ( TRUE ) {
         while ( appStarted ) {
             if ( pktsSent < burstSize ) {
@@ -301,14 +307,16 @@ static void appTransmitter() {
                 appState = IDLE;
                 halLedToggle ( 1 ); /* 改变LED1的亮灭状态 */
                 halMcuWaitMs ( 500 );
-            }
-            else {
+            } else {
                 appStarted = !appStarted;
             }
+
             pktsSent = 0; /* Reset statistics and sequence number 复位统计和序号 */
         }
     }
 }
+```
+
 总结appTransmitter函数完成的任务：初始化“Basic RF”；设置发射功率；设定测试的数据包量；配置定时器和IO；初始化数据包载荷；进行循环函数，不断地发送数据包，每发送完一次，下一个数据包的序列号自加1再发送。
 static void appReceiver() {
     uint32 segNumber = 0; /* 数据包序列号 */
