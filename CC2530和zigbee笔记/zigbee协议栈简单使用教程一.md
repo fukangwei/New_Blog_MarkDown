@@ -101,9 +101,9 @@ uint8 basicRfReceive ( uint8 *pRxData, uint8 len, int16 *pRssi );
 
 函数功能是接收来自`Basic RF`层的数据包，并为所接收的数据和`RSSI`值配缓冲区。
 
-无线点灯示例
+### 无线点灯示例
 
-   light_switch.c代码详解：无论你看哪个实验的代码，首先要找的就是main函数。从main函数开始(部分已经屏蔽的代码并未贴出，详细的代码请看打开工程)：
+&emsp;&emsp;`light_switch.c`代码详解：无论你看哪个实验的代码，首先要找的就是`main`函数：
 
 ``` cpp
 void main ( void ) {
@@ -133,10 +133,12 @@ void main ( void ) {
 }
 ```
 
-第20至21行：关闭WeBee底板的LED2和LED1。halLedSet(x)是使灯点亮，halLedClear(x)是使灯熄灭。
-第23至24行：选择其中的一行，并把另外一行屏蔽掉。一个是实现发射按键信息的功能，另一个是接收按键信息并改变LED状态，分别为“Basic RF”发射和接收。不同模块在烧写程序时选择不同功能。
-   注意：程序会在appSwitch函数或者appLight函数里面循环或者等待，不会执行到第26行。
-   接下来看看appSwitch函数：
+- 第`20`至`21`行：关闭`WeBee`底板的`LED2`和`LED1`。`halLedSet(x)`是使灯点亮，`halLedClear(x)`是使灯熄灭。
+- 第`23`至`24`行：选择其中的一行，并把另外一行屏蔽掉。一个是实现发射按键信息的功能，另一个是接收按键信息并改变`LED`状态，分别为`Basic RF`发射和接收。不同模块在烧写程序时选择不同功能。
+
+注意，程序会在`appSwitch`函数或者`appLight`函数里面循环或者等待，不会执行到第`26`行。
+&emsp;&emsp;接下来看`appSwitch`函数：
+
 static void appSwitch() {
 #ifdef ASSY_EXP4618_CC2420
     halLcdClearLine ( 1 );
