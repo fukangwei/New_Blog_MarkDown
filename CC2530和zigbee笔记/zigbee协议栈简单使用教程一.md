@@ -54,7 +54,7 @@ categories: CC2530和zigbee笔记
 &emsp;&emsp;`Basic RF`的工作过程有启动、发射和接收。使用`Basic RF`实现无线传输只要学会使用这些过程的相应函数就可以了。
 &emsp;&emsp;启动的要求如下：
 &emsp;&emsp;1. 确保外围器件没有问题。
-&emsp;&emsp;2. 创建一个basicRfCfg_t的数据结构，并初始化其中的成员，在basic_rf.h代码中可以找到：
+&emsp;&emsp;2. 创建一个`basicRfCfg_t`的数据结构，并初始化其中的成员，在`basic_rf.h`代码中可以找到：
 
 ``` cpp
 typedef struct {
@@ -69,26 +69,37 @@ typedef struct {
 } basicRfCfg_t;
 ```
 
-   3、调用basicRfInit函数进行协议的初始化，在basic_rf.c代码中可以找到：
+&emsp;&emsp;3. 调用`basicRfInit`函数进行协议的初始化，在`basic_rf.c`代码中可以找到：
 
 ``` cpp
 uint8 basicRfInit ( basicRfCfg_t *pRfConfig );
 ```
 
-函数功能是对“Basic RF”的数据结构初始化，设置模块的传输通道、短地址和“PAD ID”。
-   发送过程有：1、创建一个buffer，把payload放入其中。Payload大为103个字节。2、调用basicRfSendPacket函数发送，并查看其返回值。在basic_rf.c中可以找到：
+函数功能是对`Basic RF`的数据结构初始化，设置模块的传输通道、短地址和`PAD ID`。
+&emsp;&emsp;发送过程如下：
+&emsp;&emsp;1. 创建一个`buffer`，把`payload`放入其中，`Payload`不大于`103`个字节。
+&emsp;&emsp;2. 调用`basicRfSendPacket`函数发送，并查看其返回值。在`basic_rf.c`中可以找到：
 
 ``` cpp
 uint8 basicRfSendPacket ( uint16 destAddr, uint8 *pPayload, uint8 length )
 ```
 
-参数destAddr是目的短地址，pPayload是指向发送缓冲区的指针，length是发送数据长度。函数功能是给目的短地址发送指定长度的数据，发送成功刚返回SUCCESS，失败则返回FAILED。
-   接收过程有：1、上层通过 basicRfPacketIsReady函数来检查是否收到一个新数据包。在basic_rf.c中可以找到：
+参数`destAddr`是目的短地址，`pPayload`是指向发送缓冲区的指针，`length`是发送数据长度。函数功能是给目的短地址发送指定长度的数据，发送成功刚返回`SUCCESS`，失败则返回`FAILED`。
+&emsp;&emsp;接收过程如下：
+&emsp;&emsp;1. 上层通过`basicRfPacketIsReady`函数来检查是否收到一个新数据包。在`basic_rf.c`中可以找到：
+
+``` cpp
 uint8 basicRfPacketIsReady ( void );
-函数功能：检查模块是否已经可以接收下一个数据，如果准备好刚返回TRUE。
-   2、调用basicRfReceive函数，把收到的数据复制到buffer中。代码可以在basic_rf.c中可以找到：
+```
+
+函数功能是检查模块是否已经可以接收下一个数据，如果准备好了，则返回`TRUE`。
+&emsp;&emsp;2. 调用`basicRfReceive`函数，把收到的数据复制到`buffer`中。代码可以在`basic_rf.c`中找到：
+
+``` cpp
 uint8 basicRfReceive ( uint8 *pRxData, uint8 len, int16 *pRssi );
-函数功能是接收来自“Basic RF”层的数据包，并为所接收的数据和RSSI值配缓冲区。
+```
+
+函数功能是接收来自`Basic RF`层的数据包，并为所接收的数据和`RSSI`值配缓冲区。
 
 无线点灯示例
 
