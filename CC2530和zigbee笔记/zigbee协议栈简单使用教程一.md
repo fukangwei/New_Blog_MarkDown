@@ -976,7 +976,7 @@ void HalKeyPoll ( void ) {
 
 &emsp;&emsp;第三步：修改`OnBoard.C`文件(位于`ZMain`目录下)，使能中断`HalKeyConfig(HAL_KEY_INTERRUPT_ENABLE, OnBoard_KeyCallback);`：
 
-<img src="./zigbee协议栈简单使用教程一/1.png" width=50%>
+<img src="./zigbee协议栈简单使用教程一/14.png" width=50%>
 
 &emsp;&emsp;通过简单的几个步骤，我们就配置好了按键所需要的文件。下面我们来看看协议栈是检测到按键按下时候是如何处理的，`16`位必须只占`1`位，所以只能`16`个任务。回到`SampleApp.c`文件，找到按键时间处理`KEY_CHANGE`事件的函数：
 
