@@ -1,7 +1,8 @@
 ---
 title: zigbee协议栈简单使用教程二
-date: 2019-10-08 21:40:21
 categories: CC2530和zigbee笔记
+abbrlink: 29168
+date: 2019-10-08 21:40:21
 ---
 ### 无线数据传输
 
@@ -254,7 +255,7 @@ void MT_UartProcessZToolData ( uint8 port, uint8 event ) {
 }
 ```
 
-串口从`PC`机接收到信息会做如下处理：接收串口数据，判断起始码是否为0xFE；得到数据长度，然后给数据包`pMsg`分配内存；给数据包`pMsg`装数据；打包成任务发给上层`OSAL`待处理；释放数据包内存。
+串口从`PC`机接收到信息会做如下处理：接收串口数据，判断起始码是否为`0xFE`；得到数据长度，然后给数据包`pMsg`分配内存；给数据包`pMsg`装数据；打包成任务发给上层`OSAL`待处理；释放数据包内存。
 
 ``` cpp
 void MT_UartProcessZToolData ( uint8 port, uint8 event ) {
@@ -730,7 +731,7 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
 }
 ```
 
-将修改后的程序分别以协调器、路由器、终端的方式下载到3个设备，可以看到各个设备都在广播发送信息，同时也接收广播信息。
+将修改后的程序分别以协调器、路由器、终端的方式下载到`3`个设备，可以看到各个设备都在广播发送信息，同时也接收广播信息。
 
 ### Zigbee协议栈网络管理
 
