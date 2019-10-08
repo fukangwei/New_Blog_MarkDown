@@ -405,7 +405,13 @@ typedef enum {
 } afAddrMode_t;
 ```
 
-该类型是一个枚举类型：当“addrMode = Addr16Bit”时，对应点播方式；当“addrMode = AddrGroup”时，对应组播方式；当“addrMode = AddrBroadcast”时，对应广播方式。打开SampleApp.c文件，发现已经存在如下代码：
+该类型是一个枚举类型：
+
+- 当`addrMode = Addr16Bit`时，对应点播方式。
+- 当`addrMode = AddrGroup`时，对应组播方式。
+- 当`addrMode = AddrBroadcast`时，对应广播方式。
+
+打开`SampleApp.c`文件，发现已经存在如下代码：
 
 ``` cpp
 afAddrType_t SampleApp_Periodic_DstAddr;
@@ -418,7 +424,7 @@ afAddrType_t SampleApp_Flash_DstAddr;
 afAddrType_t Point_To_Point_DstAddr;
 ```
 
-参考SampleApp_Periodic_DstAddr和SampleApp_Flash_DstAddr，对Point_To_Point_DstAddr的参数进行配置。在SampleApp_Init函数中加入如下代码：
+参考`SampleApp_Periodic_DstAddr`和`SampleApp_Flash_DstAddr`，对`Point_To_Point_DstAddr`的参数进行配置。在`SampleApp_Init`函数中加入如下代码：
 
 ``` cpp
 Point_To_Point_DstAddr.addrMode = ( afAddrMode_t ) Addr16Bit; /* 点播 */
@@ -426,7 +432,7 @@ Point_To_Point_DstAddr.endPoint = SAMPLEAPP_ENDPOINT;
 Point_To_Point_DstAddr.addr.shortAddr = 0x0000; /* 发给协调器 */
 ```
 
-第3行的含义是点播的发送对象为0x0000，也就是协调器的地址，节点和协调器之间实现点对点通讯。这段代码在如下位置添加：
+第3行的含义是点播的发送对象为`0x0000`，也就是协调器的地址，节点和协调器之间实现点对点通讯。这段代码在如下位置添加：
 
 ``` cpp
 /* Setup for the flash command's destination address - Group 1 */
@@ -456,12 +462,16 @@ void SampleApp_SendPointToPointMessage ( void ) {
 ```
 
 还需要在SampleAPP.c文件开头添加头函数声明：
+
 void SampleApp_SendPointToPointMessage ( void );
-在SampleApp.h中加入SAMPLEAPP_POINT_TO_POINT_CLUSTERID的定义，如下所示：
+
+在SampleApp.h中加入SAMPLEAPP_POINT_TO_POINT_CLUSTERID的定义：
+
 #define SAMPLEAPP_MAX_CLUSTERS              3 //2
 #define SAMPLEAPP_PERIODIC_CLUSTERID        1
 #define SAMPLEAPP_FLASH_CLUSTERID           2
 #define SAMPLEAPP_POINT_TO_POINT_CLUSTERID  3
+
 接下来把数据传输实验的SampleApp.c文件中的SampleApp_SendPeriodicMessage函数替换成点对点发送函数SampleApp_SendPointToPointMessage，这样的话就能实现周期性点播发送数据了。
 if ( events &SAMPLEAPP_SEND_PERIODIC_MSG_EVT ) {
     /* Send the periodic message */
