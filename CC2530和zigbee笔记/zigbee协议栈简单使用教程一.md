@@ -1188,10 +1188,10 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
 
 - `0xFE`：数据帧头。
 - `DataLength`：`Data payload`的数据长度，以字节计，低字节在前。
-CM0 -- 命令低字节。
-CM1 -- 命令高字节(ZTOOL软件就是通过发送一系列命令给MT实现和协议栈交互)。
-Data payload -- 数据帧具体的数据，这个长度是可变的，但是要和DataLength一致。
-FCS -- 校验和，从DataLength字节开始到“Data payload”最后一个字节所有字节的异或按字节操作。
+- `CM0`：命令低字节。
+- `CM1`：命令高字节(`ZTOOL`软件就是通过发送一系列命令给`MT`实现和协议栈交互)。
+- `Data payload`：数据帧具体的数据，这个长度是可变的，但是要和`DataLength`一致。
+- `FCS`：校验和，从`DataLength`字节开始到`Data payload`最后一个字节所有字节的异或按字节操作。
 
 &emsp;&emsp;我们需要把该函数换成自己的串口处理函数，不过前提是我们先要了解自带的这个函数：
 
@@ -1234,44 +1234,62 @@ void MT_UartProcessZToolData ( uint8 port, uint8 event ) {
 }
 ```
 
-串口从PC机接收到信息会做如下处理：接收串口数据，判断起始码是否为0xFE；得到数据长度，然后给数据包pMsg分配内存；给数据包pMsg装数据；打包成任务发给上层OSAL待处理；释放数据包内存。
+串口从`PC`机接收到信息会做如下处理：接收串口数据，判断起始码是否为0xFE；得到数据长度，然后给数据包`pMsg`分配内存；给数据包`pMsg`装数据；打包成任务发给上层`OSAL`待处理；释放数据包内存。
+
+``` cpp
 void MT_UartProcessZToolData ( uint8 port, uint8 event ) {
     uint8 flag = 0, i, j = 0; /* flag是判断有没有收到数据，j记录数据长度 */
     uint8 buf[128]; /* 串口buffer最大缓冲默认是128，我们这里用128 */
     ( void ) event; /* Intentionally unreferenced parameter */
+
     while ( Hal_UART_RxBufLen ( port ) ) { /* 检测串口数据是否接收完成 */
         HalUARTRead ( port, &buf[j], 1 ); /* 把数据接收放到buf中 */
         j++; /* 记录字符数 */
         flag = 1; /* 已经从串口接收到信息 */
     }
+
     if ( flag == 1 ) { /* 已经从串口接收到信息 */
-        pMsg = ( mtOSALSerialData_t * ) osal_msg_allocate ( sizeof ( mtOSALSerialData_t ) + j + 1 ); /* 分配内存空间，为“机构体内容 + 数据内容 + 1”个记录长度的数据 */
+        /* 分配内存空间，为“机构体内容 + 数据内容 + 1”个记录长度的数据 */
+        pMsg = ( mtOSALSerialData_t * ) osal_msg_allocate ( sizeof ( mtOSALSerialData_t ) + j + 1 );
         pMsg->hdr.event = CMD_SERIAL_MSG; /* 事件号用原来的CMD_SERIAL_MSG */
         pMsg->msg = ( uint8 * ) ( pMsg + 1 ); /* 把数据定位到结构体数据部分 */
         pMsg->msg [0] = j; /* 给上层的数据第一个是长度 */
+
         for ( i = 0; i < j; i++ ) { /* 从第二个开始记录数据 */
             pMsg->msg [i + 1] = buf[i];
         }
+
         osal_msg_send ( App_TaskID, ( byte * ) pMsg ); /* 登记任务，发送至上层 */
         osal_msg_deallocate ( ( uint8 * ) pMsg ); /* 释放内存 */
     }
 }
-由上述代码可以知道，数据包中数据部分的格式是“datalen + data”。到这里，数据接收的处理函数已经完成了，接下来我们要做的就是怎么在任务中处理这个的包内容。很简单，因为串口初始化是在SampleApp中进行的，任务号也是SampleApp的ID，所以当然是在SampleApp.C里面进行了。在SampleApp.C找到任务处理函数“uint16 SampleApp_ProcessEvent( uint8 task_id, uint16 events )”，如下所示：
+```
+
+由上述代码可以知道，数据包中数据部分的格式是`datalen + data`。到这里，数据接收的处理函数已经完成了，接下来我们要做的就是怎么在任务中处理这个的包内容。很简单，因为串口初始化是在`SampleApp`中进行的，任务号也是`SampleApp`的`ID`，所以当然是在`SampleApp.C`里面进行了。在`SampleApp.C`找到任务处理函数`uint16 SampleApp_ProcessEvent( uint8 task_id, uint16 events )`：
+
+``` cpp
 uint16 SampleApp_ProcessEvent ( uint8 task_id, uint16 events ) {
     afIncomingMSGPacket_t *MSGpkt;
     ( void ) task_id; /* Intentionally unreferenced parameter */
+
     if ( events & SYS_EVENT_MSG ) {
         MSGpkt ( afIncomingMSGPacket_t * ) osal_msg_receive ( SampleApp_TaskID );
+
         while ( MSGpkt ) {
             switch ( MSGpkt->hdr.event ) {
-                case CMD_SERIAL_MSG: /* 串口收到数据后，由MT_UART层传递过来的数据，用上述方法进行接收，编译时不定义MT相关内容 */
+                /* 串口收到数据后，由MT_UART层传递过来的数据，用上述方法进行接收，编译时不定义MT相关内容 */
+                case CMD_SERIAL_MSG:
                     SampleApp_SerialCMD ( ( mtOSALSerialData_t * ) MSGpkt );
                     break;
             }
         }
     }
 }
-串口收到信息后，事件号CMD_SERIAL_MSG就会被登记，便进入“case CMD_SERIAL_MSG:”。SampleApp_SerialCMD代码如下所示：
+```
+
+串口收到信息后，事件号CMD_SERIAL_MSG就会被登记，便进入“case CMD_SERIAL_MSG:”。SampleApp_SerialCMD代码如下：
+
+``` cpp
 void SampleApp_SerialCMD ( mtOSALSerialData_t *cmdMsg ) {
     uint8 i, len, *str = NULL; /* len为有用数据长度 */
     str = cmdMsg->msg; /* 指向数据开头 */
@@ -1295,6 +1313,8 @@ void SampleApp_SerialCMD ( mtOSALSerialData_t *cmdMsg ) {
         /* Error occurred in request to send. */
     }
 }
+```
+
 SAMPLEAPP_COM_CLUSTERID是自己定义的ID，用于接收方判别，如下所示：
 #define SAMPLEAPP_MAX_CLUSTERS        3 //2
 #define SAMPLEAPP_PERIODIC_CLUSTERID  1
