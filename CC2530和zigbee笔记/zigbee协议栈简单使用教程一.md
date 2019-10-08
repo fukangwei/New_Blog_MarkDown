@@ -1150,11 +1150,11 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
 
 ### 串口透传
 
-&emsp;&emsp;本次实验实现两台不同的PC机通过串口连接到开发板，通过无线方式相互收发信息，如果没有2台电脑，也可以用同一台电脑的不同串口进行实验。
-&emsp;&emsp;打开Z-stack目录“Projects\zstack\Samples\SampleApp test\CC2530DB”里面的SampleApp.eww工程，本次实验是基于SampleApp来进行的。
+&emsp;&emsp;本次实验实现两台不同的PC机通过串口连接到开发板，通过无线方式相互收发信息，如果没有`2`台电脑，也可以用同一台电脑的不同串口进行实验。
+&emsp;&emsp;打开`Z-stack`目录`Projects\zstack\Samples\SampleApp test\CC2530DB`里面的`SampleApp.eww`工程，本次实验是基于`SampleApp`来进行的。
 
-   1、ZigBee模块接收到从PC机发送信息，然后通过无线发送出去。
-   以前我们做的都是CC2530给PC机串口发信息，还没接触过PC机发送信息给CC2530。其主要代码在MT_UART.C中，该文件在之前协议栈串口实验对串口初始化时候已经有所了解了。在这个文件里找到串口初始化函数MT_UartInit，找到下面的代码：
+&emsp;&emsp;1. `ZigBee`模块接收到从`PC`机发送信息，然后通过无线发送出去。
+&emsp;&emsp;以前我们做的都是`CC2530`给`PC`机串口发信息，还没接触过`PC`机发送信息给`CC2530`。其主要代码在`MT_UART.C`中，该文件在之前协议栈串口实验对串口初始化时候已经有所了解了。在这个文件里找到串口初始化函数`MT_UartInit`，找到下面的代码：
 
 ``` cpp
 #if defined (ZTOOL_P1) || defined (ZTOOL_P2)
@@ -1166,7 +1166,7 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
 #endif
 ```
 
-我们定义了ZTOOL_P1，故协议栈数据处理函数为MT_UartProcessZToolData。进入这个函数的定义，下边是对函数关键地方的解释：
+我们定义了`ZTOOL_P1`，故协议栈数据处理函数为`MT_UartProcessZToolData`。进入这个函数的定义，下边是对函数关键地方的解释：
 
 ``` cpp
 /*---------------------------------------------------------------------
@@ -1184,14 +1184,18 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
 ----------------------------------------------------------------------*/
 ```
 
-这个函数具体说来就是把串口发来的数据包进行打包、校验、生成一个消息、发给处理数据包的任务。如果你看过MT的文档，应该知道如果用ZTOOL通过串口来沟通协议栈，那么发过来的串口数据具有以下格式：“0xFE，DataLength，CM0，CM1，Data payload，FCS”。具体解释如下所示：
+这个函数具体说来就是把串口发来的数据包进行打包、校验、生成一个消息、发给处理数据包的任务。如果你看过`MT`的文档，应该知道如果用`ZTOOL`通过串口来沟通协议栈，那么发过来的串口数据具有以下格式：`0xFE | DataLength | CM0 | CM1 | Data payload | FCS`：
+
 0xFE -- 数据帧头。
 DataLength -- “Data payload”的数据长度，以字节计，低字节在前。
 CM0 -- 命令低字节。
 CM1 -- 命令高字节(ZTOOL软件就是通过发送一系列命令给MT实现和协议栈交互)。
 Data payload -- 数据帧具体的数据，这个长度是可变的，但是要和DataLength一致。
 FCS -- 校验和，从DataLength字节开始到“Data payload”最后一个字节所有字节的异或按字节操作。
-   我们需要把该函数换成自己的串口处理函数，不过前提是我们先要了解自带的这个函数，如下所示：
+
+&emsp;&emsp;我们需要把该函数换成自己的串口处理函数，不过前提是我们先要了解自带的这个函数：
+
+``` cpp
 void MT_UartProcessZToolData ( uint8 port, uint8 event ) {
     while ( Hal_UART_RxBufLen ( port ) ) { /* 查询缓冲区读信息，也成了这里信息是否接收完的标志 */
         HalUARTRead ( port, &ch, 1 ); /* 一个一个地读，读完一个缓冲区就清1个 */
@@ -1223,6 +1227,8 @@ void MT_UartProcessZToolData ( uint8 port, uint8 event ) {
         }
     }
 }
+```
+
 串口从PC机接收到信息会做如下处理：接收串口数据，判断起始码是否为0xFE；得到数据长度，然后给数据包pMsg分配内存；给数据包pMsg装数据；打包成任务发给上层OSAL待处理；释放数据包内存。
 void MT_UartProcessZToolData ( uint8 port, uint8 event ) {
     uint8 flag = 0, i, j = 0; /* flag是判断有没有收到数据，j记录数据长度 */
