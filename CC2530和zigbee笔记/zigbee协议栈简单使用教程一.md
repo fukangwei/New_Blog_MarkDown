@@ -18,6 +18,8 @@ categories: CC2530和zigbee笔记
 &emsp;&emsp;`TI`推出的`ZigBee 2007`协议栈也称为`Z-Stack`，它是挪威半导体公司`Chipcon`(目前已经被`TI`公司收购)推出其`CC2430`开发平台时，开发的一款业界领先的商业级协议栈软件。由于这个协议栈软件的出现，用户可以很容易地开发出具体的应用程序来，也就是大家说的掌握`10`个函数就能使用`ZigBee`通讯的原因。`Chipcon`公司为自己设计的`Z-Stack`协议栈中提供了一个名为操作系统抽象层`OSAL`的协议栈调度程序。对于用户来说，除了能够看到这个调度程序外，其它任何协议栈操作的具体实现细节都被封装在库代码中。用户在进行具体的应用开发时只能够通过调用`API`接口来进行，而无法知道`ZigBee`协议栈实现的具体细节，也没必要去知道。
 &emsp;&emsp;下图是`TI`公司的基于`ZigBee 2007`的协议栈`Z-Stack-CC2530-2.3.0`，所有文件目录如红色框所示，我们可以把它看做一个庞大的工程，或者是一个小型的操作系统，采用任务轮询的方法运行。
 
+<img src="./zigbee协议栈简单使用教程一/3.png" width=50%>
+
 ### 如何使用Zigbee协议栈
 
 &emsp;&emsp;以简单的无线数据通信为例，其一般步骤为：
@@ -36,11 +38,15 @@ categories: CC2530和zigbee笔记
 
 &emsp;&emsp;`CC2530 BasicRF`文件夹结构如下图：
 
+<img src="./zigbee协议栈简单使用教程一/4.png" width=40%>
+
 - `docs`文件夹：打开文件夹，里面仅有一个名为`CC2530_Software_Examples`的`PDF`文档，文档的主要内容是介绍`Basic RF`的特点、结构及使用。从中我们可以知道，里面`Basic RF`包含三个实验例程：无线点灯、传输质量检测、谱分析应用。
 - `Ide`文件夹：打开文件夹后会有三个文件夹，以及一个`cc2530_sw_examples.eww`工程，这个工程是上面提及的三个实验例程工程的集合。在`IAR`环境中打开该工程，在`workspace`看到如下文件夹：`Ide\Settings`文件夹是在每个基础实验的文件夹里都会有的，它用于保存读者自己的IAR环境设置；`Ide\srf05_CC2530`文件夹里面放有三个工程，即`light_switch.eww`、`per_test.eww`和`spectrum_analyzer.eww`。
 - `Source`文件夹：该文件夹里面有`apps`文件夹和`components`文件夹。`Source\apps`文件夹存放`Basic RF`三个实验的应用实现的源代码；`Source\components`文件夹包含着`Basic RF`的应用程序使用不同组件的源代码。
 
 &emsp;&emsp;打开文件夹`WeBee CC2530 BasicRF\ide\srf05_cc2530\iar`路径里面的工程`light_switch.eww`(无线点灯)，我们的实验就是对它进行修改的。在介绍`Basic RF`之前，来看看这个实验例程设计的大体结构。
+
+<img src="./zigbee协议栈简单使用教程一/5.png">
 
 - `Hardware layer`：这是实现数据传输的基础。
 - `Hardware Abstraction layer`：它提供了一种接口来访问`TIMER`、`GPIO`、`UART`、`ADC`等，这些接口都通过相应的函数进行实现。
