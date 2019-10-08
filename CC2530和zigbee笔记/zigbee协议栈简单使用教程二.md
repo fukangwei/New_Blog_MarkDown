@@ -634,19 +634,27 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
 #define SAMPLEAPP_FLASH_GROUP 0x0002 // 0x0001
 ```
 
-连接串口，可以观察到只有0x0001的两个设备相互发送信息。注意，终端设备不参与组播实验，具体原因是SampleAPP例程中终端设备默认采用睡眠中断的工作方式，射频不是一直工作。我们可以下载组播例程到终端，发现不能正常接收组播信息。如果确实需要使用终端设备参与组播，可以参考下面方法：将f8config.cfg配置文件中的“-RFD_RCVC_ALWAYS_ON=FALSE”改为“-RFD_RCVC_ALWAYS_ON=TRUE”就可以了！
+连接串口，可以观察到只有`0x0001`的两个设备相互发送信息。注意，终端设备不参与组播实验，具体原因是`SampleAPP`例程中终端设备默认采用睡眠中断的工作方式，射频不是一直工作。我们可以下载组播例程到终端，发现不能正常接收组播信息。如果确实需要使用终端设备参与组播，可以参考下面方法：将`f8config.cfg`配置文件中的`-RFD_RCVC_ALWAYS_ON=FALSE`改为`-RFD_RCVC_ALWAYS_ON=TRUE`就可以了！
 
 ### 广播
 
-    广播就是任何一个节点设备发出广播数据，网络中的任何设备都能收到。在SampleApp.c中可以找到广播参数的配置，代码如下所示：
+&emsp;&emsp;广播就是任何一个节点设备发出广播数据，网络中的任何设备都能收到。在`SampleApp.c`中可以找到广播参数的配置：
+
+``` cpp
 SampleApp_Periodic_DstAddr.addrMode = ( afAddrMode_t ) AddrBroadcast;
 SampleApp_Periodic_DstAddr.endPoint = SAMPLEAPP_ENDPOINT;
 SampleApp_Periodic_DstAddr.addr.shortAddr = 0xFFFF;
-其中0xFFFF是广播地址。协议栈广播地址主要有3种类型：
-0xFFFF：数据包将被传送到网络上的所有设备，包括睡眠中的设备。对于睡眠中的设备，数据包将被保留在其父亲节点，直到查询到它或者消息超时。
-0xFFFD：数据包将被传送到网络上的所有在空闲时打开接收设备(RXONWHENIDLE)，也就是说，除了睡眠中的所有设备。
-0xFFFC：数据包发送给所有的路由器，包括协调器。
-找到自带广播发送函数，修改代码如下所示：
+```
+
+其中`0xFFFF`是广播地址。协议栈广播地址主要有`3`种类型：
+
+- `0xFFFF`：数据包将被传送到网络上的所有设备，包括睡眠中的设备。对于睡眠中的设备，数据包将被保留在其父亲节点，直到查询到它或者消息超时。
+- `0xFFFD`：数据包将被传送到网络上的所有在空闲时打开接收设备(`RXONWHENIDLE`)，也就是说，除了睡眠中的所有设备。
+- `0xFFFC`：数据包发送给所有的路由器，包括协调器。
+
+找到自带广播发送函数，修改代码如下：
+
+``` cpp
 void SampleApp_SendPeriodicMessage ( void ) {
     uint8 data[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}; /* 自定义数据 */
 ​
@@ -662,9 +670,17 @@ void SampleApp_SendPeriodicMessage ( void ) {
         /* Error occurred in request to send */
     }
 }
-在SampleApp.h文件中添加如下代码：
+```
+
+在`SampleApp.h`文件中添加如下代码：
+
+``` cpp
 #define SAMPLEAPP_PERIODIC_CLUSTERID 1 /* 广播传输编号 */
-使用原来的函数SampleApp_SendGroupMessage，这样就能实现周期性广播播发送数据了：
+```
+
+使用原来的函数`SampleApp_SendGroupMessage`，这样就能实现周期性广播播发送数据了：
+
+``` cpp
 if ( events &SAMPLEAPP_SEND_PERIODIC_MSG_EVT ) {
     /* Send the periodic message */
     SampleApp_SendPeriodicMessage(); /* 周期性发送函数 */
@@ -673,7 +689,11 @@ if ( events &SAMPLEAPP_SEND_PERIODIC_MSG_EVT ) {
                          ( SAMPLEAPP_SEND_PERIODIC_MSG_TIMEOUT + ( osal_rand() & 0x00FF ) ) );
     return ( events ^ SAMPLEAPP_SEND_PERIODIC_MSG_EVT ); /* return unprocessed events */
 }
-SampleApp_SendGroupMessage代码如下所示：
+```
+
+`SampleApp_SendGroupMessage`代码如下：
+
+``` cpp
 void SampleApp_SendPeriodicMessage ( void ) {
     uint8 data[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}; /* 自定义数据 */
 ​
@@ -688,7 +708,11 @@ void SampleApp_SendPeriodicMessage ( void ) {
         /* Error occurred in request to send */
     }
 }
-在接收方面，默认接收ID就是刚定义的周期性广播发送ID：
+```
+
+在接收方面，默认接收`ID`就是刚定义的周期性广播发送`ID`：
+
+``` cpp
 void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
     uint16 flashTime;
 ​
@@ -698,20 +722,23 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
             HalUARTWrite ( 0, &pkt->cmd.Data[0], 10 ); /* 打印收到数据 */
             HalUARTWrite ( 0, "\n", 1 ); /* 回车换行，便于观察 */
             break;
-​
         case SAMPLEAPP_FLASH_CLUSTERID:
             flashTime = BUILD_UINT16 ( pkt->cmd.Data[1], pkt->cmd.Data[2] );
             HalLedBlink ( HAL_LED_4, 4, 50, ( flashTime / 4 ) );
             break;
     }
 }
+```
+
 将修改后的程序分别以协调器、路由器、终端的方式下载到3个设备，可以看到各个设备都在广播发送信息，同时也接收广播信息。
 
-Zigbee协议栈网络管理
-    ZigBee协议栈网络管理主要是对新加入的设备节点进行设备管理。我们都知道每个CC2530芯片出厂时候都有一个全球唯一的32位MAC地址，当时当设备连入网络中的时候，每个设备都能获得由协调器分配的16位短地址，协调器默认地址为0x0000。很多时候网络就是通过短地址进行管理。
-        
-    实验现象：路由器(编号1)、终端设备(编号2)发送自己的定义的设备号给协调器，协调器通过接收到的设备号判断设备类型，并且获取设备的短地址，通过串口打印出来。
-    要实现协调器收集数据的功能，可以使用点播方式传输数据，点播地址为协调器地址(0x0000)，避免了路由器和终端之间的互传，减少网络数据拥塞。修改点播信息发送函数，代码如下所示：
+### Zigbee协议栈网络管理
+
+&emsp;&emsp;`ZigBee`协议栈网络管理主要是对新加入的设备节点进行设备管理。我们都知道每个`CC2530`芯片出厂时候都有一个全球唯一的`32`位`MAC`地址，当时当设备连入网络中的时候，每个设备都能获得由协调器分配的`16`位短地址，协调器默认地址为`0x0000`。很多时候网络就是通过短地址进行管理。
+
+&emsp;&emsp;实验现象：路由器(编号`1`)、终端设备(编号`2`)发送自己的定义的设备号给协调器，协调器通过接收到的设备号判断设备类型，并且获取设备的短地址，通过串口打印出来。
+&emsp;&emsp;要实现协调器收集数据的功能，可以使用点播方式传输数据，点播地址为协调器地址(`0x0000`)，避免了路由器和终端之间的互传，减少网络数据拥塞。修改点播信息发送函数：
+
 void SampleApp_SendPointToPointMessage ( void ) {
     uint8 device; /* 设备类型变量 */
 ​
