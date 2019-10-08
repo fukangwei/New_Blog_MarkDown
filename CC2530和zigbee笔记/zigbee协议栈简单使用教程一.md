@@ -581,15 +581,16 @@ void MT_UartInit () {
 ```
 
 - 第`7`行：`uartConfig.baudRate = MT_UART_DEFAULT_BAUDRATE;`是配置波特率，查看`MT_UART_DEFAULT_BAUDRATE`的定义，可以看到`#define MT_UART_DEFAULT_BAUDRATE HAL_UART_BR_38400`，默认的波特率是`38400bps`。现在修改成`115200bps`，修改成`#define MT_UART_DEFAULT_BAUDRATE HAL_UART_BR_115200`。
-- 第`8`行：`uartConfig.flowControl = MT_UART_DEFAULT_OVERFLOW;`语句是配置流控，进入定义可以看到“#define MT_UART_DEFAULT_OVERFLOW TRUE”，默认是打开串口流控。如果你是只连了TX/RX的2根线方式，务必将流控进行关闭，即“#define MT_UART_DEFAULT_OVERFLOW FALSE”。注意，2根线的通讯连接务一定要关闭流控，不然是永远收发不了信息的。
-第14至20行：这个是预编译，根据预先定义的ZTOOL或者ZAPP选择不同的数据处理函数。后面的P1和P2则是串口0和串口1，在这里我们使用ZTOOL和串口0。可以在“option“->”C/C++ Compiler”的Preprocessor里面看到，已经默认添加ZTOOL_P1预编译，如下图所示：
+- 第`8`行：`uartConfig.flowControl = MT_UART_DEFAULT_OVERFLOW;`语句是配置流控，进入定义可以看到`#define MT_UART_DEFAULT_OVERFLOW TRUE`，默认是打开串口流控。如果你是只连了`TX/RX`的`2`根线方式，务必将流控进行关闭，即`#define MT_UART_DEFAULT_OVERFLOW FALSE`。注意，`2`根线的通讯连接务一定要关闭流控，不然是永远收发不了信息的。
+- 第`14`至`20`行：这个是预编译，根据预先定义的`ZTOOL`或者`ZAPP`选择不同的数据处理函数。后面的`P1`和`P2`则是串口`0`和串口`1`，在这里使用`ZTOOL`和串口`0`。可以在`option -> C/C++ Compiler`的`Preprocessor`里面看到，已经默认添加`ZTOOL_P1`预编译，如下图所示：
 
-   登记任务号：在函数SampleApp_Init刚添加的串口初始化语句下面加入“MT_UartRegisterTaskID(task_id);/* 登记任务号 */”，意思就是把串口事件通过task_id登记在函数SampleApp_Init里面，如下图所示：
+&emsp;&emsp;**登记任务号**：在函数`SampleApp_Init`刚添加的串口初始化语句下面加入`MT_UartRegisterTaskID(task_id);/* 登记任务号 */`，意思就是把串口事件通过`task_id`登记在函数`SampleApp_Init`里面，如下图所示：
 
-   串口发送：经过前面两个步骤，现在串口已经可以发送信息了。我们在刚刚添加初始化代码后面加入一条上电提示“Hello World”的语句“HalUARTWrite(0, "Hello World\n", 12); /* 串口0，“字符”，字符个数 */”。注意，需要在SampleApp.c文件里加入头文件MT_UART.h。下载并通过串口调试助手查看，可以看到输出了“Hello World”。
+&emsp;&emsp;**串口发送**：经过前面两个步骤，现在串口已经可以发送信息了。我们在刚刚添加初始化代码后面加入一条上电提示`Hello World`的语句`HalUARTWrite(0, "Hello World\n", 12); /* 串口0，“字符”，字符个数 */`。注意，需要在`SampleApp.c`文件里加入头文件`MT_UART.h`。下载并通过串口调试助手查看，可以看到输出了`Hello World`。
 
-协议栈的按键实验
-   通过节点1的按键S1中断配置，检测按键的按下情况，整个过程在协议栈Z-STACK的SampleApp.eww上完成。协议栈已经自带了按键的驱动和使用函数，所以将按键改到任意IO口也不是问题的。首先就是要了解协议栈中按键的检测与按键事件的传递过程，这里主要以常用的普通按键为例进行讲解，J-STICK摇杆的部分可以直接注释掉。
+### 协议栈的按键实验
+
+&emsp;&emsp;通过节点1的按键S1中断配置，检测按键的按下情况，整个过程在协议栈Z-STACK的SampleApp.eww上完成。协议栈已经自带了按键的驱动和使用函数，所以将按键改到任意IO口也不是问题的。首先就是要了解协议栈中按键的检测与按键事件的传递过程，这里主要以常用的普通按键为例进行讲解，J-STICK摇杆的部分可以直接注释掉。
    打开SampleApp.eww工程，在ZMain.c的main函数中跟按键相关的有HalDriverInit和InitBoard(OB_READY)。进入HalDriverInit中的HalKeyInit，如下所示：
 void HalKeyInit ( void ) {
     halKeySavedKeys = 0; /* Initialize previous key to 0 */
