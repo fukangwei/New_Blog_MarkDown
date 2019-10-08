@@ -1117,7 +1117,7 @@ typedef struct {
 } afIncomingMSGPacket_t;
 ```
 
-里面包含了数据包的所有东西，例如长地址、短地址、RSSI等。那么数据在哪里呢？它在afMSGCommandFormat_t中，又是一个结构体：
+里面包含了数据包的所有东西，例如长地址、短地址、`RSSI`等。那么数据在哪里呢？它在`afMSGCommandFormat_t`中，又是一个结构体：
 
 ``` cpp
 typedef struct { /* Generalized MSG Command Format */
@@ -1127,7 +1127,9 @@ typedef struct { /* Generalized MSG Command Format */
 } afMSGCommandFormat_t;
 ```
 
-   把数据通过串口发送给PC机，代码如下所示：
+&emsp;&emsp;把数据通过串口发送给`PC`机：
+
+``` cpp
 void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
     uint16 flashTime;
     switch ( pkt->lustered ) {
@@ -1142,14 +1144,19 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
             break;
     }
 }
+```
+
 将代码分别下载到两块开发板上，观察实验现象。
 
-串口透传
-   本次实验实现两台不同的PC机通过串口连接到开发板，通过无线方式相互收发信息，如果没有2台电脑，也可以用同一台电脑的不同串口进行实验。
-   打开Z-stack目录“Projects\zstack\Samples\SampleApp test\CC2530DB”里面的SampleApp.eww工程，本次实验是基于SampleApp来进行的。
+### 串口透传
+
+&emsp;&emsp;本次实验实现两台不同的PC机通过串口连接到开发板，通过无线方式相互收发信息，如果没有2台电脑，也可以用同一台电脑的不同串口进行实验。
+&emsp;&emsp;打开Z-stack目录“Projects\zstack\Samples\SampleApp test\CC2530DB”里面的SampleApp.eww工程，本次实验是基于SampleApp来进行的。
 
    1、ZigBee模块接收到从PC机发送信息，然后通过无线发送出去。
    以前我们做的都是CC2530给PC机串口发信息，还没接触过PC机发送信息给CC2530。其主要代码在MT_UART.C中，该文件在之前协议栈串口实验对串口初始化时候已经有所了解了。在这个文件里找到串口初始化函数MT_UartInit，找到下面的代码：
+
+``` cpp
 #if defined (ZTOOL_P1) || defined (ZTOOL_P2)
     uartConfig.callBackFunc = MT_UartProcessZToolData;
 #elif defined (ZAPP_P1) || defined (ZAPP_P2)
@@ -1157,7 +1164,11 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
 #else
     uartConfig.callBackFunc = NULL;
 #endif
+```
+
 我们定义了ZTOOL_P1，故协议栈数据处理函数为MT_UartProcessZToolData。进入这个函数的定义，下边是对函数关键地方的解释：
+
+``` cpp
 /*---------------------------------------------------------------------
 * @fn MT_UartProcessZToolData
 *
@@ -1171,6 +1182,8 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
 * event - Event that causes the callback
 * @return None
 ----------------------------------------------------------------------*/
+```
+
 这个函数具体说来就是把串口发来的数据包进行打包、校验、生成一个消息、发给处理数据包的任务。如果你看过MT的文档，应该知道如果用ZTOOL通过串口来沟通协议栈，那么发过来的串口数据具有以下格式：“0xFE，DataLength，CM0，CM1，Data payload，FCS”。具体解释如下所示：
 0xFE -- 数据帧头。
 DataLength -- “Data payload”的数据长度，以字节计，低字节在前。
