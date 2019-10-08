@@ -1186,8 +1186,8 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
 
 这个函数具体说来就是把串口发来的数据包进行打包、校验、生成一个消息、发给处理数据包的任务。如果你看过`MT`的文档，应该知道如果用`ZTOOL`通过串口来沟通协议栈，那么发过来的串口数据具有以下格式：`0xFE | DataLength | CM0 | CM1 | Data payload | FCS`：
 
-0xFE -- 数据帧头。
-DataLength -- “Data payload”的数据长度，以字节计，低字节在前。
+- `0xFE`：数据帧头。
+- `DataLength`：`Data payload`的数据长度，以字节计，低字节在前。
 CM0 -- 命令低字节。
 CM1 -- 命令高字节(ZTOOL软件就是通过发送一系列命令给MT实现和协议栈交互)。
 Data payload -- 数据帧具体的数据，这个长度是可变的，但是要和DataLength一致。
