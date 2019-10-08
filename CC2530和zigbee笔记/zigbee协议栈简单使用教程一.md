@@ -59,7 +59,9 @@ categories: CC2530和zigbee笔记
 2. 没有协议栈里面所说的协调器、路由器或者终端的区分，节点的地位都是相等的。
 3. 没有自动重发的功能。
 
-&emsp;&emsp;`Basic RF layer`为双向无线通信提供了一个简单的协议，通过这个协议能够进行数据的发送和接收。`Basic RF`还提供了安全通信所使用的`CCM-64`身份验证和数据加密，它的安全性读者可以通过在工程文件里面定义`SECURITY_CCM`，在`Project -> Option`里面就可以选择。本次实验并不是什么高度机密，所以在`SECURITY_CCM`前面带`x`了，如下图所示：
+&emsp;&emsp;`Basic RF layer`为双向无线通信提供了一个简单的协议，通过这个协议能够进行数据的发送和接收。`Basic RF`还提供了安全通信所使用的`CCM-64`身份验证和数据加密，它的安全性读者可以通过在工程文件里面定义`SECURITY_CCM`，在`Project -> Option`里面就可以选择。本次实验并不是什么高度机密，所以在`SECURITY_CCM`前面带`x`了：
+
+<img src="./zigbee协议栈简单使用教程一/6.png" width=50%>
 
 &emsp;&emsp;`Basic RF`的工作过程有启动、发射和接收。使用`Basic RF`实现无线传输只要学会使用这些过程的相应函数就可以了。
 &emsp;&emsp;启动的要求如下：
@@ -442,11 +444,17 @@ static void appReceiver() {
 
 ### 协议栈工作原理介绍
 
-&emsp;&emsp;`ZigBee`的任务轮询如下图所示：
+&emsp;&emsp;`ZigBee`的任务轮询如下图：
 
-&emsp;&emsp;打开协议栈文件夹`Texas Instruments\Projects\zstack`，里面包含了`TI`公司的例程和工具。再打开`Samples`文件夹，如下图所示：
+<img src="./zigbee协议栈简单使用教程一/7.png" width=50%>
+
+&emsp;&emsp;打开协议栈文件夹`Texas Instruments\Projects\zstack`，里面包含了`TI`公司的例程和工具。再打开`Samples`文件夹：
+
+<img src="./zigbee协议栈简单使用教程一/8.png" width=50%>
 
 &emsp;&emsp;`Samples`文件夹里面有三个例子，即`GenericApp`、`SampleApp`、`SimpleApp`。在这里我们选择`SampleApp`对协议栈的工作流程进行讲解。打开`SampleApp\CC2530DB`下的工程文件`SampleApp.eww`，留意左边的工程目录，我们暂时只需要关注`Zmain`文件夹和`App`文件夹。
+
+<img src="./zigbee协议栈简单使用教程一/9.png" width=50%>
 
 &emsp;&emsp;任何程序都在`main`函数开始运行，`Z-STACK`也不例外。打开`Zmain.C`，找到`main`函数。大概浏览一下`main`函数的代码：
 
