@@ -803,6 +803,8 @@ uint16 SampleApp_ProcessEvent ( uint8 task_id, uint16 events ) {
 ```
 
 接下来就是终点站了：
+
+``` cpp
 void SampleApp_HandleKeys ( uint8 shift, uint8 keys ) {
     ( void ) shift; /* Intentionally unreferenced parameter */
     if ( keys & HAL_KEY_SW_1 ) {
@@ -812,6 +814,7 @@ void SampleApp_HandleKeys ( uint8 shift, uint8 keys ) {
          */
         SampleApp_SendFlashMessage ( SAMPLEAPP_FLASH_DURATION );
     }
+
     if ( keys & HAL_KEY_SW_2 ) {
         /* The Flashr Command is sent to Group 1.
          * This key toggles this device in and out of group 1.
@@ -820,6 +823,7 @@ void SampleApp_HandleKeys ( uint8 shift, uint8 keys ) {
          */
         aps_Group_t *grp;
         grp = aps_FindGroup ( SAMPLEAPP_ENDPOINT, SAMPLEAPP_FLASH_GROUP );
+
         if ( grp ) {
             aps_RemoveGroup ( SAMPLEAPP_ENDPOINT, SAMPLEAPP_FLASH_GROUP ); /* Remove from the group */
         } else {
@@ -831,54 +835,81 @@ void SampleApp_HandleKeys ( uint8 shift, uint8 keys ) {
         HalUARTWrite ( 0, "KEY S2\n", 7 );
     }
 }
+```
+
 根据具体的键值做相应的处理，这里利用串口打印提示按键按下。根据下面的框图再走一遍就基本上能很清晰地理解了：
 
-   到这里就讲了一大半了，至于第二种按键检测方式(中断检测)，下面就简单说明一下：在“HalKeyConfig(HAL_KEY_INTERRUPT_ENABLE, OnBoard_KeyCallback);”中设置成中断检测方式。设置成中断检测方式就不会定时启动HAL_KEY_EVENT事件，这样就会更加节省系统资源，所以一般都是使用中断方式来检测按键。当按下按键时会进入P0口中断服务函数“HAL_ISR_FUNCTION(halKeyPort0Isr, P0INT_VECTOR)”，如下所示：
+&emsp;&emsp;到这里就讲了一大半了，至于第二种按键检测方式(中断检测)，下面就简单说明一下：在`HalKeyConfig(HAL_KEY_INTERRUPT_ENABLE, OnBoard_KeyCallback);`中设置成中断检测方式。设置成中断检测方式就不会定时启动`HAL_KEY_EVENT`事件，这样就会更加节省系统资源，所以一般都是使用中断方式来检测按键。当按下按键时会进入`P0`口中断服务函数`HAL_ISR_FUNCTION(halKeyPort0Isr, P0INT_VECTOR)`：
+
+``` cpp
 HAL_ISR_FUNCTION ( halKeyPort0Isr, P0INT_VECTOR ) {
     HAL_ENTER_ISR();
     if ( HAL_KEY_SW_6_PXIFG & HAL_KEY_SW_6_BIT ) {
         halProcessKeyInterrupt();
     }
+
     /* Clear the CPU interrupt flag for Port_0. PxIFG has to be cleared before PxIF */
     HAL_KEY_SW_6_PXIFG = 0;
     HAL_KEY_CPU_PORT_0_IF = 0;
     CLEAR_SLEEP_MODE();
     HAL_EXIT_ISR();
 }
-并调用halProcessKeyInterrupt函数处理按键中断事件：
+```
+
+并调用`halProcessKeyInterrupt`函数处理按键中断事件：
+
+``` cpp
 void halProcessKeyInterrupt ( void ) {
     bool valid = FALSE;
+
     if ( HAL_KEY_SW_6_PXIFG & HAL_KEY_SW_6_BIT ) { /* Interrupt Flag has been set */
         HAL_KEY_SW_6_PXIFG = ~ ( HAL_KEY_SW_6_BIT ); /* Clear Interrupt Flag */
         valid = TRUE;
     }
+
     if ( HAL_KEY_JOY_MOVE_PXIFG & HAL_KEY_JOY_MOVE_BIT ) { /* Interrupt Flag has been set */
         HAL_KEY_JOY_MOVE_PXIFG = ~ ( HAL_KEY_JOY_MOVE_BIT ); /* Clear Interrupt Flag */
         valid = TRUE;
     }
+
     if ( valid ) {
         osal_start_timerEx ( Hal_TaskID, HAL_KEY_EVENT, HAL_KEY_DEBOUNCE_VALUE );
     }
 }
-这里又跑去启动HAL_KEY_EVENT事件了，然后就把按键发送个系统上层任务。
-   第一步：修改 hal_key.C(位于“HAL/Target/CC2530EB/Drivers”目录下)文件。修改SW_6所在IO口，如下所示：
+```
+
+这里又跑去启动`HAL_KEY_EVENT`事件了，然后就把按键发送个系统上层任务。
+&emsp;&emsp;第一步：修改`hal_key.C`(位于`HAL/Target/CC2530EB/Drivers`目录下)文件。修改`SW_6`所在`IO`口：
+
+``` cpp
 /* SW_6 is at P0.4 */
 #define HAL_KEY_SW_6_PORT  P0
 #define HAL_KEY_SW_6_BIT   BV(4) /* BV(1)改到P0.4 */
 #define HAL_KEY_SW_6_SEL   P0SEL
 #define HAL_KEY_SW_6_DIR   P0DIR
-设置边缘触发方式，如下所示：
+```
+
+设置边缘触发方式：
+
+``` cpp
 /* edge interrupt */
 #define HAL_KEY_SW_6_EDGEBIT  BV(0)
 #define HAL_KEY_SW_6_EDGE     HAL_KEY_RISING_EDGE /* HAL_KEY_FALLING_EDGE 改成上升缘触发 */
-设置中断一些相关标志位，如下所示：
+```
+
+设置中断一些相关标志位：
+
+``` cpp
 /* SW_6 interrupts */
-#define HAL_KEY_SW_6_IEN     IEN1 /* CPU interrupt mask register */
-#define HAL_KEY_SW_6_IENBIT  BV(5) /* Mask bit for all of Port_0 */
+#define HAL_KEY_SW_6_IEN     IEN1  /* CPU interrupt mask register */
+#define HAL_KEY_SW_6_IENBIT  BV(5) /* Mask bit for all of Port_0  */
 #define HAL_KEY_SW_6_ICTL    P0IEN /* Port Interrupt Control register */
 #define HAL_KEY_SW_6_ICTLBIT BV(4) // 原为BV(1) /* P0IEN - P0.1 enable/disable bit改到P0.4 */
 #define HAL_KEY_SW_6_PXIFG   P0IFG /* Interrupt flag at source */
-我们不需要用到TI的摇杆J-STICK，所以把代码注释掉，如下所示：
+```
+
+我们不需要用到`TI`的摇杆`J-STICK`，所以把代码注释掉：
+
 void HalKeyPoll ( void ) {
     uint8 keys = 0;
     if ( ( HAL_KEY_JOY_MOVE_PORT & HAL_KEY_JOY_MOVE_BIT ) ) { /* Key is active HIGH */
