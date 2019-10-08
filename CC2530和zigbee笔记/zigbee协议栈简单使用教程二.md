@@ -461,18 +461,24 @@ void SampleApp_SendPointToPointMessage ( void ) {
 }
 ```
 
-还需要在SampleAPP.c文件开头添加头函数声明：
+还需要在`SampleAPP.c`文件开头添加头函数声明：
 
+``` cpp
 void SampleApp_SendPointToPointMessage ( void );
+```
 
-在SampleApp.h中加入SAMPLEAPP_POINT_TO_POINT_CLUSTERID的定义：
+在`SampleApp.h`中加入`SAMPLEAPP_POINT_TO_POINT_CLUSTERID`的定义：
 
-#define SAMPLEAPP_MAX_CLUSTERS              3 //2
+``` cpp
+#define SAMPLEAPP_MAX_CLUSTERS              3
 #define SAMPLEAPP_PERIODIC_CLUSTERID        1
 #define SAMPLEAPP_FLASH_CLUSTERID           2
 #define SAMPLEAPP_POINT_TO_POINT_CLUSTERID  3
+```
 
-接下来把数据传输实验的SampleApp.c文件中的SampleApp_SendPeriodicMessage函数替换成点对点发送函数SampleApp_SendPointToPointMessage，这样的话就能实现周期性点播发送数据了。
+接下来把数据传输实验的`SampleApp.c`文件中的`SampleApp_SendPeriodicMessage`函数替换成点对点发送函数`SampleApp_SendPointToPointMessage`，这样的话就能实现周期性点播发送数据了。
+
+``` cpp
 if ( events &SAMPLEAPP_SEND_PERIODIC_MSG_EVT ) {
     /* Send the periodic message */
     //SampleApp_SendPeriodicMessage(); /* 周期性发送函数 */
@@ -482,7 +488,11 @@ if ( events &SAMPLEAPP_SEND_PERIODIC_MSG_EVT ) {
                          ( SAMPLEAPP_SEND_PERIODIC_MSG_TIMEOUT + ( osal_rand() & 0x00FF ) ) );
     return ( events ^ SAMPLEAPP_SEND_PERIODIC_MSG_EVT ); /* return unprocessed events */
 }
-在接收方面，我们进行如下修改：将接收ID在原来基础上改成刚定义的SAMPLEAPP_POINT_TO_POINT_CLUSTERID：
+```
+
+在接收方面，我们进行如下修改：将接收`ID`在原来基础上改成刚定义的`SAMPLEAPP_POINT_TO_POINT_CLUSTERID`：
+
+``` cpp
 void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
     uint16 flashTime;
 ​
@@ -491,15 +501,18 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
             HalUARTWrite ( 0, "I get data\n", 11 ); /*用于提示有数据 */
             HalUARTWrite ( 0, &pkt->cmd.Data[0], 10 ); /* 打印收到数据 */
             HalUARTWrite ( 0, "\n", 1 ); /* 回车换行，便于观察 */
-            break;
-​
+            break;​
         case SAMPLEAPP_FLASH_CLUSTERID:
             flashTime = BUILD_UINT16 ( pkt->cmd.Data[1], pkt->cmd.Data[2] );
             HalLedBlink ( HAL_LED_4, 4, 50, ( flashTime / 4 ) );
             break;
     }
 }
-由于协调器不允许给自己点播，故周期性点播初始化时协调器不能初始化，如下所示：
+```
+
+由于协调器不允许给自己点播，故周期性点播初始化时协调器不能初始化：
+
+``` cpp
 /* Received whenever the device changes state in the network */
 case ZDO_STATE_CHANGE:
     SampleApp_NwkState = ( devStates_t ) ( MSGpkt->hdr.status );
@@ -515,28 +528,53 @@ case ZDO_STATE_CHANGE:
     }
 ​
     break;
-将修改后的程序分别以协调器、路由器、终端的方式下载到3个节点设备中，并连接串口。可以看到只有协调器在一个周期内收到信息，也就是说路由器和终端均与地址为0x00(协调器)的设备通信，不与其他设备通信，实现点对点传输。
+```
 
-组播
-    组播描述的就是网络中所有节点设备被分组后组内相互通信的过程，确定通信对象的就是节点的组号。关注SampleApp.c中的2项内容：
-    1、组播afAddrType_t的类型变量：
+将修改后的程序分别以协调器、路由器、终端的方式下载到`3`个节点设备中，并连接串口。可以看到只有协调器在一个周期内收到信息，也就是说路由器和终端均与地址为`0x00`(协调器)的设备通信，不与其他设备通信，实现点对点传输。
+
+### 组播
+
+&emsp;&emsp;组播描述的就是网络中所有节点设备被分组后组内相互通信的过程，确定通信对象的就是节点的组号。关注`SampleApp.c`中的`2`项内容：
+&emsp;&emsp;1. 组播`afAddrType_t`的类型变量：
+
+``` cpp
 afAddrType_t SampleApp_Flash_DstAddr; /* 组播 */
-    2、组播内容的结构体：
+```
+
+&emsp;&emsp;2. 组播内容的结构体：
+
+``` cpp
 aps_Group_t SampleApp_Group; /* 分组内容 */
-组播参数的配置如下所示：
+```
+
+组播参数的配置如下：
+
+``` cpp
 /* Setup for the flash command's destination address - Group 1 */
 SampleApp_Flash_DstAddr.addrMode = ( afAddrMode_t ) afAddrGroup;
 SampleApp_Flash_DstAddr.endPoint = SAMPLEAPP_ENDPOINT;
 SampleApp_Flash_DstAddr.addr.shortAddr = SAMPLEAPP_FLASH_GROUP;
-已经定义的组信息代码，将ID修改成组号相对应，方便以后自己扩展分组需要“SAMPLEAPP_FLASH_GROUP”，如下所示(在SampleApp_Init函数中，位于函数最后面)：
+```
+
+已经定义的组信息代码，将`ID`修改成组号相对应，方便以后自己扩展分组需要`SAMPLEAPP_FLASH_GROUP`，如下(在`SampleApp_Init`函数中，位于函数最后面)：
+
+``` cpp
 /* By default, all devices start out in Group 1 */
 SampleApp_Group.ID = SAMPLEAPP_FLASH_GROUP; /* 0x0001 */
 osal_memcpy ( SampleApp_Group.name, "Group 1", 7 );
 aps_AddGroup ( SAMPLEAPP_ENDPOINT, &SampleApp_Group );
-在SampleApp.h里面可以看到组号为0x0001，如下：
+```
+
+在`SampleApp.h`里面可以看到组号为`0x0001`：
+
+``` cpp
 /* Group ID for Flash Command */
 #define SAMPLEAPP_FLASH_GROUP 0x0001
-接下来在SampleAPP.c最后面添加自己的组播发送函数，代码如下所示：
+```
+
+接下来在`SampleAPP.c`最后面添加自己的组播发送函数：
+
+``` cpp
 void SampleApp_SendGroupMessage ( void ) {
     uint8 data[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}; /* 自定义数据 */
 ​
@@ -552,12 +590,24 @@ void SampleApp_SendGroupMessage ( void ) {
         /* Error occurred in request to send */
     }
 }
-添加函数后别忘了在SampleApp.c函数声明里加入：
+```
+
+添加函数后别忘了在`SampleApp.c`函数声明里加入：
+
+``` cpp
 void SampleApp_SendGroupMessage ( void );
-否则编译将报错。SAMPLEAPP_FLASH_CLUSTERID的定义如下所示：
+```
+
+否则编译将报错。`SAMPLEAPP_FLASH_CLUSTERID`的定义如下：
+
+``` cpp
 #define SAMPLEAPP_FLASH_CLUSTERID 2
-接下来把数据传输实验的SampleApp.c文件中的SampleApp_SendPeriodicMessage函数替换成组播发送函数SampleApp_SendGroupMessage，这样就能实现周期性组播发送数据了。
-    在接收方面进行如下修改：组播接收函数改成如下所示：
+```
+
+接下来把数据传输实验的`SampleApp.c`文件中的`SampleApp_SendPeriodicMessage`函数替换成组播发送函数`SampleApp_SendGroupMessage`，这样就能实现周期性组播发送数据了。
+&emsp;&emsp;在接收方面进行如下修改：组播接收函数改成如下：
+
+``` cpp
 void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
     // uint16 flashTime;
     switch ( pkt->clusterId ) {
@@ -566,7 +616,6 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
             HalUARTWrite ( 0, &pkt->cmd.Data[0], 10 ); /* 打印收到数据 */
             HalUARTWrite ( 0, "\n", 1 ); /* 回车换行，便于观察 */
             break;
-​
         case SAMPLEAPP_FLASH_CLUSTERID:
             HalUARTWrite ( 0, "I get data\n", 11 ); /* 用于提示有数据 */
             HalUARTWrite ( 0, &pkt->cmd.Data[0], 10 ); /* 打印收到数据 */
@@ -576,12 +625,19 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
             break;
     }
 }
-    将修改后的程序分别以1个协调器、2个路由器的方式下载到3个设备，把协调器和路由器组号1设置成0x0001，路由器设备2组号设成0x0002，如下所示：
+```
+
+&emsp;&emsp;将修改后的程序分别以`1`个协调器、`2`个路由器的方式下载到`3`个设备，把协调器和路由器组号`1`设置成`0x0001`，路由器设备`2`组号设成`0x0002`：
+
+``` cpp
 /* Group ID for Flash Command */
 #define SAMPLEAPP_FLASH_GROUP 0x0002 // 0x0001
+```
+
 连接串口，可以观察到只有0x0001的两个设备相互发送信息。注意，终端设备不参与组播实验，具体原因是SampleAPP例程中终端设备默认采用睡眠中断的工作方式，射频不是一直工作。我们可以下载组播例程到终端，发现不能正常接收组播信息。如果确实需要使用终端设备参与组播，可以参考下面方法：将f8config.cfg配置文件中的“-RFD_RCVC_ALWAYS_ON=FALSE”改为“-RFD_RCVC_ALWAYS_ON=TRUE”就可以了！
 
-广播
+### 广播
+
     广播就是任何一个节点设备发出广播数据，网络中的任何设备都能收到。在SampleApp.c中可以找到广播参数的配置，代码如下所示：
 SampleApp_Periodic_DstAddr.addrMode = ( afAddrMode_t ) AddrBroadcast;
 SampleApp_Periodic_DstAddr.endPoint = SAMPLEAPP_ENDPOINT;
