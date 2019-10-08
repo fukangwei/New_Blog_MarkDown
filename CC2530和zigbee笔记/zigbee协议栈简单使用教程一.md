@@ -1326,18 +1326,23 @@ void SampleApp_SerialCMD ( mtOSALSerialData_t *cmdMsg ) {
 #define SAMPLEAPP_COM_CLUSTERID       3
 ```
 
-到这里，CC2530从串口接收信息到转发出去的功能已经完成了，可以实现将用户从串口输入的内容返回给该串口。也就是说CMD_SERIAL_MSG事件和“void SampleApp_SerialCMD(mtOSALSerialData_t *cmdMsg)”函数已经被成功执行了。
+到这里，`CC2530`从串口接收信息到转发出去的功能已经完成了，可以实现将用户从串口输入的内容返回给该串口。也就是说`CMD_SERIAL_MSG`事件和`void SampleApp_SerialCMD(mtOSALSerialData_t *cmdMsg)`函数已经被成功执行了。
 
-   2、ZigBee模块接收到其它ZigBee模块发来的信息，然后发送给PC机。
-   在SampleApp找到下面的函数，代码如下所示：
+&emsp;&emsp;2. `ZigBee`模块接收到其它`ZigBee`模块发来的信息，然后发送给`PC`机。
+&emsp;&emsp;在`SampleApp`找到下面的函数：
+
+``` cpp
 void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
     uint8 i, len;
+
     switch ( pkt-> lustered ) {
         case SAMPLEAPP_COM_CLUSTERID: /* 如果是串口透传的信息 */
             len = pkt->cmd.Data[0];
+
             for ( i = 0; i < len; i++ ) {
                 HalUARTWrite ( 0, &pkt->cmd.Data[i + 1], 1 ); /* 发给PC机 */
             }
+
             HalUARTWrite ( 0, ” \n” , 1 ); /* 回车换行 */
             break;
             /*
@@ -1351,8 +1356,14 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
             */
     }
 }
+```
+
 如果想进一步节省资源，可以将函数“uint16 SampleApp_ProcessEvent(uint8 task_id, uint16 events)”里面除了透传case以外的所有case事件判断都注释掉，如下所示：
+
+``` cpp
 case CMD_SERIAL_MSG:
     SampleApp_SerialCMD ( ( mtOSALSerialData_t * ) MSGpkt );
     break;
+```
+
 最后还要修改预编译，注释掉MT层的内容。把程序分别下载到2个zigbee节点模块，一个选择协调器(必需)，另外一个选择路由，这样就可以实现串口透传功能了。
