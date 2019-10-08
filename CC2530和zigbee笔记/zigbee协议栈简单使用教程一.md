@@ -1069,15 +1069,22 @@ void SampleApp_SendPeriodicMessage ( void ) {
 
 至此，发送部分代码修改完成。上电后，`CC2530`会以周期`5s`来广播式发送数据`0`至`9`。
 
-   接收部分(可以将这部分内容理解成是连接电脑的协调器需要执行的)：
-   读取接收到的数据：同样在“uint16 SampleApp_ProcessEvent(uint8 task_id, uint16 events)”事件处理函数中找到如下代码：
+&emsp;&emsp;接收部分(可以将这部分内容理解成是连接电脑的协调器需要执行的)：
+&emsp;&emsp;读取接收到的数据：同样在`uint16 SampleApp_ProcessEvent(uint8 task_id, uint16 events)`事件处理函数中找到如下代码：
+
+``` cpp
 /* Received when a messages is received (OTA) for this endpoint */
 case AF_INCOMING_MSG_CMD:
     SampleApp_MessageMSGCB ( MSGpkt );
     break;
-其中，“SampleApp_MessageMSGCB(MSGpkt);”就是将接收到的数据包进行处理的函数。我们进入此函数，代码如下所示：
+```
+
+其中，`SampleApp_MessageMSGCB(MSGpkt);`就是将接收到的数据包进行处理的函数：
+
+``` cpp
 void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
     uint16 flashTime;
+
     switch ( pkt->lustered ) {
         case SAMPLEAPP_PERIODIC_CLUSTERID:
             HalUARTWrite ( 0, "I get data\n", 11 ); /* 提示收到数据 */
@@ -1088,7 +1095,11 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
             break;
     }
 }
-第5行：读取发来的数据包的ID号，如果是SAMPLEAPP_PERIODIC_CLUSTERID，就执行下面的函数。所有的数据和信息都在函数传入来的“afIncomingMSGPacket_t *pkt”里面，进入afIncomingMSGPacket_t的定义，它是一个结构体，内容如下：
+```
+
+- 第`5`行：读取发来的数据包的`ID`号，如果是`SAMPLEAPP_PERIODIC_CLUSTERID`，就执行下面的函数。所有的数据和信息都在函数传入来的`afIncomingMSGPacket_t *pkt`里面，进入`afIncomingMSGPacket_t`的定义，它是一个结构体，内容如下：
+
+``` cpp
 typedef struct {
     osal_event_hdr_t hdr; /* OSAL Message header */
     uint16 groupId; /* Message's group ID – 0 if not set */
@@ -1104,12 +1115,18 @@ typedef struct {
     uint32 timestamp; /* receipt timestamp from MAC */
     afMSGCommandFormat_t cmd; /* Application Data */
 } afIncomingMSGPacket_t;
-里面包含了数据包的所有东西，例如长地址、短地址、RSSI等。那么数据在哪里呢？它在afMSGCommandFormat_t中，又是一个结构体，如下所示：
+```
+
+里面包含了数据包的所有东西，例如长地址、短地址、RSSI等。那么数据在哪里呢？它在afMSGCommandFormat_t中，又是一个结构体：
+
+``` cpp
 typedef struct { /* Generalized MSG Command Format */
     byte TransSeqNumber; /* 用于存储序列号 */
     uint16 DataLength; /* Number of bytes in TransData 用于存储的发送数据的长度信息 */
     byte *Data; /* 数据接收后放在一个缓冲区中 */
 } afMSGCommandFormat_t;
+```
+
    把数据通过串口发送给PC机，代码如下所示：
 void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
     uint16 flashTime;
