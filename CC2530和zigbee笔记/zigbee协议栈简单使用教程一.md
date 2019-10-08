@@ -983,20 +983,25 @@ if ( keys & HAL_KEY_SW_6 ) {
 ### 无线数据传输
 
 &emsp;&emsp;本次实验实现终端节点将数据`0123456789`通过无线发送到协调器，协调器通过串口发送给`PC`上位机显示出来，此实验是基于`SampleApp`工程进行的。
-&emsp;&emsp;打开SampleApp.C文件，搜索找到函数“void SampleApp_MessageMSGCB( afIncomingMSGPacket_t *pkt )”，在“case SAMPLEAPP_PERIODIC_CLUSTERID:”下面加入“HalUARTWrite(0,”I get data\n”,11);”。选择CoodinatorEB，下载到开发板1(作为协调器串口跟电脑连接)；选择EndDeviceEB，下载到开发板2(作为终端设备无线发送数据给协调器)。
+&emsp;&emsp;打开`SampleApp.C`文件，搜索找到函数`void SampleApp_MessageMSGCB( afIncomingMSGPacket_t *pkt )`，在`case SAMPLEAPP_PERIODIC_CLUSTERID:`下面加入`HalUARTWrite(0, "I get data\n", 11);`。选择`CoodinatorEB`，下载到开发板`1`(作为协调器串口跟电脑连接)；选择`EndDeviceEB`，下载到开发板`2`(作为终端设备无线发送数据给协调器)。
 &emsp;&emsp;发送部分(可以将这部分内容理解成是发送终端需要执行的)：
-&emsp;&emsp;1、登记事件，设置编号、发送时间等。打开SampleApp.C文件，找到SampleApp事件处理函数“uint16 SampleApp_ProcessEvent(uint8 task_id, uint16 events)”，找到函数中下面的代码：
+&emsp;&emsp;1. 登记事件，设置编号、发送时间等。打开`SampleApp.C`文件，找到`SampleApp`事件处理函数`uint16 SampleApp_ProcessEvent(uint8 task_id, uint16 events)`，找到函数中下面的代码：
+
+``` cpp
 /* Received whenever the device changes state in the network */
 case ZDO_STATE_CHANGE: /* 当网络状态改变时，如从未连上状态到连上网络状态 */
     SampleApp_NwkState = ( lustered_t ) ( MSGpkt->hdr.status );
-    if ( ( SampleApp_NwkState == DEV_ZB_COORD ) || ( SampleApp_NwkState == DEV_ROUTER ) || ( SampleApp_NwkState == DEV_END_DEVICE ) ) { /* 协调器、路由器或者终端都执行 */
+    /* 协调器、路由器或者终端都执行 */
+    if ( ( SampleApp_NwkState == DEV_ZB_COORD ) || ( SampleApp_NwkState == DEV_ROUTER ) || ( SampleApp_NwkState == DEV_END_DEVICE ) ) {
         /* Start sending the periodic message in a regular interval. */
         osal_start_timerEx ( SampleApp_TaskID, SAMPLEAPP_SEND_PERIODIC_MSG_EVT, SAMPLEAPP_SEND_PERIODIC_MSG_TIMEOUT );
-    }
-    else {
+    } else {
         /* Device is no longer in the network */
     }
+
     break;
+```
+
 第7行是代码的关键部分，函数的这三个参数决定了周期性发送数据的命脉。分别查看它们的定义：
 SampleApp_TaskID是任务ID，函数开头定义了“SampleApp_TaskID = task_id;”，也就是SampleApp初始化的任务ID号。
 SAMPLEAPP_SEND_PERIODIC_MSG_EVT的解释是“Application Events (OSAL) - These are bit weighted definitions.”，定义为“#define SAMPLEAPP_SEND_PERIODIC_MSG_EVT 0x0001”，同一个任务下可以有多个事件，这个是事件的号码。我们可以定义自己的事件，但是编号不能重复，而且事件号码16位必须只占1位，所以只能定义16个事件。
