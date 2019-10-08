@@ -557,7 +557,9 @@ void osal_start_system ( void ) {
 
 &emsp;&emsp;打开`Z-stack`目录`Projects\zstack\Samples\SamplesAPP\CC2530DB`里面的`SampleApp.eww`工程，这次试验直接基于协议栈的`SampleApp`来修改的。打开工程后，`workspace`目录下有两个比较重要的文件夹，即`Zmain`和`App`。这里主要用到`App`，它是用户自己添加自己代码的地方，主要文件是`SampleApp.c`和`SampleApp.h`。
 &emsp;&emsp;**串口初始化**：我们在`workspace`下找到`HAL\Target\CC2530EB\drivers`的`hal_uart.c`，可以看到里面已经包括了串口初始化、发送、接收等函数。再看看`workspace`上的`MT`层，发觉有很多基本函数前面带`MT`，包括`MT_UART.C`。打开这个文件，看到`MT_UartInit`函数，这里也有一个串口初始化函数。`Z-stack`上有一个`MT`层，用户可以选用`MT`层配置和调用其他驱动，进一步简化了操作流程。
-&emsp;&emsp;打开`APP`目录下的`OSAL_SampleApp.C`文件，找到上节提到的`osalInitTasks`任务初始化函数中的`SampleApp_Init`函数。进入这个函数，发现原来在`SampleApp.c`文件中，我们在这里加入串口初始化代码。在函数中加入语句`MT_UartInit();`，如下图所示：
+&emsp;&emsp;打开`APP`目录下的`OSAL_SampleApp.C`文件，找到上节提到的`osalInitTasks`任务初始化函数中的`SampleApp_Init`函数。进入这个函数，发现原来在`SampleApp.c`文件中，我们在这里加入串口初始化代码。在函数中加入语句`MT_UartInit();`：
+
+<img src="./zigbee协议栈简单使用教程一/10.png">
 
 &emsp;&emsp;进入`MT_UartInit`函数，修改自己想要的初始化配置：
 
@@ -600,9 +602,13 @@ void MT_UartInit () {
 
 - 第`7`行：`uartConfig.baudRate = MT_UART_DEFAULT_BAUDRATE;`是配置波特率，查看`MT_UART_DEFAULT_BAUDRATE`的定义，可以看到`#define MT_UART_DEFAULT_BAUDRATE HAL_UART_BR_38400`，默认的波特率是`38400bps`。现在修改成`115200bps`，修改成`#define MT_UART_DEFAULT_BAUDRATE HAL_UART_BR_115200`。
 - 第`8`行：`uartConfig.flowControl = MT_UART_DEFAULT_OVERFLOW;`语句是配置流控，进入定义可以看到`#define MT_UART_DEFAULT_OVERFLOW TRUE`，默认是打开串口流控。如果你是只连了`TX/RX`的`2`根线方式，务必将流控进行关闭，即`#define MT_UART_DEFAULT_OVERFLOW FALSE`。注意，`2`根线的通讯连接务一定要关闭流控，不然是永远收发不了信息的。
-- 第`14`至`20`行：这个是预编译，根据预先定义的`ZTOOL`或者`ZAPP`选择不同的数据处理函数。后面的`P1`和`P2`则是串口`0`和串口`1`，在这里使用`ZTOOL`和串口`0`。可以在`option -> C/C++ Compiler`的`Preprocessor`里面看到，已经默认添加`ZTOOL_P1`预编译，如下图所示：
+- 第`14`至`20`行：这个是预编译，根据预先定义的`ZTOOL`或者`ZAPP`选择不同的数据处理函数。后面的`P1`和`P2`则是串口`0`和串口`1`，在这里使用`ZTOOL`和串口`0`。可以在`option -> C/C++ Compiler`的`Preprocessor`里面看到，已经默认添加`ZTOOL_P1`预编译：
 
-&emsp;&emsp;**登记任务号**：在函数`SampleApp_Init`刚添加的串口初始化语句下面加入`MT_UartRegisterTaskID(task_id);/* 登记任务号 */`，意思就是把串口事件通过`task_id`登记在函数`SampleApp_Init`里面，如下图所示：
+<img src="./zigbee协议栈简单使用教程一/11.png" width=50%>
+
+&emsp;&emsp;**登记任务号**：在函数`SampleApp_Init`刚添加的串口初始化语句下面加入`MT_UartRegisterTaskID(task_id);/* 登记任务号 */`，意思就是把串口事件通过`task_id`登记在函数`SampleApp_Init`里面：
+
+<img src="./zigbee协议栈简单使用教程一/12.png">
 
 &emsp;&emsp;**串口发送**：经过前面两个步骤，现在串口已经可以发送信息了。我们在刚刚添加初始化代码后面加入一条上电提示`Hello World`的语句`HalUARTWrite(0, "Hello World\n", 12); /* 串口0，“字符”，字符个数 */`。注意，需要在`SampleApp.c`文件里加入头文件`MT_UART.h`。下载并通过串口调试助手查看，可以看到输出了`Hello World`。
 
@@ -857,6 +863,8 @@ void SampleApp_HandleKeys ( uint8 shift, uint8 keys ) {
 
 根据具体的键值做相应的处理，这里利用串口打印提示按键按下。根据下面的框图再走一遍就基本上能很清晰地理解了：
 
+<img src="./zigbee协议栈简单使用教程一/13.png" width=50%>
+
 &emsp;&emsp;到这里就讲了一大半了，至于第二种按键检测方式(中断检测)，下面就简单说明一下：在`HalKeyConfig(HAL_KEY_INTERRUPT_ENABLE, OnBoard_KeyCallback);`中设置成中断检测方式。设置成中断检测方式就不会定时启动`HAL_KEY_EVENT`事件，这样就会更加节省系统资源，所以一般都是使用中断方式来检测按键。当按下按键时会进入`P0`口中断服务函数`HAL_ISR_FUNCTION(halKeyPort0Isr, P0INT_VECTOR)`：
 
 ``` cpp
@@ -967,6 +975,8 @@ void HalKeyPoll ( void ) {
 ```
 
 &emsp;&emsp;第三步：修改`OnBoard.C`文件(位于`ZMain`目录下)，使能中断`HalKeyConfig(HAL_KEY_INTERRUPT_ENABLE, OnBoard_KeyCallback);`：
+
+<img src="./zigbee协议栈简单使用教程一/1.png" width=50%>
 
 &emsp;&emsp;通过简单的几个步骤，我们就配置好了按键所需要的文件。下面我们来看看协议栈是检测到按键按下时候是如何处理的，`16`位必须只占`1`位，所以只能`16`个任务。回到`SampleApp.c`文件，找到按键时间处理`KEY_CHANGE`事件的函数：
 
@@ -1168,9 +1178,8 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
 
 ### 串口透传
 
-&emsp;&emsp;本次实验实现两台不同的PC机通过串口连接到开发板，通过无线方式相互收发信息，如果没有`2`台电脑，也可以用同一台电脑的不同串口进行实验。
+&emsp;&emsp;本次实验实现两台不同的`PC`机通过串口连接到开发板，通过无线方式相互收发信息，如果没有`2`台电脑，也可以用同一台电脑的不同串口进行实验。
 &emsp;&emsp;打开`Z-stack`目录`Projects\zstack\Samples\SampleApp test\CC2530DB`里面的`SampleApp.eww`工程，本次实验是基于`SampleApp`来进行的。
-
 &emsp;&emsp;1. `ZigBee`模块接收到从`PC`机发送信息，然后通过无线发送出去。
 &emsp;&emsp;以前我们做的都是`CC2530`给`PC`机串口发信息，还没接触过`PC`机发送信息给`CC2530`。其主要代码在`MT_UART.C`中，该文件在之前协议栈串口实验对串口初始化时候已经有所了解了。在这个文件里找到串口初始化函数`MT_UartInit`，找到下面的代码：
 
