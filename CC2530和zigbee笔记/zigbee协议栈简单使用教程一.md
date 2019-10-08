@@ -1287,18 +1287,21 @@ uint16 SampleApp_ProcessEvent ( uint8 task_id, uint16 events ) {
 }
 ```
 
-串口收到信息后，事件号CMD_SERIAL_MSG就会被登记，便进入“case CMD_SERIAL_MSG:”。SampleApp_SerialCMD代码如下：
+串口收到信息后，事件号`CMD_SERIAL_MSG`就会被登记，便进入`case CMD_SERIAL_MSG:`。`SampleApp_SerialCMD`代码如下：
 
 ``` cpp
 void SampleApp_SerialCMD ( mtOSALSerialData_t *cmdMsg ) {
     uint8 i, len, *str = NULL; /* len为有用数据长度 */
     str = cmdMsg->msg; /* 指向数据开头 */
     len = *str; /* msg里的第1个字节代表后面的数据长度 */
+
     /*----------打印出串口接收到的数据，用于提示----------*/
     for ( i = 1; i <= len; i++ ) {
         HalUARTWrite ( 0, str + i, 1 );
     }
+
     HalUARTWrite ( 0, '\n', 1 ); /* 换行 */
+
     /*----------将数据发送出去----------*/
     if ( AF_DataRequest ( &SampleApp_Periodic_DstAddr,
                           &SampleApp_epDesc,
@@ -1308,18 +1311,21 @@ void SampleApp_SerialCMD ( mtOSALSerialData_t *cmdMsg ) {
                           &SampleApp_TransID,
                           AF_DISCV_ROUTE,
                           AF_DEFAULT_RADIUS ) == afStatus_SUCCESS ) {
-    }
-    else {
+    } else {
         /* Error occurred in request to send. */
     }
 }
 ```
 
-SAMPLEAPP_COM_CLUSTERID是自己定义的ID，用于接收方判别，如下所示：
-#define SAMPLEAPP_MAX_CLUSTERS        3 //2
+`SAMPLEAPP_COM_CLUSTERID`是自己定义的`ID`，用于接收方判别：
+
+``` cpp
+#define SAMPLEAPP_MAX_CLUSTERS        3
 #define SAMPLEAPP_PERIODIC_CLUSTERID  1
 #define SAMPLEAPP_FLASH_CLUSTERID     2
 #define SAMPLEAPP_COM_CLUSTERID       3
+```
+
 到这里，CC2530从串口接收信息到转发出去的功能已经完成了，可以实现将用户从串口输入的内容返回给该串口。也就是说CMD_SERIAL_MSG事件和“void SampleApp_SerialCMD(mtOSALSerialData_t *cmdMsg)”函数已经被成功执行了。
 
    2、ZigBee模块接收到其它ZigBee模块发来的信息，然后发送给PC机。
