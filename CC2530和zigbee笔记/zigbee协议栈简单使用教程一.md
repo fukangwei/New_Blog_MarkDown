@@ -619,7 +619,7 @@ void InitBoard ( uint8 level ) {
 }
 ```
 
-配置按键的检测方式和按键的回调函数是“HalKeyConfig(HAL_KEY_INTERRUPT_DISABLE, OnBoard_KeyCallback);”，进入到此函数中，我们配置的是非中断检测方式，先看代码：
+配置按键的检测方式和按键的回调函数是`HalKeyConfig(HAL_KEY_INTERRUPT_DISABLE, OnBoard_KeyCallback);`，进入到此函数中，我们配置的是非中断检测方式，先看代码：
 
 ``` cpp
 void HalKeyConfig ( bool interruptEnable, halKeyCBack_t cback ) {
