@@ -1358,7 +1358,7 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
 }
 ```
 
-如果想进一步节省资源，可以将函数“uint16 SampleApp_ProcessEvent(uint8 task_id, uint16 events)”里面除了透传case以外的所有case事件判断都注释掉，如下所示：
+如果想进一步节省资源，可以将函数`uint16 SampleApp_ProcessEvent(uint8 task_id, uint16 events)`里面除了透传`case`以外的所有`case`事件判断都注释掉：
 
 ``` cpp
 case CMD_SERIAL_MSG:
@@ -1366,4 +1366,4 @@ case CMD_SERIAL_MSG:
     break;
 ```
 
-最后还要修改预编译，注释掉MT层的内容。把程序分别下载到2个zigbee节点模块，一个选择协调器(必需)，另外一个选择路由，这样就可以实现串口透传功能了。
+最后还要修改预编译，注释掉`MT`层的内容。把程序分别下载到`2`个`zigbee`节点模块，一个选择协调器(必需)，另外一个选择路由，这样就可以实现串口透传功能了。
