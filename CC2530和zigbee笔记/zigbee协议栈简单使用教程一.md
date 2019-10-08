@@ -1201,14 +1201,18 @@ void MT_UartProcessZToolData ( uint8 port, uint8 event ) {
         HalUARTRead ( port, &ch, 1 ); /* 一个一个地读，读完一个缓冲区就清1个 */
         switch ( state ) { /* 用了状态机 */
             case SOP_STATE:
-                if ( ch == MT_UART_SOF ) { /* MT_UART_SOF的值默认是“0xFE”，所以数据必须以0xFE格式开始发送才能进入下一个状态，否则永远在这里转圈 */
+                /* MT_UART_SOF的值默认是“0xFE”，所以数据必须以0xFE格式开始发送才能进入下一个状态，否则永远在这里转圈 */
+                if ( ch == MT_UART_SOF ) {
                     state = LEN_STATE;
                 }
+
                 break;
             case LEN_STATE:
                 LEN_Token = ch;
                 tempDataLen = 0;
-                pMsg = ( mtOSALSerialData_t * ) osal_msg_allocate ( sizeof ( mtOSALSerialData_t ) + MT_RPC_FRAME_HDR_SZ + LEN_Token ); /* Allocate memory for the data */
+                /* Allocate memory for the data */
+                pMsg = ( mtOSALSerialData_t * ) osal_msg_allocate ( sizeof ( mtOSALSerialData_t ) + MT_RPC_FRAME_HDR_SZ + LEN_Token );
+
                 /* 分配内存空间 */
                 if ( pMsg ) { /* 如果分配成功 */
                     /* Fill up what we can */
@@ -1216,12 +1220,13 @@ void MT_UartProcessZToolData ( uint8 port, uint8 event ) {
                     pMsg->msg = ( uint8 * ) ( pMsg + 1 ); /* 定位数据位置 */
                     /* 代码省略部分 */
                     tmp = MT_UartCalcFCS ( ( uint8 * ) &pMsg->msg[0], MT_RPC_FRAME_HDR_SZ + LEN_Token ); /* Make sure it's correct */
+
                     if ( tmp == FSC_Token ) { /* 数据校验 */
                         osal_msg_send ( App_TaskID, ( byte * ) pMsg ); /* 把数据包发送到OSAL层，很重要 */
-                    }
-                    else {
+                    } else {
                         osal_msg_deallocate ( ( uint8 * ) pMsg ); /* deallocate the msg 清空申请的内存空间 */
                     }
+
                     state = SOP_STATE; /* Reset the state, send or discard the buffers at this point 状态机一周期完成 */
                 }
         }
