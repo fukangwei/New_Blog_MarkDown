@@ -940,7 +940,7 @@ void HalKeyPoll ( void ) {
 }
 ```
 
-&emsp;&emsp;第二步：修改`hal_board_cfg.h`文件(位于“HAL/Target/CC2530EB/Config”目录下)。修改SW_6所在IO口：
+&emsp;&emsp;第二步：修改`hal_board_cfg.h`文件(位于`HAL/Target/CC2530EB/Config`目录下)。修改`SW_6`所在`IO`口：
 
 ``` cpp
 /* S1 */
@@ -948,32 +948,44 @@ void HalKeyPoll ( void ) {
 #define PUSH1_SBIT  P0_4 /* 原为P0_1 */
 ```
 
-   第三步：修改OnBoard.C文件(位于ZMain目录下)，使能中断“HalKeyConfig(HAL_KEY_INTERRUPT_ENABLE, OnBoard_KeyCallback);”，如下所示：
+&emsp;&emsp;第三步：修改`OnBoard.C`文件(位于`ZMain`目录下)，使能中断`HalKeyConfig(HAL_KEY_INTERRUPT_ENABLE, OnBoard_KeyCallback);`：
 
-   通过简单的几个步骤，我们就配置好了按键所需要的文件。下面我们来看看协议栈是检测到按键按下时候是如何处理的，16位必须只占1位，所以只能16个任务。回到SampleApp.c文件，找到按键时间处理KEY_CHANGE事件的函数：
+&emsp;&emsp;通过简单的几个步骤，我们就配置好了按键所需要的文件。下面我们来看看协议栈是检测到按键按下时候是如何处理的，`16`位必须只占`1`位，所以只能`16`个任务。回到`SampleApp.c`文件，找到按键时间处理`KEY_CHANGE`事件的函数：
+
+``` cpp
 case KEY_CHANGE: /* Received when a key is pressed */
     SampleApp_HandleKeys ( ( ( keyChange_t * ) MSGpkt )->state,
                          ( ( keyChange_t * ) MSGpkt )->keys );
-break;
+    break;
+```
+
 当按键按下时，就会进入上面的事件，我们加入串口提示：
+
+``` cpp
 case KEY_CHANGE: /* Received when a key is pressed */
     HalUARTWrite ( 0, "KEY ", 4 ); /* 串口提示 */
     SampleApp_HandleKeys ( ( ( keyChange_t * ) MSGpkt )->state,
                          ( ( keyChange_t * ) MSGpkt )->keys );
-break;
-进入SampleApp_HandleKeys函数，加入我们的按键处理函数。这里是SW_6，也即是我们刚定义好的开发板上的S1，如下所示：
+    break;
+```
+
+进入`SampleApp_HandleKeys`函数，加入我们的按键处理函数。这里是`SW_6`，也即是我们刚定义好的开发板上的`S1`：
+
+``` cpp
 if ( keys & HAL_KEY_SW_6 ) {
     HalUARTWrite ( 0, "K1 ", 3 ); /* 提示被按下的是KEY1 */
     HalLedBlink ( HAL_LED_1, 2, 50, 500 ); /* LED1闪烁提示 */
 }
+```
 
-   下载程序到开发板，打开串口调试助手，当按下按键S1时候，可以看到有提示信息打印出来。
+&emsp;&emsp;下载程序到开发板，打开串口调试助手，当按下按键`S1`时候，可以看到有提示信息打印出来。
 
-无线数据传输
-   本次实验实现终端节点将数据“0123456789”通过无线发送到协调器，协调器通过串口发送给PC上位机显示出来，此实验是基于SampleApp工程进行的。
-   打开SampleApp.C文件，搜索找到函数“void SampleApp_MessageMSGCB( afIncomingMSGPacket_t *pkt )”，在“case SAMPLEAPP_PERIODIC_CLUSTERID:”下面加入“HalUARTWrite(0,”I get data\n”,11);”。选择CoodinatorEB，下载到开发板1(作为协调器串口跟电脑连接)；选择EndDeviceEB，下载到开发板2(作为终端设备无线发送数据给协调器)。
-   发送部分(可以将这部分内容理解成是发送终端需要执行的)：
-   1、登记事件，设置编号、发送时间等。打开SampleApp.C文件，找到SampleApp事件处理函数“uint16 SampleApp_ProcessEvent(uint8 task_id, uint16 events)”，找到函数中下面的代码：
+### 无线数据传输
+
+&emsp;&emsp;本次实验实现终端节点将数据`0123456789`通过无线发送到协调器，协调器通过串口发送给`PC`上位机显示出来，此实验是基于`SampleApp`工程进行的。
+&emsp;&emsp;打开SampleApp.C文件，搜索找到函数“void SampleApp_MessageMSGCB( afIncomingMSGPacket_t *pkt )”，在“case SAMPLEAPP_PERIODIC_CLUSTERID:”下面加入“HalUARTWrite(0,”I get data\n”,11);”。选择CoodinatorEB，下载到开发板1(作为协调器串口跟电脑连接)；选择EndDeviceEB，下载到开发板2(作为终端设备无线发送数据给协调器)。
+&emsp;&emsp;发送部分(可以将这部分内容理解成是发送终端需要执行的)：
+&emsp;&emsp;1、登记事件，设置编号、发送时间等。打开SampleApp.C文件，找到SampleApp事件处理函数“uint16 SampleApp_ProcessEvent(uint8 task_id, uint16 events)”，找到函数中下面的代码：
 /* Received whenever the device changes state in the network */
 case ZDO_STATE_CHANGE: /* 当网络状态改变时，如从未连上状态到连上网络状态 */
     SampleApp_NwkState = ( lustered_t ) ( MSGpkt->hdr.status );
