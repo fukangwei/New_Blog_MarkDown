@@ -1008,6 +1008,8 @@ if ( keys & HAL_KEY_SW_6 ) {
 
 &emsp;&emsp;下载程序到开发板，打开串口调试助手，当按下按键`S1`时候，可以看到有提示信息打印出来。
 
+<img src="./zigbee协议栈简单使用教程一/15.png" width=50%>
+
 ### 无线数据传输
 
 &emsp;&emsp;本次实验实现终端节点将数据`0123456789`通过无线发送到协调器，协调器通过串口发送给`PC`上位机显示出来，此实验是基于`SampleApp`工程进行的。
@@ -1037,7 +1039,6 @@ case ZDO_STATE_CHANGE: /* 当网络状态改变时，如从未连上状态到连
 - `SAMPLEAPP_SEND_PERIODIC_MSG_TIMEOUT`的解释是`Send Message Timeout Every 5 seconds`，定义为`#define SAMPLEAPP_SEND_PERIODIC_MSG_TIMEOUT 5000`，即事件重复执行的时间。这里以毫秒为单位，所以是`5s`，也就是实验为什么隔约`5s`收到数据的原因，这里可以改成你需要发送数据的时间间隔。
 
 &emsp;&emsp;登记好事件后，看第二行代码可以知道，如果网络一直处于连接状态，就不会再次进入这个函数了，所以这段代码相当于初始化，只执行`1`次。
-
 &emsp;&emsp;2. 设置发送内容，自动周期性地发送：在同一个函数下面可以找到如下代码：
 
 ``` cpp
@@ -1096,7 +1097,6 @@ void SampleApp_SendPeriodicMessage ( void ) {
 ```
 
 至此，发送部分代码修改完成。上电后，`CC2530`会以周期`5s`来广播式发送数据`0`至`9`。
-
 &emsp;&emsp;接收部分(可以将这部分内容理解成是连接电脑的协调器需要执行的)：
 &emsp;&emsp;读取接收到的数据：同样在`uint16 SampleApp_ProcessEvent(uint8 task_id, uint16 events)`事件处理函数中找到如下代码：
 
