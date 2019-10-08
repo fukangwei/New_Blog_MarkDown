@@ -680,7 +680,8 @@ void SampleApp_SendPointToPointMessage ( void ) {
     }
 }
 修改完成后，系统设备自动检测自己烧写的类型，然后发送对应的编号，路由器编号为1，终端编号为2。
-    数据接收方面，我们对接收到的数据进行判断，区分路由器和终端设备。然后在数据包中取出16位短地址，通过串口打印出来。先看看短地址在数据包里的存放位置，依次是pkt -> srcAddr -> shortAddr，如下所示：
+    数据接收方面，我们对接收到的数据进行判断，区分路由器和终端设备。然后在数据包中取出16位短地址，通过串口打印出来。先看看短地址在数据包里的存放位置，依次是pkt -> srcAddr -> shortAddr：
+
 typedef struct {
     osal_event_hdr_t hdr;     /* OSAL Message header */
     uint16 groupId;           /* Message's group ID - 0 if not set */
@@ -740,7 +741,8 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
 }
     将修改后的程序分别以协调器、路由器、终端的方式下载到3个或以上的设备，协调器连接到PC机。上电后，每个设备往协调器发送自身编号，协调器通过串口打印出来。
 
-如何在同一地方组建多个ZigBee网络？
+### 如何在同一地方组建多个ZigBee网络？
+
     我们很多时候会遇到同一个实验室或者房间内多个人同时学习ZigBee，那就会存在多个协调器，这样网络就会相互冲突，解决这个问题的办法就是给不同网络的设备设置自己的PANID，就可以实现在同一地方组建多个ZigBee网络。
     打开f8wConfig.cfg配置文件，找到如下代码：
 -DZDAPP_CONFIG_PAN_ID=0xFFFF
