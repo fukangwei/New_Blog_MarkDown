@@ -739,6 +739,7 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
 &emsp;&emsp;实验现象：路由器(编号`1`)、终端设备(编号`2`)发送自己的定义的设备号给协调器，协调器通过接收到的设备号判断设备类型，并且获取设备的短地址，通过串口打印出来。
 &emsp;&emsp;要实现协调器收集数据的功能，可以使用点播方式传输数据，点播地址为协调器地址(`0x0000`)，避免了路由器和终端之间的互传，减少网络数据拥塞。修改点播信息发送函数：
 
+``` cpp
 void SampleApp_SendPointToPointMessage ( void ) {
     uint8 device; /* 设备类型变量 */
 ​
@@ -762,9 +763,12 @@ void SampleApp_SendPointToPointMessage ( void ) {
         /* Error occurred in request to send */
     }
 }
-修改完成后，系统设备自动检测自己烧写的类型，然后发送对应的编号，路由器编号为1，终端编号为2。
-    数据接收方面，我们对接收到的数据进行判断，区分路由器和终端设备。然后在数据包中取出16位短地址，通过串口打印出来。先看看短地址在数据包里的存放位置，依次是pkt -> srcAddr -> shortAddr：
+```
 
+修改完成后，系统设备自动检测自己烧写的类型，然后发送对应的编号，路由器编号为`1`，终端编号为`2`。
+&emsp;&emsp;数据接收方面，我们对接收到的数据进行判断，区分路由器和终端设备。然后在数据包中取出`16`位短地址，通过串口打印出来。先看看短地址在数据包里的存放位置，依次是`pkt -> srcAddr -> shortAddr`：
+
+``` cpp
 typedef struct {
     osal_event_hdr_t hdr;     /* OSAL Message header */
     uint16 groupId;           /* Message's group ID - 0 if not set */
@@ -781,7 +785,7 @@ typedef struct {
     uint8 nwkSeqNum;          /* network header frame sequence number */
     afMSGCommandFormat_t cmd; /* Application Data */
 } afIncomingMSGPacket_t;
-​
+
 typedef struct {
     union {
         uint16      shortAddr;
@@ -791,10 +795,15 @@ typedef struct {
     uint8 endPoint;
     uint16 panId; /* used for the INTER_PAN feature */
 } afAddrType_t;
-可以在接收函数的点播ID中加入下面的代码：
+```
+
+可以在接收函数的点播`ID`中加入下面的代码：
+
+``` cpp
 void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
     uint16 flashTime, temp;
-    uint8 asc_16[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'}; /* 16进制转ASCII码表 */
+    /* 16进制转ASCII码表 */
+    uint8 asc_16[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 ​
     switch ( pkt->clusterId ) {
         case SAMPLEAPP_POINT_TO_POINT_CLUSTERID:
@@ -815,19 +824,24 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
             HalUARTWrite ( 0, &asc_16[temp % 16], 1 );
             HalUARTWrite ( 0, "\n", 1 ); /* 回车换行 */
             break;
-​
         case SAMPLEAPP_FLASH_CLUSTERID:
             flashTime = BUILD_UINT16 ( pkt->cmd.Data[1], pkt->cmd.Data[2] );
             HalLedBlink ( HAL_LED_4, 4, 50, ( flashTime / 4 ) );
             break;
     }
 }
-    将修改后的程序分别以协调器、路由器、终端的方式下载到3个或以上的设备，协调器连接到PC机。上电后，每个设备往协调器发送自身编号，协调器通过串口打印出来。
+```
+
+&emsp;&emsp;将修改后的程序分别以协调器、路由器、终端的方式下载到`3`个或以上的设备，协调器连接到`PC`机。上电后，每个设备往协调器发送自身编号，协调器通过串口打印出来。
 
 ### 如何在同一地方组建多个ZigBee网络？
 
-    我们很多时候会遇到同一个实验室或者房间内多个人同时学习ZigBee，那就会存在多个协调器，这样网络就会相互冲突，解决这个问题的办法就是给不同网络的设备设置自己的PANID，就可以实现在同一地方组建多个ZigBee网络。
-    打开f8wConfig.cfg配置文件，找到如下代码：
+&emsp;&emsp;我们很多时候会遇到同一个实验室或者房间内多个人同时学习`ZigBee`，那就会存在多个协调器，这样网络就会相互冲突，解决这个问题的办法就是给不同网络的设备设置自己的`PANID`，就可以实现在同一地方组建多个`ZigBee`网络。
+&emsp;&emsp;打开`f8wConfig.cfg`配置文件，找到如下代码：
+
+``` cpp
 -DZDAPP_CONFIG_PAN_ID=0xFFFF
-由此可见ZigBee协议栈网络默认的PANID是0xFFFFF(所有设备都可以加入模式)。
-    假设我们现在需要组建2组ZigBee网络，可以将第一组设备PANID设置成0xFFF0，第二组设置成0xFFF1，这样2个网络建立后就不会相互冲突了。
+```
+
+由此可见`ZigBee`协议栈网络默认的`PANID`是`0xFFFFF`(所有设备都可以加入模式)。
+&emsp;&emsp;假设我们现在需要组建`2`组`ZigBee`网络，可以将第一组设备`PANID`设置成`0xFFF0`，第二组设置成`0xFFF1`，这样`2`个网络建立后就不会相互冲突了。
