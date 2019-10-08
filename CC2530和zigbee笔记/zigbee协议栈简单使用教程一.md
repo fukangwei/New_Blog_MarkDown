@@ -590,8 +590,10 @@ void MT_UartInit () {
 
 ### 协议栈的按键实验
 
-&emsp;&emsp;通过节点1的按键S1中断配置，检测按键的按下情况，整个过程在协议栈Z-STACK的SampleApp.eww上完成。协议栈已经自带了按键的驱动和使用函数，所以将按键改到任意IO口也不是问题的。首先就是要了解协议栈中按键的检测与按键事件的传递过程，这里主要以常用的普通按键为例进行讲解，J-STICK摇杆的部分可以直接注释掉。
-   打开SampleApp.eww工程，在ZMain.c的main函数中跟按键相关的有HalDriverInit和InitBoard(OB_READY)。进入HalDriverInit中的HalKeyInit，如下所示：
+&emsp;&emsp;通过节点`1`的按键`S1`中断配置，检测按键的按下情况，整个过程在协议栈`Z-STACK`的`SampleApp.eww`上完成。协议栈已经自带了按键的驱动和使用函数，所以将按键改到任意`IO`口也不是问题的。首先就是要了解协议栈中按键的检测与按键事件的传递过程，这里主要以常用的普通按键为例进行讲解，`J-STICK`摇杆的部分可以直接注释掉。
+&emsp;&emsp;打开`SampleApp.eww`工程，在`ZMain.c`的`main`函数中跟按键相关的有`HalDriverInit`和`InitBoard(OB_READY)`。进入`HalDriverInit`中的`HalKeyInit`：
+
+``` cpp
 void HalKeyInit ( void ) {
     halKeySavedKeys = 0; /* Initialize previous key to 0 */
     HAL_KEY_SW_6_SEL &= ~ ( HAL_KEY_SW_6_BIT ); /* Set pin function to GPIO */
@@ -601,85 +603,121 @@ void HalKeyInit ( void ) {
     pHalKeyProcessFunction  = NULL; /* Initialize callback function */
     HalKeyConfigured = FALSE; /* Start with key is not configured */
 }
-这里主要是初始化按键相关的引脚，HAL_KEY_SW_6就是对应P01，而HAL_KEY_JOY就是TI板子上的J-STICK摇杆，这里我们用不到，直接注释或删掉。接着分析“InitBoard(OB_READY)”函数：
+```
+
+这里主要是初始化按键相关的引脚，`HAL_KEY_SW_6`就是对应`P01`，而`HAL_KEY_JOY`就是`TI`板子上的`J-STICK`摇杆，这里我们用不到，直接注释或删掉。接着分析`InitBoard(OB_READY)`函数：
+
+``` cpp
 void InitBoard ( uint8 level ) {
     if ( level == OB_COLD ) {
         * ( uint8 * ) 0x0 = 0; /* IAR does not zero-out this byte below the XSTACK. */
         osal_int_disable ( INTS_ALL ); /* Interrupts off */
         ChkReset(); /* Check for Brown-Out reset */
-    }
-    else { /* !OB_COLD */
+    } else { /* !OB_COLD */
         HalKeyConfig ( HAL_KEY_INTERRUPT_DISABLE, OnBoard_KeyCallback ); /* Initialize Key stuff */
     }
 }
+```
+
 配置按键的检测方式和按键的回调函数是“HalKeyConfig(HAL_KEY_INTERRUPT_DISABLE, OnBoard_KeyCallback);”，进入到此函数中，我们配置的是非中断检测方式，先看代码：
+
+``` cpp
 void HalKeyConfig ( bool interruptEnable, halKeyCBack_t cback ) {
     Hal_KeyIntEnable = interruptEnable; /* Enable/Disable Interrupt or */
     pHalKeyProcessFunction = cback; /* 注册回调函数，重点部分 */
+
     if ( Hal_KeyIntEnable ) { /* Determine if interrupt is enable or not */
         /* ...... */
-    }
-    else { /* Interrupts NOT enabled */
+    } else { /* Interrupts NOT enabled */
         HAL_KEY_SW_6_ICTL &= ~ ( HAL_KEY_SW_6_ICTLBIT );
         HAL_KEY_SW_6_IEN &= ~ ( HAL_KEY_SW_6_IENBIT );
         osal_set_event ( Hal_TaskID, HAL_KEY_EVENT ); /* 启动HAL_KEY_EVENT事件 */
     }
+
     HalKeyConfigured = TRUE; /* Key now is configured */
 }
-从上面的配置我们知道按键检测有两种方式，一种为中断，一种为定时检测；定时检测的话在配置时就会直接启动HAL_KEY_EVENT事件，那么在HAL_KEY_EVENT中会做什么事情呢？找到此事件的处理函数。hal_drivers.c(在“HAL/Common”目录下)中的Hal_ProcessEvent函数：
+```
+
+从上面的配置我们知道按键检测有两种方式，一种为`中断`，一种为`定时检测`；定时检测的话在配置时就会直接启动`HAL_KEY_EVENT`事件，那么在`HAL_KEY_EVENT`中会做什么事情呢？找到此事件的处理函数。`hal_drivers.c`(在`HAL/Common`目录下)中的`Hal_ProcessEvent`函数：
+
+``` cpp
 if ( events &HAL_KEY_EVENT ) {
     HalKeyPoll(); /* Check for keys 检测按键，重点 */
+
     if ( !Hal_KeyIntEnable ) { /* 如果不是中断方式的话，就定时启动此事件检测按键 */
         osal_start_timerEx ( Hal_TaskID, HAL_KEY_EVENT, 100 );
     }
+
     return events ^ HAL_KEY_EVENT;
 }
-接下来就是HalKeyPol函数了，这里我们直接看修改完的代码(所有跟J-STICK摇杆相关的代码都直接删除)：
+```
+
+接下来就是`HalKeyPol`函数了，这里直接看修改完的代码(所有跟`J-STICK`摇杆相关的代码都直接删除)：
+
+``` cpp
 void HalKeyPoll ( void ) {
     uint8 keys = 0;
+
     /* 检测按键S2是否按下 */
     if ( HAL_PUSH_BUTTON1() ) { /* 这里需要改成低电平按下 */
         keys |= HAL_KEY_SW_6;
     }
+
     if ( !Hal_KeyIntEnable ) {
-        if ( keys == halKeySavedKeys ) { /* 按键延时，防止按键按下发送多次按键事件 */
+        /* 按键延时，防止按键按下发送多次按键事件 */
+        if ( keys == halKeySavedKeys ) {
             return; /* Exit - since no keys have changed */
         }
-        halKeySavedKeys = keys; /* Store the current keys for comparation next time */
-    }
-    else {
+
+        /* Store the current keys for comparation next time */
+        halKeySavedKeys = keys;
+    } else {
         /* Key interrupt handled here */
     }
-    if ( keys && ( pHalKeyProcessFunction ) ) { /* 调用注册的回调函数，即上面的OnBoard_KeyCallback */
+
+    /* 调用注册的回调函数，即上面的OnBoard_KeyCallback */
+    if ( keys && ( pHalKeyProcessFunction ) ) {
         ( pHalKeyProcessFunction ) ( keys, HAL_KEY_STATE_NORMAL );
     }
 }
+```
+
 第5至7行就是对按键的检测，“#define HAL_PUSH_BUTTON1() (PUSH1_POLARITY (PUSH1_SBIT))”，这里我们是低电平按下，所以改成“#define PUSH1_POLARITY ACTIVE_LOW”。当按键按下时，就传递给上面注册过的回调函数OnBoard_KeyCallback，传递进去的就是相应的键值keys。找到之前注册的回调函数OnBoard_KeyCallback(在OnBoard.c中)：
+
+``` cpp
 void OnBoard_KeyCallback ( uint8 keys, uint8 state ) {
     uint8 shift;
     ( void ) state;
     shift = ( keys & HAL_KEY_SW_6 ) ? true : false;
+
     if ( OnBoard_SendKeys ( keys, shift ) != ZSuccess ) {
         /* Process SW1 here */
         if ( keys & HAL_KEY_SW_1 ) { /* Switch 1 */
         }
+
         /* Process SW2 here */
         if ( keys & HAL_KEY_SW_2 ) { /* Switch 2 */
         }
+
         /* Process SW3 here */
         if ( keys & HAL_KEY_SW_3 ) { /* Switch 3 */
         }
+
         /* Process SW4 here */
         if ( keys & HAL_KEY_SW_4 ) { /* Switch 4 */
         }
+
         /* Process SW5 here */
         if ( keys & HAL_KEY_SW_5 ) { /* Switch 5 */
         }
+
         /* Process SW6 here */
         if ( keys & HAL_KEY_SW_6 ) { /* Switch 6 */
         }
     }
 }
+```
+
 这里就是通过“OnBoard_SendKeys(keys, shift)”再发送系统信息给用户的应用任务：
 uint8 OnBoard_SendKeys ( uint8 keys, uint8 state ) {
     keyChange_t *msgPtr;
