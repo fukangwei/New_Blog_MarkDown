@@ -438,7 +438,11 @@ static void appReceiver() {
 - `rxStats.rcvdPkts`：每次`PER`测试中，成功接收到的数据包的个数。
 - `rxStats.lostPkts`：丢失数据包的个数。
 
-&emsp;&emsp;这些数据具体是怎么得来，我们没有必要具体去分析，直接读取我们感兴趣的数据就可以了。误包率又是怎么计数的呢？`TI`公司的使用文档是有说明的：
+&emsp;&emsp;这些数据具体是怎么得来，我们没有必要具体去分析，直接读取我们感兴趣的数据就可以了。误包率又是怎么计数的呢？`TI`公司的使用文档是有说明的：The `PER` value per thousand packets is calculated by the formula:
+
+$$
+PER = 1000 * rxStats.lostPkts / (rxStats.lostPkts + rxStats.rcvdPkts) (for rxStats.rcvdPkts >= 1)
+$$
 
 &emsp;&emsp;如果大家想了解具体内容的话，就可以去`CC2530 BasicRF\docs`文件夹中找到`CC2530_Software_Examples.pdf`文档`4.2`章节。
 
