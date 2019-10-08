@@ -910,31 +910,44 @@ void halProcessKeyInterrupt ( void ) {
 
 我们不需要用到`TI`的摇杆`J-STICK`，所以把代码注释掉：
 
+``` cpp
 void HalKeyPoll ( void ) {
     uint8 keys = 0;
+
     if ( ( HAL_KEY_JOY_MOVE_PORT & HAL_KEY_JOY_MOVE_BIT ) ) { /* Key is active HIGH */
         // keys = halGetJoyKeyInput();
     }
-    if ( !Hal_KeyIntEnable ) { /* If interrupts are not enabled, previous key status and current key status are compared to find out if a key has changed status. */
+
+    /* If interrupts are not enabled, previous key status and current key
+       status are compared to find out if a key has changed status. */
+    if ( !Hal_KeyIntEnable ) {
         if ( keys == halKeySavedKeys ) {
             return; /* Exit - since no keys have changed */
         }
+
         halKeySavedKeys = keys; /* Store the current keys for comparation next time */
-    }
-    else {
+    } else {
         /* Key interrupt handled here */
     }
+
     if ( HAL_PUSH_BUTTON1() ) {
         keys |= HAL_KEY_SW_6;
     }
+
     if ( keys && ( pHalKeyProcessFunction ) ) { /* Invoke Callback if new keys were depressed */
         ( pHalKeyProcessFunction ) ( keys, HAL_KEY_STATE_NORMAL );
     }
 }
-   第二步：修改hal_board_cfg.h文件(位于“HAL/Target/CC2530EB/Config”目录下)。修改SW_6所在IO口：
+```
+
+&emsp;&emsp;第二步：修改`hal_board_cfg.h`文件(位于“HAL/Target/CC2530EB/Config”目录下)。修改SW_6所在IO口：
+
+``` cpp
 /* S1 */
 #define PUSH1_BV    BV(4) /* 原为BV(1) */
 #define PUSH1_SBIT  P0_4 /* 原为P0_1 */
+```
+
    第三步：修改OnBoard.C文件(位于ZMain目录下)，使能中断“HalKeyConfig(HAL_KEY_INTERRUPT_ENABLE, OnBoard_KeyCallback);”，如下所示：
 
    通过简单的几个步骤，我们就配置好了按键所需要的文件。下面我们来看看协议栈是检测到按键按下时候是如何处理的，16位必须只占1位，所以只能16个任务。回到SampleApp.c文件，找到按键时间处理KEY_CHANGE事件的函数：
