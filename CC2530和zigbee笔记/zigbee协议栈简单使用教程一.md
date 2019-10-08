@@ -432,13 +432,15 @@ static void appReceiver() {
 
 ### 协议栈工作原理介绍
 
-   ZigBee的任务轮询如下图所示：
+&emsp;&emsp;`ZigBee`的任务轮询如下图所示：
 
-   打开协议栈文件夹“Texas Instruments\Projects\zstack”，里面包含了TI公司的例程和工具。再打开Samples文件夹，如下图所示：
+&emsp;&emsp;打开协议栈文件夹`Texas Instruments\Projects\zstack`，里面包含了`TI`公司的例程和工具。再打开`Samples`文件夹，如下图所示：
 
-   Samples文件夹里面有三个例子，即GenericApp、SampleApp、SimpleApp。在这里们选择SampleApp对协议栈的工作流程进行讲解。打开“SampleApp\CC2530DB”下的工程文件SampleApp.eww，留意左边的工程目录，我们暂时只需要关注Zmain文件夹和App文件夹。
+&emsp;&emsp;`Samples`文件夹里面有三个例子，即`GenericApp`、`SampleApp`、`SimpleApp`。在这里我们选择`SampleApp`对协议栈的工作流程进行讲解。打开`SampleApp\CC2530DB`下的工程文件`SampleApp.eww`，留意左边的工程目录，我们暂时只需要关注`Zmain`文件夹和`App`文件夹。
 
-   任何程序都在main函数开始运行，Z-STACK 也不例外。打开Zmain.C，找到main函数。我们大概浏览一下main函数的代码：
+&emsp;&emsp;任何程序都在`main`函数开始运行，`Z-STACK`也不例外。打开`Zmain.C`，找到`main`函数。大概浏览一下`main`函数的代码：
+
+``` cpp
 int main ( void ) {
     osal_int_disable ( INTS_ALL ); /* Turn off interrupts 关闭所有中断 */
     HAL_BOARD_INIT(); /* Initialization for board related stuff such as LEDs */
@@ -465,7 +467,11 @@ int main ( void ) {
     osal_start_system(); /* No Return from here 执行操作系统，进去后不会返回 */
     return 0; /* Shouldn't get here. */
 }
-   在这里，我们重点了解2个函数：初始化操作系统osal_init_system，运行操作系统osal_start_system。我们先来看osal_init_system系统初始化函数。进入该函数，发现里面有6个初始化函数，这里只关心osalInitTasks任务初始化函数：
+```
+
+&emsp;&emsp;我们重点了解`2`个函数：初始化操作系统`osal_init_system`，运行操作系统`osal_start_system`。先来看`osal_init_system`系统初始化函数。进入该函数，发现里面有`6`个初始化函数，这里只关心`osalInitTasks`任务初始化函数：
+
+``` cpp
 void osalInitTasks ( void ) {
     uint8 taskID = 0;
     tasksEvents = ( uint16 * ) osal_mem_alloc ( sizeof ( uint16 ) * tasksCnt ); /* 分配内存，返回指向缓冲区的指针 */
@@ -487,8 +493,12 @@ void osalInitTasks ( void ) {
 #endif
     SampleApp_Init ( taskID ); /* SampleApp_Init(5)，用户需考虑 */
 }
-   我们可以这样理解，函数对taskID这个东西进行初始化，每初始化一个任务，taskID加一。大家看到了注释后面有些写着用户需要考虑，有些则写着用户不需考虑。写着需要考虑的，用户可以根据自己的硬件平台进行设置；写着不需考虑的，则是不能修改的。
-   我们再来看第二个函数osal_start_system运行操作系统。TI对该函数的描述为“This function is the main loop function of the task system. It will look through all task events and call the task_event_processor() function for the task with the event. If there are no events (for all tasks), this function puts the processor into Sleep. This Function doesn't return.”，翻译成中文是“这个是任务系统轮询的主要函数，它会查找发生的事件，然后调用相应的事件执行函数。如果没有事件登记要发生，那么就进入睡眠模式。这个函数是永远不会返回的”。代码如下所示：
+```
+
+&emsp;&emsp;我们可以这样理解，函数对`taskID`这个东西进行初始化，每初始化一个任务，`taskID`加一。大家看到了注释后面有些写着用户需要考虑，有些则写着用户不需考虑。写着需要考虑的，用户可以根据自己的硬件平台进行设置；写着不需考虑的，则是不能修改的。
+&emsp;&emsp;我们再来看第二个函数`osal_start_system`运行操作系统。`TI`对该函数的描述为`This function is the main loop function of the task system. It will look through all task events and call the task_event_processor() function for the task with the event. If there are no events (for all tasks), this function puts the processor into Sleep. This Function doesn't return.`，翻译成中文是`这个是任务系统轮询的主要函数，它会查找发生的事件，然后调用相应的事件执行函数。如果没有事件登记要发生，那么就进入睡眠模式。这个函数是永远不会返回的`。
+
+``` cpp
 void osal_start_system ( void ) {
 #if !defined ( ZBIT ) && !defined ( UBIT )
     for ( ;; ) /* Forever Loop */
@@ -497,11 +507,13 @@ void osal_start_system ( void ) {
         uint8 idx = 0;
         osalTimeUpdate(); /* 这里是在扫描哪个事件被触发了，然后置相应的标志位 */
         Hal_ProcessPoll(); /* This replaces MT_SerialPoll() and osal_check_timer(). */
+
         Do {
             if ( tasksEvents[idx] ) { /* Task is highest priority that is ready. */
                 break; /* 得到待处理的最高优先级任务索引号idx */
             }
         } while ( ++idx < tasksCnt );
+
         if ( idx < tasksCnt ) {
             uint16 events;
             halIntState_t intState;
@@ -521,13 +533,17 @@ void osal_start_system ( void ) {
 #endif
     }
 }
+```
 
-协议栈的串口实验
-   我们打开Z-stack目录“Projects\zstack\Samples\ SamplesAPP\CC2530DB”里面的SampleApp.eww工程，这次试验我们直接基于协议栈的SampleApp来修改的。打开工程后，workspace目录下有两个比较重要的文件夹，即Zmain和App。这里主要用到App，它是用户自己添加自己代码的地方，主要文件是SampleApp.c和SampleApp.h。
-   串口初始化：我们在workspace下找到“HAL\Target\CC2530EB\drivers”的hal_uart.c文件，可以看到里面已经包括了串口初始化、发送、接收等函数。再看看workspace上的MT层，发觉有很多基本函数前面带MT，包括MT_UART.C。我们打开这个文件，看到MT_UartInit函数，这里也有一个串口初始化函数。Z-stack上有一个MT层，用户可以选用MT层配置和调用其他驱动，进一步简化了操作流程。
-   我们打开APP目录下的OSAL_SampleApp.C文件，找到上节提到的osalInitTasks任务初始化函数中的SampleApp_Init函数。进入这个函数，发现原来在SampleApp.c文件中，我们在这里加入串口初始化代码。在函数中加入语句“MT_UartInit();”，如下图所示：
+### 协议栈的串口实验
 
-    进入MT_UartInit函数，修改自己想要的初始化配置。进入函数后，发现代码如下所示：
+&emsp;&emsp;打开`Z-stack`目录`Projects\zstack\Samples\SamplesAPP\CC2530DB`里面的`SampleApp.eww`工程，这次试验直接基于协议栈的`SampleApp`来修改的。打开工程后，`workspace`目录下有两个比较重要的文件夹，即`Zmain`和`App`。这里主要用到`App`，它是用户自己添加自己代码的地方，主要文件是`SampleApp.c`和`SampleApp.h`。
+&emsp;&emsp;**串口初始化**：我们在`workspace`下找到`HAL\Target\CC2530EB\drivers`的`hal_uart.c`，可以看到里面已经包括了串口初始化、发送、接收等函数。再看看`workspace`上的`MT`层，发觉有很多基本函数前面带`MT`，包括`MT_UART.C`。打开这个文件，看到`MT_UartInit`函数，这里也有一个串口初始化函数。`Z-stack`上有一个`MT`层，用户可以选用`MT`层配置和调用其他驱动，进一步简化了操作流程。
+&emsp;&emsp;打开`APP`目录下的`OSAL_SampleApp.C`文件，找到上节提到的`osalInitTasks`任务初始化函数中的`SampleApp_Init`函数。进入这个函数，发现原来在`SampleApp.c`文件中，我们在这里加入串口初始化代码。在函数中加入语句`MT_UartInit();`，如下图所示：
+
+&emsp;&emsp;进入`MT_UartInit`函数，修改自己想要的初始化配置：
+
+``` cpp
 void MT_UartInit () {
     halUARTCfg_t uartConfig;
     /* Initialize APP ID */
@@ -562,8 +578,10 @@ void MT_UartInit () {
     MT_UartZAppRxStatus = MT_UART_ZAPP_RX_READY;
 #endif
 }
-第7行：“uartConfig.baudRate = MT_UART_DEFAULT_BAUDRATE;”是配置波特率，查看MT_UART_DEFAULT_BAUDRATE的定义，可以看到“#define MT_UART_DEFAULT_BAUDRATE HAL_UART_BR_38400”，默认的波特率是38400bps。现在我们修改成115200bps，修改成“#define MT_UART_DEFAULT_BAUDRATE HAL_UART_BR_115200”。
-第8行：“uartConfig.flowControl = MT_UART_DEFAULT_OVERFLOW;”语句是配置流控，进入定义可以看到“#define MT_UART_DEFAULT_OVERFLOW TRUE”，默认是打开串口流控。如果你是只连了TX/RX的2根线方式，务必将流控进行关闭，即“#define MT_UART_DEFAULT_OVERFLOW FALSE”。注意，2根线的通讯连接务一定要关闭流控，不然是永远收发不了信息的。
+```
+
+- 第`7`行：`uartConfig.baudRate = MT_UART_DEFAULT_BAUDRATE;`是配置波特率，查看`MT_UART_DEFAULT_BAUDRATE`的定义，可以看到`#define MT_UART_DEFAULT_BAUDRATE HAL_UART_BR_38400`，默认的波特率是`38400bps`。现在修改成`115200bps`，修改成`#define MT_UART_DEFAULT_BAUDRATE HAL_UART_BR_115200`。
+- 第`8`行：`uartConfig.flowControl = MT_UART_DEFAULT_OVERFLOW;`语句是配置流控，进入定义可以看到“#define MT_UART_DEFAULT_OVERFLOW TRUE”，默认是打开串口流控。如果你是只连了TX/RX的2根线方式，务必将流控进行关闭，即“#define MT_UART_DEFAULT_OVERFLOW FALSE”。注意，2根线的通讯连接务一定要关闭流控，不然是永远收发不了信息的。
 第14至20行：这个是预编译，根据预先定义的ZTOOL或者ZAPP选择不同的数据处理函数。后面的P1和P2则是串口0和串口1，在这里我们使用ZTOOL和串口0。可以在“option“->”C/C++ Compiler”的Preprocessor里面看到，已经默认添加ZTOOL_P1预编译，如下图所示：
 
    登记任务号：在函数SampleApp_Init刚添加的串口初始化语句下面加入“MT_UartRegisterTaskID(task_id);/* 登记任务号 */”，意思就是把串口事件通过task_id登记在函数SampleApp_Init里面，如下图所示：
