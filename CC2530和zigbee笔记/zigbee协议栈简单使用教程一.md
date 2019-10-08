@@ -1,7 +1,8 @@
 ---
 title: zigbee协议栈简单使用教程一
-date: 2019-10-07 20:33:01
 categories: CC2530和zigbee笔记
+abbrlink: 5361
+date: 2019-10-07 20:33:01
 ---
 ### Zigbee协议栈简介
 
@@ -458,7 +459,7 @@ $$
 
 &emsp;&emsp;`Samples`文件夹里面有三个例子，即`GenericApp`、`SampleApp`、`SimpleApp`。在这里我们选择`SampleApp`对协议栈的工作流程进行讲解。打开`SampleApp\CC2530DB`下的工程文件`SampleApp.eww`，留意左边的工程目录，我们暂时只需要关注`Zmain`文件夹和`App`文件夹。
 
-<img src="./zigbee协议栈简单使用教程一/9.png" width=50%>
+<img src="./zigbee协议栈简单使用教程一/9.png" width=30%>
 
 &emsp;&emsp;任何程序都在`main`函数开始运行，`Z-STACK`也不例外。打开`Zmain.C`，找到`main`函数。大概浏览一下`main`函数的代码：
 
@@ -563,7 +564,7 @@ void osal_start_system ( void ) {
 &emsp;&emsp;**串口初始化**：我们在`workspace`下找到`HAL\Target\CC2530EB\drivers`的`hal_uart.c`，可以看到里面已经包括了串口初始化、发送、接收等函数。再看看`workspace`上的`MT`层，发觉有很多基本函数前面带`MT`，包括`MT_UART.C`。打开这个文件，看到`MT_UartInit`函数，这里也有一个串口初始化函数。`Z-stack`上有一个`MT`层，用户可以选用`MT`层配置和调用其他驱动，进一步简化了操作流程。
 &emsp;&emsp;打开`APP`目录下的`OSAL_SampleApp.C`文件，找到上节提到的`osalInitTasks`任务初始化函数中的`SampleApp_Init`函数。进入这个函数，发现原来在`SampleApp.c`文件中，我们在这里加入串口初始化代码。在函数中加入语句`MT_UartInit();`：
 
-<img src="./zigbee协议栈简单使用教程一/10.png">
+<img src="./zigbee协议栈简单使用教程一/10.png" width=50%>
 
 &emsp;&emsp;进入`MT_UartInit`函数，修改自己想要的初始化配置：
 
@@ -614,7 +615,7 @@ void MT_UartInit () {
 
 <img src="./zigbee协议栈简单使用教程一/12.png">
 
-&emsp;&emsp;**串口发送**：经过前面两个步骤，现在串口已经可以发送信息了。我们在刚刚添加初始化代码后面加入一条上电提示`Hello World`的语句`HalUARTWrite(0, "Hello World\n", 12); /* 串口0，“字符”，字符个数 */`。注意，需要在`SampleApp.c`文件里加入头文件`MT_UART.h`。下载并通过串口调试助手查看，可以看到输出了`Hello World`。
+&emsp;&emsp;**串口发送**：经过前面两个步骤，现在串口已经可以发送信息了。我们在刚刚添加初始化代码后面加入一条上电提示`Hello World`的语句`HalUARTWrite(0, "Hello World\n", 12); /* 串口0, "字符", 字符个数 */`。注意，需要在`SampleApp.c`文件里加入头文件`MT_UART.h`。下载并通过串口调试助手查看，可以看到输出了`Hello World`。
 
 ### 协议栈的按键实验
 
