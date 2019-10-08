@@ -1044,10 +1044,12 @@ void SampleApp_SendPeriodicMessage ( void ) {
 ```
 
 - 第`5`行：`SAMPLEAPP_PERIODIC_CLUSTERID`的定义为`#define SAMPLEAPP_PERIODIC_CLUSTERID 1`，其作用是和接收方建立联系。当协调器收到这个标号时，如果是`1`，就证明是由周期性广播方式发送过来的。
-第6行：“1”是数据长度。
-第7行：“(uint8 *)&SampleAppPeriodicCounter”是要发送的内容。
+- 第`6`行：`1`是数据长度。
+- 第`7`行：`(uint8 *)&SampleAppPeriodicCounter`是要发送的内容。
 
-&emsp;&emsp;知道代码功能后，我们可以做以下修改：添加数据0~9，发送字符数10个，内容是data数组，代码如下所示：
+&emsp;&emsp;知道代码功能后，我们可以做以下修改：添加数据`0~9`，发送字符数`10`个，内容是`data`数组：
+
+``` cpp
 /*---------------周期性发送数据函数---------------*/
 void SampleApp_SendPeriodicMessage ( void ) {
     uint8 data [10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
@@ -1059,12 +1061,13 @@ void SampleApp_SendPeriodicMessage ( void ) {
                           &SampleApp_TransID,
                           AF_DISCV_ROUTE,
                           AF_DEFAULT_RADIUS ) == afStatus_SUCCESS ) {
-    }
-    else {
+    } else {
         /* Error occurred in request to send. */
     }
 }
-至此，发送部分代码修改完成。上电后，CC2530会以周期5s来广播式发送数据0至9。
+```
+
+至此，发送部分代码修改完成。上电后，`CC2530`会以周期`5s`来广播式发送数据`0`至`9`。
 
    接收部分(可以将这部分内容理解成是连接电脑的协调器需要执行的)：
    读取接收到的数据：同样在“uint16 SampleApp_ProcessEvent(uint8 task_id, uint16 events)”事件处理函数中找到如下代码：
