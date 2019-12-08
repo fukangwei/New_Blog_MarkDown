@@ -6,7 +6,7 @@ date: 2019-10-08 21:40:21
 ---
 ### 无线数据传输
 
-&emsp;&emsp;本次实验实现终端节点将数据`0123456789`通过无线发送到协调器，协调器通过串口发送给`PC`上位机显示出来，此实验是基于`SampleApp`工程进行的。
+&emsp;&emsp;本次实验实现终端节点将数据`0123456789`通过无线发送到协调器，协调器通过串口发送给`PC`上位机显示出来，此实验是基于`SampleApp`工程进行的。<!--more-->
 &emsp;&emsp;打开`SampleApp.C`文件，搜索找到函数`void SampleApp_MessageMSGCB( afIncomingMSGPacket_t *pkt )`，在`case SAMPLEAPP_PERIODIC_CLUSTERID:`下面加入`HalUARTWrite(0, "I get data\n", 11);`。选择`CoodinatorEB`，下载到开发板`1`(作为协调器串口跟电脑连接)；选择`EndDeviceEB`，下载到开发板`2`(作为终端设备无线发送数据给协调器)。
 &emsp;&emsp;发送部分(可以将这部分内容理解成是发送终端需要执行的)：
 &emsp;&emsp;1. 登记事件，设置编号、发送时间等。打开`SampleApp.C`文件，找到`SampleApp`事件处理函数`uint16 SampleApp_ProcessEvent(uint8 task_id, uint16 events)`，找到函数中下面的代码：
