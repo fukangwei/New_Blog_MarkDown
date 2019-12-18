@@ -3,6 +3,7 @@ title: numpy基础教程一
 categories: Python语法
 abbrlink: bc655c8f
 date: 2019-08-11 22:53:30
+mathjax: true
 ---
 &emsp;&emsp;建立一个一维数组，数据类型是`int`。也可以不指定数据类型，使用默认参数：
 

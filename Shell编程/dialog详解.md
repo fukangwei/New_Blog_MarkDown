@@ -3,11 +3,12 @@ title: dialog详解
 categories: Shell编程
 abbrlink: 49157
 date: 2019-10-03 14:58:05
+mathjax: true
 ---
 &emsp;&emsp;`Liunx`下的`dialog`工具是一个可以和`shell`脚本配合使用的文本界面下的创建对话框的工具，每个对话框提供的输出有两种形式：
 
 1. 将所有输出到`stderr`输出，不显示到屏幕。
-2. 使用退出状态码，`OK`为`0`，`NO`为1，`ESC`为`255`。
+2. 使用退出状态码，`OK`为`0`，`NO`为`1`，`ESC`为`255`。
 
 &emsp;&emsp;通用选项如下(这些选项来设置`dialog box`的背景、颜色和标题等)：
 
