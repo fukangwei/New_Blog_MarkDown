@@ -4,10 +4,9 @@ categories: Tkinter编程
 abbrlink: 26031cb6
 date: 2019-04-08 22:52:32
 ---
-&emsp;&emsp;`Scale`(刻度)组件看起来像是一个带数据的`Scrollbar`(滚动条)组件，但事实上它们是不同的两个事物。`Scale`组件允许用于通过滑动滑块来选择一个范围内的数字，你可以控制该组件的最大值、最小值以及分辨率。
+&emsp;&emsp;`Scale`(刻度)组件看起来像是一个带数据的`Scrollbar`(滚动条)组件，但事实上它们是不同的两个事物。`Scale`组件允许用于通过滑动滑块来选择一个范围内的数字，你可以控制该组件的最大值、最小值以及分辨率。<!--more-->
 &emsp;&emsp;当你希望用户输入某个范围内的一个数值，使用`Scale`组件可以很好的代替`Entry`组件。
 &emsp;&emsp;创建一个指定范围的`Scale`组件其实非常容易，你只需要指定它的`from`和`to`两个选项即可。但由于`from`本身是`Python`的关键字，所以为了区分需要在后边紧跟一个下划线，即`from_`：
-<!--more-->
 
 ``` python
 from tkinter import *

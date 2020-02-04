@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: 5c252396
 date: 2019-03-18 09:01:08
 ---
-&emsp;&emsp;The `QWizard` class provides a framework for wizards.
+&emsp;&emsp;The `QWizard` class provides a framework for wizards.<!--more-->
 
 Header  | Inherits
 --------|---------

@@ -6,7 +6,7 @@ date: 2019-03-12 09:25:02
 ---
 ### 协议栈总体框架
 
-&emsp;&emsp;`Contiki`系统为了支持多种硬件平台和软件协议设计了如图`1.1`所示的层次框架，通过`contiki-conf.h`的宏定义，用户可以灵活地选择协议类型：
+&emsp;&emsp;`Contiki`系统为了支持多种硬件平台和软件协议设计了如图`1.1`所示的层次框架，通过`contiki-conf.h`的宏定义，用户可以灵活地选择协议类型：<!--more-->
 
 ``` cpp
 #define NETSTACK_CONF_NETWORK rime_driver

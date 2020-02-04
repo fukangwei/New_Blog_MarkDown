@@ -6,7 +6,7 @@ date: 2019-07-20 20:19:17
 ---
 ### HTML列表
 
-&emsp;&emsp;下例演示无序列表：
+&emsp;&emsp;下例演示无序列表：<!--more-->
 
 ``` xml
 <!DOCTYPE html>
@@ -24,7 +24,7 @@ date: 2019-07-20 20:19:17
     </body>
 </html>
 ```
-<!--more-->
+
 <img src="./HTML教程二/1.png">
 
 &emsp;&emsp;下例演示有序列表：

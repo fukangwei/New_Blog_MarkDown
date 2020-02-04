@@ -3,15 +3,14 @@ title: zigbee协议栈简单使用教程一
 categories: CC2530和zigbee笔记
 abbrlink: 5361
 date: 2019-10-07 20:33:01
+mathjax: true
 ---
 ### Zigbee协议栈简介
 
 &emsp;&emsp;协议是一系列的通信标准，通信双方需要按照这一标准进行正常的数据发射和接收。协议栈是协议的具体实现形式，通俗讲协议栈就是协议和用户之间的一个接口，开发人员通过使用协议栈来使用这个协议，进而实现无线数据收发。<!--more-->
 &emsp;&emsp;`Zigbee`协议分为两部分，`IEEE 802.15.4`定义了`PHY`(物理层)和`MAC`(介质访问层)技术规范；`Zigbee`联盟定义了`NWK`(网络层)、`APS`(应用程序支持层)、`APL`(应用层)技术规范。`Zigbee`协议栈就是将各个层定义的协议都集合在一起，以函数的形式实现，并给用户提供`API`(应用层)，用户可以直接调用。
 
-<img src="./zigbee协议栈简单使用教程一/1.png" width=50%>
-
-<img src="./zigbee协议栈简单使用教程一/2.png" width=50%>
+<img src="./zigbee协议栈简单使用教程一/new_1.png">
 
 ### 如何理解Zigbee协议栈
 
@@ -442,7 +441,7 @@ static void appReceiver() {
 &emsp;&emsp;这些数据具体是怎么得来，我们没有必要具体去分析，直接读取我们感兴趣的数据就可以了。误包率又是怎么计数的呢？`TI`公司的使用文档是有说明的：The `PER` value per thousand packets is calculated by the formula:
 
 $$
-PER = 1000 * rxStats.lostPkts / (rxStats.lostPkts + rxStats.rcvdPkts) (for rxStats.rcvdPkts >= 1)
+PER = 1000\ *\ \frac{rxStats.lostPkts}{rxStats.lostPkts + rxStats.rcvdPkts},\ (for\ rxStats.rcvdPkts >= 1)
 $$
 
 &emsp;&emsp;如果大家想了解具体内容的话，就可以去`CC2530 BasicRF\docs`文件夹中找到`CC2530_Software_Examples.pdf`文档`4.2`章节。

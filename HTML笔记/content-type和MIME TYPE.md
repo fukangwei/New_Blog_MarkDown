@@ -4,7 +4,7 @@ categories: HTML笔记
 abbrlink: f239a1d1
 date: 2019-03-07 19:35:57
 ---
-&emsp;&emsp;首先，我们要了解浏览器是如何处理内容的。在浏览器中显示的内容有`HTML`、`XML`、`GIF`等，那么浏览器是如何区分它们，决定以什么形式来显示呢？答案是`MIME Type`，也就是该资源的媒体类型。
+&emsp;&emsp;首先，我们要了解浏览器是如何处理内容的。在浏览器中显示的内容有`HTML`、`XML`、`GIF`等，那么浏览器是如何区分它们，决定以什么形式来显示呢？答案是`MIME Type`，也就是该资源的媒体类型。<!--more-->
 &emsp;&emsp;媒体类型通常是通过`HTTP`协议，由`Web`服务器告知浏览器的，更准确地说，是通过`Content-Type`来表示的。例如`Content-Type: text/HTML`表示内容是`text/HTML`类型，也就是超文本文件。
 &emsp;&emsp;通常只有一些在互联网上获得广泛应用的格式才会获得一个`MIME Type`，如果是某个客户端自己定义的格式，一般只能以`application/x-`开头。`XHTML`正是一个获得广泛应用的格式。因此在`RFC 3236`中，说明了`XHTML`格式文件的`MIME Type`应该是`application/xHTML+XML`。
 &emsp;&emsp;在把输出结果传送到浏览器上时，浏览器必须启动适当的应用程序来处理这个输出文档。这可以通过多种类型`MIME`(多功能网际邮件扩充协议)来完成。在`HTTP`中，`MIME`类型被定义在`Content-Type header`中。

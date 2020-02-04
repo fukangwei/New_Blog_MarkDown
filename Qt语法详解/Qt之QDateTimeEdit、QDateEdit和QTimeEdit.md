@@ -6,7 +6,7 @@ date: 2019-03-17 11:31:58
 ---
 ### 简述
 
-&emsp;&emsp;`QDateTime`类提供了一个部件，用于编辑日期和时间。`QDateTimeEdit`允许用户编辑日期，通过使用键盘或箭头键来增加和减少日期和时间值。箭头键可以在`QDateTimeEdit`内进行部分移动，日期和时间的格式按照`setDisplayFormat`设置的显示。
+&emsp;&emsp;`QDateTime`类提供了一个部件，用于编辑日期和时间。`QDateTimeEdit`允许用户编辑日期，通过使用键盘或箭头键来增加和减少日期和时间值。箭头键可以在`QDateTimeEdit`内进行部分移动，日期和时间的格式按照`setDisplayFormat`设置的显示。<!--more-->
 
 ### 基本使用
 

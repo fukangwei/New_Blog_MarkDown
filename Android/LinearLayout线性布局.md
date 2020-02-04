@@ -4,10 +4,9 @@ categories: Android
 abbrlink: 91cc57b2
 date: 2019-04-12 14:08:13
 ---
-&emsp;&emsp;`LinearLayout`如下：
-<!--more-->
+&emsp;&emsp;`LinearLayout`如下：<!--more-->
 
-<img src="./LinearLayout线性布局/1.png" height="284" width="460">
+<img src="./LinearLayout线性布局/1.png" width=90%>
 
 &emsp;&emsp;`weight`(权重)属性详解：
 

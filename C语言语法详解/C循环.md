@@ -6,7 +6,7 @@ date: 2019-10-02 08:20:06
 ---
 ### while循环
 
-&emsp;&emsp;只要给定的条件为真，`C`语言中的`while`循环语句将会重复执行：
+&emsp;&emsp;只要给定的条件为真，`C`语言中的`while`循环语句将会重复执行：<!--more-->
 
 ``` cpp
 while (condition) {

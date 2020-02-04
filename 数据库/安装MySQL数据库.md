@@ -6,7 +6,7 @@ categories: 数据库
 ---
 ### ubuntu下安装MySQL数据库
 
-&emsp;&emsp;`Ubuntu`上安装`MySQL`需要使用如下命令：
+&emsp;&emsp;`Ubuntu`上安装`MySQL`需要使用如下命令：<!--more-->
 
 ``` bash
 sudo apt-get install mysql-server

@@ -4,7 +4,7 @@ categories: 单片机
 abbrlink: 26dc036e
 date: 2019-03-18 18:02:16
 ---
-&emsp;&emsp;关于`AD`转换的代码如下：
+&emsp;&emsp;关于`AD`转换的代码如下：<!--more-->
 
 ``` cpp
 for ( n = 0; n < 8; n++ ) {

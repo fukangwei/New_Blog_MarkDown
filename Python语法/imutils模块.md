@@ -4,7 +4,7 @@ categories: Python语法
 abbrlink: 51939
 date: 2019-10-04 09:36:52
 ---
-&emsp;&emsp;A series of convenience functions to make basic image processing functions such as translation, rotation, resizing, skeletonization, and displaying `Matplotlib` images easier with `OpenCV` and both `Python 2.7` and `Python 3`.
+&emsp;&emsp;A series of convenience functions to make basic image processing functions such as translation, rotation, resizing, skeletonization, and displaying `Matplotlib` images easier with `OpenCV` and both `Python 2.7` and `Python 3`.<!--more-->
 
 ### Installation
 
@@ -70,9 +70,9 @@ for angle in range(0, 360, 90):
     cv2.imshow("Angle=%d" % (angle), rotated)
 ```
 
-<img src="./imutils模块/2.png">
+<!-- <img src="./imutils模块/2.png"> -->
 
-<img src="./imutils模块/3.png">
+<img src="./imutils模块/new_1.png">
 
 ### Resizing
 
@@ -102,9 +102,7 @@ skeleton = imutils.skeletonize(gray, size=(3, 3))
 cv2.imshow("Skeleton", skeleton)
 ```
 
-<img src="./imutils模块/5.png">
-
-<img src="./imutils模块/6.png">
+<img src="./imutils模块/new_2.png">
 
 ### Displaying with Matplotlib
 
@@ -164,9 +162,9 @@ cv2.imshow("Original", logo)
 cv2.imshow("Automatic Edge Map", edgeMap)
 ```
 
-<img src="./imutils模块/9.png">
+<!-- <img src="./imutils模块/9.png"> -->
 
-<img src="./imutils模块/10.png">
+<img src="./imutils模块/new_3.png">
 
 ### 4-point Perspective Transform
 

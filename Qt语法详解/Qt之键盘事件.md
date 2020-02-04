@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: d547bbce
 date: 2019-03-16 18:57:05
 ---
-&emsp;&emsp;在`Qt`中，可以使用`void QWidget::keyPressEvent ( QKeyEvent * event )`来进行键盘响应：
+&emsp;&emsp;在`Qt`中，可以使用`void QWidget::keyPressEvent ( QKeyEvent * event )`来进行键盘响应：<!--more-->
 
 ``` cpp
 void Widget::keyPressEvent ( QKeyEvent *event ) {

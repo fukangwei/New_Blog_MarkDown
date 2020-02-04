@@ -4,7 +4,7 @@ categories: 单片机
 abbrlink: 753412ab
 date: 2019-07-05 06:41:26
 ---
-&emsp;&emsp;我们在分析库函数时，几乎每一个函数的实现都有`assert_param`。下面以`assert_param(IS_GPIO_ALL_PERIPH(GPIOx));`为例说一下我的理解。函数的参数是`IS_GPIO_ALL_PERIPH(GPIOx)`，可以寻找到其原型：
+&emsp;&emsp;我们在分析库函数时，几乎每一个函数的实现都有`assert_param`。下面以`assert_param(IS_GPIO_ALL_PERIPH(GPIOx));`为例说一下我的理解。函数的参数是`IS_GPIO_ALL_PERIPH(GPIOx)`，可以寻找到其原型：<!--more-->
 
 ``` cpp
 #define IS_GPIO_ALL_PERIPH(PERIPH) (((*(uint32_t*)&(PERIPH)) == GPIOA_BASE) || \

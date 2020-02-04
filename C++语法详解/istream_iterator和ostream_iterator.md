@@ -6,7 +6,7 @@ date: 2019-03-11 12:10:03
 ---
 ### std::istream_iterator
 
-&emsp;&emsp;It is a lass template and it is included in `iterator`.
+&emsp;&emsp;It is a lass template and it is included in `iterator`.<!--more-->
 
 ``` cpp
 template <class T, class charT = char, class traits = char_traits<charT>, class Distance = ptrdiff_t>

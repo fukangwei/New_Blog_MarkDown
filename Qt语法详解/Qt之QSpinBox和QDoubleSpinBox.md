@@ -6,7 +6,7 @@ date: 2019-03-16 17:08:43
 ---
 ### 简述
 
-&emsp;&emsp;`QSpinBox`和`QDoubleSpinBox`均派生自`QAbstractSpinBox`。`QSpinBox`旨在处理整数和离散值(例如月份名称)，`QDoubleSpinBox`则用于处理浮点值。它们之间的区别就是处理数据的类型不同，其他功能都基本相同。`QDoubleSpinBox`的默认的精度是`2`位小数，但可以通过`setDecimals`来改变。
+&emsp;&emsp;`QSpinBox`和`QDoubleSpinBox`均派生自`QAbstractSpinBox`。`QSpinBox`旨在处理整数和离散值(例如月份名称)，`QDoubleSpinBox`则用于处理浮点值。它们之间的区别就是处理数据的类型不同，其他功能都基本相同。`QDoubleSpinBox`的默认的精度是`2`位小数，但可以通过`setDecimals`来改变。<!--more-->
 
 ### 详细描述
 

@@ -4,10 +4,9 @@ categories: Tkinter编程
 abbrlink: 828ea511
 date: 2019-04-08 21:10:55
 ---
-&emsp;&emsp;`pack`、`grid`和`place`均用于管理同在一个父组件下的所有组件的布局：`pack`是按添加顺序排列组件；`grid`是按`行/列`形式排列组件；`place`则允许程序员指定组件的大小和位置。
+&emsp;&emsp;`pack`、`grid`和`place`均用于管理同在一个父组件下的所有组件的布局：`pack`是按添加顺序排列组件；`grid`是按`行/列`形式排列组件；`place`则允许程序员指定组件的大小和位置。<!--more-->
 &emsp;&emsp;`grid`管理器可以说是`Tkinter`这三个布局管理器中最灵活多变的。如果你只希望学习使用一个布局管理器，那么`grid`绝对是首选。当你在设计对话框的时候，使用`gird`尤其便捷，使用一个`grid`就可以简单地实现你用很多个框架和`pack`搭建起来的效果。
 &emsp;&emsp;使用`grid`排列组件，只需告诉它你想要将组件放置的位置(`行/列`，`row`选项指定行，`cloumn`选项指定列)。此外，你并不用提前指出网格(`grid`分布给组件的位置称为网格)的尺寸，因为管理器会自动计算。
-<!--more-->
 
 ``` python
 from tkinter import *

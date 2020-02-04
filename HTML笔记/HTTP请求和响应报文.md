@@ -6,7 +6,7 @@ date: 2019-03-10 15:36:13
 ---
 ### HTTP请求报文
 
-&emsp;&emsp;一个`HTTP`请求报文由请求行(`request line`)、请求头部(`header`)、空行和请求数据这`4`个部分组成，下图给出了请求报文的一般格式：
+&emsp;&emsp;一个`HTTP`请求报文由请求行(`request line`)、请求头部(`header`)、空行和请求数据这`4`个部分组成，下图给出了请求报文的一般格式：<!--more-->
 
 <img src="./HTTP请求和响应报文/1.png">
 

@@ -6,7 +6,7 @@ date: 2019-07-21 12:41:49
 ---
 ### For循环
 
-&emsp;&emsp;`For`循环的语法如下：
+&emsp;&emsp;`For`循环的语法如下：<!--more-->
 
 ``` vbscript
 For counter = start To end [Step stepcount]
@@ -15,7 +15,7 @@ For counter = start To end [Step stepcount]
     ' User code
 Next
 ```
-<!--more-->
+
 示例如下：
 
 ``` vbscript

@@ -2,9 +2,10 @@
 title: STM32的ADC以及内部温度传感器
 categories: 单片机
 abbrlink: 16bacc6d
+mathjax: true
 date: 2019-03-19 09:58:57
 ---
-&emsp;&emsp;`STM32`自带`1`至`3`个`ADC`模块，采样精度达到了`12`位。在`STM32F103RBT6`中，`ADC1`和`ADC2`共用一组管脚。总体编程思路如下：
+&emsp;&emsp;`STM32`自带`1`至`3`个`ADC`模块，采样精度达到了`12`位。在`STM32F103RBT6`中，`ADC1`和`ADC2`共用一组管脚。总体编程思路如下：<!--more-->
 
 1. 初始化`RCC`相关，使能系统时钟，使能功能模块如`ADC`、`DMA`的时钟。
 2. `GPIO`相关初始化，比如常用的指示灯，`ADC`的引脚要设置为输入。
@@ -91,7 +92,9 @@ ADC_TempSensorVrefintCmd ( ENABLE );
 
 温度传感器通道号是`ADC_Channel_16`，此通道的采样时间调到最大，来保证精度。温度的计算公式如下：
 
-$$温度(^{\circ}C) = \{(V_{25}-V_{SENSE})/Avg\_Slope\} + 25$$
+$$
+温度(^{\circ}C) = \{(V_{25}-V_{SENSE})/Avg\_Slope\} + 25
+$$
 
 其中$V_{25}$是$V_{SENSE}$在$25^{\circ}C$时的数值；$Avg\\_Slope$是温度与$V_{SENSE}$曲线的平均斜率(单位是$mV/^{\circ}C$或$\mu V/^{\circ}C$)。$V_{25}$、$V_{SENSE}$的典型值分别为$1.43$、$4.3mV/^{\circ}C$，则`TEMP = (1.43 - Vsense)/0.0043 + 25`。
 

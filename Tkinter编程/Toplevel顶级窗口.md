@@ -4,9 +4,8 @@ categories: Tkinter编程
 abbrlink: d8ef7d83
 date: 2019-04-10 16:57:46
 ---
-&emsp;&emsp;`Toplevel`(顶级窗口)组件类似于`Frame`组件，但`Toplevel`组件是一个独立的顶级窗口，这种窗口通常拥有标题栏、边框等部件。
+&emsp;&emsp;`Toplevel`(顶级窗口)组件类似于`Frame`组件，但`Toplevel`组件是一个独立的顶级窗口，这种窗口通常拥有标题栏、边框等部件。<!--more-->
 &emsp;&emsp;`Toplevel`组件通常用在显示额外的窗口、对话框和其他弹出窗口上。
-<!--more-->
 
 ### 用法
 

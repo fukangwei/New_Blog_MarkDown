@@ -6,7 +6,7 @@ date: 2019-03-16 15:40:43
 ---
 ### fork
 
-&emsp;&emsp;`fork`函数的功能是创建子进程：
+&emsp;&emsp;`fork`函数的功能是创建子进程：<!--more-->
 
 ``` cpp
 #include <unistd.h>

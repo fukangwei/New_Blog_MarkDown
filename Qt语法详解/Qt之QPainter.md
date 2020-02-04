@@ -6,7 +6,7 @@ date: 2019-03-18 16:59:06
 ---
 ### 简述
 
-&emsp;&emsp;`Qt`中提供了强大的`2D`绘图系统，可以使用相同的`API`在屏幕和绘图设备上进行绘制，它主要基于`QPainter`、`QPaintDevice`和`QPaintEngine`这三个类。
+&emsp;&emsp;`Qt`中提供了强大的`2D`绘图系统，可以使用相同的`API`在屏幕和绘图设备上进行绘制，它主要基于`QPainter`、`QPaintDevice`和`QPaintEngine`这三个类。<!--more-->
 &emsp;&emsp;`QPainter`用来执行绘图操作，其提供的`API`在`GUI`或`QImage`、`QOpenGLPaintDevice`、`QWidget`和`QPaintDevice`显示图形(线、形状、渐变等)、文本和图像。`QPaintDevice`不直接绘制物理显示画面，而利用逻辑界面的中间媒介。例如绘制矩形图形时，为了将对象绘制到`QWidget`、`QGLPixelBuffer`、`QImage`、`QPixmap`、`QPicture`等多种界面中间，必须使用`QPaintDevice`。`QPaintEngine`提供了一些接口，可以用于`QPainter`在不同的设备上进行绘制。下图给出了这三个类之间的层次结构：
 
 <img src="./Qt之QPainter/1.png">
@@ -133,4 +133,4 @@ void MainWindow::paintEvent ( QPaintEvent *event ) {
 通过`drawPixmap`来绘制图片，我们可以指定图片绘制的区域`QRect`，这里为整个界面的区域。当界面伸缩的时候，图片也会跟着伸缩。
 &emsp;&emsp;`QPainter`有很多以`draw`开头的函数，它们用于各种图形的绘制，比如`drawLine`、`drawRect`和和`drawEllipse`等。下图给出了`QPainter`的`draw`函数的实例：
 
-<img src="./Qt之QPainter/8.png" height="306" width="254">
+<img src="./Qt之QPainter/8.png" width=50%>

@@ -4,7 +4,7 @@ categories: Tkinter编程
 abbrlink: 2f934778
 date: 2019-04-12 13:28:06
 ---
-&emsp;&emsp;代码如下：
+&emsp;&emsp;代码如下：<!--more-->
 
 ``` python
 import tkinter as tk
@@ -23,7 +23,6 @@ root = tk.Tk()
 app = APP(root)
 root.mainloop()
 ```
-<!--more-->
 
 <img src="./Tkinter编程入门/1.jpg">
 
@@ -149,7 +148,7 @@ mainloop()
 
 显示屏的方向图如下：
 
-<img src="./Tkinter编程入门/7.jpg">
+<img src="./Tkinter编程入门/7.jpg" width=45%>
 
 &emsp;&emsp;代码如下：
 

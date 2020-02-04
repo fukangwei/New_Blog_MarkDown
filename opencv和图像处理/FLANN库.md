@@ -4,7 +4,7 @@ categories: opencv和图像处理
 abbrlink: 89728d66
 date: 2019-03-04 18:57:23
 ---
-&emsp;&emsp;`FLANN`库全称是`Fast Library for Approximate Nearest Neighbors`，它是目前最完整的最近邻开源库。不但实现了一系列查找算法，还包含了一种自动选取最快算法的机制。
+&emsp;&emsp;`FLANN`库全称是`Fast Library for Approximate Nearest Neighbors`，它是目前最完整的最近邻开源库。不但实现了一系列查找算法，还包含了一种自动选取最快算法的机制。<!--more-->
 
 ### flann::Index类
 

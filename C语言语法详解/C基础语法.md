@@ -6,7 +6,7 @@ date: 2019-10-01 20:37:14
 ---
 ### Hello, World
 
-&emsp;&emsp;`C`语言是一种通用的、面向过程式的计算机程序设计语言。最简单的示例如下(`hello.c`)：
+&emsp;&emsp;`C`语言是一种通用的、面向过程式的计算机程序设计语言。最简单的示例如下(`hello.c`)：<!--more-->
 
 ``` cpp
 #include <stdio.h>

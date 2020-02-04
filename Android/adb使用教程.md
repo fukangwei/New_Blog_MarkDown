@@ -4,13 +4,13 @@ categories: Android
 abbrlink: 5fcab6f1
 date: 2019-08-05 15:11:58
 ---
-&emsp;&emsp;`adb`工具位于`SDK`的`platform-tools`目录下，因此需要将`platform-tools`的路径添加到系统环境变量中。常用的`adb`命令如下：
+&emsp;&emsp;`adb`工具位于`SDK`的`platform-tools`目录下，因此需要将`platform-tools`的路径添加到系统环境变量中。常用的`adb`命令如下：<!--more-->
 
 - `adb shell`：可以使用`shell`命令。
 - `adb reboot`：重新启动。
 - `adb version`：查看`adb`的版本。
 - `adb help`：查看`adb`的用法。
-<!--more-->
+
 ### 命令语法
 
 &emsp;&emsp;`adb`命令的基本语法如下：

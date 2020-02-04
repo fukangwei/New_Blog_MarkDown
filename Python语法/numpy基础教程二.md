@@ -7,7 +7,7 @@ mathjax: true
 ---
 ### argsort
 
-&emsp;&emsp;`argsort`是`Numpy`模块中的函数：
+&emsp;&emsp;`argsort`是`Numpy`模块中的函数：<!--more-->
 
 ``` python
 >>> import numpy
@@ -18,7 +18,7 @@ Perform an indirect sort along the given axis using the algorithm specified
 by the `kind` keyword. It returns an array of indices of the same shape as
 `a` that index data along the given axis in sorted order.
 ```
-<!--more-->
+
 从中可以看出`argsort`函数返回的是数组值从小到大的索引值。
 
 ``` python

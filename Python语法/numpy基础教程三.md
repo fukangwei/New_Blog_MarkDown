@@ -7,7 +7,7 @@ mathjax: true
 ---
 ### Broadcasting机制
 
-&emsp;&emsp;`NumPy`数组运算通常是逐元素(`element-by-element`)计算，因此要求两个数组的形状必须相同：
+&emsp;&emsp;`NumPy`数组运算通常是逐元素(`element-by-element`)计算，因此要求两个数组的形状必须相同：<!--more-->
 
 ``` python
 >>> a = np.array([1.0, 2.0, 3.0])
@@ -15,7 +15,7 @@ mathjax: true
 >>> a * b
 array([ 2., 4., 6.])
 ```
-<!--more-->
+
 `NumPy`的`Broadcasting`机制解除了这种限制，在两个数组的形状满足某种条件的情况下，不同形状的数组之间仍可以进行算术运算。最简单的就是数组乘以一个标量：
 
 ``` python

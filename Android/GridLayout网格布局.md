@@ -4,10 +4,9 @@ categories: Android
 abbrlink: 68a4e6e2
 date: 2019-04-12 13:57:39
 ---
-&emsp;&emsp;`GridLayout`可以自己设置布局中组件的排列方式；可以自定义网格布局有多少行、多少列；可以直接设置组件位于某行某列；可以设置组件横跨几行或者几列。相关属性总结图如下：
-<!--more-->
+&emsp;&emsp;`GridLayout`可以自己设置布局中组件的排列方式；可以自定义网格布局有多少行、多少列；可以直接设置组件位于某行某列；可以设置组件横跨几行或者几列。相关属性总结图如下：<!--more-->
 
-<img src="./GridLayout网格布局/1.png" height="265" width="654">
+<img src="./GridLayout网格布局/1.png" width=90%>
 
 &emsp;&emsp;计算器布局的实现如下：
 

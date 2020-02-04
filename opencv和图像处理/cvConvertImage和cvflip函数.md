@@ -6,7 +6,7 @@ date: 2019-03-06 15:05:07
 ---
 ### cvflip
 
-&emsp;&emsp;对图像进行翻转或旋转可以使用`cvflip`函数，可以实现将一个二维矩阵沿`X`轴、`Y`轴或者同时沿`XY`轴翻转。
+&emsp;&emsp;对图像进行翻转或旋转可以使用`cvflip`函数，可以实现将一个二维矩阵沿`X`轴、`Y`轴或者同时沿`XY`轴翻转。<!--more-->
 
 ``` cpp
 void flip ( InputArray src, OutputArray dst, int ipCode );

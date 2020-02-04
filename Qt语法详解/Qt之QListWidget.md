@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: e56241ba
 date: 2019-03-17 20:00:33
 ---
-&emsp;&emsp;`QListWidget`可以显示一个清单，清单中的每个项目是`QListWidgetItem`的一个实例，每个项目可以通过`QListWidgetItem`来操作。可以通过`QListWidgetItem`来设置每个项目的图像与文字。
+&emsp;&emsp;`QListWidget`可以显示一个清单，清单中的每个项目是`QListWidgetItem`的一个实例，每个项目可以通过`QListWidgetItem`来操作。可以通过`QListWidgetItem`来设置每个项目的图像与文字。<!--more-->
 &emsp;&emsp;示例`1`如下：
 
 ``` cpp

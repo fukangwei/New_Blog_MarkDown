@@ -4,7 +4,7 @@ categories: C语言应用代码
 abbrlink: 6c301fed
 date: 2019-03-12 12:28:47
 ---
-&emsp;&emsp;代码如下(`unix`的`dcl`程序)：
+&emsp;&emsp;代码如下(`unix`的`dcl`程序)：<!--more-->
 
 ``` cpp
 #include <stdio.h>

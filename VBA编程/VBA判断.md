@@ -6,7 +6,7 @@ date: 2019-07-21 11:19:06
 ---
 ### if语句
 
-&emsp;&emsp;`if`语句如下：
+&emsp;&emsp;`if`语句如下：<!--more-->
 
 ``` vbscript
 If boolean_expression Then

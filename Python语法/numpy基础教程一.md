@@ -5,13 +5,13 @@ abbrlink: bc655c8f
 date: 2019-08-11 22:53:30
 mathjax: true
 ---
-&emsp;&emsp;建立一个一维数组，数据类型是`int`。也可以不指定数据类型，使用默认参数：
+&emsp;&emsp;建立一个一维数组，数据类型是`int`。也可以不指定数据类型，使用默认参数：<!--more-->
 
 ``` python
 import numpy as np
 a1 = np.array([1, 2, 3], dtype=int)
 ```
-<!--more-->
+
 &emsp;&emsp;建立一个二维数组，此处和`MATLAB`的二维数组(矩阵)的建立有很大差别：
 
 ``` python

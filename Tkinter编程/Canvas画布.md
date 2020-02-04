@@ -4,9 +4,8 @@ categories: Tkinter编程
 abbrlink: '32148988'
 date: 2019-04-11 14:07:21
 ---
-&emsp;&emsp;`Canvas`(画布)组件为`Tkinter`的图形绘制提供了基础。`Canvas`是一个高度灵活的组件，你可以用它绘制图形和图表，创建图形编辑器，并实现各种自定义的小部件。
+&emsp;&emsp;`Canvas`(画布)组件为`Tkinter`的图形绘制提供了基础。`Canvas`是一个高度灵活的组件，你可以用它绘制图形和图表，创建图形编辑器，并实现各种自定义的小部件。<!--more-->
 &emsp;&emsp;`Canvas`是一个通用的组件，通常用于显示和编辑图形。你可以用它来绘制线段、圆形、多边形，甚至是绘制其它组件。
-<!--more-->
 
 ### 用法
 
@@ -319,7 +318,7 @@ def callback(event):
 
 有关`capstyle`和`joinstyle`选项的图解：
 
-<img src="./Canvas画布/8.png" height="235" width="230">
+<img src="./Canvas画布/8.png" width=35%>
 
 - `create_oval(bbox, **options)`：根据限定矩形`bbox`绘制一个椭圆，新创建的画布对象位于显示列表的顶端，创建成功后返回该画布对象的`ID`。下方表格列举了各个`options`选项的具体含义：
 

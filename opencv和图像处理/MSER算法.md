@@ -5,7 +5,7 @@ abbrlink: 50250
 date: 2019-10-04 19:21:12
 mathjax: true
 ---
-&emsp;&emsp;`MSER`(`Maximally Stable Extrernal Regions`)是区域检测中影响最大的算法。
+&emsp;&emsp;`MSER`(`Maximally Stable Extrernal Regions`)是区域检测中影响最大的算法。<!--more-->
 &emsp;&emsp;`MSER`基于分水岭的概念：对图像进行二值化，二值化阈值取$[0, 255]$，这样二值化图像就经历一个从全黑到全白的过程(就像水位不断上升的俯瞰图)。在这个过程中，有些连通区域面积随阈值上升的变化很小，这种区域就叫`MSER`。公式如下：
 
 $$
@@ -39,6 +39,6 @@ cv2.imshow("text only", text_only)
 cv2.waitKey(0)
 ```
 
-<img src="./MSER算法/1.png" width=50%>
+<img src="./MSER算法/new_1.png">
 
-<img src="./MSER算法/2.png" width=50%>
+<!-- <img src="./MSER算法/2.png" width=50%> -->

@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: d6897263
 date: 2019-03-17 18:04:17
 ---
-&emsp;&emsp;基础代码如下：
+&emsp;&emsp;基础代码如下：<!--more-->
 
 ``` cpp
 #include <QtCore/QCoreApplication>

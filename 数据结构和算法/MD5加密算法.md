@@ -4,7 +4,7 @@ categories: 数据结构和算法
 abbrlink: 22873
 date: 2019-10-04 08:27:50
 ---
-&emsp;&emsp;`Message Digest Algorithm 5`(中文名为消息摘要算法第五版)为计算机安全领域广泛使用的一种散列函数，用以提供消息的完整性保护。该算法的文件号为`RFC 1321`(`R.Rivest，MIT Laboratory for Computer Science and RSA Data Security Inc. April 1992`)。
+&emsp;&emsp;`Message Digest Algorithm 5`(中文名为消息摘要算法第五版)为计算机安全领域广泛使用的一种散列函数，用以提供消息的完整性保护。该算法的文件号为`RFC 1321`(`R.Rivest，MIT Laboratory for Computer Science and RSA Data Security Inc. April 1992`)。<!--more-->
 &emsp;&emsp;`MD5`用于确保信息传输完整一致，是计算机广泛使用的杂凑算法之一(又译摘要算法、哈希算法)，主流编程语言普遍已有`MD5`实现。将数据(如汉字)运算为另一固定长度值，是杂凑算法的基础原理，`MD5`的前身有`MD2`、`MD3`和`MD4`。`MD5`算法具有以下特点：
 
 - 压缩性：任意长度的数据，算出的`MD5`值长度都是固定的。

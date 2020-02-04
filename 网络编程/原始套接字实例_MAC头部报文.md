@@ -4,7 +4,7 @@ abbrlink: efb1bd4c
 date: 2019-03-13 20:01:28
 categories: 网络编程
 ---
-&emsp;&emsp;链路层封包格式如下：
+&emsp;&emsp;链路层封包格式如下：<!--more-->
 
 <img src="./原始套接字实例_MAC头部报文/1.jpg" height="284" width="543">
 

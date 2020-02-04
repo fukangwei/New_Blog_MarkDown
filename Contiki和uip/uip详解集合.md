@@ -146,12 +146,12 @@ typedef unsigned short uip_stats_t /* 统计数据类型 */
 &emsp;&emsp;TCP配置选项：
 
 ``` cpp
-#define UIP_ACTIVE_OPEN                                         /* 决定UIP的打开连接支持是否编译 */
-#define UIP_CONNS                                               /* 最大同时打开的TCP连接数 */
-#define UIP_LISTENPORTS                                         /* 最大TCP监听端口数 */
-#define UIP_URGDATA                                             /* 是否编译TCP紧迫数据提醒 */
-#define UIP_RTO 3                                               /* 初始重传超时计数，以定时器脉冲个数计 */
-#define UIP_MAXRTX 8                                            /* 一段数据最大重传多少次才取消连接 */
+#define UIP_ACTIVE_OPEN                                          /* 决定UIP的打开连接支持是否编译 */
+#define UIP_CONNS                                                /* 最大同时打开的TCP连接数 */
+#define UIP_LISTENPORTS                                          /* 最大TCP监听端口数 */
+#define UIP_URGDATA                                              /* 是否编译TCP紧迫数据提醒 */
+#define UIP_RTO 3                                                /* 初始重传超时计数，以定时器脉冲个数计 */
+#define UIP_MAXRTX 8                                             /* 一段数据最大重传多少次才取消连接 */
 #define UIP_MAXSYNRTX 5                                          /* 一段SYN数据要最大得传多少次，才认定连接请求失败 */
 #define UIP_TCP_MSS (UIP_BUFSIZE - UIP_LLH_LEN - UIP_TCPIP_HLEN) /* TCP最大段大小 */
 #define UIP_RECEIVE_WINDOW                                       /* 广播接收器的最大窗口大小 */

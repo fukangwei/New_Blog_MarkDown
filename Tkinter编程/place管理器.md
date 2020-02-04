@@ -4,9 +4,8 @@ categories: Tkinter编程
 abbrlink: 270c9a04
 date: 2019-04-12 11:15:07
 ---
-&emsp;&emsp;`pack`、`grid`和`place`均用于管理同在一个父组件下的所有组件的布局：`pack`是按添加顺序排列组件；`grid`是按行/列形式排列组件；`place`则允许程序员指定组件的大小和位置。
+&emsp;&emsp;`pack`、`grid`和`place`均用于管理同在一个父组件下的所有组件的布局：`pack`是按添加顺序排列组件；`grid`是按`行/列`形式排列组件；`place`则允许程序员指定组件的大小和位置。<!--more-->
 &emsp;&emsp;通常情况下不建议使用`place`布局管理器，因为对比起`pack`和`grid`，`place`要做更多的工作。但是，`place`在一些特殊的情况下可以发挥妙用。
-<!--more-->
 
 ### 用法
 

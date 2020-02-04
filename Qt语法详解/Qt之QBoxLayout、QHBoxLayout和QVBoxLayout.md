@@ -6,7 +6,7 @@ date: 2019-03-17 17:43:03
 ---
 ### 简述
 
-&emsp;&emsp;`QBoxLayout`可以在水平方向或垂直方向上排列控件，由`QHBoxLayout`、`QVBoxLayout`所继承。
+&emsp;&emsp;`QBoxLayout`可以在水平方向或垂直方向上排列控件，由`QHBoxLayout`、`QVBoxLayout`所继承。<!--more-->
 
 - `QHBoxLayout`：水平布局，在水平方向上排列控件，即左右排列。
 - `QVBoxLayout`：垂直布局，在垂直方向上排列控件，即上下排列。

@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: 3143fa00
 date: 2019-03-17 19:44:36
 ---
-&emsp;&emsp;先来看一下最熟悉的`QMessageBox::information`：
+&emsp;&emsp;先来看一下最熟悉的`QMessageBox::information`：<!--more-->
 
 ``` cpp
 QMessageBox::information ( NULL, "Title", "Content", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes );

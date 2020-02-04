@@ -4,7 +4,7 @@ categories: ucos和ucgui
 abbrlink: ec0a8f7a
 date: 2019-03-19 09:18:14
 ---
-&emsp;&emsp;这里移植的是`UCGUI3.90a`版本，虽然已经有更新的版本，例如`UCGUI3.98`、甚至`4.04`版本，但目前只有这个版本的代码是最全的，包括`JPEG`、`MULTILAYER`、`MEMDEV`、`AntiAlias`等模块。
+&emsp;&emsp;这里移植的是`UCGUI3.90a`版本，虽然已经有更新的版本，例如`UCGUI3.98`、甚至`4.04`版本，但目前只有这个版本的代码是最全的，包括`JPEG`、`MULTILAYER`、`MEMDEV`、`AntiAlias`等模块。<!--more-->
 &emsp;&emsp;`UCGUI`的文件数量很大，主要用到`UCGUI390a/Start/Config`和`UCGUI390a/Start/GUI`两个文件夹下文件，相关文件介绍如下。将`Config`和`GUI`下的所有文件加入工程，这是`UCGUI`官方推荐的结构：
 
 目录               | 内容

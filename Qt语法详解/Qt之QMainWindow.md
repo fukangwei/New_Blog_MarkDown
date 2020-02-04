@@ -6,7 +6,8 @@ date: 2019-03-18 15:59:28
 ---
 ### 主窗口简介
 
-&emsp;&emsp;`QT`中直接支持主窗口，`QMainWindow`是`QT`中主窗口的基类，是继承于`QWidget`类的容器型组件。`QMainWindow`内部封装了菜单栏、工具栏、中心组件、停靠组件、状态栏等。`QMainWindow`内置了布局管理器，基本的组件布局如下：
+&emsp;&emsp;`QT`中直接支持主窗口，`QMainWindow`是`QT`中主窗口的基类，是继承于`QWidget`类的容器型组件。<!--more-->
+&emsp;&emsp;`QMainWindow`内部封装了菜单栏、工具栏、中心组件、停靠组件、状态栏等。`QMainWindow`内置了布局管理器，基本的组件布局如下：
 
 <img src="./Qt之QMainWindow/1.png">
 
