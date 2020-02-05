@@ -4,7 +4,7 @@ categories: opencv和图像处理
 abbrlink: b1e50079
 date: 2019-02-24 17:19:26
 ---
-&emsp;&emsp;`OpenCV`提供`FeatureDetector`实现特征检测及匹配：
+&emsp;&emsp;`OpenCV`提供`FeatureDetector`实现特征检测及匹配：<!--more-->
 
 ``` cpp
 class CV_EXPORTS FeatureDetector {

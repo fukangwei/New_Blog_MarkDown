@@ -6,7 +6,7 @@ date: 2019-02-05 20:21:24
 ---
 ### max函数
 
-&emsp;&emsp;This is a function template, in the header file `algorithm`:
+&emsp;&emsp;This is a function template, in the header file `algorithm`:<!--more-->
 
 ``` cpp
 template <class T> const T &max ( const T &a, const T &b );

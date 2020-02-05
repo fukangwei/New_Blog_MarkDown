@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: bbd6cbb0
 date: 2019-01-27 22:10:59
 ---
-&emsp;&emsp;`QFtp`类提供了一个`FTP`协议的客户端实现，该类提供了一个访问到`FTP`服务器的接口。对于新的应用程序，建议使用`QNetworkAccessManager`和`QNetworkReply`，因为这些类拥有一个更简单、更强大的`API`。
+&emsp;&emsp;`QFtp`类提供了一个`FTP`协议的客户端实现，该类提供了一个访问到`FTP`服务器的接口。对于新的应用程序，建议使用`QNetworkAccessManager`和`QNetworkReply`，因为这些类拥有一个更简单、更强大的`API`。<!--more-->
 &emsp;&emsp;`QFtp`支持异步工作，因此没有阻塞函数。如果无法立即执行操作，函数仍将立即返回，并且该操作将被操作系统调度，供以后执行。调度操作的结果通过信号报告，这种方法依赖于事件循环操作。可以调度的操作(也被称为`命令`)有`connectToHost`、`login`、`close`、`list`、`cd`、`get`、`put`、`remove`、`mkdir`、`rmdir`、`rename`和`rawCommand`。所有这些命令都会返回一个唯一的标识符，允许程序员跟踪当前正在执行的命令。当命令的执行开始时，发出带有命令标识符的`commandStarted`信号。当命令完成时，会发出`commandFinished`信号，并带有命令标识符和一个`bool`参数，表明该命令在完成时是否出错。
 &emsp;&emsp;在某些情况下，可能想要执行一系列命令。例如连接并登录到`FTP`服务器，简单的实现如下：
 

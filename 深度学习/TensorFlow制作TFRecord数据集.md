@@ -4,7 +4,7 @@ categories: 深度学习
 abbrlink: '88377901'
 date: 2019-02-15 19:50:47
 ---
-&emsp;&emsp;关于`TensorFlow`读取数据，官网给出了三种方法：
+&emsp;&emsp;关于`TensorFlow`读取数据，官网给出了三种方法：<!--more-->
 
 - 供给数据：在`TensorFlow`程序运行的每一步，让`Python`代码来供给数据。
 - 从文件读取数据：在`TensorFlow`图的起始，让一个输入管线从文件中读取数据。

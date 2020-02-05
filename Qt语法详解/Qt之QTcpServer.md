@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: e7b2bf0e
 date: 2019-01-23 13:09:25
 ---
-&emsp;&emsp;The `QTcpServer` class provides a `TCP-based` server.
+&emsp;&emsp;The `QTcpServer` class provides a `TCP-based` server.<!--more-->
 
 Header       | Inherits
 -------------|----------

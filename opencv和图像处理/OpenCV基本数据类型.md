@@ -4,7 +4,7 @@ categories: opencv和图像处理
 abbrlink: b62aef59
 date: 2019-02-23 16:37:31
 ---
-&emsp;&emsp;`OpenCV`提供了多种基本数据类型，虽然这些数据类型在`C`语言中不是基本类型，但结构都很简单，可将它们作为原子类型。可以在`/OpenCV/cxcore/include`目录下的`cxtypes.h`文件中查看其详细定义。
+&emsp;&emsp;`OpenCV`提供了多种基本数据类型，虽然这些数据类型在`C`语言中不是基本类型，但结构都很简单，可将它们作为原子类型。可以在`/OpenCV/cxcore/include`目录下的`cxtypes.h`文件中查看其详细定义。<!--more-->
 &emsp;&emsp;数据类型中最简单的就是`CvPoint`，它是一个包含`integer`类型成员`x`和`y`的简单结构体。`CvPoint`有两个变体类型，即`CvPoint2D32f`和`CvPoint3D32f`。前者同样有两个成员`x`和`y`，但它们是浮点类型；而后者却多了一个浮点类型的成员`z`。
 &emsp;&emsp;`CvSize`类型与`CvPoint`非常相似，但它的数据成员是`integer`类型的`width`和`height`。如果希望使用浮点类型，则选用`CvSize`的变体类型`CvSize2D32f`。
 &emsp;&emsp;`CvRect`类型派生于`CvPoint`和`CvSize`，它包含`4`个数据成员，即`x`、`y`、`width`和`height`。

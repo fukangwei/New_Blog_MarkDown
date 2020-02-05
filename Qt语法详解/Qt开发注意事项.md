@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: 9fecaf1e
 date: 2019-01-24 16:12:55
 ---
-1. 如果出现`'tr' was not declared in this scope`的问题，将`tr`替换为`QObject::tr`即可。
+1. 如果出现`'tr' was not declared in this scope`的问题，将`tr`替换为`QObject::tr`即可。<!--more-->
 2. `Qt`设置控件随窗口大小变化的方法：拖一个控件到窗体上(任何控件都可以)；在窗体空白处`右键 -> 布局 -> 栅格布局`即可。
 3. 显示的界面其父类要么统一为`QWidget`，要么统一为`QDialog`，如果混用的话，会出现界面混乱的`BUG`。
 4. 新版`Qt Designer`查看窗体代码的地方是`窗体 -> 查看代码`。

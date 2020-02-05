@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: 917bcf6a
 date: 2019-01-26 12:39:17
 ---
-&emsp;&emsp;The `QTextCodec` class provides conversions between text encodings. The header file is `QTextCodec`. **Note**: All functions in this class are reentrant, except for `setCodecForTr()`, `setCodecForCStrings()`, and `~QTextCodec()`, which are nonreentrant.
+&emsp;&emsp;The `QTextCodec` class provides conversions between text encodings. The header file is `QTextCodec`. **Note**: All functions in this class are reentrant, except for `setCodecForTr()`, `setCodecForCStrings()`, and `~QTextCodec()`, which are nonreentrant.<!--more-->
 
 ### Public Functions
 

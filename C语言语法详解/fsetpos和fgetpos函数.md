@@ -6,7 +6,7 @@ date: 2018-12-13 12:33:40
 ---
 ### fgetpos函数
 
-&emsp;&emsp;`fgetpos`的功能是依据当前文件的句柄，获取当前访问指针位置信息：
+&emsp;&emsp;`fgetpos`的功能是依据当前文件的句柄，获取当前访问指针位置信息：<!--more-->
 
 ``` cpp
 #include <stdio.h>

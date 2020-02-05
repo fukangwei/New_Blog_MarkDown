@@ -4,7 +4,7 @@ categories: C语言语法详解
 abbrlink: 5b66ade3
 date: 2018-12-14 17:27:26
 ---
-&emsp;&emsp;函数`setbuf`用于将指定缓冲区与特定的文件流相关联，实现操作缓冲区时直接操作文件流的功能。
+&emsp;&emsp;函数`setbuf`用于将指定缓冲区与特定的文件流相关联，实现操作缓冲区时直接操作文件流的功能。<!--more-->
 
 ``` cpp
 #include <stdio.h>

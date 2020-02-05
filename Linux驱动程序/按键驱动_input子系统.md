@@ -4,7 +4,7 @@ categories: Linux驱动程序
 abbrlink: 433b008a
 date: 2019-02-04 10:50:27
 ---
-&emsp;&emsp;`input_button.c`如下：
+&emsp;&emsp;`input_button.c`如下：<!--more-->
 
 ``` cpp
 #include <linux/module.h>

@@ -6,7 +6,7 @@ date: 2019-01-21 19:02:28
 ---
 ### 基本用法
 
-&emsp;&emsp;`grep`是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来。
+&emsp;&emsp;`grep`是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来。<!--more-->
 &emsp;&emsp;`Unix`的`grep`家族包括`grep`、`egrep`和`fgrep`。`egrep`和`fgrep`的命令只跟`grep`有很小不同，`egrep`是`grep`的扩展，支持更多的`re`元字符，`fgrep`就是`fixed grep`或`fast grep`，它们把所有的字母都看作单词，也就是说正则表达式中的元字符表示回其自身的字面意义，不再特殊。`linux`使用`GNU`版本的`grep`。它功能更强，可以通过`-G`、`-E`、`-F`命令行选项来使用`egrep`和`fgrep`的功能。
 &emsp;&emsp;`grep`用法如下：
 

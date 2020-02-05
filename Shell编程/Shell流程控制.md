@@ -6,7 +6,7 @@ date: 2019-01-21 09:41:20
 ---
 ### if else
 
-&emsp;&emsp;`if`语法格式如下：
+&emsp;&emsp;`if`语法格式如下：<!--more-->
 
 ``` bash
 if condition

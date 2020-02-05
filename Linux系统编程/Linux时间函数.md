@@ -8,7 +8,7 @@ date: 2019-02-03 00:24:17
 
 #### time_t时间类型
 
-&emsp;&emsp;`time_t`类型在`time.h`中定义：
+&emsp;&emsp;`time_t`类型在`time.h`中定义：<!--more-->
 
 ``` cpp
 #ifndef __TIME_T

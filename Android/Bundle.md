@@ -4,7 +4,7 @@ categories: Android
 abbrlink: a2d737cb
 date: 2019-03-02 10:59:41
 ---
-&emsp;&emsp;In this tutorial, we'll be discuss about android bundle to pass data between activities.
+&emsp;&emsp;In this tutorial, we'll be discuss about android bundle to pass data between activities.<!--more-->
 
 <img src="./Bundle/1.png" height="129" width="789">
 

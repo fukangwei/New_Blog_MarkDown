@@ -4,7 +4,7 @@ categories: Contiki和uip
 abbrlink: 4339f19f
 date: 2019-02-04 14:27:20
 ---
-1. 在`Contiki`操作系统中，延时函数要尽量使用软件延时的方法，不要使用利用了`Systick`定时器制作的精确延时函数。因为`Contiki`也需要`Systick`定时器作为时基。
+1. 在`Contiki`操作系统中，延时函数要尽量使用软件延时的方法，不要使用利用了`Systick`定时器制作的精确延时函数。因为`Contiki`也需要`Systick`定时器作为时基。<!--more-->
 2. 在`Contiki`操作系统中，不要出现局部自动变量(`auto`)，要将其改为局部静态变量(`static`)。
 3. 在`Contiki`操作系统中，系统应用的初始化例如看门狗的初始化尽量放在主函数中，设备驱动的初始化尽量放在创建的任务中。
 4. 用`keil`开发`Contiki`操作系统时，如果在别的源文件中有`PROCESS_THREAD`任务，在`main.c`文件中也可以用`AUTOSTART_PROCESSES`进行调用。

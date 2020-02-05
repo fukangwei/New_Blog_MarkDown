@@ -6,7 +6,7 @@ date: 2019-02-16 14:35:47
 ---
 ### 安装和配置Facenet
 
-&emsp;&emsp;在`cmd`命令行，定位到自己想要下载的文件夹，用`git`下载`FaceNet`源代码工程：
+&emsp;&emsp;在`cmd`命令行，定位到自己想要下载的文件夹，用`git`下载`FaceNet`源代码工程：<!--more-->
 
 ``` python
 git clone --recursive https://github.com/davidsandberg/facenet.git

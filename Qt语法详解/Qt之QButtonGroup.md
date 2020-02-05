@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: d1701ca8
 date: 2019-01-22 17:30:34
 ---
-&emsp;&emsp;The `QButtonGroup` class provides a container to organize groups of button widgets.
+&emsp;&emsp;The `QButtonGroup` class provides a container to organize groups of button widgets.<!--more-->
 
 Header         | Inherits
 ---------------|---------

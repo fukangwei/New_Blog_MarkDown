@@ -6,7 +6,7 @@ date: 2019-01-18 19:27:18
 ---
 ### 定时器
 
-&emsp;&emsp;代码如下：
+&emsp;&emsp;代码如下：<!--more-->
 
 ``` c
 void TIM_Configuration ( void ) {

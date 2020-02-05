@@ -4,7 +4,7 @@ categories: Linux应用笔记
 abbrlink: e88b1030
 date: 2019-02-02 14:43:27
 ---
-&emsp;&emsp;`SLIP`即`Serial Line IP`，它是一个数据链路层协议，用于在串行线路上传输`IP`数据报。本文讲述如何在两台用串口线(`RS232`)连接的`Linux`机器之间配置`SLIP`链路。设两台机器为`A`和`B`，首先将两台机器用串口线连接好，然后在`A`机器上依次运行如下指令：
+&emsp;&emsp;`SLIP`即`Serial Line IP`，它是一个数据链路层协议，用于在串行线路上传输`IP`数据报。本文讲述如何在两台用串口线(`RS232`)连接的`Linux`机器之间配置`SLIP`链路。设两台机器为`A`和`B`，首先将两台机器用串口线连接好，然后在`A`机器上依次运行如下指令：<!--more-->
 
 ``` bash
 slattach /dev/ttyS0 -p slip -s 9600 -m -d &

@@ -4,7 +4,7 @@ categories: Perl
 abbrlink: b32c6fe3
 date: 2018-12-18 06:52:52
 ---
-&emsp;&emsp;最简单的用法如下：
+&emsp;&emsp;最简单的用法如下：<!--more-->
 
 ``` perl
 my @arr = ( 3, 2, 8, 6 );

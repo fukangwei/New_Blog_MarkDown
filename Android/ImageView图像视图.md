@@ -4,7 +4,7 @@ categories: Android
 abbrlink: 4336761f
 date: 2019-02-08 18:05:41
 ---
-&emsp;&emsp;在`API`文档中，我们发现`ImageView`有两个可以设置图片的属性，分别是`src`和`background`。它们之间的区别如下：
+&emsp;&emsp;在`API`文档中，我们发现`ImageView`有两个可以设置图片的属性，分别是`src`和`background`。它们之间的区别如下：<!--more-->
 
 - `background`通常指的都是背景，而`src`指的是内容。
 - 当使用`src`填入图片时，是按照图片大小直接填充，并不会进行拉伸；而使用`background`填入图片,则会根据`ImageView`给定的宽度来进行拉伸。

@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: 7cae0a0f
 date: 2019-02-18 15:53:34
 ---
-&emsp;&emsp;`QFrame`类是有框架的窗口部件的基类，其头文件是`qframe.h`。
+&emsp;&emsp;`QFrame`类是有框架的窗口部件的基类，其头文件是`qframe.h`。<!--more-->
 
 ### 属性
 

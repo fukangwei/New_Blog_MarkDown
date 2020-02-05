@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: d408c4ad
 date: 2019-02-06 16:54:57
 ---
-&emsp;&emsp;`QMovie`类用于播放动画，在刷新页面的时候，可以使用`QMovie`来实现等待界面。`QMovie`类用于显示简单的动画，没有声音。
+&emsp;&emsp;`QMovie`类用于播放动画，在刷新页面的时候，可以使用`QMovie`来实现等待界面。`QMovie`类用于显示简单的动画，没有声音。<!--more-->
 &emsp;&emsp;首先将一个文件的名称或者一个指针传递给`QMovie`的构造函数，构建出一个`QMovie`对象，传递的文件需要包含文件的格式。可以调用函数`isValid`在动画开始播放前检测该动画是否有效。调用函数`start`函数开始播放动画，`QMovie`将进入运行状态，并发射`started`和`stateChanged`信号。调用函数`state`可获取当前动画的播放状态。用`QLabel`显示动画如下：
 
 ``` cpp

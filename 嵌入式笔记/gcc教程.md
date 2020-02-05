@@ -6,7 +6,7 @@ date: 2019-01-18 09:42:36
 ---
 ### arm-linux-gcc的安装
 
-&emsp;&emsp;首先解压安装文件：
+&emsp;&emsp;首先解压安装文件：<!--more-->
 
 ``` bash
 tar zxvf arm-linux-gcc-4.4.3.tar.gz -C /

@@ -4,7 +4,7 @@ categories: 机器学习
 abbrlink: 54f839b6
 date: 2019-02-12 12:04:27
 ---
-&emsp;&emsp;`klearn.preprocessing`提供了各种公共函数，用于将`raw feature vector`转换成另外一种更适合评估器工作的格式。
+&emsp;&emsp;`klearn.preprocessing`提供了各种公共函数，用于将`raw feature vector`转换成另外一种更适合评估器工作的格式。<!--more-->
 
 ### 标准化(Standardization)、平均移除法(mean removal)和方差归一化(variance scaling)
 

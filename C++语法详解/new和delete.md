@@ -4,7 +4,7 @@ categories: C++语法详解
 abbrlink: 56c2f768
 date: 2019-02-07 10:44:54
 ---
-&emsp;&emsp;In the `C++` programming language, `new` and `delete` are a pair of language constructs that perform dynamic memory allocation, object construction and object destruction.
+&emsp;&emsp;In the `C++` programming language, `new` and `delete` are a pair of language constructs that perform dynamic memory allocation, object construction and object destruction.<!--more-->
 
 ### Overview
 

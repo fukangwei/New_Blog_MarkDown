@@ -6,7 +6,7 @@ date: 2018-12-14 16:35:26
 ---
 ### vsnprintf函数
 
-&emsp;&emsp;`_vsnprintf`是`C`语言库函数之一，属于可变参数函数，用于向字符串中打印数据，数据格式由用户自定义。
+&emsp;&emsp;`_vsnprintf`是`C`语言库函数之一，属于可变参数函数，用于向字符串中打印数据，数据格式由用户自定义。<!--more-->
 
 ``` cpp
 #include <stdarg.h>

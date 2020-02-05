@@ -6,7 +6,7 @@ date: 2019-03-02 15:48:06
 ---
 ### 发送请求
 
-&emsp;&emsp;使用`Requests`发送网络请求非常简单。一开始要导入`Requests`模块：
+&emsp;&emsp;使用`Requests`发送网络请求非常简单。一开始要导入`Requests`模块：<!--more-->
 
 ``` python
 >>> import requests

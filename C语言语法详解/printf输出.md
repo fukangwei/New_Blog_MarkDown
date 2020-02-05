@@ -6,7 +6,7 @@ date: 2018-12-13 15:32:18
 ---
 ### printf输出格式
 
-&emsp;&emsp;`printf`格式控制如下：
+&emsp;&emsp;`printf`格式控制如下：<!--more-->
 
 ``` bash
 % - 0 m.n l或h 格式字符

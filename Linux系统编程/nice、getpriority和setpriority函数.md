@@ -4,7 +4,7 @@ categories: Linux系统编程
 abbrlink: 41e52e29
 date: 2019-02-03 17:11:07
 ---
-&emsp;&emsp;可以通过改变进程的优先级来保证进程优先运行。在`Linux`下，通过系统调用`nice`可以改变进程的优先级。`nice`系统调用用来改变调用进程的优先级：
+&emsp;&emsp;可以通过改变进程的优先级来保证进程优先运行。在`Linux`下，通过系统调用`nice`可以改变进程的优先级。`nice`系统调用用来改变调用进程的优先级：<!--more-->
 
 ``` cpp
 #include <unistd.h>

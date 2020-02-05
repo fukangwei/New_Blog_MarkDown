@@ -4,7 +4,7 @@ categories: Linux驱动程序
 abbrlink: 9f0762fe
 date: 2019-02-04 11:24:01
 ---
-&emsp;&emsp;设备驱动程序的一个基本功能就是管理和控制设备，同时为用户应用程序提供管理和控制设备的接口，在`Linux`中这个接口是通过`ioctl`函数来实现的。
+&emsp;&emsp;设备驱动程序的一个基本功能就是管理和控制设备，同时为用户应用程序提供管理和控制设备的接口，在`Linux`中这个接口是通过`ioctl`函数来实现的。<!--more-->
 
 ``` cpp
 int ( *ioctl ) ( struct inode *, struct file *, unsigned int, unsigned long );

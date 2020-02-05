@@ -5,7 +5,7 @@ abbrlink: 94abcad0
 date: 2018-12-19 07:37:30
 ---
 
-&emsp;&emsp;`Perl`是一个非常强大的文本数据处理语言。`Perl`可以使用`format`来定义一个模板，然后使用`write`按指定模板输出数据。`Perl`格式化定义语法格式如下：
+&emsp;&emsp;`Perl`是一个非常强大的文本数据处理语言。`Perl`可以使用`format`来定义一个模板，然后使用`write`按指定模板输出数据。`Perl`格式化定义语法格式如下：<!--more-->
 
 ``` perl
 format FormatName =

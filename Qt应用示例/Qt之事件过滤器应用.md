@@ -6,7 +6,7 @@ date: 2019-02-23 12:04:03
 ---
 ### 事件过滤器
 
-&emsp;&emsp;`mylineedit.h`如下：
+&emsp;&emsp;`mylineedit.h`如下：<!--more-->
 
 ``` cpp
 #ifndef MYLINEEDIT_H

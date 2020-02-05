@@ -4,7 +4,7 @@ categories: 深度学习
 abbrlink: a8655ef5
 date: 2019-02-13 12:16:46
 ---
-&emsp;&emsp;`TF-Slim`是`Tensorflow`中一个轻量级的库，用于定义、训练和评估复杂的模型。`TF-Slim`中的组件可以与`Tensorflow`中原生的函数一起使用，与其他的框架(比如`tf.contrib.learn`)也可以一起使用。使用方法如下：
+&emsp;&emsp;`TF-Slim`是`Tensorflow`中一个轻量级的库，用于定义、训练和评估复杂的模型。`TF-Slim`中的组件可以与`Tensorflow`中原生的函数一起使用，与其他的框架(比如`tf.contrib.learn`)也可以一起使用。使用方法如下：<!--more-->
 
 ``` python
 import tensorflow.contrib.slim as slim

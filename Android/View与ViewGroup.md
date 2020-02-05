@@ -4,7 +4,7 @@ categories: Android
 abbrlink: b1b7fca9
 date: 2019-02-08 17:38:02
 ---
-&emsp;&emsp;在`Android`的`APP`中，所有的用户界面元素都是由`View`和`ViewGroup`的对象构成的。`View`是绘制在屏幕上的用户能与之交互的一个对象，而`ViewGroup`则是一个用于存放其他`View`(和`ViewGroup`)对象的布局容器。`Android`为我们提供了一个`View`和`ViewGroup`子类的集合，集合中提供了一些常用的输入控件(比如按钮和文本域)和各种各样的布局模式(比如线性或相对布局)。
+&emsp;&emsp;在`Android`的`APP`中，所有的用户界面元素都是由`View`和`ViewGroup`的对象构成的。`View`是绘制在屏幕上的用户能与之交互的一个对象，而`ViewGroup`则是一个用于存放其他`View`(和`ViewGroup`)对象的布局容器。`Android`为我们提供了一个`View`和`ViewGroup`子类的集合，集合中提供了一些常用的输入控件(比如按钮和文本域)和各种各样的布局模式(比如线性或相对布局)。<!--more-->
 
 ### User Interface Layout
 

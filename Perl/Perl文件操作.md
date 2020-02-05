@@ -4,7 +4,7 @@ categories: Perl
 abbrlink: b8923fa0
 date: 2018-12-18 18:24:44
 ---
-&emsp;&emsp;`Perl`使用一种叫做文件句柄类型的变量来操作文件，从文件读取或者写入数据需要使用文件句柄。文件句柄`file handle`是一个`I/O`连接的名称，`Perl`提供了三种文件句柄，即`STDIN`、`STDOUT`和`STDERR`，分别代表标准输入、标准输出和标准出错输出。
+&emsp;&emsp;`Perl`使用一种叫做文件句柄类型的变量来操作文件，从文件读取或者写入数据需要使用文件句柄。文件句柄`file handle`是一个`I/O`连接的名称，`Perl`提供了三种文件句柄，即`STDIN`、`STDOUT`和`STDERR`，分别代表标准输入、标准输出和标准出错输出。<!--more-->
 &emsp;&emsp;`Perl`打开文件可以使用以下方式：
 
 ``` perl

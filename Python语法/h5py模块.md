@@ -4,7 +4,7 @@ categories: Python语法
 abbrlink: e08c1f54
 date: 2019-02-10 15:47:38
 ---
-&emsp;&emsp;`h5py`文件是存放两类对象的容器，分别是数据集(`dataset`)和组(`group`)。`dataset`类似于`numpy`的数组；`group`则类似于`python`中的字典，有键(`key`)和值(`value`)。`键`就是组成员的名称，`值`就是组成员对象本身(组或者数据集)。`group`中可以存放`dataset`或者其他的`group`。下面来看如何创建组和数据集。
+&emsp;&emsp;`h5py`文件是存放两类对象的容器，分别是数据集(`dataset`)和组(`group`)。`dataset`类似于`numpy`的数组；`group`则类似于`python`中的字典，有键(`key`)和值(`value`)。`键`就是组成员的名称，`值`就是组成员对象本身(组或者数据集)。`group`中可以存放`dataset`或者其他的`group`。下面来看如何创建组和数据集。<!--more-->
 &emsp;&emsp;1. 创建一个`h5py`文件：
 
 ``` python

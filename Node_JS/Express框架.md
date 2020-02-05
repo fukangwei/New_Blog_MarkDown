@@ -4,7 +4,7 @@ categories: Node.js笔记
 abbrlink: 4d62b629
 date: 2019-03-02 12:19:37
 ---
-&emsp;&emsp;`Express`是一个简洁而灵活的`Web`应用框架，使用`Express`可以快速地搭建一个完整功能的网站。`Express`框架核心特性如下：
+&emsp;&emsp;`Express`是一个简洁而灵活的`Web`应用框架，使用`Express`可以快速地搭建一个完整功能的网站。`Express`框架核心特性如下：<!--more-->
 
 - 可以设置中间件来响应`HTTP`请求。
 - 定义了路由表用于执行不同的`HTTP`请求动作。

@@ -6,7 +6,7 @@ date: 2019-01-23 17:16:21
 ---
 ### 简述
 
-&emsp;&emsp;`QThread`类提供了与系统无关的线程，其代表在程序中一个单独的线程控制。线程在`run`中开始执行，默认情况下，`run`通过调用`exec`启动事件循环并在线程里运行一个`Qt`的事件循环。
+&emsp;&emsp;`QThread`类提供了与系统无关的线程，其代表在程序中一个单独的线程控制。线程在`run`中开始执行，默认情况下，`run`通过调用`exec`启动事件循环并在线程里运行一个`Qt`的事件循环。<!--more-->
 &emsp;&emsp;当线程`started`和`finished`时，`QThread`会通过一个信号通知你，可以使用`isFinished`和`isRunning`来查询线程的状态。你可以通过调用`exit`或`quit`来停止线程。在极端情况下，可能要强行`terminate`一个执行线程，但是这样做很危险。从`Qt 4.8`起，可以释放运行刚刚结束的线程对象，通过连接`finished`信号到`QObject::deleteLater`槽。使用`wait`来阻塞调用的线程，直到其它线程执行完毕(或者直到指定的时间过去)。
 &emsp;&emsp;`QThread`还提供了静态的、平台独立的休眠函数：`sleep`、`msleep`、`usleep`，允许秒、毫秒和微秒来区分，这些函数在`Qt 5.0`中被设为`public`。一般情况下不需要`wait`和`sleep`函数，因为`Qt`是一个事件驱动型框架。考虑监听`finished`信号来取代`wait`，使用`QTimer`来取代`sleep`。
 &emsp;&emsp;静态函数`currentThreadId`和`currentThread`返回标识当前正在执行的线程。前者返回该线程平台特定的`ID`，后者返回一个线程指针。

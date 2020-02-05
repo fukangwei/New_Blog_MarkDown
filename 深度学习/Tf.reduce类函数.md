@@ -6,7 +6,7 @@ date: 2019-02-13 14:52:25
 ---
 ### tf.reduce_max(tf.reduce_min相对)
 
-&emsp;&emsp;The function is:
+&emsp;&emsp;The function is:<!--more-->
 
 ``` python
 reduce_max (

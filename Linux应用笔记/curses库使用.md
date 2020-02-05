@@ -6,7 +6,7 @@ date: 2019-02-25 14:02:21
 ---
 ### curses术语和概念
 
-&emsp;&emsp;`stdscr`是指`curses`窗口，它与显示器的物理屏幕的尺寸完全一样。`curses`函数库用两个数据结构来映射终端屏幕，即`stdscr`和`curscr`。
+&emsp;&emsp;`stdscr`是指`curses`窗口，它与显示器的物理屏幕的尺寸完全一样。`curses`函数库用两个数据结构来映射终端屏幕，即`stdscr`和`curscr`。<!--more-->
 
 - `stdscr`：对应的是`标准屏幕`，它的工作方式与`stdout`相似，是`curses`程序中的默认输出窗口。
 - `curscr`：对应的是`当前屏幕`，在程序调用`refresh`函数之前，输出到`stdscr`上的内容不会显示在屏幕上。`curses`函数库会在`refresh`函数被调用时比较`stdscr`与第二个数据结构`curscr`之间的不同之处，然后用这两个数据结构之间的差异来刷新屏幕。

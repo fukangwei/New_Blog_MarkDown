@@ -6,7 +6,7 @@ date: 2019-01-24 14:57:19
 ---
 ### 简述
 
-&emsp;&emsp;`QHostAddress`类提供一个`IP`地址。这个类提供一种独立于平台和协议的方式来保存`IPv4`和`IPv6`地址。`QHostAddress`通常与`QTcpSocket`、`QTcpServer`、`QUdpSocket`一起使用，来连接到主机或建立一个服务器。
+&emsp;&emsp;`QHostAddress`类提供一个`IP`地址。这个类提供一种独立于平台和协议的方式来保存`IPv4`和`IPv6`地址。`QHostAddress`通常与`QTcpSocket`、`QTcpServer`、`QUdpSocket`一起使用，来连接到主机或建立一个服务器。<!--more-->
 &emsp;&emsp;可以通过`setAddress`来设置一个主机地址，使用`toIPv4Address`、`toIPv6Address`或`toString`来检索主机地址，你可以通过`protocol`来检查协议类型。注意，`QHostAddress`不做`DNS`查询，而`QHostInfo`是有必要的。这个类还支持通用的预定义地址：`Null`、`LocalHost`、`LocalHostIPv6`、`Broadcast`和`Any`。
 
 ### 常用接口

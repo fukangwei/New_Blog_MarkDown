@@ -6,7 +6,7 @@ date: 2019-02-09 18:47:09
 ---
 ### socket方法
 
-&emsp;&emsp;`socket`方法的原型：
+&emsp;&emsp;`socket`方法的原型：<!--more-->
 
 ``` python
 socket(family, type[, protocal])

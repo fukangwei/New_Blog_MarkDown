@@ -4,7 +4,7 @@ categories: Qt应用示例
 abbrlink: 7294f5dd
 date: 2019-02-06 13:54:59
 ---
-&emsp;&emsp;`dialog.h`如下：
+&emsp;&emsp;`dialog.h`如下：<!--more-->
 
 ``` cpp
 #ifndef DIALOG_H

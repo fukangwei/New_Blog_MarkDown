@@ -4,7 +4,7 @@ categories: Node.js笔记
 abbrlink: 657e9de6
 date: 2019-02-08 14:17:36
 ---
-&emsp;&emsp;`Stream`是一个抽象接口，`Node.js`中有很多对象实现了这个接口。例如，对`http`服务器发起请求的`request`对象就是一个`Stream`，还有`stdout`(标准输出)。
+&emsp;&emsp;`Stream`是一个抽象接口，`Node.js`中有很多对象实现了这个接口。例如，对`http`服务器发起请求的`request`对象就是一个`Stream`，还有`stdout`(标准输出)。<!--more-->
 &emsp;&emsp;对于`Node.js`，`Stream`有四种流类型：
 
 - `Readable`：可读操作。

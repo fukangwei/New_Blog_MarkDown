@@ -4,7 +4,7 @@ categories: C语言语法详解
 abbrlink: 4600bb4
 date: 2018-12-06 12:42:02
 ---
-&emsp;&emsp;`goto`语句是一种无条件转移语句，其使用格式为：
+&emsp;&emsp;`goto`语句是一种无条件转移语句，其使用格式为：<!--more-->
 
 ``` cpp
 goto 语句标号;

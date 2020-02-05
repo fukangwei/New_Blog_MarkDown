@@ -6,7 +6,7 @@ date: 2019-02-04 12:50:33
 ---
 ### 字符出现频率的直方图
 
-&emsp;&emsp;代码如下：
+&emsp;&emsp;代码如下：<!--more-->
 
 ``` cpp
 #include <stdio.h>

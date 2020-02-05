@@ -4,7 +4,7 @@ categories: 软件与硬件问题
 abbrlink: 68e805db
 date: 2019-02-06 11:40:02
 ---
-&emsp;&emsp;1. 更新路由器软件源(路由器需要联网)：
+&emsp;&emsp;1. 更新路由器软件源(路由器需要联网)：<!--more-->
 
 ``` bash
 opkg update

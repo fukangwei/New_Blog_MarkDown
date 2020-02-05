@@ -6,7 +6,7 @@ date: 2018-12-12 06:46:23
 ---
 ### index
 
-&emsp;&emsp;函数原型如下：
+&emsp;&emsp;函数原型如下：<!--more-->
 
 ``` cpp
 #include <string.h>

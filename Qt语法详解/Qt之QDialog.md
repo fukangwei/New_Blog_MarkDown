@@ -6,7 +6,7 @@ date: 2019-02-19 17:12:19
 ---
 ### QDialog基础
 
-&emsp;&emsp;代码如下：
+&emsp;&emsp;代码如下：<!--more-->
 
 ``` cpp
 #include <QApplication>

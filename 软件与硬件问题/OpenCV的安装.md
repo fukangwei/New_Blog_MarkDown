@@ -6,7 +6,7 @@ date: 2019-02-28 19:16:28
 ---
 ### Linux下的安装(2.4.9版)
 
-&emsp;&emsp;1. 安装`cmake`以及一些依赖库：
+&emsp;&emsp;1. 安装`cmake`以及一些依赖库：<!--more-->
 
 ``` bash
 sudo apt-get install cmake
@@ -76,7 +76,7 @@ sudo updatedb  # 更新database
 
 &emsp;&emsp;在官网(`http://opencv.org/`)上找到`OpenCV`的`Windows`版，并下载下来。双击该文件后会提示解压到某个地方：
 
-<img src="./OpenCV的安装/2.png" height="212" width="270">
+<img src="./OpenCV的安装/2.png" width=60%>
 
 &emsp;&emsp;在解压目录下会有`build`和`source`两个文件夹，`build`下是使用`OpenCV`相关的文件，`sources`下是`OpenCV`的源代码。
 &emsp;&emsp;接下来添加环境变量。如果是`64`位系统，将文件夹下的`opencv\build\x64\vc14\bin`目录添加到系统变量`Path`中；如果是`32`位系统，则将`opencv\build\x86\vc14\bin`目录添加到环境变量。

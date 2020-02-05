@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: 2ac31bba
 date: 2019-01-29 11:13:18
 ---
-&emsp;&emsp;The `QTextCursor` class offers an `API` to access and modify `QTextDocuments`. The header file is `QTextCursor`. **Note**: All functions in this class are reentrant.
+&emsp;&emsp;The `QTextCursor` class offers an `API` to access and modify `QTextDocuments`. The header file is `QTextCursor`. **Note**: All functions in this class are reentrant.<!--more-->
 
 ### Public Functions
 

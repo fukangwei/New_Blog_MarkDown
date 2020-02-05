@@ -6,7 +6,7 @@ date: 2018-12-20 09:37:04
 ---
 ### while循环
 
-&emsp;&emsp;`while`语句在给定条件为`true`时，重复执行语句或语句组，循环主体执行之前会先测试条件：
+&emsp;&emsp;`while`语句在给定条件为`true`时，重复执行语句或语句组，循环主体执行之前会先测试条件：<!--more-->
 
 ``` perl
 while ( condition ) {

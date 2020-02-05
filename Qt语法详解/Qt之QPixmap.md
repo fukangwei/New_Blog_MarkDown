@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: 9906b72e
 date: 2019-02-20 14:05:57
 ---
-&emsp;&emsp;The `QPixmap` class is an `off-screen` image representation that can be used as a paint device.
+&emsp;&emsp;The `QPixmap` class is an `off-screen` image representation that can be used as a paint device.<!--more-->
 
 Header    | Inherits       | Inherited By
 ----------|----------------|----------------

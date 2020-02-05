@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: b8461a72
 date: 2019-01-23 20:59:30
 ---
-&emsp;&emsp;The `QTableWidgetItem` class provides an item for use with the `QTableWidget` class. The header file is `QTableWidgetItem`.
+&emsp;&emsp;The `QTableWidgetItem` class provides an item for use with the `QTableWidget` class. The header file is `QTableWidgetItem`.<!--more-->
 
 ### Public Functions
 

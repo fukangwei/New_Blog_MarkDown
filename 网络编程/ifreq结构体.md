@@ -4,7 +4,7 @@ abbrlink: fc22a71d
 date: 2019-01-16 20:33:54
 categories: 网络编程
 ---
-&emsp;&emsp;结构原型如下：
+&emsp;&emsp;结构原型如下：<!--more-->
 
 ``` cpp
 struct ifreq {

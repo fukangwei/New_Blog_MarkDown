@@ -4,7 +4,7 @@ categories: Tkinter编程
 abbrlink: 8560743c
 date: 2019-02-24 15:36:23
 ---
-&emsp;&emsp;`OptionMenu`事实上是下拉菜单的改版，它的发明弥补了`Listbox`组件无法实现下拉列表框的遗憾。
+&emsp;&emsp;`OptionMenu`事实上是下拉菜单的改版，它的发明弥补了`Listbox`组件无法实现下拉列表框的遗憾。<!--more-->
 &emsp;&emsp;创建一个选择菜单非常简单，只需要它一个`Tkinter`变量(用于记录用户选择的内容)以及若干选项即可：
 
 ``` python

@@ -6,7 +6,7 @@ date: 2018-12-15 18:11:10
 ---
 ### sscanf函数
 
-&emsp;&emsp;`sscanf`的作用是从一个字符串中读进与指定格式相符的数据：
+&emsp;&emsp;`sscanf`的作用是从一个字符串中读进与指定格式相符的数据：<!--more-->
 
 ``` cpp
 int sscanf ( string str, string fmt, mixed var1, mixed var2 ... );

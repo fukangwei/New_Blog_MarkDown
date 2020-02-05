@@ -4,7 +4,7 @@ categories: Contiki和uip
 abbrlink: 186f8332
 date: 2019-02-05 07:24:14
 ---
-&emsp;&emsp;1. 找一个`STM32`的`UART`的打印例程，最好是支持`printf`函数的。
+&emsp;&emsp;1. 找一个`STM32`的`UART`的打印例程，最好是支持`printf`函数的。<!--more-->
 &emsp;&emsp;2. 接下来拷贝`contiki\core`中的文件。要加入工程的文件只有如下几个：`core\sys`目录下的`autostart.c`、`etimer.c`、`process.c`和`timer.c`。
 &emsp;&emsp;3. 在`include`路径中，加入`contiki\core`、`contiki\core\sys`、`contiki\core\lib`、`contiki\cpu`。
 &emsp;&emsp;4. 把`cpu\arm\stm32f103`目录下的`clock.c`拷贝到工程目录(`stm32f10x_it.c`所在目录)并加入工程中。

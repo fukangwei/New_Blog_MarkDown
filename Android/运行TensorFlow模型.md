@@ -4,7 +4,7 @@ categories: Android
 abbrlink: 69f6f482
 date: 2019-02-08 17:21:18
 ---
-&emsp;&emsp;首先确保`Android studio`安装了`SDK`和`NDK`。`NDK`的安装位置是`File -> Settings -> Android SDK -> SDK Tools`。然后在项目文件`build.gradle`的`dependencies`中加入如下语句：
+&emsp;&emsp;首先确保`Android studio`安装了`SDK`和`NDK`。`NDK`的安装位置是`File -> Settings -> Android SDK -> SDK Tools`。然后在项目文件`build.gradle`的`dependencies`中加入如下语句：<!--more-->
 
 ``` java
 implementation 'org.tensorflow:tensorflow-android:+'

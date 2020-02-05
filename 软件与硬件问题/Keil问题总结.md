@@ -6,7 +6,7 @@ date: 2019-02-14 18:12:20
 ---
 ### transfer of control bypasses initialization of
 
-&emsp;&emsp;Example:
+&emsp;&emsp;Example:<!--more-->
 
 ``` cpp
 int main ( void ) {

@@ -6,7 +6,7 @@ date: 2019-02-04 23:00:12
 ---
 ### 移植基础
 
-&emsp;&emsp;`rtimer`即`real-time timer`，在特定时间调用特定函数，用于处理一些对时间敏感的事件。相比较`etimer`而言，`rtimer`是细粒度的(`10KHz`)定时器。但是对于细粒度定时器，若频繁产生中断，则会比较消耗`CPU`资源，因此在实现`rtimer`时应尽可能减少中断调用。
+&emsp;&emsp;`rtimer`即`real-time timer`，在特定时间调用特定函数，用于处理一些对时间敏感的事件。相比较`etimer`而言，`rtimer`是细粒度的(`10KHz`)定时器。但是对于细粒度定时器，若频繁产生中断，则会比较消耗`CPU`资源，因此在实现`rtimer`时应尽可能减少中断调用。<!--more-->
 &emsp;&emsp;对于`Contiki`系统，它已经在`/core/sys/rtimer.h`和`rtimer.c`中对`rtimer`相关结构进行了定义。对于特定平台而言，主要需要实现以下几个函数：
 
 - `rtimer_arch_init( void )`：针对特定平台的初始化操作，被`rtimer_init`函数调用。

@@ -4,7 +4,7 @@ categories: Java
 abbrlink: 7d882df0
 date: 2018-12-20 18:00:14
 ---
-&emsp;&emsp;`Collections`是一个可以操作或返回集合的专用静态类。
+&emsp;&emsp;`Collections`是一个可以操作或返回集合的专用静态类。<!--more-->
 
 ### 排序操作
 

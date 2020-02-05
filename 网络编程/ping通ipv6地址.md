@@ -6,7 +6,7 @@ categories: 网络编程
 ---
 ### Windows
 
-&emsp;&emsp;`ping ipv6主机名`的方法如下：
+&emsp;&emsp;`ping ipv6主机名`的方法如下：<!--more-->
 
 ``` bash
 ping -6 ipv6.google.com

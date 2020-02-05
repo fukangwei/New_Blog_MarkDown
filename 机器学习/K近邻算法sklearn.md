@@ -4,7 +4,7 @@ categories: 机器学习
 abbrlink: '47596074'
 date: 2019-02-12 11:28:15
 ---
-&emsp;&emsp;`sklearn.neighbors`模块实现了`k`近邻算法：
+&emsp;&emsp;`sklearn.neighbors`模块实现了`k`近邻算法：<!--more-->
 
 方法                                                | 说明
 ----------------------------------------------------|-----

@@ -4,7 +4,7 @@ categories: Android
 abbrlink: a5f5d783
 date: 2019-02-08 17:46:54
 ---
-&emsp;&emsp;`RadioButton`只能够选中一个，所以我们需要把`RadioButton`放到`RadioGroup`按钮组中，从而实现单选功能：
+&emsp;&emsp;`RadioButton`只能够选中一个，所以我们需要把`RadioButton`放到`RadioGroup`按钮组中，从而实现单选功能：<!--more-->
 
 <img src="./RadioButton单选按钮/1.png" height="134" width="165">
 

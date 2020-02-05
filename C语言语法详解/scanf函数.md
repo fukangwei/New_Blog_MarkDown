@@ -4,7 +4,7 @@ categories: C语言语法详解
 abbrlink: 90e775e9
 date: 2018-12-12 13:29:39
 ---
-&emsp;&emsp;`scanf`是`C`语言中的一个输入函数，与`printf`函数一样，都被声明在头文件`stdio.h`里。它是格式输入函数，即按用户指定的格式从键盘上把数据输入到指定的变量之中。
+&emsp;&emsp;`scanf`是`C`语言中的一个输入函数，与`printf`函数一样，都被声明在头文件`stdio.h`里。它是格式输入函数，即按用户指定的格式从键盘上把数据输入到指定的变量之中。<!--more-->
 
 ``` cpp
 int scanf ( const char* restrict format, ... );

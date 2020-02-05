@@ -6,6 +6,8 @@ date: 2019-03-01 09:51:01
 ---
 ### IAR的有用的快捷键
 
+&emsp;&emsp;`IAR`常用的快捷键如下：<!--more-->
+
 - 显示行号：在代码段点击右键，找到`Options -> Editor`，将右面的`Show Line Numbers`勾选上。
 - 注释：`Ctrl + K`；取消注释：`Ctrl + Shfit + K`。
 - 自动缩进：选中某些行，然后使用`Ctrl + Shift + I`，可以实现自动缩进。

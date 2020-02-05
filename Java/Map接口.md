@@ -4,7 +4,7 @@ categories: Java
 abbrlink: d16efb36
 date: 2018-12-21 20:11:33
 ---
-&emsp;&emsp;在`Map`接口中，键和值一一映射，可以通过键来获取值。
+&emsp;&emsp;在`Map`接口中，键和值一一映射，可以通过键来获取值。<!--more-->
 
 - 给定一个键和一个值，你可以将该值存储在一个`Map`对象。之后，你可以通过键来访问对应的值。
 - 当访问的值不存在的时候，方法就会抛出一个`NoSuchElementException`异常。

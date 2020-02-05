@@ -6,7 +6,7 @@ date: 2019-02-24 21:10:05
 ---
 ### FatFs
 
-&emsp;&emsp;`FatFS`是一个为小型嵌入式系统设计的通用`FAT`(`File Allocation Table`)文件系统模块。`FatFs`的编写遵循`ANSI C`，并且完全与磁盘`I/O`层分开，因此它独立(不依赖)于硬件架构。它可以被嵌入到低成本的微控制器中，如`AVR`、`8051`、`PIC`、`ARM`、`Z80`、`68K`，而不需要做任何修改。
+&emsp;&emsp;`FatFS`是一个为小型嵌入式系统设计的通用`FAT`(`File Allocation Table`)文件系统模块。`FatFs`的编写遵循`ANSI C`，并且完全与磁盘`I/O`层分开，因此它独立(不依赖)于硬件架构。它可以被嵌入到低成本的微控制器中，如`AVR`、`8051`、`PIC`、`ARM`、`Z80`、`68K`，而不需要做任何修改。<!--more-->
 
 <img src="./FatFs文件系统/1.png" height="304" width="283">
 

@@ -4,7 +4,7 @@ categories: Shell编程
 abbrlink: 93ac5ec0
 date: 2019-01-22 08:22:03
 ---
-&emsp;&emsp;`Shell`可以包含外部脚本，这样可以很方便地封装一些公用的代码。`Shell`文件包含的语法格式如下：
+&emsp;&emsp;`Shell`可以包含外部脚本，这样可以很方便地封装一些公用的代码。`Shell`文件包含的语法格式如下：<!--more-->
 
 ``` bash
 . filename  # 注意点号和文件名中间有一空格

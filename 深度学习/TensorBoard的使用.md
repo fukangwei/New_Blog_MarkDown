@@ -4,7 +4,7 @@ categories: 深度学习
 abbrlink: '88081241'
 date: 2019-02-16 12:08:29
 ---
-&emsp;&emsp;`TensorBoard`可以将训练过程中的各种绘制数据展示出来，包括标量(`scalars`)、图片(`images`)、音频(`Audio`)、计算图(`graph`)、数据分布、直方图(`histograms`)和嵌入式向量。使用`TensorBoard`展示数据，需要在执行`TensorFlow`计算图的过程中，将各种类型的数据汇总并记录到日志文件中。然后使用`TensorBoard`读取这些日志文件，解析数据并生产数据可视化的`Web`页面，让我们可以在浏览器中观察各种汇总数据。
+&emsp;&emsp;`TensorBoard`可以将训练过程中的各种绘制数据展示出来，包括标量(`scalars`)、图片(`images`)、音频(`Audio`)、计算图(`graph`)、数据分布、直方图(`histograms`)和嵌入式向量。使用`TensorBoard`展示数据，需要在执行`TensorFlow`计算图的过程中，将各种类型的数据汇总并记录到日志文件中。然后使用`TensorBoard`读取这些日志文件，解析数据并生产数据可视化的`Web`页面，让我们可以在浏览器中观察各种汇总数据。<!--more-->
 &emsp;&emsp;`summary_op`包括了`summary.scalar`、`summary.histogram`、`summary.image`等操作，这些操作输出的是各种`summary protobuf`，最后通过`summary.writer`写入到`event`文件中。`TensorFlow`包含生成`summary`数据的`API`接口，这些函数将汇总信息存放在`protobuf`中，以字符串形式表达。
 &emsp;&emsp;对标量数据汇总和记录使用`tf.summary.scalar`：
 

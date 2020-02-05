@@ -8,7 +8,7 @@ date: 2019-02-14 19:36:40
 
 #### insmod
 
-&emsp;&emsp;在`Linux`环境下使用`insmod`时，一般会提示`command not found`。这是因为`insmod`命令是在`/sbin`目录下，而且也只有`root`将`/sbin`加到路径中，可以尝试用`/sbin/insmod`替代`insmod`。
+&emsp;&emsp;在`Linux`环境下使用`insmod`时，一般会提示`command not found`。这是因为`insmod`命令是在`/sbin`目录下，而且也只有`root`将`/sbin`加到路径中，可以尝试用`/sbin/insmod`替代`insmod`。<!--more-->
 
 #### yacc和lex
 

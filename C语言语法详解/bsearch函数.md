@@ -4,7 +4,7 @@ categories: C语言语法详解
 abbrlink: d5ae701b
 date: 2018-12-12 00:18:48
 ---
-&emsp;&emsp;`C`语言中可以用`bsearch`实现二分查找，同`qsort`一样，`bsearch`也包含在库中，且同样要自定义比较子函数：
+&emsp;&emsp;`C`语言中可以用`bsearch`实现二分查找，同`qsort`一样，`bsearch`也包含在库中，且同样要自定义比较子函数：<!--more-->
 
 ``` c
 void* bsearch ( const void* key, const void* base, size_t nmem,

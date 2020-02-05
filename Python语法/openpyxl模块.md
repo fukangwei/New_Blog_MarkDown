@@ -6,7 +6,7 @@ date: 2019-02-24 18:44:09
 ---
 ### 基本概念
 
-&emsp;&emsp;在`openpyxl`中，主要用到三个概念：`Workbooks`、`Sheets`和`Cells`。`Workbook`就是一个`excel`工作表，`Sheet`是工作表中的一张表页，`Cell`就是简单的一个格。`openpyxl`就是围绕着这三个概念进行的：打开`Workbook`，定位`Sheet`，操作`Cell`。
+&emsp;&emsp;在`openpyxl`中，主要用到三个概念：`Workbooks`、`Sheets`和`Cells`。`Workbook`就是一个`excel`工作表，`Sheet`是工作表中的一张表页，`Cell`就是简单的一个格。`openpyxl`就是围绕着这三个概念进行的：打开`Workbook`，定位`Sheet`，操作`Cell`。<!--more-->
 
 ### 读取xlsx
 

@@ -4,7 +4,7 @@ categories: C语言语法详解
 abbrlink: e038e3f5
 date: 2018-12-10 09:57:15
 ---
-&emsp;&emsp;今天看到一段代码，初始化一个`struct`用的是乱序格式：
+&emsp;&emsp;今天看到一段代码，初始化一个`struct`用的是乱序格式：<!--more-->
 
 ``` cpp
 typedef struct _data_t {

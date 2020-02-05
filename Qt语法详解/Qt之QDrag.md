@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: '3753e918'
 date: 2019-01-22 18:17:51
 ---
-&emsp;&emsp;The `QDrag` class provides support for `MIME-based` drag and drop data transfer.
+&emsp;&emsp;The `QDrag` class provides support for `MIME-based` drag and drop data transfer.<!--more-->
 
 Header  | Inherits
 --------|---------

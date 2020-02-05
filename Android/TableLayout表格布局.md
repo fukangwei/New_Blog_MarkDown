@@ -4,7 +4,7 @@ categories: Android
 abbrlink: b9b5a7ce
 date: 2019-03-01 20:31:17
 ---
-&emsp;&emsp;相信学过`HTML`的朋友都知道，我们可以通过`<table>`、`<tr>`、`<td>`就可以生成一个`HTML`的表格，而`Android`的`TableLayout`也允许我们使用表格的方式来排列组件，就是行与列的方式。但它却不像`Android 4.0`后引入的`GridLayout`(网格)布局一样，无法直接设置多少行与多少列！
+&emsp;&emsp;相信学过`HTML`的朋友都知道，我们可以通过`<table>`、`<tr>`、`<td>`就可以生成一个`HTML`的表格，而`Android`的`TableLayout`也允许我们使用表格的方式来排列组件，就是行与列的方式。但它却不像`Android 4.0`后引入的`GridLayout`(网格)布局一样，无法直接设置多少行与多少列！<!--more-->
 
 ### 如何确定行数与列数
 

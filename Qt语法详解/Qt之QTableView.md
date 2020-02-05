@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: e8baa847
 date: 2019-01-22 15:15:18
 ---
-&emsp;&emsp;`QTableView`常用于实现数据的表格显示。
+&emsp;&emsp;`QTableView`常用于实现数据的表格显示。<!--more-->
 &emsp;&emsp;1. 添加表头：
 
 ``` cpp

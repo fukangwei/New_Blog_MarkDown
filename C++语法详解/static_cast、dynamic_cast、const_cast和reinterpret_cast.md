@@ -6,7 +6,7 @@ date: 2019-02-07 15:20:55
 ---
 ### static_cast
 
-&emsp;&emsp;该运算符把`expression`转换为`type-id`类型，但没有运行时类型检查来保证转换的安全性。
+&emsp;&emsp;该运算符把`expression`转换为`type-id`类型，但没有运行时类型检查来保证转换的安全性。<!--more-->
 
 ``` cpp
 static_cast < type-id > ( expression )

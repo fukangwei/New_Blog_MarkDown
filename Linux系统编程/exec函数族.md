@@ -4,7 +4,7 @@ categories: Linux系统编程
 abbrlink: 67a10bd0
 date: 2019-02-02 21:34:35
 ---
-&emsp;&emsp;`exec`用被执行的程序替换调用它的程序。区别为`fork`创建一个新的进程，产生一个新的`PID`；`exec`启动一个新程序，替换原有的进程，因此进程的`PID`不会改变。
+&emsp;&emsp;`exec`用被执行的程序替换调用它的程序。区别为`fork`创建一个新的进程，产生一个新的`PID`；`exec`启动一个新程序，替换原有的进程，因此进程的`PID`不会改变。<!--more-->
 
 ### execl
 

@@ -4,7 +4,7 @@ categories: Java
 abbrlink: ff7cfcb
 date: 2018-12-20 19:53:50
 ---
-&emsp;&emsp;`LinkedList`其实也就是我们在数据结构中的链表，这种数据结构有如下特性：
+&emsp;&emsp;`LinkedList`其实也就是我们在数据结构中的链表，这种数据结构有如下特性：<!--more-->
 
 - 分配内存空间不是必须是连续的。
 - 插入、删除操作很快，只要修改前后指针就`OK`了，时间复杂度为`O(1)`。

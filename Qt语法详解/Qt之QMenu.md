@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: 27137ee0
 date: 2019-02-18 19:51:39
 ---
-&emsp;&emsp;The `QMenu` class provides a menu widget for use in menu bars, context menus, and other popup menus.
+&emsp;&emsp;The `QMenu` class provides a menu widget for use in menu bars, context menus, and other popup menus.<!--more-->
 
 Header  | Inherits  | Inherited By
 --------|-----------|-------------

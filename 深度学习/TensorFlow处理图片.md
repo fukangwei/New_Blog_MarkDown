@@ -6,7 +6,7 @@ date: 2019-02-28 08:45:16
 ---
 ### TensorFlow与OpenCV
 
-&emsp;&emsp;`OpenCV`读入图片，使用`tf.Variable`初始化为`tensor`，加载到`tensorflow`对图片进行转置操作，然后`opencv`显示转置后的结果：
+&emsp;&emsp;`OpenCV`读入图片，使用`tf.Variable`初始化为`tensor`，加载到`tensorflow`对图片进行转置操作，然后`opencv`显示转置后的结果：<!--more-->
 
 ``` python
 import tensorflow as tf

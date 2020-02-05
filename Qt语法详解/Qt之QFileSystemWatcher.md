@@ -6,7 +6,7 @@ date: 2019-01-24 13:40:43
 ---
 ### 简述
 
-&emsp;&emsp;`QFileSystemWatcher`类用于提供监视文件和目录修改的接口。它通过监控指定路径的列表，监视文件系统中文件和目录的变更。调用`addPath`函数可以监控一个特定的文件或目录。如果需要监控多个路径，可以使用`addPaths`。通过使用`removePath`和`removePaths`函数来移除现有路径。
+&emsp;&emsp;`QFileSystemWatcher`类用于提供监视文件和目录修改的接口。它通过监控指定路径的列表，监视文件系统中文件和目录的变更。调用`addPath`函数可以监控一个特定的文件或目录。如果需要监控多个路径，可以使用`addPaths`。通过使用`removePath`和`removePaths`函数来移除现有路径。<!--more-->
 &emsp;&emsp;`QFileSystemWatcher`检查添加到它的每个路径，已添加到`QFileSystemWatcher`的文件可以使用的`files`函数进行访问，目录则使用`directories`函数进行访问。当一个文件被修改、重命名或从磁盘上删除时，会发出`fileChanged`信号。同样，当一个目录或它的内容被修改或删除时，会发射`directoryChanged`信号。需要注意，文件一旦被重命名或从硬盘删除，目录从磁盘上删除时，`QFileSystemWatcher`将停止监控。监控文件和目录进行修改的行为会消耗系统资源，这意味着进程同时监控的文件数量是有限制的。一些系统限制打开的文件描述符的数量默认为`256`，也就是说如果进程使用`addPath`和`addPaths`函数添加超过`256`个文件或目录到文件系统将会失败。
 
 ### 公共函数

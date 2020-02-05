@@ -4,7 +4,7 @@ categories: Qt应用示例
 abbrlink: 3ef2af34
 date: 2019-02-23 11:48:15
 ---
-&emsp;&emsp;`widget.h`如下：
+&emsp;&emsp;`widget.h`如下：<!--more-->
 
 ``` cpp
 #ifndef WIDGET_H

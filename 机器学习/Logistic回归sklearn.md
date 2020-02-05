@@ -4,7 +4,7 @@ categories: 机器学习
 abbrlink: 26c6ea51
 date: 2019-02-12 14:04:32
 ---
-&emsp;&emsp;`sklearn.linear_model`模块提供了很多模型供我们使用，比如`Logistic`回归、`Lasso`回归、贝叶斯脊回归等：
+&emsp;&emsp;`sklearn.linear_model`模块提供了很多模型供我们使用，比如`Logistic`回归、`Lasso`回归、贝叶斯脊回归等：<!--more-->
 
 方法                                                | 说明
 ----------------------------------------------------|------

@@ -4,7 +4,7 @@ categories: opencv和图像处理
 abbrlink: a45c6400
 date: 2019-02-06 12:03:36
 ---
-&emsp;&emsp;我们想要在应用中通过`OpenCV`的`Java API`实现打开相机，并全屏显示的功能，所以`MainActivity`需要实现`CvCameraViewListener2`接口。一共需要实现三个方法，分别是`onCameraViewStarted`、`onCameraViewStopped`和`onCameraFrame`，而图像处理函数写在`onCameraFrame`函数中。
+&emsp;&emsp;我们想要在应用中通过`OpenCV`的`Java API`实现打开相机，并全屏显示的功能，所以`MainActivity`需要实现`CvCameraViewListener2`接口。一共需要实现三个方法，分别是`onCameraViewStarted`、`onCameraViewStopped`和`onCameraFrame`，而图像处理函数写在`onCameraFrame`函数中。<!--more-->
 &emsp;&emsp;修改文件`AndroidManifest.xml`，添加相机的相关权限：
 
 ``` xml

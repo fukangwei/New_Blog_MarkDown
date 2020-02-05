@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: '584081e5'
 date: 2019-01-24 13:25:08
 ---
-&emsp;&emsp;`QStringList`类提供了一个字符串列表，从`QList <QString>`继承而来，它提供快速索引为基础的接入以及快速插入和清除。其成员函数用于操作这个字符串列表，例如`append`、`insert`、`replace`、`removeAll`、`removeAt`、`removeFirst`、`removeLast`和`removeOne`(这些函数只能用来清除`QStringList`中的某一个元素)等。
+&emsp;&emsp;`QStringList`类提供了一个字符串列表，从`QList <QString>`继承而来，它提供快速索引为基础的接入以及快速插入和清除。其成员函数用于操作这个字符串列表，例如`append`、`insert`、`replace`、`removeAll`、`removeAt`、`removeFirst`、`removeLast`和`removeOne`(这些函数只能用来清除`QStringList`中的某一个元素)等。<!--more-->
 &emsp;&emsp;增加字符串可以使用`append`或者`<<`：
 
 ``` cpp

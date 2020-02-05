@@ -6,7 +6,7 @@ date: 2018-12-18 07:06:34
 ---
 ### if语句
 
-&emsp;&emsp;`if`语句可以判断语句的返回值：
+&emsp;&emsp;`if`语句可以判断语句的返回值：<!--more-->
 
 ``` perl
 if ( open( DATA, $file ) ) {

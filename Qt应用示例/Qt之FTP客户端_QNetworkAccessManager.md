@@ -4,7 +4,7 @@ categories: Qt应用示例
 abbrlink: 89f0fb1f
 date: 2019-02-06 14:04:44
 ---
-&emsp;&emsp;在此实现的`FTP`包括两个类，一个是界面类，一个是`Ftp`实现的类。
+&emsp;&emsp;在此实现的`FTP`包括两个类，一个是界面类，一个是`Ftp`实现的类。<!--more-->
 &emsp;&emsp;`client.h`如下：
 
 ``` cpp

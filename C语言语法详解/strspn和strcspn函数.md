@@ -6,7 +6,7 @@ date: 2018-12-13 13:25:52
 ---
 ### strcspn函数
 
-&emsp;&emsp;函数原型为：
+&emsp;&emsp;函数原型为：<!--more-->
 
 ``` c
 #include <string.h>

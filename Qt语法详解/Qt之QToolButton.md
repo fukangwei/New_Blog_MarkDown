@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: 62dbbd0c
 date: 2019-02-18 19:29:18
 ---
-&emsp;&emsp;`QToolButton`类提供了用于命令或选项可以快速访问的按钮，通常可以用在`QToolBar`里面。工具按钮和普通的命令按钮不同，通常不显示文本，而显示图标。
+&emsp;&emsp;`QToolButton`类提供了用于命令或选项可以快速访问的按钮，通常可以用在`QToolBar`里面。工具按钮和普通的命令按钮不同，通常不显示文本，而显示图标。<!--more-->
 
 ### 详细描述
 

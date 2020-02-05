@@ -4,7 +4,7 @@ categories: Linux应用笔记
 abbrlink: aeebde75
 date: 2019-02-02 17:29:37
 ---
-&emsp;&emsp;部署详细步骤如下：
+&emsp;&emsp;部署详细步骤如下：<!--more-->
 &emsp;&emsp;1. 到`http://www.boa.org/`下载`boa-0.94.13.tar.gz`，解压后得到`boa-0.94.13`文件夹。
 &emsp;&emsp;2. 进入其中的`src`文件夹，运行`./configure`生成`Makefile`文件。
 &emsp;&emsp;3. 在`boa-0.94.13`文件夹的`src`目录下，做如下修改：

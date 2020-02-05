@@ -4,7 +4,7 @@ categories: Contiki和uip
 abbrlink: 62c1e627
 date: 2019-02-04 23:38:25
 ---
-&emsp;&emsp;首先选择一个`CC2530`上的基础程序(例如串口打印)，移植系统在此基础上进行。
+&emsp;&emsp;首先选择一个`CC2530`上的基础程序(例如串口打印)，移植系统在此基础上进行。<!--more-->
 &emsp;&emsp;将`contiki-3.0/core/sys`目录下的`autostart.c`、`etimer.c`、`process.c`和`timer.c`文件，`contiki-3.0\cpu\cc253x\dev`目录下的`clock.c`以及`contiki-3.0\cpu\cc253x\dev`目录下的`soc.c`添加到工程中。
 &emsp;&emsp;将头文件路径添加到`IAR`中：
 

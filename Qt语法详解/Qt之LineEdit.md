@@ -6,7 +6,7 @@ date: 2019-02-23 10:45:35
 ---
 ### 行编辑器
 
-&emsp;&emsp;`mywidget.h`如下：
+&emsp;&emsp;`mywidget.h`如下：<!--more-->
 
 ``` cpp
 #ifndef MYWIDGET_H

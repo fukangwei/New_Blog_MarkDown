@@ -4,7 +4,7 @@ categories: 机器学习
 abbrlink: ec98f519
 date: 2019-02-12 09:55:30
 ---
-&emsp;&emsp;`sklearn.ensemble`模块提供了很多集成方法，例如`AdaBoost`、`Bagging`、随机森林等：
+&emsp;&emsp;`sklearn.ensemble`模块提供了很多集成方法，例如`AdaBoost`、`Bagging`、随机森林等：<!--more-->
 
 方法                                                | 说明
 ----------------------------------------------------|------

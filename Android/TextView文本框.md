@@ -4,7 +4,7 @@ categories: Android
 abbrlink: 80f04846
 date: 2019-03-01 18:58:18
 ---
-&emsp;&emsp;先介绍几个单位：
+&emsp;&emsp;先介绍几个单位：<!--more-->
 
 - `dp`(`dip`)：`device independent pixels`，译为设备独立像素。
 - `px`：`pixels`，译为像素。

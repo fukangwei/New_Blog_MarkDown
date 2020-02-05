@@ -4,7 +4,7 @@ categories: Linux驱动程序
 abbrlink: 22df4bae
 date: 2019-02-04 11:04:47
 ---
-&emsp;&emsp;`memdev.h`如下：
+&emsp;&emsp;`memdev.h`如下：<!--more-->
 
 ``` cpp
 #ifndef _MEMDEV_H_

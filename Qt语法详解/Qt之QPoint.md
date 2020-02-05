@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: 7ef3c5e6
 date: 2019-01-23 19:45:45
 ---
-&emsp;&emsp;The `QPoint` class defines a point in the plane using integer precision. The header file is `QPoint`.
+&emsp;&emsp;The `QPoint` class defines a point in the plane using integer precision. The header file is `QPoint`.<!--more-->
 
 ### Public Functions
 

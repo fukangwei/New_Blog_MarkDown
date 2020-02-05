@@ -6,7 +6,7 @@ date: 2019-02-23 15:50:52
 ---
 ### Ftp文件阅读器(匿名登录)
 
-&emsp;&emsp;`mainwindow.h`如下：
+&emsp;&emsp;`mainwindow.h`如下：<!--more-->
 
 ``` cpp
 #ifndef MAINWINDOW_H

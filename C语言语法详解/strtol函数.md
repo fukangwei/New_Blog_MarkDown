@@ -4,7 +4,7 @@ categories: C语言语法详解
 abbrlink: bcbbf6d5
 date: 2018-12-13 09:59:50
 ---
-&emsp;&emsp;`strtol`函数原型如下：
+&emsp;&emsp;`strtol`函数原型如下：<!--more-->
 
 ``` cpp
 long int strtol ( const char *nptr, char **endptr, int base );

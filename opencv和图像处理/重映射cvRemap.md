@@ -4,7 +4,7 @@ categories: opencv和图像处理
 abbrlink: 2b9df6c1
 date: 2019-03-04 11:47:15
 ---
-&emsp;&emsp;`cvRemap`可以对图像进行普通几何变换，它利用下面指定的矩阵变换输入图像：
+&emsp;&emsp;`cvRemap`可以对图像进行普通几何变换，它利用下面指定的矩阵变换输入图像：<!--more-->
 
 ``` cpp
 src(mapx(x, y), mapy(x, y)) -> dst(x, y)

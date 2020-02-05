@@ -8,7 +8,7 @@ date: 2019-02-11 10:03:42
 
 #### Numpy和Pandas
 
-&emsp;&emsp;如果用`python`的列表和字典来作比较，那么可以说`Numpy`是列表形式的，没有数值标签；而`Pandas`就是字典形式。`Pandas`是基于`Numpy`构建的，让`Numpy`为中心的应用变得更加简单。
+&emsp;&emsp;如果用`python`的列表和字典来作比较，那么可以说`Numpy`是列表形式的，没有数值标签；而`Pandas`就是字典形式。`Pandas`是基于`Numpy`构建的，让`Numpy`为中心的应用变得更加简单。<!--more-->
 &emsp;&emsp;要使用`pandas`，首先需要了解它主要的两个数据结构：`Series`和`DataFrame`。
 
 #### Series

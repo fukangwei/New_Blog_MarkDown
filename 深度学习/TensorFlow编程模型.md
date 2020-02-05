@@ -4,7 +4,7 @@ categories: 深度学习
 abbrlink: 1552d558
 date: 2019-02-17 12:42:22
 ---
-&emsp;&emsp;`TensorFlow`的计算可以表示为一种有向图(`directed graph`)，或者称计算图(`computation graph`)。图中每一个运算操作(`operation`)是一个节点(`node`)，节点之间的连接线称为边(`edge`)。计算图中的节点可以有任意多个输入和任意多个输出，每个节点都只有一个运算操作。在计算图中流动(`flow`)的数据被称为张量(`tensor`)，故得名`TensorFlow`。
+&emsp;&emsp;`TensorFlow`的计算可以表示为一种有向图(`directed graph`)，或者称计算图(`computation graph`)。图中每一个运算操作(`operation`)是一个节点(`node`)，节点之间的连接线称为边(`edge`)。计算图中的节点可以有任意多个输入和任意多个输出，每个节点都只有一个运算操作。在计算图中流动(`flow`)的数据被称为张量(`tensor`)，故得名`TensorFlow`。<!--more-->
 &emsp;&emsp;计算图示例如下：
 
 ``` python

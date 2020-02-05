@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: b16db4cf
 date: 2019-01-27 00:36:51
 ---
-&emsp;&emsp;The `QTreeWidgetItem` class provides an item for use with the `QTreeWidget` convenience class. The header file is `QTreeWidgetItem`.
+&emsp;&emsp;The `QTreeWidgetItem` class provides an item for use with the `QTreeWidget` convenience class. The header file is `QTreeWidgetItem`.<!--more-->
 
 ### Public Functions
 

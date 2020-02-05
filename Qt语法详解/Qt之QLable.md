@@ -4,6 +4,8 @@ categories: Qt语法详解
 abbrlink: 6fef65c7
 date: 2019-02-06 17:14:43
 ---
+&emsp;&emsp;`QLable`的相关`API`如下：<!--more-->
+
 - `setText( string )`：设置`label`显示的文本。
 - `move(x, y)`：移动`label`到指定位置。
 - `setWindowTitle( string )`：设置窗体的标题。

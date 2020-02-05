@@ -4,7 +4,7 @@ categories: Linux驱动程序
 abbrlink: cd42adf
 date: 2019-02-04 10:27:51
 ---
-&emsp;&emsp;`memdev.h`如下：
+&emsp;&emsp;`memdev.h`如下：<!--more-->
 
 ``` cpp
 #ifndef _MEMDEV_H_

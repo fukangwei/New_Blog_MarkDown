@@ -4,7 +4,7 @@ categories: C++语法详解
 abbrlink: 2d14b51e
 date: 2019-02-05 20:34:59
 ---
-&emsp;&emsp;`unique`函数的功能是去除相邻的重复元素(只保留一个)：
+&emsp;&emsp;`unique`函数的功能是去除相邻的重复元素(只保留一个)：<!--more-->
 
 ``` cpp
 unique(first, last, compare);

@@ -4,7 +4,7 @@ categories: Android
 abbrlink: 4cfb7ca8
 date: 2019-02-08 17:56:00
 ---
-&emsp;&emsp;进度条常用属性如下：
+&emsp;&emsp;进度条常用属性如下：<!--more-->
 
 - `android:max`：进度条的最大值。
 - `android:progress`：进度条已完成进度值。

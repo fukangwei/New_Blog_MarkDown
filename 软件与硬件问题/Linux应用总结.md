@@ -6,7 +6,7 @@ date: 2019-02-06 11:44:23
 ---
 ### 树莓派显示中文字体
 
-&emsp;&emsp;使用如下命令：
+&emsp;&emsp;使用如下命令：<!--more-->
 
 ``` bash
 sudo apt-get update

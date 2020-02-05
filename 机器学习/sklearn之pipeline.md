@@ -4,7 +4,7 @@ categories: 机器学习
 abbrlink: '7e889026'
 date: 2019-02-27 09:27:08
 ---
-&emsp;&emsp;我们经常需要在训练集和测试集上同时进行训练：
+&emsp;&emsp;我们经常需要在训练集和测试集上同时进行训练：<!--more-->
 
 ``` python
 vect = CountVectorizer()
@@ -34,7 +34,7 @@ predicted = pipeline.fit(Xtrain).predict(Xtrain)
 predicted = pipeline.predict(Xtest)  # Now evaluate all steps on test set
 ```
 
-<img src="./sklearn之pipeline/1.jpg" height="215" width="295">
+<img src="./sklearn之pipeline/1.jpg" width=45%>
 
 ### 使用pipeline做cross validation
 
@@ -76,4 +76,4 @@ plt.legend(prop=dict(size=12))
 plt.show()
 ```
 
-<img src="./sklearn之pipeline/2.jpg" height="254" width="328">
+<img src="./sklearn之pipeline/2.jpg" width=45%>

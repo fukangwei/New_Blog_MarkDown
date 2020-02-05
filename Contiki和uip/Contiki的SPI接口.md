@@ -6,7 +6,7 @@ date: 2019-02-04 23:50:56
 ---
 ### SPI宏定义
 
-&emsp;&emsp;`Contiki`源码的`SPI`宏定义如下：
+&emsp;&emsp;`Contiki`源码的`SPI`宏定义如下：<!--more-->
 
 ``` cpp
 #ifndef __SPI_H__

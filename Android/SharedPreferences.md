@@ -4,7 +4,7 @@ categories: Android
 abbrlink: 56560b6f
 date: 2019-02-10 09:54:55
 ---
-&emsp;&emsp;在`Android`开发中，经常需要将少量简单类型数据保存在本地，例如用户设置。这些数据可能只是一两个字符串，一般选择使用`SharedPreferences`来保存。它使用`xml`文件存放数据，存放在`/data/data/<package name>/shared_prefs`目录下。
+&emsp;&emsp;在`Android`开发中，经常需要将少量简单类型数据保存在本地，例如用户设置。这些数据可能只是一两个字符串，一般选择使用`SharedPreferences`来保存。它使用`xml`文件存放数据，存放在`/data/data/<package name>/shared_prefs`目录下。<!--more-->
 
 ### 存储数据
 

@@ -6,8 +6,7 @@ date: 2019-01-26 21:42:05
 ---
 ### QNetworkAccessManager
 
-&emsp;&emsp;这个类的所有函数都是可重入的，它是从`Qt 4.4`引入的。
-&emsp;&emsp;`QNetworkAccessManager`类允许应用程序发送网络请求和接收网络应答。`Network Access API`都是围绕着一个`QNetworkAccessManager`对象构造的，这个对象包含着发送请求的一些通用配置和设置。它包含着代理和缓存的配置，以及和这些事物相关的一些信号，并且应答信号可以作为我们检测一个网络操作的进度。一个`QNetworkAccessManager`对于一整个`Qt`应用程序来说已经足够了！
+&emsp;&emsp;`QNetworkAccessManager`类允许应用程序发送网络请求和接收网络应答。`Network Access API`都是围绕着一个`QNetworkAccessManager`对象构造的，这个对象包含着发送请求的一些通用配置和设置。它包含着代理和缓存的配置，以及和这些事物相关的一些信号，并且应答信号可以作为我们检测一个网络操作的进度。一个`QNetworkAccessManager`对于一整个`Qt`应用程序来说已经足够了！<!--more-->
 &emsp;&emsp;一旦一个`QNetworkAccessManager`对象被创建了，那么应用程序就可以使用它在网络上发送请求。它提供了一组标准的函数，可以承载网络请求和一些可选的数据，并且每一个请求返回一个`QNetworkReply`对象。该返回的对象包含着返回的请求应带的所有数据。
 &emsp;&emsp;一个简单的从网络下载的例子可如下完成：
 

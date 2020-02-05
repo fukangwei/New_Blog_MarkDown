@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: 669d46ba
 date: 2019-01-22 15:41:04
 ---
-&emsp;&emsp;The `QList::const_iterator` class provides an `STL-style` const iterator for `QList` and `QQueue`. The header file is `const_iterator`.
+&emsp;&emsp;The `QList::const_iterator` class provides an `STL-style` const iterator for `QList` and `QQueue`. The header file is `const_iterator`.<!--more-->
 
 ### Public Functions
 

@@ -6,7 +6,7 @@ date: 2018-12-14 21:56:15
 ---
 ### strchr函数
 
-&emsp;&emsp;`strchr`用来查找某字符在字符串中首次出现的位置：
+&emsp;&emsp;`strchr`用来查找某字符在字符串中首次出现的位置：<!--more-->
 
 ``` cpp
 #include <string.h>

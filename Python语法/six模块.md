@@ -6,7 +6,7 @@ date: 2019-02-10 17:38:51
 ---
 ### Six: Python 2 and 3 Compatibility Library
 
-&emsp;&emsp;`six` provides simple utilities for wrapping over differences between `Python 2` and `Python 3`. It is intended to support codebases that work on both `Python 2` and `Python 3` without modification. `six` consists of only one `Python` file, so it is painless to copy into a project.
+&emsp;&emsp;`six` provides simple utilities for wrapping over differences between `Python 2` and `Python 3`. It is intended to support codebases that work on both `Python 2` and `Python 3` without modification. `six` consists of only one `Python` file, so it is painless to copy into a project.<!--more-->
 &emsp;&emsp;The name `six`, comes from the fact that `2 * 3` equals `6`. Why not addition? Multiplication is more powerful, and, anyway, `five` has already been snatched away by the (admittedly now moribund) `Zope Five project`.
 
 ### Package contents

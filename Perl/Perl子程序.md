@@ -4,7 +4,7 @@ categories: Perl
 abbrlink: c8f1217d
 date: 2018-12-19 20:06:58
 ---
-&emsp;&emsp;Perl子程序也就是用户定义的函数，可以出现在程序的任何地方：
+&emsp;&emsp;Perl子程序也就是用户定义的函数，可以出现在程序的任何地方：<!--more-->
 
 ``` perl
 sub subroutine {

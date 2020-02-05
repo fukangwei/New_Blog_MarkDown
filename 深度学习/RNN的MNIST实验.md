@@ -6,7 +6,7 @@ date: 2019-02-15 17:54:49
 ---
 ### 在TensorFlow上实现基础LSTM网络
 
-&emsp;&emsp;此笔记的主要目的就是使读者熟悉在`TensorFlow`上实现基础`LSTM`网络的详细过程。我们将选用`MNIST`作为数据集，它包括手写数字的图像和对应的标签，我们可以根据以下内置功能从`TensorFlow`上下载并读取数据：
+&emsp;&emsp;此笔记的主要目的就是使读者熟悉在`TensorFlow`上实现基础`LSTM`网络的详细过程。我们将选用`MNIST`作为数据集，它包括手写数字的图像和对应的标签，我们可以根据以下内置功能从`TensorFlow`上下载并读取数据：<!--more-->
 
 ``` python
 from tensorflow.examples.tutorials.mnist import input_data

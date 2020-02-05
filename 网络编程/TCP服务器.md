@@ -4,7 +4,7 @@ abbrlink: f57bd8f7
 date: 2019-01-17 12:58:23
 categories: 网络编程
 ---
-&emsp;&emsp;`tcp_client.c`如下：
+&emsp;&emsp;`tcp_client.c`如下：<!--more-->
 
 ``` cpp
 #include <stdlib.h>

@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: 1edebc6b
 date: 2019-01-31 19:46:43
 ---
-&emsp;&emsp;The `QList` class is a template class that provides lists.
+&emsp;&emsp;The `QList` class is a template class that provides lists.<!--more-->
 
 Header   | Inherited By
 ---------|-------------

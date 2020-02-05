@@ -6,7 +6,7 @@ date: 2019-02-08 16:08:36
 ---
 ### Node.js基础
 
-&emsp;&emsp;`Node.js`是一个事件驱动`I/O`服务端`JavaScript`环境，基于`Google`的`V8`引擎。可以使用以下命令来查看当前`Node.js`版本：
+&emsp;&emsp;`Node.js`是一个事件驱动`I/O`服务端`JavaScript`环境，基于`Google`的`V8`引擎。可以使用以下命令来查看当前`Node.js`版本：<!--more-->
 
 ``` bash
 $ node -v

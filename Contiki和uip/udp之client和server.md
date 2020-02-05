@@ -4,7 +4,7 @@ categories: Contiki和uip
 abbrlink: d3cab822
 date: 2019-02-05 09:47:51
 ---
-&emsp;&emsp;对于`udp-client.c`进行分析：
+&emsp;&emsp;对于`udp-client.c`进行分析：<!--more-->
 
 ``` cpp
 PROCESS_THREAD ( udp_client_process, ev, data ) {

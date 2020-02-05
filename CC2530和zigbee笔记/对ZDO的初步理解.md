@@ -4,7 +4,7 @@ categories: CC2530和zigbee笔记
 abbrlink: 76fcf04c
 date: 2019-02-05 13:01:29
 ---
-&emsp;&emsp;`ZDO`其实是`ZigBee`协议栈中的一个协议，负责所有设备的管理和安全方案。`ZDO`就好像是一个驻留在所有`ZigBee`节点中特殊应用对象，是应用层其他端点与应用子层管理实体交互的中间件。`ZDO`占用每个节点(`node`)的端口`0`(`Endpoint0`)。
+&emsp;&emsp;`ZDO`其实是`ZigBee`协议栈中的一个协议，负责所有设备的管理和安全方案。`ZDO`就好像是一个驻留在所有`ZigBee`节点中特殊应用对象，是应用层其他端点与应用子层管理实体交互的中间件。`ZDO`占用每个节点(`node`)的端口`0`(`Endpoint0`)。<!--more-->
 &emsp;&emsp;`ZDO`的配置叫做`ZDP`(`ZigBee Device Profile`，`ZigBee`设备配置)，`ZDP`可以被应用终端(`application end points`)和`ZigBee`节点访问。
 &emsp;&emsp;`ZDO`是一个特殊的应用层的端口(`Endpoint`)，它是应用层其他端点与应用子层管理实体交互的中间件。它主要提供的功能如下：
 

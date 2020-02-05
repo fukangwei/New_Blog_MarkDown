@@ -4,7 +4,7 @@ categories: C++语法详解
 abbrlink: 8326c095
 date: 2019-02-05 21:45:44
 ---
-&emsp;&emsp;It is a function template and include in the header file `algorithm`.
+&emsp;&emsp;It is a function template and include in the header file `algorithm`.<!--more-->
 
 ### std::find_if
 

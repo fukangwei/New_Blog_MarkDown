@@ -4,7 +4,7 @@ categories: Node.js笔记
 abbrlink: afedc052
 date: 2019-02-08 16:21:34
 ---
-&emsp;&emsp;`Node.js`所有的异步`I/O`操作在完成时，都会发送一个事件到事件队列。`Node.js`里面的许多对象都会分发事件：一个`net.Server`对象会在每次有新连接时触发一个事件，一个`fs.readStream`对象会在文件被打开的时候触发一个事件。所有这些产生事件的对象都是`events.EventEmitter`的实例。
+&emsp;&emsp;`Node.js`所有的异步`I/O`操作在完成时，都会发送一个事件到事件队列。`Node.js`里面的许多对象都会分发事件：一个`net.Server`对象会在每次有新连接时触发一个事件，一个`fs.readStream`对象会在文件被打开的时候触发一个事件。所有这些产生事件的对象都是`events.EventEmitter`的实例。<!--more-->
 
 ### EventEmitter类
 

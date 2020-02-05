@@ -4,7 +4,7 @@ categories: Shell编程
 abbrlink: 552208f6
 date: 2019-01-20 10:47:04
 ---
-&emsp;&emsp;`shell`可以用户定义函数，然后在`shell`脚本中可以随便调用。`shell`中函数的定义格式如下：
+&emsp;&emsp;`shell`可以用户定义函数，然后在`shell`脚本中可以随便调用。`shell`中函数的定义格式如下：<!--more-->
 
 ``` bash
 [ function ] funname [()]

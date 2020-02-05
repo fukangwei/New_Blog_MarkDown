@@ -4,7 +4,7 @@ categories: C语言语法详解
 abbrlink: 92555b6a
 date: 2018-12-10 19:23:24
 ---
-&emsp;&emsp;`assert`宏的原型如下：
+&emsp;&emsp;`assert`宏的原型如下：<!--more-->
 
 ``` c
 #include <assert.h>

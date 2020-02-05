@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: b43e0be7
 date: 2019-01-26 20:46:10
 ---
-&emsp;&emsp;The `QSyntaxHighlighter` class allows you to define syntax highlighting rules, and in addition you can use the class to query a document's current formatting or user data.
+&emsp;&emsp;The `QSyntaxHighlighter` class allows you to define syntax highlighting rules, and in addition you can use the class to query a document's current formatting or user data.<!--more-->
 
 Header               | Since    | Inherits
 ---------------------|----------|---------

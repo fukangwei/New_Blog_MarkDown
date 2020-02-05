@@ -4,7 +4,7 @@ categories: 深度学习
 abbrlink: cdfd2070
 date: 2019-02-15 18:34:45
 ---
-&emsp;&emsp;`GPU`和`TPU`可以从根本上减少执行单个`training step`所需的时间。为了达到高性能，我们需要一个高效的`input pipeline`，它可以在当前`step`完成后为下一个`step`高效分发数据。`tf.data`的`API`可以帮助构建灵活和高效的`input pipeline`。该文档解释了`tf.data`的`API`特性以及最佳实践，来跨多种模型和加速器构建高性能`tensorflow input pipelines`。
+&emsp;&emsp;`GPU`和`TPU`可以从根本上减少执行单个`training step`所需的时间。为了达到高性能，我们需要一个高效的`input pipeline`，它可以在当前`step`完成后为下一个`step`高效分发数据。`tf.data`的`API`可以帮助构建灵活和高效的`input pipeline`。该文档解释了`tf.data`的`API`特性以及最佳实践，来跨多种模型和加速器构建高性能`tensorflow input pipelines`。<!--more-->
 
 ### Input Pipeline结构
 

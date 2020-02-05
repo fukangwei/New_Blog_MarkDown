@@ -4,7 +4,7 @@ categories: Python语法
 abbrlink: 4d8f4c71
 date: 2019-03-02 19:06:03
 ---
-&emsp;&emsp;传统的`PIL`库不支持`python 3`，所以请使用从`PIL`派生出来的`Pillow`库。
+&emsp;&emsp;传统的`PIL`库不支持`python 3`，所以请使用从`PIL`派生出来的`Pillow`库。<!--more-->
 
 ### Image类
 

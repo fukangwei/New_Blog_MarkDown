@@ -6,7 +6,7 @@ date: 2019-02-06 11:55:28
 ---
 ### 显示图片
 
-&emsp;&emsp;代码如下：
+&emsp;&emsp;代码如下：<!--more-->
 
 ``` java
 import org.opencv.android.BaseLoaderCallback;

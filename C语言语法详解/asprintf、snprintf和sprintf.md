@@ -6,7 +6,7 @@ date: 2018-12-06 17:49:34
 ---
 ### 用snprintf/asprintf取代不安全的sprintf
 
-&emsp;&emsp;`snprintf`(或者`_snprintf`)可以用来只计算长度，例如`int c = snprintf(NULL, 0, ...);`。
+&emsp;&emsp;`snprintf`(或者`_snprintf`)可以用来只计算长度，例如`int c = snprintf(NULL, 0, ...);`。<!--more-->
 &emsp;&emsp;`asprintf`第一个参数是指向指针的指针，它会在`heap`中自动申请空间(最后要手动`free`)。使用`asprintf`，要加上`#define _GNU_SOURCE`。
 &emsp;&emsp;在`C`语言里，要建立一个字符数组的字符串，常常会使用`sprintf`这个函数来做格式化的处理。但是实际上，这个函数却不是那么安全。`sprintf`函数原型如下：
 

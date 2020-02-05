@@ -4,7 +4,7 @@ categories: Python语法
 abbrlink: 80af0fa2
 date: 2019-02-10 14:17:18
 ---
-&emsp;&emsp;将日志打印到屏幕：
+&emsp;&emsp;将日志打印到屏幕：<!--more-->
 
 ``` python
 import logging

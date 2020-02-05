@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: 4441d797
 date: 2019-02-02 00:28:55
 ---
-&emsp;&emsp;The `QTextDocument` class holds formatted text that can be viewed and edited using a `QTextEdit`.
+&emsp;&emsp;The `QTextDocument` class holds formatted text that can be viewed and edited using a `QTextEdit`.<!--more-->
 
 Header          | Inherits
 ----------------|----------

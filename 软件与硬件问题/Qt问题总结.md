@@ -6,7 +6,7 @@ date: 2019-03-01 17:24:52
 ---
 ### undefined reference to vtable
 
-&emsp;&emsp;问题描述：在某一个类中，如果加入`Q_OBJECT`，则`link`时会提示`undefined reference to vtable for "xxx::xxx"`。可是删掉`Q_OBJECT`，再编译程序时，`Qt`的应用程序输出中又会显示`Object::connect: No such slot XXX::XXX()`。
+&emsp;&emsp;问题描述：在某一个类中，如果加入`Q_OBJECT`，则`link`时会提示`undefined reference to vtable for "xxx::xxx"`。可是删掉`Q_OBJECT`，再编译程序时，`Qt`的应用程序输出中又会显示`Object::connect: No such slot XXX::XXX()`。<!--more-->
 &emsp;&emsp;原因：删除`Q_OBJECT`之后，该类的信号槽机制就失效了，因此在其他类中`connect`该类的槽时，就会显示`No such slot...`。在该类中加上`Q_OBJECT`之后，`link`提示`undefined reference to vtable for "xxx::xxx"`。如果不是语法错误，那么可能的原因是该类原来没有添加`Q_OBJECT`，则在程序输出目录中，由`qmake`生成的`makefile`文件里不存在编译`Q_OBJECT`的信息，因此信号槽机制失效。而在该类加上`Q_OBJECT`后，`Qt Creator`没有自动执行`qmake`来更新`makefile`文件，这就会在`link`时有上述错误。
 &emsp;&emsp;解决办法：删除程序的输出目录`build-XXX-XXX-release`，重新构建项目就行了。
 

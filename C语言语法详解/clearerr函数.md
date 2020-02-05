@@ -4,7 +4,7 @@ categories: C语言语法详解
 abbrlink: '254035e4'
 date: 2018-12-12 00:32:53
 ---
-&emsp;&emsp;`clearerr`函数清除给定流`stream`的文件结束和错误标识符：
+&emsp;&emsp;`clearerr`函数清除给定流`stream`的文件结束和错误标识符：<!--more-->
 
 ``` cpp
 void clearerr ( FILE* stream );

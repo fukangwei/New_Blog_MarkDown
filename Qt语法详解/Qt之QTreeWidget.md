@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: 84f3f3dc
 date: 2019-02-22 13:17:33
 ---
-&emsp;&emsp;`Qt`中实现树形结构可以使用`QTreeWidget`类，也可以使用`QTreeView`类，`QTreeWidget`继承自`QTreeView`类，其效果如下：
+&emsp;&emsp;`Qt`中实现树形结构可以使用`QTreeWidget`类，也可以使用`QTreeView`类，`QTreeWidget`继承自`QTreeView`类，其效果如下：<!--more-->
 
 <img src="./Qt之QTreeWidget/1.png">
 

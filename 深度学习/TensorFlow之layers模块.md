@@ -4,7 +4,7 @@ categories: 深度学习
 abbrlink: cbb73499
 date: 2019-01-16 14:56:39
 ---
-&emsp;&emsp;`TensorFlow`的`layers`模块提供用于深度学习的更高层次封装的`API`，利用它可以轻松地构建模型。`tf.layers`模块提供的方法有：
+&emsp;&emsp;`TensorFlow`的`layers`模块提供用于深度学习的更高层次封装的`API`，利用它可以轻松地构建模型。`tf.layers`模块提供的方法有：<!--more-->
 
 方法                  | 说明
 ----------------------|------

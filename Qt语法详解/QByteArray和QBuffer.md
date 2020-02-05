@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: 4464ac76
 date: 2019-01-25 18:41:07
 ---
-&emsp;&emsp;`QByteArray`类提供了一个字节数组，既可以存储原始的字节(包括`\0`)，又可以被用来存储以`\0`结尾的字符串(可以理解为字符数组`char str[] = {'h', 'e', 'l', 'l', 'o', '\0'}`或者`char *str = "hello"`)。由于`QByteArray`封装的功能很多，使用起来比`char *`要方便的多，而就其内部实现来讲，它会保证所有的数据以`\0`结尾，使用隐式数据共享(`copy-on-write`)来减少内存消耗以及不必要的数据拷贝。
+&emsp;&emsp;`QByteArray`类提供了一个字节数组，既可以存储原始的字节(包括`\0`)，又可以被用来存储以`\0`结尾的字符串(可以理解为字符数组`char str[] = {'h', 'e', 'l', 'l', 'o', '\0'}`或者`char *str = "hello"`)。由于`QByteArray`封装的功能很多，使用起来比`char *`要方便的多，而就其内部实现来讲，它会保证所有的数据以`\0`结尾，使用隐式数据共享(`copy-on-write`)来减少内存消耗以及不必要的数据拷贝。<!--more-->
 &emsp;&emsp;有两种情况比较适合使用`QByteArray`，第一就是要存储纯二进制数据(`raw binary data`)或`8bit`编码文本字符串，第二种情况就是在内存资源很珍贵的情况下，例如`Qt for Embedded Linux`。
 &emsp;&emsp;一种初始化`QByteArray`方式是给它的构造函数传入一个`const char *`即可。此时，`QByteArray`执行了深拷贝。如果出于效率考虑不想执行深拷贝，使用`QByteArray::fromRawData(const char * data, int siz)`，其返回的`QByteArray`对象将会和数据指针相关联。
 &emsp;&emsp;对于语句`QByteArray array("Hello");`，`array`的`size`是`5`，但由于其在最后要存储额外的`\0`，其实际占用空间是`6`。

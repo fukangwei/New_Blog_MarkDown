@@ -6,7 +6,7 @@ date: 2019-01-18 13:22:19
 ---
 ### 图像的载入、显示和保存
 
-&emsp;&emsp;`opencv`使用`pip`的安装方式如下：
+&emsp;&emsp;`opencv`使用`pip`的安装方式如下：<!--more-->
 
 ``` bash
 pip install opencv-python

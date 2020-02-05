@@ -6,7 +6,7 @@ date: 2019-02-06 18:02:14
 ---
 ### Linux下的安装
 
-&emsp;&emsp;使用如下命令进行安装：
+&emsp;&emsp;使用如下命令进行安装：<!--more-->
 
 ``` bash
 sudo apt-get install sqlite sqlite3

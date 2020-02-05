@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: ea7a8961
 date: 2019-02-19 21:02:01
 ---
-&emsp;&emsp;The `QTextBlock` class provides a container for text fragments in a `QTextDocument`. The header file is `QTextBlock`. **Note**: All functions in this class are reentrant.
+&emsp;&emsp;The `QTextBlock` class provides a container for text fragments in a `QTextDocument`. The header file is `QTextBlock`. **Note**: All functions in this class are reentrant.<!--more-->
 
 ### Public Functions
 

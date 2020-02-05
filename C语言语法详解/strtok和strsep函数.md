@@ -4,7 +4,7 @@ categories: C语言语法详解
 abbrlink: 184f9cb9
 date: 2018-12-14 19:55:28
 ---
-&emsp;&emsp;函数原型如下：
+&emsp;&emsp;函数原型如下：<!--more-->
 
 ``` cpp
 char* strtok ( char* s, const char* delim );

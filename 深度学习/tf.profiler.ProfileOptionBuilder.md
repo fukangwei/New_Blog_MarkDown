@@ -6,7 +6,7 @@ date: 2019-02-13 00:23:29
 ---
 ### Class ProfileOptionBuilder
 
-&emsp;&emsp;Defined in `tensorflow/python/profiler/option_builder.py`. Option builder for profiling `API`. For tutorial on the options, see `https://github.com/tensorflow/tensorflow/tree/master/tensorflow/core/profiler/g3doc/options.md`.
+&emsp;&emsp;Defined in `tensorflow/python/profiler/option_builder.py`. Option builder for profiling `API`. For tutorial on the options, see `https://github.com/tensorflow/tensorflow/tree/master/tensorflow/core/profiler/g3doc/options.md`.<!--more-->
 
 ``` python
 # Users can use pre-built options:

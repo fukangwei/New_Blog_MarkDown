@@ -4,7 +4,7 @@ abbrlink: '69412986'
 date: 2019-01-17 09:01:05
 categories: 网络编程
 ---
-&emsp;&emsp;`MAC`地址是唯一的，可以用来识别不同的硬件机。在`Linux`下编写获取本机网卡地址的程序，比较简单的方法是利用套接口(`socket`)和`IO`接口(`ioctl`)函数来获取网卡信息：
+&emsp;&emsp;`MAC`地址是唯一的，可以用来识别不同的硬件机。在`Linux`下编写获取本机网卡地址的程序，比较简单的方法是利用套接口(`socket`)和`IO`接口(`ioctl`)函数来获取网卡信息：<!--more-->
 
 ``` cpp
 #include <sys/socket.h>

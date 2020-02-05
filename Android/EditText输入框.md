@@ -4,7 +4,7 @@ categories: Android
 abbrlink: 4f59d730
 date: 2019-02-10 10:10:24
 ---
-&emsp;&emsp;`EditText`和`TextView`非常类似，最大的区别是`EditText`可以接受用户输入。
+&emsp;&emsp;`EditText`和`TextView`非常类似，最大的区别是`EditText`可以接受用户输入。<!--more-->
 
 ### 设置默认提示文本
 

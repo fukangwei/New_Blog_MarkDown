@@ -6,7 +6,7 @@ date: 2019-01-23 16:56:20
 ---
 ### 简述
 
-&emsp;&emsp;`QNetworkInterface`类负责提供主机的`IP`地址和网络接口的列表，它表示了当前程序正在运行时与主机绑定的一个网络接口。每个网络接口可能包含`0`个或多个`IP`地址，每个`IP`地址都可选择性地与一个子网掩码`和/或`一个广播地址相关联。这样的列表可以通过`addressEntries`方法获得。当子网掩码或者广播地址不必要时，可以使用`allAddresses`函数来仅仅获得`IP`地址。`QNetworkInterface`使用`hardwareAddress`方法获取接口的硬件地址。
+&emsp;&emsp;`QNetworkInterface`类负责提供主机的`IP`地址和网络接口的列表，它表示了当前程序正在运行时与主机绑定的一个网络接口。每个网络接口可能包含`0`个或多个`IP`地址，每个`IP`地址都可选择性地与一个子网掩码`和/或`一个广播地址相关联。这样的列表可以通过`addressEntries`方法获得。当子网掩码或者广播地址不必要时，可以使用`allAddresses`函数来仅仅获得`IP`地址。`QNetworkInterface`使用`hardwareAddress`方法获取接口的硬件地址。<!--more-->
 
 ### 常用接口
 

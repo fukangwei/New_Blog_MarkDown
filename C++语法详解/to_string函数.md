@@ -4,7 +4,7 @@ categories: C++语法详解
 abbrlink: fb0ca44b
 date: 2019-02-05 18:08:38
 ---
-&emsp;&emsp;Defined in header `string`:
+&emsp;&emsp;Defined in header `string`:<!--more-->
 
 - `std::string to_string( int value );`
 - `std::string to_string( long value );`

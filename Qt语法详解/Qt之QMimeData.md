@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: 60e0239e
 date: 2019-01-25 15:09:10
 ---
-&emsp;&emsp;The `QMimeData` class provides a container for data that records information about its `MIME` type.
+&emsp;&emsp;The `QMimeData` class provides a container for data that records information about its `MIME` type.<!--more-->
 
 Header      | Inherits
 ------------|---------

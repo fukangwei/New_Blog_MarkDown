@@ -4,7 +4,7 @@ categories: C语言语法详解
 abbrlink: c4d418ff
 date: 2018-12-06 17:38:46
 ---
-&emsp;&emsp;`ctype.h`提供了几个有用的测试和转换函数：
+&emsp;&emsp;`ctype.h`提供了几个有用的测试和转换函数：<!--more-->
 
 - `int isalnum(int c)`：该函数检查传递的字符是否是字母或数字。
 - `int isalpha(int c)`：该函数是否传递的字符是字母。

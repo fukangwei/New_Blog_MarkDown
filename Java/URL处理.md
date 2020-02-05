@@ -4,7 +4,7 @@ categories: Java
 abbrlink: '32460300'
 date: 2018-12-21 15:50:37
 ---
-&emsp;&emsp;`URL`(`Uniform Resource Locator`)中文名为统一资源定位符，有时也被俗称为网页地址。它表示为互联网上的资源，例如网页或者`FTP`地址。`URL`可以分为如下几个部分：
+&emsp;&emsp;`URL`(`Uniform Resource Locator`)中文名为统一资源定位符，有时也被俗称为网页地址。它表示为互联网上的资源，例如网页或者`FTP`地址。`URL`可以分为如下几个部分：<!--more-->
 
 ``` bash
 protocol://host:port/path?query#fragment

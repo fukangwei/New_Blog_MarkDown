@@ -4,7 +4,7 @@ categories: Perl
 abbrlink: 94aee6f4
 date: 2018-12-20 15:01:04
 ---
-&emsp;&emsp;`Perl`条件语句是通过一条或多条语句的执行结果(`True`或者`False`)来决定执行的代码块。注意，数字`0`、字符串`0`、`""`、`空list`和`undef`为`false`，其他值均为`true`。`true`前面使用`!`或`not`则返回`false`。
+&emsp;&emsp;`Perl`条件语句是通过一条或多条语句的执行结果(`True`或者`False`)来决定执行的代码块。注意，数字`0`、字符串`0`、`""`、`空list`和`undef`为`false`，其他值均为`true`。`true`前面使用`!`或`not`则返回`false`。<!--more-->
 
 ### if语句
 

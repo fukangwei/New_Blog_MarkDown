@@ -6,7 +6,7 @@ date: 2018-12-13 11:30:24
 ---
 ### ferror函数
 
-&emsp;&emsp;`ferror`函数原型如下：
+&emsp;&emsp;`ferror`函数原型如下：<!--more-->
 
 ``` cpp
 int ferror ( FILE* fp );

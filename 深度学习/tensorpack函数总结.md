@@ -6,7 +6,7 @@ date: 2019-02-12 15:46:41
 ---
 ### dataflow.TestDataSpeed
 
-&emsp;&emsp;class `dataflow.TestDataSpeed(ds, size=5000, warmup=0)`: Test the speed of some `DataFlow`.
+&emsp;&emsp;class `dataflow.TestDataSpeed(ds, size=5000, warmup=0)`: Test the speed of some `DataFlow`.<!--more-->
 
 - `ds` (`DataFlow`): the `DataFlow` to test.
 - `size` (`int`): number of datapoints to fetch.

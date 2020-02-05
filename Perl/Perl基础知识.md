@@ -6,7 +6,7 @@ date: 2018-12-17 22:10:30
 ---
 ### Perl基础
 
-&emsp;&emsp;`Perl`是`Practical Extraction and Report Language`的缩写，可翻译为`实用报表提取语言`。`Perl`是高级、通用、直译式、动态的程序语言。
+&emsp;&emsp;`Perl`是`Practical Extraction and Report Language`的缩写，可翻译为`实用报表提取语言`。`Perl`是高级、通用、直译式、动态的程序语言。<!--more-->
 &emsp;&emsp;`Perl`借用了`C`、`sed`、`awk`、`shell`脚本以及很多其他编程语言的特性，最重要的特性是内部集成了正则表达式的功能，以及巨大的第三方代码库`CPAN`。第一个`Perl`程序如下：
 
 ``` perl

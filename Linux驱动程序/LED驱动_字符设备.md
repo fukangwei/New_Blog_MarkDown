@@ -4,7 +4,7 @@ categories: Linux驱动程序
 abbrlink: 50f6dbfb
 date: 2019-02-04 10:59:29
 ---
-&emsp;&emsp;实现`LED`驱动测试案例及要求：
+&emsp;&emsp;实现`LED`驱动测试案例及要求：<!--more-->
 
 ``` bash
 led_test on    /* 对应四个LED全亮           */

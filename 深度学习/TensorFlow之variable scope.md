@@ -4,7 +4,7 @@ categories: 深度学习
 abbrlink: 53d37d00
 date: 2019-02-13 11:10:48
 ---
-&emsp;&emsp;`Tensorflow`为了更好的管理变量，提供了`variable scope`机制，其官方解释如下：
+&emsp;&emsp;`Tensorflow`为了更好的管理变量，提供了`variable scope`机制，其官方解释如下：<!--more-->
 &emsp;&emsp;Variable scope object to carry defaults to provide to `get_variable`.
 &emsp;&emsp;Many of the arguments we need for `get_variable` in a variable store are most easily handled with a context. This object is used for the defaults. Attributes:
 

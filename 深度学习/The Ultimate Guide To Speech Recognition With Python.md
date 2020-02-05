@@ -4,7 +4,7 @@ categories: 深度学习
 abbrlink: b1cbe546
 date: 2019-02-13 16:11:08
 ---
-&emsp;&emsp;Have you ever wondered how to add speech recognition to your `Python` project? If so, then keep reading! It's easier than you might think.
+&emsp;&emsp;Have you ever wondered how to add speech recognition to your `Python` project? If so, then keep reading! It's easier than you might think.<!--more-->
 &emsp;&emsp;Far from a being a fad, the overwhelming success of `speech-enabled` products like `Amazon Alexa` has proven that some degree of speech support will be an essential aspect of household tech for the foreseeable future. If you think about it, the reasons why are pretty obvious. Incorporating speech recognition into your `Python` application offers a level of interactivity and accessibility that few technologies can match.
 &emsp;&emsp;The accessibility improvements alone are worth considering. Speech recognition allows the elderly and the physically and visually impaired to interact with `state-of-the-art` products and services quickly and naturally.
 &emsp;&emsp;Best of all, including speech recognition in a `Python` project is really simple. In this guide, you'll find out how. You'll learn:

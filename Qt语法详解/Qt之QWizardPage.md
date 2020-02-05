@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: 9c3692e7
 date: 2019-01-26 16:28:02
 ---
-&emsp;&emsp;The `QWizardPage` class is the base class for wizard pages.
+&emsp;&emsp;The `QWizardPage` class is the base class for wizard pages.<!--more-->
 
 Header        | Since    | Inherits
 --------------|----------|---------

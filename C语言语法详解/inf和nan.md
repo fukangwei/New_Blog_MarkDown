@@ -4,7 +4,7 @@ categories: C语言语法详解
 abbrlink: e5abef56
 date: 2018-12-10 21:01:10
 ---
-&emsp;&emsp;`inf`：`infinity`(`Linux`平台)等同于`#INF`(`infinity`，`Windows`平台)。
+&emsp;&emsp;`inf`：`infinity`(`Linux`平台)等同于`#INF`(`infinity`，`Windows`平台)。<!--more-->
 &emsp;&emsp;`nan`：`not a number`(`Linux`平台)等同于`#IND`(`indeterminate`，`Windows`平台)。
 &emsp;&emsp;注意以下几点：
 
