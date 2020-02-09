@@ -4,7 +4,7 @@ categories: Python语法
 abbrlink: f2458143
 date: 2018-12-27 17:42:58
 ---
-&emsp;&emsp;服务器端代码如下：
+&emsp;&emsp;服务器端代码如下：<!--more-->
 
 ``` python
 import time

@@ -6,7 +6,7 @@ date: 2018-12-27 17:20:16
 ---
 ### inspect -- Inspect live objects
 
-&emsp;&emsp;The `inspect` module provides several useful functions to help get information about live objects such as `modules`, `classes`, `methods`, `functions`, `tracebacks`, `frame objects` and `code objects`. For example, it can help you examine the contents of a `class`, retrieve the source code of a `method`, extract and format the argument list for a `function`, or get all the information you need to display a detailed `traceback`.
+&emsp;&emsp;The `inspect` module provides several useful functions to help get information about live objects such as `modules`, `classes`, `methods`, `functions`, `tracebacks`, `frame objects` and `code objects`. For example, it can help you examine the contents of a `class`, retrieve the source code of a `method`, extract and format the argument list for a `function`, or get all the information you need to display a detailed `traceback`.<!--more-->
 &emsp;&emsp;There are four main kinds of services provided by this module: type checking, getting source code, inspecting classes and functions, and examining the interpreter stack.
 
 #### Retrieving source code

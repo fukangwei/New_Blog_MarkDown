@@ -4,7 +4,7 @@ categories: Python语法
 abbrlink: 41dc25d
 date: 2018-12-27 19:09:30
 ---
-&emsp;&emsp;`URL`异常处理分为`URLError`和`HTTPError`，其中`HTTPError`是`URLError`的子类。在终端输入：
+&emsp;&emsp;`URL`异常处理分为`URLError`和`HTTPError`，其中`HTTPError`是`URLError`的子类。在终端输入：<!--more-->
 
 ``` python
 import urllib.request

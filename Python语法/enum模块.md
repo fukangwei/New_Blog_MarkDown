@@ -6,7 +6,7 @@ date: 2018-12-28 09:30:36
 ---
 ### 枚举的定义
 
-&emsp;&emsp;首先枚举要导入`enum`模块，然后使用`class`关键字定义枚举类(继承`Enum`类)：
+&emsp;&emsp;首先枚举要导入`enum`模块，然后使用`class`关键字定义枚举类(继承`Enum`类)：<!--more-->
 
 ``` python
 from enum import Enum

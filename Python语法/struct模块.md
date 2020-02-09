@@ -4,7 +4,7 @@ categories: Python语法
 abbrlink: '18018616'
 date: 2018-12-27 20:00:50
 ---
-&emsp;&emsp;当`Python`需要和二进制数据打交道时，就要用到`struct`模块了。`struct`模块为`Python`与`C`的混合编程、处理二进制文件以及网络协议通信提供了便利。`struct`模块主要用到三个函数：
+&emsp;&emsp;当`Python`需要和二进制数据打交道时，就要用到`struct`模块了。`struct`模块为`Python`与`C`的混合编程、处理二进制文件以及网络协议通信提供了便利。`struct`模块主要用到三个函数：<!--more-->
 
 ``` python
 struct.pack(fmt, v1, v2, ...)

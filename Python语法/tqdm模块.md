@@ -4,7 +4,7 @@ categories: Python语法
 abbrlink: 3500ab35
 date: 2018-12-27 17:45:22
 ---
-&emsp;&emsp;`Tqdm`是一个快速的、可扩展的`Python`进度条，可以在`Python`长循环中添加一个进度提示信息，用户只需要封装迭代器`tqdm(iterator)`即可。
+&emsp;&emsp;`Tqdm`是一个快速的、可扩展的`Python`进度条，可以在`Python`长循环中添加一个进度提示信息，用户只需要封装迭代器`tqdm(iterator)`即可。<!--more-->
 &emsp;&emsp;最基本的用法如下，该进度条的长度是`9`：
 
 ``` python

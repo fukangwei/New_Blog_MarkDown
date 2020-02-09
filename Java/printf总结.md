@@ -4,7 +4,7 @@ categories: Java
 abbrlink: f9eccdae
 date: 2018-12-26 12:05:28
 ---
-&emsp;&emsp;代码如下：
+&emsp;&emsp;代码如下：<!--more-->
 
 ``` java
 import java.util.Date;

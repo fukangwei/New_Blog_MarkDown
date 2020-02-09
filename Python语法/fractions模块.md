@@ -4,7 +4,7 @@ categories: Python语法
 abbrlink: b8bdd2ef
 date: 2018-12-27 18:14:41
 ---
-&emsp;&emsp;`fractions`模块提供了分数类型的支持，构造函数如下：
+&emsp;&emsp;`fractions`模块提供了分数类型的支持，构造函数如下：<!--more-->
 
 ``` python
 class fractions.Fraction(numerator=0, denominator=1)

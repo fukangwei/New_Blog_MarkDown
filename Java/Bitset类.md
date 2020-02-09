@@ -4,7 +4,7 @@ categories: Java
 abbrlink: f417f3c6
 date: 2018-12-26 09:49:13
 ---
-&emsp;&emsp;`Bitset`类创建一种特殊类型的数组来保存位值。`BitSet`的数组大小会随需要增加，这和`位向量`(`vector of bits`)类似。它是一个传统的类，但在`Java 2`中被完全重新设计。
+&emsp;&emsp;`Bitset`类创建一种特殊类型的数组来保存位值。`BitSet`的数组大小会随需要增加，这和`位向量`(`vector of bits`)类似。它是一个传统的类，但在`Java 2`中被完全重新设计。<!--more-->
 &emsp;&emsp;`BitSet`定义了两个构造方法，第一个构造方法创建一个默认的对象：
 
 ``` java
@@ -45,8 +45,6 @@ BitSet(int size)
 - `int size()`：返回此`BitSet`表示位值时实际使用空间的位数。
 - `String toString()`：返回此位`set`的字符串表示形式。
 - `void xor(BitSet bitSet)`：对此位`set`和参数位`set`执行逻辑异或操作。
-
-代码如下：
 
 ``` java
 import java.util.BitSet;

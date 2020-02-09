@@ -4,7 +4,7 @@ categories: Python语法
 abbrlink: e50c1547
 date: 2018-12-28 09:38:34
 ---
-&emsp;&emsp;`paramiko`是用`python`语言写的一个模块，遵循`SSH2`协议，支持以加密和认证的方式，进行远程服务器的连接，其安装命令如下：
+&emsp;&emsp;`paramiko`是用`python`语言写的一个模块，遵循`SSH2`协议，支持以加密和认证的方式，进行远程服务器的连接，其安装命令如下：<!--more-->
 
 ``` bash
 pip install paramiko

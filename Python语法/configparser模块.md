@@ -4,7 +4,7 @@ categories: Python语法
 abbrlink: ea7347c1
 date: 2018-12-27 18:19:14
 ---
-&emsp;&emsp;`configparser`用于配置文件解析，可以解析特定格式的配置文件，多数此类配置文件名格式为`XXX.ini`，例如`mysql`的配置文件。`ini`文件示例：
+&emsp;&emsp;`configparser`用于配置文件解析，可以解析特定格式的配置文件，多数此类配置文件名格式为`XXX.ini`，例如`mysql`的配置文件。`ini`文件示例：<!--more-->
 
 ``` bash
 [section1]

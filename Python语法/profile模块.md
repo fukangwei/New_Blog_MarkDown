@@ -4,7 +4,7 @@ categories: Python语法
 abbrlink: bc1e60be
 date: 2018-12-27 18:07:25
 ---
-&emsp;&emsp;`profile`是`python`的标准库，可以用于统计程序里每一个函数的运行时间，并且提供了多样化的报表。使用`profile`来分析一个程序很简单，例如有这样一个程序：
+&emsp;&emsp;`profile`是`python`的标准库，可以用于统计程序里每一个函数的运行时间，并且提供了多样化的报表。使用`profile`来分析一个程序很简单，例如有这样一个程序：<!--more-->
 
 ``` python
 def foo():

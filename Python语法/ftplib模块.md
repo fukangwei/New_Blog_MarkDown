@@ -4,7 +4,7 @@ categories: Python语法
 abbrlink: 1de28dd1
 date: 2018-12-28 09:10:38
 ---
-&emsp;&emsp;`Python`中默认安装的`ftplib`模块定义了`FTP`类，可用来实现简单的`ftp`客户端，用于上传或下载文件。
+&emsp;&emsp;`Python`中默认安装的`ftplib`模块定义了`FTP`类，可用来实现简单的`ftp`客户端，用于上传或下载文件。<!--more-->
 
 ``` python
 from ftplib import FTP  # 加载ftp模块

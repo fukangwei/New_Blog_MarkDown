@@ -4,7 +4,7 @@ categories: Python语法
 abbrlink: 330a6169
 date: 2018-12-28 09:50:03
 ---
-&emsp;&emsp;`lambda`表达式也叫`匿名函数`，其语法如下：
+&emsp;&emsp;`lambda`表达式也叫`匿名函数`，其语法如下：<!--more-->
 
 ``` python
 lambda [arg1 [, arg2, ..., argn]]: expression

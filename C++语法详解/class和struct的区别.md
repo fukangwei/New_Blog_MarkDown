@@ -4,7 +4,7 @@ categories: C++语法详解
 abbrlink: b9638ae2
 date: 2018-12-27 09:11:47
 ---
-&emsp;&emsp;在`C++`中，`class`和`struct`做类型定义时只有两点区别：
+&emsp;&emsp;在`C++`中，`class`和`struct`做类型定义时只有两点区别：<!--more-->
 
 - 默认继承权限：如果不明确指定，来自`class`的继承按照`private`继承处理，来自`struct`的继承按照`public`继承处理。
 - 成员的默认访问权限：`class`的成员默认是`private`权限，`struct`默认是`public`权限。

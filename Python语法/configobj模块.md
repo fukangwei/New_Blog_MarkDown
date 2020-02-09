@@ -4,7 +4,7 @@ categories: Python语法
 abbrlink: 3be3f75b
 date: 2018-12-27 17:48:53
 ---
-&emsp;&emsp;`configobj`模块用于读取或修改配置文件。例如配置文件`test.ini`的内容是：
+&emsp;&emsp;`configobj`模块用于读取或修改配置文件。例如配置文件`test.ini`的内容是：<!--more-->
 
 ``` bash
 [server]

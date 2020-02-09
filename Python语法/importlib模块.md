@@ -4,7 +4,7 @@ categories: Python语法
 abbrlink: 788cc98b
 date: 2018-12-27 17:54:10
 ---
-&emsp;&emsp;有时我们很需要在程序运行的过程中，根据变量或者配置动态地决定导入哪个模块，使用`importlib`模块可以实现这一功能：
+&emsp;&emsp;有时我们很需要在程序运行的过程中，根据变量或者配置动态地决定导入哪个模块，使用`importlib`模块可以实现这一功能：<!--more-->
 
 ``` python
 >>> import importlib

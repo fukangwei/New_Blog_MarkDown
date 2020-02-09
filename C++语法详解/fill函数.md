@@ -4,7 +4,7 @@ categories: C++语法详解
 abbrlink: c48ea9ee
 date: 2018-12-27 10:16:53
 ---
-&emsp;&emsp;This is a function template, int the head file `<algorithm>`:
+&emsp;&emsp;This is a function template, int the head file `<algorithm>`:<!--more-->
 
 ``` cpp
 template <class ForwardIterator, class T>

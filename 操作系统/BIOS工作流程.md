@@ -4,7 +4,7 @@ categories: 操作系统
 abbrlink: 4cf1391b
 date: 2018-12-25 20:06:03
 ---
-&emsp;&emsp;`BIOS`(`basic input/output system`，基本输入输出系统)是一组被固化到电脑中，为电脑提供最低级、最直接的硬件控制的程序，它是连接软件程序和硬件设备的枢纽。
+&emsp;&emsp;`BIOS`(`basic input/output system`，基本输入输出系统)是一组被固化到电脑中，为电脑提供最低级、最直接的硬件控制的程序，它是连接软件程序和硬件设备的枢纽。<!--more-->
 
 ### BIOS存在的目的
 

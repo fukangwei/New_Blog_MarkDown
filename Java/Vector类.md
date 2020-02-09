@@ -4,7 +4,7 @@ categories: Java
 abbrlink: '82332071'
 date: 2018-12-24 15:22:17
 ---
-&emsp;&emsp;`Vector`类实现了一个动态数组，和`ArrayList`类似，但两者是不同的：
+&emsp;&emsp;`Vector`类实现了一个动态数组，和`ArrayList`类似，但两者是不同的：<!--more-->
 
 - `Vector`是同步访问的。
 - `Vector`包含了许多传统的方法，这些方法不属于集合框架。
@@ -78,8 +78,6 @@ Vector(Collection c);
 - `Object[] toArray(Object[] a)`：返回一个数组，包含此向量中以恰当顺序存放的所有元素，数组的运行时类型为指定数组的类型。
 - `String toString()`：返回此向量的字符串表示形式，其中包含每个元素的`String`表示形式。
 - `void trimToSize()`：对此向量的容量进行微调，使其等于向量的当前大小。
-
-&emsp;&emsp;代码如下：
 
 ``` java
 import java.util.*;

@@ -6,7 +6,7 @@ date: 2018-12-27 17:59:47
 ---
 ### StringIO
 
-&emsp;&emsp;很多时候数据读写不一定在文件中，也可以在内存中。`StringIO`顾名思义就是在内存中读写`str`。要把`str`写入`StringIO`，需要先创建一个`StringIO`，然后像文件一样写入即可：
+&emsp;&emsp;很多时候数据读写不一定在文件中，也可以在内存中。`StringIO`顾名思义就是在内存中读写`str`。要把`str`写入`StringIO`，需要先创建一个`StringIO`，然后像文件一样写入即可：<!--more-->
 
 ``` python
 from io import StringIO

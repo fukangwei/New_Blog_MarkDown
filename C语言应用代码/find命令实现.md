@@ -4,9 +4,9 @@ categories: C语言应用代码
 abbrlink: c1e3dd68
 date: 2018-12-26 21:59:07
 ---
-&emsp;&emsp;版本`1`如下：
+&emsp;&emsp;版本`1`如下：<!--more-->
 
-``` c
+``` cpp
 /* find函数：打印与第一个参数指定的模式匹配的行 */
 #include <stdio.h>
 #include <string.h>
@@ -50,7 +50,7 @@ int mygetline ( char s[], int lim ) { /* get line into s, return length */
 
 &emsp;&emsp;版本`2`如下：
 
-``` c
+``` cpp
 #include <stdio.h>
 #include <string.h>
 ​

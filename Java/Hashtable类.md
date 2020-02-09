@@ -4,7 +4,7 @@ categories: Java
 abbrlink: 3b388b71
 date: 2018-12-25 18:48:25
 ---
-&emsp;&emsp;`Hashtable`是原始的`java.util`的一部分，是一个`Dictionary`具体的实现。然而`Java 2`重构的`Hashtable`实现了`Map`接口，因此`Hashtable`现在集成到了集合框架中。它和`HashMap`类很相似，但是它支持同步。
+&emsp;&emsp;`Hashtable`是原始的`java.util`的一部分，是一个`Dictionary`具体的实现。然而`Java 2`重构的`Hashtable`实现了`Map`接口，因此`Hashtable`现在集成到了集合框架中。它和`HashMap`类很相似，但是它支持同步。<!--more-->
 &emsp;&emsp;像`HashMap`一样，`Hashtable`在哈希表中存储键值对。当使用一个哈希表时，要指定用作键的对象，以及要链接到该键的值。然后该键经过哈希处理，所得到的散列码被用作存储在该表中值的索引。
 &emsp;&emsp;`Hashtable`定义了四个构造方法，第一个是默认构造方法：
 
@@ -24,7 +24,7 @@ Hashtable(int size);
 Hashtable(int size, float fillRatio);
 ```
 
-第四个构造方法创建了一个以M中元素为初始化元素的哈希表。哈希表的容量被设置为M的两倍：
+第四个构造方法创建了一个以`M`中元素为初始化元素的哈希表。哈希表的容量被设置为`M`的两倍：
 
 ``` java
 Hashtable(Map m);
@@ -46,8 +46,6 @@ Hashtable(Map m);
 - `Object remove(Object key)`：从哈希表中移除该键及其相应的值。
 - `int size()`：返回此哈希表中的键的数量。
 - `String toString()`：返回此`Hashtable`对象的字符串表示形式，其形式为`ASCII`字符`,(空格)`(逗号加空格)分隔开的、括在括号中的一组条目。
-
-&emsp;&emsp;代码如下：
 
 ``` java
 import java.util.*;
