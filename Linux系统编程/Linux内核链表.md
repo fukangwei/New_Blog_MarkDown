@@ -4,9 +4,9 @@ categories: Linux系统编程
 abbrlink: e9e80e14
 date: 2018-12-29 14:32:07
 ---
-&emsp;&emsp;`linux`内核链表不是在链表节点中包含数据，而是在数据结构中包含链表节点。其在`linux`内核中的定义为：
+&emsp;&emsp;`linux`内核链表不是在链表节点中包含数据，而是在数据结构中包含链表节点。其在`linux`内核中的定义为：<!--more-->
 
-``` c
+``` cpp
 struct autofs {
     char *name;
     int len;
@@ -16,7 +16,7 @@ struct autofs {
 
 使用示例如下：
 
-``` c
+``` cpp
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/init.h>
@@ -53,6 +53,7 @@ int mylist_init ( void ) {
         tmp_student = list_entry ( pos, struct student, list );
         printk ( "student %d name: %s\n", tmp_student->num, tmp_student->name );
     }
+
     return 0;
 }
 ​

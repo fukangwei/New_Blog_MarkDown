@@ -4,9 +4,9 @@ categories: ucos和ucgui
 abbrlink: 42ac754c
 date: 2018-12-29 11:27:56
 ---
-&emsp;&emsp;代码如下：
+&emsp;&emsp;代码如下：<!--more-->
 
-``` c
+``` cpp
 #include "includes.h"
 ​
 #define TASK_STK_SIZE 512
@@ -21,9 +21,9 @@ char *ss; /* 存放接收到的消息指针 */
 char *s100; /* 存放发送消息的指针 */
 char *s;
 char *s500;
-void *MsgGrp[N_MESSAGES]; /* 定义消息指针数组 */
 /* 创建消息队列，首先需要定义一个指针数组(用于存放消息邮箱)，然后把各个消息数据
    缓冲区的首地址存入这个数组中，最后再调用函数OSQCreate来创建消息队列 */
+void *MsgGrp[N_MESSAGES]; /* 定义消息指针数组 */
 INT8U err;
 INT8U y = 0;
 OS_EVENT *Str_Q; /* 定义事件控制块指针。队列的事件控制块指针用于存放创建的消息队列的指针 */

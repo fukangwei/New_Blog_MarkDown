@@ -4,7 +4,7 @@ categories: Android
 abbrlink: 667627d4
 date: 2018-12-28 14:28:00
 ---
-&emsp;&emsp;`Handler`必须与一个`Looper`关联才能使用。怎么样关联呢？你可以手动传入一个`Looper`对象，让`Handler`关联你传入的`Looper`；也可以什么都不传，这时候`Handler`会自己去找当前线程的`Looper`，如果找到就万事大吉，如果当前线程没有`Looper`，那么就会报错：
+&emsp;&emsp;`Handler`必须与一个`Looper`关联才能使用。怎么样关联呢？你可以手动传入一个`Looper`对象，让`Handler`关联你传入的`Looper`；也可以什么都不传，这时候`Handler`会自己去找当前线程的`Looper`，如果找到就万事大吉，如果当前线程没有`Looper`，那么就会报错：<!--more-->
 
 ``` java
 /* 不传入Looper，系统会自己去获取当前线程中的Looper */

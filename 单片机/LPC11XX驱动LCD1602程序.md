@@ -4,9 +4,9 @@ categories: 单片机
 abbrlink: 45f4c52e
 date: 2018-12-29 18:31:29
 ---
-&emsp;&emsp;`LCD.c`如下(单片机时钟频率为`12MHz`)：
+&emsp;&emsp;`LCD.c`如下(单片机时钟频率为`12MHz`)：<!--more-->
 
-``` c
+``` cpp
 #include "LPC11XX.h"
 #include "gpio.h"
 #include "main.h"
@@ -207,7 +207,7 @@ void Clear_Display ( void ) {
 
 &emsp;&emsp;`LCD.h`如下：
 
-``` c
+``` cpp
 #ifndef __LCD_H__
 #define __LCD_H__
 ​

@@ -4,7 +4,7 @@ categories: 深度学习
 abbrlink: c82d57be
 date: 2019-01-01 14:04:48
 ---
-&emsp;&emsp;不建议使用`pickle`或`cPickle`来保存`Keras`模型。你可以使用`model.save(filepath)`将`Keras`模型保存到单个`HDF5`文件中，该文件将包含：
+&emsp;&emsp;不建议使用`pickle`或`cPickle`来保存`Keras`模型。你可以使用`model.save(filepath)`将`Keras`模型保存到单个`HDF5`文件中，该文件将包含：<!--more-->
 
 - 模型的结构，允许重新创建模型。
 - 模型的权重。

@@ -4,14 +4,14 @@ categories: 深度学习
 abbrlink: 24f0dfa3
 date: 2019-01-01 11:23:20
 ---
-&emsp;&emsp;主要的实现思路如下：
+&emsp;&emsp;主要的实现思路如下：<!--more-->
 
-&emsp;&emsp;1. 处理单张图片作为网络输入。
-&emsp;&emsp;2. 根据给定的`layer`层，获取该层的输出结果`features`。
-&emsp;&emsp;3. 考虑到`features`的形状为`[batch_size, filter_nums, H, W]`，提取其中的第一个过滤器得到的结果`feature`。
-&emsp;&emsp;4. 以一张图片作为输入的情况下，我们得到的`feature`即为`[H, W]`大小的`tensor`。
-&emsp;&emsp;5. 将`tensor`转为`numpy`，然后归一化到`[0, 1]`，最后乘以`255`，使得范围为`[0, 255]`。
-&emsp;&emsp;6. 得到灰度图像并保存。
+1. 处理单张图片作为网络输入。
+2. 根据给定的`layer`层，获取该层的输出结果`features`。
+3. 考虑到`features`的形状为`[batch_size, filter_nums, H, W]`，提取其中的第一个过滤器得到的结果`feature`。
+4. 以一张图片作为输入的情况下，我们得到的`feature`即为`[H, W]`大小的`tensor`。
+5. 将`tensor`转为`numpy`，然后归一化到`[0, 1]`，最后乘以`255`，使得范围为`[0, 255]`。
+6. 得到灰度图像并保存。
 
 ``` python
 import cv2

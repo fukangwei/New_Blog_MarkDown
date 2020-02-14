@@ -4,9 +4,9 @@ categories: Linux系统编程
 abbrlink: 7b40a3a0
 date: 2018-12-29 16:34:02
 ---
-&emsp;&emsp;`getuid`函数原型如下：
+&emsp;&emsp;`getuid`函数原型如下：<!--more-->
 
-``` c
+``` cpp
 #include <sys/types.h>
 #include <unistd.h>
 uid_t getuid ( void );
@@ -15,7 +15,7 @@ uid_t getuid ( void );
 `uid_t`定义在头文件`sys/types.h`中，它通常是一个`int`类型。函数返回一个调用程序的真实用户`ID`，一般来说这个函数都是会调用成功的。
 &emsp;&emsp;`getpwuid`函数原型如下：
 
-``` c
+``` cpp
 #include <sys/types.h>
 #include <pwd.h>
 struct passwd *getpwuid ( uid_t uid );
@@ -24,7 +24,7 @@ struct passwd *getpwuid ( uid_t uid );
 `getpwuid`函数是通过用户的`uid`查找用户的`passwd`数据。如果出错，它们都返回一个空指针，并设置`errno`的值，用户可以根据`perror`函数查看出错的信息。
 &emsp;&emsp;`passwd`结构体定义在头文件`pwd.h`中：
 
-``` c
+``` cpp
 struct passwd {
     char *pw_name;   /* 用户名登录   */
     char *pw_passwd; /* 用户密码     */
@@ -38,7 +38,7 @@ struct passwd {
 
 代码示例：
 
-``` c
+``` cpp
 #include <sys/types.h>
 #include <pwd.h>
 #include <stdio.h>

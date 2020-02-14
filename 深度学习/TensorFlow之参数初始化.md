@@ -4,7 +4,7 @@ categories: 深度学习
 abbrlink: 17f12f8f
 date: 2019-01-01 14:23:16
 ---
-&emsp;&emsp;`CNN`中最重要的就是参数了，包括`W`和`b`。训练`CNN`的最终目的就是得到最好的参数，使得目标函数取得最小值。参数的初始化也同样重要，因此微调受到很多人的重视。`tf`提供的所有初始化方法都定义在`tensorflow/python/ops/init_ops.py`。
+&emsp;&emsp;`CNN`中最重要的就是参数了，包括`W`和`b`。训练`CNN`的最终目的就是得到最好的参数，使得目标函数取得最小值。参数的初始化也同样重要，因此微调受到很多人的重视。`tf`提供的所有初始化方法都定义在`tensorflow/python/ops/init_ops.py`。<!--more-->
 
 ### tf.constant_initializer
 
@@ -83,7 +83,7 @@ max_val = math.sqrt(3 / input_size) * factor
 min_val = -max_val
 ```
 
-这里的`input_size`是指输入数据的维数，假设输入为`x`，运算为`x * W`，则`input_size= W.shape[0]`，它的分布区间为`[-max_val, max_val]`。
+这里的`input_size`是指输入数据的维数，假设输入为`x`，运算为`x * W`，则`input_size = W.shape[0]`，它的分布区间为`[-max_val, max_val]`。
 
 ### tf.variance_scaling_initializer
 

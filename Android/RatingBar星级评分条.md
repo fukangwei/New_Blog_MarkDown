@@ -4,7 +4,7 @@ categories: Android
 abbrlink: 9dc82128
 date: 2018-12-28 12:37:59
 ---
-&emsp;&emsp;`RatingBar`和`SeekBar`的类结构是一样的，也是`ProgressBar`的子类，也就是说它同样有用`ProgressBar`的相关属性。
+&emsp;&emsp;`RatingBar`和`SeekBar`的类结构是一样的，也是`ProgressBar`的子类，也就是说它同样有用`ProgressBar`的相关属性。<!--more-->
 &emsp;&emsp;常用的属性如下：
 
 - `android:isIndicator`：是否用作指示，默认`false`，如果设置为`true`，则用户无法改变。

@@ -4,7 +4,7 @@ categories: Android
 abbrlink: 4761eb81
 date: 2018-12-28 12:31:05
 ---
-&emsp;&emsp;日期选择器可供我们使用的属性如下：
+&emsp;&emsp;日期选择器可供我们使用的属性如下：<!--more-->
 
 - `android:calendarTextColor`：日历列表的文本的颜色。
 - `android:calendarViewShown`：是否显示日历视图。

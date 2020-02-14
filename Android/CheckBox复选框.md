@@ -4,7 +4,7 @@ categories: Android
 abbrlink: a687c5b9
 date: 2018-12-28 11:50:10
 ---
-&emsp;&emsp;`XML`文件如下：
+&emsp;&emsp;`XML`文件如下：<!--more-->
 
 ``` xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

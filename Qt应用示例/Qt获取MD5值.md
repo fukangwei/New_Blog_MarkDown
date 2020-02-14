@@ -4,7 +4,7 @@ categories: Qt应用示例
 abbrlink: ef49342a
 date: 2018-12-28 16:05:08
 ---
-&emsp;&emsp;`QT`提供了`QCryptographicHash`类，可以很方便地实现`MD5`等加密算法。
+&emsp;&emsp;`QT`提供了`QCryptographicHash`类，可以很方便地实现`MD5`等加密算法。<!--more-->
 &emsp;&emsp;第一种方法如下：
 
 ``` cpp

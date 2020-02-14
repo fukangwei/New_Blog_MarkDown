@@ -6,7 +6,7 @@ date: 2019-01-13 19:44:15
 ---
 ### Java官方JDK
 
-&emsp;&emsp;在`系统变量`中设置`3`项属性：`JAVA_HOME`、`PATH`、`CLASSPATH`。
+&emsp;&emsp;在`系统变量`中设置`3`项属性：`JAVA_HOME`、`PATH`、`CLASSPATH`。<!--more-->
 
 - `JAVA_HOME`的值是`D:\Program Files (x86)\Java\jdk1.8.0_91`，这个路径就是`JDK`安装的路径。
 - `CLASSPATH`的值是`.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;`，记得前面有个`.`。

@@ -4,7 +4,7 @@ categories: 单片机
 abbrlink: c652c843
 date: 2018-12-29 18:17:31
 ---
-&emsp;&emsp;`Options for ...` -> `C/C++` -> `Misc Control`, input `--cpp`.
+&emsp;&emsp;`Options for ...` -> `C/C++` -> `Misc Control`, input `--cpp`.<!--more-->
 &emsp;&emsp;`led.h`如下：
 
 ``` cpp

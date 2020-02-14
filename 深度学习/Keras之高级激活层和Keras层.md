@@ -8,7 +8,7 @@ date: 2019-01-01 09:28:54
 
 #### LeakyReLU
 
-&emsp;&emsp;`LeakyRelU`是修正线性单元(`Rectified Linear Unit`，`ReLU`)的特殊版本，当不激活时，`LeakyReLU`仍然会有非零输出值，从而获得一个小梯度，避免`ReLU`可能出现的`神经元死亡`现象：
+&emsp;&emsp;`LeakyRelU`是修正线性单元(`Rectified Linear Unit`，`ReLU`)的特殊版本，当不激活时，`LeakyReLU`仍然会有非零输出值，从而获得一个小梯度，避免`ReLU`可能出现的`神经元死亡`现象：<!--more-->
 
 ``` python
 keras.layers.LeakyReLU(alpha=0.3)

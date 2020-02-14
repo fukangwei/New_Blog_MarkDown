@@ -4,7 +4,7 @@ categories: Python语法
 abbrlink: c66eb693
 date: 2019-01-11 19:41:59
 ---
-1. 由于`Python`没有变量的检查，在程序中可能会出现变量名近似的错误，例如将`girl`误写为`gril`。
+1. 由于`Python`没有变量的检查，在程序中可能会出现变量名近似的错误，例如将`girl`误写为`gril`。<!--more-->
 2. `python`打印序列前几个数据可以采取分片的方式，例如`for index in suit_list[0:5]`。
 3. 编写`python`的函数时，一定要注意`return`关键字的位置。
 4. `python`中还是有部分函数无法在`Linux`和`Windows`上通用，例如`os`模块中和文件或目录有关的函数。

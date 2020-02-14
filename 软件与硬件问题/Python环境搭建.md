@@ -6,7 +6,7 @@ date: 2019-01-13 19:00:42
 ---
 ### pip安装和入门
 
-&emsp;&emsp;对于`linux`系统，可以使用如下命令进行安装：
+&emsp;&emsp;对于`linux`系统，可以使用如下命令进行安装：<!--more-->
 
 ``` bash
 sudo apt-get install python3-pip

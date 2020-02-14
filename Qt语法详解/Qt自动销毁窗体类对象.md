@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: dfe1d7b3
 date: 2019-01-02 09:50:20
 ---
-&emsp;&emsp;看下面一段代码：
+&emsp;&emsp;看下面一段代码：<!--more-->
 
 ``` cpp
 QMainWindow *ImgWindow1;

@@ -4,9 +4,9 @@ categories: ucos和ucgui
 abbrlink: 2dd4064
 date: 2018-12-29 09:43:31
 ---
-&emsp;&emsp;代码如下：
+&emsp;&emsp;代码如下：<!--more-->
 
-``` c
+``` cpp
 #include <stdlib.h>
 #include "GUI.h"
 #include "stdlib.h"

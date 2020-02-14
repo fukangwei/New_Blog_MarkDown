@@ -6,9 +6,9 @@ date: 2018-12-30 04:29:19
 ---
 ### STM32软件延时函数
 
-&emsp;&emsp;`stm32`系统时钟为`72MHz`，用软件延时方法实现微秒级延时：
+&emsp;&emsp;`stm32`系统时钟为`72MHz`，用软件延时方法实现微秒级延时：<!--more-->
 
-``` c
+``` cpp
 #define delayUs(x) { unsigned int _dcnt; \
         _dcnt = (x * 16); \
         while(_dcnt-- > 0) \
@@ -22,7 +22,7 @@ date: 2018-12-30 04:29:19
 
 &emsp;&emsp;在关闭`JTAG`的同时，记得要开启复用功能时钟和`IO`口时钟：
 
-``` c
+``` cpp
 RCC->APB2ENR |= 0x00000001; /* 开启afio时钟 */
 AFIO->MAPR = ( 0x00FFFFFF & AFIO->MAPR ) | 0x04000000; /* 关闭JTAG */
 // GPIO_PinRemapConfig ( GPIO_Remap_SWJ_Disable, ENABLE ); /* 关闭JTAG */
@@ -30,7 +30,7 @@ AFIO->MAPR = ( 0x00FFFFFF & AFIO->MAPR ) | 0x04000000; /* 关闭JTAG */
 
 ### STM32的BOOT0和BOOT1
 
-&emsp;&emsp;STM32三种启动模式对应的存储介质均是芯片内置的：
+&emsp;&emsp;`STM32`三种启动模式对应的存储介质均是芯片内置的：
 
 - `用户闪存`：芯片内置的`Flash`。
 - `SRAM`：芯片内置的`RAM`区，就是内存。

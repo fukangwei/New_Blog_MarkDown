@@ -6,7 +6,7 @@ date: 2018-12-30 18:13:46
 ---
 ### cvCreateSeq
 
-&emsp;&emsp;该函数的功能是创建一个序列：
+&emsp;&emsp;该函数的功能是创建一个序列：<!--more-->
 
 ``` cpp
 CvSeq *cvCreateSeq (int seq_flags, int header_size, int elem_size, CvMemStorage *storage);
@@ -257,4 +257,4 @@ while ( pCurSeq ) {
 }
 ```
 
-&emsp;&emsp;后来在`Google Book`里查了一下，发现`《Learning OpenCV: Computer Vision with the OpenCV Library》`中有这么一段话：The sequence structure itself has some important elements that you should be aware of. The first, and one you will use often, is total. This is the total number of points or objects in the sequence. The next four important elements are pointers to other sequence: `h_prev`, `h_next`, `v_prev` and `v_next`. These four pointers are part of what are called `CV_TREE_NODE_FIELDS`; they are used not to indicate elements inside of the sequence but rather to connect different sequences to one another. Other objects in the `OpenCV` universe also contain these tree node fields。
+&emsp;&emsp;后来在`Google Book`里查了一下，发现`Learning OpenCV: Computer Vision with the OpenCV Library`中有这么一段话：The sequence structure itself has some important elements that you should be aware of. The first, and one you will use often, is total. This is the total number of points or objects in the sequence. The next four important elements are pointers to other sequence: `h_prev`, `h_next`, `v_prev` and `v_next`. These four pointers are part of what are called `CV_TREE_NODE_FIELDS`; they are used not to indicate elements inside of the sequence but rather to connect different sequences to one another. Other objects in the `OpenCV` universe also contain these tree node fields。

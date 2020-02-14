@@ -4,7 +4,7 @@ categories: Android
 abbrlink: 2b16ab30
 date: 2018-12-28 14:14:16
 ---
-&emsp;&emsp;`Spinner`相关属性如下：
+&emsp;&emsp;`Spinner`相关属性如下：<!--more-->
 
 - `android:dropDownHorizontalOffset`：设置列表框的水平偏移距离。
 - `android:dropDownVerticalOffset`：设置列表框的水平竖直距离。

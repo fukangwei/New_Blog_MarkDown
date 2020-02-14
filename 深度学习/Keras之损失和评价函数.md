@@ -6,7 +6,7 @@ date: 2019-01-01 19:48:08
 ---
 ### 损失函数
 
-&emsp;&emsp;损失函数(或称`目标函数`、`优化评分函数`)是编译模型时所需的两个参数之一：
+&emsp;&emsp;损失函数(或称`目标函数`、`优化评分函数`)是编译模型时所需的两个参数之一：<!--more-->
 
 ``` python
 model.compile(loss='mean_squared_error', optimizer='sgd')

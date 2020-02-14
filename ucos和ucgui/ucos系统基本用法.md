@@ -4,9 +4,9 @@ categories: ucos和ucgui
 abbrlink: '23213704'
 date: 2018-12-29 12:39:06
 ---
-&emsp;&emsp;在任务中创建任务：
+&emsp;&emsp;在任务中创建任务：<!--more-->
 
-``` c
+``` cpp
 #define STARTUP_TASK_PRIO     8
 #define STARTUP_TASK_STK_SIZE 80
 ​
@@ -46,7 +46,7 @@ int main ( void ) {
 
 &emsp;&emsp;创建单次任务：
 
-``` c
+``` cpp
 #define STARTUP_TASK_PRIO     8
 #define STARTUP_TASK_STK_SIZE 80
 ​
@@ -84,7 +84,7 @@ int main ( void ) {
 
 &emsp;&emsp;在创建任务时传递参数：
 
-``` c
+``` cpp
 void TestUart ( void *p_arg ) {
     printf ( "I get %d\r\n", * ( u8 * ) p_arg );
     OSTaskDel ( OS_PRIO_SELF );
@@ -113,7 +113,7 @@ int main ( void ) {
 
 &emsp;&emsp;使用信号量触发任务：
 
-``` c
+``` cpp
 static OS_STK task_testled[STARTUP_TASK_STK_SIZE];
 static OS_STK task_testluart[STARTUP_TASK_STK_SIZE];
 ​
@@ -151,7 +151,7 @@ int main ( void ) {
 
 &emsp;&emsp;消息邮箱的基本使用：
 
-``` c
+``` cpp
 OS_EVENT *Mybox = NULL; /* 定义邮箱指针 */
 u8 err = 0;
 ​
@@ -190,7 +190,7 @@ int main ( void ) {
 
 &emsp;&emsp;邮箱广播机制：
 
-``` c
+``` cpp
 static OS_STK task_testled[STARTUP_TASK_STK_SIZE];
 static OS_STK task_testluart1[STARTUP_TASK_STK_SIZE];
 static OS_STK task_testluart2[STARTUP_TASK_STK_SIZE];
@@ -244,7 +244,7 @@ int main ( void ) {
 
 &emsp;&emsp;事件标志组(信号量集)的使用：
 
-``` c
+``` cpp
 static OS_STK task_testled[STARTUP_TASK_STK_SIZE];
 static OS_STK task_testluart1[STARTUP_TASK_STK_SIZE];
 static OS_STK task_testluart2[STARTUP_TASK_STK_SIZE];
@@ -292,12 +292,13 @@ int main ( void ) {
 
 &emsp;&emsp;消息队列的使用：
 
-``` c
+``` cpp
 static OS_STK task_testled[STARTUP_TASK_STK_SIZE];
 static OS_STK task_testluart1[STARTUP_TASK_STK_SIZE];
 static OS_STK task_testluart2[STARTUP_TASK_STK_SIZE];
 ​
-#define N_MESSAGES     128
+#define N_MESSAGES 128
+
 void *MsgGrp[N_MESSAGES]; /* 定义消息指针数组 */
 OS_EVENT *Str_Q;
 u8 err = 0;

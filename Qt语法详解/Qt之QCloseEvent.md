@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: e7aeb380
 date: 2019-01-02 10:40:04
 ---
-&emsp;&emsp;使用软件时常常会遇到这样的情况：点击关闭选项后，程序没有马上退出，而是跳出一个对话框，问是否确定退出软件。`Qt`同样提供了一个函数来实现这个功能，那就是`QCloseEvent`：
+&emsp;&emsp;使用软件时常常会遇到这样的情况：点击关闭选项后，程序没有马上退出，而是跳出一个对话框，问是否确定退出软件。`Qt`同样提供了一个函数来实现这个功能，那就是`QCloseEvent`：<!--more-->
 
 ``` cpp
 void QMainFrame::closeEvent ( QCloseEvent *event ) [virtual protected]

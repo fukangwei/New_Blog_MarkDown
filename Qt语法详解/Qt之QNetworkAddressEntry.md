@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: c391d68f
 date: 2019-01-03 09:04:44
 ---
-&emsp;&emsp;`QNetworkAddressEntry`类由网络接口支持，存储了`IP`地址、子网掩码和广播地址。每个网络接口可以包含零个或多个`IP`地址，进而可以关联到一个子网掩码`和/或`一个广播地址(取决于操作系统的支持)。常用接口如下：
+&emsp;&emsp;`QNetworkAddressEntry`类由网络接口支持，存储了`IP`地址、子网掩码和广播地址。每个网络接口可以包含零个或多个`IP`地址，进而可以关联到一个子网掩码`和/或`一个广播地址(取决于操作系统的支持)。常用接口如下：<!--more-->
 
 - `QHostAddress broadcast() const`：返回`IPv4`地址和子网掩码相关联的广播地址。对于`IPv6`地址来说，返回的总是空，因为广播的概念已被抛弃，多播的概念开始兴起。
 - `QHostAddress ip() const`：返回一个网络接口中存在的`IPv4`或`IPv6`地址。

@@ -6,7 +6,7 @@ date: 2018-12-30 14:31:59
 ---
 ### saturate_cast的作用
 
-&emsp;&emsp;`saturate_cast`用于防止数据溢出，其大致原理如下：
+&emsp;&emsp;`saturate_cast`用于防止数据溢出，其大致原理如下：<!--more-->
 
 ``` cpp
 if ( data < 0 ) {
@@ -38,7 +38,7 @@ for ( int i = 0; i < src1.rows; i++ ) {
 &emsp;&emsp;`copyTo`是深拷贝，但是否申请新的内存空间，取决于`dst`矩阵头中的大小信息是否与`src`一至。若一致，则只深拷贝并不申请新的空间，否则先申请空间后，再进行拷贝。`clone`是完全的深拷贝，在内存中申请新的空间。
 
 ``` cpp
-Mat A  = Mat::ones ( 4, 5, CV_32F );
+Mat A = Mat::ones ( 4, 5, CV_32F );
 Mat B = A.clone(); /* clone是完全的深拷贝，在内存中申请新的空间，与A独立 */
 Mat C;
 A.copyTo ( C ); /* 此处的C矩阵大小与A大小不一致，则申请新的内存空间，并完成拷贝，等同于clone */
@@ -53,26 +53,26 @@ A.col ( 0 ).copyTo ( D );
 
 &emsp;&emsp;该宏用于提取像素值：
 
-``` c
+``` cpp
 CV_IMAGE_ELEM ( image, elemtype, row, col )
 ```
 
 参数`image`是`IplImage *`型指针；`elemtype`是数据类型，经常为`uchar`；`row`和`col`分别是数据矩阵的行和列。
 
-``` c
-#define CV_IMAGE_ELEM( image, elemtype, row, col ) \
+``` cpp
+#define CV_IMAGE_ELEM(image, elemtype, row, col) \
     (((elemtype *)((image)->imageData + (image)->widthStep * (row)))[(col)])
 ```
 
 - 对于单通道的灰度图像，访问像素时使用：
 
-``` c
+``` cpp
 CV_IMAGE_ELEM ( image, uchar, i, j );
 ```
 
 - 对于三通道的彩色图像，访问像素时使用：
 
-``` c
+``` cpp
 CV_IMAGE_ELEM ( image, uchar, i, j * 3 );
 CV_IMAGE_ELEM ( image, uchar, i, j * 3 + 1 );
 CV_IMAGE_ELEM ( image, uchar, i, j * 3 + 2 );

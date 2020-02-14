@@ -6,7 +6,7 @@ date: 2018-12-30 21:31:39
 ---
 ### MaxPooling1D
 
-&emsp;&emsp;该函数用于时序数据的最大池化：
+&emsp;&emsp;该函数用于时序数据的最大池化：<!--more-->
 
 ``` python
 keras.layers.MaxPooling1D(pool_size=2, strides=None, padding='valid')

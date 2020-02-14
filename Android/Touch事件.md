@@ -4,7 +4,7 @@ categories: Android
 abbrlink: b927025a
 date: 2018-12-28 15:01:05
 ---
-&emsp;&emsp;重写`Touch`事件回调函数如下：
+&emsp;&emsp;重写`Touch`事件回调函数如下：<!--more-->
 
 ``` java
 import android.support.v7.app.AppCompatActivity;

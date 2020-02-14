@@ -4,9 +4,9 @@ categories: 单片机
 abbrlink: 44465f3f
 date: 2018-12-29 17:54:42
 ---
-&emsp;&emsp;代码如下：
+&emsp;&emsp;代码如下：<!--more-->
 
-``` c
+``` cpp
 void TIM2_IRQHandler ( void ) {
     if ( TIM_GetITStatus ( TIM2, TIM_IT_Update ) != RESET ) {
         /* user code */

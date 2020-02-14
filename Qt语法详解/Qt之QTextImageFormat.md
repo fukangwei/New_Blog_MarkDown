@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: d6eb2e34
 date: 2019-01-02 15:47:09
 ---
-&emsp;&emsp;The `QTextImageFormat` class provides formatting information for images in a `QTextDocument`.
+&emsp;&emsp;The `QTextImageFormat` class provides formatting information for images in a `QTextDocument`.<!--more-->
 
 Header             | Inherits
 -------------------|-----------------

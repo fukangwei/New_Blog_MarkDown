@@ -4,11 +4,11 @@ categories: Linux系统编程
 abbrlink: b77dd00c
 date: 2018-12-29 17:07:01
 ---
-&emsp;&emsp;正如我们可以确定用户信息一样，程序也可以确定其运行的计算机的信息，`uname`命令提供了这些信息。`uname`同时也作为一个系统调用来在一个`C`程序中提供同样的信息，我们可以使用`man 2 uname`来查看详细的信息。
+&emsp;&emsp;正如我们可以确定用户信息一样，程序也可以确定其运行的计算机的信息，`uname`命令提供了这些信息。`uname`同时也作为一个系统调用来在一个`C`程序中提供同样的信息，我们可以使用`man 2 uname`来查看详细的信息。<!--more-->
 &emsp;&emsp;许多情况都需要主机信息。我们也许希望依据在网络中一个程序所运行的机器的名字来自定义其行为，也就是说，是一个学生的机器还是一个管理员的机器。为了授权的目的，我们也许希望限制一个程序只在一台机器上运行。所有这些都意味着我们需要一个方法来确定程序所运行的机器的信息。
 &emsp;&emsp;如果系统安装了网络组件，那么我们可以非常容易地通过`gethostname`函数来得到其网络名：
 
-``` c
+``` cpp
 #include <unistd.h>
 int gethostname ( char *name, size_t namelen );
 ```
@@ -16,7 +16,7 @@ int gethostname ( char *name, size_t namelen );
 `gethostname`函数将机器的网络名写入`name`所指的字符串中。假定这个字符串的长度至少为`namelen`字符长。如果成功，`gethostname`函数会返回`0`，否则会返回`-1`。
 &emsp;&emsp;我们可以由`uname`系统调用得到关于主机的更为详细的信息：
 
-``` c
+``` cpp
 #include <sys/utsname.h>
 int uname ( struct utsname *name );
 ```
@@ -34,7 +34,7 @@ int uname ( struct utsname *name );
 如果成功，`uname`函数会返回一个非负数，否则返回`-1`，同时设置`errno`来指示错误。
 &emsp;&emsp;下面的程序用于得到主机信息：
 
-``` c
+``` cpp
 #include <sys/utsname.h>
 #include <unistd.h>
 #include <stdio.h>

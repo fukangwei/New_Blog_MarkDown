@@ -4,7 +4,7 @@ categories: 深度学习
 abbrlink: 20514fba
 date: 2019-01-15 14:05:11
 ---
-&emsp;&emsp;`TensorFlow`的运行方式分如下`4`步：
+&emsp;&emsp;`TensorFlow`的运行方式分如下`4`步：<!--more-->
 
 - 加载数据以及定义超参数。
 - 构建网络。

@@ -4,7 +4,7 @@ categories: Linux系统编程
 abbrlink: 5d461910
 date: 2018-12-29 14:35:53
 ---
-&emsp;&emsp;`current`指针的用法`1`：
+&emsp;&emsp;`current`指针的用法`1`：<!--more-->
 
 ``` cpp
 #include <linux/init.h>

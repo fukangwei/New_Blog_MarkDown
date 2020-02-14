@@ -4,7 +4,7 @@ categories: Android
 abbrlink: d7d619cd
 date: 2018-12-28 15:10:40
 ---
-&emsp;&emsp;在`Android`系统中，广播(`Broadcast`)是在组件之间传播数据的一种机制，这些组件可以位于不同的进程中，起到进程间通信的作用。
+&emsp;&emsp;在`Android`系统中，广播(`Broadcast`)是在组件之间传播数据的一种机制，这些组件可以位于不同的进程中，起到进程间通信的作用。<!--more-->
 &emsp;&emsp;`BroadcastReceiver`是对发送出来的`Broadcast`进行过滤、接受和响应的组件。首先将要发送的消息和用于过滤的信息(`Action`或`Category`)装入一个`Intent`对象，然后通过调用`sendBroadcast`、`sendOrderBroadcast`方法把`Intent`对象以广播形式发送出去。广播发送出去后，所有已注册的`BroadcastReceiver`会检查注册时的`IntentFilter`是否与发送的`Intent`相匹配，若匹配则会调用`BroadcastReceiver`的`onReceiver`方法。`BroadcastReceiver`的生命周期很短，在执行`onReceiver`方法时才有效，一旦执行完毕，该`Receiver`的生命周期就结束了。
 &emsp;&emsp;`Android`中的广播分为两种类型，即标准广播和有序广播：
 

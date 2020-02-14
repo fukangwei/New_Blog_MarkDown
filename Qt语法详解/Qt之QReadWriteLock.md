@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: c0692767
 date: 2019-01-03 16:28:02
 ---
-&emsp;&emsp;The `QReadWriteLock` class provides `read-write` locking. The header file is `QReadWriteLock`. **Note**: All functions in this class are `thread-safe`.
+&emsp;&emsp;The `QReadWriteLock` class provides `read-write` locking. The header file is `QReadWriteLock`. **Note**: All functions in this class are `thread-safe`.<!--more-->
 
 ### Public Types
 

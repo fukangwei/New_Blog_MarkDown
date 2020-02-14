@@ -4,7 +4,7 @@ categories: 深度学习
 abbrlink: ec0a05c1
 date: 2019-01-01 10:04:12
 ---
-&emsp;&emsp;优化器(`optimizer`)是编译`Keras`模型的所需的两个参数之一：
+&emsp;&emsp;优化器(`optimizer`)是编译`Keras`模型的所需的两个参数之一：<!--more-->
 
 ``` python
 from keras import optimizers
@@ -77,8 +77,6 @@ keras.optimizers.RMSprop(lr=0.001, rho=0.9, epsilon=None, decay=0.0)
 keras.optimizers.Adagrad(lr=0.01, epsilon=None, decay=0.0)
 ```
 
-建议使用优化器的默认参数。
-
 - `lr`：`float >= 0`，学习率。
 - `epsilon`：`float >= 0`，若为`None`，默认为`K.epsilon`。
 - `decay`：`float >= 0`，每次参数更新后学习率衰减值。
@@ -90,8 +88,6 @@ keras.optimizers.Adagrad(lr=0.01, epsilon=None, decay=0.0)
 ``` python
 keras.optimizers.Adadelta(lr=1.0, rho=0.95, epsilon=None, decay=0.0)
 ```
-
-建议使用优化器的默认参数。
 
 - `lr`：`float >= 0`，学习率，建议保留默认值。
 - `rho`：`float >= 0`，`Adadelta`梯度平方移动均值的衰减率。
@@ -105,8 +101,6 @@ keras.optimizers.Adadelta(lr=1.0, rho=0.95, epsilon=None, decay=0.0)
 ``` python
 keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=False)
 ```
-
-建议使用优化器的默认参数。
 
 - `lr`：`float >= 0`，学习率。
 - `beta_1`：`float`型，`0 < beta < 1`，通常接近于`1`。
@@ -138,7 +132,7 @@ keras.optimizers.Adamax(lr=0.002, beta_1=0.9, beta_2=0.999, epsilon=None, decay=
 keras.optimizers.Nadam(lr=0.002, beta_1=0.9, beta_2=0.999, epsilon=None, schedule_decay=0.004)
 ```
 
-正像`Adam`本质上是`RMSProp`与动量`momentum`的结合，`Nadam`是采用`Nesterov momentum`版本的`Adam`优化器。建议使用优化器的默认参数。
+正像`Adam`本质上是`RMSProp`与动量`momentum`的结合，`Nadam`是采用`Nesterov momentum`版本的`Adam`优化器。
 
 - `lr`：`float >= 0`，学习率。
 - `beta_1/beta_2`：`float`型，`0 < beta < 1`，通常接近于`1`。

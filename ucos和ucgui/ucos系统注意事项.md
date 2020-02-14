@@ -4,7 +4,9 @@ categories: ucos和ucgui
 abbrlink: a1fb18b8
 date: 2018-12-29 11:56:29
 ---
-1. `ucos`系统的底层一定要移植好，否则会出现信号量、消息邮箱失效等现象，甚至死机。移植好的系统要经过信号量、消息邮箱等测试，才能放心使用。
+### ucos系统注意事项
+
+1. `ucos`系统的底层一定要移植好，否则会出现信号量、消息邮箱失效等现象，甚至死机。移植好的系统要经过信号量、消息邮箱等测试，才能放心使用。<!--more-->
 2. 消息邮箱的创建函数一定要放在`ucos`系统初始化函数的后面，否则邮箱机制失效。
 3. 使用信号量、消息邮箱等机制时，一定要注意任务的优先级。
 4. 移植`ucos`系统后，要将设备驱动的延时函数用`ucos`的延时函数进行替代，设备的初始化函数放在任务中，否则会出现死机现象。
@@ -18,12 +20,12 @@ date: 2018-12-29 11:56:29
 12. `ucos`系统在`STM32`上打印浮点数的时候会出现错误，最好让每一个任务的堆栈都以`8`字节对齐。
 13. 如果需要使用`ucos`的邮箱向多个任务发送信息，可以使用`OSMboxPostOpt`函数。
 
-### UCOS的printf浮点数问题
+### ucos的printf浮点数问题
 
 &emsp;&emsp;当使用`ucos`时，`printf`、`sprintf`打印浮点数会出现问题，但当类型是`int`或`short`时没有问题。根据网上资料，将任务堆栈设置为`8`字节对齐就可以了。当没有操作系统时，系统堆栈是`8`字节对齐的；但是当使用`ucos`时，用户任务不一定是`8`字节对齐。
 &emsp;&emsp;如果是`IAR`编译器，通过`#pragma data_alignment`指定对齐字节数：
 
-``` c
+``` cpp
 #pragma data_alignment=8
 OS_STK Task1_LED1_Stk[Task1_LED1_Stk_Size];
 #pragma data_alignment=8
@@ -32,6 +34,6 @@ OS_STK Task2_backlight_Stk[Task2_backlight_Stk_Size];
 
 &emsp;&emsp;如果使用`MDK`编译器，请在系统任务堆栈前面进行数据对齐声明：
 
-``` c
+``` cpp
 __align ( 8 ) static OS_STK TaskStartStk[TASK_START_STK_SIZE];
 ```

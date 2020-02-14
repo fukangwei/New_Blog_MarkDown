@@ -4,7 +4,7 @@ categories: Python语法
 abbrlink: '318819e0'
 date: 2019-01-11 19:09:18
 ---
-&emsp;&emsp;`sys`模块提供了一系列有关`Python`运行环境的变量和函数。
+&emsp;&emsp;`sys`模块提供了一系列有关`Python`运行环境的变量和函数。<!--more-->
 
 ### sys.argv
 

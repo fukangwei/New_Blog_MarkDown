@@ -6,7 +6,7 @@ date: 2019-01-02 19:05:18
 ---
 ### QStack Class
 
-&emsp;&emsp;The `QStack` class is a template class that provides a `stack`.
+&emsp;&emsp;The `QStack` class is a template class that provides a `stack`.<!--more-->
 
 Header   | Inherits
 ---------|---------

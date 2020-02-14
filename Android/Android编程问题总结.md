@@ -6,7 +6,7 @@ date: 2018-12-28 13:43:40
 ---
 ### failed to load AppCompat ActionBar with unknown error
 
-&emsp;&emsp;这种错误导致`Android Studio`无法预览`xml`布局视图。解决方法是找到`res -> values -> styles.xml`文件，将`parent="Theme.AppCompat.Light.DarkActionBar"`改为`parent="Base.Theme.AppCompat.Light.DarkActionBar"`。
+&emsp;&emsp;这种错误导致`Android Studio`无法预览`xml`布局视图。解决方法是找到`res -> values -> styles.xml`文件，将`parent="Theme.AppCompat.Light.DarkActionBar"`改为`parent="Base.Theme.AppCompat.Light.DarkActionBar"`。<!--more-->
 
 ### 使用设备文件浏览器查看设备上的文件
 

@@ -4,7 +4,7 @@ categories: 深度学习
 abbrlink: d406fd80
 date: 2019-01-15 11:39:13
 ---
-&emsp;&emsp;`Keras`的`Application`模块提供了带有预训练权重的`Keras`模型，这些模型可以用来进行预测、特征提取和`finetune`。模型的预训练权重将下载到`~/.keras/models/`，并在载入模型时自动载入。
+&emsp;&emsp;`Keras`的`Application`模块提供了带有预训练权重的`Keras`模型，这些模型可以用来进行预测、特征提取和`finetune`。模型的预训练权重将下载到`~/.keras/models/`，并在载入模型时自动载入。<!--more-->
 &emsp;&emsp;在`ImageNet`上预训练过的用于图像分类的模型主要有：`Xception`、`VGG16`、`VGG19`、`ResNet50`、`InceptionV3`、`InceptionResNetV2`、`MobileNet`、`DenseNet`和`NASNet`。所有的这些模型(除了`Xception`和`MobileNet`)都兼容`Theano`和`Tensorflow`，并会基于`~/.keras/keras.json`自动设置`Keras`的图像维度。例如，如果你设置`data_format="channel_last"`，则加载的模型将按照`TensorFlow`的维度顺序来构造，即`Width Height Depth`的顺序
 &emsp;&emsp;`Xception`模型仅在`TensorFlow`下可用，因为它依赖的`SeparableConvolution`层仅在`TensorFlow`可用。`MobileNet`仅在`TensorFlow`下可用，因为它依赖的`DepethwiseConvolution`层仅在`TensorFlow`下可用。模型信息如下：
 

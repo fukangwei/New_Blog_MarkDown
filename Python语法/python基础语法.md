@@ -6,7 +6,7 @@ date: 2019-01-10 08:54:28
 ---
 ### 编码
 
-&emsp;&emsp;默认情况下，`Python 3`源码文件以`UTF-8`编码保存，所有的字符串都是`unicode`字符串。当然你也可以为源码文件指定不同的编码：
+&emsp;&emsp;默认情况下，`Python 3`源码文件以`UTF-8`编码保存，所有的字符串都是`unicode`字符串。当然你也可以为源码文件指定不同的编码：<!--more-->
 
 ``` python
 # -*- coding: cp-1252 -*-
@@ -133,7 +133,7 @@ else:
 
 ### Print输出
 
-&emsp;&emsp;print默认输出是换行的，如果要实现不换行，需要在`print`中加上`end=" "`：
+&emsp;&emsp;`print`默认输出是换行的，如果要实现不换行，需要在`print`中加上`end=" "`：
 
 ``` python
 x = "a"
@@ -193,6 +193,5 @@ print('\npython路径为', sys.path)
 
 ``` python
 from sys import argv, path  # 导入特定的成员
-​
 print('path:', path)  # 因为已经导入path成员，所以此处引用时不需要加“sys.path”
 ```

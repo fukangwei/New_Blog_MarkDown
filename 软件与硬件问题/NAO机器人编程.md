@@ -6,7 +6,7 @@ date: 2019-01-07 13:45:49
 ---
 ### NAO开发环境搭建
 
-&emsp;&emsp;首先确保计算机上有`python 2.7`的`32`位开发环境(这是针对`Windows`环境，对于`MAC`和`Linux`，可以使用`32`或`64`位的`python 2.7`环境)，建议使用`Anaconda`进行安装。
+&emsp;&emsp;首先确保计算机上有`python 2.7`的`32`位开发环境(这是针对`Windows`环境，对于`MAC`和`Linux`，可以使用`32`或`64`位的`python 2.7`环境)，建议使用`Anaconda`进行安装。<!--more-->
 &emsp;&emsp;从`NAO`机器人的官网下载`pynaoqi-2.1.4.13.win32.exe`，并进行安装，这是除了`NAO v6`以外其他型号机器人的`SDK`(`NAO v6`最显著的特征是胸口的`LOGO`被改为`NAO`)。完成以后，使用`python`输入以下指令进行测试：
 
 ``` python
@@ -46,7 +46,7 @@ motion.moveTo(1.0, 0.0, 0.0)
 bool ALMotionProxy::moveTo ( const float &x, const float &y, const float &theta );
 ```
 
-Makes the robot `move` to the given pose in the ground `plane`, relative to `FRAME_ROBOT`. This is a `blocking` call. Parameters:
+Makes the robot `move` to the given pose in the ground `plane`, relative to `FRAME_ROBOT`. This is a `blocking` call.
 
 - `x`：Distance along the `X` axis in meters.
 - `y`：Distance along the `Y` axis in meters.
@@ -82,7 +82,7 @@ void ALMotionProxy::setWalkTargetVelocity (
 );
 ```
 
-Makes the robot walk at the given `velocity`. This is `a non-blocking` call. Parameters:
+Makes the robot walk at the given `velocity`. This is `a non-blocking` call.
 
 - `x`: Fraction of `MaxStepX`. Use negative for backwards `[-1.0 to 1.0]`.
 - `y`: Fraction of `MaxStepY`. Use negative for right `[-1.0 to 1.0]`.
@@ -209,7 +209,7 @@ std::string ALVideoDeviceProxy::subscribeCamera (
 );
 ```
 
-Subscribes to `ALVideoDevice`. When a `Video` Module registers to `ALVideoDevice`, a buffer of the requested image format is added to the buffers list. Returns an handle which identifies the module in `ALVideoDevice`. (This handle is based on the name parameter, e.g. the `3rd` one getting `_3` added to its name for instance to build this handle). Parameters:
+Subscribes to `ALVideoDevice`. When a `Video` Module registers to `ALVideoDevice`, a buffer of the requested image format is added to the buffers list. Returns an handle which identifies the module in `ALVideoDevice`. (This handle is based on the name parameter, e.g. the `3rd` one getting `_3` added to its name for instance to build this handle).
 
 - `Name`: Name of the subscribing module.
 - `CameraIndex`: `Index` of the camera in the video system (see `Camera Indexes`).
@@ -375,7 +375,7 @@ Gets a `Position` relative to the `FRAME`. Axis definition:
 - the `y` from right to left.
 - the `z` is vertical.
 
-The angle convention of `Position6D` is `Rot_z(wz).Rot_y(wy).Rot_x(wx)`. Parameters:
+The angle convention of `Position6D` is `Rot_z(wz).Rot_y(wy).Rot_x(wx)`.
 
 - `name`: Name of the item. Could be: any joint or chain or sensor (Use `ALMotionProxy::getSensorNames` for the list of sensors supported on your robot).
 - `frame`: Task frame {`FRAME_TORSO` = 0, `FRAME_WORLD` = 1, `FRAME_ROBOT` = 2}.
@@ -414,7 +414,7 @@ Position of CameraTop in World is:
 std::vector<float> ALMotionProxy::getAngles ( const AL::ALValue &names, const bool &useSensors );
 ```
 
-Gets the `angles` of the joints. Parameters:
+Gets the `angles` of the joints.
 
 - `names`: Names the joints, chains, `Body`, `JointActuators`, `Joints` or `Actuators`.
 - `useSensors`: If `true`, `sensor` angles will be returned.
@@ -545,7 +545,7 @@ motionProxy.wakeUp()
 bool ALRobotPosture::goToPosture ( const std::string postureName, const float speed );
 ```
 
-Makes the robot go to the predefined `posture` asked in parameter. It is possible to modify the speed of the move. The move is `intelligent`: it will start from `beginning` posture of the robot, and choose all the steps to reach the asked `posture`. This is a `blocking` call. Use a `post` if you want to make it `non-blocking`. Parameters:
+Makes the robot go to the predefined `posture` asked in parameter. It is possible to modify the speed of the move. The move is `intelligent`: it will start from `beginning` posture of the robot, and choose all the steps to reach the asked `posture`. This is a `blocking` call. Use a `post` if you want to make it `non-blocking`.
 
 - `postureName`: Name of the predefined `posture` to be reached. See `Predefined postures`.
 - `speed`: Relative `speed` between `0.0` and `1.0`.
@@ -612,7 +612,7 @@ motionProxy.moveInit()  # Example showing how Initialize move process
 void ALMotionProxy::setStiffnesses ( const AL::ALValue &names, const AL::ALValue &stiffnesses );
 ```
 
-Sets the `stiffness` of one or more joints. This is a `non-blocking` call. Parameters:  
+Sets the `stiffness` of one or more joints. This is a `non-blocking` call. 
 
 - `names`: Names of joints, chains, `Body`, `JointActuators`, `Joints` or `Actuators`.
 - `stiffnesses`: One or more `stiffnesses` between `zero` and `one`.
@@ -642,7 +642,7 @@ void ALMotionProxy::setAngles (
 );
 ```
 
-Sets `angles`. This is a `non-blocking` call. Parameters:
+Sets `angles`. This is a `non-blocking` call.
 
 - `names`: The name or names of joints, chains, `Body`, `JointActuators`, `Joints` or `Actuators`.
 - `angles`: One or more `angles` in `radians`.

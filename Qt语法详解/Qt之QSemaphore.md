@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: 804b64f
 date: 2019-01-03 15:47:32
 ---
-&emsp;&emsp;The `QSemaphore` class provides a general counting semaphore. The header file is `QSemaphore`. **Note**: All functions in this class are `thread-safe`.
+&emsp;&emsp;The `QSemaphore` class provides a general counting semaphore. The header file is `QSemaphore`. **Note**: All functions in this class are `thread-safe`.<!--more-->
 
 ### Public Functions
 

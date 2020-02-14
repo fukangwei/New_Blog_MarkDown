@@ -4,9 +4,9 @@ categories: 单片机
 abbrlink: ff571887
 date: 2018-12-29 17:21:55
 ---
-&emsp;&emsp;代码如下：
+&emsp;&emsp;代码如下：<!--more-->
 
-``` c
+``` cpp
 #include <reg52.h>
 #include <stdio.h> /* “stdio.h”用于printf函数原型 */
 ​

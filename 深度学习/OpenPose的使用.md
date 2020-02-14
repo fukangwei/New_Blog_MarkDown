@@ -6,7 +6,7 @@ date: 2018-12-30 22:15:58
 ---
 ### Windows版本
 
-&emsp;&emsp;首先确保计算机中有显卡，并安装好`CUDA`模块。然后下载`OpenPose`的`Windows`版本，并进行解压操作。
+&emsp;&emsp;首先确保计算机中有显卡，并安装好`CUDA`模块。然后下载`OpenPose`的`Windows`版本，并进行解压操作。<!--more-->
 &emsp;&emsp;查看`OpenPose`的参数可以使用如下命令：
 
 ``` bash

@@ -6,7 +6,7 @@ date: 2019-01-16 08:06:29
 ---
 ### Conv1D
 
-&emsp;&emsp;该函数是`1D`卷积层(例如`时序卷积`)：
+&emsp;&emsp;该函数是`1D`卷积层(例如`时序卷积`)：<!--more-->
 
 ``` python
 keras.layers.Conv1D(

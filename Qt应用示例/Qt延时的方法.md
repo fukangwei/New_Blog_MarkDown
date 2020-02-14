@@ -4,7 +4,7 @@ categories: Qt应用示例
 abbrlink: 4bd9ba2
 date: 2018-12-28 16:01:08
 ---
-&emsp;&emsp;1. 使用`QTimer::singleShot`的方法：
+&emsp;&emsp;1. 使用`QTimer::singleShot`的方法：<!--more-->
 
 ``` cpp
 void QTimer::singleShot ( int msec, QObject *receiver, const char *member ) [static]

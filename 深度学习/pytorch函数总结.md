@@ -6,7 +6,7 @@ date: 2019-01-13 20:05:19
 ---
 ### torch.ones
 
-&emsp;&emsp;函数原型如下：
+&emsp;&emsp;函数原型如下：<!--more-->
 
 ``` python
 torch.ones(*sizes, out=None) -> Tensor
@@ -19,8 +19,8 @@ torch.ones(*sizes, out=None) -> Tensor
 
 ``` python
 >>> torch.ones(2, 3)
- 1  1  1
- 1  1  1
+ 1  1  1
+ 1  1  1
 [torch.FloatTensor of size 2x3]
 >>> torch.ones(5)
  1
@@ -739,8 +739,8 @@ torch.nn.ConvTranspose2d(
 
 &emsp;&emsp;输入和输出的`shape`如下：
 
-- 输入Input：(`N, Cin, Hin, Win`)。
-- 输出Output：(`N, Cout, Hout, Wout`)，其中：
+- 输入`Input`：(`N, Cin, Hin, Win`)。
+- 输出`Output`：(`N, Cout, Hout, Wout`)，其中：
 
 ``` python
 Hout = (Hin - 1) * stride[0] - 2 * padding[0] + kernel_size[0] + output_padding[0]

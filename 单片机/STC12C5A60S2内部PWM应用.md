@@ -4,9 +4,9 @@ categories: 单片机
 abbrlink: 8567deb
 date: 2018-12-29 17:24:11
 ---
-&emsp;&emsp;代码如下：
+&emsp;&emsp;代码如下：<!--more-->
 
-``` c
+``` cpp
 #include "STC12C5A.h"
 
 #define uint unsigned int
@@ -50,12 +50,12 @@ void PWM0_set ( uchar empty ) { /* 直接设置占空比 */
 /* type为0是减占空比，1是增加占空比；change：0X0C约5%，0X05约2% */
 void PWM0_change ( uchar type, uchar change ) {
     if ( type == 0 ) {
-        if ( CCAP0L < 0XE6 ) { /* <90% */
+        if ( CCAP0L < 0XE6 ) { /* < 90% */
             CCAP0L += change;
             CCAP0H += change;
         }
     } else {
-        if ( CCAP0L > 0X19 ) { /* >10% */
+        if ( CCAP0L > 0X19 ) { /* > 10% */
             CCAP0L -= change;
             CCAP0H -= change;
         }

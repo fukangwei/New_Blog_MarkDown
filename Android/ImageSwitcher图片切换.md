@@ -4,7 +4,7 @@ categories: Android
 abbrlink: 2a456f10
 date: 2018-12-28 12:46:29
 ---
-&emsp;&emsp;`XML`文件如下：
+&emsp;&emsp;`XML`文件如下：<!--more-->
 
 ``` xml
 <?xml version="1.0" encoding="utf-8"?>

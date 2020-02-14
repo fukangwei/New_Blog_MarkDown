@@ -4,7 +4,7 @@ categories: Qt应用示例
 abbrlink: a0a82ff
 date: 2018-12-28 16:13:21
 ---
-&emsp;&emsp;`mainwindow.h`如下：
+&emsp;&emsp;`mainwindow.h`如下：<!--more-->
 
 ``` cpp
 #ifndef MAINWINDOW_H

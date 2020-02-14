@@ -6,7 +6,7 @@ date: 2019-01-14 11:37:28
 ---
 ### Torch或Numpy
 
-&emsp;&emsp;`Torch`自称为神经网络界的`Numpy`，因为它能将`torch`产生的`tensor`放在`GPU`中加速运算，就像`Numpy`会把`array`放在`CPU`中加速运算。
+&emsp;&emsp;`Torch`自称为神经网络界的`Numpy`，因为它能将`torch`产生的`tensor`放在`GPU`中加速运算，就像`Numpy`会把`array`放在`CPU`中加速运算。<!--more-->
 
 ``` python
 import torch
@@ -29,7 +29,7 @@ numpy array:
   [3 4 5]]
 torch tensor:
  tensor([[0, 1, 2],
-        [3, 4, 5]], dtype=torch.int32)
+        [3, 4, 5]], dtype=torch.int32)
 tensor to array:
  [[0 1 2]
   [3 4 5]]

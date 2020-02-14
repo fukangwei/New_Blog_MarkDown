@@ -4,7 +4,7 @@ categories: Android
 abbrlink: ef042740
 date: 2018-12-28 15:48:39
 ---
-&emsp;&emsp;`AlertDialog`对话框基本使用流程如下：
+&emsp;&emsp;`AlertDialog`对话框基本使用流程如下：<!--more-->
 
 - 创建`AlertDialog.Builder`对象。
 - 调用`setIcon`设置图标，`setTitle`或`setCustomTitle`设置标题。

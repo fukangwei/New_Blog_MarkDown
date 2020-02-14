@@ -4,7 +4,7 @@ categories: Qt应用示例
 abbrlink: 9cbc0ec5
 date: 2018-12-28 16:22:52
 ---
-&emsp;&emsp;如果一个程序的启动比较耗时，为了不让用户枯燥地等待或者是误以为程序运行异常了，我们都会在启动比较耗时的程序中加上启动界面。在`Qt`中实现启动界面，主要就是使用`QSplashScreen`类：
+&emsp;&emsp;如果一个程序的启动比较耗时，为了不让用户枯燥地等待或者是误以为程序运行异常了，我们都会在启动比较耗时的程序中加上启动界面。在`Qt`中实现启动界面，主要就是使用`QSplashScreen`类：<!--more-->
 
 ``` cpp
 #include <QApplication>

@@ -6,7 +6,7 @@ date: 2019-01-10 16:01:38
 ---
 ### HTTP Error 403: Forbidden
 
-&emsp;&emsp;`urllib.request.urlopen`经常会被用来打开一个网页的源代码，然后会去分析这个页面源代码。但是对于有的网站使用这种方法时，会抛出`HTTP Error 403: Forbidden`异常。例如执行下面的语句：
+&emsp;&emsp;`urllib.request.urlopen`经常会被用来打开一个网页的源代码，然后会去分析这个页面源代码。但是对于有的网站使用这种方法时，会抛出`HTTP Error 403: Forbidden`异常。例如执行下面的语句：<!--more-->
 
 ``` python
 urllib.request.urlopen("http://blog.csdn.net/eric_sunah/article/details/11099295")
@@ -220,7 +220,7 @@ np.set_printoptions(threshold=np.inf)
 
 ### AttributeError: module cv2 has no attribute SIFT
 
-&emsp;&emsp;出错的代码如下所示：
+&emsp;&emsp;出错的代码如下：
 
 ``` python
 sift = cv2.SIFT()
@@ -264,7 +264,7 @@ sudo apt-get install python3-tk
 ### pandas的read_csv报错“IOError: Initializing from file failed”
 
 &emsp;&emsp;在`python 3`中使用`read_csv`的时候，如果传入的参数不是文件名而是文件的路径，就会报这个错。解决方法是：先切换到这个目录，然后传文件名作为参数。
-&emsp;&emsp;出错代码如下所示：
+&emsp;&emsp;出错代码如下：
 
 ``` python
 import pandas as pd
@@ -648,10 +648,9 @@ hog(..., block_norm='L2-Hys')
 &emsp;&emsp;The definition of function hog is as follows:
 
 ``` python
-def hog(
-    image, orientations=9, pixels_per_cell=(8, 8), cells_per_block=(3, 3),
-    block_norm='L1', visualise=False, transform_sqrt=False,
-    feature_vector=True, normalise=None)
+def hog(image, orientations=9, pixels_per_cell=(8, 8), cells_per_block=(3, 3),
+        block_norm='L1', visualise=False, transform_sqrt=False,
+        feature_vector=True, normalise=None)
 ```
 
 so removing `normalize` and `visualise` will works.

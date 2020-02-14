@@ -4,9 +4,9 @@ categories: ucos和ucgui
 abbrlink: ae48ceda
 date: 2018-12-29 11:48:15
 ---
-&emsp;&emsp;信号量集又称`事件标志组`，代码如下：
+&emsp;&emsp;信号量集又称`事件标志组`，代码如下：<!--more-->
 
-``` c
+``` cpp
 #include "INCLUDES.h"
 ​
 #define TASK_STK_SIZE 512

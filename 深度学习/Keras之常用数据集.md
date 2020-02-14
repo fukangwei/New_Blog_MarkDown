@@ -6,7 +6,7 @@ date: 2019-01-01 15:49:45
 ---
 ### CIFAR10小图像分类数据集
 
-&emsp;&emsp;`50000`张`32*32`彩色训练图像数据，以及`10000`张测试图像数据，总共分为`10`个类别：
+&emsp;&emsp;`50000`张`32 * 32`彩色训练图像数据，以及`10000`张测试图像数据，总共分为`10`个类别：<!--more-->
 
 ``` python
 from keras.datasets import cifar10
@@ -83,7 +83,7 @@ word_index = reuters.get_word_index(path="reuters_word_index.json")
 
 ### MNIST手写字符数据集
 
-&emsp;&emsp;训练集为`60000`张`28*28`像素灰度图像，测试集为`10000`张同规格图像，总共`10`类数字标签：
+&emsp;&emsp;训练集为`60000`张`28 * 28`像素灰度图像，测试集为`10000`张同规格图像，总共`10`类数字标签：
 
 ``` python
 from keras.datasets import mnist

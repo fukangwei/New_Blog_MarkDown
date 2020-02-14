@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: '70487973'
 date: 2019-01-02 21:39:17
 ---
-&emsp;&emsp;代码如下：
+&emsp;&emsp;代码如下：<!--more-->
 
 ``` cpp
 #include "widget.h"
@@ -34,8 +34,7 @@ Widget::Widget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::Widget ) {
     qDebug() << "str2: " << str2; /* 结果为“my Mail,your Mails,his Mail” */
     qDebug() << "*******************";
     /* 一个字符串如果一行写不完，换行后两行都需要加双引号 */
-    QString str3 = "One Eric another Eirik, and an Ericsson. "
-                   "How many Eiriks, Eric?";
+    QString str3 = "One Eric another Eirik, and an Ericsson. How many Eiriks, Eric?";
     QRegExp rx2 ( "\\bEi?ri[ck]\\b" ); /* 匹配“Eric”或者“Eirik” */
     int pos = 0;
     int count = 0;

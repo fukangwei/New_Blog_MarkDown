@@ -4,16 +4,16 @@ categories: Linux系统编程
 abbrlink: ab014234
 date: 2018-12-29 14:29:33
 ---
-&emsp;&emsp;`isatty`主要功能是检查设备类型，判断文件描述词是否是为终端机：
+&emsp;&emsp;`isatty`主要功能是检查设备类型，判断文件描述词是否是为终端机：<!--more-->
 
-``` c
+``` cpp
 #include <unistd.h>
 int isatty ( int desc );
 ```
 
 如果参数`desc`所代表的文件描述符为一终端机则返回`1`，否则返回`0`。
 
-``` c
+``` cpp
 #include <stdio.h>
 #include <io.h>
 ​

@@ -6,7 +6,7 @@ date: 2019-01-15 18:04:55
 ---
 ### ImageDataGenerator类
 
-&emsp;&emsp;函数原型如下：
+&emsp;&emsp;函数原型如下：<!--more-->
 
 ``` python
 keras.preprocessing.image.ImageDataGenerator(

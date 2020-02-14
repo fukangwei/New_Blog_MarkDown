@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: d8027cba
 date: 2019-01-03 10:19:23
 ---
-&emsp;&emsp;The `QTextListFormat` class provides formatting information for lists in a `QTextDocument`.
+&emsp;&emsp;The `QTextListFormat` class provides formatting information for lists in a `QTextDocument`.<!--more-->
 
 Header            | Inherits
 ------------------|--------------
@@ -41,11 +41,9 @@ Return    | Function
 
 ``` cpp
 QTextListFormat listFormat;
-​
 listFormat.setStyle ( QTextListFormat::ListDecimal );
 listFormat.setNumberPrefix ( "(" );
-listFormat.setNumberSuffix ( ")" );
-​
+listFormat.setNumberSuffix ( ")" );​
 cursor.insertList ( listFormat );
 ```
 

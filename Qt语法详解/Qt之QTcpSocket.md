@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: b83a0243
 date: 2019-01-02 15:33:43
 ---
-&emsp;&emsp;The `QTcpSocket` class provides a TCP socket.
+&emsp;&emsp;The `QTcpSocket` class provides a `TCP` socket.<!--more-->
 
 Header       | Inherits          | Inherited By
 -------------|-------------------|-------------

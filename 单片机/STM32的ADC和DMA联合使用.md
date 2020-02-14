@@ -4,9 +4,9 @@ categories: 单片机
 abbrlink: 2c248ca2
 date: 2018-12-29 18:06:16
 ---
-&emsp;&emsp;该程序使用`DMA`来传输`ADC`转换值，调高了读取速度：
+&emsp;&emsp;该程序使用`DMA`来传输`ADC`转换值，调高了读取速度：<!--more-->
 
-``` c
+``` cpp
 #include "stdio.h"
 ​
 #define ADC1_DR_Address ((u32)0x4001244C)

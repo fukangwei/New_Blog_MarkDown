@@ -6,7 +6,7 @@ date: 2019-01-15 17:19:11
 ---
 ### RNN
 
-&emsp;&emsp;该函数是循环神经网络层基类，请使用它的子类`LSTM`、`GRU`或`SimpleRNN`：
+&emsp;&emsp;该函数是循环神经网络层基类，请使用它的子类`LSTM`、`GRU`或`SimpleRNN`：<!--more-->
 
 ``` python
 keras.layers.recurrent.Recurrent(

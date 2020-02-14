@@ -4,10 +4,10 @@ categories: opencv和图像处理
 abbrlink: e768059c
 date: 2018-12-30 14:24:20
 ---
-&emsp;&emsp;`GetTickcount`函数返回从操作系统启动到当前所经的计时周期数，`getTickFrequency`函数返回每秒的计时周期数。
+&emsp;&emsp;`GetTickcount`函数返回从操作系统启动到当前所经的计时周期数，`getTickFrequency`函数返回每秒的计时周期数。<!--more-->
 &emsp;&emsp;下面的代码返回执行`do something`所耗的时间，单位为`秒`：
 
-``` c
+``` cpp
 double t = ( double ) getTickCount();
 /* do something */
 t = ( ( double ) getTickCount() - t ) / getTickFrequency();
@@ -53,7 +53,7 @@ int main() {
 
 执行结果：
 
-``` c
+``` cpp
 t1 = 9.83253e+14
 t2 = 9.83253e+14
 Time = 0.000276486

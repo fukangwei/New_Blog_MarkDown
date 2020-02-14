@@ -4,8 +4,7 @@ categories: 深度学习
 abbrlink: 41d32d78
 date: 2019-01-15 10:55:19
 ---
-
-&emsp;&emsp;这是使用`MNIST`手写数据来演示`pytorch`的卷积神经网络功能。首先加载数据集：
+&emsp;&emsp;这是使用`MNIST`手写数据来演示`pytorch`的卷积神经网络功能。首先加载数据集：<!--more-->
 
 ``` python
 import os
@@ -14,7 +13,7 @@ import torch.nn as nn
 import torch.utils.data as Data
 import torchvision  # 数据库模块
 import matplotlib.pyplot as plt
-​
+
 # Hyper Parameters
 EPOCH = 1
 BATCH_SIZE = 50

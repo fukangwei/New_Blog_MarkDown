@@ -4,10 +4,11 @@ categories: opencv和图像处理
 abbrlink: 1e5748cc
 date: 2018-12-30 15:45:32
 ---
-&emsp;&emsp;Copies specified channels from input arrays to the specified channels of output arrays.
+&emsp;&emsp;Copies specified channels from input arrays to the specified channels of output arrays.<!--more-->
 
-``` c
-void mixChannels (const Mat *src, int nsrc, Mat *dst, int ndst, const int *fromTo, size_t npairs);
+``` cpp
+void mixChannels ( const Mat *src, int nsrc, Mat *dst,
+                   int ndst, const int *fromTo, size_t npairs);
 ```
 
 - `src`: Input array or vector of matrices. All the matrices must have the same size and the same depth.

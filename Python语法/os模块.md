@@ -4,7 +4,7 @@ categories: Python语法
 abbrlink: c159159b
 date: 2019-01-11 09:54:42
 ---
-&emsp;&emsp;`os`模块提供了很多方法用来处理文件和目录。
+&emsp;&emsp;`os`模块提供了很多方法用来处理文件和目录。<!--more-->
 
 ### os.chdir
 

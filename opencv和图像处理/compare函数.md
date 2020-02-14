@@ -4,9 +4,9 @@ categories: opencv和图像处理
 abbrlink: 370e2cb1
 date: 2018-12-30 14:42:07
 ---
-&emsp;&emsp;`compare`函数原型如下(定义在头文件`core.hpp`中)：
+&emsp;&emsp;`compare`函数原型如下(定义在头文件`core.hpp`中)：<!--more-->
 
-``` c
+``` cpp
 void compare (InputArray src1, InputArray src2, OutputArray dst, int cmpop);
 ```
 
@@ -31,20 +31,20 @@ enum {
 从参数的要求可以看出，`compare`函数只对以下三种情况进行比较：
 &emsp;&emsp;1. `array`和`array`：此时输入的`src1`和`src2`必须是相同大小的单通道图，否则没办法进行比较了。计算过程就是：
 
-``` c
+``` cpp
 dst(i) = src1(i) cmpop src2(i)
 ```
 
 也就是对`src1`和`src2`逐像素进行比较。
 &emsp;&emsp;2. `array`和`scalar`：此时`array`仍然要求是单通道图，大小无所谓，因为`scalar`只是一个单纯的数字而已。比较过程是把`array`中的每个元素逐个和`scalar`进行比较，所以此时的`dst`大小和`array`是一样的。计算过程如下：
 
-``` c
+``` cpp
 dst(i) = src1(i) cmpop scalar
 ```
 
 &emsp;&emsp;3. `scalar`和`array`：这个就是上面的反过程了，只是比较运算符`cmpop`左右的参数顺序不一样了而已。计算过程如下：
 
-``` c
+``` cpp
 dst(i) = scalar cmpop src2(i)
 ```
 

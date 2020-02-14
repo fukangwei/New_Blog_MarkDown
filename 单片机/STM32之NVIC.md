@@ -4,7 +4,7 @@ categories: 单片机
 abbrlink: 92cf1c62
 date: 2018-12-30 07:38:05
 ---
-&emsp;&emsp;`NVIC`即嵌套向量中断控制器(`Nested Vectored Interrupt Controller`)。`STM32`的中有一个强大而方便的`NVIC`，它是属于`Cortex`内核的器件，不可屏蔽中断(`NMI`)和外部中断都由它来处理，而`SYSTICK`不是由`NVIC`来控制的。具有如下特性：
+&emsp;&emsp;`NVIC`即嵌套向量中断控制器(`Nested Vectored Interrupt Controller`)。`STM32`的中有一个强大而方便的`NVIC`，它是属于`Cortex`内核的器件，不可屏蔽中断(`NMI`)和外部中断都由它来处理，而`SYSTICK`不是由`NVIC`来控制的。具有如下特性：<!--more-->
 
 - `60`个可屏蔽中断通道(不包含`16`个`Cortex-M3`的中断线)。
 - `16`个可编程的优先等级(使用了`4`位中断优先级)。
@@ -45,7 +45,7 @@ date: 2018-12-30 07:38:05
 &emsp;&emsp;这其实也很好理解，比如选择`NVIC_PriorityGroup_1`，那么抢占式优先级便占一位，也就是说可以有`2^1`个级别，可以设置为`0`和`1`；而响应优先级则占`3`位，也就是说可以有`2^3`个选择，可以设置为`0`至`7`；总共来说就可以区别`16`(即`2 * 8`)种优先级了。
 &emsp;&emsp;假如现在同时有两个抢占式优先级别相同的中断发生，那么处理的顺序是谁的响应优先级高则谁优先进入中断。另外这点是需要注意的，如果此时进入这个中断之后又来了一个抢占式优先级相同但是响应优先级更高的中断，这时也是不会打断已有的中断的。
 
-``` c
+``` cpp
 void NVIC_Config ( void ) {
     NVIC_InitTypeDef NVIC_InitStructure;
 #ifdef VECT_TAB_RAM

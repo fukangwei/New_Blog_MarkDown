@@ -6,7 +6,7 @@ date: 2019-01-15 14:59:09
 ---
 ### Dense
 
-&emsp;&emsp;该函数就是常用的的全连接层：
+&emsp;&emsp;该函数就是常用的的全连接层：<!--more-->
 
 ``` python
 keras.layers.Dense(

@@ -4,7 +4,7 @@ categories: Qt语法详解
 abbrlink: 859caffc
 date: 2019-01-03 17:21:25
 ---
-&emsp;&emsp;The `QActionGroup` class groups actions together.
+&emsp;&emsp;The `QActionGroup` class groups actions together.<!--more-->
 
 Header         | Inherits
 ---------------|---------

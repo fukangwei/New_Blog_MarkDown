@@ -4,7 +4,7 @@ categories: 深度学习
 abbrlink: 4cb476bb
 date: 2019-01-15 09:27:12
 ---
-&emsp;&emsp;`pytorch`读取训练集是非常便捷的，只需要使用到`2`个类，即`torch.utils.data.Dataset`和`torch.utils.data.DataLoader`。
+&emsp;&emsp;`pytorch`读取训练集是非常便捷的，只需要使用到`2`个类，即`torch.utils.data.Dataset`和`torch.utils.data.DataLoader`。<!--more-->
 
 ### torchvision.datasets的使用
 

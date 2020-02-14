@@ -4,9 +4,9 @@ categories: 单片机
 abbrlink: 57a48f94
 date: 2018-12-29 18:22:01
 ---
-&emsp;&emsp;用`ADC`连续采集`11`路模拟信号，并由`DMA`传输到内存。`ADC`配置为扫描并且连续转换模式，`ADC`的时钟配置为`12MHz`。在每次转换结束后，由`DMA`循环将转换的数据传输到内存中。`ADC`可以连续采集`N`次并求平均值，最后通过串口传输出最后转换的结果。
+&emsp;&emsp;用`ADC`连续采集`11`路模拟信号，并由`DMA`传输到内存。`ADC`配置为扫描并且连续转换模式，`ADC`的时钟配置为`12MHz`。在每次转换结束后，由`DMA`循环将转换的数据传输到内存中。`ADC`可以连续采集`N`次并求平均值，最后通过串口传输出最后转换的结果。<!--more-->
 
-``` c
+``` cpp
 #include "stm32f10x.h"
 #include "eval.h"
 #include "SysTickDelay.h"
@@ -174,6 +174,6 @@ int main ( void ) {
 
 &emsp;&emsp;该程序中的两个宏定义`M`和`N`，分别代表通道数、每个通道转换次数。将转换值由二进制转换为十进制时，要先扩大`100`倍，方便显示小数。在串口输出时，在`printf`语句之前加这句代码，防止输出的第一位数据丢失：
 
-``` C
+``` Cpp
 while ( USART_GetFlagStatus ( USART1, USART_FLAG_TXE ) == RESET );
 ```

@@ -6,7 +6,7 @@ date: 2018-12-30 21:20:08
 ---
 ### TimeDistributed
 
-&emsp;&emsp;该包装器可以把一个层应用到输入的每一个时间步上：
+&emsp;&emsp;该包装器可以把一个层应用到输入的每一个时间步上：<!--more-->
 
 ``` python
 keras.layers.TimeDistributed(layer)
