@@ -22,7 +22,7 @@ date: 2019-02-12 11:28:15
 `neighbors.kneighbors_graph(X, n_neighbors[, ...])` | Computes the (weighted) graph of `k-Neighbors` for points in `X`
 `neighbors.radius_neighbors_graph(X, radius)`       | Computes the (weighted) graph of `Neighbors` for points in `X`
 
-使用`sklearn.neighbors.KNeighborsClassifier`就可以实现k近邻算法：
+使用`sklearn.neighbors.KNeighborsClassifier`就可以实现`k`近邻算法：
 
 ``` python
 class sklearn.neighbors.KNeighborsClassifier(
