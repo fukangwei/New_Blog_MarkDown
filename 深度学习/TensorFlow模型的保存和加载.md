@@ -43,7 +43,7 @@ saver.save(sess, 'my-model', global_step=1000) == > filename: 'my-model-1000'
 
 ``` python
 import tensorflow as tf
-​
+
 v1 = tf.Variable(tf.constant(1.0, shape=[1]), name="v1")
 v2 = tf.Variable(tf.constant(2.0, shape=[1]), name="v2")
 result = v1 + v2
@@ -271,7 +271,7 @@ sess.close()
 ``` python
 import tensorflow as tf
 from tensorflow.python.framework.graph_util import convert_variables_to_constants
-​
+
 # 构造网络
 a = tf.Variable([[3], [4]], dtype=tf.float32, name='a')
 b = tf.Variable(4, dtype=tf.float32, name='b')
@@ -294,7 +294,7 @@ Converted 2 variables to const ops.
 
 ``` python
 import tensorflow as tf
-​
+
 with tf.Session() as sess:
     with open('./graph.pb', 'rb') as f:
         graph_def = tf.GraphDef()
@@ -340,7 +340,7 @@ with tf.Session() as sess:
                     graph_def, input_map={'input:0': 4.},
                     return_elements=['out:0'], name='a')
         print(sess.run(output))
-````
+```
 
 执行结果：
 
@@ -353,7 +353,7 @@ with tf.Session() as sess:
 
 ``` python
 import tensorflow as tf
-​
+
 new_input = tf.placeholder(tf.float32, shape=())
 ​
 with tf.Session() as sess:

@@ -15,7 +15,7 @@ date: 2019-01-01 14:04:48
 
 ``` python
 from keras.models import load_model
-​
+
 model.save('my_model.h5')  # 创建HDF5文件“my_model.h5”
 del model  # 删除现有模型
 model = load_model('my_model.h5')  # 返回一个编译好的模型，与之前那个相同

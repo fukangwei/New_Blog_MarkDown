@@ -29,9 +29,9 @@ modprobe tun
 
 &emsp;&emsp;代码如下：
 
-``` c
+``` cpp
 #include <linux/if_tun.h>
-​
+
 int tun_create ( char *dev, int flags ) {
     struct ifreq ifr;
     int fd, err;
@@ -70,7 +70,7 @@ int tun_create ( char *dev, int flags ) {
 
 配置的时候，`IFF_TUN`和`IFF_TAP`必须选择一个，其他选项则可任意组合。其中，`IFF_NO_PI`没有开启时，所附加的包信息头如下：
 
-``` c
+``` cpp
 struct tun_pi {
     unsigned short flags;
     unsigned short proto;
@@ -96,7 +96,7 @@ struct tun_pi {
 #include <assert.h>
 #include <net/if.h>
 #include <sys/ioctl.h>
-​
+
 int main ( int argc, char *argv[] ) {
     int tun, ret;
     char tun_name[IFNAMSIZ];

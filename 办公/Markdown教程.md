@@ -114,6 +114,7 @@ print("world")
 ```
 
 如果需要对代码进行高亮处理，可以使用如下格式：
+
 <img src="./Markdown教程/3.png" height="78" width="155">
 
 ``` language_key
@@ -124,117 +125,117 @@ if (condition) {
 
 `language_key`可以是如下选项：
 
-Language                       | key
--------------------------------|----
-`C`                            | `c`
-`Apache`                       | `apache`
-`AppleScript`                  | `applescript`
-`AsciiDoc`                     | `asciidoc`
-`AutoHotkey`                   | `autohotkey`
-`AVR Assembler`                | `avrasm`
-`Bash`                         | `bash`
-`BrainFuck`                    | `brainfuck`
-`CMake`                        | `cmake`
-`CoffeeScript`                 | `coffeescript`
-`C++`                          | `cpp`
-`C#`                           | `cs`
-`CSS`                          | `css`
-`D`                            | `d`
-`Dart`                         | `d`
-`Delphi`                       | `delphi`
-`Diff`                         | `diff`
-`Django`                       | `django`
-`DOS .bat`                     | `dos`
-`Erlang REPL`                  | `erlang-repl`
-`Erlang`                       | `erlang`
-`FIX`                          | `fix`
-`F#`                           | `fsharp`
-`G-code (ISO 6983)`            | `gcode`
-`Go`                           | `go`
-`Gradle`                       | `gradle`
-`Haskell`                      | `haskell`
-`Haxe`                         | `haxe`
-`HTTP`                         | `http`
-`Ini file`                     | `ini`
-`Java`                         | `java`
-`JavaScript`                   | `javascript`
-`JSON`                         | `json`
-`Lisp`                         | `lisp`
-`LiveCode`                     | `livecodeserver`
-`LiveScript`                   | `livescript`
-`Lua`                          | `lua`
-`Makefile`                     | `makefile`
-`Markdown`                     | `markdown`
-`Mathematica`                  | `mathematica`
-`Matlab`                       | `matlab`
-`Monkey`                       | `monkey`
-`nginx`                        | `nginx`
-`Objective C`                  | `objectivec`
-`Oxygene`                      | `oxygene`
-`Perl`                         | `perl`
-`PHP`                          | `php`
-`PowerShell`                   | `powershell`
-`Processing`                   | `processing`
-`Python's profiler output`     | `profile`
-`Protocol Buffers`             | `protobuf`
-`Puppet`                       | `puppet`
-`Python`                       | `python`
-`Q`                            | `q`
-`R`                            | `r`
-`Ruby`                         | `ruby`
-`Oracle Rules Language`        | `ruleslanguage`
-`Rust`                         | `rust`
-`Scala`                        | `scala`
-`Scheme`                       | `scheme`
-`SmallTalk`                    | `smalltalk`
-`SQL`                          | `sql`
-`Swift`                        | `swift`
-`Tcl`                          | `tcl`
-`TeX`                          | `tex`
-`Twig`                         | `twig`
-`TypeScript`                   | `typescript`
-`VB.NET`                       | `vbnet`
-`VBScript in HTML`             | `vbscript-html`
-`VBScript`                     | `vbscript`
-`Verilog`                      | `verilog`
-`VHDL`                         | `vhdl`
-`Vim Script`                   | `vim`
-`Intel x86 Assembly`           | `x86asm`
-`XML`或`HTML`                  | `xml`
+Language                   | key
+---------------------------|----
+`C`                        | `c`
+`Apache`                   | `apache`
+`AppleScript`              | `applescript`
+`AsciiDoc`                 | `asciidoc`
+`AutoHotkey`               | `autohotkey`
+`AVR Assembler`            | `avrasm`
+`Bash`                     | `bash`
+`BrainFuck`                | `brainfuck`
+`CMake`                    | `cmake`
+`CoffeeScript`             | `coffeescript`
+`C++`                      | `cpp`
+`C#`                       | `cs`
+`CSS`                      | `css`
+`D`                        | `d`
+`Dart`                     | `d`
+`Delphi`                   | `delphi`
+`Diff`                     | `diff`
+`Django`                   | `django`
+`DOS .bat`                 | `dos`
+`Erlang REPL`              | `erlang-repl`
+`Erlang`                   | `erlang`
+`FIX`                      | `fix`
+`F#`                       | `fsharp`
+`G-code (ISO 6983)`        | `gcode`
+`Go`                       | `go`
+`Gradle`                   | `gradle`
+`Haskell`                  | `haskell`
+`Haxe`                     | `haxe`
+`HTTP`                     | `http`
+`Ini file`                 | `ini`
+`Java`                     | `java`
+`JavaScript`               | `javascript`
+`JSON`                     | `json`
+`Lisp`                     | `lisp`
+`LiveCode`                 | `livecodeserver`
+`LiveScript`               | `livescript`
+`Lua`                      | `lua`
+`Makefile`                 | `makefile`
+`Markdown`                 | `markdown`
+`Mathematica`              | `mathematica`
+`Matlab`                   | `matlab`
+`Monkey`                   | `monkey`
+`nginx`                    | `nginx`
+`Objective C`              | `objectivec`
+`Oxygene`                  | `oxygene`
+`Perl`                     | `perl`
+`PHP`                      | `php`
+`PowerShell`               | `powershell`
+`Processing`               | `processing`
+`Python's profiler output` | `profile`
+`Protocol Buffers`         | `protobuf`
+`Puppet`                   | `puppet`
+`Python`                   | `python`
+`Q`                        | `q`
+`R`                        | `r`
+`Ruby`                     | `ruby`
+`Oracle Rules Language`    | `ruleslanguage`
+`Rust`                     | `rust`
+`Scala`                    | `scala`
+`Scheme`                   | `scheme`
+`SmallTalk`                | `smalltalk`
+`SQL`                      | `sql`
+`Swift`                    | `swift`
+`Tcl`                      | `tcl`
+`TeX`                      | `tex`
+`Twig`                     | `twig`
+`TypeScript`               | `typescript`
+`VB.NET`                   | `vbnet`
+`VBScript in HTML`         | `vbscript-html`
+`VBScript`                 | `vbscript`
+`Verilog`                  | `verilog`
+`VHDL`                     | `vhdl`
+`Vim Script`               | `vim`
+`Intel x86 Assembly`       | `x86asm`
+`XML`或`HTML`              | `xml`
 
 ### 表格
 
-&emsp;&emsp;代码如下所示，注意这`3`列之间区别：
+&emsp;&emsp;代码如下，注意这`3`列之间区别：
 
 ``` markdown
-| Tables        | Are           | Cool  |
+| Tables        | Are           | Cool  |
 | ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
 ```
 
-| Tables        | Are           | Cool  |
+| Tables        | Are           | Cool  |
 | ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
 
-另一种写法如下所示：
+另一种写法如下：
 
 ``` markdown
 dog | bird | cat
 ----|------|----
-foo | foo  | foo
-bar | bar  | bar
-baz | baz  | baz
+foo | foo  | foo
+bar | bar  | bar
+baz | baz  | baz
 ```
 
 dog | bird | cat
 ----|------|----
-foo | foo  | foo
-bar | bar  | bar
-baz | baz  | baz
+foo | foo  | foo
+bar | bar  | bar
+baz | baz  | baz
 
 ### 分割线
 

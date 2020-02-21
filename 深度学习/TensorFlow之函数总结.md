@@ -151,8 +151,8 @@ Out[7]: 5
 
 &emsp;&emsp;Aliases:
 
-- tf.contrib.layers.separable_conv2d
-- tf.contrib.layers.separable_convolution2d
+- `tf.contrib.layers.separable_conv2d`
+- `tf.contrib.layers.separable_convolution2d`
 
 ``` python
 tf.contrib.layers.separable_conv2d(
@@ -766,7 +766,7 @@ with tf.Session() as sess:
 ### tf.moving_average_variables(scope=None)
 
 &emsp;&emsp;Returns all variables that maintain their moving averages. If an `ExponentialMovingAverage` object is created and `the apply()` method is called on a list of variables, these variables will be added to the `GraphKeys.MOVING_AVERAGE_VARIABLES` collection. This convenience function returns the contents of that collection.
-&emsp;&emsp;`scope` (optional) is a string. If supplied, the resulting list is filtered to include only items whose name attribute matches `scope` using `re.match`. Items without a name attribute are never returned if a `scope` is supplied. The choice of `re.match` means that a s`cope` without special tokens filters by prefix.
+&emsp;&emsp;`scope` (optional) is a string. If supplied, the resulting list is filtered to include only items whose name attribute matches `scope` using `re.match`. Items without a name attribute are never returned if a `scope` is supplied. The choice of `re.match` means that a `scope` without special tokens filters by prefix.
 &emsp;&emsp;使用方式如下：
 
 ``` python
@@ -984,7 +984,8 @@ tf.transpose(x, conjugate=True)
 # "perm" is more useful for n-dimensional tensors, for n > 2
 x = tf.constant([[[1, 2, 3], [4, 5, 6]],
                  [[7, 8, 9], [10, 11, 12]]])
-# Take the transpose of the matrices in dimension-0(this common operation has a shorthand "matrix_transpose")
+# Take the transpose of the matrices in dimension-0
+# (this common operation has a shorthand "matrix_transpose")
 tf.transpose(x, perm=[0, 2, 1])
 # [[[1,  4],
 #   [2,  5],
@@ -1040,6 +1041,7 @@ To generate the same repeatable sequence for an op across sessions, set the `see
 
 ``` python
 import tensorflow as tf
+
 a = tf.random_uniform([1], seed=1)
 b = tf.random_normal([1])
 # Repeatedly running this block with the same graph will generate the same

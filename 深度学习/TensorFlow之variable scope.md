@@ -26,7 +26,7 @@ date: 2019-02-13 11:10:48
 
 ``` python
 import tensorflow as tf
-​
+
 with tf.variable_scope("tet1"):
     var3 = tf.get_variable("var3", shape=[2], dtype=tf.float32)
     print(var3.name)

@@ -29,7 +29,7 @@ def parse_fn(example):
     image = tf.image.decode_image(parsed["image"])
     image = _augment_helper(image)  # augments image using slice, reshape, resize_bilinear
     return image, parsed["label"]
-​
+
 def input_fn():
     files = tf.data.Dataset.list_files("/path/to/dataset/train-*.tfrecord")
     dataset = files.interleave(tf.data.TFRecordDataset)

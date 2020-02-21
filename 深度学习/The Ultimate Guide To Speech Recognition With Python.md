@@ -416,7 +416,7 @@ def recognize_speech_from_mic(recognizer, microphone):
         audio = recognizer.listen(source)
 ​
     response = {"success": True, "error": None, "transcription": None}  # set up the response object
-​
+
     # try recognizing the speech in the recording. if a RequestError or UnknownValueError exception is
     # caught, update the response object accordingly
     try:

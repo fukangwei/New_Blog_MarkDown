@@ -15,7 +15,7 @@ import numpy as np
 from keras.models import Sequential
 from keras.layers import Dense
 import matplotlib.pyplot as plt  # 可视化模块
-​
+
 np.random.seed(1337)  # for reproducibility
 ​
 # create some data

@@ -35,7 +35,7 @@ model.add(
 
 ``` python
 from keras import backend as K
-​
+
 def l1_reg(weight_matrix):
     return 0.01 * K.sum(K.abs(weight_matrix))
 ​

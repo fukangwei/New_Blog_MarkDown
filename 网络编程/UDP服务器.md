@@ -18,13 +18,13 @@ categories: 网络编程
 #include <sys/types.h>
 #include <arpa/inet.h>
 ​
-#define SERVER_PORT 8888
+#define SERVER_PORT  8888
 #define MAX_BUF_SIZE 1024
-​
+
 void udpc_requ ( int sockfd, const struct sockaddr_in *addr, int len ) {
     char buffer[MAX_BUF_SIZE];
     int n;
-​
+
     while ( 1 ) {
         /* 从键盘读入，写到服务端 */
         printf ( "Please input char:\r\n" );
@@ -81,14 +81,14 @@ int main ( int argc, char **argv ) {
 #include <sys/types.h>
 #include <arpa/inet.h>
 ​
-#define SERVER_PORT 8888
+#define SERVER_PORT  8888
 #define MAX_MSG_SIZE 1024
 ​
 void udps_respon ( int sockfd ) {
     struct sockaddr_in addr;
     int addrlen, n;
     char msg[MAX_MSG_SIZE];
-​
+
     while ( 1 ) {
         bzero ( msg, sizeof ( msg ) ); /* 初始化，清零 */
         addrlen = sizeof ( struct sockaddr );
@@ -198,9 +198,9 @@ int main ( int argc, char **argv ) {
 #include <sys/types.h>
 #include <arpa/inet.h>
 ​
-#define SERVER_PORT 8888
+#define SERVER_PORT  8888
 #define MAX_MSG_SIZE 1024
-​
+
 void udps_respon ( int sockfd ) {
     struct sockaddr_in6 addr;
     int addrlen, n;

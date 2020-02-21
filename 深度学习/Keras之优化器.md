@@ -8,7 +8,7 @@ date: 2019-01-01 10:04:12
 
 ``` python
 from keras import optimizers
-​
+
 model = Sequential()
 model.add(Dense(64, kernel_initializer='uniform', input_shape=(10,)))
 model.add(Activation('tanh'))

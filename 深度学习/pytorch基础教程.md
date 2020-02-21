@@ -11,7 +11,7 @@ date: 2019-01-14 11:37:28
 ``` python
 import torch
 import numpy as np
-​
+
 np_data = np.arange(6).reshape((2, 3))
 torch_data = torch.from_numpy(np_data)
 tensor2array = torch_data.numpy()
@@ -446,7 +446,7 @@ Sequential(
 ``` python
 import torch
 import matplotlib.pyplot as plt
-​
+
 # fake data
 x = torch.unsqueeze(torch.linspace(-1, 1, 100), dim=1)  # x data (tensor), shape=(100, 1)
 y = x.pow(2) + 0.2 * torch.rand(x.size())  # noisy y data (tensor), shape=(100, 1)

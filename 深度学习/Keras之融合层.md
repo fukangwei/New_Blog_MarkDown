@@ -18,7 +18,7 @@ keras.layers.Add()
 
 ``` python
 import keras
-​
+
 input1 = keras.layers.Input(shape=(16,))
 x1 = keras.layers.Dense(8, activation='relu')(input1)
 input2 = keras.layers.Input(shape=(32,))
@@ -41,7 +41,7 @@ keras.layers.Subtract()
 
 ``` python
 import keras
-​
+
 input1 = keras.layers.Input(shape=(16,))
 x1 = keras.layers.Dense(8, activation='relu')(input1)
 input2 = keras.layers.Input(shape=(32,))

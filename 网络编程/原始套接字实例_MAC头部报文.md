@@ -33,7 +33,7 @@ unsigned char msg[1024] = {
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <netinet/ether.h>
-​
+
 int main ( int argc, char *argv[] ) {
     int i = 0;
     unsigned char buf[1024] = "";
@@ -63,4 +63,4 @@ int main ( int argc, char *argv[] ) {
 }
 ```
 
-注意，要以管理者权限运行程序。
+注意，要以管理员权限运行程序。

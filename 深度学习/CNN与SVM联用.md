@@ -26,9 +26,9 @@ import numpy as np
 import tensorflow as tf
 from sklearn import svm
 import time
-​
+
 start = time.clock()
-​
+
 right0 = 0.0  # 记录预测为1，且实际为1的结果数
 error0 = 0  # 记录预测为1，但实际为0的结果数
 right1 = 0.0  # 记录预测为0，且实际为0的结果数

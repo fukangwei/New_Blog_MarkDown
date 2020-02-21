@@ -195,7 +195,7 @@ net = slim.conv2d(
 padding = 'SAME'
 initializer = tf.truncated_normal_initializer(stddev=0.01)
 regularizer = slim.l2_regularizer(0.0005)
-​
+
 net = slim.conv2d(
     inputs, 64, [11, 11], 4, padding=padding, weights_initializer=initializer,
     weights_regularizer=regularizer, scope='conv1')
@@ -305,17 +305,17 @@ total_loss = slim.losses.get_total_loss(add_regularization_losses=False)
 ``` python
 images, scene_labels, depth_labels, pose_labels = ...  # Load the images and labels
 scene_predictions, depth_predictions, pose_predictions = CreateMultiTaskModel(images)  # Create the model
-​
+
 # Define the loss functions and get the total loss
 classification_loss = slim.losses.softmax_cross_entropy(scene_predictions, scene_labels)
 sum_of_squares_loss = slim.losses.sum_of_squares(depth_predictions, depth_labels)
 pose_loss = MyCustomLossFunction(pose_predictions, pose_labels)
-slim.losses.add_loss(pose_loss)  # Letting TF-Slim know about the additional loss.
+slim.losses.add_loss(pose_loss)  # Letting TF-Slim know about the additional loss
 ​
 # The following two ways to compute the total loss are equivalent:
 regularization_loss = tf.add_n(slim.losses.get_regularization_losses())
 total_loss1 = classification_loss + sum_of_squares_loss + pose_loss + regularization_loss
-​
+
 total_loss2 = slim.losses.get_total_loss()  # (Regularization Loss is included in the total loss by default)
 ```
 
@@ -555,7 +555,7 @@ import tensorflow as tf
 slim = tf.contrib.slim
 images, labels = load_data(...)  # Load the data
 predictions = MyModel(images)  # Define the network
-​
+
 # Choose the metrics to compute:
 names_to_values, names_to_updates = slim.metrics.aggregate_metric_map({
     'accuracy': slim.metrics.accuracy(predictions, labels),

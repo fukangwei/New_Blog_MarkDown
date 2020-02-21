@@ -10,7 +10,7 @@ date: 2019-01-15 18:04:55
 
 ``` python
 keras.preprocessing.image.ImageDataGenerator(
-    featurewise_center=False, samplewise_center=False, featurewise_std_normalization=False,
+    featurewise_center=False, samplewise_center=False, featurewise_std_normalization=False,
     samplewise_std_normalization=False, zca_whitening=False, zca_epsilon=1e-06, rotation_range=0.0,
     width_shift_range=0.0, height_shift_range=0.0, brightness_range=None, shear_range=0.0,
     zoom_range=0.0, channel_shift_range=0.0, fill_mode='nearest', cval=0.0, horizontal_flip=False,
@@ -73,7 +73,7 @@ datagen = ImageDataGenerator(
     featurewise_center=True, featurewise_std_normalization=True, rotation_range=20,
     width_shift_range=0.2, height_shift_range=0.2, horizontal_flip=True)
 datagen.fit(x_train)
-​
+
 # 使用实时数据增益的批数据对模型进行拟合
 model.fit_generator(datagen.flow(x_train, y_train, batch_size=32),
                     steps_per_epoch=len(x_train) / 32, epochs=epochs)

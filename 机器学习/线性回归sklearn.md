@@ -150,11 +150,11 @@ def linear_model_main(X_parameters, Y_parameters, predict_value):
     predictions['coefficient'] = regr.coef_  # 回归系数
     predictions['predicted_value'] = predict
     return predictions
-​
+
 X, Y = get_data("beijing.csv")
 print(X)
 print(Y)
-​
+
 predict_time = 2014
 result = linear_model_main(X, Y, predict_time)
 print("Intercept value ", result['intercept'])

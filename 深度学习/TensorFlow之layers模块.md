@@ -45,7 +45,7 @@ Input(
 
 ``` python
 import tensorflow as tf
-​
+
 x = tf.keras.Input(shape=[32])
 print(x)
 y = tf.layers.dense(x, 16, activation=tf.nn.softmax)
@@ -64,7 +64,7 @@ Tensor("dense/Softmax:0", shape=(?, 16), dtype=float32)
 
 ``` python
 import tensorflow as tf
-​
+
 data = tf.constant([1, 2, 3])
 x = tf.keras.Input(tensor=data)
 print(x)

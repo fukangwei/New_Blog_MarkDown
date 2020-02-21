@@ -39,7 +39,7 @@ date: 2019-02-12 17:59:27
 import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
-​
+
 train_X = np.linspace(-1, 1, 100)
 train_Y = 2 * train_X + np.random.randn(*train_X.shape) * 0.33 + 10
 ​

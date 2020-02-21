@@ -286,7 +286,7 @@ with_timeline_output(timeline_file)
 import tensorflow as tf
 import keras.backend as K
 from keras.applications.mobilenet import MobileNet
-​
+
 run_meta = tf.RunMetadata()
 
 with tf.Session(graph=tf.Graph()) as sess:

@@ -145,7 +145,7 @@ init = q.enqueue_many(([0.1, 0.2, 0.3],))
 x = q.dequeue()
 y = x + 2
 q_inc = q.enqueue([y])
-​
+
 with tf.Session() as sess:
     sess.run(init)
 

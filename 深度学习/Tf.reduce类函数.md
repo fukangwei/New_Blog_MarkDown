@@ -28,7 +28,7 @@ Return the reduced tensor.
 
 ``` python
 import tensorflow as tf
-​
+
 x = tf.constant([[1, 4, 3], [4, 2, 6]], dtype=tf.float32)  # x.shape=(2, 3)
 y = tf.reduce_max(x, axis=1, keepdims=True)
 # 2行3列，“axis = 1”就在列维度操作，n列变成1列，即每一行求max，合到一列里

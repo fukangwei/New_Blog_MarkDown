@@ -43,7 +43,7 @@ keras.layers.MaxPooling2D(pool_size=(2, 2), strides=None, padding='valid', data_
 
 ### MaxPooling3D
 
-&emsp;&emsp;该函数用于3D(空域或时空域)数据的最大池化：
+&emsp;&emsp;该函数用于`3D`(空域或时空域)数据的最大池化：
 
 ``` python
 keras.layers.MaxPooling3D(pool_size=(2, 2, 2), strides=None, padding='valid', data_format=None)

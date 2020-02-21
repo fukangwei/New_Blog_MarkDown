@@ -9,7 +9,7 @@ date: 2019-02-27 15:07:09
 ``` python
 import numpy as np
 from sklearn import datasets
-​
+
 digits = datasets.load_digits()
 print(digits.data.shape)  # 输出数据集的样本数与特征数
 print(np.unique(digits.target))  # 输出所有目标类别

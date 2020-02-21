@@ -26,7 +26,7 @@ import numpy as np
 from keras.layers import Input, Add, Conv2D, Dense, ZeroPadding2D, Activation, MaxPooling2D, Flatten
 from keras.models import Model
 from keras.utils import to_categorical
-​
+
 train = np.loadtxt('train.csv', delimiter=',', skiprows=1)
 data_train = train[:40000]
 data_val = train[40000:]

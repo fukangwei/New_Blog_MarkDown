@@ -153,7 +153,7 @@ x = Input(shape=(32,))
 layer = Dense(32)
 layer.trainable = False
 y = layer(x)
-​
+
 frozen_model = Model(x, y)
 # in the model below, the weights of layer will not be updated during training
 frozen_model.compile(optimizer='rmsprop', loss='mse')

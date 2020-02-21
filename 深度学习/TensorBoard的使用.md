@@ -48,7 +48,7 @@ tf.summary.FileWriter
 ``` python
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
-​
+
 """
 设置MNIST数据下载地址data_dir和汇总数据的日志存放路径log_dir，
 这里的日志路径log_dir非常重要，会存放所有汇总数据供Tensorflow展示
@@ -66,7 +66,7 @@ sess = tf.InteractiveSession()  # 创建Tensorflow的默认Session
 """
 为了在TensorBoard中展示节点名称，设计网络时会常使用tf.name_scope限制命名空间，
 在这个with下所有的节点都会自动命名为“input/xxx”这样的格式。
-定义输入x和y的placeholder，并将输入的一维数据变形为“28*28”的图片存储到另一个tensor，
+定义输入x和y的placeholder，并将输入的一维数据变形为“28 * 28”的图片存储到另一个tensor，
 这样就可以使用tf.summary.image将图片数据汇总给TensorBoard展示
 """
 with tf.name_scope('input'):
@@ -326,13 +326,13 @@ from keras.utils import np_utils
 import keras.callbacks
 import keras.backend.tensorflow_backend as KTF
 import tensorflow as tf
-​
+
 batch_size = 128
 nb_classes = 10
 nb_epoch = 20
 nb_data = 28 * 28
 log_filepath = './log_test'
-​
+
 (X_train, y_train), (X_test, y_test) = mnist.load_data()  # load data
 ​
 # reshape

@@ -11,7 +11,7 @@ date: 2019-02-28 08:45:16
 ``` python
 import tensorflow as tf
 import cv2
-​
+
 filename = "index.jpg"
 image = cv2.imread(filename, 1)
 cv2.imshow('image', image)

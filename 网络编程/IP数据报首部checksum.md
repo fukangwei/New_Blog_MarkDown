@@ -17,7 +17,7 @@ categories: 网络编程
 
 ``` cpp
 #include <stdio.h>
-​
+
 void main ( void ) {
     int buff[10] = {0x4500, 0x0030, 0x804c, 0x4000, 0x8006, \
                     0x0000, 0xd343, 0x117b, 0xcb51, 0x153d};

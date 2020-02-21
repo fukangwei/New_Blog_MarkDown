@@ -94,7 +94,7 @@ headers = next(reader)
 ``` python
 featureList = []  # save feature Dict
 labelList = []  # save label
-​
+
 for row in reader:
     labelList.append(row[len(row) - 1])  # 将每一行的label标记存到labellist
     rowDict = {}

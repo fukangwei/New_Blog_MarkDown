@@ -18,7 +18,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn.datasets.samples_generator import make_classification
-​
+
 X, y = make_classification(
            n_samples=1000, n_features=3, n_redundant=0, n_classes=3,
            n_informative=2, n_clusters_per_class=1, class_sep=0.5, random_state=10)

@@ -43,7 +43,7 @@ int ioctl ( int d, int request, ... );
 #include <unistd.h>
 #include <sys/ioctl.h>
 #include <net/if.h>
-​
+
 int GetMac ( const char *, unsigned char * );
 ​
 int GetMac ( const char *ifname, unsigned char *mac ) {

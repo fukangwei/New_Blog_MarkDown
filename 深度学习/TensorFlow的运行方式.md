@@ -20,7 +20,7 @@ date: 2019-01-15 14:05:11
 ``` python
 import tensorflow as tf
 import numpy as np
-​
+
 # 为了使点更密集一些，我们构建了300个点，分布在“-1”到1区间，直接采用np生成
 # 等差数列的方法，并将结果为300个点的一维数组，转换为“300 * 1”的二维数组
 x_data = np.linspace(-1, 1, 300)[:, np.newaxis]

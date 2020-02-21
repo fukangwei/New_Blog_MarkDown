@@ -64,7 +64,7 @@ outputs, _ = rnn.static_rnn(lstm_layer, input, dtype="float32")
 import tensorflow as tf
 from tensorflow.contrib import rnn
 from tensorflow.examples.tutorials.mnist import input_data
-​
+
 mnist = input_data.read_data_sets("./data/", one_hot=True)
 ​
 time_steps = 28  # unrolled through 28 time steps

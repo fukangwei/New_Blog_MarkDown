@@ -10,7 +10,7 @@ date: 2019-02-06 19:43:34
 
 ``` python
 import tensorflow as tf
-​
+
 w1 = tf.Variable(tf.random_normal([1, 2], stddev=1, seed=1))
 # 因为需要重复输入x，而每建一个x就会生成一个结点，计算图的效率会很低，所以使用占位符
 x = tf.placeholder(tf.float32, shape=(1, 2))

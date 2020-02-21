@@ -121,9 +121,8 @@ x_train = np.random.random((1000, 20))
 y_train = keras.utils.to_categorical(np.random.randint(10, size=(1000, 1)), num_classes=10)
 x_test = np.random.random((100, 20))
 y_test = keras.utils.to_categorical(np.random.randint(10, size=(100, 1)), num_classes=10)
-​
+
 model = Sequential()
-​
 # Dense(64)是一个具有64个隐藏神经元的全连接层。在第一层必须指定所期望的输入数据尺寸，这里是一个20维的向量
 model.add(Dense(64, activation='relu', input_dim=20))
 model.add(Dropout(0.5))

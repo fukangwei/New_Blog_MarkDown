@@ -74,7 +74,7 @@ def read_and_decode(filename):  # 读入dog_train.tfrecords
      features={
          'label': tf.FixedLenFeature([], tf.int64),
          'img_raw': tf.FixedLenFeature([], tf.string),})  # 将image数据和label取出来
-​
+
     img = tf.decode_raw(features['img_raw'], tf.uint8)
     img = tf.reshape(img, [128, 128, 3])  # reshape为“128 * 128”的3通道图片
     img = tf.cast(img, tf.float32) * (1. / 255) - 0.5  # 在流中抛出img张量

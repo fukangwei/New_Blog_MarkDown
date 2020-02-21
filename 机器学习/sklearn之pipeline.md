@@ -10,7 +10,7 @@ date: 2019-02-27 09:27:08
 vect = CountVectorizer()
 tfidf = TfidfTransformer()
 clf = SGDClassifier()
-​
+
 vX = vect.fit_transform(Xtrain)
 tfidfX = tfidf.fit_transform(vX)
 predicted = clf.fit_predict(tfidfX)
@@ -51,7 +51,7 @@ import matplotlib.pyplot as plt
 from sklearn import linear_model, decomposition, datasets
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
-​
+
 logistic = linear_model.LogisticRegression()
 pca = decomposition.PCA()
 pipe = Pipeline(steps=[('pca', pca), ('logistic', logistic)])

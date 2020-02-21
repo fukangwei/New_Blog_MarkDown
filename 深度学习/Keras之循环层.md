@@ -31,7 +31,7 @@ keras.layers.recurrent.Recurrent(
 model = Sequential()
 # now model.output_shape == (None, 32)
 model.add(LSTM(32, input_shape=(10, 64)))
-​
+
 # the following is identical
 model = Sequential()
 model.add(LSTM(32, input_dim=64, input_length=10))

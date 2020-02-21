@@ -15,7 +15,7 @@ categories: 网络编程
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
-​
+
 #define portnumber 3333
 ​
 int main ( int argc, char *argv[] ) {
@@ -159,6 +159,7 @@ int main ( int argc, char *argv[] ) {
 #include "pthread.h"
 ​
 #define portnumber 3333
+
 const char hello[] = "Hello! Are You Fine?\n";
 ​
 void *thread_server ( void *arg ) {
@@ -249,9 +250,9 @@ int main ( int argc, char *argv[] ) {
 #include <arpa/inet.h>
 #include <unistd.h>
 ​
-#define MAXBUF 1024
+#define MAXBUF    1024
 #define SEND_PORT 8888
-​
+
 int main ( int argc, char **argv ) {
     int sockfd, len;
     struct sockaddr_in6 dest;
@@ -308,10 +309,10 @@ int main ( int argc, char **argv ) {
 #include <unistd.h>
 #include <arpa/inet.h>
 ​
-#define MAXBUF 1024
+#define MAXBUF      1024
 #define LISTEN_PORT 8888
 #define LISTEN_NUM  10
-​
+
 int main ( int argc, char **argv ) {
     int sockfd, new_fd;
     socklen_t len;

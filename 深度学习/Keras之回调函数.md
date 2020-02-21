@@ -183,7 +183,7 @@ model.fit(X_train, Y_train, callbacks=[csv_logger])
 class LossHistory(keras.callbacks.Callback):
     def on_train_begin(self, logs={}):
         self.losses = []
-​
+
     def on_batch_end(self, batch, logs={}):
         self.losses.append(logs.get('loss'))
 ​
@@ -191,7 +191,7 @@ model = Sequential()
 model.add(Dense(10, input_dim=784, kernel_initializer='uniform'))
 model.add(Activation('softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='rmsprop')
-​
+
 history = LossHistory()
 model.fit(x_train, y_train, batch_size=128, epochs=20, verbose=0, callbacks=[history])
 print(history.losses)

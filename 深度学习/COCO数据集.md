@@ -37,7 +37,7 @@ info {
     "url": str,
     "date_created": datetime,
 }
-​
+
 license {
     "id": int,
     "name": str,
@@ -204,7 +204,7 @@ assert sum(rle) == 240 * 320
 ``` python
 import numpy as np
 import matplotlib.pyplot as plt
-​
+
 rle = [
     66083, 9, 627, 14, 618, 23, 616, 25, 614,
     26, 613, 27, 612, 28, 611, 30, 610, 31, ...

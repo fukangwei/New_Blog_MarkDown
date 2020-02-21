@@ -19,7 +19,7 @@ import numpy as np
 import torch
 from torch.autograd import Variable
 from torchvision import models
-​
+
 def preprocess_image(cv2im, resize_im=True):
     """
     function: Processes image for CNNs.

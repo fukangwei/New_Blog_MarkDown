@@ -67,7 +67,7 @@ class MyCustomDataset(Dataset):
         # stuff
         ...
         self.transforms = transforms
-​
+
     def __getitem__(self, index):
         # stuff
         ...

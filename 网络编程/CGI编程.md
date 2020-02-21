@@ -29,7 +29,7 @@ categories: 网络编程
 ``` cpp
 #include <stdio.h>
 #include <stdlib.h>
-​
+
 int main ( void ) {
     char *data;
     long m, n;
@@ -41,7 +41,7 @@ int main ( void ) {
     printf ( "<body>\n" );
     printf ( "<h3>乘法结果</h3>\n" );
     data = getenv ( "QUERY_STRING" );
-​
+
     if ( data == NULL ) {
         printf ( "<p>错误！数据没有被输入或者数据传输有问题\n" );
     } else if ( sscanf ( data, "m=%ld&n=%ld", &m, &n ) != 2 ) {
