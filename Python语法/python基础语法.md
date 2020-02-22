@@ -1,7 +1,6 @@
 ---
 title: python基础语法
 categories: Python语法
-abbrlink: e5e567ea
 date: 2019-01-10 08:54:28
 ---
 ### 编码
@@ -180,7 +179,7 @@ print(a)  # 结果为“python”。print输出时只保留了最后一次的赋
 
 ``` python
 import sys
-​
+
 print('命令行参数为:')
 
 for i in sys.argv:

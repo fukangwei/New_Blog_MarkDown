@@ -1,7 +1,6 @@
 ---
 title: Message消息组件
 categories: Tkinter编程
-abbrlink: 643cf306
 date: 2019-03-30 21:33:01
 ---
 &emsp;&emsp;`Message`(消息)组件是`Label`组件的变体，用于显示多行文本消息。`Message`组件能够自动换行，并调整文本的尺寸使其适应给定的尺寸。<!-- more -->
@@ -9,22 +8,22 @@ date: 2019-03-30 21:33:01
 ### 何时使用Message组件？
 
 &emsp;&emsp;`Message`组件用于显示简单的文本消息，通常你可以使用`Label`来代替。如果你希望使用多种字体来显示文本，那么应该使用`Text`组件。
-  
+
 ### 用法
 
 &emsp;&emsp;创建一个`Message`组件，所有你要做的事就是指定要显示的文本内容。在必要的时候，该组件会自动换行，请随意感受下：
 
 ``` python
 from tkinter import *
-​
+
 root = Tk()
-​
+
 w1 = Message(root, text="这是一则消息", width=100)
 w1.pack()
-​
+
 w2 = Message(root, text="这是一则骇人听闻的长长长长长消息！", width=100)
 w2.pack()
-​
+
 mainloop()
 ```
 

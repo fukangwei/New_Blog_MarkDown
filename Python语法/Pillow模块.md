@@ -1,7 +1,6 @@
 ---
 title: Pillow模块
 categories: Python语法
-abbrlink: 4d8f4c71
 date: 2019-03-02 19:06:03
 ---
 &emsp;&emsp;传统的`PIL`库不支持`python 3`，所以请使用从`PIL`派生出来的`Pillow`库。<!--more-->
@@ -12,7 +11,7 @@ date: 2019-03-02 19:06:03
 
 ``` python
 from PIL import Image
-​
+
 im = Image.open('001.jpg')
 print(im)
 print(im.format, im.size, im.mode)
@@ -64,7 +63,7 @@ im.save('f.png')
 
 ``` python
 from PIL import Image
-​
+
 im = Image.open('001.jpg')
 box = (100, 100, 500, 500)  # 设置要拷贝的区域
 # 将im表示的图片对象拷贝到region中，大小为(400 * 400)像素。这个region可以用来进行
@@ -147,7 +146,7 @@ im = Image.open(fp)
 
 ``` python
 from PIL import Image, ImageDraw
-​
+
 sourceFileName = "tu.jpg"
 avatar = Image.open(sourceFileName)
 drawAvatar = ImageDraw.Draw(avatar)
@@ -169,7 +168,7 @@ drawAvatar = ImageDraw.Draw(avatar)
 
 ``` python
 from PIL import Image, ImageDraw
-​
+
 sourceFileName = "tu.jpg"
 avatar = Image.open(sourceFileName)
 drawAvatar = ImageDraw.Draw(avatar)
@@ -189,7 +188,7 @@ avatar.show()
 
 ``` python
 from PIL import Image, ImageDraw
-​
+
 sourceFileName = "tu.jpg"
 avatar = Image.open(sourceFileName)
 drawAvatar = ImageDraw.Draw(avatar)
@@ -208,7 +207,7 @@ avatar.show()
 
 ``` python
 from PIL import Image, ImageDraw
-​
+
 sourceFileName = "tu.jpg"
 avatar = Image.open(sourceFileName)
 drawAvatar = ImageDraw.Draw(avatar)

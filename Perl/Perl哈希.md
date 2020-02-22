@@ -1,7 +1,6 @@
 ---
 title: Perl哈希
 categories: Perl
-abbrlink: 71f02a7c
 date: 2018-12-20 14:49:22
 ---
 ### 哈希变量
@@ -107,11 +106,10 @@ print "$urls[2]\n";  # 输出“taobao.com”
 
 ``` perl
 %data = ('google' => 'google.com', 'runoob' => 'runoob.com', 'taobao' => 'taobao.com');
-​
+
 if ( exists( $data{'facebook'} ) ) {
     print "facebook的网址为$data{'facebook'} \n";
-}
-else {
+} else {
     print "facebook键不存在\n";  # 输出“facebook键不存在”
 }
 ```
@@ -122,12 +120,12 @@ else {
 
 ``` perl
 %data = ('google' => 'google.com', 'runoob' => 'runoob.com', 'taobao' => 'taobao.com');
-​
+
 @keys = keys %data;
 $size = @keys;
 print "1 - 哈希大小：$size\n";  # 输出“1 - 哈希大小：3”
 @values = values %data;
-$size   = @values;
+$size   = @values;
 print "2 - 哈希大小：$size\n";  # 输出“2 - 哈希大小：3”
 ```
 
@@ -137,7 +135,7 @@ print "2 - 哈希大小：$size\n";  # 输出“2 - 哈希大小：3”
 
 ``` perl
 %data = ('google' => 'google.com', 'runoob' => 'runoob.com', 'taobao' => 'taobao.com');
-​
+
 @keys = keys %data;
 $size = @keys;
 print "1 - 哈希大小：$size\n";  # 输出“1 - 哈希大小：3”

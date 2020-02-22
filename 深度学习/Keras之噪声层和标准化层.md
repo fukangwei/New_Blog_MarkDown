@@ -1,7 +1,6 @@
 ---
 title: Keras之噪声层和标准化层
 categories: 深度学习
-abbrlink: 92c5d8e6
 date: 2018-12-31 09:30:48
 ---
 ### GaussianNoise

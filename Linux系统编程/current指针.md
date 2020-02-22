@@ -1,7 +1,6 @@
 ---
 title: current指针
 categories: Linux系统编程
-abbrlink: 5d461910
 date: 2018-12-29 14:35:53
 ---
 &emsp;&emsp;`current`指针的用法`1`：<!--more-->
@@ -11,7 +10,7 @@ date: 2018-12-29 14:35:53
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/sched.h>
-​
+
 static int __init my_init ( void ) {
     printk ( "[kernel init] %s %d\n", __func__, __LINE__ );
     printk ( "[kernel init] %s %d\n", current->comm, current->pid );
@@ -22,10 +21,10 @@ static void __exit my_exit ( void ) {
     printk ( "[kernel init] %s %d\n", __func__, __LINE__ );
     printk ( "[kernel init] %s %d\n", current->comm, current->pid );
 }
-​
+
 module_init ( my_init );
 module_exit ( my_exit );
-​
+
 MODULE_LICENSE ( "GPL" );
 MODULE_AUTHOR ( "Millet" );
 MODULE_VERSION ( "MI 3S" );
@@ -39,7 +38,7 @@ MODULE_DESCRIPTION ( "test for thread info" );
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/sched.h>
-​
+
 static int __init my_init ( void ) {
     int a;
     struct thread_info *ti;
@@ -56,10 +55,10 @@ static void __exit my_exit ( void ) {
     printk ( "[kernel init] %s %d\n", __func__, __LINE__ );
     printk ( "[kernel init] %s %d\n", current->comm, current->pid );
 }
-​
+
 module_init ( my_init );
 module_exit ( my_exit );
-​
+
 MODULE_LICENSE ( "GPL" );
 MODULE_AUTHOR ( "Millet" );
 MODULE_VERSION ( "MI 3S" );

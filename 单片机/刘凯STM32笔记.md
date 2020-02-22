@@ -1,14 +1,13 @@
 ---
 title: 刘凯STM32笔记
 categories: 单片机
-abbrlink: d8bc4390
 date: 2019-01-18 19:27:18
 ---
 ### 定时器
 
 &emsp;&emsp;代码如下：<!--more-->
 
-``` c
+``` cpp
 void TIM_Configuration ( void ) {
     TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure; /* 定义结构体变量 */
     TIM_OCInitTypeDef TIM_OCInitStructure;
@@ -46,7 +45,7 @@ void TIM_Configuration ( void ) {
 
 &emsp;&emsp;代码如下：
 
-``` c
+``` cpp
 void SMG_Init ( void ) {
     GPIO_InitTypeDef GPIO_InitStructure;
     SPI_74HC595_Init();
@@ -66,7 +65,7 @@ void SMG_Init ( void ) {
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
     GPIO_Init ( GPIOB, &GPIO_InitStructure );
 }
-​
+
 void SPI_74HC595_Init ( void ) {
     GPIO_InitTypeDef GPIO_InitStructure;
     SPI_InitTypeDef SPI_InitStructure;
@@ -100,7 +99,7 @@ void SPI_74HC595_Init ( void ) {
 
 &emsp;&emsp;`I2C_BufferWrite`函数如下：
 
-``` c
+``` cpp
 void I2C_BufferWrite ( u8 *pBuffer, u8 WriteAddr, u16 NumByteToWrite ) {
     u8 NumOfPage = 0, NumOfSingle = 0, Addr = 0, count = 0;
     Addr = WriteAddr % I2C_PageSize;
@@ -108,7 +107,7 @@ void I2C_BufferWrite ( u8 *pBuffer, u8 WriteAddr, u16 NumByteToWrite ) {
     NumOfPage = NumByteToWrite / I2C_PageSize;
     NumOfSingle = NumByteToWrite % I2C_PageSize;
     I2C_WaitEepromStandbyState(); /* 等EEPROM处于空闲状态 */
-​
+
     if ( Addr == 0 ) { /* If WriteAddr is I2C_PageSize aligned */
         /* If NumByteToWrite < I2C_PageSize */
         if ( NumOfPage == 0 ) { /* 只有1页的情况下 */
@@ -119,10 +118,10 @@ void I2C_BufferWrite ( u8 *pBuffer, u8 WriteAddr, u16 NumByteToWrite ) {
             while ( NumOfPage-- ) { /* 否则一直对页进行写操作 */
                 I2C_PageWrite ( pBuffer, WriteAddr, I2C_PageSize );
                 I2C_WaitEepromStandbyState();
-                WriteAddr +=  I2C_PageSize;
+                WriteAddr += I2C_PageSize;
                 pBuffer += I2C_PageSize;
             }
-​
+
             if ( NumOfSingle != 0 ) { /* 如果不够1页，也单独写一下 */
                 I2C_PageWrite ( pBuffer, WriteAddr, NumOfSingle );
                 I2C_WaitEepromStandbyState();
@@ -134,23 +133,23 @@ void I2C_BufferWrite ( u8 *pBuffer, u8 WriteAddr, u16 NumByteToWrite ) {
             I2C_WaitEepromStandbyState();
         } else { /* If NumByteToWrite > I2C_PageSize */
             NumByteToWrite -= count;
-            NumOfPage =  NumByteToWrite / I2C_PageSize;
+            NumOfPage = NumByteToWrite / I2C_PageSize;
             NumOfSingle = NumByteToWrite % I2C_PageSize;
-​
+
             if ( count != 0 ) {
                 I2C_PageWrite ( pBuffer, WriteAddr, count );
                 I2C_WaitEepromStandbyState();
                 WriteAddr += count;
                 pBuffer += count;
             }
-​
+
             while ( NumOfPage-- ) {
                 I2C_PageWrite ( pBuffer, WriteAddr, I2C_PageSize );
                 I2C_WaitEepromStandbyState();
-                WriteAddr +=  I2C_PageSize;
+                WriteAddr += I2C_PageSize;
                 pBuffer += I2C_PageSize;
             }
-​
+
             if ( NumOfSingle != 0 ) {
                 I2C_PageWrite ( pBuffer, WriteAddr, NumOfSingle );
                 I2C_WaitEepromStandbyState();
@@ -162,17 +161,17 @@ void I2C_BufferWrite ( u8 *pBuffer, u8 WriteAddr, u16 NumByteToWrite ) {
 
 `*pBuffer`是需要写的内容(数据)，`WriteAddr`是需要写入数据的地址，`NumByteToWrite`是需要写多少个数据，它可以设置很长。
 
-``` c
+``` cpp
 Addr = WriteAddr % I2C_PageSize; /* 得到WriteAddr(起始地址)在某一页中的的地址 */
 ```
 
 `16`字节页缓冲器一次只能写`16`个字节，首先要计算要写多少页。当`16`字节页缓冲器将`16`字节的数据全写入`ROM`中去，下一页才开始写。
 &emsp;&emsp;`I2C_WaitEepromStandbyState`函数如下：
 
-``` c
+``` cpp
 void I2C_WaitEepromStandbyState ( void ) {
     vu16 SR1_Tmp = 0;
-​
+
     do {
         /* Send START condition，发送开始信号 */
         I2C_GenerateSTART ( I2C2, ENABLE );
@@ -183,37 +182,37 @@ void I2C_WaitEepromStandbyState ( void ) {
         I2C_Send7bitAddress ( I2C2, EEPROM_ADDRESS, I2C_Direction_Transmitter );
         /* 读寄存器I2C_SR1的ADDR位。如果ADDR为0，则地址发送没有结束，继续发送“EEPROM address” */
     } while ( ! ( I2C_ReadRegister ( I2C2, I2C_Register_SR1 ) & 0x0002 ) );
-​
+
     I2C_ClearFlag ( I2C2, I2C_FLAG_AF ); /* Clear AF flag，清除应答错误标志位 */
 }
 ```
 
 &emsp;&emsp;`I2C_PageWrite`函数如下：
 
-``` c
+``` cpp
 void I2C_PageWrite ( u8 *pBuffer, u8 WriteAddr, u8 NumByteToWrite ) { /* 页写操作 */
     I2C_WaitEepromStandbyState();
     I2C_GenerateSTART ( I2C2, ENABLE ); /* [1]Send START condition 发送起始信号 */
-​
+
     /* [2]Test on EV5 and clear it 起始信号已发送并清除该事件 */
     /* 检查起始信号是否已经发送，如果没有完成，则程序保持I2C_EVENT_MASTER_MODE_SELECT状态 */
     while ( !I2C_CheckEvent ( I2C2, I2C_EVENT_MASTER_MODE_SELECT /* 主模式下的选择 */ ) );
-​
+
     /* [3]Send EEPROM address for write 发送器件地址 */
     /* EEPROM_ADDRESS是EEPROM器件的地址；EEPROM有片内存储空间，存储空间又有存储地址WriteAddr */
     I2C_Send7bitAddress ( I2C2, EEPROM_ADDRESS, I2C_Direction_Transmitter );
-​
+
     /* [4]Test on EV6 and clear it */
     /* 地址发送完成 */
     while ( !I2C_CheckEvent ( I2C2, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED ) );
-​
+
     /* [5]Send EEPROM'S internal address to write to */
     I2C_SendData ( I2C2, WriteAddr ); /* 发送器件内部写入地址 */
-​
+
     /* [6]Test on EV8 and clear it */
     /* 等待移位寄存器是否为空 */
     while ( !I2C_CheckEvent ( I2C2, I2C_EVENT_MASTER_BYTE_TRANSMITTED ) );
-​
+
     /* [7]Send data to Written */
     while ( NumByteToWrite-- ) { /* 要写的字节数 */
         /* Send the current byte */
@@ -225,7 +224,7 @@ void I2C_PageWrite ( u8 *pBuffer, u8 WriteAddr, u8 NumByteToWrite ) { /* 页写�
         /* 等待发送缓冲区是否为空 */
         while ( !I2C_CheckEvent ( I2C2, I2C_EVENT_MASTER_BYTE_TRANSMITTED ) );
     }
-​
+
     /* 写完1页的数据 */
     I2C_GenerateSTOP ( I2C2, ENABLE ); /* [8]Send STOP condition */
 }
@@ -233,7 +232,7 @@ void I2C_PageWrite ( u8 *pBuffer, u8 WriteAddr, u8 NumByteToWrite ) { /* 页写�
 
 &emsp;&emsp;`I2C_EE_SequentialWrite`函数如下：
 
-``` c
+``` cpp
 void I2C_EE_SequentialWrite ( u8 *pBuffer, u8 WriteAddr, u16 NumByteToWrite ) {
     u8 NumOfPage = 0; /* 页数 */
     u8 NumOfSingle = 0; /* 不足一页字节数 */
@@ -244,7 +243,7 @@ void I2C_EE_SequentialWrite ( u8 *pBuffer, u8 WriteAddr, u16 NumByteToWrite ) {
     NumOfPage = NumByteToWrite / I2C_PageSize; /* 欲写入数据所占的页数 */
     /* 欲写入数据所占的字节数(不足一页) */
     NumOfSingle = NumByteToWrite % I2C_PageSize;
-​
+
     /* If WriteAddr is I2C_PageSize aligned */
     if ( Addr == 0 ) { /* 起始地址为某页的第一个字节地址处 */
         /* If NumByteToWrite < I2C_PageSize */
@@ -258,7 +257,7 @@ void I2C_EE_SequentialWrite ( u8 *pBuffer, u8 WriteAddr, u16 NumByteToWrite ) {
                 WriteAddr += I2C_PageSize; /* 下一页起始地址 */
                 pBuffer += I2C_PageSize;
             }
-​
+
             if ( NumOfSingle != 0 ) { /* 写入余下不足一页的数据 */
                 I2C_EE_PageWrite ( pBuffer, WriteAddr, NumOfSingle );
                 I2C_EE_WaitEepromStandbyState();
@@ -274,7 +273,7 @@ void I2C_EE_SequentialWrite ( u8 *pBuffer, u8 WriteAddr, u16 NumByteToWrite ) {
             NumByteToWrite -= count;
             NumOfPage = NumByteToWrite / I2C_PageSize;
             NumOfSingle = NumByteToWrite % I2C_PageSize;
-​
+
             if ( count != 0 ) {
                 /* 将WriteAddr所在页的剩余空间写满 */
                 I2C_EE_PageWrite ( pBuffer, WriteAddr, count );
@@ -282,14 +281,14 @@ void I2C_EE_SequentialWrite ( u8 *pBuffer, u8 WriteAddr, u16 NumByteToWrite ) {
                 WriteAddr += count; /* 地址指向下一页的起始处 */
                 pBuffer += count;
             }
-​
+
             while ( NumOfPage-- ) {
                 I2C_EE_PageWrite ( pBuffer, WriteAddr, I2C_PageSize );
                 I2C_EE_WaitEepromStandbyState();
                 WriteAddr += I2C_PageSize;
                 pBuffer += I2C_PageSize;
             }
-​
+
             if ( NumOfSingle != 0 ) {
                 /* 写入余下不足一页的数据 */
                 I2C_EE_PageWrite ( pBuffer, WriteAddr, NumOfSingle );
@@ -305,13 +304,13 @@ void I2C_EE_SequentialWrite ( u8 *pBuffer, u8 WriteAddr, u16 NumByteToWrite ) {
 &emsp;&emsp;`RCC`是`STM32`的时钟控制器，可开启或关闭各总线的时钟。在使用各外设功能前必须先开启其对应的时钟！没有这个时钟，内部的各器件就不能运行。而`RTC`是`STM32`内部集成的一个简单的时钟(计时用)，如果不用就关闭。用的话先要通过`RCC`配置其时钟源，可看作是一个外设器件。
 &emsp;&emsp;`RCC_Configuration`函数如下：
 
-``` c
+``` cpp
 void RCC_Configuration ( void ) {
     ErrorStatus HSEStartUpStatus;
     RCC_DeInit();
     RCC_HSEConfig ( RCC_HSE_ON );
     HSEStartUpStatus = RCC_WaitForHSEStartUp();
-​
+
     if ( HSEStartUpStatus == SUCCESS ) {
         RCC_HCLKConfig ( RCC_SYSCLK_Div1 );
         RCC_PCLK2Config ( RCC_HCLK_Div1 );
@@ -320,12 +319,12 @@ void RCC_Configuration ( void ) {
         FLASH_PrefetchBufferCmd ( FLASH_PrefetchBuffer_Enable );
         RCC_PLLConfig ( RCC_PLLSource_HSE_Div1, RCC_PLLMul_9 );
         RCC_PLLCmd ( ENABLE );
-​
+
         while ( RCC_GetFlagStatus ( RCC_FLAG_PLLRDY ) == RESET );
         RCC_SYSCLKConfig ( RCC_SYSCLKSource_PLLCLK );
         while ( RCC_GetSYSCLKSource() != 0x08 );
     }
-​
+
     /* 这一句很重要，它决定RTC能不能正常工作(开启相应的时钟) */
     RCC_APB1PeriphClockCmd ( RCC_APB1Periph_PWR | RCC_APB1Periph_BKP, ENABLE );
     RCC_APB2PeriphClockCmd ( RCC_APB2Periph_USART1 | RCC_APB2Periph_GPIOA, ENABLE );
@@ -334,7 +333,7 @@ void RCC_Configuration ( void ) {
 
 &emsp;&emsp;`RTC_Configuration`函数如下：
 
-``` c
+``` cpp
 void RTC_Configuration ( void ) {
     /* 使能或者失能RTC和后备寄存器访问(使能)；后备电源要打开，
        PWR_CR的DBP设置为1(允许写入RTC和后备寄存器) */
@@ -342,10 +341,10 @@ void RTC_Configuration ( void ) {
     BKP_DeInit(); /* 复位备份寄存器设置，将外设RCC寄存器重设为缺省值 */
     // RCC_LSEConfig ( RCC_LSE_ON ); /* 设置外部低速晶振(LSE) */
     RCC_LSICmd ( ENABLE ); /* 使能或者失能内部低速晶振(LSI) */
-​
+
     /* 等待LSI晶振就绪 */
     while ( RCC_GetFlagStatus ( RCC_FLAG_LSIRDY ) == RESET );
-​
+
     RCC_RTCCLKConfig ( RCC_RTCCLKSource_LSI ); /* 设置RTC时钟(RTCCLK) */
     RCC_RTCCLKCmd ( ENABLE ); /* 使能或者失能RTC时钟 */
     RTC_WaitForSynchro(); /* 等待RTC寄存器同步完成 */
@@ -360,8 +359,8 @@ void RTC_Configuration ( void ) {
 
 &emsp;&emsp;重要代码的解析：
 
-``` c
-/* 打开APB1总线上的PWR，BKP时钟 */
+``` cpp
+/* 打开APB1总线上的PWR、BKP时钟 */
 RCC_APB1PeriphClockCmd ( RCC_APB1Periph_PWR | RCC_APB1Periph_BKP, ENABLE );
 /* 使能RTC和后备寄存器访问 */
 PWR_BackupAccessCmd ( ENABLE ); /* PWR_CR的DBP = 1 */
@@ -388,21 +387,21 @@ RTC_WaitForLastTask(); /* 等待最近一次对RTC寄存器的写操作完成 */
 
 &emsp;&emsp;`STM32`的内部`RTC`只提供了一个秒计数器，若需要当前日期，还需进行一番运算，比较麻烦。
 
-``` c
+``` cpp
 rtc rtc_real;
-​
+
 void RTC_Init ( void ) {
     RCC_APB1PeriphClockCmd ( RCC_APB1Periph_PWR | RCC_APB1Periph_BKP, ENABLE );
     PWR_BackupAccessCmd ( ENABLE ); /* 使能RTC和后备寄存器访问 */
-​
+
     /* 读取后备寄存器1的数据 */
     if ( BKP_ReadBackupRegister ( BKP_DR1 ) != 0x5555 ) {
         BKP_DeInit(); /* Reset Backup Domain */
         RCC_LSEConfig ( RCC_LSE_ON ); /* Enable LSE，打开外部低速晶振 */
-​
+
         /* 等待外部低速晶振震荡 需要等待比较长的时间 */
         while ( RCC_GetFlagStatus ( RCC_FLAG_LSERDY ) == RESET );
-​
+
         RCC_RTCCLKConfig ( RCC_RTCCLKSource_LSE ); /* 使用外部晶振32768作为时钟源 */
         RCC_RTCCLKCmd ( ENABLE ); /* 允许RTC */
         RTC_WaitForSynchro(); /* 等待RTC寄存器同步 */
@@ -422,10 +421,10 @@ void RTC_Init ( void ) {
         RTC_WaitForLastTask();
         USART1_SendString ( "系统已设置时间" );
     }
-​
+
     RCC_ClearFlag(); /* 清除标志 */
 }
-​
+
 u8 Is_LeapYear ( u16 year ) { /* 该年份是不是闰年：1为是；0为不是 */
     if ( ( year % 4 == 0 ) && ( year % 100 != 0 ) || ( year % 400 == 0 ) ) {
         return 1;
@@ -433,19 +432,19 @@ u8 Is_LeapYear ( u16 year ) { /* 该年份是不是闰年：1为是；0为不是
         return 0;
     }
 }
-​
+
 /* 平年的月份日期表 */
 const u8 month_table[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-​
+
 /* 把输入的时钟转换为秒钟，以1970年1月1日为基准，1970至2099年为合法年份 */
 u8 RTC_Set ( u16 year, u8 month, u8 day, u8 hour, u8 min, u8 sec ) {
     u16 i;
     u32 seccount;
-​
+
     if ( year < 1970 || year > 2099 ) { /* 超限 */
         return 0;
     }
-​
+
     for ( i = 1970; i < year; i++ ) { /* 计算年份的秒数 */
         if ( Is_LeapYear ( i ) ) {
             seccount += 31622400; /* 闰年的秒钟数 */
@@ -453,17 +452,17 @@ u8 RTC_Set ( u16 year, u8 month, u8 day, u8 hour, u8 min, u8 sec ) {
             seccount += 31536000; /* 平年的秒钟数 */
         }
     }
-​
+
     month -= 1;
-​
+
     for ( i = 0; i < month; i++ ) {
         seccount += ( u32 ) month_table[i] * 86400; /* 月份秒钟数相加 */
-​
+
         if ( Is_LeapYear ( year ) && i == 1 ) {
             seccount += 86400; /* 闰年2月份增加一天的秒钟数 */
         }
     }
-​
+
     seccount += ( u32 ) ( day - 1 ) * 86400; /* 把前面日期的秒钟数相加 */
     seccount += ( u32 ) hour * 3600; /* 小时秒钟数 */
     seccount += ( u32 ) min * 60; /* 分钟秒钟数 */
@@ -478,7 +477,7 @@ u8 RTC_Set ( u16 year, u8 month, u8 day, u8 hour, u8 min, u8 sec ) {
     RTC_WaitForLastTask(); /* 等待对RTC寄存器的写操作完成 */
     return 1;
 }
-​
+
 u8 RTC_Get ( void ) { /* 得到当前的时间。返回1表示成功，其他值表示错误 */
     u32 temp = 0;
     u16 temp1 = 0;
@@ -486,10 +485,10 @@ u8 RTC_Get ( void ) { /* 得到当前的时间。返回1表示成功，其他值
 
     seccount = RTC_GetCounter(); /* 获取秒计数器的值 */
     temp = seccount / 86400; /* 得到天数(秒钟数对应的) */
-​
+
     if ( temp > 0 ) { /* 超过一天 */
         temp1 = 1970;
-​
+
         while ( temp >= 365 ) {
             if ( Is_LeapYear ( temp1 ) ) { /* 闰年 */
                 if ( temp >= 366 ) {
@@ -500,14 +499,14 @@ u8 RTC_Get ( void ) { /* 得到当前的时间。返回1表示成功，其他值
             } else {
                 temp -= 365;
             }
-​
+
             temp1++;
         }
     }
-​
+
     rtc_real.syear = temp1; /* 得到年份 */
     temp1 = 0;
-​
+
     while ( temp >= 28 ) { /* 超过了一个月 */
         /* 当年是不是闰年(2月份) */
         if ( Is_LeapYear ( rtc_real.syear ) && temp1 == 1 ) {
@@ -523,10 +522,10 @@ u8 RTC_Get ( void ) { /* 得到当前的时间。返回1表示成功，其他值
                 break;
             }
         }
-​
+
         temp1++;
     }
-​
+
     rtc_real.smonth = temp1 + 1; /* 得到月份 */
     rtc_real.sday = temp + 1; /* 得到日期 */
     temp = seccount % 86400; /* 得到秒钟数 */
@@ -536,29 +535,29 @@ u8 RTC_Get ( void ) { /* 得到当前的时间。返回1表示成功，其他值
     rtc_real.week = RTC_GetWeek ( rtc_real.syear, rtc_real.smonth, rtc_real.sday );
     return 1;
 }
-​
+
 const u8 week_table[12] = {0, 3, 3, 6, 1, 4, 6, 2, 5, 0, 3, 5};
-​
+
 /* 输入公历日期得到星期(只允许1901至2099年) */
 u8 RTC_GetWeek ( u16 year, u8 month, u8 day ) {
     u16 temp;
     u8 yearH, yearL;
     yearH = year / 100;
     yearL = year % 100;
-​
+
     if ( yearH > 19 ) { /* 如果为21世纪，年份数加100 */
         yearL += 100;
     }
-​
+
     /* 所过闰年数只算1900年之后的 */
     temp = yearL + yearL / 4;
     temp = temp % 7;
     temp = temp + day + week_table[month - 1];
-​
+
     if ( yearL % 4 == 0 && month < 3 ) {
         temp--;
     }
-​
+
     return ( temp % 7 );
 }
 ```

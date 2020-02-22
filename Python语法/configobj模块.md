@@ -1,7 +1,6 @@
 ---
 title: configobj模块
 categories: Python语法
-abbrlink: 3be3f75b
 date: 2018-12-27 17:48:53
 ---
 &emsp;&emsp;`configobj`模块用于读取或修改配置文件。例如配置文件`test.ini`的内容是：<!--more-->
@@ -21,7 +20,7 @@ port = 8000
 
 ``` python
 from configobj import ConfigObj
-​
+
 conf_ini = "./test.ini"
 config = ConfigObj(conf_ini, encoding='iso-8859-1')
 print(config['server'])
@@ -39,7 +38,7 @@ print(config['server']['servername'])
 
 ``` python
 from configobj import ConfigObj
-​
+
 conf_ini = "./test.ini"
 config = ConfigObj(conf_ini, encoding='iso-8859-1')
 config['server']['servername'] = "127.0.0.1"
@@ -50,7 +49,7 @@ config.write()
 
 ``` python
 from configobj import ConfigObj
-​
+
 conf_ini = "./test.ini"
 config = ConfigObj(conf_ini, encoding='iso-8859-1')
 config['new_items'] = {}
@@ -62,7 +61,7 @@ config.write()
 
 ``` python
 from configobj import ConfigObj
-​
+
 conf_ini = "./test.ini"
 config = ConfigObj(conf_ini, encoding='iso-8859-1')
 del config['client_srv']['port']
@@ -73,7 +72,7 @@ config.write()
 
 ``` python
 from configobj import ConfigObj
-​
+
 conf_ini = "./test.ini"
 config = ConfigObj(conf_ini, encoding='iso-8859-1')
 del config['client_srv']['port']

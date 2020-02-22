@@ -1,7 +1,6 @@
 ---
 title: COCO数据集
 categories: 深度学习
-abbrlink: 7764c190
 date: 2019-02-17 14:49:45
 ---
 &emsp;&emsp;`COCO`的全称是`Common Objects in Context`，是微软团队提供的一个可以用来进行图像识别的数据集。`MS COCO`数据集中的图像分为训练、验证和测试集。<!--more-->
@@ -43,7 +42,7 @@ license {
     "name": str,
     "url": str,
 }
-​
+
 image {
     "id": int,
     "width": int,
@@ -113,12 +112,12 @@ image {
 
 ``` python
 from pycocotools.coco import COCO
-​
+
 dataDir = '..'
 dataType = 'val2017'
 annFile = '{}/annotations/instances_{}.json'.format(dataDir, dataType)
 coco_train = COCO(annFile)  # initialize COCO api for instance annotations
-​
+
 print(len(coco_train.dataset['categories']))
 print(len(coco_train.dataset['images']))
 print(len(coco_train.dataset['annotations']))
@@ -164,7 +163,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 from matplotlib.patches import Polygon
 from matplotlib.collections import PatchCollection
-​
+
 _, ax = plt.subplots()
 polygons = []
 gemfield_polygons = [
@@ -209,7 +208,7 @@ rle = [
     66083, 9, 627, 14, 618, 23, 616, 25, 614,
     26, 613, 27, 612, 28, 611, 30, 610, 31, ...
 ]
-​
+
 assert sum(rle) == 640 * 480
 M = np.zeros(640 * 480)
 N = len(rle)
@@ -222,7 +221,7 @@ for pos in range(N):
     for c in range(rle[pos]):
         M[n] = val
         n += 1
-​
+
 GEMFIELD = M.reshape(([640, 480]), order='F')
 plt.imshow(GEMFIELD)
 plt.show()
@@ -248,7 +247,6 @@ plt.show()
     "id": 1,
     "name": "person"
 },
-​
 {
     "supercategory": "vehicle",
     "id": 2,

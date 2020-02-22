@@ -1,7 +1,6 @@
 ---
 title: Qt延时的方法
 categories: Qt应用示例
-abbrlink: 4bd9ba2
 date: 2018-12-28 16:01:08
 ---
 &emsp;&emsp;1. 使用`QTimer::singleShot`的方法：<!--more-->
@@ -15,7 +14,7 @@ void QTimer::singleShot ( int msec, QObject *receiver, const char *member ) [sta
 ``` cpp
 #include <QApplication>
 #include <QTimer>
-​
+
 int main ( int argc, char *argv[] ) {
     QApplication app ( argc, argv );
     QTimer::singleShot ( 600000, &app, SLOT ( quit() ) );
@@ -29,7 +28,7 @@ int main ( int argc, char *argv[] ) {
 ``` cpp
 QTime n = QTime::currentTime();
 QTime now;
-​
+
 do {
     now = QTime::currentTime();
 } while ( n.msecsTo ( now ) <= 500 ); /* 延迟500毫秒 */
@@ -40,7 +39,7 @@ do {
 ``` cpp
 QDateTime n2 = QDateTime::currentDateTime();
 QDateTime now;
-​
+
 do {
     now = QDateTime::currentDateTime();
 } while ( n2.secsTo ( now ) <= 6 ); /* 延时6秒 */

@@ -1,7 +1,6 @@
 ---
 title: gzip模块
 categories: Python语法
-abbrlink: e6c0e7dc
 date: 2019-02-09 15:04:04
 ---
 ### gzip module
@@ -37,7 +36,7 @@ date: 2019-02-09 15:04:04
 
 ``` python
 import gzip
-​
+
 with gzip.open('/home/joe/file.txt.gz', 'rb') as f:
     file_content = f.read()
 ```
@@ -46,7 +45,7 @@ with gzip.open('/home/joe/file.txt.gz', 'rb') as f:
 
 ``` python
 import gzip
-​
+
 content = b"Lots of content here"
 with gzip.open('/home/joe/file.txt.gz', 'wb') as f:
     f.write(content)
@@ -57,7 +56,7 @@ with gzip.open('/home/joe/file.txt.gz', 'wb') as f:
 ``` python
 import gzip
 import shutil
-​
+
 with open('/home/joe/file.txt', 'rb') as f_in:
     with gzip.open('/home/joe/file.txt.gz', 'wb') as f_out:
         shutil.copyfileobj(f_in, f_out)
@@ -67,7 +66,7 @@ with open('/home/joe/file.txt', 'rb') as f_in:
 
 ``` python
 import gzip
-​
+
 s_in = b"Lots of content here"
 s_out = gzip.compress(s_in)
 ```

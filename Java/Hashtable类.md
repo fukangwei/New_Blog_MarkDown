@@ -1,7 +1,6 @@
 ---
 title: Hashtable类
 categories: Java
-abbrlink: 3b388b71
 date: 2018-12-25 18:48:25
 ---
 &emsp;&emsp;`Hashtable`是原始的`java.util`的一部分，是一个`Dictionary`具体的实现。然而`Java 2`重构的`Hashtable`实现了`Map`接口，因此`Hashtable`现在集成到了集合框架中。它和`HashMap`类很相似，但是它支持同步。<!--more-->
@@ -49,7 +48,7 @@ Hashtable(Map m);
 
 ``` java
 import java.util.*;
-​
+
 public class HashTableDemo {
     public static void main(String args[]) {
         /* Create a hash map */
@@ -57,20 +56,20 @@ public class HashTableDemo {
         Enumeration names;
         String str;
         double bal;
-​
+
         balance.put("Zara", 3434.34);
         balance.put("Mahnaz", 123.22);
         balance.put("Ayan", 1378.00);
         balance.put("Daisy", 99.22);
         balance.put("Qadir", -19.08);
-​
+
         /* Show all balances in hash table */
         names = balance.keys();
         while (names.hasMoreElements()) {
             str = (String) names.nextElement();
             System.out.println(str + ": " + balance.get(str));
         }
-​
+
         System.out.println();
         /* Deposit 1,000 into Zara's account */
         bal = ((Double) balance.get("Zara")).doubleValue();
@@ -88,6 +87,6 @@ Zara: 3434.34
 Mahnaz: 123.22
 Daisy: 99.22
 Ayan: 1378.0
-​
+
 Zara's new balance: 4434.34
 ```

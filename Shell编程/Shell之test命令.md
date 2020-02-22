@@ -1,7 +1,6 @@
 ---
 title: Shell之test命令
 categories: Shell编程
-abbrlink: 5322394e
 date: 2019-01-19 20:40:01
 ---
 &emsp;&emsp;`shell`中的`test`命令用于检查某个条件是否成立，它可以进行数值、字符和文件三个方面的测试。<!--more-->
@@ -19,7 +18,7 @@ date: 2019-01-19 20:40:01
 
 ``` bash
 #!/bin/bash
-​
+
 num1=100
 num2=100
 if test $[num1] -eq $[num2]
@@ -45,7 +44,7 @@ fi
 
 ``` bash
 #!/bin/bash
-​
+
 num1="ru1noob"
 num2="runoob"
 if test $num1 = $num2
@@ -76,7 +75,7 @@ fi
 
 ``` bash
 #!/bin/bash
-​
+
 cd /bin
 if test -e ./bash
 then
@@ -91,7 +90,7 @@ fi
 
 ``` bash
 #!/bin/bash
-​
+
 cd /bin
 if test -e ./notFile -o -e ./bash
 then

@@ -1,7 +1,6 @@
 ---
 title: 添加驱动程序到Linux内核
 categories: Linux驱动程序
-abbrlink: c62ad388
 date: 2019-02-04 10:04:14
 ---
 &emsp;&emsp;添加驱动程序到内核步骤为：添加驱动程序到内核源代码位置；配置内核；编译内核；下载运行测试。<!--more-->

@@ -1,7 +1,6 @@
 ---
 title: ProgressBar进度条
 categories: Android
-abbrlink: 4cfb7ca8
 date: 2019-02-08 17:56:00
 ---
 &emsp;&emsp;进度条常用属性如下：<!--more-->
@@ -32,22 +31,22 @@ date: 2019-02-08 17:56:00
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-​
+
     <!-- 系统提供的圆形进度条 -->
     <ProgressBar
         style="@android:style/Widget.ProgressBar.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-​
+
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-​
+
     <ProgressBar
         style="@android:style/Widget.ProgressBar.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-​
+
     <!-- 系统提供的水平进度条 -->
     <ProgressBar
         style="@android:style/Widget.ProgressBar.Horizontal"
@@ -55,7 +54,7 @@ date: 2019-02-08 17:56:00
         android:layout_height="wrap_content"
         android:max="100"
         android:progress="18" />
-​
+
     <ProgressBar
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="match_parent"
@@ -76,7 +75,7 @@ date: 2019-02-08 17:56:00
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-​
+
     <!-- 水平进度条 -->
     <ProgressBar
         android:id="@+id/progressBar1"
@@ -98,12 +97,12 @@ import android.os.Message;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-​
+
 public class MainActivity extends Activity {
     private ProgressBar horizonP; /* 水平进度条 */
     private int mProgressStatus = 0; /* 完成进度 */
     private Handler mHandler; /* 声明一个用于处理消息的Handler类的对象 */
-​
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,7 +115,7 @@ public class MainActivity extends Activity {
                     horizonP.setProgress(mProgressStatus); /* 更新进度 */
                 } else {
                     Toast.makeText(MainActivity.this, "耗时操作已经完成", Toast.LENGTH_SHORT).show();
-                    horizonP.setVisibility(View.GONE);  /* 设置进度条不显示，并且不占用空间 */
+                    horizonP.setVisibility(View.GONE); /* 设置进度条不显示，并且不占用空间 */
                 }
             }
         };
@@ -137,7 +136,7 @@ public class MainActivity extends Activity {
                     }
                 }
             }
-​
+
             private int doWork() { /* 模拟一个耗时操作 */
                 mProgressStatus += Math.random() * 10; /* 改变完成进度 */
 

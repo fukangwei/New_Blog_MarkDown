@@ -1,7 +1,6 @@
 ---
 title: OpenCV的安装
 categories: 软件与硬件问题
-abbrlink: b05896e8
 date: 2019-02-28 19:16:28
 ---
 ### Linux下的安装(2.4.9版)
@@ -140,9 +139,9 @@ opencv_videostab2413d.lib
 #include <iostream>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
-​
+
 using namespace cv;
-​
+
 int main() {
     Mat img = imread("empire.jpg");
     imshow("Picture", img);

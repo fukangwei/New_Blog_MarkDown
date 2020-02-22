@@ -1,7 +1,6 @@
 ---
 title: setjmp和longjmp函数
 categories: C语言语法详解
-abbrlink: 36ada062
 date: 2018-12-13 08:58:46
 ---
 &emsp;&emsp;非局部跳转语句是`setjmp`和`longjmp`函数。非局部指的是：不是由`C`语言`goto`语句在一个函数内实施的跳转，而是在栈上跳过若干调用帧，返回到当前函数调用路径上的某一个函数中。<!--more-->
@@ -13,7 +12,7 @@ int setjmp ( jmp_buf env );
 
 返回值：若直接调用则返回`0`；若从`longjmp`调用返回，则返回`非0值`的`longjmp`中的`val`值。`longjmp`函数原型如下：
 
-``` c
+``` cpp
 void longjmp ( jmp_buf env, int val );
 ```
 
@@ -33,19 +32,19 @@ if ( setjmp ( env ) == 0 ) {
 ``` cpp
 #include <stdio.h>
 #include <setjmp.h>
-​
+
 static jmp_buf buf;
-​
+
 void second ( void ) {
     printf ( "second\n" );
     longjmp ( buf, 1 ); /* 跳回setjmp的调用处，使得setjmp返回值为1 */
 }
-​
+
 void first ( void ) {
     second();
     printf ( "first\n" ); /* 不可能执行到此行 */
 }
-​
+
 int main() {
     if ( ! setjmp ( buf ) ) {
         first(); /* 进入此行前，setjmp返回0 */
@@ -135,11 +134,9 @@ void first ( void ) {
             /* if we get here there was an exception. */
             printf ( "second failed with type 3 exception; remapping to type 1.\n" );
             exception_type = 1;
-
         default: /* fall through */
             memcpy ( exception_env, my_env, sizeof ( jmp_buf ) ); /* restore exception stack */
             longjmp ( exception_env, exception_type ); /* continue handling the exception */
-
         case 0:
             /* normal, desired operation */
             second();

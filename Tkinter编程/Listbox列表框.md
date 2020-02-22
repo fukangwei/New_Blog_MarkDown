@@ -1,7 +1,6 @@
 ---
 title: Listbox列表框
 categories: Tkinter编程
-abbrlink: a404e297
 date: 2019-03-31 17:56:15
 ---
 &emsp;&emsp;`Listbox`(列表框)组件用于显示一个选择列表。`Listbox`只能包含文本项目，并且所有的项目都需要使用相同的字体和颜色。根据组件的配置，用户可以从列表中选择一个或多个选项。<!--more-->
@@ -14,16 +13,16 @@ date: 2019-03-31 17:56:15
 
 ``` python
 from tkinter import *
-​
+
 master = Tk()
-​
-theLB = Listbox(master)  # 创建一个空列表
+
+theLB = Listbox(master)  # 创建一个空列表
 theLB.pack()
-​
+
 # 往列表里添加数据
 for item in ["鸡蛋", "鸭蛋", "鹅蛋", "李狗蛋"]:
     theLB.insert(END, item)
-​
+
 mainloop()
 ```
 
@@ -56,8 +55,8 @@ print(listbox.curselection())  # 返回当前选中项的索引
 
 ``` python
 def printList(event):
-    print(listbox.get(listbox.curselection()))
-​
+    print(listbox.get(listbox.curselection()))
+
 listbox.bind('<Double-Button-1>', printList)
 ```
 

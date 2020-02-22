@@ -1,7 +1,6 @@
 ---
 title: TF-IDF原理
 categories: 机器学习
-abbrlink: 4c80dac2
 date: 2019-02-24 16:00:50
 ---
 &emsp;&emsp;有一篇很长的文章，我要用计算机提取它的关键词(`Automatic Keyphrase extraction`)，完全不加以人工干预，请问怎样才能正确做到？<!--more-->

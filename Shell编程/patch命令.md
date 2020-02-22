@@ -1,7 +1,6 @@
 ---
 title: patch命令
 categories: Shell编程
-abbrlink: dd64c17a
 date: 2019-01-20 19:55:04
 ---
 &emsp;&emsp;`patch`指令让用户利用修补文件更新原始文件。倘若一次仅修改一个文件，可直接在指令列中下达指令依序执行；如果配合修补文件的方式，则能一次修补大批文件，这也是`Linux`系统核心的升级方法之一。<!--more-->
@@ -71,7 +70,7 @@ $ diff testfile1 testfile2  # 比较两个文件
 ---
 >Hello, This is the second file!
 # 将比较结果保存到tetsfile.patch文件
-$ diff testfile1 testfile2 > testfile.patch  
+$ diff testfile1 testfile2 > testfile.patch
 $ cat testfile.patch  # 查看补丁包的内容
 1c1
 <Hello, This is the first file!

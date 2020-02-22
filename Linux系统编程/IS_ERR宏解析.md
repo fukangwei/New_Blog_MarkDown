@@ -1,7 +1,6 @@
 ---
 title: IS_ERR宏解析
 categories: Linux系统编程
-abbrlink: 4f6dcec6
 date: 2019-02-02 21:48:44
 ---
 &emsp;&emsp;最近在使用`filp_open`打开文件时遇到到一个问题，当打开一个并不存在的文件时，`filp_open`返回值为`0xfffffffe`，而并不是`0`(`NULL`)，这是因为内核对返回指针的函数做了特殊处理。内核中的函数常常返回指针，通常如果调用出错，会返回`NULL`，但`linux`做了更精妙的处理，能够通过返回的指针体现出来。<!--more-->
@@ -18,19 +17,19 @@ date: 2019-02-02 21:48:44
  * error and pointer decisions.
  */
 #define MAX_ERRNO 4095
-​
+
 #define IS_ERR_VALUE(x) unlikely((x) >= (unsigned long)-MAX_ERRNO)
-​
+
 /* 将错误号转化为指针，由于错误号在“-1000”至0间，返回的指针会落在最后一页 */
 static inline void *ERR_PTR ( long error ) {
     return ( void * ) error;
 }
-​
+
 /* 将指针转化为错误号 */
 static inline long PTR_ERR ( const void *ptr ) {
     return ( long ) ptr;
 }
-​
+
 /* 判断返回的指针是错误信息还是实际地址，即指针是否落在最后一页 */
 static inline long IS_ERR ( const void *ptr ) {
     return IS_ERR_VALUE ( ( unsigned long ) ptr );
@@ -46,7 +45,7 @@ static inline long IS_ERR ( const void *ptr ) {
 ``` cpp
 /* include/linux/err.h */
 #define IS_ERR_VALUE(x) unlikely((x) >= (unsigned long)-MAX_ERRNO)
-​
+
 static inline long __must_check IS_ERR ( const void *ptr ) {
     return IS_ERR_VALUE ( ( unsigned long ) ptr );
 }
@@ -75,7 +74,7 @@ static inline long __must_check IS_ERR ( const void *ptr ) {
 static inline void *__must_check ERR_PTR ( long error ) {
     return ( void * ) error;
 }
-​
+
 static inline long __must_check PTR_ERR ( const void *ptr ) {
     return ( long ) ptr;
 }
@@ -85,7 +84,7 @@ static inline long __must_check PTR_ERR ( const void *ptr ) {
 
 ``` cpp
 struct class *cls = class_create ( ... );
-​
+
 if ( IS_ERR ( cls ) ) {
     ret = PTR_ERR ( cls );
     return ret;

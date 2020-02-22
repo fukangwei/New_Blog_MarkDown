@@ -1,7 +1,6 @@
 ---
 title: Qt之sqlite数据库
 categories: Qt语法详解
-abbrlink: 42e99cc6
 date: 2019-02-02 12:45:15
 ---
 &emsp;&emsp;在使用数据库功能时，需要在`.pro`文件中增加语句`QT += sql`，同时在代码中增加头文件`QtSql`。<!--more-->
@@ -27,7 +26,7 @@ QSqlDatabase database = QSqlDatabase::addDatabase ( "QSQLITE" );
 database.setDatabaseName ( "database.db" );
 database.setUserName ( "root" );
 database.setPassword ( "123456" );
-​
+
 if ( !database.open() ) { /* 打开数据库 */
     qDebug() << database.lastError();
     qFatal ( "failed to connect." ) ;
@@ -45,17 +44,17 @@ if ( !database.open() ) { /* 打开数据库 */
     QString delete_sql = "delete from student where id = ?";
     QString clear_sql = "delete from student";
     sql_query.prepare ( create_sql );
-​
+
     if ( !sql_query.exec() ) {
         qDebug() << sql_query.lastError();
     } else {
         qDebug() << "table created!";
     }
-​
+
     /* 查询最大id */
     int max_id = 0;
     sql_query.prepare ( select_max_sql );
-​
+
     if ( !sql_query.exec() ) {
         qDebug() << sql_query.lastError();
     } else {
@@ -64,30 +63,30 @@ if ( !database.open() ) { /* 打开数据库 */
             qDebug() << QString ( "max id:%1" ).arg ( max_id );
         }
     }
-​
+
     /* 插入数据 */
     sql_query.prepare ( insert_sql );
     sql_query.addBindValue ( max_id + 1 );
     sql_query.addBindValue ( "name" );
     sql_query.addBindValue ( 25 );
-​
+
     if ( !sql_query.exec() ) {
         qDebug() << sql_query.lastError();
     } else {
         qDebug() << "inserted!";
     }
-​
+
     /* 更新数据 */
     sql_query.prepare ( update_sql );
     sql_query.bindValue ( ":name", "Qt" );
     sql_query.bindValue ( ":id", 1 );
-​
+
     if ( !sql_query.exec() ) {
         qDebug() << sql_query.lastError();
     } else {
         qDebug() << "updated!";
     }
-​
+
     /* 查询部分数据 */
     if ( !sql_query.exec ( select_sql ) ) {
         qDebug() << sql_query.lastError();
@@ -95,13 +94,13 @@ if ( !database.open() ) { /* 打开数据库 */
         while ( sql_query.next() ) {
             int id = sql_query.value ( "id" ).toInt();
             QString name = sql_query.value ( "name" ).toString();
-            qDebug() << QString ( "id:%1    name:%2" ).arg ( id ).arg ( name );
+            qDebug() << QString ( "id:%1    name:%2" ).arg ( id ).arg ( name );
         }
     }
-​
+
     /* 查询所有数据 */
     sql_query.prepare ( select_all_sql );
-​
+
     if ( !sql_query.exec() ) {
         qDebug() << sql_query.lastError();
     } else {
@@ -112,27 +111,27 @@ if ( !database.open() ) { /* 打开数据库 */
             qDebug() << QString ( "id:%1 name:%2 age:%3" ).arg ( id ).arg ( name ).arg ( age );
         }
     }
-​
+
     /* 删除数据 */
     sql_query.prepare ( delete_sql );
     sql_query.addBindValue ( max_id );
-​
+
     if ( !sql_query.exec() ) {
         qDebug() << sql_query.lastError();
     } else {
         qDebug() << "deleted!";
     }
-​
+
     /* 清空表 */
     sql_query.prepare ( clear_sql );
-​
+
     if ( !sql_query.exec() ) {
         qDebug() << sql_query.lastError();
     } else {
         qDebug() << "cleared";
     }
 }
-​
+
 database.close(); /* 关闭数据库 */
 QFile::remove ( "database.db" ); /* 删除数据库 */
 ```
@@ -160,7 +159,7 @@ db.close(); /* 释放数据库连接 */
 ``` cpp
 QSqlDatabase db = QSqlDatabase::addDatabase ( "QSQLITE" );
 db.setDatabaseName ( "database.db" );
-​
+
 if ( !db.open() ) {
     qDebug ( "数据库不能打开" );
     return false;
@@ -218,7 +217,7 @@ query.addBindValue ( names );
 QVariantList ages;
 ages << 11 << 13 << 12 << 11;
 query.addBindValue ( ages );
-​
+
 if ( !query.execBatch() ) { /* 进行批处理，如果出错就输出错误 */
     qDebug() << query.lastError();
 }
@@ -230,7 +229,7 @@ if ( !query.execBatch() ) { /* 进行批处理，如果出错就输出错误 */
 QSqlQuery query;
 /* 查询的结果可能不止一条记录，所以我们称之为结果集 */
 query.exec ( "SELECT * FROM t_STUDENT" );
-​
+
 while ( query.next() ) {
     /* 取第i条记录第1个字段(从0开始计数)的结果 */
     QString name = query.value ( 0 ).toString();
@@ -274,7 +273,7 @@ query.exec ( "DELETE FROM employee WHERE id = 1007" );
 
 ``` cpp
 QSqlDatabase db;
-​
+
 if ( QSqlDatabase::contains ( "qt_sql_default_connection" ) ) {
     db = QSqlDatabase::database ( "qt_sql_default_connection" );
 } else {

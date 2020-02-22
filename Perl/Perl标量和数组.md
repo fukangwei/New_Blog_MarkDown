@@ -1,7 +1,6 @@
 ---
 title: Perl标量和数组
 categories: Perl
-abbrlink: 5f4f3693
 date: 2018-12-20 15:33:48
 ---
 ### 创建变量
@@ -55,7 +54,7 @@ print "__FILE__ __LINE__ __PACKAGE__\n";  # 无法解析
 $age = 25;  # 整型
 $name = "runoob";  # 字符串
 $salary = 1445.50;  # 浮点数
-​
+
 print "Age = $age\n";  # 输出“Age = 25”
 print "Name = $name\n";  # 输出“Name = runoob”
 print "Salary = $salary\n";  # 输出“Salary = 1445.5”
@@ -67,7 +66,7 @@ print "Salary = $salary\n";  # 输出“Salary = 1445.5”
 $str = "hello" . "world";  # 字符串连接
 $num = 5 + 10;  # 两数相加
 $mix = $str . $num;  # 连接字符串和数字
-​
+
 print "str = $str\n";  # 输出“str = helloworld”
 print "num = $num\n";  # 输出“num = 15”
 print "mix = $mix\n";  # 输出“mix = helloworld15”
@@ -80,7 +79,7 @@ print "mix = $mix\n";  # 输出“mix = helloworld15”
 ``` perl
 @ages  = ( 25, 30, 40 );
 @names = ( "google", "runoob", "taobao" );
-​
+
 print "\$ages[0] = $ages[0]\n";  # 输出“$ages[0] = 25”
 print "\$ages[1] = $ages[1]\n";  # 输出“$ages[1] = 30”
 print "\$ages[2] = $ages[2]\n";  # 输出“$ages[2] = 40”
@@ -116,7 +115,7 @@ $array[6] = 'Sunday';
 
 ``` perl
 @sites = qw/google taobao runoob/;
-​
+
 print "$sites[0]\n";  # 输出“google”
 print "$sites[1]\n";  # 输出“taobao”
 print "$sites[-1]\n";  # 负数用于反向读取。输出“runoob”
@@ -130,7 +129,7 @@ print "$sites[-1]\n";  # 负数用于反向读取。输出“runoob”
 @var_10 = (1..10);
 @var_20 = (10..20);
 @var_abc = (a..z);
-​
+
 print "@var_10\n";  # 输出1到10
 print "@var_20\n";  # 输出10到20
 print "@var_abc\n";  # 输出a到z
@@ -143,10 +142,10 @@ print "@var_abc\n";  # 输出a到z
 ``` perl
 @array = ( 1, 2, 3 );
 $array[50] = 4;
-​
+
 $size = @array;
 $max_index = $#array;
-​
+
 print "数组大小：$size\n";  # 输出“数组大小：51”
 print "最大索引：$max_index\n";  # 输出“最大索引：50”
 ```
@@ -160,7 +159,7 @@ print "最大索引：$max_index\n";  # 输出“最大索引：50”
 `push @ARRAY, LIST`    | 将列表的值放到数组的末尾
 `pop @ARRAY`           | 弹出数组最后一个值，并返回它
 `shift @ARRAY`         | 弹出数组第一个值，并返回它。数组的索引值也依次减一
-`unshift @ARRAY, LIST` | 将列表放在数组前面，并返回新数组的元素个数
+`unshift @ARRAY, LIST` | 将列表放在数组前面，并返回新数组的元素个数
 
 示例如下：
 
@@ -233,12 +232,12 @@ split [PATTERN [, EXPR [, LIMIT]]]
 $var_test = "runoob";
 $var_string = "www-runoob-com";
 $var_names = "google,taobao,runoob,weibo";
-​
+
 # 字符串转为数组
 @test = split('', $var_test);
 @string = split('-', $var_string);
 @names  = split(',', $var_names);
-​
+
 print "$test[3]\n";  # 输出“o”
 print "$string[2]\n";  # 输出“com”
 print "$names[3]\n";  # 输出“weibo”

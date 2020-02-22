@@ -1,7 +1,6 @@
 ---
 title: Shell函数
 categories: Shell编程
-abbrlink: 552208f6
 date: 2019-01-20 10:47:04
 ---
 &emsp;&emsp;`shell`可以用户定义函数，然后在`shell`脚本中可以随便调用。`shell`中函数的定义格式如下：<!--more-->
@@ -53,7 +52,7 @@ funWithReturn(){
     echo "两个数字分别为 $aNum 和 $anotherNum !"
     return $(($aNum+$anotherNum))
 }
-​
+
 funWithReturn
 echo "输入的两个数字之和为 $? !"
 ```
@@ -88,7 +87,7 @@ funWithParam(){
     echo "参数总数有 $# 个!"
     echo "作为一个字符串输出所有参数 $* !"
 }
-​
+
 funWithParam 1 2 3 4 5 6 7 8 9 34 73
 ```
 
@@ -128,7 +127,7 @@ function name() {
     name hello
     sleep 1
 }
-​
+
 name
 ```
 
@@ -140,7 +139,7 @@ name
 
 ``` bash
 #!/bin/bash
-​
+
 function showArr(){
     arr=$1
 
@@ -148,9 +147,9 @@ function showArr(){
         echo $i
     done
 }
-​
+
 regions=("GZ" "SH" "BJ")
 showArr "${regions[*]}"
-​
+
 exit 0
 ```

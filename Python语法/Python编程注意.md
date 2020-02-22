@@ -1,7 +1,6 @@
 ---
 title: Python编程注意
 categories: Python语法
-abbrlink: c66eb693
 date: 2019-01-11 19:41:59
 ---
 1. 由于`Python`没有变量的检查，在程序中可能会出现变量名近似的错误，例如将`girl`误写为`gril`。<!--more-->

@@ -1,7 +1,6 @@
 ---
 title: Shell数组
 categories: Shell编程
-abbrlink: 108df1c9
 date: 2019-01-21 15:46:11
 ---
 &emsp;&emsp;`bash`支持一维数组，不支持多维数组，并且没有限定数组的大小。类似于`C`语言，数组元素的下标由`0`开始编号。获取数组中的元素要利用下标，下标可以是整数或算术表达式，其值应大于或等于`0`。<!--more-->
@@ -73,12 +72,12 @@ echo ${array_name[@]}
 
 ``` bash
 #! /bin/bash
-​
+
 for i in {1..10}
 do
     array[$i]=$i
 done
-​
+
 echo "${array[@]}"  # 输出元素的值
 ```
 
@@ -86,9 +85,9 @@ echo "${array[@]}"  # 输出元素的值
 
 ``` bash
 #! /bin/bash
-​
+
 array=(Mon Tue WedThu Fri Sat Sun)
-​
+
 for e in "${array[@]}"  # 通过循环输出所有的数组元素
 do
     echo "$e"
@@ -111,11 +110,11 @@ ${array[@|*]/pattern/replacement}  # pattern表示要搜索的字符串，replac
 
 ``` bash
 #! /bin/bash
-​
+
 a=(1 2 3 4 5)  # 定义数组
 echo "theresult is ${a[@]/3/100}"  # 输出替换结果
 echo "the oldarray is ${a[@]}"  # 输出原始数组
-​
+
 a=(${a[@]/3/100})  # 将替换结果赋给一个数组变量
 echo "the newarray is ${a[@]}"  # 输出新的数组变量的值
 ```
@@ -169,7 +168,7 @@ echo "${linux2[@]}"
 ``` bash
 linux=("Debian" "RedHat" "Ubuntu" "Suse" "Fedora" "UTS" "CentOS")
 shell=("bash" "csh" "ksh" "rsh" "sh" "rc" "tcsh")
-​
+
 linuxshell=("${linux[@]}" "${shell[@]}")  # 连接数组
 echo "the newarray is ${linuxshell[@]}"  # 输出合并后的数组
 echo "thelength of new array is ${#linuxshell[@]}"  # 输出新的数组的长度

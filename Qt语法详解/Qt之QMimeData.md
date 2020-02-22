@@ -1,7 +1,6 @@
 ---
 title: Qt之QMimeData
 categories: Qt语法详解
-abbrlink: 60e0239e
 date: 2019-01-25 15:09:10
 ---
 &emsp;&emsp;The `QMimeData` class provides a container for data that records information about its `MIME` type.<!--more-->
@@ -68,7 +67,7 @@ void MyWidget::dragEnterEvent ( QDragEnterEvent *event ) {
         event->acceptProposedAction();
     }
 }
-​
+
 void MyWidget::dropEvent ( QDropEvent *event ) {
     if ( event->mimeData()->hasUrls() ) {
         foreach ( QUrl url, event->mimeData()->urls() ) {
@@ -79,22 +78,22 @@ void MyWidget::dropEvent ( QDropEvent *event ) {
 ```
 
 &emsp;&emsp;There are three approaches for storing custom data in a `QMimeData` object:
-&emsp;&emsp;1. Custom data can be stored directly in a `QMimeData` object as a `QByteArray` using `setData()`. For example:
+&emsp;&emsp;1. Custom data can be stored directly in a `QMimeData` object as a `QByteArray` using `setData()`.
 
 ``` cpp
 QByteArray csvData = ...;
-​
+
 QMimeData *mimeData = new QMimeData;
 mimeData->setData ( "text/csv", csvData );
 ```
 
 &emsp;&emsp;2. We can subclass `QMimeData` and reimplement `hasFormat()`, `formats()`, and `retrieveData()`.
-&emsp;&emsp;3. If the drag and drop operation occurs within a single application, we can subclass `QMimeData` and add extra data in it, and use a `qobject_cast()` in the receiver's drop event handler. For example:
+&emsp;&emsp;3. If the drag and drop operation occurs within a single application, we can subclass `QMimeData` and add extra data in it, and use a `qobject_cast()` in the receiver's drop event handler.
 
 ``` cpp
 void MyWidget::dropEvent ( QDropEvent *event ) {
     const MyMimeData *myData = qobject_cast<const MyMimeData *> ( event->mimeData() );
-​
+
     if ( myData ) {
         /* access myData's data directly (not through QMimeData's API) */
     }
@@ -121,10 +120,10 @@ application/x-qt-windows-mime; value="FileContents"
 
 ### Member Function Documentation
 
-- `QMimeData::QMimeData()`: Constructs a new `MIME` data object with no data in it.
-- `QMimeData::~QMimeData()`: Destroys the `MIME` data object.
-- `void QMimeData::clear()`: Removes all the `MIME` type and data entries in the object.
-- `QVariant QMimeData::colorData() const`: Returns a color if the data stored in the object represents a color (`MIME` type `application/x-color`); otherwise returns a null variant. A `QVariant` is used because `QMimeData` belongs to the `QtCore` library, whereas `QColor` belongs to `QtGui`. To convert the `QVariant` to a `QColor`, simply use `qvariant_cast()`. For example:
+- `QMimeData::QMimeData()`: Constructs a new `MIME` data object with no data in it.
+- `QMimeData::~QMimeData()`: Destroys the `MIME` data object.
+- `void QMimeData::clear()`: Removes all the `MIME` type and data entries in the object.
+- `QVariant QMimeData::colorData() const`: Returns a color if the data stored in the object represents a color (`MIME` type `application/x-color`); otherwise returns a null variant. A `QVariant` is used because `QMimeData` belongs to the `QtCore` library, whereas `QColor` belongs to `QtGui`. To convert the `QVariant` to a `QColor`, simply use `qvariant_cast()`.
 
 ``` cpp
 if ( event->mimeData()->hasColor() ) {
@@ -134,15 +133,15 @@ if ( event->mimeData()->hasColor() ) {
 ```
 
 - `QByteArray QMimeData::data(const QString & mimeType) const`: Returns the data stored in the object in the format described by the `MIME` type specified by `mimeType`.
-- `[virtual] QStringList QMimeData::formats() const`: Returns a list of formats supported by the object. This is a list of `MIME` types for which the object can return suitable data. The formats in the list are in a priority order. For the most common types of data, you can call the `higher-level` functions `hasText()`, `hasHtml()`, `hasUrls()`, `hasImage()`, and `hasColor()` instead.
-- `bool QMimeData::hasColor() const`: Returns `true` if the object can return a color (`MIME` type `application/x-color`); otherwise returns `false`.
-- `[virtual] bool QMimeData::hasFormat(const QString & mimeType) const`: Returns `true` if the object can return data for the `MIME` type specified by `mimeType`; otherwise returns `false`. For the most common types of data, you can call the `higher-level` functions `hasText()`, `hasHtml()`, `hasUrls()`, `hasImage()`, and `hasColor()` instead.
-- `bool QMimeData::hasHtml() const`: Returns `true` if the object can return `HTML` (`MIME` type `text/html`); otherwise returns `false`.
-- `bool QMimeData::hasImage() const`: Returns `true` if the object can return an image; otherwise returns `false`.
-- `bool QMimeData::hasText() const`: Returns `true` if the object can return plain text (`MIME` type `text/plain`); otherwise returns `false`.
-- `bool QMimeData::hasUrls() const`: Returns `true` if the object can return a list of urls; otherwise returns `false`. `URLs` correspond to the `MIME` type `text/uri-list`.
+- `[virtual] QStringList QMimeData::formats() const`: Returns a list of formats supported by the object. This is a list of `MIME` types for which the object can return suitable data. The formats in the list are in a priority order. For the most common types of data, you can call the `higher-level` functions `hasText()`, `hasHtml()`, `hasUrls()`, `hasImage()`, and `hasColor()` instead.
+- `bool QMimeData::hasColor() const`: Returns `true` if the object can return a color (`MIME` type `application/x-color`); otherwise returns `false`.
+- `[virtual] bool QMimeData::hasFormat(const QString & mimeType) const`: Returns `true` if the object can return data for the `MIME` type specified by `mimeType`; otherwise returns `false`. For the most common types of data, you can call the `higher-level` functions `hasText()`, `hasHtml()`, `hasUrls()`, `hasImage()`, and `hasColor()` instead.
+- `bool QMimeData::hasHtml() const`: Returns `true` if the object can return `HTML` (`MIME` type `text/html`); otherwise returns `false`.
+- `bool QMimeData::hasImage() const`: Returns `true` if the object can return an image; otherwise returns `false`.
+- `bool QMimeData::hasText() const`: Returns `true` if the object can return plain text (`MIME` type `text/plain`); otherwise returns `false`.
+- `bool QMimeData::hasUrls() const`: Returns `true` if the object can return a list of urls; otherwise returns `false`. `URLs` correspond to the `MIME` type `text/uri-list`.
 - `QString QMimeData::html() const`: Returns a string if the data stored in the object is `HTML` (`MIME` type `text/html`); otherwise returns an empty string.
-- `QVariant QMimeData::imageData() const`: Returns a `QVariant` storing a `QImage` if the object can return an image; otherwise returns a null variant. A `QVariant` is used because `QMimeData` belongs to the `QtCore` library, whereas `QImage` belongs to `QtGui`. To convert the `QVariant` to a `QImage`, simply use `qvariant_cast()`. For example:
+- `QVariant QMimeData::imageData() const`: Returns a `QVariant` storing a `QImage` if the object can return an image; otherwise returns a null variant. A `QVariant` is used because `QMimeData` belongs to the `QtCore` library, whereas `QImage` belongs to `QtGui`. To convert the `QVariant` to a `QImage`, simply use `qvariant_cast()`.
 
 ``` cpp
 if ( event->mimeData()->hasImage() ) {
@@ -151,18 +150,18 @@ if ( event->mimeData()->hasImage() ) {
 }
 ```
 
-- `void QMimeData::removeFormat(const QString & mimeType)`: Removes the data entry for `mimeType` in the object.
-- `[virtual protected] QVariant QMimeData::retrieveData(const QString & mimeType, QVariant::Type type) const`: Returns a variant with the given `type` containing data for the `MIME` type specified by `mimeType`. If the object does not support the `MIME` type or variant `type` given, a null variant is returned instead. This function is called by the general `data()` getter and by the convenience getters (`text()`, `html()`, `urls()`, `imageData()`, and `colorData()`). You can reimplement it if you want to store your data using a custom data structure (instead of a `QByteArray`, which is what `setData()` provides). You would then also need to reimplement `hasFormat()` and `formats()`.
-- `void QMimeData::setColorData(const QVariant & color)`: Sets the color data in the object to the given `color`. Colors correspond to the `MIME` type `application/x-color`.
-- `void QMimeData::setData(const QString & mimeType, const QByteArray & data)`: Sets the data associated with the `MIME` type given by `mimeType` to the specified `data`. For the most common types of `data`, you can call the `higher-level` functions `setText()`, `setHtml()`, `setUrls()`, `setImageData()`, and `setColorData()` instead. Note that if you want to use a custom `data` type in an item view drag and drop operation, you must register it as a `Qt` meta type, using the `Q_DECLARE_METATYPE()` macro, and implement stream operators for it. The stream operators must then be registered with the `qRegisterMetaTypeStreamOperators()` function.
-- `void QMimeData::setHtml(const QString & html)`: Sets `html` as the `HTML` (`MIME` type `text/html`) used to represent the data.
-- `void QMimeData::setImageData(const QVariant & image)`: Sets the data in the object to the given `image`. A `QVariant` is used because `QMimeData` belongs to the `QtCore` library, whereas `QImage` belongs to `QtGui`. The conversion from `QImage` to `QVariant` is implicit. For example:
+- `void QMimeData::removeFormat(const QString & mimeType)`: Removes the data entry for `mimeType` in the object.
+- `[virtual protected] QVariant QMimeData::retrieveData(const QString & mimeType, QVariant::Type type) const`: Returns a variant with the given `type` containing data for the `MIME` type specified by `mimeType`. If the object does not support the `MIME` type or variant `type` given, a null variant is returned instead. This function is called by the general `data()` getter and by the convenience getters (`text()`, `html()`, `urls()`, `imageData()`, and `colorData()`). You can reimplement it if you want to store your data using a custom data structure (instead of a `QByteArray`, which is what `setData()` provides). You would then also need to reimplement `hasFormat()` and `formats()`.
+- `void QMimeData::setColorData(const QVariant & color)`: Sets the color data in the object to the given `color`. Colors correspond to the `MIME` type `application/x-color`.
+- `void QMimeData::setData(const QString & mimeType, const QByteArray & data)`: Sets the data associated with the `MIME` type given by `mimeType` to the specified `data`. For the most common types of `data`, you can call the `higher-level` functions `setText()`, `setHtml()`, `setUrls()`, `setImageData()`, and `setColorData()` instead. Note that if you want to use a custom `data` type in an item view drag and drop operation, you must register it as a `Qt` meta type, using the `Q_DECLARE_METATYPE()` macro, and implement stream operators for it. The stream operators must then be registered with the `qRegisterMetaTypeStreamOperators()` function.
+- `void QMimeData::setHtml(const QString & html)`: Sets `html` as the `HTML` (`MIME` type `text/html`) used to represent the data.
+- `void QMimeData::setImageData(const QVariant & image)`: Sets the data in the object to the given `image`. A `QVariant` is used because `QMimeData` belongs to the `QtCore` library, whereas `QImage` belongs to `QtGui`. The conversion from `QImage` to `QVariant` is implicit.
 
 ``` cpp
 mimeData->setImageData ( QImage ( "beautifulfjord.png" ) );
 ```
 
-- `void QMimeData::setText(const QString & text)`: Sets text as the plain `text` (`MIME` type `text/plain`) used to represent the data.
-- `void QMimeData::setUrls(const QList<QUrl> & urls)`: Sets the `URLs` stored in the `MIME` data object to those specified by `urls`. `URLs` correspond to the `MIME` type `text/uri-list`.
-- `QString QMimeData::text() const`: Returns a plain text (`MIME` type `text/plain`) representation of the data.
-- `QList<QUrl> QMimeData::urls() const`: Returns a list of `URLs` contained within the `MIME` data object. `URLs` correspond to the `MIME` type `text/uri-list`.
+- `void QMimeData::setText(const QString & text)`: Sets text as the plain `text` (`MIME` type `text/plain`) used to represent the data.
+- `void QMimeData::setUrls(const QList<QUrl> & urls)`: Sets the `URLs` stored in the `MIME` data object to those specified by `urls`. `URLs` correspond to the `MIME` type `text/uri-list`.
+- `QString QMimeData::text() const`: Returns a plain text (`MIME` type `text/plain`) representation of the data.
+- `QList<QUrl> QMimeData::urls() const`: Returns a list of `URLs` contained within the `MIME` data object. `URLs` correspond to the `MIME` type `text/uri-list`.

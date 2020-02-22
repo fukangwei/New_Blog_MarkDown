@@ -1,7 +1,6 @@
 ---
 title: queue模板类
 categories: C++语法详解
-abbrlink: '79486456'
 date: 2019-02-05 21:21:00
 ---
 &emsp;&emsp;`C++`队列`queue`模板类的定义在`queue.h`。`queue`模板类需要两个模板参数，即元素类型和容器类型，元素类型是必要的，容器类型是可选的，默认为`deque`类型。<!--more-->
@@ -34,38 +33,38 @@ queue<double> q2;
 #include <cstdlib>
 #include <iostream>
 #include <queue>
-​
+
 using namespace std;
-​
+
 int main ( void ) {
     int e, n, m;
     queue<int> q1;
-​
+
     for ( int i = 0; i < 10; i++ ) {
         q1.push ( i );
     }
-​
+
     if ( !q1.empty() ) {
         cout << "the queue is not empty" << endl;
     }
-​
+
     n = q1.size();
-    cout << "the size of the queue is "  << n << endl;
+    cout << "the size of the queue is " << n << endl;
     m = q1.back();
     cout << "the last element of the queue is " << m << endl;
-​
+
     for ( int j = 0; j < n; j++ ) {
         e = q1.front();
         cout << e << " ";
         q1.pop();
     }
-​
+
     cout << endl;
-​
+
     if ( q1.empty() ) {
         cout << "the queue is empty" << endl;
     }
-​
+
     system ( "PAUSE" );
     return 0;
 }

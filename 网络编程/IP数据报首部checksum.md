@@ -1,6 +1,5 @@
 ---
 title: IP数据报首部checksum
-abbrlink: b0023368
 date: 2019-01-16 21:35:28
 categories: 网络编程
 ---
@@ -22,11 +21,11 @@ void main ( void ) {
     int buff[10] = {0x4500, 0x0030, 0x804c, 0x4000, 0x8006, \
                     0x0000, 0xd343, 0x117b, 0xcb51, 0x153d};
     int checksum = 0, i = 0;
-​
+
     for ( i = 0; i < 10; i++ ) {
         checksum += buff[i];
     }
-​
+
     printf ( "checksum = %x\n", checksum );
     checksum = ( checksum >> 16 ) + ( checksum & 0xffff );
     checksum += ( checksum >> 16 );

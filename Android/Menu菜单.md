@@ -1,7 +1,6 @@
 ---
 title: Menu菜单
 categories: Android
-abbrlink: 7a5d1ebe
 date: 2018-12-28 15:22:00
 ---
 &emsp;&emsp;`Android`提供了标准的`XML`格式的资源文件来定义菜单项，并且对所有菜单类型都支持，推荐使用`XML`资源文件来定义菜单。之后再把它`Inflater`到`Activity`或者`Fragment`中，而不是在`Activity`中使用代码声明。<!--more-->
@@ -50,14 +49,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.app.Activity;
 import android.widget.Toast;
-​
+
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-​
+
     @Override
     /* 重写onCreateOptionMenu(Menu menu)方法，当菜单第一次被加载时调用 */
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -66,7 +65,7 @@ public class MainActivity extends Activity {
         menuInflater.inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
-​
+
     @Override
     /* 重写OptionsItemSelected(MenuItem item)来响应菜单项(MenuItem)的点击事件(根据id来区分是哪个item) */
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -80,7 +79,7 @@ public class MainActivity extends Activity {
             default:
                 break;
         }
-​
+
         return super.onOptionsItemSelected(item);
     }
 }
@@ -105,7 +104,7 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
-​
+
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +114,7 @@ public class MainActivity extends Activity {
         /* 为图片绑定上下文菜单 */
         registerForContextMenu(imageView);
     }
-​
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         MenuInflater menuInflater = new MenuInflater(this);
@@ -123,7 +122,7 @@ public class MainActivity extends Activity {
         menuInflater.inflate(R.menu.menu, menu);
         super.onCreateContextMenu(menu, v, menuInfo);
     }
-​
+
     @Override
     /* onContextItemSelected(MenuItem item)来响应菜单项(MenuItem)的点击事件(根据id来区分是哪个item) */
     public boolean onContextItemSelected(MenuItem item) {
@@ -137,7 +136,7 @@ public class MainActivity extends Activity {
             default:
                 break;
         }
-​
+
         return super.onContextItemSelected(item);
     }
 }

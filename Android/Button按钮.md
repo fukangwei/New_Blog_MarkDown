@@ -1,7 +1,6 @@
 ---
 title: Button按钮
 categories: Android
-abbrlink: 5827f2c0
 date: 2018-12-28 14:37:00
 ---
 &emsp;&emsp;我们可以为按钮建立单击事件监听器，这样就可以处理单击事件。`XML`文件如下：<!--more-->
@@ -22,7 +21,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-​
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +55,7 @@ public myClick(View view){
     android:layout_height="wrap_content"
     android:onClick="myClick"
     android:text="Button_First"/>
-​
+
 <Button
     android:id="@+id/button_second"
     android:layout_width="wrap_content"
@@ -72,14 +71,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-​
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-​
+
     public void myClick(View view) {
         switch (view.getId()) {
             case R.id.button_first:

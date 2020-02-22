@@ -1,7 +1,6 @@
 ---
 title: QT模态与非模态对话框
 categories: Qt语法详解
-abbrlink: ecd4b90b
 date: 2019-01-02 13:49:42
 ---
 &emsp;&emsp;模态对话框(`Modal Dialog`)与非模态对话框(`Modeless Dialog`)的概念不是`Qt`所独有的，在各种不同的平台下都存在。

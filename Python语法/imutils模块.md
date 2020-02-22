@@ -1,7 +1,6 @@
 ---
 title: imutils模块
 categories: Python语法
-abbrlink: 51939
 date: 2019-10-04 09:36:52
 ---
 &emsp;&emsp;A series of convenience functions to make basic image processing functions such as translation, rotation, resizing, skeletonization, and displaying `Matplotlib` images easier with `OpenCV` and both `Python 2.7` and `Python 3`.<!--more-->

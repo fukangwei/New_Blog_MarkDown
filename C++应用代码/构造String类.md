@@ -1,7 +1,6 @@
 ---
 title: 构造String类
 categories: C++应用代码
-abbrlink: 666e5f2
 date: 2018-12-16 13:07:07
 ---
 &emsp;&emsp;编写类`String`的构造函数、析构函数和赋值函数，已知类`String`的原型为：<!--more-->
@@ -31,17 +30,17 @@ String::String ( const char* str ) { /* 普通构造函数 */
         strcpy ( m_data, str );
     }
 }
-​
+
 String::~String ( void ) { /* String的析构函数 */
     delete [] m_data;
 }
-​
+
 String::String ( const String& other ) { /* 拷贝构造函数 */
     int length = strlen ( other.m_data );
     m_data = new char[length + 1];
     strcpy ( m_data, other.m_data );
 }
-​
+
 String& String::operate = ( const String& other ) { /* 赋值函数 */
     if ( this == &other ) { /* 检查自赋值 */
         return *this;

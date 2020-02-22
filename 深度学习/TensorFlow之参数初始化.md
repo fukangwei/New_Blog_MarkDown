@@ -1,7 +1,6 @@
 ---
 title: TensorFlow之参数初始化
 categories: 深度学习
-abbrlink: 17f12f8f
 date: 2019-01-01 14:23:16
 ---
 &emsp;&emsp;`CNN`中最重要的就是参数了，包括`W`和`b`。训练`CNN`的最终目的就是得到最好的参数，使得目标函数取得最小值。参数的初始化也同样重要，因此微调受到很多人的重视。`tf`提供的所有初始化方法都定义在`tensorflow/python/ops/init_ops.py`。<!--more-->
@@ -47,7 +46,7 @@ tf.TruncatedNormal(mean=0.0, stddev=1.0, seed=None, dtype=dtypes.float32)
 conv1 = tf.layers.conv2d(  # 代码示例1
     batch_images, filters=64, kernel_size=7, strides=2, activation=tf.nn.relu,
     kernel_initializer=tf.TruncatedNormal(stddev=0.01), bias_initializer=tf.Constant(0))
-​
+
 conv1 = tf.layers.conv2d(  # 代码示例2
     batch_images, filters=64, kernel_size=7, strides=2, activation=tf.nn.relu,
     kernel_initializer=tf.truncated_normal_initializer(stddev=0.01),

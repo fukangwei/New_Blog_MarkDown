@@ -1,6 +1,5 @@
 ---
 title: CGI编程
-abbrlink: 5990a09
 date: 2019-01-17 10:13:37
 categories: 网络编程
 ---
@@ -49,7 +48,7 @@ int main ( void ) {
     } else {
         printf ( "<p>%ld和%ld的成绩是：%ld.\n", m, n, m * n );
     }
-​
+
     printf ( "</body>\n" );
     printf ( "</html>\n" );
     return 0;
@@ -79,20 +78,20 @@ printf( "%s%c%c ", "Content-Type:text/html;charset=utf-8\n\n", 13, 10 );
 ``` cpp
 #include <stdio.h>
 #include <stdib.h>
-​
+
 int main ( void ) {
     int i, n;
     printf ( "Content-type:text/plain\n\n" );
     n = 0;
-​
+
     if ( getenv ( "CONTENT_LENGTH" ) ) {
         n = atoi ( getenv ( "CONTENT_LENGTH" ) );
     }
-​
+
     for ( i = 0; i < n; i++ ) {
         putchar ( getchar() );
     }
-​
+
     putchar ( '\n' );
     fflush ( stdout );
 }
@@ -185,26 +184,26 @@ name1=value1&name2=value2&name3=value3&name4=value4&...
 #include <stdio.h>
 #include <stdlib.h>
 #include <strings.h>
-　　
+
 int htoi ( char * );
-​
+
 int main() {
     int i, n;
     char c;
     printf ( "Content-type:text/plain\n\n" );
     n = 0;
-​
+
     if ( getenv ( "CONTENT_LENGTH" ) ) {
         n = atoi ( getenv ( "CONTENT_LENGTH" ) );
     }
-​
+
     for ( i = 0; i < n; i++ ) {
         int is_eq = 0;
         c = getchar();
-​
+
         switch ( c ) {
             case '&': c = '\n'; break;
-            case '+': c = ' ';  break;​
+            case '+': c = ' ';  break;
             case '%': {
                     char s[3];
                     s[0] = getchar();
@@ -219,30 +218,30 @@ int main() {
                 is_eq = 1;
                 break;
         };
-​
+
         putchar ( c );
-​
+
         if ( is_eq ) {
             putchar ( ' ' );
-        }　　
+        }
     }
-​
+
     putchar ( '\n' );
     fflush ( stdout );
 }
-​
+
 /* convert hex string to int */
 int htoi ( char *s ) {
     char *digits = "0123456789ABCDEF";
-​
+
     if ( islower ( s[0] ) ) {
         s[0] = toupper ( s[0] );
     }
-​
+
     if ( islower ( s[1] ) ) {
         s[1] = toupper ( s[1] );
     }
-​
+
     return 16 * ( strchr ( digits, s[0] ) - strchr ( digits, '0' ) ) + \
                 ( strchr ( digits, s[1] ) - strchr ( digits, '0' ) );
 }
@@ -257,7 +256,7 @@ int htoi ( char *s ) {
 ``` cpp
 #include <stdio.h>
 #include <string.h>
-​
+
 int main() {
     printf ( "Contenttype:text/html\n\n" );
     printf ( "<html>\n" );

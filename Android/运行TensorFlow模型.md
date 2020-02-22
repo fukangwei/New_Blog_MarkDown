@@ -1,7 +1,6 @@
 ---
 title: 运行TensorFlow模型
 categories: Android
-abbrlink: 69f6f482
 date: 2019-02-08 17:21:18
 ---
 &emsp;&emsp;首先确保`Android studio`安装了`SDK`和`NDK`。`NDK`的安装位置是`File -> Settings -> Android SDK -> SDK Tools`。然后在项目文件`build.gradle`的`dependencies`中加入如下语句：<!--more-->
@@ -15,17 +14,17 @@ implementation 'org.tensorflow:tensorflow-android:+'
 
 ``` python
 import tensorflow as tf
-​
+
 # 1. 这里的name很重要，我们给tensorflow模型喂值就靠name
 first = tf.constant([1, 2], dtype=tf.float32, name="input")
-​
+
 # 测试简单的矩阵相加
 result = tf.add(first, first, name="output")
-​
+
 # 2. 开启一个Session
 sess = tf.Session()
 sess.run(tf.global_variables_initializer())
-​
+
 # 3. 这几行代码就是把当前的模型保存为PB文件，PB文件会保存当前tensorflow的模型，将其他值固化为常量
 # 第一个参数sess指定为当前的Session，第二个参数是要保存的图的定义(默认是当前图)，然后是要输出的节点
 output_graph_def = \
@@ -49,9 +48,9 @@ with tf.gfile.FastGFile('android_tensorflow.pb', mode='wb') as f:
 import android.os.Bundle;
 import android.app.Activity;
 import android.widget.Toast;
-​
+
 import org.tensorflow.contrib.android.TensorFlowInferenceInterface;
-​
+
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +59,9 @@ public class MainActivity extends Activity {
         /* 保存要输入和输出的结果 */
         float[] inputs = new float[]{9, 8}; /* 随机给定值，看是否达到相加的效果 */
         float[] outputs = new float[2];
-​
+
         String filename = "android_tensorflow.pb"; /* 这里是那个PB文件的绝对路径 */
-​
+
         /* 以那个PB文件创建一个tensorflow的接口 */
         TensorFlowInferenceInterface tensorFlowInferenceInterface = \
             new TensorFlowInferenceInterface(getAssets(), filename);
@@ -76,6 +75,6 @@ public class MainActivity extends Activity {
         /* 将结果进行显示 */
         Toast.makeText(MainActivity.this, String.valueOf(outputs[0]) + ":" + \
                        String.valueOf(outputs[1]), Toast.LENGTH_SHORT).show();
-    }
+    }
 }
 ```

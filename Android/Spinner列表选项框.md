@@ -1,7 +1,6 @@
 ---
 title: Spinner列表选项框
 categories: Android
-abbrlink: 2b16ab30
 date: 2018-12-28 14:14:16
 ---
 &emsp;&emsp;`Spinner`相关属性如下：<!--more-->
@@ -38,7 +37,7 @@ date: 2018-12-28 14:14:16
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-​
+
     <Spinner
         android:id="@+id/spinner1"
         android:layout_width="wrap_content"
@@ -57,7 +56,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
-​
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 String[] languages = getResources().getStringArray(R.array.languages);
                 Toast.makeText(MainActivity.this, "你点击的是：" + languages[position], Toast.LENGTH_SHORT).show();
             }
-​
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }

@@ -1,7 +1,6 @@
 ---
 title: 对ZDO的初步理解
 categories: CC2530和zigbee笔记
-abbrlink: 76fcf04c
 date: 2019-02-05 13:01:29
 ---
 &emsp;&emsp;`ZDO`其实是`ZigBee`协议栈中的一个协议，负责所有设备的管理和安全方案。`ZDO`就好像是一个驻留在所有`ZigBee`节点中特殊应用对象，是应用层其他端点与应用子层管理实体交互的中间件。`ZDO`占用每个节点(`node`)的端口`0`(`Endpoint0`)。<!--more-->

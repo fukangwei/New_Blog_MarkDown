@@ -1,7 +1,6 @@
 ---
 title: Linux套接字编程中的5个隐患
 categories: Linux系统编程
-abbrlink: feec83c7
 date: 2019-03-13 09:30:04
 ---
 &emsp;&emsp;`Socket API`是网络应用程序开发中实际应用的标准`API`。它是在`4.2 BSD UNIX`操作系统中首次引入的，现在是任何操作系统的标准特性。事实上，很难找到一种不支持`Sockets API`的现代语言。尽管该`API`简单，但是开发新手可能会经历一些常见的问题。本文识别一些最常见的隐患并向您展示如何避免它们。<!--more-->
@@ -16,7 +15,7 @@ int status, sock, mode;
 sock = socket ( AF_INET, SOCK_STREAM, 0 );
 ...
 status = send ( sock, buffer, buflen, MSG_DONTWAIT );
-​
+
 if ( status == -1 ) {
     /* send failed */
     printf ( "send failed: %s\n", strerror ( errno ) );
@@ -45,7 +44,7 @@ int sock, status;
 sock = socket ( AF_INET, SOCK_STREAM, 0 );
 ...
 status = read ( sock, buffer, buflen );
-​
+
 if ( status > 0 ) {
     /* Data read from the socket */
 } else if ( status == -1 ) {

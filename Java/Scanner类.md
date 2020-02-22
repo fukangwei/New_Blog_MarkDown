@@ -1,7 +1,6 @@
 ---
 title: Scanner类
 categories: Java
-abbrlink: bc55b219
 date: 2018-12-24 21:39:51
 ---
 &emsp;&emsp;`java.util.Scanner`是`Java 5`的新特征，我们可以通过`Scanner`类来获取用户的输入。下面是创建`Scanner`对象的基本语法：<!--more-->
@@ -14,7 +13,7 @@ Scanner s = new Scanner(System.in);
 
 ``` java
 import java.util.Scanner;
-​
+
 public class ScannerDemo {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -42,7 +41,7 @@ hello end
 
 ``` java
 import java.util.Scanner;
-​
+
 public class ScannerDemo {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -86,7 +85,7 @@ hello end
 
 ``` java
 import java.util.Scanner;
-​
+
 public class ScannerDemo {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -119,20 +118,20 @@ public class ScannerDemo {
 
 ``` java
 import java.util.Scanner;
-​
+
 class ScannerDemo {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("请输入数据：");
         double sum = 0;
         int m = 0;
-​
+
         while (scan.hasNextDouble()) {
             double x = scan.nextDouble();
             m = m + 1;
             sum = sum + x;
         }
-​
+
         System.out.println(m + "个数的和为" + sum);
         System.out.println(m + "个数的平均值是" + (sum / m));
         scan.close();

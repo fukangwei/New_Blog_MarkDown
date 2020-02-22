@@ -1,7 +1,6 @@
 ---
 title: Qt之QTreeWidget
 categories: Qt语法详解
-abbrlink: 84f3f3dc
 date: 2019-02-22 13:17:33
 ---
 &emsp;&emsp;`Qt`中实现树形结构可以使用`QTreeWidget`类，也可以使用`QTreeView`类，`QTreeWidget`继承自`QTreeView`类，其效果如下：<!--more-->
@@ -15,18 +14,18 @@ date: 2019-02-22 13:17:33
 ``` cpp
 ui->treeWidget->setColumnCount ( 1 ); /* 设置列数 */
 ui->treeWidget->setHeaderLabel ( tr ( "图像选择" ) ); /* 设置头的标题 */
-​
+
 QTreeWidgetItem *imageItem1 = new QTreeWidgetItem ( ui->treeWidget, QStringList ( QString ( "图像1" ) ) );
 imageItem1->setIcon ( 0, QIcon ( "xxx.png" ) );
 QTreeWidgetItem *imageItem1_1 = new QTreeWidgetItem ( imageItem1, QStringList ( QString ( "Band1" ) ) ); /* 子节点1 */
 imageItem1->addChild ( imageItem1_1 ); /* 添加子节点 */
-​
+
 QTreeWidgetItem *imageItem2 = new QTreeWidgetItem ( ui->treeWidget, QStringList ( QString ( "图像2" ) ) );
 QTreeWidgetItem *imageItem2_1 = new QTreeWidgetItem ( imageItem2, QStringList ( QString ( "Band1" ) ) ); /* 子节点1 */
 QTreeWidgetItem *imageItem2_2 = new QTreeWidgetItem ( imageItem2, QStringList ( QString ( "Band2" ) ) ); /* 子节点2 */
 imageItem2->addChild ( imageItem2_1 ); /* 添加子节点 */
 imageItem2->addChild ( imageItem2_2 );
-​
+
 ui->treeWidget->expandAll(); /* 结点全部展开 */
 ```
 
@@ -34,25 +33,25 @@ ui->treeWidget->expandAll(); /* 结点全部展开 */
 
 ``` cpp
 QList<QTreeWidgetItem *> rootList;
-​
+
 QTreeWidgetItem *imageItem1 = new QTreeWidgetItem; /* 添加第一个父节点 */
 imageItem1->setText ( 0, tr ( "图像1" ) );
 rootList.append ( imageItem1 );
-​
+
 QTreeWidgetItem *imageItem1_1 = new QTreeWidgetItem ( imageItem1, QStringList ( QString ( "Band1" ) ) ); /* 添加子节点 */
 imageItem1->addChild ( imageItem1_1 );
-​
+
 QTreeWidgetItem *imageItem2 = new QTreeWidgetItem; /* 添加第二个父节点 */
 imageItem2->setText ( 0, tr ( "图像2" ) );
 rootList.append ( imageItem2 );
-​
+
 QTreeWidgetItem *imageItem2_1 = new QTreeWidgetItem ( imageItem2, QStringList ( QString ( "Band1" ) ) ); /* 添加子节点 */
 QTreeWidgetItem *imageItem2_2 = new QTreeWidgetItem ( imageItem2, QStringList ( QString ( "Band2" ) ) );
 imageItem2->addChild ( imageItem2_1 );
 imageItem2->addChild ( imageItem2_2 );
-​
+
 ui->treeWidget->insertTopLevelItems ( 0, rootList ); /* 将结点插入部件中 */
-​
+
 ui->treeWidget->expandAll(); /* 全部展开 */
 ```
 
@@ -62,11 +61,11 @@ ui->treeWidget->expandAll(); /* 全部展开 */
 
 ``` cpp
 private slots:
-    void showSelectedImage ( QTreeWidgetItem *item, int column ); /* 点击树节点事件 */
-​
+    void showSelectedImage ( QTreeWidgetItem *item, int column ); /* 点击树节点事件 */
+
 connect ( ui->treeWidget, SIGNAL ( itemDoubleClicked ( QTreeWidgetItem *, int ) ), \
           this, SLOT ( showSelectedImage ( QTreeWidgetItem *, int ) ) );
-​
+
 void MainWindow::showSelectedImage ( QTreeWidgetItem *item, int column ) {
 }
 ```
@@ -180,11 +179,11 @@ Return         | Function
 QTreeWidget *treeWidget = new QTreeWidget();
 treeWidget->setColumnCount ( 1 );
 QList<QTreeWidgetItem *> items;
-​
+
 for ( int i = 0; i < 10; ++i ) {
     items.append ( new QTreeWidgetItem ( ( QTreeWidget * ) 0, QStringList ( QString ( "item: %1" ).arg ( i ) ) ) );
 }
-​
+
 treeWidget->insertTopLevelItems ( 0, items );
 ```
 
@@ -217,7 +216,7 @@ int topLevelItemCount() const
 - `void QTreeWidget::addTopLevelItems(const QList<QTreeWidgetItem *> & items)`: Appends the list of `items` as a `top-level` items in the widget.
 - `void QTreeWidget::clear() [slot]`: Clears the tree widget by removing all of its items and selections. **Note**: Since each item is removed from the tree widget before being deleted, the return value of `QTreeWidgetItem::treeWidget()` will be invalid when called from an item's destructor.
 - `void QTreeWidget::closePersistentEditor(QTreeWidgetItem * item, int column = 0)`: Closes the persistent editor for the `item` in the given `column`. This function has no effect if no persistent editor is open for this combination of `item` and `column`.
-- `void QTreeWidget::collapseItem(const QTreeWidgetItem * item) [slot]`: Closes the `item`. This causes the tree containing the item's children to be collapsed.
+- `void QTreeWidget::collapseItem(const QTreeWidgetItem * item) [slot]`: Closes the `item`. This causes the tree containing the item's children to be collapsed.
 - `int QTreeWidget::currentColumn() const`: Returns the current column in the tree widget.
 - `QTreeWidgetItem * QTreeWidget::currentItem() const`: Returns the current item in the tree widget.
 - `void QTreeWidget::currentItemChanged(QTreeWidgetItem * current, QTreeWidgetItem * previous) [signal]`: This signal is emitted when the current item changes. The current item is specified by `current`, and this replaces the `previous` current item.
@@ -249,7 +248,7 @@ int topLevelItemCount() const
 - `void QTreeWidget::itemPressed(QTreeWidgetItem * item, int column) [signal]`: This signal is emitted when the user presses a mouse button inside the widget. The specified `item` is the item that was clicked, or `0` if no item was clicked. The `column` is the item's column that was clicked, or `-1` if no item was clicked.
 - `void QTreeWidget::itemSelectionChanged() [signal]`: This signal is emitted when the selection changes in the tree widget. The current selection can be found with `selectedItems()`.
 - `QWidget * QTreeWidget::itemWidget(QTreeWidgetItem * item, int column) const`: Returns the widget displayed in the cell specified by `item` and the given `column`. **Note**: The tree takes ownership of the widget.
-- `QMimeData * QTreeWidget::mimeData(const QList<QTreeWidgetItem *> items) const [virtual protected]`: Returns an object that contains a serialized description of the specified `items`. The format used to describe the items is obtained from the `mimeTypes()` function. If the list of `items` is empty, `0` is returned rather than a serialized empty list.
+- `QMimeData * QTreeWidget::mimeData(const QList<QTreeWidgetItem *> items) const [virtual protected]`: Returns an object that contains a serialized description of the specified `items`. The format used to describe the items is obtained from the `mimeTypes()` function. If the list of `items` is empty, `0` is returned rather than a serialized empty list.
 - `QStringList QTreeWidget::mimeTypes() const [virtual protected]`: Returns a list of `MIME` types that can be used to describe a list of treewidget items.
 - `void QTreeWidget::openPersistentEditor(QTreeWidgetItem * item, int column = 0)`: Opens a persistent editor for the `item` in the given `column`.
 - `void QTreeWidget::removeItemWidget(QTreeWidgetItem * item, int column)`: Removes the widget set in the given `item` in the given `column`.

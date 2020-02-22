@@ -1,7 +1,6 @@
 ---
 title: Map接口
 categories: Java
-abbrlink: d16efb36
 date: 2018-12-21 20:11:33
 ---
 &emsp;&emsp;在`Map`接口中，键和值一一映射，可以通过键来获取值。<!--more-->
@@ -33,7 +32,7 @@ date: 2018-12-21 20:11:33
 
 ``` java
 import java.util.*;
-​
+
 public class CollectionsDemo {
     public static void main(String[] args) {
         Map m1 = new HashMap();

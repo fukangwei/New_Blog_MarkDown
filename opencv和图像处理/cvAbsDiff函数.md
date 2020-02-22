@@ -1,7 +1,6 @@
 ---
 title: cvAbsDiff函数
 categories: opencv和图像处理
-abbrlink: c930b36
 date: 2019-03-04 15:09:31
 ---
 &emsp;&emsp;函数原型如下：<!--more-->
@@ -21,23 +20,23 @@ The function calculates absolute difference between two arrays. All the arrays m
 #include <stdio.h>
 #include <cv.h>
 #include <highgui.h>
-​
+
 int main ( int argc, char *argv[] ) {
     IplImage *img1, *img2, *img3;
-​
+
     if ( argc < 3 ) {
         printf ( "Usage: main <image-file-name>\n\7" );
         exit ( 0 );
     }
-​
+
     img1 = cvLoadImage ( argv[1] );
     img2 = cvLoadImage ( argv[2] );
-​
+
     if ( !img1 || !img2 ) {
         printf ( "Could not load image file\n" );
         exit ( 0 );
     }
-​
+
     img3 = cvCreateImage ( cvGetSize ( img1 ), img1->depth, img1->nChannels );
     cvAbsDiff ( img1, img2, img3 );
     cvNamedWindow ( "img1", CV_WINDOW_AUTOSIZE );
@@ -60,14 +59,14 @@ int main ( int argc, char *argv[] ) {
 
 ``` python
 import cv2
-​
+
 img1 = cv2.imread('test1.jpg')
 img2 = cv2.imread('test1-1.jpg')
 img = cv2.absdiff(img1, img2)
 cv2.imshow('img1', img1)
 cv2.imshow('img2', img2)
 cv2.imshow('img原图', img)
-​
+
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 ```

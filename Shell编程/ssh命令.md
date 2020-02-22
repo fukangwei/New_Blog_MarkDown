@@ -1,7 +1,6 @@
 ---
 title: ssh命令
 categories: Shell编程
-abbrlink: '88370567'
 date: 2019-01-19 18:26:24
 ---
 ### 基本用法

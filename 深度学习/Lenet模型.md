@@ -1,7 +1,6 @@
 ---
 title: Lenet模型
 categories: 深度学习
-abbrlink: db8a48fe
 date: 2019-02-11 16:17:14
 ---
 &emsp;&emsp;`Lenet-5`是卷积神经网络中很适合入门的网络结构，它在`1998`年由`Yann LeCuu`等人在论文`Gradient-Based Learning Applied to Document Recognition`中提出，用于解决`mnist`数据集的字符识别问题。网络结构如下：<!--more-->
@@ -31,7 +30,7 @@ train = np.loadtxt('train.csv', delimiter=',', skiprows=1)
 data_train = train[:40000]
 data_val = train[40000:]
 data_test = np.loadtxt('test.csv', delimiter=',', skiprows=1)
-​
+
 print(train.shape)
 print(data_train.shape)
 print(data_val.shape)
@@ -65,14 +64,14 @@ def lenet_5(input_shape=(32, 32, 1)):
     X = Dense(10, activation='softmax')(X)
     model = Model(inputs=X_input, outputs=X, name='lenet_5')
     return model
-​
+
 model = lenet_5(input_shape=(28, 28, 1))
 model.compile(optimizer='sgd', loss='categorical_crossentropy', metrics=['accuracy'])
-​
+
 X_train = data_train[:, 1:].reshape((data_train.shape[0], 28, 28, 1))
 Y_train = to_categorical(data_train[:, 0])
 model.fit(X_train, Y_train, epochs=10, batch_size=16)
-​
+
 X_val = data_val[:, 1:].reshape((data_val.shape[0], 28, 28, 1))
 Y_val = to_categorical(data_val[:, 0])
 preds = model.evaluate(X_val, Y_val)

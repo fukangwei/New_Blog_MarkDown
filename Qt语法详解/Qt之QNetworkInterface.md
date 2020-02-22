@@ -1,7 +1,6 @@
 ---
 title: Qt之QNetworkInterface
 categories: Qt语法详解
-abbrlink: cd8f13a1
 date: 2019-01-23 16:56:20
 ---
 ### 简述
@@ -23,14 +22,14 @@ date: 2019-01-23 16:56:20
 
 注意，一个网络接口不能既是`broadcast-based`又是`point-to-point`。`InterfaceFlags`类型是一个`QFlags`类型定义，它存储一个或`InterfaceFlag`的组合值。
 
-- `QList<QHostAddress> allAddresses() [static]`: 函数返回主机上面发现的所有`IP`地址，相当于`allInterfaces`。返回的所有对象调用`addressEntries`来获取`QHostAddress`对象列表，然后对每一个对象调用`QHostAddress::ip`方法。
-- `QList<QNetworkInterface> allInterfaces() [static]`: 返回主机上找到的所有的网络接口的列表。在失败情况下，它会返回一个空列表。
-- `QList<QNetworkAddressEntry> addressEntries() const`: 返回`IP`地址列表，这个列表具备与其`IP`地址相关的网络掩码和广播地址。如果不需要子网掩码或广播地址的信息，可以调用`allAddresses`函数来只获取`IP`地址。
-- `InterfaceFlags flags() const`: 返回与此网络接口关联的标志。
-- `QString hardwareAddress() const`: 返回此接口的底层硬件地址。在以太网接口上，这是表示`MAC`地址的字符串，用冒号分隔。
-- `QString humanReadableName() const`: 如果名称可确定，在`Windows`上返回网络接口的人类可读的名称，例如`本地连接`；如果不能，这个函数返回值与`name`相同。用户可以在`Windows`控制面板中修改人类可读的名称，因此它可以在程序的执行过程中变化。在`Unix`上，此函数目前返回值总是和`name`相同，因为`Unix`系统不存储人类可读的名称的配置。
-- `bool isValid() const`: 如果此`QNetworkInterface`对象包含一个的有效的网络接口，则返回`true`。
-- `QString QNetworkInterface::name() const`: 返回网络接口的名称。在`Unix`系统中，这是一个包含接口的类型和任选的序列号的字符串，例如`eth0`、`lo`或者`pcn0`；在`Windows`中，这是一个内部`ID`，用户不能更改。
+- `QList<QHostAddress> allAddresses() [static]`：函数返回主机上面发现的所有`IP`地址，相当于`allInterfaces`。返回的所有对象调用`addressEntries`来获取`QHostAddress`对象列表，然后对每一个对象调用`QHostAddress::ip`方法。
+- `QList<QNetworkInterface> allInterfaces() [static]`：返回主机上找到的所有的网络接口的列表。在失败情况下，它会返回一个空列表。
+- `QList<QNetworkAddressEntry> addressEntries() const`：返回`IP`地址列表，这个列表具备与其`IP`地址相关的网络掩码和广播地址。如果不需要子网掩码或广播地址的信息，可以调用`allAddresses`函数来只获取`IP`地址。
+- `InterfaceFlags flags() const`：返回与此网络接口关联的标志。
+- `QString hardwareAddress() const`：返回此接口的底层硬件地址。在以太网接口上，这是表示`MAC`地址的字符串，用冒号分隔。
+- `QString humanReadableName() const`：如果名称可确定，在`Windows`上返回网络接口的人类可读的名称，例如`本地连接`；如果不能，这个函数返回值与`name`相同。用户可以在`Windows`控制面板中修改人类可读的名称，因此它可以在程序的执行过程中变化。在`Unix`上，此函数目前返回值总是和`name`相同，因为`Unix`系统不存储人类可读的名称的配置。
+- `bool isValid() const`：如果此`QNetworkInterface`对象包含一个的有效的网络接口，则返回`true`。
+- `QString QNetworkInterface::name() const`：返回网络接口的名称。在`Unix`系统中，这是一个包含接口的类型和任选的序列号的字符串，例如`eth0`、`lo`或者`pcn0`；在`Windows`中，这是一个内部`ID`，用户不能更改。
 
 ### 获取所有IP地址
 
@@ -38,7 +37,7 @@ date: 2019-01-23 16:56:20
 
 ``` cpp
 QList<QHostAddress> list = QNetworkInterface::allAddresses();
-​
+
 foreach ( QHostAddress address, list ) {
     if ( !address.isNull() ) {
         qDebug() << "Address: " << address.toString();
@@ -69,14 +68,14 @@ Address: "127.0.0.1"
 
 ``` cpp
 QList<QNetworkInterface> list = QNetworkInterface::allInterfaces();
-​
+
 foreach ( QNetworkInterface netInterface, list ) {
     if ( !netInterface.isValid() ) {
         continue;
     }
-​
+
     QNetworkInterface::InterfaceFlags flags = netInterface.flags();
-​
+
     /* 网络接口处于活动状态 */
     if ( flags.testFlag ( QNetworkInterface::IsRunning ) && !flags.testFlag ( QNetworkInterface::IsLoopBack ) ) {
         qDebug() << "Device: " << netInterface.name(); /* 设备名 */
@@ -85,16 +84,16 @@ foreach ( QNetworkInterface netInterface, list ) {
         /* 人类可读的名字 */
         qDebug() << "Human Readable Name: " << netInterface.humanReadableName();
     }
-​
+
 #if 0
     QList<QNetworkAddressEntry> entryList = netInterface.addressEntries();
-​
+
     foreach ( QNetworkAddressEntry entry, entryList ) { /* 遍历每一个IP地址 */
         qDebug() << "IP Address: " << entry.ip().toString(); /* IP地址 */
         qDebug() << "Netmask: " << entry.netmask().toString(); /* 子网掩码 */
         qDebug() << "Broadcast: " << entry.broadcast().toString(); /* 广播地址 */
     }
-​
+
 #endif
 }
 ```
@@ -109,11 +108,11 @@ Human Readable Name: "本地连接"
 Device: "{29F85058-E757-4F60-BF7B-47F6227C8CBC}"
 HardwareAddress: "00:50:56:C0:00:01"
 Human Readable Name: "VMware Network Adapter VMnet1"
-​
+
 Device: "{A297491C-D43C-4F85-A674-88368F8D4FC1}"
 HardwareAddress: "00:50:56:C0:00:08"
 Human Readable Name: "VMware Network Adapter VMnet8"
-​
+
 Device: "{1AE5F6FC-478A-4EAB-B4D2-86201A6B2090}"
 HardwareAddress: "0A:00:27:00:00:12"
 Human Readable Name: "VirtualBox Host-Only Network"

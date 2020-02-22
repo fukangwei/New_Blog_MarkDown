@@ -1,18 +1,17 @@
 ---
 title: STM32的ADC和DMA联合使用
 categories: 单片机
-abbrlink: 2c248ca2
 date: 2018-12-29 18:06:16
 ---
 &emsp;&emsp;该程序使用`DMA`来传输`ADC`转换值，调高了读取速度：<!--more-->
 
 ``` cpp
 #include "stdio.h"
-​
+
 #define ADC1_DR_Address ((u32)0x4001244C)
-​
+
 u16 ADC_ConvertedValue = 0;
-​
+
 void DMA_Config ( void ) {
     DMA_InitTypeDef DMA_InitStructure; /* 定义DMA初始化结构体 */
     RCC_AHBPeriphClockCmd ( RCC_AHBPeriph_DMA1, ENABLE );
@@ -33,7 +32,7 @@ void DMA_Config ( void ) {
     DMA_Init ( DMA1_Channel1, &DMA_InitStructure ); /* 初始化DMA通道1 */
     DMA_Cmd ( DMA1_Channel1, ENABLE ); /* 使能DMA通道1 */
 }
-​
+
 void Adc_Init ( void ) {
     ADC_InitTypeDef ADC_InitStructure;
     GPIO_InitTypeDef GPIO_InitStructure;
@@ -56,20 +55,20 @@ void Adc_Init ( void ) {
     ADC_DMACmd ( ADC1, ENABLE ); /* 使能ADC1模块DMA */
     ADC_Cmd ( ADC1, ENABLE ); /* 使能ADC1 */
     ADC_ResetCalibration ( ADC1 ); /* 重置ADC1校准寄存器 */
-​
+
     while ( ADC_GetResetCalibrationStatus ( ADC1 ) ); /* 等待ADC1校准重置完成 */
-​
+
     ADC_StartCalibration ( ADC1 ); /* 开始ADC1校准 */
-​
+
     while ( ADC_GetCalibrationStatus ( ADC1 ) ); /* 等待ADC1校准完成 */
-​
+
     ADC_SoftwareStartConvCmd ( ADC1, ENABLE ); /* 使能ADC1软件开始转换 */
 }
-​
+
 int main ( void ) {
     DMA_Config();
     Adc_Init();
-​
+
     while ( 1 ) {
         printf ( "ADC = %X Volt = %d mv\r\n", ADC_ConvertedValue, ADC_ConvertedValue * 3300 / 4096 );
     }

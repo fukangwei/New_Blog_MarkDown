@@ -1,7 +1,6 @@
 ---
 title: Keras之层封装器
 categories: 深度学习
-abbrlink: 30d80031
 date: 2018-12-30 21:20:08
 ---
 ### TimeDistributed

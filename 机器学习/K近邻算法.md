@@ -62,7 +62,7 @@ def createDataSet():
     group = array([[1.0, 1.1], [1.0, 1.0], [0, 0], [0, 0.1]])
     labels = ['A', 'A', 'B', 'B']
     return group, labels
-​
+
 def classify(inX, dataSet, labels, k):
     dataSetSize = dataSet.shape[0]  # 数据集大小
     # 计算距离
@@ -140,7 +140,7 @@ def file2matrix(filename):
         index += 1
 
     return returnMat, classLabelVector
-​
+
 if __name__ == '__main__':
     filename = "datingTestSet.txt"
     datingDataMat, datingLabels = file2matrix(filename)
@@ -188,7 +188,7 @@ def showdatas(datingDataMat, datingLabels):
     # 将fig画布分隔成1行1列，不共享x轴和y轴，fig画布的大小为(13, 8)。当“nrow = 2”，
     # “nclos = 2”时，代表fig画布被分为四个区域，axs[0][0]表示第一行第一个区域
     fig, axs = plt.subplots(nrows=2, ncols=2, sharex=False, sharey=False, figsize=(13, 8))
-​
+
     LabelsColors = []
 
     for i in datingLabels:
@@ -208,7 +208,7 @@ def showdatas(datingDataMat, datingLabels):
     plt.setp(axs0_title_text, size=9, weight='bold', color='red')
     plt.setp(axs0_xlabel_text, size=7, weight='bold', color='black')
     plt.setp(axs0_ylabel_text, size=7, weight='bold', color='black')
-​
+
     # 画出散点图，以datingDataMat矩阵的第一(飞行常客例程)、第三列(冰激凌)数据画散点数据，散点大小为15，透明度为0.5
     axs[0][1].scatter(x=datingDataMat[:, 0], y=datingDataMat[:, 2], color=LabelsColors, s=15, alpha=.5)
     # 设置标题、x轴label和y轴label
@@ -218,7 +218,7 @@ def showdatas(datingDataMat, datingLabels):
     plt.setp(axs1_title_text, size=9, weight='bold', color='red')
     plt.setp(axs1_xlabel_text, size=7, weight='bold', color='black')
     plt.setp(axs1_ylabel_text, size=7, weight='bold', color='black')
-​
+
     # 画出散点图，以datingDataMat矩阵的第二(玩游戏)、第三列(冰激凌)数据画散点数据，散点大小为15，透明度为0.5
     axs[1][0].scatter(x=datingDataMat[:, 1], y=datingDataMat[:, 2], color=LabelsColors, s=15, alpha=.5)
     # 设置标题、x轴label和y轴label
@@ -229,7 +229,7 @@ def showdatas(datingDataMat, datingLabels):
     plt.setp(axs2_xlabel_text, size=7, weight='bold', color='black')
     plt.setp(axs2_ylabel_text, size=7, weight='bold', color='black')
     plt.show()  # 显示图片
-​
+
 if __name__ == '__main__':
     filename = "datingTestSet.txt"
     datingDataMat, datingLabels = file2matrix(filename)
@@ -291,7 +291,7 @@ def file2matrix(filename):
         index += 1
 
     return returnMat, classLabelVector
-​
+
 def autoNorm(dataSet):
     minVals = dataSet.min(0)
     maxVals = dataSet.max(0)
@@ -300,7 +300,7 @@ def autoNorm(dataSet):
     normDataSet = dataSet - tile(minVals, (m, 1))  # 原始值减去最小值
     normDataSet = normDataSet / tile(ranges, (m, 1))  # 除以最大和最小值的差，得到归一化数据
     return normDataSet, ranges, minVals  # 返回归一化数据结果、数据范围和最小值
-​
+
 if __name__ == '__main__':
     filename = "datingTestSet.txt"
     datingDataMat, datingLabels = file2matrix(filename)
@@ -361,7 +361,7 @@ def file2matrix(filename):
         index += 1
 
     return returnMat, classLabelVector
-​
+
 def autoNorm(dataSet):
     minVals = dataSet.min(0)
     maxVals = dataSet.max(0)
@@ -370,7 +370,7 @@ def autoNorm(dataSet):
     normDataSet = dataSet - tile(minVals, (m, 1))  # 原始值减去最小值
     normDataSet = normDataSet / tile(ranges, (m, 1))  # 除以最大和最小值的差，得到归一化数据
     return normDataSet, ranges, minVals  # 返回归一化数据结果、数据范围和最小值
-​
+
 def datingClassTest():
     filename = "datingTestSet.txt"
     # 将返回的特征矩阵和分类向量分别存储到datingDataMat和datingLabels中
@@ -380,7 +380,7 @@ def datingClassTest():
     m = normMat.shape[0]  # 获得normMat的行数
     numTestVecs = int(m * hoRatio)  # 百分之十的测试数据的个数
     errorCount = 0.0  # 分类错误计数
-​
+
     for i in range(numTestVecs):
         # 前numTestVecs个数据作为测试集，后“m - numTestVecs”个数据作为训练集
         classifierResult = classify0(normMat[i, :], normMat[numTestVecs:m, :], datingLabels[numTestVecs:m], 4)
@@ -390,7 +390,7 @@ def datingClassTest():
             errorCount += 1.0
 
     print("错误率:%f%%" % (errorCount / float(numTestVecs) * 100))
-​
+
 if __name__ == '__main__':
     datingClassTest()
 ```
@@ -422,7 +422,7 @@ def classify0(inX, dataSet, labels, k):
 
     sortedClassCount = sorted(classCount.items(), key=operator.itemgetter(1), reverse=True)
     return sortedClassCount[0][0]
-​
+
 def file2matrix(filename):
     fr = open(filename)  # 打开文件
     arrayOLines = fr.readlines()  # 读取文件所有内容
@@ -470,7 +470,7 @@ def classifyPerson():
     norminArr = (inArr - minVals) / ranges  # 测试集归一化
     classifierResult = classify0(norminArr, normMat, datingLabels, 3)  # 返回分类结果
     print("你可能%s这个人" % (resultList[classifierResult - 1]))  # 打印结果
-​
+
 if __name__ == '__main__':
     classifyPerson()
 ```
@@ -507,7 +507,7 @@ def classify0(inX, dataSet, labels, k):
 
     sortedClassCount = sorted(classCount.items(), key=operator.itemgetter(1), reverse=True)
     return sortedClassCount[0][0]
-​
+
 def img2vector(filename):
     returnVect = np.zeros((1, 1024))  # 创建“1*1024”零向量
     fr = open(filename)  # 打开文件
@@ -519,7 +519,7 @@ def img2vector(filename):
             returnVect[0, 32 * i + j] = int(lineStr[j])
 
     return returnVect  # 返回转换后的“1*1024”向量
-​
+
 def handwritingClassTest():
     hwLabels = []  # 测试集的Labels
     trainingFileList = listdir('trainingDigits')  # 返回trainingDigits目录下的文件名
@@ -548,7 +548,7 @@ def handwritingClassTest():
             errorCount += 1.0
 
     print("总共错了%d个数据\n错误率为%f%%" % (errorCount, errorCount / mTest))
-​
+
 if __name__ == '__main__':
     handwritingClassTest()
 ```
@@ -574,7 +574,7 @@ def img2vector(filename):
         for j in range(32):
             returnVect[0, 32 * i + j] = int(lineStr[j])
 
-    return returnVect​
+    return returnVect
 
 def handwritingClassTest():
     hwLabels = []

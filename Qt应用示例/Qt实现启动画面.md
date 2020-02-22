@@ -1,7 +1,6 @@
 ---
 title: Qt实现启动画面
 categories: Qt应用示例
-abbrlink: 9cbc0ec5
 date: 2018-12-28 16:22:52
 ---
 &emsp;&emsp;如果一个程序的启动比较耗时，为了不让用户枯燥地等待或者是误以为程序运行异常了，我们都会在启动比较耗时的程序中加上启动界面。在`Qt`中实现启动界面，主要就是使用`QSplashScreen`类：<!--more-->
@@ -13,7 +12,7 @@ date: 2018-12-28 16:22:52
 #include <mainwindow.h>
 #include <QDebug>
 #include <QDateTime>
-​
+
 int main ( int argc, char *argv[] ) {
     QApplication app ( argc, argv );
     QPixmap pixmap ( "screen.png" );
@@ -23,7 +22,7 @@ int main ( int argc, char *argv[] ) {
     /*-----------------------------------------------------*/
     QDateTime n = QDateTime::currentDateTime();
     QDateTime now;
-​
+
     do {
         now = QDateTime::currentDateTime();
         app.processEvents();
@@ -43,7 +42,7 @@ int main ( int argc, char *argv[] ) {
 #ifndef __MYSPLASHSCREEN_H
 #define __MYSPLASHSCREEN_H
 #include <QtGui>
-​
+
 class MySplashScreen: public QSplashScreen {
     Q_OBJECT
 private:
@@ -56,7 +55,7 @@ public:
 private slots:
     void progressChanged ( int );
 };
-​
+
 #endif // __MYSPLASHSCREEN_H
 ```
 
@@ -65,7 +64,7 @@ private slots:
 ``` cpp
 #include "mysplashscreen.h"
 #include <QDateTime>
-​
+
 MySplashScreen::MySplashScreen ( const QPixmap &pixmap ) : QSplashScreen ( pixmap ) {
     ProgressBar = new QProgressBar ( this ); /* 父类为MySplashScreen */
     ProgressBar->setGeometry ( 0, pixmap.height() - 50, pixmap.width(), 30 );
@@ -77,18 +76,18 @@ MySplashScreen::MySplashScreen ( const QPixmap &pixmap ) : QSplashScreen ( pixma
     font.setPointSize ( 32 );
     ProgressBar->setFont ( font ); /* 设置进度条里面的字体 */
 }
-​
+
 MySplashScreen::~MySplashScreen() {
 }
-​
+
 void MySplashScreen::setProgress ( int value ) {
     ProgressBar->setValue ( value );
 }
-​
+
 void MySplashScreen::progressChanged ( int ) {
     repaint();
 }
-​
+
 void MySplashScreen::show_started ( void ) {
     this->show(); /* 显示 */
     this->setProgress ( 30 ); /* 显示30% */
@@ -109,7 +108,7 @@ void MySplashScreen::show_started ( void ) {
 #include <QSplashScreen>
 #include <QPixmap>
 #include "mysplashscreen.h"
-​
+
 int main ( int argc, char *argv[] ) {
     QApplication app ( argc, argv );
     MySplashScreen *splash = new MySplashScreen ( QPixmap ( "./image/miaojie.png" ) );

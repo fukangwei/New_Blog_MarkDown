@@ -1,7 +1,6 @@
 ---
 title: strcasecmp函数
 categories: C语言语法详解
-abbrlink: cff320bd
 date: 2018-12-10 20:31:20
 ---
 &emsp;&emsp;`strcasecmp`用来比较参数`s1`和`s2`字符串，比较时会自动忽略大小写的差异：<!--more-->

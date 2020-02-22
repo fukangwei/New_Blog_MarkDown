@@ -1,7 +1,6 @@
 ---
 title: Qt向导设置
 categories: Qt应用示例
-abbrlink: d6a62e9b
 date: 2019-02-23 16:15:54
 ---
 &emsp;&emsp;`ClassWizard.h`如下：<!--more-->
@@ -9,9 +8,9 @@ date: 2019-02-23 16:15:54
 ``` cpp
 #ifndef CLASSWIZARD_H
 #define CLASSWIZARD_H
-​
+
 #include <QWizard>
-​
+
 QT_BEGIN_NAMESPACE
 class QCheckBox;
 class QGroupBox;
@@ -19,13 +18,13 @@ class QLabel;
 class QLineEdit;
 class QRadioButton;
 QT_END_NAMESPACE
-​
+
 class ClassWizard : public QWizard {
 public:
     ClassWizard( QWidget *parent = 0 );
     void accept();
 };
-​
+
 class IntroPage : public QWizardPage {
     Q_OBJECT
 public:
@@ -33,7 +32,7 @@ public:
 private:
     QLabel *label;
 };
-​
+
 class ClassInfoPage : public QWizardPage {
     Q_OBJECT
 public:
@@ -50,7 +49,7 @@ private:
     QRadioButton *defaultCtorRadioButton;
     QCheckBox *copyCtorCheckBox;
 };
-​
+
 class CodeStylePage : public QWizardPage {
     Q_OBJECT
 public:
@@ -66,7 +65,7 @@ private:
     QLineEdit *macroNameLineEdit;
     QLineEdit *baseIncludeLineEdit;
 };
-​
+
 class OutputFilesPage : public QWizardPage {
     Q_OBJECT
 public:
@@ -81,7 +80,7 @@ private:
     QLineEdit *headerLineEdit;
     QLineEdit *implementationLineEdit;
 };
-​
+
 class ConclusionPage : public QWizardPage {
     Q_OBJECT
 public:
@@ -91,7 +90,7 @@ protected:
 private:
     QLabel *label;
 };
-​
+
 #endif // CLASSWIZARD_H
 ```
 
@@ -100,7 +99,7 @@ private:
 ``` cpp
 #include <QtGui>
 #include "classwizard.h"
-​
+
 ClassWizard::ClassWizard ( QWidget *parent ) : QWizard ( parent ) {
     addPage ( new IntroPage );
     addPage ( new ClassInfoPage );
@@ -111,7 +110,7 @@ ClassWizard::ClassWizard ( QWidget *parent ) : QWizard ( parent ) {
     setPixmap ( QWizard::BackgroundPixmap, QPixmap ( ":/images/background.png" ) );
     setWindowTitle ( tr ( "Class Wizard" ) );
 }
-​
+
 void ClassWizard::accept() {
     QByteArray className = field ( "className" ).toByteArray();
     QByteArray baseClass = field ( "baseClass" ).toByteArray();
@@ -121,65 +120,65 @@ void ClassWizard::accept() {
     QString header = field ( "header" ).toString();
     QString implementation = field ( "implementation" ).toString();
     QByteArray block;
-​
+
     if ( field ( "comment" ).toBool() ) {
         block += "/*\n";
-        block += "    " + header.toAscii() + "\n";
+        block += "    " + header.toAscii() + "\n";
         block += "*/\n";
         block += "\n";
     }
-​
+
     if ( field ( "protect" ).toBool() ) {
         block += "#ifndef " + macroName + "\n";
         block += "#define " + macroName + "\n";
         block += "\n";
     }
-​
+
     if ( field ( "includeBase" ).toBool() ) {
         block += "#include " + baseInclude + "\n";
         block += "\n";
     }
-​
+
     block += "class " + className;
-​
+
     if ( !baseClass.isEmpty() ) {
         block += " : public " + baseClass;
     }
-​
+
     block += "\n";
     block += "{\n";
-​
+
     /* qmake ignore Q_OBJECT */
     if ( field ( "qobjectMacro" ).toBool() ) {
         block += "    Q_OBJECT\n";
         block += "\n";
     }
-​
+
     block += "public:\n";
-​
+
     if ( field ( "qobjectCtor" ).toBool() ) {
         block += "    " + className + "(QObject *parent = 0);\n";
     } else if ( field ( "qwidgetCtor" ).toBool() ) {
         block += "    " + className + "(QWidget *parent = 0);\n";
     } else if ( field ( "defaultCtor" ).toBool() ) {
         block += "    " + className + "();\n";
-​
+
         if ( field ( "copyCtor" ).toBool() ) {
             block += "    " + className + "(const " + className + " &other);\n";
             block += "\n";
             block += "    " + className + " &operator=" + "(const " + className + " &other);\n";
         }
     }
-​
+
     block += "};\n";
-​
+
     if ( field ( "protect" ).toBool() ) {
         block += "\n";
         block += "#endif\n";
     }
-​
+
     QFile headerFile ( outputDir + "/" + header );
-​
+
     if ( !headerFile.open ( QFile::WriteOnly | QFile::Text ) ) {
         QMessageBox::warning (
             0, QObject::tr ( "Simple Wizard" ),
@@ -187,20 +186,20 @@ void ClassWizard::accept() {
                 .arg ( headerFile.fileName() ).arg ( headerFile.errorString() ) );
         return;
     }
-​
+
     headerFile.write ( block );
     block.clear();
-​
+
     if ( field ( "comment" ).toBool() ) {
         block += "/*\n";
-        block += "    " + implementation.toAscii() + "\n";
+        block += "    " + implementation.toAscii() + "\n";
         block += "*/\n";
         block += "\n";
     }
-​
+
     block += "#include \"" + header.toAscii() + "\"\n";
     block += "\n";
-​
+
     if ( field ( "qobjectCtor" ).toBool() ) {
         block += className + "::" + className + "(QObject *parent)\n";
         block += "    : " + baseClass + "(parent)\n";
@@ -214,31 +213,31 @@ void ClassWizard::accept() {
     } else if ( field ( "defaultCtor" ).toBool() ) {
         block += className + "::" + className + "()\n";
         block += "{\n";
-        block += "    // missing code\n";
+        block += "    // missing code\n";
         block += "}\n";
-​
+
         if ( field ( "copyCtor" ).toBool() ) {
             block += "\n";
             block += className + "::" + className + "(const " + className + " &other)\n";
             block += "{\n";
-            block += "    *this = other;\n";
+            block += "    *this = other;\n";
             block += "}\n";
             block += "\n";
             block += className + " &" + className + "::operator=(const " + className + " &other)\n";
             block += "{\n";
-​
+
             if ( !baseClass.isEmpty() ) {
                 block += "    " + baseClass + "::operator=(other);\n";
             }
-​
+
             block += "    // missing code\n";
             block += "    return *this;\n";
             block += "}\n";
         }
     }
-​
+
     QFile implementationFile ( outputDir + "/" + implementation );
-​
+
     if ( !implementationFile.open ( QFile::WriteOnly | QFile::Text ) ) {
          QMessageBox::warning ( 0, QObject::tr ( "Simple Wizard" ),
                                 QObject::tr ( "Cannot write file %1:\n%2" )
@@ -246,11 +245,11 @@ void ClassWizard::accept() {
                                 .arg ( implementationFile.errorString() ) );
         return;
     }
-​
+
     implementationFile.write ( block );
     QDialog::accept();
 }
-​
+
 IntroPage::IntroPage ( QWidget *parent ) : QWizardPage ( parent ) {
     setTitle ( tr ( "Introduction" ) );
     setPixmap ( QWizard::WatermarkPixmap, QPixmap ( ":/images/watermark1.png" ) );
@@ -264,7 +263,7 @@ IntroPage::IntroPage ( QWidget *parent ) : QWizardPage ( parent ) {
     layout->addWidget ( label );
     setLayout ( layout );
 }
-​
+
 ClassInfoPage::ClassInfoPage ( QWidget *parent ) : QWizardPage ( parent ) {
     setTitle ( tr ( "Class Information" ) );
     setSubTitle ( tr ( "Specify basic information about the class for which you "
@@ -307,7 +306,7 @@ ClassInfoPage::ClassInfoPage ( QWidget *parent ) : QWizardPage ( parent ) {
     layout->addWidget ( groupBox, 3, 0, 1, 2 );
     setLayout ( layout );
 }
-​
+
 CodeStylePage::CodeStylePage ( QWidget *parent ) : QWizardPage ( parent ) {
     setTitle ( tr ( "Code Style Options" ) );
     setSubTitle ( tr ( "Choose the formatting of the generated code." ) );
@@ -343,7 +342,7 @@ CodeStylePage::CodeStylePage ( QWidget *parent ) : QWizardPage ( parent ) {
     layout->addWidget ( baseIncludeLineEdit, 4, 2 );
     setLayout ( layout );
 }
-​
+
 void CodeStylePage::initializePage() {
     QString className = field ( "className" ).toString();
     macroNameLineEdit->setText ( className.toUpper() + "_H" );
@@ -352,7 +351,7 @@ void CodeStylePage::initializePage() {
     includeBaseCheckBox->setEnabled ( !baseClass.isEmpty() );
     baseIncludeLabel->setEnabled ( !baseClass.isEmpty() );
     baseIncludeLineEdit->setEnabled ( !baseClass.isEmpty() );
-​
+
     if ( baseClass.isEmpty() ) {
         baseIncludeLineEdit->clear();
     } else if ( QRegExp ( "Q[A-Z].*" ).exactMatch ( baseClass ) ) {
@@ -361,7 +360,7 @@ void CodeStylePage::initializePage() {
         baseIncludeLineEdit->setText ( "\"" + baseClass.toLower() + ".h\"" );
     }
 }
-​
+
 OutputFilesPage::OutputFilesPage ( QWidget *parent ) : QWizardPage ( parent ) {
     setTitle ( tr ( "Output Files" ) );
     setSubTitle ( tr ( "Specify where you want the wizard to put the generated "
@@ -388,14 +387,14 @@ OutputFilesPage::OutputFilesPage ( QWidget *parent ) : QWizardPage ( parent ) {
     layout->addWidget ( implementationLineEdit, 2, 1 );
     setLayout ( layout );
 }
-​
+
 void OutputFilesPage::initializePage() {
     QString className = field ( "className" ).toString();
     headerLineEdit->setText ( className.toLower() + ".h" );
     implementationLineEdit->setText ( className.toLower() + ".cpp" );
     outputDirLineEdit->setText ( QDir::convertSeparators ( QDir::tempPath() ) );
 }
-​
+
 ConclusionPage::ConclusionPage ( QWidget *parent ) : QWizardPage ( parent ) {
     setTitle ( tr ( "Conclusion" ) );
     setPixmap ( QWizard::WatermarkPixmap, QPixmap ( ":/images/watermark2.png" ) );
@@ -405,7 +404,7 @@ ConclusionPage::ConclusionPage ( QWidget *parent ) : QWizardPage ( parent ) {
     layout->addWidget ( label );
     setLayout ( layout );
 }
-​
+
 void ConclusionPage::initializePage() {
     QString finishText = wizard()->buttonText ( QWizard::FinishButton );
     finishText.remove ( '&' );
@@ -421,21 +420,21 @@ void ConclusionPage::initializePage() {
 #include <QTranslator>
 #include <QLocale>
 #include <QLibraryInfo>
-​
+
 #include "classwizard.h"
-​
+
 int main ( int argc, char *argv[] ) {
     QApplication app ( argc, argv );
     QString translatorFileName = QLatin1String ( "qt_" );
     translatorFileName += QLocale::system().name();
     QTranslator *translator = new QTranslator ( &app );
-​
+
     if ( translator->load (
             translatorFileName,
             QLibraryInfo::location ( QLibraryInfo::TranslationsPath ) ) ) {
         app.installTranslator ( translator );
     }
-​
+
     ClassWizard wizard;
     wizard.show();
     return app.exec();

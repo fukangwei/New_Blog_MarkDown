@@ -1,7 +1,6 @@
 ---
 title: NAO机器人编程
 categories: 软件与硬件问题
-abbrlink: 58ba3e95
 date: 2019-01-07 13:45:49
 ---
 ### NAO开发环境搭建
@@ -21,7 +20,7 @@ import naoqi
 
 ``` python
 from naoqi import ALProxy  # Import ALProxy
-​
+
 # Create an ALProxy to the module you want to use
 tts = ALProxy("ALTextToSpeech", "10.16.20.43", 9559)
 tts.say("Hello, world!")  # Call a method
@@ -35,7 +34,7 @@ tts.say("Hello, world!")  # Call a method
 
 ``` python
 from naoqi import ALProxy
-​
+
 motion = ALProxy("ALMotion", "127.0.0.1", 6761)
 motion.moveTo(1.0, 0.0, 0.0)
 ```
@@ -61,12 +60,12 @@ y = 0.2
 theta = 1.5709
 # (0.2[m], 0.2[m])の位置に左を90度向くように到達
 proxyMo.walkTo(x, y, theta)
-​
+
 x = -0.2
 y = 0.0
 theta = 0.0
 proxyMo.walkTo(x, y, theta)  # 後ろに0.2[m]下がる
-​
+
 x = 0.0
 y = 0.0
 theta = -1.5709
@@ -96,23 +95,23 @@ theta = 0.0
 frequency = 0.6
 proxyMo.setWalkTargetVelocity(x, y, theta, frequency)
 time.sleep(2)  # 前方に歩行(2秒間)
-​
+
 x = 0.0
 theta = 0.5
 proxyMo.setWalkTargetVelocity(x, y, theta, frequency)
 time.sleep(2)  # 左方向に回転(2秒間)
-​
+
 x = 1.0
 theta = -0.5
 proxyMo.setWalkTargetVelocity(x, y, theta, frequency)
 time.sleep(5)  # 前進しながら右方向に回転(5秒間)
-​
+
 x = 1.0
 theta = 0.0
 frequency = 1.0
 proxyMo.setWalkTargetVelocity(x, y, theta, frequency)
 time.sleep(5)  # やや早く前進(5秒間)
-​
+
 # 速度ゼロ(ストップ)
 proxyMo.setWalkTargetVelocity(0.0, 0.0, 0.0, frequency)
 ```
@@ -123,10 +122,10 @@ proxyMo.setWalkTargetVelocity(0.0, 0.0, 0.0, frequency)
 
 ``` python
 from naoqi import ALProxy
-​
+
 tts = ALProxy("ALTextToSpeech", "127.0.0.1", 6761)
 motion = ALProxy("ALMotion", "127.0.0.1", 6761)
-​
+
 threadMove = motion.post.moveTo(1.0, 0.0, 0.0)
 tts.say("I can wolk! Let's explore the area.")
 motion.wait(threadMove, 0)
@@ -141,7 +140,7 @@ tts.say("I have reached my destination.")
 
 ``` python
 from naoqi import ALProxy
-​
+
 proxy = ALProxy("ALRobotPosture", "10.16.20.43", 9559)
 print "Current posture: " + proxy.getPostureFamily()
 ```
@@ -174,19 +173,19 @@ Posture Family   | Description
 from naoqi import ALProxy
 import cv2
 import numpy as np
-​
+
 videoproxy = ALProxy("ALVideoDevice", "10.16.20.43", 9559)
-​
+
 AL_kTopCamera = 0
 AL_kVGA = 1
 AL_kBGRColorSpace = 13
 Fps = 30
 subscriber = videoproxy.subscribeCamera(
     "demo", AL_kTopCamera, AL_kVGA, AL_kBGRColorSpace, Fps)
-​
+
 while True:
     imageNAO = videoproxy.getImageRemote(subscriber)
-​
+
     if imageNAO == None:
         print('cannot capture.')
     elif imageNAO[6] == None:
@@ -239,7 +238,7 @@ Parameter ID Name | ID Value | Description
 
 Parameter ID Name        | ID Value | Number of layers | Number of channels
 -------------------------|----------|------------------|----------------------
-`AL::kYuvColorSpace`     | `0`      | `1`              | `1`
+`AL::kYuvColorSpace`     | `0`      | `1`              | `1`
 `AL::kyUvColorSpace`     | `1`      | `1`              | `1`
 `AL::kyuVColorSpace`     | `2`      | `1`              | `1`
 `AL::kRgbColorSpace`     | `3`      | `1`              | `1`
@@ -250,7 +249,7 @@ Parameter ID Name        | ID Value | Number of layers | Number of channels
 `AL::khsYColorSpace`     | `8`      | `1`              | `1`
 `AL::kYUV422ColorSpace`  | `9`      | `2`              | `2`
 `AL::kYUVColorSpace`     | `10`     | `3`              | `3`
-`AL::kRGBColorSpace`     | `11`     | `3`              | `3`
+`AL::kRGBColorSpace`     | `11`     | `3`              | `3`
 `AL::kHSYColorSpace`     | `12`     | `3`              | `3`
 `AL::kBGRColorSpace`     | `13`     | `3`              | `3`
 `AL::kYYCbCrColorSpace`  | `14`     | `2`              | `2`
@@ -326,7 +325,7 @@ angleLists = [
 
 timeLists = [[1.0, 2.0]] * 6
 proxyMo.post.angleInterpolation('LArm', angleLists, timeLists, True)
-​
+
 angleLists = [
     [0.0, -1.0], [0.0, -1.0], [0.0, 1.0],
     [0.0, 1.0], [0.0, 1.0], [0.0, 1.0]]
@@ -349,7 +348,7 @@ Gets the list of `sensors` supported on your robot. The function returns the vec
 
 ``` python
 from naoqi import ALProxy
-​
+
 motionProxy = ALProxy("ALMotion", "127.0.0.1", 3164)
 sensorList = motionProxy.getSensorNames()
 
@@ -386,9 +385,9 @@ Returns: Vector containing the `Position6D` using meters and radians (`x`, `y`, 
 ``` python
 from naoqi import ALProxy
 import motion
-​
+
 motionProxy = ALProxy("ALMotion", "127.0.0.1", 3164)
-​
+
 # Example showing how to get the position of the top camera
 name = "CameraTop"
 frame = motion.FRAME_WORLD
@@ -423,9 +422,9 @@ Returns: Joint angles in `radians`.
 
 ``` python
 from naoqi import ALProxy
-​
+
 motionProxy = ALProxy("ALMotion", "127.0.0.1", 3164)
-​
+
 # Example that finds the difference between the command and sensed angles.
 names = "Body"
 useSensors = False
@@ -433,18 +432,18 @@ commandAngles = motionProxy.getAngles(names, useSensors)
 print "Command angles:"
 print str(commandAngles)
 print ""
-​
+
 useSensors = True
 sensorAngles = motionProxy.getAngles(names, useSensors)
 print "Sensor angles:"
 print str(sensorAngles)
 print ""
-​
+
 errors = []
 
 for i in range(0, len(commandAngles)):
     errors.append(commandAngles[i] - sensorAngles[i])
-​
+
 print "Errors"
 print errors
 ```
@@ -458,14 +457,14 @@ Command angles:
  -0.09000000357627869, 0.09000000357627869, -0.12999999523162842, -0.17000000178813934,
  -0.10000000149011612, 0.12999999523162842, -0.09000000357627869, 0.09000000357627869,
  0.12999999523162842, 1.4594838619232178, -0.2101430743932724, 1.1964812278747559, 0.4150501489639282]
-​
+
 Sensor angles:
 [0.0, -0.17000000178813934, 1.4594838619232178, 0.2101430743932724, -1.1964812278747559,
  -0.4150501489639282, -0.17000000178813934, 0.10000000149011612, 0.12999999523162842,
  -0.09000000357627869, 0.09000000357627869, -0.12999999523162842, -0.17000000178813934,
  -0.10000000149011612, 0.12999999523162842, -0.09000000357627869, 0.09000000357627869,
  0.12999999523162842, 1.4594838619232178, -0.2101430743932724, 1.1964812278747559, 0.4150501489639282]
-​
+
 Errors
 [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 ```
@@ -482,7 +481,7 @@ Returns a string `representation` of the Model's `state`.
 
 ``` python
 from naoqi import ALProxy
-​
+
 motionProxy = ALProxy("ALMotion", "127.0.0.1", 3749)
 print motionProxy.getSummary()  # Example showing how to get a summary of Nao's state
 ```
@@ -514,7 +513,7 @@ The result is:
    RShoulderRoll    1.000000   -0.210143   -0.210143
        RElbowYaw    1.000000    1.196481    1.196481
       RElbowRoll    1.000000    0.415050    0.415050
----------------------- Tasks  --------------------------
+---------------------- Tasks --------------------------
             Name          ID    BrokerID    Priority
 ----------------- Motion Cycle Time --------------------
             20 ms
@@ -532,7 +531,7 @@ The robot wakes up: sets `Motor` on and, if needed, goes to `initial` position. 
 
 ``` python
 from naoqi import ALProxy
-​
+
 motionProxy = ALProxy("ALMotion", "127.0.0.1", 3749)
 motionProxy.wakeUp()
 ```
@@ -554,7 +553,7 @@ Returns: Returns if the predefined `posture` was reached.
 
 ``` python
 from naoqi import ALProxy
-​
+
 postureProxy = ALProxy("ALRobotPosture", "127.0.0.1", 3749)
 postureProxy.goToPosture("StandInit", 1.0)
 postureProxy.goToPosture("SitRelax", 1.0)
@@ -578,7 +577,7 @@ The robot `rests`: goes to a `relax` and `safe` position and sets `Motor` off. F
 
 ``` python
 from naoqi import ALProxy
-​
+
 motionProxy = ALProxy("ALMotion", "127.0.0.1", 3749)
 postureProxy = ALProxy("ALRobotPosture", "127.0.0.1", 3749)
 postureProxy.goToPosture("StandInit", 0.5)  # Send NAO to Pose Init
@@ -597,7 +596,7 @@ void ALMotionProxy::moveInit();
 
 ``` python
 from naoqi import ALProxy
-​
+
 motionProxy = ALProxy("ALMotion", "127.0.0.1", 3749)
 postureProxy = ALProxy("ALRobotPosture", "127.0.0.1", 3749)
 postureProxy.goToPosture("Stand", 0.5)  # Send NAO to Pose Init
@@ -612,16 +611,16 @@ motionProxy.moveInit()  # Example showing how Initialize move process
 void ALMotionProxy::setStiffnesses ( const AL::ALValue &names, const AL::ALValue &stiffnesses );
 ```
 
-Sets the `stiffness` of one or more joints. This is a `non-blocking` call. 
+Sets the `stiffness` of one or more joints. This is a `non-blocking` call.
 
 - `names`: Names of joints, chains, `Body`, `JointActuators`, `Joints` or `Actuators`.
 - `stiffnesses`: One or more `stiffnesses` between `zero` and `one`.
 
 ``` python
 from naoqi import ALProxy
-​
+
 motionProxy = ALProxy("ALMotion", "127.0.0.1", 3749)
-​
+
 # Example showing how to set the stiffness to 1.0.
 # Beware, doing this could be dangerous, it is safer to use the
 # stiffnessInterpolation method which takes a duration parameter
@@ -651,17 +650,17 @@ Sets `angles`. This is a `non-blocking` call.
 ``` python
 from naoqi import ALProxy
 import time
-​
+
 motionProxy = ALProxy("ALMotion", "127.0.0.1", 3749)
-​
+
 motionProxy.setStiffnesses("Head", 1.0)
-​
+
 # Example showing how to set angles, using a fraction of max speed
 names = ["HeadYaw", "HeadPitch"]
 angles = [0.2, -0.2]
 fractionMaxSpeed = 0.2
 motionProxy.setAngles(names, angles, fractionMaxSpeed)
-​
+
 time.sleep(3.0)
 motionProxy.setStiffnesses("Head", 0.0)
 ```

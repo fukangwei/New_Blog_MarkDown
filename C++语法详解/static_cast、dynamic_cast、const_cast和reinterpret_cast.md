@@ -1,7 +1,6 @@
 ---
 title: static_cast、dynamic_cast、const_cast和reinterpret_cast
 categories: C++语法详解
-abbrlink: b9b7ed75
 date: 2019-02-07 15:20:55
 ---
 ### static_cast
@@ -33,25 +32,25 @@ i = static_cast<int> ( f ); /* i is 166 */
 ``` cpp
 class A {
 public:
-    virtual void  a() {
+    virtual void a() {
         cout << 'a' << endl;
     }
-​
+
     virtual void b() {
         cout << 'a' << endl;
     }
-​
+
 private:
     int i;
 };
-​
+
 class B: public A {
 public:
     virtual void a() {
         cout << 'b' << endl;
     }
 };
-​
+
 int main ( void ) {
     A *pa = new A();
     B *pb = static_cast<B *> ( pa );
@@ -82,12 +81,12 @@ public:
     int m_iNum;
     virtual void foo();
 };
-​
+
 class D: public B {
 public:
     char *m_szName[100];
 };
-​
+
 void func ( B *pb ) {
     D *pd1 = static_cast<D *> ( pb );
     D *pd2 = dynamic_cast<D *> ( pb );
@@ -111,9 +110,9 @@ const_cast<type> ( expression )
 
 ``` cpp
 #include <iostream>
-​
+
 using namespace std;
-​
+
 void ConstTest1 ( void ) {
     const int a = 5;
     int *p;
@@ -122,7 +121,7 @@ void ConstTest1 ( void ) {
     cout << a << endl;
     cout << *p << endl;
 }
-​
+
 void ConstTest2 ( void ) {
     int i;
     cout << "please input a integer:";
@@ -132,7 +131,7 @@ void ConstTest2 ( void ) {
     r++;
     cout << a << endl;
 }
-​
+
 int main ( void ) {
     ConstTest1();
     ConstTest2();

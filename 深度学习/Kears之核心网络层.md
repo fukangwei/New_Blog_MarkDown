@@ -1,7 +1,6 @@
 ---
 title: Kears之核心网络层
 categories: 深度学习
-abbrlink: 9046eb20
 date: 2019-01-15 14:59:09
 ---
 ### Dense
@@ -153,20 +152,20 @@ keras.layers.Lambda(function, output_shape=None, mask=None, arguments=None)
 
 ``` python
 model.add(Lambda(lambda x: x ** 2))  # 添加一个“x -> x^2”层
-​
+
 def antirectifier(x):  # 添加一个网络层，返回输入的正数部分与负数部分的反面的连接
     x -= K.mean(x, axis=1, keepdims=True)
     x = K.l2_normalize(x, axis=1)
     pos = K.relu(x)
     neg = K.relu(-x)
     return K.concatenate([pos, neg], axis=1)
-​
+
 def antirectifier_output_shape(input_shape):
     shape = list(input_shape)
     assert len(shape) == 2  # only valid for 2D tensors
     shape[-1] *= 2
     return tuple(shape)
-​
+
 model.add(Lambda(antirectifier, output_shape=antirectifier_output_shape))
 ```
 

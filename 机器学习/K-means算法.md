@@ -1,7 +1,6 @@
 ---
 title: K-means算法
 categories: 机器学习
-abbrlink: 2afaae3d
 date: 2019-02-27 09:49:14
 ---
 &emsp;&emsp;俗话说`物以类聚，人以群分`，而聚类算法就是体现这样的思想。聚类是一种非监督学习，与之前学习的分类和回归算法不同(监督学习)，监督学习是有有`label`标签的，而非监督学习没有。<!--more-->
@@ -54,10 +53,10 @@ def loadDataSet(filename):  # 将文本文件导入到一个列表中
         dataMat.append(fltLine)
 
     return dataMat
-​
+
 def distEclud(vecA, vecB):  # 计算两个向量的欧式距离
     return sqrt(sum(power(vecA - vecB, 2)))
-​
+
 # 为给定数据集构建一个包含k个随机质心的集合。随机质心必须要在整个
 # 数据集的边界之内，这可以通过找到数据集每一维的最小和最大值来完成
 def randCent(dataSet, k):
@@ -70,11 +69,11 @@ def randCent(dataSet, k):
         centroids[:, j] = mat(minJ + rangeJ * random.rand(k, 1))  # 随机生成
 
     return centroids
-​
+
 # k-means聚类算法，该算法会创建k个质心，然后将每个点分配到最近的质心，
 # 再重新计算质心。这个过程重复数次，直到数据点的簇分配结果不再改变位置
 def kMeans(dataSet, k, distMeas=distEclud, createCent=randCent):
-    m = shape(dataSet)[0]  # 行数
+    m = shape(dataSet)[0]  # 行数
     clusterAssment = mat(zeros((m, 2)))  # 一列记录簇索引值，一列存储误差(指的是当前点到簇质心的距离)
     centroids = createCent(dataSet, k)  # 创建质心，随机k个质心
     clusterChanged = True
@@ -107,31 +106,31 @@ def kMeans(dataSet, k, distMeas=distEclud, createCent=randCent):
             centroids[cent, :] = mean(ptsInClust, axis=0)  # 将质心修改为簇中所有点的平均值，mean就是求平均值
 
     return centroids, clusterAssment
-​
+
 def showCluster(dataSet, k, centroids, clusterAssment):
     numSamples, dim = dataSet.shape
 
     if dim != 2:
         print("Sorry! I can not draw because the dimension of your data is not 2!")
         return 1
-​
+
     mark = ['or', 'ob', 'og', 'ok', '^r', '+r', 'sr', 'dr', '<r', 'pr']
 
     if k > len(mark):
         print("Sorry! Your k is too large! ")
         return 1
-​
+
     for i in range(numSamples):  # draw all samples
         markIndex = int(clusterAssment[i, 0])  # 为样本指定颜色
         plt.plot(dataSet[i, 0], dataSet[i, 1], mark[markIndex])
-​
+
     mark = ['Dr', 'Db', 'Dg', 'Dk', '^b', '+b', 'sb', 'db', '<b', 'pb']
 
     for i in range(k):  # draw the centroids
         plt.plot(centroids[i, 0], centroids[i, 1], mark[i], markersize=12)
-​
+
     plt.show()
-​
+
 datMAt = mat(loadDataSet("testSet.txt"))
 k = 4
 centroids, clusterAssment = kMeans(datMAt, k)
@@ -175,7 +174,7 @@ showCluster(datMAt, k, centroids, clusterAssment)
 ``` python
 from numpy import *
 import matplotlib.pyplot as plt
-​
+
 def loadDataSet(filename):  # 将文本文件导入到一个列表中
     dataMat = []
     fr = open(filename)
@@ -186,10 +185,10 @@ def loadDataSet(filename):  # 将文本文件导入到一个列表中
         dataMat.append(fltLine)
 
     return dataMat
-​
+
 def distEclud(vecA, vecB):  # 计算两个向量的欧式距离
     return sqrt(sum(power(vecA - vecB, 2)))
-​
+
 # 为给定数据集构建一个包含k个随机质心的集合。随机质心必须要在
 # 整个数据集的边界之内，这可以通过找到数据集每一维的最小和最大值来完成
 def randCent(dataSet, k):
@@ -202,7 +201,7 @@ def randCent(dataSet, k):
         centroids[:, j] = mat(minJ + rangeJ * random.rand(k, 1))  # 随机生成
 
     return centroids
-​
+
 # k-means聚类算法，该算法会创建k个质心，然后将每个点分配到最近的质心，
 # 再重新计算质心。这个过程重复数次，直到数据点的簇分配结果不再改变位置
 def kMeans(dataSet, k, distMeas=distEclud, createCent=randCent):
@@ -226,7 +225,7 @@ def kMeans(dataSet, k, distMeas=distEclud, createCent=randCent):
                     minIndex = j
             # 在k个簇里面与第i个样本距离最小的的标号和距离保存在clusterAssment中
             if clusterAssment[i, 0] != minIndex:  # 簇分配结果改变
-                clusterChanged = True  # 簇改变
+                clusterChanged = True  # 簇改变
                 # 更新簇分配结果为最小质心的index(索引)、minDist(最小距离)的平方
                 clusterAssment[i, :] = minIndex, minDist ** 2
 
@@ -239,7 +238,7 @@ def kMeans(dataSet, k, distMeas=distEclud, createCent=randCent):
             centroids[cent, :] = mean(ptsInClust, axis=0)  # 将质心修改为簇中所有点的平均值，mean就是求平均值
 
     return centroids, clusterAssment
-​
+
 def biKMeans(dataSet, k, distMeas=distEclud):  # 二分KMeans聚类算法，基于kMeans基础之上的优化，以避免陷入局部最小值
     m = shape(dataSet)[0]
     clusterAssment = mat(zeros((m, 2)))  # 保存每个数据点的簇分配结果和平方误差
@@ -275,39 +274,39 @@ def biKMeans(dataSet, k, distMeas=distEclud):  # 二分KMeans聚类算法，基�
         # 更新质心列表
         # 更新原质心list中的第i个质心为使用二分kMeans后，bestNewCents的第一个质心
         centList[bestCentToSplit] = bestNewCents[0, :].tolist()[0]
-        centList.append(bestNewCents[1, :].tolist()[0])  # 添加bestNewCents的第二个质心
+        centList.append(bestNewCents[1, :].tolist()[0])  # 添加bestNewCents的第二个质心
         # 重新分配最好簇下的数据(质心)以及SSE
         clusterAssment[nonzero(clusterAssment[:, 0].A == bestCentToSplit)[0], :] = bestClustAss
 
     return mat(centList), clusterAssment
-​
+
 def showCluster(dataSet, k, centroids, clusterAssment):
     numSamples, dim = dataSet.shape
 
     if dim != 2:
         print("Sorry! I can not draw because the dimension of your data is not 2!")
         return 1
-​
+
     mark = ['or', 'ob', 'og', 'ok', '^r', '+r', 'sr', 'dr', '<r', 'pr']
 
     if k > len(mark):
         print("Sorry! Your k is too large! ")
         return 1
-​
+
     for i in range(numSamples):  # draw all samples
         markIndex = int(clusterAssment[i, 0])  # 为样本指定颜色
         plt.plot(dataSet[i, 0], dataSet[i, 1], mark[markIndex])
-​
+
     mark = ['Dr', 'Db', 'Dg', 'Dk', '^b', '+b', 'sb', 'db', '<b', 'pb']
 
     for i in range(k):  # draw the centroids
         plt.plot(centroids[i, 0], centroids[i, 1], mark[i], markersize=12)
-​
+
     plt.show()
-​
+
 datMAt = mat(loadDataSet("testSet.txt"))
 k = 4
-centroids, clusterAssment = biKMeans(datMAt, k)  
+centroids, clusterAssment = biKMeans(datMAt, k)
 showCluster(datMAt, k, centroids, clusterAssment)
 ```
 

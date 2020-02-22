@@ -1,7 +1,6 @@
 ---
 title: fsetpos和fgetpos函数
 categories: C语言语法详解
-abbrlink: a7103a15
 date: 2018-12-13 12:33:40
 ---
 ### fgetpos函数

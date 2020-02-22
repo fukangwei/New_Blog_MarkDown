@@ -1,7 +1,6 @@
 ---
 title: Bitset类
 categories: Java
-abbrlink: f417f3c6
 date: 2018-12-26 09:49:13
 ---
 &emsp;&emsp;`Bitset`类创建一种特殊类型的数组来保存位值。`BitSet`的数组大小会随需要增加，这和`位向量`(`vector of bits`)类似。它是一个传统的类，但在`Java 2`中被完全重新设计。<!--more-->
@@ -48,30 +47,30 @@ BitSet(int size)
 
 ``` java
 import java.util.BitSet;
-​
-public class BitSetDemo {​
+
+public class BitSetDemo {
     public static void main(String args[]) {
         BitSet bits1 = new BitSet(16);
         BitSet bits2 = new BitSet(16);
-​
+
         for (int i = 0; i < 16; i++) { /* set some bits */
             if ((i % 2) == 0) bits1.set(i);
             if ((i % 5) != 0) bits2.set(i);
         }
-​
+
         System.out.print("Initial pattern in bits1: ");
         System.out.println(bits1);
         System.out.print("Initial pattern in bits2: ");
         System.out.println(bits2);
-​
+
         bits2.and(bits1); /* AND bits */
         System.out.print("bits2 AND bits1: ");
         System.out.println(bits2);
-​
+
         bits2.or(bits1); /* OR bits */
         System.out.print("bits2 OR bits1: ");
         System.out.println(bits2);
-​
+
         bits2.xor(bits1); /* XOR bits */
         System.out.print("bits2 XOR bits1: ");
         System.out.println(bits2);

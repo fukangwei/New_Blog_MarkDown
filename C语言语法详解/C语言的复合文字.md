@@ -1,7 +1,6 @@
 ---
 title: C语言的复合文字
 categories: C语言语法详解
-abbrlink: 4b7a2373
 date: 2018-12-10 16:01:32
 ---
 &emsp;&emsp;假如需要向一个带有`int`型参量的函数传递一个值，这时可以传递一个`int`型常量，也可以传递一个`int`型的变量。在`C99`标准之前，数组参数情况于现在不一样，没有所谓的数组常量可供传递，而在`C99`中增加了复合文字。文字是非符号的常量，如`5`是`int`型的文字，`25.3`是`double`型的文字。由此可见如果有能够表示数组和结构内容的文字，那么编程将会更加方便。<!--more-->
@@ -60,7 +59,7 @@ p = ( int [2][4] ) {
 ``` cpp
 #include <stdio.h>
 
-#define COLS 4​
+#define COLS 4
 
 void sum2d ( int a[][COLS], int row );
 void sum ( int a[], int n );
@@ -79,7 +78,7 @@ int main ( void ) {
     sum ( p1, 2 );
     sum2d ( p2, 2 );
 }
-​
+
 void sum ( int a[], int n ) {
     int tot = 0;
 

@@ -1,14 +1,13 @@
 ---
 title: mem_fun和mem_fun_ref函数
 categories: C++语法详解
-abbrlink: 8d3abb4c
 date: 2019-02-05 19:53:25
 ---
 &emsp;&emsp;怎么对容器中的所有对象都进行同一个操作？我们可能首先想到的是用循环来实现。比如有如下的一个类：<!--more-->
 
 ``` cpp
 class ClxECS {
-  public:
+public:
     int DoSomething() {
         cout << "Output from method DoSomething!" << endl;
         return 0;
@@ -20,7 +19,7 @@ class ClxECS {
 
 ``` cpp
 vector<ClxECS *> vECS;
-​
+
 for ( int i = 0; i < 13; i++ ) {
     ClxECS *pECS = new ClxECS;
     vECS.push_back ( pECS );
@@ -80,38 +79,38 @@ for_each ( vw.begin(), vw.end(), mem_fun_ref ( &Widget::test ) ); /* w.test(); *
 #include <functional>
 #include <algorithm>
 #include <string>
-​
+
 using namespace std;
-​
+
 class Book {
-  public:
+public:
     string m_strName;
-​
+
     Book ( string name ) : m_strName ( name ) {
     }
-​
+
     void SayHello() {
         cout << "Hello " << m_strName << endl;
     }
 };
-​
+
 class CBookEditDlg {
-  public:
+public:
     vector<Book> m_vecBooks;
     void ForEachBookFunctor ( Book book );
     void PubBookInfo();
 };
-​
+
 void CBookEditDlg::ForEachBookFunctor ( Book book ) {
     cout << book.m_strName << endl;
 }
-​
+
 void CBookEditDlg::PubBookInfo() {
     /* 下面这两句起的作用是一样的，至于为什么一样，很值得仔细揣摩 */
     for_each ( m_vecBooks.begin(), m_vecBooks.end(), mem_fun_ref ( &Book::SayHello ) );
     for_each ( m_vecBooks.begin(), m_vecBooks.end(), std::bind1st ( mem_fun ( &CBookEditDlg::ForEachBookFunctor ), this ) );
 }
-​
+
 int main() {
     Book book1 ( "Effective C++" );
     Book book2 ( "More Effective C++" );

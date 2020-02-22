@@ -1,7 +1,6 @@
 ---
 title: sys模块
 categories: Python语法
-abbrlink: '318819e0'
 date: 2019-01-11 19:09:18
 ---
 &emsp;&emsp;`sys`模块提供了一系列有关`Python`运行环境的变量和函数。<!--more-->
@@ -18,14 +17,14 @@ date: 2019-01-11 19:09:18
 
 ``` python
 import sys
-​
+
 # 获取脚本名字
 print('The name of this program is: %s' % (sys.argv[0]))
 print('The command line arguments are:')
 
 for i in sys.argv:  # 获取参数列表
     print(i)
-​
+
 # 统计参数个数
 print('There are %s arguments.' % (len(sys.argv) - 1))
 ```
@@ -49,14 +48,14 @@ print('There are %s arguments.' % (len(sys.argv) - 1))
 
 ``` python
 import sys, os
-​
+
 osType = sys.platform
 
 if osType == 'linux' or osType == 'linux2':
     command = 'clear'
 else:
     command = 'cls'
-​
+
 os.system(command)
 ```
 
@@ -82,13 +81,13 @@ sys.path.append('引用模块的地址')
 
 ``` python
 import sys
-​
+
 def find_module(module):  # print sys.builtin_module_names
     if module in sys.builtin_module_names:
         print(module, "=>", "__builtin__")
     else:
         print(module, "=>", __import__(module).__file__)
-​
+
 find_module('os')
 find_module('sys')
 find_module('zlib')
@@ -101,14 +100,14 @@ find_module('string')
 
 ``` python
 import sys
-​
+
 print('running...')
-​
+
 try:
     sys.exit(1)
 except SystemExit:
     print('SystemExit exit 1')
-​
+
 print('exited')
 ```
 

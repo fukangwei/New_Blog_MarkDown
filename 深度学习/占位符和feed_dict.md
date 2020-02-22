@@ -1,7 +1,6 @@
 ---
 title: 占位符和feed_dict
 categories: 深度学习
-abbrlink: 3a082f31
 date: 2019-02-06 19:43:34
 ---
 &emsp;&emsp;虽然`TensorFlow`可以创建各种形式的常量和变量，但同样还支持占位符。占位符并没有初始值，它只会分配必要的内存。在会话中，占位符可以使用`feed_dict`馈送数据。<!--more-->
@@ -15,10 +14,10 @@ w1 = tf.Variable(tf.random_normal([1, 2], stddev=1, seed=1))
 # 因为需要重复输入x，而每建一个x就会生成一个结点，计算图的效率会很低，所以使用占位符
 x = tf.placeholder(tf.float32, shape=(1, 2))
 x1 = tf.constant([[0.7, 0.9]])
-​
+
 a = x + w1
 b = x1 + w1
-​
+
 sess = tf.Session()
 sess.run(tf.global_variables_initializer())
 # 运行y时将占位符填上，feed_dict为字典，变量名不可变
@@ -34,28 +33,28 @@ sess.close()
 ``` python
 import tensorflow as tf
 import numpy as np
-​
+
 def calculate_eucledian_distance(point1, point2):
     difference = tf.subtract(point1, point2)
     power2 = tf.pow(difference, tf.constant(2.0, shape=(1, 2)))
     add = tf.reduce_sum(power2)
     eucledian_distance = tf.sqrt(add)
     return eucledian_distance
-​
+
 list_of_points1_ = [[1, 2], [3, 4], [5, 6], [7, 8]]
 list_of_points2_ = [[15, 16], [13, 14], [11, 12], [9, 10]]
-​
+
 list_of_points1 = np.array([np.array(elem).reshape(1, 2) for elem in list_of_points1_])
 list_of_points2 = np.array([np.array(elem).reshape(1, 2) for elem in list_of_points2_])
-​
+
 graph = tf.Graph()
-​
+
 with graph.as_default():
     # 使用tf.placeholder创建占位符 ，在session.run过程中再投递数据
     point1 = tf.placeholder(tf.float32, shape=(1, 2))
     point2 = tf.placeholder(tf.float32, shape=(1, 2))
     dist = calculate_eucledian_distance(point1, point2)
-​
+
 with tf.Session(graph=graph) as session:
     tf.global_variables_initializer().run()
 

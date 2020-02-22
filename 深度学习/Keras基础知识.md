@@ -1,7 +1,6 @@
 ---
 title: Keras基础知识
 categories: 深度学习
-abbrlink: c1b13b55
 date: 2019-01-01 20:30:49
 ---
 &emsp;&emsp;`Keras`是一个用`Python`编写的高级神经网络`API`，它能够以`TensorFlow`、`CNTK`或者`Theano`作为后端运行。`Keras`的开发重点是支持快速的实验，能够以最小的时间把你的想法转换为实验结果，是做好研究的关键。<!--more-->

@@ -1,7 +1,6 @@
 ---
 title: Toplevel顶级窗口
 categories: Tkinter编程
-abbrlink: d8ef7d83
 date: 2019-04-10 16:57:46
 ---
 &emsp;&emsp;`Toplevel`(顶级窗口)组件类似于`Frame`组件，但`Toplevel`组件是一个独立的顶级窗口，这种窗口通常拥有标题栏、边框等部件。<!--more-->
@@ -13,17 +12,17 @@ date: 2019-04-10 16:57:46
 
 ``` python
 from tkinter import *
-​
+
 root = Tk()
-​
+
 def create():
     top = Toplevel()
     top.title("FishC Demo")
     msg = Message(top, text="I love FishC.com!")
     msg.pack()
-​
+
 Button(root, text="创建顶级窗口", command=create).pack()
-​
+
 mainloop()
 ```
 

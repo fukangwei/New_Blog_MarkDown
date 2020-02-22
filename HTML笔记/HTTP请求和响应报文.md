@@ -1,7 +1,6 @@
 ---
 title: HTTP请求和响应报文
 categories: HTML笔记
-abbrlink: 3b70aa1d
 date: 2019-03-10 15:36:13
 ---
 ### HTTP请求报文

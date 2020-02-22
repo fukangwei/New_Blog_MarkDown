@@ -1,7 +1,6 @@
 ---
 title: Properties类
 categories: Java
-abbrlink: 112fb5c5
 date: 2018-12-21 20:41:14
 ---
 &emsp;&emsp;`Properties`继承于`Hashtable`，表示一个持久的属性集，属性列表中每个键及其对应值都是一个字符串。`Properties`类被许多`Java`类使用，例如在获取环境变量时，它就作为`System.getProperties`方法的返回值。<!--more-->
@@ -38,19 +37,19 @@ Properties(Properties propDefault);
 
 ``` java
 import java.util.*;
-​
+
 public class PropDemo {
     public static void main(String args[]) {
         Properties capitals = new Properties();
         Set states;
         String str;
-​
+
         capitals.put("Illinois", "Springfield");
         capitals.put("Missouri", "Jefferson City");
         capitals.put("Washington", "Olympia");
         capitals.put("California", "Sacramento");
         capitals.put("Indiana", "Indianapolis");
-​
+
         /* Show all states and capitals in hashtable */
         states = capitals.keySet(); /* get set-view of keys */
         Iterator itr = states.iterator();
@@ -61,7 +60,7 @@ public class PropDemo {
         }
 
         System.out.println();
-​
+
         /* look for state not in list -- specify default */
         str = capitals.getProperty("Florida", "Not Found");
         System.out.println("The capital of Florida is " + str + ".");
@@ -77,7 +76,7 @@ The capital of Illinois is Springfield.
 The capital of Missouri is Jefferson City.
 The capital of California is Sacramento.
 The capital of Washington is Olympia.
-​
+
 The capital of Florida is Not Found.
 ```
 

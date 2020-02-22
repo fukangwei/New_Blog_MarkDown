@@ -1,7 +1,6 @@
 ---
 title: pytorch函数总结
 categories: 深度学习
-abbrlink: bbe38406
 date: 2019-01-13 20:05:19
 ---
 ### torch.ones
@@ -171,15 +170,15 @@ torch.cat(inputs, dimension=0) -> Tensor
 ``` python
 >>> x = torch.randn(2, 3)
 >>> x
- 0.5983 -0.0341  2.4918
+ 0.5983 -0.0341  2.4918
  1.5981 -0.5265 -0.8735
 [torch.FloatTensor of size 2x3]
 >>> torch.cat((x, x, x), 0)
- 0.5983 -0.0341  2.4918
+ 0.5983 -0.0341  2.4918
  1.5981 -0.5265 -0.8735
- 0.5983 -0.0341  2.4918
+ 0.5983 -0.0341  2.4918
  1.5981 -0.5265 -0.8735
- 0.5983 -0.0341  2.4918
+ 0.5983 -0.0341  2.4918
  1.5981 -0.5265 -0.8735
 [torch.FloatTensor of size 6x3]
 >>> torch.cat((x, x, x), 1)
@@ -264,10 +263,10 @@ torch.max(input, dim, max=None, max_indices=None) -> (Tensor, LongTensor)
 ``` python
 >> a = torch.randn(4, 4)
 >> a
-0.0692  0.3142  1.2513 -0.5428
-0.9288  0.8552 -0.2073  0.6409
+0.0692  0.3142  1.2513 -0.5428
+0.9288  0.8552 -0.2073  0.6409
 1.0695 -0.0101 -2.4507 -1.2230
-0.7426 -0.7666  0.4862 -0.6628
+0.7426 -0.7666  0.4862 -0.6628
 [torch.FloatTensor of size 4x4]
 >>> torch.max(a, 1)
 (1.2513 0.9288 1.0695 0.7426 [torch.FloatTensor of size 4x1],
@@ -704,7 +703,7 @@ torch.nn.MaxPool3d(
 >>>m = nn.MaxPool3d(3, stride=2)
 # pool of non-square window
 >>> m = nn.MaxPool3d((3, 2, 2), stride=(2, 1, 2))
->>> input = autograd.Variable(torch.randn(20, 16, 50,44, 31))  
+>>> input = autograd.Variable(torch.randn(20, 16, 50,44, 31))
 >>> output = m(input)
 ```
 

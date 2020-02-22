@@ -1,7 +1,6 @@
 ---
 title: struct模块
 categories: Python语法
-abbrlink: '18018616'
 date: 2018-12-27 20:00:50
 ---
 &emsp;&emsp;当`Python`需要和二进制数据打交道时，就要用到`struct`模块了。`struct`模块为`Python`与`C`的混合编程、处理二进制文件以及网络协议通信提供了便利。`struct`模块主要用到三个函数：<!--more-->
@@ -51,7 +50,7 @@ Character | Byte order               | Size       | Alignment
 
 ``` python
 import struct
-​
+
 a = struct.pack("2I3sI", 12, 34, b"abc", 56)
 b = struct.unpack("2I3sI", a)
 print(b)  # 结果为(12, 34, b'abc', 56)
@@ -69,7 +68,7 @@ print(struct.calcsize("2I3sI"))  # 输出“16”
 
 ``` python
 import struct
-​
+
 # “>”表示字节顺序是“big-endian”，f表示浮点类型
 a = struct.pack('>f', float(3.1415))
 b = struct.unpack('>f', a)

@@ -1,7 +1,6 @@
 ---
 title: Shell脚本的特殊符号
 categories: Shell编程
-abbrlink: 7ad3cd74
 date: 2019-01-21 16:37:52
 ---
 ### 井号
@@ -290,7 +289,7 @@ rm -r 200[1234]
 ``` bash
 #!/bin/bash
 read ak
-​
+
 if [[ $ak > 5 || $ak< 9 ]]
 then
     echo $ak

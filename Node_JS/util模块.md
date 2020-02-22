@@ -1,7 +1,6 @@
 ---
 title: util模块
 categories: Node.js笔记
-abbrlink: ad279b21
 date: 2019-02-08 15:33:19
 ---
 &emsp;&emsp;`util`是一个`Node.js`核心模块，提供常用函数的集合，用于弥补核心`JavaScript`的功能不足。<!--more-->
@@ -19,7 +18,7 @@ util.inherits(constructor, superConstructor)
 
 ``` javascript
 var util = require('util');
-​
+
 function Base() {
     this.name = 'base';
     this.base = 1991;
@@ -27,15 +26,15 @@ function Base() {
         console.log('Hello ' + this.name);
     };
 }
-​
+
 Base.prototype.showName = function () {
     console.log(this.name);
 };
-​
+
 function Sub() {
     this.name = 'sub';
 }
-​
+
 util.inherits(Sub, Base);
 var objBase = new Base();
 objBase.showName(); // 输出“base”
@@ -65,14 +64,14 @@ util.inspect(object [, showHidden] [, depth] [, colors])
 
 ``` javascript
 var util = require('util');
-​
+
 function Person() {
     this.name = 'byvoid';
     this.toString = function () {
         return this.name;
     };
 }
-​
+
 var obj = new Person();
 console.log(util.inspect(obj));
 console.log(util.inspect(obj, true));
@@ -99,7 +98,7 @@ Person {
 
 ``` javascript
 var util = require('util');
-​
+
 console.log(util.isArray([])) // 输出“true”
 console.log(util.isArray(new Array)) // 输出“true”
 console.log(util.isArray({})) // 输出“false”
@@ -111,7 +110,7 @@ console.log(util.isArray({})) // 输出“false”
 
 ``` javascript
 var util = require('util');
-​
+
 console.log(util.isRegExp(/some regexp/)) // 输出“true”
 console.log(util.isRegExp(new RegExp('another regexp'))) // 输出“true”
 console.log(util.isRegExp({})) // 输出“false”
@@ -123,7 +122,7 @@ console.log(util.isRegExp({})) // 输出“false”
 
 ``` javascript
 var util = require('util');
-​
+
 console.log(util.isDate(new Date())) // 输出“true”
 console.log(util.isDate(Date())) // 输出“false”(without 'new', returns a String)
 console.log(util.isDate({})) // 输出“false”
@@ -135,7 +134,7 @@ console.log(util.isDate({})) // 输出“false”
 
 ``` javascript
 var util = require('util');
-​
+
 console.log(util.isError(new Error())) // 输出“true”
 console.log(util.isError(new TypeError())) // 输出“true”
 console.log( // 输出“false”

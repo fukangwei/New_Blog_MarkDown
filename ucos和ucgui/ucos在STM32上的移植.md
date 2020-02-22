@@ -1,7 +1,6 @@
 ---
 title: ucos在STM32上的移植
 categories: ucos和ucgui
-abbrlink: '5407841'
 date: 2019-03-19 08:49:39
 ---
 &emsp;&emsp;`UCOS-II`由`Micrium`公司提供，是一个可移植、可固化的、可裁剪的、占先式多任务实时内核。它适用于多种微处理器、微控制器和数字处理芯片。同时，该系统源代码开放、注释详尽，适合系统开发。<!--more-->
@@ -38,10 +37,10 @@ date: 2019-03-19 08:49:39
 #define OS_CPU_CM3_NVIC_ST_CTRL_ENABLE                   0x00000001uL   /* Counter mode.              */
 #define OS_CPU_CM3_NVIC_PRIO_MIN                               0xFFu    /* Min handler prio.          */
 #endif
-​
+
 #if 0
 void OS_CPU_SysTickHandler ( void );
-void OS_CPU_SysTickInit ( INT32U  cnts );
+void OS_CPU_SysTickInit ( INT32U cnts );
 #endif
 ```
 
@@ -107,31 +106,31 @@ void SysTick_Handler ( void ) {
 #include "stm32f10x.h"
 #include "stm32f10x_conf.h"
 #include "ucos_ii.h"
-​
+
 #define STARTUP_TASK_PRIO     8
 #define STARTUP_TASK_STK_SIZE 80
-​
+
 void SysTick_init ( void ) {
     SysTick_Config ( SystemCoreClock / OS_TICKS_PER_SEC );
 }
-​
+
 void TestLed1 ( void *p_arg ) {
     while ( 1 ) {
         LED0 = !LED0;
         OSTimeDlyHMSM ( 0, 0, 0, 500 );
     }
 }
-​
+
 void TestLed2 ( void *p_arg ) {
     while ( 1 ) {
         printf ( "hello\r\n" );
         OSTimeDlyHMSM ( 0, 0, 2, 0 );
     }
 }
-​
+
 static OS_STK task_testled1[STARTUP_TASK_STK_SIZE];
 static OS_STK task_testled2[STARTUP_TASK_STK_SIZE];
-​
+
 int main ( void ) {
     SysTick_init();
     LED_Init();

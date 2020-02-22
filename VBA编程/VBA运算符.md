@@ -1,7 +1,6 @@
 ---
 title: VBA运算符
 categories: VBA编程
-abbrlink: 4354843a
 date: 2019-07-21 14:32:20
 ---
 &emsp;&emsp;`VBA`支持以下类型的运算符：<!--more-->

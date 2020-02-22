@@ -1,7 +1,6 @@
 ---
 title: Qt之QDateTimeEdit、QDateEdit和QTimeEdit
 categories: Qt语法详解
-abbrlink: 9256a2b0
 date: 2019-03-17 11:31:58
 ---
 ### 简述
@@ -34,7 +33,7 @@ QDateTimeEdit *dateTimeEdit = new QDateTimeEdit ( this );
 QDateTimeEdit *dateTimeEdit2 = new QDateTimeEdit ( QDateTime::currentDateTime(), this );
 QDateTimeEdit *dateEdit = new QDateTimeEdit ( QDate::currentDate(), this );
 QDateTimeEdit *timeEdit = new QDateTimeEdit ( QTime::currentTime(), this );
-​
+
 /* 设置日期时间格式 */
 dateTimeEdit->setDisplayFormat ( "yyyy-MM-dd HH:mm:ss" );
 dateTimeEdit2->setDisplayFormat ( "yyyy/MM/dd HH-mm-ss" );
@@ -86,7 +85,7 @@ dateEdit->setCalendarPopup ( true ); /* 日历弹出 */
 QDateTimeEdit *dateEdit = new QDateTimeEdit ( QDate::currentDate(), this );
 dateEdit->setMinimumDate ( QDate::currentDate().addDays ( -365 ) ); /* -365天 */
 dateEdit->setMaximumDate ( QDate::currentDate().addDays ( 365 ) ); /* +365天 */
-​
+
 QDate date = dateEdit->date(); /* 日期 */
 QDateTime dateTime = dateEdit->dateTime(); /* 日期时间 */
 QDate maxDate = dateEdit->maximumDate(); /* 最大日期 */
@@ -95,7 +94,7 @@ QTime maxTime = dateEdit->maximumTime(); /* 最大时间 */
 QDate minDate = dateEdit->minimumDate(); /* 最小日期 */
 QDateTime minDateTime = dateEdit->minimumDateTime(); /* 最小日期时间 */
 QTime minTime = dateEdit->minimumTime(); /* 最小时间 */
-​
+
 qDebug() << "Date : " << date;
 qDebug() << "DateTime : " << dateTime;
 qDebug() << "MaxDate : " << maxDate;
@@ -125,7 +124,7 @@ MinTime : QTime(“00:00:00.000”)
 
 ``` cpp
 QDateTimeEdit *dateTimeEdit = new QDateTimeEdit ( QDateTime::currentDateTime(), this );
-​
+
 /* 连接信号和槽 */
 connect ( dateTimeEdit, SIGNAL ( dateChanged ( QDate ) ), this, SLOT ( onDateChanged ( QDate ) ) );
 connect ( dateTimeEdit, SIGNAL ( dateTimeChanged ( QDateTime ) ), \
@@ -140,12 +139,12 @@ connect ( dateTimeEdit, SIGNAL ( timeChanged ( QTime ) ), this, SLOT ( onTimeCha
 void onDateChanged ( const QDate &date ) {
     qDebug() << "QDate : " << date;
 }
-​
+
 /* 无论日期还是时间发生改变，都会执行 */
 void onDateTimeChanged ( const QDateTime &dateTime ) {
     qDebug() << "QDateTime : " << dateTime;
 }
-​
+
 /* 时间发生改变时执行 */
 void onTimeChanged ( const QTime &time ) {
     qDebug() << "QTime : " << time;
@@ -174,12 +173,12 @@ void onTimeChanged ( const QTime &time ) {
 QDateTimeEdit *dateEdit = new QDateTimeEdit ( QDateTime::currentDateTime(), this );
 dateEdit->setDisplayFormat ( "yyyy/MM/dd HH:mm:ss" ); /* 设置显示格式 */
 dateEdit->setSelectedSection ( QDateTimeEdit::DaySection ); /* 设置所选部分 */
-​
+
 int nCount = dateEdit->sectionCount(); /* 部分数量 */
 QDateTimeEdit::Section monthSection = dateEdit->sectionAt ( 1 ); /* 下标为1对应的部分 */
 QDateTimeEdit::Section section = dateEdit->currentSection(); /* 当前部分 */
 int nIndex = dateEdit->currentSectionIndex(); /* 当前部分下标 */
-​
+
 /* 各部分对应的值 */
 QString strYear = dateEdit->sectionText ( QDateTimeEdit::YearSection );
 QString strMonth = dateEdit->sectionText ( QDateTimeEdit::MonthSection );
@@ -187,7 +186,7 @@ QString strDay = dateEdit->sectionText ( QDateTimeEdit::DaySection );
 QString strHour = dateEdit->sectionText ( QDateTimeEdit::HourSection );
 QString strMinute = dateEdit->sectionText ( QDateTimeEdit::MinuteSection );
 QString strSecond = dateEdit->sectionText ( QDateTimeEdit::SecondSection );
-​
+
 qDebug() << "SectionCount : " << nCount;
 qDebug() << "MonthSection : " << monthSection;
 qDebug() << "CurrentSection : " << section;

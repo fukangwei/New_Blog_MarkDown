@@ -1,7 +1,6 @@
 ---
 title: Python问题总结
 categories: 软件与硬件问题
-abbrlink: 17c2c8b8
 date: 2019-01-10 16:01:38
 ---
 ### HTTP Error 403: Forbidden
@@ -54,13 +53,13 @@ this is my code：
 
 ``` python
 import serial
-​
+
 ser = serial.Serial()
 ser.port = 3  # serial port
 ser.baudrate = 115200  # set baudrate 115200
 ser.timeout = 60  # timeout 60 second
 ser.open()  # open serial port
-​
+
 while True:
     ser.write('l')  # send '1' to port to get light
     light = ser.read(4)
@@ -82,7 +81,7 @@ in this code, I tried to open port `COM4`, I already check this port is availabl
 ``` python
 while (cap.isOpened()):
     ret, frame = cap.read()
-​
+
     if not ret:  # 如果不能抓取到一帧，说明我们到了视频的结尾
         print("over!")
         break
@@ -268,7 +267,7 @@ sudo apt-get install python3-tk
 
 ``` python
 import pandas as pd
-​
+
 trainFile = "F:/Projects/Python/coursera/train.csv"
 trainData = pd.read_csv(trainFile)
 ```
@@ -278,9 +277,9 @@ trainData = pd.read_csv(trainFile)
 ``` python
 import pandas as pd
 import os
-​
+
 trainFile = "F:/Projects/Python/coursera/train.csv"
-​
+
 pwd = os.getcwd()
 os.chdir(os.path.dirname(trainFile))
 trainData = pd.read_csv(os.path.basename(trainFile))
@@ -329,7 +328,7 @@ python -m pip install --upgrade pip
 
 ``` python
 import struct
-​
+
 a = struct.pack("2I3sI", 12, 34, b"abc", 56)
 b = struct.unpack("2I3sI", a)
 print(b)  # 结果为(12, 34, b'abc', 56)
@@ -596,12 +595,12 @@ print(t)  # 输出“{'a': '1', 'b': '2', 'c': '3', 'd': None}”
 
 ``` python
 import numpy as np
-​
+
 a = np.zeros(3)
 a[0] = 0
 a[1] = 1
 a[2] = 2
-​
+
 if a == [1, 2, 3]:
     print("OK")
 else:
@@ -612,7 +611,7 @@ else:
 
 ``` python
 import numpy as np
-​
+
 a = np.zeros(3)
 a[0] = 0
 a[1] = 1

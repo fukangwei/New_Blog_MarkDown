@@ -1,7 +1,6 @@
 ---
 title: Keras之图像预处理
 categories: 深度学习
-abbrlink: 68f5fea8
 date: 2019-01-15 18:04:55
 ---
 ### ImageDataGenerator类
@@ -77,7 +76,7 @@ datagen.fit(x_train)
 # 使用实时数据增益的批数据对模型进行拟合
 model.fit_generator(datagen.flow(x_train, y_train, batch_size=32),
                     steps_per_epoch=len(x_train) / 32, epochs=epochs)
-​
+
 for e in range(epochs):  # 这里有一个更“手动”的例子
     print('Epoch', e)
     batches = 0
@@ -113,15 +112,15 @@ data_gen_args = dict(featurewise_center=True, featurewise_std_normalization=True
 # 创建两个相同参数的实例
 image_datagen = ImageDataGenerator(**data_gen_args)
 mask_datagen = ImageDataGenerator(**data_gen_args)
-​
+
 # 为fit和flow函数提供相同的种子和关键字参数
 seed = 1
 image_datagen.fit(images, augment=True, seed=seed)
 mask_datagen.fit(masks, augment=True, seed=seed)
-​
+
 image_generator = image_datagen.flow_from_directory('data/images', class_mode=None, seed=seed)
 mask_generator = mask_datagen.flow_from_directory('data/masks', class_mode=None, seed=seed)
-​
+
 # 将生成器组合成一个产生图像和蒙版(mask)的生成器
 train_generator = zip(image_generator, mask_generator)
 model.fit_generator(train_generator, steps_per_epoch=2000, epochs=50)

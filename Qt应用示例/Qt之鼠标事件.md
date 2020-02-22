@@ -1,7 +1,6 @@
 ---
 title: Qt之鼠标事件
 categories: Qt应用示例
-abbrlink: a99b52a0
 date: 2018-12-28 16:17:19
 ---
 &emsp;&emsp;`widget.h`如下：<!--more-->
@@ -9,13 +8,13 @@ date: 2018-12-28 16:17:19
 ``` cpp
 #ifndef WIDGET_H
 #define WIDGET_H
-​
+
 #include <QWidget>
-​
+
 namespace Ui {
     class Widget;
 }
-​
+
 class Widget : public QWidget {
     Q_OBJECT
 public:
@@ -31,7 +30,7 @@ private:
     Ui::Widget *ui;
     QPoint offset; /* 用来储存鼠标指针位置与窗口位置的差值 */
 };
-​
+
 #endif // WIDGET_H
 ```
 
@@ -41,7 +40,7 @@ private:
 #include "widget.h"
 #include "ui_widget.h"
 #include <QMouseEvent>
-​
+
 Widget::Widget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::Widget ) {
     ui->setupUi ( this );
     // setMouseTracking ( true ); /* 设置鼠标跟踪 */
@@ -49,11 +48,11 @@ Widget::Widget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::Widget ) {
     cursor.setShape ( Qt::OpenHandCursor ); /* 设置光标形状 */
     setCursor ( cursor ); /* 使用光标 */
 }
-​
+
 Widget::~Widget() {
     delete ui;
 }
-​
+
 void Widget::mousePressEvent ( QMouseEvent *event ) { /* 鼠标按下事件 */
     if ( event->button() == Qt::LeftButton ) { /* 如果是鼠标左键按下 */
         QCursor cursor;
@@ -65,7 +64,7 @@ void Widget::mousePressEvent ( QMouseEvent *event ) { /* 鼠标按下事件 */
         QApplication::setOverrideCursor ( cursor );
     }
 }
-​
+
 void Widget::mouseMoveEvent ( QMouseEvent *event ) { /* 鼠标移动事件 */
     if ( event->buttons() & Qt::LeftButton ) { /* 这里必须使用buttons */
         QPoint temp; /* 我们使用鼠标指针当前的位置减去差值，就得到了窗口应该移动的位置 */
@@ -73,11 +72,11 @@ void Widget::mouseMoveEvent ( QMouseEvent *event ) { /* 鼠标移动事件 */
         move ( temp );
     }
 }
-​
+
 void Widget::mouseReleaseEvent ( QMouseEvent *event ) { /* 鼠标释放事件 */
     QApplication::restoreOverrideCursor(); /* 恢复鼠标指针形状 */
 }
-​
+
 void Widget::mouseDoubleClickEvent ( QMouseEvent *event ) { /* 鼠标双击事件 */
     if ( event->button() == Qt::LeftButton ) { /* 如果是鼠标左键按下 */
         if ( windowState() != Qt::WindowFullScreen ) { /* 如果现在不是全屏，将窗口设置为全屏 */
@@ -87,7 +86,7 @@ void Widget::mouseDoubleClickEvent ( QMouseEvent *event ) { /* 鼠标双击事�
         }
     }
 }
-​
+
 void Widget::wheelEvent ( QWheelEvent *event ) { /* 滚轮事件 */
     /* 当滚轮远离使用者时进行放大，当滚轮向使用者方向旋转时进行缩小 */
     if ( event->delta() > 0 ) {

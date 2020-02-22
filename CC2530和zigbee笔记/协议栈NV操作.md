@@ -1,7 +1,6 @@
 ---
 title: 协议栈NV操作
 categories: CC2530和zigbee笔记
-abbrlink: 77a4179a
 date: 2019-02-05 13:11:58
 ---
 &emsp;&emsp;1. 配置串口：<!--more-->
@@ -40,7 +39,7 @@ void SerialCallback ( uint8 port, uint8 events ) {
     uint8 uart_buf[2];
     uint8 cmd[6];
     HalUARTRead ( 0, cmd, 6 );
-​
+
     if ( osal_memcmp ( cmd, "nvread", 6 ) ) {
         osal_nv_item_init ( TEST_NV, 1, NULL );
         osal_nv_write ( TEST_NV, 0, 1, &value );

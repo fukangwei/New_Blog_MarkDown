@@ -1,7 +1,6 @@
 ---
 title: OSAL原理
 categories: CC2530和zigbee笔记
-abbrlink: d5338b8c
 date: 2019-03-11 20:09:28
 ---
 ### 概述
@@ -84,11 +83,11 @@ const pTaskEventHandlerFn tasksArr[] = {
 if ( events &HAL_KEY_EVENT ) {
 #if (defined HAL_KEY) && (HAL_KEY == TRUE)
     HalKeyPoll(); /* Check for keys */
-​
+
     if ( !Hal_KeyIntEnable ) { /* if interrupt disabled, do next polling */
         osal_start_timerEx ( Hal_TaskID, HAL_KEY_EVENT, 100 );
     }
-​
+
 #endif /* HAL_KEY */
     return events ^ HAL_KEY_EVENT;
 }
@@ -279,13 +278,13 @@ for ( ;; ) /* Forever Loop */
     uint8 idx = 0;
     osalTimeUpdate(); /* 定时器任务更新 */
     Hal_ProcessPoll(); /* This replaces MT_SerialPoll() and osal_check_timer() 轮询处理 */
-​
+
     do {
         if ( tasksEvents[idx] ) { /* Task is highest priority that is ready 查找优先级最高的任务 */
             break;
         }
     } while ( ++idx < tasksCnt ); /* tasksCnt为总的任务数 */
-​
+
     if ( idx < tasksCnt ) { /* 任务数检查 */
         uint16 events;
         halIntState_t intState;
@@ -299,12 +298,12 @@ for ( ;; ) /* Forever Loop */
         tasksEvents[idx] |= events;
         HAL_EXIT_CRITICAL_SECTION ( intState );
     }
-​
+
 #if defined( POWER_SAVING )
     else { /* Complete pass through all task events with no activity */
         osal_pwrmgr_powerconserve(); /* Put the processor/system into sleep 当任务ID号出错时进入睡眠 */
     }
-​
+
 #endif
 }
 ```
@@ -321,14 +320,14 @@ for ( ;; ) /* Forever Loop */
 -----------------------------------------------------------------*/
 uint8 osal_set_event ( uint8 task_id, uint16 event_flag ) {
     if ( task_id < tasksCnt ) { /* 正确的ID */
-        halIntState_t   intState;
+        halIntState_t intState;
         HAL_ENTER_CRITICAL_SECTION ( intState ); /* Hold off interrupts */
         tasksEvents[task_id] |= event_flag; /* Stuff the event bit(s) 添加需要处理的事件的掩码 */
         HAL_EXIT_CRITICAL_SECTION ( intState ); /* Release interrupts */
     } else {
         return ( INVALID_TASK );
     }
-​
+
     return ( SUCCESS );
 }
 ```
@@ -347,21 +346,21 @@ void osalTimerUpdate ( uint16 updateTime ) {
     HAL_ENTER_CRITICAL_SECTION ( intState ); /* Hold off interrupts 保存中断状态 */
     osal_systemClock += updateTime; /* Update the system time 更新系统时间 */
     HAL_EXIT_CRITICAL_SECTION ( intState ); /* Re-enable interrupts 恢复中断状态 */
-​
+
     if ( timerHead != NULL ) { /* Look for open timer slot */
         srchTimer = timerHead; /* Add it to the end of the timer list 添加到定时器列表 */
         prevTimer = ( void * ) NULL;
-​
+
         while ( srchTimer ) { /* Look for open timer slot 遍历链表 */
             osalTimerRec_t *freeTimer = NULL;
             HAL_ENTER_CRITICAL_SECTION ( intState ); /* Hold off interrupts */
-​
+
             if ( srchTimer->timeout <= updateTime ) { /* 超时检查 */
                 srchTimer->timeout = 0;
             } else {
                 srchTimer->timeout = srchTimer->timeout - updateTime;
             }
-​
+
             /* When timeout or delete (event_flag == 0) 需要处理的事件 */
             if ( srchTimer->timeout == 0 || srchTimer->event_flag == 0 ) {
                 if ( prevTimer == NULL ) { /* Take out of list */
@@ -369,22 +368,22 @@ void osalTimerUpdate ( uint16 updateTime ) {
                 } else {
                     prevTimer->next = srchTimer->next;
                 }
-​
+
                 freeTimer = srchTimer; /* Setup to free memory 设置要被释放的资源 */
                 srchTimer = srchTimer->next; /* Next */
             } else {
                 prevTimer = srchTimer; /* Get next 下一个任务 */
                 srchTimer = srchTimer->next;
             }
-​
+
             HAL_EXIT_CRITICAL_SECTION ( intState ); /* Re-enable interrupts */
-​
+
             if ( freeTimer ) { /* 释放任务 */
                 if ( freeTimer->timeout == 0 ) {
                     /* 时间到了，设置事件标志以等待处理 */
                     osal_set_event ( freeTimer->task_id, freeTimer->event_flag );
                 }
-​
+
                 osal_mem_free ( freeTimer ); /* 释放该定时器任务的资源 */
             }
         }
@@ -397,17 +396,17 @@ void osalTimerUpdate ( uint16 updateTime ) {
 ``` cpp
 /* Update the timer structures for elapsed ticks */
 void osal_adjust_timers ( void ) {
-    uint16 eTime;
-​
-    if ( timerHead != NULL ) {
-        eTime = TimerElapsed() /  TICK_COUNT; /* Compute elapsed time (msec) */
-​
-        if ( eTime ) {
-            osalTimerUpdate ( eTime );
-        }
-    }
+    uint16 eTime;
+
+    if ( timerHead != NULL ) {
+        eTime = TimerElapsed() / TICK_COUNT; /* Compute elapsed time (msec) */
+
+        if ( eTime ) {
+            osalTimerUpdate ( eTime );
+        }
+    }
 }
-​
+
 /*------------------------------------------------------------------------
  * Uses the free running rollover count of the MAC backoff timer;
  * this timer runs freely with a constant 320 usec interval. The
@@ -422,13 +421,13 @@ void osalTimeUpdate ( void ) { /* 定时器任务更新 */
     uint16 elapsedMSec = 0;
     /* Get the free-running count of 320us timer ticks 设置时间片 */
     tmp = macMcuPrecisionCount(); /* 获取溢出值，该溢出值是一个累计的溢出值 */
-​
+
     if ( tmp != previousMacTimerTick ) { /* 相等则代表没有溢出 */
         /* Calculate the elapsed ticks of the free-running timer 计算已经消耗的时间 */
         ticks320us = tmp - previousMacTimerTick;
         /* Store the MAC Timer tick count for the next time through this function 保存当前时间 */
         previousMacTimerTick = tmp;
-​
+
         /* It is necessary to loop to convert the usecs to msecs in increments so as not to
            overflow the 16-bit variables. 这是必要的循环转换usecs毫秒的增量，以免溢出16位变量 */
         while ( ticks320us > MAXCALCTICKS ) {
@@ -436,13 +435,13 @@ void osalTimeUpdate ( void ) { /* 定时器任务更新 */
             elapsedMSec += MAXCALCTICKS * 8 / 25;
             remUsTicks += MAXCALCTICKS * 8 % 25;
         }
-​
+
         /* update converted number with remaining ticks from loop and the accumulated remainder from loop */
         tmp = ( ticks320us * 8 ) + remUsTicks;
         /* Convert the 320 us ticks into milliseconds and a remainder */
         elapsedMSec += tmp / 25;
         remUsTicks = tmp % 25;
-​
+
         if ( elapsedMSec ) { /* Update OSAL Clock and Timers 更新系统定时器 */
             osalClockUpdate ( elapsedMSec ); /* 更新系统时间 */
             osalTimerUpdate ( elapsedMSec ); /* 更新定时器任务，并设置需要处理的任务的掩码标志 */
@@ -477,7 +476,7 @@ uint8 osal_start_timerEx ( uint8 taskID, uint16 event_id, uint16 timeout_value )
     osalTimerRec_t *newTimer;
     HAL_ENTER_CRITICAL_SECTION ( intState ); /* Hold off interrupts 保存中断状态 */
     newTimer = osalAddTimer ( taskID, event_id , timeout_value ); /* Add timer 添加定时器任务 */
-    HAL_EXIT_CRITICAL_SECTION ( intState );  /* Re-enable interrupts */
+    HAL_EXIT_CRITICAL_SECTION ( intState ); /* Re-enable interrupts */
     return ( ( newTimer != NULL ) ? SUCCESS : NO_TIMER_AVAIL );
 }
 ```
@@ -502,7 +501,7 @@ if ( freeTimer ) { /* 释放任务 */
         /* 时间到了，设置事件标志以等待处理 */
         osal_set_event ( freeTimer->task_id, freeTimer->event_flag );
     }
-​
+
     osal_mem_free ( freeTimer ); /* 释放该定时器任务的资源 */
 }
 ```
@@ -524,16 +523,16 @@ HAL_ISR_FUNCTION ( halKeyPort0Isr, P0INT_VECTOR ) { /* P0口中断服务函数 *
     if ( ( HAL_KEY_SW_6_PXIFG & HAL_KEY_SW_6_BIT ) || ( HAL_KEY_SW_7_PXIFG & HAL_KEY_SW_7_BIT ) ) {
         halProcessKeyInterrupt();
     }
-​
+
     /* Clear the CPU interrupt flag for Port_0 PxIFG has to be cleared before PxIF 清除中断标志 */
     HAL_KEY_SW_6_PXIFG = 0;
     HAL_KEY_CPU_PORT_0_IF = 0;
 }
-​
+
 HAL_ISR_FUNCTION ( halTimer1Isr, T1_VECTOR ) { /* 定时器1中断服务函数 */
     halProcessTimer1 ();
 }
-​
+
 HAL_ISR_FUNCTION ( macMcuRfIsr, RF_VECTOR ) /* RF中断服务函数 */
 ```
 
@@ -546,23 +545,23 @@ HAL_ISR_FUNCTION ( macMcuRfIsr, RF_VECTOR ) /* RF中断服务函数 */
 ---------------------------------------------------------------------------------------*/
 void halProcessKeyInterrupt ( void ) {
     bool valid = FALSE;
-​
+
     /* 检查中断源 */
     if ( HAL_KEY_SW_6_PXIFG & HAL_KEY_SW_6_BIT ) { /* Interrupt Flag has been set */
         HAL_KEY_SW_6_PXIFG = ~ ( HAL_KEY_SW_6_BIT ); /* Clear Interrupt Flag */
         valid = TRUE;
     }
-​
+
     if ( HAL_KEY_SW_7_PXIFG & HAL_KEY_SW_7_BIT ) { /* Interrupt Flag has been set */
         HAL_KEY_SW_7_PXIFG = ~ ( HAL_KEY_SW_7_BIT ); /* Clear Interrupt Flag */
         valid = TRUE;
     }
-​
+
     if ( HAL_KEY_JOY_MOVE_PXIFG & HAL_KEY_JOY_MOVE_BIT ) { /* Interrupt Flag has been set */
         HAL_KEY_JOY_MOVE_PXIFG = ~ ( HAL_KEY_JOY_MOVE_BIT ); /* Clear Interrupt Flag */
         valid = TRUE;
     }
-​
+
     if ( valid ) { /* 添加定时器任务 */
         /* 使用定时器定时触发任务 */
         osal_start_timerEx ( Hal_TaskID, HAL_KEY_EVENT, HAL_KEY_DEBOUNCE_VALUE );

@@ -1,7 +1,6 @@
 ---
 title: Keras之损失和评价函数
 categories: 深度学习
-abbrlink: 2f875a36
 date: 2019-01-01 19:48:08
 ---
 ### 损失函数
@@ -180,7 +179,7 @@ model.compile(optimizer='rmsprop', loss=mean_squared_error2)
 &emsp;&emsp;评价函数用于评估当前训练模型的性能。当模型编译后，评价函数应该作为`metrics`的参数来输入：
 
 ``` python
-model.compile(loss='mean_squared_error', optimizer='sgd', metrics=['mae', 'acc'])​
+model.compile(loss='mean_squared_error', optimizer='sgd', metrics=['mae', 'acc'])
 # 或者
 from keras import metrics
 model.compile(
@@ -253,9 +252,9 @@ sparse_top_k_categorical_accuracy(y_true, y_pred, k=5)
 
 ``` python
 import keras.backend as K
-​
+
 def mean_pred(y_true, y_pred):
     return K.mean(y_pred)
-​
+
 model.compile(optimizer='rmsprop', loss='binary_crossentropy', metrics=['accuracy', mean_pred])
 ```

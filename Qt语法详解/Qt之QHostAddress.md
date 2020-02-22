@@ -1,7 +1,6 @@
 ---
 title: Qt之QHostAddress
 categories: Qt语法详解
-abbrlink: 1d8e7f5d
 date: 2019-01-24 14:57:19
 ---
 ### 简述
@@ -46,7 +45,7 @@ Q_IPV6ADDR toIPv6Address() const
 
 ``` cpp
 Q_IPV6ADDR addr = hostAddr.toIPv6Address(); /* 该地址包含16位无符号字符 */
-​
+
 for ( int i = 0; i < 16; ++i ) {
     /* 处理addr[i] */
 }
@@ -67,36 +66,36 @@ QString strIPAddress = address.toString();
 
 ``` cpp
 QList<QHostAddress> list = QNetworkInterface::allAddresses();
-​
+
 foreach ( QHostAddress address, list ) {
     if ( address.isNull() ) { /* 主机地址为空 */
         continue;
     }
-​
+
     QAbstractSocket::NetworkLayerProtocol nProtocol = address.protocol();
     QString strScopeId = address.scopeId();
     QString strAddress = address.toString();
     bool bLoopback = address.isLoopback();
-​
+
     if ( nProtocol == QAbstractSocket::IPv4Protocol ) { /* 如果是IPv4 */
         bool bOk = false;
         quint32 nIPV4 = address.toIPv4Address ( &bOk );
-​
+
         if ( bOk ) {
             qDebug() << "IPV4 : " << nIPV4;
         }
     } else if ( nProtocol == QAbstractSocket::IPv6Protocol ) { /* 如果是IPv6 */
         QStringList IPV6List ( "" );
         Q_IPV6ADDR IPV6 = address.toIPv6Address();
-​
+
         for ( int i = 0; i < 16; ++i ) {
             quint8 nC = IPV6[i];
             IPV6List << QString::number ( nC );
         }
-​
+
         qDebug() << "IPV6: " << IPV6List.join ( " " );
     }
-​
+
     qDebug() << "Protocol: " << nProtocol;
     qDebug() << "ScopeId: " << strScopeId;
     qDebug() << "Address: " << strAddress;
@@ -112,19 +111,19 @@ Protocol: QAbstractSocket::NetworkLayerProtocol(IPv6Protocol)
 ScopeId: "18"
 Address: "fe80::5996:27a3:83b5:2ae7%18"
 IsLoopback: false
-​
+
 IPV4: 3232249857
 Protocol: QAbstractSocket::NetworkLayerProtocol(IPv4Protocol)
 ScopeId: ""
 Address: "192.168.56.1"
 IsLoopback: false
-​
+
 IPV6: " 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1"
 Protocol: QAbstractSocket::NetworkLayerProtocol(IPv6Protocol)
 ScopeId: ""
 Address: "::1"
 IsLoopback: true
-​
+
 IPV4: 2130706433
 Protocol: QAbstractSocket::NetworkLayerProtocol(IPv4Protocol)
 ScopeId: ""
@@ -141,7 +140,7 @@ bool isLinkLocalAddress ( QHostAddress addr ) {
     quint32 nIPv4 = addr.toIPv4Address();
     quint32 nMinRange = QHostAddress ( "169.254.1.0" ).toIPv4Address();
     quint32 nMaxRange = QHostAddress ( "169.254.254.255" ).toIPv4Address();
-​
+
     if ( ( nIPv4 >= nMinRange ) && ( nIPv4 <= nMaxRange ) ) {
         return true;
     } else {

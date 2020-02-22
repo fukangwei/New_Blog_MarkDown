@@ -1,7 +1,6 @@
 ---
 title: Qt之QTextListFormat
 categories: Qt语法详解
-abbrlink: d8027cba
 date: 2019-01-03 10:19:23
 ---
 &emsp;&emsp;The `QTextListFormat` class provides formatting information for lists in a `QTextDocument`.<!--more-->
@@ -43,7 +42,7 @@ Return    | Function
 QTextListFormat listFormat;
 listFormat.setStyle ( QTextListFormat::ListDecimal );
 listFormat.setNumberPrefix ( "(" );
-listFormat.setNumberSuffix ( ")" );​
+listFormat.setNumberSuffix ( ")" );
 cursor.insertList ( listFormat );
 ```
 
@@ -70,7 +69,7 @@ Constant                          | Value | Description
 - `QString QTextListFormat::numberPrefix() const`: Returns the list format's number `prefix`.
 - `QString QTextListFormat::numberSuffix() const`: Returns the list format's number `suffix`.
 - `void QTextListFormat::setIndent(int indentation)`: Sets the list format's `indentation`. The indentation is multiplied by the `QTextDocument::indentWidth` property to get the effective `indent` in pixels.
-- `void QTextListFormat::setNumberPrefix(const QString & numberPrefix)`: Sets the list format's number `prefix` to the string specified by `numberPrefix`. This can be used with all sorted list types. It does not have any effect on unsorted list types. The default prefix is an empty string.
-- `void QTextListFormat::setNumberSuffix(const QString & numberSuffix)`: Sets the list format's number suffix to the string specified by `numberSuffix`. This can be used with all sorted list types. It does not have any effect on unsorted list types. The default suffix is `.`.
+- `void QTextListFormat::setNumberPrefix(const QString & numberPrefix)`: Sets the list format's number `prefix` to the string specified by `numberPrefix`. This can be used with all sorted list types. It does not have any effect on unsorted list types. The default prefix is an empty string.
+- `void QTextListFormat::setNumberSuffix(const QString & numberSuffix)`: Sets the list format's number suffix to the string specified by `numberSuffix`. This can be used with all sorted list types. It does not have any effect on unsorted list types. The default suffix is `.`.
 - `void QTextListFormat::setStyle(Style style)`: Sets the list format's `style`.
 - `Style QTextListFormat::style() const`: Returns the list format's style.

@@ -1,13 +1,12 @@
 ---
 title: Sobel算子
 categories: opencv和图像处理
-abbrlink: acf1e423
 date: 2019-03-06 22:39:24
 ---
 &emsp;&emsp;`Sobel`算子依然是一种过滤器，只是其是带有方向的。在`OpenCV`中，使用`Sobel`算子的函数原型如下：<!--more-->
 
 ``` python
-dst = cv2.Sobel(src, ddepth, dx, dy [, dst [, ksize [, scale [, delta [, borderType]]]]])  
+dst = cv2.Sobel(src, ddepth, dx, dy [, dst [, ksize [, scale [, delta [, borderType]]]]])
 ```
 
 - `src`：需要处理的图像；
@@ -20,21 +19,21 @@ dst = cv2.Sobel(src, ddepth, dx, dy [, dst [, ksize [, scale [, delta [, borderT
 
 ``` python
 import cv2
-​
+
 img = cv2.imread("test.jpg", 0)
-​
+
 x = cv2.Sobel(img, cv2.CV_16S, 1, 0)
 y = cv2.Sobel(img, cv2.CV_16S, 0, 1)
-​
+
 absX = cv2.convertScaleAbs(x)
 absY = cv2.convertScaleAbs(y)
-​
+
 dst = cv2.addWeighted(absX, 0.5, absY, 0.5, 0)
-​
+
 cv2.imshow("absX", absX)
 cv2.imshow("absY", absY)
 cv2.imshow("Result", dst)
-​
+
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 ```
@@ -51,7 +50,7 @@ dst = cv2.convertScaleAbs(src[, dst[, alpha[, beta]]])
 参数`alpha`是伸缩系数，`beta`是加到结果上的一个值，该函数返回`uint8`类型的图片。由于`Sobel`算子是在两个方向计算的，最后还需要用`cv2.addWeighted`函数将其组合起来：
 
 ``` python
-dst = cv2.addWeighted(src1, alpha, src2, beta, gamma[, dst[, dtype]])  
+dst = cv2.addWeighted(src1, alpha, src2, beta, gamma[, dst[, dtype]])
 ```
 
 其中`alpha`是第一幅图片中元素的权重，`beta`是第二幅图片中元素的权重，`gamma`是加到最后结果上的一个值。

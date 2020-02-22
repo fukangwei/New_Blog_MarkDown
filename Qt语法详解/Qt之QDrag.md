@@ -1,7 +1,6 @@
 ---
 title: Qt之QDrag
 categories: Qt语法详解
-abbrlink: '3753e918'
 date: 2019-01-22 18:17:51
 ---
 &emsp;&emsp;The `QDrag` class provides support for `MIME-based` drag and drop data transfer.<!--more-->
@@ -42,7 +41,7 @@ Return           | Function
 ``` cpp
 QDrag *drag = new QDrag ( this );
 QMimeData *mimeData = new QMimeData;
-​
+
 mimeData->setText ( commentEdit->toPlainText() );
 drag->setMimeData ( mimeData );
 ```

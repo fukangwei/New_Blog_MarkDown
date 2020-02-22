@@ -1,7 +1,6 @@
 ---
 title: getopts简介
 categories: Shell编程
-abbrlink: 5d948048
 date: 2019-01-20 06:40:00
 ---
 &emsp;&emsp;由于`shell`命令行的灵活性，自己编写代码判断时，复杂度会比较高。使用内部命令`getopts`可以很方便地处理命令行参数。<!--more-->
@@ -14,7 +13,7 @@ getopts options variable
 
 ``` bash
 #!/bin/bash
-​
+
 while getopts h:ms option
 do
     case "$option" in
@@ -39,7 +38,7 @@ do
             ;;
     esac
 done
-​
+
 echo "*** do something now ***"
 ```
 
@@ -54,7 +53,7 @@ next arg index:3
 option:s
 next arg index:4
 *** do something now ***
-​
+
 $ ./args -t
 ./args: illegal option -- t
 Usage: args [-h n] [-m] [-s]

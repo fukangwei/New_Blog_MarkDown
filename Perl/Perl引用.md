@@ -1,7 +1,6 @@
 ---
 title: Perl引用
 categories: Perl
-abbrlink: 96a446fa
 date: 2018-12-18 17:35:04
 ---
 &emsp;&emsp;引用就是指针，`Perl`引用是一个标量类型可以指向变量、数组、哈希表甚至子程序，可以应用在程序的任何地方。<!--more-->
@@ -54,10 +53,10 @@ $coderef = sub {print "Runoob!\n"};
 $var = 10;
 $r = \$var;  # “$r”引用“$var”标量
 print "$var为：", $$r, "\n";  # 输出本地存储的“$r”的变量值
-​
+
 @var = (1, 2, 3);
 $r = \@var;  # “$r”引用“@var”数组
-print "@var为：",  @$r, "\n";  # 输出本地存储的“$r”的变量值
+print "@var为：", @$r, "\n";  # 输出本地存储的“$r”的变量值
 
 %var = ('key1' => 10, 'key2' => 20);
 $r = \%var;  # “$r”引用“%var”数组
@@ -115,12 +114,12 @@ print "Value of foo is : ", $$foo, "\n";
 ``` perl
 sub PrintHash {
     my (%hash) = @_;
-​
+
     foreach $item (%hash) {
         print "元素：$item\n";
     }
 }
-​
+
 %hash = ( 'name' => 'runoob', 'age' => 3 );
 
 $cref = \&PrintHash;  # 创建函数的引用

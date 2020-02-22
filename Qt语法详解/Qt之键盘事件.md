@@ -1,7 +1,6 @@
 ---
 title: Qt之键盘事件
 categories: Qt语法详解
-abbrlink: d547bbce
 date: 2019-03-16 18:57:05
 ---
 &emsp;&emsp;在`Qt`中，可以使用`void QWidget::keyPressEvent ( QKeyEvent * event )`来进行键盘响应：<!--more-->
@@ -25,9 +24,9 @@ void Widget::keyPressEvent ( QKeyEvent *event ) {
 ``` cpp
 #ifndef MYLINEEDIT_H
 #define MYLINEEDIT_H
-​
+
 #include <QLineEdit>
-​
+
 class MyLineEdit : public QLineEdit {
     Q_OBJECT
 public:
@@ -37,7 +36,7 @@ protected:
 signals:
 public slots:
 };
-​
+
 #endif // MYLINEEDIT_H
 ```
 
@@ -46,15 +45,15 @@ public slots:
 ``` cpp
 #ifndef WIDGET_H
 #define WIDGET_H
-​
+
 #include <QWidget>
-​
+
 namespace Ui {
     class Widget;
 }
-​
+
 class MyLineEdit;
-​
+
 class Widget : public QWidget {
     Q_OBJECT
 public:
@@ -66,7 +65,7 @@ private:
     Ui::Widget *ui;
     MyLineEdit *lineEdit;
 };
-​
+
 #endif // WIDGET_H
 ```
 
@@ -78,18 +77,18 @@ private:
 #include "mylineedit.h"
 #include <QKeyEvent>
 #include <QDebug>
-​
+
 Widget::Widget ( QWidget *parent ) : QWidget ( parent ),
     ui ( new Ui::Widget ) {
     ui->setupUi ( this );
     lineEdit = new MyLineEdit ( this );
     lineEdit->move ( 100, 100 );
 }
-​
+
 Widget::~Widget() {
     delete ui;
 }
-​
+
 void Widget::keyPressEvent ( QKeyEvent *event ) {
     qDebug() << tr ( "Widget键盘按下事件" );
 }
@@ -101,10 +100,10 @@ void Widget::keyPressEvent ( QKeyEvent *event ) {
 #include "mylineedit.h"
 #include <QKeyEvent>
 #include <QDebug>
-​
+
 MyLineEdit::MyLineEdit ( QWidget *parent ) : QLineEdit ( parent ) {
 }
-​
+
 void MyLineEdit::keyPressEvent ( QKeyEvent *event ) { /* 键盘按下事件 */
     qDebug() << tr ( "MyLineEdit键盘按下事件" );
     QLineEdit::keyPressEvent ( event ); /* 执行QLineEdit类的默认事件处理 */
@@ -122,13 +121,13 @@ void MyLineEdit::keyPressEvent ( QKeyEvent *event ) { /* 键盘按下事件 */
 ``` cpp
 #ifndef WIDGET_H
 #define WIDGET_H
-​
+
 #include <QWidget>
-​
+
 namespace Ui {
     class Widget;
 }
-​
+
 class Widget : public QWidget {
     Q_OBJECT
 public:
@@ -143,7 +142,7 @@ private:
     bool keyLeft; /* 向左方向键按下的标志 */
     bool move; /* 是否完成了一次移动 */
 };
-​
+
 #endif // WIDGET_H
 ```
 
@@ -154,7 +153,7 @@ private:
 #include "ui_widget.h"
 #include <QKeyEvent>
 #include <QDebug>
-​
+
 Widget::Widget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::Widget ) {
     ui->setupUi ( this );
     setFocus(); /* 使主界面获得焦点 */
@@ -163,42 +162,42 @@ Widget::Widget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::Widget ) {
     keyLeft = false;
     move = false;
 }
-​
+
 Widget::~Widget() {
     delete ui;
 }
-​
+
 /* 键盘按下事件 */
 void Widget::keyPressEvent ( QKeyEvent *event ) {
     if ( event->key() == Qt::Key_Up ) {
         if ( event->isAutoRepeat() ) { /* 按键重复时不做处理 */
             return;
         }
-​
+
         keyUp = true; /* 标记向上方向键已经按下 */
     } else if ( event->key() == Qt::Key_Left ) {
         if ( event->isAutoRepeat() ) {
             return;
         }
-​
+
         keyLeft = true;
     }
 }
-​
+
 /* 按键释放事件 */
 void Widget::keyReleaseEvent ( QKeyEvent *event ) {
     if ( event->key() == Qt::Key_Up ) {
         if ( event->isAutoRepeat() ) {
             return;
         }
-​
+
         keyUp = false; /* 释放按键后将标志设置为false */
-​
+
         if ( move ) { /* 如果已经完成了移动 */
             move = false; /* 设置标志为false */
             return;
         }
-​
+
         if ( keyLeft ) { /* 如果向左方向键已经按下且没有释放 */
             ui->pushButton->move ( 30, 80 ); /* 斜移 */
             move = true; /* 标记已经移动 */
@@ -209,14 +208,14 @@ void Widget::keyReleaseEvent ( QKeyEvent *event ) {
         if ( event->isAutoRepeat() ) {
             return;
         }
-​
+
         keyLeft = false;
-​
+
         if ( move ) {
             move = false;
             return;
         }
-​
+
         if ( keyUp ) {
             ui->pushButton->move ( 30, 80 );
             move = true;
@@ -245,7 +244,7 @@ void Widget::keyPressEvent ( QKeyEvent *event ) { /* 键盘按下事件 */
         QWidget::keyPressEvent ( event );
     }
 }
-​
+
 void Widget::keyReleaseEvent ( QKeyEvent *event ) { /* 按键释放事件 */
     /* 其他操作 */
 }

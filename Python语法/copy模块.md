@@ -1,7 +1,6 @@
 ---
 title: copy模块
 categories: Python语法
-abbrlink: ff102f4b
 date: 2019-03-02 18:52:20
 ---
 &emsp;&emsp;直接赋值其实就是对象的引用(`别名`)；浅拷贝就是拷贝父对象，不会拷贝对象的内部的子对象；深拷贝(`deepcopy`)借助`copy`模块的`deepcopy`方法，完全拷贝了父对象及其子对象。<!--more-->
@@ -45,7 +44,7 @@ date: 2019-03-02 18:52:20
 
 ``` python
 import copy
-​
+
 a = [1, 2, 3, 4, ['a', 'b']]  # 原始对象
 b = a  # 赋值，传对象的引用
 c = copy.copy(a)  # 对象拷贝，浅拷贝

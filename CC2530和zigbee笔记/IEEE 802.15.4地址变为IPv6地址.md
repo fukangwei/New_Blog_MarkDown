@@ -1,7 +1,6 @@
 ---
 title: IEEE 802.15.4地址变为IPv6地址
 categories: CC2530和zigbee笔记
-abbrlink: 6d80a9f0
 date: 2019-03-12 09:58:01
 ---
 ### MAC48地址变为IPv6地址

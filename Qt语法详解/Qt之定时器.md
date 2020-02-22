@@ -1,7 +1,6 @@
 ---
 title: Qt之定时器
 categories: Qt语法详解
-abbrlink: a819cd2a
 date: 2019-01-23 20:44:20
 ---
 &emsp;&emsp;`Qt`使用定时器有两种方法，一种是使用`QObiect`类的定时器，一种是使用`QTimer`类。定时器的精确性依赖于操作系统和硬件，大多数平台支持`20ms`的精确度。<!--more-->
@@ -29,18 +28,18 @@ protected:
     void timerEvent ( QTimerEvent *event );
     int m_nTimerId;
 };
-​
+
 /* 源文件 */
 QNewObject::QNewObject ( QObject *parent ) : QNewObject ( parent ) {
     m_nTimerId = startTimer ( 1000 );
 }
-​
+
 QNewObject::~QNewObject() {
     if ( m_nTimerId != 0 ) {
         killTimer ( m_nTimerId );
     }
 }
-​
+
 voidQNewObject::timerEvent ( QTimerEvent *event ) {
     qDebug ( "timer event, id %d", event->timerId() );
 }
@@ -55,7 +54,7 @@ QTimer *testTimer = newQTimer ( this ); /* 创建定时器 */
 /* 将定时器超时信号与槽(功能函数)联系起来 */
 connect ( testTimer, SIGNAL ( timeout() ), this, SLOT ( testFunction() ) );
 testTimer->start ( 1000 ); /* 开始运行定时器，定时时间间隔为1000ms */
-​
+
 if ( testTimer->isActive() ) { /* 停止运行定时器 */
     testTimer->stop();
 }
@@ -72,13 +71,13 @@ QTimer::singleShot ( 100, this, SLOT ( animateTimeout() ) );
 ``` cpp
 #ifndef WIDGET_H
 #define WIDGET_H
-​
+
 #include <QWidget>
-​
+
 namespace Ui {
     class Widget;
 }
-​
+
 class Widget : public QWidget {
     Q_OBJECT
 public:
@@ -92,7 +91,7 @@ private:
     Ui::Widget *ui;
     int id1, id2, id3;
 };
-​
+
 #endif // WIDGET_H
 ```
 
@@ -104,7 +103,7 @@ private:
 #include <QDebug>
 #include <QTimer>
 #include <QTime>
-​
+
 Widget::Widget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::Widget ) {
     ui->setupUi ( this );
     /* 开启一个1秒定时器，返回其ID */
@@ -120,11 +119,11 @@ Widget::Widget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::Widget ) {
     /* singleShot函数用来开启一个只运行一次的定时器。该代码的作用是让程序运行10秒后自动关闭。*/
     QTimer::singleShot ( 10000, this, SLOT ( close() ) );
 }
-​
+
 Widget::~Widget() {
     delete ui;
 }
-​
+
 void Widget::timerEvent ( QTimerEvent *event ) {
     /* 判断是哪个定时器 */
     if ( event->timerId() == id1 ) {
@@ -135,16 +134,16 @@ void Widget::timerEvent ( QTimerEvent *event ) {
         qDebug() << "timer3";
     }
 }
-​
+
 void Widget::timerUpdate() { /* 定时器溢出处理 */
     QTime time = QTime::currentTime(); /* 获取当前时间 */
     QString text = time.toString ( "hh:mm" ); /* 转换为字符串 */
-​
+
     /* 注意单引号间要输入一个空格。每隔一秒就将“:”显示为空格 */
     if ( ( time.second() % 2 ) == 0 ) {
         text[2] = ' ';
     }
-​
+
     ui->lcdNumber->display ( text );
     int rand = qrand() % 300; /* 产生300以内的正整数 */
     ui->lcdNumber->move ( rand, rand );

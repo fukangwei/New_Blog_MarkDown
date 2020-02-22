@@ -1,7 +1,6 @@
 ---
 title: Tf.reduce类函数
 categories: 深度学习
-abbrlink: 97189acf
 date: 2019-02-13 14:52:25
 ---
 ### tf.reduce_max(tf.reduce_min相对)
@@ -81,7 +80,7 @@ print(y.shape)
   [55. 66. 77.]]]
 (1, 2, 3)
 ----------
-[[[ 4.  5.  6.]]
+[[[ 4.  5.  6.]]
 
 [[55. 66. 77.]]]
 (2, 1, 3)
@@ -105,7 +104,7 @@ reduce_mean(
 )
 ```
 
-Defined in `tensorflow/python/ops/math_ops.py`. Computes the mean of elements across dimensions of a tensor (deprecated arguments).
+Defined in `tensorflow/python/ops/math_ops.py`. Computes the mean of elements across dimensions of a tensor (deprecated arguments).
 &emsp;&emsp;`SOME ARGUMENTS ARE DEPRECATED!` They will be removed in a future version. Instructions for updating: `keep_dims` is deprecated, use `keepdims` instead.
 &emsp;&emsp;Reduces `input_tensor` along the dimensions given in `axis`. Unless `keepdims` is `true`, the rank of the tensor is reduced by `1` for each entry in `axis`. If `keepdims` is `true`, the reduced dimensions are retained with length `1`.
 &emsp;&emsp;If `axis` has no entries, all dimensions are reduced, and a tensor with a single element is returned.
@@ -124,7 +123,7 @@ tf.reduce_mean(x, 1)  # [1.,  2.]
 - `reduction_indices`: The old (deprecated) name for `axis`.
 - `keep_dims`: Deprecated alias for `keepdims`.
 
-Return the reduced tensor. Equivalent to `np.mean`.
+Return the reduced tensor. Equivalent to `np.mean`.
 &emsp;&emsp;Please note that `np.mean` has a `dtype` parameter that could be used to specify the output type. By default this is `dtype=float64`. On the other hand, `tf.reduce_mean` has an aggressive type inference from `input_tensor`:
 
 ``` python
@@ -141,7 +140,7 @@ tf.reduce_mean(y)  # 0.5
 ``` python
 reduce_sum(
     input_tensor, axis=None, keep_dims=False,
-    name=None, reduction_indices=None
+    name=None, reduction_indices=None
 )
 ```
 

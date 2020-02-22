@@ -1,7 +1,6 @@
 ---
 title: EventEmitter类
 categories: Node.js笔记
-abbrlink: afedc052
 date: 2019-02-08 16:21:34
 ---
 &emsp;&emsp;`Node.js`所有的异步`I/O`操作在完成时，都会发送一个事件到事件队列。`Node.js`里面的许多对象都会分发事件：一个`net.Server`对象会在每次有新连接时触发一个事件，一个`fs.readStream`对象会在文件被打开的时候触发一个事件。所有这些产生事件的对象都是`events.EventEmitter`的实例。<!--more-->
@@ -21,11 +20,11 @@ var eventEmitter = new events.EventEmitter(); /* 创建eventEmitter对象 */
 ``` javascript
 var EventEmitter = require('events').EventEmitter;
 var event = new EventEmitter();
-​
+
 event.on('some_event', function() {
     console.log('some_event事件触发');
 });
-​
+
 setTimeout(function() {
     event.emit('some_event');
 }, 1000);
@@ -38,15 +37,15 @@ setTimeout(function() {
 ``` javascript
 var events = require('events');
 var emitter = new events.EventEmitter();
-​
+
 emitter.on('someEvent', function(arg1, arg2) {
     console.log('listener1', arg1, arg2);
 });
-​
+
 emitter.on('someEvent', function(arg1, arg2) {
     console.log('listener2', arg1, arg2);
 });
-​
+
 emitter.emit('someEvent', 'arg1参数', 'arg2参数');
 ```
 
@@ -86,7 +85,7 @@ server.once('connection', function (stream) {
 var callback = function(stream) {
     console.log('someone connected!');
 };
-​
+
 server.on('connection', callback);
 /* ... */
 server.removeListener('connection', callback);
@@ -109,29 +108,29 @@ emit(event [, arg1] [, arg2] [, ...])
 ``` javascript
 var events = require('events');
 var eventEmitter = new events.EventEmitter();
-​
+
 var listener1 = function listener1() { // 监听器#1
     console.log('监听器listener1执行');
 }
-​
+
 var listener2 = function listener2() { // 监听器#2
     console.log('监听器listener2执行');
 }
-​
+
 eventEmitter.addListener('connection', listener1); // 绑定connection事件，处理函数为listener1
 eventEmitter.on('connection', listener2); // 绑定connection事件，处理函数为listener2
-​
+
 var eventListeners = require('events').EventEmitter.listenerCount(eventEmitter, 'connection');
 console.log(eventListeners + "个监听器监听连接事件");
-​
+
 eventEmitter.emit('connection'); // 处理connection事件
 eventEmitter.removeListener('connection', listener1); // 移除监绑定的listener1函数
 console.log("listener1不再受监听");
 eventEmitter.emit('connection'); // 触发连接事件
-​
+
 eventListeners = require('events').EventEmitter.listenerCount(eventEmitter, 'connection');
 console.log(eventListeners + "个监听器监听连接事件");
-​
+
 console.log("程序执行完毕");
 ```
 

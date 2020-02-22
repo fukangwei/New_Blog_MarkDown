@@ -1,7 +1,6 @@
 ---
 title: ImageView图像视图
 categories: Android
-abbrlink: 4336761f
 date: 2019-02-08 18:05:41
 ---
 &emsp;&emsp;在`API`文档中，我们发现`ImageView`有两个可以设置图片的属性，分别是`src`和`background`。它们之间的区别如下：<!--more-->

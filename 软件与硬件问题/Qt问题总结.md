@@ -1,7 +1,6 @@
 ---
 title: Qt问题总结
 categories: 软件与硬件问题
-abbrlink: 58bbbfd6
 date: 2019-03-01 17:24:52
 ---
 ### undefined reference to vtable

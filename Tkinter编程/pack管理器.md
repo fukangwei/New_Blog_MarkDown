@@ -1,7 +1,6 @@
 ---
 title: pack管理器
 categories: Tkinter编程
-abbrlink: 23d83996
 date: 2019-03-31 08:25:05
 ---
 &emsp;&emsp;`pack`、`grid`和`place`均用于管理同在一个父组件下的所有组件的布局：<!--more-->
@@ -20,15 +19,15 @@ date: 2019-03-31 08:25:05
 
 ``` python
 from tkinter import *
-​
+
 root = Tk()
-​
+
 listbox = Listbox(root)
 listbox.pack(fill=BOTH, expand=True)
-​
+
 for i in range(10):
     listbox.insert(END, str(i))
-​
+
 mainloop()
 ```
 
@@ -38,13 +37,13 @@ mainloop()
 
 ``` python
 from tkinter import *
-​
+
 root = Tk()
-​
+
 Label(root, text="Red", bg="red", fg="white").pack(fill=X)
 Label(root, text="Green", bg="green", fg="black").pack(fill=X)
 Label(root, text="Blue", bg="blue", fg="white").pack(fill=X)
-​
+
 mainloop()
 ```
 
@@ -54,13 +53,13 @@ mainloop()
 
 ``` python
 from tkinter import *
-​
+
 root = Tk()
-​
+
 Label(root, text="Red", bg="red", fg="white").pack(side=LEFT)
 Label(root, text="Green", bg="green", fg="black").pack(side=LEFT)
 Label(root, text="Blue", bg="blue", fg="white").pack(side=LEFT)
-​
+
 mainloop()
 ```
 
@@ -74,7 +73,7 @@ mainloop()
 
 选项     | 含义
 ---------|-----
-`anchor` | 控制组件在`pack`分配的空间中的位置，可以使用`N`、`NE`、`E`、`SE`、`S`、`SW`、`W`、`NW`或`CENTER`来定位(`EWSN`代表东西南北，上北下南左西右东)，默认值是`CENTER`
+`anchor` | 控制组件在`pack`分配的空间中的位置，可以使用`N`、`NE`、`E`、`SE`、`S`、`SW`、`W`、`NW`或`CENTER`来定位(`EWSN`代表东西南北，上北下南左西右东)，默认值是`CENTER`
 `expand` | 指定是否填充父组件的额外空间，默认值是`False`
 `fill`   | 指定填充`pack`分配的空间，默认值是`NONE`，表示保持子组件的原始尺寸。还可以使用的值有：`X`(水平填充)、`Y`(垂直填充)和`BOTH`(水平和垂直填充)
 `in_`    | 将该组件放到该选项指定的组件中，指定的组件必须是该组件的父组件

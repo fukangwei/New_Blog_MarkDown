@@ -1,7 +1,6 @@
 ---
 title: ARM基础教程
 categories: 嵌入式笔记
-abbrlink: '82168272'
 date: 2019-03-20 09:42:52
 ---
 ### ARM工作模式

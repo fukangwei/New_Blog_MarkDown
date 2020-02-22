@@ -1,7 +1,6 @@
 ---
 title: Qt之打印pdf文档
 categories: Qt应用示例
-abbrlink: 37a5a65c
 date: 2019-02-06 13:47:27
 ---
 &emsp;&emsp;`mainwindow.h`如下：<!--more-->
@@ -9,13 +8,13 @@ date: 2019-02-06 13:47:27
 ``` cpp
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-​
+
 #include <QMainWindow>
-​
+
 namespace Ui {
     class MainWindow;
 }
-​
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
@@ -29,7 +28,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
 };
-​
+
 #endif // MAINWINDOW_H
 ```
 
@@ -43,7 +42,7 @@ private:
 #include <QPrintPreviewDialog>
 #include <QFileDialog>
 #include <QFileInfo>
-​
+
 MainWindow::MainWindow ( QWidget *parent ) : QMainWindow ( parent ), ui ( new Ui::MainWindow ) {
     ui->setupUi ( this );
     QAction *action_print = new QAction ( tr ( "打印" ), this );
@@ -56,24 +55,24 @@ MainWindow::MainWindow ( QWidget *parent ) : QMainWindow ( parent ), ui ( new Ui
     ui->mainToolBar->addAction ( action_printPreview );
     ui->mainToolBar->addAction ( action_pdf );
 }
-​
+
 MainWindow::~MainWindow() {
     delete ui;
 }
-​
+
 void MainWindow::doPrint() { /* 打印文档 */
     QPrinter printer; /* 创建打印机对象 */
     QPrintDialog dlg ( &printer, this ); /* 创建打印对话框 */
-​
+
     if ( ui->textEdit->textCursor().hasSelection() ) { /* 如果编辑器中有选中区域，则打印选中区域 */
         dlg.addEnabledOption ( QAbstractPrintDialog::PrintSelection );
     }
-​
+
     if ( dlg.exec() == QDialog::Accepted ) { /* 如果在对话框中按下了打印按钮，则执行打印操作 */
         ui->textEdit->print ( &printer );
     }
 }
-​
+
 void MainWindow::doPrintPreview() { /* 打印预览 */
     QPrinter printer;
     QPrintPreviewDialog preview ( &printer, this ); /* 创建打印预览对话框 */
@@ -82,19 +81,19 @@ void MainWindow::doPrintPreview() { /* 打印预览 */
               this, SLOT ( printPreview ( QPrinter * ) ) );
     preview.exec();
 }
-​
+
 void MainWindow::printPreview ( QPrinter *printer ) {
     ui->textEdit->print ( printer );
 }
-​
+
 void MainWindow::createPdf() { /* 生成PDF文件 */
     QString fileName = QFileDialog::getSaveFileName ( this, tr ( "导出PDF文件" ), QString(), "*.pdf" );
-​
+
     if ( !fileName.isEmpty() ) {
         if ( QFileInfo ( fileName ).suffix().isEmpty() ) { /* 如果文件后缀为空，则默认使用“.pdf” */
             fileName.append ( ".pdf" );
         }
-​
+
         QPrinter printer;
         printer.setOutputFormat ( QPrinter::PdfFormat ); /* 指定输出格式为pdf */
         printer.setOutputFileName ( fileName );

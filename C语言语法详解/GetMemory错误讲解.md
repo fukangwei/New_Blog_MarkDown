@@ -1,7 +1,6 @@
 ---
 title: GetMemory错误讲解
 categories: C语言语法详解
-abbrlink: dea5c46c
 date: 2018-12-06 14:54:53
 ---
 &emsp;&emsp;错误程序如下：<!--more-->

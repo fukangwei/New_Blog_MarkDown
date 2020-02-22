@@ -1,7 +1,6 @@
 ---
 title: csv模块
 categories: Python语法
-abbrlink: 5eb068fe
 date: 2019-02-24 13:21:56
 ---
 &emsp;&emsp;逗号分隔值(`Comma Separated Values`，有时也称为`字符分隔值`，因为分隔字符也可以不是逗号)，其文件以纯文本形式存储表格数据(数字和文本)。`CSV`文件由任意数目的记录组成，记录间以某种换行符分隔；每条记录由字段组成，字段间的分隔符是其它字符或字符串，最常见的是逗号或制表符。通常，所有记录都有完全相同的字段序列。<!--more-->
@@ -36,7 +35,6 @@ date: 2019-02-24 13:21:56
 - `csv.reader(csvfile, dialect='excel', **fmtparams)`: Return a reader object which will iterate over lines in the given `csvfile`. `csvfile` can be any object which supports the iterator protocol and returns a string each time its `__next__()` method is called: file objects and list objects are both suitable. If `csvfile` is a file object, it should be opened with `newline=''`. An optional `dialect` parameter can be given which is used to define a set of parameters specific to a particular `CSV` `dialect`. It may be an instance of a subclass of the Dialect class or one of the strings returned by the `list_dialects()` function. The other optional `fmtparams` keyword arguments can be given to override individual formatting parameters in the current `dialect`.
 
 &emsp;&emsp;Each row read from the csv file is returned as a list of strings. No automatic data type conversion is performed unless the `QUOTE_NONNUMERIC` format option is specified (in which case unquoted fields are transformed into floats).
-&emsp;&emsp;A short usage example:
 
 ``` python
 >>> import csv
@@ -50,11 +48,9 @@ Spam, Lovely Spam, Wonderful Spam
 
 - `csv.writer(csvfile, dialect='excel', **fmtparams)`: Return a writer object responsible for converting the user's data into delimited strings on the given `file-like` object. `csvfile` can be any object with a `write()` method. If `csvfile` is a file object, it should be opened with `newline=''`. An optional `dialect` parameter can be given which is used to define a set of parameters specific to a particular `CSV` `dialect`. It may be an instance of a subclass of the `Dialect` class or one of the strings returned by the `list_dialects()` function. The other optional `fmtparams` keyword arguments can be given to override individual formatting parameters in the current `dialect`. To make it as easy as possible to interface with modules which implement the `DB API`, the value `None` is written as the empty string. While this isn't a reversible transformation, it makes it easier to dump `SQL NULL` data values to `CSV` files without preprocessing the data returned from a `cursor.fetch*` call. All other `non-string` data are stringified with `str()` before being written.
 
-&emsp;&emsp;A short usage example:
-
 ``` python
 import csv
-​
+
 with open('eggs.csv', 'w', newline='') as csvfile:
     spamwriter = csv.writer(csvfile, delimiter=' ', quotechar='|', quoting=csv.QUOTE_MINIMAL)
     spamwriter.writerow(['Spam'] * 5 + ['Baked Beans'])
@@ -74,14 +70,13 @@ with open('eggs.csv', 'w', newline='') as csvfile:
 &emsp;&emsp;The `fieldnames` parameter is a sequence. If `fieldnames` is omitted, the values in the first row of file `f` will be used as the `fieldnames`. Regardless of how the `fieldnames` are determined, the ordered dictionary preserves their original ordering.
 &emsp;&emsp;If a row has more fields than `fieldnames`, the remaining data is put in a list and stored with the fieldname specified by `restkey` (which defaults to `None`). If a `non-blank` row has fewer fields than `fieldnames`, the missing values are `filled-in` with `None`.
 &emsp;&emsp;All other optional or keyword arguments are passed to the underlying reader instance.
-&emsp;&emsp;A short usage example:
 
 ``` python
 >>> import csv
 >>> with open('names.csv', newline='') as csvfile:
-...     reader = csv.DictReader(csvfile)
-...     for row in reader:
-...         print(row['first_name'], row['last_name'])
+...     reader = csv.DictReader(csvfile)
+...     for row in reader:
+...         print(row['first_name'], row['last_name'])
 ...
 Eric Idle
 John Cleese
@@ -92,11 +87,10 @@ OrderedDict([('first_name', 'John'), ('last_name', 'Cleese')])
 - `class csv.DictWriter(f, fieldnames, restval='', extrasaction='raise', dialect='excel', *args, **kwds)`: Create an object which operates like a regular writer but maps dictionaries onto output rows. The `fieldnames` parameter is a sequence of keys that identify the order in which values in the dictionary passed to the `writerow()` method are written to file `f`. The optional `restval` parameter specifies the value to be written if the dictionary is missing a key in `fieldnames`. If the dictionary passed to the `writerow()` method contains a key not found in `fieldnames`, the optional `extrasaction` parameter indicates what action to take. If it is set to `raise`, the default value, a `ValueError` is raised. If it is set to `ignore`, extra values in the dictionary are ignored. Any other optional or keyword arguments are passed to the underlying writer instance.
 
 &emsp;&emsp;Note that unlike the `DictReader` class, the `fieldnames` parameter of the `DictWriter` is not optional. Since `Python's` dict objects are not ordered, there is not enough information available to deduce the order in which the row should be written to file `f`.
-&emsp;&emsp;A short usage example:
 
 ``` python
 import csv
-​
+
 with open('names.csv', 'w', newline='') as csvfile:
     fieldnames = ['first_name', 'last_name']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -214,7 +208,7 @@ Write all the rows parameters (a list of row objects as described above) to the 
 
 ``` python
 import csv
-​
+
 with open('some.csv', newline='') as f:
     reader = csv.reader(f)
 
@@ -226,7 +220,7 @@ Reading a file with an alternate format:
 
 ``` python
 import csv
-​
+
 with open('passwd', newline='') as f:
     reader = csv.reader(f, delimiter=':', quoting=csv.QUOTE_NONE)
 
@@ -238,7 +232,7 @@ The corresponding simplest possible writing example is:
 
 ``` python
 import csv
-​
+
 with open('some.csv', 'w', newline='') as f:
     writer = csv.writer(f)
     writer.writerows(someiterable)
@@ -248,7 +242,7 @@ Since `open()` is used to open a `CSV` file for reading, the file will by defaul
 
 ``` python
 import csv
-​
+
 with open('some.csv', newline='', encoding='utf-8') as f:
     reader = csv.reader(f)
 
@@ -261,7 +255,7 @@ The same applies to writing in something other than the system default encoding:
 
 ``` python
 import csv
-​
+
 csv.register_dialect('unixpwd', delimiter=':', quoting=csv.QUOTE_NONE)
 with open('passwd', newline='') as f:
     reader = csv.reader(f, 'unixpwd')
@@ -271,7 +265,7 @@ A slightly more advanced use of the reader -- catching and reporting errors:
 
 ``` python
 import csv, sys
-​
+
 filename = 'some.csv'
 
 with open(filename, newline='') as f:
@@ -288,9 +282,9 @@ And while the module doesn't directly support parsing strings, it can easily be 
 
 ``` python
 import csv
-​
+
 for row in csv.reader(['one,two,three']):
-    print(row)
+    print(row)
 ```
 
 &emsp;&emsp;**Footnotes**: If `newline=''` is not specified, newlines embedded inside quoted fields will not be interpreted correctly, and on platforms that use `\r\n` linendings on write an extra `\r` will be added. It should always be safe to specify `newline=''`, since the csv module does its own (universal) newline handling.

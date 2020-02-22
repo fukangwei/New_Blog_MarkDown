@@ -1,6 +1,5 @@
 ---
 title: IP数据报格式详解
-abbrlink: f6f7d40f
 date: 2019-03-13 20:14:07
 categories: 网络编程
 ---

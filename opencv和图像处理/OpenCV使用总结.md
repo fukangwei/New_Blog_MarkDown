@@ -1,7 +1,6 @@
 ---
 title: OpenCV使用总结
 categories: opencv和图像处理
-abbrlink: 6f05000e
 date: 2018-12-30 14:31:59
 ---
 ### saturate_cast的作用
@@ -22,8 +21,8 @@ if ( data < 0 ) {
 for ( int i = 0; i < src1.rows; i++ ) {
     const uchar *src1_ptr = src1.ptr<uchar> ( i );
     const uchar *src2_ptr = src2.ptr<uchar> ( i );
-    uchar *dst_ptr  = dst.ptr<uchar> ( i );
-​
+    uchar *dst_ptr = dst.ptr<uchar> ( i );
+
     for ( int j = 0; j < src1.cols * nChannels; j++ ) {
         /* 加入保护 */
         dst_ptr[j] = saturate_cast<uchar> ( src1_ptr[j] * alpha + src2_ptr[j] * beta + gama );

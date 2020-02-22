@@ -1,7 +1,6 @@
 ---
 title: Qt之QMainWindow
 categories: Qt语法详解
-abbrlink: 91b081f2
 date: 2019-03-18 15:59:28
 ---
 ### 主窗口简介
@@ -58,17 +57,17 @@ tb->addAction ( action ); /* 将工具栏选项加入工具栏 */
 ``` cpp
 QToolBar *tb = addToolBar ( "Tool Bar" );
 QAction *action = new QAction ( "", NULL );
-​
+
 tb->setFloatable ( false );
 tb->setMovable ( false );
 action->setToolTip ( "Open" );
 action->setIcon ( QIcon ( ":/Res/open.png" ) );
 tb->addAction ( action );
-​
+
 QPushButton *b = new QPushButton ( "Button" );
 QLabel *l = new QLabel ( "Label" );
 QLineEdit *e = new QLineEdit();
-​
+
 tb->addWidget ( b );
 tb->addWidget ( l );
 tb->addWidget ( e );
@@ -96,11 +95,11 @@ tb->addWidget ( e );
 ``` cpp
 QStatusBar *sb = statusBar();
 QLabel *label = new QLabel ( "CopyRight @ Scorpio Studio 2016" );
-​
+
 if ( label != NULL ) {
     line.setMinimumWidth ( 120 );
     line.setAlignment ( Qt::AlignCenter );
-    line.setText ( "Ln: 1    Col: 1" );
+    line.setText ( "Ln: 1    Col: 1" );
     label->setMinimumWidth ( 160 );
     label->setAlignment ( Qt::AlignCenter );
     sb->addPermanentWidget ( new QLabel() );

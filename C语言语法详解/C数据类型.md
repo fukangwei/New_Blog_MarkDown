@@ -1,7 +1,6 @@
 ---
 title: C数据类型
 categories: C语言语法详解
-abbrlink: 41608
 date: 2019-10-01 21:57:29
 ---
 ### 整数类型

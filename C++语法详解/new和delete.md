@@ -1,7 +1,6 @@
 ---
 title: new和delete
 categories: C++语法详解
-abbrlink: 56c2f768
 date: 2019-02-07 10:44:54
 ---
 &emsp;&emsp;In the `C++` programming language, `new` and `delete` are a pair of language constructs that perform dynamic memory allocation, object construction and object destruction.<!--more-->
@@ -54,17 +53,17 @@ that initializes each `p[i]` to `initializer_i + 1`.
 class Singleton {
     static Singleton *instance;
     static std::size_t refcount;
-​
+
 public:
     static void *operator new ( std::size_t nbytes ) throw ( std::bad_alloc ) {
         if ( instance == nullptr ) {
             instance = ::new Singleton; /* Use the default allocator */
         }
-​
+
         refcount++;
         return instance;
     }
-​
+
     static void operator delete ( void *p ) {
         if ( --refcount == 0 ) {
             ::delete instance;
@@ -72,7 +71,7 @@ public:
         }
     }
 };
-​
+
 Singleton *Singleton::instance = nullptr;
 std::size_t Singleton::refcount = 0;
 ```

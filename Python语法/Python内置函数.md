@@ -1,7 +1,6 @@
 ---
 title: Python内置函数
 categories: Python语法
-abbrlink: d59aed63
 date: 2019-02-24 10:42:11
 ---
 ### chr

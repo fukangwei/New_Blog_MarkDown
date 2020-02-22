@@ -1,7 +1,6 @@
 ---
 title: pycocotools模块
 categories: Python语法
-abbrlink: 88a2e4d
 date: 2019-03-02 14:00:58
 ---
 &emsp;&emsp;`COCO` is a large image dataset designed for object detection, segmentation, person keypoints detection, stuff segmentation, and caption generation. This package provides `Matlab`, `Python` and `Lua` `APIs` that assists in loading, parsing, and visualizing the annotations in `COCO`. Please visit `http://cocodataset.org/` for more information on `COCO`, including for the data, paper and tutorials. The exact format of the annotations is also described on the `COCO` website. The `Matlab` and `Python` `APIs` are complete, the `Lua` `API` provides only basic functionality.<!--more-->
@@ -28,7 +27,7 @@ API         | Description
 
 ``` python
 from pycocotools.coco import COCO
-​
+
 dataDir = '..'
 dataType = 'val2017'
 annFile = '{}/annotations/instances_{}.json'.format(dataDir, dataType)
@@ -48,17 +47,17 @@ index created!
 
 ``` python
 from pycocotools.coco import COCO
-​
+
 dataDir = '..'
 dataType = 'val2017'
 annFile = '{}/annotations/instances_{}.json'.format(dataDir, dataType)
 coco = COCO(annFile)  # initialize COCO api for instance annotations
-​
+
 # display COCO categories and supercategories
 cats = coco.loadCats(coco.getCatIds())
 nms = [cat['name'] for cat in cats]
 print('COCO categories: \n{}\n'.format(' '.join(nms)))
-​
+
 nms = set([cat['supercategory'] for cat in cats])
 print('COCO supercategories: \n{}'.format(' '.join(nms)))
 ```
@@ -79,7 +78,7 @@ person bicycle car motorcycle airplane bus train truck         \
     mouse remote keyboard cell phone microwave oven toaster    \
     sink refrigerator book clock vase scissors teddy bear hair \
     drier toothbrush
-​
+
 COCO supercategories:
 appliance furniture accessory animal sports kitchen \
     electronic indoor person vehicle outdoor food
@@ -93,20 +92,20 @@ import numpy as np
 import skimage.io as io
 import matplotlib.pyplot as plt
 import pylab
-​
+
 pylab.rcParams['figure.figsize'] = (8.0, 10.0)
-​
+
 dataDir = '..'
 dataType = 'val2017'
 annFile = '{}/annotations/instances_{}.json'.format(dataDir, dataType)
 coco = COCO(annFile)  # initialize COCO api for instance annotations
-​
+
 # get all images containing given categories, select one at random
 catIds = coco.getCatIds(catNms=['person', 'dog', 'skateboard'])
 imgIds = coco.getImgIds(catIds=catIds)
 imgIds = coco.getImgIds(imgIds=[324158])
 img = coco.loadImgs(imgIds[np.random.randint(0, len(imgIds))])[0]
-​
+
 # load and display image, use url to load image
 # I = io.imread('%s/images/%s/%s'%(dataDir,dataType,img['file_name']))
 I = io.imread(img['coco_url'])
@@ -125,20 +124,20 @@ import numpy as np
 import skimage.io as io
 import matplotlib.pyplot as plt
 import pylab
-​
+
 pylab.rcParams['figure.figsize'] = (8.0, 10.0)
-​
+
 dataDir = '..'
 dataType = 'val2017'
 annFile = '{}/annotations/instances_{}.json'.format(dataDir, dataType)
 coco = COCO(annFile)  # initialize COCO api for instance annotations
-​
+
 # get all images containing given categories, select one at random
 catIds = coco.getCatIds(catNms=['person', 'dog', 'skateboard'])
 imgIds = coco.getImgIds(catIds=catIds)
 imgIds = coco.getImgIds(imgIds=[324158])
 img = coco.loadImgs(imgIds[np.random.randint(0, len(imgIds))])[0]
-​
+
 I = io.imread(img['coco_url'])
 # load and display instance annotations
 plt.imshow(I)
@@ -159,7 +158,7 @@ import numpy as np
 import skimage.io as io
 import matplotlib.pyplot as plt
 import pylab
-​
+
 pylab.rcParams['figure.figsize'] = (8.0, 10.0)
 dataDir = '..'
 dataType = 'val2017'
@@ -219,7 +218,7 @@ import numpy as np
 import skimage.io as io
 import matplotlib.pyplot as plt
 import pylab
-​
+
 pylab.rcParams['figure.figsize'] = (8.0, 10.0)
 dataDir = '..'
 dataType = 'val2017'
@@ -251,26 +250,26 @@ A man walking his dog on a quiet country road.
 ``` python
 from pycocotools.coco import COCO
 import csv
-​
+
 dataDir = '..'
 dataType = 'train2017'
 # initialize COCO api for person keypoints annotations
 annFile = '{}/annotations/person_keypoints_{}.json'.format(dataDir, dataType)
 coco_kps = COCO(annFile)
-​
+
 # display COCO categories and supercategories
 cats = coco_kps.loadCats(coco_kps.getCatIds())
 nms = [cat['name'] for cat in cats]
 print('COCO categories: \n{}\n'.format(' '.join(nms)))
-​
+
 nms = set([cat['supercategory'] for cat in cats])
 print('COCO supercategories: \n{}'.format(' '.join(nms)))
-​
+
 # get all images containing given categories, select one at random
 catIds = coco_kps.getCatIds(catNms=['person'])
 imgIds = coco_kps.getImgIds(catIds=catIds)
 print('there are %d images containing human' % len(imgIds))
-​
+
 def getBndboxKeypointsGT():
     csvFile = open('./KeypointBndboxGT.csv', 'w')
     keypointsWriter = csv.writer(csvFile)
@@ -313,11 +312,11 @@ def getBndboxKeypointsGT():
                 str(keyPoints[42]) + '_' + str(keyPoints[43]) + '_' + str(keyPoints[44]),
                 str(keyPoints[45]) + '_' + str(keyPoints[46]) + '_' + str(keyPoints[47]),
                 str(keyPoints[48]) + '_' + str(keyPoints[49]) + '_' + str(keyPoints[50]),]
-​
+
             keypointsWriter.writerow(keypointsRow)
 
     csvFile.close()
-​
+
 if __name__ == "__main__":
     print('Writing bndbox and keypoints to csv files..."')
     getBndboxKeypointsGT()

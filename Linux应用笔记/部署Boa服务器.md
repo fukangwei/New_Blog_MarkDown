@@ -1,7 +1,6 @@
 ---
 title: 部署Boa服务器
 categories: Linux应用笔记
-abbrlink: aeebde75
 date: 2019-02-02 17:29:37
 ---
 &emsp;&emsp;部署详细步骤如下：<!--more-->
@@ -36,11 +35,11 @@ mkdir -p /boa /boa/www /boa/cgi-bin /boa/log
 Port 80
 User 0
 Group 0
-​
+
 # error_log和access_log会自动生成，只要指定生成路径就可以了
 ErrorLog /boa/log/error_log
 AccessLog /boa/log/access_log
-​
+
 # 存放HTML文件的根路径
 DocumentRoot /boa/www
 UserDir public_html
@@ -60,7 +59,7 @@ CGIPath /bin:/usr/bin:/usr/local/bin
 
 # 保持默认
 Alias /doc /usr/doc
-​
+
 # 如果输入“http://127.0.0.1/cgi-bin/test.cgi”，
 # 则boa服务器会到“/boa/cgi-bin”中寻找test.cgi程序
 ScriptAlias /cgi-bin/ /boa/cgi-bin/
@@ -85,7 +84,7 @@ ScriptAlias /cgi-bin/ /boa/cgi-bin/
 
 ``` cpp
 #include <stdio.h>
-​
+
 int main ( void ) {
     printf ( "Content-type:text/html\n\n" ); /* 这句一定要加上 */
     printf ( "<html><body>" );

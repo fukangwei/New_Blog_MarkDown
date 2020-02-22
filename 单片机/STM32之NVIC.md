@@ -1,7 +1,6 @@
 ---
 title: STM32之NVIC
 categories: 单片机
-abbrlink: 92cf1c62
 date: 2018-12-30 07:38:05
 ---
 &emsp;&emsp;`NVIC`即嵌套向量中断控制器(`Nested Vectored Interrupt Controller`)。`STM32`的中有一个强大而方便的`NVIC`，它是属于`Cortex`内核的器件，不可屏蔽中断(`NMI`)和外部中断都由它来处理，而`SYSTICK`不是由`NVIC`来控制的。具有如下特性：<!--more-->

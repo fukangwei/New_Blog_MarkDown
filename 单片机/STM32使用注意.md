@@ -1,7 +1,6 @@
 ---
 title: STM32使用注意
 categories: 单片机
-abbrlink: fbe726f3
 date: 2019-01-19 11:19:55
 ---
 1. 首先确保`boot0`和`boot1`接地，否则系统无法启动。<!--more-->

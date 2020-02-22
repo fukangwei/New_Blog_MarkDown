@@ -1,7 +1,6 @@
 ---
 title: ferror和perror函数
 categories: C语言语法详解
-abbrlink: 67cbc58f
 date: 2018-12-13 11:30:24
 ---
 ### ferror函数
@@ -18,7 +17,7 @@ int ferror ( FILE* fp );
 ``` cpp
 #include <stdio.h>
 #include <stdlib.h>
-​
+
 int main ( void ) {
     FILE* pf = fopen ( "C:\\test.txt", "r" );
 
@@ -33,7 +32,7 @@ int main ( void ) {
     } else {
         printf ( "\n异常" );
     }
-    ​
+
     fputs ( "1234", pf );
 
     if ( ferror ( pf ) == 0 ) {
@@ -58,7 +57,7 @@ void perror ( const char* s );
 
 ``` cpp
 #include <stdio.h>
-​
+
 int main ( void ) {
     FILE* fp;
     fp = fopen ( "/root/no_exit_file", "r+" );

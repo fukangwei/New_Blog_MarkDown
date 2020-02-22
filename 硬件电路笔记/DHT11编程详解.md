@@ -1,7 +1,6 @@
 ---
 title: DHT11编程详解
 categories: 硬件电路笔记
-abbrlink: 33d01481
 date: 2018-12-04 10:41:54
 ---
 ### DHT11数据格式(40bit)

@@ -1,7 +1,6 @@
 ---
 title: Enumeration接口
 categories: Java
-abbrlink: 87c4b16
 date: 2018-12-21 18:58:34
 ---
 &emsp;&emsp;`Enumeration`接口中定义了一些方法，通过这些方法可以枚举(一次获得一个)对象集合中的元素。<!--more-->
@@ -15,7 +14,7 @@ date: 2018-12-21 18:58:34
 ``` java
 import java.util.Vector;
 import java.util.Enumeration;
-​
+
 public class EnumerationTester {
     public static void main(String args[]) {
         Enumeration<String> days;

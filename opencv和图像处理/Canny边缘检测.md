@@ -1,7 +1,6 @@
 ---
 title: Canny边缘检测
 categories: opencv和图像处理
-abbrlink: e3aab2dc
 date: 2019-03-03 14:42:20
 ---
 &emsp;&emsp;图像的边缘检测的原理是检测出图像中所有灰度值变化较大的点，而且这些点连接起来就构成了若干线条，这些线条就可以称为图像的边缘。`Canny`边缘检测算子是`John F. Canny`于`1986`年开发出来的一个多级边缘检测算法。<!--more-->
@@ -54,17 +53,17 @@ typedef void ( CV_CDECL *CvTrackbarCallback ) ( int pos );
 
 ``` cpp
 #include <opencv2/opencv.hpp>
-​
+
 using namespace std;
-​
+
 IplImage *g_pSrcImage, *g_pCannyImg;
 const char *pstrWindowsCannyTitle = "边缘检测图";
-​
+
 void on_trackbar ( int threshold ) { /* cvCreateTrackbar的回调函数 */
     cvCanny ( g_pSrcImage, g_pCannyImg, threshold, threshold * 3, 3 );
     cvShowImage ( pstrWindowsCannyTitle, g_pCannyImg );
 }
-​
+
 int main() {
     const char *pstrImageName = "zzjb.jpg";
     const char *pstrWindowsSrcTitle = "原图";
@@ -97,7 +96,7 @@ int main() {
 ``` python
 import cv2
 from matplotlib import pyplot as plt
-​
+
 img = cv2.imread('timg1.jpg', 0)
 edges = cv2.Canny(img, 100, 200)
 plt.subplot(121), plt.imshow(img, cmap='gray')

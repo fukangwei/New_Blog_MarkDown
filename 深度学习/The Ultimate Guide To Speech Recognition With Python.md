@@ -1,7 +1,6 @@
 ---
 title: The Ultimate Guide To Speech Recognition With Python
 categories: 深度学习
-abbrlink: b1cbe546
 date: 2019-02-13 16:11:08
 ---
 &emsp;&emsp;Have you ever wondered how to add speech recognition to your `Python` project? If so, then keep reading! It's easier than you might think.<!--more-->
@@ -393,7 +392,7 @@ Audio that cannot be matched to text by the `API` raises an `UnknownValueError` 
 import random
 import time
 import speech_recognition as sr
-​
+
 def recognize_speech_from_mic(recognizer, microphone):
     """
     Transcribe speech from recorded from `microphone`. Returns a dictionary with three keys:
@@ -406,15 +405,15 @@ def recognize_speech_from_mic(recognizer, microphone):
     # check that recognizer and microphone arguments are appropriate type
     if not isinstance(recognizer, sr.Recognizer):
         raise TypeError("`recognizer` must be `Recognizer` instance")
-​
+
     if not isinstance(microphone, sr.Microphone):
         raise TypeError("`microphone` must be `Microphone` instance")
-​
+
     # adjust the recognizer sensitivity to ambient noise and record audio from the microphone
     with microphone as source:
         recognizer.adjust_for_ambient_noise(source)
         audio = recognizer.listen(source)
-​
+
     response = {"success": True, "error": None, "transcription": None}  # set up the response object
 
     # try recognizing the speech in the recording. if a RequestError or UnknownValueError exception is
@@ -426,30 +425,30 @@ def recognize_speech_from_mic(recognizer, microphone):
         response["error"] = "API unavailable"
     except sr.UnknownValueError:
         response["error"] = "Unable to recognize speech"  # speech was unintelligible
-​
+
     return response
-​
+
 if __name__ == "__main__":
     # set the list of words, maxnumber of guesses, and prompt limit
     WORDS = ["apple", "banana", "grape", "orange", "mango", "lemon"]
     NUM_GUESSES = 3
     PROMPT_LIMIT = 5
-​
+
     # create recognizer and mic instances
     recognizer = sr.Recognizer()
     microphone = sr.Microphone()
-​
+
     word = random.choice(WORDS)  # get a random word from the list
-​
-    instructions = (  # format the instructions string
+
+    instructions = (  # format the instructions string
         "I'm thinking of one of these words:\n"
         "{words}\n"
         "You have {n} tries to guess which one.\n"
     ).format(words=', '.join(WORDS), n=NUM_GUESSES)
-​
+
     print(instructions)  # show instructions and wait 3 seconds before starting the game
     time.sleep(3)
-​
+
     for i in range(NUM_GUESSES):
         # get the guess from the user
         # if a transcription is returned, break out of the loop and continue
@@ -467,17 +466,17 @@ if __name__ == "__main__":
                 break
 
             print("I didn't catch that. What did you say?\n")
-​
+
         if guess["error"]:  # if there was an error, stop the game
             print("ERROR: {}".format(guess["error"]))
             break
-​
+
         print("You said: {}".format(guess["transcription"]))  # show the user the transcription
-​
+
         # determine if guess is correct and if any attempts remain
         guess_is_correct = guess["transcription"].lower() == word.lower()
         user_has_more_attempts = i < NUM_GUESSES - 1
-​
+
         # determine if the user has won the game. if not, repeat the loop if user has
         # more attempts; if no attempts left, the user loses the game
         if guess_is_correct:
@@ -496,7 +495,7 @@ if __name__ == "__main__":
 ``` python
 if not isinstance(recognizer, sr.Recognizer):
     raise TypeError('`recognizer` must be `Recognizer` instance')
-​
+
 if not isinstance(microphone, sr.Microphone):
     raise TypeError('`microphone` must be a `Microphone` instance')
 ```
@@ -514,7 +513,7 @@ The `adjust_for_ambient_noise()` method is used to calibrate the recognizer for 
 
 ``` python
 response = {"success": True, "error": None, "transcription": None}
-​
+
 try:
     response["transcription"] = recognizer.recognize_google(audio)
 except sr.RequestError:  # API was unreachable or unresponsive
@@ -522,7 +521,7 @@ except sr.RequestError:  # API was unreachable or unresponsive
     response["error"] = "API unavailable"
 except sr.UnknownValueError:
     response["error"] = "Unable to recognize speech"  # speech was unintelligible
-​
+
 return response
 ```
 
@@ -585,7 +584,7 @@ if guess['error']:
 ``` python
 guess_is_correct = guess["transcription"].lower() == word.lower()
 user_has_more_attempts = i < NUM_GUESSES - 1
-​
+
 if guess_is_correct:
     print('Correct! You win!'.format(word))
     break
@@ -602,15 +601,15 @@ When run, the output will look something like this:
 I'm thinking of one of these words:
 apple, banana, grape, orange, mango, lemon
 You have 3 tries to guess which one.
-​
+
 Guess 1. Speak!
 You said: banana
 Incorrect. Try again.
-​
+
 Guess 2. Speak!
 You said: lemon
 Incorrect. Try again.
-​
+
 Guess 3. Speak!
 You said: Orange
 Correct! You win!
@@ -623,12 +622,12 @@ Correct! You win!
 
 ``` python
 import speech_recognition as sr
-​
+
 r = sr.Recognizer()
-​
+
 with sr.AudioFile('path/to/audiofile.wav') as source:
     audio = r.record(source)
-​
+
 r.recognize_google(audio, language='fr-FR')
 ```
 

@@ -1,7 +1,6 @@
 ---
 title: ImageSwitcher图片切换
 categories: Android
-abbrlink: 2a456f10
 date: 2018-12-28 12:46:29
 ---
 &emsp;&emsp;`XML`文件如下：<!--more-->
@@ -33,21 +32,21 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.ViewSwitcher;
-​
+
 public class MainActivity extends Activity {
     int count = 0;
     private int[] arrayPictures = new int[]{ /* 声明并初始化一个显示图像ID的数组 */
         R.mipmap.aloel,
         R.mipmap.apple
     };
-​
+
     private ImageSwitcher imageSwitcher; /* 声明一个图像切换器对象 */
-​
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-​
+
         imageSwitcher = (ImageSwitcher) findViewById(R.id.imageSwitcher1); /* 获取图像切换器 */
         /* 设置图片的切入方式 */
         imageSwitcher.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left));

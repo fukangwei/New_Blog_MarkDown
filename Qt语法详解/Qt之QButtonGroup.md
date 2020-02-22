@@ -1,7 +1,6 @@
 ---
 title: Qt之QButtonGroup
 categories: Qt语法详解
-abbrlink: d1701ca8
 date: 2019-01-22 17:30:34
 ---
 &emsp;&emsp;The `QButtonGroup` class provides a container to organize groups of button widgets.<!--more-->
@@ -52,42 +51,42 @@ Return                     | Function
 - `void QButtonGroup::addButton(QAbstractButton * button)`: Adds the given `button` to the end of the group's internal list of buttons. An id will be assigned to the button by this `QButtonGroup`. Automatically assigned ids are guaranteed to be negative, starting with `-2`. If you are also assigning your own ids, use positive values to avoid conflicts.
 - `void QButtonGroup::addButton(QAbstractButton * button, int id)`: Adds the given `button` to the button group, with the given `id`. It is recommended to assign only positive ids.
 - `QAbstractButton * QButtonGroup::button(int id) const`: Returns the button with the specified `id`, or `0` if no such button exists.
-- `void QButtonGroup::buttonClicked(QAbstractButton * button) [signal]`: This signal is emitted when the given `button` is clicked. A button is clicked when it is first pressed and then released, when its shortcut key is typed, or programmatically when `QAbstractButton::click()` or `QAbstractButton::animateClick()` is called. **Note**: Signal `buttonClicked` is overloaded in this class. To connect to this one using the function pointer syntax, you must specify the signal type in a static cast, as shown in this example:
+- `void QButtonGroup::buttonClicked(QAbstractButton * button) [signal]`: This signal is emitted when the given `button` is clicked. A button is clicked when it is first pressed and then released, when its shortcut key is typed, or programmatically when `QAbstractButton::click()` or `QAbstractButton::animateClick()` is called. **Note**: Signal `buttonClicked` is overloaded in this class. To connect to this one using the function pointer syntax, you must specify the signal type in a static cast:
 
 ``` cpp
 connect ( buttonGroup, static_cast<void ( QButtonGroup::* ) ( QAbstractButton * ) > \
         ( &QButtonGroup::buttonClicked ), [ = ] ( QAbstractButton *button ) { /* ... */ } );
 ```
 
-- `void QButtonGroup::buttonClicked(int id) [signal]`: This signal is emitted when a button with the given `id` is clicked. **Note**: Signal `buttonClicked` is overloaded in this class. To connect to this one using the function pointer syntax, you must specify the signal type in a static cast, as shown in this example:
+- `void QButtonGroup::buttonClicked(int id) [signal]`: This signal is emitted when a button with the given `id` is clicked. **Note**: Signal `buttonClicked` is overloaded in this class. To connect to this one using the function pointer syntax, you must specify the signal type in a static cast:
 
 ``` cpp
 connect ( buttonGroup, static_cast<void ( QButtonGroup::* ) ( int ) > \
         ( &QButtonGroup::buttonClicked ), [ = ] ( int id ) { /* ... */ } );
 ```
 
-- `void QButtonGroup::buttonPressed(QAbstractButton * button) [signal]`: This signal is emitted when the given `button` is pressed down. **Note**: Signal `buttonPressed` is overloaded in this class. To connect to this one using the function pointer syntax, you must specify the signal type in a static cast, as shown in this example:
+- `void QButtonGroup::buttonPressed(QAbstractButton * button) [signal]`: This signal is emitted when the given `button` is pressed down. **Note**: Signal `buttonPressed` is overloaded in this class. To connect to this one using the function pointer syntax, you must specify the signal type in a static cast:
 
 ``` cpp
 connect ( buttonGroup, static_cast<void ( QButtonGroup::* ) ( QAbstractButton * ) > \
         ( &QButtonGroup::buttonPressed ), [ = ] ( QAbstractButton *button ) { /* ... */ } );
 ```
 
-- `void QButtonGroup::buttonPressed(int id) [signal]`: This signal is emitted when a button with the given `id` is pressed down. **Note**: Signal `buttonPressed` is overloaded in this class. To connect to this one using the function pointer syntax, you must specify the signal type in a static cast, as shown in this example:
+- `void QButtonGroup::buttonPressed(int id) [signal]`: This signal is emitted when a button with the given `id` is pressed down. **Note**: Signal `buttonPressed` is overloaded in this class. To connect to this one using the function pointer syntax, you must specify the signal type in a static cast:
 
 ``` cpp
 connect ( buttonGroup, static_cast<void ( QButtonGroup::* ) ( int ) > \
         ( &QButtonGroup::buttonPressed ), [ = ] ( int id ) { /* ... */ } );
 ```
 
-- `void QButtonGroup::buttonReleased(QAbstractButton * button) [signal]`: This signal is emitted when the given `button` is released. **Note**: Signal `buttonReleased` is overloaded in this class. To connect to this one using the function pointer syntax, you must specify the signal type in a static cast, as shown in this example:
+- `void QButtonGroup::buttonReleased(QAbstractButton * button) [signal]`: This signal is emitted when the given `button` is released. **Note**: Signal `buttonReleased` is overloaded in this class. To connect to this one using the function pointer syntax, you must specify the signal type in a static cast:
 
 ``` cpp
 connect ( buttonGroup, static_cast<void ( QButtonGroup::* ) ( QAbstractButton * ) > \
         ( &QButtonGroup::buttonReleased ), [ = ] ( QAbstractButton *button ) { /* ... */ } );
 ```
 
-- `void QButtonGroup::buttonReleased(int id) [signal]`: This signal is emitted when a button with the given `id` is released. **Note**: Signal `buttonReleased` is overloaded in this class. To connect to this one using the function pointer syntax, you must specify the signal type in a static cast, as shown in this example:
+- `void QButtonGroup::buttonReleased(int id) [signal]`: This signal is emitted when a button with the given `id` is released. **Note**: Signal `buttonReleased` is overloaded in this class. To connect to this one using the function pointer syntax, you must specify the signal type in a static cast:
 
 ``` cpp
 connect ( buttonGroup, static_cast<void ( QButtonGroup::* ) ( int ) > \

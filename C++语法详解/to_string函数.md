@@ -1,7 +1,6 @@
 ---
 title: to_string函数
 categories: C++语法详解
-abbrlink: fb0ca44b
 date: 2019-02-05 18:08:38
 ---
 &emsp;&emsp;Defined in header `string`:<!--more-->
@@ -16,12 +15,12 @@ date: 2019-02-05 18:08:38
 - `std::string to_string( double value );`
 - `std::string to_string( long double value );`
 
-Converts a numeric value to `std::string`. Example:
+Converts a numeric value to `std::string`.
 
 ``` cpp
 #include <iostream>
 #include <string>
-​
+
 int main ( void ) {
     double f = 23.43;
     double f2 = 1e-9;
@@ -34,7 +33,7 @@ int main ( void ) {
     std::string f_str4 = std::to_string ( f4 ); /* Note: returns "0.000000" */
     std::string f_str5 = std::to_string ( f5 );
     std::cout << "std::cout: " << f << '\n'
-              << "to_string: " << f_str  << "\n\n"
+              << "to_string: " << f_str  << "\n\n"
               << "std::cout: " << f2 << '\n'
               << "to_string: " << f_str2 << "\n\n"
               << "std::cout: " << f3 << '\n'
@@ -51,16 +50,16 @@ output:
 ``` cpp
 std::cout: 23.43
 to_string: 23.430000
-​
+
 std::cout: 1e-09
 to_string: 0.000000
-​
+
 std::cout: 1e+40
 to_string: 10000000000000000303786028427003666890752.000000
-​
+
 std::cout: 1e-40
 to_string: 0.000000
-​
+
 std::cout: 1.23457e+08
 to_string: 123456789.000000
 ```

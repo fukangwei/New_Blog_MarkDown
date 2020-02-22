@@ -1,7 +1,6 @@
 ---
 title: ORB算法
 categories: opencv和图像处理
-abbrlink: 272
 date: 2019-10-04 20:49:35
 mathjax: true
 ---

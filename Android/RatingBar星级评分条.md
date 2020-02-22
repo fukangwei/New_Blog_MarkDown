@@ -1,7 +1,6 @@
 ---
 title: RatingBar星级评分条
 categories: Android
-abbrlink: 9dc82128
 date: 2018-12-28 12:37:59
 ---
 &emsp;&emsp;`RatingBar`和`SeekBar`的类结构是一样的，也是`ProgressBar`的子类，也就是说它同样有用`ProgressBar`的相关属性。<!--more-->
@@ -19,7 +18,7 @@ date: 2018-12-28 12:37:59
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-​
+
     <!-- 星级评分条 -->
     <RatingBar
         android:id="@+id/ratingBar1"
@@ -53,10 +52,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.Toast;
-​
+
 public class MainActivity extends Activity {
     private RatingBar ratingbar; /* 星级评分条 */
-​
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

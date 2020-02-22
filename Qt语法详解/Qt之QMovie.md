@@ -1,7 +1,6 @@
 ---
 title: Qt之QMovie
 categories: Qt语法详解
-abbrlink: d408c4ad
 date: 2019-02-06 16:54:57
 ---
 &emsp;&emsp;`QMovie`类用于播放动画，在刷新页面的时候，可以使用`QMovie`来实现等待界面。`QMovie`类用于显示简单的动画，没有声音。<!--more-->

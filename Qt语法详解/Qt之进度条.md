@@ -1,7 +1,6 @@
 ---
 title: Qt之进度条
 categories: Qt语法详解
-abbrlink: bf1a1d01
 date: 2019-03-17 10:33:10
 ---
 &emsp;&emsp;`Qt`可以用`QProgressBar`或着`QProgressDialog`来实现进度条。<!--more-->
@@ -21,7 +20,7 @@ ui->progressBar->setValue ( 0 );
 void MainWindow::on_pushButton_clicked() {
     for ( int i = 0; i < 50000; i++ ) {
         for ( int j = 0; j < 20000; j++ ); /* 延时作用 */
-​
+
         ui->progressBar->setValue ( i );
     }
 }
@@ -42,12 +41,12 @@ void MainWindow::on_pushButton_clicked() {
     process.setRange ( 0, 50000 );
     process.setModal ( true );
     process.setCancelButtonText ( tr ( "cancel" ) );
-​
+
     for ( int i = 0; i < 50000; i++ ) {
         for ( int j = 0; j < 20000; j++ );
-​
+
         process.setValue ( i );
-​
+
         if ( process.wasCanceled() ) {
             break;
         }
@@ -65,16 +64,16 @@ QProgressDialog dialog ( tr ( "文件复制进度" ), tr ( "取消" ), 0, 50000,
 dialog.setWindowTitle ( tr ( "进度对话框" ) ); /* 设置窗口标题 */
 dialog.setWindowModality ( Qt::WindowModal ); /* 将对话框设置为模态 */
 dialog.show();
-​
+
 for ( int i = 0; i < 50000; i++ ) { /* 演示复制进度 */
     dialog.setValue ( i ); /* 设置进度条的当前值 */
     QCoreApplication::processEvents(); /* 避免界面冻结 */
-​
+
     if ( dialog.wasCanceled() ) {
         break; /* 按下取消按钮则中断 */
     }
 }
-​
+
 /* 这样才能显示100%，因为for循环中少加了一个数 */
 dialog.setValue ( 50000 );
 qDebug() << tr ( "复制结束！" );
@@ -86,7 +85,7 @@ qDebug() << tr ( "复制结束！" );
 ``` cpp
 connect ( ftp, SIGNAL ( dataTransferProgress ( qint64, qint64 ) ), \
           this, SLOT ( updateDataTransferProgress ( qint64, qint64 ) ) );
-​
+
 void MainWindow::updateDataTransferProgress ( qint64 readBytes, qint64 totalBytes ) {
     ui->progressBar->setMaximum ( totalBytes );
     ui->progressBar->setValue ( readBytes );

@@ -1,7 +1,6 @@
 ---
 title: Camera拍照
 categories: Android
-abbrlink: e7d8fb9a
 date: 2018-12-28 12:17:46
 ---
 &emsp;&emsp;`MainActivity.java`如下：<!--more-->
@@ -16,16 +15,16 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-​
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-​
+
 public class MainActivity extends Activity {
     private Camera camera = null; /* 声明一个Camera对象 */
     SurfaceView surfaceView = null; /* 用于显示摄像头预览的区域 */
     SurfaceHolder surfaceHolder = null; /* 获取SurfaceHolder */
-​
+
     private SurfaceHolder.Callback cpHolderCallback = new SurfaceHolder.Callback() {
         @Override
         public void surfaceCreated(SurfaceHolder holder) {
@@ -39,11 +38,11 @@ public class MainActivity extends Activity {
                 e.printStackTrace();
             }
         }
-​
+
         @Override
         public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
         }
-​
+
         @Override
         public void surfaceDestroyed(SurfaceHolder holder) {
             camera.stopPreview();
@@ -51,7 +50,7 @@ public class MainActivity extends Activity {
             camera = null;
         }
     };
-​
+
     private String saveFile(byte[] bytes) { /* 保存临时文件的方法 */
         try {
             File file = File.createTempFile("img", "");
@@ -66,7 +65,7 @@ public class MainActivity extends Activity {
 
         return null;
     }
-​
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,9 +104,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
-​
+
 import java.io.File;
-​
+
 public class Main3Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

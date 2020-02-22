@@ -1,14 +1,13 @@
 ---
 title: Linux汇编
 categories: Intel汇编
-abbrlink: 553408a9
 date: 2018-12-16 18:05:16
 ---
 ### 显示字符串(AT&T汇编)
 
 &emsp;&emsp;代码如下：<!--more-->
 
-``` c
+``` cpp
 SECTION .data ; 包含已初始化的数据的段
 
 EatMsg: db "Eat at Joe's!", 10
@@ -34,7 +33,7 @@ _start:
 
 &emsp;&emsp;代码如下：
 
-``` c
+``` cpp
 .section .data
 string1:
     .asciz "This is a TEST, of the conversion program!\n"
@@ -74,12 +73,12 @@ end:
 
 &emsp;&emsp;代码如下：
 
-``` c
+``` cpp
 .section .data
 output:
     .asciz "The value is %d\n"
 values:
-    .int 10, 15,  20, 25, 30, 35, 40, 45, 50, 55, 60
+    .int 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60
 
 .section .text
 .globl main
@@ -107,7 +106,7 @@ loop:
 
 &emsp;&emsp;代码如下：
 
-``` c
+``` cpp
 .section .data
 output:
     .asciz "The largest value is %d\n"
@@ -142,7 +141,7 @@ loop:
 
 &emsp;&emsp;代码如下：
 
-``` c
+``` cpp
 .section .data
 output:
     .ascii "This is a test message.\n"
@@ -167,7 +166,7 @@ main:
 
 &emsp;&emsp;代码如下：
 
-``` c
+``` cpp
 .section .data
 value:
     .int 21, 15, 34, 11, 6, 50, 32, 80, 10, 2
@@ -196,7 +195,7 @@ loop:
 
 &emsp;&emsp;代码如下：
 
-``` c
+``` cpp
 .section .data
 output:
     .asciz "This is section %d\n"
@@ -235,7 +234,7 @@ overhere:
 
 &emsp;&emsp;代码如下：
 
-``` c
+``` cpp
 .section .data
 data1:
     .quad 7252051615

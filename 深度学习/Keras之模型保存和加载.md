@@ -1,7 +1,6 @@
 ---
 title: Keras之模型保存和加载
 categories: 深度学习
-abbrlink: c82d57be
 date: 2019-01-01 14:04:48
 ---
 &emsp;&emsp;不建议使用`pickle`或`cPickle`来保存`Keras`模型。你可以使用`model.save(filepath)`将`Keras`模型保存到单个`HDF5`文件中，该文件将包含：<!--more-->
@@ -28,27 +27,27 @@ import numpy as np
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.models import load_model
-​
+
 np.random.seed(1337)  # for reproducibility
 X = np.linspace(-1, 1, 200)  # create some data
 np.random.shuffle(X)  # randomize the data
 Y = 0.5 * X + 2 + np.random.normal(0, 0.05, (200,))
 X_train, Y_train = X[:160], Y[:160]  # first 160 data points
 X_test, Y_test = X[160:], Y[160:]  # last 40 data points
-​
+
 model = Sequential()
 model.add(Dense(output_dim=1, input_dim=1))
 model.compile(loss='mse', optimizer='sgd')
-​
+
 for step in range(301):
     cost = model.train_on_batch(X_train, Y_train)
-​
+
 # save
 print('test before save: ', model.predict(X_test[0:2]))
 # HDF5 file, you have to pip3 install h5py if don't have it
 model.save('my_model.h5')
 del model  # deletes the existing model
-​
+
 # load
 model = load_model('my_model.h5')
 print('test after load: ', model.predict(X_test[0:2]))

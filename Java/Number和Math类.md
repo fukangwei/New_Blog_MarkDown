@@ -1,7 +1,6 @@
 ---
 title: Number和Math类
 categories: Java
-abbrlink: bce3110b
 date: 2019-02-08 10:37:12
 ---
 &emsp;&emsp;一般情况下，当需要使用数字的时候，我们通常使用内置数据类型，例如`byte`、`int`、`long`、`double`等：<!--more-->
@@ -104,7 +103,7 @@ public class Main {
             test(num);
         }
     }
-​
+
     private static void test(double num) {
         System.out.println("Math.floor(" + num + ") = " + Math.floor(num));
         System.out.println("Math.round(" + num + ") = " + Math.round(num));
@@ -205,7 +204,7 @@ public class Test {
         Integer y = 10;
         Integer z = 5;
         Short a = 5;
-​
+
         System.out.println(x.equals(y)); /* false */
         System.out.println(x.equals(z)); /* true */
         System.out.println(x.equals(a)); /* false */

@@ -1,7 +1,6 @@
 ---
 title: RNN的MNIST实验
 categories: 深度学习
-abbrlink: '785927e5'
 date: 2019-02-15 17:54:49
 ---
 ### 在TensorFlow上实现基础LSTM网络
@@ -66,7 +65,7 @@ from tensorflow.contrib import rnn
 from tensorflow.examples.tutorials.mnist import input_data
 
 mnist = input_data.read_data_sets("./data/", one_hot=True)
-​
+
 time_steps = 28  # unrolled through 28 time steps
 num_units = 128  # hidden LSTM units
 n_input = 28  # rows of 28 pixels
@@ -81,7 +80,7 @@ batch_size = 128  # size of batch
 # weights and biases of appropriate shape to accomplish above task
 out_weights = tf.Variable(tf.random_normal([num_units, n_classes]))
 out_bias = tf.Variable(tf.random_normal([n_classes]))
-​
+
 x = tf.placeholder("float", [None, time_steps, n_input])  # input image placeholder
 y = tf.placeholder("float", [None, n_classes])  # input label placeholder
 ```
@@ -115,8 +114,8 @@ prediction = tf.matmul(outputs[-1], out_weights) + out_bias
 ``` python
 # loss_function
 loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=prediction, labels=y))
-opt = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(loss)  # optimization
-​
+opt = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(loss)  # optimization
+
 # model evaluation
 correct_prediction = tf.equal(tf.argmax(prediction, 1), tf.argmax(y, 1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
@@ -126,7 +125,7 @@ accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
 ``` python
 init = tf.global_variables_initializer()  # initialize variables
-​
+
 with tf.Session() as sess:
     sess.run(init)
     iter = 1
@@ -145,7 +144,7 @@ with tf.Session() as sess:
             print("-------------------")
 
         iter = iter + 1
-​
+
     # calculating test accuracy
     test_data = mnist.test.images[:128].reshape((-1, time_steps, n_input))
     test_label = mnist.test.labels[:128]
@@ -161,9 +160,9 @@ with tf.Session() as sess:
 ``` python
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
-​
+
 mnist = input_data.read_data_sets('./MNIST_data', one_hot=True)
-​
+
 lr = 0.001  # learning rate
 training_iters = 100000  # train step(上限)
 batch_size = 128
@@ -179,12 +178,12 @@ n_classes = 10  # 分类的类别
 # 输入数据占位符
 x = tf.placeholder(tf.float32, [None, n_steps, n_inputs])
 y = tf.placeholder(tf.float32, [None, n_classes])
-​
+
 weights = {  # 定义权重
     'in': tf.Variable(tf.random_normal([n_inputs, n_hidden_units])),  # shape (28, 128)
     'out': tf.Variable(tf.random_normal([n_hidden_units, n_classes]))  # shape (128, 10)
 }
-​
+
 biases = {
     'in': tf.Variable(tf.constant(0.1, shape=[n_hidden_units, ])),  # shape (128, )
     'out': tf.Variable(tf.constant(0.1, shape=[n_classes, ]))  # shape (10, )
@@ -199,7 +198,7 @@ biases = {
 def RNN(X, weights, biases):
     # 原始的X是3维数据，我们需要把它变成2维数据，才能使用weights的矩阵乘法
     X = tf.reshape(X, [-1, n_inputs])  # X ==> (128 batches * 28 steps, 28 inputs)
-​
+
     # 进入隐藏层
     # X_in = W * X + b
     # X_in = (128 batches, 28 steps, 128 hidden)
@@ -254,9 +253,9 @@ train_op = tf.train.AdamOptimizer(lr).minimize(cost)
 ``` python
 correct_pred = tf.equal(tf.argmax(pred, 1), tf.argmax(y, 1))
 accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
-​
+
 init = tf.global_variables_initializer()
-​
+
 with tf.Session() as sess:
     sess.run(init)
     step = 0

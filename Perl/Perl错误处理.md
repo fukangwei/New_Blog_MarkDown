@@ -1,7 +1,6 @@
 ---
 title: Perl错误处理
 categories: Perl
-abbrlink: 701df9ed
 date: 2018-12-18 07:06:34
 ---
 ### if语句

@@ -1,6 +1,5 @@
 ---
 title: TUN和TAP编程
-abbrlink: 85998e3a
 date: 2019-01-17 13:45:20
 categories: 网络编程
 ---
@@ -36,23 +35,23 @@ int tun_create ( char *dev, int flags ) {
     struct ifreq ifr;
     int fd, err;
     assert ( dev != NULL );
-​
+
     if ( ( fd = open ( "/dev/net/tun", O_RDWR ) ) < 0 ) {
         return fd;
     }
-​
+
     memset ( &ifr, 0, sizeof ( ifr ) );
     ifr.ifr_flags |= flags;
-​
+
     if ( *dev != '\0' ) {
         strncpy ( ifr.ifr_name, dev, IFNAMSIZ );
     }
-​
+
     if ( ( err = ioctl ( fd, TUNSETIFF, ( void * ) &ifr ) ) < 0 ) {
         close ( fd );
         return err;
     }
-​
+
     strcpy ( dev, ifr.ifr_name );
     return fd;
 }
@@ -103,22 +102,22 @@ int main ( int argc, char *argv[] ) {
     unsigned char buf[4096];
     tun_name[0] = '\0';
     tun = tun_create ( tun_name, IFF_TUN | IFF_NO_PI );
-​
+
     if ( tun < 0 ) {
         perror ( "tun_create" );
         return 1;
     }
-​
+
     printf ( "TUN name is %s\n", tun_name );
-​
+
     while ( 1 ) {
         unsigned char ip[4];
         ret = read ( tun, buf, sizeof ( buf ) );
-​
+
         if ( ret < 0 ) {
             break;
         }
-​
+
         memcpy ( ip, &buf[12], 4 );
         memcpy ( &buf[12], &buf[16], 4 );
         memcpy ( &buf[16], ip, 4 );
@@ -128,7 +127,7 @@ int main ( int argc, char *argv[] ) {
         ret = write ( tun, buf, ret );
         printf ( "write %d bytes\n", ret );
     }
-​
+
     return 0;
 }
 ```
@@ -151,7 +150,7 @@ PING 10.10.10.1 (10.10.10.1) 56(84) bytes of data.
 64 bytes from 10.10.10.1: icmp_seq=1 ttl=64 time=1.09 ms
 64 bytes from 10.10.10.1: icmp_seq=2 ttl=64 time=5.18 ms
 64 bytes from 10.10.10.1: icmp_seq=3 ttl=64 time=3.37 ms
-​
+
 --- 10.10.10.1 ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 2011ms
 rtt min/avg/max/mdev = 1.097/3.218/5.181/1.671 ms

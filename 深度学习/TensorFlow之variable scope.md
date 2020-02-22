@@ -1,7 +1,6 @@
 ---
 title: TensorFlow之variable scope
 categories: 深度学习
-abbrlink: 53d37d00
 date: 2019-02-13 11:10:48
 ---
 &emsp;&emsp;`Tensorflow`为了更好的管理变量，提供了`variable scope`机制，其官方解释如下：<!--more-->
@@ -30,7 +29,7 @@ import tensorflow as tf
 with tf.variable_scope("tet1"):
     var3 = tf.get_variable("var3", shape=[2], dtype=tf.float32)
     print(var3.name)
-​
+
 with tf.variable_scope("tet2"):
     var4 = tf.get_variable("var4", shape=[2], dtype=tf.float32)
     print(var4.name)
@@ -47,7 +46,7 @@ tet2/var4:0
 
 ``` python
 import tensorflow as tf
-​
+
 with tf.variable_scope("tet1"):
     var3 = tf.get_variable("var3", shape=[2], dtype=tf.float32)
     print(var3.name)
@@ -68,20 +67,20 @@ tet1/tet2/var4:0
 
 ``` python
 import tensorflow as tf
-​
+
 def te2():
     with tf.variable_scope("te2"):
         var2 = tf.get_variable("var2", shape=[2], dtype=tf.float32)
         print(var2.name)
-​
+
         def te1():
             with tf.variable_scope("te1"):
                 var1 = tf.get_variable("var1", shape=[2], dtype=tf.float32)
 
             return var1
-​
+
         return te1()  # 在scope的te2内调用的
-​
+
 res = te2()
 print(res.name)
 ```
@@ -97,12 +96,12 @@ te2/te1/var1:0
 
 ``` python
 import tensorflow as tf
-​
+
 def te2():
     with tf.variable_scope("te2"):
         var2 = tf.get_variable("var2", shape=[2], dtype=tf.float32)
         print(var2.name)
-​
+
         def te1():
             with tf.variable_scope("te1"):
                 var1 = tf.get_variable("var1", shape=[2], dtype=tf.float32)
@@ -110,7 +109,7 @@ def te2():
             return var1
 
     return te1()  # 在scope的te2外面调用的
-​
+
 res = te2()
 print(res.name)
 ```
@@ -126,7 +125,7 @@ te1/var1:0
 
 ``` python
 import tensorflow as tf
-​
+
 with tf.variable_scope("scope"):
     var1 = tf.get_variable("w", shape=[1])
     print(var1.name)  # 执行结果“scope/w”
@@ -140,12 +139,12 @@ with tf.variable_scope("scope"):
 
 ``` python
 import tensorflow as tf
-​
+
 with tf.variable_scope("scope"):
     var1 = tf.get_variable("w", shape=[1])
     print(var1.name)  # 执行结果“scope/w”
     scope = tf.get_variable_scope()
-​
+
     with tf.variable_scope(scope):  # 这种方式设置的scope，是用的外部的scope
         var2 = tf.get_variable("w", shape=[1])  # 这个变量的name也是“scope/w”，因此会报出错误
         print(var2.name)
@@ -157,7 +156,7 @@ with tf.variable_scope("scope"):
 
 ``` python
 import tensorflow as tf
-​
+
 with tf.variable_scope("level1"):
     var1 = tf.get_variable("w", shape=[1])
     print(var1.name)
@@ -166,7 +165,7 @@ with tf.variable_scope("level1"):
     with tf.variable_scope("level2"):
         var2 = tf.get_variable("w", shape=[1])
         print(var2.name)
-​
+
 with tf.variable_scope("level1", reuse=True):
     var1 = tf.get_variable("w", shape=[1])
     print(var1.name)
@@ -193,7 +192,7 @@ level1/w:0
 
 ``` python
 import tensorflow as tf
-​
+
 with tf.name_scope("hello") as name_scope:
     arr1 = tf.get_variable("arr1", shape=[2, 10], dtype=tf.float32)
     print(name_scope)
@@ -214,7 +213,7 @@ scope_name:
 
 ``` python
 import tensorflow as tf
-​
+
 with tf.variable_scope("hello") as variable_scope:
     arr1 = tf.get_variable("arr1", shape=[2, 10], dtype=tf.float32)
     print(variable_scope)
@@ -222,7 +221,7 @@ with tf.variable_scope("hello") as variable_scope:
     print(arr1.name)
     # tf.get_variable_scope获取的就是variable_scope
     print(tf.get_variable_scope().original_name_scope)
-​
+
     with tf.variable_scope("xixi") as v_scope2:
         # tf.get_variable_scope获取的就是v_scope2
         print(tf.get_variable_scope().original_name_scope)
@@ -243,12 +242,12 @@ hello/xixi/
 
 ``` python
 import tensorflow as tf
-​
+
 with tf.name_scope("name1"):
     with tf.variable_scope("var1"):
         w = tf.get_variable("w", shape=[2])
         res = tf.add(w, [3])
-​
+
 print(w.name)
 print(res.name)
 ```
@@ -270,7 +269,7 @@ name1/var1/Add:0
 
 ``` python
 import tensorflow as tf
-​
+
 with tf.name_scope("scope1") as scope1:
     with tf.name_scope("scope2") as scope2:
         print(scope2)  # 结果为“scope1/scope2/”
@@ -280,7 +279,7 @@ with tf.name_scope("scope1") as scope1:
 
 ``` python
 import tensorflow as tf
-​
+
 with tf.variable_scope("scope1") as scope1:
     with tf.variable_scope("scope2") as scope2:
         print(scope2.name)  # 结果为“scope1/scope2”
@@ -292,7 +291,7 @@ with tf.variable_scope("scope1") as scope1:
 
 ``` python
 import tensorflow as tf
-​
+
 with tf.name_scope('hidden') as scope:
     a = tf.constant(5, name='alpha')
     W = tf.Variable(tf.random_uniform([1, 2], -1.0, 1.0), name='weights')
@@ -315,11 +314,11 @@ hidden/biases:0
 
 ``` python
 import tensorflow as tf
-​
+
 def test(name=None):
     with tf.variable_scope(name, default_name="scope") as scope:
         w = tf.get_variable("w", shape=[2, 10])
-​
+
 test()
 test()
 ws = tf.trainable_variables()
@@ -340,13 +339,13 @@ scope_1/w:0
 
 ``` python
 import tensorflow as tf
-​
+
 with tf.name_scope("hehe"):
     w1 = tf.Variable(1.0)
 
     with tf.name_scope(None):
         w2 = tf.Variable(2.0)
-​
+
 print(w1.name)
 print(w2.name)
 ```

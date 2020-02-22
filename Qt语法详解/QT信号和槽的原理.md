@@ -1,7 +1,6 @@
 ---
 title: QT信号和槽的原理
 categories: Qt语法详解
-abbrlink: 7bd944bb
 date: 2019-01-27 18:19:25
 ---
 &emsp;&emsp;信号(`SIGNAL`)和槽(`SLOT`)是`Qt`编程的一个重要部分。这个机制可以在对象之间彼此并不了解的情况下将它们的行为联系起来。<!--more-->
@@ -154,7 +153,7 @@ class MyWidget : public QWidget {
 public:
     MyWidget();
 signals:
-    void aSignal();​
+    void aSignal();
 private:
     QPushButton *aButton;
 };
@@ -198,7 +197,7 @@ public slots: /* 槽声明区 */
     void mySlot ( int x );               /* 声明槽函数mySlot(int)              */
     void mySignalParam ( int x, int y ); /* 声明槽函数mySignalParam (int, int) */
 }
-​
+
 /* tsignal.cpp */
 TsignalApp::TsignalApp() {
     /* 将信号mySignal与槽mySlot相关联 */
@@ -210,15 +209,15 @@ TsignalApp::TsignalApp() {
     connect ( this, SIGNAL ( mySignalParam ( int, int ) ), \
               this, SLOT ( mySlotParam ( int, int ) ) );
 }
-​
+
 void TsignalApp::mySlot() { /* 定义槽函数mySlot */
     QMessageBox::about ( this, "Tsignal", "signal/slot sample without parameter." );
 }
-​
+
 void TsignalApp::mySlot ( int x ) { /* 定义槽函数mySlot(int) */
     QMessageBox::about ( this, "Tsignal", "signal/slot sample with one parameter." );
 }
-​
+
 void TsignalApp::mySlotParam ( int x, int y ) { /* 定义槽函数mySlotParam(int, int) */
     char s[256];
     sprintf ( s, "x:%d y:%d", x, y );
@@ -246,7 +245,7 @@ void TsignalApp::slotFileNew() {
 #else
     #define SIGNEDNESS(a) a
 #endif
-​
+
 class Whatever : public QObject {
 signals:
     void someSignal ( SIGNEDNESS ( a ) );
@@ -277,7 +276,7 @@ public slots:
 
 ``` cpp
 typedef void ( *ApplyFunctionType ) ( QList *, void * );
-​
+
 class someClass : public QObject {
     Q_OBJECT
 public slots:
@@ -309,7 +308,7 @@ public signals:
 
 ``` cpp
 typedef pair<int, int> IntPair;
-​
+
 public slots:
     void MyWidget::setLocation ( IntPair location );
 public signals:
@@ -329,7 +328,7 @@ public:
 signals:
     class B {
         void b(); /* 在信号区内声明嵌套类不合语法 */
-    }:
+    }:
 };
 ```
 

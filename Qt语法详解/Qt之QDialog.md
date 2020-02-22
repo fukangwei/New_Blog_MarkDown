@@ -1,7 +1,6 @@
 ---
 title: Qt之QDialog
 categories: Qt语法详解
-abbrlink: 30c22dc8
 date: 2019-02-19 17:12:19
 ---
 ### QDialog基础
@@ -13,7 +12,7 @@ date: 2019-02-19 17:12:19
 #include <QDialog>
 #include <QLabel>
 #include <QTextCodec> /* 提供文本编码转换功能 */
-​
+
 int main ( int argc, char *argv[] ) {
     QApplication a ( argc, argv ); /* QApplication对象用于管理应用程序的资源 */
     // /* 设置QObject::tr函数所用的字符集，这里使用系统指定的字符集 */
@@ -21,7 +20,7 @@ int main ( int argc, char *argv[] ) {
     QTextCodec::setCodecForTr ( QTextCodec::codecForName ( "UTF-8" ) ); /* 指定字符集为UTF-8 */
     QDialog w; /* QDialog对象用于实现一个对话框 */
     w.resize ( 400, 300 ); /* 设置QDialog对话框的大小 */
-    QLabel label ( &w );  /* 说明对话框是label的父对象 */
+    QLabel label ( &w ); /* 说明对话框是label的父对象 */
     label.move ( 120, 120 ); /* 移动label的位置 */
     label.setText ( QObject::tr ( "Hello World!你好Qt！" ) ); /* 设置label的文本 */
     w.show();
@@ -40,13 +39,13 @@ int main ( int argc, char *argv[] ) {
 ``` cpp
 #ifndef MYWIDGET_H
 #define MYWIDGET_H
-​
+
 #include <QWidget>
-​
+
 namespace Ui {
     class MyWidget;
 }
-​
+
 class MyWidget : public QWidget {
     Q_OBJECT
 public:
@@ -57,7 +56,7 @@ private:
 public slots:
     void showChildDialog();
 };
-​
+
 #endif // MYWIDGET_H
 ```
 
@@ -67,17 +66,17 @@ public slots:
 #include "mywidget.h"
 #include "ui_mywidget.h"
 #include <QDialog>
-​
+
 MyWidget::MyWidget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::MyWidget ) {
     ui->setupUi ( this );
     /* 发送信号的对象、发送的信号、接收信号的对象、要执行的槽 */
     connect ( ui->showChildButton, SIGNAL ( clicked() ), this, SLOT ( showChildDialog() ) );
 }
-​
+
 MyWidget::~MyWidget() {
     delete ui;
 }
-​
+
 void MyWidget::showChildDialog() {
     QDialog *dialog = new QDialog ( this );
     dialog->show();
@@ -100,13 +99,13 @@ void MyWidget::showChildDialog() {
 ``` cpp
 #ifndef MYDIALOG_H
 #define MYDIALOG_H
-​
+
 #include <QDialog>
-​
+
 namespace Ui {
-    class MyDialog;
+    class MyDialog;
 }
-​
+
 class MyDialog : public QDialog {
     Q_OBJECT
 public:
@@ -117,7 +116,7 @@ private slots:
 private:
     Ui::MyDialog *ui;
 };
-​
+
 #endif // MYDIALOG_H
 ```
 
@@ -126,13 +125,13 @@ private:
 ``` cpp
 #ifndef MYWIDGET_H
 #define MYWIDGET_H
-​
+
 #include <QWidget>
-​
+
 namespace Ui {
     class MyWidget;
 }
-​
+
 class MyWidget : public QWidget {
     Q_OBJECT
 public:
@@ -145,7 +144,7 @@ public slots:
 private slots:
     void on_pushButton_clicked();
 };
-​
+
 #endif // MYWIDGET_H
 ```
 
@@ -154,15 +153,15 @@ private slots:
 ``` cpp
 #include "mydialog.h"
 #include "ui_mydialog.h"
-​
+
 MyDialog::MyDialog ( QWidget *parent ) : QDialog ( parent ), ui ( new Ui::MyDialog ) {
     ui->setupUi ( this );
 }
-​
+
 MyDialog::~MyDialog() {
     delete ui;
 }
-​
+
 void MyDialog::on_pushButton_clicked() {
     accept();
 }
@@ -176,26 +175,26 @@ void MyDialog::on_pushButton_clicked() {
 #include <QDialog>
 #include "mydialog.h"
 #include <QDebug>
-​
+
 MyWidget::MyWidget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::MyWidget ) {
     ui->setupUi ( this );
 }
-​
+
 MyWidget::~MyWidget() {
     delete ui;
 }
-​
+
 void MyWidget::on_showChildButton_clicked() { /* 显示子窗口按钮 */
     QDialog *dialog = new QDialog ( this );
     dialog->show();
 }
-​
+
 void MyWidget::on_pushButton_clicked() { /* 重新登录按钮 */
     close(); /* 先关闭主界面，其实是隐藏起来了，并没有真正退出 */
     MyDialog dlg; /* 新建MyDialog对象 */
-​
+
     /* 如果按下了“进入主窗口”按钮，则再次显示主界面。
-       否则，因为现在已经没有显示的界面了，所以程序将退出 */
+       否则，因为现在已经没有显示的界面了，所以程序将退出 */
     if ( dlg.exec() == QDialog::Accepted ) {
         show();
     }
@@ -208,12 +207,12 @@ void MyWidget::on_pushButton_clicked() { /* 重新登录按钮 */
 #include <QtGui/QApplication>
 #include "mywidget.h"
 #include "mydialog.h"
-​
+
 int main ( int argc, char *argv[] ) {
     QApplication a ( argc, argv );
     MyWidget w;
     MyDialog dialog; /* 新建MyDialog类对象 */
-​
+
     if ( dialog.exec() == QDialog::Accepted ) { /* 判断dialog执行结果 */
         w.show(); /* 如果是按下了“进入主界面”按钮，则显示主界面 */
         return a.exec(); /* 程序正常运行 */

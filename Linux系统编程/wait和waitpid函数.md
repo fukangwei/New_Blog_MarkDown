@@ -1,7 +1,6 @@
 ---
 title: wait和waitpid函数
 categories: Linux系统编程
-abbrlink: a1938eee
 date: 2019-02-03 15:08:47
 ---
 &emsp;&emsp;`wait`函数原型如下：<!--more-->
@@ -9,7 +8,7 @@ date: 2019-02-03 15:08:47
 ``` cpp
 #include <sys/types.h> /* 提供类型pid_t的定义 */
 #include <sys/wait.h>
-​
+
 pid_t wait ( int *status );
 ```
 
@@ -27,11 +26,11 @@ pid = wait ( NULL );
 #include <sys/wait.h>
 #include <unistd.h>
 #include <stdlib.h>
-​
+
 int main ( void ) {
     pid_t pc, pr;
     pc = fork();
-​
+
     if ( pc < 0 ) { /* 如果出错 */
         printf ( "error ocurred!/n" );
     } else if ( pc == 0 ) { /* 如果是子进程 */
@@ -41,7 +40,7 @@ int main ( void ) {
         pr = wait ( NULL ); /* 在这里等待 */
         printf ( "I catched a child process with pid of %d/n" ), pr );
     }
-​
+
     exit ( 0 );
 }
 ```
@@ -67,12 +66,12 @@ I catched a child process with pid of 1508
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-​
+
 int main ( void ) {
     int status;
     pid_t pc, pr;
     pc = fork();
-​
+
     if ( pc < 0 ) { /* 如果出错 */
         printf ( "error ocurred!/n" );
     } else if ( pc == 0 ) { /* 子进程 */
@@ -80,7 +79,7 @@ int main ( void ) {
         exit ( 3 ); /* 子进程返回3 */
     } else { /* 父进程 */
         pr = wait ( &status );
-​
+
         if ( WIFEXITED ( status ) ) { /* 如果WIFEXITED返回非零值 */
             printf ( "the child process %d exit normally./n", pr );
             printf ( "the return code is %d./n", WEXITSTATUS ( status ) );
@@ -107,12 +106,12 @@ the return code is 3.
 ``` cpp
 #include <sys/types.h>
 #include <sys/wait.h>
-​
+
 int main ( void ) {
     pid_t pc, pr;
     int status;
     pc = fork();
-​
+
     if ( pc < 0 ) {
         printf ( "Error occured on forking./n" );
     } else if ( pc == 0 ) { /* 子进程的工作 */
@@ -130,7 +129,7 @@ int main ( void ) {
 ``` cpp
 #include <sys/types.h> /* 提供类型pid_t的定义 */
 #include <sys/wait.h>
-​
+
 pid_t waitpid ( pid_t pid, int *status, int options );
 ```
 
@@ -177,28 +176,28 @@ static inline pid_t wait ( int *wait_stat ) {
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-​
+
 int main ( void ) {
     pid_t pc, pr;
     pc = fork();
-​
+
     if ( pc < 0 ) { /* 如果fork出错 */
         printf ( "Error occured on forking./n" );
     } else if ( pc == 0 ) { /* 如果是子进程 */
         sleep ( 10 ); /* 睡眠10秒 */
         exit ( 0 );
     }
-​
+
     /* 如果是父进程 */
     do {
         pr = waitpid ( pc, NULL, WNOHANG ); /* 使用了WNOHANG参数，waitpid不会在这里等待 */
-​
+
         if ( pr == 0 ) { /* 如果没有收集到子进程 */
             printf ( "No child exited/n" );
             sleep ( 1 );
         }
     } while ( pr == 0 ); /* 没有收集到子进程，就回去继续尝试 */
-​
+
     if ( pr == pc ) {
         printf ( "successfully get child %d/n", pr );
     } else {

@@ -1,7 +1,6 @@
 ---
 title: TensorFlow处理图片
 categories: 深度学习
-abbrlink: 9e26fd76
 date: 2019-02-28 08:45:16
 ---
 ### TensorFlow与OpenCV
@@ -15,16 +14,16 @@ import cv2
 filename = "index.jpg"
 image = cv2.imread(filename, 1)
 cv2.imshow('image', image)
-​
+
 x = tf.Variable(image, name='x')
-​
+
 model = tf.global_variables_initializer()
-​
+
 with tf.Session() as session:
     x = tf.transpose(x, perm=[1, 0, 2])
     session.run(model)
     result = session.run(x)
-​
+
 cv2.imshow('result', result)
 cv2.waitKey(0)
 ```
@@ -36,17 +35,17 @@ cv2.waitKey(0)
 ``` python
 import tensorflow as tf
 import cv2
-​
+
 filename = "index.jpg"
 raw_image_data = cv2.imread(filename)
 cv2.imshow('image', raw_image_data)
 image = tf.placeholder("uint8", [None, None, 3])
 slice = tf.slice(image, [100, 0, 0], [200, -1, -1])
-​
+
 with tf.Session() as session:
     result = session.run(slice, feed_dict={image: raw_image_data})
     print(result.shape)
-​
+
 cv2.imshow('result', result)
 cv2.waitKey(0)
 ```
@@ -58,12 +57,12 @@ cv2.waitKey(0)
 ``` python
 import tensorflow as tf
 import cv2
-​
+
 file_name = "call.1.png"
 file_contents = tf.read_file(file_name)
-​
+
 image = tf.image.decode_png(file_contents)  # 解码png格式
-​
+
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     img = sess.run(image)
@@ -142,19 +141,19 @@ tf.image.encode_jpeg(
 ``` python
 import tensorflow as tf
 import cv2
-​
+
 img_name = "girl.jpg"
 image_jpg = tf.read_file(img_name)
 imgage_decode_jpeg = tf.image.decode_jpeg(image_jpg, channels=1, ratio=2, name="decode_jpeg_1")
 print(imgage_decode_jpeg.shape)
 print(imgage_decode_jpeg.dtype)
-​
+
 sess = tf.Session()
 imgage_encode_jpeg = tf.image.encode_jpeg(sess.run(imgage_decode_jpeg), format='grayscale', name="encode_jpeg")
 print(imgage_encode_jpeg.shape)
 print(imgage_encode_jpeg.dtype)
 img = tf.image.decode_jpeg(sess.run(imgage_encode_jpeg), ratio=2, name="decode_jpeg_2")
-​
+
 img = cv2.imshow("img", sess.run(img))
 cv2.waitKey(0)
 ```
@@ -189,20 +188,20 @@ tf.image.encode_png(image, compression=-1, name=None)
 ``` python
 import tensorflow as tf
 import cv2
-​
+
 img_name = "girl.jpg"
 image_jpg = tf.read_file(img_name)
 imgage_decode_jpeg = tf.image.decode_jpeg(image_jpg, channels=3, ratio=2, name="decode_jpeg_1")
 print(imgage_decode_jpeg.shape)
 print(imgage_decode_jpeg.dtype)
-​
+
 sess = tf.Session()
 imgage_encode_png = tf.image.encode_png(sess.run(imgage_decode_jpeg), name="encode_png")
 print(imgage_encode_png.shape)
 print(imgage_encode_png.dtype)
-​
+
 img = tf.image.decode_png(sess.run(imgage_encode_png), name="decode_png")
-​
+
 img = cv2.imshow("img", sess.run(img))
 cv2.waitKey(0)
 ```
@@ -224,22 +223,22 @@ tf.image.decode_image(contents, channels=None, name=None)
 ``` python
 import tensorflow as tf
 import cv2
-​
+
 img_name = "apple.jpg"
 image_jpg = tf.read_file(img_name)
 imgage_decode = tf.image.decode_image(image_jpg, name="decode_image")
 print(imgage_decode.shape)
 print(imgage_decode.dtype)
-​
+
 sess = tf.Session()
 imgage_encode_jpeg = tf.image.encode_jpeg(
                         sess.run(imgage_decode), quality=100, progressive=True,
                         chroma_downsampling=False, optimize_size=True, name="encode_jpeg")
 print(imgage_encode_jpeg.shape)
 print(imgage_encode_jpeg.dtype)
-​
+
 img = tf.image.decode_png(sess.run(imgage_encode_jpeg), name="decode_jpeg")
-​
+
 img = cv2.imshow("img", sess.run(img))
 cv2.waitKey(0)
 ```
@@ -278,29 +277,29 @@ resize_images(images, size, method=ResizeMethod.BILINEAR, align_corners=False)
 ``` python
 import tensorflow as tf
 import matplotlib.pyplot as plt
-​
+
 img_name = ["apple.jpg"]
 filename_queue = tf.train.string_input_producer(img_name)
 img_reader = tf.WholeFileReader()
 _, image_jpg = img_reader.read(filename_queue)
-​
+
 image_decode_jpeg = tf.image.decode_png(image_jpg)
 image_decode_jpeg = tf.image.convert_image_dtype(image_decode_jpeg, dtype=tf.float32)
-​
+
 sess = tf.Session()
 coord = tf.train.Coordinator()
 threads = tf.train.start_queue_runners(sess=sess, coord=coord)
-​
+
 image_bilinear = tf.image.resize_images(image_decode_jpeg, size=[1200, 1920], method=tf.image.ResizeMethod.BILINEAR)
 image_nearest_neighbor = tf.image.resize_images(
                             image_decode_jpeg, size=[728, 1280],
                             method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
 image_bicubic = tf.image.resize_images(image_decode_jpeg, size=[720, 1440], method=tf.image.ResizeMethod.BICUBIC)
 image_area = tf.image.resize_images(image_decode_jpeg, size=[1080, 1920], method=tf.image.ResizeMethod.AREA)
-​
+
 print(image_bicubic.shape)
 print(image_bicubic.dtype)
-​
+
 plt.figure()
 plt.subplot(221)
 plt.imshow(sess.run(image_bilinear))

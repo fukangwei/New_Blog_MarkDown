@@ -1,26 +1,25 @@
 ---
 title: limits和float头文件
 categories: C语言语法详解
-abbrlink: 7ee22ef
 date: 2018-12-11 16:32:45
 ---
 &emsp;&emsp;`limits.h`专门用于检测整型数据数据类型的表达值范围，主要提供对整型和字符型范围的限制的宏，同样没有指定类型和函数的定义。<!--more-->
 
 宏          | 值            | 描述
 ------------|---------------|-----
-`CHAR_BIT`  | `8`           | 定义了字节中的比特数
+`CHAR_BIT`  | `8`           | 定义了字节中的比特数
 `SCHAR_MIN` | `-127`        | 定义有符号`char`类型的最小值
-`SCHAR_MAX` | `127`         | 定义有符号`char`类型的最大值
+`SCHAR_MAX` | `127`         | 定义有符号`char`类型的最大值
 `UCHAR_MAX` | `255`         | 定义`unsigned char`类型的最大值
 `CHAR_MIN`  | `0`           | 定义`char`类型的最小值(`0`或者`SCHAR_MIN`)
 `CHAR_MAX`  | `127`         | 定义`char`类型的最大值(`UCHAR_MAX`或者`SCHAR_MAX`)
 `SHRT_MIN`  | `-32767`      | 定义短整型的最小值
 `SHRT_MAX`  | `+32767`      | 定义短整型的最大值
-`USHRT_MAX` | `65535`       | 定义无符号短整型的最大值
+`USHRT_MAX` | `65535`       | 定义无符号短整型的最大值
 `INT_MIN`   | `-32767`      | 定义`int`的最小值
 `INT_MAX`   | `+32767`      | 定义`int`的最大值
 `UINT_MAX`  | `65535`       | 定义`unsigned int`的最大值
-`LONG_MIN`  | `-2147483647` | 定义长整型的最小值
+`LONG_MIN`  | `-2147483647` | 定义长整型的最小值
 `LONG_MAX`  | `+2147483647` | 定义长整型的最大值
 `ULONG_MAX` | `4294967295`  | 定义无符号长整型的最大值
 

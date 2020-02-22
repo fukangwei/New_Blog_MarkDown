@@ -1,7 +1,6 @@
 ---
 title: Contiki内核的STM32移植
 categories: Contiki和uip
-abbrlink: 186f8332
 date: 2019-02-05 07:24:14
 ---
 &emsp;&emsp;1. 找一个`STM32`的`UART`的打印例程，最好是支持`printf`函数的。<!--more-->
@@ -25,12 +24,12 @@ void clock_init() {
 ``` cpp
 void SysTick_Handler ( void ) {
     current_clock++;
-​
+
     if ( etimer_pending() && etimer_next_expiration_time() <= current_clock ) {
         etimer_request_poll();
         // printf( "%d, %d\n", clock_time(), etimer_next_expiration_time() );
     }
-​
+
     if ( --second_countdown == 0 ) {
         current_seconds++;
         second_countdown = CLOCK_SECOND;
@@ -81,11 +80,11 @@ void dbg_setup_uart ( void ) {
 #include <sys/autostart.h>
 #include <sys/clock.h>
 #include "led.h"
-​
+
 PROCESS ( blink_process, "Blink" );
 PROCESS_THREAD ( blink_process, ev, data ) {
     PROCESS_BEGIN();
-​
+
     while ( 1 ) {
         static struct etimer et;
         etimer_set ( &et, CLOCK_SECOND );
@@ -95,14 +94,14 @@ PROCESS_THREAD ( blink_process, ev, data ) {
         PROCESS_WAIT_EVENT_UNTIL ( etimer_expired ( &et ) );
         GPIO_SetBits ( GPIOA, GPIO_Pin_8 );
     }
-​
+
     PROCESS_END();
 }
-​
+
 PROCESS ( blink_process_2, "Blink" );
 PROCESS_THREAD ( blink_process_2, ev, data ) {
     PROCESS_BEGIN();
-​
+
     while ( 1 ) {
         static struct etimer et_2;
         etimer_set ( &et_2, CLOCK_SECOND / 2 );
@@ -112,13 +111,13 @@ PROCESS_THREAD ( blink_process_2, ev, data ) {
         PROCESS_WAIT_EVENT_UNTIL ( etimer_expired ( &et_2 ) );
         GPIO_SetBits ( GPIOD, GPIO_Pin_2 );
     }
-​
+
     PROCESS_END();
 }
-​
+
 unsigned int idle_count = 0;
 AUTOSTART_PROCESSES ( &blink_process, &blink_process_2 );
-​
+
 int main ( void ) {
     LED_Init();
     dbg_setup_uart();
@@ -128,17 +127,17 @@ int main ( void ) {
     process_start ( &etimer_process, NULL );
     autostart_start ( autostart_processes );
     printf ( "Processes running\n" );
-​
+
     while ( 1 ) {
         do {
         } while ( process_run() > 0 );
-​
+
         idle_count++;
         /* Idle! */
         /* Stop processor clock */
         /* asm("wfi"::); */
     }
-​
+
     return 0;
 }
 ```

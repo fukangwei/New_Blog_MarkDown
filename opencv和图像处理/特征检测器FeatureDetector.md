@@ -1,7 +1,6 @@
 ---
 title: 特征检测器FeatureDetector
 categories: opencv和图像处理
-abbrlink: b1e50079
 date: 2019-02-24 17:19:26
 ---
 &emsp;&emsp;`OpenCV`提供`FeatureDetector`实现特征检测及匹配：<!--more-->
@@ -69,9 +68,9 @@ initModule_nonfree();
 #include <opencv2/features2d/features2d.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <vector>
-​
+
 using namespace cv;
-​
+
 int main() {
     Mat image;
     image = imread ( "timg1.jpg" );

@@ -1,7 +1,6 @@
 ---
 title: uname函数
 categories: Linux系统编程
-abbrlink: 32cb2964
 date: 2018-12-29 14:40:07
 ---
 &emsp;&emsp;其功能是获取当前内核名称和其它信息：<!--more-->
@@ -37,12 +36,12 @@ struct utsname {
 #include <sys/utsname.h>
 #include <stdio.h>
 #include <stdlib.h>
-​
+
 int main() {
     struct utsname testbuff;
     int fb = 0;
     fb = uname ( &testbuff );
-​
+
     if ( fb < 0 ) {
         perror ( "uname" );
         return 0;
@@ -54,7 +53,7 @@ int main() {
             testbuff.release, \
             testbuff.version, \
             testbuff.machine );
-​
+
 #if _UTSNAME_DOMAIN_LENGTH - 0
     # ifdef __USE_GNU
         printf ( " domainame: %s\n ", testbuff.domainname );
@@ -63,7 +62,7 @@ int main() {
     # endif
 #endif
     }
-​
+
     return 0;
 }
 ```

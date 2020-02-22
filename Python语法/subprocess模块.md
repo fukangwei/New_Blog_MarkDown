@@ -1,7 +1,6 @@
 ---
 title: subprocess模块
 categories: Python语法
-abbrlink: 509ff702
 date: 2019-02-09 15:30:45
 ---
 &emsp;&emsp;`subprocess`的目的就是启动一个新的进程并且与之通信。`subprocess`模块中只定义了一个类`Popen`，可以使用`Popen`来创建进程，并与进程进行复杂的交互。<!--more-->
@@ -53,7 +52,7 @@ subprocess.call('shell脚本', shell=True)
 >>> s = subprocess.Popen('ls -l', shell=True, stdout=subprocess.PIPE)
 >>> s.communicate()
 ('\xe6\x80\xbb\xe7\x94\xa8\xe9\x87\x8f 152\n
--rw------- 1 limbo limbo   808  7\xe6\x9c\x88  6 17:46 0000-00-00-welcome-to-jekyll.markdown.erb\n
+-rw------- 1 limbo limbo   808  7\xe6\x9c\x88  6 17:46 0000-00-00-welcome-to-jekyll.markdown.erb\n
 drwx------ 2 limbo limbo  4096  8\xe6\x9c\x88 15 18:43 arg\n
 drwx------ 2 limbo limbo  4096  8\xe6\x9c\x88  7 17:37 argv\n
 drwxrwxr-x 2 limbo limbo  4096  9\xe6\x9c\x88 10 15:27 c\n
@@ -67,7 +66,7 @@ drwxrwxr-x 3 limbo limbo  4096  9\xe6\x9n', None)
 >>> s = subprocess.check_output('ls -l', shell=True)
 >>> s
 '\xe6\x80\xbb\xe7\x94\xa8\xe9\x87\x8f 152\n
--rw------- 1 limbo limbo   808  7\xe6\x9c\x88  6 17:46 0000-00-00-welcome-to-jekyll.markdown.erb\n
+-rw------- 1 limbo limbo   808  7\xe6\x9c\x88  6 17:46 0000-00-00-welcome-to-jekyll.markdown.erb\n
 drwx------ 2 limbo limbo  4096  8\xe6\x9c\x88 15 18:43 arg\n
 drwx------ 2 limbo limbo  4096  8\xe6\x9c\x88  7 17:37 argv\n
 drwxrwxr-x 2 limbo limbo  4096  9\xe6\x9c\x88 10 15:27 c\n
@@ -79,7 +78,7 @@ drwxrwxr-x 3 limbo limbo  4096  9\xe6\x9n'
 
 ``` python
 import subprocess
-​
+
 child1 = subprocess.Popen(["ls", "-l"], stdout=subprocess.PIPE)
 child2 = subprocess.Popen(["wc"], stdin=child1.stdout, stdout=subprocess.PIPE)
 out = child2.communicate()

@@ -1,6 +1,5 @@
 ---
 title: TCP状态变迁图
-abbrlink: 2c21c8bd
 date: 2019-03-30 13:07:23
 categories: 网络编程
 ---

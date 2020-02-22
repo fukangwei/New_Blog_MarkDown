@@ -1,7 +1,6 @@
 ---
 title: Touch事件
 categories: Android
-abbrlink: b927025a
 date: 2018-12-28 15:01:05
 ---
 &emsp;&emsp;重写`Touch`事件回调函数如下：<!--more-->
@@ -11,14 +10,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.widget.Toast;
-​
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-​
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         Toast.makeText(MainActivity.this, "触摸", Toast.LENGTH_SHORT).show();
@@ -36,18 +35,18 @@ import android.view.View;
 import android.widget.ImageView;
 import android.app.Activity;
 import android.widget.TextView;
-​
+
 public class MainActivity extends Activity {
     private TextView textView = null;
     private ImageView imageView = null;
-​
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textView = (TextView) findViewById(R.id.info);
         imageView = (ImageView) findViewById(R.id.imageView1);
-​
+
         imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -73,7 +72,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.app.Activity;
-​
+
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +86,7 @@ public class MainActivity extends Activity {
                 Log.i("onClick", "单击事件");
             }
         });
-​
+
         /* 为按钮注册触摸事件监听器 */
         button.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -115,7 +114,7 @@ import android.view.ContextMenu;
 import android.view.View;
 import android.widget.ImageView;
 import android.app.Activity;
-​
+
 public class MainActivity extends Activity {
     @Override
     /* 重写onCreateContextMenu菜单，为菜单添加选项值 */
@@ -124,7 +123,7 @@ public class MainActivity extends Activity {
         menu.add("收藏");
         menu.add("举报");
     }
-​
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

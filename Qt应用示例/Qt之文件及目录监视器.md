@@ -1,7 +1,6 @@
 ---
 title: Qt之文件及目录监视器
 categories: Qt应用示例
-abbrlink: f82797bd
 date: 2019-02-06 13:34:51
 ---
 &emsp;&emsp;`mainwindow.h`如下：<!--more-->
@@ -9,14 +8,14 @@ date: 2019-02-06 13:34:51
 ``` cpp
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-​
+
 #include <QMainWindow>
 #include <QFileSystemWatcher>
-​
+
 namespace Ui {
     class MainWindow;
 }
-​
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
@@ -28,7 +27,7 @@ private:
     Ui::MainWindow *ui;
     QFileSystemWatcher myWatcher;
 };
-​
+
 #endif // MAINWINDOW_H
 ```
 
@@ -38,7 +37,7 @@ private:
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDir>
-​
+
 MainWindow::MainWindow ( QWidget *parent ) : QMainWindow ( parent ), ui ( new Ui::MainWindow ) {
     ui->setupUi ( this );
     /* 将监视器的信号和自定义的槽进行关联 */
@@ -56,7 +55,7 @@ MainWindow::MainWindow ( QWidget *parent ) : QMainWindow ( parent ), ui ( new Ui
     myWatcher.addPath ( myDir.absolutePath() );
     /* 创建文件，并将其加入到监视器中 */
     QFile file ( myDir.absolutePath() + "/myfile.txt" );
-​
+
     if ( file.open ( QIODevice::WriteOnly ) ) {
         QFileInfo info ( file );
         ui->listWidget->addItem ( tr ( "监视的文件：" ) + info.absoluteFilePath() );
@@ -64,14 +63,14 @@ MainWindow::MainWindow ( QWidget *parent ) : QMainWindow ( parent ), ui ( new Ui
         file.close();
     }
 }
-​
+
 MainWindow::~MainWindow() {
     delete ui;
 }
-​
+
 void MainWindow::showMessage ( const QString &path ) { /* 显示文件或目录改变信息 */
     QDir dir ( QDir::currentPath() + "/mydir" );
-​
+
     /* 如果是目录发生了改变 */
     if ( path == dir.absolutePath() ) {
         ui->listWidget->addItem ( dir.dirName() + tr ( "目录发生改变: " ) );

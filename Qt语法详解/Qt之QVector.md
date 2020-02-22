@@ -1,7 +1,6 @@
 ---
 title: Qt之QVector
 categories: Qt语法详解
-abbrlink: 6ecdbdf1
 date: 2019-01-30 20:04:17
 ---
 &emsp;&emsp;The `QVector` class is a template class that provides a dynamic array.<!--more-->
@@ -154,7 +153,7 @@ for ( int i = 0; i < vector.size(); ++i ) {
 
 `at()` can be faster than `operator[]()`, because it never causes a deep copy to occur.
 &emsp;&emsp;Another way to access the data stored in a `QVector` is to call `data()`. The function returns a pointer to the first item in the vector. You can use the pointer to directly access and modify the elements stored in the vector. The pointer is also useful if you need to pass a `QVector` to a function that accepts a plain `C++` array.
-&emsp;&emsp;If you want to find all occurrences of a particular value in a vector, use `indexOf()` or `lastIndexOf()`. The former searches forward starting from a given index position, the latter searches backward. Both return the index of the matching item if they found one; otherwise, they return `-1`. For example:
+&emsp;&emsp;If you want to find all occurrences of a particular value in a vector, use `indexOf()` or `lastIndexOf()`. The former searches forward starting from a given index position, the latter searches backward. Both return the index of the matching item if they found one; otherwise, they return `-1`.
 
 ``` cpp
 int i = vector.indexOf ( "Harumi" );
@@ -196,7 +195,7 @@ if ( i != -1 ) {
 - `QVector::QVector(const QVector<T> & other)`: Constructs a copy of `other`. This operation takes constant time, because `QVector` is implicitly shared. This makes returning a `QVector` from a function very fast. If a shared instance is modified, it will be copied (`copy-on-write`), and that takes linear time.
 - `QVector::QVector(std::initializer_list<T> args)`: Construct a vector from the `std::initilizer_list` given by `args`. This constructor is only enabled if the compiler supports `C++0x`.
 - `QVector::~QVector()`: Destroys the vector.
-- `void QVector::append(const T & value)`: Inserts `value` at the end of the vector. Example:
+- `void QVector::append(const T & value)`: Inserts `value` at the end of the vector.
 
 ``` cpp
 QVector<QString> vector ( 0 );
@@ -220,12 +219,12 @@ This is the same as calling `resize(size() + 1)` and assigning value to the new 
 - `bool QVector::contains(const T & value) const`: Returns `true` if the vector contains an occurrence of `value`; otherwise returns `false`. This function requires the `value` type to have an implementation of `operator==()`.
 - `int QVector::count(const T & value) const`: Returns the number of occurrences of `value` in the vector. This function requires the value type to have an implementation of `operator==()`.
 - `int QVector::count() const`: This is an overloaded function. Same as `size()`.
-- `T * QVector::data()`: Returns a pointer to the data stored in the vector. The pointer can be used to access and modify the items in the vector. Example:
+- `T * QVector::data()`: Returns a pointer to the data stored in the vector. The pointer can be used to access and modify the items in the vector.
 
 ``` cpp
 QVector<int> vector ( 10 );
 int *data = vector.data();
-​
+
 for ( int i = 0; i < 10; ++i ) {
     data[i] = 2 * i;
 }
@@ -240,7 +239,7 @@ The pointer remains valid as long as the vector isn't reallocated. This function
 - `bool QVector::endsWith(const T & value) const`: Returns `true` if this vector is not empty and its last item is equal to `value`; otherwise returns `false`.
 - `iterator QVector::erase(iterator pos)`: Removes the item pointed to by the iterator `pos` from the vector, and returns an iterator to the next item in the vector (which may be `end()`).
 - `iterator QVector::erase(iterator begin, iterator end)`: This is an overloaded function. Removes all the items from `begin` up to (but not including) `end`. Returns an iterator to the same item that `end` referred to before the call.
-- `QVector<T> & QVector::fill(const T & value, int size = -1)`: Assigns `value` to all items in the vector. If `size` is different from `-1` (the default), the vector is resized to `size` beforehand. Example:
+- `QVector<T> & QVector::fill(const T & value, int size = -1)`: Assigns `value` to all items in the vector. If `size` is different from `-1` (the default), the vector is resized to `size` beforehand.
 
 ``` cpp
 QVector<QString> vector ( 3 );
@@ -250,7 +249,7 @@ vector.fill ( "oh", 5 ); /* vector: ["oh", "oh", "oh", "oh", "oh"] */
 
 - `T & QVector::first()`: Returns a reference to the first item in the vector. This function assumes that the vector isn't empty.
 - `const T & QVector::first() const`: This is an overloaded function.
-- `QVector<T> QVector::fromList(const QList<T> & list) [static]`: Returns a `QVector` object with the data contained in `list`. Example:
+- `QVector<T> QVector::fromList(const QList<T> & list) [static]`: Returns a `QVector` object with the data contained in `list`.
 
 ``` cpp
 QStringList list;
@@ -259,7 +258,7 @@ list << "Sven" << "Kim" << "Ola";
 QVector<QString> vect = QVector<QString>::fromList ( list );
 ```
 
-- `QVector<T> QVector::fromStdVector(const std::vector<T> & vector) [static]`: Returns a `QVector` object with the data contained in `vector`. The order of the elements in the `QVector` is the same as in `vector`. Example:
+- `QVector<T> QVector::fromStdVector(const std::vector<T> & vector) [static]`: Returns a `QVector` object with the data contained in `vector`. The order of the elements in the `QVector` is the same as in `vector`.
 
 ``` cpp
 std::vector<double> stdvector;
@@ -271,7 +270,7 @@ QVector<double> vector = QVector<double>::fromStdVector ( stdvector );
 
 - `T & QVector::front()`: This function is provided for `STL` compatibility. It is equivalent to `first()`.
 - `const_reference QVector::front() const`: This is an overloaded function.
-- `int QVector::indexOf(const T & value, int from = 0) const`: Returns the index position of the first occurrence of `value` in the vector, searching forward `from` index position `from`. Returns `-1` if no item matched. Example:
+- `int QVector::indexOf(const T & value, int from = 0) const`: Returns the index position of the first occurrence of `value` in the vector, searching forward `from` index position `from`. Returns `-1` if no item matched.
 
 ``` cpp
 QVector<QString> vector;
@@ -284,7 +283,7 @@ vector.indexOf ( "X" );    // returns -1
 
 This function requires the value type to have an implementation of `operator==()`.
 
-- `void QVector::insert(int i, const T & value)`: Inserts `value` at index position `i` in the vector. If `i` is `0`, the `value` is prepended to the vector. If `i` is `size()`, the `value` is appended to the vector. Example:
+- `void QVector::insert(int i, const T & value)`: Inserts `value` at index position `i` in the vector. If `i` is `0`, the `value` is prepended to the vector. If `i` is `size()`, the `value` is appended to the vector.
 
 ``` cpp
 QVector<QString> vector;
@@ -296,7 +295,7 @@ vector.insert ( 2, "gamma" );
 For large vectors, this operation can be slow (linear time), because it requires moving all the items at indexes `i` and above by one position further in memory. If you want a container class that provides a fast `insert()` function, use `QLinkedList` instead.
 
 - `iterator QVector::insert(iterator before, int count, const T & value)`: Inserts `count` copies of `value` in front of the item pointed to by the iterator `before`. Returns an iterator pointing at the first of the inserted items.
-- `void QVector::insert(int i, int count, const T & value)`: This is an overloaded function. Inserts `count` copies of `value` at index position `i` in the vector. Example:
+- `void QVector::insert(int i, int count, const T & value)`: This is an overloaded function. Inserts `count` copies of `value` at index position `i` in the vector.
 
 ``` cpp
 QVector<double> vector;
@@ -309,7 +308,7 @@ vector.insert ( 1, 3, 9.9 );
 - `bool QVector::isEmpty() const`: Returns `true` if the vector has size `0`; otherwise returns `false`.
 - `T & QVector::last()`: Returns a reference to the last item in the vector. This function assumes that the vector isn't empty.
 - `const T & QVector::last() const`: This is an overloaded function.
-- `int QVector::lastIndexOf(const T & value, int from = -1) const`: Returns the index position of the last occurrence of the `value` in the vector, searching backward from index position `from`. If `from` is `-1` (the default), the search starts at the last item. Returns `-1` if no item matched. Example:
+- `int QVector::lastIndexOf(const T & value, int from = -1) const`: Returns the index position of the last occurrence of the `value` in the vector, searching backward from index position `from`. If `from` is `-1` (the default), the search starts at the last item. Returns `-1` if no item matched.
 
 ``` cpp
 QList<QString> vector;
@@ -325,7 +324,7 @@ This function requires the value type to have an implementation of `operator==()
 - `QVector<T> QVector::mid(int pos, int length = -1) const`: Returns a vector whose elements are copied from this vector, starting at position `pos`. If `length` is `-1` (the default), all elements after `pos` are copied; otherwise `length` elements (or all remaining elements if there are less than `length` elements) are copied.
 - `void QVector::pop_back()`: This function is provided for `STL` compatibility. It is equivalent to `erase(end() - 1)`.
 - `void QVector::pop_front()`: This function is provided for `STL` compatibility. It is equivalent to `erase(begin())`.
-- `void QVector::prepend(const T & value)`: Inserts `value` at the beginning of the vector. Example:
+- `void QVector::prepend(const T & value)`: Inserts `value` at the beginning of the vector.
 
 ``` cpp
 QVector<QString> vector;
@@ -347,7 +346,7 @@ This is the same as `vector.insert(0, value)`. For large vectors, this operation
 - `void QVector::squeeze()`: Releases any memory not required to store the items. The sole purpose of this function is to provide a means of fine tuning `QVector's` memory usage. In general, you will rarely ever need to call this function.
 - `bool QVector::startsWith(const T & value) const`: Returns `true` if this vector is not empty and its first item is equal to `value`; otherwise returns `false`.
 - `void QVector::swap(QVector<T> & other)`: Swaps vector `other` with this vector. This operation is very fast and never fails.
-- `QList<T> QVector::toList() const`: Returns a `QList` object with the data contained in this `QVector`. Example:
+- `QList<T> QVector::toList() const`: Returns a `QList` object with the data contained in this `QVector`.
 
 ``` cpp
 QVector<QString> vect;
@@ -356,7 +355,7 @@ vect << "red" << "green" << "blue" << "black";
 QList<QString> list = vect.toList();
 ```
 
-- `std::vector<T> QVector::toStdVector() const`: Returns a `std::vector` object with the data contained in this `QVector`. Example:
+- `std::vector<T> QVector::toStdVector() const`: Returns a `std::vector` object with the data contained in this `QVector`.
 
 ``` cpp
 QVector<double> vector;

@@ -1,7 +1,6 @@
 ---
 title: json模块
 categories: Python语法
-abbrlink: '4e133423'
 date: 2018-12-28 09:16:28
 ---
 &emsp;&emsp;`JSON`(`JavaScript Object Notation`)是一种轻量级的数据交换格式，它是基于`ECMAScript`的一个子集。`Python 3`中可以使用`json`模块来对`JSON`数据进行编解码，它包含了两个函数：<!--more-->
@@ -38,7 +37,7 @@ date: 2018-12-28 09:16:28
 
 ``` python
 import json
-​
+
 data = {'no': 1, 'name': 'Runoob', 'url': 'http://www.runoob.com'}
 json_str = json.dumps(data)
 print("Python原始数据:", repr(data))
@@ -57,7 +56,7 @@ JSON对象: {"no": 1, "name": "Runoob", "url": "http://www.runoob.com"}
 
 ``` python
 import json
-​
+
 data1 = {'no': 1, 'name': 'Runoob', 'url': 'http://www.runoob.com'}
 json_str = json.dumps(data1)
 print("Python原始数据:", repr(data1))
@@ -81,7 +80,7 @@ data2['url']: http://www.runoob.com
 ``` python
 with open('data.json', 'w') as f:
     json.dump(data, f)
-​
+
 with open('data.json', 'r') as f:
     data = json.load(f)
 ```

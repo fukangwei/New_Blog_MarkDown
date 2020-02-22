@@ -1,7 +1,6 @@
 ---
 title: TensorFlow指定设备
 categories: 深度学习
-abbrlink: d6eecfcd
 date: 2019-01-16 14:08:23
 ---
 ### 支持的设备
@@ -50,11 +49,11 @@ a: (Const): /job:localhost/replica:0/task:0/device:GPU:0
 
 ``` python
 import tensorflow as tf
-​
+
 with tf.device('/cpu:0'):
     a = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[2, 3], name='a')
     b = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[3, 2], name='b')
-​
+
 c = tf.matmul(a, b)
 sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
 print(sess.run(c))
@@ -79,7 +78,7 @@ a: (Const): /job:localhost/replica:0/task:0/device:CPU:0
 
 ``` python
 import tensorflow as tf
-​
+
 with tf.device('/gpu:2'):
     a = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[2, 3], name='a')
     b = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[3, 2], name='b')
@@ -96,7 +95,7 @@ print(sess.run(c))
 
 ``` python
 import tensorflow as tf
-​
+
 c = []
 
 for d in ['/gpu:2', '/gpu:3']:
@@ -104,10 +103,10 @@ for d in ['/gpu:2', '/gpu:3']:
         a = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[2, 3])
         b = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[3, 2])
         c.append(tf.matmul(a, b))
-​
+
 with tf.device('/cpu:0'):
     sum = tf.add_n(c)
-​
+
 # 新建“session with log_device_placement”，并设置为True
 sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
 print(sess.run(sum))  # 运行这个op
@@ -181,14 +180,14 @@ with g.device('/device:GPU:0'):
     # All operations constructed in this context will be placed on GPU 0
 with g.device(None):
     # All operations constructed in this context will have no assigned device
-​
+
 # Defines a function from "Operation" to device string
 def matmul_on_gpu(n):
     if n.type == "MatMul":
         return "/device:GPU:0"
     else:
         return "/cpu:0"
-​
+
 with g.device(matmul_on_gpu):
     # All operations of type "MatMul" constructed in this context will be
     # placed on GPU 0; all other operations will be placed on CPU 0

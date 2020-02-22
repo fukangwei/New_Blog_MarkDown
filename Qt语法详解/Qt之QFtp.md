@@ -1,7 +1,6 @@
 ---
 title: Qt之QFtp
 categories: Qt语法详解
-abbrlink: bbd6cbb0
 date: 2019-01-27 22:10:59
 ---
 &emsp;&emsp;`QFtp`类提供了一个`FTP`协议的客户端实现，该类提供了一个访问到`FTP`服务器的接口。对于新的应用程序，建议使用`QNetworkAccessManager`和`QNetworkReply`，因为这些类拥有一个更简单、更强大的`API`。<!--more-->
@@ -43,14 +42,14 @@ stateChanged ( HostLookup )
 stateChanged ( Connecting )
 stateChanged ( Connected )
 commandFinished ( 1, false )
-​
+
 commandStarted ( 2 )
 stateChanged ( LoggedIn )
 commandFinished ( 2, false )
-​
+
 commandStarted ( 3 )
 commandFinished ( 3, false )
-​
+
 commandStarted ( 4 )
 dataTransferProgress ( 0, 8710 )
 dataTransferProgress ( 8192, 8710 )
@@ -58,12 +57,12 @@ readyRead()
 dataTransferProgress ( 8710, 8710 )
 readyRead()
 commandFinished ( 4, false )
-​
+
 commandStarted ( 5 )
 stateChanged ( Closing )
 stateChanged ( Unconnected )
 commandFinished ( 5, false )
-​
+
 done ( false )
 ```
 
@@ -76,10 +75,10 @@ stateChanged ( HostLookup )
 stateChanged ( Connecting )
 stateChanged ( Connected )
 commandFinished ( 1, false )
-​
+
 commandStarted ( 2 )
 commandFinished ( 2, true )
-​
+
 done ( true )
 ```
 
@@ -98,7 +97,7 @@ $ tree
 │   └── linux-program.pdf
 └── python
     └── hello.py
-​
+
 3 directories, 4 files
 ```
 
@@ -194,7 +193,7 @@ ftp->put ( "Hello World!\nI'am a Qter.", "readMe.txt" );
 
 ``` bash
 $ ls
-c  linux  python  readMe.txt
+c  linux  python  readMe.txt
 $ cat readMe.txt
 Hello World!
 I'am a Qter.
@@ -212,7 +211,7 @@ int QFtp::get ( const QString &file, QIODevice *dev = 0, TransferType type = Bin
 
 ``` cpp
 m_file = new QFile ( "E:/Qt.zip" );
-​
+
 if ( !m_file->open ( QIODevice::WriteOnly ) ) {
     m_file->remove();
     delete m_file;
@@ -252,7 +251,7 @@ void FtpWindow::stateChanged ( int state ) {
             break;
         case QFtp::LoggedIn:
             stateLabel->setText ( QStringLiteral ( "已实现连接和用户登录" ) );
-            break;​
+            break;
         case QFtp::Closing:
             stateLabel->setText ( QStringLiteral ( "连接正在关闭•" ) );
             break;
@@ -287,7 +286,7 @@ void FtpWindow::stateChanged ( int state ) {
 ``` cpp
 void FtpWindow::commandStarted ( int id ) {
     QFtp::Command command = ftp->currentCommand();
-​
+
     switch ( command ) {
         case QFtp::List: /* 正在执行list：列出目录下的文件 */
             fileListTree->clear(); /* 清除目录视图QTreeWidget */
@@ -295,7 +294,7 @@ void FtpWindow::commandStarted ( int id ) {
         default:
             break;
     }
-​
+
     qDebug() << "commandStarted " << id;
 }
 ```
@@ -317,7 +316,7 @@ void FtpWindow::commandStarted ( int id ) {
 void FtpWindow::commandFinished ( int id, bool error ) {
     Q_UNUSED ( id );
     QFtp::Command command = ftp->currentCommand();
-​
+
     switch ( command ) {
         case QFtp::ConnectToHost: /* 连接FTP服务器 */
             if ( error ) { /* 发生错误 */
@@ -330,7 +329,7 @@ void FtpWindow::commandFinished ( int id, bool error ) {
             } else {
                 qDebug() << QStringLiteral ( "登录FTP服务器" );
             }
-​
+
             break;
         default:
             break;

@@ -1,7 +1,6 @@
 ---
 title: Contiki的MAC和RDC层
 categories: Contiki和uip
-abbrlink: 8499d7cc
 date: 2019-02-04 14:32:30
 ---
 &emsp;&emsp;在`Contiki`中，`MAC`层源码位于`core\net\mac`目录下。在低功耗网络中，无线收发设备必须经常休眠以节省电量。在`Contiki`中，负责这个工作的是`RDC`(`Radio Duty Cycling`)层。`Contiki`提供了一系列`RDC`机制，默认的就是`ContikiMAC`。<!--more-->
@@ -24,7 +23,7 @@ date: 2019-02-04 14:32:30
 #define NETSTACK_CONF_RDC    contikimac_driver
 #define NETSTACK_CONF_FRAMER framer_802154
 #define NETSTACK_CONF_RADIO  stm32w_radio_drive
-​
+
 #if WITH_UIP6
     #define NETSTACK_CONF_NETWORK sicslowpan_driver
 #else

@@ -1,6 +1,5 @@
 ---
 title: C语言语法详解
-abbrlink: 16986
 date: 2019-10-01 19:40:46
 categories: AI_付康为
 ---

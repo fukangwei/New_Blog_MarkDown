@@ -1,6 +1,5 @@
 ---
 title: ifreq结构体
-abbrlink: fc22a71d
 date: 2019-01-16 20:33:54
 categories: 网络编程
 ---
@@ -13,7 +12,7 @@ struct ifreq {
     union {
         char ifrn_name[IFNAMSIZ];
     } ifr_ifrn;
-​
+
     union {
         struct sockaddr ifru_addr;
         struct sockaddr ifru_dstaddr;
@@ -30,7 +29,7 @@ struct ifreq {
         struct if_settings ifru_settings;
     } ifr_ifru;
 };
-​
+
 #define ifr_name      ifr_ifrn.ifrn_name
 #define ifr_hwaddr    ifr_ifru.ifru_hwaddr
 #define ifr_addr      ifr_ifru.ifru_addr

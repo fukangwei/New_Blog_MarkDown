@@ -1,7 +1,6 @@
 ---
 title: RCNN原理
 categories: 深度学习
-abbrlink: e51cc020
 date: 2019-02-16 15:56:25
 ---
 &emsp;&emsp;`Region CNN`(`RCNN`)可以说是利用深度学习进行目标检测的开山之作，主要解决目标检测中的速度和训练集这两个关键问题。<!--more-->

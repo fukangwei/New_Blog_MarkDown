@@ -1,7 +1,6 @@
 ---
 title: pydot模块
 categories: Python语法
-abbrlink: ffaa6999
 date: 2019-03-02 18:27:33
 ---
 &emsp;&emsp;`pydot`工具包是功能强大的`GraphViz`图形库的`Python`接口，因此需要首先安装`GraphViz`。安装`pydot`的命令如下：<!--more-->
@@ -16,13 +15,13 @@ pip install pydot
 
 ``` python
 import pydot
-​
+
 graph = pydot.Dot(graph_type='graph')
-​
+
 for i in range(3):
     edge = pydot.Edge("king", "lord%d" % i)
     graph.add_edge(edge)
-​
+
 vassal_num = 0
 
 for i in range(3):
@@ -30,7 +29,7 @@ for i in range(3):
         edge = pydot.Edge("lord%d" % i, "vassal%d" % vassal_num)
         graph.add_edge(edge)
         vassal_num += 1
-​
+
 graph.write_png('example1_graph.png')
 ```
 
@@ -42,18 +41,18 @@ graph.write_png('example1_graph.png')
 
 ``` python
 import pydot
-​
+
 graph = pydot.Dot(graph_type='digraph')
 node_a = pydot.Node("Node A", style="filled", fillcolor="red")
 node_b = pydot.Node("Node B", style="filled", fillcolor="green")
 node_c = pydot.Node("Node C", style="filled", fillcolor="#0000ff")
 node_d = pydot.Node("Node D", style="filled", fillcolor="#976856")
-​
+
 graph.add_node(node_a)
 graph.add_node(node_b)
 graph.add_node(node_c)
 graph.add_node(node_d)
-​
+
 graph.add_edge(pydot.Edge(node_a, node_b))
 graph.add_edge(pydot.Edge(node_b, node_c))
 graph.add_edge(pydot.Edge(node_c, node_d))

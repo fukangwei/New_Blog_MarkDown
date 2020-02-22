@@ -1,7 +1,6 @@
 ---
 title: Qt之QBoxLayout、QHBoxLayout和QVBoxLayout
 categories: Qt语法详解
-abbrlink: b357168c
 date: 2019-03-17 17:43:03
 ---
 ### 简述
@@ -27,14 +26,14 @@ QPushButton *pButton2 = new QPushButton ( "Two" );
 QPushButton *pButton3 = new QPushButton ( "Three" );
 QPushButton *pButton4 = new QPushButton ( "Four" );
 QPushButton *pButton5 = new QPushButton ( "Five" );
-​
+
 QHBoxLayout *pHLayout = new QHBoxLayout();
 pHLayout->addWidget ( pButton1 );
 pHLayout->addWidget ( pButton2 );
 pHLayout->addWidget ( pButton3 );
 pHLayout->addWidget ( pButton4 );
 pHLayout->addWidget ( pButton5 );
-​
+
 setLayout ( pHLayout );
 ```
 

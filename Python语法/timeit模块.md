@@ -1,7 +1,6 @@
 ---
 title: timeit模块
 categories: Python语法
-abbrlink: e25e6289
 date: 2019-02-09 20:47:39
 ---
 &emsp;&emsp;`timeit`模块提供了简单的方式来测量小段`Python`代码片，它有两种执行方式：命令行接口执行方式和`Python`程序代码可调的函数的方式。该模块避免了很多常见的度量时间的陷进。<!--more-->
@@ -58,7 +57,7 @@ $ python -m timeit '"-".join(map(str, range(100)))'
 
 ``` python
 t = Timer(...)  # 在“try/except”语句外使用
-​
+
 try:
     t.timeit(...)  # 或t.repeat(...)
 except:
@@ -93,9 +92,9 @@ python -m timeit [-n N] [-r N] [-s S] [-t] [-c] [-h] [statement ...]
 &emsp;&emsp;在开始时设置初始化语句：
 
 ``` bash
-$ python -m timeit -s 'text = "sample string"; char = "g"'  'char in text'
+$ python -m timeit -s 'text = "sample string"; char = "g"' 'char in text'
 10000000 loops, best of 3: 0.0936 usec per loop
-$ python -m timeit -s 'text = "sample string"; char = "g"'  'text.find(char)'
+$ python -m timeit -s 'text = "sample string"; char = "g"' 'text.find(char)'
 1000000 loops, best of 3: 0.4 usec per loop
 ```
 
@@ -171,7 +170,7 @@ def test():
 
     for i in range(100):
         L.append(i)
-​
+
 if __name__ == '__main__':
     import timeit
     print(timeit.timeit("test()", setup="from __main__ import test"))

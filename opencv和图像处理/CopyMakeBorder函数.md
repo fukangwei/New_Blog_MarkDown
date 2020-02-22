@@ -1,7 +1,6 @@
 ---
 title: CopyMakeBorder函数
 categories: opencv和图像处理
-abbrlink: b2e1e310
 date: 2019-03-04 17:13:55
 ---
 &emsp;&emsp;其作用是复制图像并且制作边界(处理边界卷积)：<!--more-->
@@ -27,7 +26,7 @@ void cvCopyMakeBorder (
 ``` cpp
 #include "highgui.h"
 #include "cv.h"
-​
+
 int main ( int argc, char **argv ) {
     IplImage *src, *dst;
     src = cvLoadImage ( "timg1.jpg", -1 );
@@ -64,7 +63,7 @@ int main ( int argc, char **argv ) {
 ``` python
 import cv2
 from matplotlib import pyplot as plt
-​
+
 BLUE = [255, 0, 0]
 img1 = cv2.imread('timg1.jpg')
 replicate = cv2.copyMakeBorder(img1, 10, 10, 10, 10, cv2.BORDER_REPLICATE)

@@ -1,7 +1,6 @@
 ---
 title: OSSemCreate函数
 categories: ucos和ucgui
-abbrlink: c16137d9
 date: 2018-12-29 14:20:28
 ---
 &emsp;&emsp;信号量在创建时，调用`OSSemCreate(INT16U cnt)`函数，`cnt`为信号量的初始值。对`cnt`赋予不同的值，所起到的作用不同。如果`Semp = OSSemCreate(0)`，表示该信号量等待一个事件或者多个事件的发生。<!--more-->
@@ -12,7 +11,7 @@ date: 2018-12-29 14:20:28
 ``` cpp
 OS_EVENT *Fun_Semp;
 Fun_Semp = OSSemCreate ( 0 );
-​
+
 void MyTask ( void *pdata ) {
     for ( ;; ) {
         OSSemPend ( Fun_Semp, 0, &err ); /* 请求信号量 */
@@ -24,11 +23,11 @@ void MyTask ( void *pdata ) {
 void YouTask ( void *pdata ) {
     for ( ;; ) {
         PC_DispStr ( 0, ++y, s2, DISP_BGND_BLACK + DISP_FGND_WHITE );
-​
+
         if ( YouTaskRun == 5 ) {
             OSSemPost ( Fun_Semp ); /* 发送信号量 */
         }
-​
+
         YouTaskRun++;
         OSTimeDlyHMSM ( 0, 0, 2, 0 ); /* 等待2秒 */
     }
@@ -41,7 +40,7 @@ void YouTask ( void *pdata ) {
 ``` cpp
 OS_EVENT *Fun_Semp;
 Fun_Semp = OSSemCreate ( 1 );
-​
+
 void MyTask ( void *pdata ) {
     for ( ;; ) {
         OSSemPend ( Fun_Semp, 0, &err ); /* 请求信号量 */
@@ -50,7 +49,7 @@ void MyTask ( void *pdata ) {
         OSTimeDlyHMSM ( 0, 0, 1, 0 ); /* 等待1秒 */
     }
 }
-​
+
 void YouTask ( void *pdata ) {
     for ( ;; ) {
         OSSemPend ( Fun_Semp, 0, &err ); /* 请求信号量 */

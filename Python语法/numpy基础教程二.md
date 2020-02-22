@@ -1,7 +1,6 @@
 ---
 title: numpy基础教程二
 categories: Python语法
-abbrlink: '87e57226'
 date: 2019-08-06 18:34:06
 mathjax: true
 ---
@@ -49,7 +48,7 @@ array([[0, 1],
 
 - `out`: `ndarray`. A copy of `arr` with the elements specified by `obj` removed. Note that delete does not occur `in-place`. If `axis` is `None`, `out` is a flattened array.
 
-&emsp;&emsp;Notes: Often it is preferable to use a `boolean` mask. For example:
+&emsp;&emsp;**Notes**: Often it is preferable to use a `boolean` mask:
 
 ``` python
 >>> mask = np.ones(len(arr), dtype=bool)
@@ -121,7 +120,7 @@ ValueError: cannot select an axis to squeeze out which has size not equal to one
 
 - `y`: `ndarray` or `scalar`. The maximum of `x1` and `x2`, `element-wise`. Returns scalar if both `x1` and `x2` are scalars.
 
-&emsp;&emsp;Notes: The `maximum` is equivalent to `np.where(x1 >= x2, x1, x2)` when neither `x1` nor `x2` are `nans`, but it is faster and does proper broadcasting.
+&emsp;&emsp;**Notes**: The `maximum` is equivalent to `np.where(x1 >= x2, x1, x2)` when neither `x1` nor `x2` are `nans`, but it is faster and does proper broadcasting.
 
 ``` python
 >>> np.maximum([2, 3, 4], [1, 5, 2])
@@ -251,7 +250,7 @@ array([[1, 2, 5],
 
 - `out`: `ndarray`. Array of uninitialized (arbitrary) data of the given `shape`, `dtype`, and `order`. Object arrays will be initialized to `None`.
 
-&emsp;&emsp;Notes: empty, unlike `zeros`, does not set the array values to `zero`, and may therefore be marginally faster. On the other hand, it requires the user to manually set all the values in the array, and should be used with caution.
+&emsp;&emsp;**Notes**: empty, unlike `zeros`, does not set the array values to `zero`, and may therefore be marginally faster. On the other hand, it requires the user to manually set all the values in the array, and should be used with caution.
 
 ``` python
 >>> np.empty([2, 2])
@@ -272,7 +271,7 @@ array([[-1073741821, -1067949133],
 
 - `f`: `ndarray`. A view of m with the columns reversed. Since a view is returned, this operation is `O(1)`.
 
-&emsp;&emsp;Notes: Equivalent to `m[:, ::-1]`. Requires the array to be at least `2-D`.
+&emsp;&emsp;**Notes**: Equivalent to `m[:, ::-1]`. Requires the array to be at least `2-D`.
 
 ``` python
 >>> A = np.diag([1.,2.,3.])
@@ -332,7 +331,7 @@ print(bins)
 2. If `xp` or `fp` are not `1-D` sequences.
 3. If `period == 0`.
 
-&emsp;&emsp;Notes: Does not check that the `x-coordinate` sequence `xp` is increasing. If `xp` is not increasing, the results are nonsense. A simple check for increasing is:
+&emsp;&emsp;**Notes**: Does not check that the `x-coordinate` sequence `xp` is increasing. If `xp` is not increasing, the results are nonsense. A simple check for increasing is:
 
 ``` python
 np.all(np.diff(xp) > 0)
@@ -425,7 +424,7 @@ array([-1., -1., -0.,  1.,  2.,  2.,  2.])
 - `IOError`: If the input file does not exist or cannot be read.
 - `ValueError`: The file contains an object array, but `allow_pickle=False` given.
 
-&emsp;&emsp;Notes:
+&emsp;&emsp;**Notes**:
 
 1. If the file contains pickle data, then whatever object is stored in the pickle is returned.
 2. If the file is a `.npy` file, then a single array is returned.
@@ -536,7 +535,7 @@ array([ 2.,  2., -2., -2.])
 
 - `p`: `ndarray`. `a` with its `axes` permuted. A view is returned whenever possible.
 
-&emsp;&emsp;Notes: `Use transpose(a, argsort(axes))` to invert the transposition of tensors when using the `axes` keyword argument. Transposing a `1-D` array returns an unchanged view of the original array.
+&emsp;&emsp;**Notes**: `Use transpose(a, argsort(axes))` to invert the transposition of tensors when using the `axes` keyword argument. Transposing a `1-D` array returns an unchanged view of the original array.
 
 ``` python
 >>> x = np.arange(4).reshape((2,2))
@@ -561,7 +560,7 @@ array([[0, 2],
 
 - `index_array`: `ndarray`. Indices of elements that are `non-zero`. Indices are grouped by element.
 
-&emsp;&emsp;Notes: `np.argwhere(a)` is the same as `np.transpose(np.nonzero(a))`. The output of argwhere is not suitable for indexing arrays. For this purpose use `nonzero(a)` instead.
+&emsp;&emsp;**Notes**: `np.argwhere(a)` is the same as `np.transpose(np.nonzero(a))`. The output of argwhere is not suitable for indexing arrays. For this purpose use `nonzero(a)` instead.
 
 ``` python
 >>> x = np.arange(6).reshape(2,3)
@@ -589,7 +588,7 @@ array([[0, 2],
 
 - `product_along_axis`: `ndarray`, see `dtype` parameter above. An array shaped as `a` but with the specified `axis` removed. Returns a reference to `out` if specified.
 
-&emsp;&emsp;Notes: Arithmetic is modular when using integer types, and no error is raised on overflow. That means that, on a `32-bit` platform:
+&emsp;&emsp;**Notes**: Arithmetic is modular when using integer types, and no error is raised on overflow. That means that, on a `32-bit` platform:
 
 ``` python
 >>> x = np.array([536870910, 536870910, 536870910, 536870910])
@@ -691,7 +690,7 @@ Arrays are not almost equal
 
 - `res`: `ndarray`. Output array, with the same shape as `a`.
 
-&emsp;&emsp;Notes: Supports rolling over multiple dimensions simultaneously.
+&emsp;&emsp;**Notes**: Supports rolling over multiple dimensions simultaneously.
 
 ``` python
 >>> x = np.arange(10)
@@ -778,7 +777,7 @@ array([[a, aa, aaa],
 - `count`: `int`, optional. Number of items to read. `-1` means all data in the buffer.
 - `offset`: `int`, optional. Start reading the buffer from this `offset` (in `bytes`).
 
-Notes: If the `buffer` has data that is not in machine `byte-order`, this should be specified as part of the `data-type`:
+**Notes**: If the `buffer` has data that is not in machine `byte-order`, this should be specified as part of the `data-type`:
 
 ``` python
 >>> dt = np.dtype(int)
@@ -811,7 +810,7 @@ array([1, 2, 3], dtype=uint8)
 - `strides`: `tuple of ints`, optional. Strides of data in memory.
 - `order`: `{'C', 'F'}`, optional. `Row-major` (`C-style`) or `column-major` (`Fortran-style`) order.
 
-Notes: There are two modes of creating an array using `__new__`:
+**Notes**: There are two modes of creating an array using `__new__`:
 
 1. If `buffer` is `None`, then only `shape`, `dtype` and `order` are used.
 2. If `buffer` is an object exposing the buffer interface, then all keywords are interpreted.
@@ -845,7 +844,7 @@ array([2, 3])
 
 - `y`: `ndarray` or `bool`. For scalar input, the result is a new `boolean` with value `True` if the input is `NaN`; otherwise the value is `False`. For array input, the result is a `boolean` array of the same dimensions as the input and the values are `True` if the corresponding element of the input is `NaN`; otherwise the values are `False`.
 
-&emsp;&emsp;Notes: `NumPy` uses the `IEEE Standard for Binary Floating-Point for Arithmetic`. This means that `Not a Number` is not equivalent to `infinity`.
+&emsp;&emsp;**Notes**: `NumPy` uses the `IEEE Standard for Binary Floating-Point for Arithmetic`. This means that `Not a Number` is not equivalent to `infinity`.
 
 ``` python
 >>> np.isnan(np.nan)
@@ -876,7 +875,7 @@ array([ True, False, False])
 
 - `LinAlgError`: If computation does not converge.
 
-Notes: If `b` is a matrix, then all array results are returned as matrices.
+**Notes**: If `b` is a matrix, then all array results are returned as matrices.
 &emsp;&emsp;Examples: Fit a line, `y = mx + c`, through some noisy data-points:
 
 ``` python
@@ -936,7 +935,7 @@ The default is `reduced`, and to maintain backward compatibility with earlier ve
 
 - `LinAlgError`. If factoring fails.
 
-&emsp;&emsp;Notes: This is an interface to the `LAPACK` routines `dgeqrf`, `zgeqrf`, `dorgqr` and `zungqr`. For more information on the `qr` factorization, see for example: `http://en.wikipedia.org/wiki/QR_factorization`.
+&emsp;&emsp;**Notes**: This is an interface to the `LAPACK` routines `dgeqrf`, `zgeqrf`, `dorgqr` and `zungqr`. For more information on the `qr` factorization, see for example: `http://en.wikipedia.org/wiki/QR_factorization`.
 &emsp;&emsp;Subclasses of ndarray are preserved except for the `raw` mode. So if `a` is of type matrix, all the return values will be matrices too.
 &emsp;&emsp;New `reduced`, `complete` and `raw` options for mode were added in `NumPy 1.8.0` and the old option `full` was made an alias of `reduced`. In addition the options `full` and `economic` were deprecated. Because `full` was the previous default and `reduced` is the new default, backward compatibility can be maintained by letting mode default. The `raw` option was added so that `LAPACK` routines that can multiply arrays by `q` using the `Householder` reflectors can be used. Note that in this case the returned arrays are of type `np.double` or `np.cdouble` and the `h` array is transposed to be `FORTRAN` compatible. No routines using the `raw` return are currently exposed by numpy, but some are available in `lapack_lite` and just await the necessary work.
 
@@ -1010,7 +1009,7 @@ if __name__ == '__main__':
 
 - `y`: `ndarray`. The sign of `x`.
 
-&emsp;&emsp;Notes: There is more than one definition of sign in common use for `complex` numbers. The definition used here is equivalent to $\frac{x}{\sqrt{x * x}}$ which is different from a common alternative, $\frac{x}{\left | x \right |}$.
+&emsp;&emsp;**Notes**: There is more than one definition of sign in common use for `complex` numbers. The definition used here is equivalent to $\frac{x}{\sqrt{x * x}}$ which is different from a common alternative, $\frac{x}{\left | x \right |}$.
 
 ``` python
 >>> np.sign([-5., 4.5])
@@ -1042,7 +1041,7 @@ array([-1.,  1.])
 
 - `ValueError`. When the dimension of the vector(s) in `a` and/or `b` does not equal `2` or `3`.
 
-&emsp;&emsp;Notes: Supports full broadcasting of the inputs.
+&emsp;&emsp;**Notes**: Supports full broadcasting of the inputs.
 &emsp;&emsp;Examples: Vector `cross-product`:
 
 ``` python
@@ -1251,7 +1250,7 @@ array([[ 0,  1,  2,  3],
 
 &emsp;&emsp;Return a copy of the array data as a (nested) `Python` list. Data items are converted to the nearest compatible `Python` type.
 &emsp;&emsp;Returns: The possibly nested list of array elements.
-&emsp;&emsp;Notes: The array may be recreated, `a = np.array(a.tolist())`.
+&emsp;&emsp;**Notes**: The array may be recreated, `a = np.array(a.tolist())`.
 
 ``` python
 >>> a = np.array([1, 2])
@@ -1281,7 +1280,7 @@ Note that the `C` and `F` options take no account of the memory layout of the un
 
 - `reshaped_array`: `ndarray`. This will be a new view object if possible; otherwise, it will be a copy. Note there is no guarantee of the memory layout (`C-` or `Fortran-` contiguous) of the returned array.
 
-&emsp;&emsp;Notes: It is not always possible to change the shape of an array without copying the data. If you want an error to be raised when the data is copied, you should assign the new shape to the shape attribute of the array:
+&emsp;&emsp;**Notes**: It is not always possible to change the shape of an array without copying the data. If you want an error to be raised when the data is copied, you should assign the new shape to the shape attribute of the array:
 
 ``` python
 >>> a = np.zeros((10, 2))
@@ -1428,7 +1427,7 @@ print(np.corrcoef(x))
 
 - `variance`: `ndarray`, see `dtype` parameter above. If `out=None`, returns a new array containing the variance; otherwise, a reference to the output array is returned.
 
-&emsp;&emsp;Notes: The variance is the average of the squared deviations from the mean, i.e., `var = mean(abs(x - x.mean())**2)`.
+&emsp;&emsp;**Notes**: The variance is the average of the squared deviations from the mean, i.e., `var = mean(abs(x - x.mean())**2)`.
 &emsp;&emsp;The mean is normally calculated as `x.sum() / N`, where `N = len(x)`. If, however, `ddof` is specified, the divisor `N - ddof` is used instead. In standard statistical practice, `ddof = 1` provides an unbiased estimator of the variance of a hypothetical infinite population. `ddof = 0` provides a maximum likelihood estimate of the variance for normally distributed variables.
 &emsp;&emsp;Note that for `complex` numbers, the absolute value is taken before squaring, so that the result is always `real` and `nonnegative`.
 &emsp;&emsp;For `floating-point` input, the variance is computed using the same precision the input has. Depending on the input data, this can cause the results to be inaccurate, especially for `float32`. Specifying a `higher-accuracy` accumulator using the `dtype` keyword can alleviate this issue.

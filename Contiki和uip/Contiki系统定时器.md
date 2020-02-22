@@ -1,7 +1,6 @@
 ---
 title: Contiki系统定时器
 categories: Contiki和uip
-abbrlink: d51e5edd
 date: 2019-02-05 08:40:07
 ---
 ### Timers
@@ -38,17 +37,17 @@ date: 2019-02-05 08:40:07
 
 ``` cpp
 static struct timer rxtimer;
-​
+
 void init ( void ) {
     timer_set ( &rxtimer, CLOCK_SECOND / 2 );
 }
-​
+
 interrupt ( UART1RX_VECTOR )
 uart1_rx_interrupt ( void ) {
     if ( timer_expired ( &rxtimer ) ) {
         /* Timeout */
     }
-​
+
     timer_restart ( &rxtimer );
 }
 ```
@@ -85,13 +84,13 @@ PROCESS_THREAD ( example_process, ev, data ) {
     static struct etimer et;
     PROCESS_BEGIN();
     etimer_set ( &et, CLOCK_SECOND ); /* Delay 1 second */
-​
+
     while ( 1 ) {
         PROCESS_WAIT_EVENT_UNTIL ( etimer_expired ( &et ) );
         etimer_reset ( &et ); /* Reset the etimer to trig again in 1 second */
         /* ... */
     }
-​
+
     PROCESS_END();
 }
 ```
@@ -124,7 +123,7 @@ static void callback ( void *ptr ) {
     ctimer_reset ( &timer );
     /* ... */
 }
-​
+
 void init ( void ) {
     ctimer_set ( &timer, CLOCK_SECOND, callback, NULL );
 }

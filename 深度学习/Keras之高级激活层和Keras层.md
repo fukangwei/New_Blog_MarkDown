@@ -1,7 +1,6 @@
 ---
 title: Keras之高级激活层和Keras层
 categories: 深度学习
-abbrlink: 7e089d61
 date: 2019-01-01 09:28:54
 ---
 ### 高级激活层

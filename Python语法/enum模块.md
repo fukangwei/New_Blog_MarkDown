@@ -1,7 +1,6 @@
 ---
 title: enum模块
 categories: Python语法
-abbrlink: 3e04fdf6
 date: 2018-12-28 09:30:36
 ---
 ### 枚举的定义
@@ -10,7 +9,7 @@ date: 2018-12-28 09:30:36
 
 ``` python
 from enum import Enum
-​
+
 class Color(Enum):
     red = 1
     orange = 2
@@ -29,7 +28,7 @@ class Color(Enum):
 
 ``` python
 from enum import Enum
-​
+
 class Color(Enum):
     red = 1
     red = 2
@@ -40,7 +39,7 @@ class Color(Enum):
 
 ``` python
 from enum import Enum
-​
+
 class Color(Enum):
     red = 1
     red_alias = 1
@@ -50,11 +49,11 @@ class Color(Enum):
 
 ``` python
 from enum import Enum
-​
+
 class Color(Enum):
     red = 1
     red_alias = 1
-​
+
 print(Color(1))  # 结果为“Color.red”
 ```
 
@@ -62,7 +61,7 @@ print(Color(1))  # 结果为“Color.red”
 
 ``` python
 from enum import Enum, unique
-​
+
 @unique
 class Color(Enum):
     red = 1
@@ -107,17 +106,17 @@ for color in Color:
 ```
 
 输出结果是枚举的所有成员，例如`Color.red`。
-&emsp;&emsp;如果枚举有值重复的成员，循环遍历枚举时只获取值重复成员的第一个成员。如果想把值重复的成员也遍历出来，要用枚举的一个特殊属性`_members_`：
+&emsp;&emsp;如果枚举有值重复的成员，循环遍历枚举时只获取值重复成员的第一个成员。如果想把值重复的成员也遍历出来，要用枚举的一个特殊属性`__members__`：
 
 ``` python
 from enum import Enum
-​
+
 class Color(Enum):
     red = 1
     orange = 2
     yellow = 3
     red_alias = 1
-​
+
 for color in Color.__members__.items():
     print(color)
 ```

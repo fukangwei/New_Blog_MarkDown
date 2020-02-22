@@ -1,7 +1,6 @@
 ---
 title: zigbee协议栈简单使用教程一
 categories: CC2530和zigbee笔记
-abbrlink: 5361
 date: 2019-10-07 20:33:01
 mathjax: true
 ---
@@ -159,12 +158,15 @@ static void appSwitch() {
 #endif
     /* Initialize BasicRF */
     basicRfConfig.myAddr = SWITCH_ADDR;
+
     if ( basicRfInit ( &basicRfConfig ) == FAILED ) {
         HAL_ASSERT ( FALSE );
     }
+
     pTxData[0] = LIGHT_TOGGLE_CMD;
     /* Keep Receiver off when not needed to save power */
     basicRfReceiveOff();
+
     /* Main loop */
     while ( TRUE ) { /* 程序进入死循环 */
         if ( halButtonPushed() == HAL_BUTTON_1 ) { /* 按键S1被按下 */

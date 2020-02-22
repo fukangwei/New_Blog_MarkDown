@@ -1,7 +1,6 @@
 ---
 title: C语言内存对齐详解
 categories: C语言语法详解
-abbrlink: ebdac2f7
 date: 2018-12-09 19:55:55
 ---
 &emsp;&emsp;`C`语言对结构的存储的特殊处理确实提高`CPU`存储变量的速度，但是有时候也带来了一些麻烦，我们也屏蔽掉变量默认的对齐方式，自己可以设定变量的对齐方式。`VC`中提供了`#pragma pack(n)`来设定变量以`n`字节对齐方式。`n`字节对齐就是说变量存放的起始地址的偏移量有两种情况：<!--more-->
@@ -13,14 +12,14 @@ date: 2018-12-09 19:55:55
 
 ``` cpp
 #pragma pack(push) /* 保存对齐状态 */
-#pragma pack(4) /* 设定为4字节对齐 */​
+#pragma pack(4) /* 设定为4字节对齐 */
 
 struct test {
     char m1;
     double m4;
     int m3;
 };
-​
+
 #pragma pack(pop) /* 恢复对齐状态 */
 ```
 

@@ -1,7 +1,6 @@
 ---
 title: class和struct的区别
 categories: C++语法详解
-abbrlink: b9638ae2
 date: 2018-12-27 09:11:47
 ---
 &emsp;&emsp;在`C++`中，`class`和`struct`做类型定义时只有两点区别：<!--more-->
@@ -32,32 +31,32 @@ date: 2018-12-27 09:11:47
 ``` cpp
 #include <iostream>
 #include <vector>
-​
+
 using namespace std;
-​
+
 struct ST {
     int a;
     int b;
-​
+
     ST() { /* 默认构造函数 */
         a = 0;
         b = 0;
     }
-​
+
     void set ( ST *s1, ST *s2 ) { /* 赋值函数 */
         s1->a = s2->a;
         s1->b = s2->b;
     }
-​
+
     ST &operator= ( const ST &s ) { /* 重载运算符 */
         set ( this, ( ST * ) &s )
     }
-​
+
     ST ( const ST &s ) { /* 复制构造函数 */
         *this = s;
     }
 };
-​
+
 int main ( void ) {
     ST a ; /* 调用默认构造函数 */
     vector<ST> v;

@@ -1,14 +1,13 @@
 ---
 title: explicit关键字
 categories: C++语法详解
-abbrlink: '58412853'
 date: 2019-02-05 20:50:05
 ---
 &emsp;&emsp;首先，`C++`中的`explicit`关键字只能用于修饰只有一个参数的类构造函数，它的作用是表明该构造函数是显示的，而非隐式的。跟它相对应的另一个关键字是`implicit`(意思是`隐藏的`)，类构造函数默认情况下即声明为`implicit`(`隐式`)。那么显示声明的构造函数和隐式声明的有什么区别呢？我们来看下面的例子：<!--more-->
 
 ``` cpp
 class CxString { /* 没有使用explicit关键字的类声明，即默认为隐式声明 */
-  public:
+public:
     char *_pstr;
     int _size;
     CxString ( int size ) {
@@ -24,16 +23,16 @@ class CxString { /* 没有使用explicit关键字的类声明，即默认为隐�
         _size = strlen ( _pstr );
     }
 };
-​
+
 /* 下面是调用部分 */
-CxString string1 ( 24 );     /* 这样是OK的，为CxString预分配24字节的大小的内存 */
-CxString string2 = 10;       /* 这样是OK的，为CxString预分配10字节的大小的内存 */
-CxString string3;            /* 这样是不行的，因为没有默认构造函数，错误为“"CxString": 没有合适的默认构造函数可用” */
+CxString string1 ( 24 );     /* 这样是OK的，为CxString预分配24字节的大小的内存 */
+CxString string2 = 10;       /* 这样是OK的，为CxString预分配10字节的大小的内存 */
+CxString string3;            /* 这样是不行的，因为没有默认构造函数，错误为“"CxString": 没有合适的默认构造函数可用” */
 CxString string4 ( "aaaa" ); /* 这样是OK的 */
-CxString string5 = "bbb";    /* 这样也是OK的，调用的是CxString(const char *p) */
-CxString string6 = 'c';      /* 这样也是OK的，其实调用的是CxString(int size)，且size等于'c'的ascii码 */
-string1 = 2;                 /* 这样也是OK的，为CxString预分配2字节的大小的内存 */
-string2 = 3;                 /* 这样也是OK的，为CxString预分配3字节的大小的内存 */
+CxString string5 = "bbb";    /* 这样也是OK的，调用的是CxString(const char *p) */
+CxString string6 = 'c';      /* 这样也是OK的，其实调用的是CxString(int size)，且size等于'c'的ascii码 */
+string1 = 2;                 /* 这样也是OK的，为CxString预分配2字节的大小的内存 */
+string2 = 3;                 /* 这样也是OK的，为CxString预分配3字节的大小的内存 */
 /* 这样也是OK的，至少编译是没问题的，但是如果析构函数里用free释放_pstr内存指针
    的时候可能会报错，完整的代码必须重载运算符"="，并在其中处理内存释放 */
 string3 = string1;
@@ -52,7 +51,7 @@ CxString string2 = temp;
 
 ``` cpp
 class CxString { /* 使用关键字explicit的类声明，显示转换 */
-  public:
+public:
     char *_pstr;
     int _size;
     explicit CxString ( int size ) {
@@ -63,17 +62,17 @@ class CxString { /* 使用关键字explicit的类声明，显示转换 */
         /* 代码同上，省略 */
     }
 };
-​
-CxString string1 ( 24 );     /* 这样是OK的 */
-CxString string2 = 10;       /* 这样是不行的，因为explicit关键字取消了隐式转换 */
-CxString string3;            /* 这样是不行的，因为没有默认构造函数 */
+
+CxString string1 ( 24 );     /* 这样是OK的 */
+CxString string2 = 10;       /* 这样是不行的，因为explicit关键字取消了隐式转换 */
+CxString string3;            /* 这样是不行的，因为没有默认构造函数 */
 CxString string4 ( "aaaa" ); /* 这样是OK的 */
-CxString string5 = "bbb";    /* 这样也是OK的，调用的是CxString(const char *p) */
+CxString string5 = "bbb";    /* 这样也是OK的，调用的是CxString(const char *p) */
 /* 这样是不行的，其实调用的是CxString(int size)，且size等于'c'的ascii码，但explicit关键字取消了隐式转换 */
 CxString string6 = 'c';
-string1 = 2;                 /* 这样也是不行的，因为取消了隐式转换 */
-string2 = 3;                 /* 这样也是不行的，因为取消了隐式转换 */
-string3 = string1;           /* 这样也是不行的，因为取消了隐式转换，除非类实现操作符“=”的重载 */
+string1 = 2;                 /* 这样也是不行的，因为取消了隐式转换 */
+string2 = 3;                 /* 这样也是不行的，因为取消了隐式转换 */
+string3 = string1;           /* 这样也是不行的，因为取消了隐式转换，除非类实现操作符“=”的重载 */
 ```
 
 `explicit`关键字的作用就是防止类构造函数的隐式自动转换。上面也已经说过了，`explicit`关键字只对有一个参数的类构造函数有效，如果类构造函数参数大于或等于两个时，是不会产生隐式转换的，所以`explicit`关键字也就无效了。
@@ -107,11 +106,11 @@ public:
     CxString ( const char *p ) {
     }
 };
-​
+
 CxString string1 ( 24 ); /* 这样是OK的 */
-CxString string2 = 10;   /* 这样是不行的，因为explicit关键字取消了隐式转换 */
-CxString string3;        /* 这样是不行的，因为没有默认构造函数 */
-string1 = 2;             /* 这样也是不行的, 因为取消了隐式转换 */
-string2 = 3;             /* 这样也是不行的，因为取消了隐式转换 */
-string3 = string1;       /* 这样也是不行的，因为取消了隐式转换，除非类实现操作符"="的重载 */
+CxString string2 = 10;   /* 这样是不行的，因为explicit关键字取消了隐式转换 */
+CxString string3;        /* 这样是不行的，因为没有默认构造函数 */
+string1 = 2;             /* 这样也是不行的, 因为取消了隐式转换 */
+string2 = 3;             /* 这样也是不行的，因为取消了隐式转换 */
+string3 = string1;       /* 这样也是不行的，因为取消了隐式转换，除非类实现操作符"="的重载 */
 ```

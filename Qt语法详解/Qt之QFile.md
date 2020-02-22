@@ -1,7 +1,6 @@
 ---
 title: Qt之QFile
 categories: Qt语法详解
-abbrlink: d6897263
 date: 2019-03-17 18:04:17
 ---
 &emsp;&emsp;基础代码如下：<!--more-->
@@ -13,16 +12,16 @@ date: 2019-03-17 18:04:17
 #include <QStringList>
 #include <QDateTime>
 #include <QDebug>
-​
+
 int main ( int argc, char *argv[] ) {
     QCoreApplication a ( argc, argv );
     QTextCodec::setCodecForTr ( QTextCodec::codecForLocale() );
     QFile file ( "myfile.txt" ); /* 以只写方式打开，如果文件不存在，那么会创建该文件 */
-​
-    if ( !file.open ( QIODevice::WriteOnly  | QIODevice::Text ) ) {
+
+    if ( !file.open ( QIODevice::WriteOnly | QIODevice::Text ) ) {
         qDebug() << file.errorString();
     }
-​
+
     file.write ( "helloQt!\nyafeilinux" );
     file.close();
     QFileInfo info ( file ); /* 获取文件信息 */
@@ -32,11 +31,11 @@ int main ( int argc, char *argv[] ) {
              << QObject::tr ( "后缀：" ) << info.suffix() << endl
              << QObject::tr ( "创建时间：" ) << info.created() << endl
              << QObject::tr ( "大小：" ) << info.size();
-​
+
     if ( !file.open ( QIODevice::ReadOnly | QIODevice::Text ) ) { /* 以只读方式打开 */
         qDebug() << file.errorString();
     }
-​
+
     qDebug() << QObject::tr ( "文件内容：" ) << endl << file.readAll();
     qDebug() << QObject::tr ( "当前位置：" ) << file.pos();
     file.seek ( 0 );
@@ -82,7 +81,7 @@ int main ( int argc, char *argv[] ) {
 int main ( int argc, char *argv[] ) {
     QApplication app ( argc, argv );
     QFile file ( "in.txt" );
-​
+
     if ( !file.open ( QIODevice::ReadOnly | QIODevice::Text ) ) {
         qDebug() << "Open file failed.";
         return -1;
@@ -91,7 +90,7 @@ int main ( int argc, char *argv[] ) {
             qDebug() << file.readLine();
         }
     }
-​
+
     QFileInfo info ( file );
     qDebug() << info.isDir();
     qDebug() << info.isExecutable();
@@ -143,11 +142,11 @@ in >> str >> a;
 QFile file ( "file.dat" );
 file.open ( QIODevice::WriteOnly );
 QDataStream out ( &file );
-​
+
 /* 写入魔术数字和版本 */
 out << ( quint32 ) 0xA0B0C0D0;
 out << ( qint32 ) 123;
-​
+
 out.setVersion ( QDataStream::Qt_4_0 );
 out << lots_of_interesting_data; /* 写入数据 */
 ```
@@ -177,40 +176,40 @@ out.setVersion ( QDataStream::Qt_4_8 );
 QFile file ( "file.dat" );
 file.open ( QIODevice::ReadOnly );
 QDataStream in ( &file );
-​
+
 /* 检查魔术数字 */
 quint32 magic;
 in >> magic;
-​
+
 if ( magic != 0xA0B0C0D0 ) {
     return BAD_FILE_FORMAT;
 }
-​
+
 /* 检查版本 */
 qint32 version;
 in >> version;
-​
+
 if ( version < 100 ) {
     return BAD_FILE_TOO_OLD;
 }
-​
+
 if ( version > 123 ) {
     return BAD_FILE_TOO_NEW;
 }
-​
+
 if ( version <= 110 ) {
     in.setVersion ( QDataStream::Qt_3_2 );
 } else {
     in.setVersion ( QDataStream::Qt_4_0 );
 }
-​
+
 /* 读取数据 */
 in >> lots_of_interesting_data;
-​
+
 if ( version >= 120 ) {
     in >> data_new_in_version_1_2;
 }
-​
+
 in >> other_interesting_data;
 ```
 
@@ -220,11 +219,11 @@ in >> other_interesting_data;
 ``` cpp
 QFile file ( "file.dat" );
 file.open ( QIODevice::ReadWrite );
-​
+
 QDataStream stream ( &file );
 QString str = "the answer is 42";
 QString strout;
-​
+
 stream << str;
 file.flush();
 stream >> strout;
@@ -246,7 +245,7 @@ stream >> strout;
 
 ``` cpp
 QFile data ( "file.txt" );
-​
+
 if ( data.open ( QFile::WriteOnly | QIODevice::Truncate ) ) {
     QTextStream out ( &data );
     out << "The answer is " << 42;
@@ -276,11 +275,11 @@ if ( data.open ( QFile::WriteOnly | QIODevice::Truncate ) ) {
 
 ``` cpp
 QFile file ( "file.txt" );
-​
+
 if ( !file.open ( QIODevice::ReadOnly | QIODevice::Text ) ) {
     return;
 }
-​
+
 QTextStream in ( &file );
 QString QTextStream::read ( qint64 maxlen ); /* 读取txt文件maxlen个字符    */
 QString line1 = in.read ( 1 );               /* 读取一个字符               */
@@ -309,7 +308,7 @@ while ( !in.atEnd() ) {
 /*-------------------------------*/
 /* 方法2 */
 QString line3 = in.readLine();
-​
+
 while ( !line3.isNull() ) {
     qDebug() << line3;
     line3 = in.readLine();

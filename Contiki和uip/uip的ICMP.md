@@ -1,7 +1,6 @@
 ---
 title: uip的ICMP
 categories: Contiki和uip
-abbrlink: 2b9a7fb9
 date: 2019-02-04 22:48:47
 ---
 &emsp;&emsp;下面是`IP`和`ICMP`报文的结构体：<!--more-->
@@ -47,14 +46,14 @@ if ( ICMPBUF->type != ICMP_ECHO ) {
 
 ``` cpp
 ICMPBUF->type = ICMP_ECHO_REPLY; /* 把报文改成ICMP应答(reply) */
-​
+
 /* 修改校验和 */
 if ( ICMPBUF->icmpchksum >= HTONS ( 0xffff - ( ICMP_ECHO << 8 ) ) ) {
     ICMPBUF->icmpchksum += HTONS ( ICMP_ECHO << 8 ) + 1;
 } else {
     ICMPBUF->icmpchksum += HTONS ( ICMP_ECHO << 8 );
 }
-​
+
 /* Swap IP addresses. */
 tmp16 = BUF->destipaddr[0];
 BUF->destipaddr[0] = BUF->srcipaddr[0];
@@ -62,7 +61,7 @@ BUF->srcipaddr[0] = tmp16;
 tmp16 = BUF->destipaddr[1];
 BUF->destipaddr[1] = BUF->srcipaddr[1];
 BUF->srcipaddr[1] = tmp16;
-​
+
 UIP_STAT ( ++uip_stat.icmp.sent );
 goto send;
 ```
@@ -71,7 +70,7 @@ goto send;
 
 &emsp;&emsp;`ICMP`是`Internet`控制报文协议，是一种面向无连接的协议。它是`TCP/IP`协议族的一个子协议，用于在`IP`主机、路由器之间传递控制消息。控制消息是指网络通不通、主机是否可达、路由是否可用等网络本身的消息。这些控制消息虽然并不传输用户数据，但是对于用户数据的传递起着重要的作用。
 &emsp;&emsp;`ICMP`提供一种出错报告信息。发送的出错报文返回到发送原数据的设备，因为只有发送设备才是出错报文的逻辑接受者。发送设备随后可根据`ICMP`报文确定发生错误的类型，并确定如何才能更好地重发失败的数据包。但是`ICMP`唯一的功能是报告问题而不是纠正错误，纠正错误的任务由发送方完成。
-&emsp;&emsp;在调试网络时经常会使用到`ICMP`协议，比如我们经常使用的用于检查网络通不通的`Ping`命令，这个`Ping`的过程实际上就是`ICMP`协议工作的过程。  
+&emsp;&emsp;在调试网络时经常会使用到`ICMP`协议，比如我们经常使用的用于检查网络通不通的`Ping`命令，这个`Ping`的过程实际上就是`ICMP`协议工作的过程。
 &emsp;&emsp;实现`ICMP`网络控制报文协议时，只实现`echo`(`回响`)服务。`uIP`在生成回响报文时并不重新分配存储器空间，而是直接修改`echo`请求报文来生成回响报文。将`ICMP`类型字段从`echo`类型改变成`echo reply`类型，重新计算校验和，并修改校验和字段。
 
 ``` cpp

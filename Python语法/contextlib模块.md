@@ -1,7 +1,6 @@
 ---
 title: contextlib模块
 categories: Python语法
-abbrlink: c5d79316
 date: 2018-12-27 19:15:21
 ---
 &emsp;&emsp;在`Python`中，读写文件这类资源时要特别注意，必须在使用完毕后正确关闭它们。其中一个方法是使用`try...finally`：<!--more-->
@@ -29,20 +28,20 @@ with open('/path/to/file', 'r') as f:
 class Query(object):
     def __init__(self, name):
         self.name = name
-​
+
     def __enter__(self):
         print('Begin')
         return self
-​
+
     def __exit__(self, exc_type, exc_value, traceback):
         if exc_type:
             print('Error')
         else:
             print('End')
-​
+
     def query(self):
         print('Query info about %s...' % self.name)
-​
+
 with Query('Bob') as q:
     q.query()
 ```
@@ -59,21 +58,21 @@ End
 
 ``` python
 from contextlib import contextmanager
-​
+
 class Query(object):
     def __init__(self, name):
         self.name = name
-​
+
     def query(self):
         print('Query info about %s...' % self.name)
-​
+
 @contextmanager
 def create_query(name):
     print('Begin')
     q = Query(name)
     yield q
     print('End')
-​
+
 with create_query('Bob') as q:
     q.query()
 ```

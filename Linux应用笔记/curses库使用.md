@@ -1,7 +1,6 @@
 ---
 title: curses库使用
 categories: Linux应用笔记
-abbrlink: f7746409
 date: 2019-02-25 14:02:21
 ---
 ### curses术语和概念
@@ -17,7 +16,7 @@ date: 2019-02-25 14:02:21
 #include <unistd.h>
 #include <stdlib.h>
 #include <ncurses.h>
-​
+
 int main() {
     initscr();
     move ( 5, 15 );
@@ -126,7 +125,7 @@ int standout ( void ); /* 提供了一种强调或“突出”模式，在大多
 #include <stdlib.h>
 #include <string.h>
 #include <curses.h>
-​
+
 int main() {
     const char witch_one[] = " First Witch  ";
     const char witch_two[] = " Second Witch  ";
@@ -156,19 +155,19 @@ int main() {
     sleep ( 1 );
     attron ( A_DIM );
     scan_ptr = witch_one + strlen ( witch_one ) - 1;
-​
+
     while ( scan_ptr != witch_one ) {
         move ( 10, 10 );
         insch ( *scan_ptr-- );
     }
-​
+
     scan_ptr = witch_two + strlen ( witch_two ) - 1;
-​
+
     while ( scan_ptr != witch_two ) {
         move ( 13, 10 );
         insch ( *scan_ptr-- );
     }
-​
+
     attroff ( A_DIM );
     refresh();
     sleep ( 1 );
@@ -230,10 +229,10 @@ int scanw ( char *format, ... );
 #include <stdlib.h>
 #include <curses.h>
 #include <string.h>
-​
+
 #define PW_LEN 256
 #define NAME_LEN 256
-​
+
 int main() {
     char name[NAME_LEN];
     char password[PW_LEN];
@@ -252,30 +251,30 @@ int main() {
     cbreak();
     noecho();
     memset ( password, '\0', sizeof ( password ) );
-​
+
     while ( i < PW_LEN ) {
         password[i] = getch();
-​
+
         if ( password[i] == '\n' ) {
             break;
         }
-​
+
         move ( 8, 20 + i );
         addch ( '*' );
         refresh();
         i++;
     }
-​
+
     echo();
     nocbreak();
     move ( 11, 10 );
-​
+
     if ( strncmp ( real_password, password, strlen ( real_password ) ) == 0 ) {
         printw ( "%s", "Correct" );
     } else {
         printw ( "%s", "Wrong" );
     }
-​
+
     printw ( "%s", " password" );
     refresh();
     sleep ( 2 );
@@ -358,7 +357,7 @@ int scroll ( WINDOW *window_ptr );
 #include <unistd.h>
 #include <stdlib.h>
 #include <curses.h>
-​
+
 int main() {
     WINDOW *new_window_ptr;
     WINDOW *popup_window_ptr;
@@ -371,18 +370,18 @@ int main() {
     printw ( "%s", "Testing multiple windows" );
     refresh();
     sleep ( 2 );
-​
+
     for ( x_loop = 0; x_loop < COLS - 1; x_loop++ ) { /* COLS指现在屏幕列数 */
         for ( y_loop = 0; y_loop < LINES - 1; y_loop++ ) { /* LINES指现在屏幕行数 */
             mvwaddch ( stdscr, y_loop, x_loop, a_letter );
             a_letter++;
-​
+
             if ( a_letter > 'z' ) {
                 a_letter = 'a';
             }
         }
     }
-​
+
     refresh();
     sleep ( 5 );
     new_window_ptr = newwin ( 10, 20, 5, 5 );
@@ -391,18 +390,18 @@ int main() {
     wrefresh ( new_window_ptr );
     sleep ( 2 );
     a_letter = '0';
-​
+
     for ( x_loop = 0; x_loop < COLS - 1; x_loop++ ) {
         for ( y_loop = 0; y_loop < LINES - 1; y_loop++ ) {
             mvwaddch ( stdscr, y_loop, x_loop, a_letter );
             a_letter++;
-​
+
             if ( a_letter > '9' ) {
                 a_letter = '0';
             }
         }
     }
-​
+
     refresh();
     sleep ( 2 );
     wrefresh ( new_window_ptr );
@@ -473,7 +472,7 @@ int delwin ( WINDOW *window_to_delete );
 #include <unistd.h>
 #include <stdlib.h>
 #include <curses.h>
-​
+
 int main() {
     WINDOW *sub_window_ptr;
     int x_loop;
@@ -482,18 +481,18 @@ int main() {
     char a_letter = '1';
 
     initscr();
-​
+
     for ( y_loop = 0; y_loop < LINES - 1; y_loop++ ) {
         for ( x_loop = 0; x_loop < COLS - 1; x_loop++ ) {
             mvwaddch ( stdscr, y_loop, x_loop, a_letter );
             a_letter++;
-​
+
             if ( a_letter > '9' ) {
                 a_letter = '1';
             }
         }
     }
-​
+
     sub_window_ptr = subwin ( stdscr, 10, 20, 10, 10 );
     scrollok ( sub_window_ptr, 1 );
     touchwin ( stdscr );
@@ -503,13 +502,13 @@ int main() {
     mvwprintw ( sub_window_ptr, 2, 0, "%s", "This window willnow scroll" );
     wrefresh ( sub_window_ptr );
     sleep ( 1 );
-​
+
     for ( counter = 1; counter < 10; counter++ ) {
         wprintw ( sub_window_ptr, "%s", "This text is both wrappingand scrolling." );
         wrefresh ( sub_window_ptr );
         sleep ( 1 );
     }
-​
+
     delwin ( sub_window_ptr );
     touchwin ( stdscr );
     refresh();
@@ -673,23 +672,23 @@ int pair_content ( short pair_number, short *foreground, short *background ); /*
 #include <stdlib.h>
 #include <stdio.h>
 #include <curses.h>
-​
+
 int main() {
     int i;
     initscr();
-​
+
     if ( !has_colors() ) {
         endwin();
         fprintf ( stderr, "Error - no color support on this terminal\n" );
         exit ( 1 );
     }
-​
+
     if ( start_color() != OK ) {
         endwin();
         fprintf ( stderr, "Error - could not initialize colors\n" );
         exit ( 2 );
     }
-​
+
     clear();
     mvprintw ( 5, 5, "There are %d COLORS, and %d COLOR_PAIRS available", \
                COLORS, COLOR_PAIRS );
@@ -701,7 +700,7 @@ int main() {
     init_pair ( 5, COLOR_BLACK, COLOR_WHITE );
     init_pair ( 6, COLOR_MAGENTA, COLOR_BLUE );
     init_pair ( 7, COLOR_CYAN, COLOR_WHITE );
-​
+
     for ( i = 1; i <= 7; i++ ) {
         attroff ( A_BOLD );
         attrset ( COLOR_PAIR ( i ) );
@@ -711,7 +710,7 @@ int main() {
         refresh();
         sleep ( 1 );
     }
-​
+
     endwin();
     exit ( EXIT_SUCCESS );
 }
@@ -730,14 +729,14 @@ WINDOW *newpad ( int number_of_lines, int number_of_colums );
 `pad`用`delwin`函数来删除，这与正常的窗口的删除一样：
 
 ``` cpp
-int delwin ( WINDOW  *window_to_delete );
+int delwin ( WINDOW *window_to_delete );
 ```
 
 &emsp;&emsp;`pad`刷新：`Pad`使用不同的函数执行刷新操作。因为一个`pad`并不局限于某个特定的屏幕位置，所以必须指定希望放到屏幕上的`pad`范围及其放置在屏幕上的位置。
 
 ``` cpp
 #include <curses.h>
-​
+
 int prefresh (
     *WINDOW *pad_ptr,
     int pad_row,
@@ -756,7 +755,7 @@ int prefresh (
 #include <unistd.h>
 #include <stdlib.h>
 #include <curses.h>
-​
+
 int main() {
     WINDOW *pad_ptr;
     int x, y;
@@ -770,11 +769,11 @@ int main() {
     pad_cols = COLS + 50;
     pad_ptr = newpad ( pad_lines, pad_cols );
     disp_char = 'a';
-​
+
     for ( x = 0; x < pad_lines; x++ ) {
         for ( y = 0; y < pad_cols; y++ ) {
             mvwaddch ( pad_ptr, x, y, disp_char );
-​
+
             if ( disp_char == 'z' ) {
                 disp_char = 'a';
             } else {
@@ -782,7 +781,7 @@ int main() {
             }
         }
     }
-​
+
     /* 将pad的不同区域绘制到屏幕的不同位置上，结束程序 */
     prefresh ( pad_ptr, 5, 7, 2, 2, 9, 9 );
     sleep ( 1 );

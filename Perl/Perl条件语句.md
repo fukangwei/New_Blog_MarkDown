@@ -1,7 +1,6 @@
 ---
 title: Perl条件语句
 categories: Perl
-abbrlink: 94aee6f4
 date: 2018-12-20 15:01:04
 ---
 &emsp;&emsp;`Perl`条件语句是通过一条或多条语句的执行结果(`True`或者`False`)来决定执行的代码块。注意，数字`0`、字符串`0`、`""`、`空list`和`undef`为`false`，其他值均为`true`。`true`前面使用`!`或`not`则返回`false`。<!--more-->
@@ -20,15 +19,15 @@ if ( boolean_expression ) {
 
 ``` perl
 $a = 10;
-​
+
 if ( $a < 20 ){
     printf "a小于20\n";
 }
-​
+
 print "a的值为：$a\n";
 
 $a = "";
-​
+
 if ( $a ) {
     printf "变量a为true\n";
 }
@@ -90,7 +89,7 @@ unless ( boolean_expression ) {
 
 ``` perl
 $a = 20;
-​
+
 unless ( $a < 20 ) {
     printf "a大于等于20\n";
 }
@@ -98,7 +97,7 @@ unless ( $a < 20 ) {
 print "a的值为：$a\n";
 
 $a = "";
-​
+
 unless ( $a ) {
     printf "条件a为false\n";
 }
@@ -151,10 +150,10 @@ unless ( boolean_expression_1 ) {
 
 ``` perl
 $a = 20;
-​
-unless ( $a  ==  30 ) {
+
+unless ( $a == 30 ) {
     printf "a的值不为30\n";  # 输出“a的值不为30”
-} elsif ( $a ==  30 ) {
+} elsif ( $a == 30 ) {
     printf "a的值为30\n";
 } else {
     printf "a的值为$a\n";
@@ -201,11 +200,11 @@ switch(argument){
 
 ``` perl
 use Switch;
-​
+
 $var = 10;
 @array = (10, 20, 30);
 %hash = ('key1' => 10, 'key2' => 20);
-​
+
 switch ( $var ) {
     case 10         {print "数字10\n"}  # 输出“数字10”
     case "a"        {print "字符串a"}
@@ -220,11 +219,11 @@ switch ( $var ) {
 
 ``` perl
 use Switch;
-​
+
 $var = 10;
 @array = (10, 20, 30);
 %hash = ('key1' => 10, 'key2' => 20);
-​
+
 switch ( $var ) {
     case 10         {print "数字10\n"; next;}  # 匹配后继续执行
     case "a"        {print "string a"}

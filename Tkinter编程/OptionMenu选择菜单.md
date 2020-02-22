@@ -1,7 +1,6 @@
 ---
 title: OptionMenu选择菜单
 categories: Tkinter编程
-abbrlink: 8560743c
 date: 2019-02-24 15:36:23
 ---
 &emsp;&emsp;`OptionMenu`事实上是下拉菜单的改版，它的发明弥补了`Listbox`组件无法实现下拉列表框的遗憾。<!--more-->
@@ -9,15 +8,15 @@ date: 2019-02-24 15:36:23
 
 ``` python
 from tkinter import *
-​
+
 root = Tk()
-​
+
 variable = StringVar()
 variable.set("one")
-​
+
 w = OptionMenu(root, variable, "one", "two", "three")
 w.pack()
-​
+
 mainloop()
 ```
 
@@ -28,7 +27,7 @@ mainloop()
 ``` python
 def callback():
     print(variable.get())
-​
+
 Button(root, text="点我", command=callback).pack()
 ```
 
@@ -38,22 +37,22 @@ Button(root, text="点我", command=callback).pack()
 
 ``` python
 from tkinter import *
-​
+
 OPTIONS = [ "California", "458",
             "FF", "ENZO", "LaFerrari"]
-​
+
 root = Tk()
-​
+
 variable = StringVar()
 variable.set(OPTIONS[0])
-​
+
 w = OptionMenu(root, variable, *OPTIONS)
 w.pack()
-​
+
 def callback():
     print(variable.get())
-​
+
 Button(root, text="点我", command=callback).pack()
-​
+
 mainloop()
 ```

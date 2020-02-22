@@ -1,7 +1,6 @@
 ---
 title: Shell流程控制
 categories: Shell编程
-abbrlink: 94b3bb35
 date: 2019-01-21 09:41:20
 ---
 ### if else
@@ -56,7 +55,7 @@ fi
 
 ``` bash
 #!/bin/bash
-​
+
 a=10
 b=20
 if [ $a == $b ]
@@ -69,7 +68,7 @@ elif [ $a -lt $b ]
 then
     echo "a 小于 b"
 else
-   echo "没有符合的条件"
+    echo "没有符合的条件"
 fi
 ```
 
@@ -78,10 +77,10 @@ fi
 
 ``` bash
 #!/bin/bash
-​
+
 num1=$[2*3]
 num2=$[1+5]
-​
+
 if test $[num1] -eq $[num2]
 then
     echo '两个数字相等!'
@@ -179,7 +178,7 @@ done
 
 ``` bash
 #!/bin/sh
-​
+
 echo '按下 <CTRL-D> 退出'
 echo -n '输入你最喜欢的电影名: '
 while read FILM
@@ -229,9 +228,9 @@ done
 
 ``` bash
 #!/bin/bash
-​
+
 i=0
-​
+
 until [[ "$i" -gt 5 ]]
 do
     let "square=i*i"
@@ -265,7 +264,7 @@ esac
 
 ``` bash
 #!/bin/sh
-​
+
 echo '输入 1 到 4 之间的数字:'
 echo '你输入的数字为:'
 read aNum
@@ -286,18 +285,18 @@ esac
 使用`case`测试字符串范围：
 
 ``` bash
-#!/bin/bash  
-​
-echo "Hit a key, then hit return."  
-read Keypress  
-  
+#!/bin/bash
+
+echo "Hit a key, then hit return."
+read Keypress
+
 case "$Keypress" in
     [[:lower:]] ) echo "Lowercase letter";;  # 小写字母
     [[:upper:]] ) echo "Uppercase letter";;  # 大写字母
     [0-9]       ) echo "Digit";;  # 单个数字
-    *           ) echo "Punctuation, whitespace, or other";;  # 其他字符  
+    *           ) echo "Punctuation, whitespace, or other";;  # 其他字符
 esac
-​
+
 exit 0
 ```
 
@@ -308,7 +307,7 @@ exit 0
 
 ``` bash
 #!/bin/bash
-​
+
 while :
 do
     echo -n "输入 1 到 5 之间的数字:"
@@ -351,7 +350,7 @@ done
 ``` bash
 #!/bin/bash
 
-for varible1 in {1..5}  # for varible1 in 1 2 3 4 5  
+for varible1 in {1..5}  # for varible1 in 1 2 3 4 5
 do
     echo "Hello, Welcome $varible1 times"
 done
@@ -362,13 +361,13 @@ done
 ``` bash
 #!/bin/bash
 sum=0
-​
-for i in {1..100..2}  
+
+for i in {1..100..2}
 do
-    let "sum+=i"  
+    let "sum+=i"
 done
 
-echo "sum=$sum"  
+echo "sum=$sum"
 ```
 
 通过`i`的按步数`2`不断递增，计算`sum`值为`2500`。同样可以使用`seq`命令实现按`2`递增来计算`1`至`100`内的所有奇数之和，即`for i in $(seq 1 2 100)`。
@@ -376,7 +375,7 @@ echo "sum=$sum"  
 
 ``` bash
 #!/bin/bash
-​
+
 for file in $( ls )
 do
     echo "file: $file"
@@ -387,10 +386,10 @@ done
 
 ``` bash
 #!/bin/bash
-​
+
 echo "number of arguments is $#"
 echo "What you input is: "
-​
+
 for argument in "$@"
 do
     echo "$argument"
@@ -405,7 +404,7 @@ done
 
 echo "number of arguments is $#"
 echo "What you input is: "
-​
+
 for argument
 do
     echo "$argument"
@@ -418,8 +417,8 @@ done
 ``` bash
 #!/bin/bash
 
-for((integer=1; integer<=5; integer++))  
-do  
+for((integer=1; integer<=5; integer++))
+do
     echo "$integer"
 done
 ```
@@ -429,14 +428,14 @@ done
 
 ``` bash
 #!/bin/bash
-​
+
 sum=0
-​
+
 for(( i=1; i<=100; i=i+2 ))
 do
     let "sum += i"
 done
-​
+
 echo "sum=$sum"
 ```
 
@@ -446,7 +445,7 @@ echo "sum=$sum"
 
 ``` bash
 #!/bin/bash
-​
+
 for (( i=1; i<=9; i++ ))
 do
     for (( j=1; j <= i; j++ ))

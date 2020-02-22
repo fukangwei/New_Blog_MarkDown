@@ -1,7 +1,6 @@
 ---
 title: TextView文本框
 categories: Android
-abbrlink: 80f04846
 date: 2019-03-01 18:58:18
 ---
 &emsp;&emsp;先介绍几个单位：<!--more-->
@@ -23,7 +22,7 @@ date: 2019-03-01 18:58:18
     android:background="#8fffad"
     android:gravity="center"
     tools:context=".MainActivity">
-​
+
     <TextView
         android:id="@+id/txtOne"
         android:layout_width="200dp"
@@ -34,7 +33,7 @@ date: 2019-03-01 18:58:18
         android:textColor="#EA5246"
         android:textSize="18sp"
         android:textStyle="bold|italic" />
-​
+
 </RelativeLayout>
 ```
 
@@ -156,7 +155,7 @@ date: 2019-03-01 18:58:18
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".MainActivity">
-​
+
     <TextView
         android:id="@+id/txtOne"
         android:layout_width="200dp"
@@ -165,7 +164,7 @@ date: 2019-03-01 18:58:18
         android:gravity="center"
         android:text="矩形边框的TextView"
         android:textSize="18sp" />
-​
+
     <TextView
         android:id="@+id/txtTwo"
         android:layout_width="200dp"

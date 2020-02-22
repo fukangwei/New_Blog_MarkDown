@@ -1,12 +1,11 @@
 ---
 title: fdopen函数详解
 categories: C语言语法详解
-abbrlink: 51081bce
 date: 2018-12-10 21:31:39
 ---
 &emsp;&emsp;`fdopen`取一个现存的文件描述符，并使一个标准的`I/O`流与该描述符相结合。此函数常用于由创建管道和网络通信通道函数获得的描述符，因为这些特殊类型的文件不能用标准`I/O`库的`fopen`函数打开，首先必须先调用设备专用函数以获得一个文件描述符，然后用`fdopen`使一个标准`I/O`流与该描述符相结合。函数原型如下：<!--more-->
 
-``` c
+``` cpp
 #include <stdio.h>
 FILE* fdopen ( int fildes, const char* mode );
 ```

@@ -1,7 +1,6 @@
 ---
 title: TensorFlow之猫狗分类
 categories: 深度学习
-abbrlink: 4012f201
 date: 2019-02-16 15:24:58
 ---
 ### 猫狗大战数据集
@@ -48,18 +47,18 @@ def get_files(file_dir):
             label_dogs.append(1)
 
     print("There are %d cats\nThere are %d dogs" % (len(cats), len(dogs)))
-​
+
     # 打乱文件顺序
     image_list = np.hstack((cats, dogs))
     label_list = np.hstack((label_cats, label_dogs))
     temp = np.array([image_list, label_list])
     temp = temp.transpose()  # 转置
     np.random.shuffle(temp)
-​
+
     image_list = list(temp[:, 0])
     label_list = list(temp[:, 1])
     label_list = [int(i) for i in label_list]
-​
+
     return image_list, label_list
 ```
 
@@ -74,7 +73,7 @@ def get_batch(image, label, image_W, image_H, batch_size, capacity):
     image = tf.cast(image, tf.string)
     label = tf.cast(label, tf.int32)
 
-    input_queue = tf.train.slice_input_producer([image, label])  # 生成队列
+    input_queue = tf.train.slice_input_producer([image, label])  # 生成队列
     image_contents = tf.read_file(input_queue[0])
     label = input_queue[1]
     image = tf.image.decode_jpeg(image_contents, channels=3)
@@ -84,7 +83,7 @@ def get_batch(image, label, image_W, image_H, batch_size, capacity):
     image = tf.cast(image, tf.float32)
     image_batch, label_batch = tf.train.batch([image, label], batch_size=batch_size, \
                                               num_threads=64, capacity=capacity)
-​
+
     # label_batch = tf.reshape(label_batch, [batch_size])
     return image_batch, label_batch
 ```
@@ -103,16 +102,16 @@ def get_batch(image, label, image_W, image_H, batch_size, capacity):
 
 ``` python
 import matplotlib.pyplot as plt
-​
+
 BATCH_SIZE = 2
 CAPACITY = 256
 IMG_W = 208
 IMG_H = 208
-​
+
 train_dir = "data\\train\\"
 image_list, label_list = get_files(train_dir)
 image_batch, label_batch = get_batch(image_list, label_list, IMG_W, IMG_H, BATCH_SIZE, CAPACITY)
-​
+
 with tf.Session() as sess:
     i = 0
     coord = tf.train.Coordinator()
@@ -121,7 +120,7 @@ with tf.Session() as sess:
     try:
         while not coord.should_stop() and i < 1:
             img, label = sess.run([image_batch, label_batch])
-​
+
             for j in np.arange(BATCH_SIZE):
                 print("label: %d" % label[j])
                 plt.imshow(img[j, :, :, :])
@@ -142,7 +141,7 @@ with tf.Session() as sess:
 
 ``` python
 import tensorflow as tf
-​
+
 def inference(images, batch_size, n_classes):
     # conv1, shape = [kernel_size, kernel_size, channels, kernel_numbers]
     with tf.variable_scope("conv1") as scope:
@@ -165,11 +164,11 @@ def inference(images, batch_size, n_classes):
         pre_activation = tf.nn.bias_add(conv, biases)
         conv2 = tf.nn.relu(pre_activation, name="conv2")
 
-    with tf.variable_scope("pooling2_lrn") as scope:  # pool2 && norm2
+    with tf.variable_scope("pooling2_lrn") as scope:  # pool2 && norm2
         pool2 = tf.nn.max_pool(conv2, ksize=[1, 3, 3, 1], strides=[1, 2, 2, 1], padding="SAME", name="pooling2")
         norm2 = tf.nn.lrn(pool2, depth_radius=4, bias=1.0, alpha=0.001 / 9.0, beta=0.75, name='norm2')
 
-    with tf.variable_scope("fc1") as scope:  # full-connect1
+    with tf.variable_scope("fc1") as scope:  # full-connect1
         reshape = tf.reshape(norm2, shape=[batch_size, -1])
         dim = reshape.get_shape()[1].value
         weights = tf.get_variable("weights", shape=[dim, 128], dtype=tf.float32, \
@@ -208,7 +207,7 @@ def losses(logits, labels):
         tf.summary.scalar(scope.name + "loss", loss)
 
     return loss
-​
+
 def trainning(loss, learning_rate):
     with tf.name_scope("optimizer"):
         optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate)
@@ -216,7 +215,7 @@ def trainning(loss, learning_rate):
         train_op = optimizer.minimize(loss, global_step=global_step)
 
     return train_op
-​
+
 def evaluation(logits, labels):
     with tf.variable_scope("accuracy") as scope:
         correct = tf.nn.in_top_k(logits, labels, 1)

@@ -1,7 +1,6 @@
 ---
 title: Qt之QProcess
 categories: Qt语法详解
-abbrlink: b06bf195
 date: 2019-01-24 16:31:18
 ---
 ### QProcess进程类
@@ -31,7 +30,7 @@ void finished ( int exitCode, QProcess::ExitStatus exitStatus );
 `QProcess::FailedToStart` | `0` | 进程启动失败
 `QProcess::Crashed`       | `1` | 进程成功启动后崩溃
 `QProcess::Timedout`      | `2` | 最后一次调用`waitFor`函数超时，此时`QProcess`状态不变，并可以再次调用`waitFor`类型的函数
-`QProcess::WriteError`    | `3` | 向进程写入时出错，例如进程尚未启动或者输入通道被关闭时
+`QProcess::WriteError`    | `3` | 向进程写入时出错，例如进程尚未启动或者输入通道被关闭时
 `QProcess::ReadError`     | `4` | 从进程中读取数据时出错，例如进程尚未启动时
 `QProcess::UnknownError`  | `5` | 未知错误，这也是`error`函数返回的默认值
 
@@ -42,29 +41,29 @@ void finished ( int exitCode, QProcess::ExitStatus exitStatus );
 #include <QProcess>
 #include <QString>
 #include <iostream>
-​
+
 int main ( int argc, char *argv[] ) {
     QApplication app ( argc, argv );
     QProcess proc;
     QStringList arguments;
     arguments << "-na";
     proc.start ( "netstat", arguments );
-​
+
     /* 等待进程启动 */
     if ( !proc.waitForStarted() ) {
         std::cout << "启动失败\n";
         return false;
     }
-​
+
     proc.closeWriteChannel(); /* 关闭写通道，因为没有向进程写数据 */
     QByteArray procOutput; /* 用于保存进程的控制台输出 */
-​
+
     /* 等待进程结束 */
     while ( false == proc.waitForFinished() ) {
         std::cout << "结束失败\n";
         return 1;
     }
-​
+
     procOutput = proc.readAll(); /* 读取进程输出到控制台的数据 */
     std::cout << procOutput.data() << std::endl; /* 输出读到的数据 */
     return EXIT_SUCCESS; /* 返回EXIT_SUCCESS */
@@ -78,9 +77,9 @@ int main ( int argc, char *argv[] ) {
 ``` cpp
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-​
+
 #include <QtGui>
-​
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
@@ -91,7 +90,7 @@ private slots:
 private:
     QProcess *p;
 };
-​
+
 #endif // MAINWINDOW_H
 ```
 
@@ -99,16 +98,16 @@ private:
 
 ``` cpp
 #include "mainwindow.h"
-​
+
 MainWindow::MainWindow ( QWidget *parent ) : QMainWindow ( parent ) {
     p = new QProcess ( this );
     QPushButton *bt = new QPushButton ( "execute notepad", this );
     connect ( bt, SIGNAL ( clicked() ), this, SLOT ( openProcess() ) );
 }
-​
+
 MainWindow::~MainWindow() {
 }
-​
+
 void MainWindow::openProcess() {
     p->start ( "notepad.exe" );
 }
@@ -121,9 +120,9 @@ void MainWindow::openProcess() {
 ``` cpp
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-​
+
 #include <QtGui>
-​
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
@@ -135,7 +134,7 @@ private slots:
 private:
     QProcess *p;
 };
-​
+
 #endif // MAINWINDOW_H
 ```
 
@@ -143,21 +142,21 @@ private:
 
 ``` cpp
 #include "mainwindow.h"
-​
+
 MainWindow::MainWindow ( QWidget *parent ) : QMainWindow ( parent ) {
     p = new QProcess ( this );
     QPushButton *bt = new QPushButton ( "execute notepad", this );
     connect ( bt, SIGNAL ( clicked() ), this, SLOT ( openProcess() ) );
 }
-​
+
 MainWindow::~MainWindow() {
 }
-​
+
 void MainWindow::openProcess() {
     p->start ( "cmd.exe", QStringList() << "/c" << "dir" );
     connect ( p, SIGNAL ( finished ( int ) ), this, SLOT ( readResult ( int ) ) );
 }
-​
+
 void MainWindow::readResult ( int exitCode ) {
     if ( exitCode == 0 ) {
         QTextCodec *gbkCodec = QTextCodec::codecForName ( "GBK" );

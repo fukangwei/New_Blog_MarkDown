@@ -1,7 +1,6 @@
 ---
 title: Qt之QPainter
 categories: Qt语法详解
-abbrlink: 3e78e0db
 date: 2019-03-18 16:59:06
 ---
 ### 简述

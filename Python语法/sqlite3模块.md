@@ -1,7 +1,6 @@
 ---
 title: sqlite3模块
 categories: Python语法
-abbrlink: 1c66818c
 date: 2019-01-12 10:15:33
 ---
 &emsp;&emsp;`SQLite3`可使用`sqlite3`模块与`Python`进行集成。它提供了一个与`PEP 249`描述的`DB-API 2.0`规范兼容的`SQL`接口。不需要单独安装该模块，因为`Python 2.5`以上版本默认自带了该模块。为了使用`sqlite3`模块，首先必须创建一个表示数据库的连接对象，然后可以有选择地创建光标对象，这将帮助你执行所有的`SQL`语句。<!--more-->
@@ -156,7 +155,7 @@ cursor.fetchmany([size=cursor.arraysize])
 
 ``` python
 import sqlite3
-​
+
 conn = sqlite3.connect('test.db')
 print("Opened database successfully")
 ```
@@ -169,7 +168,7 @@ print("Opened database successfully")
 
 ``` python
 import sqlite3
-​
+
 conn = sqlite3.connect('test.db')
 print("Opened database successfully")
 c = conn.cursor()
@@ -197,7 +196,7 @@ Table created successfully
 
 ``` python
 import sqlite3
-​
+
 conn = sqlite3.connect('test.db')
 c = conn.cursor()
 print("Opened database successfully")
@@ -227,20 +226,20 @@ Records created successfully
 
 ``` python
 import sqlite3
-​
+
 conn = sqlite3.connect('test.db')
 c = conn.cursor()
 print("Opened database successfully")
-​
+
 cursor = c.execute("SELECT id, name, address, salary  from COMPANY")
-​
+
 for row in cursor:
     print("ID =", row[0])
     print("NAME =", row[1])
     print("ADDRESS =", row[2])
     print("SALARY =", row[3])
     print("----------")
-​
+
 print("Operation done successfully")
 conn.close()
 ```
@@ -278,15 +277,15 @@ Operation done successfully
 
 ``` python
 import sqlite3
-​
+
 conn = sqlite3.connect('test.db')
 c = conn.cursor()
 print("Opened database successfully")
-​
+
 c.execute("UPDATE COMPANY set SALARY = 25000.00 where ID=1")
 conn.commit()
 print("Total number of rows updated :", conn.total_changes)
-​
+
 cursor = conn.execute("SELECT id, name, address, salary from COMPANY")
 
 for row in cursor:
@@ -294,7 +293,7 @@ for row in cursor:
     print("NAME = ", row[1])
     print("ADDRESS = ", row[2])
     print("SALARY = ", row[3], "\n")
-​
+
 print("Operation done successfully")
 conn.close()
 ```
@@ -305,15 +304,15 @@ conn.close()
 
 ``` python
 import sqlite3
-​
+
 conn = sqlite3.connect('test.db')
 c = conn.cursor()
 print("Opened database successfully")
-​
+
 c.execute("DELETE from COMPANY where ID=2;")
 conn.commit()
 print("Total number of rows deleted :", conn.total_changes)
-​
+
 cursor = conn.execute("SELECT id, name, address, salary  from COMPANY")
 
 for row in cursor:
@@ -321,7 +320,7 @@ for row in cursor:
     print("NAME =", row[1])
     print("ADDRESS =", row[2])
     print("SALARY = ", row[3], "\n")
-​
+
 print("Operation done successfully")
 conn.close()
 ```

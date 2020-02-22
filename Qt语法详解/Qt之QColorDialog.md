@@ -1,7 +1,6 @@
 ---
 title: Qt之QColorDialog
 categories: Qt语法详解
-abbrlink: bb606c52
 date: 2019-01-02 18:26:25
 ---
 &emsp;&emsp;这是`Qt`提供的颜色选择对话框，使用头文件`QColorDialog`。`Qt`提供了`getColor`函数，可以直接获得选择的颜色：<!--more-->

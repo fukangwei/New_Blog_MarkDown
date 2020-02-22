@@ -1,7 +1,6 @@
 ---
 title: Latex教程
 categories: 办公
-abbrlink: ca99a37d
 date: 2019-05-10 20:44:46
 ---
 ### Hello World
@@ -166,14 +165,14 @@ Hello, \%world!
 \usepackage{multirow}
 \begin{document}
     \begin{tabular}{|l|l|l|l|}
-        \hline  
-        \multirow{4}{2cm}{This is a demo table}  
+        \hline
+        \multirow{4}{2cm}{This is a demo table}
         & C2a &
         \multirow{4}{2cm}{This is another one} & C4a\\
         & C2b &  & C4b\\
         & C2c &  & C4c\\
         & C2d & & C4d\\
-        \hline
+        \hline
     \end{tabular}
 \end{document}
 ```
@@ -190,7 +189,7 @@ Hello, \%world!
         \caption{standard table}  % 表格标题
         \label{table1}  % 用于索引表格的标签
         % 字母的个数对应列数，“|”代表分割线，“l”代表左对齐，“c”代表居中，“r”代表右对齐
-        \begin{tabular}{|c|c|c|c|}  
+        \begin{tabular}{|c|c|c|c|}
             \hline  % 表格的横线
             1 & 2 & 3 & 4 \\  % 表格中的内容，用“&”分开，“\\”表示下一行
             \hline
@@ -346,7 +345,7 @@ size            | 10pt (default) | 11pt option | 12pt option
 
 ``` latex
 \documentclass[conference, letterpaper]{IEEEtran}
-​
+
 \begin{document}
     \begin{abstract}
         These instructions give you the basic guidelines for preparing
@@ -354,7 +353,7 @@ size            | 10pt (default) | 11pt option | 12pt option
         please visit our website: http://www.ieee-ICMA.org
         \\
     \end{abstract}
-​
+
     \begin{keywords}
         List key index terms here. No more than 5.
     \end{keywords}

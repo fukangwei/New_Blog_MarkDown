@@ -1,7 +1,6 @@
 ---
 title: Qt之富文本格式
 categories: Qt应用示例
-abbrlink: cbbafc34
 date: 2019-02-06 14:48:52
 ---
 &emsp;&emsp;`mainwindow.h`如下：<!--more-->
@@ -9,16 +8,16 @@ date: 2019-02-06 14:48:52
 ``` cpp
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-​
+
 #include <QMainWindow>
-​
+
 namespace Ui {
     class MainWindow;
 }
-​
+
 class QLineEdit;
 class MySyntaxHighlighter;
-​
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
@@ -38,7 +37,7 @@ private slots:
     void textFind();                   /* 查找文本       */
     void findNext();                   /* 查找下一个     */
 };
-​
+
 #endif // MAINWINDOW_H
 ```
 
@@ -47,9 +46,9 @@ private slots:
 ``` cpp
 #ifndef MYSYNTAXHIGHLIGHTER_H
 #define MYSYNTAXHIGHLIGHTER_H
-​
+
 #include <QSyntaxHighlighter>
-​
+
 class MySyntaxHighlighter : public QSyntaxHighlighter {
     Q_OBJECT
 public:
@@ -59,7 +58,7 @@ public slots:
 protected:
     void highlightBlock ( const QString &text ); /* 必须重新实现该函数 */
 };
-​
+
 #endif // MYSYNTAXHIGHLIGHTER_H
 ```
 
@@ -67,11 +66,11 @@ protected:
 
 ``` cpp
 #include "mysyntaxhighlighter.h"
-​
+
 MySyntaxHighlighter::MySyntaxHighlighter ( QTextDocument *parent ) :
     QSyntaxHighlighter ( parent ) {
 }
-​
+
 void MySyntaxHighlighter::highlightBlock ( const QString &text ) { /* 高亮文本块 */
     QTextCharFormat myFormat; /* 字符格式 */
     myFormat.setFontWeight ( QFont::Bold );
@@ -79,7 +78,7 @@ void MySyntaxHighlighter::highlightBlock ( const QString &text ) { /* 高亮文�
     QString pattern = "\\bchar\\b"; /* 要匹配的字符，这里是“char”单词 */
     QRegExp expression ( pattern ); /* 创建正则表达式 */
     int index = text.indexOf ( expression ); /* 从位置0开始匹配字符串 */
-​
+
     /* 如果匹配成功，那么返回值为字符串的起始位置，它大于或等于0 */
     while ( index >= 0 ) {
         int length = expression.matchedLength(); /* 要匹配字符串的长度 */
@@ -102,7 +101,7 @@ void MySyntaxHighlighter::highlightBlock ( const QString &text ) { /* 高亮文�
 #include <QPushButton>
 #include <QVBoxLayout>
 #include "mysyntaxhighlighter.h"
-​
+
 MainWindow::MainWindow ( QWidget *parent ) : QMainWindow ( parent ), ui ( new Ui::MainWindow ) {
     ui->setupUi ( this );
     QTextDocument *document = ui->textEdit->document(); /* 获取文档对象 */
@@ -145,20 +144,20 @@ MainWindow::MainWindow ( QWidget *parent ) : QMainWindow ( parent ), ui ( new Ui
     /* 在编辑器中添加文本并且使用html标签 */
     ui->textEdit->append ( tr ( "<h1><font color=red>使用HTML</font></h1>" ) );
 }
-​
+
 MainWindow::~MainWindow() {
     delete ui;
 }
-​
+
 void MainWindow::showTextFrame() { /* 遍历框架 */
     QTextDocument *document = ui->textEdit->document();
     QTextFrame *frame = document->rootFrame();
     QTextFrame::iterator it; /* 建立QTextFrame类的迭代器 */
-​
+
     for ( it = frame->begin(); ! ( it.atEnd() ); ++it ) {
         QTextFrame *childFrame = it.currentFrame(); /* 获取当前框架的指针 */
         QTextBlock childBlock = it.currentBlock(); /* 获取当前文本块 */
-​
+
         if ( childFrame ) {
             qDebug() << "frame";
         } else if ( childBlock.isValid() ) {
@@ -166,11 +165,11 @@ void MainWindow::showTextFrame() { /* 遍历框架 */
         }
     }
 }
-​
+
 void MainWindow::showTextBlock() { /* 遍历文本块 */
     QTextDocument *document = ui->textEdit->document();
     QTextBlock block = document->firstBlock(); /* 获取文档的第一个文本块 */
-​
+
     for ( int i = 0; i < document->blockCount(); i++ ) {
         qDebug() \
             << tr ( "文本块%1，文本块首行行号为:%2，长度为:%3,内容为：" ) \
@@ -181,7 +180,7 @@ void MainWindow::showTextBlock() { /* 遍历文本块 */
         block = block.next(); /* 获取下一个文本块 */
     }
 }
-​
+
 void MainWindow::setTextFont ( bool checked ) { /* 设置字体格式 */
     if ( checked ) { /* 如果处于选中状态 */
         QTextCursor cursor = ui->textEdit->textCursor();
@@ -200,7 +199,7 @@ void MainWindow::setTextFont ( bool checked ) { /* 设置字体格式 */
         /* 恢复默认的字体格式 */
     }
 }
-​
+
 void MainWindow::insertTable() { /* 插入表格 */
     QTextCursor cursor = ui->textEdit->textCursor();
     QTextTableFormat format; /* 表格格式 */
@@ -208,19 +207,19 @@ void MainWindow::insertTable() { /* 插入表格 */
     format.setCellPadding ( 10 ); /* 表格内边白 */
     cursor.insertTable ( 2, 2, format ); /* 插入2行2列表格 */
 }
-​
+
 void MainWindow::insertList() { /* 插入列表 */
     QTextListFormat format; /* 列表格式 */
     format.setStyle ( QTextListFormat::ListDecimal ); /* 数字编号 */
     ui->textEdit->textCursor().insertList ( format );
 }
-​
+
 void MainWindow::insertImage() { /* 插入图片 */
     QTextImageFormat format; /* 图片格式 */
     format.setName ( "logo.png" ); /* 图片路径 */
     ui->textEdit->textCursor().insertImage ( format );
 }
-​
+
 void MainWindow::textFind() { /* 查找文本 */
     QDialog *dlg = new QDialog ( this ); /* 创建对话框 */
     lineEdit = new QLineEdit ( dlg ); /* 创建行编辑器 */
@@ -233,12 +232,12 @@ void MainWindow::textFind() { /* 查找文本 */
     dlg->setLayout ( layout ); /* 在对话框中使用布局管理器 */
     dlg->show();
 }
-​
+
 void MainWindow::findNext() { /* 查找下一个 */
     /* 使用查找函数查找指定字符串，查找方式为向后查找 */
     QString string = lineEdit->text();
     bool isfind = ui->textEdit->find ( string, QTextDocument::FindBackward );
-​
+
     if ( isfind ) { /* 如果查找成功，输出字符串所在行和列的编号 */
         qDebug() << tr ( "行号:%1 列号:%2" )
                  .arg ( ui->textEdit->textCursor().blockNumber() )
@@ -251,11 +250,11 @@ void MainWindow::findNext() { /* 查找下一个 */
 
 ``` cpp
 #include "mysyntaxhighlighter.h"
-​
+
 MySyntaxHighlighter::MySyntaxHighlighter ( QTextDocument *parent ) :
     QSyntaxHighlighter ( parent ) {
 }
-​
+
 void MySyntaxHighlighter::highlightBlock ( const QString &text ) { /* 高亮文本块 */
     QTextCharFormat myFormat; /* 字符格式 */
     myFormat.setFontWeight ( QFont::Bold );
@@ -263,7 +262,7 @@ void MySyntaxHighlighter::highlightBlock ( const QString &text ) { /* 高亮文�
     QString pattern = "\\bchar\\b"; /* 要匹配的字符，这里是“char”单词 */
     QRegExp expression ( pattern ); /* 创建正则表达式 */
     int index = text.indexOf ( expression ); /* 从位置0开始匹配字符串 */
-​
+
     /* 如果匹配成功，那么返回值为字符串的起始位置，它大于或等于0 */
     while ( index >= 0 ) {
         int length = expression.matchedLength(); /* 要匹配字符串的长度 */

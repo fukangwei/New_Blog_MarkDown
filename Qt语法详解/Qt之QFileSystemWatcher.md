@@ -1,7 +1,6 @@
 ---
 title: Qt之QFileSystemWatcher
 categories: Qt语法详解
-abbrlink: 21a9b68
 date: 2019-01-24 13:40:43
 ---
 ### 简述
@@ -30,11 +29,11 @@ date: 2019-01-24 13:40:43
 ``` cpp
 #ifndef FILE_SYSTEM_WATCHER_H
 #define FILE_SYSTEM_WATCHER_H
-​
+
 #include <QObject>
 #include <QMap>
 #include <QFileSystemWatcher>
-​
+
 class FileSystemWatcher : public QObject {
     Q_OBJECT
 public:
@@ -52,7 +51,7 @@ private:
     /* 当前每个监控的内容目录列表 */
     QMap<QString, QStringList> m_currentContentsMap;
 };
-​
+
 #endif
 ```
 
@@ -63,15 +62,15 @@ private:
 #include <QFileInfo>
 #include <qDebug>
 #include "FileSystemWatcher.h"
-​
+
 FileSystemWatcher *FileSystemWatcher::m_pInstance = NULL;
-​
+
 FileSystemWatcher::FileSystemWatcher ( QObject *parent ) : QObject ( parent ) {
 }
-​
+
 void FileSystemWatcher::addWatchPath ( QString path ) { /* 监控文件或目录 */
     qDebug() << QString ( "Add to watch: %1" ).arg ( path );
-​
+
     if ( m_pInstance == NULL ) {
         m_pInstance = new FileSystemWatcher();
         m_pInstance->m_pSystemWatcher = new QFileSystemWatcher();
@@ -81,17 +80,17 @@ void FileSystemWatcher::addWatchPath ( QString path ) { /* 监控文件或目录
         connect ( m_pInstance->m_pSystemWatcher, SIGNAL ( fileChanged ( QString ) ), \
                   m_pInstance, SLOT ( fileUpdated ( QString ) ) );
     }
-​
+
     m_pInstance->m_pSystemWatcher->addPath ( path ); /* 添加监控路径 */
     QFileInfo file ( path ); /* 如果添加路径是一个目录，保存当前内容列表 */
-​
+
     if ( file.isDir() ) {
         const QDir dirw ( path );
         m_pInstance->m_currentContentsMap[path] = \
             dirw.entryList ( QDir::NoDotAndDotDot | QDir::AllDirs | QDir::Files, QDir::DirsFirst );
     }
 }
-​
+
 /* 只要任何监控的目录更新(添加、删除、重命名)，就会调用 */
 void FileSystemWatcher::directoryUpdated ( const QString &path ) {
     qDebug() << QString ( "Directory updated: %1" ).arg ( path );
@@ -110,7 +109,7 @@ void FileSystemWatcher::directoryUpdated ( const QString &path ) {
     QStringList deleteFile = deletedFiles.toList();
     /* 更新当前设置 */
     m_currentContentsMap[path] = newEntryList;
-​
+
     if ( !newFile.isEmpty() && !deleteFile.isEmpty() ) {
         /* 文件/目录重命名 */
         if ( ( newFile.count() == 1 ) && ( deleteFile.count() == 1 ) ) {
@@ -121,23 +120,23 @@ void FileSystemWatcher::directoryUpdated ( const QString &path ) {
         /* 添加新文件/目录至Dir */
         if ( !newFile.isEmpty() ) {
             qDebug() << "New Files/Dirs added: " << newFile;
-​
+
             foreach ( QString file, newFile ) {
                 /* 处理操作每个新文件 */
             }
         }
-​
+
         /* 从Dir中删除文件/目录 */
         if ( !deleteFile.isEmpty() ) {
             qDebug() << "Files/Dirs deleted: " << deleteFile;
-​
+
             foreach ( QString file, deleteFile ) {
                 /* 处理操作每个被删除的文件 */
             }
         }
     }
 }
-​
+
 void FileSystemWatcher::fileUpdated ( const QString &path ) { /* 文件修改时调用 */
     QFileInfo file ( path );
     QString strPath = file.absolutePath();
@@ -150,7 +149,7 @@ void FileSystemWatcher::fileUpdated ( const QString &path ) { /* 文件修改时
 
 ``` cpp
 #include "FileSystemWatcher.h"
-​
+
 int main ( int argc, char *argv[] ) {
     QApplication a ( argc, argv );
     FileSystemWatcher::addWatchPath ( "E:/Test" );

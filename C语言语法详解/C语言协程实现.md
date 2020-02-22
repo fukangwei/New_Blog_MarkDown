@@ -1,29 +1,28 @@
 ---
 title: C语言协程实现
 categories: C语言语法详解
-abbrlink: a4f8e522
 date: 2018-12-08 14:34:40
 ---
 &emsp;&emsp;先看这段代码：<!--more-->
 
 ``` cpp
 #include <stdio.h>
-​
+
 typedef struct {
     int i;
     int num;
     int state;
 } task;
-​
+
 #define crBegin(state) \
     switch (state) { case 0:
-​
+
 #define crReturn(state, ret) \
     (state) = __LINE__; return (ret); case __LINE__:
-​
+
 #define crEnd() \
     }
-​
+
 int cb ( task* t ) {
     crBegin ( t->state );
 
@@ -38,7 +37,7 @@ int cb ( task* t ) {
 
     crEnd();
 }
-​
+
 int main() {
     task t;
     int i;
@@ -109,9 +108,9 @@ while ( 1 ) { /* Decompression code */
 }
 
 emit ( EOF );
-​
+
 while ( 1 ) { /* Parser code */
-    c = getchar();​
+    c = getchar();
 
     if ( c == EOF ) {
         break;
@@ -138,7 +137,7 @@ while ( 1 ) { /* Parser code */
 ``` cpp
 int decompressor ( void ) {
     static int repchar;
-    static int replen;​
+    static int replen;
 
     if ( replen > 0 ) {
         replen--;
@@ -175,9 +174,7 @@ void parser ( int c ) {
 
             got_token ( WORD );
             state = START;
-
-        /* fall through */
-        case START:
+        case START: /* fall through */
             add_to_token ( c );
 
             if ( isalpha ( c ) ) {
@@ -225,7 +222,6 @@ int function ( void ) {
     switch ( state ) {
         case 0:
             goto LABEL0;
-
         case 1:
             goto LABEL1;
     }
@@ -250,8 +246,8 @@ LABEL1:; /* resume control straight after the return */
 ``` cpp
 switch ( count % 8 ) {
     case 0:
-    do {
-        *to = *from++;
+        do {
+            *to = *from++;
     case 7:
         *to = *from++;
     case 6:
@@ -274,7 +270,7 @@ switch ( count % 8 ) {
 
 ``` cpp
 int function ( void ) {
-    static int i, state = 0;​
+    static int i, state = 0;
 
     switch ( state ) {
         case 0: /* start of function */
@@ -282,7 +278,7 @@ int function ( void ) {
                 state = 1; /* so we will come back to "case 1" */
                 return i;
 
-            case 1:; /* resume control straight after the return */
+                case 1:; /* resume control straight after the return */
             }
     }
 }
@@ -294,7 +290,7 @@ int function ( void ) {
 #define crBegin        static int state = 0; switch(state) { case 0:
 #define crReturn(i, x) do { state = i; return x; case i:; } while (0)
 #define crFinish       }
-​
+
 int function ( void ) {
     static int i;
     crBegin;
@@ -353,7 +349,7 @@ int decompressor ( void ) {
     crReturn ( EOF );
     crFinish;
 }
-​
+
 void parser ( int c ) {
     crBegin;
 
@@ -518,7 +514,7 @@ if ( condition ) {
 * case statements instead. That's why you can't put a crReturn()
 * inside a switch() statement.
 */
-​
+
 /*
 * coroutine.h is copyright 1995,2000 Simon Tatham.
 *
@@ -544,7 +540,7 @@ if ( condition ) {
 */
 #ifndef COROUTINE_H
 #define COROUTINE_H
-​
+
 #include <stdlib.h>
 
 /* scr macros for static coroutines */
@@ -563,18 +559,18 @@ if ( condition ) {
         scrLine=__LINE__; \
         return; case __LINE__:; \
     } while (0)
-​
+
 /* ccr macros for re-entrant coroutines */
 #define ccrContParam void **ccrParam
-​#define ccrBeginContext    struct ccrContextTag { int ccrLine
+#define ccrBeginContext    struct ccrContextTag { int ccrLine
 #define ccrEndContext(x) } *x = (struct ccrContextTag *)*ccrParam
 
-​#define ccrBegin(x) if(!x) {x = *ccrParam = malloc(sizeof(*x)); x->ccrLine = 0;} \
+#define ccrBegin(x) if(!x) {x = *ccrParam = malloc(sizeof(*x)); x->ccrLine = 0;} \
     if (x) switch(x->ccrLine) { case 0:;
 
 #define ccrFinish(z) } free(*ccrParam); *ccrParam = 0; return (z)
 #define ccrFinishV   } free(*ccrParam); *ccrParam = 0; return
-​
+
 #define ccrReturn(z) \
     do { \
         ((struct ccrContextTag *)*ccrParam)->ccrLine = __LINE__; \
@@ -586,12 +582,12 @@ if ( condition ) {
         ((struct ccrContextTag *)*ccrParam)->ccrLine = __LINE__; \
     return; case __LINE__:; \
     } while (0)
-​
+
 #define ccrStop(z) do{ free(*ccrParam); *ccrParam = 0; return (z); }while(0)
 #define ccrStopV   do{ free(*ccrParam); *ccrParam = 0; return; }while(0)
-​
+
 #define ccrContext    void *
 #define ccrAbort(ctx) do { free (ctx); ctx = 0; } while (0)
-​
+
 #endif /* COROUTINE_H */
 ```

@@ -1,7 +1,6 @@
 ---
 title: Qt开发注意事项
 categories: Qt语法详解
-abbrlink: 9fecaf1e
 date: 2019-01-24 16:12:55
 ---
 1. 如果出现`'tr' was not declared in this scope`的问题，将`tr`替换为`QObject::tr`即可。<!--more-->

@@ -1,7 +1,6 @@
 ---
 title: STC12C5A60S2内部PWM应用
 categories: 单片机
-abbrlink: 8567deb
 date: 2018-12-29 17:24:11
 ---
 &emsp;&emsp;代码如下：<!--more-->
@@ -11,23 +10,23 @@ date: 2018-12-29 17:24:11
 
 #define uint unsigned int
 #define uchar unsigned char
-​
+
 sbit AddPWM = P1 ^ 0; /* 通过P10、P11低电平(按键)加减PWM占空比 */
 sbit CutPWM = P1 ^ 1;
-​
+
 void DelayMs ( uchar ms );
 void init_PWM();
 void PWM0_change ( uchar type, uchar change );
 void PWM0_set ( uchar empty );
-​
+
 void DelayMs ( uchar ms ) { /* 这个延时可能不对，非关键部分，可自己修改 */
     uint i;
-​
+
     while ( ms-- ) {
         for ( i = 0; i < 850; i++ );
     }
 }
-​
+
 void init_PWM() {
     CCON = 0X00;
     CH = 0;
@@ -41,12 +40,12 @@ void init_PWM() {
     CCAPM0 = 0X42;
     CR = 1; /* 计时器开始工作 */
 }
-​
+
 void PWM0_set ( uchar empty ) { /* 直接设置占空比 */
     CCAP0L = empty;
     CCAP0H = empty;
 }
-​
+
 /* type为0是减占空比，1是增加占空比；change：0X0C约5%，0X05约2% */
 void PWM0_change ( uchar type, uchar change ) {
     if ( type == 0 ) {
@@ -61,17 +60,17 @@ void PWM0_change ( uchar type, uchar change ) {
         }
     }
 }
-​
+
 void main ( void ) {
     init_PWM(); /* 初始化，PWM输出 */
-​
+
     while ( 1 ) { /* 按键增减PWM占空比 */
         if ( AddPWM == 0 ) {
             DelayMs ( 500 ); /* 按键消抖 */
             while ( AddPWM == 0 ); /* 按键释放才跳出循环 */
             PWM0_change ( 1, 0X0C );
         }
-​
+
         if ( CutPWM == 0 ) {
             DelayMs ( 500 );
             while ( CutPWM == 0 );

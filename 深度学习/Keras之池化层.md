@@ -1,7 +1,6 @@
 ---
 title: Keras之池化层
 categories: 深度学习
-abbrlink: 4493b4df
 date: 2018-12-30 21:31:39
 ---
 ### MaxPooling1D

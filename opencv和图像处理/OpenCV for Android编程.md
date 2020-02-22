@@ -1,7 +1,6 @@
 ---
 title: OpenCV for Android编程
 categories: opencv和图像处理
-abbrlink: aba41a69
 date: 2019-02-06 11:55:28
 ---
 ### 显示图片
@@ -15,7 +14,7 @@ import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
 import org.opencv.core.Mat;
 import org.opencv.imgcodecs.Imgcodecs;
-​
+
 import android.graphics.Bitmap;
 import android.app.Activity;
 import android.os.Bundle;
@@ -23,15 +22,15 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
-​
+
 public class ImageManipulationsActivity extends Activity {
     static {
         System.loadLibrary("opencv_java3");
     }
-​
+
     private static final String TAG = "OCVSample::Activity";
     private ImageView imageview;
-​
+
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
         public void onManagerConnected(int status) {
@@ -47,7 +46,7 @@ public class ImageManipulationsActivity extends Activity {
             }
         }
     };
-​
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, "called onCreate");
@@ -59,14 +58,14 @@ public class ImageManipulationsActivity extends Activity {
         Bitmap bm = Bitmap.createBitmap(img.cols(), img.rows(), Bitmap.Config.ARGB_8888);
         Utils.matToBitmap(img, bm);
         imageview.setImageBitmap(bm);
-​
+
         boolean flag = Imgcodecs.imwrite("/sdcard/new.jpg", img); /* 写入图片文件 */
-​
+
         if (flag) { /* 如果写入成功 */
             Toast.makeText(this, "Write OK", Toast.LENGTH_SHORT).show();
         }
     }
-​
+
     @Override
     public void onResume() {
         super.onResume();
@@ -109,11 +108,11 @@ public void onCreate(Bundle savedInstanceState) {
     setContentView(R.layout.image_manipulations_surface_view);
     imageview = (ImageView) this.findViewById(R.id.imageView);
     Mat img = Imgcodecs.imread("/sdcard/face.jpg", 0); /* 读取图片文件 */
-​
+
     Size dsize = new Size(img.cols(), img.rows());
     Mat img2 = new Mat(dsize, CvType.CV_8SC1);
     Imgproc.Canny(img, img2, 123, 250); /* Canny边缘检测 */
-​
+
     Bitmap bm = Bitmap.createBitmap(img.cols(), img.rows(), Bitmap.Config.ARGB_8888);
     Utils.matToBitmap(img2, bm);
     imageview.setImageBitmap(bm);

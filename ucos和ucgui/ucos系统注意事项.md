@@ -1,7 +1,6 @@
 ---
 title: ucos系统注意事项
 categories: ucos和ucgui
-abbrlink: a1fb18b8
 date: 2018-12-29 11:56:29
 ---
 ### ucos系统注意事项

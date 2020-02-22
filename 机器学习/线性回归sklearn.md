@@ -48,7 +48,7 @@ class linear:
     def __init__(self):
         self.a = 0
         self.b = 0
-​
+
     def fit(self, X, Y):
         molecule = 0  # 分子
         dnominator = 0  # 分母
@@ -61,10 +61,10 @@ class linear:
 
         self.a = molecule / float(dnominator)
         self.b = y_mean - self.a * x_mean
-​
+
     def predict(self, x):
         return self.a * x + self.b
-​
+
 if __name__ == '__main__':
     x = np.array([1, 3, 2, 1, 3])
     y = np.array([14, 24, 18, 17, 27])
@@ -99,7 +99,7 @@ def fitSLR(x, y):
 
 def predict(x, b0, b1):
     return b0 + x * b1
-​
+
 x = [1, 3, 2, 1, 3]
 y = [14, 24, 18, 17, 27]
 b0, b1 = fitSLR(x, y)
@@ -140,7 +140,7 @@ def get_data(file_name):
         Y.append(float(city))
 
     return X, Y
-​
+
 def linear_model_main(X_parameters, Y_parameters, predict_value):
     regr = linear_model.LinearRegression()
     regr.fit(X_parameters, Y_parameters)

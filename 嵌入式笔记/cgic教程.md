@@ -1,7 +1,6 @@
 ---
 title: cgic教程
 categories: 嵌入式笔记
-abbrlink: 3d08823d
 date: 2019-01-18 11:34:34
 ---
 ### 使用CGIC的基本思路
@@ -34,7 +33,7 @@ http://127.0.0.1/cgi-bin/test.cgi
 如果正常的话，应该看到一个网页被展示出来，这样第一个`C`语言的`CGI`程序就运行起来了。
 &emsp;&emsp;从`cgic.c`的代码可以看出，它定义了`main`函数，而在`cgictest.c`中定义了一个`cgiMain`函数。也就是说，对于使用`CGIC`编写的`CGI`程序，都是从`cgic.c`中的代码进入，在库函数完成了一系列必要的操作(比如解析参数、获取系统环境变量)之后，它才会调用你的代码(从你定义的`cgiMain`进入)。另外一点就是，`cgi`程序输出`HTML`页面的方式都是使用`printf`把页面一行一行地打印出来，比如`cgictest.c`中的这一段代码：
 
-``` c
+``` cpp
 fprintf ( cgiOut, "<textarea NAME="address" ROWS=4 COLS=40>\n" );
 fprintf ( cgiOut, "Default contents go here. \n" );
 fprintf ( cgiOut, "</textarea>\n" );
@@ -42,13 +41,13 @@ fprintf ( cgiOut, "</textarea>\n" );
 
 上面这段代码的运行结果就是在页面上输出一个`textarea`。第一个参数`cgiOut`实际上就是`stdin`，所以我们可以直接使用`printf`，而不必使用`fprintf`。不过在调试的时候会用到`fprintf`来重定向输出。这种方式与`Java Servlet`非常类似，`Servlet`也是通过调用打印语句`System.out.println(...)`来输出一个页面，不过后来`Java`推出了`JSP`来克服这种不便。但是与`Servlet`不同的地方在于，使用`C`语言的我们还要自己输出`HTML`头部(声明文档类型)：
 
-``` c
+``` cpp
 cgiHeaderContentType ( "text/html" );
 ```
 
 这个语句的调用一定要在所有`printf`语句之前。而这个语句执行的任务实际上就是：
 
-``` c
+``` cpp
 void cgiHeaderContentType ( char *mimeType ) {
     fprintf ( cgiOut, "Content-type: %s\r\n\r\n", mimeType );
 }
@@ -56,12 +55,12 @@ void cgiHeaderContentType ( char *mimeType ) {
 
 这个语句告诉浏览器，这次传来的数据的类型。如果是个`HTML`文档，就通过浏览器窗口显示；如果是一个`bin`(二进制)文件，则打开下载窗口，让用户选择是否保存文件以及保存文件的路径。理解了这几点之后，你就可以编写自己的`CGIC`程序了：
 
-``` c
+``` cpp
 #include <stdio.h>
 #include "cgic.h"
 #include <string.h>
 #include <stdlib.h>
-​
+
 int cgiMain ( void ) {
     cgiHeaderContentType ( "text/html" );
     fprintf ( cgiOut, "<HTML><HEAD>\n" );
@@ -85,20 +84,20 @@ http://127.0.0.1/cgi-bin/out.cgi?ThisIsTheGetString
 在上面这个`URL`中，`ThisIsTheGetString`就是`Get`请求字符串。
 &emsp;&emsp;在进入我们自己编写的`cgi`代码之前，`CGIC`库已经事先把这个字符串取到了，我们可以在程序中直接获得，要做的仅仅是在你编写的`cgiMain`方法前面加入以下声明：
 
-``` c
+``` cpp
 extern char *cgiQueryString;
 ```
 
 现在给出一个简单的例子，这个例子跟上一篇的测试程序非常相似，只不过程序的输出是使用者输入的`Get`请求字符串：
 
-``` c
+``` cpp
 #include <stdio.h>
 #include "cgic.h"
 #include <string.h>
 #include <stdlib.h>
-​
+
 extern char *cgiQueryString;
-​
+
 int cgiMain() {
     cgiHeaderContentType ( "text/html" );
     fprintf ( cgiOut, "<HTML><HEAD>\n" );
@@ -153,13 +152,13 @@ http://localhost/~Jack/cgi-bin/out.cgi?theText=it%27s+me
 通过`CGIC`，可以把这些被转义后的字符还原为我们本来的输入，这个过程就叫`反转义`(`Unescape`)。整个过程分三个步骤：
 &emsp;&emsp;1. 打开`cgic.c`，找到这一行语句：
 
-``` c
+``` cpp
 static cgiUnescapeResultType cgiUnescapeChars ( char **sp, char *cp, int len );
 ```
 
 &emsp;&emsp;2. 在这个函数声明语句的上方，你会看到一个结构体定义：
 
-``` c
+``` cpp
 typedef enum {
     cgiUnescapeSuccess,
     cgiUnescapeMemory
@@ -169,21 +168,21 @@ typedef enum {
 把这几行语句复制到`cgic.h`文件中，并在这里把它注释掉。同时还要删除在第一步中找到的函数声明语句中的`static`关键字。
 &emsp;&emsp;3. 我们现在就可以使用反转义函数`cgiUnescapeChars`了。在你自己的代码中，加入以下声明语句：
 
-``` c
+``` cpp
 extern cgiUnescapeResultType cgiUnescapeChars ( char **sp, char *cp, int len );
 ```
 
 接下来给出一段完整的`test.c`代码：
 
-``` c
+``` cpp
 #include <stdio.h>
 #include "cgic.h"
 #include <string.h>
 #include <stdlib.h>
-​
+
 extern char *cgiQueryString;
 extern cgiUnescapeResultType cgiUnescapeChars ( char **sp, char *cp, int len );
-​
+
 int cgiMain() {
     char *buffer;
     cgiHeaderContentType ( "text/html" );
@@ -216,18 +215,18 @@ http://127.0.0.1/cgi-bin/chat.cgi? "this is a cgi user"
 <form action="cgi-bin/out.cgi" method="POST">
     <input type="text" name="name" />
     <input type="text" name="number" />
-    <input type="submit" value="Submit" />
+    <input type="submit" value="Submit" />
 </form>
 ```
 
 当`out.cgi`收到请求时，需要把输入框`name`和输入框`number`内的值提取出来，而且不管`form`中的`action`是`GET`还是`POST`，都要有效。下面给出示例代码：
 
-``` c
+``` cpp
 #include <stdio.h>
 #include "cgic.h"
 #include <string.h>
 #include <stdlib.h>
-​
+
 int cgiMain() {
     char name[241];
     char number[241];
@@ -251,16 +250,16 @@ int cgiMain() {
 
 &emsp;&emsp;不少网站都有文件上传的功能，本文展示如何用`CGIC`库编写文件上传的服务端程序，最后给出一段简单的`HTML`代码，供大家测试使用。`cgi`脚本代码如下：
 
-``` c
+``` cpp
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/stat.h>
 #include "cgic.h"
-​
+
 #define BufferLen 1024
-​
+
 int cgiMain ( void ) {
     cgiFilePtr file;
     int targetFile;
@@ -274,59 +273,59 @@ int cgiMain ( void ) {
     int got, t;
     // cgiHeaderContentType ( "text/html" );
     printf ( "%s%c%c ", "Content-Type:text/html;charset=utf-8\n\n", 13, 10 );
-​
+
     /* 取得html页面中file元素的值，应该是文件在客户机上的路径名 */
     if ( cgiFormFileName ( "file", name, sizeof ( name ) ) != cgiFormSuccess ) {
         fprintf ( stderr, "could not retrieve filename/n" );
         goto FAIL;
     }
-​
+
     cgiFormFileSize ( "file", &size );
     /* 取得文件类型，不过本例中并未使用 */
     cgiFormFileContentType ( "file", contentType, sizeof ( contentType ) );
-​
+
     /* 目前文件存在于系统临时文件夹中，通常为/tmp，通过该命令打开临时文件。
        临时文件的名字与用户文件的名字不同，所以不能通过路径/tmp/userfilename的方式获得文件 */
     if ( cgiFormFileOpen ( "file", &file ) != cgiFormSuccess ) {
         fprintf ( stderr, "could not open the file/n" );
         goto FAIL;
     }
-​
+
     t = -1;
-​
+
     while ( 1 ) { /* 从路径名解析出用户文件名 */
         tmpStr = strstr ( name + t + 1, "//" );
-​
+
         if ( NULL == tmpStr ) {
             /* if "//" is not path separator, try "/" */
             tmpStr = strstr ( name + t + 1, "/" );
         }
-​
+
         if ( NULL != tmpStr ) {
             t = ( int ) ( tmpStr - name );
         } else {
             break;
         }
     }
-​
+
     strcpy ( fileNameOnServer, name + t + 1 );
     mode = S_IRWXU | S_IRGRP | S_IROTH;
     /* 在当前目录下建立新的文件，第一个参数实际上是路径名，
        此处的含义是在cgi程序所在的目录(当前目录)建立新文件 */
     targetFile = open ( fileNameOnServer, O_RDWR | O_CREAT | O_TRUNC | O_APPEND, mode );
-​
+
     if ( targetFile < 0 ) {
         fprintf ( stderr, "could not create the new file,%s/n", fileNameOnServer );
         goto FAIL;
     }
-​
+
     /* 从系统临时文件中读出文件内容，并放到刚创建的目标文件中 */
     while ( cgiFormFileRead ( file, buffer, BufferLen, &got ) == cgiFormSuccess ) {
         if ( got > 0 ) {
             write ( targetFile, buffer, got );
         }
     }
-​
+
     cgiFormFileClose ( file );
     close ( targetFile );
     goto END;
@@ -367,7 +366,7 @@ gcc -Wall upload.c cgic.c -o upload.cgi
 当然，你必须配置`cgi`脚本程序有权限在`cgi-bin`目录下创建文件，因为此例把文件上传到`cgi-bin`目录下。
 &emsp;&emsp;那么如何控制上传文件的大小呢？因为你有时会不允许用户上传太大的文件。通过分析`cgic.c`的源代码，我们发现它定义了一个变量`cgiContentLength`，表示请求的长度。但我们需要首先判断这是一个上传文件的请求，然后才能根据`cgiContentLength`来检查用户是否要上传一个太大的文件。`cgic.c`的`main`函数中进行了一系列`if-else`判断来检查请求的类型，首先确定这是一个`post`请求，然后确定数据的编码方式为`multipart/form-data`。这个判断通过之后，就要开始准备接收数据了。所以我们要在接收数据开始之前使用`cgiContentLength`判断大小，如果超过标准，就立即返回，不允许继续操作。下面贴出修改后代码片段：
 
-``` c
+``` cpp
 else if ( cgiStrEqNc ( cgiContentType, "multipart/form-data" ) ) {
 #ifdef CGICDEBUG
     CGICDEBUGSTART

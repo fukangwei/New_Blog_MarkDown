@@ -1,7 +1,6 @@
 ---
 title: 网站添加favicon.ico
 categories: HTML笔记
-abbrlink: 89b25779
 date: 2019-03-08 10:49:06
 ---
 &emsp;&emsp;`favicon.ico`图标是网站的缩略标志，可以显示在浏览器标签、地址栏左边和收藏夹。它是展示网站个性的缩略`logo`标志，也可以说是网站头像。<!--more-->

@@ -1,7 +1,6 @@
 ---
 title: Qt之textEdit总结
 categories: Qt语法详解
-abbrlink: 90c3b44c
 date: 2019-01-02 20:18:03
 ---
 - `QString str = ui->textedit->toPlainText()`：获取普通文本。<!--more-->

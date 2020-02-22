@@ -1,7 +1,6 @@
 ---
 title: Qt之正则表达式
 categories: Qt语法详解
-abbrlink: '70487973'
 date: 2019-01-02 21:39:17
 ---
 &emsp;&emsp;代码如下：<!--more-->
@@ -10,7 +9,7 @@ date: 2019-01-02 21:39:17
 #include "widget.h"
 #include "ui_widget.h"
 #include <QDebug>
-​
+
 Widget::Widget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::Widget ) {
     ui->setupUi ( this );
     QRegExp rx ( "^\\d\\d?$" ); /* 两个字符都必须为数字，第二个字符可以没有 */
@@ -38,16 +37,16 @@ Widget::Widget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::Widget ) {
     QRegExp rx2 ( "\\bEi?ri[ck]\\b" ); /* 匹配“Eric”或者“Eirik” */
     int pos = 0;
     int count = 0;
-​
+
     while ( pos >= 0 ) {
         pos = rx2.indexIn ( str3, pos );
-​
+
         if ( pos >= 0 ) {
             ++pos; /* 从匹配的字符的下一个字符开始匹配 */
             ++count; /* 匹配到的数目加1 */
         }
     }
-​
+
     qDebug() << "count: " << count; /* 结果为3 */
     QRegExp rx3 ( "*.txt" );
     rx3.setPatternSyntax ( QRegExp::Wildcard );
@@ -57,23 +56,23 @@ Widget::Widget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::Widget ) {
     QString str4 = "Offsets: 12 14 99 231 7";
     QStringList list;
     int pos2 = 0;
-​
+
     while ( ( pos2 = rx4.indexIn ( str4, pos2 ) ) != -1 ) {
         list << rx4.cap ( 1 ); /* 第一个捕获到的文本 */
         pos2 += rx4.matchedLength(); /* 上一个匹配的字符串的长度 */
     }
-​
+
     qDebug() << list; /* 结果“12,14,99,231,7” */
     QRegExp rxlen ( "(\\d+)(?:\\s*)(cm|inch)" );
     int pos3 = rxlen.indexIn ( "Length: 189cm" );
-​
+
     if ( pos3 > -1 ) {
         QString value = rxlen.cap ( 1 ); /* 结果为189 */
         QString unit = rxlen.cap ( 2 ); /* 结果为cm */
         QString string = rxlen.cap ( 0 ); /* 结果为189cm */
         qDebug() << value << unit << string;
     }
-​
+
     QRegExp rx5 ( "\\b(\\w+)\\W+\\1\\b" );
     rx5.setCaseSensitivity ( Qt::CaseInsensitive ); /* 设置不区分大小写 */
     qDebug() << rx5.indexIn ( "Hello--hello" ); /* 结果为0 */
@@ -82,7 +81,7 @@ Widget::Widget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::Widget ) {
     qDebug() << rx6.indexIn ( "你好" ); /* 结果为0 */
     qDebug() << rx6.cap ( 0 ); /* 整个字符串完全匹配，使用“cap(0)”捕获，结果为“你好” */
 }
-​
+
 Widget::~Widget() {
     delete ui;
 }

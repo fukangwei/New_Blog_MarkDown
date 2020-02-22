@@ -1,7 +1,6 @@
 ---
 title: Mosquitto安装和使用
 categories: 软件与硬件问题
-abbrlink: 30ce499a
 date: 2019-03-19 13:15:26
 ---
 ### 前言

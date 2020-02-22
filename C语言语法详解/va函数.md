@@ -1,7 +1,6 @@
 ---
 title: va函数
 categories: C语言语法详解
-abbrlink: e2b3111a
 date: 2018-12-10 09:08:20
 ---
 &emsp;&emsp;`va_list`、`va_start`、`va_arg`和`va_end`这几个宏都是用于函数的可变参数的：<!--more-->
@@ -41,7 +40,7 @@ typedef char* va_list;
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
-​
+
 int sum ( int number, ... ) { /* 第一个参数指定了参数的个数 */
     va_list vaptr;
     int i;
@@ -78,7 +77,7 @@ int main ( void ) {
 以`int`所占的字节为标准进行对其操作。如果`int`占四字节，则以`4`字节对齐为标准读取数据。
 &emsp;&emsp;`va_arg`是要从`ap`中取下一个参数：
 
-``` c
+``` cpp
 #define _crt_va_arg(ap, t) ( *(t *)((ap += _INTSIZEOF(t)) - _INTSIZEOF(t)) )
 ```
 

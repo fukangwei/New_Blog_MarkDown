@@ -1,7 +1,6 @@
 ---
 title: Contiki的rtimer定时器
 categories: Contiki和uip
-abbrlink: b6266142
 date: 2019-03-12 00:11:16
 ---
 ### rtimer用途

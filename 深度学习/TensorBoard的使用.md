@@ -1,7 +1,6 @@
 ---
 title: TensorBoard的使用
 categories: 深度学习
-abbrlink: '88081241'
 date: 2019-02-16 12:08:29
 ---
 &emsp;&emsp;`TensorBoard`可以将训练过程中的各种绘制数据展示出来，包括标量(`scalars`)、图片(`images`)、音频(`Audio`)、计算图(`graph`)、数据分布、直方图(`histograms`)和嵌入式向量。使用`TensorBoard`展示数据，需要在执行`TensorFlow`计算图的过程中，将各种类型的数据汇总并记录到日志文件中。然后使用`TensorBoard`读取这些日志文件，解析数据并生产数据可视化的`Web`页面，让我们可以在浏览器中观察各种汇总数据。<!--more-->
@@ -58,11 +57,11 @@ learning_rate = 0.001
 dropout = 0.9
 data_dir = 'input_data'
 log_dir = 'mnist_with_summaries'
-​
+
 # 使用input_data.read_data_sets下载MNIST数据
 mnist = input_data.read_data_sets(data_dir, one_hot=True)
 sess = tf.InteractiveSession()  # 创建Tensorflow的默认Session
-​
+
 """
 为了在TensorBoard中展示节点名称，设计网络时会常使用tf.name_scope限制命名空间，
 在这个with下所有的节点都会自动命名为“input/xxx”这样的格式。
@@ -76,16 +75,16 @@ with tf.name_scope('input'):
 with tf.name_scope('input_reshape'):
     image_shaped_input = tf.reshape(x, [-1, 28, 28, 1])
     tf.summary.image('input', image_shaped_input, 10)
-​
+
 # 定义神经网络模型参数的初始化方法，权重使用常用的truncated_normal进行初始化，偏置则赋值为0.1
 def weight_variable(shape):
     initial = tf.truncated_normal(shape, stddev=0.1)
     return tf.Variable(initial)
-​
+
 def bias_variable(shape):
     initial = tf.constant(0.1, shape=shape)
     return tf.Variable(initial)
-​
+
 """
 定义对Variable变量的数据汇总函数。计算出Variable的mean、stddev、max和min，对这些标量数据使用
 tf.summary.scalar进行记录和汇总。同时使用tf.summary.histogram直接记录变量var的直方图
@@ -102,7 +101,7 @@ def variable_summaries(var):
         tf.summary.scalar('max', tf.reduce_max(var))
         tf.summary.scalar('min', tf.reduce_min(var))
         tf.summary.histogram('histogram', var)
-​
+
 """
 设计一个MLP多层神经网络来训练数据，在每一层中都会对模型参数进行数据汇总。定义一个创建一层神经网络
 并进行数据汇总的函数nn_layer，这个函数的输入参数有输入数据input_tensor，输入的维度input_dim，
@@ -126,7 +125,7 @@ def nn_layer(input_tensor, input_dim, output_dim, layer_name, act=tf.nn.relu):
         activations = act(preactivate, name='actvations')
         tf.summary.histogram('activations', activations)
         return activations
-​
+
 """
 使用nn_layer创建一层神经网络，输入维度是图片的尺寸(784 = 28 * 28)，输出的维度是隐藏节点数500。
 再创建一个Droput层，并使用tf.summary.scalar记录keep_prob。然后再使用nn_layer定义神经网络的输出层，
@@ -138,9 +137,9 @@ with tf.name_scope('dropout'):
     keep_prob = tf.placeholder(tf.float32)
     tf.summary.scalar('dropout_keep_probability', keep_prob)
     dropped = tf.nn.dropout(hidden1, keep_prob)
-​
+
 y1 = nn_layer(dropped, 500, 10, 'layer2', act=tf.identity)
-​
+
 """
 这里使用tf.nn.softmax_cross_entropy_with_logits对前面输出层的结果进行softmax处理
 并计算交叉熵损失cross_entropy。计算平均损失，并使用tf.summary.saclar进行统计汇总
@@ -150,9 +149,9 @@ with tf.name_scope('cross_entropy'):
 
     with tf.name_scope('total'):
         cross_entropy = tf.reduce_mean(diff)
-​
+
 tf.summary.scalar('cross_entropy', cross_entropy)
-​
+
 """
 使用Adma优化器对损失进行优化，同时统计预测正确的样本数并
 计算正确率accuray，再使用tf.summary.scalar对accuracy进行统计汇总
@@ -165,9 +164,9 @@ with tf.name_scope('accuracy'):
         correct_prediction = tf.equal(tf.argmax(y1, 1), tf.arg_max(y, 1))
     with tf.name_scope('accuracy'):
         accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-​
+
 tf.summary.scalar('accuracy', accuracy)
-​
+
 """
 由于之前定义了非常多的tf.summary的汇总操作，一一执行这些操作态麻烦，所以这里使用
 tf.summary.merger_all直接获取所有汇总操作，以便后面执行。然后定义两个
@@ -179,7 +178,7 @@ merged = tf.summary.merge_all()
 train_writer = tf.summary.FileWriter(log_dir + '/train', sess.graph)
 test_writer = tf.summary.FileWriter(log_dir + '/test')
 tf.global_variables_initializer().run()
-​
+
 """
 定义feed_dict的损失函数。该函数先判断训练标记，如果训练标记为true，则从mnist.train中获取一个batch的样本，
 并设置dropout值；如果训练标记为False，则获取测试数据，并设置keep_prob为1，即等于没有dropout效果
@@ -193,7 +192,7 @@ def feed_dict(train):
         k = 1.0
 
     return {x: xs, y: ys, keep_prob: k}
-​
+
 """
 首先使用tf.train.Saver创建模型的保存器，然后进入训练的循环中，每隔10步执行一次merged(数据汇总)
 和accuracy(求测试集上的预测准确率)操作，并使用test_write.add_summary将汇总结果summary和循环步数i写入日志文件；
@@ -223,7 +222,7 @@ for i in range(max_step):
         else:
             summary, _ = sess.run([merged, train_step], feed_dict=feed_dict(True))
             train_writer.add_summary(summary, i)
-​
+
 train_writer.close()
 test_writer.close()
 ```
@@ -252,7 +251,7 @@ TensorBoard 0.4.0 at http://fuxinzi-PC:6006 (Press CTRL+C to quit)
 ``` python
 import tensorflow as tf
 import numpy as np
-​
+
 def add_layer(inputs, in_size, out_size, n_layer, activation_function=None):
     # add one more layer and return the output of this layer
     layer_name = 'layer%s' % n_layer
@@ -275,33 +274,33 @@ def add_layer(inputs, in_size, out_size, n_layer, activation_function=None):
         tf.summary.histogram(layer_name + '/outputs', outputs)
 
     return outputs
-​
+
 # Make up some real data
 x_data = np.linspace(-1, 1, 300)[:, np.newaxis]
 noise = np.random.normal(0, 0.05, x_data.shape)
 y_data = np.square(x_data) - 0.5 + noise
-​
+
 with tf.name_scope('inputs'):  # define placeholder for inputs to network
     xs = tf.placeholder(tf.float32, [None, 1], name='x_input')
     ys = tf.placeholder(tf.float32, [None, 1], name='y_input')
-​
+
 l1 = add_layer(xs, 1, 10, n_layer=1, activation_function=tf.nn.relu)  # add hidden layer
 prediction = add_layer(l1, 10, 1, n_layer=2, activation_function=None)  # add output layer
-​
+
 with tf.name_scope('loss'):  # the error between prediciton and real data
     loss = tf.reduce_mean(tf.reduce_sum(tf.square(ys - prediction), reduction_indices=[1]))
     tf.summary.scalar('loss', loss)
-​
+
 with tf.name_scope('train'):
     train_step = tf.train.GradientDescentOptimizer(0.1).minimize(loss)
-​
+
 sess = tf.Session()
 merged = tf.summary.merge_all()
 writer = tf.summary.FileWriter("logs/", sess.graph)
-​
+
 init = tf.global_variables_initializer()
 sess.run(init)
-​
+
 for i in range(1000):
     sess.run(train_step, feed_dict={xs: x_data, ys: y_data})
 
@@ -334,23 +333,23 @@ nb_data = 28 * 28
 log_filepath = './log_test'
 
 (X_train, y_train), (X_test, y_test) = mnist.load_data()  # load data
-​
+
 # reshape
 X_train = X_train.reshape(X_train.shape[0], X_train.shape[1] * X_train.shape[2])
 X_test = X_test.reshape(X_test.shape[0], X_test.shape[1] * X_test.shape[2])
-​
+
 # rescale
 X_train = X_train.astype(np.float32)
 X_test = X_test.astype(np.float32)
 X_train /= 255
 X_test /= 255
-​
+
 # convert class vectors to binary class matrices (one hot vectors)
 Y_train = np_utils.to_categorical(y_train, nb_classes)
 Y_test = np_utils.to_categorical(y_test, nb_classes)
-​
+
 old_session = KTF.get_session()
-​
+
 with tf.Graph().as_default():
     session = tf.Session('')
     KTF.set_session(session)
@@ -366,20 +365,20 @@ with tf.Graph().as_default():
     model.add(Dense(10, init='normal', name='dense3'))
     model.add(Activation('softmax', name='softmax1'))
     model.summary()
-​
+
     model.compile(loss='categorical_crossentropy', optimizer=SGD(lr=0.01), metrics=['accuracy'])
-​
+
     tb_cb = keras.callbacks.TensorBoard(log_dir=log_filepath, histogram_freq=1)
     cbks = [tb_cb]
-​
+
     history = model.fit(
                 X_train, Y_train, batch_size=batch_size, nb_epoch=nb_epoch,
                 verbose=1, callbacks=cbks, validation_data=(X_test, Y_test))
-​
+
     score = model.evaluate(X_test, Y_test, verbose=0)
     print('Test score:', score[0])
     print('Test accuracy;', score[1])
-​
+
 KTF.set_session(old_session)
 ```
 
@@ -400,12 +399,12 @@ import numpy as np
 import torchvision.models as models
 from torchvision import datasets
 from tensorboardX import SummaryWriter
-​
+
 resnet18 = models.resnet18(False)
 writer = SummaryWriter()
 sample_rate = 44100
 freqs = [262, 294, 330, 349, 392, 440, 440, 440, 440, 440, 440]
-​
+
 for n_iter in range(100):
     dummy_s1 = torch.rand(1)
     dummy_s2 = torch.rand(1)
@@ -420,32 +419,32 @@ for n_iter in range(100):
             'arctanx': np.arctan(n_iter)
         },
         n_iter)
-​
+
     dummy_img = torch.rand(32, 3, 64, 64)  # output from network
-​
+
     if n_iter % 10 == 0:
         x = vutils.make_grid(dummy_img, normalize=True, scale_each=True)
         writer.add_image('Image', x, n_iter)
-​
+
         dummy_audio = torch.zeros(sample_rate * 2)
 
         for i in range(x.size(0)):
             # amplitude of sound should in [-1, 1]
             dummy_audio[i] = np.cos(freqs[n_iter // 10] * np.pi * float(i) / float(sample_rate))
-​
+
         writer.add_audio('myAudio', dummy_audio, n_iter, sample_rate=sample_rate)
         writer.add_text('Text', 'text logged at step:' + str(n_iter), n_iter)
-​
+
         for name, param in resnet18.named_parameters():
             writer.add_histogram(name, param.clone().cpu().data.numpy(), n_iter)
-​
+
         # needs tensorboard 0.4RC or later
         writer.add_pr_curve('xoxo', np.random.randint(2, size=100), np.random.rand(100), n_iter)
-​
+
 dataset = datasets.MNIST('mnist', train=False, download=True)
 images = dataset.test_data[:100].float()
 label = dataset.test_labels[:100]
-​
+
 features = images.view(100, 784)
 writer.add_embedding(features, metadata=label, label_img=images.unsqueeze(1))
 # export scalar data to JSON for external processing
@@ -462,37 +461,37 @@ import torch.nn.functional as F
 import torchvision
 from torch.autograd import Variable
 from tensorboardX import SummaryWriter
-​
+
 dummy_input = (torch.zeros(1, 3),)
-​
+
 class LinearLanpa(nn.Module):
     def __init__(self):
         super(LinearLanpa, self).__init__()
         self.l = nn.Linear(3, 5)
-​
+
     def forward(self, x):
         return self.l(x)
-​
+
 with SummaryWriter(comment='LinearModel') as w:
     w.add_graph(LinearLanpa(), dummy_input, True)
 # -----------------------------
 class SimpleModel(nn.Module):
     def __init__(self):
         super(SimpleModel, self).__init__()
-​
+
     def forward(self, x):
         return x * 2
-​
+
 model = SimpleModel()
 dummy_input = (torch.zeros(1, 2, 3),)
-​
+
 with SummaryWriter(comment='constantModel') as w:
     w.add_graph(model, dummy_input, True)
 # -----------------------------
 def conv3x3(in_planes, out_planes, stride=1):
     # 3x3 convolution with padding
     return nn.Conv2d(in_planes, out_planes, kernel_size=3, stride=stride, padding=1, bias=False)
-​
+
 class BasicBlock(nn.Module):
     def __init__(self, inplanes, planes, stride=1, downsample=None):
         super(BasicBlock, self).__init__()
@@ -501,7 +500,7 @@ class BasicBlock(nn.Module):
         self.conv2 = conv3x3(planes, planes)
         self.bn2 = nn.BatchNorm2d(planes)
         self.stride = stride
-​
+
     def forward(self, x):
         residual = x
         out = self.conv1(x)
@@ -512,9 +511,9 @@ class BasicBlock(nn.Module):
         out += residual
         out = F.relu(out)
         return out
-​
+
 dummy_input = torch.rand(1, 3, 224, 224)
-​
+
 with SummaryWriter(comment='basicblock') as w:
     model = BasicBlock(3, 3)
     w.add_graph(model, (dummy_input,), verbose=True)
@@ -528,7 +527,7 @@ class Net1(nn.Module):
         self.fc1 = nn.Linear(320, 50)
         self.fc2 = nn.Linear(50, 10)
         self.bn = nn.BatchNorm2d(20)
-​
+
     def forward(self, x):
         x = F.max_pool2d(self.conv1(x), 2)
         x = F.relu(x) + F.relu(-x)
@@ -540,7 +539,7 @@ class Net1(nn.Module):
         x = self.fc2(x)
         x = F.softmax(x, dim=1)
         return x
-​
+
 class Net2(nn.Module):
     def __init__(self):
         super(Net2, self).__init__()
@@ -549,7 +548,7 @@ class Net2(nn.Module):
         self.conv2_drop = nn.Dropout2d()
         self.fc1 = nn.Linear(320, 50)
         self.fc2 = nn.Linear(50, 10)
-​
+
     def forward(self, x):
         x = F.relu(F.max_pool2d(self.conv1(x), 2))
         x = F.relu(F.max_pool2d(self.conv2_drop(self.conv2(x)), 2))
@@ -559,33 +558,33 @@ class Net2(nn.Module):
         x = self.fc2(x)
         x = F.log_softmax(x, dim=1)
         return x
-​
+
 dummy_input = Variable(torch.rand(13, 1, 28, 28))
-​
+
 model = Net1()
 
 with SummaryWriter(comment='Net1') as w:
     w.add_graph(model, (dummy_input,))
-​
+
 model = Net2()
 
 with SummaryWriter(comment='Net2') as w:
     w.add_graph(model, (dummy_input,))
-​
+
 dummy_input = torch.Tensor(1, 3, 224, 224)
-​
+
 with SummaryWriter(comment='alexnet') as w:
     model = torchvision.models.alexnet()
     w.add_graph(model, (dummy_input,))
-​
+
 with SummaryWriter(comment='vgg19') as w:
     model = torchvision.models.vgg19()
     w.add_graph(model, (dummy_input,))
-​
+
 with SummaryWriter(comment='densenet121') as w:
     model = torchvision.models.densenet121()
     w.add_graph(model, (dummy_input,))
-​
+
 with SummaryWriter(comment='resnet18') as w:
     model = torchvision.models.resnet18()
     w.add_graph(model, (dummy_input,))
@@ -599,7 +598,7 @@ class RNN(nn.Module):
         self.o2o = nn.Linear(hidden_size + output_size, output_size)
         self.dropout = nn.Dropout(0.1)
         self.softmax = nn.LogSoftmax(dim=1)
-​
+
     def forward(self, category, input, hidden):
         input_combined = torch.cat((category, input, hidden), 1)
         hidden = self.i2h(input_combined)
@@ -609,10 +608,10 @@ class RNN(nn.Module):
         output = self.dropout(output)
         output = self.softmax(output)
         return output, hidden
-​
+
     def initHidden(self):
         return torch.zeros(1, self.hidden_size)
-​
+
 n_letters = 100
 n_hidden = 128
 n_categories = 10
@@ -620,7 +619,7 @@ rnn = RNN(n_letters, n_hidden, n_categories)
 cat = torch.Tensor(1, n_categories)
 dummy_input = torch.Tensor(1, n_letters)
 hidden = torch.Tensor(1, n_hidden)
-​
+
 out, hidden = rnn(cat, dummy_input, hidden)
 
 with SummaryWriter(comment='RNN') as w:
@@ -636,15 +635,15 @@ with SummaryWriter(comment='RNN') as w:
 ``` python
 import tensorflow as tf
 from numpy import random
-​
+
 writer_1 = tf.summary.FileWriter("./logs/plot_1")
 writer_2 = tf.summary.FileWriter("./logs/plot_2")
-​
+
 log_var = tf.Variable(0.0)
 tf.summary.scalar("loss", log_var)
-​
+
 write_op = tf.summary.merge_all()
-​
+
 session = tf.InteractiveSession()
 session.run(tf.global_variables_initializer())
 

@@ -1,7 +1,6 @@
 ---
 title: sscanf函数
 categories: C语言语法详解
-abbrlink: d361516e
 date: 2018-12-15 18:11:10
 ---
 ### sscanf函数

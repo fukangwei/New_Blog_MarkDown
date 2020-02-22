@@ -1,7 +1,6 @@
 ---
 title: Qt之应用程序主窗口
 categories: Qt应用示例
-abbrlink: c0f249d4
 date: 2019-02-23 15:28:43
 ---
 &emsp;&emsp;`mainwindow.h`如下：<!--more-->
@@ -9,13 +8,13 @@ date: 2019-02-23 15:28:43
 ``` cpp
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-​
+
 #include <QMainWindow>
-​
+
 namespace Ui {
     class MainWindow;
 }
-​
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
@@ -27,7 +26,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
 };
-​
+
 #endif // MAINWINDOW_H
 ```
 
@@ -41,7 +40,7 @@ private:
 #include <QTextEdit>
 #include <QMdiSubWindow>
 #include <QLabel>
-​
+
 MainWindow::MainWindow ( QWidget *parent ) : QMainWindow ( parent ), ui ( new Ui::MainWindow ) {
     ui->setupUi ( this );
     QMenu *editMenu = ui->menuBar->addMenu ( tr ( "编辑(&E)" ) ); /* 添加编辑菜单 */
@@ -82,11 +81,11 @@ MainWindow::MainWindow ( QWidget *parent ) : QMainWindow ( parent ), ui ( new Ui
     permanent->setText ( "www.yafeilinux.com" ); /* 显示信息 */
     ui->statusBar->addPermanentWidget ( permanent ); /* 将标签设置为永久部件 */
 }
-​
+
 MainWindow::~MainWindow() {
     delete ui;
 }
-​
+
 void MainWindow::on_action_New_triggered() { /* 新建文件菜单 */
     QTextEdit *edit = new QTextEdit ( this ); /* 新建文本编辑器部件 */
     /* 使用QMdiArea类的addSubWindow函数创建子窗口，以文本编辑器为中心部件 */
@@ -94,7 +93,7 @@ void MainWindow::on_action_New_triggered() { /* 新建文件菜单 */
     child->setWindowTitle ( tr ( "多文档编辑器子窗口" ) );
     child->show(); /* 显示子窗口 */
 }
-​
+
 void MainWindow::on_action_Dock_triggered() { /* 显示Dock菜单 */
     ui->dockWidget->show();
 }
@@ -119,7 +118,7 @@ class QMenu;
 
 ``` cpp
 #include "mainwindow.h"
-​
+
 int main ( int argc, char *argv[] ) {
     Q_INIT_RESOURCE ( application ); /* 初始化qrc资源 */
     QApplication a ( argc, argv );
@@ -136,11 +135,11 @@ int main ( int argc, char *argv[] ) {
 ``` cpp
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-​
+
 class QPlainTextEdit;
 class QAction;
 class QMenu;
-​
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
@@ -160,7 +159,7 @@ private:
     QAction *saveAs;
     QAction *exit;
 };
-​
+
 #endif // MAINWINDOW_H
 ```
 
@@ -168,20 +167,20 @@ private:
 
 ``` cpp
 #include "mainwindow.h"
-​
+
 MainWindow::MainWindow() {
     textEdit = new QPlainTextEdit; /* 创建一个文本编辑器 */
     setCentralWidget ( textEdit ); /* 设置文本编辑器为中心位置 */
     createActions(); /* 首先创建file下拉的菜单栏 */
     createMenus(); /* 再来创建菜单目录，把下拉菜单的内容addaction加入到menu中 */
 }
-​
+
 MainWindow::~MainWindow() {
 }
-​
+
 void MainWindow::test() {
 }
-​
+
 /* file下拉菜单，名字为new、open、Save、saveAs和exit，并且添加了快捷键和图标，以及相应的槽函数 */
 void MainWindow::createActions() {
     newAct = new QAction ( QIcon ( ":/image/new.png" ), tr ( "&New" ), this );
@@ -205,7 +204,7 @@ void MainWindow::createActions() {
     exit->setStatusTip ( tr ( "exit a new file" ) );
     connect ( exit, SIGNAL ( triggered() ), this, SLOT ( close() ) ); /* 点击exit事件调用test */
 }
-​
+
 void MainWindow::createMenus() {
     fileMenu = menuBar()->addMenu ( tr ( "&File" ) ); /* 创建一个name为file的菜单栏 */
     /* 在这个菜单栏添加action即下拉菜单 */
@@ -245,7 +244,7 @@ editMenu = menuBar()->addMenu ( tr ( "&Edit" ) );
 editMenu->addAction ( cut );
 editMenu->addAction ( copy );
 editMenu->addAction ( past );
-​
+
 /* 创建一个name为help的菜单栏 */
 helpMenu = menuBar()->addMenu ( tr ( "&Help" ) );
 /* 在这个菜单栏添加action，即下拉菜单 */
@@ -278,11 +277,11 @@ editToolBar->addAction ( past );
 ``` cpp
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-​
+
 class QPlainTextEdit;
 class QAction;
 class QMenu;
-​
+
 class MainWindow : public QMainWindow{
     Q_OBJECT
 public:
@@ -316,7 +315,7 @@ private:
     QAction *about;
     QAction *aboutQt;
 };
-​
+
 #endif // MAINWINDOW_H
 ```
 
@@ -324,7 +323,7 @@ private:
 
 ``` cpp
 #include "mainwindow.h"
-​
+
 MainWindow::MainWindow() {
     textEdit = new QPlainTextEdit;
     setCentralWidget ( textEdit );
@@ -332,13 +331,13 @@ MainWindow::MainWindow() {
     createMenus(); /* 再来创建菜单目录，把下拉菜单的内容addaction加入到menu中 */
     createToolBars();
 }
-​
+
 MainWindow::~MainWindow() {
 }
-​
+
 void MainWindow::test() {
 }
-​
+
 void MainWindow::createActions() {
     newAct = new QAction ( QIcon ( ":/image/new.png" ), tr ( "&New" ), this );
     newAct->setShortcuts ( QKeySequence::New );
@@ -379,7 +378,7 @@ void MainWindow::createActions() {
     aboutQt->setStatusTip ( tr ( "exit a new file" ) );
     connect ( aboutQt, SIGNAL ( triggered() ), this, SLOT ( close() ) );
 }
-​
+
 void MainWindow::createToolBars() {
     fileToolBar = addToolBar ( tr ( "File" ) );
     fileToolBar->addAction ( newAct );
@@ -390,7 +389,7 @@ void MainWindow::createToolBars() {
     editToolBar->addAction ( copy );
     editToolBar->addAction ( past );
 }
-​
+
 void MainWindow::createMenus() {
     fileMenu = menuBar()->addMenu ( tr ( "&File" ) ); /* 创建一个name为file的菜单栏 */
     /* 在这个菜单栏添加action即下拉菜单 */

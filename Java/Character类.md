@@ -1,7 +1,6 @@
 ---
 title: Character类
 categories: Java
-abbrlink: 9dc74a77
 date: 2018-12-24 11:48:17
 ---
 &emsp;&emsp;`Character`类用于对单个字符进行操作，它在对象中包装一个基本类型`char`的值：<!--more-->

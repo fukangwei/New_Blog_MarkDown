@@ -1,7 +1,6 @@
 ---
 title: numpy基础教程一
 categories: Python语法
-abbrlink: bc655c8f
 date: 2019-08-11 22:53:30
 mathjax: true
 ---
@@ -848,7 +847,7 @@ print(np.vstack((a, b)))
 
 - `arr`: `ndarray`. Array interpretation of `a`.
 
-&emsp;&emsp;Notes: This is equivalent to:
+&emsp;&emsp;**Notes**: This is equivalent to:
 
 ``` python
 np.array(a, copy=True)
@@ -1143,7 +1142,7 @@ True
 
 - `sum_along_axis`: `ndarray`. An array with the same shape as `a`, with the specified `axis` removed. If `a` is a `0-d` array, or if `axis` is `None`, a scalar is returned. If an output array is specified, a reference to `out` is returned.
 
-&emsp;&emsp;Notes: Arithmetic is modular when using integer types, and no error is raised on overflow. The sum of an empty array is the neutral element `0`:
+&emsp;&emsp;**Notes**: Arithmetic is modular when using integer types, and no error is raised on overflow. The sum of an empty array is the neutral element `0`:
 
 ``` python
 >>> np.sum([])
@@ -1299,7 +1298,7 @@ print(a)
 
 - `z`: Standard `Python` scalar object. A copy of the specified element of the array as a suitable `Python` scalar
 
-&emsp;&emsp;Notes: When the data type of `a` is longdouble or clongdouble, `item()` returns a scalar array object because there is no available `Python` scalar that would not lose information. Void arrays return a buffer object for `item(),` unless fields are defined, in which case a tuple is returned.
+&emsp;&emsp;**Notes**: When the data type of `a` is longdouble or clongdouble, `item()` returns a scalar array object because there is no available `Python` scalar that would not lose information. Void arrays return a buffer object for `item(),` unless fields are defined, in which case a tuple is returned.
 &emsp;&emsp;`item` is very similar to `a[args]`, except, instead of an array scalar, a standard `Python` scalar is returned. This can be useful for speeding up access to elements of the array and doing arithmetic on elements of the array using `Python's` optimized math.
 
 ``` python
@@ -1328,7 +1327,7 @@ array([[3, 1, 7],
 1. If one argument: a scalar, only used in case `a` is of size `1`.
 2. If two arguments: the last argument is the value to be set and must be a scalar, the first argument specifies a single array element location. It is either an `int` or a `tuple`.
 
-&emsp;&emsp;Notes: Compared to indexing syntax, `itemset` provides some speed increase for placing a scalar into a particular location in a `ndarray`, if you must do this. However, generally this is discouraged: among other problems, it complicates the appearance of the code. Also, when using `itemset` (and `item`) inside a loop, be sure to assign the methods to a local variable to avoid the attribute look-up at each loop iteration.
+&emsp;&emsp;**Notes**: Compared to indexing syntax, `itemset` provides some speed increase for placing a scalar into a particular location in a `ndarray`, if you must do this. However, generally this is discouraged: among other problems, it complicates the appearance of the code. Also, when using `itemset` (and `item`) inside a loop, be sure to assign the methods to a local variable to avoid the attribute look-up at each loop iteration.
 
 ``` python
 >>> x = np.random.randint(9, size=(3, 3))
@@ -1496,7 +1495,7 @@ array([[3, 3, 3, 5, 6, 7, 8, 8],
 
 - `y`: `array_like`. If `a` is a matrix, `y` is a `1-D` ndarray, otherwise `y` is an array of the same subtype as `a`. The shape of the returned array is `(a.size,)`. Matrices are special cased for backward compatibility.
 
-&emsp;&emsp;Notes: In `row-major`, `C-style` order, in two dimensions, the row index varies the slowest, and the column index the quickest. This can be generalized to multiple dimensions, where `row-major` order implies that the index along the first axis varies slowest, and the index along the last quickest. The opposite holds for `column-major`, `Fortran-style` index ordering.
+&emsp;&emsp;**Notes**: In `row-major`, `C-style` order, in two dimensions, the row index varies the slowest, and the column index the quickest. This can be generalized to multiple dimensions, where `row-major` order implies that the index along the first axis varies slowest, and the index along the last quickest. The opposite holds for `column-major`, `Fortran-style` index ordering.
 &emsp;&emsp;When a view is desired in as many cases as possible, `arr.reshape(-1)` may be preferable.
 &emsp;&emsp;It is equivalent to `reshape(-1, order=order)`.
 

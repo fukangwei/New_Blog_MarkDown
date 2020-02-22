@@ -1,21 +1,20 @@
 ---
 title: ucos内存管理
 categories: ucos和ucgui
-abbrlink: fd867811
 date: 2018-12-29 11:22:58
 ---
 &emsp;&emsp;代码如下：<!--more-->
 
 ``` cpp
 #include "INCLUDES.h"
-​
+
 #define TASK_STK_SIZE 512
-​
+
 OS_STK StartTaskStk[TASK_STK_SIZE];
 OS_STK MyTaskStk[TASK_STK_SIZE];
 OS_STK YouTaskStk[TASK_STK_SIZE];
 OS_STK HerTaskStk[TASK_STK_SIZE];
-​
+
 char *s = NULL;
 char *s1 = "Mytask  ";
 char *s2 = "Youtask ";
@@ -33,7 +32,7 @@ void StartTask ( void *data );
 void MyTask ( void *data );
 void YouTask ( void *data );
 void HerTask ( void *data );
-​
+
 void main ( void ) {
     OSInit();
     PC_DOSSaveReturn();
@@ -42,7 +41,7 @@ void main ( void ) {
     OSTaskCreate ( StartTask, ( void * ) 0, &StartTaskStk[TASK_STK_SIZE - 1], 0 ); /* 创建起始函数 */
     OSStart();
 }
-​
+
 void StartTask ( void *pdata ) {
 #if OS_CRITICAL_METHOD == 3
     OS_CPU_SR cpu_sr;
@@ -57,24 +56,24 @@ void StartTask ( void *pdata ) {
     OSTaskCreate ( MyTask, ( void * ) 0, &MyTaskStk[TASK_STK_SIZE - 1], 3 ); /* 创建任务 */
     OSTaskCreate ( YouTask, ( void * ) 0, &YouTaskStk[TASK_STK_SIZE - 1], 4 );
     OSTaskCreate ( HerTask, ( void * ) 0, &HerTaskStk[TASK_STK_SIZE - 1], 5 );
-​
+
     for ( ;; ) {
         if ( PC_GetKey ( &key ) == TRUE ) {
             if ( key == 0x1B ) { /* 如果按下ESC键，则退出UC/OS-II */
                 PC_DOSReturn();
             }
         }
-​
+
         OSTimeDlyHMSM ( 0, 0, 3, 0 );
     }
 }
-​
+
 void MyTask ( void *pdata ) {
 #if OS_CRITICAL_METHOD == 3
     OS_CPU_SR cpu_sr;
 #endif
     pdata = pdata;
-​
+
     for ( ; ; ) {
         PC_DispStr ( 10, ++y, s1, DISP_BGND_BLACK + DISP_FGND_WHITE ); /* 显示信息 */
         IntBlkPtr = OSMemGet ( /* 请求内存块*/
@@ -87,7 +86,7 @@ void MyTask ( void *pdata ) {
         PC_DispStr ( 30, y, s, DISP_BGND_BLACK + DISP_FGND_WHITE ); /* 把空闲内存块链表首地址的指针显示出来 */
         sprintf ( s, "%d", MemInfo.OSNUsed ); /* 显示已用的内存块数目 */
         PC_DispStr ( 40, y, s, DISP_BGND_BLACK + DISP_FGND_WHITE );
-​
+
         if ( Times >= 5 ) { /* 运行六次后 */
             OSMemPut ( /* 释放内存块函数 */
                 IntBuffer, /* 内存块所属内存分区的指针 */
@@ -95,18 +94,18 @@ void MyTask ( void *pdata ) {
                 /* 此次释放，只能释放最后一次申请到的内存块，前面因为IntBlkPtr被后面的给覆盖掉了，所以释放不了 */
             );
         }
-​
+
         Times++; /* 运行次数加1 */
         OSTimeDlyHMSM ( 0, 0, 1, 0 ); /* 等待1s */
     }
 }
-​
+
 void YouTask ( void *pdata ) {
 #if OS_CRITICAL_METHOD == 3
     OS_CPU_SR cpu_sr;
 #endif
     pdata = pdata;
-​
+
     for ( ; ; ) {
         PC_DispStr ( 10, ++y, s2, DISP_BGND_BLACK + DISP_FGND_WHITE );
         IntBlkPtr = OSMemGet ( /* 请求内存块 */
@@ -125,13 +124,13 @@ void YouTask ( void *pdata ) {
         OSTimeDlyHMSM ( 0, 0, 2, 0 ); /* 等待2s */
     }
 }
-​
+
 void HerTask ( void *pdata ) {
 #if OS_CRITICAL_METHOD == 3
     OS_CPU_SR cpu_sr;
 #endif
     pdata = pdata;
-​
+
     for ( ; ; ) {
         PC_DispStr ( 10, ++y, s3, DISP_BGND_BLACK + DISP_FGND_WHITE );
         IntBlkPtr = OSMemGet ( /* 请求内存块 */

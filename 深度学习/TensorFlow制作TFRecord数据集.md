@@ -1,7 +1,6 @@
 ---
 title: TensorFlow制作TFRecord数据集
 categories: 深度学习
-abbrlink: '88377901'
 date: 2019-02-15 19:50:47
 ---
 &emsp;&emsp;关于`TensorFlow`读取数据，官网给出了三种方法：<!--more-->
@@ -35,11 +34,11 @@ date: 2019-02-15 19:50:47
 import os
 import tensorflow as tf
 from PIL import Image
-​
+
 cwd = '/home/data/'
 classes = {'husky', 'chihuahua'}  # 人为设定为2类
 writer = tf.python_io.TFRecordWriter("dog_train.tfrecords")  # 要生成的文件
-​
+
 for index, name in enumerate(classes):
     class_path = cwd + name + '/'
 
@@ -54,7 +53,7 @@ for index, name in enumerate(classes):
             'img_raw': tf.train.Feature(bytes_list=tf.train.BytesList(value=[img_raw]))
         }))
         writer.write(example.SerializeToString())  # 序列转化为字符串
-​
+
 writer.close()
 ```
 
@@ -97,11 +96,11 @@ features = tf.parse_single_example(
     features={
         'label': tf.FixedLenFeature([], tf.int64),
         'img_raw': tf.FixedLenFeature([], tf.string),})  # 取出包含image和label的feature对象
-​
+
 image = tf.decode_raw(features['img_raw'], tf.uint8)
 image = tf.reshape(image, [128, 128, 3])
 label = tf.cast(features['label'], tf.int32)
-​
+
 with tf.Session() as sess:  # 开始一个会话
     init_op = tf.initialize_all_variables()
     sess.run(init_op)

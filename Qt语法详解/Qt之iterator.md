@@ -1,7 +1,6 @@
 ---
 title: Qt之iterator
 categories: Qt语法详解
-abbrlink: 7d8fa9c5
 date: 2019-01-25 11:41:26
 ---
 &emsp;&emsp;The `QList::iterator` class provides an `STL-style` `non-const` iterator for `QList` and `QQueue`. The header file is `iterator`.<!--more-->
@@ -49,9 +48,9 @@ QList<QString> list;
 list.append ( "January" );
 list.append ( "February" );
 list.append ( "December" );
-​
+
 QList<QString>::iterator i;
-​
+
 for ( i = list.begin(); i != list.end(); ++i ) {
     cout << *i << endl;
 }
@@ -63,14 +62,14 @@ for ( i = list.begin(); i != list.end(); ++i ) {
 QList<int>::iterator i;
 
 for (i = list.begin(); i != list.end(); ++i)
-    *i += 2;
+    *i += 2;
 ```
 
 &emsp;&emsp;Most `QList` functions accept an integer index rather than an iterator. For that reason, iterators are rarely useful in connection with `QList`. One place where `STL-style` iterators do make sense is as arguments to generic algorithms.
 &emsp;&emsp;For example, here's how to delete all the widgets stored in a `QList<QWidget *>`:
 
 ``` cpp
-QList<QWidget *> list;​
+QList<QWidget *> list;
 qDeleteAll ( list.begin(), list.end() );
 ```
 
@@ -78,11 +77,11 @@ qDeleteAll ( list.begin(), list.end() );
 
 ### Member Function Documentation
 
-- `iterator::iterator()`: Constructs an uninitialized iterator. Functions like `operator*()` and `operator++()` should not be called on an uninitialized iterator. Use `operator=()` to assign a value to it before using it.
-- `iterator::iterator(const iterator & other)`: Constructs a copy of `other`.
-- `bool iterator::operator!=(const iterator & other) const`: Returns `true` if `other` points to a different item than this iterator; otherwise returns `false`.
-- `bool iterator::operator!=(const const_iterator & other) const`:  Returns `true` if `other` points to a different item than this iterator; otherwise returns `false`.
-- `T & iterator::operator*() const`: Returns a modifiable reference to the current item. You can change the value of an item by using `operator*()` on the left side of an assignment, for example:
+- `iterator::iterator()`: Constructs an uninitialized iterator. Functions like `operator*()` and `operator++()` should not be called on an uninitialized iterator. Use `operator=()` to assign a value to it before using it.
+- `iterator::iterator(const iterator & other)`: Constructs a copy of `other`.
+- `bool iterator::operator!=(const iterator & other) const`: Returns `true` if `other` points to a different item than this iterator; otherwise returns `false`.
+- `bool iterator::operator!=(const const_iterator & other) const`: Returns `true` if `other` points to a different item than this iterator; otherwise returns `false`.
+- `T & iterator::operator*() const`: Returns a modifiable reference to the current item. You can change the value of an item by using `operator*()` on the left side of an assignment:
 
 ``` cpp
 if ( *it == "Hello" ) {
@@ -90,24 +89,24 @@ if ( *it == "Hello" ) {
 }
 ```
 
-- `iterator iterator::operator+(int j) const`: Returns an iterator to the item at `j` positions forward from this iterator (If `j` is negative, the iterator goes backward).
-- `iterator & iterator::operator++()`: The prefix `++` operator (`++it`) advances the iterator to the next item in the list and returns an iterator to the new current item. Calling this function on `QList::end()` leads to undefined results.
-- `iterator iterator::operator++(int)`: This is an overloaded function. The postfix `++` operator (`it++`) advances the iterator to the next item in the list and returns an iterator to the previously current item.
-- `iterator & iterator::operator+=(int j)`: Advances the iterator by `j` items (If `j` is negative, the iterator goes backward).
-- `iterator iterator::operator-(int j) const`: Returns an iterator to the item at `j` positions backward from this iterator (If `j` is negative, the iterator goes forward).
-- `int iterator::operator-(iterator other) const`: Returns the number of items between the item pointed to by `other` and the item pointed to by this iterator.
-- `iterator & iterator::operator--()`: The prefix `--` operator (`--it`) makes the preceding item current and returns an iterator to the new current item. Calling this function on `QList::begin()` leads to undefined results.
-- `iterator iterator::operator--(int)`: This is an overloaded function. The postfix `--` operator (`it--`) makes the preceding item current and returns an iterator to the previously current item.
+- `iterator iterator::operator+(int j) const`: Returns an iterator to the item at `j` positions forward from this iterator (If `j` is negative, the iterator goes backward).
+- `iterator & iterator::operator++()`: The prefix `++` operator (`++it`) advances the iterator to the next item in the list and returns an iterator to the new current item. Calling this function on `QList::end()` leads to undefined results.
+- `iterator iterator::operator++(int)`: This is an overloaded function. The postfix `++` operator (`it++`) advances the iterator to the next item in the list and returns an iterator to the previously current item.
+- `iterator & iterator::operator+=(int j)`: Advances the iterator by `j` items (If `j` is negative, the iterator goes backward).
+- `iterator iterator::operator-(int j) const`: Returns an iterator to the item at `j` positions backward from this iterator (If `j` is negative, the iterator goes forward).
+- `int iterator::operator-(iterator other) const`: Returns the number of items between the item pointed to by `other` and the item pointed to by this iterator.
+- `iterator & iterator::operator--()`: The prefix `--` operator (`--it`) makes the preceding item current and returns an iterator to the new current item. Calling this function on `QList::begin()` leads to undefined results.
+- `iterator iterator::operator--(int)`: This is an overloaded function. The postfix `--` operator (`it--`) makes the preceding item current and returns an iterator to the previously current item.
 - `iterator & iterator::operator-=(int j)`: Makes the iterator go back by `j` items (If `j` is negative, the iterator goes forward).
 - `T * iterator::operator->() const`: Returns a pointer to the current item.
-- `bool iterator::operator<(const iterator & other) const`: Returns `true` if the item pointed to by this iterator is less than the item pointed to by the `other` iterator.
+- `bool iterator::operator<(const iterator & other) const`: Returns `true` if the item pointed to by this iterator is less than the item pointed to by the `other` iterator.
 - `bool iterator::operator<(const const_iterator & other) const`: Returns `true` if the item pointed to by this iterator is less than the item pointed to by the `other` iterator.
-- `bool iterator::operator<=(const iterator & other) const`: Returns `true` if the item pointed to by this iterator is less than or equal to the item pointed to by the `other` iterator.
-- `bool iterator::operator<=(const const_iterator & other) const`: Returns `true` if the item pointed to by this iterator is less than or equal to the item pointed to by the `other` iterator.
-- `bool iterator::operator==(const iterator & other) const`: Returns true if `other` points to the same item as this iterator; otherwise returns `false`.
-- `bool iterator::operator==(const const_iterator & other) const`: Returns `true` if `other` points to the same item as this iterator; otherwise returns `false`.
-- `bool iterator::operator>(const iterator & other) const`: Returns `true` if the item pointed to by this iterator is greater than the item pointed to by the `other` iterator.
-- `bool iterator::operator>(const const_iterator & other) const`: Returns `true` if the item pointed to by this iterator is greater than the item pointed to by the `other` iterator.
-- `bool iterator::operator>=(const iterator & other) const`: Returns `true` if the item pointed to by this iterator is greater than or equal to the item pointed to by the `other` iterator.
-- `bool iterator::operator>=(const const_iterator & other) const`: Returns `true` if the item pointed to by this iterator is greater than or equal to the item pointed to by the `other` iterator.
-- `T & iterator::operator[](int j) const`: Returns a modifiable reference to the item at position `*this + j`. This function is provided to make `QList` iterators behave like `C++` pointers.
+- `bool iterator::operator<=(const iterator & other) const`: Returns `true` if the item pointed to by this iterator is less than or equal to the item pointed to by the `other` iterator.
+- `bool iterator::operator<=(const const_iterator & other) const`: Returns `true` if the item pointed to by this iterator is less than or equal to the item pointed to by the `other` iterator.
+- `bool iterator::operator==(const iterator & other) const`: Returns true if `other` points to the same item as this iterator; otherwise returns `false`.
+- `bool iterator::operator==(const const_iterator & other) const`: Returns `true` if `other` points to the same item as this iterator; otherwise returns `false`.
+- `bool iterator::operator>(const iterator & other) const`: Returns `true` if the item pointed to by this iterator is greater than the item pointed to by the `other` iterator.
+- `bool iterator::operator>(const const_iterator & other) const`: Returns `true` if the item pointed to by this iterator is greater than the item pointed to by the `other` iterator.
+- `bool iterator::operator>=(const iterator & other) const`: Returns `true` if the item pointed to by this iterator is greater than or equal to the item pointed to by the `other` iterator.
+- `bool iterator::operator>=(const const_iterator & other) const`: Returns `true` if the item pointed to by this iterator is greater than or equal to the item pointed to by the `other` iterator.
+- `T & iterator::operator[](int j) const`: Returns a modifiable reference to the item at position `*this + j`. This function is provided to make `QList` iterators behave like `C++` pointers.

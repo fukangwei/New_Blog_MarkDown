@@ -1,7 +1,6 @@
 ---
 title: pytorch训练集的读取
 categories: 深度学习
-abbrlink: 4cb476bb
 date: 2019-01-15 09:27:12
 ---
 &emsp;&emsp;`pytorch`读取训练集是非常便捷的，只需要使用到`2`个类，即`torch.utils.data.Dataset`和`torch.utils.data.DataLoader`。<!--more-->
@@ -12,7 +11,7 @@ date: 2019-01-15 09:27:12
 
 ``` python
 import torchvision
-​
+
 cifarSet = torchvision.datasets.CIFAR10(root="./cifar/", train=True, download=True)
 print(cifarSet[0])
 img, label = cifarSet[0]
@@ -37,15 +36,15 @@ None (32, 32) RGB
 
 ``` python
 from torch.utils.data.dataset import Dataset
-​
+
 class MyCustomDataset(Dataset):
     def __init__(self, ...):
         # stuff
-​
+
     def __getitem__(self, index):
         # stuff
         return (img, label)
-​
+
     def __len__(self):
         return count
 ```
@@ -61,7 +60,7 @@ img, label = MyCustomDataset.__getitem__(99)
 ``` python
 from torch.utils.data.dataset import Dataset
 from torchvision import transforms
-​
+
 class MyCustomDataset(Dataset):
     def __init__(self, ..., transforms=None):
         # stuff
@@ -77,10 +76,10 @@ class MyCustomDataset(Dataset):
             data = self.transforms(data)
 
         return (img, label)
-​
+
     def __len__(self):
         return count
-​
+
 if __name__ == '__main__':
     # 定义我们的transforms(1)
     transformations = transforms.Compose([transforms.CenterCrop(100),
@@ -93,7 +92,7 @@ if __name__ == '__main__':
 ``` python
 from torch.utils.data.dataset import Dataset
 from torchvision import transforms
-​
+
 class MyCustomDataset(Dataset):
     def __init__(self, ...):
         # stuff
@@ -104,11 +103,11 @@ class MyCustomDataset(Dataset):
         # (3) 或者写成下面这样
         self.transformations = transforms.Compose([transforms.CenterCrop(100),
                                                    transforms.ToTensor()])
-​
+
     def __getitem__(self, index):
         # stuff
         ...
-        data = ...  # 一些读取的数据
+        data = ...  # 一些读取的数据
         # 当第二次调用transform时，调用的是“__call__()”
         data = self.center_crop(data)  # (2)
         data = self.to_tensor(data)  # (2)
@@ -116,10 +115,10 @@ class MyCustomDataset(Dataset):
         data = self.trasnformations(data)  # (3)
         # 注意(2)和(3)中只需要实现一种
         return (img, label)
-​
+
     def __len__(self):
         return count
-​
+
 if __name__ == '__main__':
     custom_dataset = MyCustomDataset(...)
 ```
@@ -144,7 +143,7 @@ class CustomDatasetFromImages(Dataset):
         self.label_arr = np.asarray(self.data_info.iloc[:, 1])  # 第二列是图像的label
         self.operation_arr = np.asarray(self.data_info.iloc[:, 2])  # 第三列是决定是否进行额外操作
         self.data_len = len(self.data_info.index)  # 计算length
-​
+
     def __getitem__(self, index):
         single_image_name = self.image_arr[index]  # 得到文件名
         img_as_img = Image.open(single_image_name)  # 读取图像文件
@@ -157,10 +156,10 @@ class CustomDatasetFromImages(Dataset):
         img_as_tensor = self.to_tensor(img_as_img)  # 把图像转换成tensor
         single_image_label = self.label_arr[index]  # 得到图像的label
         return (img_as_tensor, single_image_label)
-​
+
     def __len__(self):
         return self.data_len
-​
+
 if __name__ == "__main__":
     custom_mnist_from_images = CustomDatasetFromImages('../data/mnist_labels.csv')
 ```
@@ -177,8 +176,8 @@ Label | pixel_1 | pixel_2 | ...
 
 ``` python
 class CustomDatasetFromCSV(Dataset):
-    def __init__(self, csv_path, height, width, transforms=None):
-        """
+    def __init__(self, csv_path, height, width, transforms=None):
+        """
         参数csv_path是csv文件路径，height是图像高度，width是图像宽度，transform是transform操作
         """
         self.data = pd.read_csv(csv_path)
@@ -186,7 +185,7 @@ class CustomDatasetFromCSV(Dataset):
         self.height = height
         self.width = width
         self.transforms = transform
-​
+
     def __getitem__(self, index):
         single_image_label = self.labels[index]
         # 读取所有像素值，并将“1D array ([784])”reshape成为“2D array ([28,28])”
@@ -199,10 +198,10 @@ class CustomDatasetFromCSV(Dataset):
             img_as_tensor = self.transforms(img_as_img)  # 将图像转换成tensor
 
         return (img_as_tensor, single_image_label)  # 返回图像及其label
-​
+
     def __len__(self):
         return len(self.data.index)
-​
+
 if __name__ == "__main__":
     transformations = transforms.Compose([transforms.ToTensor()])
     custom_mnist_from_csv = CustomDatasetFromCSV('./data/mnist_in_csv.csv', 28, 28, transformations)
@@ -219,7 +218,7 @@ if __name__ == "__main__":
     # 定义“data loader”
     mn_dataset_loader = torch.utils.data.DataLoader(dataset=custom_mnist_from_csv,
                                                     batch_size=10, shuffle=False)
-​
+
     for images, labels in mn_dataset_loader:
         # 将数据传给网络模型
 ```

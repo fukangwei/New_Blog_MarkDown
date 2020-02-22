@@ -1,7 +1,6 @@
 ---
 title: _onexit函数
 categories: C++语法详解
-abbrlink: 12b31ae5
 date: 2019-02-06 10:51:24
 ---
 &emsp;&emsp;`main`主函数执行完毕后，是否可能会再执行一段代码？答案是可以的，可以使用`_onexit`注册一个函数，它会在`main`之后执行。<!--more-->
@@ -15,11 +14,11 @@ _onexit ( int fun() );
 ``` cpp
 #include <iostream>
 #include <cstdlib>
-​
+
 using namespace std;
-​
+
 int func1(), func2(), func3();
-​
+
 int main ( int argc, char *argv[] ) {
     _onexit ( func2 );
     _onexit ( func1 );
@@ -27,17 +26,17 @@ int main ( int argc, char *argv[] ) {
     cout << "First Line" << endl;
     cout << "Second Line" << endl;
 }
-​
+
 int func1() {
     cout << "fun1() executed!" << endl;
     return 0;
 }
-​
+
 int func2() {
     cout << "fun2() executed!" << endl;
     return 0;
 }
-​
+
 int func3() {
     cout << "fun3() executed!" << endl;
     return 0;

@@ -1,7 +1,6 @@
 ---
 title: url异常处理
 categories: Python语法
-abbrlink: 41dc25d
 date: 2018-12-27 19:09:30
 ---
 &emsp;&emsp;`URL`异常处理分为`URLError`和`HTTPError`，其中`HTTPError`是`URLError`的子类。在终端输入：<!--more-->
@@ -9,9 +8,9 @@ date: 2018-12-27 19:09:30
 ``` python
 import urllib.request
 import urllib.error
-​
+
 req = urllib.request.Request("http://www.ooxx-fishc.com")
-​
+
 try:
     urllib.request.urlopen(req)
 except urllib.error.URLError as e:
@@ -29,9 +28,9 @@ except urllib.error.URLError as e:
 ``` python
 import urllib.request
 import urllib.error
-​
+
 req = urllib.request.Request("http://www.fishC.com/ooxx.html")
-​
+
 try:
     urllib.request.urlopen(req)
 except urllib.error.HTTPError as e:
@@ -45,9 +44,9 @@ except urllib.error.HTTPError as e:
 ``` python
 from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
-​
+
 req = Request("http://www.ooxx-fishc.com/")
-​
+
 try:
     response = urlopen(req)
 except HTTPError as e:
@@ -72,9 +71,9 @@ Reason: [Errno 11004] getaddrinfo failed
 ``` python
 from urllib.request import Request, urlopen
 from urllib.error import URLError
-​
+
 req = Request("http://www.fishC.com/ooxx.html")
-​
+
 try:
     response = urlopen(req)
 except URLError as e:

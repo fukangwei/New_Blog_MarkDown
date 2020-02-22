@@ -1,7 +1,6 @@
 ---
 title: AVL树
 mathjax: true
-abbrlink: 973716ad
 date: 2019-05-12 15:26:43
 categories: 数据结构和算法
 ---
@@ -45,7 +44,7 @@ categories: 数据结构和算法
 struct AVLTreeNode {
     AVLTreeNode ( T value, AVLTreeNode<T> *l, AVLTreeNode<T> *r )
         : key ( value ), lchild ( l ), rchild ( r ) {}
-​
+
     T key;
     int height;
     AVLTreeNode<T> *lchild;
@@ -69,47 +68,45 @@ class AVLTree {
 public:
     AVLTree(); /* 构造函数 */
     ~AVLTree(); /* 析构函数 */
-​
+
     void preOrder(); /* 前序遍历AVL树 */
     void InOrder(); /* 中序遍历AVL树 */
     void postOrder(); /* 后序遍历AVL树 */
-​
+
     void print_tree() const; /* 打印AVL树 */
     void destory(); /* 销毁AVL树 */
-​
+
     void insert ( T key ); /* 插入指定值的节点 */
     void remove ( T key ); /* 移除指定值的节点 */
-​
+
     AVLTreeNode<T> *search_recurse ( T key ); /* 利用递归算法进行指定值的查找 */
     AVLTreeNode<T> *search_iterator ( T key ); /* 利用迭代算法进行指定值的查找 */
     T minimum(); /* 返回AVL中的最小值 */
     T maximum(); /* 返回AVL中的最大值 */
-​
+
     int height(); /* 返回树的高度 */
-​
 private:
     AVLTreeNode<T> *root; /* AVL树的根节点 */
-​
 private:
     void preOrder ( AVLTreeNode<T> *pnode ) const;
     void inOrder ( AVLTreeNode<T> *pnode ) const;
     void postOrder ( AVLTreeNode<T> *pnode ) const;
-​
+
     void print_tree ( AVLTreeNode<T> *tree, T key, int direction ) const;
     void destory ( AVLTreeNode<T> *&pnode );
-​
+
     int height ( AVLTreeNode<T> *pnode );
     int max ( int a, int b );
-​
+
     AVLTreeNode<T> *insert ( AVLTreeNode<T> *&pnode, T key );
     AVLTreeNode<T> *remove ( AVLTreeNode<T> *&pnode, T key ); /* 删除AVL树中节点pdel，并返回被删除的节点 */
-​
+
     AVLTreeNode<T> *minimum ( AVLTreeNode<T> *pnode ) const;
     AVLTreeNode<T> *maximum ( AVLTreeNode<T> *pnode ) const;
-​
+
     AVLTreeNode<T> *search_recurse ( AVLTreeNode<T> *pnode, T key ) const;
     AVLTreeNode<T> *search_iterator ( AVLTreeNode<T> *pnode, T key ) const;
-​
+
     AVLTreeNode<T> *leftRotation ( AVLTreeNode<T> *pnode ); /* 单旋：左旋操作 */
     AVLTreeNode<T> *rightRotation ( AVLTreeNode<T> *pnode ); /* 单旋：右旋操作 */
     AVLTreeNode<T> *leftRightRotation ( AVLTreeNode<T> *pnode ); /* 双旋：先左旋后右旋操作 */
@@ -129,7 +126,7 @@ private:
 /* 构造函数 */
 template <typename T>
 AVLTree<T>::AVLTree() : root ( nullptr ) {};
-​
+
 /* 析构函数 */
 template <typename T>
 AVLTree<T>::~AVLTree() {
@@ -146,10 +143,10 @@ int AVLTree<T>::height ( AVLTreeNode<T> *pnode ) {
     if ( pnode != nullptr ) {
         return pnode->height;
     }
-​
+
     return 0; /* 如果是空树，高度为0 */
 };
-​
+
 template <typename T>
 int AVLTree<T>::height() {
     return height ( root );
@@ -187,7 +184,7 @@ AVLTreeNode<T> *AVLTree<T>::leftRotation ( AVLTreeNode<T> *proot ) {
 
 ``` cpp
 /* 右旋转操作，返回旋转后的根节点 */
-template <typename  T>
+template <typename T>
 AVLTreeNode<T> *AVLTree<T>::rightRotation ( AVLTreeNode<T> *proot ) {
     AVLTreeNode<T> *plchild = proot->lchild;
     proot->lchild = plchild->rchild;
@@ -250,7 +247,7 @@ AVLTreeNode<T> *AVLTree<T>::insert ( AVLTreeNode<T> *&pnode, T key ) {
         pnode = new AVLTreeNode<T> ( key, nullptr, nullptr );
     } else if ( key > pnode->key ) { /* 插入值比当前结点值大，插入到当前结点的右子树上 */
         pnode->rchild = insert ( pnode->rchild, key );
-​
+
         if ( height ( pnode->rchild ) - height ( pnode->lchild ) == 2 ) { /* 插入后出现失衡 */
             if ( key > pnode->rchild->key ) { /* 情况一：插入右子树的右节点，进行左旋 */
                 pnode = leftRotation ( pnode );
@@ -260,7 +257,7 @@ AVLTreeNode<T> *AVLTree<T>::insert ( AVLTreeNode<T> *&pnode, T key ) {
         }
     } else if ( key < pnode->key ) { /* 插入值比当前节点值小，插入到当前结点的左子树上 */
         pnode->lchild = insert ( pnode->lchild, key );
-​
+
         if ( height ( pnode->lchild ) - height ( pnode->rchild ) == 2 ) { /* 如果插入导致失衡 */
             if ( key < pnode->lchild->key ) { /* 情况二：插入到左子树的左孩子节点上，进行右旋 */
                 pnode = rightRotation ( pnode );
@@ -269,7 +266,7 @@ AVLTreeNode<T> *AVLTree<T>::insert ( AVLTreeNode<T> *&pnode, T key ) {
             }
         }
     }
-​
+
     pnode->height = max ( height ( pnode->lchild ), height ( pnode->rchild ) ) + 1;
     return pnode;
 };
@@ -304,19 +301,19 @@ AVLTreeNode<T> *AVLTree<T>::remove ( AVLTreeNode<T> *&pnode, T key ) {
                 }
             } else {
                 AVLTreeNode<T> *ptemp = pnode;
-​
+
                 if ( pnode->lchild != nullptr ) {
                     pnode = pnode->lchild;
                 } else if ( pnode->rchild != nullptr ) {
                     pnode = pnode->rchild;
                 }
-​
+
                 delete ptemp;
                 return nullptr;
             }
         } else if ( key > pnode->key ) { /* 要删除的节点比当前节点大，则在右子树进行删除 */
-            pnode->rchild =  remove ( pnode->rchild, key );
-​
+            pnode->rchild = remove ( pnode->rchild, key );
+
             /* 删除右子树节点导致不平衡：相当于情况二或情况四 */
             if ( height ( pnode->lchild ) - height ( pnode->rchild ) == 2 ) {
                 /* 相当于在左子树上插入右节点造成的失衡(情况四) */
@@ -328,7 +325,7 @@ AVLTreeNode<T> *AVLTree<T>::remove ( AVLTreeNode<T> *&pnode, T key ) {
             }
         } else if ( key < pnode->key ) { /* 要删除的节点比当前节点小，则在左子树进行删除 */
             pnode->lchild = remove ( pnode->lchild, key );
-​
+
             /* 删除左子树节点导致不平衡：相当于情况三或情况一 */
             if ( height ( pnode->rchild ) - height ( pnode->lchild ) == 2 ) {
                 /* 相当于在右子树上插入左节点造成的失衡(情况三) */
@@ -339,10 +336,10 @@ AVLTreeNode<T> *AVLTree<T>::remove ( AVLTreeNode<T> *&pnode, T key ) {
                 }
             }
         }
-​
+
         return pnode;
     }
-​
+
     return nullptr;
 };
 ```
@@ -356,30 +353,30 @@ template <typename T>
 AVLTreeNode<T> *AVLTree<T>::search_recurse ( T key ) {
     return search_recurse ( root, key );
 };
-​
+
 template <typename T>
 AVLTreeNode<T> *AVLTree<T>::search_recurse ( AVLTreeNode<T> *pnode, T key ) const {
     if ( pnode != nullptr ) {
         if ( key == pnode->key ) {
             return pnode;
         }
-​
+
         if ( key > pnode->key ) {
             return search_recurse ( pnode->rchild, key );
         } else {
             return search_recurse ( pnode->lchild, key );
         }
     }
-​
+
     return nullptr;
 };
-​
+
 /* 非递归查找指定元素 */
 template <typename T>
 AVLTreeNode<T> *AVLTree<T>::search_iterator ( T key ) {
     return search_iterator ( root, key );
 };
-​
+
 template <typename T>
 AVLTreeNode<T> *AVLTree<T>::search_iterator ( AVLTreeNode<T> *pnode, T key ) const {
     while ( pnode != nullptr ) {
@@ -391,7 +388,7 @@ AVLTreeNode<T> *AVLTree<T>::search_iterator ( AVLTreeNode<T> *pnode, T key ) con
             pnode = pnode->lchild;
         }
     }
-​
+
     return nullptr;
 };
 ```
@@ -417,7 +414,7 @@ void AVLTree<T>::preOrder ( AVLTreeNode<T> *pnode ) const {
         preOrder ( pnode->rchild );
     }
 };
-​
+
 template<typename T>
 void AVLTree<T>::preOrder() {
     preOrder ( root );
@@ -436,7 +433,7 @@ void AVLTree<T>::inOrder ( AVLTreeNode<T> *pnode ) const {
         inOrder ( pnode->rchild );
     }
 };
-​
+
 template<typename T>
 void AVLTree<T>::InOrder() {
     inOrder ( root );
@@ -476,7 +473,7 @@ void AVLTree<T>::destory ( AVLTreeNode<T> *&pnode ) {
         pnode = nullptr;
     }
 };
-​
+
 template<typename T>
 void AVLTree<T>::destory() {
     destory ( root );
@@ -493,22 +490,22 @@ AVLTreeNode<T> *AVLTree<T>::maximum ( AVLTreeNode<T> *pnode ) const {
         while ( pnode->rchild != nullptr ) {
             pnode = pnode->rchild;
         }
-​
+
         return pnode;
     }
-​
+
     return nullptr;
 };
-​
+
 template<typename T>
 T AVLTree<T>::maximum() {
     AVLTreeNode<T> *presult = maximum ( root );
-​
+
     if ( presult != nullptr ) {
         return presult->key;
     }
 };
-​
+
 /* 返回树中最小节点值 */
 template <typename T>
 AVLTreeNode<T> *AVLTree<T>::minimum ( AVLTreeNode<T> *pnode ) const {
@@ -516,17 +513,17 @@ AVLTreeNode<T> *AVLTree<T>::minimum ( AVLTreeNode<T> *pnode ) const {
         while ( pnode->lchild != nullptr ) {
             pnode = pnode->lchild;
         }
-​
+
         return pnode;
     }
-​
+
     return nullptr;
 };
-​
+
 template<typename T>
 T AVLTree<T>::minimum() {
     AVLTreeNode<T> *presult = minimum ( root );
-​
+
     if ( presult != nullptr ) {
         return presult->key;
     }
@@ -550,12 +547,12 @@ void AVLTree<T>::print_tree ( AVLTreeNode<T> *tree, T key, int direction ) const
             cout << setw ( 2 ) << tree->key << " is " << setw ( 2 ) << key << "'s " \
                  << setw ( 12 ) << ( direction == 1 ? "right child" : "left child" ) << endl;
         }
-​
+
         print_tree ( tree->lchild, tree->key, -1 );
         print_tree ( tree->rchild, tree->key, 1 );
     }
 }
-​
+
 template <class T>
 void AVLTree<T>::print_tree() const {
     if ( root != nullptr ) {
@@ -569,16 +566,16 @@ void AVLTree<T>::print_tree() const {
 ``` cpp
 #include "AVLTree.h"
 #include <iostream>
-​
+
 using namespace std;
-​
+
 int main ( void ) {
     AVLTree<int> a;
-​
+
     for ( int i = 0; i <= 8; i++ ) {
         a.insert ( i );
     }
-​
+
     cout << "树高：" << a.height() << endl;
     cout << "前序遍历:" << endl;
     a.preOrder();
@@ -590,13 +587,13 @@ int main ( void ) {
     cout << "删除元素10" << endl;
     a.remove ( 10 );
     AVLTreeNode<int> *b = a.search_iterator ( 10 );
-​
+
     if ( b != nullptr ) {
         cout << b->key;
     } else {
         cout << "无此元素" << endl;
     }
-​
+
     getchar();
     return 0;
 }

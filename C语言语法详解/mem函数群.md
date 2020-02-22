@@ -1,7 +1,6 @@
 ---
 title: mem函数群
 categories: C语言语法详解
-abbrlink: 639644b3
 date: 2019-03-12 17:51:29
 ---
 ### memchr
@@ -19,19 +18,19 @@ extern void *memchr ( void *ptr, int value, size_t num );
 ``` cpp
 #include <stdio.h>
 #include <string.h>
-​
+
 int main ( void ) {
     char *pch = NULL;
     char str[] = "Example string";
     pch = ( char * ) memchr ( str, 'p', strlen ( str ) );
-​
+
     if ( pch != NULL ) {
         printf ( "'p' found at position %d\n", pch - str + 1 );
     }
     else {
         printf ( "'p' not found.\n" );
     }
-​
+
     return 0;
 }
 ```
@@ -41,14 +40,14 @@ int main ( void ) {
 ``` cpp
 #include <stdio.h>
 #include <assert.h>
-​
+
 void *mymemchar ( void *buffer, int ch, size_t count );
-​
+
 int main ( void ) {
     char ss[] = "Hello, Programmers!\n";
     char *p = NULL;
     p = ( char * ) mymemchar ( ss, 'P', strlen ( ss ) );
-​
+
     if ( p ) {
         printf ( "%s\n", p );
     }
@@ -58,15 +57,15 @@ int main ( void ) {
 
     return 0;
 }
-​
+
 void *mymemchar ( void *buffer, int ch, size_t count ) {
     assert ( NULL != buffer );
-​
+
     while ( count && ( * ( unsigned char * ) buffer != ( unsigned char ) ch ) ) {
         buffer = ( unsigned char * ) buffer + 1;
         count--;
     }
-​
+
     return ( count ? ( void * ) buffer : NULL );
 }
 ```
@@ -89,13 +88,13 @@ int memcmp ( const void *buf1, const void *buf2, unsigned int count );
 ``` cpp
 #include <stdio.h>
 #include <string.h>
-​
+
 int main ( void ) {
     char buffer1[] = "DWgaOtP12df0";
     char buffer2[] = "DWGAOTP12DF0";
     int n;
     n = memcmp ( buffer1, buffer2, sizeof ( buffer1 ) );
-​
+
     if ( n > 0 ) {
         printf ( "'%s' is greater than '%s'.\n", buffer1, buffer2 );
     }
@@ -105,7 +104,7 @@ int main ( void ) {
     else {
         printf ( "'%s' is the same as '%s'.\n", buffer1, buffer2 );
     }
-​
+
     return 0;
 }
 ```
@@ -131,13 +130,13 @@ void *memmove ( void *dst, const void *src, size_t count );
 ``` cpp
 #include <stdio.h>
 #include <string.h>
-​
+
 int main ( void ) {
-    char s[] = "Golden Global View";
-    memmove ( s, s + 7, strlen ( s ) + 1 - 7 );
-    printf ( "%s", s );
-    getchar();
-    return 0;
+    char s[] = "Golden Global View";
+    memmove ( s, s + 7, strlen ( s ) + 1 - 7 );
+    printf ( "%s", s );
+    getchar();
+    return 0;
 }
 ```
 
@@ -160,12 +159,12 @@ char s[] = "Goldenx Global View";
 char d[20];
 char *p;
 p = ( char * ) memccpy ( d, s, 'x', strlen ( s ) );
-​
+
 if ( p ) {
-    *p = '\0'; /* MUST Do This */
-    printf ( "Char found: %s.\n", d );
+    *p = '\0'; /* MUST Do This */
+    printf ( "Char found: %s.\n", d );
 } else {
-    printf ( "Char not found.\n" );
+    printf ( "Char not found.\n" );
 }
 ```
 
@@ -173,20 +172,20 @@ if ( p ) {
 
 ``` cpp
 void *mymemmove ( void *dest, const void *src, size_t n ) {
-    char temp[n];
-    int i;
-    char *d = dest;
-    const char *s = src;
-​
-    for ( i = 0; i < n; i++ ) {
-        temp[i] = s[i];
-    }
-​
-    for ( i = 0; i < n; i++ ) {
-        d[i] = temp[i];
-    }
-​
-    return dest;
+    char temp[n];
+    int i;
+    char *d = dest;
+    const char *s = src;
+
+    for ( i = 0; i < n; i++ ) {
+        temp[i] = s[i];
+    }
+
+    for ( i = 0; i < n; i++ ) {
+        d[i] = temp[i];
+    }
+
+    return dest;
 }
 ```
 
@@ -194,25 +193,25 @@ void *mymemmove ( void *dest, const void *src, size_t n ) {
 
 ``` cpp
 void *mymemcpy ( void *dest, const void *src, size_t n ) {
-    char *d = dest;
-    const char *s = src;
-    int *di;
-    const int *si;
-    int r = n % 4;
-​
-    while ( r-- ) {
-        *d++ = *s++;
-    }
-​
-    di = ( int * ) d;
-    si = ( const int * ) s;
-    n /= 4;
-​
-    while ( n-- ) {
-        *di++ = *si++;
-    }
-​
-    return dest;
+    char *d = dest;
+    const char *s = src;
+    int *di;
+    const int *si;
+    int r = n % 4;
+
+    while ( r-- ) {
+        *d++ = *s++;
+    }
+
+    di = ( int * ) d;
+    si = ( const int * ) s;
+    n /= 4;
+
+    while ( n-- ) {
+        *di++ = *si++;
+    }
+
+    return dest;
 }
 ```
 
@@ -232,13 +231,13 @@ void *memset ( void *s, char ch, unsigned n );
 ``` cpp
 #include <string.h>
 #include <stdio.h>
-​
+
 int main ( void ) {
-    char buffer[] = "Hello world\n";
-    printf ( "Buffer before memset: %s\n", buffer );
-    memset ( buffer, '*', strlen ( buffer ) );
-    printf ( "Buffer after memset: %s\n", buffer );
-    return 0;
+    char buffer[] = "Hello world\n";
+    printf ( "Buffer before memset: %s\n", buffer );
+    memset ( buffer, '*', strlen ( buffer ) );
+    printf ( "Buffer after memset: %s\n", buffer );
+    return 0;
 }
 ```
 
@@ -271,9 +270,9 @@ strcpy ( a, b );
 
 ``` cpp
 struct sample_struct {
-    char csName[16];
-    int iSeq;
-    int iType;
+    char csName[16];
+    int iSeq;
+    int iType;
 };
 ```
 

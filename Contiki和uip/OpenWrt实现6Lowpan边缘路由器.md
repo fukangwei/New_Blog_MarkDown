@@ -1,7 +1,6 @@
 ---
 title: OpenWrt实现6Lowpan边缘路由器
 categories: Contiki和uip
-abbrlink: fc223167
 date: 2019-03-12 11:48:09
 ---
 &emsp;&emsp;`OpenWrt`是一个功能强大的开源路由器`linux`系统，用户可以很方便地对其进行定制和优化。`6Lowpan`是当前无线传感器网络研究的热门领域，通过对`IPv6`数据包头进行压缩、解压缩，以及在`IP`层从添加适用于无线自组网的路由协议`RPL`，实现了在无线传感器网络中也能直接使用`IPv6`协议。<!--more-->
@@ -94,7 +93,7 @@ config interface
     option MinRtrAdvInterval  100
     option MaxRtrAdvInterval  150
     option AdvDefaultLifetime 200
-​
+
 config prefix
     option interface            'tun0'
     list prefix                 'aaaa::/64'
@@ -103,12 +102,12 @@ config prefix
     option AdvPreferredLifetime 4294967295
     option AdvValidLifetime     4294967295
     option ignore               0
-​
+
 config rdnss
     option interface 'tun0'
     list   addr      ''
     option ignore    1
-​
+
 config interface
     option interface            'lan'
     option AdvSendAdvert        1
@@ -118,7 +117,7 @@ config interface
     option MinRtrAdvInterval    5
     option MaxRtrAdvInterval    10
     option AdvDefaultPreference low
-​
+
 config prefix
     option interface     'lan'
     option prefix        '2001:1::/64'
@@ -126,16 +125,16 @@ config prefix
     option AdvAutonomous 1
     option AdvRouterAddr 1
     option ignore        0
-​
+
 config route
     option interface 'lan'
     list prefix      ''
     option ignore    1
-​
+
 config dnssl
     option interface 'lan'
     list suffix      ''
     option ignore    1
 ```
 
-配置保存后，需要使用`/etc/init.d/radvd restart`来使配置生效。如果没有问题的话，此时你的电脑应该可以`ping`通地址`aaaa::1`了，当然也能`ping`通其它`6LowPan`节点。
+配置保存后，需要使用`/etc/init.d/radvd restart`来使配置生效。如果没有问题的话，此时你的电脑应该可以`ping`通地址`aaaa::1`了，当然也能`ping`通其它`6Lowpan`节点。

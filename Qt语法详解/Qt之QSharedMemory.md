@@ -1,7 +1,6 @@
 ---
 title: Qt之QSharedMemory
 categories: Qt语法详解
-abbrlink: ac20c177
 date: 2019-01-03 12:28:04
 ---
 &emsp;&emsp;`Qt`提供了`QSharedMemory`类来访问共享内存，实现共享内存的操作。<!--more-->

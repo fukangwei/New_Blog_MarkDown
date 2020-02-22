@@ -1,7 +1,6 @@
 ---
 title: grep命令
 categories: Shell编程
-abbrlink: 471198f0
 date: 2019-01-21 19:02:28
 ---
 ### 基本用法
@@ -62,7 +61,7 @@ $ dmesg | grep -n -A3 -B2 --color=auto 'eth'
 # 在当前目录搜索带“energywise”行的文件
 $ grep 'energywise' *
 # 在当前目录及其子目录下搜索“energywise”行的文件
-$ grep -r 'energywise' *  
+$ grep -r 'energywise' *
 # 在当前目录及其子目录下搜索“energywise”行的文件，但是不显示匹配的行，只显示匹配的文件
 $ grep -l -r 'energywise' *
 ```

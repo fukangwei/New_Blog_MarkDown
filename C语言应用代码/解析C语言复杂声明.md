@@ -1,7 +1,6 @@
 ---
 title: 解析C语言复杂声明
 categories: C语言应用代码
-abbrlink: 6c301fed
 date: 2019-03-12 12:28:47
 ---
 &emsp;&emsp;代码如下(`unix`的`dcl`程序)：<!--more-->
@@ -10,11 +9,11 @@ date: 2019-03-12 12:28:47
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-​
+
 #define MAXTOKEN 100
-​
+
 enum { NAME, PARENS, BRACKETS };
-​
+
 void dcl ( void );
 void dirdcl ( void );
 int gettoken ( void );
@@ -23,34 +22,34 @@ char token[MAXTOKEN]; /* 最后一个记号字符串 */
 char name[MAXTOKEN]; /* 标识符名 */
 char datatype[MAXTOKEN]; /* 数据类型为char、int等 */
 char out[1000]; /* 输出串 */
-​
+
 int main ( void ) { /* 将声明转换为文字描述 */
     while ( gettoken() != EOF ) {
         /* 该行的第一个记号是数据类型 */
         strcpy ( datatype, token ); /* is the datatype */
         out[0] = '\0';
         dcl(); /* 分析该行的其余部分 */
-​
+
         if ( tokentype != '\n' ) {
             printf ( "syntax error\n" );
         }
-​
+
         printf ( "%s: %s %s\n", name, out, datatype );
     }
-​
+
     return 0;
 }
-​
+
 /* gettoken用来跳过空格和制表符，以查找输入中的下一个记号。记号(token)可以是一个名字，
-   一对圆括号，可能包含一个数字的一对括号，也可以是其他任何单个字符 */
+   一对圆括号，可能包含一个数字的一对括号，也可以是其他任何单个字符 */
 int gettoken ( void ) { /* 返回下一个标记 */
     int c, getch ( void );
     void ungetch ( int );
     char *p = token;
-​
+
     while ( ( c = getch() ) == ' ' || c == '\t' )
         ;
-​
+
     if ( c == '(' ) {
         if ( ( c = getch() ) == ')' ) {
             strcpy ( token, "()" );
@@ -62,14 +61,14 @@ int gettoken ( void ) { /* 返回下一个标记 */
     } else if ( c == '[' ) {
         for ( *p++ = c; ( *p++ = getch() ) != ']'; )
             ;
-​
+
         *p = '\0';
         return tokentype = BRACKETS;
     } else if ( isalpha ( c ) ) {
         for ( *p++ = c; isalnum ( c = getch() ); ) {
             *p++ = c;
         }
-​
+
         *p = '\0';
         ungetch ( c );
         return tokentype = NAME;
@@ -77,27 +76,27 @@ int gettoken ( void ) { /* 返回下一个标记 */
         return tokentype = c;
     }
 }
-​
+
 void dcl ( void ) { /* 对一个声明符进行语法分析 */
     int ns;
-​
+
     for ( ns = 0; gettoken() == '*'; ) { /* 统计字符“*”的个数 */
         ns++;
     }
-​
+
     dirdcl();
-​
+
     while ( ns-- > 0 ) {
         strcat ( out, " pointer to" );
     }
 }
-​
+
 void dirdcl ( void ) { /* 分析一个直接声明 */
     int type;
-​
+
     if ( tokentype == '(' ) { /* 形式为(dcl) */
         dcl();
-​
+
         if ( tokentype != ')' ) {
             printf ( "error: missing )\n" );
         }
@@ -106,7 +105,7 @@ void dirdcl ( void ) { /* 分析一个直接声明 */
     } else {
         printf ( "error: expected name or (dcl)\n" );
     }
-​
+
     while ( ( type = gettoken() ) == PARENS || type == BRACKETS )
         if ( type == PARENS ) {
             strcat ( out, " function returning" );
@@ -116,17 +115,17 @@ void dirdcl ( void ) { /* 分析一个直接声明 */
             strcat ( out, " of" );
         }
 }
-​
+
 #define BUFSIZE 100
-​
+
 char buf[BUFSIZE]; /* buffer for ungetch */
-​
+
 int bufp = 0; /* next free position in buf */
-​
+
 int getch ( void ) { /* 取出一个字符(可能是压回的字符) */
     return ( bufp > 0 ) ? buf[--bufp] : getchar();
 }
-​
+
 void ungetch ( int c ) { /* 把字符压回到输入中 */
     if ( bufp >= BUFSIZE ) {
         printf ( "ungetch: too many characters\n" );

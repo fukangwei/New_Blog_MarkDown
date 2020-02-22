@@ -1,7 +1,6 @@
 ---
 title: Perl格式化输出
 categories: Perl
-abbrlink: 94abcad0
 date: 2018-12-19 07:37:30
 ---
 
@@ -23,14 +22,14 @@ value_one, value_two
 
 ``` perl
 $text = "google runoob taobao";
-​
+
 format STDOUT =
 first: ^<<<<<  # 左边对齐，字符长度为6
     $text
 second: ^<<<<<  # 左边对齐，字符长度为6
     $text
 third: ^<<<<  # 左边对齐，字符长度为5，taobao最后一个“o”被截断
-    $text  
+    $text
 .
 write
 ```
@@ -79,7 +78,7 @@ third: taoba
 ``` perl
 $~ = "MYFORMAT";  # 指定缺省文件变量下所使用的格式
 write;  # 输出“$~”所指定的格式
-​
+
 format MYFORMAT =  # 定义格式MYFORMAT
 =================================
       Text  # 菜鸟教程
@@ -103,7 +102,7 @@ write;
 
 ``` perl
 write;  # 在不指定“$~”的情况下，会寻找名为STDOUT的格式
-​
+
 format STDOUT =
 ~用“~”号指定的文字不会被输出
 ----------------

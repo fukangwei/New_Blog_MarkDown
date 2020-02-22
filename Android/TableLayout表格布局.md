@@ -1,7 +1,6 @@
 ---
 title: TableLayout表格布局
 categories: Android
-abbrlink: b9b5a7ce
 date: 2019-03-01 20:31:17
 ---
 &emsp;&emsp;相信学过`HTML`的朋友都知道，我们可以通过`<table>`、`<tr>`、`<td>`就可以生成一个`HTML`的表格，而`Android`的`TableLayout`也允许我们使用表格的方式来排列组件，就是行与列的方式。但它却不像`Android 4.0`后引入的`GridLayout`(网格)布局一样，无法直接设置多少行与多少列！<!--more-->
@@ -38,28 +37,28 @@ date: 2019-03-01 20:31:17
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:collapseColumns="0,2">
-​
+
     <TableRow>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="one" />
-​
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="two" />
-​
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="three" />
-​
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="four" />
-​
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -80,28 +79,28 @@ date: 2019-03-01 20:31:17
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:stretchColumns="1">
-​
+
     <TableRow>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="one" />
-​
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="two" />
-​
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="three" />
-​
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="four" />
-    </TableRow>
+    </TableRow>
 </TableLayout>
 ```
 
@@ -117,33 +116,33 @@ date: 2019-03-01 20:31:17
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:shrinkColumns="1">
-​
+
     <TableRow>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="one" />
-​
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="two" />
-​
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="three" />
-​
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="four" />
-​
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="five" />
-​
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -179,37 +178,37 @@ date: 2019-03-01 20:31:17
     android:gravity="center_vertical"
     android:stretchColumns="0,3"
     tools:context=".MainActivity">
-​
+
     <TableRow>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="用户名:" />
-​
+
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="150dp" />
     </TableRow>
-​
+
     <TableRow>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="密  码:" />
-​
+
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="150dp" />
     </TableRow>
-​
+
     <TableRow>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="登陆" />
-​
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

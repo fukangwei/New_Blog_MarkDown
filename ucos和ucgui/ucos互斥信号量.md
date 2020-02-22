@@ -1,7 +1,6 @@
 ---
 title: ucos互斥信号量
 categories: ucos和ucgui
-abbrlink: d069346e
 date: 2018-12-29 13:42:29
 ---
 &emsp;&emsp;在`ucos`信号量使用过程中，经常会用到二值信号量。而在二值信号量中，最常用的情况就是互斥信号量。互斥信号是本身是一种二进制信号，具有超出`ucos`提供的一般信号机制的特性。由于其特殊性，`ucos`的作者组织了一套关于互斥信号量管理的函数。互斥信号量具有以下特点：解决优先级反转问题、实现对资源的独占式访问(二值信号量)。<!--more-->
@@ -14,7 +13,7 @@ OS_EVENT *ResourceMutex;
 OS_STK TaskPrio10Stk[1000];
 OS_STK TaskPrio15Stk[1000];
 OS_STK TaskPrio20Stk[1000];
-​
+
 void main ( void ) {
     INT8U err;
     OSInit(); /*(1)*/
@@ -26,11 +25,11 @@ void main ( void ) {
     /* Application Initialization */
     OSStart(); /* (4) */
 }
-​
+
 void TaskPrio10 ( void *pdata ) {
     INT8U err;
     pdata = pdata;
-​
+
     while ( 1 ) {
         /* 应用程序代码 */
         OSMutexPend ( ResourceMutex, 0, &err );
@@ -39,11 +38,11 @@ void TaskPrio10 ( void *pdata ) {
         /* 应用程序代码 */
     }
 }
-​
+
 void TaskPrio15 ( void *pdata ) {
     INT8U err;
     pdata = pdata;
-​
+
     while ( 1 ) {
         /* 应用程序代码 */
         OSMutexPend ( ResourceMutex, 0, &err );
@@ -52,11 +51,11 @@ void TaskPrio15 ( void *pdata ) {
         /* 应用程序代码 */
     }
 }
-​
+
 void TaskPrio20 ( void *pdata ) {
     INT8U err;
     pdata = pdata;
-​
+
     while ( 1 ) {
         /* 应用程序代码 */
         OSMutexPend ( ResourceMutex, 0, &err );

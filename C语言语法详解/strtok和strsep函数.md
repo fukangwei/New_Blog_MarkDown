@@ -1,7 +1,6 @@
 ---
 title: strtok和strsep函数
 categories: C语言语法详解
-abbrlink: 184f9cb9
 date: 2018-12-14 19:55:28
 ---
 &emsp;&emsp;函数原型如下：<!--more-->
@@ -87,7 +86,7 @@ should test for strsep returning an empty string before processing it.
 ``` cpp
 #include <string.h>
 char* strsep ( char** stringp, const char* delim );
-​
+
 Be cautious when using this function. If you do use it, note that:
 * This function modifies its first argument.
 * This function cannot be used on constant strings.

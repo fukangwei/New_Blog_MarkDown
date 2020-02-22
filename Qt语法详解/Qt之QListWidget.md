@@ -1,7 +1,6 @@
 ---
 title: Qt之QListWidget
 categories: Qt语法详解
-abbrlink: e56241ba
 date: 2019-03-17 20:00:33
 ---
 &emsp;&emsp;`QListWidget`可以显示一个清单，清单中的每个项目是`QListWidgetItem`的一个实例，每个项目可以通过`QListWidgetItem`来操作。可以通过`QListWidgetItem`来设置每个项目的图像与文字。<!--more-->
@@ -13,7 +12,7 @@ date: 2019-03-17 20:00:33
 #include <QVBoxLayout>
 #include <QListWidget>
 #include <QListWidgetItem>
-​
+
 int main ( int argc, char **argv ) {
     QApplication app ( argc, argv );
     QWidget *widget = new QWidget;
@@ -47,7 +46,7 @@ int main ( int argc, char **argv ) {
 #include <QVBoxLayout>
 #include <QListWidget>
 #include <QListWidgetItem>
-​
+
 int main ( int argc, char **argv ) {
     QApplication app ( argc, argv );
     QWidget *widget = new QWidget;
@@ -82,7 +81,7 @@ int main ( int argc, char **argv ) {
 #include <QListWidget>
 #include <QListWidgetItem>
 #include <QLabel>
-​
+
 int main ( int argc, char **argv ) {
     QApplication app ( argc, argv );
     QWidget *widget = new QWidget;
@@ -122,9 +121,9 @@ int main ( int argc, char **argv ) {
 ``` cpp
 #ifndef LISTWIDGET_H
 #define LISTWIDGET_H
-​
+
 #include <QtGui>
-​
+
 class ListWidget : public QWidget {
 public:
     ListWidget();
@@ -132,7 +131,7 @@ private:
     QLabel *label;
     QListWidget *list;
 };
-​
+
 #endif // LISTWIDGET_H
 ```
 
@@ -140,7 +139,7 @@ private:
 
 ``` cpp
 #include "listwidget.h"
-​
+
 ListWidget::ListWidget() {
     label = new QLabel;
     label->setFixedWidth ( 70 );
@@ -162,7 +161,7 @@ ListWidget::ListWidget() {
 ``` cpp
 #include <QtGui>
 #include "listwidget.h"
-​
+
 int main ( int argc, char *argv[] ) {
     QApplication a ( argc, argv );
     ListWidget lw;
@@ -225,11 +224,11 @@ int main ( int argc, char *argv[] ) {
 #include <QStringList> /* 字符串容器 */
 #include <QDir> /* 目录类头文件 */
 #include <QString>
-​
+
 namespace Ui {
     class MainWindow;
 }
-​
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
@@ -253,7 +252,7 @@ private slots:
 ``` cpp
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-​
+
 MainWindow::MainWindow ( QWidget *parent ) : QMainWindow ( parent ), ui ( new Ui::MainWindow ) {
     ui->setupUi ( this );
     this->setWindowTitle ( tr ( "listWidget学习" ) ); /* 设置标题框文本 */
@@ -270,9 +269,9 @@ MainWindow::MainWindow ( QWidget *parent ) : QMainWindow ( parent ), ui ( new Ui
 }
 
 MainWindow::~MainWindow() {
-    delete ui;
+    delete ui;
 }
-​
+
 void MainWindow::addbtn() { /* 添加单个列表项 */
     QString str = ui->lineEdit->text(); /* 获取行编辑框文本 */
     QListWidgetItem *item = new QListWidgetItem;
@@ -282,24 +281,24 @@ void MainWindow::addbtn() { /* 添加单个列表项 */
     // item = NULL;
     ui->lineEdit->clear(); /* 清空行编辑框 */
 }
-​
+
 void MainWindow::deletebtn() { /* 删除单个列表项 */
     /* 获取列表项的指针 */
     QListWidgetItem *item = ui->listWidget->takeItem ( ui->listWidget->currentRow() );
     delete item; /* 释放指针所指向的列表项 */
 }
-​
+
 void MainWindow::delallbtn() { /* 删除多个列表项 */
     int num = ui->listWidget->count(); /* 获取列表项的总数目 */
     /* 将光标设置到列表框上，若注释该语句，则删除时，要手动将焦点设置到列表框，即点击列表项 */
     ui->listWidget->setFocus();
-​
+
     for ( int i = 0; i < num; i++ ) { /* 逐个获取列表项的指针，并删除 */
         QListWidgetItem *item = ui->listWidget->takeItem ( ui->listWidget->currentRow() );
         delete item;
     }
 }
-​
+
 void MainWindow::addallbtn() { /* 添加多个列表项 */
     QStringList FileNames = QFileDialog::getOpenFileNames (
         this, "打开", QDir::currentPath(), "所有文件(*.*);;文本文档(*.txt)" );
@@ -307,7 +306,7 @@ void MainWindow::addallbtn() { /* 添加多个列表项 */
     /* 方法2：逐个添加 */
     int index = 0, count = 0;
     count = FileNames.count(); /* 获取打开文件的总数目 */
-​
+
     // for(index = 0; index < count; index++) /* 这样会报错，无法先取出栈底元素 */
     for ( index = count - 1; index >= 0; index-- ) { /* QList<QString>的数据结构是栈，只能从栈顶取元素 */
         QListWidgetItem *item = new QListWidgetItem;
@@ -316,11 +315,11 @@ void MainWindow::addallbtn() { /* 添加多个列表项 */
         ui->listWidget->addItem ( item ); /* 加载列表项到列表框 */
     }
 }
-​
+
 void MainWindow::singleclicked ( QListWidgetItem *item ) { /* 列表项单击操作 */
     QMessageBox::information ( this, "单击消息", "单击" + item->text() );
 }
-​
+
 void MainWindow::doubleclicked ( QListWidgetItem *item ) { /* 列表项双击操作 */
     QMessageBox::information ( this, "双击消息", "双击" + item->text() );
 }
@@ -501,39 +500,39 @@ void setSortingEnabled ( bool enable )
 - `void QListWidget::addItem(const QString & label)`: Inserts an item with the text `label` at the end of the list widget.
 - `void QListWidget::addItem(QListWidgetItem * item)`: Inserts the `item` at the end of the list widget. **Warning**: A `QListWidgetItem` can only be added to a `QListWidget` once. Adding the same `QListWidgetItem` multiple times to a `QListWidget` will result in undefined behavior.
 - `void QListWidget::addItems(const QStringList & labels)`: Inserts items with the text `labels` at the end of the list widget.
-- `void QListWidget::clear() [slot]`: Removes all items and selections in the view. **Warning**: All items will be permanently deleted.
+- `void QListWidget::clear() [slot]`: Removes all items and selections in the view. **Warning**: All items will be permanently deleted.
 - `void QListWidget::closePersistentEditor(QListWidgetItem * item)`: Closes the persistent editor for the given `item`.
 - `QListWidgetItem * QListWidget::currentItem() const`: Returns the current item.
-- `void QListWidget::currentItemChanged(QListWidgetItem * current, QListWidgetItem * previous) [signal]`: This signal is emitted whenever the `current` item changes. `previous` is the item that previously had the focus; `current` is the new current item.
-- `void QListWidget::currentTextChanged(const QString & currentText) [signal]`: This signal is emitted whenever the current item changes. `currentText` is the text data in the current item. If there is no current item, the `currentText` is invalid.
-- `void QListWidget::dropEvent(QDropEvent * event) [virtual]`: Reimplemented from `QWidget::dropEvent()`.
-- `bool QListWidget::dropMimeData(int index, const QMimeData * data, Qt::DropAction action) [virtual protected]`: Handles `data` supplied by an external drag and drop operation that ended with the given `action` in the given `index`. Returns `true` if `data` and `action` can be handled by the model; otherwise returns `false`.
+- `void QListWidget::currentItemChanged(QListWidgetItem * current, QListWidgetItem * previous) [signal]`: This signal is emitted whenever the `current` item changes. `previous` is the item that previously had the focus; `current` is the new current item.
+- `void QListWidget::currentTextChanged(const QString & currentText) [signal]`: This signal is emitted whenever the current item changes. `currentText` is the text data in the current item. If there is no current item, the `currentText` is invalid.
+- `void QListWidget::dropEvent(QDropEvent * event) [virtual]`: Reimplemented from `QWidget::dropEvent()`.
+- `bool QListWidget::dropMimeData(int index, const QMimeData * data, Qt::DropAction action) [virtual protected]`: Handles `data` supplied by an external drag and drop operation that ended with the given `action` in the given `index`. Returns `true` if `data` and `action` can be handled by the model; otherwise returns `false`.
 - `void QListWidget::editItem(QListWidgetItem * item)`: Starts editing the `item` if it is editable.
-- `bool QListWidget::event(QEvent * e) [virtual protected]`: Reimplemented from `QObject::event()`.
+- `bool QListWidget::event(QEvent * e) [virtual protected]`: Reimplemented from `QObject::event()`.
 - `QList<QListWidgetItem *> QListWidget::findItems(const QString & text, Qt::MatchFlags flags) const`: Finds items with the `text` that matches the string text using the given `flags`.
-- `QModelIndex QListWidget::indexFromItem(QListWidgetItem * item) const [protected]`: Returns the `QModelIndex` assocated with the given `item`.
+- `QModelIndex QListWidget::indexFromItem(QListWidgetItem * item) const [protected]`: Returns the `QModelIndex` assocated with the given `item`.
 - `void QListWidget::insertItem(int row, QListWidgetItem * item)`: Inserts the `item` at the position in the list given by `row`.
 - `void QListWidget::insertItem(int row, const QString & label)`: Inserts an item with the text `label` in the list widget at the position given by `row`.
 - `void QListWidget::insertItems(int row, const QStringList & labels)`: Inserts items from the list of `labels` into the list, starting at the given `row`.
 - `QListWidgetItem * QListWidget::item(int row) const`: Returns the item that occupies the given `row` in the list if one has been set; otherwise returns `0`.
-- `void QListWidget::itemActivated(QListWidgetItem * item) [signal]`: This signal is emitted when the `item` is activated. The item is activated when the user clicks or double clicks on it, depending on the system configuration. It is also activated when the user presses the activation key (on `Windows` and `X11` this is the `Return` key, on `Mac OS X` it is `Ctrl + 0`).
+- `void QListWidget::itemActivated(QListWidgetItem * item) [signal]`: This signal is emitted when the `item` is activated. The item is activated when the user clicks or double clicks on it, depending on the system configuration. It is also activated when the user presses the activation key (on `Windows` and `X11` this is the `Return` key, on `Mac OS X` it is `Ctrl + 0`).
 - `QListWidgetItem * QListWidget::itemAt(const QPoint & p) const`: Returns a pointer to the item at the coordinates `p`. The coordinates are relative to the list widget's `viewport()`.
 - `QListWidgetItem * QListWidget::itemAt(int x, int y) const`: This is an overloaded function. Returns a pointer to the item at the coordinates `(x, y)`. The coordinates are relative to the list widget's `viewport()`.
-- `void QListWidget::itemChanged(QListWidgetItem * item) [signal]`: This signal is emitted whenever the data of `item` has changed.
-- `void QListWidget::itemClicked(QListWidgetItem * item) [signal]`: This signal is emitted with the specified `item` when a mouse button is clicked on an item in the widget.
-- `void QListWidget::itemDoubleClicked(QListWidgetItem * item) [signal]`: This signal is emitted with the specified `item` when a mouse button is double clicked on an item in the widget.
-- `void QListWidget::itemEntered(QListWidgetItem * item) [signal]`: This signal is emitted when the mouse cursor enters an `item`. The `item` is the item entered. This signal is only emitted when `mouseTracking` is turned on, or when a mouse button is pressed while moving into an item.
-- `QListWidgetItem * QListWidget::itemFromIndex(const QModelIndex & index) const [protected]`: Returns a pointer to the `QListWidgetItem` assocated with the given `index`.
-- `void QListWidget::itemPressed(QListWidgetItem * item) [signal]`: This signal is emitted with the specified `item` when a mouse button is pressed on an item in the widget.
-- `void QListWidget::itemSelectionChanged() [signal]`: This signal is emitted whenever the selection changes.
+- `void QListWidget::itemChanged(QListWidgetItem * item) [signal]`: This signal is emitted whenever the data of `item` has changed.
+- `void QListWidget::itemClicked(QListWidgetItem * item) [signal]`: This signal is emitted with the specified `item` when a mouse button is clicked on an item in the widget.
+- `void QListWidget::itemDoubleClicked(QListWidgetItem * item) [signal]`: This signal is emitted with the specified `item` when a mouse button is double clicked on an item in the widget.
+- `void QListWidget::itemEntered(QListWidgetItem * item) [signal]`: This signal is emitted when the mouse cursor enters an `item`. The `item` is the item entered. This signal is only emitted when `mouseTracking` is turned on, or when a mouse button is pressed while moving into an item.
+- `QListWidgetItem * QListWidget::itemFromIndex(const QModelIndex & index) const [protected]`: Returns a pointer to the `QListWidgetItem` assocated with the given `index`.
+- `void QListWidget::itemPressed(QListWidgetItem * item) [signal]`: This signal is emitted with the specified `item` when a mouse button is pressed on an item in the widget.
+- `void QListWidget::itemSelectionChanged() [signal]`: This signal is emitted whenever the selection changes.
 - `QWidget * QListWidget::itemWidget(QListWidgetItem * item) const`: Returns the widget displayed in the given `item`.
-- `QList<QListWidgetItem *> QListWidget::items(const QMimeData * data) const [protected]`: Returns a list of pointers to the items contained in the `data` object. If the object was not created by a `QListWidget` in the same process, the list is empty.
-- `QMimeData * QListWidget::mimeData(const QList<QListWidgetItem *> items) const [virtual protected]`: Returns an object that contains a serialized description of the specified `items`. The format used to describe the items is obtained from the `mimeTypes()` function. If the list of `items` is empty, `0` is returned instead of a serialized empty list.
-- `QStringList QListWidget::mimeTypes() const [virtual protected]`: Returns a list of `MIME` types that can be used to describe a list of listwidget items.
+- `QList<QListWidgetItem *> QListWidget::items(const QMimeData * data) const [protected]`: Returns a list of pointers to the items contained in the `data` object. If the object was not created by a `QListWidget` in the same process, the list is empty.
+- `QMimeData * QListWidget::mimeData(const QList<QListWidgetItem *> items) const [virtual protected]`: Returns an object that contains a serialized description of the specified `items`. The format used to describe the items is obtained from the `mimeTypes()` function. If the list of `items` is empty, `0` is returned instead of a serialized empty list.
+- `QStringList QListWidget::mimeTypes() const [virtual protected]`: Returns a list of `MIME` types that can be used to describe a list of listwidget items.
 - `void QListWidget::openPersistentEditor(QListWidgetItem * item)`: Opens an editor for the given `item`. The editor remains open after editing.
 - `void QListWidget::removeItemWidget(QListWidgetItem * item)`: Removes the widget set on the given `item`.
 - `int QListWidget::row(const QListWidgetItem * item) const`: Returns the row containing the given `item`.
-- `void QListWidget::scrollToItem(const QListWidgetItem * item, QAbstractItemView::ScrollHint hint = EnsureVisible) [slot]`: Scrolls the view if necessary to ensure that the `item` is visible. `hint` specifies where the item should be located after the operation.
+- `void QListWidget::scrollToItem(const QListWidgetItem * item, QAbstractItemView::ScrollHint hint = EnsureVisible) [slot]`: Scrolls the view if necessary to ensure that the `item` is visible. `hint` specifies where the item should be located after the operation.
 - `QList<QListWidgetItem *> QListWidget::selectedItems() const`: Returns a list of all selected items in the list widget.
 - `void QListWidget::setCurrentItem(QListWidgetItem * item)`: Sets the current item to `item`. Unless the selection mode is `NoSelection`, the `item` is also be selected.
 - `void QListWidget::setCurrentItem(QListWidgetItem * item, QItemSelectionModel::SelectionFlags command)`: Set the current item to `item`, using the given `command`.

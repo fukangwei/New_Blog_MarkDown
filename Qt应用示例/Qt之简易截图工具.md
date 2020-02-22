@@ -1,7 +1,6 @@
 ---
 title: Qt之简易截图工具
 categories: Qt应用示例
-abbrlink: b4e8099a
 date: 2018-12-28 16:08:14
 ---
 &emsp;&emsp;`widget.h`如下：<!--more-->
@@ -9,15 +8,15 @@ date: 2018-12-28 16:08:14
 ``` cpp
 #ifndef WIDGET_H
 #define WIDGET_H
-​
+
 #include <QWidget>
 #include "QPixmap.h"
 #include "QTimer.h"
-​
+
 namespace Ui {
     class Widget;
 }
-​
+
 class Widget : public QWidget {
     Q_OBJECT
 public:
@@ -31,7 +30,7 @@ private:
     QPixmap pixmap;
     QTimer *timer;
 };
-​
+
 #endif // WIDGET_H
 ```
 
@@ -45,18 +44,18 @@ private:
 #include "QFileDialog.h"
 #include "QDesktopServices.h"
 #include "QClipboard.h"
-​
+
 Widget::Widget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::Widget ) {
     ui->setupUi ( this );
     timer = new QTimer();
     timer->setInterval ( 1000 ); /* 设置超时时间为1秒 */
     connect ( timer, SIGNAL ( timeout() ), this, SLOT ( changeValue() ) );
 }
-​
+
 Widget::~Widget() {
     delete ui;
 }
-​
+
 void Widget::on_cut_screen_clicked() {
     timer->start();
     this->hide(); /* 将当前窗口进行隐藏 */
@@ -69,7 +68,7 @@ void Widget::on_cut_screen_clicked() {
     QClipboard *clipboard = QApplication::clipboard();
     clipboard->setPixmap ( pixmap );
 }
-​
+
 void Widget::changeValue() {
     this->show(); /* 显示主窗口 */
     timer->stop();

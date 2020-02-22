@@ -1,7 +1,6 @@
 ---
 title: Qt之QSpinBox和QDoubleSpinBox
 categories: Qt语法详解
-abbrlink: e42f7f35
 date: 2019-03-16 17:08:43
 ---
 ### 简述
@@ -26,7 +25,7 @@ date: 2019-03-16 17:08:43
 
 ``` cpp
 #include <QSpinBox>
-​
+
 class MainWindow : public CustomWindow {
     Q_OBJECT
 public:
@@ -45,7 +44,7 @@ public:
         } );
         connect ( pSpinBox, static_cast<void ( QSpinBox::* ) ( const QString & ) > \
             ( &QSpinBox::valueChanged ), [ = ] ( const QString & text ) {
-            qDebug() << "Text Value : "  << text;
+            qDebug() << "Text Value : " << text;
             qDebug() << "Clean Text : " << pSpinBox->cleanText();
         } );
     }
@@ -86,7 +85,7 @@ zoomSpinBox->setValue ( 100 ); /* 当前值 */
 
 ``` cpp
 #include <QSpinBox>
-​
+
 class IconSizeSpinBox : public QSpinBox {
     Q_OBJECT
 public:
@@ -95,14 +94,14 @@ protected:
     /* 将输入的文本解读为适当的值 */
     virtual int valueFromText ( const QString &text ) const Q_DECL_OVERRIDE {
         QRegExp regExp ( tr ( "(\\d+)(\\s*[xx]\\s*\\d+)?" ) );
-​
+
         if ( regExp.exactMatch ( text ) ) {
             return regExp.cap ( 1 ).toInt();
         } else {
             return 0;
         }
     }
-​
+
     /* 根据输入的值返回文本 */
     virtual QString textFromValue ( int value ) const Q_DECL_OVERRIDE {
         return tr ( "%1 x %1" ).arg ( value );

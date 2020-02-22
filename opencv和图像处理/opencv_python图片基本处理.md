@@ -1,7 +1,6 @@
 ---
 title: opencv_python图片基本处理
 categories: opencv和图像处理
-abbrlink: f03ec7df
 date: 2019-01-18 13:22:19
 ---
 ### 图像的载入、显示和保存
@@ -72,13 +71,13 @@ emptyImage2 = img.copy()
 ``` python
 import cv2
 import numpy as np
-​
+
 img = cv2.imread("timg1.jpg")
 emptyImage = np.zeros(img.shape, np.uint8)
-​
+
 emptyImage2 = img.copy()
 emptyImage3 = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-​
+
 cv2.imshow("EmptyImage", emptyImage)
 cv2.imshow("Image", img)
 cv2.imshow("EmptyImage2", emptyImage2)
@@ -97,7 +96,7 @@ cv2.destroyAllWindows()
 
 ``` python
 import cv2
-​
+
 img = cv2.imread('mario.jpg', cv2.IMREAD_GRAYSCALE)
 cv2.imshow('image', img)
 img[:, :] = 255 - img[:, :]
@@ -131,7 +130,7 @@ img[i, j, 2] = 255
 ``` python
 import cv2
 import numpy as np
-​
+
 def salt(img, n):
     for k in range(n):
         i = int(np.random.random() * img.shape[0])
@@ -145,7 +144,7 @@ def salt(img, n):
             img[i, j, 2] = 255
             # 另一种方式“img[i, j] = [255, 255, 255]”
     return img
-​
+
 if __name__ == '__main__':
     img = cv2.imread("girl.jpg")
     saltImage = salt(img, 500)
@@ -162,7 +161,7 @@ if __name__ == '__main__':
 
 ``` python
 import cv2
-​
+
 img = cv2.imread("timg1.jpg")
 b, g, r = cv2.split(img)
 cv2.imshow("Blue", b)
@@ -187,17 +186,17 @@ r = cv2.split(img)[2]
 ``` python
 import cv2
 import numpy as np
-​
+
 img = cv2.imread("timg1.jpg")
-​
+
 b = np.zeros((img.shape[0], img.shape[1]), dtype=img.dtype)
 g = np.zeros((img.shape[0], img.shape[1]), dtype=img.dtype)
 r = np.zeros((img.shape[0], img.shape[1]), dtype=img.dtype)
-​
+
 b[:, :] = img[:, :, 0]
 g[:, :] = img[:, :, 1]
 r[:, :] = img[:, :, 2]
-​
+
 cv2.imshow("Blue", r)
 cv2.imshow("Red", g)
 cv2.imshow("Green", b)
@@ -208,7 +207,7 @@ cv2.destroyAllWindows()
 &emsp;&emsp;通道合并也有两种方法，第一种是`OpenCV`自带的`merge`函数：
 
 ``` python
-merged = cv2.merge([b, g, r])  # b、g、r是前面分离出来的三个通道
+merged = cv2.merge([b, g, r])  # b、g、r是前面分离出来的三个通道
 ```
 
 也可以使用`NumPy`的方法：
@@ -223,7 +222,7 @@ mergedByNp = np.dstack([b, g, r])
 merged = cv2.merge([b, g, r])
 print("Merge by OpenCV")
 print(merged.strides)
-​
+
 mergedByNp = np.dstack([b, g, r])
 print("Merge by NumPy ")
 print(mergedByNp.strides)
@@ -243,27 +242,27 @@ Merge by NumPy
 ``` python
 import cv2
 import numpy as np
-​
+
 img = cv2.imread("timg1.jpg")
-​
+
 b = np.zeros((img.shape[0], img.shape[1]), dtype=img.dtype)
 g = np.zeros((img.shape[0], img.shape[1]), dtype=img.dtype)
 r = np.zeros((img.shape[0], img.shape[1]), dtype=img.dtype)
-​
+
 b[:, :] = img[:, :, 0]
 g[:, :] = img[:, :, 1]
 r[:, :] = img[:, :, 2]
-​
+
 merged = cv2.merge([b, g, r])
 print("Merge by OpenCV")
 print(merged.strides)
 print(merged)
-​
+
 mergedByNp = np.dstack([b, g, r])
 print("Merge by NumPy")
 print(mergedByNp.strides)
 print(mergedByNp)
-​
+
 cv2.imshow("Merged", merged)
 cv2.imshow("MergedByNp", merged)
 cv2.imshow("Blue", b)

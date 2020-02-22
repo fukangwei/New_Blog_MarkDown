@@ -1,7 +1,6 @@
 ---
 title: STM32移植uip
 categories: Contiki和uip
-abbrlink: 84becb
 date: 2019-02-05 12:31:16
 ---
 &emsp;&emsp;`uIP`由瑞典计算机科学学院的`Adam Dunkels`(`http://dunkels.com/adam/uip/`)开发，其源代码由`C`语言编写，并完全公开。有了这个`TCP/IP`协议栈，让嵌入式可以实现的功能更为丰富。可以作为`WebClient`向指定网站提交数据，也可以作为`WebServer`作为网页服务器，提供一个小型的动态页面访问功能。由于是开源的免费协议栈，据说`Uip`没有考虑协议安全的问题。<!--more-->
@@ -36,15 +35,15 @@ date: 2019-02-05 12:31:16
 ``` cpp
 #include "uip.h"
 #include "ENC28J60.h"
-​
+
 void tapdev_init ( unsigned char *my_mac ) {
     enc28j60Init ( my_mac );
 }
-​
+
 unsigned int tapdev_read ( void ) {
     return enc28j60PacketReceive ( UIP_CONF_BUFFER_SIZE, uip_buf );
 }
-​
+
 void tapdev_send ( void ) {
     enc28j60PacketSend ( uip_len, uip_buf );
 }
@@ -61,9 +60,9 @@ void tapdev_send ( void ) {
 ``` cpp
 #include "clock-arch.h"
 #include "stm32f10x.h"
-​
+
 extern __IO int32_t g_RunTime;
-​
+
 clock_time_t clock_time ( void ) {
     return g_RunTime;
 }
@@ -73,14 +72,14 @@ clock_time_t clock_time ( void ) {
 
 ``` cpp
 __IO int32_t g_RunTime = 0;
-​
+
 void SysTick_Handler ( void ) {
     static uint8_t s_count = 0;
-​
+
     if ( ++s_count >= 10 ) {
         s_count = 0;
         g_RunTime++; /* 全局运行时间每10ms增1 */
-​
+
         if ( g_RunTime == 0x80000000 ) {
             g_RunTime = 0;
         }
@@ -116,10 +115,10 @@ void SysTick_Handler ( void ) {
 
 ``` cpp
 #define UIP_CONF_LOGGING 0 /* logging off */
-​
+
 typedef int uip_tcp_appstate_t; /* 出错可注释 */
 typedef int uip_udp_appstate_t; /* 出错可注释 */
-​
+
 /* #include "smtp.h" */
 /* #include "hello-world.h" */
 /* #include "telnetd.h" */
@@ -127,7 +126,7 @@ typedef int uip_udp_appstate_t; /* 出错可注释 */
 /* #include "dhcpc.h" */
 /* #include "resolv.h" */
 /* #include "webclient.h" */
-​
+
 #include "app_call.h" /* 加入一个Uip的数据接口文件 */
 ```
 
@@ -135,22 +134,22 @@ typedef int uip_udp_appstate_t; /* 出错可注释 */
 
 ``` cpp
 #include "stm32f10x.h"
-​
+
 #ifndef UIP_APPCALL
     #define UIP_APPCALL Uip_Appcall
 #endif
-​
+
 #ifndef UIP_UDP_APPCALL
     #define UIP_UDP_APPCALL Udp_Appcall
 #endif
-​
+
 void Uip_Appcall ( void );
 void Udp_Appcall ( void );
-​
+
 void Uip_Appcall ( void ) {
     /* User Code */
 }
-​
+
 void Udp_Appcall ( void ) {
     /* User Code */
 }
@@ -168,20 +167,20 @@ void Udp_Appcall ( void ) {
 #include "timer.h"
 #include "ENC28J60.h"
 #include "SPI.h"
-​
+
 #define PRINTF_ON 1
 #define BUF ((struct uip_eth_hdr *)&uip_buf[0])
-​
+
 #ifndef NULL
     #define NULL (void *)0
 #endif /* NULL */
-​
+
 static unsigned char mymac[6] = {0x04, 0x02, 0x35, 0x00, 0x00, 0x01};
-​
+
 void RCC_Configuration ( void );
 void GPIO_Configuration ( void );
 void USART_Configuration ( void );
-​
+
 int main ( void ) {
     int i;
     uip_ipaddr_t ipaddr;
@@ -201,20 +200,20 @@ int main ( void ) {
     uip_setdraddr ( ipaddr );
     uip_ipaddr ( ipaddr, 255, 255, 255, 0 ); /* 配置子网掩码 */
     uip_setnetmask ( ipaddr );
-​
+
     while ( 1 ) {
         uip_len = tapdev_read(); /* 从网卡读取数据 */
-​
+
         if ( uip_len > 0 ) {
             /* 如果数据存在则按协议处理 */
             if ( BUF->type == htons ( UIP_ETHTYPE_IP ) ) {
                 /* 如果收到的是IP数据，调用uip_input处理 */
                 uip_arp_ipin();
                 uip_input();
-​
+
                 /* If the above function invocation resulted in data that should be sent
                    out on the network, the global variable uip_len is set to a value > 0 */
-​
+
                 if ( uip_len > 0 ) {
                     uip_arp_out();
                     tapdev_send();
@@ -222,10 +221,10 @@ int main ( void ) {
             } else if ( BUF->type == htons ( UIP_ETHTYPE_ARP ) ) {
                 /* 如果收到的是ARP数据，调用uip_arp_arpin处理 */
                 uip_arp_arpin();
-​
+
                 /* If the above function invocation resulted in data that should be sent
-                   out on the network, the global variable uip_len is set to a value > 0 */
-​
+                   out on the network, the global variable uip_len is set to a value > 0 */
+
                 if ( uip_len > 0 ) {
                     tapdev_send();
                 }
@@ -233,30 +232,30 @@ int main ( void ) {
         } else if ( timer_expired ( &periodic_timer ) ) {
             /* 查看0.5s是否到了，调用uip_periodic处理TCP超时程序 */
             timer_reset ( &periodic_timer );
-​
+
             for ( i = 0; i < UIP_CONNS; i++ ) {
                 uip_periodic ( i );
-​
+
                 /* If the above function invocation resulted in data that should be sent
-                   out on the network, the global variable uip_len is set to a value > 0 */
-​
+                   out on the network, the global variable uip_len is set to a value > 0 */
+
                 if ( uip_len > 0 ) {
                     uip_arp_out();
                     tapdev_send();
                 }
             }
-​
+
             for ( i = 0; i < UIP_UDP_CONNS; i++ ) {
                 uip_udp_periodic ( i ); /* 处理udp超时程序 */
-​
+
                 /* If the above function invocation resulted in data that should be sent
-                   out on the network, the global variable uip_len is set to a value > 0 */
+                   out on the network, the global variable uip_len is set to a value > 0 */
                 if ( uip_len > 0 ) {
                     uip_arp_out();
                     tapdev_send();
                 }
             }
-​
+
             /* Call the ARP timer function every 10 seconds -- 10s到了就处理ARP */
             if ( timer_expired ( &arp_timer ) ) {
                 timer_reset ( &arp_timer );
@@ -265,7 +264,7 @@ int main ( void ) {
         }
     }
 }
-​
+
 void GPIO_Configuration ( void ) {
     GPIO_InitTypeDef GPIO_InitStructure;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
@@ -276,13 +275,13 @@ void GPIO_Configuration ( void ) {
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
     GPIO_Init ( GPIOA , &GPIO_InitStructure );
 }
-​
+
 void RCC_Configuration ( void ) {
     ErrorStatus HSEStartUpStatus; /* 定义枚举类型变量HSEStartUpStatus */
     RCC_DeInit(); /* 复位系统时钟设置 */
     RCC_HSEConfig ( RCC_HSE_ON ); /* 开启HSE */
     HSEStartUpStatus = RCC_WaitForHSEStartUp(); /* 等待HSE起振并稳定 */
-​
+
     if ( HSEStartUpStatus == SUCCESS ) { /* 判断HSE起是否振成功，是则进入if内部 */
         RCC_HCLKConfig ( RCC_SYSCLK_Div1 ); /* 选择HCLK(AHB)时钟源为SYSCLK，分频系数1分频 */
         RCC_PCLK2Config ( RCC_HCLK_Div1 ); /* 选择PCLK2时钟源为HCLK(AHB)，分频系数1分频 */
@@ -292,18 +291,18 @@ void RCC_Configuration ( void ) {
         /* 选择锁相环(PLL)时钟源为HSE，分频系数1分频，倍频数为9，则PLL输出频率为“8MHz * 9 = 72MHz” */
         RCC_PLLConfig ( RCC_PLLSource_HSE_Div1, RCC_PLLMul_9 );
         RCC_PLLCmd ( ENABLE ); /* 使能PLL */
-​
+
         while ( RCC_GetFlagStatus ( RCC_FLAG_PLLRDY ) == RESET ); /* 等待PLL输出稳定 */
-​
+
         RCC_SYSCLKConfig ( RCC_SYSCLKSource_PLLCLK ); /* 选择SYSCLK时钟源为PLL */
-​
+
         while ( RCC_GetSYSCLKSource() != 0x08 ); /* 等待PLL成为SYSCLK时钟源 */
     }
-​
+
     /* 打开APB2总线上的GPIOA时钟 */
     RCC_APB2PeriphClockCmd ( RCC_APB2Periph_GPIOA | RCC_APB2Periph_USART1, ENABLE );
 }
-​
+
 void USART_Configuration ( void ) {
     USART_InitTypeDef USART_InitStructure;
     USART_ClockInitTypeDef USART_ClockInitStructure;
@@ -321,17 +320,15 @@ void USART_Configuration ( void ) {
     USART_Init ( USART1, &USART_InitStructure );
     USART_Cmd ( USART1, ENABLE );
 }
-​
-#if  PRINTF_ON
-​
+
+#if PRINTF_ON
 int fputc ( int ch, FILE *f ) {
     USART_SendData ( USART1, ( u8 ) ch );
-​
+
     while ( USART_GetFlagStatus ( USART1, USART_FLAG_TC ) == RESET );
-​
+
     return ch;
 }
-​
 #endif
 ```
 

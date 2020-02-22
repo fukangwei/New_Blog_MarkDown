@@ -1,7 +1,6 @@
 ---
 title: Python属性集合
 categories: Python语法
-abbrlink: '3565e905'
 date: 2019-02-06 12:35:53
 ---
 ### \_\_file\_\_属性
@@ -29,7 +28,7 @@ In [2]: print os.path.dirname(__file__)
 NameError    Traceback (most recent call last)
 <ipython-input-3-b4616cfaa58d> in <module>()
 ----> 1 print os.path.dirname(__file__)
-​
+
 NameError: name '__file__' is not defined
 ```
 
@@ -40,19 +39,19 @@ NameError: name '__file__' is not defined
 
 ``` python
 __all__ = ['bar', 'baz']
-​
+
 waz = 5
 bar = 10
-​
+
 def baz():
-    return 'baz'
+    return 'baz'
 ```
 
 测试代码如下：
 
 ``` python
 from foo import *
-​
+
 print(bar)
 print(baz())
 print(waz)  # 该代码会抛出异常，因为“waz”并没有从模块中导出
@@ -69,7 +68,7 @@ class Point(object):
     def __init__(self, x=0, y=0):
         self.x = x
         self.y = y
-​
+
 p = Point(3, 4)
 p.z = 5  # 绑定了一个新的属性
 print(p.z)  # 输出“5”
@@ -82,11 +81,11 @@ print(p.__dict__)  # 输出“{'x': 3, 'y': 4, 'z': 5}”
 ``` python
 class Point(object):
     __slots__ = ('x', 'y')  # 只允许使用x和y
-​
+
     def __init__(self, x=0, y=0):
         self.x = x
         self.y = y
-​
+
 p = Point(3, 4)
 p.z = 5  # 绑定了一个新的属性
 ```

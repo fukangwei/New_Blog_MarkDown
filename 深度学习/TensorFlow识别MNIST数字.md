@@ -190,7 +190,7 @@ import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 
 mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
-​
+
 def compute_accuracy(v_xs, v_ys):
     global prediction  # 定义全局变量
     y_pre = sess.run(prediction, feed_dict={xs: v_xs, keep_prob: 1})  
@@ -198,25 +198,25 @@ def compute_accuracy(v_xs, v_ys):
     accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))  
     result = sess.run(accuracy, feed_dict={xs: v_xs, ys: v_ys, keep_prob: 1})  
     return result
-​
+
 def weight_variable(shape):
     initial = tf.truncated_normal(shape, stddev=0.1)  
     return tf.Variable(initial, dtype=tf.float32, name='weight')
-​
+
 def bias_variable(shape):
     initial = tf.constant(0.1, shape=shape)
     return tf.Variable(initial, dtype=tf.float32, name='biases')
-​
+
 def conv2d(x, W):
     return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding='SAME')
-​
+
 def max_pool_2x2(x):
     return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
-​
+
 xs = tf.placeholder(tf.float32, [None, 784])
 ys = tf.placeholder(tf.float32, [None, 10])
 keep_prob = tf.placeholder(tf.float32)
-​
+
 x_image = tf.reshape(xs, [-1, 28, 28, 1])
 # 卷积层1
 W_conv1 = weight_variable([3, 3, 1, 32])
@@ -238,12 +238,12 @@ h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)
 W_fc2 = weight_variable([1024, 10])
 b_fc2 = bias_variable([10])
 prediction = tf.nn.softmax(tf.matmul(h_fc1_drop, W_fc2) + b_fc2)  # 输出层
-​
+
 cross_entropy = tf.reduce_mean(-tf.reduce_sum(ys * tf.log(prediction), reduction_indices=[1]))  
 train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
-​
+
 saver = tf.train.Saver()
-​
+
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
 
@@ -272,7 +272,7 @@ def normalizepic(pic):
         im_nparr.append(x)
 
     im_nparr = np.array([im_nparr])
-    return im_nparr​
+    return im_nparr
 
 img = cv2.imread("7.jpg")
 cv2.imshow("img", img)
@@ -302,17 +302,17 @@ import numpy as np
 def weight_variable(shape):
     initial = tf.truncated_normal(shape, stddev=0.1)
     return tf.Variable(initial, dtype=tf.float32, name='weight')
-​
+
 def bias_variable(shape):
     initial = tf.constant(0.1, shape=shape)
     return tf.Variable(initial, dtype=tf.float32, name='biases')
-​
+
 def conv2d(x, W):
     return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding='SAME')
-​
+
 def max_pool_2x2(x):
     return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
-​
+
 xs = tf.placeholder(tf.float32, [None, 784])
 keep_prob = tf.placeholder(tf.float32)
 x_image = tf.reshape(xs, [-1, 28, 28, 1])

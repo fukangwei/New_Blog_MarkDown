@@ -1,7 +1,6 @@
 ---
 title: vsnprintf和vprintf函数
 categories: C语言语法详解
-abbrlink: e80182e6
 date: 2018-12-14 16:35:26
 ---
 ### vsnprintf函数
@@ -24,7 +23,7 @@ int _vsnprintf ( char* str, size_t size, const char* format, va_list ap );
 ``` cpp
 #include <stdio.h>
 #include <stdarg.h>
-​
+
 int mon_log ( char* format, ... ) {
     char str_tmp[50];
     int i = 0;

@@ -1,7 +1,6 @@
 ---
 title: Perl文件操作
 categories: Perl
-abbrlink: b8923fa0
 date: 2018-12-18 18:24:44
 ---
 &emsp;&emsp;`Perl`使用一种叫做文件句柄类型的变量来操作文件，从文件读取或者写入数据需要使用文件句柄。文件句柄`file handle`是一个`I/O`连接的名称，`Perl`提供了三种文件句柄，即`STDIN`、`STDOUT`和`STDERR`，分别代表标准输入、标准输出和标准出错输出。<!--more-->
@@ -31,7 +30,7 @@ open(DATA, "<file.txt");  # “<”表示只读方式
 
 ``` perl
 open( DATA, "<file.txt" ) or die "file.txt文件无法打开，$!";
-​
+
 while (<DATA>) {
     print "$_";
 }
@@ -205,11 +204,11 @@ print "Hello World!\n";
 ``` perl
 open( DATA1, "<file1.txt" );
 open( DATA2, ">file2.txt" );
-​
+
 while (<DATA1>) {  # 拷贝数据
     print DATA2 $_;
 }
-​
+
 close(DATA1);
 close(DATA2);
 ```
@@ -272,7 +271,7 @@ www.runoob.com
 ``` perl
 my $file = "./file1.txt";
 my ( @description, $size );
-​
+
 if ( -e $file ) {
     push @description, '是一个二进制文件' if ( -B _ );
     push @description, '是一个socket(套接字)' if ( -S _ );

@@ -1,7 +1,6 @@
 ---
 title: GridLayout网格布局
 categories: Android
-abbrlink: 68a4e6e2
 date: 2019-04-12 13:57:39
 ---
 &emsp;&emsp;`GridLayout`可以自己设置布局中组件的排列方式；可以自定义网格布局有多少行、多少列；可以直接设置组件位于某行某列；可以设置组件横跨几行或者几列。相关属性总结图如下：<!--more-->
@@ -19,7 +18,7 @@ date: 2019-04-12 13:57:39
     android:columnCount="4"
     android:orientation="horizontal"
     android:rowCount="6" >
-​
+
     <TextView
         android:layout_columnSpan="4"
         android:layout_gravity="fill"
@@ -28,17 +27,17 @@ date: 2019-04-12 13:57:39
         android:background="#FFCCCC"
         android:text="0"
         android:textSize="50sp" />
-​
+
     <Button
         android:layout_columnSpan="2"
         android:layout_gravity="fill"
         android:text="回退" />
-​
+
     <Button
         android:layout_columnSpan="2"
         android:layout_gravity="fill"
         android:text="清空" />
-​
+
     <Button android:text="+" />
     <Button android:text="1" />
     <Button android:text="2" />
@@ -52,14 +51,14 @@ date: 2019-04-12 13:57:39
     <Button android:text="8" />
     <Button android:text="9" />
     <Button android:text="/" />
-​
+
     <Button
         android:layout_width="wrap_content"
         android:text="." />
-​
+
     <Button android:text="0" />
     <Button android:text="=" />
-​
+
 </GridLayout>
 ```
 

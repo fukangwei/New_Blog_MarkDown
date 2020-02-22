@@ -1,7 +1,6 @@
 ---
 title: ucgui仪表盘
 categories: ucos和ucgui
-abbrlink: 2dd4064
 date: 2018-12-29 09:43:31
 ---
 &emsp;&emsp;代码如下：<!--more-->
@@ -12,13 +11,13 @@ date: 2018-12-29 09:43:31
 #include "stdlib.h"
 #include <math.h>
 #include <stddef.h>
-​
+
 #define DEG2RAD (3.1415926f/180) /* 绘制弧度的转化 */
-​
+
 void _DrawScale ( void ) {
     int XSize = LCD_GetXSize(); /* 取得LCD物理尺寸，这个参数是在“lcdconf.h”里面定义 */
     int YSize = LCD_GetYSize();
-    int XMide =  XSize / 2;
+    int XMide = XSize / 2;
     int i = 0;
     int r1 = 110; /* 定义效果图中下面的一条弧的半径 */
     int r2 = 140; /* 定义效果图中上面的一条弧半径 */
@@ -35,7 +34,7 @@ void _DrawScale ( void ) {
     GUI_SetPenSize ( 5 ); /* 设置线性宽度为2，绘制上下两条圆弧 */
     GUI_AA_DrawArc ( XMide, YSize, r1, r1, 45, 135 ); /* 绘制下圆弧 */
     GUI_AA_DrawArc ( XMide, YSize, r2, r2, 45, 135 ); /* 绘制上圆弧 */
-​
+
     for ( i = 45; i <= 135; i += step ) {
         float co = cos ( i * DEG2RAD );
         float si = sin ( i * DEG2RAD );
@@ -50,13 +49,13 @@ void _DrawScale ( void ) {
         GUI_AA_DrawLine ( x1, y1, x2, y2 );
         GUI_SetColor ( GUI_GREEN );
         GUI_SetFont ( &GUI_Font8x8 );
-​
+
         if ( c <= 1 ) {
             GUI_DispCharAt ( '0' + c * 7, xt - 4, yt - 4 );
         } else {
             GUI_DispDecAt ( c * 7, xt - 4, yt - 4, 2 );
         }
-​
+
         c++;
     }
 }
@@ -64,7 +63,7 @@ void _DrawScale ( void ) {
 void MainTask ( void ) {
     GUI_Init();
     _DrawScale();
-​
+
     while ( 1 );
 }
 ```

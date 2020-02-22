@@ -1,7 +1,6 @@
 ---
 title: getTickCount和getTickFrequency函数
 categories: opencv和图像处理
-abbrlink: e768059c
 date: 2018-12-30 14:24:20
 ---
 &emsp;&emsp;`GetTickcount`函数返回从操作系统启动到当前所经的计时周期数，`getTickFrequency`函数返回每秒的计时周期数。<!--more-->
@@ -18,19 +17,19 @@ t = ( ( double ) getTickCount() - t ) / getTickFrequency();
 ``` cpp
 #include <iostream>
 #include <cv.h>
-​
+
 using namespace std;
 using namespace cv;
-​
+
 int main() {
     double t1 = ( double ) getTickCount();
     cout << "t1 = " << t1 << endl;
     int sum = 0;
-​
+
     for ( int i = 0; i < 10000; i++ ) {
         sum += i;
     }
-​
+
     double t2 = ( double ) getTickCount();
     cout << "t2 = " << t2 << endl;
     double time = ( t2 - t1 ) / getTickFrequency();
@@ -38,11 +37,11 @@ int main() {
     int64 e1 = getTickCount();
     cout << "e1 = " << e1 << endl;
     int sum1 = 0;
-​
+
     for ( int i = 0; i < 10000; i++ ) {
         sum1 += i;
     }
-​
+
     int64 e2 = getTickCount();
     cout << "e2 = " << e2 << endl;
     double time1 = ( e2 - e1 ) / getTickFrequency();
@@ -71,13 +70,13 @@ time1 = 7.0218e-05
 
 ``` python
 import cv2
-​
+
 img1 = cv2.imread('timg1.jpg')
 e1 = cv2.getTickCount()
-​
+
 for i in range(5, 49, 2):
     img1 = cv2.medianBlur(img1, i)
-​
+
 e2 = cv2.getTickCount()
 t = (e2 - e1) / cv2.getTickFrequency()
 print(t)

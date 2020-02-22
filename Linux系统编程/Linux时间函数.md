@@ -1,7 +1,6 @@
 ---
 title: Linux时间函数
 categories: Linux系统编程
-abbrlink: b7141969
 date: 2019-02-03 00:24:17
 ---
 ### Linux常用时间类型
@@ -13,9 +12,9 @@ date: 2019-02-03 00:24:17
 ``` cpp
 #ifndef __TIME_T
 #define __TIME_T
-​
+
 typedef long time_t;
-​
+
 #endif
 ```
 
@@ -41,7 +40,7 @@ struct tm {
     /* 夏令时标识符，使用夏令时，tm_isdst为正；不使用夏令时，tm_isdst为0；不了解情况时，tm_isdst为负 */
     int tm_isdst;
 };
-​
+
 #endif
 ```
 
@@ -241,7 +240,7 @@ struct timezone {
 ``` cpp
 struct timeval tv;
 struct timeval tz;
-​
+
 gettimeofday ( &tv, &tz );
 ```
 
@@ -290,12 +289,12 @@ int main ( void ) {
     time_tv.tv_sec = timep;
     time_tv.tv_usec = 0;
     ret = settimeofday ( &time_tv, NULL );
-​
+
     if ( ret != 0 ) {
         fprintf ( stderr, "settimeofday failed\n" );
         return -1;
     }
-​
+
     return 0;
 }
 ```
@@ -344,7 +343,7 @@ size_t strftime (
 ``` cpp
 #include <stdio.h>
 #include <time.h>
-​
+
 int main ( void ) {
     time_t rawtime;
     struct tm *info;
@@ -372,16 +371,16 @@ int main ( void ) {
 ``` cpp
 #include <time.h>
 #include <stdio.h>
-​
+
 int main ( void ) {
-    struct tm *local;
-    time_t t;
-    t = time ( NULL ); /* 获取日历时间 */
-    local = localtime ( &t ); /* 将日历时间转化为本地时间 */
-    printf ( "Local hour is: %d\n", local->tm_hour ); /* 打印当前的小时值 */
-    local = gmtime ( &t ); /* 将日历时间转化为格林威治时间 */
-    printf ( "UTC hour is: %d\n", local->tm_hour );
-    return 0;
+    struct tm *local;
+    time_t t;
+    t = time ( NULL ); /* 获取日历时间 */
+    local = localtime ( &t ); /* 将日历时间转化为本地时间 */
+    printf ( "Local hour is: %d\n", local->tm_hour ); /* 打印当前的小时值 */
+    local = gmtime ( &t ); /* 将日历时间转化为格林威治时间 */
+    printf ( "UTC hour is: %d\n", local->tm_hour );
+    return 0;
 }
 ```
 
@@ -390,15 +389,15 @@ int main ( void ) {
 ``` cpp
 #include <time.h>
 #include <stdio.h>
-​
+
 int main ( void ) {
-    struct tm *ptr;
-    time_t lt;
-    lt = time ( NULL ); /* 获取日历时间 */
-    ptr = gmtime ( &lt ); /* 转化为格林威治时间 */
-    printf ( asctime ( ptr ) ); /* 以格林威治时间的字符串方式打印 */
-    printf ( ctime ( &lt ) ); /* 以本地时间的字符串方式打印 */
-    return 0;
+    struct tm *ptr;
+    time_t lt;
+    lt = time ( NULL ); /* 获取日历时间 */
+    ptr = gmtime ( &lt ); /* 转化为格林威治时间 */
+    printf ( asctime ( ptr ) ); /* 以格林威治时间的字符串方式打印 */
+    printf ( ctime ( &lt ) ); /* 以本地时间的字符串方式打印 */
+    return 0;
 }
 ```
 
@@ -409,17 +408,17 @@ int main ( void ) {
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-​
+
 void function() {
     unsigned int i, j;
     double y;
-​
+
     for ( i = 0; i < 1000; i++ )
         for ( j = 0; j < 1000; j++ ) {
             y++;
         }
 }
-​
+
 int main() {
     struct timeval tpstart, tpend;
     float timeuse;

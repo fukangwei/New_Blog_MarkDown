@@ -1,6 +1,5 @@
 ---
 title: inet_pton和inet_ntop
-abbrlink: 997a84b0
 date: 2019-01-17 09:12:00
 categories: 网络编程
 ---
@@ -40,7 +39,7 @@ const char *inet_ntop ( int af, const void *src, char *dst, socklen_t cnt );
 #include <unistd.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-​
+
 int main ( void ) {
     char IPdotdec[20]; /* 存放点分十进制IP地址 */
     struct in_addr s; /* IPv4地址结构体 */

@@ -1,7 +1,6 @@
 ---
 title: LinearLayout线性布局
 categories: Android
-abbrlink: 91cc57b2
 date: 2019-04-12 14:08:13
 ---
 &emsp;&emsp;`LinearLayout`如下：<!--more-->
@@ -16,7 +15,7 @@ date: 2019-04-12 14:08:13
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">  
+    android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -30,7 +29,7 @@ date: 2019-04-12 14:08:13
         android:background="#DA70D6"
         android:layout_weight="2"/>
 
-</LinearLayout>  
+</LinearLayout>
 ```
 
 <img src="./LinearLayout线性布局/2.png" height="295" width="211">
@@ -48,10 +47,10 @@ date: 2019-04-12 14:08:13
 - 直接在布局中添加一个`view`，这个`view`的作用仅仅是显示出一条线：
 
 ``` xml
-<View  
-    android:layout_width="match_parent"  
-    android:layout_height="1px"  
-    android:background="#000000" />  
+<View
+    android:layout_width="match_parent"
+    android:layout_height="1px"
+    android:background="#000000" />
 ```
 
 这个是水平方向上的黑线，当然你也可以改成其他颜色或者使用图片。
@@ -71,22 +70,22 @@ date: 2019-04-12 14:08:13
     android:dividerPadding="10dp"
     android:orientation="vertical"
     android:showDividers="middle">
-​
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="按钮1" />
-​
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="按钮2" />
-​
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="按钮3" />
-​
+
 </LinearLayout>
 ```
 

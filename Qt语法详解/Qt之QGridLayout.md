@@ -1,7 +1,6 @@
 ---
 title: Qt之QGridLayout
 categories: Qt语法详解
-abbrlink: 671a2fe
 date: 2019-02-19 17:52:20
 ---
 ### 简述
@@ -37,16 +36,16 @@ QCheckBox *pAutoLoginCheckBox = new QCheckBox ( this );
 QPushButton *pLoginButton = new QPushButton ( this );
 QPushButton *pRegisterButton = new QPushButton ( this );
 QPushButton *pForgotButton = new QPushButton ( this );
-​
+
 pLoginButton->setFixedHeight ( 30 );
 pUserLineEdit->setFixedWidth ( 200 );
-​
+
 /* 设置头像 */
 QPixmap pixmap ( ":/Images/logo" );
 pImageLabel->setFixedSize ( 90, 90 );
 pImageLabel->setPixmap ( pixmap );
 pImageLabel->setScaledContents ( true );
-​
+
 /* 设置文本 */
 pUserLineEdit->setPlaceholderText ( QStringLiteral ( "QQ号码/手机/邮箱" ) );
 pPasswordLineEdit->setPlaceholderText ( QStringLiteral ( "密码" ) );
@@ -56,7 +55,7 @@ pAutoLoginCheckBox->setText ( QStringLiteral ( "自动登录" ) );
 pLoginButton->setText ( QStringLiteral ( "登录" ) );
 pRegisterButton->setText ( QStringLiteral ( "注册账号" ) );
 pForgotButton->setText ( QStringLiteral ( "找回密码" ) );
-​
+
 QGridLayout *pLayout = new QGridLayout();
 /* 头像从第0行第0列开始，占3行1列 */
 pLayout->addWidget ( pImageLabel, 0, 0, 3, 1 );

@@ -1,7 +1,6 @@
 ---
 title: 线性判别分析LDA
 categories: 机器学习
-abbrlink: ec0dbc38
 date: 2019-02-24 16:48:43
 ---
 &emsp;&emsp;线性判别分析(`Linear Discriminant Analysis`，`LDA`)是一种经典的降维方法，它在模式识别领域(比如人脸识别、舰艇识别等图形图像识别领域)中有非常广泛的应用。<!--more-->
@@ -38,7 +37,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn.datasets.samples_generator import make_classification
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-​
+
 X, y = make_classification(
            n_samples=1000, n_features=3, n_redundant=0, n_classes=3,
            n_informative=2, n_clusters_per_class=1, class_sep=0.5, random_state=10)

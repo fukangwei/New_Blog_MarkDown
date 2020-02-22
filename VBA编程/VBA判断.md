@@ -1,7 +1,6 @@
 ---
 title: VBA判断
 categories: VBA编程
-abbrlink: '498036e4'
 date: 2019-07-21 11:19:06
 ---
 ### if语句
@@ -13,7 +12,7 @@ If boolean_expression Then
     ' User code
 End If
 ```
-<!--more-->
+
 ### if-else语句
 
 &emsp;&emsp;`if-else`语句如下：

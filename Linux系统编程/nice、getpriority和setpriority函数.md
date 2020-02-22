@@ -1,7 +1,6 @@
 ---
 title: nice、getpriority和setpriority函数
 categories: Linux系统编程
-abbrlink: 41e52e29
 date: 2019-02-03 17:11:07
 ---
 &emsp;&emsp;可以通过改变进程的优先级来保证进程优先运行。在`Linux`下，通过系统调用`nice`可以改变进程的优先级。`nice`系统调用用来改变调用进程的优先级：<!--more-->
@@ -54,14 +53,14 @@ int nice ( int increamet ) {
 #include <sys/resource.h>
 #include <sys/wait.h>
 #include <stdlib.h>
-​
+
 int main ( void ) {
     pid_t pid;
     int stat_val = 0;
     int oldpri, newpri;
     printf ( "nice study\n" );
     pid = fork();
-​
+
     switch ( pid ) {
         case 0:
             printf ( "Child is running, Curpid is %d, Parentpid is %d\n", pid, getppid() );
@@ -75,7 +74,7 @@ int main ( void ) {
             printf ( "Parent is running,Childpid is %d, Parentpid is %d\n", pid, getpid() );
             break;
     }
-​
+
     wait ( &stat_val );
     exit ( 0 );
 }

@@ -1,7 +1,6 @@
 ---
 title: Qt之QTextCursor
 categories: Qt语法详解
-abbrlink: 2ac31bba
 date: 2019-01-29 11:13:18
 ---
 &emsp;&emsp;The `QTextCursor` class offers an `API` to access and modify `QTextDocuments`. The header file is `QTextCursor`. **Note**: All functions in this class are reentrant.<!--more-->
@@ -175,7 +174,7 @@ Constant                        | Value | Description
 - `bool QTextCursor::atBlockStart() const`: Returns `true` if the cursor is at the start of a block; otherwise returns `false`.
 - `bool QTextCursor::atEnd() const`: Returns `true` if the cursor is at the end of the document; otherwise returns `false`.
 - `bool QTextCursor::atStart() const`: Returns `true` if the cursor is at the start of the document; otherwise returns `false`.
-- `void QTextCursor::beginEditBlock()`: Indicates the start of a block of editing operations on the document that should appear as a single operation from an undo/redo point of view. For example:
+- `void QTextCursor::beginEditBlock()`: Indicates the start of a block of editing operations on the document that should appear as a single operation from an undo/redo point of view.
 
 ``` cpp
 QTextCursor cursor ( textDocument );
@@ -183,7 +182,7 @@ cursor.beginEditBlock();
 cursor.insertText ( "Hello" );
 cursor.insertText ( "World" );
 cursor.endEditBlock();
-​
+
 textDocument->undo();
 ```
 
@@ -228,7 +227,7 @@ cursor.insertImage ( "myimage" );
 - `QTextList * QTextCursor::insertList(QTextListFormat::Style style)`: This is an overloaded function. Inserts a new block at the current position and makes it the first list item of a newly created list with the given `style`. Returns the created list.
 - `QTextTable * QTextCursor::insertTable(int rows, int columns, const QTextTableFormat & format)`: Creates a new table with the given number of `rows` and `columns` in the specified `format`, inserts it at the current cursor `position()` in the document, and returns the table object. The cursor is moved to the beginning of the first cell. There must be at least one row and one column in the table.
 - `QTextTable * QTextCursor::insertTable(int rows, int columns)`: This is an overloaded function. Creates a new table with the given number of `rows` and `columns`, inserts it at the current cursor `position()` in the document, and returns the table object. The cursor is moved to the beginning of the first cell. There must be at least one row and one column in the table.
-- `void QTextCursor::insertText(const QString & text)`: Inserts `text` at the current position, using the current character format. If there is a selection, the selection is deleted and replaced by `text`, for example:
+- `void QTextCursor::insertText(const QString & text)`: Inserts `text` at the current position, using the current character format. If there is a selection, the selection is deleted and replaced by `text`:
 
 ``` cpp
 cursor.clearSelection();
@@ -236,12 +235,12 @@ cursor.movePosition ( QTextCursor::NextWord, QTextCursor::KeepAnchor );
 cursor.insertText ( "Hello World" );
 ```
 
-This clears any existing selection, selects the word at the cursor (i.e. from `position()` forward), and replaces the selection with the phrase `Hello World`. Any `ASCII` linefeed characters (`\n`) in the inserted text are transformed into unicode block separators, corresponding to `insertBlock()` calls.
+This clears any existing selection, selects the word at the cursor (i.e. from `position()` forward), and replaces the selection with the phrase `Hello World`. Any `ASCII` linefeed characters (`\n`) in the inserted text are transformed into unicode block separators, corresponding to `insertBlock()` calls.
 
-- `void QTextCursor::insertText(const QString & text, const QTextCharFormat & format)`: This is an overloaded function. Inserts `text` at the current position with the given `format`.
+- `void QTextCursor::insertText(const QString & text, const QTextCharFormat & format)`: This is an overloaded function. Inserts `text` at the current position with the given `format`.
 - `bool QTextCursor::isCopyOf(const QTextCursor & other) const`: Returns `true` if this cursor and `other` are copies of each other, i.e. one of them was created as a copy of the `other` and neither has moved since. This is much stricter than equality.
 - `bool QTextCursor::isNull() const`: Returns `true` if the cursor is null; otherwise returns `false`. A null cursor is created by the default constructor.
-- `void QTextCursor::joinPreviousEditBlock()`: Like `beginEditBlock()` indicates the start of a block of editing operations that should appear as a single operation for undo/redo. However unlike `beginEditBlock()` it does not start a new block but reverses the previous call to `endEditBlock()` and therefore makes following operations part of the previous edit block created. For example:
+- `void QTextCursor::joinPreviousEditBlock()`: Like `beginEditBlock()` indicates the start of a block of editing operations that should appear as a single operation for undo/redo. However unlike `beginEditBlock()` it does not start a new block but reverses the previous call to `endEditBlock()` and therefore makes following operations part of the previous edit block created.
 
 ``` cpp
 QTextCursor cursor ( textDocument );
@@ -253,7 +252,7 @@ cursor.endEditBlock();
 cursor.joinPreviousEditBlock();
 cursor.insertText ( "Hey" );
 cursor.endEditBlock();
-​
+
 textDocument->undo();
 ```
 

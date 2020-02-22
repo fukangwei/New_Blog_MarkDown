@@ -1,14 +1,12 @@
 ---
 title: uip详解集合
 categories: Contiki和uip
-abbrlink: c7ac0859
 date: 2019-07-22 21:27:18
 ---
 ### 初始化函数
 
-- `void uip_init(void)`：此函数用于在启动时初始化`uIP`的`TCP/IP`栈。
+- `void uip_init(void)`：此函数用于在启动时初始化`uIP`的`TCP/IP`栈。<!--more-->
 - `void uip_setipid(u16_t id)`：此函数用于启动时设置初始的`ip_id`。
-<!--more-->
 
 &emsp;&emsp;`uip_init`代码分析如下：
 

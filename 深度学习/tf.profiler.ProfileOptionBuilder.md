@@ -1,7 +1,6 @@
 ---
 title: tf.profiler.ProfileOptionBuilder
 categories: 深度学习
-abbrlink: 4f29dfbd
 date: 2019-02-13 00:23:29
 ---
 ### Class ProfileOptionBuilder

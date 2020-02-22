@@ -1,7 +1,6 @@
 ---
 title: Entry输入框
 categories: Tkinter编程
-abbrlink: acca19d2
 date: 2019-04-10 20:29:01
 ---
 &emsp;&emsp;`Entry`(输入框)组件通常用于获取用户的输入文本。`Entry`组件仅允许用于输入一行文本，如果用于输入的字符串长度比该组件可显示空间更长，那内容将被滚动。这意味着该字符串将不能被全部看到(你可以用鼠标或键盘的方向键调整文本的可见范围)。如果你希望接收多行文本的输入，可以使用`Text`组件。<!--more-->
@@ -12,15 +11,15 @@ date: 2019-04-10 20:29:01
 
 ``` python
 from tkinter import *
-​
+
 master = Tk()
-​
+
 e = Entry(master)
 e.pack(padx=20, pady=20)
-​
+
 e.delete(0, END)
 e.insert(0, "默认文本...")
-​
+
 mainloop()
 ```
 
@@ -38,7 +37,7 @@ s = e.get()
 v = StringVar()
 e = Entry(master, textvariable=v)
 e.pack()
-​
+
 v.set("I love FishC.com!")
 s = v.get()
 ```
@@ -47,26 +46,26 @@ s = v.get()
 
 ``` python
 from tkinter import *
-​
+
 master = Tk()
-​
+
 Label(master, text="作品：").grid(row=0)
 Label(master, text="作者：").grid(row=1)
-​
+
 e1 = Entry(master)
 e2 = Entry(master)
 e1.grid(row=0, column=1, padx=10, pady=5)
 e2.grid(row=1, column=1, padx=10, pady=5)
-​
+
 def show():
     print("作品：《%s》" % e1.get())
     print("作者：%s" % e2.get())
     e1.delete(0, END)
     e2.delete(0, END)
-​
+
 Button(master, text="获取信息", width=10, command=show).grid(row=3, column=0, sticky=W, padx=10, pady=5)
 Button(master, text="退出", width=10, command=master.quit).grid(row=3, column=1, sticky=E, padx=10, pady=5)
-​
+
 mainloop()
 ```
 
@@ -163,9 +162,9 @@ mainloop()
 
 ``` python
 from tkinter import *
-​
+
 master = Tk()
-​
+
 def test():
     if e1.get() == "小甲鱼":
         print("正确！")
@@ -174,14 +173,14 @@ def test():
         print("错误！")
         e1.delete(0, END)
         return False
-​
+
 v = StringVar()
-​
+
 e1 = Entry(master, textvariable=v, validate="focusout", validatecommand=test)
 e2 = Entry(master)
 e1.pack(padx=10, pady=10)
 e2.pack(padx=10, pady=10)
-​
+
 mainloop()
 ```
 
@@ -191,11 +190,11 @@ mainloop()
 
 ``` python
 from tkinter import *
-​
+
 master = Tk()
-​
+
 v = StringVar()
-​
+
 def test1():
     if v.get() == "小甲鱼":
         print("正确！")
@@ -204,16 +203,16 @@ def test1():
         print("错误！")
         e1.delete(0, END)
         return False
-​
+
 def test2():
     print("我被调用了......")
     return True
-​
+
 e1 = Entry(master, textvariable=v, validate="focusout", validatecommand=test1, invalidcommand=test2)
 e2 = Entry(master)
 e1.pack(padx=10, pady=10)
 e2.pack(padx=10, pady=10)
-​
+
 mainloop()
 ```
 
@@ -236,11 +235,11 @@ mainloop()
 
 ``` python
 from tkinter import *
-​
+
 master = Tk()
-​
+
 v = StringVar()
-​
+
 def test(content, reason, name):
     if content == "小甲鱼":
         print("正确！")
@@ -250,13 +249,13 @@ def test(content, reason, name):
         print("错误！")
         print(content, reason, name)
         return False
-​
+
 testCMD = master.register(test)
 e1 = Entry(master, textvariable=v, validate="focusout", validatecommand=(testCMD, '%P', '%v', '%W'))
 e2 = Entry(master)
 e1.pack(padx=10, pady=10)
 e2.pack(padx=10, pady=10)
-​
+
 mainloop()
 ```
 

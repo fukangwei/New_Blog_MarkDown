@@ -1,7 +1,6 @@
 ---
 title: OTSU算法
 categories: opencv和图像处理
-abbrlink: 55354
 date: 2019-10-04 15:45:32
 mathjax: true
 ---
@@ -10,10 +9,15 @@ mathjax: true
 &emsp;&emsp;假设图像的背景较暗，并且图像的大小为$M * N$，图像中像素的灰度值小于阈值$T$的像素个数记作$N0$，像素灰度大于阈值$T$的像素个数记作$N1$，则有：
 
 $$ ω0 = N0 / (M * N)               \tag{1}$$
+
 $$ ω1 = N1 / (M * N)               \tag{2}$$
+
 $$ N0 + N1 = M * N                 \tag{3}$$
+
 $$ ω0 + ω1 = 1                     \tag{4}$$
+
 $$ μ = ω0 * μ0 + ω1 * μ1           \tag{5}$$
+
 $$ g = ω0(μ0 - μ)^2 + ω1(μ1 - μ)^2 \tag{6}$$
 
 将公式`5`代入公式`6`，得到等价公式：
@@ -29,18 +33,18 @@ $$
 #include <iostream>
 #include <cv.h>
 #include <highgui.h>
-​
+
 using namespace std;
 using namespace cv;
-​
+
 int main ( int argc, char *argv[] ) {
     Mat img = imread ( argv[1], -1 );
-​
+
     if ( img.empty() ) {
         cout << "Error: Could not load image" << endl;
         return 0;
     }
-​
+
     Mat gray;
     cvtColor ( img, gray, CV_BGR2GRAY );
     Mat dst;
@@ -59,7 +63,7 @@ int main ( int argc, char *argv[] ) {
 
 ``` python
 import cv2
-​
+
 if __name__ == '__main__':
     img = cv2.imread("logo.jpg", -1)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)

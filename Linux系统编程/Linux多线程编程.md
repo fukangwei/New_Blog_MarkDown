@@ -1,7 +1,6 @@
 ---
 title: Linux多线程编程
 categories: Linux系统编程
-abbrlink: 7d944b04
 date: 2019-02-03 18:42:31
 ---
 ### Linux进程与线程

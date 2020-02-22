@@ -1,7 +1,6 @@
 ---
 title: exec函数族
 categories: Linux系统编程
-abbrlink: 67a10bd0
 date: 2019-02-02 21:34:35
 ---
 &emsp;&emsp;`exec`用被执行的程序替换调用它的程序。区别为`fork`创建一个新的进程，产生一个新的`PID`；`exec`启动一个新程序，替换原有的进程，因此进程的`PID`不会改变。<!--more-->
@@ -22,11 +21,11 @@ int execl ( const char *path, const char *arg1, ... );
 #include "unistd.h"
 #include "stdio.h"
 #include "sys/wait.h"
-​
+
 int main() {
     pid_t pid;
     pid = vfork();
-​
+
     if ( pid > 0 ) {
         wait ( NULL );
         printf ( "This is father process\n" );
@@ -52,7 +51,7 @@ int execlp ( const char *path, const char *arg1, ... );
 
 ``` cpp
 #include <unistd.h>
-​
+
 int main() {
     execlp ( "ls", "ls", "-al", "/etc/passwd", ( char * ) 0 );
 }
@@ -71,7 +70,7 @@ int execv ( const char *path, char *const argv[] );
 
 ``` cpp
 #include <unistd.h>
-​
+
 int main() {
     char *argv[] = {"ls", "-al", "/etc/passwd", ( char * ) 0};
     execv ( "/bin/ls", argv );
@@ -96,7 +95,7 @@ int execve ( const char *filename, char *const argv[], char *const envp[] );
 ``` cpp
 #include <stdio.h>
 #include <unistd.h>
-​
+
 int main ( int arg, char **args ) {
     char *argv[] = {"ls", "-al", "/home/chicho/result/", NULL};
     char *envp[] = {0, NULL}; /* 传递给执行文件新的环境变量数组 */
@@ -117,7 +116,7 @@ int execvp ( const char *file, char *const argv[] );
 
 ``` cpp
 #include <unistd.h>
-​
+
 int main() {
     char *argv[] = {"ls", "-l", "/etc", ( char * ) 0};
     execvp ( "ls", argv );
@@ -133,9 +132,9 @@ int main() {
 #include "stdio.h"
 #include "unistd.h"
 #include "sys/types.h"
-​
+
 extern char **environ;
-​
+
 int main ( int argc, char *argv[] ) {
     execve ( "./new", argv, environ );
 }
@@ -147,7 +146,7 @@ int main ( int argc, char *argv[] ) {
 #include "stdio.h"
 #include "unistd.h"
 #include "sys/types.h"
-​
+
 int main ( void ) {
     puts ( "welcome to here!\n" );
     return 0;

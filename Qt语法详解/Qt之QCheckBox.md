@@ -1,7 +1,6 @@
 ---
 title: Qt之QCheckBox
 categories: Qt语法详解
-abbrlink: bf09695e
 date: 2019-02-18 10:45:00
 ---
 ### 简述
@@ -38,7 +37,7 @@ void setTristate(bool y = true) /* 设置复选框为一个三态复选框 */
 &emsp;&emsp;信号如下：
 
 ``` cpp
-/* 当复选框状态发生改变，这个信号就会被发射，即用户选中或者取消选中 */
+/* 当复选框状态发生改变，这个信号就会被发射，即用户选中或者取消选中 */
 void stateChanged(int state);
 ```
 

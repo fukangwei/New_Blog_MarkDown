@@ -1,7 +1,6 @@
 ---
 title: clock函数
 categories: C语言语法详解
-abbrlink: fd0a452c
 date: 2018-12-13 08:25:29
 ---
 &emsp;&emsp;`clock`是`C/C++`中的计时函数，而与其相关的数据类型是`clock_t`。在`MSDN`中，`clock`函数定义为：<!--more-->
@@ -16,7 +15,7 @@ clock_t clock ( void );
 
 &emsp;&emsp;在`time.h`文件中，我们可以找到它的定义：
 
-``` c
+``` cpp
 #ifndef _CLOCK_T_DEFINED
 typedef long clock_t;
 #define _CLOCK_T_DEFINED
@@ -25,7 +24,7 @@ typedef long clock_t;
 
 很明显，`clock_t`是一个长整形数。在`time.h`文件中，还定义了一个常量`CLOCKS_PER_SEC`，它用来表示一秒钟会有多少个时钟计时单元，其定义如下：
 
-``` c
+``` cpp
 #define CLOCKS_PER_SEC ( ( clock_t ) 1000 )
 ```
 
@@ -71,12 +70,12 @@ int main ( void ) {
 
 ``` cpp
 #include <iostream>
-#include <ctime> /* or time.h */​
+#include <ctime> /* or time.h */
 
 using namespace std;
-​
+
 int main() {
-    int b = clock() / CLOCKS_PER_SEC;​
+    int b = clock() / CLOCKS_PER_SEC;
 
     for ( int i = 0; i < 3; ) { /* 完成3秒定时 */
         i = clock() / CLOCKS_PER_SEC;

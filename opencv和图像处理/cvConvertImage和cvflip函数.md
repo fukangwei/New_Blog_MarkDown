@@ -1,7 +1,6 @@
 ---
 title: cvConvertImage和cvflip函数
 categories: opencv和图像处理
-abbrlink: e033396d
 date: 2019-03-06 15:05:07
 ---
 ### cvflip
@@ -21,10 +20,10 @@ void flip ( InputArray src, OutputArray dst, int ipCode );
 ``` cpp
 #include <iostream>
 #include <opencv2/opencv.hpp>
-​
+
 using namespace std;
 using namespace cv;
-​
+
 int main() {
     Mat img = imread ( "timg1.jpg", CV_LOAD_IMAGE_ANYCOLOR );
     imshow ( "Input", img );
@@ -49,7 +48,7 @@ flip(src, flipCode, dst=None)
 
 ``` python
 import cv2
-​
+
 image = cv2.imread("girl.jpg")
 # Flipped Horizontally(水平翻转)
 h_flip = cv2.flip(image, 1)
@@ -79,7 +78,7 @@ void cvConvertImage ( const CvArr *src, CvArr *dst, int flags = 0 );
 ``` cpp
 #include <opencv2/highgui/highgui.hpp>
 #include <cv.h>
-​
+
 int main ( void ) {
     IplImage *img;
     IplImage *dst;

@@ -1,7 +1,6 @@
 ---
 title: GrabCut算法
 categories: opencv和图像处理
-abbrlink: 5e18e2d3
 date: 2019-03-04 16:08:04
 ---
 &emsp;&emsp;在`opencv`中，`GrabCut`算法由`grabCut`函数实现：<!--more-->
@@ -36,13 +35,13 @@ Mask        | 说明
 ``` cpp
 #include "highgui.h"
 #include "cv.h"
-​
+
 using namespace cv;
-​
+
 Rect selection;
 Mat img, img0;
 Point prePt ( -1, -1 );
-​
+
 void onMouse ( int event, int x, int y, int flags, void *param ) {
     if ( event == CV_EVENT_LBUTTONDOWN ) {
         prePt = Point ( x, y );
@@ -54,10 +53,10 @@ void onMouse ( int event, int x, int y, int flags, void *param ) {
     } else if ( event == CV_EVENT_LBUTTONUP || ! ( flags & CV_EVENT_FLAG_LBUTTON ) ) {
         prePt = Point ( -1, -1 );
     }
-​
+
     imshow ( "原图", img );
 }
-​
+
 int main() {
     img = imread ( "kele.JPG", 1 );
     img0 = img.clone();
@@ -65,10 +64,10 @@ int main() {
     setMouseCallback ( "原图", onMouse );
     Mat result;
     Mat bgModel, fgModel; /* 背景和前景 */
-​
+
     for ( ;; ) {
         int c = waitKey ( 10 );
-​
+
         if ( ( char ) c == 'p' ) {
             grabCut ( img0, result, selection, bgModel, fgModel, 5, GC_INIT_WITH_RECT );
             compare ( result, GC_PR_FGD, result, CMP_EQ ); /* 得到前景mask */
@@ -76,12 +75,12 @@ int main() {
             img0.copyTo ( foreground, result );
             imshow ( "grabcut", foreground );
         }
-​
+
         if ( char ( c ) == 'q' ) {
             return 0;
         }
     }
-​
+
     return 0;
 }
 ```

@@ -1,7 +1,6 @@
 ---
 title: RLE编码
 categories: 数据结构和算法
-abbrlink: ce4490f
 date: 2019-02-09 12:22:54
 ---
 &emsp;&emsp;游程编码(`RLE`，`run-length encoding`)，又称`行程长度编码`或`变动长度编码法`，是一种与资料性质无关的无损数据压缩技术。变动长度编码法为一种`使用变动长度的码来取代连续重复出现的原始资料`的压缩技术。<!--more-->
@@ -37,7 +36,7 @@ AAAAAAAAAAAAAAA AAAAAAAAAAAAAAA AAA
 
 ``` cpp
 input: AAABCCBCCCCAA
-​
+
 for i = 1:size(input)
     if(Q = input(i))
         计数器 + 1
@@ -54,18 +53,18 @@ end
 
 ``` cpp
 #include <iostream>
-​
+
 using namespace std;
-​
+
 void Print ( char sz[] ) {
     char *temp = sz;
     char one = temp[0];
     int nCount = 1;
     cout << one << " ";
-​
+
     while ( *temp ) {
         temp++;
-​
+
         if ( one == *temp ) {
             nCount++;
         } else {
@@ -76,7 +75,7 @@ void Print ( char sz[] ) {
         }
     }
 }
-​
+
 int main() {
     Print ( "aaaaaabbbbccc" );
     return 0;

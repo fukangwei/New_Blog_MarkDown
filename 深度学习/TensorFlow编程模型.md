@@ -1,7 +1,6 @@
 ---
 title: TensorFlow编程模型
 categories: 深度学习
-abbrlink: 1552d558
 date: 2019-02-17 12:42:22
 ---
 &emsp;&emsp;`TensorFlow`的计算可以表示为一种有向图(`directed graph`)，或者称计算图(`computation graph`)。图中每一个运算操作(`operation`)是一个节点(`node`)，节点之间的连接线称为边(`edge`)。计算图中的节点可以有任意多个输入和任意多个输出，每个节点都只有一个运算操作。在计算图中流动(`flow`)的数据被称为张量(`tensor`)，故得名`TensorFlow`。<!--more-->
@@ -9,14 +8,14 @@ date: 2019-02-17 12:42:22
 
 ``` python
 import tensorflow as tf
-​
+
 b = tf.Variable(tf.zeros([100]))  # 生成100维的向量，初始化为0
 W = tf.Variable(tf.random_uniform([784, 100], -1, 1))  # 生成“784 * 100”的随机矩阵W
 x = tf.placeholder(name = "x")  # 输入的Placeholder
 relu = tf.nn.relu(tf.matmul(W, x) + b)  # ReLU(Wx+b)
 C = [...]  # 根据ReLU函数的结果计算Cost
 s = tf.Session()
-​
+
 for step in range(0, 10):
     input = construct 100-D input array  # 为输入创建一个100维的向量
     result = s.run(C, feed_dict = {x: input})  # 获取Cost，供给输入x
@@ -43,7 +42,7 @@ for step in range(0, 10):
 
 ``` python
 import tensorflow as tf
-​
+
 # 创建一个常量op，产生一个“1 * 2”矩阵，这个op被作为一个节点加到默认图中
 matrix1 = tf.constant([[3., 3.]])
 # 创建另外一个常量op，产生一个“2 * 1”矩阵

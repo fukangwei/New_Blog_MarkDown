@@ -1,7 +1,6 @@
 ---
 title: sstream头文件
 categories: C++语法详解
-abbrlink: ce7c2fa0
 date: 2019-02-05 21:27:27
 ---
 &emsp;&emsp;`C++`的输入输出分为三种：<!--more-->
@@ -49,22 +48,22 @@ str(); /* 使istringstream对象返回一个string字符串 */
 ``` cpp
 #include <iostream>
 #include <sstream>
-​
+
 using namespace std;
-​
+
 int main() {
-    istringstream istr ( "1 56.7" );
-    cout << istr.str() << endl; /* 直接输出字符串“1 56.7” */
-    string str = istr.str(); /* 函数str返回一个字符串 */
-    cout << str << endl;
-    int n;
-    double d;
-    /* 以空格为界，把istringstream中数据取出，应进行类型转换 */
-    istr >> n; /* 第一个数为整型数据，输出1 */
-    istr >> d; /* 第二个数位浮点数，输出56.7 */
-    cout << n << endl;
-    cout << d << endl;
-    return 0;
+    istringstream istr ( "1 56.7" );
+    cout << istr.str() << endl; /* 直接输出字符串“1 56.7” */
+    string str = istr.str(); /* 函数str返回一个字符串 */
+    cout << str << endl;
+    int n;
+    double d;
+    /* 以空格为界，把istringstream中数据取出，应进行类型转换 */
+    istr >> n; /* 第一个数为整型数据，输出1 */
+    istr >> d; /* 第二个数位浮点数，输出56.7 */
+    cout << n << endl;
+    cout << d << endl;
+    return 0;
 }
 ```
 
@@ -73,23 +72,23 @@ int main() {
 ``` cpp
 #include <iostream>
 #include <sstream>
-​
+
 using namespace std;
-​
+
 int main() {
     istringstream istr;
     string line, str;
-​
+
     /* 从终端接收一行字符串，并放入字符串line中 */
     while ( getline ( cin, line ) ) {
         istr.str ( line ); /* 把line中的字符串存入字符串流中 */
-​
+
         /* 每次读取一个单词(以空格为界)，存入str中 */
         while ( istr >> str ) {
             cout << str << endl;
         }
     }
-​
+
     return 0;
 }
 ```
@@ -114,9 +113,9 @@ ostr.str ( "1234" ); /* 把字符串“1234”存入字符串流中 */
 ``` cpp
 #include <iostream>
 #include <sstream>
-​
+
 using namespace std;
-​
+
 int main() {
     ostringstream ostr ( "1234" ); /* 初始化输出字符串流ostr */
     cout << ostr.str() << endl; /* 输出“1234” */
@@ -151,9 +150,9 @@ str.str ( "1234" ); /* 把字符串“1234”存入字符串流中 */
 #include <fstream>
 #include <iostream>
 #include <sstream>
-​
+
 using namespace std;
-​
+
 int main() {
     /* int变string */
     int n = 10;
@@ -179,9 +178,9 @@ int main() {
 #include <fstream>
 #include <iostream>
 #include <sstream>
-​
+
 using namespace std;
-​
+
 int main() {
     /* string变double */
     double n;
@@ -206,13 +205,13 @@ int main() {
 ``` cpp
 #include <iostream>
 #include <sstream>
-​
+
 using namespace std;
-​
+
 int main ( int argc, char *argv[] ) {
     std::stringstream stream;
     string str;
-​
+
     while ( 1 ) {
         /* clear这个名字让很多人想当然地认为它会清除流的内容。
            实际上它并不清空任何内容，只是重置了流的状态标志而已 */
@@ -224,7 +223,7 @@ int main ( int argc, char *argv[] ) {
         cout << "Size of stream = " << stream.str().length() << endl;
         system ( "PAUSE" );
     }
-​
+
     system ( "PAUSE" );
     return 0;
 }

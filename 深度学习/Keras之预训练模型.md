@@ -1,7 +1,6 @@
 ---
 title: Keras之预训练模型
 categories: 深度学习
-abbrlink: d406fd80
 date: 2019-01-15 11:39:13
 ---
 &emsp;&emsp;`Keras`的`Application`模块提供了带有预训练权重的`Keras`模型，这些模型可以用来进行预测、特征提取和`finetune`。模型的预训练权重将下载到`~/.keras/models/`，并在载入模型时自动载入。<!--more-->
@@ -157,13 +156,13 @@ y = layer(x)
 frozen_model = Model(x, y)
 # in the model below, the weights of layer will not be updated during training
 frozen_model.compile(optimizer='rmsprop', loss='mse')
-​
+
 layer.trainable = True
 trainable_model = Model(x, y)
 # with this model the weights of the layer will be updated during training
 # (which will also affect the above model since it uses the same layer instance)
 trainable_model.compile(optimizer='rmsprop', loss='mse')
-​
+
 frozen_model.fit(data, labels)  # this does NOT update the weights of layer
 trainable_model.fit(data, labels)  # this updates the weights of layer
 ```

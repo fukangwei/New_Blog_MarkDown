@@ -1,7 +1,6 @@
 ---
 title: Perl基础知识
 categories: Perl
-abbrlink: d1af92ab
 date: 2018-12-17 22:10:30
 ---
 ### Perl基础

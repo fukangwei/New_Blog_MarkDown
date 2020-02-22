@@ -1,7 +1,6 @@
 ---
 title: Perl循环
 categories: Perl
-abbrlink: 6a659215
 date: 2018-12-20 09:37:04
 ---
 ### while循环
@@ -18,7 +17,7 @@ while ( condition ) {
 
 ``` perl
 $a = 1;
-​
+
 while( $a < 4 ){
     printf "a的值为：$a\n";
     $a = $a + 1;
@@ -84,7 +83,7 @@ foreach var ( list ) {
 
 ``` perl
 @list = (2, 12, 36);
-​
+
 foreach $a ( @list ) {
     print "a的值为：$a\n";
 }
@@ -112,7 +111,7 @@ do{
 
 ``` perl
 $a = 1;
-​
+
 do{
     printf "a的值为：$a\n";
     $a = $a + 1;
@@ -194,7 +193,7 @@ foreach $a(@listA) {
 ``` perl
 $a = 0;
 $b = 0;
-​
+
 while ($a < 2) {
     $b = 0;
 
@@ -214,7 +213,7 @@ while ($a < 2) {
 a = 0, b = 0
 a = 0, b = 1
 a = 1
-​
+
 a = 1, b = 0
 a = 1, b = 1
 a = 2
@@ -234,7 +233,7 @@ next [LABEL];
 
 ``` perl
 $a = 1;
-​
+
 while ($a < 5) {
     if ($a == 3) {
         $a = $a + 1;
@@ -266,7 +265,7 @@ last
 
 ``` perl
 $a = 1;
-​
+
 while ($a < 5) {
     if ($a == 3) {
         $a = $a + 1;
@@ -311,7 +310,7 @@ foreach $a(@listA) {
 
 ``` perl
 $a = 0;
-​
+
 while ($a < 3) {
     print "a = $a\n";
 } continue {
@@ -331,7 +330,7 @@ a = 2
 
 ``` perl
 @list = (1, 2, 3, 4, 5);
-​
+
 foreach $a(@list) {
     print "a = $a\n";
 } continue {
@@ -360,7 +359,7 @@ redo [LABEL];
 
 ``` perl
 $a = 0;
-​
+
 while ($a < 6) {
     if ($a == 3) {
         $a = $a + 1;
@@ -395,7 +394,7 @@ a = 5
 
 ``` perl
 $a = 1;
-​
+
 LOOP: do {
     if ($a == 3) {
         $a = $a + 1;
@@ -425,7 +424,7 @@ a = 5
 $a = 1;
 $str1 = "LO";
 $str2 = "OP";
-​
+
 LOOP: do {
     if ($a == 3) {
         $a = $a + 1;

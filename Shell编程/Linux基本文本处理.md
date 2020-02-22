@@ -1,7 +1,6 @@
 ---
 title: Linux基本文本处理
 categories: Shell编程
-abbrlink: 128720d6
 date: 2019-01-22 08:41:35
 ---
 ### fold命令
@@ -332,7 +331,7 @@ xiongdan 200
 lihaihui 233
 lymlrl 231
 $ cat testfile  # testfile文件的内容
-liangyuanm  ss
+liangyuanm  ss
 $ cat testfile1  # testfile1文件的内容
 huanggai 56
 zhixi 73
@@ -344,7 +343,7 @@ zhixi 73
 xiongdan 200
 lihaihui 233
 lymlrl 231
-liangyuanm  ss
+liangyuanm  ss
 huanggai 56
 zhixi 73
 ```

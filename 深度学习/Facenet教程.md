@@ -1,7 +1,6 @@
 ---
 title: Facenet教程
 categories: 深度学习
-abbrlink: e23443f2
 date: 2019-02-16 14:35:47
 ---
 ### 安装和配置Facenet

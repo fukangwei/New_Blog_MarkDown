@@ -1,7 +1,6 @@
 ---
 title: getrlimit、setrlimit和getrusage函数
 categories: Linux系统编程
-abbrlink: c94db408
 date: 2019-02-03 17:50:03
 ---
 &emsp;&emsp;为了支持多用户同时登录以及多个应用连接，`UNIX`系统给系统管理员提供了控制系统资源的许多方法。这种资源限制包括`CPU`时间、内存使用量以及磁盘使用量。资源控制允许你调整系统到最佳的使用率。`UNIX`的早期版本中，一些在编译时设置的系统限制如果需要修改，则需要重新编译整个系统。然而，如果并非所有的运行中的系统资源都需要重新编译整个系统，那么现代的`UNIX`系统可以调整大多数这些资源的限制。<!--more-->
@@ -69,10 +68,10 @@ int getpagesize ( void );
 #include <sys/types.h>
 #include <sys/time.h>
 #include <sys/resource.h>
-​
+
 #define RUSAGE_SELF      0
 #define RUSAGE_CHILDREN -1
-​
+
 int getrusage ( int who, struct rusage *rusage );
 ```
 
@@ -121,7 +120,7 @@ struct rusage {
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/resource.h>
-​
+
 int main ( void ) {
     struct rusage start;
     struct rusage end;
@@ -131,13 +130,13 @@ int main ( void ) {
     rc = getrusage ( RUSAGE_SELF, &start );
     fp = NULL;
     fp = fopen ( "getrusage.log", "a+" );
-​
+
     if ( fp != NULL ) {
         for ( i = 0; i < 10000000; i++ ) {
             fprintf ( fp, "%d", i );
         }
     }
-​
+
     fclose ( fp );
     rc = getrusage ( RUSAGE_SELF, &end );
     usertime = ( end.ru_utime.tv_sec - start.ru_utime.tv_sec ) + \

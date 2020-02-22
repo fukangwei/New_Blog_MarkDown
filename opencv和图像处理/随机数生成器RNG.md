@@ -1,7 +1,6 @@
 ---
 title: 随机数生成器RNG
 categories: opencv和图像处理
-abbrlink: d90408a1
 date: 2018-12-30 18:43:42
 ---
 &emsp;&emsp;`C`语言和`C++`中产生随机数的方法(`rand`和`srand`等)在`OpenCV`中仍可以用。此外，`OpenCV`还特地编写了`C++`的随机数类`RNG`，`C`的随机数类`CvRNG`，以及一些相关的函数。注意如下说明：<!--more-->
@@ -85,15 +84,15 @@ void fill ( InputOutputArray mat, int distType, InputArray a,
 Mat_<int> fillM ( 3, 3 );
 rng.fill ( fillM, RNG::UNIFORM, 1, 1000 );
 cout << "filM = " << fillM << endl;
-​
+
 Mat fillM1 ( 3, 3, CV_8U );
 rng.fill ( fillM1, RNG::UNIFORM, 1, 1000, TRUE );
 cout << "filM1 = " << fillM1 << endl;
-​
+
 Mat fillM2 ( 3, 3, CV_8U );
 rng.fill ( fillM2, RNG::UNIFORM, 1, 1000, FALSE );
 cout << "filM2 = " << fillM2 << endl;
-​
+
 /* fillM1产生的数据都在[0, 255)内，且小于255                                 */
 /* fillM2产生的数据虽然也在同样范围内，但是由于用了截断操作，所以很多数据都是255 */
 /* 产生均值为1，标准差为3的随机double数填进fillN                              */
@@ -177,12 +176,12 @@ CvMat *cvM = cvCreateMat ( 3, 3, CV_16U ); /* 创建“3 * 3”的矩阵 */
 /* 给cvM赋值，范围是[0, 255) */
 cvRandArr ( &cvRNG, cvM, CV_RAND_UNI, cvScalarAll ( 0 ), cvScalarAll ( 255 ) );
 cout << "cvM = ";
-​
+
 for ( int i = 0; i < 3; i++ ) {
     for ( int j = 0; j < 3; j++ ) {
-        cout << ( int ) cvGetReal2D ( cvM, i, j ) << "   ";
+        cout << ( int ) cvGetReal2D ( cvM, i, j ) << "   ";
     }
-​
+
     cout << endl;
 }
 ```
@@ -227,10 +226,10 @@ cout << "cvDouble = " << cvDouble << endl;
 #include <iostream>
 #include "cv.h"
 #include "highgui.h"
-​
+
 using namespace cv;
 using namespace std;
-​
+
 int main ( int argc, char **argv ) {
     RNG rng;
     int N1 = rng;
@@ -296,40 +295,40 @@ int main ( int argc, char **argv ) {
     CvMat *cvM = cvCreateMat ( 3, 3, CV_16U );
     cvRandArr ( &cvRNG, cvM, CV_RAND_UNI, cvScalarAll ( 0 ), cvScalarAll ( 255 ) );
     cout << "cvM = ";
-​
+
     for ( int i = 0; i < 3; i++ ) {
         for ( int j = 0; j < 3; j++ ) {
-            cout << ( int ) cvGetReal2D ( cvM, i, j ) << "   ";
+            cout << ( int ) cvGetReal2D ( cvM, i, j ) << "   ";
         }
-​
+
         cout << endl;
     }
-​
+
     cout << endl;
     int cvInt = cvRandInt ( &cvRNG );
     cout << "cvInt = " << cvInt << endl;
     double cvDouble = cvRandReal ( &cvRNG );
     cout << "cvDouble = " << cvDouble << endl;
     printf ( "\nrand1 =" );
-​
+
     for ( int i = 0; i < 10; i++ ) {
         printf ( "%d ", rand() % 10 );
     }
-​
+
     printf ( "\nsrand1 = " );
     srand ( 8 );
-​
+
     for ( int i = 0; i < 10; i++ ) {
         printf ( "%d ", rand() % 10 );
     }
-​
+
     printf ( "\nsrand2 = " );
     srand ( ( unsigned ) time ( NULL ) );
-​
+
     for ( int i = 0; i < 10; i++ ) {
         printf ( "%d ", rand() % 10 );
     }
-​
+
     printf ( "\n" );
     return 0;
 }
@@ -355,42 +354,42 @@ N2g = 0
 N2h = 0
 N2i = -1504473379
 N2j = 3
-​
+
 filM = [206, 507, 646;
   656, 931, 673;
   416, 656, 907]
-​
+
 filM1 = [198, 192, 197;
   41, 8, 244;
   231, 46, 7]
-​
+
 filM2 = [255, 15, 255;
   255, 77, 255;
   175, 255, 251]
-​
+
 filN = [-1.242041528224945, -0.8259760141372681, 0.361901268362999;
   4.484118342399597, -4.914619922637939, 3.093811929225922;
   0.3505408614873886, 1.294025518000126, 1.788093090057373]
-​
+
 randuM = [91, 2, 79;
   179, 52, 205;
   236, 8, 181]
-​
+
 randnM = [-1, 1, 0;
   1, -2, -2;
   -1, -1, 2]
-​
+
 randShufM =
 [4, 2, 3;
  1, 5, 6]
-​
+
 cvM = 126   39   3
 136   46   146
 241   78   132
-​
+
 cvInt = 526971887
 cvDouble = 0.909635
-​
+
 rand1 = 3 6 7 5 3 5 6 2 9 1
 srand1 = 6 4 2 9 1 3 2 1 7 3
 srand2 = 9 1 1 9 1 7 9 3 7 6

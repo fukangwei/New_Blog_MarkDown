@@ -1,7 +1,6 @@
 ---
 title: Keil问题总结
 categories: 软件与硬件问题
-abbrlink: 162c845e
 date: 2019-02-14 18:12:20
 ---
 ### transfer of control bypasses initialization of

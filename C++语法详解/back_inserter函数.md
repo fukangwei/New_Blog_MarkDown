@@ -1,7 +1,6 @@
 ---
 title: back_inserter函数
 categories: C++语法详解
-abbrlink: 8cf4d061
 date: 2018-12-27 10:35:19
 ---
 &emsp;&emsp;It is a function template, in the header file `<iterator>`.<!--more-->
@@ -24,22 +23,22 @@ Constructs a `back-insert` iterator that inserts new elements at the end of `x`.
 #include <iterator>
 #include <vector>
 #include <algorithm>
-​
+
 int main () {
     std::vector<int> foo, bar;
-​
+
     for ( int i = 1; i <= 5; i++ ) {
         foo.push_back ( i );
         bar.push_back ( i * 10 );
     }
-​
+
     std::copy ( bar.begin(), bar.end(), back_inserter ( foo ) );
     std::cout << "foo contains:";
-​
+
     for ( std::vector<int>::iterator it = foo.begin(); it != foo.end(); ++it ) {
         std::cout << ' ' << *it;
     }
-​
+
     std::cout << '\n';
     return 0;
 }

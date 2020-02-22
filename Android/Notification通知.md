@@ -1,7 +1,6 @@
 ---
 title: Notification通知
 categories: Android
-abbrlink: e90ec79
 date: 2018-12-28 14:44:31
 ---
 &emsp;&emsp;`Notification`是一种具有全局效果的通知，可以在系统的通知栏中显示。当`APP`向系统发出通知时，它将先以图标的形式显示在通知栏中。用户可以下拉通知栏查看通知的详细信息。通知栏和抽屉式通知栏均是由系统控制，用户可以随时查看。当系统接收到通知时，可以通过震动、响铃、呼吸灯等多种方式进行提醒。<!--more-->
@@ -42,10 +41,10 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
-​
+
 public class MainActivity extends Activity {
     final int NOTIFYID = 0x00;
-​
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

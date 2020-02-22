@@ -1,12 +1,11 @@
 ---
 title: qsort函数
 categories: C语言语法详解
-abbrlink: fcb23fd1
 date: 2018-12-12 18:38:58
 ---
 &emsp;&emsp;`qsort`函数是编译器函数库自带的快速排序函数：<!--more-->
 
-``` c
+``` cpp
 #include <stdlib.h>
 void qsort ( void* base, int num, int width, int ( *fcmp ) ( const void*, const void* ) );
 ```
@@ -46,7 +45,7 @@ int comp ( const void* a, const void* b ) {
 
 int comp ( const void* a, const void* b ) {
     return * ( int* ) a - * ( int* ) b;
-}​
+}
 
 int main ( void ) {
     int i = 0;
@@ -78,7 +77,7 @@ int main ( void ) {
 struct In {
     double data;
     int other;
-} s[100]​;
+} s[100];
 
 int cmp ( const void* a, const void* b ) { /* 按照data的值从小到大将结构体排序 */
     return ( * ( In* ) a ).data > ( * ( In* ) b ).data ? 1 : -1;
@@ -122,7 +121,7 @@ qsort ( s, 100, sizeof ( s[0] ), cmp );
 struct In {
     int data;
     char str[100];
-} s[100];​
+} s[100];
 
 /* 按照结构体中字符串str的字典顺序排序 */
 int cmp ( const void* a, const void* b ) {
@@ -143,7 +142,7 @@ int cmp ( const void* a, const void* b ) {
 }
 
 qsort ( word, 100, sizeof ( word[0] ), cmp );
-​
+
 /* 对double类型数组排序 */
 double in[100];
 

@@ -1,7 +1,6 @@
 ---
 title: LinkedList类
 categories: Java
-abbrlink: ff7cfcb
 date: 2018-12-20 19:53:50
 ---
 &emsp;&emsp;`LinkedList`其实也就是我们在数据结构中的链表，这种数据结构有如下特性：<!--more-->
@@ -14,7 +13,7 @@ date: 2018-12-20 19:53:50
 
 ### add
 
-&emsp;&emsp;方法如下所示：
+&emsp;&emsp;方法如下：
 
 - `boolean add(E e)`：在链表后添加一个元素，如果成功，返回`true`，否则返回`false`。
 - `void addFirst(E e)`：在链表头部插入一个元素。
@@ -23,22 +22,22 @@ date: 2018-12-20 19:53:50
 
 ``` java
 import java.util.LinkedList;
-​
+
 public class LinkedListMethodsDemo {
     public static void main(String[] args) {
         LinkedList<String> linkedList = new LinkedList<>();
-​
+
         linkedList.add("first");
         linkedList.add("second");
         linkedList.add("third");
         System.out.println(linkedList);
-​
+
         linkedList.addFirst("addFirst");
         System.out.println(linkedList);
-​
+
         linkedList.addLast("addLast");
         System.out.println(linkedList);
-​
+
         linkedList.add(2, "addByIndex");
         System.out.println(linkedList);
     }
@@ -68,11 +67,11 @@ public class LinkedListMethodsDemo {
 
 ``` java
 import java.util.LinkedList;
-​
+
 public class LinkedListMethodsDemo {
-    public static void main(String[] args) {
+    public static void main(String[] args) {
         LinkedList<String> linkedList = new LinkedList<>();
-​
+
         linkedList.add("first");
         linkedList.add("second");
         linkedList.add("second");
@@ -80,28 +79,28 @@ public class LinkedListMethodsDemo {
         linkedList.add("four");
         linkedList.add("five");
         System.out.println(linkedList);
-​
+
         linkedList.remove();
         System.out.println("remove: " + linkedList);
-​
+
         linkedList.remove("second");
         System.out.println("remove(Object): " + linkedList);
-​
+
         linkedList.remove("six");
         System.out.println("remove(Object) not exist: " + linkedList);
-​
+
         linkedList.remove(2);
         System.out.println("remove(index): " + linkedList);
-​
+
         linkedList.removeFirst();
         System.out.println("removeFirst: " + linkedList);
-​
+
         linkedList.removeLast();
         System.out.println("removeLast:" + linkedList);
-​
+
         System.out.println("----------------------------------");
         linkedList.clear();
-​
+
         linkedList.add("first");
         linkedList.add("second");
         linkedList.add("first");
@@ -109,10 +108,10 @@ public class LinkedListMethodsDemo {
         linkedList.add("first");
         linkedList.add("five");
         System.out.println(linkedList);
-​
+
         linkedList.removeFirstOccurrence("first");
         System.out.println("removeFirstOccurrence: " + linkedList);
-​
+
         linkedList.removeLastOccurrence("first");
         System.out.println("removeLastOccurrence: " + linkedList);
     }
@@ -139,17 +138,17 @@ removeLastOccurrence: [second, first, third, five]
 
 &emsp;&emsp;方法如下：
 
-`E get(int index)`：按照下标获取元素。
-`E getFirst()`：获取第一个元素。
-`E getLast()`：获取最后一个元素。
+- `E get(int index)`：按照下标获取元素。
+- `E getFirst()`：获取第一个元素。
+- `E getLast()`：获取最后一个元素。
 
 ``` java
 import java.util.LinkedList;
-​
+
 public class LinkedListMethodsDemo {
     public static void main(String[] args) {
         LinkedList<String> linkedList = new LinkedList<>();
-​
+
         linkedList.add("first");
         linkedList.add("second");
         linkedList.add("second");
@@ -157,16 +156,16 @@ public class LinkedListMethodsDemo {
         linkedList.add("four");
         linkedList.add("five");
         System.out.println(linkedList);
-​
+
         linkedList.get(3);
         System.out.println("get(index): " + linkedList.get(3));
-​
+
         linkedList.getFirst();
         System.out.println("getFirst: " + linkedList.getFirst());
-​
+
         linkedList.getLast();
         System.out.println("getLast: " + linkedList.getLast());
-​
+
         System.out.println(linkedList);
     }
 }
@@ -192,11 +191,11 @@ getLast: five
 
 ``` java
 import java.util.LinkedList;
-​
+
 public class LinkedListMethodsDemo {
     public static void main(String[] args) {
         LinkedList<String> linkedList = new LinkedList<>();
-​
+
         linkedList.push("first");
         linkedList.push("second");
         linkedList.push("second");
@@ -204,10 +203,10 @@ public class LinkedListMethodsDemo {
         linkedList.push("four");
         linkedList.push("five");
         System.out.println("linkedList: " + linkedList);
-​
+
         System.out.println("pop: " + linkedList.pop());
         System.out.println("after pop: " + linkedList);
-​
+
         System.out.println("poll: " + linkedList.poll());
         System.out.println("after poll: " + linkedList);
     }
@@ -228,11 +227,11 @@ after poll: [third, second, second, first]
 
 ``` java
 import java.util.LinkedList;
-​
+
 public class LinkedListMethodsDemo {
     public static void main(String[] args) {
         LinkedList<String> linkedList = new LinkedList<>();
-​
+
         System.out.println("poll: " + linkedList.poll());
         System.out.println("pop: " + linkedList.pop());
     }
@@ -261,11 +260,11 @@ Exception in thread "main" java.util.NoSuchElementException
 
 ``` java
 import java.util.LinkedList;
-​
+
 public class LinkedListMethodsDemo {
     public static void main(String[] args) {
         LinkedList<String> linkedList = new LinkedList<>();
-​
+
         linkedList.push("first");
         linkedList.push("second");
         linkedList.push("second");
@@ -273,11 +272,11 @@ public class LinkedListMethodsDemo {
         linkedList.push("four");
         linkedList.push("five");
         System.out.println("linkedList: " + linkedList);
-​
+
         System.out.println("peek: " + linkedList.peek());
         System.out.println("peekFirst: " + linkedList.peekFirst());
         System.out.println("peekLast: " + linkedList.peekLast());
-​
+
         System.out.println("linkedList: " + linkedList);
     }
 }
@@ -287,11 +286,11 @@ public class LinkedListMethodsDemo {
 
 ``` java
 import java.util.LinkedList;
-​
+
 public class LinkedListMethodsDemo {
     public static void main(String[] args) {
         LinkedList<String> linkedList = new LinkedList<>();
-​
+
         System.out.println("linkedList: " + linkedList);
         System.out.println("peek: " + linkedList.peek());
         System.out.println("peekFirst: " + linkedList.peekFirst());
@@ -319,11 +318,11 @@ peekLast: null
 
 ``` java
 import java.util.LinkedList;
-​
+
 public class LinkedListMethodsDemo {
     public static void main(String[] args) {
         LinkedList<String> linkedList = new LinkedList<>();
-​
+
         linkedList.push("first");
         linkedList.push("second");
         linkedList.push("second");
@@ -331,13 +330,13 @@ public class LinkedListMethodsDemo {
         linkedList.push("four");
         linkedList.push("five");
         System.out.println("linkedList: " + linkedList);
-​
+
         linkedList.offer("six");
         System.out.println("linkedList: " + linkedList);
-​
+
         linkedList.offerFirst("zero");
         System.out.println("linkedList: " + linkedList);
-​
+
         linkedList.offerLast("seven");
         System.out.println("linkedList: " + linkedList);
     }
@@ -359,11 +358,11 @@ linkedList: [zero, five, four, third, second, second, first, six, seven]
 
 ``` java
 import java.util.LinkedList;
-​
+
 public class LinkedListMethodsDemo {
     public static void main(String[] args) {
         LinkedList<String> linkedList = new LinkedList<>();
-​
+
         linkedList.push("first");
         linkedList.push("second");
         linkedList.push("second");
@@ -371,7 +370,7 @@ public class LinkedListMethodsDemo {
         linkedList.push("four");
         linkedList.push("five");
         System.out.println("linkedList: " + linkedList);
-​
+
         System.out.println("linkedList.contains(\"second\"): " + linkedList.contains("second"));
         System.out.println("linkedList.contains(\"six\"): " + linkedList.contains("six"));
         System.out.println("linkedList.element(): " + linkedList.element());

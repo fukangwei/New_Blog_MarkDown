@@ -1,7 +1,6 @@
 ---
 title: 头文件cplusplus的解释
 categories: C语言语法详解
-abbrlink: 9352a5be
 date: 2018-12-09 12:54:38
 ---
 &emsp;&emsp;我们经常会遇到下面的代码段：<!--more-->

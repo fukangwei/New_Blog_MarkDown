@@ -1,10 +1,9 @@
 ---
 title: Qt之QReadWriteLock
 categories: Qt语法详解
-abbrlink: c0692767
 date: 2019-01-03 16:28:02
 ---
-&emsp;&emsp;The `QReadWriteLock` class provides `read-write` locking. The header file is `QReadWriteLock`. **Note**: All functions in this class are `thread-safe`.<!--more-->
+&emsp;&emsp;The `QReadWriteLock` class provides `read-write` locking. The header file is `QReadWriteLock`. **Note**: All functions in this class are `thread-safe`.<!--more-->
 
 ### Public Types
 
@@ -29,11 +28,11 @@ Return | Function
 
 &emsp;&emsp;The `QReadWriteLock` class provides `read-write` locking.
 &emsp;&emsp;A `read-write` lock is a synchronization tool for protecting resources that can be accessed for `reading` and `writing`. This type of lock is useful if you want to allow multiple threads to have simultaneous `read-only` access, but as soon as one thread wants to write to the resource, all other threads must be blocked until the `writing` is complete.
-&emsp;&emsp;In many cases, `QReadWriteLock` is a direct competitor to `QMutex`. `QReadWriteLock` is a good choice if there are many concurrent reads and `writing` occurs infrequently. Example:
+&emsp;&emsp;In many cases, `QReadWriteLock` is a direct competitor to `QMutex`. `QReadWriteLock` is a good choice if there are many concurrent reads and `writing` occurs infrequently.
 
 ``` cpp
 QReadWriteLock lock;
-​
+
 void ReaderThread::run() {
     ...
     lock.lockForRead();
@@ -41,7 +40,7 @@ void ReaderThread::run() {
     lock.unlock();
     ...
 }
-​
+
 void WriterThread::run() {
     ...
     lock.lockForWrite();

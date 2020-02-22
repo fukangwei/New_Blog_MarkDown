@@ -1,7 +1,6 @@
 ---
 title: TensorFlow之函数总结
 categories: 深度学习
-abbrlink: aa17735e
 date: 2019-02-13 19:48:39
 ---
 ### get_shape函数
@@ -247,7 +246,6 @@ tf.split(value, num_or_size_splits, axis=0, num=None, name='split')
 Defined in `tensorflow/python/ops/array_ops.py`. Splits a tensor into sub tensors.
 &emsp;&emsp;If `num_or_size_splits` is an integer type, `num_split`, then splits `value` along dimension `axis` into `num_split` smaller tensors. Requires that `num_split` evenly divides `value.shape[axis]`.
 &emsp;&emsp;If `num_or_size_splits` is not an integer type, it is presumed to be a `Tensor` `size_splits`, then splits `value` into `len(size_splits)` pieces. The shape of the `i-th` piece has the same size as the `value` except along dimension `axis` where the size is `size_splits[i]`.
-&emsp;&emsp;For example:
 
 ``` python
 # 'value' is a tensor with shape [5, 30]. Split 'value' into 3 tensors
@@ -895,7 +893,7 @@ Stacks a list of `rank-R` tensors into one `rank-(R+1)` tensor.
 
 Return a stacked `Tensor` with the same type as `values`.
 &emsp;&emsp;Packs the list of tensors in `values` into a tensor with rank one higher than each tensor in `values`, by packing them along the `axis` dimension.
-&emsp;&emsp;Given a list of length `N` of tensors of shape `(A, B, C)`: if `axis == 0` then the output tensor will have the shape `(N, A, B, C)`; if `axis == 1` then the output tensor will have the shape `(A, N, B, C)`. For example:
+&emsp;&emsp;Given a list of length `N` of tensors of shape `(A, B, C)`: if `axis == 0` then the output tensor will have the shape `(N, A, B, C)`; if `axis == 1` then the output tensor will have the shape `(A, N, B, C)`.
 
 ``` python
 x = tf.constant([1, 4])
@@ -925,7 +923,6 @@ Unpacks the given dimension of a `rank-R` tensor into `rank-(R-1)` tensors.
 
 - If `axis == 0` then the `i'th` tensor in output is the slice `value[i, :, :, :]` and each tensor in output will have shape `(B, C, D)`. Note that the dimension unpacked along is gone, unlike split.
 - If `axis == 1` then the `i'th` tensor in output is the slice `value[:, i, :, :]` and each tensor in output will have shape `(A, C, D)`.
-&emsp;&emsp;Code example:
 
 ``` python
 import tensorflow as tf
@@ -962,8 +959,6 @@ Transposes `a`. Permutes the dimensions according to `perm`. The returned tensor
 - `perm`: A permutation of the dimensions of `a`.
 - `name`: A `name` for the operation (optional).
 - `conjugate`: Optional `bool`. Setting it to `True` is mathematically equivalent to `tf.conj(tf.transpose(input))`.
-
-&emsp;&emsp;For example:
 
 ``` python
 x = tf.constant([[1, 2, 3], [4, 5, 6]])

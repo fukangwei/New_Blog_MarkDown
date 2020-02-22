@@ -1,7 +1,6 @@
 ---
 title: compare函数
 categories: opencv和图像处理
-abbrlink: 370e2cb1
 date: 2018-12-30 14:42:07
 ---
 &emsp;&emsp;`compare`函数原型如下(定义在头文件`core.hpp`中)：<!--more-->
@@ -24,7 +23,7 @@ enum {
     CMP_GE = 2, /* 大于等于 */
     CMP_LT = 3, /* 小于     */
     CMP_LE = 4, /* 小于等于 */
-    CMP_NE = 5  /* 不相等   */
+    CMP_NE = 5  /* 不相等   */
 };
 ```
 

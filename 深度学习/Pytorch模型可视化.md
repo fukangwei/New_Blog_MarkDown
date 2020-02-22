@@ -1,7 +1,6 @@
 ---
 title: Pytorch模型可视化
 categories: 深度学习
-abbrlink: 14ed466a
 date: 2019-01-09 17:04:20
 ---
 &emsp;&emsp;`torchsummary`可以用于模型的可视化，它会输出模型各层的详细参数以及输出尺寸。其安装方法如下：<!--more-->
@@ -23,12 +22,12 @@ summary(your_model, input_size=(channels, H, W))
 import torch
 from torchsummary import summary
 from torchvision.models import vgg11
-​
+
 model = vgg11(pretrained=False)
 
 if torch.cuda.is_available():
     model = model.cuda()
-​
+
 summary(model, (3, 224, 224))
 ```
 
@@ -84,7 +83,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torchsummary import summary
-​
+
 class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
@@ -93,7 +92,7 @@ class Net(nn.Module):
         self.conv2_drop = nn.Dropout2d()
         self.fc1 = nn.Linear(320, 50)
         self.fc2 = nn.Linear(50, 10)
-​
+
     def forward(self, x):
         x = F.relu(F.max_pool2d(self.conv1(x), 2))
         x = F.relu(F.max_pool2d(self.conv2_drop(self.conv2(x)), 2))
@@ -102,12 +101,12 @@ class Net(nn.Module):
         x = F.dropout(x, training=self.training)
         x = self.fc2(x)
         return F.log_softmax(x, dim=1)
-​
+
 model = Net()
 
 if torch.cuda.is_available():
     model = model.cuda()
-​
+
 summary(model, (1, 28, 28))
 ```
 
@@ -139,7 +138,7 @@ Estimated Total Size (MB): 0.15
 import torch
 import torch.nn as nn
 from torchsummary import summary
-​
+
 class SimpleConv(nn.Module):
     def __init__(self):
         super(SimpleConv, self).__init__()
@@ -147,12 +146,12 @@ class SimpleConv(nn.Module):
             nn.Conv2d(1, 1, kernel_size=3, stride=1, padding=1),
             nn.ReLU(),
         )
-​
+
     def forward(self, x, y):
         x1 = self.features(x)
         x2 = self.features(y)
         return x1, x2
-​
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = SimpleConv().to(device)
 summary(model, [(1, 16, 16), (1, 28, 28)])

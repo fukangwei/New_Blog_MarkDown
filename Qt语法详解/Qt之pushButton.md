@@ -1,7 +1,6 @@
 ---
 title: Qt之pushButton
 categories: Qt语法详解
-abbrlink: 9a46db49
 date: 2019-02-18 19:16:34
 ---
 
@@ -22,7 +21,7 @@ date: 2019-02-18 19:16:34
 ``` cpp
 #include <QApplication>
 #include <QPushButton>
-​
+
 int main ( int argc, char *argv[] ) {
     QApplication app ( argc, argv );
     QPushButton *button = new QPushButton ( "Quit" );
@@ -64,11 +63,11 @@ ui->pushButton->setDefault ( true ); /* 设置默认按钮，设置了这个属�
 
 <img src="./Qt之pushButton/2.png">
 
-&emsp;&emsp;问题：I have the follwing code where moreButton is a `QPushButton`. When I toggle the button, nothing happens. Shouldn't it show or hide `secondaryGroupBox` and `tertiaryGroupBox`?
+&emsp;&emsp;问题：I have the follwing code where moreButton is a `QPushButton`. When I toggle the button, nothing happens. Shouldn't it show or hide `secondaryGroupBox` and `tertiaryGroupBox`?
 
 ``` cpp
 QObject::connect ( moreButton, SIGNAL ( toggled ( bool ) ), secondaryGroupBox, SLOT ( setVisible ( bool ) ) );
 QObject::connect ( moreButton, SIGNAL ( toggled ( bool ) ), tertiaryGroupBox, SLOT ( setVisible ( bool ) ) );
 ```
 
-&emsp;&emsp;回答：Most likely, your pushbutton is not checkable. Try `moreButton->setCheckable(true)`, a `non-checkable` button never emits the `toggled(bool)` signal.
+&emsp;&emsp;回答：Most likely, your pushbutton is not checkable. Try `moreButton->setCheckable(true)`, a `non-checkable` button never emits the `toggled(bool)` signal.

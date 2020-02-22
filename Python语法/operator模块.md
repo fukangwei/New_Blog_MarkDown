@@ -1,7 +1,6 @@
 ---
 title: operator模块
 categories: Python语法
-abbrlink: 36dff267
 date: 2018-12-28 10:43:00
 ---
 &emsp;&emsp;本模块主要包括一些`Python`内部操作符对应的函数。这些函数主要分为几类：`对象比较`、`逻辑比较`、`算术运算`和`序列操作`：<!--more-->
@@ -47,7 +46,7 @@ date: 2018-12-28 10:43:00
 
 ``` python
 import operator
-​
+
 a = operator.add(1, 3)
 print(a)  # 结果为4
 ```
@@ -58,7 +57,7 @@ print(a)  # 结果为4
 >>> import operator
 >>> help(operator.itemgetter)
 Help on class itemgetter in module operator:
-​
+
 class itemgetter(builtins.object)
  |  itemgetter(item, ...) --> itemgetter object
  |
@@ -75,7 +74,7 @@ class itemgetter(builtins.object)
  |      Return getattr(self, name).
  |
  |  __new__(*args, **kwargs) from builtins.type
- |      Create and return a new object.  See help(type) for accurate signature.
+ |      Create and return a new object. See help(type) for accurate signature.
  |
  |  __reduce__(...)
  |      Return state information for pickling

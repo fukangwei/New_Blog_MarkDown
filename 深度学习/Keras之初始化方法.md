@@ -1,7 +1,6 @@
 ---
 title: Keras之初始化方法
 categories: 深度学习
-abbrlink: dd547720
 date: 2019-01-01 13:03:30
 ---
 &emsp;&emsp;初始化方法定义了对`Keras`层设置初始化权重的方法。不同的层可能使用不同的关键字来传递初始化方法，一般来说，指定初始化方法的关键字是`kernel_initializer`和`bias_initializer`：<!--more-->
@@ -14,7 +13,7 @@ model.add(Dense(64, kernel_initializer='random_uniform', bias_initializer='zeros
 
 ``` python
 from keras import initializers
-​
+
 model.add(Dense(64, kernel_initializer=initializers.random_normal(stddev=0.01)))
 # also works, it will use the default parameters.
 model.add(Dense(64, kernel_initializer='random_normal'))
@@ -187,9 +186,9 @@ he_normal(seed=None)
 
 ``` python
 from keras import backend as K
-​
+
 def my_init(shape, dtype=None):
     return K.random_normal(shape, dtype=dtype)
-​
+
 model.add(Dense(64, init=my_init))
 ```

@@ -1,12 +1,11 @@
 ---
 title: Shell输入输出重定向
 categories: Shell编程
-abbrlink: 3a6ee9d0
 date: 2019-01-20 09:38:27
 ---
 &emsp;&emsp;大多数`UNIX`系统命令从你的终端接受输入并将所产生的输出发送回到您的终端。一个命令通常从一个叫标准输入的地方读取输入，默认情况下恰好是你的终端。同样，一个命令通常将其输出写入到标准输出，默认情况下也是你的终端。重定向命令列表如下：<!--more-->
 
-命令               | 说明
+命令              | 说明
 ------------------|------------------
 `command > file`  | 将输出重定向到`file`
 `command < file`  | 将输入重定向到`file`
@@ -63,7 +62,7 @@ command < infile > outfile
 
 ``` bash
 command << delimiter
-    document
+    document
 delimiter
 ```
 
@@ -76,14 +75,14 @@ $ wc -l << EOF
 >菜鸟教程
 >www.runoob.com
 >EOF
-3  # 输出结果为3行
+3 # 输出结果为3行
 ```
 
 也可以将`Here Document`用在脚本中：
 
 ``` bash
 #!/bin/bash
-​
+
 cat << EOF
 欢迎来到
 菜鸟教程

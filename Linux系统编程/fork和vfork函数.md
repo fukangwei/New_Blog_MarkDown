@@ -1,7 +1,6 @@
 ---
 title: fork和vfork函数
 categories: Linux系统编程
-abbrlink: 8b298d50
 date: 2019-03-16 15:40:43
 ---
 ### fork
@@ -22,11 +21,11 @@ pid_t fork ( void );
 ``` cpp
 #include "unistd.h"
 #include "stdio.h"
-​
+
 int main() {
     pid_t pid;
     pid = fork();
-​
+
     if ( pid > 0 ) {
         printf ( "This is father process\n" );
         exit ( 0 );
@@ -43,7 +42,7 @@ int main() {
 #include "unistd.h"
 #include "stdio.h"
 #include "stdlib.h"
-​
+
 int main() {
     pid_t pid;
     int count = 0;
@@ -82,7 +81,7 @@ pid_t vfork ( void );
 #include "unistd.h"
 #include "stdio.h"
 #include "stdlib.h"
-​
+
 int main() {
     pid_t pid;
     int count = 0;
@@ -103,11 +102,11 @@ int main() {
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-​
+
 int main ( void ) {
     int var;
     var = 88;
-​
+
     if ( ( pid = vfork() ) < 0 ) {
         printf ( "vfork error" );
         exit ( -1 );
@@ -115,7 +114,7 @@ int main ( void ) {
         var++;
         return 0;
     }
-​
+
     printf ( "pid = %d, glob = %d, var = %d\n", getpid(), glob, var );
     return 0;
 }
@@ -154,7 +153,7 @@ int main ( void ) {
 #include "stdio.h"
 #include "sys/types.h"
 #include "unistd.h"
-​
+
 int main() {
     pid_t pid1;
     pid_t pid2;

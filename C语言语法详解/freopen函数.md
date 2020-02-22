@@ -1,18 +1,17 @@
 ---
 title: freopen函数
 categories: C语言语法详解
-abbrlink: 1b32726a
 date: 2018-12-12 19:58:09
 ---
 &emsp;&emsp;`freopen`是`C`标准库头文件`stdio.h`中的一个函数，用于重定向输入输出流。该函数可以在不改变代码原貌的情况下改变输入输出环境，但使用时应当保证流是可靠的。`C89`函数声明为：<!--more-->
 
-``` c
+``` cpp
 FILE* freopen ( const char* filename, const char* mode, FILE* stream );
 ```
 
 `C99`函数声明为：
 
-``` c
+``` cpp
 FILE* freopen ( const char* restrict filename, const char* restrict mode, FILE* restrict stream );
 ```
 
@@ -45,7 +44,7 @@ int main ( void ) {
 ``` cpp
 /* 从文件in.txt中读入数据，计算加和并输出到out.txt中 */
 #include <stdio.h>
-​
+
 int main ( void ) {
     int a, b;
     freopen ( "in.txt", "r", stdin );
@@ -70,7 +69,7 @@ int main ( void ) {
 ``` cpp
 #include <stdio.h>
 #include <stdlib.h>
-​
+
 int main ( void ) {
     FILE* stream;
 
@@ -90,7 +89,7 @@ int main ( void ) {
 ``` cpp
 #include <stdio.h>
 #include <stdlib.h>
-​
+
 int main ( void ) {
     FILE* stream;
 
@@ -117,7 +116,7 @@ int main ( void ) {
 #include <stdio.h>
 #include <iostream>
 
-using namespace std;​
+using namespace std;
 
 int main() {
 #ifdef ONLINE_JUDGE

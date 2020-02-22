@@ -1,14 +1,13 @@
 ---
 title: ftplib模块
 categories: Python语法
-abbrlink: 1de28dd1
 date: 2018-12-28 09:10:38
 ---
 &emsp;&emsp;`Python`中默认安装的`ftplib`模块定义了`FTP`类，可用来实现简单的`ftp`客户端，用于上传或下载文件。<!--more-->
 
 ``` python
 from ftplib import FTP  # 加载ftp模块
-​
+
 ftp = FTP()  # 设置变量
 ftp.set_debuglevel(2)  # 打开调试级别2，显示详细信息
 ftp.connect("IP", "port")  # 连接的“ftp sever”和端口
@@ -48,14 +47,14 @@ ftp.retrbinary("RETR filename.txt", file_handel, bufsize)  # 下载FTP文件
 
 ``` python
 from ftplib import FTP
-​
+
 def ftpconnect(host, username, password):
     ftp = FTP()
     # ftp.set_debuglevel(2)  # 打开调试级别2，显示详细信息
     ftp.connect(host, 21)  # 连接
     ftp.login(username, password)  # 登录服务器，如果匿名登录，则用空串代替即可
     return ftp
-​
+
 def downloadfile(ftp, remotepath, localpath):
     bufsize = 1024  # 设置缓冲块大小
     fp = open(localpath, 'wb')  # 以写模式在本地打开文件
@@ -63,14 +62,14 @@ def downloadfile(ftp, remotepath, localpath):
     ftp.retrbinary('RETR ' + remotepath, fp.write, bufsize)
     # ftp.set_debuglevel(0)  # 关闭调试
     fp.close()  # 关闭文件
-​
+
 def uploadfile(ftp, remotepath, localpath):
     bufsize = 1024
     fp = open(localpath, 'rb')
     ftp.storbinary('STOR ' + remotepath, fp, bufsize)  # 上传文件
     # ftp.set_debuglevel(0)
     fp.close()
-​
+
 if __name__ == "__main__":
     ftp = ftpconnect("******", "***", "***")
     downloadfile(ftp, "***", "***")

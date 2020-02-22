@@ -1,7 +1,6 @@
 ---
 title: C指针
 categories: C语言语法详解
-abbrlink: 23521
 date: 2019-10-02 11:01:18
 ---
 ### 变量地址

@@ -1,7 +1,6 @@
 ---
 title: String类
 categories: Java
-abbrlink: 5cf35ca9
 date: 2018-12-24 09:23:07
 ---
 &emsp;&emsp;在`Java`中，字符串属于对象，`Java`提供了`String`类来创建和操作字符串。创建字符串最简单的方式如下：<!--more-->

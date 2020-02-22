@@ -1,7 +1,6 @@
 ---
 title: OpenCV for Android使用相机
 categories: opencv和图像处理
-abbrlink: a45c6400
 date: 2019-02-06 12:03:36
 ---
 &emsp;&emsp;我们想要在应用中通过`OpenCV`的`Java API`实现打开相机，并全屏显示的功能，所以`MainActivity`需要实现`CvCameraViewListener2`接口。一共需要实现三个方法，分别是`onCameraViewStarted`、`onCameraViewStopped`和`onCameraFrame`，而图像处理函数写在`onCameraFrame`函数中。<!--more-->
@@ -100,22 +99,22 @@ import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
-​
+
 import android.content.pm.ActivityInfo;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
-​
+
 public class ImageManipulationsActivity extends Activity implements CameraBridgeViewBase.CvCameraViewListener2 {
     static {
         System.loadLibrary("opencv_java3");
     }
-​
+
     private String TAG = "OpenCV_Test";
     private CameraBridgeViewBase mOpenCvCameraView; /* OpenCV的相机接口 */
     private Mat mRgba; /* 缓存相机每帧输入的数据 */
-​
+
     /* 通过OpenCV管理Android服务，异步初始化OpenCV */
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
@@ -133,23 +132,23 @@ public class ImageManipulationsActivity extends Activity implements CameraBridge
             }
         }
     };
-​
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, "called onCreate");
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.image_manipulations_surface_view);
-​
+
         mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.image_manipulations_activity_surface_view);
         mOpenCvCameraView.setVisibility(CameraBridgeViewBase.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
     }
-​
+
     @Override
     public void onResume() {
         super.onResume();
-​
+
         if (getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) { /* 强制横屏 */
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         } else { /* 横屏后才加载部件 */
@@ -162,7 +161,7 @@ public class ImageManipulationsActivity extends Activity implements CameraBridge
             }
         }
     }
-​
+
     @Override
     protected void onDestroy() {
         if (mOpenCvCameraView != null) {
@@ -171,18 +170,18 @@ public class ImageManipulationsActivity extends Activity implements CameraBridge
 
         super.onDestroy();
     }
-​
+
     /* 对象实例化以及基本属性的设置，包括长度、宽度和图像类型 */
     public void onCameraViewStarted(int width, int height) {
         mRgba = new Mat(height, width, CvType.CV_8UC4);
     }
-​
+
     /* 图像处理都写在这里 */
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         mRgba = inputFrame.rgba(); /* 直接返回输入视频预览图的RGB数据，并存放在Mat数据中 */
         return mRgba;
     }
-​
+
     /* 结束时释放资源 */
     public void onCameraViewStopped() {
         mRgba.release();

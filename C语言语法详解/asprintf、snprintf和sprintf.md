@@ -1,7 +1,6 @@
 ---
 title: asprintf、snprintf和sprintf
 categories: C语言语法详解
-abbrlink: 9a3d87f8
 date: 2018-12-06 17:49:34
 ---
 ### 用snprintf/asprintf取代不安全的sprintf
@@ -67,7 +66,7 @@ snprintf ( buf, bufsize, "You typed \"%s\"", answer );
 
 `C99`的`snprintf`提供了预测任意`sprintf`调用所需的缓冲区大小的方法。`snprintf`返回它可能放到缓冲区的字符数，而它又可以用`0`作为缓冲区大小进行调用。因此，
 
-``` c
+``` cpp
 nch = snprintf ( NULL, 0, fmtstring, /* 其它参数 */ );
 ```
 

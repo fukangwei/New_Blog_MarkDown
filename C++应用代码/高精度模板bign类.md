@@ -1,7 +1,6 @@
 ---
 title: 高精度模板bign类
 categories: C++应用代码
-abbrlink: 8bc5f89a
 date: 2018-12-15 23:35:27
 ---
 &emsp;&emsp;很不错的高精度模板，但这个模板只能算加、减、乘、除等基本运算，但操作减法的时候只能大数减小数，所以最重要的操作是`+`、`+=`、`-`、`-=`、`*`、`*=`、`/`、`/=`、`==`、`>=`等一些基本的运算：<!--more-->
@@ -17,7 +16,7 @@ date: 2018-12-15 23:35:27
 using namespace std;
 
 const int MAXN = 410;
-​
+
 struct bign {
     int len, s[MAXN];
     bign () {
@@ -222,7 +221,7 @@ struct bign {
         return res;
     }
 };
-​
+
 istream& operator >> ( istream& in, bign& x ) {
     string s;
     in >> s;

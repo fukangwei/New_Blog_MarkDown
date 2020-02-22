@@ -1,7 +1,6 @@
 ---
 title: Qt之启动线程
 categories: Qt应用示例
-abbrlink: 7bcefc10
 date: 2019-02-23 11:56:41
 ---
 &emsp;&emsp;`mythread.h`如下：<!--more-->
@@ -9,9 +8,9 @@ date: 2019-02-23 11:56:41
 ``` cpp
 #ifndef MYTHREAD_H
 #define MYTHREAD_H
-​
+
 #include <QThread>
-​
+
 class MyThread : public QThread {
     Q_OBJECT
 public:
@@ -22,9 +21,9 @@ protected:
 private:
     volatile bool stopped;
 signals:
-  public slots:
+public slots:
 };
-​
+
 #endif // MYTHREAD_H
 ```
 
@@ -33,14 +32,14 @@ signals:
 ``` cpp
 #ifndef DIALOG_H
 #define DIALOG_H
-​
+
 #include <QDialog>
 #include "mythread.h"
-​
+
 namespace Ui {
     class Dialog;
 }
-​
+
 class Dialog : public QDialog {
     Q_OBJECT
 public:
@@ -53,7 +52,7 @@ private:
     Ui::Dialog *ui;
     MyThread thread;
 };
-​
+
 #endif // DIALOG_H
 ```
 
@@ -62,21 +61,21 @@ private:
 ``` cpp
 #include "mythread.h"
 #include <QDebug>
-​
+
 MyThread::MyThread ( QObject *parent ) : QThread ( parent ) {
     stopped = false;
 }
-​
+
 void MyThread::run() {
     qreal i = 0;
-​
+
     while ( !stopped ) {
         qDebug() << QString ( "in MyThread: %1" ).arg ( i++ );
     }
-​
+
     stopped = false;
 }
-​
+
 void MyThread::stop() {
     stopped = true;
 }
@@ -87,21 +86,21 @@ void MyThread::stop() {
 ``` cpp
 #include "dialog.h"
 #include "ui_dialog.h"
-​
+
 Dialog::Dialog ( QWidget *parent ) : QDialog ( parent ), ui ( new Ui::Dialog ) {
     ui->setupUi ( this );
 }
-​
+
 Dialog::~Dialog() {
     delete ui;
 }
-​
+
 void Dialog::on_startButton_clicked() { /* 启动线程按钮 */
     thread.start();
     ui->startButton->setEnabled ( false );
     ui->stopButton->setEnabled ( true );
 }
-​
+
 void Dialog::on_stopButton_clicked() { /* 终止线程按钮 */
     if ( thread.isRunning() ) {
         thread.stop();
@@ -116,7 +115,7 @@ void Dialog::on_stopButton_clicked() { /* 终止线程按钮 */
 ``` cpp
 #include <QtGui/QApplication>
 #include "dialog.h"
-​
+
 int main ( int argc, char *argv[] ) {
     QApplication a ( argc, argv );
     Dialog w;

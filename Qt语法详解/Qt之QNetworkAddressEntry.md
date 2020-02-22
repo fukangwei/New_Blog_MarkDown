@@ -1,7 +1,6 @@
 ---
 title: Qt之QNetworkAddressEntry
 categories: Qt语法详解
-abbrlink: c391d68f
 date: 2019-01-03 09:04:44
 ---
 &emsp;&emsp;`QNetworkAddressEntry`类由网络接口支持，存储了`IP`地址、子网掩码和广播地址。每个网络接口可以包含零个或多个`IP`地址，进而可以关联到一个子网掩码`和/或`一个广播地址(取决于操作系统的支持)。常用接口如下：<!--more-->
@@ -15,10 +14,10 @@ date: 2019-01-03 09:04:44
 
 ``` cpp
 QList<QNetworkInterface> list = QNetworkInterface::allInterfaces();
-​
+
 foreach ( QNetworkInterface netInterface, list ) {
     QList<QNetworkAddressEntry> entryList = netInterface.addressEntries();
-​
+
     foreach ( QNetworkAddressEntry entry, entryList ) { /* 遍历每一个IP地址 */
         qDebug() << "IP Address:" << entry.ip().toString(); /* IP地址 */
         qDebug() << "Netmask:" << entry.netmask().toString(); /* 子网掩码 */
@@ -35,27 +34,27 @@ IP Address: "fe80::550c:ab19:fb48:1c9%15"
 Netmask: "ffff:ffff:ffff:ffff::"
 Broadcast: ""
 Prefix Length: 64
-​
+
 IP Address: "169.254.1.201"
 Netmask: ""
 Broadcast: ""
 Prefix Length: -1
-​
+
 IP Address: "fe80::d086:8566:6065:8954%11"
 Netmask: "ffff:ffff:ffff:ffff::"
 Broadcast: ""
 Prefix Length: 64
-​
+
 IP Address: "172.18.4.165"
 Netmask: "255.255.240.0"
 Broadcast: "172.18.15.255"
 Prefix Length: 20
-​
+
 IP Address: "::1"
 Netmask: "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"
 Broadcast: ""
 Prefix Length: 128
-​
+
 IP Address: "127.0.0.1"
 Netmask: ""
 Broadcast: ""

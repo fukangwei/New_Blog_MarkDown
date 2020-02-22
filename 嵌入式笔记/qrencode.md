@@ -1,7 +1,6 @@
 ---
 title: qrencode
 categories: 嵌入式笔记
-abbrlink: '56453724'
 date: 2019-01-17 17:54:29
 ---
 &emsp;&emsp;`QR`码是当前最流行的二维码之一，它具有可靠性高、识别速度快等特点。而`qrencode`则是由`C`语言写成的`QR`码生成与解码的函数库，它以`GNU LGPL`协议发布，是当前最常用的`QR`码识别函数库。<!--more-->

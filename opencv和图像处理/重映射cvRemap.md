@@ -1,7 +1,6 @@
 ---
 title: 重映射cvRemap
 categories: opencv和图像处理
-abbrlink: 2b9df6c1
 date: 2019-03-04 11:47:15
 ---
 &emsp;&emsp;`cvRemap`可以对图像进行普通几何变换，它利用下面指定的矩阵变换输入图像：<!--more-->
@@ -32,7 +31,7 @@ void cvRemap (
 #include "cxcore.h"
 #include "highgui.h"
 #include <iostream>
-​
+
 int main ( int argc, char **argv ) {
     uchar DataSrc[] = {
         1, 2, 3,
@@ -56,60 +55,60 @@ int main ( int argc, char **argv ) {
     cvRemap ( &MatSrc, MatDst, &mapx, &mapy, CV_INTER_LINEAR | CV_WARP_FILL_OUTLIERS );
     /* 打印原矩阵 */
     std::cout << "MatSrc:" << std::endl;
-​
+
     for ( int rows = 0; rows < MatSrc.height; rows++ ) {
         uchar *DataPt = ( uchar * ) ( MatSrc.data.ptr + rows * MatSrc.step );
-​
+
         for ( int cols = 0; cols < MatSrc.width; cols++ ) {
             uchar data = * ( DataPt + cols );
             std::cout << ( int ) data << " ";
         }
-​
+
         std::cout << std::endl;
     }
-​
+
     /* 打印mapx */
     std::cout << "mapx:" << std::endl;
-​
+
     for ( int rows = 0; rows < mapx.height; rows++ ) {
         float *DataPt = ( float * ) ( mapx.data.ptr + rows * mapx.step );
-​
+
         for ( int cols = 0; cols < mapx.width; cols++ ) {
             float data = * ( DataPt + cols );
             std::cout << ( float ) data << " ";
         }
-​
+
         std::cout << std::endl;
     }
-​
+
     /* 打印mapy */
     std::cout << "mapy:" << std::endl;
-​
+
     for ( int rows = 0; rows < mapy.height; rows++ ) {
         float *DataPt = ( float * ) ( mapy.data.ptr + rows * mapy.step );
-​
+
         for ( int cols = 0; cols < mapy.width; cols++ ) {
             float data = * ( DataPt + cols );
             std::cout << ( float ) data << " ";
         }
-​
+
         std::cout << std::endl;
     }
-​
+
     /* 打印结果矩阵 */
     std::cout << "MatDst:" << std::endl;
-​
+
     for ( int rows = 0; rows < MatDst->height; rows++ ) {
         uchar *DataPt = ( uchar * ) ( MatDst->data.ptr + rows * MatDst->step );
-​
+
         for ( int cols = 0; cols < MatDst->width; cols++ ) {
             uchar data = * ( DataPt + cols );
             std::cout << ( int ) data << " ";
         }
-​
+
         std::cout << std::endl;
     }
-​
+
     return 0;
 }
 ```
@@ -172,9 +171,9 @@ void remap (
 
 ``` cpp
 #include <opencv2/opencv.hpp>
-​
+
 using namespace cv;
-​
+
 int main() {
     Mat srcImage = imread ( "timg1.jpg" );
     Mat dstImage, map_x, map_y;
@@ -183,7 +182,7 @@ int main() {
     dstImage.create ( srcImage.size(), srcImage.type() );
     map_x.create ( srcImage.size(), CV_32FC1 );
     map_y.create ( srcImage.size(), CV_32FC1 );
-​
+
     /* 双层循环，遍历每一个像素点，改变map_x和map_y的值 */
     for ( int i = 0; i < srcImage.rows; i++ ) {
         for ( int j = 0; j < srcImage.cols ; j++ ) {
@@ -191,7 +190,7 @@ int main() {
             map_y.at<float> ( i, j ) = static_cast<float> ( i );
         }
     }
-​
+
     /* 进行重映射操作 */
     remap ( srcImage, dstImage, map_x, map_y, CV_INTER_LINEAR, \
             BORDER_CONSTANT, Scalar ( 255, 0, 0 ) );

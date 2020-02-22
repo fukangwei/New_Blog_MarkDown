@@ -1,7 +1,6 @@
 ---
 title: QT之paintEvent事件
 categories: Qt语法详解
-abbrlink: ecdfe1c1
 date: 2019-01-03 11:36:16
 ---
 &emsp;&emsp;当发生以下情况时，`Qt`会产生绘制事件，并调用`paintEvent`函数：<!--more-->

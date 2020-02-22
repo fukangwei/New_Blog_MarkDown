@@ -1,7 +1,6 @@
 ---
 title: Tkinter事件绑定
 categories: Tkinter编程
-abbrlink: 833c7648
 date: 2019-04-09 13:59:19
 ---
 &emsp;&emsp;正如我们此前提到的，一个`Tkinter`应用程序大部分时间花费在事件循环中(通过`mainloop`方法进入)。事件可以有各种来源，包括用户触发的鼠标和键盘操作和窗口管理器触发的重绘事件(在多数情况下是由用户间接引起的)。<!--more-->
@@ -16,16 +15,16 @@ widget.bind(event, handler)
 ``` python
 # 捕获点击鼠标的位置
 from tkinter import *
-​
+
 root = Tk()
-​
+
 def callback(event):
     print("点击位置：", event.x, event.y)
-​
+
 frame = Frame(root, width=200, height=200)
 frame.bind("<Button-1>", callback)
 frame.pack()
-​
+
 mainloop()
 ```
 
@@ -36,17 +35,17 @@ mainloop()
 ``` python
 # 捕获键盘事件
 from tkinter import *
-​
+
 root = Tk()
-​
+
 def callback(event):
     print("敲击位置：", repr(event.char))
-​
+
 frame = Frame(root, width=200, height=200)
 frame.bind("<Key>", callback)
 frame.focus_set()
 frame.pack()
-​
+
 mainloop()
 ```
 
@@ -56,16 +55,16 @@ mainloop()
 
 ``` python
 from tkinter import *
-​
+
 root = Tk()
-​
+
 def callback(event):
     print("当前位置：", event.x, event.y)
-​
+
 frame = Frame(root, width=200, height=200)
 frame.bind("<Motion>", callback)
 frame.pack()
-​
+
 mainloop()
 ```
 

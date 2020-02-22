@@ -1,7 +1,6 @@
 ---
 title: dup和dup2函数
 categories: Linux系统编程
-abbrlink: a12dbcf8
 date: 2019-02-03 00:13:39
 ---
 &emsp;&emsp;这两个函数的作用都是复制一个现存的文件描述符：<!--more-->
@@ -33,32 +32,32 @@ fcntl ( oldfd, F_DUPFD, newfd );
 #include <unistd.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-​
+
 int main ( int argc, char *argv[] ) {
     int fd = open ( "hello", O_CREAT | O_RDWR | O_TRUNC, S_IRUSR | S_IWUSR );
-​
+
     if ( fd < 0 ) {
         printf ( "Open Error!!\n" );
         return 0;
     }
-​
+
     int nfd = dup ( fd );
-​
+
     if ( nfd < 0 ) {
         printf ( "Error!\n" );
         return 0;
     }
-​
+
     char buf[1000];
     int n;
-​
+
     while ( ( n = read ( STDIN_FILENO, buf, 1000 ) ) > 0 ) {
         if ( write ( nfd, buf, n ) != n ) {
             printf ( "Write Error!!\n" );
             return 0;
         }
     }
-​
+
     return 0;
 }
 ```
@@ -85,31 +84,31 @@ hello world
 #include <unistd.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-​
+
 int main ( int argc, char *argv[] ) {
     int fd = open ( "hello.file", O_CREAT | O_RDWR | O_TRUNC, S_IRUSR | S_IWUSR );
-​
+
     if ( fd < 0 ) {
         printf ( "Open Error!!\n" );
         return 0;
     }
-​
+
     int nfd = dup2 ( fd, STDOUT_FILENO );
-​
+
     if ( nfd < 0 ) {
         printf ( "Error!\n" );
         return 0;
     }
-​
+
     char buf[5];
     int n;
-​
+
     while ( ( n = read ( STDIN_FILENO, buf, 5 ) ) > 0 )
         if ( write ( STDOUT_FILENO, buf, n ) != n ) {
             printf ( "Write Error!!\n" );
             return 0;
         }
-​
+
     return 0;
 }
 ```

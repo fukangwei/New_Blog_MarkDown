@@ -1,7 +1,6 @@
 ---
 title: inf和nan
 categories: C语言语法详解
-abbrlink: e5abef56
 date: 2018-12-10 21:01:10
 ---
 &emsp;&emsp;`inf`：`infinity`(`Linux`平台)等同于`#INF`(`infinity`，`Windows`平台)。<!--more-->

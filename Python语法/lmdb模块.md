@@ -1,7 +1,6 @@
 ---
 title: lmdb模块
 categories: Python语法
-abbrlink: bdc5aba5
 date: 2018-12-27 18:49:06
 ---
 &emsp;&emsp;`LMDB`和`SQLite`、`MySQL`等关系型数据库不同，属于`key-value`数据库(把`LMDB`想成`dict`会比较容易理解)，键`key`与值`value`都是字符串。安装方法如下：<!--more-->
@@ -39,10 +38,10 @@ env = lmdb.open("students")
 
 ``` python
 import lmdb
-​
+
 env = lmdb.open("students")
 txn = env.begin(write=True)
-​
+
 txn.put(str(1).encode(), "Alice".encode())
 txn.put(str(2).encode(), "Bob".encode())
 txn.put(str(3).encode(), "Peter".encode())
@@ -59,7 +58,7 @@ txn.commit()
 
 ``` python
 import lmdb
-​
+
 env = lmdb.open("students")
 txn = env.begin()
 print(txn.get(str(2).encode()))
@@ -67,7 +66,7 @@ print("------")
 
 for key, value in txn.cursor():
     print(key, value)
-​
+
 env.close()
 ```
 

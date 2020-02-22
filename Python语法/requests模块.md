@@ -1,7 +1,6 @@
 ---
 title: requests模块
 categories: Python语法
-abbrlink: 82b683e3
 date: 2019-03-02 15:48:06
 ---
 ### 发送请求

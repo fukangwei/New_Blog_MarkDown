@@ -1,7 +1,6 @@
 ---
 title: select函数
 categories: Linux系统编程
-abbrlink: 5281cd51
 date: 2019-02-03 13:59:39
 ---
 &emsp;&emsp;`Select`在`Socket`编程中还是比较重要的，可是对于初学`Socket`的人来说都不太爱用`Select`写程序，他们只是习惯写诸如`connect`、`accept`、`recv`或`recvfrom`这样的阻塞程序。所谓阻塞方式`block`，顾名思义，就是进程或是线程执行到这些函数时必须等待某个事件的发生，如果事件没有发生，进程或线程就被阻塞，函数不能立即返回。可是使用`Select`就可以完成非阻塞(所谓非阻塞方式`non-block`，就是进程或线程执行此函数时不必非要等待事件的发生，一旦执行肯定返回，以返回值的不同来反映函数的执行情况，如果事件发生则与阻塞方式相同，若事件没有发生则返回一个代码来告知事件未发生，而进程或线程继续执行，所以效率较高)方式工作的程序，它能够监视我们需要监视的文件描述符的变化情况(读、写或是异常)。<!--more-->
@@ -48,27 +47,27 @@ int main ( void ) {
     sock = socket ( ... );
     bind ( ... );
     fp = fopen ( ... );
-​
+
     while ( 1 ) {
         FD_ZERO ( &fds ); /* 每次循环都要清空集合，否则不能检测描述符变化 */
         FD_SET ( sock, &fds ); /* 添加描述符 */
         FD_SET ( fp, &fds ); /* 同上 */
         maxfdp = sock > fp ? sock + 1 : fp + 1; /* 描述符最大值加1 */
-​
+
         switch ( select ( maxfdp, &fds, &fds, NULL, &timeout ) ) { /* select使用 */
             case -1: exit ( -1 ); /* select错误，退出程序 */ break;
             case  0: break; /* 再次轮询 */
             default:
                 if ( FD_ISSET ( sock, &fds ) ) { /* 测试sock是否可读，即是否网络上有数据 */
                     recvfrom ( sock, buffer, 256, ... ); /* 接受网络数据 */
-​
+
                     if ( FD_ISSET ( fp, &fds ) ) { /* 测试文件是否可写 */
                         fwrite ( fp, buffer, ... ); /* 写入文件 */
                     }
-​
+
                     buffer清空;
                 }
-​
+
                 break;
         }
     }
@@ -125,7 +124,7 @@ fs_set readset；
 FD_ZERO ( &readset );
 FD_SET ( fd, &readset );
 select ( fd + 1, &readset, NULL, NULL, NULL );
-​
+
 if ( FD_ISSET ( fd, readset ) {
     /* ... */
 }
@@ -140,7 +139,7 @@ if ( FD_ISSET ( fd, readset ) {
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <assert.h>
-​
+
 int main ( void ) {
     int keyboard;
     int ret, i;
@@ -149,23 +148,23 @@ int main ( void ) {
     struct timeval timeout;
     keyboard = open ( "/dev/tty", O_RDONLY | O_NONBLOCK );
     assert ( keyboard > 0 );
-​
+
     while ( 1 ) {
         timeout.tv_sec = 1;
         timeout.tv_usec = 0;
         FD_ZERO ( &readfd );
         FD_SET ( keyboard, &readfd );
         ret = select ( keyboard + 1, &readfd, NULL, NULL, &timeout );
-​
+
         if ( FD_ISSET ( keyboard, &readfd ) ) {
             i = read ( keyboard, &c, 1 );
-​
+
             if ( '/n' == c ) {
                 continue;
             }
-​
+
             printf ( "hehethe input is %c\n", c );
-​
+
             if ( 'q' == c ) {
                 break;
             }
@@ -182,7 +181,7 @@ int main ( void ) {
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <assert.h>
-​
+
 int main() {
     int keyboard;
     int ret, i;
@@ -191,26 +190,26 @@ int main() {
     struct timeval timeout;
     keyboard = open ( "/dev/tty", O_RDONLY | O_NONBLOCK );
     assert ( keyboard > 0 );
-​
+
     while ( 1 ) {
         timeout.tv_sec = 5;
         timeout.tv_usec = 0;
         FD_ZERO ( &readfd );
         FD_SET ( keyboard, &readfd );
         ret = select ( keyboard + 1, &readfd, NULL, NULL, &timeout );
-​
+
         if ( ret == -1 ) { /* select error when ret = -1 */
             perror ( "select error" );
         } else if ( ret ) { /* data coming when ret > 0 */
             if ( FD_ISSET ( keyboard, &readfd ) ) {
                 i = read ( keyboard, &c, 1 );
-​
+
                 if ( '\n' == c ) {
                     continue;
                 }
-​
+
                 printf ( "hehethe input is %c\n", c );
-​
+
                 if ( 'q' == c ) {
                     break;
                 }

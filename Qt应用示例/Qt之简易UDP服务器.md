@@ -1,7 +1,6 @@
 ---
 title: Qt之简易UDP服务器
 categories: Qt应用示例
-abbrlink: c2a11b2
 date: 2019-02-06 15:07:46
 ---
 ### udp_receiver
@@ -11,14 +10,14 @@ date: 2019-02-06 15:07:46
 ``` cpp
 #ifndef RECEIVER_H
 #define RECEIVER_H
-​
+
 #include <QDialog>
 class QUdpSocket;
-​
+
 namespace Ui {
     class Receiver;
 }
-​
+
 class Receiver : public QDialog {
     Q_OBJECT
 public:
@@ -30,7 +29,7 @@ private:
 private slots:
     void processPendingDatagram();
 };
-​
+
 #endif // RECEIVER_H
 ```
 
@@ -40,18 +39,18 @@ private slots:
 #include "receiver.h"
 #include "ui_receiver.h"
 #include <QtNetwork>
-​
+
 Receiver::Receiver ( QWidget *parent ) : QDialog ( parent ), ui ( new Ui::Receiver ) {
     ui->setupUi ( this );
     receiver = new QUdpSocket ( this );
     receiver->bind ( 45454, QUdpSocket::ShareAddress );
     connect ( receiver, SIGNAL ( readyRead() ), this, SLOT ( processPendingDatagram() ) );
 }
-​
+
 Receiver::~Receiver() {
     delete ui;
 }
-​
+
 void Receiver::processPendingDatagram() { /* 处理等待的数据报 */
     while ( receiver->hasPendingDatagrams() ) { /* 如果有等待的数据报 */
         QByteArray datagram;
@@ -71,14 +70,14 @@ void Receiver::processPendingDatagram() { /* 处理等待的数据报 */
 ``` cpp
 #ifndef SENDER_H
 #define SENDER_H
-​
+
 #include <QDialog>
 class QUdpSocket;
-​
+
 namespace Ui {
     class Sender;
 }
-​
+
 class Sender : public QDialog {
     Q_OBJECT
 public:
@@ -90,7 +89,7 @@ private:
     Ui::Sender *ui;
     QUdpSocket *sender;
 };
-​
+
 #endif // SENDER_H
 ```
 
@@ -100,16 +99,16 @@ private:
 #include "sender.h"
 #include "ui_sender.h"
 #include <QtNetwork>
-​
+
 Sender::Sender ( QWidget *parent ) : QDialog ( parent ), ui ( new Ui::Sender ) {
     ui->setupUi ( this );
     sender = new QUdpSocket ( this );
 }
-​
+
 Sender::~Sender() {
     delete ui;
 }
-​
+
 void Sender::on_pushButton_clicked() {
     QByteArray datagram = "hello world!";
     sender->writeDatagram ( datagram.data(), datagram.size(), QHostAddress::Broadcast, 45454 );

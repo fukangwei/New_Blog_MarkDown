@@ -1,7 +1,6 @@
 ---
 title: multiprocessing模块
 categories: Python语法
-abbrlink: ec61b344
 date: 2019-02-10 16:54:23
 ---
 &emsp;&emsp;`Python`提供了多进程包`multiprocessing`，它支持子进程调度、通信以及共享内存，执行不同形式的同步，提供了`Process`、`Lock`等组件。<!--more-->
@@ -16,10 +15,10 @@ date: 2019-02-10 16:54:23
 
 ``` python
 import multiprocessing
-​
+
 p = multiprocessing.cpu_count()
 m = multiprocessing.active_children()
-​
+
 print(p)  # 输出“8”
 print(m)  # 输出“[]”
 ```
@@ -48,11 +47,11 @@ p = multiprocessing.Precess(target=worker, args=(2,))
 ``` python
 import time
 import multiprocessing
-​
+
 def worker(interval):
     print("interval is", interval)
     time.sleep(interval)
-​
+
 if __name__ == "__main__":
     p = multiprocessing.Process(target=worker, args=(5,))
     p.start()
@@ -78,24 +77,24 @@ This is end
 ``` python
 import time
 import multiprocessing
-​
+
 def worker(name, interval):
     print("{0} start".format(name))
     time.sleep(interval)
     print("{0} end".format(name))
-​
+
 if __name__ == "__main__":
     print("main start")
     print("The computer has {0} core".format(multiprocessing.cpu_count()))
-​
+
     p1 = multiprocessing.Process(target=worker, args=("worker", 2))
     p2 = multiprocessing.Process(target=worker, args=("worker", 3))
     p3 = multiprocessing.Process(target=worker, args=("worker", 4))
-​
+
     p1.start()
     p2.start()
     p3.start()
-​
+
     for p in multiprocessing.active_children():
         print("The pid of {0} is {1}".format(p.name, p.pid))
 
@@ -128,7 +127,7 @@ worker end
 ``` python
 import multiprocessing
 import time
-​
+
 def add(number, value, lock):
     lock.acquire()  # 获取锁
 
@@ -143,17 +142,17 @@ def add(number, value, lock):
         raise e
     finally:
         lock.release()  # 释放锁
-​
+
 if __name__ == "__main__":
     lock = multiprocessing.Lock()  # 定义锁
     number = 0
-​
+
     p1 = multiprocessing.Process(target=add, args=(number, 1, lock))
     p3 = multiprocessing.Process(target=add, args=(number, 3, lock))
-​
+
     p1.start()
     p3.start()
-​
+
     print("main end")
 ```
 
@@ -178,7 +177,7 @@ add 3, number = 6
 ``` python
 import multiprocessing
 import time
-​
+
 def add(number, value1, lock):
     lock.acquire()
 
@@ -193,17 +192,17 @@ def add(number, value1, lock):
         raise e
     finally:
         lock.release()
-​
+
 if __name__ == "__main__":
     lock = multiprocessing.Lock()
     number = multiprocessing.Value("i", 0)
-​
+
     p1 = multiprocessing.Process(target=add, args=(number, 1, lock))
     p3 = multiprocessing.Process(target=add, args=(number, 3, lock))
-​
+
     p1.start()
     p3.start()
-​
+
     print("main end")
 ```
 
@@ -225,7 +224,7 @@ add 3, number = 8
 
 ``` python
 import multiprocessing
-​
+
 def worker(d, L):
     L += range(11, 16)  # 返回一个列表序列的特殊写法
 
@@ -233,7 +232,7 @@ def worker(d, L):
         key = "key {0}".format(i)
         value = "value {0}".format(i)
         d[key] = value
-​
+
 if __name__ == "__main__":
     manager = multiprocessing.Manager()
     L = manager.list()
@@ -241,7 +240,7 @@ if __name__ == "__main__":
     p = multiprocessing.Process(target=worker, args=(d, L))
     p.start()
     p.join()
-​
+
     print(d)
     print(L)
     print("main end")
@@ -268,20 +267,20 @@ main end
 ``` python
 import multiprocessing
 import time
-​
+
 def worker(msg):
     print("start {0}".format(msg))
     time.sleep(1)
     print("end {0}".format(msg))
-​
+
 if __name__ == "__main__":
     print("main start")
     pool = multiprocessing.Pool(processes=3)
-​
+
     for i in range(1, 5):
         msg = "hello {0}".format(i)
         pool.apply_async(func=worker, args=(msg,))
-​
+
     pool.close()
     pool.join()
     print("main end")
@@ -308,20 +307,20 @@ main end
 ``` python
 import multiprocessing
 import time
-​
+
 def worker(msg):
     print("start {0}".format(msg))
     time.sleep(1)
     print("end {0}".format(msg))
-​
+
 if __name__ == "__main__":
     print("main start")
     pool = multiprocessing.Pool(processes=3)
-​
+
     for i in range(1, 5):
         msg = "hello {0}".format(i)
         pool.apply(func=worker, args=(msg,))
-​
+
     pool.close()
     pool.join()
     print("main end")

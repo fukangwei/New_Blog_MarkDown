@@ -1,7 +1,6 @@
 ---
 title: Perl运算符
 categories: Perl
-abbrlink: cf01142e
 date: 2018-12-19 21:48:03
 ---
 ### 算术运算符

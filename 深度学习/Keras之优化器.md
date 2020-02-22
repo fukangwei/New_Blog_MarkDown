@@ -1,7 +1,6 @@
 ---
 title: Keras之优化器
 categories: 深度学习
-abbrlink: ec0a05c1
 date: 2019-01-01 10:04:12
 ---
 &emsp;&emsp;优化器(`optimizer`)是编译`Keras`模型的所需的两个参数之一：<!--more-->
@@ -13,7 +12,7 @@ model = Sequential()
 model.add(Dense(64, kernel_initializer='uniform', input_shape=(10,)))
 model.add(Activation('tanh'))
 model.add(Activation('softmax'))
-​
+
 sgd = optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 model.compile(loss='mean_squared_error', optimizer=sgd)
 ```

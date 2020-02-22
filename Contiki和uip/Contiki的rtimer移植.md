@@ -1,7 +1,6 @@
 ---
 title: Contiki的rtimer移植
 categories: Contiki和uip
-abbrlink: 3ce9b023
 date: 2019-02-04 23:00:12
 ---
 ### 移植基础
@@ -26,19 +25,19 @@ date: 2019-02-04 23:00:12
 
 ``` cpp
 void rtimer_arch_init ( void ) {
-    uint16_t prescaler = ( uint16_t ) ( SystemCoreClock  / RTIMER_ARCH_SECOND ) - 1;
+    uint16_t prescaler = ( uint16_t ) ( SystemCoreClock / RTIMER_ARCH_SECOND ) - 1;
     RCC_APB1PeriphClockCmd ( RCC_APB1Periph_TIM3, ENABLE );
     TIM_TimeBaseStructure.TIM_Period = 65535;
     TIM_TimeBaseStructure.TIM_Prescaler = 0;
     TIM_TimeBaseStructure.TIM_ClockDivision = 0;
-    TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;  
+    TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
     TIM_TimeBaseInit ( TIM3, &TIM_TimeBaseStructure );
     TIM_PrescalerConfig ( TIM3, prescaler, TIM_PSCReloadMode_Immediate );
     TIM_Cmd ( TIM3, ENABLE );
     rtimer_arch_disable_irq();
     NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn;
     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;  
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init ( &NVIC_InitStructure );
 }
@@ -60,7 +59,7 @@ void rtimer_arch_schedule ( rtimer_clock_t t ) {
 void rtimer_arch_disable_irq ( void ) {
     TIM_ITConfig ( TIM3, TIM_IT_CC1, DISABLE );
 }
-​
+
 void rtimer_arch_enable_irq ( void ) {
     TIM_ITConfig ( TIM3, TIM_IT_CC1, ENABLE );
 }
@@ -88,17 +87,17 @@ void TIM3_IRQHandler ( void ) { /* TIM3中断 */
 struct rtimer ex_timer;
 static void led_on ( struct rtimer *t, void *ptr );
 static void led_off ( struct rtimer *t, void *ptr );
-​
+
 static void led_on ( struct rtimer *t, void *ptr ) {
     LED = 0;
     rtimer_set ( &ex_timer, 1000, 0, led_off, NULL );
 }
-​
+
 static void led_off ( struct rtimer *t, void *ptr ) {
     LED = 1;
     rtimer_set ( &ex_timer, 1000, 0, led_on, NULL );
 }
-​
+
 PROCESS ( rtimer_ex_process, "rtimer_ex_process" );
 PROCESS_THREAD ( rtimer_ex_process, ev, data ) {
     PROCESS_BEGIN();

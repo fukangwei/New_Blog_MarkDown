@@ -1,7 +1,6 @@
 ---
 title: skimage模块
 categories: Python语法
-abbrlink: '668254e7'
 date: 2019-02-19 11:51:39
 ---
 &emsp;&emsp;`scikit-image`是基于`scipy`的一款图像处理包，它将图片作为`numpy`数组进行处理。可以使用`pip`进行安装：<!--more-->

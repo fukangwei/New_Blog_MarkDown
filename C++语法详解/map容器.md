@@ -1,18 +1,17 @@
 ---
 title: map容器
 categories: C++语法详解
-abbrlink: 854fa047
 date: 2019-02-07 20:47:32
 ---
 &emsp;&emsp;1. 构造最基本的`map`容器：<!--more-->
 
 ``` cpp
-map<string, int>  mapstring;
-map<int, string>  mapint;
-map<sring, char>  mapstring;
+map<string, int>  mapstring;
+map<int, string>  mapint;
+map<sring, char>  mapstring;
 map<char, string> mapchar;
-map<char, int>    mapchar;
-map<int, char>    mapint;
+map<char, int>    mapchar;
+map<int, char>    mapint;
 ```
 
 &emsp;&emsp;2. 向`map`中添加数据：
@@ -29,7 +28,7 @@ maplive[112] = "April"; /* map中最常用的插入操作 */
 ``` cpp
 map<int, string >::iterator l_it;;
 l_it = maplive.find ( 112 );
-​
+
 if ( l_it == maplive.end() ) {
     cout << "we do not find 112" << endl;
 }
@@ -44,7 +43,7 @@ else {
 /* 如果需要删除key值为112的元素 */
 map<int , string >::iterator l_it;;
 l_it = maplive.find ( 112 );
-​
+
 if ( l_it == maplive.end() ) {
     cout << "we do not find 112" << endl;
 }
@@ -58,9 +57,9 @@ else {
 ``` cpp
 #include <map>
 #include <iostream>
-​
+
 using namespace std;
-​
+
 int main( ) {
     map <int, int> m1, m2, m3;
     map <int, int>::iterator m1_Iter;
@@ -74,37 +73,37 @@ int main( ) {
     /*----------------------------------------*/
     m3.insert ( pair <int, int> ( 30, 300 ) );
     cout << "The original map m1 is:";
-​
+
     for ( m1_Iter = m1.begin( ); m1_Iter != m1.end( ); m1_Iter++ ) {
         cout << " " << m1_Iter->second;
     }
-​
+
     cout << endl;
     // This is the member function version of swap
     // m2 is said to be the argument map; m1 the target map
     m1.swap ( m2 );
     cout << "After swapping with m2, map m1 is:";
-​
+
     for ( m1_Iter = m1.begin( ); m1_Iter != m1.end( ); m1_Iter++ ) {
         cout << " " << m1_Iter -> second;
     }
-​
+
     cout << endl;
     cout << "After swapping with m2, map m2 is:";
-​
+
     for ( m1_Iter = m2.begin( ); m1_Iter != m2.end( ); m1_Iter++ ) {
         cout << " " << m1_Iter -> second;
     }
-​
-    cout  << endl;
+
+    cout << endl;
     // This is the specialized template version of swap
     swap ( m1, m3 );
     cout << "After swapping with m3, map m1 is:";
-​
+
     for ( m1_Iter = m1.begin( ); m1_Iter != m1.end( ); m1_Iter++ ) {
         cout << " " << m1_Iter -> second;
     }
-​
+
     cout << endl;
 }
 ```
@@ -114,9 +113,9 @@ int main( ) {
 ``` cpp
 #include <map>
 #include <iostream>
-​
+
 using namespace std;
-​
+
 int main( ) {
     map <int, int> m1;
     map <int, int>::iterator m1_Iter;
@@ -127,9 +126,9 @@ int main( ) {
     m1.insert ( pair <int, int> ( 6, 40 ) );
     m1.insert ( pair <int, int> ( 7, 30 ) );
     cout << "The original map m1 is:" << endl;
-​
+
     for ( m1_Iter = m1.begin( ); m1_Iter != m1.end( ); m1_Iter++ ) {
-        cout <<  m1_Iter->first << " " << m1_Iter->second << endl;
+        cout << m1_Iter->first << " " << m1_Iter->second << endl;
     }
 }
 ```
@@ -173,16 +172,16 @@ int main( ) {
 if ( m.count ( key ) > 0 ) {
     return m[key];
 }
-​
+
 return null;
-​
+
 /*------ 方法2 ------*/
 iter = m.find ( key );
-​
+
 if ( iter != m.end() ) {
     return iter->second;
 }
-​
+
 return null;
 ```
 
@@ -195,19 +194,19 @@ return null;
 #include <iterator>
 #include <iostream>
 #include <algorithm>
-​
+
 using namespace std;
-​
+
 map<string, int> histogtram;
-​
+
 void record ( const string &s ) {
     histogtram[s]++; /* 记录字符串s出现的次数 */
 }
-​
+
 void print ( const pair<const string, int > &r ) {
     cout << r.first << " " << r.second << endl;
 }
-​
+
 int main ( int argc, char const *argv[] ) {
     istream_iterator<string> ii ( cin ); /* 流的输入迭代器  */
     istream_iterator<string> eos; /* 输入的哨兵 */

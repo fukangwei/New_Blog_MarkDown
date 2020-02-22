@@ -1,7 +1,6 @@
 ---
 title: io模块
 categories: Python语法
-abbrlink: a748eaa6
 date: 2018-12-27 17:59:47
 ---
 ### StringIO
@@ -10,7 +9,7 @@ date: 2018-12-27 17:59:47
 
 ``` python
 from io import StringIO
-​
+
 f = StringIO()
 f.write('hello')
 f.write(' ')
@@ -23,7 +22,7 @@ print(f.getvalue())  # 执行结果为“hello world!”
 
 ``` python
 from io import StringIO
-​
+
 f = StringIO('Hello!\nHi!\nGoodbye!')
 while True:
     s = f.readline()
@@ -48,7 +47,7 @@ Goodbye!
 
 ``` python
 from io import BytesIO
-​
+
 f = BytesIO()
 f.write('中文'.encode('utf-8'))
 print(f.getvalue())  # 执行结果为“b'\xe4\xb8\xad\xe6\x96\x87'”
@@ -59,7 +58,7 @@ print(f.getvalue())  # 执行结果为“b'\xe4\xb8\xad\xe6\x96\x87'”
 
 ``` python
 from io import BytesIO
-​
+
 f = BytesIO(b'\xe4\xb8\xad\xe6\x96\x87')
 print(f.read())  # 执行结果为“b'\xe4\xb8\xad\xe6\x96\x87'”
 ```

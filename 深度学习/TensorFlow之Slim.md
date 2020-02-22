@@ -1,7 +1,6 @@
 ---
 title: TensorFlow之Slim
 categories: 深度学习
-abbrlink: a8655ef5
 date: 2019-02-13 12:16:46
 ---
 &emsp;&emsp;`TF-Slim`是`Tensorflow`中一个轻量级的库，用于定义、训练和评估复杂的模型。`TF-Slim`中的组件可以与`Tensorflow`中原生的函数一起使用，与其他的框架(比如`tf.contrib.learn`)也可以一起使用。使用方法如下：<!--more-->
@@ -242,7 +241,7 @@ with slim.arg_scope(
 
 ``` python
 def vgg16(inputs):
-    with slim.arg_scope(
+    with slim.arg_scope(
      [slim.conv2d, slim.fully_connected], activation_fn=tf.nn.relu,
      weights_initializer=tf.truncated_normal_initializer(0.0, 0.01),
      weights_regularizer=slim.l2_regularizer(0.0005)):
@@ -278,7 +277,7 @@ def vgg16(inputs):
 ``` python
 import tensorflow as tf
 import tensorflow.contrib.slim.nets as nets
-​
+
 vgg = nets.vgg
 images, labels = ...  # Load the images and labels
 predictions, _ = vgg.vgg_16(images)  # Create the model
@@ -311,7 +310,7 @@ classification_loss = slim.losses.softmax_cross_entropy(scene_predictions, scene
 sum_of_squares_loss = slim.losses.sum_of_squares(depth_predictions, depth_labels)
 pose_loss = MyCustomLossFunction(pose_predictions, pose_labels)
 slim.losses.add_loss(pose_loss)  # Letting TF-Slim know about the additional loss
-​
+
 # The following two ways to compute the total loss are equivalent:
 regularization_loss = tf.add_n(slim.losses.get_regularization_losses())
 total_loss1 = classification_loss + sum_of_squares_loss + pose_loss + regularization_loss
@@ -327,7 +326,7 @@ total_loss2 = slim.losses.get_total_loss()  # (Regularization Loss is included i
 
 ``` python
 g = tf.Graph()
-​
+
 # Create the model and specify the losses
 ...
 total_loss = slim.losses.get_total_loss()
@@ -348,15 +347,15 @@ slim.learning.train(train_op, logdir, number_of_steps=1000, save_summaries_secs=
 ``` python
 import tensorflow as tf
 import tensorflow.contrib.slim.nets as nets
-​
+
 slim = tf.contrib.slim
 vgg = nets.vgg
 ...
 train_log_dir = ...
-​
+
 if not tf.gfile.Exists(train_log_dir):
     tf.gfile.MakeDirs(train_log_dir)
-​
+
 with tf.Graph().as_default():
     images, labels = ...  # Set up the data loading
     predictions = vgg.vgg_16(images, is_training=True)  # Define the model
@@ -383,7 +382,7 @@ v1 = tf.Variable(..., name="v1")
 v2 = tf.Variable(..., name="v2")
 restorer = tf.train.Saver()  # Add ops to restore all the variables
 restorer = tf.train.Saver([v1, v2])  # Add ops to restore some variables
-​
+
 # Later, launch the model, use the saver to restore variables
 # from disk, and do some work with the model
 with tf.Session() as sess:
@@ -400,7 +399,7 @@ with tf.Session() as sess:
 # Create some variables.
 v1 = slim.variable(name="v1", ...)
 v2 = slim.variable(name="nested/v2", ...)
-​
+
 # Get list of variables to restore (which contains only 'v2').
 # These are all equivalent methods:
 variables_to_restore = slim.get_variables_by_name("v2")
@@ -412,10 +411,10 @@ variables_to_restore = slim.get_variables(scope="nested")
 variables_to_restore = slim.get_variables_to_restore(include=["nested"])
 # or
 variables_to_restore = slim.get_variables_to_restore(exclude=["v1"])
-​
+
 # Create the saver which will be used to restore the variables
 restorer = tf.train.Saver(variables_to_restore)
-​
+
 with tf.Session() as sess:
     restorer.restore(sess, "/tmp/model.ckpt")  # Restore variables from disk
     print("Model restored.")
@@ -431,7 +430,7 @@ with tf.Session() as sess:
 # Assuming than 'conv1/weights' should be restored from 'vgg16/conv1/weights'
 def name_in_checkpoint(var):
     return 'vgg16/' + var.op.name
-​
+
 # Assuming than 'conv1/weights' and 'conv1/bias' should be
 # restored from 'conv1/params1' and 'conv1/params2'
 def name_in_checkpoint(var):
@@ -440,11 +439,11 @@ def name_in_checkpoint(var):
 
     if "bias" in var.op.name:
         return var.op.name.replace("bias", "params2")
-​
+
 variables_to_restore = slim.get_model_variables()
 variables_to_restore = {name_in_checkpoint(var): var for var in variables_to_restore}
 restorer = tf.train.Saver(variables_to_restore)
-​
+
 with tf.Session() as sess:
     restorer.restore(sess, "/tmp/model.ckpt")  # Restore variables from disk
 ```
@@ -456,7 +455,7 @@ with tf.Session() as sess:
 ``` python
 image, label = MyPascalVocDataLoader(...)  # Load the Pascal VOC data
 images, labels = tf.train.batch([image, label], batch_size=32)
-​
+
 predictions = vgg.vgg_16(images)  # Create the model
 train_op = slim.learning.create_train_op(...)
 # Specify where the Model, trained on ImageNet, was saved
@@ -487,7 +486,7 @@ slim.learning.train(train_op, log_dir, init_fn=init_fn)  # Start training
 ``` python
 images, labels = LoadTestData(...)
 predictions = MyModel(images)
-​
+
 mae_value_op, mae_update_op = slim.metrics.streaming_mean_absolute_error(predictions, labels)
 mre_value_op, mre_update_op = slim.metrics.streaming_mean_relative_error(predictions, labels)
 pl_value_op, pl_update_op = slim.metrics.percentage_less(mean_relative_errors, 0.3)
@@ -501,7 +500,7 @@ pl_value_op, pl_update_op = slim.metrics.percentage_less(mean_relative_errors, 0
 value_ops, update_ops = slim.metrics.aggregate_metrics(
     slim.metrics.streaming_mean_absolute_error(predictions, labels),
     slim.metrics.streaming_mean_squared_error(predictions, labels))
-​
+
 # Aggregates the value and update ops in two dictionaries
 names_to_values, names_to_updates = slim.metrics.aggregate_metric_map({
     "eval/mean_absolute_error": slim.metrics.streaming_mean_absolute_error(predictions, labels),
@@ -516,29 +515,29 @@ names_to_values, names_to_updates = slim.metrics.aggregate_metric_map({
 ``` python
 import tensorflow as tf
 import tensorflow.contrib.slim.nets as nets
-​
+
 slim = tf.contrib.slim
 vgg = nets.vgg
-​
+
 images, labels = load_data(...)  # Load the data
 predictions = vgg.vgg_16(images)  # Define the network
-​
+
 # Choose the metrics to compute:
 names_to_values, names_to_updates = slim.metrics.aggregate_metric_map({
     "eval/mean_absolute_error": slim.metrics.streaming_mean_absolute_error(predictions, labels),
     "eval/mean_squared_error": slim.metrics.streaming_mean_squared_error(predictions, labels),
 })
-​
+
 # Evaluate the model using 1000 batches of data:
 num_batches = 1000
-​
+
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     sess.run(tf.local_variables_initializer())
-​
+
     for batch_id in range(num_batches):
         sess.run(names_to_updates.values())
-​
+
     metric_values = sess.run(names_to_values.values())
 
     for metric, value in zip(names_to_values.keys(), metric_values):
@@ -551,7 +550,7 @@ with tf.Session() as sess:
 
 ``` python
 import tensorflow as tf
-​
+
 slim = tf.contrib.slim
 images, labels = load_data(...)  # Load the data
 predictions = MyModel(images)  # Define the network
@@ -562,7 +561,7 @@ names_to_values, names_to_updates = slim.metrics.aggregate_metric_map({
     'precision': slim.metrics.precision(predictions, labels),
     'recall': slim.metrics.recall(mean_relative_errors, 0.3),
 })
-​
+
 # Create the summary ops such that they also print out to std output:
 summary_ops = []
 
@@ -570,13 +569,13 @@ for metric_name, metric_value in names_to_values.iteritems():
     op = tf.summary.scalar(metric_name, metric_value)
     op = tf.Print(op, [metric_value], metric_name)
     summary_ops.append(op)
-​
+
 num_examples = 10000
 batch_size = 32
 num_batches = math.ceil(num_examples / float(batch_size))
-​
+
 slim.get_or_create_global_step()  # Setup the global step
-​
+
 output_dir = ...  # Where the summaries are stored.
 eval_interval_secs = ...  # How often to run the evaluation.
 slim.evaluation.evaluation_loop(
@@ -641,7 +640,7 @@ tf.contrib.slim.conv2d(
     num_outputs,  # [卷积核个数]
     kernel_size,  # [卷积核的高度, 卷积核的宽度]
     stride=1, padding='SAME',)
-​
+
 tf.nn.conv2d(
     input,  # 与上述一致
     filter,  # [卷积核的高度, 卷积核的宽度, 图像通道数, 卷积核个数]

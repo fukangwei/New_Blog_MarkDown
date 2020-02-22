@@ -1,7 +1,6 @@
 ---
 title: getWindow方法
 categories: Android
-abbrlink: edc30032
 date: 2018-12-28 11:12:26
 ---
 &emsp;&emsp;设置窗体全屏：<!--more-->

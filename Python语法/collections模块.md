@@ -1,7 +1,6 @@
 ---
 title: collections模块
 categories: Python语法
-abbrlink: 3bcab8ee
 date: 2019-01-09 14:04:31
 ---
 &emsp;&emsp;`collections`是`Python`内建的一个集合模块，提供了许多有用的集合类。<!--more-->
@@ -18,7 +17,7 @@ namedtuple(typename, filed_name, verbose=False, rename=False);
 
 ``` python
 from collections import namedtuple
-​
+
 Mytuple = namedtuple('Mytuple', ['x', 'y'])
 n = Mytuple(11, 22)
 print("n.x =", n.x)
@@ -38,7 +37,7 @@ n.y = 22
 
 ``` python
 from collections import deque
-​
+
 q = deque(['a', 'b', 'c'])
 q.append('x')  # 默认添加到列表最后一项
 q.appendleft('y')  # 添加到列表第一项
@@ -63,7 +62,7 @@ deque(['a', 'b', 'c'])
 
 ``` python
 from collections import defaultdict
-​
+
 Mydict = defaultdict(lambda: 'N/A')
 Mydict['key1'] = 'abc'
 print(Mydict['key1'])  # 字典的key1存在
@@ -85,7 +84,7 @@ N/A
 
 ``` python
 from collections import OrderedDict
-​
+
 d = dict([('a', 1), ('c', 3), ('b', 2)])
 print(d)  # dict的Key是无序的
 od = OrderedDict([('a', 1), ('b', 2), ('c', 3)])
@@ -103,12 +102,12 @@ OrderedDict([('a', 1), ('b', 2), ('c', 3)])
 
 ``` python
 from collections import OrderedDict
-​
+
 class LastUpdatedOrderedDict(OrderedDict):
     def __init__(self, capacity):
         super(LastUpdatedOrderedDict, self).__init__()
         self._capacity = capacity
-​
+
     def __setitem__(self, key, value):
         containsKey = 1 if key in self else 0
 
@@ -131,12 +130,12 @@ class LastUpdatedOrderedDict(OrderedDict):
 
 ``` python
 from collections import Counter
-​
+
 c = Counter()
 
 for ch in 'programming':
     c[ch] = c[ch] + 1
-​
+
 print(c)
 ```
 
@@ -154,7 +153,7 @@ Counter({'r': 2, 'g': 2, 'm': 2, 'p': 1, 'o': 1, 'a': 1, 'i': 1, 'n': 1})
 
 ``` python
 from collections import defaultdict
-​
+
 dd = defaultdict(list)
 print(dd)
 ```
@@ -169,7 +168,7 @@ defaultdict(<class 'list'>, {})
 
 ``` python
 from collections import defaultdict
-​
+
 dd = defaultdict(list)
 print(dd['foo'])
 print(dd)

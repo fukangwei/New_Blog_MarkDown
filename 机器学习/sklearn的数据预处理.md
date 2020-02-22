@@ -1,7 +1,6 @@
 ---
 title: sklearn的数据预处理
 categories: 机器学习
-abbrlink: 54f839b6
 date: 2019-02-12 12:04:27
 ---
 &emsp;&emsp;`klearn.preprocessing`提供了各种公共函数，用于将`raw feature vector`转换成另外一种更适合评估器工作的格式。<!--more-->
@@ -27,9 +26,9 @@ array([[ 0.  ..., -1.22...,  1.33...],
 
 ``` python
 >>> X_scaled.mean(axis=0)
-array([ 0.,  0.,  0.])
+array([ 0.,  0.,  0.])
 >>> X_scaled.std(axis=0)
-array([ 1.,  1.,  1.])
+array([ 1.,  1.,  1.])
 ```
 
 一般会把`train`和`test`集放在一起做标准化，或者在`train`集上做标准化后，用同样的标准化器去标准化`test`集，此时可以用`StandardScaler`：
@@ -189,7 +188,7 @@ array([[0, 1, 2],
        [6, 7, 8]])
 >>> poly = PolynomialFeatures(degree=3, interaction_only=True)
 >>> poly.fit_transform(X)
-array([[   1.,    0.,    1.,    2.,    0.,    0.,    2.,    0.],
+array([[   1.,    0.,    1.,    2.,    0.,    0.,    2.,    0.],
        [   1.,    3.,    4.,    5.,   12.,   15.,   20.,   60.],
        [   1.,    6.,    7.,    8.,   42.,   48.,   56.,  336.]])
 ```
@@ -214,7 +213,7 @@ array([[   1.,    0.,    1.,    2.,    0.,    0.,    2.,    0.],
 
 ``` python
 from sklearn import preprocessing
-​
+
 enc = preprocessing.OneHotEncoder()
 enc.fit([[0, 0, 3], [1, 1, 0], [0, 2, 1], [1, 0, 2]])
 array = enc.transform([[0, 1, 3]]).toarray()

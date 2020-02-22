@@ -1,7 +1,6 @@
 ---
 title: mixChannels函数
 categories: opencv和图像处理
-abbrlink: 1e5748cc
 date: 2018-12-30 15:45:32
 ---
 &emsp;&emsp;Copies specified channels from input arrays to the specified channels of output arrays.<!--more-->
@@ -26,10 +25,10 @@ void mixChannels ( const Mat *src, int nsrc, Mat *dst,
 #include "opencv2/imgproc/imgproc.hpp"
 #include <iostream>
 #include <stdio.h>
-​
+
 using namespace std;
 using namespace cv;
-​
+
 int main ( int argc, char **argv ) {
     Mat rgba ( 3, 4, CV_8UC4, Scalar ( 1, 2, 3, 4 ) );
     Mat bgr ( rgba.rows, rgba.cols, CV_8UC3 );
@@ -72,10 +71,10 @@ alpha:
 #include "opencv2/imgproc/imgproc.hpp"
 #include <iostream>
 #include <stdio.h>
-​
+
 using namespace std;
 using namespace cv;
-​
+
 int main ( int argc, char **argv ) {
     Mat rgba ( 3, 4, CV_8UC4, Scalar ( 1, 2, 3, 4 ) );
     Mat bgr ( rgba.rows, rgba.cols, CV_8UC3 );

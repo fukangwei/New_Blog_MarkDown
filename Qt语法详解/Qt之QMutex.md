@@ -1,7 +1,6 @@
 ---
 title: Qt之QMutex
 categories: Qt语法详解
-abbrlink: 279b84ed
 date: 2019-01-03 20:22:01
 ---
 &emsp;&emsp;The `QMutex` class provides access serialization between threads. The header file is `QMutex`. **Note**: All functions in this class are `thread-safe`.<!--more-->
@@ -14,8 +13,8 @@ date: 2019-01-03 20:22:01
 
 Return | Function
 -------|--------
-       | `QMutex(RecursionMode mode = NonRecursive)`
-       | `~QMutex()`
+       | `QMutex(RecursionMode mode = NonRecursive)`
+       | `~QMutex()`
 `void` | `lock()`
 `bool` | `tryLock()`
 `bool` | `tryLock(int timeout)`
@@ -29,12 +28,12 @@ Return | Function
 
 ``` cpp
 int number = 6;
-​
+
 void method1() {
     number *= 5;
     number /= 4;
 }
-​
+
 void method2() {
     number *= 3;
     number /= 2;
@@ -63,7 +62,7 @@ number *= 5; // number is now 30
 // by the operating system to allow Thread 2 to run
 number *= 3; // number is now 90
 number /= 2; // number is now 45
-​
+
 // Thread 1 finishes executing
 number /= 4; // number is now 11, instead of 10
 ```
@@ -73,14 +72,14 @@ number /= 4; // number is now 11, instead of 10
 ``` cpp
 QMutex mutex;
 int number = 6;
-​
+
 void method1() {
     mutex.lock();
     number *= 5;
     number /= 4;
     mutex.unlock();
 }
-​
+
 void method2() {
     mutex.lock();
     number *= 3;

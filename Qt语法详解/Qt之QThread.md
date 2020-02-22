@@ -1,7 +1,6 @@
 ---
 title: Qt之QThread
 categories: Qt语法详解
-abbrlink: 4483b929
 date: 2019-01-23 17:16:21
 ---
 ### 简述

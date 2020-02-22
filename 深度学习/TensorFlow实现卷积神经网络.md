@@ -1,7 +1,6 @@
 ---
 title: TensorFlow实现卷积神经网络
 categories: 深度学习
-abbrlink: ce8dd399
 date: 2019-02-17 11:17:50
 ---
 ### 卷积神经网络概述
@@ -51,7 +50,7 @@ sess = tf.InteractiveSession()
 def weight_variable(shape):
     initial = tf.truncated_normal(shape, stddev=0.1)
     return tf.Variable(initial)
-​
+
 def bias_variable(shape):
     initial = tf.constant(0.1, shape=shape)
     return tf.Variable(initial)
@@ -63,7 +62,7 @@ def bias_variable(shape):
 ``` python
 def conv2d(x, W):
     return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding='SAME')
-​
+
 def max_pool_2x2(x):
     return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
 ```
@@ -73,7 +72,7 @@ def max_pool_2x2(x):
 ``` python
 n_input  = 784  # “28 * 28”的灰度图，像素个数784
 n_output = 10   # 10分类问题
-​
+
 x = tf.placeholder(tf.float32, [None, n_input])
 y = tf.placeholder(tf.float32, [None, n_output])
 x_image = tf.reshape(x, [-1, 28, 28, 1])
@@ -142,7 +141,7 @@ tf.global_variables_initializer().run()
 training_epochs = 200
 batch_size = 100
 display_step = 10
-​
+
 for i in range(training_epochs):
     batch = mnist.train.next_batch(batch_size)
     optm.run(feed_dict={x: batch[0], y: batch[1], keep_prob: 0.7})

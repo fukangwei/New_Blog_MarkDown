@@ -1,7 +1,6 @@
 ---
 title: Qt窗口间的相互切换
 categories: Qt应用示例
-abbrlink: b3fdf699
 date: 2019-02-23 11:35:55
 ---
 &emsp;&emsp;在用`Qt`设计`GUI`时，经常要设计两个窗口之间的相互切换，即以从一个窗口跳转到另一个窗口，然后又从另一个窗口跳转回原窗口。下面来介绍具体的实现方法。<!--more-->
@@ -12,20 +11,20 @@ date: 2019-02-23 11:35:55
 ``` cpp
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-​
+
 #include <QMainWindow>
-​
+
 namespace Ui {
     class MainWindow;
 }
-​
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
     explicit MainWindow ( QWidget *parent = 0 );
-    ~MainWindow();​
+    ~MainWindow();
 private:
-    Ui::MainWindow *ui;​
+    Ui::MainWindow *ui;
 private slots:
     void receivelogin(); /* 与login中发射的信号关联的槽函数 */
     void on_pushButton_clicked(); /* 与relogin的click关联的槽函数 */
@@ -34,7 +33,7 @@ signals:
     void dlgshow(); /* 显示登录对话框信号 */
     void quit(); /* 退出信号 */
 };
-​
+
 #endif // MAINWINDOW_H
 ```
 
@@ -43,9 +42,9 @@ signals:
 ``` cpp
 #ifndef MYDIALOG_H
 #define MYDIALOG_H
-​
+
 #include <QDialog>
-​
+
 namespace Ui {
     class MyDialog;
 }
@@ -74,7 +73,7 @@ private:
 #include <QtGui/QApplication>
 #include "mainwindow.h"
 #include "mydialog.h"
-​
+
 int main ( int argc, char *argv[] ) {
     QApplication a ( argc, argv );
     MainWindow w;
@@ -96,25 +95,25 @@ int main ( int argc, char *argv[] ) {
 #include "ui_mainwindow.h"
 #include <QPushButton>
 #include <QHBoxLayout>
-​
+
 MainWindow::MainWindow ( QWidget *parent ) : QMainWindow ( parent ), ui ( new Ui::MainWindow ) {
     ui->setupUi ( this ); /* 默认是类名 */
     setWindowTitle ( tr ( "myMainWindow" ) );
 }
-​
+
 MainWindow::~MainWindow() {
     delete ui;
 }
-​
+
 void MainWindow::receivelogin() {
     this->show(); /* 显示主窗口 */
 }
-​
+
 void MainWindow::on_pushButton_clicked() {
     this->hide(); /* 隐藏主窗口 */
     emit dlgshow(); /* 发射显示登录对话框信号 */
 }
-​
+
 void MainWindow::on_pushButton_2_clicked() {
     emit quit(); /* 发射退出信号 */
 }
@@ -127,24 +126,24 @@ void MainWindow::on_pushButton_2_clicked() {
 #include "ui_mydialog.h"
 #include <QHBoxLayout>
 #include <mainwindow.h>
-​
-MyDialog::MyDialog ( QWidget *parent ) :   QDialog ( parent ),  ui ( new Ui::MyDialog ) {
+
+MyDialog::MyDialog ( QWidget *parent ) : QDialog ( parent ), ui ( new Ui::MyDialog ) {
     ui->setupUi ( this );
 }
-​
+
 MyDialog::~MyDialog() {
     delete ui;
 }
-​
+
 void MyDialog::on_pushButton_clicked() {
     this->hide(); /* 隐藏登录对话框 */
     emit showmainwindow(); /* 显示主窗口 */
 }
-​
+
 void MyDialog::receiveshow() {
     this->show(); /* 显示登录对话框 */
 }
-​
+
 void MyDialog::on_pushButton_2_clicked() {
     emit quit(); /* 发射退出信号 */
 }

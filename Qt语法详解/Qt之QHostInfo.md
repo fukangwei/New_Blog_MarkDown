@@ -1,7 +1,6 @@
 ---
 title: Qt之QHostInfo
 categories: Qt语法详解
-abbrlink: 49f6072d
 date: 2019-01-03 18:40:10
 ---
 &emsp;&emsp;`QHostInfo`类为主机名查找提供了静态函数。`QHostInfo`利用操作系统提供的查询机制来查询与特定主机名相关联的主机的`IP`地址，或者与一个`IP`地址相关联的主机名。这个类提供了两个静态的函数：一个以异步方式工作，一旦找到主机就发射一个信号；另一个以阻塞方式工作，并且最终返回一个`QHostInfo`对象。<!--more-->
@@ -30,13 +29,13 @@ Local Host Name:"Wang-PC"
 
 ``` cpp
 int nID = QHostInfo::lookupHost ( "qt-project.org", this, SLOT ( lookedUp ( QHostInfo ) ) );
-​
+
 void MainWindow::lookedUp ( const QHostInfo &host ) {
     if ( host.error() != QHostInfo::NoError ) {
         qDebug() << "Lookup failed:" << host.errorString();
         return;
     }
-​
+
     foreach ( const QHostAddress &address, host.addresses() ) {
         /* 输出IPV4、IPv6地址 */
         if ( address.protocol() == QAbstractSocket::IPv4Protocol ) {
@@ -61,13 +60,13 @@ Found IPv4 address: "178.32.152.214"
 
 ``` cpp
 int nID = QHostInfo::lookupHost ( "5.254.113.102", this, SLOT ( lookedUp ( QHostInfo ) ) );
-​
+
 void MainWindow::lookedUp ( const QHostInfo &host ) {
     if ( host.error() != QHostInfo::NoError ) {
         qDebug() << "Lookup failed:" << host.errorString();
         return;
     }
-​
+
     qDebug() << "Found hostName:" << host.hostName();
 }
 ```
@@ -82,12 +81,12 @@ Found hostName: "webredirects.cloudns.NET"
 
 ``` cpp
 QHostInfo host = QHostInfo::fromName ( "5.254.113.102" );
-​
+
 if ( host.error() != QHostInfo::NoError ) {
     qDebug() << "Lookup failed:" << host.errorString();
     return;
 }
-​
+
 qDebug() << "Found hostName:" << host.hostName();
 ```
 

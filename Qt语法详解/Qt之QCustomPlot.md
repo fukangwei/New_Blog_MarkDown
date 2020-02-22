@@ -1,13 +1,12 @@
 ---
 title: Qt之QCustomPlot
 categories: Qt语法详解
-abbrlink: cac7e0cf
 date: 2019-07-22 20:50:50
 ---
 ### 简述
 
-&emsp;&emsp;`QCustomPlot`是一个基于`C++`的`Qt`的图形库，用于绘制图像和数据可视化，例如制作曲线图、趋势图、坐标图、柱状图等。`QCustomPlot`可以导出为各种格式，比如`PDF`文件和位图(例如`PNG`、`JPG`和`BMP`)。
-<!--more-->
+&emsp;&emsp;`QCustomPlot`是一个基于`C++`的`Qt`的图形库，用于绘制图像和数据可视化，例如制作曲线图、趋势图、坐标图、柱状图等。`QCustomPlot`可以导出为各种格式，比如`PDF`文件和位图(例如`PNG`、`JPG`和`BMP`)。<!--more-->
+
 ### 下载
 
 &emsp;&emsp;`QCustomPlot`的主页是`http://www.qcustomplot.com/`，进入`QCustomPlot`下载页，下载最新的完整包。将下载好的安装包进行解压缩，里面包含文档、示例、更改日志、`GPL`授权，以及最重要的两个文件`qcustomplot.h`与`qcustomplot.cpp`。
@@ -32,19 +31,19 @@ QT += printsupport
 
 ``` cpp
 #include "qcustomplot.h"
-​
+
 MainWindow::MainWindow ( QWidget *parent ) : CustomWindow ( parent ) {
     QCustomPlot *pCustomPlot = new QCustomPlot ( this );
     pCustomPlot->resize ( 300, 300 );
     /* 可变数组存放绘图的坐标的数据，分别存放x和y坐标的数据，101为数据长度 */
     QVector<double> x ( 101 ), y ( 101 );
-​
+
     /* 添加数据，这里演示“y = x^3”，为了正负对称，x从“-10”到“+10” */
     for ( int i = 0; i < 101; ++i ) {
         x[i] = i / 5 - 10;
         y[i] = qPow ( x[i], 3 ); /* x的y次方 */
     }
-​
+
     QCPGraph *pGraph = pCustomPlot->addGraph(); /* 向绘图区域QCustomPlot添加一条曲线 */
     pCustomPlot->graph ( 0 )->setData ( x, y ); /* 添加数据 */
     /* 设置坐标轴名称 */

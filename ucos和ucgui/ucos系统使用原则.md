@@ -1,7 +1,6 @@
 ---
 title: ucos系统使用原则
 categories: ucos和ucgui
-abbrlink: 8daa5ea6
 date: 2018-12-29 12:47:46
 ---
 1. 任务的独立性表现为逻辑上的`平等性`和信息传输的`异步性`。<!--more-->

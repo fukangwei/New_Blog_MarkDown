@@ -1,7 +1,6 @@
 ---
 title: TensorFlow优化器
 categories: 深度学习
-abbrlink: 17fd3a51
 date: 2019-02-12 17:59:27
 ---
 &emsp;&emsp;深度学习常见的是对于梯度的优化，优化器最后其实就是各种对于梯度下降算法的优化。`TensorFLow`提供了很多优化器的支持。<!--more-->
@@ -42,7 +41,7 @@ import matplotlib.pyplot as plt
 
 train_X = np.linspace(-1, 1, 100)
 train_Y = 2 * train_X + np.random.randn(*train_X.shape) * 0.33 + 10
-​
+
 # Define the model
 X = tf.placeholder("float")
 Y = tf.placeholder("float")
@@ -50,7 +49,7 @@ w = tf.Variable(0.0, name="weight")
 b = tf.Variable(0.0, name="bias")
 loss = tf.square(Y - X * w - b)
 train_op = tf.train.GradientDescentOptimizer(0.01).minimize(loss)
-​
+
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     epoch = 1
@@ -61,7 +60,7 @@ with tf.Session() as sess:
 
         print("Epoch: {}, w: {}, b: {}".format(epoch, w_value, b_value))
         epoch += 1
-​
+
 plt.plot(train_X, train_Y, "+")
 plt.plot(train_X, train_X.dot(w_value) + b_value)
 plt.show()
@@ -90,10 +89,10 @@ Epoch: 10, w: 1.8823031187057495, b: 10.017163276672363
 
 ``` python
 import tensorflow as tf
-​
+
 x = tf.Variable(tf.truncated_normal([1]), name="x")
 goal = tf.pow(x - 3, 2, name="goal")
-​
+
 with tf.Session() as sess:
     x.initializer.run()
     print(x.eval())
@@ -111,13 +110,13 @@ with tf.Session() as sess:
 
 ``` python
 import tensorflow as tf
-​
+
 x = tf.Variable(tf.truncated_normal([1]), name="x")
 goal = tf.pow(x - 3, 2, name="goal")
-​
+
 optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.1)
 train_step = optimizer.minimize(goal)
-​
+
 def train():
     with tf.Session() as sess:
         x.initializer.run()
@@ -126,7 +125,7 @@ def train():
             print("x:", x.eval())
             train_step.run()
             print("goal:", goal.eval())
-​
+
 train()
 ```
 
@@ -149,15 +148,15 @@ goal: [1.5816724]
 
 ``` python
 import tensorflow as tf
-​
+
 x = tf.Variable(tf.truncated_normal([1]), name="x")
 goal = tf.pow(x - 3, 2, name="goal")
-​
+
 optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.1)
 # compute_gradients返回的是“A list of (gradient, variable) pairs”
 gra_and_var = optimizer.compute_gradients(goal)
 train_step = optimizer.apply_gradients(gra_and_var)
-​
+
 def train():
     with tf.Session() as sess:
         x.initializer.run()
@@ -166,7 +165,7 @@ def train():
             print("x: ", x.eval())
             train_step.run()
             print("goal:", goal.eval())
-​
+
 train()
 ```
 

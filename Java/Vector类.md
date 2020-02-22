@@ -1,7 +1,6 @@
 ---
 title: Vector类
 categories: Java
-abbrlink: '82332071'
 date: 2018-12-24 15:22:17
 ---
 &emsp;&emsp;`Vector`类实现了一个动态数组，和`ArrayList`类似，但两者是不同的：<!--more-->
@@ -81,7 +80,7 @@ Vector(Collection c);
 
 ``` java
 import java.util.*;
-​
+
 public class VectorDemo {
     public static void main(String args[]) {
         /* initial size is 3, increment is 2 */
@@ -93,7 +92,7 @@ public class VectorDemo {
         v.addElement(3);
         v.addElement(4);
         System.out.println("Capacity after four additions: " + v.capacity());
-​
+
         v.addElement(5.45);
         System.out.println("Current capacity: " + v.capacity());
         v.addElement(6.08);
@@ -134,7 +133,7 @@ Current capacity: 9
 First element: 1
 Last element: 12
 Vector contains 3.
-​
+
 Elements in vector:
 1 2 3 4 5.45 6.08 7 9.4 10 11 12
 ```

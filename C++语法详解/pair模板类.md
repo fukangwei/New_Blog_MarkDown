@@ -1,7 +1,6 @@
 ---
 title: pair模板类
 categories: C++语法详解
-abbrlink: af504dd1
 date: 2018-12-27 09:51:53
 ---
 &emsp;&emsp;`pair`是一种模板类型，其中包含两个数据值，两个数据的类型可以不同(也可以使用自己定义的`struct`数据结构)，基本的定义如下：<!--more-->
@@ -45,7 +44,7 @@ newone = make_pair ( a, m );
 
 ``` cpp
 pair<string, string> next_auth;
-​
+
 while ( cin >> next_auth.first >> next_auth.second ) {
     /* ... */
 }

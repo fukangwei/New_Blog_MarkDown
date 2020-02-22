@@ -1,7 +1,6 @@
 ---
 title: Perl正则表达式
 categories: Perl
-abbrlink: 511c1272
 date: 2018-12-18 12:04:06
 ---
 &emsp;&emsp;正则表达式(`regular expression`)描述了一种字符串匹配的模式，可以用来检查一个串是否含有某种子串、将匹配的子串做替换或者从某个串中取出符合某个条件的子串等。`Perl`语言的正则表达式功能非常强大，基本上是常用语言中最强大的，很多语言设计正则式支持的时候都参考`Perl`的正则表达式。<!--more-->
@@ -25,7 +24,7 @@ if ( $bar =~ /run/ ) {
 } else {
     print "第一次不匹配\n";
 }
-​
+
 $bar = "run";
 
 if ( $bar =~ /run/ ) {

@@ -1,7 +1,6 @@
 ---
 title: Qt之Qmap
 categories: Qt语法详解
-abbrlink: b87b84a5
 date: 2019-01-28 10:46:17
 ---
 &emsp;&emsp;The `QMap` class is a template class that provides a `skip-list-based` dictionary.<!--more-->
@@ -113,7 +112,7 @@ int num2 = map.value ( "thirteen" );
 
 ``` cpp
 int timeout = 30;
-​
+
 if ( map.contains ( "TIMEOUT" ) ) {
     timeout = map.value ( "TIMEOUT" );
 }
@@ -130,7 +129,7 @@ int timeout = map.value ( "TIMEOUT", 30 );
 ``` cpp
 /* WRONG */
 QMap<int, QWidget *> map;
-​
+
 for ( int i = 0; i < 1000; ++i ) {
     if ( map[i] == okButton ) {
         cout << "Found button at index " << i << endl;
@@ -143,7 +142,7 @@ for ( int i = 0; i < 1000; ++i ) {
 
 ``` cpp
 QMapIterator<QString, int> i ( map );
-​
+
 while ( i.hasNext() ) {
     i.next();
     cout << i.key() << ": " << i.value() << endl;
@@ -154,7 +153,7 @@ while ( i.hasNext() ) {
 
 ``` cpp
 QMap<QString, int>::const_iterator i = map.constBegin();
-​
+
 while ( i != map.constEnd() ) {
     cout << i.key() << ": " << i.value() << endl;
     ++i;
@@ -162,7 +161,7 @@ while ( i != map.constEnd() ) {
 ```
 
 The items are traversed in ascending key order.
-&emsp;&emsp;Normally, a `QMap` allows only one value per key. If you call `insert()` with a key that already exists in the `QMap`, the previous value will be erased. For example:
+&emsp;&emsp;Normally, a `QMap` allows only one value per key. If you call `insert()` with a key that already exists in the `QMap`, the previous value will be erased.
 
 ``` cpp
 map.insert ( "plenty", 100 );
@@ -173,7 +172,7 @@ map.insert ( "plenty", 2000 ); /* map.value("plenty") == 2000 */
 
 ``` cpp
 QList<int> values = map.values ( "plenty" );
-​
+
 for ( int i = 0; i < values.size(); ++i ) {
     cout << values.at ( i ) << endl;
 }
@@ -183,7 +182,7 @@ for ( int i = 0; i < values.size(); ++i ) {
 
 ``` cpp
 QMap<QString, int>::iterator i = map.find ( "plenty" );
-​
+
 while ( i != map.end() && i.key() == "plenty" ) {
     cout << i.value() << endl;
     ++i;
@@ -194,19 +193,19 @@ while ( i != map.end() && i.key() == "plenty" ) {
 
 ``` cpp
 QMap<QString, int> map;
-​
+
 foreach ( int value, map ) {
     cout << value << endl;
 }
 ```
 
 &emsp;&emsp;Items can be removed from the map in several ways. One way is to call `remove()`; this will remove any item with the given key. Another way is to use `QMutableMapIterator::remove()`. In addition, you can clear the entire map using `clear()`.
-&emsp;&emsp;`QMap's` key and value data types must be assignable data types. This covers most data types you are likely to encounter, but the compiler won't let you, for example, store a `QWidget` as a value; instead, store a `QWidget *`. In addition, `QMap's` key type must provide `operator<()`. `QMap` uses it to keep its items sorted, and assumes that two keys `x` and `y` are equal if neither `x < y` nor `y < x` is `true`. Example:
+&emsp;&emsp;`QMap's` key and value data types must be assignable data types. This covers most data types you are likely to encounter, but the compiler won't let you, for example, store a `QWidget` as a value; instead, store a `QWidget *`. In addition, `QMap's` key type must provide `operator<()`. `QMap` uses it to keep its items sorted, and assumes that two keys `x` and `y` are equal if neither `x < y` nor `y < x` is `true`.
 
 ``` cpp
 #ifndef EMPLOYEE_H
 #define EMPLOYEE_H
-​
+
 class Employee {
 public:
     Employee() {}
@@ -215,15 +214,15 @@ private:
     QString myName;
     QDate myDateOfBirth;
 };
-​
+
 inline bool operator< ( const Employee &e1, const Employee &e2 ) {
     if ( e1.name() != e2.name() ) {
         return e1.name() < e2.name();
     }
-​
+
     return e1.dateOfBirth() < e2.dateOfBirth();
 }
-​
+
 #endif // EMPLOYEE_H
 ```
 
@@ -241,29 +240,29 @@ inline bool operator< ( const Employee &e1, const Employee &e2 ) {
 ### Member Function Documentation
 
 - `QMap::QMap()`: Constructs an empty map.
-- `QMap::QMap(const QMap<Key, T> & other)`: Constructs a copy of `other`. This operation occurs in constant time, because `QMap` is implicitly shared. This makes returning a `QMap` from a function very fast. If a shared instance is modified, it will be copied (`copy-on-write`), and this takes linear time.
-- `QMap::QMap(const std::map<Key, T> & other)`: Constructs a copy of `other`. This function is only available if `Qt` is configured with `STL` compatibility enabled.
+- `QMap::QMap(const QMap<Key, T> & other)`: Constructs a copy of `other`. This operation occurs in constant time, because `QMap` is implicitly shared. This makes returning a `QMap` from a function very fast. If a shared instance is modified, it will be copied (`copy-on-write`), and this takes linear time.
+- `QMap::QMap(const std::map<Key, T> & other)`: Constructs a copy of `other`. This function is only available if `Qt` is configured with `STL` compatibility enabled.
 - `QMap::~QMap()`: Destroys the map. References to the values in the map, and all iterators over this map, become invalid.
 - `iterator QMap::begin()`: Returns an `STL-style` iterator pointing to the first item in the map.
 - `const_iterator QMap::begin() const`: This is an overloaded function.
 - `void QMap::clear()`: Removes all items from the map.
 - `const_iterator QMap::constBegin() const`: Returns a const `STL-style` iterator pointing to the first item in the map.
 - `const_iterator QMap::constEnd() const`: Returns a const `STL-style` iterator pointing to the imaginary item after the last item in the map.
-- `const_iterator QMap::constFind(const Key & key) const`: Returns an const iterator pointing to the item with `key` in the map. If the map contains no item with `key`, the function returns `constEnd()`.
+- `const_iterator QMap::constFind(const Key & key) const`: Returns an const iterator pointing to the item with `key` in the map. If the map contains no item with `key`, the function returns `constEnd()`.
 - `bool QMap::contains(const Key & key) const`: Returns `true` if the map contains an item with `key`; otherwise returns `false`.
 - `int QMap::count(const Key & key) const`: Returns the number of items associated with `key`.
-- `int QMap::count() const`: This is an overloaded function. Same as `size()`.
+- `int QMap::count() const`: This is an overloaded function. Same as `size()`.
 - `bool QMap::empty() const`: This function is provided for `STL` compatibility. It is equivalent to `isEmpty()`, returning `true` if the map is empty; otherwise returning `false`.
 - `iterator QMap::end()`: Returns an `STL-style` iterator pointing to the imaginary item after the last item in the map.
 - `const_iterator QMap::end() const`: This is an overloaded function.
 - `iterator QMap::erase(iterator pos)`: Removes the `(key, value)` pair pointed to by the iterator `pos` from the map, and returns an iterator to the next item in the map.
-- `iterator QMap::find(const Key & key)`: Returns an iterator pointing to the item with `key` in the map. If the map contains no item with `key`, the function returns `end()`. If the map contains multiple items with `key`, this function returns an iterator that points to the most recently inserted value. The other values are accessible by incrementing the iterator. For example, here's some code that iterates over all the items with the same `key`:
+- `iterator QMap::find(const Key & key)`: Returns an iterator pointing to the item with `key` in the map. If the map contains no item with `key`, the function returns `end()`. If the map contains multiple items with `key`, this function returns an iterator that points to the most recently inserted value. The other values are accessible by incrementing the iterator. For example, here's some code that iterates over all the items with the same `key`:
 
 ``` cpp
 QMap<QString, int> map;
-​
+
 QMap<QString, int>::const_iterator i = map.find ( "HDR" );
-​
+
 while ( i != map.end() && i.key() == "HDR" ) {
     cout << i.value() << endl;
     ++i;
@@ -271,21 +270,21 @@ while ( i != map.end() && i.key() == "HDR" ) {
 ```
 
 - `const_iterator QMap::find(const Key & key) const`: This is an overloaded function.
-- `iterator QMap::insert(const Key & key, const T & value)`: Inserts a new item with the `key` and a `value` of value. If there is already an item with the `key`, that item's value is replaced with `value`. If there are multiple items with the `key`, the most recently inserted item's value is replaced with `value`.
-- `iterator QMap::insertMulti(const Key & key, const T & value)`: Inserts a new item with the `key` and a `value` of value. If there is already an item with the same `key` in the map, this function will simply create a new one (This behavior is different from `insert()`, which overwrites the value of an existing item).
+- `iterator QMap::insert(const Key & key, const T & value)`: Inserts a new item with the `key` and a `value` of value. If there is already an item with the `key`, that item's value is replaced with `value`. If there are multiple items with the `key`, the most recently inserted item's value is replaced with `value`.
+- `iterator QMap::insertMulti(const Key & key, const T & value)`: Inserts a new item with the `key` and a `value` of value. If there is already an item with the same `key` in the map, this function will simply create a new one (This behavior is different from `insert()`, which overwrites the value of an existing item).
 - `bool QMap::isEmpty() const`: Returns `true` if the map contains no items; otherwise returns `false`.
-- `const Key QMap::key(const T & value) const`: Returns the first key with `value`. If the map contains no item with `value`, the function returns a `default-constructed` key. This function can be slow (linear time), because `QMap's` internal data structure is optimized for fast lookup by key, not by value.
-- `const Key QMap::key(const T & value, const Key & defaultKey) const`: This is an overloaded function. Returns the first key with `value`, or `defaultKey` if the map contains no item with `value`. This function can be slow (linear time), because `QMap's` internal data structure is optimized for fast lookup by key, not by value.
-- `QList<Key> QMap::keys() const`: Returns a list containing all the keys in the map in ascending order. Keys that occur multiple times in the map (because items were inserted with `insertMulti()`, or `unite()` was used) also occur multiple times in the list. To obtain a list of unique keys, where each key from the map only occurs once, use `uniqueKeys()`. The order is guaranteed to be the same as that used by `values()`.
-- `QList<Key> QMap::keys(const T & value) const`: This is an overloaded function. Returns a list containing all the keys associated with `value` in ascending order. This function can be slow (linear time), because `QMap's` internal data structure is optimized for fast lookup by key, not by value.
-- `iterator QMap::lowerBound(const Key & key)`: Returns an iterator pointing to the first item with `key` in the map. If the map contains no item with `key`, the function returns an iterator to the nearest item with a greater key. Example:
+- `const Key QMap::key(const T & value) const`: Returns the first key with `value`. If the map contains no item with `value`, the function returns a `default-constructed` key. This function can be slow (linear time), because `QMap's` internal data structure is optimized for fast lookup by key, not by value.
+- `const Key QMap::key(const T & value, const Key & defaultKey) const`: This is an overloaded function. Returns the first key with `value`, or `defaultKey` if the map contains no item with `value`. This function can be slow (linear time), because `QMap's` internal data structure is optimized for fast lookup by key, not by value.
+- `QList<Key> QMap::keys() const`: Returns a list containing all the keys in the map in ascending order. Keys that occur multiple times in the map (because items were inserted with `insertMulti()`, or `unite()` was used) also occur multiple times in the list. To obtain a list of unique keys, where each key from the map only occurs once, use `uniqueKeys()`. The order is guaranteed to be the same as that used by `values()`.
+- `QList<Key> QMap::keys(const T & value) const`: This is an overloaded function. Returns a list containing all the keys associated with `value` in ascending order. This function can be slow (linear time), because `QMap's` internal data structure is optimized for fast lookup by key, not by value.
+- `iterator QMap::lowerBound(const Key & key)`: Returns an iterator pointing to the first item with `key` in the map. If the map contains no item with `key`, the function returns an iterator to the nearest item with a greater key.
 
 ``` cpp
 QMap<int, QString> map;
 map.insert ( 1, "one" );
 map.insert ( 5, "five" );
 map.insert ( 10, "ten" );
-​
+
 map.lowerBound ( 0 ); /* returns iterator to (1, "one") */
 map.lowerBound ( 1 ); /* returns iterator to (1, "one") */
 map.lowerBound ( 2 ); /* returns iterator to (5, "five") */
@@ -297,10 +296,10 @@ If the map contains multiple items with `key`, this function returns an iterator
 
 ``` cpp
 QMap<QString, int> map;
-​
+
 QMap<QString, int>::const_iterator i = map.lowerBound ( "HDR" );
 QMap<QString, int>::const_iterator upperBound = map.upperBound ( "HDR" );
-​
+
 while ( i != upperBound ) {
     cout << i.value() << endl;
     ++i;
@@ -311,18 +310,18 @@ while ( i != upperBound ) {
 - `int QMap::remove(const Key & key)`: Removes all the items that have the `key` from the map. Returns the number of items removed which is usually `1` but will be `0` if the `key` isn't in the map, or `> 1` if `insertMulti()` has been used with the `key`.
 - `int QMap::size() const`: Returns the number of `(key, value)` pairs in the map.
 - `void QMap::swap(QMap<Key, T> & other)`: Swaps map `other` with this map. This operation is very fast and never fails.
-- `T QMap::take(const Key & key)`: Removes the item with the `key` from the map and returns the value associated with it. If the item does not exist in the map, the function simply returns a `default-constructed` value. If there are multiple items for `key` in the map, only the most recently inserted one is removed and returned. If you don't use the return value, `remove()` is more efficient.
-- `std::map<Key, T> QMap::toStdMap() const`: Returns an `STL` map equivalent to this `QMap`. This function is only available if `Qt` is configured with `STL` compatibility enabled.
+- `T QMap::take(const Key & key)`: Removes the item with the `key` from the map and returns the value associated with it. If the item does not exist in the map, the function simply returns a `default-constructed` value. If there are multiple items for `key` in the map, only the most recently inserted one is removed and returned. If you don't use the return value, `remove()` is more efficient.
+- `std::map<Key, T> QMap::toStdMap() const`: Returns an `STL` map equivalent to this `QMap`. This function is only available if `Qt` is configured with `STL` compatibility enabled.
 - `QList<Key> QMap::uniqueKeys() const`: Returns a list containing all the keys in the map in ascending order. Keys that occur multiple times in the map (because items were inserted with `insertMulti()`, or `unite()` was used) occur only once in the returned list.
 - `QMap<Key, T> & QMap::unite(const QMap<Key, T> & other)`: Inserts all the items in the `other` map into this map. If a key is common to both maps, the resulting map will contain the key multiple times.
-- `iterator QMap::upperBound(const Key & key)`: Returns an iterator pointing to the item that immediately follows the last item with `key` in the map. If the map contains no item with `key`, the function returns an iterator to the nearest item with a greater key. Example:
+- `iterator QMap::upperBound(const Key & key)`: Returns an iterator pointing to the item that immediately follows the last item with `key` in the map. If the map contains no item with `key`, the function returns an iterator to the nearest item with a greater key.
 
 ``` cpp
 QMap<int, QString> map;
 map.insert ( 1, "one" );
 map.insert ( 5, "five" );
 map.insert ( 10, "ten" );
-​
+
 map.upperBound ( 0 ); /* returns iterator to (1, "one") */
 map.upperBound ( 1 ); /* returns iterator to (5, "five") */
 map.upperBound ( 2 ); /* returns iterator to (5, "five") */
@@ -331,17 +330,17 @@ map.upperBound ( 999 ); /* returns end() */
 ```
 
 - `const_iterator QMap::upperBound(const Key & key) const`: This is an overloaded function.
-- `const T QMap::value(const Key & key) const`: Returns the value associated with the `key`. If the map contains no item with `key`, the function returns a `default-constructed` value. If there are multiple items for key in the map, the value of the most recently inserted one is returned.
-- `const T QMap::value(const Key & key, const T & defaultValue) const`: This is an overloaded function. If the map contains no item with `key`, the function returns `defaultValue`.
+- `const T QMap::value(const Key & key) const`: Returns the value associated with the `key`. If the map contains no item with `key`, the function returns a `default-constructed` value. If there are multiple items for key in the map, the value of the most recently inserted one is returned.
+- `const T QMap::value(const Key & key, const T & defaultValue) const`: This is an overloaded function. If the map contains no item with `key`, the function returns `defaultValue`.
 - `QList<T> QMap::values() const`: Returns a list containing all the values in the map, in ascending order of their keys. If a key is associated with multiple values, all of its values will be in the list, and not just the most recently inserted one.
-- `QList<T> QMap::values(const Key & key) const`: This is an overloaded function. Returns a list containing all the values associated with `key`, from the most recently inserted to the least recently inserted one.
-- `bool QMap::operator!=(const QMap<Key, T> & other) const`: Returns true if `other` is not equal to this map; otherwise returns false. Two maps are considered equal if they contain the same `(key, value)` pairs. This function requires the value type to implement `operator==()`.
+- `QList<T> QMap::values(const Key & key) const`: This is an overloaded function. Returns a list containing all the values associated with `key`, from the most recently inserted to the least recently inserted one.
+- `bool QMap::operator!=(const QMap<Key, T> & other) const`: Returns true if `other` is not equal to this map; otherwise returns false. Two maps are considered equal if they contain the same `(key, value)` pairs. This function requires the value type to implement `operator==()`.
 - `QMap<Key, T> & QMap::operator=(const QMap<Key, T> & other)`: Assigns `other` to this map and returns a reference to this map.
-- `QMap<Key, T> & QMap::operator=(QMap<Key, T> && other)`: bool `QMap::operator==(const QMap<Key, T> & other)` const Returns `true` if `other` is equal to this map; otherwise returns `false`. Two maps are considered equal if they contain the same `(key, value)` pairs. This function requires the value type to implement `operator==()`.
-- `T & QMap::operator[](const Key & key)`: Returns the value associated with the key `key` as a modifiable reference. If the map contains no item with `key`, the function inserts a `default-constructed` value into the map with `key`, and returns a reference to it. If the map contains multiple items with `key`, this function returns a reference to the most recently inserted value.
+- `QMap<Key, T> & QMap::operator=(QMap<Key, T> && other)`: bool `QMap::operator==(const QMap<Key, T> & other)` const Returns `true` if `other` is equal to this map; otherwise returns `false`. Two maps are considered equal if they contain the same `(key, value)` pairs. This function requires the value type to implement `operator==()`.
+- `T & QMap::operator[](const Key & key)`: Returns the value associated with the key `key` as a modifiable reference. If the map contains no item with `key`, the function inserts a `default-constructed` value into the map with `key`, and returns a reference to it. If the map contains multiple items with `key`, this function returns a reference to the most recently inserted value.
 - `const T QMap::operator[](const Key & key) const`: This is an overloaded function.
 
 ### Related Non-Members
 
-- `QDataStream & operator<<(QDataStream & out, const QMap<Key, T> & map)`: Writes the `map` to stream `out`. This function requires the key and value types to implement `operator<<()`.
-- `QDataStream & operator>>(QDataStream & in, QMap<Key, T> & map)`: Reads a map from stream `in` into `map`. This function requires the key and value types to implement `operator>>()`.
+- `QDataStream & operator<<(QDataStream & out, const QMap<Key, T> & map)`: Writes the `map` to stream `out`. This function requires the key and value types to implement `operator<<()`.
+- `QDataStream & operator>>(QDataStream & in, QMap<Key, T> & map)`: Reads a map from stream `in` into `map`. This function requires the key and value types to implement `operator>>()`.

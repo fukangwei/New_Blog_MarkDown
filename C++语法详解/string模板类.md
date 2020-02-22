@@ -1,7 +1,6 @@
 ---
 title: string模板类
 categories: C++语法详解
-abbrlink: 1df918a5
 date: 2019-02-07 11:41:33
 ---
 ### 访问字符串中的字符
@@ -11,17 +10,17 @@ date: 2019-02-07 11:41:33
 ``` cpp
 #include <iostream>
 #include <string>
-​
+
 using namespace std;
-​
+
 int main() {
     string s1 ;
     s1 = "1234567890";
-​
+
     for ( int i = 0, len = s1.length(); i < len; i++ ) {
         cout << s1[i] << " ";
     }
-​
+
     cout << endl;
     s1[5] = '5';
     cout << s1 << endl;
@@ -46,9 +45,9 @@ int main() {
 ``` cpp
 #include <iostream>
 #include <string>
-​
+
 using namespace std;
-​
+
 int main() {
     string s1, s2, s3;
     s1 = "first";
@@ -119,7 +118,7 @@ Version            | Function
 ``` cpp
 #include <iostream>
 #include <string>
-​
+
 int main () {
     std::string s0 ( "Initial string" );
     /* constructors used in the same order as described above */

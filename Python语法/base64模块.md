@@ -1,7 +1,6 @@
 ---
 title: base64模块
 categories: Python语法
-abbrlink: 4ad2ee98
 date: 2019-02-11 11:34:05
 ---
 &emsp;&emsp;`Base64`是一种用`64`个字符来表示任意二进制数据的方法。<!--more-->

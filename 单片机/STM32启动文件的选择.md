@@ -1,7 +1,6 @@
 ---
 title: STM32启动文件的选择
 categories: 单片机
-abbrlink: f48b6ab6
 date: 2019-03-18 22:40:41
 ---
 &emsp;&emsp;`STM32`启动文件选择如下：<!--more-->
@@ -67,6 +66,6 @@ startup_stm32f10x_cl.s:    for STM32 Connectivity line devices
 
 命名 | 容量    | 命名 | 容量
 -----|--------|------|-----
-`6`  | `32K`  | `8`  | `64K`
+`6`  | `32K`  | `8`  | `64K`
 `B`  | `128K` | `C`  | `256K`
 `D`  | `384K` | `E`  | `512K`

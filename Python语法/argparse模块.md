@@ -1,7 +1,6 @@
 ---
 title: argparse模块
 categories: Python语法
-abbrlink: d338ca5c
 date: 2019-02-10 15:02:32
 ---
 &emsp;&emsp;`argparse`是`Python`内置的一个用于命令项选项与参数解析的模块，通过在程序中定义好我们需要的参数，`argparse`将会从`sys.argv`中解析出这些参数，并自动生成帮助和使用信息。<!--more-->
@@ -16,7 +15,7 @@ date: 2019-02-10 15:02:32
 
 ``` python
 import argparse
-​
+
 parser = argparse.ArgumentParser()
 parser.add_argument('integer', type=int, help='display an integer')
 args = parser.parse_args()
@@ -34,10 +33,10 @@ usage: my_test.py [-h] integer
 my_test.py: error: argument integer: invalid int value: 'abcd'
 $ python my_test.py -h
 usage: my_test.py [-h] integer
-​
+
 positional arguments:
   integer     display an integer
-​
+
 optional arguments:
   -h, --help  show this help message and exit
 $ python my_test.py 10
@@ -50,7 +49,7 @@ $ python my_test.py 10
 
 ``` python
 import argparse
-​
+
 parser = argparse.ArgumentParser()
 parser.add_argument("square", help="display a square of a given number", type=int)
 args = parser.parse_args()
@@ -70,15 +69,15 @@ $ python my_test.py 9
 
 ``` python
 import argparse
-​
+
 parser = argparse.ArgumentParser()
 parser.add_argument("--square", help="display a square of a given number", type=int)
 parser.add_argument("--cubic", help="display a cubic of a given number", type=int)
 args = parser.parse_args()
-​
+
 if args.square:
     print(args.square ** 2)
-​
+
 if args.cubic:
     print(args.cubic ** 3)
 ```
@@ -88,7 +87,7 @@ if args.cubic:
 ``` bash
 $ python my_test.py --h
 usage: my_test.py [-h] [--square SQUARE] [--cubic CUBIC]
-​
+
 optional arguments:
   -h, --help       show this help message and exit
   --square SQUARE  display a square of a given number
@@ -109,7 +108,7 @@ $ python my_test.py  # 没有输出
 
 ``` python
 import argparse
-​
+
 parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('integers', metavar='N', type=int, nargs='+', \
                     help='an integer for the accumulator')
@@ -151,9 +150,9 @@ parser.add_argument('bar')  # 位置参数
 - `nargs`：当选项后接受多个或者`0`个参数时需要使用这个来指定，比如`-u`选项接受`2`个参数：
 
 ``` python
->>> parser.add_argument('-u', nargs=2)  
->>> parser.parse_args('-u a b'.split())  
-Namespace(u=['a', 'b'])  
+>>> parser.add_argument('-u', nargs=2)
+>>> parser.parse_args('-u a b'.split())
+Namespace(u=['a', 'b'])
 ```
 
 当选项接受`1`个或者不需要参数时，指定`nargs='?'`；当没有参数时，会从`default`中取值。对于选项参数有一个额外的情况，就是出现选项而后面没有跟具体参数，那么会从`const`中取值：
@@ -246,7 +245,7 @@ usage: [-h] -u U : error: argument -u is required
 ... help='%(prog)s for test sth(default: %(default)s)')
 >>> parser.print_help()
 usage: [-h] -u U
-​
+
 optional arguments:
   -h, --help  show this help message and exit
   -u U        for test sth(default: wowo)
@@ -269,17 +268,17 @@ Namespace(myname=['a', 'b', 'c'])
 >>> parser.add_argument('--str', nargs='*', metavar='AAA')
 >>> parser.print_help()
 usage: [-h] [--str [AAA [AAA ...]]]
-​
+
 optional arguments:
   -h, --help           show this help message and exit
   --str [AAA [AAA ...]]
 >>> parser.add_argument('str', nargs='*', metavar='AAA')
 >>> parser.print_help()
 usage: [-h] [AAA [AAA ...]]
-​
+
 positional arguments:
   AAA
-​
+
 optional arguments:
-  -h, --help  show this help message and exit
+  -h, --help  show this help message and exit
 ```

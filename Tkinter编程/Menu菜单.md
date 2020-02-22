@@ -1,11 +1,9 @@
 ---
 title: Menu菜单
 categories: Tkinter编程
-abbrlink: 7a5d1ebe
 date: 2019-03-31 13:51:42
 ---
-&emsp;&emsp;`Menu`(菜单)组件用于实现顶级菜单、下拉菜单和弹出菜单。`Menu`组件通常被用于实现应用程序上的各种菜单，由于该组件是底层代码实现，所以不建议你自行通过按钮和其他组件来实现菜单功能。
-<!--more-->
+&emsp;&emsp;`Menu`(菜单)组件用于实现顶级菜单、下拉菜单和弹出菜单。`Menu`组件通常被用于实现应用程序上的各种菜单，由于该组件是底层代码实现，所以不建议你自行通过按钮和其他组件来实现菜单功能。<!--more-->
 
 ### 用法
 
@@ -13,19 +11,19 @@ date: 2019-03-31 13:51:42
 
 ``` python
 from tkinter import *
-​
+
 root = Tk()
-​
+
 def callback():
     print("~被调用了~")
-​
+
 # 创建一个顶级菜单
 menubar = Menu(root)
 menubar.add_command(label="Hello", command=callback)
 menubar.add_command(label="Quit", command=root.quit)
-​
+
 root.config(menu=menubar)  # 显示菜单
-​
+
 mainloop()
 ```
 
@@ -35,15 +33,15 @@ mainloop()
 
 ``` python
 from tkinter import *
-​
+
 root = Tk()
-​
+
 def callback():
     print("~被调用了~")
-​
+
 # 创建一个顶级菜单
 menubar = Menu(root)
-​
+
 # 创建一个下拉菜单“文件”，然后将它添加到顶级菜单中
 filemenu = Menu(menubar, tearoff=False)
 filemenu.add_command(label="打开", command=callback)
@@ -51,16 +49,16 @@ filemenu.add_command(label="保存", command=callback)
 filemenu.add_separator()
 filemenu.add_command(label="退出", command=root.quit)
 menubar.add_cascade(label="文件", menu=filemenu)
-​
+
 # 创建另一个下拉菜单“编辑”，然后将它添加到顶级菜单中
 editmenu = Menu(menubar, tearoff=False)
 editmenu.add_command(label="剪切", command=callback)
 editmenu.add_command(label="拷贝", command=callback)
 editmenu.add_command(label="粘贴", command=callback)
 menubar.add_cascade(label="编辑", menu=editmenu)
-​
+
 root.config(menu=menubar)  # 显示菜单
-​
+
 mainloop()
 ```
 
@@ -70,25 +68,25 @@ mainloop()
 
 ``` python
 from tkinter import *
-​
+
 root = Tk()
-​
+
 def callback():
     print("~被调用了~")
-​
+
 # 创建一个弹出菜单
 menu = Menu(root, tearoff=False)
 menu.add_command(label="撤销", command=callback)
 menu.add_command(label="重做", command=callback)
-​
+
 frame = Frame(root, width=512, height=512)
 frame.pack()
-​
+
 def popup(event):
     menu.post(event.x_root, event.y_root)
-​
+
 frame.bind("<Button-3>", popup)  # 绑定鼠标右键
-​
+
 mainloop()
 ```
 

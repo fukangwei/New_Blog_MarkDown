@@ -1,7 +1,6 @@
 ---
 title: Qt之随机函数
 categories: Qt语法详解
-abbrlink: c47fbd51
 date: 2019-01-02 17:41:50
 ---
 &emsp;&emsp;其头文件为`QTime`，首先是初始化随机种子函数：<!--more-->

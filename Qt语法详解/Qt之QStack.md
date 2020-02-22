@@ -1,7 +1,6 @@
 ---
 title: Qt之QStack
 categories: Qt语法详解
-abbrlink: 88fe4da8
 date: 2019-01-02 19:05:18
 ---
 ### QStack Class
@@ -28,15 +27,15 @@ Return      | Function
 
 ### Detailed Description
 
-&emsp;&emsp;The `QStack` class is a template class that provides a stack. `QStack<T>` is one of `Qt's` generic container classes. It implements a stack data structure for items of a same type.
-&emsp;&emsp;A stack is a last in, first out (`LIFO`) structure. Items are added to the top of the stack using `push()` and retrieved from the top using `pop()`. The `top()` function provides access to the topmost item without removing it. Example:
+&emsp;&emsp;The `QStack` class is a template class that provides a stack. `QStack<T>` is one of `Qt's` generic container classes. It implements a stack data structure for items of a same type.
+&emsp;&emsp;A stack is a last in, first out (`LIFO`) structure. Items are added to the top of the stack using `push()` and retrieved from the top using `pop()`. The `top()` function provides access to the topmost item without removing it.
 
 ``` cpp
 QStack<int> stack;
 stack.push ( 1 );
 stack.push ( 2 );
 stack.push ( 3 );
-​
+
 while ( !stack.isEmpty() ) {
     cout << stack.pop() << endl;
 }
@@ -51,7 +50,7 @@ The example will output `3, 2, 1` in that order.
 - `QStack::QStack()`: Constructs an empty stack.
 - `QStack::~QStack()`: Destroys the stack. References to the values in the stack, and all iterators over this stack, become invalid.
 - `T QStack::pop()`: Removes the top item from the stack and returns it. This function assumes that the stack isn't empty.
-- `void QStack::push(const T & t)`: Adds element `t` to the top of the stack. This is the same as `QVector::append()`.
+- `void QStack::push(const T & t)`: Adds element `t` to the top of the stack. This is the same as `QVector::append()`.
 - `void QStack::swap(QStack<T> & other)`: Swaps stack `other` with this stack. This operation is very fast and never fails.
-- `T & QStack::top()`: Returns a reference to the stack's `top` item. This function assumes that the stack isn't empty. This is the same as `QVector::last()`.
+- `T & QStack::top()`: Returns a reference to the stack's `top` item. This function assumes that the stack isn't empty. This is the same as `QVector::last()`.
 - `const T & QStack::top() const`: This is an overloaded function.

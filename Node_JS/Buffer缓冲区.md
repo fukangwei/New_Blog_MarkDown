@@ -1,7 +1,6 @@
 ---
 title: Buffer缓冲区
 categories: Node.js笔记
-abbrlink: bcf52270
 date: 2019-02-08 16:36:39
 ---
 &emsp;&emsp;`JavaScript`语言自身只有字符串数据类型，没有二进制数据类型。但在处理像`TCP`流或文件流时，必须使用到二进制数据。因此在`Node.js`中，定义了一个`Buffer`类，该类用来创建一个专门存放二进制数据的缓存区。一个`Buffer`类似于一个整数数组，但它对应于`V8`堆内存之外的一块原始内存。<!--more-->
@@ -74,7 +73,7 @@ buf.write(string [, offset [, length]] [, encoding])
 ``` javascript
 buf = Buffer.alloc(256);
 len = buf.write("www.runoob.com");
-console.log("写入字节数："+  len);
+console.log("写入字节数："+ len);
 ```
 
 执行结果是`写入字节数：14`。
@@ -95,7 +94,7 @@ buf.toString([encoding [, start [, end]]])
 
 ``` javascript
 buf = Buffer.alloc(26);
-​
+
 for (var i = 0; i < 26; i++) {
     buf[i] = i + 97;
 }
@@ -125,7 +124,7 @@ console.log(json); // 输出“{"type":"Buffer","data":[1,2,3,4,5]}”
 const copy = JSON.parse(json, (key, value) => {
     return value && value.type === 'Buffer' ? Buffer.from(value.data) : value;
 });
-​
+
 console.log(copy); // 输出“<Buffer 01 02 03 04 05>”
 ```
 

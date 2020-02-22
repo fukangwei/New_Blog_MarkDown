@@ -1,7 +1,6 @@
 ---
 title: Canvas画布
 categories: Tkinter编程
-abbrlink: '32148988'
 date: 2019-04-11 14:07:21
 ---
 &emsp;&emsp;`Canvas`(画布)组件为`Tkinter`的图形绘制提供了基础。`Canvas`是一个高度灵活的组件，你可以用它绘制图形和图表，创建图形编辑器，并实现各种自定义的小部件。<!--more-->
@@ -13,16 +12,16 @@ date: 2019-04-11 14:07:21
 
 ``` python
 from tkinter import *
-​
+
 root = Tk()
-​
+
 w = Canvas(root, width=200, height=100)
 w.pack()
-​
+
 w.create_line(0, 50, 200, 50, fill="yellow")  # 画一条黄色的横线
 w.create_line(100, 0, 100, 100, fill="red", dash=(4, 4))  # 画一条红色的竖线(虚线)
 w.create_rectangle(50, 25, 150, 75, fill="blue")  # 中间画一个蓝色的矩形
-​
+
 mainloop()
 ```
 
@@ -34,11 +33,11 @@ mainloop()
 line1 = w.create_line(0, 50, 200, 50, fill="yellow")
 line2 = w.create_line(100, 0, 100, 100, fill="red", dash=(4, 4))
 rect1 = w.create_rectangle(50, 25, 150, 75, fill="blue")
-​
+
 w.coords(line1, 0, 25, 200, 25)
 w.itemconfig(rect1, fill="red")
 w.delete(line2)
-​
+
 Button(root, text="删除全部", command=(lambda x=ALL: w.delete(x))).pack()
 ```
 
@@ -51,7 +50,7 @@ w.create_line(0, 0, 200, 100, fill="green", width=3)
 w.create_line(200, 0, 0, 100, fill="green", width=3)
 w.create_rectangle(40, 20, 160, 80, fill="green")
 w.create_rectangle(65, 35, 135, 65, fill="yellow")
-​
+
 w.create_text(100, 50, text="FishC")
 ```
 
@@ -72,16 +71,16 @@ w.create_text(100, 50, text="FishC")
 ``` python
 from tkinter import *
 import math as m
-​
+
 root = Tk()
-​
+
 w = Canvas(root, width=200, height=100, background="red")
 w.pack()
-​
+
 center_x = 100
 center_y = 50
 r = 50
-​
+
 points = [
     # 左上点
     center_x - int(r * m.sin(2 * m.pi / 5)),
@@ -99,9 +98,9 @@ points = [
     center_x + int(r * m.sin(m.pi / 5)),
     center_y + int(r * m.cos(m.pi / 5)),
 ]
-​
+
 w.create_polygon(points, outline="green", fill="yellow")
-​
+
 mainloop()
 ```
 
@@ -115,21 +114,21 @@ mainloop()
 
 ``` python
 from tkinter import *
-​
+
 root = Tk()
-​
+
 w = Canvas(root, width=400, height=200)
 w.pack()
-​
+
 def paint(event):
     x1, y1 = (event.x - 1), (event.y - 1)
     x2, y2 = (event.x + 1), (event.y + 1)
     w.create_oval(x1, y1, x2, y2, fill="red")
-​
+
 w.bind("<B1-Motion>", paint)
-​
+
 Label(root, text="按住鼠标左键并移动，开始绘制你的理想蓝图吧......").pack(side=BOTTOM)
-​
+
 mainloop()
 ```
 
@@ -350,7 +349,7 @@ def callback(event):
 
 - `create_polygon(coords, **options)`：根据`coords`给定的坐标绘制一个多边形，新创建的画布对象位于显示列表的顶端，创建成功后返回该画布对象的`ID`。下方表格列举了各个`options`选项的具体含义：
 
-选项                     | 含义
+选项                     | 含义
 -------------------------|-----
 `activedash`             | 当画布对象状态为`ACTIVE`的时候，绘制虚线
 `activefill`             | 当画布对象状态为`ACTIVE`的时候，填充颜色

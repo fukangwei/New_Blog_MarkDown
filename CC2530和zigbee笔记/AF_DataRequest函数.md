@@ -1,7 +1,6 @@
 ---
 title: AF_DataRequest函数
 categories: CC2530和zigbee笔记
-abbrlink: d3d20d13
 date: 2019-02-05 14:21:35
 ---
 &emsp;&emsp;`Zigbee`协议栈进行数据发送是调用`AF_DataRequest`这个函数，该函数会调用协议栈里面与硬件相关的函数最终将数据通过天线发送出去。<!--more-->
@@ -41,7 +40,7 @@ typedef enum {
     afAddrGroup = AddrGroup, /* 组播 */
     afAddrBroadcast = AddrBroadcast /* 广播 */
 } afAddrMode_t;
-​
+
 enum {
     AddrNotPresent = 0,
     AddrGroup = 1,
@@ -61,7 +60,7 @@ typedef struct {
     SimpleDescriptionFormat_t *simpleDesc; /* 描述一个Zigbee设备节点，称为简单设备描述符 */
     afNetworkLatencyReq_t latencyReq; /* 枚举结构，这个字段必须为nolatencyreqs */
 } endPointDesc_t; /* 其定义在AF.h中 */
-​
+
 typedef struct {
     byte EndPoint; /* EP */
     uint16 AppProfId; /* 应用规范ID */
@@ -73,7 +72,7 @@ typedef struct {
     byte AppNumOutClusters; /* 输出簇ID的个数 */
     cId_t *pAppOutClusterList; /* 输出簇ID的列表 */
 } SimpleDescriptionFormat_t; /* 其定义在AF.h中 */
-​
+
 typedef enum {
     noLatencyReqs,
     fastBeacons,
@@ -121,21 +120,21 @@ afStatus_t AF_DataRequest ( afAddrType_t *dstAddr, endPointDesc_t *srcEP,
     ZStatus_t stat;
     APSDE_DataReq_t req;
     afDataReqMTU_t mtu;
-​
+
     if ( srcEP == NULL ) { /* Verify source end point 判断源节点是否为空 */
         return afStatus_INVALID_PARAMETER;
     }
-​
+
 #if !defined( REFLECTOR )
-​
+
     if ( dstAddr->addrMode == afAddrNotPresent ) {
         return afStatus_INVALID_PARAMETER;
     }
-​
+
 #endif
     /* Verify destination address 判断目的地址 */
     req.dstAddr.addr.shortAddr = dstAddr->addr.shortAddr;
-​
+
     /* Validate broadcasting 判断地址的模式 */
     if ( ( dstAddr->addrMode == afAddr16Bit ) || ( dstAddr->addrMode == afAddrBroadcast ) ) {
         /* Check for valid broadcast values 核对有效的广播值 */
@@ -151,13 +150,13 @@ afStatus_t AF_DataRequest ( afAddrType_t *dstAddr, endPointDesc_t *srcEP,
     } else if ( dstAddr->addrMode != afAddrGroup && dstAddr->addrMode != afAddrNotPresent ) {
         return afStatus_INVALID_PARAMETER;
     }
-​
+
     req.dstAddr.addrMode = dstAddr->addrMode;
     req.profileID = ZDO_PROFILE_ID;
-​
+
     if ( ( pfnDescCB = afGetDescCB ( srcEP ) ) ) {
         uint16 *pID = ( uint16 * ) ( pfnDescCB ( AF_DESCRIPTOR_PROFILE_ID, srcEP->endPoint ) );
-​
+
         if ( pID ) {
             req.profileID = *pID;
             osal_mem_free ( pID );
@@ -165,26 +164,26 @@ afStatus_t AF_DataRequest ( afAddrType_t *dstAddr, endPointDesc_t *srcEP,
     } else if ( srcEP->simpleDesc ) {
         req.profileID = srcEP->simpleDesc->AppProfId;
     }
-​
+
     req.txOptions = 0;
-​
+
     if ( ( options & AF_ACK_REQUEST ) &&
          ( req.dstAddr.addrMode != AddrBroadcast ) &&
          ( req.dstAddr.addrMode != AddrGroup ) ) {
         req.txOptions |= APS_TX_OPTIONS_ACK;
     }
-​
+
     if ( options & AF_SKIP_ROUTING ) {
         req.txOptions |= APS_TX_OPTIONS_SKIP_ROUTING;
     }
-​
+
     if ( options & AF_EN_SECURITY ) {
         req.txOptions |= APS_TX_OPTIONS_SECURITY_ENABLE;
         mtu.aps.secure = TRUE;
     } else {
         mtu.aps.secure = FALSE;
     }
-​
+
     mtu.kvp = FALSE;
     req.transID = *transID;
     req.srcEP = srcEP->endPoint;
@@ -194,7 +193,7 @@ afStatus_t AF_DataRequest ( afAddrType_t *dstAddr, endPointDesc_t *srcEP,
     req.asdu = buf;
     req.discoverRoute = TRUE; // (uint8)((options & AF_DISCV_ROUTE) ? 1 : 0);
     req.radiusCounter = radius;
-​
+
     if ( len > afDataReqMTU ( &mtu ) ) {
         if ( apsfSendFragmented ) {
             req.txOptions |= AF_FRAGMENTED | APS_TX_OPTIONS_ACK;
@@ -205,7 +204,7 @@ afStatus_t AF_DataRequest ( afAddrType_t *dstAddr, endPointDesc_t *srcEP,
     } else {
         stat = APSDE_DataReq ( &req );
     }
-​
+
     /*
      * If this is an EndPoint-to-EndPoint message on the same device, it will not
      * get added to the NWK databufs. So it will not Go OTA and it will not get
@@ -218,11 +217,11 @@ afStatus_t AF_DataRequest ( afAddrType_t *dstAddr, endPointDesc_t *srcEP,
          ( req.dstAddr.addr.shortAddr == NLME_GetShortAddr() ) ) {
         afDataConfirm ( srcEP->endPoint, *transID, stat );
     }
-​
+
     if ( stat == afStatus_SUCCESS ) {
         ( *transID )++;
     }
-​
+
     return ( afStatus_t ) stat;
 }
 ```

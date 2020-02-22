@@ -1,7 +1,6 @@
 ---
 title: errno和strerror
 categories: Linux系统编程
-abbrlink: 501b0301
 date: 2019-02-03 13:52:53
 ---
 &emsp;&emsp;经常在调用`Linux`系统`API`的时候出现一些错误，比如使用`open`、`write`、`creat`之类的函数有些时候会返回`-1`，也就是调用失败。这个时候往往需要知道失败的原因，使用`errno`这个全局变量就相当有用了。<!--more-->
@@ -11,15 +10,15 @@ date: 2019-02-03 13:52:53
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
-​
+
 int main ( void ) {
     int fd;
     extern int errno;
-​
+
     if ( ( fd = open ( "/dev/dsp", O_WRONLY ) ) < 0 ) {
         printf ( "errno = %d\n", errno );
     }
-​
+
     exit ( 0 );
 }
 ```
@@ -30,7 +29,7 @@ int main ( void ) {
 ``` cpp
 #ifndef _I386_ERRNO_H
 #define _I386_ERRNO_H
-​
+
 #define EPERM   1  /* Operation not permitted   */
 #define ENOENT  2  /* No such file or directory */
 #define ESRCH   3  /* No such process           */
@@ -41,7 +40,7 @@ int main ( void ) {
 #define ENOEXEC 8  /* Exec format error         */
 #define EBADF   9  /* Bad file number           */
 #define ECHILD  10 /* No child processes        */
-...​
+...
 #endif
 ```
 
@@ -51,17 +50,17 @@ int main ( void ) {
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
-​
+
 int main ( void ) {
     int fd;
     extern int errno;
-​
+
     if ( ( fd = open ( "/dev/dsp", O_WRONLY ) ) < 0 ) {
         printf ( "errno = %d\n", errno );
         char *mesg = strerror ( errno );
         printf ( "Mesg: %s\n", mesg );
     }
-​
+
     exit ( 0 );
 }
 ```

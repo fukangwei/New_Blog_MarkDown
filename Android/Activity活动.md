@@ -1,7 +1,6 @@
 ---
 title: Activity活动
 categories: Android
-abbrlink: b1fdd5d4
 date: 2019-03-01 20:59:33
 ---
 &emsp;&emsp;`Activity`是一个应用组件，用户可与其提供的屏幕进行交互，以执行拨打电话、拍摄照片、发送电子邮件或查看地图等操作。每个`Activity`都会获得一个用于绘制其用户界面的窗口。窗口通常会充满屏幕，但也可小于屏幕并浮动在其他窗口之上。<!--more-->
@@ -91,7 +90,7 @@ private void pickContact() {
     Intent intent = new Intent(Intent.ACTION_PICK, Contacts.CONTENT_URI);
     startActivityForResult(intent, PICK_CONTACT_REQUEST);
 }
-​
+
 @Override
 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     /* If the request went well (OK) and the request was PICK_CONTACT_REQUEST */
@@ -143,25 +142,25 @@ public class ExampleActivity extends Activity {
         super.onStart();
         /* The activity is about to become visible */
     }
-​
+
     @Override
     protected void onResume() {
         super.onResume();
         /* The activity has become visible (it is now "resumed") */
     }
-​
+
     @Override
     protected void onPause() {
         super.onPause();
         /* Another activity is taking focus (this activity is about to be "paused") */
     }
-​
+
     @Override
     protected void onStop() {
         super.onStop();
         /* The activity is no longer visible (it is now "stopped") */
     }
-​
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -240,7 +239,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-​
+
 public class Main3Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -264,7 +263,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-​
+
 public class Main3Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -325,7 +324,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-​
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -341,7 +340,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-​
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if ((requestCode == 0x00) && (resultCode == 0x12)) {
             Bundle bundle = data.getExtras();
@@ -361,7 +360,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-​
+
 public class Main3Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

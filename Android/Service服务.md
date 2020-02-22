@@ -1,7 +1,6 @@
 ---
 title: Service服务
 categories: Android
-abbrlink: 25ba46b1
 date: 2019-02-08 20:31:39
 ---
 &emsp;&emsp;服务是一个后台运行的组件，执行长时间运行且不需要用户交互的任务。即使应用被销毁也依然可以工作。服务基本上包含两种状态：<!--more-->

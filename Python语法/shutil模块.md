@@ -1,7 +1,6 @@
 ---
 title: shutil模块
 categories: Python语法
-abbrlink: 8cbb1141
 date: 2018-12-27 19:21:58
 ---
 &emsp;&emsp;`shutil`是高级的文件、文件夹、压缩包处理模块。<!--more-->
@@ -156,7 +155,7 @@ shutil.make_archive(base_name, format, root_dir, owner, group, logger)
 
 ``` python
 import shutil
-​
+
 # 将“/Users/wupeiqi/Downloads/test”下的文件打包，放置于当前程序目录
 ret = shutil.make_archive("wwwwwwwwww", 'gztar', root_dir='/Users/wupeiqi/Downloads/test')
 # 将“/Users/wupeiqi/Downloads/test”下的文件打包，放置于“/Users/wupeiqi/”目录

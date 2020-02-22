@@ -1,7 +1,6 @@
 ---
 title: STM32的BIT_BAND和别名区
 categories: 单片机
-abbrlink: 4a674abd
 date: 2019-01-19 12:37:59
 ---
 ### 什么是位段和别名区
@@ -22,14 +21,14 @@ date: 2019-01-19 12:37:59
 
 &emsp;&emsp;对`SRAM`位带区的某个比特，记该比特所在字节的地址为`A`，位序号为`n`(`0 <= n <= 7`)，则它在别名区的地址为：
 
-``` c
+``` cpp
 AliasAddr = 0x22000000 + ((A - 0x20000000) * 8 + n) * 4
           = 0x22000000 + (A - 0x20000000) * 32 + n * 4
 ```
 
 对于片上外设位带区的某个比特，记该比特所在字节的地址为`A`，位序号为`n`(`0 <= n <= 7`)，则该比特在别名区的地址为：
 
-``` c
+``` cpp
 AliasAddr = 0x42000000 + ((A - 0x40000000) * 8 + n) * 4
           = 0x42000000 + (A - 0x40000000) * 32 + n * 4
 ```
@@ -37,7 +36,7 @@ AliasAddr = 0x42000000 + ((A - 0x40000000) * 8 + n) * 4
 上式中，`* 4`表示一个字为`4`个字节，`* 8`表示一个字节中有`8`个比特。
 &emsp;&emsp;把`位带地址 + 位序号`转换别名地址宏为：
 
-``` c
+``` cpp
 #define BITBAND(addr, bitnum) \
     ((addr & 0xF0000000) + 0x2000000 + \
     ((addr & 0xFFFFF) << 5) + (bitnum << 2))
@@ -46,27 +45,27 @@ AliasAddr = 0x42000000 + ((A - 0x40000000) * 8 + n) * 4
 这个宏定义后面的算式`(addr & 0xF0000000) + 0x2000000 + ((addr & 0xFFFFF) << 5) + (bitnum << 2)`，`addr & 0xF0000000`取出最高的四位，其实就是用于区别`SRAM`(`0x20000000`)还是片上外设(`0x40000000`)的。`+ 0x2000000`对于`SRAM`位带区则得到`0x22000000`，对于片上外设位带区则得到`0x42000000`。(`addr & 0xFFFFF`)等效于(`addr & 0x000FFFFF`)，就是屏蔽掉高`12`位(个人认为屏蔽高`12`位和屏蔽高`4`位效果是一样的，地址范围是`0x2000_0000`至`0x200F_FFFF`和`0x4000_0000`至`0x400F_FFFF`，无非就是不要那个`2`和`4`)，`<< 5`就等效于乘以`32`(同样`<< 2`等效于乘以`4`)。
 &emsp;&emsp;把该地址转换成一个指针：
 
-``` c
+``` cpp
 #define MEM_ADDR(addr) *((volatile unsigned long *) (addr))
 ```
 
 例如点亮`LED`，使用`STM32`库为：
 
-``` c
+``` cpp
 GPIO_ResetBits ( GPIOC, GPIO_Pin_4 ); /* 关LED5 */
 GPIO_SetBits ( GPIOC, GPIO_Pin_7 ); /* 开LED2 */
 ```
 
 一般读操作如下：
 
-``` c
+``` cpp
 STM32_Gpioc_Regs->bsrr.bit.BR4 = 1; /* 清除对应的ODRy位为0 */
 STM32_Gpioc_Regs->bsrr.bit.BS7 = 1; /* 设置对应的ODRy位为1 */
 ```
 
 如果使用位带别名区操作：
 
-``` c
+``` cpp
 STM32_BB_Gpioc_Regs->BSRR.BR[4] = 1; /* 清除对应的ODRy位为0 */
 STM32_BB_Gpioc_Regs->BSRR.BS[7] = 1; /* 设置对应的ODRy位为1 */
 ```
@@ -74,13 +73,13 @@ STM32_BB_Gpioc_Regs->BSRR.BS[7] = 1; /* 设置对应的ODRy位为1 */
 代码比`STM32`库高效十倍！
 &emsp;&emsp;对内存变量的位操作如下：假设`SRAM`变量为`long CRCValue;`，对`32`位变量的`BIT1`置`1`：
 
-``` c
+``` cpp
 MEM_ADDR ( BITBAND ( ( u32 ) &CRCValue, 1 ) ) = 0x1;
 ```
 
 对任意一位(例如第`23`位)判断：
 
-``` c
+``` cpp
 if ( MEM_ADDR ( BITBAND ( ( u32 ) &CRCValue, 23 ) ) == 1 ) {
 }
 ```
@@ -90,7 +89,7 @@ if ( MEM_ADDR ( BITBAND ( ( u32 ) &CRCValue, 23 ) ) == 1 ) {
 &emsp;&emsp;`Cortex-M3`存储器映像包括两个位段区。这两个位段区将别名存储器区中的每个字映射到位段存储器区的一个位，在别名存储区写入一个字具有对位段区的目标位执行`读-改-写`操作的相同效果。所有`STM32F10x`外设寄存器都被映射到一个位段区。这个特性在各个函数中对单个比特进行置`1`或置`0`操作时被大量使用，用以减小和优化代码尺寸。
 &emsp;&emsp;映射公式给出别名区中的每个字是如何对应位带区的相应位的，公式如下：
 
-``` c
+``` cpp
 bit_word_offset = (byte_offset * 32) + (bit_number * 4)
 bit_word_addr = bit_band_base + bit_word_offset
 ```

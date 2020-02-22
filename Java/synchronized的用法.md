@@ -1,7 +1,6 @@
 ---
 title: synchronized的用法
 categories: Java
-abbrlink: 2cf6c0cf
 date: 2018-12-20 21:17:28
 ---
 &emsp;&emsp;`synchronized`是`Java`中的关键字，它是一种同步锁，修饰的对象有以下几种：<!--more-->
@@ -21,11 +20,11 @@ date: 2018-12-20 21:17:28
 ``` java
 class SyncThread implements Runnable {
     private static int count;
-​
+
     public SyncThread() {
         count = 0;
     }
-​
+
     public void run() {
         synchronized (this) {
             for (int i = 0; i < 5; i++) {
@@ -139,11 +138,11 @@ SyncThread2 : 9
 ``` java
 class Counter implements Runnable {
     private int count;
-​
+
     public Counter() {
         count = 0;
     }
-​
+
     public void countAdd() {
         synchronized (this) {
             for (int i = 0; i < 5; i++) {
@@ -156,7 +155,7 @@ class Counter implements Runnable {
             }
         }
     }
-​
+
     /* 非synchronized代码块，未对count进行读写操作，所以可以不用synchronized */
     public void printCount() {
         for (int i = 0; i < 5; i++) {
@@ -168,7 +167,7 @@ class Counter implements Runnable {
             }
         }
     }
-​
+
     public void run() {
         String threadName = Thread.currentThread().getName();
 
@@ -220,12 +219,12 @@ B count : 5
 class Account { /* 银行账户类 */
     String name;
     float amount;
-​
+
     public Account(String name, float amount) {
         this.name = name;
         this.amount = amount;
     }
-​
+
     public void deposit(float amt) { /* 存钱 */
         amount += amt;
 
@@ -235,7 +234,7 @@ class Account { /* 银行账户类 */
             e.printStackTrace();
         }
     }
-​
+
     public void withdraw(float amt) { /* 取钱 */
         amount -= amt;
 
@@ -245,7 +244,7 @@ class Account { /* 银行账户类 */
             e.printStackTrace();
         }
     }
-​
+
     public float getBalance() {
         return amount;
     }
@@ -257,11 +256,11 @@ class Account { /* 银行账户类 */
 ``` java
 class AccountOperator implements Runnable { /* 账户操作类 */
     private Account account;
-​
+
     public AccountOperator(Account account) {
         this.account = account;
     }
-​
+
     public void run() {
         synchronized (account) {
             account.deposit(500);
@@ -279,7 +278,7 @@ public class test {
     public static void main(String[] args) {
         Account account = new Account("zhang san", 10000.0f);
         AccountOperator accountOperator = new AccountOperator(account);
-​
+
         final int THREAD_NUM = 5;
         Thread threads[] = new Thread[THREAD_NUM];
 
@@ -318,13 +317,13 @@ public void method3(SomeObject obj) {
 ``` java
 class Test implements Runnable {
     private byte[] lock = new byte[0]; /* 特殊的instance变量 */
-​
+
     public void method() {
         synchronized (lock) {
             /* 同步代码块 */
         }
     }
-​
+
     public void run() {
     }
 }
@@ -371,7 +370,7 @@ class Parent {
     public synchronized void method() {
     }
 }
-​
+
 class Child extends Parent {
     public synchronized void method() {
     }
@@ -385,7 +384,7 @@ class Parent {
     public synchronized void method() {
     }
 }
-​
+
 class Child extends Parent {
     public void method() {
         super.method();
@@ -415,11 +414,11 @@ public synchronized static void method() {
 ``` java
 class SyncThread implements Runnable {
     private static int count;
-​
+
     public SyncThread() {
         count = 0;
     }
-​
+
     public synchronized static void method() {
         for (int i = 0; i < 5; i++) {
             try {
@@ -430,7 +429,7 @@ class SyncThread implements Runnable {
             }
         }
     }
-​
+
     public synchronized void run() {
         method();
     }
@@ -488,11 +487,11 @@ class ClassName {
 ``` java
 class SyncThread implements Runnable {
     private static int count;
-​
+
     public SyncThread() {
         count = 0;
     }
-​
+
     public static void method() {
         synchronized (SyncThread.class) {
             for (int i = 0; i < 5; i++) {

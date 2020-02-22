@@ -1,7 +1,6 @@
 ---
 title: Qt之QTableWidget
 categories: Qt语法详解
-abbrlink: 6c8352a
 date: 2019-03-17 18:37:12
 ---
 &emsp;&emsp;代码如下：<!--more-->
@@ -21,7 +20,7 @@ tableWidget->setColumnWidth ( 1, 110 ); /* 设置第二列的列宽 */
 tableWidget->setColumnWidth ( 2, 100 ); /* 设置第三列的列宽 */
 tableWidget->setColumnWidth ( 3, 60 ); /* 设置第四列的列宽 */
 tableWidget->setColumnWidth ( 4, 85 ); /* 设置第五列的列宽 */
-​
+
 /* 列表的标题为：车次、车牌、支付卡、金额、累计金额 */
 tableWidget->setHorizontalHeaderLabels (
     QStringList() << tr ( "车次" ) << tr ( "车牌" ) \
@@ -39,31 +38,31 @@ headerView->setHidden ( true ); /* 行名隐藏 */
 
 ``` cpp
 QTableWidget *table = new QTableWidget ( 4, 2 ); /* 新建一4行2列的表格 */
-​
+
 /* 设置表格行标题 */
 QStringList headerLabels;
 headerLabels << "C1" << "C2";
 table->setHorizontalHeaderLabels ( headerLabels );
-​
+
 /* 设置表格行标题的对齐方式 */
 table->horizontalHeader()->setDefaultAlignment ( Qt::AlignLeft );
-​
+
 /* 设置行表题 */
 QStringList rowLabels;
 rowLabels << "Line1" << "Line2" << "Line3" << "Line4";
 table->setVerticalHeaderLabels ( rowLabels );
-​
+
 for ( int i = 0; i < 4; i++ ) { /* 设置每一行的高度 */
     table->setRowHeight ( i, 22 );
 }
-​
+
 /* 自动调整最后一列的宽度使它和表格的右边界对齐 */
 table->horizontalHeader()->setStretchLastSection ( true );
 /* 设置表格的选择方式 */
 table->setSelectionBehavior ( QAbstractItemView::SelectItems );
 /* 设置编辑方式 */
 table->setEditTriggers ( QAbstractItemView::DoubleClicked );
-​
+
 for ( int row = 0; row < 4; ++row ) { /* 设置表格的内容 */
     QTableWidgetItem *item0, *item1;
     item0 = new QTableWidgetItem;
@@ -75,7 +74,7 @@ for ( int row = 0; row < 4; ++row ) { /* 设置表格的内容 */
     item1->setText ( txt );
     table->setItem ( row, 1, item1 );
 }
-​
+
 /* 增加一行 */
 table->setRowCount ( 5 );
 QTableWidgetItem *vHeader5 = new QTableWidgetItem ( "Line5" );

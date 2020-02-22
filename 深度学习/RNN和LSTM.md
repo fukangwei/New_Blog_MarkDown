@@ -1,7 +1,6 @@
 ---
 title: RNN和LSTM
 categories: 深度学习
-abbrlink: '688e8733'
 date: 2019-02-28 16:41:09
 ---
 ### RNN的用途
@@ -53,7 +52,7 @@ date: 2019-02-28 16:41:09
 ``` python
 import numpy as np
 np.random.seed(1337)  # for reproducibility
-​
+
 from keras.datasets import mnist
 from keras.utils import np_utils
 from keras.models import Sequential
@@ -71,11 +70,11 @@ BATCH_INDEX = 0
 OUTPUT_SIZE = 10
 CELL_SIZE = 50
 LR = 0.001
-​
+
 # download the mnist to the path '~/.keras/datasets/' if it is the first time to be called
 # X shape (60,000 28x28), y shape (10,000, )
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
-​
+
 # data pre-processing
 X_train = X_train.reshape(-1, 28, 28) / 255.  # normalize
 X_test = X_test.reshape(-1, 28, 28) / 255.  # normalize
@@ -87,7 +86,7 @@ y_test = np_utils.to_categorical(y_test, num_classes=10)
 
 ``` python
 model = Sequential()  # build RNN model
-​
+
 model.add(SimpleRNN(  # RNN cell
     # for batch_input_shape, if using tensorflow as the backend, we have to
     # put None for the batch_size. Otherwise, model.evaluate() will get error.
@@ -116,7 +115,7 @@ for step in range(4001):  # training
     cost = model.train_on_batch(X_batch, Y_batch)
     BATCH_INDEX += BATCH_SIZE
     BATCH_INDEX = 0 if BATCH_INDEX >= X_train.shape[0] else BATCH_INDEX
-​
+
     if step % 500 == 0:
         cost, accuracy = model.evaluate(X_test, y_test, batch_size=y_test.shape[0], verbose=False)
         print('test cost: ', cost, 'test accuracy: ', accuracy)
@@ -129,12 +128,12 @@ for step in range(4001):  # training
 ``` python
 import numpy as np
 np.random.seed(1337)  # for reproducibility
-​
+
 import matplotlib.pyplot as plt
 from keras.models import Sequential
 from keras.layers import LSTM, TimeDistributed, Dense
 from keras.optimizers import Adam
-​
+
 BATCH_START = 0
 TIME_STEPS = 20
 BATCH_SIZE = 50
@@ -142,7 +141,7 @@ INPUT_SIZE = 1
 OUTPUT_SIZE = 1
 CELL_SIZE = 20
 LR = 0.006
-​
+
 def get_batch():
     global BATCH_START, TIME_STEPS
     # xs shape (50 batch, 20 steps)
@@ -158,7 +157,7 @@ def get_batch():
 
 ``` python
 model = Sequential()
-​
+
 model.add(LSTM(  # build a LSTM RNN
     # Or: input_dim=INPUT_SIZE, input_length=TIME_STEPS
     batch_input_shape=(BATCH_SIZE, TIME_STEPS, INPUT_SIZE),

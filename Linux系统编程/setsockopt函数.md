@@ -1,7 +1,6 @@
 ---
 title: setsockopt函数
 categories: Linux系统编程
-abbrlink: d2645ded
 date: 2018-12-29 14:46:55
 ---
 &emsp;&emsp;当客户端保持着与服务器端的连接，这时服务器端断开，再开启服务器时会出现`Address already in use`，可以用`netstat -anp | more`看到客户端还保持着与服务器的连接(还在使用服务器`bind`的端口)。这是由于`client`没有执行`close`，连接还会等待`client`的`FIN`包一段时间。<!--more-->

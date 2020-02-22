@@ -1,7 +1,6 @@
 ---
 title: Qt之QWizardPage
 categories: Qt语法详解
-abbrlink: 9c3692e7
 date: 2019-01-26 16:28:02
 ---
 &emsp;&emsp;The `QWizardPage` class is the base class for wizard pages.<!--more-->
@@ -83,8 +82,8 @@ Return    | Function
 - `QWizardPage::QWizardPage(QWidget * parent = 0)`: Constructs a wizard page with the given `parent`. When the page is inserted into a wizard using `QWizard::addPage()` or `QWizard::setPage()`, the `parent` is automatically set to be the wizard.
 - `QString QWizardPage::buttonText(QWizard::WizardButton which) const`: Returns the text on button `which` on this page. If a text has ben set using `setButtonText()`, this text is returned. Otherwise, if a text has been set using `QWizard::setButtonText()`, this text is returned. By default, the text on buttons depends on the `QWizard::wizardStyle`. For example, on `Mac OS X`, the `Next` button is called Continue.
 - `void QWizardPage::cleanupPage() [virtual]`: This virtual function is called by `QWizard::cleanupPage()` when the user leaves the page by clicking Back (unless the `QWizard::IndependentPages` option is set). The default implementation resets the page's fields to their original values (the values they had before `initializePage()` was called).
-- `void QWizardPage::completeChanged() [signal]`: This `signal` is emitted whenever the complete state of the page (i.e., the value of `isComplete()`) changes. If you reimplement `isComplete()`, make sure to emit `completeChanged()` whenever the value of `isComplete()` changes, to ensure that `QWizard` updates the enabled or disabled state of its buttons.
-- `QVariant QWizardPage::field(const QString & name) const [protected]`: Returns the value of the field called `name`. This function can be used to access fields on any page of the wizard. It is equivalent to calling `wizard()->field(name)`. Example:
+- `void QWizardPage::completeChanged() [signal]`: This `signal` is emitted whenever the complete state of the page (i.e., the value of `isComplete()`) changes. If you reimplement `isComplete()`, make sure to emit `completeChanged()` whenever the value of `isComplete()` changes, to ensure that `QWizard` updates the enabled or disabled state of its buttons.
+- `QVariant QWizardPage::field(const QString & name) const [protected]`: Returns the value of the field called `name`. This function can be used to access fields on any page of the wizard. It is equivalent to calling `wizard()->field(name)`.
 
 ``` cpp
 void OutputFilesPage::initializePage() {
@@ -95,7 +94,7 @@ void OutputFilesPage::initializePage() {
 }
 ```
 
-- `void QWizardPage::initializePage() [virtual]`: This virtual function is called by `QWizard::initializePage()` to prepare the page just before it is shown either as a result of `QWizard::restart()` being called, or as a result of the user clicking `Next`. (However, if the `QWizard::IndependentPages` option is set, this function is only called the first time the page is shown.) By reimplementing this function, you can ensure that the page's fields are properly initialized based on fields from previous pages. For example:
+- `void QWizardPage::initializePage() [virtual]`: This virtual function is called by `QWizard::initializePage()` to prepare the page just before it is shown either as a result of `QWizard::restart()` being called, or as a result of the user clicking `Next`. (However, if the `QWizard::IndependentPages` option is set, this function is only called the first time the page is shown.) By reimplementing this function, you can ensure that the page's fields are properly initialized based on fields from previous pages.
 
 ``` cpp
 void OutputFilesPage::initializePage() {
@@ -111,7 +110,7 @@ The default implementation does nothing.
 - `bool QWizardPage::isCommitPage() const`: Returns `true` if this page is a commit page; otherwise returns `false`.
 - `bool QWizardPage::isComplete() const [virtual]`: This virtual function is called by `QWizard` to determine whether the `Next` or `Finish` button should be enabled or disabled. The default implementation returns `true` if all mandatory fields are filled; otherwise, it returns `false`. If you reimplement this function, make sure to emit `completeChanged()`, from the rest of your implementation, whenever the value of `isComplete()` changes. This ensures that `QWizard` updates the enabled or disabled state of its buttons.
 - `bool QWizardPage::isFinalPage() const`: This function is called by `QWizard` to determine whether the `Finish` button should be shown for this page or not. By default, it returns `true` if there is no next page (i.e., `nextId()` returns `-1`); otherwise, it returns `false`. By explicitly calling `setFinalPage(true)`, you can let the user perform an `early finish`.
-- `int QWizardPage::nextId() const [virtual]`: This virtual function is called by `QWizard::nextId()` to find out which page to show when the user clicks the `Next` button. The return value is the `ID` of the next page, or `-1` if no page follows. By default, this function returns the lowest `ID` greater than the `ID` of the current page, or `-1` if there is no such `ID`. By reimplementing this function, you can specify a dynamic page order. For example:
+- `int QWizardPage::nextId() const [virtual]`: This virtual function is called by `QWizard::nextId()` to find out which page to show when the user clicks the `Next` button. The return value is the `ID` of the next page, or `-1` if no page follows. By default, this function returns the lowest `ID` greater than the `ID` of the current page, or `-1` if there is no such `ID`. By reimplementing this function, you can specify a dynamic page order.
 
 ``` cpp
 int IntroPage::nextId() const {

@@ -1,7 +1,6 @@
 ---
 title: pytorch之卷积神经网络
 categories: 深度学习
-abbrlink: 41d32d78
 date: 2019-01-15 10:55:19
 ---
 &emsp;&emsp;这是使用`MNIST`手写数据来演示`pytorch`的卷积神经网络功能。首先加载数据集：<!--more-->
@@ -23,7 +22,7 @@ DOWNLOAD_MNIST = False  # 如果你已经下载好了mnist数据，就写上Fals
 if not (os.path.exists('./mnist/')) or not os.listdir('./mnist/'):
     # not mnist dir or mnist is empyt dir
     DOWNLOAD_MNIST = True
-​
+
 train_data = torchvision.datasets.MNIST(  # Mnist手写数字
     root='./mnist/',  # 保存或者提取位置
     train=True,  # this is training data
@@ -32,7 +31,7 @@ train_data = torchvision.datasets.MNIST(  # Mnist手写数字
     transform=torchvision.transforms.ToTensor(),
     download=DOWNLOAD_MNIST,  # 没下载mnist数据集就进行下载，下载了就不用再下了
 )
-​
+
 # plot one example
 print(train_data.train_data.size())  # (60000, 28, 28)
 print(train_data.train_labels.size())  # (60000)
@@ -74,7 +73,7 @@ class CNN(nn.Module):
                 # padding = (kernel_size - 1)/2 if stride = 1
                 padding=2,
             ),  # output shape (16, 28, 28)
-            nn.ReLU(),  # activation
+            nn.ReLU(),  # activation
             # choose max value in 2x2 area, output shape (16, 14, 14)
             nn.MaxPool2d(kernel_size=2),
         )
@@ -85,7 +84,7 @@ class CNN(nn.Module):
         )
         # fully connected layer, output 10 classes
         self.out = nn.Linear(32 * 7 * 7, 10)
-​
+
     def forward(self, x):
         x = self.conv1(x)
         x = self.conv2(x)
@@ -93,7 +92,7 @@ class CNN(nn.Module):
         x = x.view(x.size(0), -1)
         output = self.out(x)
         return output
-​
+
 cnn = CNN()
 print(cnn)  # net architecture
 ```
@@ -121,7 +120,7 @@ CNN(
 ``` python
 optimizer = torch.optim.Adam(cnn.parameters(), lr=LR)  # optimize all cnn parameters
 loss_func = nn.CrossEntropyLoss()  # the target label is not one-hotted
-​
+
 for epoch in range(EPOCH):
     # gives batch data, normalize x when iterate train_loader
     for step, (b_x, b_y) in enumerate(train_loader):
@@ -130,7 +129,7 @@ for epoch in range(EPOCH):
         optimizer.zero_grad()  # clear gradients for this training step
         loss.backward()  # backpropagation, compute gradients
         optimizer.step()  # apply gradients
-​
+
         if step % 50 == 0:
             test_output = cnn(test_x)
             pred_y = torch.max(test_output, 1)[1].data.squeeze().numpy()
@@ -162,7 +161,7 @@ class NET(nn.Module):
         self.conv = nn.Conv2d(outchannels=3, in_channels=64,
                               kernel_size=3, stride=1)
         self.fc = nn.Linear(64 * batch_size, 10)
-​
+
     def forward(self, x):
         x = self.conv(x)
         x = x.view(x.size(0), -1)

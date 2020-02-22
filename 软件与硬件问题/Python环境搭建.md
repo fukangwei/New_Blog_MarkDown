@@ -1,7 +1,6 @@
 ---
 title: Python环境搭建
 categories: 软件与硬件问题
-abbrlink: 13c36235
 date: 2019-01-13 19:00:42
 ---
 ### pip安装和入门
@@ -66,7 +65,7 @@ pip install tensorflow-gpu==1.9.0
 
 ``` python
 import tensorflow as tf
-​
+
 hello = tf.constant('hello, TensorFlow!')
 sess = tf.Session()
 print(sess.run(hello))

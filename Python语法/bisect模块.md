@@ -1,7 +1,6 @@
 ---
 title: bisect模块
 categories: Python语法
-abbrlink: a9dc8706
 date: 2019-02-09 16:18:36
 ---
 &emsp;&emsp;本模块实现已经排序的队列列表插入元素之后保持排序。对于个大量数据的列表来看，插入元素并保持排序，计算量是非常大的。本模块实现了`bisect`算法，主要基于二分算法来实现。<!--more-->
@@ -15,7 +14,7 @@ bisect.bisect_left(a, x, lo=0, hi=len(a))
 
 ``` python
 import bisect
-​
+
 l = [8, 5, 6, 6, 3]
 l.sort()
 print(l)
@@ -50,7 +49,7 @@ bisect.bisect(a, x, lo=0, hi=len(a))
 
 ``` python
 import bisect
-​
+
 l = [8, 5, 6, 6, 3]
 l.sort()
 print(l)
@@ -84,7 +83,7 @@ bisect.insort_left(a, x, lo=0, hi=len(a))
 
 ``` python
 import bisect
-​
+
 l = [8, 5, 6, 6, 3]
 l.sort()
 print(l)
@@ -116,7 +115,7 @@ bisect.insort(a, x, lo=0, hi=len(a))
 
 ``` python
 import bisect
-​
+
 l = [8, 5, 6, 6, 3]
 l.sort()
 print(l)
@@ -141,7 +140,7 @@ print(l)
 
 ``` python
 import bisect
-​
+
 def index(a, x):
     'Locate the leftmost value exactly equal to x'
     i = bisect.bisect_left(a, x)
@@ -150,7 +149,7 @@ def index(a, x):
         return i
 
     raise ValueError
-​
+
 def find_lt(a, x):
     'Find rightmost value less than x'
     i = bisect.bisect_left(a, x)
@@ -159,7 +158,7 @@ def find_lt(a, x):
         return a[i - 1]
 
     raise ValueError
-​
+
 def find_le(a, x):
     'Find rightmost value less than or equal to x'
     i = bisect.bisect_right(a, x)
@@ -168,7 +167,7 @@ def find_le(a, x):
         return a[i - 1]
 
     raise ValueError
-​
+
 def find_gt(a, x):
     'Find leftmost value greater than x'
     i = bisect.bisect_right(a, x)
@@ -177,7 +176,7 @@ def find_gt(a, x):
         return a[i]
 
     raise ValueError
-​
+
 def find_ge(a, x):
     'Find leftmost item greater than or equal to x'
     i = bisect.bisect_left(a, x)
@@ -192,11 +191,11 @@ def find_ge(a, x):
 
 ``` python
 import bisect
-​
+
 def grade(score, breakpoints=[60, 70, 80, 90], grades='FDCBA'):
     i = bisect.bisect(breakpoints, score)
     return grades[i]
-​
+
 print([33, 99, 77, 70, 89, 90, 100])
 print([grade(score) for score in [33, 99, 77, 70, 89, 90, 100]])
 ```

@@ -1,7 +1,6 @@
 ---
 title: Libcoap安装和使用
 categories: 软件与硬件问题
-abbrlink: e1ce0fb0
 date: 2019-02-28 18:03:08
 ---
 &emsp;&emsp;`libcoap`是`CoAP`协议的`C`语言实现，它提供`server`和`client`功能，是调试`CoAP`的有力工具。通过`git clone`获取最新版本：<!--more-->

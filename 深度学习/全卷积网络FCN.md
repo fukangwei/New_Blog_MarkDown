@@ -1,7 +1,6 @@
 ---
 title: 全卷积网络FCN
 categories: 深度学习
-abbrlink: 2e817fff
 date: 2019-02-28 12:21:42
 ---
 &emsp;&emsp;神经网络大神`Jonathan Long`发表了论文`Fully Convolutional Networks for Semantic Segmentation`，使得图像语义分割成为了现实。<!--more-->

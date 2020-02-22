@@ -1,14 +1,13 @@
 ---
 title: Qt之QList
 categories: Qt语法详解
-abbrlink: 1edebc6b
 date: 2019-01-31 19:46:43
 ---
 &emsp;&emsp;The `QList` class is a template class that provides lists.<!--more-->
 
-Header   | Inherited By
----------|-------------
-`QList`  | `QItemSelection`, `QQueue`, `QSignalSpy`, `QStringList` and `QTestEventList`
+Header  | Inherited By
+--------|-------------
+`QList` | `QItemSelection`, `QQueue`, `QSignalSpy`, `QStringList` and `QTestEventList`
 
 **Note**: All functions in this class are reentrant.
 
@@ -153,18 +152,18 @@ for ( int i = 0; i < list.size(); ++i ) {
 
 ``` cpp
 QList<QWidget *> list;
-​
+
 while ( !list.isEmpty() ) {
     delete list.takeFirst();
 }
 ```
 
 &emsp;&emsp;Inserting and removing items at either ends of the list is very fast (constant time in most cases), because `QList` preallocates extra space on both sides of its internal buffer to allow for fast growth at both ends of the list.
-&emsp;&emsp;If you want to find all occurrences of a particular value in a list, use `indexOf()` or `lastIndexOf()`. The former searches forward starting from a given index position, the latter searches backward. Both return the index of a matching item if they find it; otherwise, they return `-1`. For example:
+&emsp;&emsp;If you want to find all occurrences of a particular value in a list, use `indexOf()` or `lastIndexOf()`. The former searches forward starting from a given index position, the latter searches backward. Both return the index of a matching item if they find it; otherwise, they return `-1`.
 
 ``` cpp
 int i = list.indexOf ( "Jane" );
-​
+
 if ( i != -1 ) {
     cout << "First occurrence of Jane is at position " << i << endl;
 }
@@ -192,10 +191,10 @@ if ( i != -1 ) {
 ### Member Function Documentation
 
 - `QList::QList()`: Constructs an empty list.
-- `QList::QList(const QList<T> & other)`: Constructs a copy of `other`. This operation takes constant time, because `QList` is implicitly shared. This makes returning a `QList` from a function very fast. If a shared instance is modified, it will be copied (`copy-on-write`), and that takes linear time.
-- `QList::QList(std::initializer_list<T> args)`: Construct a list from the `std::initializer_list specified` by `args`. This constructor is only enabled if the compiler supports `C++0x`.
+- `QList::QList(const QList<T> & other)`: Constructs a copy of `other`. This operation takes constant time, because `QList` is implicitly shared. This makes returning a `QList` from a function very fast. If a shared instance is modified, it will be copied (`copy-on-write`), and that takes linear time.
+- `QList::QList(std::initializer_list<T> args)`: Construct a list from the `std::initializer_list specified` by `args`. This constructor is only enabled if the compiler supports `C++0x`.
 - `QList::~QList()`: Destroys the list. References to the values in the list and all iterators of this list become invalid.
-- `void QList::append(const T & value)`: Inserts `value` at the end of the list. Example:
+- `void QList::append(const T & value)`: Inserts `value` at the end of the list.
 
 ``` cpp
 QList<QString> list;
@@ -204,10 +203,10 @@ list.append ( "two" );
 list.append ( "three" ); /* list: ["one", "two", "three"] */
 ```
 
-This is the same as `list.insert(size(), value)`. This operation is typically very fast (constant time), because `QList` preallocates extra space on both sides of its internal buffer to allow for fast growth at both ends of the list.
+This is the same as `list.insert(size(), value)`. This operation is typically very fast (constant time), because `QList` preallocates extra space on both sides of its internal buffer to allow for fast growth at both ends of the list.
 
-- `void QList::append(const QList<T> & value)`: This is an overloaded function. Appends the items of the `value` list to this list.
-- `const T & QList::at(int i) const`: Returns the item at index position `i` in the list. `i` must be a valid index position in the list (i.e., `0 <= i < size()`). This function is very fast (constant time).
+- `void QList::append(const QList<T> & value)`: This is an overloaded function. Appends the items of the `value` list to this list.
+- `const T & QList::at(int i) const`: Returns the item at index position `i` in the list. `i` must be a valid index position in the list (i.e., `0 <= i < size()`). This function is very fast (constant time).
 - `T & QList::back()`: This function is provided for `STL` compatibility. It is equivalent to `last()`. The list must not be empty. If the list can be empty, call `isEmpty()` before calling this function.
 - `const T & QList::back() const`: This is an overloaded function.
 - `iterator QList::begin()`: Returns an `STL-style` iterator pointing to the first item in the list.
@@ -215,50 +214,50 @@ This is the same as `list.insert(size(), value)`. This operation is typically v
 - `void QList::clear()`: Removes all items from the list.
 - `const_iterator QList::constBegin() const`: Returns a const `STL-style` iterator pointing to the first item in the list.
 - `const_iterator QList::constEnd() const`: Returns a const `STL-style` iterator pointing to the imaginary item after the last item in the list.
-- `bool QList::contains(const T & value) const`: Returns `true` if the list contains an occurrence of `value`; otherwise returns `false`. This function requires the value type to have an implementation of `operator==()`.
-- `int QList::count(const T & value) const`: Returns the number of occurrences of `value` in the list. This function requires the value type to have an implementation of `operator==()`.
+- `bool QList::contains(const T & value) const`: Returns `true` if the list contains an occurrence of `value`; otherwise returns `false`. This function requires the value type to have an implementation of `operator==()`.
+- `int QList::count(const T & value) const`: Returns the number of occurrences of `value` in the list. This function requires the value type to have an implementation of `operator==()`.
 - `int QList::count() const`: Returns the number of items in the list. This is effectively the same as `size()`.
 - `bool QList::empty() const`: This function is provided for `STL` compatibility. It is equivalent to `isEmpty()` and returns `true` if the list is empty.
 - `iterator QList::end()`: Returns an `STL-style` iterator pointing to the imaginary item after the last item in the list.
 - `const_iterator QList::end() const`: This is an overloaded function.
 - `bool QList::endsWith(const T & value) const`: Returns `true` if this list is not empty and its last item is equal to `value`; otherwise returns `false`.
 - `iterator QList::erase(iterator pos)`: Removes the item associated with the iterator `pos` from the list, and returns an iterator to the next item in the list (which may be `end()`).
-- `iterator QList::erase(iterator begin, iterator end)`: This is an overloaded function. Removes all the items from `begin` up to (but not including) `end`. Returns an iterator to the same item that end referred to before the call.
+- `iterator QList::erase(iterator begin, iterator end)`: This is an overloaded function. Removes all the items from `begin` up to (but not including) `end`. Returns an iterator to the same item that end referred to before the call.
 - `T & QList::first()`: Returns a reference to the first item in the list. The list must not be empty. If the list can be empty, call `isEmpty()` before calling this function.
 - `const T & QList::first() const`: This is an overloaded function.
-- `QList<T> QList::fromSet(const QSet<T> & set) [static]`: Returns a `QList` object with the data contained in `set`. The order of the elements in the `QList` is undefined. Example:
+- `QList<T> QList::fromSet(const QSet<T> & set) [static]`: Returns a `QList` object with the data contained in `set`. The order of the elements in the `QList` is undefined.
 
 ``` cpp
 QSet<int> set;
 set << 20 << 30 << 40 << ... << 70;
-​
+
 QList<int> list = QList<int>::fromSet ( set );
 qSort ( list );
 ```
 
-- `QList<T> QList::fromStdList(const std::list<T> & list) [static]`: Returns a `QList` object with the data contained in `list`. The order of the elements in the `QList` is the same as in `list`. Example:
+- `QList<T> QList::fromStdList(const std::list<T> & list) [static]`: Returns a `QList` object with the data contained in `list`. The order of the elements in the `QList` is the same as in `list`.
 
 ``` cpp
 std::list<double> stdlist;
 list.push_back ( 1.2 );
 list.push_back ( 0.5 );
 list.push_back ( 3.14 );
-​
+
 QList<double> list = QList<double>::fromStdList ( stdlist );
 ```
 
-- `QList<T> QList::fromVector(const QVector<T> & vector) [static]`: Returns a `QList` object with the data contained in `vector`. Example:
+- `QList<T> QList::fromVector(const QVector<T> & vector) [static]`: Returns a `QList` object with the data contained in `vector`.
 
 ``` cpp
 QVector<double> vect;
 vect << 20.0 << 30.0 << 40.0 << 50.0;
-​
+
 QList<double> list = QVector<T>::fromVector ( vect ); /* list: [20.0, 30.0, 40.0, 50.0] */
 ```
 
 - `T & QList::front()`: This function is provided for `STL` compatibility. It is equivalent to `first()`. The list must not be empty. If the list can be empty, call `isEmpty()` before calling this function.
 - `const T & QList::front() const`: This is an overloaded function.
-- `int QList::indexOf(const T & value, int from = 0) const`: Returns the index position of the first occurrence of `value` in the list, searching forward from index position `from`. Returns `-1` if no item matched. Example:
+- `int QList::indexOf(const T & value, int from = 0) const`: Returns the index position of the first occurrence of `value` in the list, searching forward from index position `from`. Returns `-1` if no item matched.
 
 ``` cpp
 QList<QString> list;
@@ -269,9 +268,9 @@ list.indexOf ( "B", 2 ); /* returns 3 */
 list.indexOf ( "X" ); /* returns -1 */
 ```
 
-This function requires the value type to have an implementation of `operator==()`. Note that `QList` uses `0-based` indexes, just like `C++` arrays. Negative indexes are not supported with the exception of the value mentioned above.
+This function requires the value type to have an implementation of `operator==()`. Note that `QList` uses `0-based` indexes, just like `C++` arrays. Negative indexes are not supported with the exception of the value mentioned above.
 
-- `void QList::insert(int i, const T & value)`: Inserts `value` at index position `i` in the list. If `i` is `0`, the `value` is prepended to the list. If `i` is `size()`, the `value` is appended to the list. Example:
+- `void QList::insert(int i, const T & value)`: Inserts `value` at index position `i` in the list. If `i` is `0`, the `value` is prepended to the list. If `i` is `size()`, the `value` is appended to the list.
 
 ``` cpp
 QList<QString> list;
@@ -279,11 +278,11 @@ list << "alpha" << "beta" << "delta";
 list.insert ( 2, "gamma" ); /* list: ["alpha", "beta", "gamma", "delta"] */
 ```
 
-- `iterator QList::insert(iterator before, const T & value)`: This is an overloaded function. Inserts `value` in front of the item pointed to by the iterator `before`. Returns an iterator pointing at the inserted item. Note that the iterator passed to the function will be invalid after the call; the returned iterator should be used instead.
+- `iterator QList::insert(iterator before, const T & value)`: This is an overloaded function. Inserts `value` in front of the item pointed to by the iterator `before`. Returns an iterator pointing at the inserted item. Note that the iterator passed to the function will be invalid after the call; the returned iterator should be used instead.
 - `bool QList::isEmpty() const`: Returns `true` if the list contains no items; otherwise returns `false`.
 - `T & QList::last()`: Returns a reference to the last item in the list. The list must not be empty. If the list can be empty, call `isEmpty()` before calling this function.
 - `const T & QList::last() const`: This is an overloaded function.
-- `int QList::lastIndexOf(const T & value, int from = -1) const`: Returns the index position of the last occurrence of `value` in the list, searching backward from index position `from`. If `from` is `-1` (the default), the search starts at the last item. Returns `-1` if no item matched. Example:
+- `int QList::lastIndexOf(const T & value, int from = -1) const`: Returns the index position of the last occurrence of `value` in the list, searching backward from index position `from`. If `from` is `-1` (the default), the search starts at the last item. Returns `-1` if no item matched.
 
 ``` cpp
 QList<QString> list;
@@ -294,11 +293,11 @@ list.lastIndexOf ( "B", 2 ); /* returns 1 */
 list.lastIndexOf ( "X" ); /* returns -1 */
 ```
 
-This function requires the value type to have an implementation of `operator==()`. Note that `QList` uses `0-based` indexes, just like `C++` arrays. Negative indexes are not supported with the exception of the value mentioned above.
+This function requires the value type to have an implementation of `operator==()`. Note that `QList` uses `0-based` indexes, just like `C++` arrays. Negative indexes are not supported with the exception of the value mentioned above.
 
 - `int QList::length() const`: This function is identical to `count()`.
 - `QList<T> QList::mid(int pos, int length = -1) const`: Returns a list whose elements are copied from this list, starting at position `pos`. If `length` is `-1` (the default), all elements from `pos` are copied; otherwise `length` elements (or all remaining elements if there are less than `length` elements) are copied.
-- `void QList::move(int from, int to)`: Moves the item at index position `from` to index position `to`. Example:
+- `void QList::move(int from, int to)`: Moves the item at index position `from` to index position `to`.
 
 ``` cpp
 QList<QString> list;
@@ -310,7 +309,7 @@ This is the same as `insert(to, takeAt(from))`. This function assumes that both 
 
 - `void QList::pop_back()`: This function is provided for `STL` compatibility. It is equivalent to `removeLast()`. The list must not be empty. If the list can be empty, call `isEmpty()` before calling this function.
 - `void QList::pop_front()`: This function is provided for `STL` compatibility. It is equivalent to `removeFirst()`. The list must not be empty. If the list can be empty, call `isEmpty()` before calling this function.
-- `void QList::prepend(const T & value)`: Inserts `value` at the beginning of the list. Example:
+- `void QList::prepend(const T & value)`: Inserts `value` at the beginning of the list.
 
 ``` cpp
 QList<QString> list;
@@ -319,11 +318,11 @@ list.prepend ( "two" );
 list.prepend ( "three" ); /* list: ["three", "two", "one"] */
 ```
 
-This is the same as `list.insert(0, value)`. This operation is usually very fast (constant time), because `QList` preallocates extra space on both sides of its internal buffer to allow for fast growth at both ends of the list.
+This is the same as `list.insert(0, value)`. This operation is usually very fast (constant time), because `QList` preallocates extra space on both sides of its internal buffer to allow for fast growth at both ends of the list.
 
 - `void QList::push_back(const T & value)`: This function is provided for `STL` compatibility. It is equivalent to `append(value)`.
 - `void QList::push_front(const T & value)`: This function is provided for `STL` compatibility. It is equivalent to `prepend(value)`.
-- `int QList::removeAll(const T & value)`: Removes all occurrences of `value` in the list and returns the number of entries removed. Example:
+- `int QList::removeAll(const T & value)`: Removes all occurrences of `value` in the list and returns the number of entries removed.
 
 ``` cpp
 QList<QString> list;
@@ -336,7 +335,7 @@ This function requires the value type to have an implementation of `operator==()
 - `void QList::removeAt(int i)`: Removes the item at index position `i`. `i` must be a valid index position in the list (i.e., `0 <= i < size()`).
 - `void QList::removeFirst()`: Removes the first item in the list. Calling this function is equivalent to calling `removeAt(0)`. The list must not be empty. If the list can be empty, call `isEmpty()` before calling this function.
 - `void QList::removeLast()`: Removes the last item in the list. Calling this function is equivalent to calling `removeAt(size() - 1)`. The list must not be empty. If the list can be empty, call `isEmpty()` before calling this function.
-- `bool QList::removeOne(const T & value)`: Removes the first occurrence of `value` in the list and returns `true` on success; otherwise returns `false`. Example:
+- `bool QList::removeOne(const T & value)`: Removes the first occurrence of `value` in the list and returns `true` on success; otherwise returns `false`.
 
 ``` cpp
 QList<QString> list;
@@ -347,11 +346,11 @@ list.removeOne("sun"); /* list: ["cloud", ,"sun", "rain"] */
 This function requires the value type to have an implementation of `operator==()`.
 
 - `void QList::replace(int i, const T & value)`: Replaces the item at index position `i` with `value`. `i` must be a valid index position in the list (i.e., `0 <= i < size()`).
-- `void QList::reserve(int alloc)`: Reserve space for `alloc` elements. If `alloc` is smaller than the current size of the list, nothing will happen. Use this function to avoid repetetive reallocation of `QList's` internal data if you can predict how many elements will be appended. Note that the reservation applies only to the internal pointer array.
+- `void QList::reserve(int alloc)`: Reserve space for `alloc` elements. If `alloc` is smaller than the current size of the list, nothing will happen. Use this function to avoid repetetive reallocation of `QList's` internal data if you can predict how many elements will be appended. Note that the reservation applies only to the internal pointer array.
 - `int QList::size() const`: Returns the number of items in the list.
 - `bool QList::startsWith(const T & value) const`: Returns `true` if this list is not empty and its first item is equal to `value`; otherwise returns `false`.
 - `void QList::swap(QList<T> & other)`: Swaps list `other` with this list. This operation is very fast and never fails.
-- `void QList::swap(int i, int j)`: Exchange the item at index position `i` with the item at index position `j`. This function assumes that both `i` and `j` are at least `0` but less than `size()`. To avoid failure, test that both `i` and `j` are at least `0` and less than `size()`. Example:
+- `void QList::swap(int i, int j)`: Exchange the item at index position `i` with the item at index position `j`. This function assumes that both `i` and `j` are at least `0` but less than `size()`. To avoid failure, test that both `i` and `j` are at least `0` and less than `size()`.
 
 ``` cpp
 QList<QString> list;
@@ -359,53 +358,52 @@ list << "A" << "B" << "C" << "D" << "E" << "F";
 list.swap ( 1, 4 ); /* list: ["A", "E", "C", "D", "B", "F"] */
 ```
 
-- `T QList::takeAt(int i)`: Removes the item at index position `i` and returns it. `i` must be a valid index position in the list (i.e., `0 <= i < size()`). If you don't use the return value, `removeAt()` is more efficient.
-- `T QList::takeFirst()`: Removes the first item in the list and returns it. This is the same as `takeAt(0)`. This function assumes the list is not empty. To avoid failure, call `isEmpty()` before calling this function. This operation takes constant time. If you don't use the return value, `removeFirst()` is more efficient.
-- `T QList::takeLast()`: Removes the last item in the list and returns it. This is the same as `takeAt(size() - 1)`. This function assumes the list is not empty. To avoid failure, call `isEmpty()` before calling this function. This operation takes constant time. If you don't use the return value, `removeLast()` is more efficient.
-- `QSet<T> QList::toSet() const`: Returns a `QSet` object with the data contained in this `QList`. Since `QSet` doesn't allow duplicates, the resulting `QSet` might be smaller than the original list was. Example:
+- `T QList::takeAt(int i)`: Removes the item at index position `i` and returns it. `i` must be a valid index position in the list (i.e., `0 <= i < size()`). If you don't use the return value, `removeAt()` is more efficient.
+- `T QList::takeFirst()`: Removes the first item in the list and returns it. This is the same as `takeAt(0)`. This function assumes the list is not empty. To avoid failure, call `isEmpty()` before calling this function. This operation takes constant time. If you don't use the return value, `removeFirst()` is more efficient.
+- `T QList::takeLast()`: Removes the last item in the list and returns it. This is the same as `takeAt(size() - 1)`. This function assumes the list is not empty. To avoid failure, call `isEmpty()` before calling this function. This operation takes constant time. If you don't use the return value, `removeLast()` is more efficient.
+- `QSet<T> QList::toSet() const`: Returns a `QSet` object with the data contained in this `QList`. Since `QSet` doesn't allow duplicates, the resulting `QSet` might be smaller than the original list was.
 
 ``` cpp
 QStringList list;
 list << "Julia" << "Mike" << "Mike" << "Julia" << "Julia";
-​
+
 QSet<QString> set = list.toSet();
 set.contains ( "Julia" ); /* returns true */
 set.contains ( "Mike" ); /* returns true */
 set.size(); /* returns 2 */
 ```
 
-- `std::list<T> QList::toStdList() const`: Returns a `std::list` object with the data contained in this `QList`. Example:
+- `std::list<T> QList::toStdList() const`: Returns a `std::list` object with the data contained in this `QList`.
 
 ``` cpp
 QList<double> list;
 list << 1.2 << 0.5 << 3.14;
-​
+
 std::list<double> stdlist = list.toStdList();
 ```
 
-- `QVector<T> QList::toVector() const`: Returns a `QVector` object with the data contained in this `QList`. Example:
+- `QVector<T> QList::toVector() const`: Returns a `QVector` object with the data contained in this `QList`.
 
 ``` cpp
 QStringList list;
 list << "Sven" << "Kim" << "Ola";
-​
 QVector<QString> vect = list.toVector(); /* vect: ["Sven", "Kim", "Ola"] */
 ```
 
-- `T QList::value(int i) const`: Returns the value at index position `i` in the list. If the index `i` is out of bounds, the function returns a `default-constructed` value. If you are certain that the index is going to be within bounds, you can use `at()` instead, which is slightly faster.
-- `T QList::value(int i, const T & defaultValue) const`: This is an overloaded function. If the index `i` is out of bounds, the function returns `defaultValue`.
-- `bool QList::operator!=(const QList<T> & other) const`: Returns `true` if `other` is not equal to this list; otherwise returns `false`. Two lists are considered equal if they contain the same values in the same order. This function requires the value type to have an implementation of `operator==()`.
+- `T QList::value(int i) const`: Returns the value at index position `i` in the list. If the index `i` is out of bounds, the function returns a `default-constructed` value. If you are certain that the index is going to be within bounds, you can use `at()` instead, which is slightly faster.
+- `T QList::value(int i, const T & defaultValue) const`: This is an overloaded function. If the index `i` is out of bounds, the function returns `defaultValue`.
+- `bool QList::operator!=(const QList<T> & other) const`: Returns `true` if `other` is not equal to this list; otherwise returns `false`. Two lists are considered equal if they contain the same values in the same order. This function requires the value type to have an implementation of `operator==()`.
 - `QList<T> QList::operator+(const QList<T> & other) const`: Returns a list that contains all the items in this list followed by all the items in the `other` list.
 - `QList<T> & QList::operator+=(const QList<T> & other)`: Appends the items of the `other` list to this list and returns a reference to this list.
-- `QList<T> & QList::operator+=(const T & value)`: This is an overloaded function. Appends `value` to the list.
+- `QList<T> & QList::operator+=(const T & value)`: This is an overloaded function. Appends `value` to the list.
 - `QList<T> & QList::operator<<(const QList<T> & other)`: Appends the items of the `other` list to this list and returns a reference to this list.
-- `QList<T> & QList::operator<<(const T & value)`: This is an overloaded function. Appends `value` to the list.
+- `QList<T> & QList::operator<<(const T & value)`: This is an overloaded function. Appends `value` to the list.
 - `QList<T> & QList::operator=(const QList<T> & other)`: Assigns `other` to this list and returns a reference to this list.
-- `bool QList::operator==(const QList<T> & other) const`: Returns `true` if `other` is equal to this list; otherwise returns `false`. Two lists are considered equal if they contain the same values in the same order. This function requires the value type to have an implementation of `operator==()`.
-- `T & QList::operator[](int i)`: Returns the item at index position `i` as a modifiable reference. `i` must be a valid index position in the list (i.e., `0 <= i < size()`). This function is very fast (constant time).
-- `const T & QList::operator[](int i) const`: This is an overloaded function. Same as `at()`.
+- `bool QList::operator==(const QList<T> & other) const`: Returns `true` if `other` is equal to this list; otherwise returns `false`. Two lists are considered equal if they contain the same values in the same order. This function requires the value type to have an implementation of `operator==()`.
+- `T & QList::operator[](int i)`: Returns the item at index position `i` as a modifiable reference. `i` must be a valid index position in the list (i.e., `0 <= i < size()`). This function is very fast (constant time).
+- `const T & QList::operator[](int i) const`: This is an overloaded function. Same as `at()`.
 
 ### Related Non-Members
 
-- `QDataStream & operator<<(QDataStream & out, const QList<T> & list)`: Writes the `list` to stream `out`. This function requires the value type to implement `operator<<()`.
-- `QDataStream & operator>>(QDataStream & in, QList<T> & list)`: Reads a list from stream `in` into `list`. This function requires the value type to implement `operator>>()`.
+- `QDataStream & operator<<(QDataStream & out, const QList<T> & list)`: Writes the `list` to stream `out`. This function requires the value type to implement `operator<<()`.
+- `QDataStream & operator>>(QDataStream & in, QList<T> & list)`: Reads a list from stream `in` into `list`. This function requires the value type to implement `operator>>()`.

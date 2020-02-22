@@ -1,7 +1,6 @@
 ---
 title: LPC11XX驱动LCD1602程序
 categories: 单片机
-abbrlink: 45f4c52e
 date: 2018-12-29 18:31:29
 ---
 &emsp;&emsp;`LCD.c`如下(单片机时钟频率为`12MHz`)：<!--more-->
@@ -12,7 +11,7 @@ date: 2018-12-29 18:31:29
 #include "main.h"
 #include "Delay.h"
 #include "LCD.h"
-​
+
 void Set_GPIO_Output ( void ) { /* 设置D0至D7为输出口 */
     LPC_GPIO2->DIR |= ( 0x1 << 0 );
     LPC_GPIO2->DIR |= ( 0x1 << 1 );
@@ -23,7 +22,7 @@ void Set_GPIO_Output ( void ) { /* 设置D0至D7为输出口 */
     LPC_GPIO2->DIR |= ( 0x1 << 6 );
     LPC_GPIO2->DIR |= ( 0x1 << 7 );
 }
-​
+
 void Set_GPIO_Input ( void ) { /* 设置D0至D7为输入口 */
     LPC_GPIO2->DIR &= ~ ( 0x1 << 0 );
     LPC_GPIO2->DIR &= ~ ( 0x1 << 1 );
@@ -34,7 +33,7 @@ void Set_GPIO_Input ( void ) { /* 设置D0至D7为输入口 */
     LPC_GPIO2->DIR &= ~ ( 0x1 << 6 );
     LPC_GPIO2->DIR &= ~ ( 0x1 << 7 );
 }
-​
+
 void LCD_GPIO_Init ( void ) {
     /* 设置P2.0至P2.10为GPIO */
     LPC_IOCON->PIO2_0 &= ( ~0x07 );
@@ -63,16 +62,16 @@ void LCD_GPIO_Init ( void ) {
     LPC_GPIO3->DIR |= ( 0x1 << 3 ); /* BackLighting，液晶屏背光设为输出 */
     GPIOSetValue ( 3, 3, 1 ); /* BackLighting位写1，开启液晶屏背光，写0关闭液晶屏背光 */
 }
-​
+
 void Write_Data_Port ( unsigned char Data ) { /* 写数据到D0至D7 */
     LPC_GPIO2->DATA &= ~ ( 0xff );
     LPC_GPIO2->DATA |= Data;
 }
-​
+
 unsigned char Read_Data_Port ( void ) { /* 读D0至D7的数据 */
     return ( LPC_GPIO2->DATA );
 }
-​
+
 unsigned char Chk_LCD_busy ( void ) { /* 读液晶忙通道数据 */
     unsigned char gR_data;
     unsigned char gwait_time = 0xff; /* 设置忙超时数 */
@@ -83,22 +82,22 @@ unsigned char Chk_LCD_busy ( void ) { /* 读液晶忙通道数据 */
     Delay_Us ( 30 );
     gR_data = Read_Data_Port();
     Delay_Us ( 10 );
-​
+
     while ( TESTBIT ( gR_data, 7 ) ) { /* 表示busy */
         --gwait_time;
-​
+
         if ( !gwait_time ) {
             LCD_EN_Low();
             Set_GPIO_Output(); /* 恢复为输出口 */
             return 0;
         }
     }
-​
+
     LCD_EN_Low();
     Set_GPIO_Output(); /* 恢复为输出口 */
     return 1;
 }
-​
+
 /* 参数gcmd是指令，gvalue为是否查忙 */
 void Write_LCD_command ( unsigned char gcmd, unsigned char gvalue ) {
     if ( gvalue ) { /* 写命令时大部分情况下是在LCD空闲模式下写 */
@@ -119,7 +118,7 @@ void Write_LCD_command ( unsigned char gcmd, unsigned char gvalue ) {
         LCD_EN_Low();
     }
 }
-​
+
 void Write_LCD_data ( unsigned char gdata ) {
     if ( Chk_LCD_busy() ) { /* 写数据必须是在LCD空闲模式下才能写 */
         LCD_RS_High(); /* 选择数据 */
@@ -130,7 +129,7 @@ void Write_LCD_data ( unsigned char gdata ) {
         LCD_EN_Low();
     }
 }
-​
+
 void INIT_LCD ( void ) {
     LCD_GPIO_Init();
     Delay_Ms ( 15 );
@@ -149,20 +148,20 @@ void INIT_LCD ( void ) {
     Write_LCD_command ( 0x06, 1 ); /* 显示光标右移位置、检测忙信号 */
     Write_LCD_command ( 0x0C, 1 ); /* 显示功能开、无光标、检测忙信号 */
 }
-​
+
 /* 参数gadd_start是列号，gline是行号，glength是数据长度，pdata是数组元素 */
 void Display_LCD_string (
     unsigned char gadd_start, unsigned char gline,
     unsigned char glength, const unsigned char *pdata ) {
     unsigned char gaddress;
     unsigned char gcount = 0;
-​
+
     if ( !gline ) { /* 第0行 */
         gaddress = 0x80 + gadd_start; /* 地址对应 */
     } else {
         gaddress = 0xc0 + gadd_start; /* 第一行 */
     }
-​
+
     for ( ; gcount < glength; gcount++ ) {
         Write_LCD_command ( gaddress, 1 ); /* 设定数据地址 */
         Write_LCD_data ( *pdata ); /* 取设定地址里的数据 */
@@ -170,35 +169,35 @@ void Display_LCD_string (
         pdata++;
     }
 }
-​
+
 /* 参数x是起始地址横坐标，y是起始地址纵坐标，gdata是要显示的字符 */
 void DispChar_XY_LCD ( unsigned char x, unsigned char y, unsigned char gdata ) {
     unsigned char gaddress;
-​
+
     if ( !y ) {
         gaddress = 0x80 + x;
     } else {
         gaddress = 0xc0 + x;
     }
-​
+
     Write_LCD_command ( gaddress, 1 ); /* 设定数据地址 */
     Write_LCD_data ( gdata );
 }
-​
+
 /* 参数x是起始地址横坐标，y是起始地址纵坐标，gdata是要显示的数字 */
 void DispNum_XY_LCD ( unsigned char x, unsigned char y, unsigned char gdata ) {
     unsigned char gaddress;
-​
+
     if ( !y ) {
         gaddress = 0x80 + x;
     } else {
         gaddress = 0xc0 + x;
     }
-​
+
     Write_LCD_command ( gaddress, 1 ); /* 设定数据地址 */
     Write_LCD_data ( gdata + 0x30 );
 }
-​
+
 void Clear_Display ( void ) {
     Write_LCD_command ( 0x01, 1 );
     Delay_Ms ( 5 );
@@ -210,16 +209,16 @@ void Clear_Display ( void ) {
 ``` cpp
 #ifndef __LCD_H__
 #define __LCD_H__
-​
+
 #define TESTBIT(a, b) ((a) & (1 << (b)))
-​
-#define LCD_RS_Low()  LPC_GPIO2->DATA &= ~(1<<8)  /* 给P2.8位写0  */
+
+#define LCD_RS_Low()  LPC_GPIO2->DATA &= ~(1<<8)  /* 给P2.8位写0  */
 #define LCD_RS_High() LPC_GPIO2->DATA |=  (1<<8)  /* 给P2.8位写1  */
-#define LCD_RW_Low()  LPC_GPIO2->DATA &= ~(1<<9)  /* 给P2.9位写0  */
+#define LCD_RW_Low()  LPC_GPIO2->DATA &= ~(1<<9)  /* 给P2.9位写0  */
 #define LCD_RW_High() LPC_GPIO2->DATA |=  (1<<9)  /* 给P2.9位写1  */
-#define LCD_EN_Low()  LPC_GPIO2->DATA &= ~(1<<10) /* 给P2.10位写0 */
+#define LCD_EN_Low()  LPC_GPIO2->DATA &= ~(1<<10) /* 给P2.10位写0 */
 #define LCD_EN_High() LPC_GPIO2->DATA |=  (1<<10) /* 给P2.10位写1 */
-​
+
 void Set_GPIO_Output ( void );
 void Set_GPIO_Input ( void );
 void LCD_GPIO_Init ( void );
@@ -235,6 +234,6 @@ void Display_LCD_string (
 void DispChar_XY_LCD ( unsigned char x, unsigned char y, unsigned char gdata );
 void DispNum_XY_LCD ( unsigned char x, unsigned char y, unsigned char gdata );
 void Clear_Display ( void );
-​
+
 #endif
 ```

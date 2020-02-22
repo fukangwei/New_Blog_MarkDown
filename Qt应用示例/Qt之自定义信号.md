@@ -1,7 +1,6 @@
 ---
 title: Qt之自定义信号
 categories: Qt应用示例
-abbrlink: 3ef2af34
 date: 2019-02-23 11:48:15
 ---
 &emsp;&emsp;`widget.h`如下：<!--more-->
@@ -9,13 +8,13 @@ date: 2019-02-23 11:48:15
 ``` cpp
 #ifndef WIDGET_H
 #define WIDGET_H
-​
+
 #include <QWidget>
-​
+
 namespace Ui {
     class Widget;
 }
-​
+
 class Widget : public QWidget {
     Q_OBJECT
 public:
@@ -26,7 +25,7 @@ private slots:
 private:
     Ui::Widget *ui;
 };
-​
+
 #endif // WIDGET_H
 ```
 
@@ -35,13 +34,13 @@ private:
 ``` cpp
 #ifndef MYDIALOG_H
 #define MYDIALOG_H
-​
+
 #include <QDialog>
-​
+
 namespace Ui {
     class MyDialog;
 }
-​
+
 class MyDialog : public QDialog {
     Q_OBJECT
 public:
@@ -54,7 +53,7 @@ signals:
 private:
     Ui::MyDialog *ui;
 };
-​
+
 #endif // MYDIALOG_H
 ```
 
@@ -64,7 +63,7 @@ private:
 #include "widget.h"
 #include "ui_widget.h"
 #include "mydialog.h"
-​
+
 Widget::Widget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::Widget ) {
     ui->setupUi ( this );
     MyDialog *dlg = new MyDialog ( this ); /* 创建对话框 */
@@ -72,11 +71,11 @@ Widget::Widget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::Widget ) {
     connect ( dlg, SIGNAL ( dlgReturn ( int ) ), this, SLOT ( showValue ( int ) ) );
     dlg->show(); /* 显示对话框 */
 }
-​
+
 Widget::~Widget() {
     delete ui;
 }
-​
+
 void Widget::showValue ( int value ) { /* 自定义槽函数 */
     ui->label->setText ( tr ( "获取的值是：%1" ).arg ( value ) );
 }
@@ -87,15 +86,15 @@ void Widget::showValue ( int value ) { /* 自定义槽函数 */
 ``` cpp
 #include "mydialog.h"
 #include "ui_mydialog.h"
-​
+
 MyDialog::MyDialog ( QWidget *parent ) : QDialog ( parent ), ui ( new Ui::MyDialog ) {
     ui->setupUi ( this );
 }
-​
+
 MyDialog::~MyDialog() {
     delete ui;
 }
-​
+
 void MyDialog::on_pushButton_clicked() { /* 确定按钮 */
     int value = ui->spinBox->value(); /* 获取输入的数值 */
     emit dlgReturn ( value ); /* 发射信号 */

@@ -1,7 +1,6 @@
 ---
 title: Qt之QDir
 categories: Qt语法详解
-abbrlink: a93012ee
 date: 2019-01-24 19:36:49
 ---
 &emsp;&emsp;类`QDir`提供了对目录结构和其内容的访问方式。`QDir`用来操作路径名、访问关于路径和文件的信息、操作基础的文件系统，还可以用来访问`Qt`的资源系统。<!--more-->
@@ -29,7 +28,7 @@ QDir ( "images/landscape.png" );
 ``` cpp
 #include <QtCore>
 #include <QDebug>
-​
+
 int main ( int argc, char *argv[] ) {
     QCoreApplication a ( argc, argv );
     QDir mDir ( "D:/qttest" ); /* 或者用“D:\\qttest”来代替 */
@@ -42,27 +41,27 @@ int main ( int argc, char *argv[] ) {
     qDebug() << fi.absoluteFilePath(); /* 返回文件的绝对路径 */
     qDebug() << fi.filePath(); /* 返回文件的路径 */
     qDebug() << fi.fileName(); /* 剥离掉路径，只返回文件的名字 */
-​
+
     /* driver返回系统根目录下的目录列表 */
     foreach ( QFileInfo mItem, nDir.drives() ) {
         qDebug() << mItem.absolutePath();
     }
-​
+
     /* entryInfoList根据名字或属性顺序返回指定目录下所有的文件和目录的QFileInfo对象 */
     foreach ( QFileInfo nItem, nDir.entryInfoList() ) {
         qDebug() << nItem.absoluteFilePath();
     }
-​
+
     QString mPath = "D:/test/ZZZ";
     QDir kDir;
-​
+
     if ( !kDir.exists ( mPath ) ) { /* 判断指定目录下是否存在指定目录 */
         kDir.mkpath ( mPath ); /* 生成指定目录 */
         qDebug() << "Create";
     } else {
         qDebug() << "Already exits";
     }
-​
+
     return a.exec();
 }
 ```
@@ -94,7 +93,7 @@ Already exits
 
 ---
 
-- `QString QDir::homePath() [static]`: Returns the absolute path of the user's home directory. Under `Windows`, this function will return the directory of the current user's profile. Typically, this is:
+- `QString QDir::homePath() [static]`: Returns the absolute path of the user's home directory. Under `Windows`, this function will return the directory of the current user's profile. Typically, this is:
 
 ``` cpp
 C:/Documents and Settings/Username
@@ -111,5 +110,5 @@ Use the `toNativeSeparators()` function to convert the separators to the ones th
 
 Under `non-Windows` operating systems the `HOME` environment variable is used if it exists, otherwise the path returned by the `rootPath()`.
 
-- `QString QDir::rootPath() [static]`: Returns the absolute path of the root directory. For `Unix` operating systems, this returns `/`. For `Windows`, this normally returns `c:/`. I.E. the root of the system drive.
-- `QString QDir::tempPath()`: Returns the absolute path of the system's temporary directory. On `Unix/Linux` systems, this is the path in the `TMPDIR` environment variable or `/tmp` if `TMPDIR` is not defined. On `Windows`, this is usually the path in the `TEMP` or `TMP` environment variable. Whether a directory separator is added to the end or not, depends on the operating system.
+- `QString QDir::rootPath() [static]`: Returns the absolute path of the root directory. For `Unix` operating systems, this returns `/`. For `Windows`, this normally returns `c:/`. I.E. the root of the system drive.
+- `QString QDir::tempPath()`: Returns the absolute path of the system's temporary directory. On `Unix/Linux` systems, this is the path in the `TMPDIR` environment variable or `/tmp` if `TMPDIR` is not defined. On `Windows`, this is usually the path in the `TEMP` or `TMP` environment variable. Whether a directory separator is added to the end or not, depends on the operating system.

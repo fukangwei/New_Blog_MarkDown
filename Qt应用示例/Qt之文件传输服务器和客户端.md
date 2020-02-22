@@ -1,7 +1,6 @@
 ---
 title: Qt之文件传输服务器和客户端
 categories: Qt应用示例
-abbrlink: 268499d8
 date: 2019-02-06 14:36:21
 ---
 ### tcp_client
@@ -11,17 +10,17 @@ date: 2019-02-06 14:36:21
 ``` cpp
 #ifndef CLIENT_H
 #define CLIENT_H
-​
+
 #include <QDialog>
-​
+
 #include <QAbstractSocket>
 class QTcpSocket;
 class QFile;
-​
+
 namespace Ui {
     class Client;
 }
-​
+
 class Client : public QDialog {
     Q_OBJECT
 public:
@@ -46,7 +45,7 @@ private slots:
     void on_openButton_clicked();
     void on_sendButton_clicked();
 };
-​
+
 #endif // CLIENT_H
 ```
 
@@ -55,10 +54,10 @@ private slots:
 ``` cpp
 #include "client.h"
 #include "ui_client.h"
-​
+
 #include <QtNetwork>
 #include <QFileDialog>
-​
+
 Client::Client ( QWidget *parent ) : QDialog ( parent ), ui ( new Ui::Client ) {
     ui->setupUi ( this );
     payloadSize = 64 * 1024; /* 64KB */
@@ -73,35 +72,35 @@ Client::Client ( QWidget *parent ) : QDialog ( parent ), ui ( new Ui::Client ) {
               this, SLOT ( displayError ( QAbstractSocket::SocketError ) ) );
     ui->sendButton->setEnabled ( false );
 }
-​
+
 Client::~Client() {
     delete ui;
 }
-​
+
 void Client::openFile() { /* 打开文件 */
     fileName = QFileDialog::getOpenFileName ( this );
-​
+
     if ( !fileName.isEmpty() ) {
         ui->sendButton->setEnabled ( true );
         ui->clientStatusLabel->setText ( tr ( "打开文件 %1 成功！" ).arg ( fileName ) );
     }
 }
-​
+
 void Client::send() { /* 连接到服务器 */
     ui->sendButton->setEnabled ( false );
     bytesWritten = 0; /* 初始化已发送字节为0 */
     ui->clientStatusLabel->setText ( tr ( "连接中…" ) );
     tcpClient->connectToHost ( ui->hostLineEdit->text(), ui->portLineEdit->text().toInt() );
 }
-​
+
 void Client::startTransfer() { /* 传输文件大小等信息 */
     localFile = new QFile ( fileName );
-​
+
     if ( !localFile->open ( QFile::ReadOnly ) ) {
         qDebug() << "client: open file error!";
         return;
     }
-​
+
     totalBytes = localFile->size(); /* 获取文件大小 */
     QDataStream sendOut ( &outBlock, QIODevice::WriteOnly );
     sendOut.setVersion ( QDataStream::Qt_4_0 );
@@ -116,10 +115,10 @@ void Client::startTransfer() { /* 传输文件大小等信息 */
     ui->clientStatusLabel->setText ( tr ( "已连接" ) );
     outBlock.resize ( 0 );
 }
-​
+
 void Client::updateClientProgress ( qint64 numBytes ) { /* 发送数据，并更新进度条 */
     bytesWritten += ( int ) numBytes; /* 已经发送数据的大小 */
-​
+
     if ( bytesToWrite > 0 ) { /* 如果已经发送了数据 */
         /* 每次发送payloadSize大小的数据，这里设置为64KB，如果剩余的数据不足64KB，就发送剩余数据的大小 */
         outBlock = localFile->read ( qMin ( bytesToWrite, payloadSize ) );
@@ -128,18 +127,18 @@ void Client::updateClientProgress ( qint64 numBytes ) { /* 发送数据，并更
     } else { /* 如果没有发送任何数据，则关闭文件 */
         localFile->close();
     }
-​
+
     /* 更新进度条 */
     ui->clientProgressBar->setMaximum ( totalBytes );
     ui->clientProgressBar->setValue ( bytesWritten );
-​
+
     if ( bytesWritten == totalBytes ) { /* 如果发送完毕 */
         ui->clientStatusLabel->setText ( tr ( "传送文件 %1 成功" ).arg ( fileName ) );
         localFile->close();
         tcpClient->close();
     }
 }
-​
+
 void Client::displayError ( QAbstractSocket::SocketError ) { /* 显示错误 */
     qDebug() << tcpClient->errorString();
     tcpClient->close();
@@ -147,13 +146,13 @@ void Client::displayError ( QAbstractSocket::SocketError ) { /* 显示错误 */
     ui->clientStatusLabel->setText ( tr ( "客户端就绪" ) );
     ui->sendButton->setEnabled ( true );
 }
-​
+
 void Client::on_openButton_clicked() { /* 打开按钮 */
     ui->clientProgressBar->reset();
     ui->clientStatusLabel->setText ( tr ( "状态：等待打开文件！" ) );
     openFile();
 }
-​
+
 void Client::on_sendButton_clicked() { /* 发送按钮 */
     send();
 }
@@ -165,7 +164,7 @@ void Client::on_sendButton_clicked() { /* 发送按钮 */
 #include <QtGui/QApplication>
 #include "client.h"
 #include <QTextCodec>
-​
+
 int main ( int argc, char *argv[] ) {
     QApplication a ( argc, argv );
     QTextCodec::setCodecForTr ( QTextCodec::codecForLocale() );
@@ -182,17 +181,17 @@ int main ( int argc, char *argv[] ) {
 ``` cpp
 #ifndef SERVER_H
 #define SERVER_H
-​
+
 #include <QDialog>
 #include <QAbstractSocket>
 #include <QTcpServer>
 class QTcpSocket;
 class QFile;
-​
+
 namespace Ui {
     class Server;
 }
-​
+
 class Server : public QDialog {
     Q_OBJECT
 public:
@@ -215,7 +214,7 @@ private slots:
     void displayError ( QAbstractSocket::SocketError socketError );
     void on_startButton_clicked();
 };
-​
+
 #endif // SERVER_H
 ```
 
@@ -225,23 +224,23 @@ private slots:
 #include "server.h"
 #include "ui_server.h"
 #include <QtNetwork>
-​
+
 Server::Server ( QWidget *parent ) : QDialog ( parent ), ui ( new Ui::Server ) {
     ui->setupUi ( this );
     connect ( &tcpServer, SIGNAL ( newConnection() ), this, SLOT ( acceptConnection() ) );
 }
-​
+
 Server::~Server() {
     delete ui;
 }
-​
+
 void Server::start() { /* 开启监听 */
     if ( !tcpServer.listen ( QHostAddress::LocalHost, 6666 ) ) {
         qDebug() << tcpServer.errorString();
         close();
         return;
     }
-​
+
     ui->startButton->setEnabled ( false );
     totalBytes = 0;
     bytesReceived = 0;
@@ -249,7 +248,7 @@ void Server::start() { /* 开启监听 */
     ui->serverStatusLabel->setText ( tr ( "监听" ) );
     ui->serverProgressBar->reset();
 }
-​
+
 void Server::acceptConnection() { /* 接收连接 */
     tcpServerConnection = tcpServer.nextPendingConnection();
     connect ( tcpServerConnection, SIGNAL ( readyRead() ), this, SLOT ( updateServerProgress() ) );
@@ -258,23 +257,23 @@ void Server::acceptConnection() { /* 接收连接 */
     ui->serverStatusLabel->setText ( tr ( "接受连接" ) );
     tcpServer.close(); /* 关闭服务器，不再进行监听 */
 }
-​
+
 void Server::updateServerProgress() { /* 接收文件并更新进度条 */
     QDataStream in ( tcpServerConnection );
     in.setVersion ( QDataStream::Qt_4_0 );
-​
+
     if ( bytesReceived <= sizeof ( qint64 ) * 2 ) { /* 如果接收到的数据小于16个字节，保存到来的文件头结构 */
         if ( ( tcpServerConnection->bytesAvailable() >= sizeof ( qint64 ) * 2 ) && ( fileNameSize == 0 ) ) {
             in >> totalBytes >> fileNameSize; /* 接收数据总大小信息和文件名大小信息 */
             bytesReceived += sizeof ( qint64 ) * 2;
         }
-​
+
         if ( ( tcpServerConnection->bytesAvailable() >= fileNameSize ) && ( fileNameSize != 0 ) ) {
             in >> fileName; /* 接收文件名，并建立文件 */
             ui->serverStatusLabel->setText ( tr ( "接收文件 %1 …" ).arg ( fileName ) );
             bytesReceived += fileNameSize;
             localFile = new QFile ( fileName );
-​
+
             if ( !localFile->open ( QFile::WriteOnly ) ) {
                 qDebug() << "server: open file error!";
                 return;
@@ -283,17 +282,17 @@ void Server::updateServerProgress() { /* 接收文件并更新进度条 */
             return;
         }
     }
-​
+
     if ( bytesReceived < totalBytes ) { /* 如果接收的数据小于总数据，那么写入文件 */
         bytesReceived += tcpServerConnection->bytesAvailable();
         inBlock = tcpServerConnection->readAll();
         localFile->write ( inBlock );
         inBlock.resize ( 0 );
     }
-​
+
     ui->serverProgressBar->setMaximum ( totalBytes );
     ui->serverProgressBar->setValue ( bytesReceived );
-​
+
     if ( bytesReceived == totalBytes ) { /* 接收数据完成时 */
         tcpServerConnection->close();
         localFile->close();
@@ -301,7 +300,7 @@ void Server::updateServerProgress() { /* 接收文件并更新进度条 */
         ui->serverStatusLabel->setText ( tr ( "接收文件 %1 成功！" ).arg ( fileName ) );
     }
 }
-​
+
 void Server::displayError ( QAbstractSocket::SocketError socketError ) { /* 显示错误 */
     qDebug() << tcpServerConnection->errorString();
     tcpServerConnection->close();
@@ -309,7 +308,7 @@ void Server::displayError ( QAbstractSocket::SocketError socketError ) { /* 显�
     ui->serverStatusLabel->setText ( tr ( "服务端就绪" ) );
     ui->startButton->setEnabled ( true );
 }
-​
+
 void Server::on_startButton_clicked() { /* 开始监听按钮 */
     start();
 }

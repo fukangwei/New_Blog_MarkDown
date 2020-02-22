@@ -1,7 +1,6 @@
 ---
 title: TensorFlow模型的保存和加载
 categories: 深度学习
-abbrlink: 711c35c7
 date: 2019-02-15 14:31:21
 ---
 &emsp;&emsp;将训练好的模型参数保存起来，以便以后进行验证或测试，这是我们经常要做的事情。`tf`里面提供模型保存的函数是`tf.train.Saver`模块。模型保存先要创建一个`Saver`对象：<!--more-->
@@ -47,9 +46,9 @@ import tensorflow as tf
 v1 = tf.Variable(tf.constant(1.0, shape=[1]), name="v1")
 v2 = tf.Variable(tf.constant(2.0, shape=[1]), name="v2")
 result = v1 + v2
-​
+
 saver = tf.train.Saver()
-​
+
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     saver.save(sess, "Model/model.ckpt")
@@ -59,13 +58,13 @@ with tf.Session() as sess:
 
 ``` python
 import tensorflow as tf
-​
+
 v1 = tf.Variable(tf.constant(1.0, shape=[1]), name="v1")
 v2 = tf.Variable(tf.constant(2.0, shape=[1]), name="v2")
 result = v1 + v2
-​
+
 saver = tf.train.Saver()
-​
+
 with tf.Session() as sess:
     saver.restore(sess, "./Model/model.ckpt")  # 注意此处路径前添加“./”
     print(sess.run(result))  # 结果为[ 3.]
@@ -75,9 +74,9 @@ with tf.Session() as sess:
 
 ``` python
 import tensorflow as tf
-​
+
 saver = tf.train.import_meta_graph("Model/model.ckpt.meta")
-​
+
 with tf.Session() as sess:
     saver.restore(sess, "./Model/model.ckpt")  # 注意路径写法
     print(sess.run(tf.get_default_graph().get_tensor_by_name("add:0")))  # 结果为[ 3.]
@@ -87,17 +86,17 @@ with tf.Session() as sess:
 
 ``` python
 import tensorflow as tf
-​
+
 # 声明的变量名称name与已保存的模型中的变量名称name不一致
 u1 = tf.Variable(tf.constant(1.0, shape=[1]), name="other-v1")
 u2 = tf.Variable(tf.constant(2.0, shape=[1]), name="other-v2")
 result = u1 + u2
-​
+
 # 若直接声明Saver类对象，会报错变量找不到。使用一个字典dict
 # 重命名变量即可，语法为{"已保存的变量的名称name": 重命名变量名}，
 # 原来名称name为v1的变量现在加载到变量u1(名称name为other-v1)中
 saver = tf.train.Saver({"v1": u1, "v2": u2})
-​
+
 with tf.Session() as sess:
     saver.restore(sess, "./Model/model.ckpt")
     print(sess.run(result))  # [ 3.]
@@ -107,20 +106,20 @@ with tf.Session() as sess:
 
 ``` python
 import tensorflow as tf
-​
+
 v = tf.Variable(0, dtype=tf.float32, name="v")
 
 for variables in tf.global_variables():
     print(variables.name)  # 结果为“v:0”
-​
+
 ema = tf.train.ExponentialMovingAverage(0.99)
 maintain_averages_op = ema.apply(tf.global_variables())
 
 for variables in tf.global_variables():
     print(variables.name)  # 结果为“v:0(换行)v/ExponentialMovingAverage:0”
-​
+
 saver = tf.train.Saver()
-​
+
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     sess.run(tf.assign(v, 10))
@@ -133,10 +132,10 @@ with tf.Session() as sess:
 
 ``` python
 import tensorflow as tf
-​
+
 v = tf.Variable(0, dtype=tf.float32, name="v")
 saver = tf.train.Saver({"v/ExponentialMovingAverage": v})
-​
+
 with tf.Session() as sess:
     saver.restore(sess, "./Model/model_ema.ckpt")
     print(sess.run(v))  # 结果为0.0999999
@@ -146,15 +145,15 @@ with tf.Session() as sess:
 
 ``` python
 import tensorflow as tf
-​
+
 # 注意此处的变量名称name一定要与已保存的变量名称一致
 v = tf.Variable(0, dtype=tf.float32, name="v")
 ema = tf.train.ExponentialMovingAverage(0.99)
 # 如下结果为{'v/ExponentialMovingAverage': <tf.Variable 'v:0'
 # shape=() dtype=float32_ref>}，此处的v取自上面变量v的名称“name="v"”
-print(ema.variables_to_restore())  
+print(ema.variables_to_restore())
 saver = tf.train.Saver(ema.variables_to_restore())
-​
+
 with tf.Session() as sess:
     saver.restore(sess, "./Model/model_ema.ckpt")
     print(sess.run(v))  # 0.0999999
@@ -164,14 +163,14 @@ with tf.Session() as sess:
 
 ``` python
 import tensorflow as tf
-​
+
 with tf.name_scope('input'):
     v1 = tf.Variable(tf.constant(1.0, shape=[1]), name="v1")
     v2 = tf.Variable(tf.constant(2.0, shape=[1]), name="v2")
-​
+
 result = v1 + v2
 saver = tf.train.Saver()
-​
+
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     saver.save(sess, "./model.ckpt")
@@ -181,7 +180,7 @@ with tf.Session() as sess:
 
 ``` python
 import tensorflow as tf
-​
+
 saver = tf.train.import_meta_graph("Model/model.ckpt.meta")
 
 with tf.Session() as sess:
@@ -200,12 +199,12 @@ latest_checkpoint(checkpoint_dir, latest_filename=None)
 ``` python
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
-​
+
 mnist = input_data.read_data_sets("MNIST_data/", one_hot=False)
-​
+
 x = tf.placeholder(tf.float32, [None, 784])
 y_ = tf.placeholder(tf.int32, [None, ])
-​
+
 dense1 = tf.layers.dense(
     inputs=x, units=1024, activation=tf.nn.relu,
     kernel_initializer=tf.truncated_normal_initializer(stddev=0.01),
@@ -218,18 +217,18 @@ logits = tf.layers.dense(
     inputs=dense2, units=10, activation=None,
     kernel_initializer=tf.truncated_normal_initializer(stddev=0.01),
     kernel_regularizer=tf.nn.l2_loss)
-​
+
 loss = tf.losses.sparse_softmax_cross_entropy(labels=y_, logits=logits)
 train_op = tf.train.AdamOptimizer(learning_rate=0.001).minimize(loss)
 correct_prediction = tf.equal(tf.cast(tf.argmax(logits, 1), tf.int32), y_)
 acc = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-​
+
 sess = tf.InteractiveSession()
 sess.run(tf.global_variables_initializer())
-​
+
 is_train = False
 saver = tf.train.Saver(max_to_keep=3)
-​
+
 if is_train:  # 训练阶段
     max_acc = 0
     f = open('ckpt/acc.txt', 'w')
@@ -276,7 +275,7 @@ from tensorflow.python.framework.graph_util import convert_variables_to_constant
 a = tf.Variable([[3], [4]], dtype=tf.float32, name='a')
 b = tf.Variable(4, dtype=tf.float32, name='b')
 output = tf.add(a, b, name='out')  # 一定要给输出tensor取一个名字
-​
+
 with tf.Session() as sess:  # 转换Variable为constant，并将网络写入到文件
     sess.run(tf.global_variables_initializer())
     # 这里需要填入输出tensor的名字
@@ -315,12 +314,12 @@ with tf.Session() as sess:
 ``` python
 import tensorflow as tf
 from tensorflow.python.framework.graph_util import convert_variables_to_constants
-​
+
 a = tf.Variable([[3], [4]], dtype=tf.float32, name='a')
 b = tf.Variable(4, dtype=tf.float32, name='b')
 input_tensor = tf.placeholder(tf.float32, name='input')
 output = tf.add((a + b), input_tensor, name='out')
-​
+
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     graph = convert_variables_to_constants(sess, sess.graph_def, ["out"])
@@ -331,7 +330,7 @@ with tf.Session() as sess:
 
 ``` python
 import tensorflow as tf
-​
+
 with tf.Session() as sess:
     with open('./graph.pb', 'rb') as f:
         graph_def = tf.GraphDef()
@@ -355,7 +354,7 @@ with tf.Session() as sess:
 import tensorflow as tf
 
 new_input = tf.placeholder(tf.float32, shape=())
-​
+
 with tf.Session() as sess:
     with open('./graph.pb', 'rb') as f:
         graph_def = tf.GraphDef()
@@ -381,13 +380,13 @@ with tf.Session() as sess:
 ``` python
 import tensorflow as tf
 import os.path
-​
+
 MODEL_DIR = "model/ckpt"
 MODEL_NAME = "model.ckpt"
-​
+
 if not tf.gfile.Exists(MODEL_DIR):  # 创建目录
     tf.gfile.MakeDirs(MODEL_DIR)
-​
+
 # 下面的过程你可以替换成CNN、RNN等你想做的训练过程，这里只是简单的一个计算公式
 # 输入占位符，并指定名字，后续模型读取可能会用的
 input_holder = tf.placeholder(tf.float32, shape=[1], name="input_holder")
@@ -396,10 +395,10 @@ B1 = tf.Variable(tf.constant(1.0, shape=[1]), name="B1")
 _y = (input_holder * W1) + B1
 # 输出节点名字，后续模型读取会用到，比50大返回true，否则返回false
 predictions = tf.greater(_y, 50, name="predictions")
-​
+
 init = tf.global_variables_initializer()
 saver = tf.train.Saver()  # 声明saver用于保存模型
-​
+
 with tf.Session() as sess:
     sess.run(init)
     # 输入一个数据测试一下
@@ -407,7 +406,7 @@ with tf.Session() as sess:
     saver.save(sess, os.path.join(MODEL_DIR, MODEL_NAME))  # 模型保存
     # 得到当前图有几个操作节点
     print("%d ops in the final graph." % len(tf.get_default_graph().as_graph_def().node))
-​
+
 for op in tf.get_default_graph().get_operations():  # 打印模型节点信息
     print(op.name, op.values())
 ```
@@ -425,18 +424,18 @@ for op in tf.get_default_graph().get_operations():  # 打印模型节点信息
 ``` python
 import tensorflow as tf
 from tensorflow.python.framework import graph_util
-​
+
 output_graph = "model/add_model.pb"
-​
+
 # 下面的过程你可以替换成CNN、RNN等你想做的训练过程，这里只是简单的一个计算公式
 input_holder = tf.placeholder(tf.float32, shape=[1], name="input_holder")
 W1 = tf.Variable(tf.constant(5.0, shape=[1]), name="W1")
 B1 = tf.Variable(tf.constant(1.0, shape=[1]), name="B1")
 _y = (input_holder * W1) + B1
 predictions = tf.add(_y, 10, name="predictions")  # 做一个加法运算(输出节点名是“predictions”)
-​
+
 init = tf.global_variables_initializer()
-​
+
 with tf.Session() as sess:
     sess.run(init)
     print("predictions : ", sess.run(predictions, feed_dict={input_holder: [10.0]}))
@@ -462,25 +461,25 @@ import tensorflow as tf
 import os.path
 import argparse
 from tensorflow.python.framework import graph_util
-​
+
 MODEL_DIR = "model/"
 MODEL_NAME = "frozen_model.pb"
-​
+
 if not tf.gfile.Exists(MODEL_DIR):  # 创建目录
     tf.gfile.MakeDirs(MODEL_DIR)
-​
+
 def freeze_graph(model_folder):
     checkpoint = tf.train.get_checkpoint_state(model_folder)  # 检查目录下ckpt文件状态是否可用
     input_checkpoint = checkpoint.model_checkpoint_path  # 得到ckpt文件路径
     output_graph = os.path.join(MODEL_DIR, MODEL_NAME)  # PB模型保存路径
-​
+
     output_node_names = "predictions"  # 原模型输出操作节点的名字
     # 得到图、clear_devices：Whether or not to clear the device field for an 'Operation' or 'Tensor' during import
     saver = tf.train.import_meta_graph(input_checkpoint + '.meta', clear_devices=True)
-​
+
     graph = tf.get_default_graph()  # 获得默认的图
     input_graph_def = graph.as_graph_def()  # 返回一个序列化的图代表当前的图
-​
+
     with tf.Session() as sess:
         saver.restore(sess, input_checkpoint)  # 恢复图并得到数据
         # 测试读出来的模型是否正确，注意这里传入的是输出和输入节点的tensor的名字，不是操作节点的名字
@@ -492,10 +491,10 @@ def freeze_graph(model_folder):
             f.write(output_graph_def.SerializeToString())  # 序列化输出
 
         print("%d ops in the final graph." % len(output_graph_def.node))  # 得到当前图有几个操作节点
-​
+
         for op in graph.get_operations():
             print(op.name, op.values())
-​
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("model_folder", type=str, help="input ckpt model dir")  # 命令行解析，help是提示符，type是输入的类型

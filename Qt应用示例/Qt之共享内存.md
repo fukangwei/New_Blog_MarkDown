@@ -1,7 +1,6 @@
 ---
 title: Qt之共享内存
 categories: Qt应用示例
-abbrlink: 7294f5dd
 date: 2019-02-06 13:54:59
 ---
 &emsp;&emsp;`dialog.h`如下：<!--more-->
@@ -20,11 +19,11 @@ date: 2019-02-06 13:54:59
 #include <QDataStream>
 #include <QBuffer>
 #include <QSharedMemory>
-​
+
 namespace Ui {
     class Dialog;
 }
-​
+
 class Dialog : public QDialog {
     Q_OBJECT
 public:
@@ -47,9 +46,9 @@ private:
 ``` cpp
 #include "dialog.h"
 #include "ui_dialog.h"
-​
+
 #define DEBUG /* 调试开关 */
-​
+
 Dialog::Dialog ( QWidget *parent ) :
     QDialog ( parent ),
     ui ( new Ui::Dialog ) {
@@ -60,25 +59,25 @@ Dialog::Dialog ( QWidget *parent ) :
     sharememory->setKey ( "QSharedMemoryExample" ); /* 为实例对象指定关键字(给共享内存命名) */
     first_flag = true;
 }
-​
+
 Dialog::~Dialog() {
     delete ui;
 }
-​
+
 void Dialog::loadFromFile() { /* 载入图片按钮响应函数 */
     if ( sharememory->isAttached() ) { /* 检测程序当前是否关联共享内存 */
         sharememory->detach(); /* 解除关联 */
     }
-​
+
     ui->Label_Display->setText ( tr ( "请选择一张图片" ) );
     QString filename = QFileDialog::getOpenFileName ( this, "打开", QString(), tr ( "Image (*.png *.xpm *.jpg)" ) );
     QImage image;
-​
+
     if ( !image.load ( filename ) ) { /* 将打开的图片文件和QImage实例关联 */
         ui->Label_Display->setText ( tr ( "您选择的不是图片文件，请重新选择" ) );
         return;
     }
-​
+
     ui->Label_Display->setPixmap ( QPixmap::fromImage ( image ) );
     QBuffer buffer;
     buffer.open ( QBuffer::ReadWrite ); /* 构建并打开数据缓冲区，访问方式为读写 */
@@ -95,18 +94,18 @@ void Dialog::loadFromFile() { /* 载入图片按钮响应函数 */
     qDebug() << sharememory->error();
     qDebug() << sharememory->errorString();
 #endif
-​
+
     if ( true == first_flag ) {
         if ( !sharememory->create ( size ) ) { /* 创建共享内存，大小为size */
             ui->Label_Display->setText ( tr ( "无法创建共享内存段" ) );
             qDebug() << sharememory->errorString();
             return;
         }
-​
+
         first_flag = false;
         qDebug() << sharememory->size(); /* 显示共享内存的大小 */
     }
-​
+
     /* 对共享内存进行读写操作 */
     sharememory->lock(); /* 锁定共享内存 */
     char *to = ( char * ) sharememory->data(); /* 获取共享内存中的地址 */
@@ -114,13 +113,13 @@ void Dialog::loadFromFile() { /* 载入图片按钮响应函数 */
     memcpy ( to, from, qMin ( sharememory->size(), size ) ); /* 将缓冲区中的数据复制到共享内存 */
     sharememory->unlock(); /* 解锁共享内存 */
 }
-​
+
 void Dialog::loadFromMemory() { /* 显示图片按钮响应函数 */
     if ( !sharememory->attach() ) { /* 关联共享内存 */
         ui->Label_Display->setText ( "无法关联共享内存" );
         return;
     }
-​
+
     QBuffer buffer; /* 构建缓冲区 */
     QDataStream out ( &buffer ); /* 建立数据流对象，并和缓冲区关联 */
     QImage image;
@@ -142,7 +141,7 @@ void Dialog::loadFromMemory() { /* 显示图片按钮响应函数 */
 #include <QtGui/QApplication>
 #include "dialog.h"
 #include <QTextCodec>
-​
+
 int main ( int argc, char *argv[] ) {
     QApplication application ( argc, argv );
     /* Qt国际化显示 */

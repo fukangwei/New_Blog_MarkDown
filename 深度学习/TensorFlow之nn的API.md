@@ -1,7 +1,6 @@
 ---
 title: TensorFlow之nn的API
 categories: 深度学习
-abbrlink: c7784290
 date: 2019-02-14 11:02:43
 ---
 ### 激活函数

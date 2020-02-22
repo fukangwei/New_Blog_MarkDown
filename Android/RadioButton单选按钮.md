@@ -1,7 +1,6 @@
 ---
 title: RadioButton单选按钮
 categories: Android
-abbrlink: a5f5d783
 date: 2019-02-08 17:46:54
 ---
 &emsp;&emsp;`RadioButton`只能够选中一个，所以我们需要把`RadioButton`放到`RadioGroup`按钮组中，从而实现单选功能：<!--more-->
@@ -22,27 +21,27 @@ date: 2019-02-08 17:46:54
         android:layout_height="wrap_content"
         android:text="请选择性别"
         android:textSize="23dp" />
-​
+
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-​
+
         <RadioButton
             android:id="@+id/btnMan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="男" />
-​
+
         <RadioButton
             android:id="@+id/btnWoman"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="女" />
     </RadioGroup>
-​
+
     <Button
         android:id="@+id/btnpost"
         android:layout_width="wrap_content"
@@ -60,7 +59,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 import android.widget.RadioButton;
 import android.widget.RadioGroup.OnCheckedChangeListener;
-​
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +88,7 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 import android.widget.RadioButton;
-​
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

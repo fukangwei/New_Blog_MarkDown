@@ -1,6 +1,5 @@
 ---
 title: ZeroMQ协议
-abbrlink: d698a678
 date: 2019-03-23 18:48:34
 categories: 网络编程
 ---

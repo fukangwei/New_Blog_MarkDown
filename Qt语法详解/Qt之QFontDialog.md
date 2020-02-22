@@ -1,7 +1,6 @@
 ---
 title: Qt之QFontDialog
 categories: Qt语法详解
-abbrlink: a67c4ab1
 date: 2019-02-06 20:55:52
 ---
 &emsp;&emsp;`QFontDialog`类提供了可以选择字体的对话框窗口部件，继承了`QDialog`，其头文件为`qfontdialog.h`。静态公有成员如下：<!--more-->
@@ -17,7 +16,7 @@ QFont getFont ( bool *ok, QWidget *parent = 0, const char *name = 0 );
 ``` cpp
 bool ok;
 QFont font = QFontDialog::getFont ( &ok, QFont ( "Helvetica [Cronyx]", 10 ), this );
-​
+
 if ( ok ) {
     /* font被设置为用户选择的字体 */
 } else {
@@ -47,7 +46,7 @@ QFont QFontDialog::getFont (
 ``` cpp
 bool ok;
 QFont font = QFontDialog::getFont ( &ok, this );
-​
+
 if ( ok ) {
     /* font被设置为用户选择的字体 */
 } else {

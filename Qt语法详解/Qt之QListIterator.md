@@ -1,7 +1,6 @@
 ---
 title: Qt之QListIterator
 categories: Qt语法详解
-abbrlink: 814025c6
 date: 2019-02-18 15:24:17
 ---
 &emsp;&emsp;The `QListIterator` class provides a `Java-style` const iterator for `QList` and `QQueue`. The header file is `QListIterator`.<!--more-->
@@ -33,9 +32,9 @@ Return            | Function
 
 ``` cpp
 QList<float> list;
-​
+
 QListIterator<float> i ( list );
-​
+
 while ( i.hasNext() ) {
     qDebug() << i.next();
 }
@@ -50,7 +49,7 @@ while ( i.hasNext() ) {
 ``` cpp
 QListIterator<float> i ( list );
 i.toBack();
-​
+
 while ( i.hasPrevious() ) {
     qDebug() << i.previous();
 }
@@ -62,14 +61,14 @@ while ( i.hasPrevious() ) {
 ### Member Function Documentation
 
 - `QListIterator::QListIterator(const QList<T> & list)`: Constructs an iterator for traversing `list`. The iterator is set to be at the front of the `list` (before the first item).
-- `bool QListIterator::findNext(const T & value)`: Searches for `value` starting from the current iterator position forward. Returns `true` if `value` is found; otherwise returns `false`. After the call, if `value` was found, the iterator is positioned just after the matching item; otherwise, the iterator is positioned at the back of the container.
-- `bool QListIterator::findPrevious(const T & value)`: Searches for `value` starting from the current iterator position backward. Returns `true` if `value` is found; otherwise returns `false`. After the call, if `value` was found, the iterator is positioned just before the matching item; otherwise, the iterator is positioned at the front of the container.
+- `bool QListIterator::findNext(const T & value)`: Searches for `value` starting from the current iterator position forward. Returns `true` if `value` is found; otherwise returns `false`. After the call, if `value` was found, the iterator is positioned just after the matching item; otherwise, the iterator is positioned at the back of the container.
+- `bool QListIterator::findPrevious(const T & value)`: Searches for `value` starting from the current iterator position backward. Returns `true` if `value` is found; otherwise returns `false`. After the call, if `value` was found, the iterator is positioned just before the matching item; otherwise, the iterator is positioned at the front of the container.
 - `bool QListIterator::hasNext() const`: Returns `true` if there is at least one item ahead of the iterator, i.e. the iterator is not at the back of the container; otherwise returns `false`.
 - `bool QListIterator::hasPrevious() const`: Returns `true` if there is at least one item behind the iterator, i.e. the iterator is not at the front of the container; otherwise returns `false`.
-- `const T & QListIterator::next()`: Returns the next item and advances the iterator by one position. Calling this function on an iterator located at the back of the container leads to undefined results.
-- `const T & QListIterator::peekNext() const`: Returns the next item without moving the iterator. Calling this function on an iterator located at the back of the container leads to undefined results.
-- `const T & QListIterator::peekPrevious() const`: Returns the previous item without moving the iterator. Calling this function on an iterator located at the front of the container leads to undefined results.
-- `const T & QListIterator::previous()`: Returns the previous item and moves the iterator back by one position. Calling this function on an iterator located at the front of the container leads to undefined results.
+- `const T & QListIterator::next()`: Returns the next item and advances the iterator by one position. Calling this function on an iterator located at the back of the container leads to undefined results.
+- `const T & QListIterator::peekNext() const`: Returns the next item without moving the iterator. Calling this function on an iterator located at the back of the container leads to undefined results.
+- `const T & QListIterator::peekPrevious() const`: Returns the previous item without moving the iterator. Calling this function on an iterator located at the front of the container leads to undefined results.
+- `const T & QListIterator::previous()`: Returns the previous item and moves the iterator back by one position. Calling this function on an iterator located at the front of the container leads to undefined results.
 - `void QListIterator::toBack()`: Moves the iterator to the back of the container (after the last item).
 - `void QListIterator::toFront()`: Moves the iterator to the front of the container (before the first item).
 - `QListIterator & QListIterator::operator=(const QList<T> & list)`: Makes the iterator operate on `list`. The iterator is set to be at the front of the `list` (before the first item).

@@ -2,7 +2,6 @@
 title: opencv的K均值实现
 categories: opencv和图像处理
 mathjax: true
-abbrlink: ac725d1
 date: 2019-04-15 10:02:58
 ---
 &emsp;&emsp;在使用`k-means`之前，必须先了解`k-means`算法的`2`个缺点：第一是必须人为指定所聚的类的个数`k`；第二是如果使用欧式距离来衡量相似度的话，可能会得到错误的结果，因为没有考虑到属性的重要性和相关性。为了减少这种错误，在使用`k-means`距离时，一定要使样本的每一维数据归一化，不然的话由于样本的属性范围不同，会导致错误的结果。<!--more-->
@@ -43,10 +42,10 @@ $$\sum_{i}\left \| samples_{i} - centers_{labels_{i}}\right \|^{2}$$
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/core/core.hpp"
 #include <iostream>
-​
+
 using namespace cv;
 using namespace std;
-​
+
 int main ( int argc, char **argv ) {
     const int MAX_CLUSTERS = 5;
     Scalar colorTab[] = { /* 因为最多只有5类，所以最多也就给5个颜色 */
@@ -57,7 +56,7 @@ int main ( int argc, char **argv ) {
         Scalar ( 0, 255, 255 ) };
     Mat img ( 500, 500, CV_8UC3 );
     RNG rng ( 12345 ); /* 随机数产生器 */
-​
+
     for ( ;; ) {
         int k, clusterCount = rng.uniform ( 2, MAX_CLUSTERS + 1 );
         int i, sampleCount = rng.uniform ( 1, 1001 );
@@ -65,7 +64,7 @@ int main ( int argc, char **argv ) {
         Mat points ( sampleCount, 1, CV_32FC2 ), labels;
         clusterCount = MIN ( clusterCount, sampleCount );
         Mat centers ( clusterCount, 1, points.type() ); /* 用来存储聚类后的中心点 */
-​
+
         /* generate random sample from multigaussian distribution */
         for ( k = 0; k < clusterCount; k++ ) { /* 产生随机数 */
             Point center;
@@ -79,28 +78,28 @@ int main ( int argc, char **argv ) {
                 pointChunk, CV_RAND_NORMAL, Scalar ( center.x, center.y ),
                 Scalar ( img.cols * 0.05, img.rows * 0.05 ) );
         }
-​
+
         randShuffle ( points, 1, &rng ); /* 因为要聚类，所以先随机打乱points里面的点，注意points和pointChunk是共用数据的 */
         kmeans ( /* 聚类3次，取结果最好的那次，聚类的初始化采用PP特定的随机算法 */
             points, clusterCount, labels,
             TermCriteria ( CV_TERMCRIT_EPS + CV_TERMCRIT_ITER, 10, 1.0 ),
             3, KMEANS_PP_CENTERS, centers );
         img = Scalar::all ( 0 );
-​
+
         for ( i = 0; i < sampleCount; i++ ) {
             int clusterIdx = labels.at<int> ( i );
             Point ipt = points.at<Point2f> ( i );
             circle ( img, ipt, 2, colorTab[clusterIdx], CV_FILLED, CV_AA );
         }
-​
+
         imshow ( "clusters", img );
         char key = ( char ) waitKey ( 0 ); /* 无限等待 */
-​
+
         if ( key == 27 || key == 'q' || key == 'Q' ) {
             break;
         }
     }
-​
+
     return 0;
 }
 ```

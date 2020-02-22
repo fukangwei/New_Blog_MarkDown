@@ -1,7 +1,6 @@
 ---
 title: find命令
 categories: Shell编程
-abbrlink: 48bd8be9
 date: 2019-01-20 20:53:42
 ---
 &emsp;&emsp;`find`命令如下：<!--more-->

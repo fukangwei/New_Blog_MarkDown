@@ -1,7 +1,6 @@
 ---
 title: STM32的ADC以及内部温度传感器
 categories: 单片机
-abbrlink: 16bacc6d
 mathjax: true
 date: 2019-03-19 09:58:57
 ---
@@ -47,7 +46,7 @@ void ADC_GPIO_Init ( void ) {
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN; /* 设为模拟输入 */
     GPIO_Init ( GPIOA, &GPIO_InitStructure );
 }
-​
+
 void ADC_configuration ( void ) {
     ADC_InitTypeDef ADC_InitStructure;
     ADC_InitStructure.ADC_Mode = ADC_Mode_Independent; /* 独立模式 */
@@ -61,24 +60,24 @@ void ADC_configuration ( void ) {
     // ADC_RegularChannelConfig( ADC1, ADC_Channel_0, 1, ADC_SampleTime_7Cycles5 );
     ADC_Cmd ( ADC1, ENABLE ); /* 使能或者失能指定的ADC */
     ADC_ResetCalibration ( ADC1 ); /* 重置指定的ADC的校准寄存器 */
-​
+
     while ( ADC_GetResetCalibrationStatus ( ADC1 ) ); /* 等待校准寄存器初始化 */
-​
+
     ADC_StartCalibration ( ADC1 ); /* 开始校准 */
-​
+
     while ( ADC_GetCalibrationStatus ( ADC1 ) ); /* 等待校准完成 */
-​
+
     ADC_SoftwareStartConvCmd ( ADC1, ENABLE ); /* 使能指定的ADC的软件转换启动功能 */
 }
-​
+
 u16 GetADCValue ( u8 ADC_Channel ) { /* ADC_Channel_x 0~17 */
     u16 adc_value;
     ADC_RegularChannelConfig ( ADC1, ADC_Channel, 1, ADC_SampleTime_7Cycles5 );
     ADC_SoftwareStartConvCmd ( ADC1, ENABLE ); /* 使能指定的ADC的软件转换启动功能 */
-​
+
     /* 检查制定ADC标志位是否置为1，ADC_FLAG_EOC是转换结束标志位 */
     while ( ADC_GetFlagStatus ( ADC1, ADC_FLAG_EOC ) == RESET );
-​
+
     adc_value = ADC_GetConversionValue ( ADC1 );
     return adc_value; /* 返回最近一次ADCx规则组的转换结果 */
 }

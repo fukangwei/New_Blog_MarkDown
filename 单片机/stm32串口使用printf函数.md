@@ -1,7 +1,6 @@
 ---
 title: stm32串口使用printf函数
 categories: 单片机
-abbrlink: 3b883a87
 date: 2018-12-30 07:06:17
 ---
 &emsp;&emsp;标准库函数的默认输出设备是显示器，要实现在串口或`LCD`输出，必须重定义标准库函数里与输出设备相关的函数。例如`printf`输出到串口，需要将`fputc`里面的输出指向串口(重定向)。只要添加一个`int fputc(int ch, FILE *f)`函数，能够输出字符就可以了：<!--more-->
@@ -14,14 +13,14 @@ date: 2018-12-30 07:06:17
 #else
     #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
-​
+
 PUTCHAR_PROTOTYPE {
     /* Place your implementation of fputc here */
     /* e.g. write a character to the USART */
     USART_SendData ( USART1, ( uint8_t ) ch );
     /* Loop until the end of transmission */
     while ( USART_GetFlagStatus ( USART1, USART_FLAG_TC ) == RESET );
-​
+
     return ch;
 }
 ```
@@ -37,11 +36,11 @@ PUTCHAR_PROTOTYPE {
 _sys_exit ( int x ) { /* 定义“_sys_exit”，以避免使用半主机模式 */
     x = x;
 }
-​
+
 struct __FILE { /* 标准库需要的支持函数 */
     int handle;
 };
-​
+
 FILE __stdout;
 ```
 

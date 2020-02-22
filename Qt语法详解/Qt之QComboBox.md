@@ -1,7 +1,6 @@
 ---
 title: Qt之QComboBox
 categories: Qt语法详解
-abbrlink: 24ff6b5a
 date: 2019-02-21 16:23:06
 ---
 &emsp;&emsp;`QComboBox`提供了下拉列表框的控件，下面简单地介绍几个的方法和属性。<!--more-->
@@ -37,7 +36,7 @@ int currentIndex() const;
 #include <QComboBox>
 #include <QLayout>
 #include <QDebug>
-​
+
 Widget::Widget ( QWidget *parent ) : QWidget ( parent ) {
     QComboBox *combobox = new QComboBox ( this );
     combobox->addItem ( tr ( "Circle" ) );
@@ -47,7 +46,7 @@ Widget::Widget ( QWidget *parent ) : QWidget ( parent ) {
     qDebug() << "Now there are " << combobox->count() << "Items";
     qDebug() << "The current item is" << combobox->currentText();
 }
-​
+
 Widget::~Widget() {
 }
 ```
@@ -327,7 +326,7 @@ void setSizeAdjustPolicy ( SizeAdjustPolicy policy )
 - `void QComboBox::activated(const QString & text) [signal]`: This signal is sent when the user chooses an item in the combobox. The item's `text` is passed. Note that this signal is sent even when the choice is not changed. If you need to know when the choice actually changes, use signal `currentIndexChanged()`.
 - `void QComboBox::addItem(const QString & text, const QVariant & userData = QVariant())`: Adds an item to the combobox with the given `text`, and containing the specified `userData` (stored in the `Qt::UserRole`). The item is appended to the list of existing items.
 - `void QComboBox::addItem(const QIcon & icon, const QString & text, const QVariant & userData = QVariant())`: Adds an item to the combobox with the given `icon` and `text`, and containing the specified `userData` (stored in the `Qt::UserRole`). The item is appended to the list of existing items.
-- `void QComboBox::addItems(const QStringList & texts)`: Adds each of the strings in the given `texts` to the combobox. Each item is appended to the list of existing items in turn.  
+- `void QComboBox::addItems(const QStringList & texts)`: Adds each of the strings in the given `texts` to the combobox. Each item is appended to the list of existing items in turn.
 - `void QComboBox::changeEvent(QEvent * e) [virtual protected]`: Reimplemented from `QWidget::changeEvent()`.
 - `void QComboBox::clear() [slot]`: Clears the combobox, removing all items. **Note**: If you have set an external model on the combobox this model will still be cleared when calling this function.
 - `void QComboBox::clearEditText() [slot]`: Clears the contents of the line edit used for editing in the combobox.
@@ -355,7 +354,7 @@ void setSizeAdjustPolicy ( SizeAdjustPolicy policy )
 - `QIcon QComboBox::itemIcon(int index) const`: Returns the icon for the given `index` in the combobox.
 - `QString QComboBox::itemText(int index) const`: Returns the text for the given `index` in the combobox.
 - `void QComboBox::keyPressEvent(QKeyEvent * e) [virtual protected]`: Reimplemented from `QWidget::keyPressEvent()`.
-- `void QComboBox::keyReleaseEvent(QKeyEvent * e) [virtual protected]`: Reimplemented from `QWidget::keyReleaseEvent()`.
+- `void QComboBox::keyReleaseEvent(QKeyEvent * e) [virtual protected]`: Reimplemented from `QWidget::keyReleaseEvent()`.
 - `QLineEdit * QComboBox::lineEdit() const`: Returns the line edit used to edit items in the combobox, or `0` if there is no line edit. Only editable combo boxes have a line edit.
 - `QSize QComboBox::minimumSizeHint() const [virtual]`: Reimplemented from `QWidget::minimumSizeHint()`.
 - `QAbstractItemModel * QComboBox::model() const`: Returns the model used by the combobox.
@@ -375,7 +374,7 @@ void setSizeAdjustPolicy ( SizeAdjustPolicy policy )
 - `void QComboBox::setModel(QAbstractItemModel * model)`: Sets the model to be `model`. `model` must not be `0`. If you want to clear the contents of a model, call `clear()`.
 - `void QComboBox::setRootModelIndex(const QModelIndex & index)`: Sets the root model item `index` for the items in the combobox.
 - `void QComboBox::setValidator(const QValidator * validator)`: Sets the `validator` to use instead of the current validator.
-- `void QComboBox::setView(QAbstractItemView * itemView)`: Sets the view to be used in the combobox popup to the given `itemView`. The combobox takes ownership of the view. Note: If you want to use the convenience views (like `QListWidget`, `QTableWidget` or `QTreeWidget`), make sure to call `setModel()` on the combobox with the convenience widgets model before calling this function.
+- `void QComboBox::setView(QAbstractItemView * itemView)`: Sets the view to be used in the combobox popup to the given `itemView`. The combobox takes ownership of the view. **Note**: If you want to use the convenience views (like `QListWidget`, `QTableWidget` or `QTreeWidget`), make sure to call `setModel()` on the combobox with the convenience widgets model before calling this function.
 - `void QComboBox::showEvent(QShowEvent * e) [virtual protected]`: Reimplemented from `QWidget::showEvent()`.
 - `void QComboBox::showPopup() [virtual]`: Displays the list of items in the combobox. If the list is empty then the no items will be shown. If you reimplement this function to show a custom `pop-up`, make sure you call `hidePopup()` to reset the internal state.
 - `QSize QComboBox::sizeHint() const [virtual]`: Reimplemented from `QWidget::sizeHint()`. This implementation caches the size hint to avoid resizing when the contents change dynamically. To invalidate the cached value change the sizeAdjustPolicy.

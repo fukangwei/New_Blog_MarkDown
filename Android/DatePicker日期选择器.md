@@ -1,7 +1,6 @@
 ---
 title: DatePicker日期选择器
 categories: Android
-abbrlink: 4761eb81
 date: 2018-12-28 12:31:05
 ---
 &emsp;&emsp;日期选择器可供我们使用的属性如下：<!--more-->
@@ -31,7 +30,7 @@ date: 2018-12-28 12:31:05
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-​
+
     <DatePicker
         android:id="@+id/datePicker"
         android:layout_width="match_parent"
@@ -50,7 +49,7 @@ import android.os.Bundle;
 import android.widget.DatePicker;
 import android.widget.Toast;
 import java.util.Calendar;
-​
+
 public class MainActivity extends AppCompatActivity {
     int year;
     int monthOfYear;

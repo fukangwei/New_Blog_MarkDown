@@ -1,6 +1,5 @@
 ---
 title: 获取本机MAC地址
-abbrlink: '69412986'
 date: 2019-01-17 09:01:05
 categories: 网络编程
 ---
@@ -45,53 +44,53 @@ int ioctl ( int d, int request, ... );
 #include <net/if.h>
 
 int GetMac ( const char *, unsigned char * );
-​
+
 int GetMac ( const char *ifname, unsigned char *mac ) {
     int sock, ret;
     struct ifreq ifr;
     sock = socket ( AF_INET, SOCK_STREAM, 0 );
-​
+
     if ( sock < 0 ) {
         perror ( "socket error!\n" );
         return -1;
     }
-​
+
     memset ( &ifr, 0, sizeof ( ifr ) );
     strcpy ( ifr.ifr_name, ifname );
     ret = ioctl ( sock, SIOCGIFHWADDR, &ifr, sizeof ( ifr ) );
-​
+
     if ( ret == 0 ) {
         memcpy ( mac, ifr.ifr_hwaddr.sa_data, 6 );
     } else {
         perror ( "ioctl error!\n" );
     }
-​
+
     close ( sock );
     return ret;
 }
-​
+
 int main ( int argc, char *argv[] ) {
     int ret;
     char ifname[IFNAMSIZ];
     unsigned char mac[6];
-​
+
     if ( argc == 1 ) {
         /* 系统不同，名字可能会不同，可以使用“ifconfig”命令测试 */
         strcpy ( ifname, "eth1" );
     } else {
         strcpy ( ifname, argv[1] );
     }
-​
+
     memset ( mac, 0, sizeof ( mac ) );
     ret = GetMac ( ifname, mac );
-​
+
     if ( ret == 0 ) {
         printf ( "%s mac address is :[%02X:%02X:%02X:%02X:%02X:%02X]\n", \
                  ifname, mac[0], mac[1], mac[2], mac[3], mac[4], mac[5] );
     } else {
         fprintf ( stderr, "Can,t get %s's mac address\n", ifname );
     }
-​
+
     return 0;
 }
 ```

@@ -1,7 +1,6 @@
 ---
 title: SharedPreferences
 categories: Android
-abbrlink: 56560b6f
 date: 2019-02-10 09:54:55
 ---
 &emsp;&emsp;在`Android`开发中，经常需要将少量简单类型数据保存在本地，例如用户设置。这些数据可能只是一两个字符串，一般选择使用`SharedPreferences`来保存。它使用`xml`文件存放数据，存放在`/data/data/<package name>/shared_prefs`目录下。<!--more-->
@@ -120,11 +119,11 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-​
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "SharedPreferencesTest";
     private final String PREFS_NAME = "MyPrefsFile"; /* 保存数据SharedPreferences文件的名字 */
-​
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         clearUserInfo();
         getUserInfo();
     }
-​
+
     private void saveUserInfo() { /* 保存用户信息 */
         SharedPreferences userInfo = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = userInfo.edit(); /* 获取Editor */
@@ -145,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         editor.commit(); /* 提交修改 */
         Log.i(TAG, "保存用户信息成功");
     }
-​
+
     private void getUserInfo() { /* 读取用户信息 */
         SharedPreferences userInfo = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         String username = userInfo.getString("username", null); /* 读取username */
@@ -153,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "读取用户信息");
         Log.i(TAG, "username:" + username + "， age:" + age);
     }
-​
+
     private void removeUserInfo() { /* 移除年龄数据 */
         SharedPreferences userInfo = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = userInfo.edit(); /* 获取Editor */
@@ -161,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
         editor.commit();
         Log.i(TAG, "移除年龄数据");
     }
-​
+
     private void clearUserInfo() { /* 清空数据 */
         SharedPreferences userInfo = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = userInfo.edit(); /* 获取Editor */

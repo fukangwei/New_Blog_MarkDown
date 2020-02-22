@@ -1,7 +1,6 @@
 ---
 title: Qt之FTP客户端_QNetworkAccessManager
 categories: Qt应用示例
-abbrlink: 89f0fb1f
 date: 2019-02-06 14:04:44
 ---
 &emsp;&emsp;在此实现的`FTP`包括两个类，一个是界面类，一个是`Ftp`实现的类。<!--more-->
@@ -10,7 +9,7 @@ date: 2019-02-06 14:04:44
 ``` cpp
 #ifndef CLIENT_H
 #define CLIENT_H
-​
+
 #include <QFile>
 #include <QNetworkAccessManager>
 #include <QUrl>
@@ -18,7 +17,7 @@ date: 2019-02-06 14:04:44
 #include <QByteArray>
 #include <QFileInfo>
 #include <QDir>
-​
+
 class FtpCLient: public QObject {
     Q_OBJECT
 protected slots:
@@ -36,7 +35,7 @@ private:
     QUrl *m_pUrl;
     bool is_down = true; /* 判断是否为下载选项 */
 };
-​
+
 #endif // CLIENT_H
 ```
 
@@ -44,7 +43,7 @@ private:
 
 ``` cpp
 #include "client.h"
-​
+
 FtpCLient::FtpCLient() {
     m_pManager = new QNetworkAccessManager();
     m_pUrl = new QUrl();
@@ -52,29 +51,29 @@ FtpCLient::FtpCLient() {
     connect ( m_pManager, SIGNAL ( finished ( QNetworkReply * ) ), \
               this, SLOT ( finished ( QNetworkReply * ) ) );
 }
-​
+
 void FtpCLient::finished ( QNetworkReply *reply ) {
     if ( is_down == true ) { /* 如果是下载选项，则关闭打开的文件 */
         m_pFile->write ( reply->readAll() );
         m_pFile->flush();
         m_pFile->close();
     }
-​
+
     reply->deleteLater();
 }
-​
+
 /* 设置FTP服务器用户名和密码 */
 void FtpCLient::FtpSetUserInfor ( QString user, QString pwd ) {
     m_pUrl->setUserName ( user );
     m_pUrl->setPassword ( pwd );
 }
-​
+
 /* 设置地址和端口 */
 void FtpCLient::FtpSetHostPort ( QString str, int port ) {
     m_pUrl->setHost ( str );
     m_pUrl->setPort ( port );
 }
-​
+
 /* 下载文件 */
 void FtpCLient::FtpGet ( QString sor, QString dev ) {
     is_down = true; /* 该选项是下载选项 */
@@ -85,7 +84,7 @@ void FtpCLient::FtpGet ( QString sor, QString dev ) {
     m_pUrl->setPath ( sor );
     m_pReply = m_pManager->get ( QNetworkRequest ( *m_pUrl ) );
 }
-​
+
 /* 上传文件 */
 void FtpCLient::FtpPut ( QString source, QString dev ) {
     is_down = false; /* 该选项是上传选项 */
@@ -102,14 +101,14 @@ void FtpCLient::FtpPut ( QString source, QString dev ) {
 ``` cpp
 #ifndef WIDGET_H
 #define WIDGET_H
-​
+
 #include <QWidget>
 #include <client.h>
-​
+
 namespace Ui {
     class Widget;
 }
-​
+
 class Widget : public QWidget {
     Q_OBJECT
 public:
@@ -122,7 +121,7 @@ private slots:
     void on_up_clicked();
     void on_down_clicked();
 };
-​
+
 #endif // WIDGET_H
 ```
 
@@ -131,22 +130,22 @@ private slots:
 ``` cpp
 #include "widget.h"
 #include "ui_widget.h"
-​
+
 Widget::Widget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::Widget ) {
     ui->setupUi ( this );
     client.FtpSetUserInfor ( "fukangwei", "171720" ); /* 填充ftp服务器的用户名和密码 */
     client.FtpSetHostPort ( "192.168.1.109", 21 ); /* 填充ftp服务器的ip地址和端口号 */
 }
-​
+
 Widget::~Widget() {
     delete ui;
 }
-​
+
 void Widget::on_up_clicked() {
     /* 将文件hello中的内容上传至服务器的hello.c文件中 */
     client.FtpPut ( "hello", "./hello.c" );
 }
-​
+
 void Widget::on_down_clicked() {
     /* 将下载内容复制到hello.c文件 */
     client.FtpGet ( "./test/little", "hello.c" );
@@ -159,7 +158,7 @@ void Widget::on_down_clicked() {
 #include "widget.h"
 #include <QApplication>
 #include <QTextCodec>
-​
+
 int main ( int argc, char *argv[] ) {
     QApplication a ( argc, argv );
     /* 指定字符集为UTF-8 */

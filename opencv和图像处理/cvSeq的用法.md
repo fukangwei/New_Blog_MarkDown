@@ -1,7 +1,6 @@
 ---
 title: cvSeq的用法
 categories: opencv和图像处理
-abbrlink: 914f0b14
 date: 2018-12-30 18:13:46
 ---
 ### cvCreateSeq
@@ -180,14 +179,14 @@ void cvStartReadSeq ( const CvSeq *seq, CvSeqReader *reader, int reverse = 0 );
 ``` cpp
 CvSeq *pCurSeq = pInputSeq;
 int index = 0;
-​
+
 while ( pCurSeq = pCurSeq->h_next ) {
     if ( process ( pCurSeq ) ) {
         pCurSeq = pCurSeq->h_prev; /* 这里为了简单，不考虑是否为列表头 */
         cvSeqRemove ( pInputSeq, index );
         --index;
     }
-​
+
     ++index;
 }
 ```
@@ -203,13 +202,13 @@ while ( pCurSeq = pCurSeq->h_next ) {
 
 ``` cpp
 #define CV_TREE_NODE_FIELDS(node_type)                      \
-    int    flags;             /* micsellaneous flags     */ \
+    int    flags;             /* micsellaneous flags     */ \
     int    header_size;       /* size of sequence header */ \
     struct node_type* h_prev; /* previous sequence       */ \
     struct node_type* h_next; /* next sequence           */ \
     struct node_type* v_prev; /* 2nd previous sequence   */ \
-    struct node_type* v_next  /* 2nd next sequence       */
-​
+    struct node_type* v_next  /* 2nd next sequence       */
+
 /*
  * Read/Write sequence.
  * Elements can be dynamically inserted to or deleted from the sequence.
@@ -235,11 +234,11 @@ typedef struct CvSeq {
 ``` cpp
 CvSeq *pCurSeq = pInputSeq;
 CvSeq *pOldSeq = NULL;
-​
+
 while ( pCurSeq ) {
     if ( process ( pCurSeq ) ) {
         pOldSeq = pCurSeq;
-​
+
         if ( pOldSeq->h_prev ) {
             pCurSeq = pOldSeq->h_prev;
             pCurSeq->h_next = pOldSeq->h_next;

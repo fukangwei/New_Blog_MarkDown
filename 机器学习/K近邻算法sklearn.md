@@ -1,7 +1,6 @@
 ---
 title: K近邻算法sklearn
 categories: 机器学习
-abbrlink: '47596074'
 date: 2019-02-12 11:28:15
 ---
 &emsp;&emsp;`sklearn.neighbors`模块实现了`k`近邻算法：<!--more-->
@@ -73,7 +72,7 @@ import csv
 import random
 import math
 import operator
-​
+
 def loadDataset(filename, split, trainingSet=[], testSet=[]):
     with open(filename, 'rt') as csvfile:
         lines = csv.reader(csvfile)
@@ -87,7 +86,7 @@ def loadDataset(filename, split, trainingSet=[], testSet=[]):
                 trainingSet.append(dataset[x])
             else:
                 testSet.append(dataset[x])
-​
+
 def euclideanDistance(instance1, instance2, length):
     distance = 0
 
@@ -95,7 +94,7 @@ def euclideanDistance(instance1, instance2, length):
         distance += pow((instance1[x] - instance2[x]), 2)
 
     return math.sqrt(distance)
-​
+
 def getNeighbors(trainingSet, testInstance, k):
     distances = []
     length = len(testInstance) - 1
@@ -111,7 +110,7 @@ def getNeighbors(trainingSet, testInstance, k):
         neighbors.append(distances[x][0])
 
     return neighbors
-​
+
 def getResponse(neighbors):
     classVotes = {}
 
@@ -125,7 +124,7 @@ def getResponse(neighbors):
 
     sortedVotes = sorted(classVotes.items(), key=operator.itemgetter(1), reverse=True)
     return sortedVotes[0][0]
-​
+
 def getAccuracy(testSet, predictions):
     correct = 0
 
@@ -134,7 +133,7 @@ def getAccuracy(testSet, predictions):
             correct += 1
 
     return (correct / float(len(testSet))) * 100.0
-​
+
 def main():
     trainingSet = []
     testSet = []
@@ -154,7 +153,7 @@ def main():
     print('predictions: ' + repr(predictions))
     accuracy = getAccuracy(testSet, predictions)
     print('Accuracy: ' + repr(accuracy) + '%')
-​
+
 if __name__ == '__main__':
     main()
 ```
@@ -167,21 +166,21 @@ if __name__ == '__main__':
 from sklearn.datasets import load_iris
 from sklearn import neighbors, metrics
 from sklearn.model_selection import train_test_split
-​
+
 knn = neighbors.KNeighborsClassifier(n_neighbors=5)  # 实例化KNN对象，选择K为5
 iris = load_iris()  # 加载iris数据集
 print(iris)
-​
+
 # 对数据集进行切割分类，分别为训练数据、测试数据、训练标记、测试标记，比例是“4:1”。
 # random_state设置为零可以保证每次的随机数是一样的。如果是1，每次结果都不一样
 train_data, test_data, train_target, test_target = \
     train_test_split(iris.data, iris.target, test_size=0.2, random_state=0)
-​
+
 knn.fit(train_data, train_target)  # 建立模型
 print(knn)
 print(knn.classes_)  # 打印种类
 print(iris.target_names)  # 打印三类花的名字
-​
+
 test_res = knn.predict(test_data)  # 开始预测
 # 打印准确的标记和预测的标记
 print(test_target)

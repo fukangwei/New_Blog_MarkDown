@@ -1,7 +1,6 @@
 ---
 title: gethostbyaddr函数
 categories: Linux系统编程
-abbrlink: ce05d358
 date: 2018-12-29 15:04:18
 ---
 &emsp;&emsp;函数`gethostbyaddr`取一个二进制的`IP`地址并试图找到对应于此地址的主机名，与`gethostbyname`的行为恰好相反。<!--more-->
@@ -26,23 +25,23 @@ struct hostent *gethostbyaddr ( const char *addr, size_t len, int family );
 #include <errno.h>
 #include <string.h>
 #include <netdb.h>
-​
+
 int main ( int argc, char **argv ) {
     struct in_addr addr;
     struct hostent *phost;
-​
+
     if ( inet_pton ( AF_INET, argv[1], &addr ) <= 0 ) {
         printf ( "inet_pton error:%s\n", strerror ( errno ) );
         return -1;
     }
-​
+
     phost = gethostbyaddr ( ( const char * ) &addr, sizeof ( addr ), AF_INET );
-​
+
     if ( phost == NULL ) {
         printf ( "gethostbyaddr error:%s\n", strerror ( h_errno ) );
         return -1;
     }
-​
+
     printf ( "host name:%s\n", phost->h_name );
     return 0;
 }

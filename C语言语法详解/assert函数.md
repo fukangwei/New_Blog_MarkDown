@@ -1,12 +1,11 @@
 ---
 title: assert函数
 categories: C语言语法详解
-abbrlink: 92555b6a
 date: 2018-12-10 19:23:24
 ---
 &emsp;&emsp;`assert`宏的原型如下：<!--more-->
 
-``` c
+``` cpp
 #include <assert.h>
 void assert ( int expression );
 ```
@@ -73,7 +72,7 @@ assert ( i++ < 100 );
 
 这是因为如果出错，比如在执行之前`i = 100`，那么这条语句就不会执行，`i++`这条命令就没有执行。正确的用法如下：
 
-``` c
+``` cpp
 assert ( i < 100 );
 i++;
 ```

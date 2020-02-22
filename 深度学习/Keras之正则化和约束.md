@@ -1,7 +1,6 @@
 ---
 title: Keras之正则化和约束
 categories: 深度学习
-abbrlink: fb002d1
 date: 2018-12-30 21:04:31
 ---
 ### 正则化
@@ -38,7 +37,7 @@ from keras import backend as K
 
 def l1_reg(weight_matrix):
     return 0.01 * K.sum(K.abs(weight_matrix))
-​
+
 model.add(Dense(64, input_dim=64, kernel_regularizer=l1_reg)
 ```
 

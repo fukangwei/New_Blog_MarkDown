@@ -1,11 +1,10 @@
 ---
 title: urllib模块
 categories: Python语法
-abbrlink: b34319f8
 date: 2019-04-14 21:28:47
 ---
-&emsp;&emsp;`Urllib`库是`Python`中的一个功能强大、用于操作`URL`，并在做爬虫时经常要用到的库。在`Python2.x`中，分为`Urllib`库和`Urllin2`库，`Python3.x`之后都合并到`Urllib`库中，使用方法稍有不同。本文介绍的是`Python3`中的`urllib`库。
-<!--more-->
+&emsp;&emsp;`Urllib`库是`Python`中的一个功能强大、用于操作`URL`，并在做爬虫时经常要用到的库。在`Python2.x`中，分为`Urllib`库和`Urllin2`库，`Python3.x`之后都合并到`Urllib`库中，使用方法稍有不同。本文介绍的是`Python3`中的`urllib`库。<!--more-->
+
 ### 什么是Urllib库
 
 &emsp;&emsp;`Urllib`是`Python`提供的一个用于操作`URL`的模块，我们在爬取网页的时候，经常需要用到这个库。升级合并后，模块中的包位置变化的地方较多，在此列举一些常见的位置变动，方便之前用`Python2.x`的朋友在使用`Python3.x`的时候可以快速掌握。常见的变化如下：
@@ -113,12 +112,12 @@ X-Requested-With:XMLHttpRequest
 ``` python
 import urllib.request
 import urllib.parse
-​
+
 url = 'http://www.baidu.com'
 header = {'User-Agent': 'Mozilla/5.0 (X11; Fedora; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'}
 request = urllib.request.Request(url, headers=header)
 reponse = urllib.request.urlopen(request).read()
-​
+
 fhandle = open("./1.html", "wb")
 fhandle.write(reponse)
 fhandle.close()
@@ -164,17 +163,17 @@ https://www.baidu.com/s?wd=关键词
 ``` python
 import urllib.request
 import urllib.parse
-​
+
 url = 'http://www.baidu.com/s?wd='
 key = 'fengxin的博客'
 key_code = urllib.request.quote(key)  # 因为URL里含中文，需要进行编码
 url_all = url + key_code
-​
+
 header = {'User-Agent': 'Mozilla/5.0 (X11; Fedora; Linux x86_64) AppleWebKit/537.36 \
                         (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'}
 request = urllib.request.Request(url_all, headers=header)
 reponse = urllib.request.urlopen(request).read()
-​
+
 fh = open("./baidu.html", "wb")
 fh.write(reponse)
 fh.close()
@@ -241,7 +240,7 @@ http://www.iqianyue.com/mypost
 ``` python
 import urllib.request
 import urllib.parse
-​
+
 url = 'http://www.iqianyue.com/mypost'
 header = {'User-Agent': 'Mozilla/5.0 (X11; Fedora; Linux x86_64) \
             AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'}
@@ -249,7 +248,7 @@ data = {'name': 'fengxin', 'pass': '123'}
 postdata = urllib.parse.urlencode(data).encode('utf8')  # 进行编码
 request = urllib.request.Request(url, postdata)
 reponse = urllib.request.urlopen(request).read()
-​
+
 fhandle = open("./1.html", "wb")
 fhandle.write(reponse)
 fhandle.close()
@@ -278,7 +277,7 @@ urlretrieve(url, filename=None, reporthook=None, data=None)
 ``` python
 import os
 import urllib.request
-​
+
 def cbk(a, b, c):  # 回调函数
     """ 参数a是已经下载的数据块数量，b是数据块的大小，c是远程文件的大小 """
     per = 100.0 * a * b / c
@@ -287,7 +286,7 @@ def cbk(a, b, c):  # 回调函数
         per = 100
 
     print('%.2f%%' % per)
-​
+
 url = 'http://www.python.org/ftp/python/2.7.5/Python-2.7.5.tar.bz2'
 dir = os.path.abspath('.')
 work_path = os.path.join(dir, 'Python-2.7.5.tar.bz2')

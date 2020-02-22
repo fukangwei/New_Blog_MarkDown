@@ -1,7 +1,6 @@
 ---
 title: functools模块
 categories: Python语法
-abbrlink: b53bda20
 date: 2019-01-09 09:57:39
 ---
 &emsp;&emsp;`Python`的`functools`模块可以说主要是为函数式编程而设计，用于增强函数功能。<!--more-->
@@ -33,13 +32,13 @@ urlunquote = functools.partial(urlunquote, encoding='latin1')
 
 ``` python
 from functools import partial
-​
+
 def add(a, b):
     return a + b
-​
+
 plus3 = partial(add, 3)
 plus5 = partial(add, 5)
-​
+
 print("add(4,2) =", add(4, 2))
 print("plus3(4) =", plus3(4))
 print("plus3(7) =", plus3(7))
@@ -62,7 +61,7 @@ plus5(10) = 15
 ``` python
 WRAPPER_ASSIGNMENTS = ('__module__', '__name__', '__doc__')
 WRAPPER_UPDATES = ('__dict__',)
-​
+
 def update_wrapper(wrapper, wrapped, assigned=WRAPPER_ASSIGNMENTS, updated=WRAPPER_UPDATES):
     for attr in assigned:
         setattr(wrapper, attr, getattr(wrapped, attr))
@@ -77,33 +76,33 @@ def update_wrapper(wrapper, wrapped, assigned=WRAPPER_ASSIGNMENTS, updated=WRAPP
 
 ``` python
 from functools import update_wrapper
-​
+
 def wrap(func):
     def call_it(*args, **kwargs):
         """ wrap func: call_it """
         print('before call')
         return func(*args, **kwargs)
-​
+
     return call_it
-​
+
 @wrap
 def hello():
     """ say hello """
     print('hello world')
-​
+
 def wrap2(func):
     def call_it(*args, **kwargs):
         """ wrap func: call_it2 """
         print('before call')
         return func(*args, **kwargs)
-​
+
     return update_wrapper(call_it, func)
-​
+
 @wrap2
 def hello2():
     """ test hello """
     print('hello world2')
-​
+
 if __name__ == '__main__':
     hello()
     print(hello.__name__)
@@ -139,19 +138,19 @@ def wraps(wrapped, assigned=WRAPPER_ASSIGNMENTS, updated=WRAPPER_UPDATES):
 
 ``` python
 from functools import wraps
-​
+
 def wrap3(func):
     @wraps(func)
     def call_it(*args, **kwargs):
         print("calling", func.__name__)
         return func(*args, **kwargs)
-​
+
     return call_it
-​
+
 @wrap3
 def hello3():
     print("I am hello3")
-​
+
 hello3()
 print(hello3.__name__)
 ```
@@ -176,10 +175,10 @@ reduce(function, sequence, startValue)
 
 ``` python
 from functools import reduce
-​
+
 def foo(x, y):
     return x + y
-​
+
 result = range(1, 10)
 print(reduce(foo, result))  # 结果为45
 print(reduce(foo, result, 10))  # 结果为55
@@ -204,27 +203,27 @@ print(reduce(foo, result, 10))  # 结果为55
 
 ``` python
 from functools import total_ordering
-​
+
 @total_ordering
 class Student:
     def __init__(self, firstname, lastname):
         self.firstname = firstname
         self.lastname = lastname
-​
+
     def __eq__(self, other):
         return ((self.lastname.lower(), self.firstname.lower())
                  == (other.lastname.lower(), other.firstname.lower()))
-​
+
     def __lt__(self, other):
         return ((self.lastname.lower(), self.firstname.lower())
                  < (other.lastname.lower(), other.firstname.lower()))
-​
+
 print(dir(Student))
-​
+
 stu = Student("Huoty", "Kong")
 stu2 = Student("Huoty", "Kong")
 stu3 = Student("Qing", "Lu")
-​
+
 print(stu == stu2)
 print(stu > stu3)
 ```
@@ -249,12 +248,12 @@ False
 
 ``` python
 from functools import lru_cache
-​
+
 @lru_cache(None)
 def add(x, y):
     print("calculating: %s + %s" % (x, y))
     return x + y
-​
+
 print(add(1, 2))
 print(add(1, 2))  # 直接返回缓存信息
 print(add(2, 3))

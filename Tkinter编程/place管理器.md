@@ -1,7 +1,6 @@
 ---
 title: place管理器
 categories: Tkinter编程
-abbrlink: 270c9a04
 date: 2019-04-12 11:15:07
 ---
 &emsp;&emsp;`pack`、`grid`和`place`均用于管理同在一个父组件下的所有组件的布局：`pack`是按添加顺序排列组件；`grid`是按`行/列`形式排列组件；`place`则允许程序员指定组件的大小和位置。<!--more-->
@@ -13,14 +12,14 @@ date: 2019-04-12 11:15:07
 
 ``` python
 from tkinter import *
-​
+
 root = Tk()
-​
+
 def callback():
     print("正中靶心")
-​
+
 Button(root, text="点我", command=callback).place(relx=0.5, rely=0.5, anchor=CENTER)
-​
+
 mainloop()
 ```
 

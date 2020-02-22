@@ -1,7 +1,6 @@
 ---
 title: STM32的ucgui移植
 categories: ucos和ucgui
-abbrlink: ec0a8f7a
 date: 2019-03-19 09:18:14
 ---
 &emsp;&emsp;这里移植的是`UCGUI3.90a`版本，虽然已经有更新的版本，例如`UCGUI3.98`、甚至`4.04`版本，但目前只有这个版本的代码是最全的，包括`JPEG`、`MULTILAYER`、`MEMDEV`、`AntiAlias`等模块。<!--more-->
@@ -33,21 +32,21 @@ date: 2019-03-19 09:18:14
 #include "LCD_Private.h" /* private modul definitions & config */
 #include "GUI_Private.h"
 #include "GUIDebug.h"
-​
+
 /* #if (LCD_CONTROLLER == -1) \
     && (!defined(WIN32) | defined(LCD_SIMCONTROLLER)) */ /* 必须注释，否则不会编译 */
 #include "ili93xx.h" /* 包含你的LCD驱动函数声明 */
 #if (LCD_CONTROLLER == -1) /* 这句对应“Config/LCDConf.h” */
-​
+
 void LCD_L0_SetPixelIndex ( int x, int y, int PixelIndex ) {
     POINT_COLOR = PixelIndex; /* 我的画点函数使用了一个全局变量设定颜色 */
     LCD_DrawPoint ( x, y ); /* 画点函数 */
 }
-​
+
 unsigned int LCD_L0_GetPixelIndex ( int x, int y ) {
     return LCD_ReadPoint ( x, y ); /* 我的读取像素颜色函数 */
 }
-​
+
 void LCD_L0_FillRect ( int x0, int y0, int x1, int y1 ) {
     LCD_Fill ( x0, y0, x1, y1, LCD_COLORINDEX ); /* 填充矩形函数 */
     /*------------------------
@@ -65,14 +64,14 @@ void LCD_L0_FillRect ( int x0, int y0, int x1, int y1 ) {
 ``` cpp
 #ifndef GUICONF_H
 #define GUICONF_H
-​
+
 #define GUI_OS              (0) /* 操作系统的支持，当用到ucos时需要打开 */
 #define GUI_SUPPORT_TOUCH   (0) /* 触摸屏的支持 */
 #define GUI_SUPPORT_UNICODE (0) /* 用汉字库时再打开 */
-​
+
 #define GUI_DEFAULT_FONT &GUI_Font6x8 /* 定义字体大小 */
 #define GUI_ALLOC_SIZE   12500 /* 分配的动态内存空间 */
-​
+
 /*********************************************************************
 *
 *        Configuration of available packages
@@ -80,7 +79,7 @@ void LCD_L0_FillRect ( int x0, int y0, int x1, int y1 ) {
 #define GUI_WINSUPPORT     0 /* 窗口功能支持  要使用指针图标时必须打开 */
 #define GUI_SUPPORT_MEMDEV 0 /* 内存管理 */
 #define GUI_SUPPORT_AA     0 /* 抗锯齿功能，打开后可以提高显示效果 */
-​
+
 #endif /* Avoid multiple inclusion */
 ```
 
@@ -89,13 +88,13 @@ void LCD_L0_FillRect ( int x0, int y0, int x1, int y1 ) {
 ``` cpp
 #ifndef LCDCONF_H
 #define LCDCONF_H
-​
+
 #define LCD_XSIZE (320) /* lcd的水平分辨率 */
 #define LCD_YSIZE (480) /* lcd的垂直分辨率 */
-​
+
 #define LCD_BITSPERPIXEL (16) /* 16位颜色RGB值(颜色深度) */
-#define LCD_SWAP_RB      (1)  /* 红蓝反色交换 */
-​
+#define LCD_SWAP_RB      (1)  /* 红蓝反色交换 */
+
 /* lcd控制器的具体型号
  *
  * 设置为“-1”时，会编译LCDDriver下的LCDDummy.c
@@ -120,7 +119,7 @@ GUI_SetBkColor ( GUI_BLUE );
 GUI_SetColor ( GUI_RED );
 GUI_Clear();
 GUI_DrawCircle ( 100, 100, 50 ); /* 画圆 */
-​
+
 while ( 1 );
 ```
 
@@ -130,16 +129,16 @@ while ( 1 );
 ``` cpp
 #ifndef GUITOUCH_CONF_H
 #define GUITOUCH_CONF_H
-​
+
 #define GUI_TOUCH_AD_LEFT   0
 #define GUI_TOUCH_AD_RIGHT  240
 #define GUI_TOUCH_AD_TOP    0
 #define GUI_TOUCH_AD_BOTTOM 320
-​
+
 #define GUI_TOUCH_SWAP_XY  0
 #define GUI_TOUCH_MIRROR_X 0
 #define GUI_TOUCH_MIRROR_Y 0
-​
+
 #endif
 ```
 
@@ -149,19 +148,19 @@ while ( 1 );
 #include "GUI.h"
 #include "GUI_X.h"
 #include "touch.h"
-​
+
 void GUI_TOUCH_X_ActivateX ( void ) {
 }
-​
+
 void GUI_TOUCH_X_ActivateY ( void ) {
 }
-​
-int  GUI_TOUCH_X_MeasureX ( void ) {
+
+int GUI_TOUCH_X_MeasureX ( void ) {
     Convert_Pos();
     return Pen_Point.X0;
 }
-​
-int  GUI_TOUCH_X_MeasureY ( void ) {
+
+int GUI_TOUCH_X_MeasureY ( void ) {
     Convert_Pos();
     return Pen_Point.Y0;
 }
@@ -176,7 +175,7 @@ int  GUI_TOUCH_X_MeasureY ( void ) {
 #include "usart.h"
 #include "GUI.h"
 #include "touch.h"
-​
+
 int main ( void ) {
     SystemInit();
     delay_init ( 72 );
@@ -190,7 +189,7 @@ int main ( void ) {
     GUI_Clear(); /* 按指定颜色清屏 */
     GUI_DispStringAt ( "Hello World ..", 10, 10 ); /* 显示字符 */
     GUI_CURSOR_Show(); /* 显示鼠标来测试触摸屏，必须打开窗口功能GUI_WINSUPPORT */
-​
+
     while ( 1 ) {
         GUI_TOUCH_Exec(); /* 调用UCGUI的TOUCH相关函数 */
         GUI_Exec(); /* GUI事件更新 */
@@ -213,7 +212,7 @@ int GUI_TOUCH_X_MeasureX ( void ) {
     // return tp_dev.x; /* 竖屏显示 */
     return tp_dev.y; /* 横屏显示 */
 }
-​
+
 int GUI_TOUCH_X_MeasureY ( void ) {
     tp_dev.scan ( 0 );
     // return tp_dev.y; /* 竖屏显示 */

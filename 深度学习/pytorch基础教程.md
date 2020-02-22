@@ -1,7 +1,6 @@
 ---
 title: pytorch基础教程
 categories: 深度学习
-abbrlink: 232df0e4
 date: 2019-01-14 11:37:28
 ---
 ### Torch或Numpy
@@ -15,7 +14,7 @@ import numpy as np
 np_data = np.arange(6).reshape((2, 3))
 torch_data = torch.from_numpy(np_data)
 tensor2array = torch_data.numpy()
-​
+
 print('numpy array:\n', np_data)
 print('torch tensor:\n', torch_data)
 print('tensor to array:\n', tensor2array)
@@ -42,7 +41,7 @@ tensor to array:
 ``` python
 import torch
 import numpy as np
-​
+
 data = [-1, -2, 1, 2]
 tensor = torch.FloatTensor(data)  # 转换成32位浮点tensor
 print(  # abs绝对值计算
@@ -50,13 +49,13 @@ print(  # abs绝对值计算
     '\nnumpy:', np.abs(data),
     '\ntorch:', torch.abs(tensor)
 )
-​
+
 print(  # sin三角函数
     '\nsin',
     '\nnumpy:', np.sin(data),
     '\ntorch:', torch.sin(tensor)
 )
-​
+
 print(  # mean均值
     '\nmean',
     '\nnumpy:', np.mean(data),
@@ -70,11 +69,11 @@ print(  # mean均值
 abs
 numpy: [1 2 1 2]
 torch: tensor([1., 2., 1., 2.])
-​
+
 sin
-numpy: [-0.84147098 -0.90929743  0.84147098  0.90929743]
-torch: tensor([-0.8415, -0.9093,  0.8415,  0.9093])
-​
+numpy: [-0.84147098 -0.90929743  0.84147098  0.90929743]
+torch: tensor([-0.8415, -0.9093,  0.8415,  0.9093])
+
 mean
 numpy: 0.0
 torch: tensor(0.)
@@ -85,11 +84,11 @@ torch: tensor(0.)
 ``` python
 import torch
 import numpy as np
-​
+
 # 矩阵点乘(matrix multiplication)
 data = [[1, 2], [3, 4]]
 tensor = torch.FloatTensor(data)  # 转换成32位浮点tensor
-​
+
 print(  # correct method
     'matrix multiplication (matmul)',
     '\nnumpy:\n', np.matmul(data, data),
@@ -117,11 +116,11 @@ torch:
 ``` python
 import torch
 from torch.autograd import Variable
-​
+
 tensor = torch.FloatTensor([[1, 2], [3, 4]])
 # requires_grad控制参不参与误差反向传播，要不要计算梯度
 variable = Variable(tensor, requires_grad=True)
-​
+
 print(tensor)
 print(variable)
 ```
@@ -145,7 +144,7 @@ from torch.autograd import Variable
 
 tensor = torch.FloatTensor([[1, 2], [3, 4]])
 variable = Variable(tensor, requires_grad=True)
-​
+
 t_out = torch.mean(tensor * tensor)
 v_out = torch.mean(variable * variable)
 print(t_out)
@@ -164,10 +163,10 @@ tensor(7.5000, grad_fn=<MeanBackward1>)
 ``` python
 import torch
 from torch.autograd import Variable
-​
+
 tensor = torch.FloatTensor([[1, 2], [3, 4]])
 variable = Variable(tensor, requires_grad=True)
-​
+
 v_out = torch.mean(variable * variable)
 v_out.backward()  # 模拟v_out的误差反向传递
 print(variable.grad)  # 初始Variable的梯度
@@ -187,10 +186,10 @@ tensor([[0.5000, 1.0000],
 ``` python
 import torch
 from torch.autograd import Variable
-​
+
 tensor = torch.FloatTensor([[1, 2], [3, 4]])
 variable = Variable(tensor, requires_grad=True)
-​
+
 print(variable)  # Variable形式
 print(variable.data)  # tensor形式
 print(variable.data.numpy())  # numpy形式
@@ -205,39 +204,39 @@ import torch
 import torch.nn.functional as F  # 激励函数都定义在这里
 from torch.autograd import Variable
 import matplotlib.pyplot as plt
-​
+
 x = torch.linspace(-5, 5, 200)
 x = Variable(x)
 x_np = x.data.numpy()  # 转换成“numpy array”，出图时使用
-​
+
 # 几种常用的激励函数
 y_relu = F.relu(x).data.numpy()
 y_sigmoid = F.sigmoid(x).data.numpy()
 y_tanh = F.tanh(x).data.numpy()
 y_softplus = F.softplus(x).data.numpy()
 # y_softmax = F.softmax(x)  # softmax比较特殊，不能直接显示
-​
+
 plt.figure(1, figsize=(8, 6))
 plt.subplot(221)
 plt.plot(x_np, y_relu, c='red', label='relu')
 plt.ylim((-1, 5))
 plt.legend(loc='best')
-​
+
 plt.subplot(222)
 plt.plot(x_np, y_sigmoid, c='red', label='sigmoid')
 plt.ylim((-0.2, 1.2))
 plt.legend(loc='best')
-​
+
 plt.subplot(223)
 plt.plot(x_np, y_tanh, c='red', label='tanh')
 plt.ylim((-1.2, 1.2))
 plt.legend(loc='best')
-​
+
 plt.subplot(224)
 plt.plot(x_np, y_softplus, c='red', label='softplus')
 plt.ylim((-0.2, 6))
 plt.legend(loc='best')
-​
+
 plt.show()
 ```
 
@@ -252,7 +251,7 @@ plt.show()
 import torch
 import torch.nn.functional as F
 import matplotlib.pyplot as plt
-​
+
 # x data (tensor)，shape=(100, 1)
 x = torch.unsqueeze(torch.linspace(-1, 1, 100), dim=1)
 # noisy y data (tensor)，shape=(100, 1)
@@ -267,13 +266,13 @@ class Net(torch.nn.Module):  # 继承torch的Module
         super(Net, self).__init__()  # 继承“__init__”功能
         self.hidden = torch.nn.Linear(n_feature, n_hidden)  # 隐藏层线性输出
         self.predict = torch.nn.Linear(n_hidden, n_output)  # 输出层线性输出
-​
+
     def forward(self, x):  # 这同时也是Module中的forward功能
         # 正向传播输入值，神经网络分析出输出值
         x = F.relu(self.hidden(x))  # 激励函数
         x = self.predict(x)  # 输出值
         return x
-​
+
 net = Net(n_feature=1, n_hidden=10, n_output=1)  # define the network
 print(net)  # 打印net的结构
 ```
@@ -293,17 +292,17 @@ Net(
 # 传入net的所有参数以及学习率
 optimizer = torch.optim.SGD(net.parameters(), lr=0.2)
 loss_func = torch.nn.MSELoss()  # 预测值和真实值的误差计算公式(均方差)
-​
+
 plt.ion()
-​
+
 for t in range(200):
     prediction = net(x)  # 喂给net训练数据x，输出预测值
     loss = loss_func(prediction, y)  # 计算两者的误差
-​
+
     optimizer.zero_grad()  # 清空上一步的残余更新参数值
     loss.backward()  # 误差反向传播，计算参数更新值
     optimizer.step()  # 将参数更新值施加到net的parameters上
-​
+
     if t % 5 == 0:
         # plot and show learning process
         plt.cla()
@@ -312,7 +311,7 @@ for t in range(200):
         plt.text(0.5, 0, 'Loss=%.4f' % loss.data.numpy(),
                  fontdict={'size': 20, 'color': 'red'})
         plt.pause(0.1)
-​
+
 plt.ioff()
 plt.show()
 ```
@@ -327,14 +326,14 @@ plt.show()
 import torch
 import torch.nn.functional as F
 import matplotlib.pyplot as plt
-​
+
 # make fake data
 n_data = torch.ones(100, 2)  # 数据的基本形态
 x0 = torch.normal(2 * n_data, 1)  # 类型0，x data (tensor)，shape=(100, 2)
 y0 = torch.zeros(100)  # 类型0，y data (tensor)，shape=(100, 1)
 x1 = torch.normal(-2 * n_data, 1)  # 类型1，x data (tensor)，shape=(100, 2)
 y1 = torch.ones(100)  # 类型1，y data (tensor)，shape=(100, 1)
-​
+
 # 注意x和y的数据形式是一定要像下面一样(torch.cat是在合并数据)
 # shape (200, 2) FloatTensor = 32-bit floating
 x = torch.cat((x0, x1), 0).type(torch.FloatTensor)
@@ -350,12 +349,12 @@ class Net(torch.nn.Module):
         super(Net, self).__init__()
         self.hidden = torch.nn.Linear(n_feature, n_hidden)  # hidden layer
         self.out = torch.nn.Linear(n_hidden, n_output)  # output layer
-​
+
     def forward(self, x):
         x = F.relu(self.hidden(x))  # activation function for hidden layer
         x = self.out(x)  # 输出值，但是这个不是预测值，预测值还需要再另外计算
         return x
-​
+
 net = Net(n_feature=2, n_hidden=10, n_output=2)  # define the network
 print(net)  # net architecture
 ```
@@ -365,18 +364,18 @@ print(net)  # net architecture
 ``` python
 optimizer = torch.optim.SGD(net.parameters(), lr=0.02)
 loss_func = torch.nn.CrossEntropyLoss()  # the target label is NOT an one-hotted
-​
+
 plt.ion()  # something about plotting
-​
+
 for t in range(100):
     out = net(x)  # 喂给net训练数据x，输出分析值
     # must be (1. nn output, 2. target), the target label is NOT one-hotted
     loss = loss_func(out, y)
-​
+
     optimizer.zero_grad()  # clear gradients for next train
     loss.backward()  # backpropagation, compute gradients
     optimizer.step()  # apply gradients
-​
+
     if t % 2 == 0:
         # plot and show learning process
         plt.cla()
@@ -387,7 +386,7 @@ for t in range(100):
         accuracy = float((pred_y == target_y).astype(int).sum()) / float(target_y.size)
         plt.text(1.5, -4, 'Accuracy=%.2f' % accuracy, fontdict={'size': 20, 'color': 'red'})
         plt.pause(0.1)
-​
+
 plt.ioff()
 plt.show()
 ```
@@ -399,26 +398,26 @@ plt.show()
 ``` python
 import torch
 import torch.nn.functional as F
-​
+
 class Net(torch.nn.Module):
     def __init__(self, n_feature, n_hidden, n_output):
         super(Net, self).__init__()
         self.hidden = torch.nn.Linear(n_feature, n_hidden)  # hidden layer
         self.predict = torch.nn.Linear(n_hidden, n_output)  # output layer
-​
+
     def forward(self, x):
         x = F.relu(self.hidden(x))  # activation function for hidden layer
         x = self.predict(x)  # linear output
         return x
-​
+
 net1 = Net(1, 10, 1)
-​
+
 net2 = torch.nn.Sequential(  # easy and fast way to build your network
     torch.nn.Linear(1, 10),
     torch.nn.ReLU(),
     torch.nn.Linear(10, 1)
 )
-​
+
 print(net1)  # net1 architecture
 print(net2)  # net2 architecture
 ```
@@ -450,7 +449,7 @@ import matplotlib.pyplot as plt
 # fake data
 x = torch.unsqueeze(torch.linspace(-1, 1, 100), dim=1)  # x data (tensor), shape=(100, 1)
 y = x.pow(2) + 0.2 * torch.rand(x.size())  # noisy y data (tensor), shape=(100, 1)
-​
+
 def save():
     # save net1
     net1 = torch.nn.Sequential(
@@ -460,35 +459,35 @@ def save():
     )
     optimizer = torch.optim.SGD(net1.parameters(), lr=0.5)
     loss_func = torch.nn.MSELoss()
-​
+
     for t in range(100):
         prediction = net1(x)
         loss = loss_func(prediction, y)
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-​
+
     # plot result
     plt.figure(1, figsize=(10, 3))
     plt.subplot(131)
     plt.title('Net1')
     plt.scatter(x.data.numpy(), y.data.numpy())
     plt.plot(x.data.numpy(), prediction.data.numpy(), 'r-', lw=5)
-​
+
     # 2 ways to save the net
     torch.save(net1, 'net.pkl')  # 保存整个网络
     torch.save(net1.state_dict(), 'net_params.pkl')  # 只保存网络中的参数(速度快，占内存少)
-​
+
 def restore_net():
     net2 = torch.load('net.pkl')  # restore entire net1 to net2
     prediction = net2(x)
-​
+
     # plot result
     plt.subplot(132)
     plt.title('Net2')
     plt.scatter(x.data.numpy(), y.data.numpy())
     plt.plot(x.data.numpy(), prediction.data.numpy(), 'r-', lw=5)
-​
+
 def restore_params():
     # restore only the parameters in net1 to net3
     net3 = torch.nn.Sequential(
@@ -498,14 +497,14 @@ def restore_params():
     )
     net3.load_state_dict(torch.load('net_params.pkl'))  # copy net1's parameters into net3
     prediction = net3(x)
-​
+
     # plot result
     plt.subplot(133)
     plt.title('Net3')
     plt.scatter(x.data.numpy(), y.data.numpy())
     plt.plot(x.data.numpy(), prediction.data.numpy(), 'r-', lw=5)
     plt.show()
-​
+
 save()  # save net1
 restore_net()  # restore entire net (may slow)
 restore_params()  # restore only the net parameters
@@ -520,14 +519,14 @@ restore_params()  # restore only the net parameters
 ``` python
 import torch
 import torch.utils.data as Data
-​
+
 torch.manual_seed(1)  # reproducible
-​
+
 BATCH_SIZE = 5  # 批训练的数据个数
-​
+
 x = torch.linspace(1, 10, 10)  # this is x data (torch tensor)
 y = torch.linspace(10, 1, 10)  # this is y data (torch tensor)
-​
+
 torch_dataset = Data.TensorDataset(x, y)  # 先转换成torch能识别的Dataset
 loader = Data.DataLoader(
     dataset=torch_dataset,  # torch TensorDataset format
@@ -535,14 +534,14 @@ loader = Data.DataLoader(
     shuffle=True,  # random shuffle for training
     num_workers=2,  # subprocesses for loading data
 )
-​
+
 def show_batch():
     for epoch in range(3):  # train entire dataset 3 times
         for step, (batch_x, batch_y) in enumerate(loader):  # for each training step
             # train your data...
             print('Epoch:', epoch, '| Step:', step,
                   '| batch x:', batch_x.numpy(), '| batch y:', batch_y.numpy())
-​
+
 if __name__ == '__main__':
     show_batch()
 ```
@@ -579,15 +578,15 @@ import torch
 import torch.utils.data as Data
 import torch.nn.functional as F
 import matplotlib.pyplot as plt
-​
+
 LR = 0.01
 BATCH_SIZE = 32
 EPOCH = 12
-​
+
 # fake dataset
 x = torch.unsqueeze(torch.linspace(-1, 1, 1000), dim=1)
 y = x.pow(2) + 0.1 * torch.normal(torch.zeros(*x.size()))
-​
+
 # put dateset into torch dataset
 torch_dataset = Data.TensorDataset(x, y)
 loader = Data.DataLoader(dataset=torch_dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=2)
@@ -601,12 +600,12 @@ class Net(torch.nn.Module):  # default network
         super(Net, self).__init__()
         self.hidden = torch.nn.Linear(1, 20)  # hidden layer
         self.predict = torch.nn.Linear(20, 1)  # output layer
-​
+
     def forward(self, x):
         x = F.relu(self.hidden(x))  # activation function for hidden layer
         x = self.predict(x)  # linear output
         return x
-​
+
 if __name__ == '__main__':
     # 为每个优化器创建一个net
     net_SGD = Net()
@@ -614,17 +613,17 @@ if __name__ == '__main__':
     net_RMSprop = Net()
     net_Adam = Net()
     nets = [net_SGD, net_Momentum, net_RMSprop, net_Adam]
-​
+
     # different optimizers
     opt_SGD = torch.optim.SGD(net_SGD.parameters(), lr=LR)
     opt_Momentum = torch.optim.SGD(net_Momentum.parameters(), lr=LR, momentum=0.8)
     opt_RMSprop = torch.optim.RMSprop(net_RMSprop.parameters(), lr=LR, alpha=0.9)
     opt_Adam = torch.optim.Adam(net_Adam.parameters(), lr=LR, betas=(0.9, 0.99))
     optimizers = [opt_SGD, opt_Momentum, opt_RMSprop, opt_Adam]
-​
+
     loss_func = torch.nn.MSELoss()
     losses_his = [[], [], [], []]  # 记录training时不同神经网络的loss
-​
+
     for epoch in range(EPOCH):  # training
         print('Epoch: ', epoch)
 
@@ -636,7 +635,7 @@ if __name__ == '__main__':
                 loss.backward()  # backpropagation, compute gradients
                 opt.step()  # apply gradients
                 l_his.append(loss.data.numpy())  # loss recoder
-​
+
     labels = ['SGD', 'Momentum', 'RMSprop', 'Adam']
 
     for i, l_his in enumerate(losses_his):
@@ -660,14 +659,14 @@ if __name__ == '__main__':
 ``` python
 import torch
 import matplotlib.pyplot as plt
-​
+
 N_SAMPLES = 20
 N_HIDDEN = 300
-​
+
 # training data
 x = torch.unsqueeze(torch.linspace(-1, 1, N_SAMPLES), 1)
 y = x + 0.3 * torch.normal(torch.zeros(N_SAMPLES, 1), torch.ones(N_SAMPLES, 1))
-​
+
 # test data
 test_x = torch.unsqueeze(torch.linspace(-1, 1, N_SAMPLES), 1)
 test_y = test_x + 0.3 * torch.normal(torch.zeros(N_SAMPLES, 1), torch.ones(N_SAMPLES, 1))
@@ -683,7 +682,7 @@ net_overfitting = torch.nn.Sequential(
     torch.nn.ReLU(),
     torch.nn.Linear(N_HIDDEN, 1),
 )
-​
+
 net_dropped = torch.nn.Sequential(
     torch.nn.Linear(1, N_HIDDEN),
     torch.nn.Dropout(0.5),  # drop 50% of the neuron
@@ -701,27 +700,27 @@ net_dropped = torch.nn.Sequential(
 optimizer_ofit = torch.optim.Adam(net_overfitting.parameters(), lr=0.01)
 optimizer_drop = torch.optim.Adam(net_dropped.parameters(), lr=0.01)
 loss_func = torch.nn.MSELoss()
-​
+
 plt.ion()  # something about plotting
-​
+
 for t in range(500):
     pred_ofit = net_overfitting(x)
     pred_drop = net_dropped(x)
     loss_ofit = loss_func(pred_ofit, y)
     loss_drop = loss_func(pred_drop, y)
-​
+
     optimizer_ofit.zero_grad()
     optimizer_drop.zero_grad()
     loss_ofit.backward()
     loss_drop.backward()
     optimizer_ofit.step()
     optimizer_drop.step()
-​
+
     if t % 10 == 0:
         # 将神经网络转换成测试形式，画好图之后改回训练形式。因为drop网络在train的时候和test的时候参数不一样
         net_overfitting.eval()
         net_dropped.eval()
-​
+
         # plotting
         plt.cla()
         test_pred_ofit = net_overfitting(test_x)
@@ -737,11 +736,11 @@ for t in range(500):
         plt.legend(loc='upper left')
         plt.ylim((-2.5, 2.5))
         plt.pause(0.1)
-​
+
         # change back to train mode
         net_overfitting.train()
         net_dropped.train()
-​
+
 plt.ioff()
 plt.show()
 ```
@@ -757,21 +756,21 @@ import torch
 import torch.nn as nn
 import torch.utils.data as Data
 import torchvision
-​
+
 EPOCH = 1
 BATCH_SIZE = 50
 LR = 0.001
 DOWNLOAD_MNIST = False
-​
+
 train_data = torchvision.datasets.MNIST(root='./mnist/', train=True, transform=torchvision.transforms.ToTensor(), download=DOWNLOAD_MNIST, )
 train_loader = Data.DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=True)
-​
+
 test_data = torchvision.datasets.MNIST(root='./mnist/', train=False)
-​
+
 # Change in here
-test_x = torch.unsqueeze(test_data.test_data, dim=1).type(torch.FloatTensor)[:2000].cuda() / 255.  # Tensor on GPU
+test_x = torch.unsqueeze(test_data.test_data, dim=1).type(torch.FloatTensor)[:2000].cuda() / 255.  # Tensor on GPU
 test_y = test_data.test_labels[:2000].cuda()
-​
+
 class CNN(nn.Module):
     def __init__(self):
         super(CNN, self).__init__()
@@ -786,46 +785,46 @@ class CNN(nn.Module):
             nn.MaxPool2d(2),
         )
         self.out = nn.Linear(32 * 7 * 7, 10)
-​
+
     def forward(self, x):
         x = self.conv1(x)
         x = self.conv2(x)
         x = x.view(x.size(0), -1)
         output = self.out(x)
         return output
-​
+
 cnn = CNN()
-​
+
 # Change in here
 cnn.cuda()  # Moves all model parameters and buffers to the GPU
-​
+
 optimizer = torch.optim.Adam(cnn.parameters(), lr=LR)
 loss_func = nn.CrossEntropyLoss()
-​
+
 for epoch in range(EPOCH):
     for step, (x, y) in enumerate(train_loader):
         # Change in here
         b_x = x.cuda()  # Tensor on GPU
         b_y = y.cuda()  # Tensor on GPU
-​
+
         output = cnn(b_x)
         loss = loss_func(output, b_y)
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-​
+
         if step % 50 == 0:
             test_output = cnn(test_x)
             # Change in here
             pred_y = torch.max(test_output, 1)[1].cuda().data.squeeze()  # move the computation in GPU
             accuracy = torch.sum(pred_y == test_y).type(torch.FloatTensor) / test_y.size(0)
             print('Epoch:', epoch, '| train loss: %.4f' % loss.data.cpu().numpy(), '| test accuracy: %.2f' % accuracy)
-​
+
 test_output = cnn(test_x[:10])
-​
+
 # Change in here
 pred_y = torch.max(test_output, 1)[1].cuda().data.squeeze()  # move the computation in GPU
-​
+
 print(pred_y, 'prediction number')
 print(test_y[:10], 'real number')
 ```

@@ -1,7 +1,6 @@
 ---
 title: Android编程问题总结
 categories: Android
-abbrlink: '46894180'
 date: 2018-12-28 13:43:40
 ---
 ### failed to load AppCompat ActionBar with unknown error

@@ -1,7 +1,6 @@
 ---
 title: Qt之QTextTableFormat
 categories: Qt语法详解
-abbrlink: cd5267e5
 date: 2019-02-22 10:35:23
 ---
 &emsp;&emsp;The `QTextTableFormat` class provides formatting information for tables in a `QTextDocument`.<!--more-->

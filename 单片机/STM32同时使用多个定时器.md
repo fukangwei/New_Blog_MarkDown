@@ -1,7 +1,6 @@
 ---
 title: STM32同时使用多个定时器
 categories: 单片机
-abbrlink: 44465f3f
 date: 2018-12-29 17:54:42
 ---
 &emsp;&emsp;代码如下：<!--more-->
@@ -11,10 +10,10 @@ void TIM2_IRQHandler ( void ) {
     if ( TIM_GetITStatus ( TIM2, TIM_IT_Update ) != RESET ) {
         /* user code */
     }
-​
+
     TIM_ClearITPendingBit ( TIM2, TIM_IT_Update );
 }
-​
+
 void TIM2_Int_Init ( u16 arr, u16 psc ) {
     TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
     NVIC_InitTypeDef NVIC_InitStructure;
@@ -30,17 +29,17 @@ void TIM2_Int_Init ( u16 arr, u16 psc ) {
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init ( &NVIC_InitStructure );
 }
-​
+
 void TIM3_IRQHandler ( void ) {
     if ( TIM_GetITStatus ( TIM3, TIM_IT_Update ) != RESET ) {
         /* user code */
     }
-​
+
     TIM_ClearITPendingBit ( TIM3, TIM_IT_Update );
 }
-​
+
 void Send_Timer_Init ( u16 arr, u16 psc ) {
-    TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
+    TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
     NVIC_InitTypeDef NVIC_InitStructure;
     RCC_APB1PeriphClockCmd ( RCC_APB1Periph_TIM2 | RCC_APB1Periph_TIM3, ENABLE );
     TIM_TimeBaseStructure.TIM_Period = arr;

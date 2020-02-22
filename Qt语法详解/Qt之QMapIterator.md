@@ -1,7 +1,6 @@
 ---
 title: Qt之QMapIterator
 categories: Qt语法详解
-abbrlink: 45cafe4a
 date: 2019-02-18 18:27:49
 ---
 &emsp;&emsp;The `QMapIterator` class provides a `Java-style` const iterator for `QMap` and `QMultiMap`. The header file is `QMapIterator`.<!--more-->
@@ -34,9 +33,9 @@ Return           | Function
 
 ``` cpp
 QMap<int, QWidget *> map;
-​
+
 QMapIterator<int, QWidget *> i ( map );
-​
+
 while ( i.hasNext() ) {
     i.next();
     qDebug() << i.key() << ": " << i.value();
@@ -53,18 +52,18 @@ while ( i.hasNext() ) {
 ``` cpp
 QMapIterator<int, QWidget *> i ( map );
 i.toBack();
-​
+
 while ( i.hasPrevious() ) {
     i.previous();
     qDebug() << i.key() << ": " << i.value();
 }
 ```
 
-&emsp;&emsp;If you want to find all occurrences of a particular value, use `findNext()` or `findPrevious()` in a loop. For example:
+&emsp;&emsp;If you want to find all occurrences of a particular value, use `findNext()` or `findPrevious()` in a loop.
 
 ``` cpp
 QMapIterator<int, QWidget *> i ( map );
-​
+
 while ( i.findNext ( widget ) ) {
     qDebug() << "Found widget " << widget << " under key "
              << i.key();
@@ -76,16 +75,16 @@ while ( i.findNext ( widget ) ) {
 ### Member Function Documentation
 
 - `QMapIterator::QMapIterator(const QMap<Key, T> & map)`：Constructs an iterator for traversing `map`. The iterator is set to be at the front of the `map` (before the first item).
-- `bool QMapIterator::findNext(const T & value)`：Searches for `value` starting from the current iterator position forward. Returns `true` if a `(key, value)` pair with `value` is found; otherwise returns `false`. After the call, if `value` was found, the iterator is positioned just after the matching item; otherwise, the iterator is positioned at the back of the container.
-- `bool QMapIterator::findPrevious(const T & value)`：Searches for `value` starting from the current iterator position backward. Returns `true` if a `(key, value)` pair with `value` is found; otherwise returns `false`. After the call, if `value` was found, the iterator is positioned just before the matching item; otherwise, the iterator is positioned at the front of the container.
+- `bool QMapIterator::findNext(const T & value)`：Searches for `value` starting from the current iterator position forward. Returns `true` if a `(key, value)` pair with `value` is found; otherwise returns `false`. After the call, if `value` was found, the iterator is positioned just after the matching item; otherwise, the iterator is positioned at the back of the container.
+- `bool QMapIterator::findPrevious(const T & value)`：Searches for `value` starting from the current iterator position backward. Returns `true` if a `(key, value)` pair with `value` is found; otherwise returns `false`. After the call, if `value` was found, the iterator is positioned just before the matching item; otherwise, the iterator is positioned at the front of the container.
 - `bool QMapIterator::hasNext() const`：Returns `true` if there is at least one item ahead of the iterator, i.e. the iterator is not at the back of the container; otherwise returns `false`.
 - `bool QMapIterator::hasPrevious() const`：Returns `true` if there is at least one item behind the iterator, i.e. the iterator is not at the front of the container; otherwise returns `false`.
-- `const Key & QMapIterator::key() const`：Returns the key of the last item that was jumped over using one of the traversal functions (`next()`, `previous()`, `findNext()`, `findPrevious()`). After a call to `next()` or `findNext()`, `key()` is equivalent to `peekPrevious().key()`. After a call to `previous()` or `findPrevious()`, `key()` is equivalent to `peekNext().key()`.
-- `Item QMapIterator::next()`：Returns the next item and advances the iterator by one position. Call `key()` on the return value to obtain the item's key, and `value()` to obtain the value. Calling this function on an iterator located at the back of the container leads to undefined results.
-- `Item QMapIterator::peekNext() const`：Returns the next item without moving the iterator. Call `key()` on the return value to obtain the item's key, and `value()` to obtain the value. Calling this function on an iterator located at the back of the container leads to undefined results.
-- `Item QMapIterator::peekPrevious() const`：Returns the previous item without moving the iterator. Call `key()` on the return value to obtain the item's key, and `value()` to obtain the value. Calling this function on an iterator located at the front of the container leads to undefined results.
-- `Item QMapIterator::previous()`：Returns the previous item and moves the iterator back by one position. Call `key()` on the return value to obtain the item's key, and `value()` to obtain the value. Calling this function on an iterator located at the front of the container leads to undefined results.
+- `const Key & QMapIterator::key() const`：Returns the key of the last item that was jumped over using one of the traversal functions (`next()`, `previous()`, `findNext()`, `findPrevious()`). After a call to `next()` or `findNext()`, `key()` is equivalent to `peekPrevious().key()`. After a call to `previous()` or `findPrevious()`, `key()` is equivalent to `peekNext().key()`.
+- `Item QMapIterator::next()`：Returns the next item and advances the iterator by one position. Call `key()` on the return value to obtain the item's key, and `value()` to obtain the value. Calling this function on an iterator located at the back of the container leads to undefined results.
+- `Item QMapIterator::peekNext() const`：Returns the next item without moving the iterator. Call `key()` on the return value to obtain the item's key, and `value()` to obtain the value. Calling this function on an iterator located at the back of the container leads to undefined results.
+- `Item QMapIterator::peekPrevious() const`：Returns the previous item without moving the iterator. Call `key()` on the return value to obtain the item's key, and `value()` to obtain the value. Calling this function on an iterator located at the front of the container leads to undefined results.
+- `Item QMapIterator::previous()`：Returns the previous item and moves the iterator back by one position. Call `key()` on the return value to obtain the item's key, and `value()` to obtain the value. Calling this function on an iterator located at the front of the container leads to undefined results.
 - `void QMapIterator::toBack()`：Moves the iterator to the back of the container (after the last item).
 - `void QMapIterator::toFront()`：Moves the iterator to the front of the container (before the first item).
-- `const T & QMapIterator::value() const`：Returns the value of the last item that was jumped over using one of the traversal functions (`next()`, `previous()`, `findNext()`, `findPrevious()`). After a call to `next()` or `findNext()`, `value()` is equivalent to `peekPrevious().value()`. After a call to `previous()` or `findPrevious()`, `value()` is equivalent to `peekNext().value()`.
+- `const T & QMapIterator::value() const`：Returns the value of the last item that was jumped over using one of the traversal functions (`next()`, `previous()`, `findNext()`, `findPrevious()`). After a call to `next()` or `findNext()`, `value()` is equivalent to `peekPrevious().value()`. After a call to `previous()` or `findPrevious()`, `value()` is equivalent to `peekNext().value()`.
 - `QMapIterator & QMapIterator::operator=(const QMap<Key, T> & map)`：Makes the iterator operate on `map`. The iterator is set to be at the front of the `map` (before the first item).

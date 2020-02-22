@@ -1,7 +1,6 @@
 ---
 title: dialog详解
 categories: Shell编程
-abbrlink: 49157
 date: 2019-10-03 14:58:05
 mathjax: true
 ---
@@ -236,29 +235,29 @@ dialog --title "Add a user" --form "Please input the infomation of new user:" 12
 
 ``` shell
 #!/bin/sh
-​
+
 dialog --title "Questionnaire" --msgbox "Welcome to my simple survey" 9 18
 dialog --title "Confirm" --yesno "Are you willing to take part?" 9 18
-​
+
 if [ $? !=0 ]; then  # yes的返回码为0，“$?”为上一个命令的退出状态。
     dialog --infobox "Thank you anyway!" 5 20
     sleep 2
     dialog --clear  # “-clear”作用为清屏。
     exit 0
 fi
-​
+
 # 重定向标准错误输出流(2)到“_1.txt”。
 dialog --title "Questionnaire" --inputbox "Please enter your name" 9 30 2>_1.txt
 Q_NAME=$(cat _1.txt)
 dialog --menu "$Q_NAME,what music do you like best?" 15 30 4 1 "Classical" 2 "Jazz" 3 "Country" 4 "Other" 2>_1.txt
 Q_MUSIC=$(cat _1.txt)
-​
+
 if [ "$Q_MUSIC" == "1" ]; then
     dialog --infobox "Good choice!" 5 20
 else
     dialog --infobox "Thank you anyway" 5 20
 fi
-​
+
 sleep 5
 dialog --clear
 exit 0

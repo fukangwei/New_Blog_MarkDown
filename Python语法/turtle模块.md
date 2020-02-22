@@ -1,7 +1,6 @@
 ---
 title: turtle模块
 categories: Python语法
-abbrlink: a2e521cc
 date: 2019-03-02 15:10:42
 ---
 &emsp;&emsp;`Turtle`库是`Python`中一个很流行的绘制图像的函数库，想象一个小乌龟，在一个横轴为`x`、纵轴为`y`的坐标系原点，`(0, 0)`位置开始，它根据一组函数指令的控制，在这个平面坐标系中移动，从而在它爬行的路径上绘制了图形。<!--more-->
@@ -131,7 +130,7 @@ circle(120, 180)  # 半圆
 
 ``` python
 import turtle
-​
+
 turtle.color("red", "yellow")
 turtle.begin_fill()
 
@@ -139,7 +138,7 @@ for _ in range(50):
     turtle.forward(200)
     turtle.left(170)
 
-turtle.end_fill()​
+turtle.end_fill()
 turtle.mainloop()
 ```
 
@@ -150,7 +149,7 @@ turtle.mainloop()
 ``` python
 import turtle
 import time
-​
+
 turtle.pensize(5)
 turtle.pencolor("yellow")
 turtle.fillcolor("red")
@@ -162,11 +161,11 @@ for _ in range(5):
 
 turtle.end_fill()
 time.sleep(2)
-​
+
 turtle.penup()
 turtle.goto(-150, -120)
 turtle.color("violet")
-turtle.write("Done", font=('Arial', 40, 'normal'))​
+turtle.write("Done", font=('Arial', 40, 'normal'))
 turtle.mainloop()
 ```
 
@@ -176,11 +175,11 @@ turtle.mainloop()
 
 ``` python
 import turtle
-​
+
 def branch(length, level):
     if level <= 0:
         return
-​
+
     turtle.forward(length)
     turtle.left(45)
     branch(0.6 * length, level - 1)
@@ -189,7 +188,7 @@ def branch(length, level):
     turtle.left(45)
     turtle.backward(length)
     return
-​
+
 if __name__ == "__main__":
     turtle.left(90)
     branch(100, 4)

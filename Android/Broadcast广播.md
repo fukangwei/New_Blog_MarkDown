@@ -1,7 +1,6 @@
 ---
 title: Broadcast广播
 categories: Android
-abbrlink: d7d619cd
 date: 2018-12-28 15:10:40
 ---
 &emsp;&emsp;在`Android`系统中，广播(`Broadcast`)是在组件之间传播数据的一种机制，这些组件可以位于不同的进程中，起到进程间通信的作用。<!--more-->
@@ -25,7 +24,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
-​
+
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +50,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
-​
+
 public class broadreceiver extends BroadcastReceiver {
     private static final String ACTION1 = "zhakeboge";
     private static final String ACTION2 = "mayun";
-​
+
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals(ACTION1)) {
@@ -92,7 +91,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-​
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,24 +107,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-​
+
     protected void onStart() {
         super.onStart();
         IntentFilter dynamic_filter = new IntentFilter();
         dynamic_filter.addAction("mayun"); /* 添加动态广播的Action */
         registerReceiver(broadreceiver, dynamic_filter); /* 注册自定义动态广播消息 */
     }
-​
+
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(broadreceiver);
         Toast.makeText(MainActivity.this, "BroadcastService取消注册接收器", Toast.LENGTH_SHORT).show();
     }
-​
+
     private BroadcastReceiver broadreceiver = new BroadcastReceiver() {
         private static final String ACTION1 = "zhakeboge";
         private static final String ACTION2 = "mayun";
-​
+
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(ACTION1)) {

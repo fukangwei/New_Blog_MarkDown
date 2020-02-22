@@ -1,7 +1,6 @@
 ---
 title: Dijkstra算法
 categories: 数据结构和算法
-abbrlink: 24142
 date: 2019-10-03 19:59:55
 ---
 &emsp;&emsp;迪杰斯特拉算法是由荷兰计算机科学家狄克斯特拉于`1959`年提出的，因此又叫`狄克斯特拉算法`。它是从一个顶点到其余各顶点的最短路径算法，解决的是有向图中最短路径问题。迪杰斯特拉算法主要特点是以起始点为中心向外层层扩展，直到扩展到终点为止。<!--more-->
@@ -49,12 +48,12 @@ v1    v2    无                ∞
 
 ``` cpp
 #pragma once
-​
+
 #include <iostream>
 #include <string>
-​
+
 using namespace std;
-​
+
 /* 本程序使用Dijkstra算法实现求解最短路径的问题，采用邻接矩阵来存储图 */
 struct Dis { /* 记录起点到每个顶点的最短路径的信息 */
     string path;
@@ -66,7 +65,7 @@ struct Dis { /* 记录起点到每个顶点的最短路径的信息 */
         path = "";
     }
 };
-​
+
 class Graph_DG {
 private:
     int vexnum; /* 图的顶点个数 */
@@ -89,7 +88,7 @@ public:
 
 ``` cpp
 #include "Dijkstra.h"
-​
+
 Graph_DG::Graph_DG(int vexnum, int edge) { /* 构造函数 */
     /* 初始化顶点数和边数 */
     this->vexnum = vexnum;
@@ -97,112 +96,112 @@ Graph_DG::Graph_DG(int vexnum, int edge) { /* 构造函数 */
     /* 为邻接矩阵开辟空间和赋初值 */
     arc = new int *[this->vexnum];
     dis = new Dis[this->vexnum];
-​
+
     for (int i = 0; i < this->vexnum; i++) {
         arc[i] = new int[this->vexnum];
-​
+
         for (int k = 0; k < this->vexnum; k++) {
             arc[i][k] = INT_MAX; /* 邻接矩阵初始化为无穷大 */
         }
     }
 }
-​
+
 Graph_DG::~Graph_DG() { /* 析构函数 */
     delete[] dis;
-​
+
     for (int i = 0; i < this->vexnum; i++) {
         delete this->arc[i];
     }
-​
+
     delete arc;
 }
-​
+
 /* 判断我们每次输入的的边的信息是否合法，顶点从1开始编号 */
 bool Graph_DG::check_edge_value(int start, int end, int weight) {
     if (start < 1 || end < 1 || start > vexnum || end > vexnum || weight < 0) {
         return false;
     }
-​
+
     return true;
 }
-​
+
 void Graph_DG::createGraph() {
     cout << "请输入每条边的起点和终点(顶点编号从1开始)以及其权重:" << endl;
     int start;
     int end;
     int weight;
     int count = 0;
-​
+
     while (count != this->edge) {
         cin >> start >> end >> weight;
-​
+
         /* 首先判断边的信息是否合法 */
         while (!this->check_edge_value(start, end, weight)) {
             cout << "输入的边的信息不合法，请重新输入" << endl;
             cin >> start >> end >> weight;
         }
-​
+
         arc[start - 1][end - 1] = weight; /* 对邻接矩阵对应上的点赋值 */
                                           // 无向图添加上这行代码："arc[end - 1][start - 1] = weight;"
         ++count;
     }
 }
-​
+
 void Graph_DG::print() {
     cout << "图的邻接矩阵为:" << endl;
     int count_row = 0; /* 打印行的标签 */
     int count_col = 0; /* 打印列的标签 */
-​
+
     while (count_row != this->vexnum) { /* 开始打印 */
         count_col = 0;
-​
+
         while (count_col != this->vexnum) {
             if (arc[count_row][count_col] == INT_MAX) {
                 cout << "∞" << " ";
             } else {
                 cout << arc[count_row][count_col] << " ";
             }
-​
+
             ++count_col;
         }
-​
+
         cout << endl;
         ++count_row;
     }
 }
-​
+
 void Graph_DG::Dijkstra(int begin) {
     /* 首先初始化dis数组 */
     int i;
-​
+
     for (i = 0; i < this->vexnum; i++) {
         /* 设置当前的路径 */
         dis[i].path = "v" + to_string(begin) + "-->v" + to_string(i + 1);
         dis[i].value = arc[begin - 1][i];
     }
-​
+
     /* 设置起点的到起点的路径为0 */
     dis[begin - 1].value = 0;
     dis[begin - 1].visit = true;
     int count = 1;
-​
+
     /* 计算剩余的顶点的最短路径(剩余“this->vexnum-1”个顶点) */
     while (count != this->vexnum) {
         int temp = 0; /* temp用于保存当前dis数组中最小的那个下标 */
         int min = INT_MAX; /* min记录的当前的最小值 */
-​
+
         for (i = 0; i < this->vexnum; i++) {
             if (!dis[i].visit && dis[i].value < min) {
                 min = dis[i].value;
                 temp = i;
             }
         }
-​
+
         // cout << temp + 1 << "  "<<min << endl;
         /* 把temp对应的顶点加入到已经找到的最短路径的集合中 */
         dis[temp].visit = true;
         ++count;
-​
+
         for (i = 0; i < this->vexnum; i++) {
             /* 注意这里的条件“arc[temp][i] != INT_MAX”必须加，不然会出现溢出，从而造成程序异常 */
             if (!dis[i].visit && arc[temp][i] != INT_MAX && (dis[temp].value + arc[temp][i]) < dis[i].value) {
@@ -213,12 +212,12 @@ void Graph_DG::Dijkstra(int begin) {
         }
     }
 }
-​
+
 void Graph_DG::print_path(int begin) {
     string str;
     str = "v" + to_string(begin);
     cout << "以" << str << "为起点的图的最短路径为:" << endl;
-​
+
     for (int i = 0; i != this->vexnum; i++) {
         if (dis[i].value != INT_MAX) {
             cout << dis[i].path << "=" << dis[i].value << endl;
@@ -233,27 +232,27 @@ void Graph_DG::print_path(int begin) {
 
 ``` cpp
 #include "Dijkstra.h"
-​
+
 /* 检验输入边数和顶点数的值是否有效，顶点数和边数的关系是：((Vexnum*(Vexnum - 1)) / 2) < edge */
 bool check(int Vexnum, int edge) {
     if (Vexnum <= 0 || edge <= 0 || ((Vexnum * (Vexnum - 1)) / 2) < edge) {
         return false;
     }
-​
+
     return true;
 }
-​
+
 int main() {
     int vexnum;
     int edge;
     cout << "输入图的顶点个数和边的条数:" << endl;
     cin >> vexnum >> edge;
-​
+
     while (!check(vexnum, edge)) {
         cout << "输入的数值不合法，请重新输入" << endl;
         cin >> vexnum >> edge;
     }
-​
+
     Graph_DG graph(vexnum, edge);
     graph.createGraph();
     graph.print();

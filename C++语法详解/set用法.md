@@ -1,7 +1,6 @@
 ---
 title: set用法
 categories: C++语法详解
-abbrlink: eaf11cfb
 date: 2019-02-06 11:14:55
 ---
 ### 关于set
@@ -27,28 +26,28 @@ date: 2019-02-06 11:14:55
 ``` cpp
 #include <iostream>
 #include <set>
-​
+
 using namespace std;
-​
+
 int main() {
-    set<int> s;
-    s.insert(1);
-    s.insert(2);
-    s.insert(3);
-    s.insert(1);
-    cout << "set的size值为: " << s.size() << endl;
-    cout << "set的maxsize的值为: " << s.max_size() << endl;
-    cout << "set中的第一个元素是: " << *s.begin() << endl;
-    cout << "set中的最后一个元素是: " << *s.end() << endl;
-    s.clear();
-​
-    if (s.empty()) {
-        cout << "set为空!!!" << endl;
-    }
-​
-    cout << "set的size值为: " << s.size() << endl;
-    cout << "set的maxsize的值为: " << s.max_size() << endl;
-    return 0;
+    set<int> s;
+    s.insert(1);
+    s.insert(2);
+    s.insert(3);
+    s.insert(1);
+    cout << "set的size值为: " << s.size() << endl;
+    cout << "set的maxsize的值为: " << s.max_size() << endl;
+    cout << "set中的第一个元素是: " << *s.begin() << endl;
+    cout << "set中的最后一个元素是: " << *s.end() << endl;
+    s.clear();
+
+    if (s.empty()) {
+        cout << "set为空!!!" << endl;
+    }
+
+    cout << "set的size值为: " << s.size() << endl;
+    cout << "set的maxsize的值为: " << s.max_size() << endl;
+    return 0;
 }
 ```
 
@@ -69,18 +68,18 @@ set的maxsize的值为: 461168601842738790
 ``` cpp
 #include <iostream>
 #include <set>
-​
+
 using namespace std;
-​
+
 int main() {
-    set<int> s;
-    s.insert ( 1 );
-    s.insert ( 2 );
-    s.insert ( 3 );
-    s.insert ( 1 );
-    cout << "set中1出现的次数是: " << s.count ( 1 ) << endl;
-    cout << "set中4出现的次数是: " << s.count ( 4 ) << endl;
-    return 0;
+    set<int> s;
+    s.insert ( 1 );
+    s.insert ( 2 );
+    s.insert ( 3 );
+    s.insert ( 1 );
+    cout << "set中1出现的次数是: " << s.count ( 1 ) << endl;
+    cout << "set中4出现的次数是: " << s.count ( 4 ) << endl;
+    return 0;
 }
 ```
 
@@ -98,32 +97,32 @@ set中4出现的次数是: 0
 #include <iostream>
 #include <set>
 #include <iterator>
-​
+
 using namespace std;
-​
+
 struct myComp { /* 自定义比较函数myComp，重载操作符“()” */
-    bool operator() ( const int &a, const int &b ) {
-        return a > b; /* 从大到小排序 */
-        // return a < b; /* 从小到大排序 */
-    }
+    bool operator() ( const int &a, const int &b ) {
+        return a > b; /* 从大到小排序 */
+        // return a < b; /* 从小到大排序 */
+    }
 };
-​
+
 int main() {
-    set<int, myComp> s1;
-​
-    for ( int i = 1; i < 6; i++ ) {
-        s1.insert ( i * i );
-    }
-​
-    s1.insert ( 8 );
-    set<int, myComp>::iterator it = s1.begin();
-​
-    for ( ; it != s1.end(); it++ ) {
-        cout << *it << " ";
-    }
-​
-    cout << endl;
-    return 0;
+    set<int, myComp> s1;
+
+    for ( int i = 1; i < 6; i++ ) {
+        s1.insert ( i * i );
+    }
+
+    s1.insert ( 8 );
+    set<int, myComp>::iterator it = s1.begin();
+
+    for ( ; it != s1.end(); it++ ) {
+        cout << *it << " ";
+    }
+
+    cout << endl;
+    return 0;
 }
 ```
 
@@ -140,44 +139,44 @@ int main() {
 #include <set>
 #include <iterator>
 #include <string>
-​
+
 using namespace std;
-​
+
 struct Info {
-    string name;
-    float score;
-    /* 重载操作符“<”，自定义排序规则 */
-    bool operator< ( const Info &a ) const {
-        // return a.score < score; /* 按score由大到小排列 */
-        return a.score > score; /* 由小到大排列 */
-    }
+    string name;
+    float score;
+    /* 重载操作符“<”，自定义排序规则 */
+    bool operator< ( const Info &a ) const {
+        // return a.score < score; /* 按score由大到小排列 */
+        return a.score > score; /* 由小到大排列 */
+    }
 };
-​
+
 int main() {
-    set<Info> s;
-    Info info;
-    info.name = "Messi";
-    info.score = 8.5;
-    s.insert ( info );
-    info.name = "Ronae";
-    info.score = 9.0;
-    s.insert ( info );
-    info.name = "My";
-    info.score = 7.0;
-    s.insert ( info );
-    info.name = "Perno";
-    info.score = 8.0;
-    s.insert ( info );
-    info.name = "Arzar";
-    info.score = 8.5;
-    s.insert ( info );
-    set<Info>::iterator it;
-​
-    for ( it = s.begin(); it != s.end(); it++ ) {
-        cout << it->name << ": " << ( *it ).score << endl;
-    }
-​
-    return 0;
+    set<Info> s;
+    Info info;
+    info.name = "Messi";
+    info.score = 8.5;
+    s.insert ( info );
+    info.name = "Ronae";
+    info.score = 9.0;
+    s.insert ( info );
+    info.name = "My";
+    info.score = 7.0;
+    s.insert ( info );
+    info.name = "Perno";
+    info.score = 8.0;
+    s.insert ( info );
+    info.name = "Arzar";
+    info.score = 8.5;
+    s.insert ( info );
+    set<Info>::iterator it;
+
+    for ( it = s.begin(); it != s.end(); it++ ) {
+        cout << it->name << ": " << ( *it ).score << endl;
+    }
+
+    return 0;
 }
 ```
 

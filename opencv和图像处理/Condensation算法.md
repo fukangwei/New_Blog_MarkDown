@@ -1,7 +1,6 @@
 ---
 title: Condensation算法
 categories: opencv和图像处理
-abbrlink: b61002ae
 date: 2019-02-24 10:18:45
 ---
 &emsp;&emsp;自`opencv 2.3`以后，`condensation`算法放在`legacy`中了，也就是说要引入下面的头文件：<!--more-->
@@ -73,10 +72,10 @@ void cvConDensUpdateByTime ( CvConDensation *ConDens );
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/video/tracking.hpp>
 #include <opencv2/legacy/legacy.hpp>
-​
+
 using namespace cv;
 using namespace std;
-​
+
 #define drawCross( center, color, d )                               \
     line( img,  Point( center.x - d, center.y - d ),                \
           Point( center.x + d, center.y + d ), color, 2, CV_AA, 0); \
@@ -86,9 +85,9 @@ using namespace std;
 struct mouse_info_struct {
     int x, y;
 };
-​
+
 struct mouse_info_struct mouse_info = { -1, -1}, last_mouse;
-​
+
 vector< Point> mouseV, particleV;
 int counter = -1;
 
@@ -106,7 +105,7 @@ void on_mouse ( int event, int x, int y, int flags, void *param ) {
         counter = 0;
     }
 }
-​
+
 int main ( int argc, char *const argv[] ) {
     Mat img ( 650, 650, CV_8UC3 );
     char code = ( char ) - 1;
@@ -133,24 +132,24 @@ int main ( int argc, char *const argv[] ) {
     condens->DynamMatr[1] = 0.0;
     condens->DynamMatr[2] = 0.0;
     condens->DynamMatr[3] = 1.0;
-​
+
     for ( ;; ) {
         if ( mouse_info.x < 0 || mouse_info.y < 0 ) {
             imshow ( "mouse particle", img );
             waitKey ( 30 );
             continue;
         }
-​
+
         mouseV.clear();
         particleV.clear();
-​
+
         for ( ;; ) {
             code = ( char ) waitKey ( 100 );
-​
+
             if ( code > 0 ) {
                 break;
             }
-​
+
 #ifdef CLICK
             if ( counter++ > 0 ) {
                 continue;
@@ -161,8 +160,8 @@ int main ( int argc, char *const argv[] ) {
             Point measPt ( measurement ( 0 ), measurement ( 1 ) );
             mouseV.push_back ( measPt );
             /* Clear screen */
-            img =  Scalar::all ( 100 );
-​
+            img = Scalar::all ( 100 );
+
             for ( int i = 0; i < condens->SamplesNum; i++ ) {
                 float diffX = ( measurement ( 0 ) - condens->flSamples[i][0] ) / xRange;
                 float diffY = ( measurement ( 1 ) - condens->flSamples[i][1] ) / yRange;
@@ -170,33 +169,33 @@ int main ( int argc, char *const argv[] ) {
                 /* plot particles */
 #ifdef PLOT_PARTICLES
                 Point partPt ( condens->flSamples[i][0], condens->flSamples[i][1] );
-                drawCross ( partPt ,  Scalar ( 255, 0, 255 ), 2 );
+                drawCross ( partPt , Scalar ( 255, 0, 255 ), 2 );
 #endif
             }
-​
+
             cvConDensUpdateByTime ( condens );
             Point statePt ( condens->State[0], condens->State[1] );
             particleV.push_back ( statePt );
             /* plot points */
-            drawCross ( statePt,  Scalar ( 255, 255, 255 ), 5 );
-            drawCross ( measPt,  Scalar ( 0, 0, 255 ), 5 );
-​
+            drawCross ( statePt, Scalar ( 255, 255, 255 ), 5 );
+            drawCross ( measPt, Scalar ( 0, 0, 255 ), 5 );
+
             for ( int i = 0; i < mouseV.size() - 1; i++ ) {
-                line ( img, mouseV[i], mouseV[i + 1],  Scalar ( 255, 255, 0 ), 1 );
+                line ( img, mouseV[i], mouseV[i + 1], Scalar ( 255, 255, 0 ), 1 );
             }
-​
+
             for ( int i = 0; i < particleV.size() - 1; i++ ) {
-                line ( img, particleV[i], particleV[i + 1],  Scalar ( 0, 255, 0 ), 1 );
+                line ( img, particleV[i], particleV[i + 1], Scalar ( 0, 255, 0 ), 1 );
             }
-​
+
             imshow ( "mouse particle", img );
         }
-​
+
         if ( code == 27 || code == 'q' || code == 'Q' ) {
             break;
         }
     }
-​
+
     return 0;
 }
 ```

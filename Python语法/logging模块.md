@@ -1,14 +1,13 @@
 ---
 title: logging模块
 categories: Python语法
-abbrlink: 80af0fa2
 date: 2019-02-10 14:17:18
 ---
 &emsp;&emsp;将日志打印到屏幕：<!--more-->
 
 ``` python
 import logging
-​
+
 logging.debug('debug message')
 logging.info('info message')
 logging.warning('warn message')
@@ -45,7 +44,7 @@ WARINING : root           : warn message
 
 ``` python
 import logging
-​
+
 logging.basicConfig(
     level=logging.DEBUG, format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
     datefmt='%a, %d %b %Y %H:%M:%S', filename='myapp.log', filemode='w')
@@ -148,7 +147,7 @@ formatter = logging.Formatter(fmt=None, datefmt=None)
 
 ``` python
 import logging
-​
+
 logging.basicConfig(
     level=logging.DEBUG, format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
     datefmt='%a, %d %b %Y %H:%M:%S', filename='myapp.log', filemode='w')
@@ -183,7 +182,7 @@ Fri, 08 Dec 2017 15:53:58 hello.py[line:21] WARNING This is warning message
 ``` python
 import logging
 from logging.handlers import RotatingFileHandler
-​
+
 # 定义一个RotatingFileHandler，最多备份5个日志文件，每个日志文件最大10M
 Rthandler = RotatingFileHandler('myapp.log', maxBytes=10 * 1024 * 1024, backupCount=5)
 Rthandler.setLevel(logging.INFO)

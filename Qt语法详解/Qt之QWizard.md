@@ -1,14 +1,13 @@
 ---
 title: Qt之QWizard
 categories: Qt语法详解
-abbrlink: 5c252396
 date: 2019-03-18 09:01:08
 ---
 &emsp;&emsp;The `QWizard` class provides a framework for wizards.<!--more-->
 
-Header  | Inherits
---------|---------
-QWizard | QDialog
+Header    | Inherits
+----------|---------
+`QWizard` | `QDialog`
 
 ### Public Functions
 
@@ -113,25 +112,25 @@ QWizardPage *createIntroPage() {
     page->setLayout ( layout );
     return page;
 }
-​
+
 QWizardPage *createRegistrationPage() {
     ...
 }
-​
+
 QWizardPage *createConclusionPage() {
     ...
 }
-​
+
 int main ( int argc, char *argv[] ) {
     QApplication app ( argc, argv );
     QString translatorFileName = QLatin1String ( "qt_" );
     translatorFileName += QLocale::system().name();
     QTranslator *translator = new QTranslator ( &app );
-​
+
     if ( translator->load ( translatorFileName, QLibraryInfo::location ( QLibraryInfo::TranslationsPath ) ) ) {
         app.installTranslator ( translator );
     }
-​
+
     QWizard wizard;
     wizard.addPage ( createIntroPage() );
     wizard.addPage ( createRegistrationPage() );
@@ -161,7 +160,7 @@ int main ( int argc, char *argv[] ) {
 
 &emsp;&emsp;**Note**: `AeroStyle` has effect only on a `Windows Vista system` with alpha compositing enabled. `ModernStyle` is used as a fallback when this condition is not met.
 &emsp;&emsp;In addition to the wizard style, there are several options that control the look and feel of the wizard. These can be set using `setOption()` or `setOptions()`. For example, `HaveHelpButton` makes `QWizard` show a Help button along with the other wizard buttons.
-&emsp;&emsp;You can even change the order of the wizard buttons to any arbitrary order using `setButtonLayout()`, and you can add up to three custom buttons (e.g., a `Print` button) to the button row. This is achieved by calling `setButton()` or `setButtonText()` with `CustomButton1`, `CustomButton2` or `CustomButton3` to set up the button, and by enabling the `HaveCustomButton1`, `HaveCustomButton2` or `HaveCustomButton3` options. Whenever the user clicks a custom button, `customButtonClicked()` is emitted. For example:
+&emsp;&emsp;You can even change the order of the wizard buttons to any arbitrary order using `setButtonLayout()`, and you can add up to three custom buttons (e.g., a `Print` button) to the button row. This is achieved by calling `setButton()` or `setButtonText()` with `CustomButton1`, `CustomButton2` or `CustomButton3` to set up the button, and by enabling the `HaveCustomButton1`, `HaveCustomButton2` or `HaveCustomButton3` options. Whenever the user clicks a custom button, `customButtonClicked()` is emitted.
 
 ``` cpp
 wizard()->setButtonText ( QWizard::CustomButton1, tr ( "&Print" ) );
@@ -198,7 +197,7 @@ connect ( wizard(), SIGNAL ( customButtonClicked ( int ) ), this, SLOT ( printBu
 ### Registering and Using Fields
 
 &emsp;&emsp;In many wizards, the contents of a page may affect the default values of the fields of a later page. To make it easy to communicate between pages, `QWizard` supports a `field` mechanism that allows you to register a field (e.g., a `QLineEdit`) on a page and to access its value from any page. It is also possible to specify mandatory fields (i.e., fields that must be filled before the user can advance to the next page).
-&emsp;&emsp;To register a field, call `QWizardPage::registerField()` field. For example:
+&emsp;&emsp;To register a field, call `QWizardPage::registerField()` field.
 
 ``` cpp
 ClassInfoPage::ClassInfoPage ( QWidget *parent ) : QWizardPage ( parent ) {
@@ -218,7 +217,7 @@ ClassInfoPage::ClassInfoPage ( QWidget *parent ) : QWizardPage ( parent ) {
 ```
 
 &emsp;&emsp;The above code registers three fields, `className`, `baseClass`, and `qobjectMacro`, which are associated with three child widgets. The asterisk (`*`) next to `className` denotes a mandatory field.
-&emsp;&emsp;The fields of any page are accessible from any other page. For example:
+&emsp;&emsp;The fields of any page are accessible from any other page.
 
 ``` cpp
 void OutputFilesPage::initializePage() {
@@ -238,7 +237,7 @@ void OutputFilesPage::initializePage() {
 
 ### Creating Linear Wizards
 
-&emsp;&emsp;Most wizards have a linear structure, with `page 1` followed by `page 2` and so on until the last page. The `Class Wizard` example is such a wizard. With `QWizard`, linear wizards are created by instantiating the `QWizardPages` and inserting them using `addPage()`. By default, the pages are shown in the order in which they were added. For example:
+&emsp;&emsp;Most wizards have a linear structure, with `page 1` followed by `page 2` and so on until the last page. The `Class Wizard` example is such a wizard. With `QWizard`, linear wizards are created by instantiating the `QWizardPages` and inserting them using `addPage()`. By default, the pages are shown in the order in which they were added.
 
 ``` cpp
 ClassWizard::ClassWizard ( QWidget *parent ) : QWizard ( parent ) {
@@ -260,7 +259,7 @@ ClassWizard::ClassWizard ( QWidget *parent ) : QWizard ( parent ) {
 
 <img src="./Qt之QWizard/4.png" height="297" width="416">
 
-&emsp;&emsp;In complex wizards, pages are identified by `IDs`. These `IDs` are typically defined using an enum. For example:
+&emsp;&emsp;In complex wizards, pages are identified by `IDs`. These `IDs` are typically defined using an enum.
 
 ``` cpp
 class LicenseWizard : public QWizard {
@@ -283,7 +282,7 @@ LicenseWizard::LicenseWizard ( QWidget *parent ) : QWizard ( parent ) {
 }
 ```
 
-&emsp;&emsp;By default, the pages are shown in increasing `ID` order. To provide a dynamic order that depends on the options chosen by the user, we must reimplement `QWizardPage::nextId()`. For example:
+&emsp;&emsp;By default, the pages are shown in increasing `ID` order. To provide a dynamic order that depends on the options chosen by the user, we must reimplement `QWizardPage::nextId()`.
 
 ``` cpp
 int IntroPage::nextId() const {
@@ -293,11 +292,11 @@ int IntroPage::nextId() const {
         return LicenseWizard::Page_Register;
     }
 }
-​
+
 int EvaluatePage::nextId() const {
     return LicenseWizard::Page_Conclusion;
 }
-​
+
 int RegisterPage::nextId() const {
     if ( upgradeKeyLineEdit->text().isEmpty() ) {
         return LicenseWizard::Page_Details;
@@ -305,17 +304,17 @@ int RegisterPage::nextId() const {
         return LicenseWizard::Page_Conclusion;
     }
 }
-​
+
 int DetailsPage::nextId() const {
     return LicenseWizard::Page_Conclusion;
 }
-​
+
 int ConclusionPage::nextId() const {
     return -1;
 }
 ```
 
-&emsp;&emsp;It would also be possible to put all the logic in one place, in a `QWizard::nextId()` reimplementation. For example:
+&emsp;&emsp;It would also be possible to put all the logic in one place, in a `QWizard::nextId()` reimplementation.
 
 ``` cpp
 int LicenseWizard::nextId() const {
@@ -341,12 +340,12 @@ int LicenseWizard::nextId() const {
 ```
 
 &emsp;&emsp;To start at another page than the page with the lowest `ID`, call `setStartId()`.
-&emsp;&emsp;To test whether a page has been visited or not, call `hasVisitedPage()`. For example:
+&emsp;&emsp;To test whether a page has been visited or not, call `hasVisitedPage()`.
 
 ``` cpp
 void ConclusionPage::initializePage() {
     QString licenseText;
-​
+
     if ( wizard()->hasVisitedPage ( LicenseWizard::Page_Evaluate ) ) {
         licenseText = tr ( "<u>Evaluation License Agreement:</u> "
                            "You can use this software for 30 days and make one "
@@ -360,7 +359,7 @@ void ConclusionPage::initializePage() {
                            "This software is licensed under the terms of your "
                            "current license." );
     }
-​
+
     bottomLabel->setText ( licenseText );
 }
 ```
@@ -489,12 +488,12 @@ void setWizardStyle ( WizardStyle style )
 - `QString QWizard::buttonText(WizardButton which) const`: Returns the text on button `which`. If a text has ben set using `setButtonText()`, this text is returned. By default, the text on buttons depends on the `wizardStyle`. For example, on `Mac OS X`, the `Next` button is called `Continue`.
 - `void QWizard::cleanupPage(int id) [virtual protected]`: This virtual function is called by `QWizard` to clean up page id just before the user leaves it by clicking `Back` (unless the `QWizard::IndependentPages` option is set). The default implementation calls `QWizardPage::cleanupPage()` on `page(id)`.
 - `QWizardPage * QWizard::currentPage() const`: Returns a pointer to the current page, or `0` if there is no current page (e.g., before the wizard is shown). This is equivalent to calling `page(currentId())`.
-- `void QWizard::customButtonClicked(int which) [signal]`: This signal is emitted when the user clicks a custom button. `which` can be `CustomButton1`, `CustomButton2` or `CustomButton3`. By default, no custom button is shown. Call `setOption()` with `HaveCustomButton1`, `HaveCustomButton2` or `HaveCustomButton3` to have one, and use `setButtonText()` or `setButton()` to configure it.
+- `void QWizard::customButtonClicked(int which) [signal]`: This signal is emitted when the user clicks a custom button. `which` can be `CustomButton1`, `CustomButton2` or `CustomButton3`. By default, no custom button is shown. Call `setOption()` with `HaveCustomButton1`, `HaveCustomButton2` or `HaveCustomButton3` to have one, and use `setButtonText()` or `setButton()` to configure it.
 - `void QWizard::done(int result) [virtual protected]`: Reimplemented from `QDialog::done()`.
 - `bool QWizard::event(QEvent * event) [virtual protected]`: Reimplemented from `QObject::event()`.
 - `QVariant QWizard::field(const QString & name) const`: Returns the value of the field called `name`. This function can be used to access fields on any page of the wizard.
 - `bool QWizard::hasVisitedPage(int id) const`: Returns `true` if the page history contains page `id`; otherwise, returns `false`. Pressing `Back` marks the current page as `unvisited` again.
-- `void QWizard::helpRequested() [signal]`: This signal is emitted when the user clicks the `Help` button. By default, no `Help` button is shown. Call `setOption(HaveHelpButton, true)` to have one. Example:
+- `void QWizard::helpRequested() [signal]`: This signal is emitted when the user clicks the `Help` button. By default, no `Help` button is shown. Call `setOption(HaveHelpButton, true)` to have one.
 
 ``` cpp
 LicenseWizard::LicenseWizard ( QWidget *parent ) : QWizard ( parent ) {
@@ -503,11 +502,11 @@ LicenseWizard::LicenseWizard ( QWidget *parent ) : QWizard ( parent ) {
     connect ( this, SIGNAL ( helpRequested() ), this, SLOT ( showHelp() ) );
     ...
 }
-​
+
 void LicenseWizard::showHelp() {
     static QString lastHelpMessage;
     QString message;
-​
+
     switch ( currentId() ) {
         case Page_Intro:
             message = tr ( "The decision you make here will affect which page you "
@@ -517,25 +516,25 @@ void LicenseWizard::showHelp() {
         default:
             message = tr ( "This help is likely not to be of any help." );
     }
-​
+
     QMessageBox::information ( this, tr ( "License Wizard Help" ), message );
 }
 ```
 
 - `void QWizard::initializePage(int id) [virtual protected]`: This virtual function is called by `QWizard` to prepare page `id` just before it is shown either as a result of `QWizard::restart()` being called, or as a result of the user clicking `Next`. (However, if the `QWizard::IndependentPages` option is set, this function is only called the first time the page is shown) By reimplementing this function, you can ensure that the page's fields are properly initialized based on fields from previous pages. The default implementation calls `QWizardPage::initializePage()` on `page(id)`.
 - `void QWizard::next() [slot]`: Advances to the next page. This is equivalent to pressing the Next or `Commit` button.
-- `int QWizard::nextId() const [virtual]`: This virtual function is called by `QWizard` to find out which page to show when the user clicks the `Next` button. The return value is the `ID` of the next page, or `-1` if no page follows. The default implementation calls `QWizardPage::nextId()` on the `currentPage()`. By reimplementing this function, you can specify a dynamic page order.
+- `int QWizard::nextId() const [virtual]`: This virtual function is called by `QWizard` to find out which page to show when the user clicks the `Next` button. The return value is the `ID` of the next page, or `-1` if no page follows. The default implementation calls `QWizardPage::nextId()` on the `currentPage()`. By reimplementing this function, you can specify a dynamic page order.
 - `QWizardPage * QWizard::page(int id) const`: Returns the page with the given `id`, or `0` if there is no such page.
-- `void QWizard::pageAdded(int id) [signal]`: This signal is emitted whenever a page is added to the wizard. The page's `id` is passed as parameter.
+- `void QWizard::pageAdded(int id) [signal]`: This signal is emitted whenever a page is added to the wizard. The page's `id` is passed as parameter.
 - `QList<int> QWizard::pageIds() const`: Returns the list of page `IDs`.
-- `void QWizard::pageRemoved(int id) [signal]`: This signal is emitted whenever a page is removed from the wizard. The page's `id` is passed as parameter.
+- `void QWizard::pageRemoved(int id) [signal]`: This signal is emitted whenever a page is removed from the wizard. The page's `id` is passed as parameter.
 - `void QWizard::paintEvent(QPaintEvent * event) [virtual protected]`: Reimplemented from `QWidget::paintEvent()`.
 - `QPixmap QWizard::pixmap(WizardPixmap which) const`: Returns the pixmap set for role `which`. By default, the only pixmap that is set is the `BackgroundPixmap` on `Mac OS X`.
 - `void QWizard::removePage(int id)`: Removes the page with the given `id`. `cleanupPage()` will be called if necessary. **Note**: Removing a page may influence the value of the `startId` property.
 - `void QWizard::resizeEvent(QResizeEvent * event) [virtual protected]`: Reimplemented from `QWidget::resizeEvent()`.
 - `void QWizard::restart() [slot]`: Restarts the wizard at the start page. This function is called automatically when the wizard is shown.
 - `void QWizard::setButton(WizardButton which, QAbstractButton * button)`: Sets the button corresponding to role `which` to `button`. To add extra buttons to the wizard (e.g., a `Print` button), one way is to call `setButton()` with `CustomButton1` to `CustomButton3`, and make the buttons visible using the `HaveCustomButton1` to `HaveCustomButton3` options.
-- `void QWizard::setButtonLayout(const QList<WizardButton> & layout)`: Sets the order in which buttons are displayed to `layout`, where `layout` is a list of `WizardButtons`. The default layout depends on the options (e.g., whether `HelpButtonOnRight`) that are set. You can call this function if you need more control over the buttons' layout than what options already provides. You can specify horizontal stretches in the layout using Stretch. Example:
+- `void QWizard::setButtonLayout(const QList<WizardButton> & layout)`: Sets the order in which buttons are displayed to `layout`, where `layout` is a list of `WizardButtons`. The default layout depends on the options (e.g., whether `HelpButtonOnRight`) that are set. You can call this function if you need more control over the buttons' layout than what options already provides. You can specify horizontal stretches in the layout using Stretch.
 
 ``` cpp
 MyWizard::MyWizard ( QWidget *parent ) : QWizard ( parent ) {
@@ -572,4 +571,4 @@ Widget            | Property             | Change Notification Signal
 - `bool QWizard::testOption(WizardOption option) const`: Returns `true` if the given option is enabled; otherwise, returns `false`.
 - `bool QWizard::validateCurrentPage() [virtual]`: This virtual function is called by `QWizard` when the user clicks `Next` or `Finish` to perform some `last-minute` validation. If it returns true, the next page is shown (or the wizard finishes); otherwise, the current page stays up. The default implementation calls `QWizardPage::validatePage()` on the `currentPage()`. When possible, it is usually better style to disable the `Next` or `Finish` button (by specifying mandatory fields or by reimplementing `QWizardPage::isComplete()`) than to reimplement `validateCurrentPage()`.
 - `QList<int> QWizard::visitedPages() const`: Returns the list of `IDs` of visited pages, in the order in which the pages were visited. Pressing `Back` marks the current page as `unvisited` again.
-- `bool QWizard::winEvent(MSG * message, long * result) [virtual protected]`: Reimplemented from `QWidget::winEvent()`.
+- `bool QWizard::winEvent(MSG * message, long * result) [virtual protected]`: Reimplemented from `QWidget::winEvent()`.

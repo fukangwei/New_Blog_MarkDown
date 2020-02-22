@@ -1,7 +1,6 @@
 ---
 title: Network in Network模型
 categories: 深度学习
-abbrlink: 663bd8af
 date: 2019-02-15 20:55:52
 ---
 &emsp;&emsp;经典`CNN`中的卷积层其实就是用线性滤波器对图像进行内积运算，在每个局部输出后面跟着一个非线性的激活函数，最终得到特征图。而这种卷积滤波器是一种广义线性模型(`Generalized linear model`，`GLM`)，所以用`CNN`进行特征提取时，其实就隐含地假设了特征是线性可分的，可实际问题往往是难以线性可分的。<!--more-->
@@ -29,7 +28,7 @@ from keras.layers.normalization import BatchNormalization
 from keras import optimizers
 from keras.callbacks import LearningRateScheduler, TensorBoard
 from keras import backend as K
-​
+
 batch_size = 128
 epochs = 20
 iterations = 391
@@ -37,14 +36,14 @@ num_classes = 10
 dropout = 0.5
 weight_decay = 0.0001
 log_filepath = './nin_bn'
-​
+
 if ('tensorflow' == K.backend()):
     import tensorflow as tf
-​
+
     config = tf.ConfigProto()
     config.gpu_options.allow_growth = True
     sess = tf.Session(config=config)
-​
+
 def color_preprocessing(x_train, x_test):
     x_train = x_train.astype('float32')
     x_test = x_test.astype('float32')
@@ -54,9 +53,9 @@ def color_preprocessing(x_train, x_test):
     for i in range(3):
         x_train[:, :, :, i] = (x_train[:, :, :, i] - mean[i]) / std[i]
         x_test[:, :, :, i] = (x_test[:, :, :, i] - mean[i]) / std[i]
-​
+
     return x_train, x_test
-​
+
 def scheduler(epoch):
     if epoch <= 60:
         return 0.05
@@ -68,10 +67,10 @@ def scheduler(epoch):
         return 0.002
 
     return 0.0004
-​
+
 def build_model():
     model = Sequential()
-​
+
     model.add(Conv2D(192, (5, 5), padding='same', kernel_regularizer=keras.regularizers.l2(weight_decay), \
                      kernel_initializer="he_normal", input_shape=x_train.shape[1:]))
     model.add(BatchNormalization())
@@ -85,9 +84,9 @@ def build_model():
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(3, 3), strides=(2, 2), padding='same'))
-​
+
     model.add(Dropout(dropout))
-​
+
     model.add(Conv2D(192, (5, 5), padding='same', kernel_regularizer=keras.regularizers.l2(weight_decay), \
                      kernel_initializer="he_normal"))
     model.add(BatchNormalization())
@@ -101,9 +100,9 @@ def build_model():
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(3, 3), strides=(2, 2), padding='same'))
-​
+
     model.add(Dropout(dropout))
-​
+
     model.add(Conv2D(192, (3, 3), padding='same', kernel_regularizer=keras.regularizers.l2(weight_decay), \
                      kernel_initializer="he_normal"))
     model.add(BatchNormalization())
@@ -116,33 +115,33 @@ def build_model():
                      kernel_initializer="he_normal"))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
-​
+
     model.add(GlobalAveragePooling2D())
     model.add(Activation('softmax'))
-​
+
     sgd = optimizers.SGD(lr=.1, momentum=0.9, nesterov=True)
     model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
     return model
-​
+
 if __name__ == '__main__':
     (x_train, y_train), (x_test, y_test) = cifar10.load_data()
     y_train = keras.utils.to_categorical(y_train, num_classes)
     y_test = keras.utils.to_categorical(y_test, num_classes)
-​
+
     x_train, x_test = color_preprocessing(x_train, x_test)
     model = build_model()
     print(model.summary())
-​
+
     tb_cb = TensorBoard(log_dir=log_filepath, histogram_freq=0)
     change_lr = LearningRateScheduler(scheduler)
     cbks = [change_lr, tb_cb]
-​
+
     print('Using real-time data augmentation.')
     datagen = ImageDataGenerator(
                 horizontal_flip=True, width_shift_range=0.125,
                 height_shift_range=0.125, fill_mode='constant', cval=0.)
     datagen.fit(x_train)
-​
+
     model.fit_generator(
         datagen.flow(x_train, y_train, batch_size=batch_size),
         steps_per_epoch=iterations, epochs=epochs,

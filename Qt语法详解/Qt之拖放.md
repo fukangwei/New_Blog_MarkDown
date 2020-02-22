@@ -1,7 +1,6 @@
 ---
 title: Qt之拖放
 categories: Qt语法详解
-abbrlink: 3fc8f6a
 date: 2019-02-01 18:27:48
 ---
 &emsp;&emsp;拖放是应用程序内或者多个应用程序之间传递信息的一种直观的操作方式。除了为剪贴板提供支持之外，通常还提供数据的移动和复制功能。<!--more-->
@@ -17,7 +16,7 @@ protected:
     void dragMoveEvent ( QDragMoveEvent *event );
     void dropEvent ( QDropEvent *event );
 };
-​
+
 TabelView::TabelView ( QWidget *parent ) : QTableView ( parent ) {
     setAcceptDrops ( true );
     setDragDropMode ( QAbstractItemView::DragDrop );
@@ -25,12 +24,12 @@ TabelView::TabelView ( QWidget *parent ) : QTableView ( parent ) {
     setDropIndicatorShown ( true );
     this->setWindowTitle ( "TableView" );
 }
-​
+
 void TabelView::dragEnterEvent ( QDragEnterEvent *event ) {
     if ( event->mimeData()->hasFormat ( "text/uri-list" ) ) {
         event->acceptProposedAction();
     }
-​
+
     qDebug() << "drag enter";
 }
 ```
@@ -112,11 +111,11 @@ void DragWidget::mouseMoveEvent ( QMouseEvent *event ) {
     if ( ! ( event->buttons() & Qt::LeftButton ) ) {
         return;
     }
-​
+
     if ( ( event->pos() - dragStartPosition ).manhattanLength() < QApplication::startDragDistance() ) {
         return;
     }
-​
+
     QDrag *drag = new QDrag ( this );
     QMimeData *mimeData = new QMimeData;
     mimeData->setData ( mimeType, data );
@@ -212,12 +211,12 @@ void DragWidget::mouseMoveEvent ( QMouseEvent *event ) {
     if ( ! ( event->buttons() & Qt::LeftButton ) ) {
         return;
     }
-​
+
     if ( ( event->pos() - dragStartPosition ).manhattanLength()
          < QApplication::startDragDistance() ) {
         return;
     }
-​
+
     QDrag *drag = new QDrag ( this );
     QMimeData *mimeData = new QMimeData;
     mimeData->setData ( mimeType, data );

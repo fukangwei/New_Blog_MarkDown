@@ -1,7 +1,6 @@
 ---
 title: 共用体union
 categories: C语言语法详解
-abbrlink: a9e20fac
 date: 2018-12-12 06:21:36
 ---
 &emsp;&emsp;`union`的一些妙用如下：<!--more-->
@@ -101,7 +100,7 @@ public:
         return f;
     }
 
-    float setVal ( float  f ) {
+    float setVal ( float f ) {
         this->f = f;
     }
 
@@ -121,7 +120,7 @@ int main() {
     test.t2.setVal ( 7.0f );
     t = test.t1;
     assert ( t.getVal() == 7.0f );
-    return  0;
+    return 0;
 }
 ```
 

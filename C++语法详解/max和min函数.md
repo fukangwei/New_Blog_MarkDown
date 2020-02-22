@@ -1,7 +1,6 @@
 ---
 title: max和min函数
 categories: C++语法详解
-abbrlink: 4cdcdbb2
 date: 2019-02-05 20:21:24
 ---
 ### max函数
@@ -28,7 +27,7 @@ Example:
 #include <iostream> /* std::cout */
 #include <algorithm> /* std::max */
 #include <cstdlib>
-​
+
 int main() {
     std::cout << "max(1, 2) == " << std::max(1, 2) << '\n';
     std::cout << "max(2, 1) == " << std::max(2, 1) << '\n';
@@ -72,7 +71,7 @@ Example:
 #include <iostream> /* std::cout */
 #include <algorithm> /* std::min */
 #include <cstdlib>
-​
+
 int main() {
     std::cout << "min(1, 2) == " << std::min(1, 2) << '\n';
     std::cout << "min(2, 1) == " << std::min(2, 1) << '\n';

@@ -1,7 +1,6 @@
 ---
 title: Qt之简易网页浏览器
 categories: Qt应用示例
-abbrlink: 59d2e135
 date: 2019-02-06 13:29:23
 ---
 &emsp;&emsp;`mainwindow.h`如下：<!--more-->
@@ -9,15 +8,15 @@ date: 2019-02-06 13:29:23
 ``` cpp
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-​
+
 #include <QMainWindow>
 class QNetworkReply;
 class QNetworkAccessManager;
-​
+
 namespace Ui {
     class MainWindow;
 }
-​
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
@@ -29,7 +28,7 @@ private:
     Ui::MainWindow *ui;
     QNetworkAccessManager *manager;
 };
-​
+
 #endif // MAINWINDOW_H
 ```
 
@@ -40,7 +39,7 @@ private:
 #include "ui_mainwindow.h"
 #include <QtNetwork>
 #include <QTextCodec>
-​
+
 MainWindow::MainWindow ( QWidget *parent ) : QMainWindow ( parent ), ui ( new Ui::MainWindow ) {
     ui->setupUi ( this );
     manager = new QNetworkAccessManager ( this );
@@ -48,11 +47,11 @@ MainWindow::MainWindow ( QWidget *parent ) : QMainWindow ( parent ), ui ( new Ui
               this, SLOT ( replyFinished ( QNetworkReply * ) ) );
     manager->get ( QNetworkRequest ( QUrl ( "http://www.baidu.com" ) ) );
 }
-​
+
 MainWindow::~MainWindow() {
     delete ui;
 }
-​
+
 void MainWindow::replyFinished ( QNetworkReply *reply ) {
     /* QTextCodec *codec = QTextCodec::codecForLocale(); */
     QTextCodec *codec = QTextCodec::codecForName ( "UTF-8" );

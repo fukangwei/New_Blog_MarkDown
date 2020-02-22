@@ -1,7 +1,6 @@
 ---
 title: Intent
 categories: Android
-abbrlink: b9c0fe27
 date: 2019-02-10 10:20:19
 ---
 &emsp;&emsp;`Android`中提供了`Intent`机制来协助应用间的交互与通讯。`Intent`负责对应用中一次操作的动作以及附加数据进行描述，`Android`则根据此`Intent`的描述，负责找到对应的组件，将`Intent`传递给调用的组件，并完成组件的调用。<!--more-->
@@ -115,14 +114,14 @@ Constant              | Meaning
 
 ``` java
 package com.example.littlefool.myapplication;
-​
+
 import android.content.ComponentName;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-​
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,12 +147,12 @@ public class MainActivity extends AppCompatActivity {
 
 ``` java
 package com.example.littlefool.myapplication;
-​
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-​
+
 public class Main3Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,7 +177,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-​
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -212,7 +211,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-​
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -244,7 +243,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-​
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,7 +1,6 @@
 ---
 title: TensorFlow之线程和队列
 categories: 深度学习
-abbrlink: 8c6e6ac2
 date: 2019-02-13 15:33:07
 ---
 &emsp;&emsp;在使用`TensorFlow`进行异步计算时，队列是一种强大的机制。正如`TensorFlow`中的其他组件一样，队列就是`TensorFlow`图中的节点。这是一种有状态的节点，就像变量一样：其他节点可以修改它的内容。具体来说，其他节点可以把新元素插入到队列后端(`rear`)，也可以把队列前端(`front`)的元素删除。<!--more-->
@@ -38,14 +37,14 @@ def MyLoop(coord):  # 循环执行，直到Coordinator收到了停止请求
 
         if some condition:  # 如果某些条件为真，请求Coordinator去停止其他线程
             coord.request_stop()
-​
+
 coord = Coordinator()  # Main code: create a coordinator
 # Create 10 threads that run 'MyLoop()'
 threads = [threading.Thread(target=MyLoop, args=(coord)) for i in range(10)]
 
 for t in threads:  # Start the threads and wait for all of them to stop
     t.start()
-​
+
 coord.join(threads)
 ```
 
@@ -70,7 +69,7 @@ train_op = ...use 'inputs' to build the training part of the graph...
 ``` python
 # Create a queue runner that will run 4 threads in parallel to enqueue examples
 qr = tf.train.QueueRunner(queue, [enqueue_op] * 4)
-​
+
 sess = tf.Session()  # Launch the graph
 coord = tf.train.Coordinator()  # Create a coordinator, launch the queue runner threads
 enqueue_threads = qr.create_threads(sess, coord=coord, start=True)
@@ -80,7 +79,7 @@ for step in xrange(1000000):  # Run the training loop, controlling termination w
         break
 
     sess.run(train_op)
-​
+
 coord.request_stop()  # When done, ask the threads to stop
 coord.join(threads)  # And wait for them to actually do it
 ```
@@ -98,7 +97,7 @@ try:
         sess.run(train_op)
 except Exception, e:
     coord.request_stop(e)  # Report exceptions to the coordinator
-​
+
 # Terminate as usual. It is innocuous to request stop twice
 coord.request_stop()
 coord.join(threads)
@@ -136,7 +135,7 @@ tf.FIFOQueue(capacity, dtypes, shapes=None, names=None ...)
 
 ``` python
 import tensorflow as tf
-​
+
 tf.InteractiveSession()
 # 创建一个FIFO队列，初始化队列插入0.1、0.2、0.3这三个数字
 q = tf.FIFOQueue(3, "float")
@@ -151,7 +150,7 @@ with tf.Session() as sess:
 
     for i in range(2):
         sess.run(q_inc)  # 执行2次操作，队列的值变为0.3、2.1、2.2
-​
+
     quelen = sess.run(q.size())
 
     for i in range(quelen):
@@ -174,11 +173,11 @@ with tf.Session() as sess:
 
 ``` python
 import tensorflow as tf
-​
+
 tf.InteractiveSession()
 # 最大长度为10，最小长度为2，类型为float的随机队列
 q = tf.RandomShuffleQueue(capacity=10, min_after_dequeue=2, dtypes='float')
-​
+
 sess = tf.Session()
 
 for i in range(0, 10):
@@ -208,7 +207,7 @@ for i in range(0, 8):
 
 ``` python
 import tensorflow as tf
-​
+
 q = tf.FIFOQueue(10, "float")
 counter = tf.Variable(0.0)  # 计数器
 increment_op = tf.assign_add(counter, 1.0)  # 给计数器加一
@@ -218,7 +217,7 @@ qr = tf.train.QueueRunner(q, enqueue_ops=[increment_op, enqueue_op] * 2)
 sess = tf.InteractiveSession()  # 主线程
 tf.global_variables_initializer().run()
 qr.create_threads(sess, start=True)  # 启动入队线程
-​
+
 for i in range(20):
     print(sess.run(q.dequeue()))
 ```
@@ -246,24 +245,24 @@ for i in range(20):
 
 ``` python
 import tensorflow as tf
-​
+
 q = tf.FIFOQueue(1000, 'float')
 counter = tf.Variable(0.0)  # 计数器
 increment_op = tf.assign_add(counter, tf.constant(1.0))  # 计数器加一
 enqueue_op = q.enqueue(counter)  # 入队
 # 线程面向队列q，启动2个线程，每个线程中是[in, en]两个操作
 qr = tf.train.QueueRunner(q, enqueue_ops=[increment_op, enqueue_op] * 2)
-​
+
 sess = tf.Session()
 sess.run(tf.global_variables_initializer())
-​
+
 coord = tf.train.Coordinator()
 # 线程管理器启动线程，接收协调器管理
 enqueue_thread = qr.create_threads(sess, coord=coord, start=True)
-​
+
 for i in range(0, 10):
     print(sess.run(q.dequeue()))
-​
+
 coord.request_stop()  # 向各个线程发终止信号
 coord.join(enqueue_thread)  # 等待各个线程成功结束
 ```

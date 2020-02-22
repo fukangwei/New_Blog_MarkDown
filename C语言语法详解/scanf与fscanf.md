@@ -1,7 +1,6 @@
 ---
 title: scanf与fscanf
 categories: C语言语法详解
-abbrlink: 7c36311b
 date: 2018-12-06 20:05:34
 ---
 ### scanf与fscanf
@@ -60,7 +59,7 @@ inp->reffile = "test_rec.yuv";
 
 &emsp;&emsp;语法如下：
 
-``` c
+``` cpp
 #include <stdio.h>
 int scanf ( const char* format, ... );
 ```

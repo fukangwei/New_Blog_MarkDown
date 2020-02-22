@@ -1,7 +1,6 @@
 ---
 title: Qt获取MD5值
 categories: Qt应用示例
-abbrlink: ef49342a
 date: 2018-12-28 16:05:08
 ---
 &emsp;&emsp;`QT`提供了`QCryptographicHash`类，可以很方便地实现`MD5`等加密算法。<!--more-->
@@ -11,7 +10,7 @@ date: 2018-12-28 16:05:08
 #include <QtCore/QCoreApplication>
 #include <QCryptographicHash>
 #include <iostream>
-​
+
 int main ( int argc, char *argv[] ) {
     QCoreApplication a ( argc, argv );
     QString pwd = "abcdef";
@@ -33,7 +32,7 @@ int main ( int argc, char *argv[] ) {
 #include <QtCore/QCoreApplication>
 #include <QCryptographicHash>
 #include <iostream>
-​
+
 int main ( int argc, char *argv[] ) {
     QCoreApplication a ( argc, argv );
     QString md5;

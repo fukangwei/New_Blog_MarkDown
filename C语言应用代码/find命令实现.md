@@ -1,7 +1,6 @@
 ---
 title: find命令实现
 categories: C语言应用代码
-abbrlink: c1e3dd68
 date: 2018-12-26 21:59:07
 ---
 &emsp;&emsp;版本`1`如下：<!--more-->
@@ -10,15 +9,15 @@ date: 2018-12-26 21:59:07
 /* find函数：打印与第一个参数指定的模式匹配的行 */
 #include <stdio.h>
 #include <string.h>
-​
+
 #define MAXLINE 1000
 
 int mygetline ( char *line, int max );
-​
+
 int main ( int argc, char *argv[] ) {
     char line[MAXLINE];
     int found = 0;
-​
+
     if ( argc != 2 ) {
         printf ( "Usage: find pattern\n" );
     } else
@@ -27,22 +26,22 @@ int main ( int argc, char *argv[] ) {
                 printf ( "%s", line );
                 found++;
             }
-​
+
     return found;
 }
-​
+
 int mygetline ( char s[], int lim ) { /* get line into s, return length */
     int c, i;
     i = 0;
-​
+
     while ( --lim > 0 && ( c = getchar() ) != EOF && c != '\n' ) {
         s[i++] = c;
     }
-​
+
     if ( c == '\n' ) {
         s[i++] = c;
     }
-​
+
     s[i] = '\0';
     return i;
 }
@@ -53,16 +52,16 @@ int mygetline ( char s[], int lim ) { /* get line into s, return length */
 ``` cpp
 #include <stdio.h>
 #include <string.h>
-​
+
 #define MAXLINE 1000
-​
+
 int mygetline ( char *line, int max );
-​
+
 int main ( int argc, char *argv[] ) {
     char line[MAXLINE];
     long lineno = 0;
     int c, except = 0, number = 0, found = 0;
-​
+
     while ( --argc > 0 && ( *++argv ) [0] == '-' )
         while ( c = *++argv[0] )
             switch ( c ) {
@@ -74,38 +73,38 @@ int main ( int argc, char *argv[] ) {
                     found = -1;
                     break;
             }
-​
+
     if ( argc != 1 ) {
         printf ( "Usage: find -x -n pattern\n" );
     } else
         while ( mygetline ( line, MAXLINE ) > 0 ) {
             lineno++;
-​
+
             if ( ( strstr ( line, *argv ) != NULL ) != except ) {
                 if ( number ) {
                     printf ( "%ld: ", lineno );
                 }
-​
+
                 printf ( "%s", line );
                 found++;
             }
         }
-​
+
     return found;
 }
-​
+
 int mygetline ( char s[], int lim ) {
     int c, i;
     i = 0;
-​
+
     while ( --lim > 0 && ( c = getchar() ) != EOF && c != '\n' ) {
         s[i++] = c;
     }
-​
+
     if ( c == '\n' ) {
         s[i++] = c;
     }
-​
+
     s[i] = '\0';
     return i;
 }

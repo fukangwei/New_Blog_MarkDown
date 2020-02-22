@@ -1,7 +1,6 @@
 ---
 title: FLANN库
 categories: opencv和图像处理
-abbrlink: 89728d66
 date: 2019-03-04 18:57:23
 ---
 &emsp;&emsp;`FLANN`库全称是`Fast Library for Approximate Nearest Neighbors`，它是目前最完整的最近邻开源库。不但实现了一系列查找算法，还包含了一种自动选取最快算法的机制。<!--more-->
@@ -19,10 +18,10 @@ template <typename T> class
 public:
     typedef typename L2<T>::ElementType ElementType;
     typedef typename L2<T>::ResultType DistanceType;
-​
+
     Index_ ( const Mat &features, const ::cvflann::IndexParams &params );
     ~Index_();
-​
+
     void knnSearch ( const vector<ElementType> &query, vector<int> &indices, \
         vector<DistanceType> &dists, int knn, const ::cvflann::SearchParams &params );
     void knnSearch ( const Mat &queries, Mat &indices, Mat &dists, int knn, \
@@ -31,57 +30,57 @@ public:
         vector<DistanceType> &dists, DistanceType radius, const ::cvflann::SearchParams &params );
     int radiusSearch ( const Mat &query, Mat &indices, Mat &dists, \
         DistanceType radius, const ::cvflann::SearchParams &params );
-​
+
     void save ( std::string filename ) {
         if ( nnIndex_L1 ) {
             nnIndex_L1->save ( filename );
         }
-​
+
         if ( nnIndex_L2 ) {
             nnIndex_L2->save ( filename );
         }
     }
-​
+
     int veclen() const {
         if ( nnIndex_L1 ) {
             return nnIndex_L1->veclen();
         }
-​
+
         if ( nnIndex_L2 ) {
             return nnIndex_L2->veclen();
         }
     }
-​
+
     int size() const {
         if ( nnIndex_L1 ) {
             return nnIndex_L1->size();
         }
-​
+
         if ( nnIndex_L2 ) {
             return nnIndex_L2->size();
         }
     }
-​
+
     ::cvflann::IndexParams getParameters() {
         if ( nnIndex_L1 ) {
             return nnIndex_L1->getParameters();
         }
-​
+
         if ( nnIndex_L2 ) {
             return nnIndex_L2->getParameters();
         }
     }
-​
+
     FLANN_DEPRECATED const ::cvflann::IndexParams *getIndexParameters() {
         if ( nnIndex_L1 ) {
             return nnIndex_L1->getIndexParameters();
         }
-​
+
         if ( nnIndex_L2 ) {
             return nnIndex_L2->getIndexParameters();
         }
     }
-​
+
 private:
     /* providing backwards compatibility for L2 and L1 distances (most common) */
     ::cvflann::Index< L2<ElementType> > *nnIndex_L2;
@@ -111,7 +110,7 @@ flann::Index_<T>::Index_ ( const Mat &features, const IndexParams &params )
 
 ``` cpp
 /* trees: The number of parallel kd-trees to use.
-   Good values are in the range */
+   Good values are in the range */
 struct KDTreeIndexParams : public IndexParams {
     KDTreeIndexParams ( int trees = 4 );
 };
@@ -236,18 +235,18 @@ const IndexParams *flann::Index_<T>::getIndexParameters();
 #include "opencv2/core/core.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/nonfree/features2d.hpp"
-​
+
 using namespace cv;
-​
+
 int main ( int argc, char **argv ) {
     Mat img_1 = imread ( "desk.jpg", CV_LOAD_IMAGE_GRAYSCALE );
     Mat img_2 = imread ( "timg1.jpg", CV_LOAD_IMAGE_GRAYSCALE );
-​
+
     if ( !img_1.data || !img_2.data ) {
         std::cout << " --(!) Error reading images " << std::endl;
         return -1;
     }
-​
+
     /* Step 1: Detect the keypoints using SURF Detector */
     int minHessian = 400;
     SurfFeatureDetector detector ( minHessian );
@@ -265,32 +264,32 @@ int main ( int argc, char **argv ) {
     matcher.match ( descriptors_1, descriptors_2, matches );
     double max_dist = 0;
     double min_dist = 100;
-​
+
     /* Quick calculation of max and min distances between keypoints */
     for ( int i = 0; i < descriptors_1.rows; i++ ) {
         double dist = matches[i].distance;
-​
+
         if ( dist < min_dist ) {
             min_dist = dist;
         }
-​
+
         if ( dist > max_dist ) {
             max_dist = dist;
         }
     }
-​
+
     printf ( "-- Max dist : %f \n", max_dist );
     printf ( "-- Min dist : %f \n", min_dist );
     /* Draw only "good" matches (i.e. whose distance is less than 2*min_dist)
        PS. radiusMatch can also be used here. */
     std::vector< DMatch > good_matches;
-​
+
     for ( int i = 0; i < descriptors_1.rows; i++ ) {
         if ( matches[i].distance < 2 * min_dist ) {
             good_matches.push_back ( matches[i] );
         }
     }
-​
+
     /* Draw only "good" matches */
     Mat img_matches;
     drawMatches (
@@ -298,13 +297,13 @@ int main ( int argc, char **argv ) {
         Scalar::all ( -1 ), vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
     /* Show detected matches */
     imshow ( "Good Matches", img_matches );
-​
+
     for ( int i = 0; i < good_matches.size(); i++ ) {
         printf (
             "-- Good Match [%d] Keypoint 1: %d  -- Keypoint 2: %d\n", \
             i, good_matches[i].queryIdx, good_matches[i].trainIdx );
     }
-​
+
     waitKey ( 0 );
     return 0;
 }
@@ -336,37 +335,37 @@ int main ( int argc, char **argv ) {
 import numpy as np
 import cv2
 from matplotlib import pyplot as plt
-​
-img1 = cv2.imread('box.png', 0)  # queryImage
-img2 = cv2.imread('box_in_scene.png', 0)  # trainImage
-​
+
+img1 = cv2.imread('box.png', 0)  # queryImage
+img2 = cv2.imread('box_in_scene.png', 0)  # trainImage
+
 # Initiate SIFT detector
 sift = cv2.xfeatures2d.SIFT_create()
-​
+
 # find the keypoints and descriptors with SIFT
 kp1, des1 = sift.detectAndCompute(img1, None)
 kp2, des2 = sift.detectAndCompute(img2, None)
-​
+
 # FLANN parameters
 FLANN_INDEX_KDTREE = 0
 index_params = dict(algorithm=FLANN_INDEX_KDTREE, trees=5)
-search_params = dict(checks=50)  # or pass empty dictionary
-​
+search_params = dict(checks=50)  # or pass empty dictionary
+
 flann = cv2.FlannBasedMatcher(index_params, search_params)
 matches = flann.knnMatch(des1, des2, k=2)
 # Need to draw only good matches, so create a mask
 matchesMask = [[0, 0] for i in range(len(matches))]
-​
+
 # ratio test as per Lowe's paper
 for i, (m, n) in enumerate(matches):
     if m.distance < 0.7 * n.distance:
         matchesMask[i] = [1, 0]
-​
+
 draw_params = dict(matchColor=(0, 255, 0), singlePointColor=(255, 0, 0), \
                    matchesMask=matchesMask, flags=0)
-​
+
 img3 = cv2.drawMatchesKnn(img1, kp1, img2, kp2, matches, None, **draw_params)
-​
+
 plt.imshow(img3, ), plt.show()
 ```
 

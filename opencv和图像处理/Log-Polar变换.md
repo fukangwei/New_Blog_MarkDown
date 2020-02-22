@@ -2,7 +2,6 @@
 title: Log-Polar变换
 categories: opencv和图像处理
 mathjax: true
-abbrlink: 11254
 date: 2019-10-04 19:35:58
 ---
 &emsp;&emsp;对于二维图像，`Log-Polar`转换表示从笛卡尔坐标到极坐标的变换。左图三个方框是我们想要识别成`正方形`的形状，对数极坐标变换见右图。观察到在$(x, y)$平面内尺寸的差异被旋换为对数极坐标平面内沿着$log(r)$轴的位移，旋转差异被转换成对数极坐标平面沿$θ$轴的位移。如果我们将对数极坐标平面上每一个变换方形的转换中心，重新移动到一个固定的中心位置，那么所有正方形都是一样的。这就产生了一类二维旋转和尺度的不变性。<!--more-->
@@ -26,9 +25,9 @@ void cvLogPolar (
 ``` cpp
 #include "cv.h"
 #include "highgui.h"
-​
+
 using namespace std;
-​
+
 int main() {
     IplImage *src = cvLoadImage ( "timg1.jpg", CV_LOAD_IMAGE_UNCHANGED );
     IplImage *dst = cvCreateImage ( cvGetSize ( src ), IPL_DEPTH_8U, 3 );

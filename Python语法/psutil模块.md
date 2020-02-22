@@ -1,7 +1,6 @@
 ---
 title: psutil模块
 categories: Python语法
-abbrlink: 76f2803e
 date: 2019-02-10 17:08:38
 ---
 &emsp;&emsp;用`Python`编写脚本简化日常的运维工作是`Python`的一个重要用途。在`Linux`下，有许多系统命令可以让我们时刻监控系统运行的状态，如`ps`、`top`、`free`等。要获取这些系统信息，`Python`可以通过`subprocess`模块调用并获取结果。但这样做显得很麻烦，尤其是要写很多解析代码。<!--more-->
@@ -108,9 +107,9 @@ snetio(bytes_sent=3885744870, bytes_recv=10357676702, packets_sent=10613069, \
 Traceback (most recent call last):
   ...
 PermissionError: [Errno 1] Operation not permitted
-​
+
 During handling of the above exception, another exception occurred:
-​
+
 Traceback (most recent call last):
   ...
 psutil.AccessDenied: psutil.AccessDenied (pid=3847)

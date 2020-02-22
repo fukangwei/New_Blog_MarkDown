@@ -1,7 +1,6 @@
 ---
 title: CheckBox复选框
 categories: Android
-abbrlink: a687c5b9
 date: 2018-12-28 11:50:10
 ---
 &emsp;&emsp;`XML`文件如下：<!--more-->
@@ -11,20 +10,20 @@ date: 2018-12-28 11:50:10
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-​
+
     <CheckBox
         android:id="@+id/first_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="选项1" />
-​
-    <CheckBox
+
+    <CheckBox
         android:id="@+id/secend_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="选项2" />
-​
-    <CheckBox
+
+    <CheckBox
         android:id="@+id/third_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,12 +39,12 @@ import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Toast;
-​
+
 public class MainActivity extends AppCompatActivity {
     private CheckBox cb_one;
     private CheckBox cb_two;
     private CheckBox cb_three;
-​
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

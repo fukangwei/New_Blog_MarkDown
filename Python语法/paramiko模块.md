@@ -1,7 +1,6 @@
 ---
 title: paramiko模块
 categories: Python语法
-abbrlink: e50c1547
 date: 2018-12-28 09:38:34
 ---
 &emsp;&emsp;`paramiko`是用`python`语言写的一个模块，遵循`SSH2`协议，支持以加密和认证的方式，进行远程服务器的连接，其安装命令如下：<!--more-->
@@ -37,7 +36,7 @@ t.connect(username="用户名", password="口令", hostkey="密钥")
 
 ``` python
 import paramiko
-​
+
 ssh = paramiko.SSHClient()
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 ssh.connect("某IP地址", 22, "用户名", "口令")
@@ -51,7 +50,7 @@ ssh.close()
 
 ``` python
 import paramiko
-​
+
 t = paramiko.Transport(("主机", "端口"))
 t.connect(username="用户名", password="口令")
 sftp = paramiko.SFTPClient.from_transport(t)
@@ -65,7 +64,7 @@ t.close()
 
 ``` python
 import paramiko
-​
+
 t = paramiko.Transport(("主机", "端口"))
 t.connect(username="用户名", password="口令")
 sftp = paramiko.SFTPClient.from_transport(t)
@@ -79,7 +78,7 @@ t.close()
 
 ``` python
 import paramiko
-​
+
 trans = paramiko.Transport(('192.168.2.129', 22))  # 实例化一个transport对象
 trans.connect(username='super', password='super')  # 建立连接
 ssh = paramiko.SSHClient()  # 将sshclient对象的transport指定为以上的trans

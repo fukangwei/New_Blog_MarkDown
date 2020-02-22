@@ -1,11 +1,10 @@
 ---
 title: Matplotlib基础教程
 categories: Python语法
-abbrlink: 8153bf86
 date: 2019-07-21 14:52:25
 ---
-&emsp;&emsp;`Matplotlib`是`Python`的一个绘图库，它包含了大量的工具，你可以使用这些工具创建各种图形，包括简单的散点图、正弦曲线、甚至是三维图形。`Python`科学计算社区经常使用它完成数据可视化的工作。
-<!--more-->
+&emsp;&emsp;`Matplotlib`是`Python`的一个绘图库，它包含了大量的工具，你可以使用这些工具创建各种图形，包括简单的散点图、正弦曲线、甚至是三维图形。`Python`科学计算社区经常使用它完成数据可视化的工作。<!--more-->
+
 ### 画一个简单的图形
 
 &emsp;&emsp;首先要画一条在`[0, 2pi]`上的正弦曲线：
@@ -13,7 +12,7 @@ date: 2019-07-21 14:52:25
 ``` python
 import matplotlib.pyplot as plt
 import numpy as np
-​
+
 x = np.linspace(0, 2 * np.pi, 50)
 plt.plot(x, np.sin(x))  # 如果没有第一个参数x，图形的x坐标默认为数组的索引
 plt.show()  # 显示图形
@@ -28,7 +27,7 @@ plt.show()  # 显示图形
 ``` python
 import matplotlib.pyplot as plt
 import numpy as np
-​
+
 x = np.linspace(0, 2 * np.pi, 50)
 plt.plot(x, np.sin(x), x, np.sin(2 * x))
 plt.show()
@@ -43,7 +42,7 @@ plt.show()
 ``` python
 import matplotlib.pyplot as plt
 import numpy as np
-​
+
 x = np.linspace(0, 2 * np.pi, 50)
 plt.plot(x, np.sin(x), 'r-o', x, np.cos(x), 'g--')
 plt.show()
@@ -83,7 +82,7 @@ plt.show()
 ``` python
 import matplotlib.pyplot as plt
 import numpy as np
-​
+
 x = np.linspace(0, 2 * np.pi, 50)
 plt.subplot(2, 1, 1)  # (行,列,活跃区)
 plt.plot(x, np.sin(x), 'r')
@@ -103,7 +102,7 @@ plt.show()
 ``` python
 import matplotlib.pyplot as plt
 import numpy as np
-​
+
 x = np.linspace(0, 2 * np.pi, 50)
 y = np.sin(x)
 plt.scatter(x, y)
@@ -121,7 +120,7 @@ plt.show()
 ``` python
 import matplotlib.pyplot as plt
 import numpy as np
-​
+
 x = np.random.rand(1000)
 y = np.random.rand(1000)
 size = np.random.rand(1000) * 50
@@ -142,7 +141,7 @@ plt.show()
 ``` python
 import matplotlib.pyplot as plt
 import numpy as np
-​
+
 x = np.random.randn(1000)
 plt.hist(x, 50)
 plt.show()
@@ -159,7 +158,7 @@ plt.show()
 ``` python
 import matplotlib.pyplot as plt
 import numpy as np
-​
+
 x = np.linspace(0, 2 * np.pi, 50)
 plt.plot(x, np.sin(x), 'r-x', label='Sin(x)')
 plt.plot(x, np.cos(x), 'g-^', label='Cos(x)')
@@ -216,7 +215,7 @@ plt.imshow(img, cmap=plt.cm.jet)
 ``` python
 import matplotlib.pyplot as plt
 from skimage import data
-​
+
 img = data.astronaut()
 plt.imshow(img)
 plt.show()
@@ -229,30 +228,30 @@ plt.show()
 ``` python
 from skimage import data
 import matplotlib.pyplot as plt
-​
+
 img = data.astronaut()
 # 创建一个名为astronaut的窗口，并设置大小
 plt.figure(num='astronaut', figsize=(8, 8))
-​
+
 plt.subplot(2, 2, 1)  # 将窗口分为两行两列四个子图，则可显示四幅图片
 plt.title('origin image')  # 第一幅图片标题
 plt.imshow(img)  # 绘制第一幅图片
-​
+
 plt.subplot(2, 2, 2)  # 第二个子图
 plt.title('R channel')  # 第二幅图片标题
 plt.imshow(img[:, :, 0], plt.cm.gray)  # 绘制第二幅图片，且为灰度图
 plt.axis('off')  # 不显示坐标尺寸
-​
+
 plt.subplot(2, 2, 3)  # 第三个子图
 plt.title('G channel')  # 第三幅图片标题
 plt.imshow(img[:, :, 1], plt.cm.gray)  # 绘制第三幅图片，且为灰度图
 plt.axis('off')  # 不显示坐标尺寸
-​
+
 plt.subplot(2, 2, 4)  # 第四个子图
 plt.title('B channel')  # 第四幅图片标题
 plt.imshow(img[:, :, 2], plt.cm.gray)  # 绘制第四幅图片，且为灰度图
 plt.axis('off')  # 不显示坐标尺寸
-​
+
 plt.show()  # 显示窗口
 ```
 
@@ -333,7 +332,7 @@ plt.show()
 ``` python
 import numpy as np
 import matplotlib.pyplot as plt
-​
+
 x = np.arange(-101, 101, 1)
 plt.plot(x, x ** 2)
 plt.axis([-100, 100, 0, 10000])  # 设置x轴的最小值、最大值和y轴的最小值、最大值
@@ -373,7 +372,7 @@ in which case a `Triangulation` object will be created. The remaining args and k
 from matplotlib import pyplot as plt
 import matplotlib.tri as tri
 import numpy as np
-​
+
 rand_data = np.random.randn(50, 2)
 triangulation = tri.Triangulation(rand_data[:, 0], rand_data[:, 1])
 plt.triplot(triangulation)
@@ -390,7 +389,7 @@ plt.show()
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-​
+
 fig = plt.figure()
 ax = fig.gca(projection='3d')
 th = np.linspace(-4 * np.pi, 4 * np.pi, 100)
@@ -426,17 +425,17 @@ close()  # Close a figure window
 ``` python
 import matplotlib.pyplot as plt
 import numpy as np
-​
+
 plt.axis([0, 50, 0, 1])
 plt.ion()  # 动态图的交互模式打开，此时show不再暂停
-​
+
 for i in range(50):
     y = np.random.random()
     plt.scatter(i, y)
     plt.pause(0.01)  # pause以秒为单位
     plt.autoscale()
     plt.show()
-​
+
 plt.pause(1)
 ```
 
@@ -462,7 +461,7 @@ plt.savefig("picture_name.jpg")
 ``` python
 import matplotlib.pyplot as plt
 import numpy as np
-​
+
 x = np.linspace(0, 2 * np.pi, 50)
 fig = plt.figure()
 ax = fig.add_subplot(223)
@@ -484,7 +483,7 @@ plt.show()
 ``` python
 import matplotlib
 import matplotlib.pyplot as plt
-​
+
 # 默认的像素为[6.0, 4.0]，分辨率为100，则图片尺寸为“600*400”。如果指定“dpi = 200”，
 # 则图片尺寸为“1200 * 800”；指定“dpi = 300”，则图片尺寸为“1800 * 1200”
 plt.rcParams['savefig.dpi'] = 300  # 图片像素
@@ -503,7 +502,7 @@ plt.savefig('plot123_2.png', dpi=300)  # 指定分辨率保存
 ``` python
 import matplotlib
 import matplotlib.pyplot as plt
-​
+
 def main():
     fig = plt.figure()
     ax = fig.add_subplot(111)
@@ -512,7 +511,7 @@ def main():
                         (0.6, 0.4), (0.6, 0.1)), fc="#770000")
     ax.add_patch(poly)
     plt.show()
-​
+
 if __name__ == '__main__':
     main()
 ```
@@ -527,7 +526,7 @@ if __name__ == '__main__':
 import pylab as plt
 from matplotlib.patches import Circle
 from matplotlib.collections import PatchCollection
-​
+
 fig, ax = plt.subplots()
 patches = []
 circle = Circle((0.5, 0.5), 0.3, ec="none")
@@ -548,12 +547,12 @@ plt.show()
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
-​
+
 vegetables = ["cucumber", "tomato", "lettuce",
               "asparagus", "potato", "wheat", "barley"]
 farmers = ["Farmer Joe", "Upland Bros.", "Smith Gardening",
            "Agrifun", "Organiculture", "BioGoods Ltd.", "Cornylee Corp."]
-​
+
 harvest = np.array(
     [[0.8, 2.4, 2.5, 3.9, 0.0, 4.0, 0.0],
      [2.4, 0.0, 4.0, 1.0, 2.7, 0.0, 0.0],
@@ -563,10 +562,10 @@ harvest = np.array(
      [1.3, 1.2, 0.0, 0.0, 0.0, 3.2, 5.1],
      [0.1, 2.0, 0.0, 1.4, 0.0, 1.9, 6.3]]
 )
-​
+
 fig, ax = plt.subplots()
 im = ax.imshow(harvest)
-​
+
 # We want to show all ticks
 ax.set_xticks(np.arange(len(farmers)))
 ax.set_yticks(np.arange(len(vegetables)))
@@ -575,12 +574,12 @@ ax.set_xticklabels(farmers)
 ax.set_yticklabels(vegetables)
 # Rotate the tick labels and set their alignment
 plt.setp(ax.get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
-​
+
 # Loop over data dimensions and create text annotations
 for i in range(len(vegetables)):
     for j in range(len(farmers)):
         text = ax.text(j, i, harvest[i, j], ha="center", va="center", color="w")
-​
+
 ax.set_title("Harvest of local farmers (in tons/year)")
 fig.tight_layout()
 plt.show()
@@ -598,7 +597,7 @@ from matplotlib import cm  # 里面有很多颜色映射表
 from matplotlib.ticker import LinearLocator, FormatStrFormatter
 import matplotlib.pyplot as plt
 import numpy as np
-​
+
 fig = plt.figure()
 ax = fig.gca(projection='3d')
 X = np.arange(-5, 5, 0.25)
@@ -630,7 +629,7 @@ plt.show()
 ``` python
 import cv2
 import matplotlib.pyplot as plt
-​
+
 img = cv2.imread('lena.jpg', 0)
 plt.imshow(img, cmap='gray')  # 灰度图显示，cmap(color map)设置为gray
 plt.show()
@@ -645,7 +644,7 @@ plt.show()
 ``` python
 import cv2
 import matplotlib.pyplot as plt
-​
+
 img = cv2.imread('lena.jpg')
  # 或使用“img2 = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)”
 img2 = img[:, :, ::-1]
@@ -670,10 +669,10 @@ plt.show()
 ``` python
 import matplotlib.pyplot as plt
 import numpy as np
-​
+
 def f(x, y):  # the height function
     return (1 - x / 2 + x ** 5 + y ** 3) * np.exp(-x ** 2 - y ** 2)
-​
+
 n = 256
 x = np.linspace(-3, 3, n)
 y = np.linspace(-3, 3, n)
@@ -712,20 +711,20 @@ plt.show()
 ``` python
 import matplotlib.pyplot as plt
 import numpy as np
-​
+
 n = 12
 X = np.arange(n)
 Y1 = (1 - X / float(n)) * np.random.uniform(0.5, 1.0, n)
 Y2 = (1 - X / float(n)) * np.random.uniform(0.5, 1.0, n)
-​
+
 plt.bar(X, +Y1)
 plt.bar(X, -Y2)
-​
+
 plt.xlim(-.5, n)
 plt.xticks(())
 plt.ylim(-1.25, 1.25)
 plt.yticks(())
-​
+
 plt.show()
 ```
 
@@ -746,7 +745,7 @@ plt.bar(X, -Y2, facecolor='#ff9999', edgecolor='white')
 for x, y in zip(X, Y1):
     # ha: horizontal alignment; va: vertical alignment
     plt.text(x + 0.4, y + 0.05, '%.2f' % y, ha='center', va='bottom')
-​
+
 for x, y in zip(X, Y2):
     # ha: horizontal alignment; va: vertical alignment
     plt.text(x + 0.4, -y - 0.05, '%.2f' % y, ha='center', va='top')
@@ -761,7 +760,7 @@ for x, y in zip(X, Y2):
 ``` python
 import numpy as np
 import matplotlib.pyplot as plt
-​
+
 people = ('Tom', 'Dick', 'Harry', 'Slim', 'Jim')
 y_pos = np.arange(len(people))
 performance = 3 + 10 * np.random.rand(len(people))

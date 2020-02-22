@@ -1,7 +1,6 @@
 ---
 title: Keras之融合层
 categories: 深度学习
-abbrlink: 17bb1dc4
 date: 2019-01-01 15:23:32
 ---
 &emsp;&emsp;`Merge`层提供了一系列用于融合两个层或两个张量的层对象和方法。以大写首字母开头的是`Layer`类，以小写字母开头的是张量的函数。小写字母开头的张量函数在内部实际上是调用了大写字母开头的层。<!--more-->
@@ -117,7 +116,7 @@ keras.layers.add(inputs)
 
 ``` python
 import keras
-​
+
 input1 = keras.layers.Input(shape=(16,))
 x1 = keras.layers.Dense(8, activation='relu')(input1)
 input2 = keras.layers.Input(shape=(32,))
@@ -139,7 +138,7 @@ keras.layers.subtract(inputs)
 
 ``` python
 import keras
-​
+
 input1 = keras.layers.Input(shape=(16,))
 x1 = keras.layers.Dense(8, activation='relu')(input1)
 input2 = keras.layers.Input(shape=(32,))

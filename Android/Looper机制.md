@@ -1,7 +1,6 @@
 ---
 title: Looper机制
 categories: Android
-abbrlink: 667627d4
 date: 2018-12-28 14:28:00
 ---
 &emsp;&emsp;`Handler`必须与一个`Looper`关联才能使用。怎么样关联呢？你可以手动传入一个`Looper`对象，让`Handler`关联你传入的`Looper`；也可以什么都不传，这时候`Handler`会自己去找当前线程的`Looper`，如果找到就万事大吉，如果当前线程没有`Looper`，那么就会报错：<!--more-->
@@ -51,7 +50,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
-​
+
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,10 +75,10 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
-​
+
 public class LoopThread extends Thread {
     public Handler handler;
-​
+
     @Override
     public void run() {
         super.run();

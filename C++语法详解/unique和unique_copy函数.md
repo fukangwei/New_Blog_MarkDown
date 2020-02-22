@@ -1,7 +1,6 @@
 ---
 title: unique和unique_copy函数
 categories: C++语法详解
-abbrlink: 2d14b51e
 date: 2019-02-05 20:34:59
 ---
 &emsp;&emsp;`unique`函数的功能是去除相邻的重复元素(只保留一个)：<!--more-->
@@ -17,9 +16,9 @@ unique(first, last, compare);
 #include <iostream>
 #include <algorithm>
 #include <string>
-​
+
 using namespace std;
-​
+
 int main ( void ) {
     string str;
     cin >> str;
@@ -43,9 +42,9 @@ unique_copy(first, last, result, compare);
 #include <iostream>
 #include <algorithm>
 #include <string>
-​
+
 using namespace std;
-​
+
 int main ( void ) {
     string first, second;
     cin >> first;
@@ -65,11 +64,11 @@ string str = "zhaohaoyang";
 /* 根据迭代器的起始位置和终止位置来定初始化一个容器 */
 vector<char> vecch ( str.begin(), str.end() );
 vector<char>::iterator it = vecch.begin();
-​
+
 for ( ; it != vecch.end(); ++it ) {
     cout << *it;
 }
-​
+
 cout << endl; /* 输出“zhaohaoyang” */
 unique ( str.begin(), str.end() );
 out << str << endl; /* 输出的还是“zhaohaoyang” */

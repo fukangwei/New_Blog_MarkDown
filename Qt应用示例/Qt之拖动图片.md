@@ -1,7 +1,6 @@
 ---
 title: Qt之拖动图片
 categories: Qt应用示例
-abbrlink: 999d5d8f
 date: 2019-02-06 15:33:55
 ---
 &emsp;&emsp;`mainwindow.h`如下：<!--more-->
@@ -9,13 +8,13 @@ date: 2019-02-06 15:33:55
 ``` cpp
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-​
+
 #include <QMainWindow>
-​
+
 namespace Ui {
     class MainWindow;
 }
-​
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
@@ -29,7 +28,7 @@ protected:
 private:
     Ui::MainWindow *ui;
 };
-​
+
 #endif // MAINWINDOW_H
 ```
 
@@ -44,7 +43,7 @@ private:
 #include <QDragMoveEvent>
 #include <QDropEvent>
 #include <QPainter>
-​
+
 MainWindow::MainWindow ( QWidget *parent ) :
     QMainWindow ( parent ),
     ui ( new Ui::MainWindow ) {
@@ -57,21 +56,21 @@ MainWindow::MainWindow ( QWidget *parent ) :
     label->move ( 100, 100 );
     label->setAttribute ( Qt::WA_DeleteOnClose ); /* 当窗口关闭时销毁图片 */
 }
-​
+
 MainWindow::~MainWindow() {
     delete ui;
 }
-​
+
 /* 鼠标按下事件 */
 void MainWindow::mousePressEvent ( QMouseEvent *event ) {
     /* 第一步：获取图片 */
     /* 将鼠标指针所在位置的部件强制转换为QLabel类型 */
     QLabel *child = static_cast<QLabel *> ( childAt ( event->pos() ) );
-​
+
     if ( !child->inherits ( "QLabel" ) ) {
         return; /* 如果部件不是QLabel则直接返回 */
     }
-​
+
     QPixmap pixmap = *child->pixmap(); /* 获取QLabel中的图片 */
     /* 第二步：自定义MIME类型 */
     QByteArray itemData; /* 创建字节数组 */
@@ -93,10 +92,10 @@ void MainWindow::mousePressEvent ( QMouseEvent *event ) {
     painter.fillRect ( pixmap.rect(), QColor ( 127, 127, 127, 127 ) );
     painter.end();
     child->setPixmap ( tempPixmap ); /* 在移动图片过程中，让原图片添加一层黑色阴影 */
-​
+
     /* 第六步：执行拖放操作 */
     /* 设置拖放可以是移动和复制操作，默认是复制操作；如果是移动操作，那么拖放完成后关闭原标签。
-       当图片被放下后，exec()函数就会返回操作类型，这个返回值由dropEvent函数中的设置决定的 */
+       当图片被放下后，exec函数就会返回操作类型，这个返回值由dropEvent函数中的设置决定的 */
     if ( drag->exec ( Qt::CopyAction | Qt::MoveAction, Qt::CopyAction ) == Qt::MoveAction ) {
         child->close();
     } else { /* 如果是复制操作，那么拖放完成后显示标签、显示原图片，不再使用阴影 */
@@ -104,7 +103,7 @@ void MainWindow::mousePressEvent ( QMouseEvent *event ) {
         child->setPixmap ( pixmap );
     }
 }
-​
+
 void MainWindow::dragEnterEvent ( QDragEnterEvent *event ) { /* 拖动进入事件 */
     /* 如果有我们定义的MIME类型数据，则进行移动操作 */
     if ( event->mimeData()->hasFormat ( "myimage/png" ) ) {
@@ -114,7 +113,7 @@ void MainWindow::dragEnterEvent ( QDragEnterEvent *event ) { /* 拖动进入事�
         event->ignore();
     }
 }
-​
+
 void MainWindow::dragMoveEvent ( QDragMoveEvent *event ) { /* 拖动事件 */
     if ( event->mimeData()->hasFormat ( "myimage/png" ) ) {
         event->setDropAction ( Qt::MoveAction );
@@ -123,7 +122,7 @@ void MainWindow::dragMoveEvent ( QDragMoveEvent *event ) { /* 拖动事件 */
         event->ignore();
     }
 }
-​
+
 void MainWindow::dropEvent ( QDropEvent *event ) { /* 放下事件 */
     if ( event->mimeData()->hasFormat ( "myimage/png" ) ) {
         QByteArray itemData = event->mimeData()->data ( "myimage/png" );

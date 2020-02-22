@@ -1,7 +1,6 @@
 ---
 title: STM32的GPIO工作原理
 categories: 单片机
-abbrlink: '5e552037'
 date: 2019-03-19 07:08:42
 ---
 &emsp;&emsp;`STM32F103ZET6`一共有`7`组`IO`口，即`GPIOA`至`GPIOG`，每组`IO`口有`16`个`IO`，一共有`16 * 7 = 112`个`IO`口。`STM32`的大部分引脚除了当`GPIO`使用外，还可以复用为外设功能引脚(如串口)。<!--more-->

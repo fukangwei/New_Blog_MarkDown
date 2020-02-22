@@ -1,7 +1,6 @@
 ---
 title: Qt之QTextBlockFormat
 categories: Qt语法详解
-abbrlink: 6bf6c7b
 date: 2019-01-23 10:19:56
 ---
 &emsp;&emsp;The `QTextBlockFormat` class provides formatting information for blocks of text in a `QTextDocument`.<!--more-->
@@ -57,7 +56,7 @@ Return                    | Function
 
 &emsp;&emsp;enum `QTextBlockFormat::LineHeightTypes`: This enum describes the various types of line spacing support paragraphs can have.
 
-Constant                               | Value | Description
+Constant                               | Value | Description
 ---------------------------------------|-------|------------
 `QTextBlockFormat::SingleHeight`       | `0`   | This is the default line height: single spacing.
 `QTextBlockFormat::ProportionalHeight` | `1`   | This sets the spacing proportional to the line (in percentage). For example, set to `200` for double spacing.

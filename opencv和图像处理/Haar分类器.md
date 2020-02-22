@@ -1,7 +1,6 @@
 ---
 title: Haar分类器
 categories: opencv和图像处理
-abbrlink: 186076ba
 date: 2019-03-04 12:35:12
 ---
 &emsp;&emsp;以`Haar`特征分类器为基础的对象检测技术是一种非常有效的对象检测技术。它是基于机器学习的，通过使用大量的正负样本图像训练得到一个`cascade function`，最后再用它来做对象检测。<!--more-->
@@ -29,12 +28,12 @@ date: 2019-03-04 12:35:12
 
 ``` python
 import cv2
-​
+
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
 img = cv2.imread('face.jpg')
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-​
+
 # Detects objects of different sizes in the input image.
 # The detected objects are returned as a list of rectangles.
 # cv2.CascadeClassifier.detectMultiScale(image, scaleFactor, minNeighbors, flags, minSize, maxSize)
@@ -44,7 +43,7 @@ gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 # minSize – Minimum possible object size. Objects smaller than that are ignored.
 # maxSize – Maximum possible object size. Objects larger than that are ignored.
 faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-​
+
 for (x, y, w, h) in faces:
     img = cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
     roi_gray = gray[y:y + h, x:x + w]
@@ -53,7 +52,7 @@ for (x, y, w, h) in faces:
 
     for (ex, ey, ew, eh) in eyes:
         cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
-​
+
 cv2.imshow('img', img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()

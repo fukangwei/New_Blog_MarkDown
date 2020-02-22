@@ -1,7 +1,6 @@
 ---
 title: Collections类
 categories: Java
-abbrlink: 7d882df0
 date: 2018-12-20 18:00:14
 ---
 &emsp;&emsp;`Collections`是一个可以操作或返回集合的专用静态类。<!--more-->
@@ -23,7 +22,7 @@ date: 2018-12-20 18:00:14
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-​
+
 public class collections_test {
     public static void main(String[] args) {
         List<String> list = new ArrayList<>();
@@ -32,7 +31,7 @@ public class collections_test {
         list.add("C");
         list.add("D");
         list.add("E");
-​
+
         Collections.reverse(list); /* 反转指定List集合中元素的顺序 */
         System.out.println("reverse后的顺序：" + list);
         Collections.shuffle(list); /* 对List中的元素进行随机排序(洗牌) */
@@ -77,7 +76,7 @@ rotate后的顺序：[B, E, A, D, C]
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-​
+
 public class collections_test {
     public static void main(String[] args) {
         List<String> list = new ArrayList<>();
@@ -89,21 +88,21 @@ public class collections_test {
         list.add("C");
         list.add("C");
         list.add("E");
-​
+
         System.out.println("max：" + Collections.max(list));
         System.out.println("min：" + Collections.min(list));
         System.out.println("frequency：" + Collections.frequency(list, "C"));
-​
+
         Collections.replaceAll(list, "C", "HanPang");
         System.out.println("replaceAll之后：" + list);
-​
+
         /* 如果binarySearch的对象没有排序的话，搜索结果是不确定的 */
         System.out.println("binarySearch在sort之前：" + Collections.binarySearch(list, "E"));
         Collections.sort(list);
         /* sort之后，正确结果出来了 */
         System.out.println("排序后的结果：" + list);
         System.out.println("binarySearch在sort之后：" + Collections.binarySearch(list, "E"));
-​
+
         Collections.fill(list, "^_^");
         System.out.println("fill：" + list);
     }
@@ -137,7 +136,7 @@ fill：[^_^, ^_^, ^_^, ^_^, ^_^, ^_^, ^_^, ^_^]
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-​
+
 public class collections_test {
     public static void main(String[] args) {
         List<String> list = new ArrayList<>();
@@ -149,13 +148,13 @@ public class collections_test {
         List<String> list2 = new ArrayList<>();
         Collections.addAll(list1, "林冲", "宋江", "吴用", "悟能");
         Collections.addAll(list2, "林黛玉", "贾宝玉", "薛宝钗");
-​
+
         /* disjoint检查两个Collection是否存在交集 */
         boolean flag1 = Collections.disjoint(list, list1);
         boolean flag2 = Collections.disjoint(list, list2);
         System.out.println("list和list1交集结果：" + flag1);
         System.out.println("list和list2交集结果：" + flag2);
-​
+
         /* 利用reverseOrder进行倒序 */
         Collections.sort(list1, Collections.reverseOrder());
         System.out.println(list1);
@@ -190,7 +189,7 @@ list和list2交集结果：true
 
 ``` java
 import java.util.*;
-​
+
 public class collections_test {
     public static void main(String[] args) {
         List<?> list = Collections.emptyList(); /* 创建一个空的，不可改变的List对象 */
@@ -231,7 +230,7 @@ public class collections_test {
 
 ``` java
 import java.util.*;
-​
+
 public class collections_test {
     public static void main(String[] args) {
         Collection c = Collections.synchronizedCollection(new ArrayList());

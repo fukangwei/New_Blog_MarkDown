@@ -1,6 +1,5 @@
 ---
 title: sqlite3的C语言操作
-abbrlink: a51fb893
 date: 2019-01-17 14:16:50
 categories: 数据库
 ---
@@ -9,10 +8,10 @@ categories: 数据库
 ``` cpp
 #include <stdio.h>
 #include <sqlite3.h>
-​
+
 /* 查询的回调函数声明 */
 int select_callback ( void *data, int col_count, char **col_values, char **col_Name );
-​
+
 int main ( int argc, char *argv[] ) {
     const char *sSQL1 = \
         "create table users(userid varchar(20) PRIMARY KEY, age int, birthday datetime);";
@@ -20,35 +19,35 @@ int main ( int argc, char *argv[] ) {
     int result = 0; /* 用于接收连接数据库操作返回的值 */
     sqlite3 *db = NULL; /* 声明一个连接数据库的指针对象 */
     int ret = sqlite3_open ( "./test.db", &db ); /* 使用sqlite3_open连接数据库 */
-​
+
     if ( ret != SQLITE_OK ) {
         fprintf ( stderr, "无法打开数据库: %s", sqlite3_errmsg ( db ) );
         sqlite3_close ( db );
         return ( 1 );
     }
-​
+
     printf ( "数据库连接成功!\n" );
     sqlite3_exec ( db, sSQL1, 0, 0, &pErrMsg ); /* 执行建表SQL */
-​
+
     if ( ret != SQLITE_OK ) {
         fprintf ( stderr, "SQL error: %s\n", pErrMsg );
         sqlite3_free ( pErrMsg );
     }
-​
+
     result = sqlite3_exec ( /* 执行插入记录SQL */
         db, "insert into users values('张三', 20, '2011-7-23');", 0, 0, &pErrMsg );
-​
+
     if ( result == SQLITE_OK ) {
         printf ( "插入数据成功\n" );
     }
-​
+
     result = sqlite3_exec (
         db, "insert into users values('李四',20,'2012-9-20');", 0, 0, &pErrMsg );
-​
+
     if ( result == SQLITE_OK ) {
         printf ( "插入数据成功\n" );
     }
-​
+
     printf ( "查询数据库内容\n" ); /* 查询数据表 */
     sqlite3_exec ( db, "select * from users;", select_callback, 0, &pErrMsg );
     sqlite3_close ( db ); /* 关闭数据库 */
@@ -56,14 +55,14 @@ int main ( int argc, char *argv[] ) {
     printf ( "数据库关闭成功!\n" );
     return 0;
 }
-​
+
 int select_callback ( void *data, int col_count, char **col_values, char **col_Name ) {
     int i; /* 每条记录回调一次该函数,有多少条就回调多少次 */
-​
+
     for ( i = 0; i < col_count; i++ ) {
         printf ( "%s = %s\n", col_Name[i], col_values[i] == 0 ? "NULL" : col_values[i] );
     }
-​
+
     return 0;
 }
 ```
@@ -92,10 +91,10 @@ sudo apt-get install libsqlite3-dev
 #include <stdlib.h>
 #include <string.h>
 #include "sqlite3.h"
-​
+
 sqlite3 *db = NULL;
 static int sn = 0;
-​
+
 void create_table ( char *filename ) {
     char *sql;
     char *zErrMsg = 0;
@@ -106,15 +105,15 @@ void create_table ( char *filename ) {
         fprintf ( stderr, "can't open database%s\n", sqlite3_errmsg ( db ) );
         sqlite3_close ( db );
     }
-​
+
     sql = "CREATE TABLE save_data(num integer primary key, id int, data text, time text)";
     sqlite3_exec ( db, sql, 0, 0, &zErrMsg );
 }
-​
+
 void close_table ( void ) {
     sqlite3_close ( db );
 }
-​
+
 void insert_record ( char *table, int id, char *data, char *time ) {
     char *sql;
     char *zErrMsg = NULL;
@@ -122,28 +121,28 @@ void insert_record ( char *table, int id, char *data, char *time ) {
     sqlite3_exec ( db, sql, 0, 0, &zErrMsg );
     sqlite3_free ( sql );
 }
-​
+
 int sqlite_callback ( void *userData, int numCol, char **colData, char **colName ) {
     int i, offset = 0;
     char *buf, *tmp;
     buf = ( char * ) malloc ( 40 * sizeof ( char ) );
     tmp = buf;
     memset ( buf, 0, 40 );
-​
+
     for ( i = 1; i < numCol; i++ ) {
         buf = buf + offset;
         sprintf ( buf, "%s ", colData[i] );
         /* it's need one place for put a blank, so the lenght add 1 */
         offset = strlen ( colData[i] ) + 1;
     }
-​
+
     printf ( "%.4d. %s \n", ++sn, tmp );
     free ( tmp );
     tmp = NULL;
     buf = NULL;
     return 0;
 }
-​
+
 void search_all ( char *table ) {
     char *sql;
     char *zErrMsg = 0;
@@ -152,7 +151,7 @@ void search_all ( char *table ) {
     sqlite3_exec ( db, sql, &sqlite_callback, 0, &zErrMsg );
     sqlite3_free ( sql );
 }
-​
+
 void search_by_id ( char *table, char *id ) {
     char *sql;
     char *zErrMsg = 0;
@@ -161,7 +160,7 @@ void search_by_id ( char *table, char *id ) {
     sqlite3_exec ( db, sql, &sqlite_callback, 0, &zErrMsg );
     sqlite3_free ( sql );
 }
-​
+
 void delete_by_id ( char *table, char *id ) {
     int rc ;
     char *sql;
@@ -170,7 +169,7 @@ void delete_by_id ( char *table, char *id ) {
     rc = sqlite3_exec ( db, sql, 0, 0, &zErrMsg );
     sqlite3_free ( sql );
 }
-​
+
 void delete_all ( char *table ) {
     char *sql = NULL;
     char *zErrMsg = NULL;
@@ -178,12 +177,12 @@ void delete_all ( char *table ) {
     sqlite3_exec ( db, sql, 0, 0, &zErrMsg );
     sqlite3_free ( sql );
 }
-​
+
 int main ( int agrc, char *argv[] ) {
     char *filename = "data.db";
     int i;
     create_table ( filename );
-​
+
     for ( i = 0 ; i < 10; i++ ) {
         insert_record ( "save_data", 2000, "5678", "2012-03-12 09:43:56" );
         insert_record ( "save_data", 2001, "5678", "2012-03-12 09:43:56" );
@@ -194,7 +193,7 @@ int main ( int agrc, char *argv[] ) {
         insert_record ( "save_data", 2006, "5678", "2012-03-12 09:43:56" );
         insert_record ( "save_data", 2007, "5678", "2012-03-12 09:43:56" );
     }
-​
+
     search_all ( "save_data" );
     close_table();
     return 0;
@@ -258,7 +257,7 @@ headers[0]: ID; headers[1]: NAME; headers[2]:  ADDRESS; headers[3]: AGE
 
 &emsp;&emsp;通常情况下，实现查询数据库是让`sqlite3_exec`使用回调函数来执行`select`操作。还有一个方法可以直接查询而不需要回调，就是通过`sqlite3_get_table`函数：
 
-``` c
+``` cpp
 int sqlite3_get_table (
     sqlite3 *db,      /* 打开的数据库对象指针          */
     const char *sql,  /* 要查询的sql语句              */
@@ -271,12 +270,12 @@ int sqlite3_get_table (
 
 第`3`个参数是查询结果，它依然是一维数组(不要认为是二维数组，更不要认为是三维数组)。它内存布局是：第一行是字段名称，后面是紧接着是每个字段的值。
 
-``` c
+``` cpp
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sqlite3.h>
-​
+
 int main ( int argc, char **argv ) {
     sqlite3 *db;
     char **dbResult;
@@ -284,22 +283,22 @@ int main ( int argc, char **argv ) {
     int nRow, nColumn;
     int index = 0;
     int i, j, rc;
-​
+
     if ( argc != 2 ) {
         fprintf ( stderr, "Usage: %s DATABASE \n", argv[0] );
         exit ( 1 );
     }
-​
+
     rc = sqlite3_open ( argv[1], &db );
-​
+
     if ( rc != SQLITE_OK ) {
         fprintf ( stderr, "Can't open database: %s\n", sqlite3_errmsg ( db ) );
         sqlite3_close ( db );
         exit ( 1 );
     }
-​
+
     rc = sqlite3_get_table ( db, "select * from users", &dbResult, &nRow, &nColumn, &errmsg );
-​
+
     if ( rc == SQLITE_OK ) {
         printf ( "表格共%d 记录!\n", nRow );
         printf ( "表格共%d 列!\n", nColumn );
@@ -309,18 +308,18 @@ int main ( int argc, char **argv ) {
         printf ( "%s | %s\n", dbResult[0], dbResult[1] );
         printf ( "--------------------------------\n" );
         index = nColumn; /* 字段值从index开始 */
-​
+
         for ( i = 0; i < nRow ; i++ ) {
             for ( j = 0 ; j < nColumn; j++ ) {
                 printf ( "%-5s ", dbResult[index++] );
             }
-​
+
             printf ( "\n" );
         }
-​
+
         printf ( "--------------------------------\n" );
     }
-​
+
     /* 到这里，不论数据库查询是否成功，使用sqlite提供的功能来释放内存 */
     sqlite3_free_table ( dbResult );
     sqlite3_close ( db );

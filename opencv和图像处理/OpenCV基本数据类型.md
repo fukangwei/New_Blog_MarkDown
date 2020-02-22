@@ -1,7 +1,6 @@
 ---
 title: OpenCV基本数据类型
 categories: opencv和图像处理
-abbrlink: b62aef59
 date: 2019-02-23 16:37:31
 ---
 &emsp;&emsp;`OpenCV`提供了多种基本数据类型，虽然这些数据类型在`C`语言中不是基本类型，但结构都很简单，可将它们作为原子类型。可以在`/OpenCV/cxcore/include`目录下的`cxtypes.h`文件中查看其详细定义。<!--more-->

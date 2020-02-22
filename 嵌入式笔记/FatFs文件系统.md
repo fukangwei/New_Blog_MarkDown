@@ -1,7 +1,6 @@
 ---
 title: FatFs文件系统
 categories: 嵌入式笔记
-abbrlink: f6986c98
 date: 2019-02-24 21:10:05
 ---
 ### FatFs

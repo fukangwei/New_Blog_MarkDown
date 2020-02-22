@@ -1,7 +1,6 @@
 ---
 title: os模块
 categories: Python语法
-abbrlink: c159159b
 date: 2019-01-11 09:54:42
 ---
 &emsp;&emsp;`os`模块提供了很多方法用来处理文件和目录。<!--more-->
@@ -18,7 +17,7 @@ os.chdir(path)
 
 ``` python
 import os
-​
+
 path = "/tmp"
 retval = os.getcwd()
 print("当前工作目录为 %s" % retval)  # 输出“当前工作目录为 /www”
@@ -39,9 +38,9 @@ os.close(fd)
 
 ``` python
 import os
-​
+
 fd = os.open("foo.txt", os.O_RDWR | os.O_CREAT)
-os.write(fd, b"This is test")  # 写入字符串
+os.write(fd, b"This is test")  # 写入字符串
 os.close(fd)
 ```
 
@@ -70,7 +69,7 @@ for fd in range(fd_low, fd_high):
 
 ``` python
 import os
-​
+
 fd = os.open("foo.txt", os.O_RDWR | os.O_CREAT)
 os.write(fd, b"This is test")
 os.closerange(fd, fd)
@@ -88,7 +87,7 @@ os.dup(fd)
 
 ``` python
 import os
-​
+
 fd = os.open("foo.txt", os.O_RDWR | os.O_CREAT)
 d_fd = os.dup(fd)  # 复制文件描述符
 os.write(d_fd, b"This is test")  # 使用复制的文件描述符写入文件
@@ -110,7 +109,7 @@ os.dup2(fd, fd2)
 
 ``` python
 import os
-​
+
 fd = os.open("foo.txt", os.O_RDWR | os.O_CREAT)
 os.write(fd, "This is test".encode())
 fd2 = 1000  # 文件描述符为1000
@@ -134,7 +133,7 @@ os.fchdir(fd)
 
 ``` python
 import os
-​
+
 os.chdir("/var/www/html")  # 首先到目录“/var/www/html”
 print("当前工作目录为: %s" % os.getcwd())  # 输出“当前工作目录为: /var/www/html”
 fd = os.open("/tmp", os.O_RDONLY)  # 打开新目录“/tmp”
@@ -155,7 +154,7 @@ os.fdatasync(fd)
 
 ``` python
 import os, sys
-​
+
 fd = os.open("foo.txt", os.O_RDWR | os.O_CREAT)
 os.write(fd, "This is test".encode())  # 写入字符串
 os.fdatasync(fd)  # 使用fdatasync方法
@@ -184,7 +183,7 @@ os.fdopen(fd, [, mode [, bufsize]])
 
 ``` python
 import os
-​
+
 fd = os.open("foo.txt", os.O_RDWR | os.O_CREAT)
 fo = os.fdopen(fd, "w+")  # 获取以上文件的对象
 print("Current I/O pointer position: %d" % fo.tell())  # 获取当前位置
@@ -217,7 +216,7 @@ Current I/O pointer position: 44
 `st_nlink`   | 硬连接数
 `st_uid`     | 用户`ID`
 `st_gid`     | 用户组`ID`
-`st_rdev`    | 设备`ID`
+`st_rdev`    | 设备`ID`
 `st_size`    | 文件大小，以`byte`为单位
 `st_blksize` | 系统`I/O`块大小
 `st_blocks`  | 文件的是由多少个`512 byte`块构成的
@@ -235,7 +234,7 @@ os.fstat(fd)
 
 ``` python
 import os
-​
+
 fd = os.open("foo.txt", os.O_RDWR | os.O_CREAT)
 info = os.fstat(fd)  # 获取元组
 print("文件信息:", info)
@@ -266,7 +265,7 @@ os.fsync(fd)
 
 ``` python
 import os
-​
+
 fd = os.open("foo.txt", os.O_RDWR | os.O_CREAT)
 os.write(fd, "This is test".encode())  # 写入字符串
 os.fsync(fd)  # 使用fsync方法
@@ -291,7 +290,7 @@ os.ftruncate(fd, length)
 
 ``` python
 import os
-​
+
 fd = os.open("foo.txt", os.O_RDWR | os.O_CREAT)
 os.write(fd, "This is test - This is test".encode())  # 写入字符串
 os.ftruncate(fd, 10)  # 使用ftruncate方法
@@ -313,7 +312,7 @@ os.getcwd()
 
 ``` python
 import os
-​
+
 os.chdir("/var/www/html")  # 切换到“/var/www/html”目录
 print("当前工作目录: %s" % os.getcwd())  # 输出“当前工作目录: /var/www/html”
 fd = os.open("/tmp", os.O_RDONLY)  # 打开“/tmp”
@@ -334,10 +333,10 @@ os.listdir(path)
 
 ``` python
 import os
-​
+
 path = "./"
 dirs = os.listdir(path)
-​
+
 for file in dirs:  # 输出所有文件和文件夹
     print(file)
 ```
@@ -370,7 +369,7 @@ os.lseek(fd, pos, how)
 
 ``` python
 import os
-​
+
 fd = os.open("foo.txt", os.O_RDWR | os.O_CREAT)
 os.write(fd, "This is test".encode())
 os.fsync(fd)
@@ -395,7 +394,7 @@ os.mkdir(path [, mode])
 
 ``` python
 import os
-​
+
 path = "./tmp/monthly"
 os.mkdir(path, 0o755)
 ```
@@ -415,7 +414,7 @@ os.makedirs(path, mode=0o777)
 
 ``` python
 import os
-​
+
 path = "./tmp/daily"  # 创建的目录
 os.makedirs(path, 0o755)
 ```
@@ -451,7 +450,7 @@ os.open(file, flags [, mode])
 
 ``` python
 import os
-​
+
 fd = os.open("foo.txt", os.O_RDWR | os.O_CREAT)
 os.write(fd, "This is test".encode())  # 写入字符串
 os.close(fd)
@@ -469,7 +468,7 @@ os.read(fd, n)
 
 ``` python
 import os
-​
+
 fd = os.open("foo.txt", os.O_RDWR)
 ret = os.read(fd, 12)
 print(ret.decode())  # 输出“This is test”
@@ -488,7 +487,7 @@ os.remove(path)
 
 ``` python
 import os
-​
+
 print("目录为: %s" % os.listdir(os.getcwd()))
 os.remove("foo.txt")  # 移除
 print("移除后: %s" % os.listdir(os.getcwd()))
@@ -513,7 +512,7 @@ os.removedirs(path)
 
 ``` python
 import os
-​
+
 print("目录为: %s" % os.listdir(os.getcwd()))
 os.removedirs("./test")
 print("移除后目录为: %s" % os.listdir(os.getcwd()))
@@ -538,7 +537,7 @@ os.rename(src, dst)
 
 ``` python
 import os
-​
+
 print("目录为: %s" % os.listdir(os.getcwd()))
 os.rename("test", "test2")  # 重命名
 print("重命名成功。")
@@ -568,7 +567,7 @@ os.renames(old, new)
 
 ``` python
 import os
-​
+
 print("当前目录为: %s" % os.getcwd())
 print("目录为: %s" % os.listdir(os.getcwd()))
 os.renames("aa1.txt", "newdir/aanew.txt")  # 重命名为“aa1.txt”
@@ -597,7 +596,7 @@ os.rmdir(path)
 
 ``` python
 import os
-​
+
 print("目录为: %s" % os.listdir(os.getcwd()))
 os.rmdir("mydir")  # 删除路径
 print("目录为: %s" % os.listdir(os.getcwd()))
@@ -622,7 +621,7 @@ os.unlink(path)
 
 ``` python
 import os
-​
+
 print("目录为: %s" % os.listdir(os.getcwd()))
 os.unlink("aa.txt")
 print("删除后的目录为: %s" % os.listdir(os.getcwd()))
@@ -652,7 +651,7 @@ os.walk(top[, topdown=True [, onerror=None [, followlinks=False]]])
 
 ``` python
 import os
-​
+
 for root, dirs, files in os.walk(".", topdown=False):
     for name in files:
         print(os.path.join(root, name))
@@ -689,7 +688,7 @@ os.write(fd, str)
 
 ``` python
 import os
-​
+
 fd = os.open("f1.txt", os.O_RDWR | os.O_CREAT)
 str = "This is runoob.com site"
 ret = os.write(fd, str.encode())
@@ -719,7 +718,7 @@ b'\xbe2'
 
 ``` python
 import os
-​
+
 for key in os.environ.keys():
     print(key)
 ```
@@ -728,7 +727,7 @@ for key in os.environ.keys():
 
 ``` python
 import os
-​
+
 # 参数“path”可以换成任意存在的环境变量名。如果不存在，则输出None
 dir = os.environ.get('path')
 print(dir)
@@ -738,7 +737,7 @@ print(dir)
 
 ``` python
 import os
-​
+
 dir = "D:\LearnTool"
 os.environ['datapath'] = dir
 print(os.environ.get('datapath'))

@@ -1,7 +1,6 @@
 ---
 title: MSER算法
 categories: opencv和图像处理
-abbrlink: 50250
 date: 2019-10-04 19:21:12
 mathjax: true
 ---
@@ -18,7 +17,7 @@ $$
 ``` python
 import cv2
 import numpy as np
-​
+
 mser = cv2.MSER_create()  # Create MSER object
 img = cv2.imread('ticket.jpg')  # Your image path i-e receipt path
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # Convert to gray scale

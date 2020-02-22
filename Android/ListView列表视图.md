@@ -1,7 +1,6 @@
 ---
 title: ListView列表视图
 categories: Android
-abbrlink: 44b24f56
 date: 2018-12-28 12:14:22
 ---
 &emsp;&emsp;`array.xml`如下：<!--more-->
@@ -24,7 +23,7 @@ date: 2018-12-28 12:14:22
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-​
+
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
@@ -43,7 +42,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-​
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

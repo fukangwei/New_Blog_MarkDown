@@ -1,7 +1,6 @@
 ---
 title: Qt之事件过滤器应用
 categories: Qt应用示例
-abbrlink: 717bc5e8
 date: 2019-02-23 12:04:03
 ---
 ### 事件过滤器
@@ -11,9 +10,9 @@ date: 2019-02-23 12:04:03
 ``` cpp
 #ifndef MYLINEEDIT_H
 #define MYLINEEDIT_H
-​
+
 #include <QLineEdit>
-​
+
 class MyLineEdit : public QLineEdit {
     Q_OBJECT
 public:
@@ -24,7 +23,7 @@ protected:
 signals:
 public slots:
 };
-​
+
 #endif // MYLINEEDIT_H
 ```
 
@@ -33,15 +32,15 @@ public slots:
 ``` cpp
 #ifndef WIDGET_H
 #define WIDGET_H
-​
+
 #include <QWidget>
-​
+
 namespace Ui {
     class Widget;
 }
-​
+
 class MyLineEdit;
-​
+
 class Widget : public QWidget {
     Q_OBJECT
 public:
@@ -54,7 +53,7 @@ private:
     Ui::Widget *ui;
     MyLineEdit *lineEdit;
 };
-​
+
 #endif // WIDGET_H
 ```
 
@@ -66,29 +65,29 @@ private:
 #include "mylineedit.h"
 #include <QKeyEvent>
 #include <QDebug>
-​
+
 Widget::Widget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::Widget ) {
     ui->setupUi ( this );
     lineEdit = new MyLineEdit ( this );
     lineEdit->move ( 100, 100 );
     lineEdit->installEventFilter ( this ); /* 在Widget上为lineEdit安装事件过滤器 */
 }
-​
+
 Widget::~Widget() {
     delete ui;
 }
-​
+
 void Widget::keyPressEvent ( QKeyEvent *event ) {
     qDebug() << tr ( "Widget键盘按下事件" );
 }
-​
+
 bool Widget::eventFilter ( QObject *obj, QEvent *event ) { /* 事件过滤器 */
     if ( obj == lineEdit ) { /* 如果是lineEdit部件上的事件 */
         if ( event->type() == QEvent::KeyPress ) {
             qDebug() << tr ( "Widget的事件过滤器" );
         }
     }
-​
+
     return QWidget::eventFilter ( obj, event );
 }
 ```
@@ -99,21 +98,21 @@ bool Widget::eventFilter ( QObject *obj, QEvent *event ) { /* 事件过滤器 */
 #include "mylineedit.h"
 #include <QKeyEvent>
 #include <QDebug>
-​
+
 MyLineEdit::MyLineEdit ( QWidget *parent ) : QLineEdit ( parent ) {
 }
-​
+
 void MyLineEdit::keyPressEvent ( QKeyEvent *event ) { /* 键盘按下事件 */
     qDebug() << tr ( "MyLineEdit键盘按下事件" );
     QLineEdit::keyPressEvent ( event ); /* 执行QLineEdit类的默认事件处理 */
     event->ignore(); /* 忽略该事件 */
 }
-​
+
 bool MyLineEdit::event ( QEvent *event ) { /* 事件 */
     if ( event->type() == QEvent::KeyPress ) {
         qDebug() << tr ( "MyLineEdit的event()函数" );
     }
-​
+
     return QLineEdit::event ( event ); /* 执行QLineEdit类event函数的默认操作 */
 }
 ```
@@ -132,13 +131,13 @@ bool MyLineEdit::event ( QEvent *event ) { /* 事件 */
 ``` cpp
 #ifndef WIDGET_H
 #define WIDGET_H
-​
+
 #include <QWidget>
-​
+
 namespace Ui {
     class Widget;
 }
-​
+
 class Widget : public QWidget {
     Q_OBJECT
 public:
@@ -148,7 +147,7 @@ public:
 private:
     Ui::Widget *ui;
 };
-​
+
 #endif // WIDGET_H
 ```
 
@@ -159,7 +158,7 @@ private:
 #include "ui_widget.h"
 #include <QKeyEvent>
 #include <QWheelEvent>
-​
+
 Widget::Widget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::Widget ) {
     ui->setupUi ( this );
     ui->textEdit->installEventFilter ( this ); /* 为编辑器部件在本窗口上安装事件过滤器 */
@@ -168,23 +167,23 @@ Widget::Widget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::Widget ) {
     // qApp->sendEvent( ui->spinBox, &myEvent ); /* 发送键盘事件到spinBox部件 */
     QApplication::sendEvent ( ui->spinBox, &myEvent );
 }
-​
+
 Widget::~Widget() {
     delete ui;
 }
-​
+
 bool Widget::eventFilter ( QObject *obj, QEvent *event ) { /* 事件过滤器 */
     if ( obj == ui->textEdit ) { /* 判断部件 */
         if ( event->type() == QEvent::Wheel ) { /* 判断事件 */
             /* 将event强制转换为发生的事件的类型 */
             QWheelEvent *wheelEvent = static_cast<QWheelEvent *> ( event );
-​
+
             if ( wheelEvent->delta() > 0 ) {
                 ui->textEdit->zoomIn();
             } else {
                 ui->textEdit->zoomOut();
             }
-​
+
             return true; /* 该事件已经被处理 */
         } else {
             return false; /* 如果是其他事件，可以进行进一步的处理 */
@@ -192,7 +191,7 @@ bool Widget::eventFilter ( QObject *obj, QEvent *event ) { /* 事件过滤器 */
     } else if ( obj == ui->spinBox ) {
         if ( event->type() == QEvent::KeyPress ) {
             QKeyEvent *keyEvent = static_cast<QKeyEvent *> ( event );
-​
+
             if ( keyEvent->key() == Qt::Key_Space ) {
                 ui->spinBox->setValue ( 0 );
                 return true;

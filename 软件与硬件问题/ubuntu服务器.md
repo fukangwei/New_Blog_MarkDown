@@ -1,7 +1,6 @@
 ---
 title: ubuntu服务器
 categories: 软件与硬件问题
-abbrlink: f0f5b525
 date: 2019-02-14 16:37:15
 ---
 ### FTP服务器
@@ -255,7 +254,7 @@ sudo apt-get install openssh-server
 ``` bash
 sftp user@host               # 登陆远程主机
 lcd或lpwd                    # 针对本机的命令都加上“l”
-put filename.txt directory   # 将本机文件上传到远程
+put filename.txt directory   # 将本机文件上传到远程
 mput *.*                     # 将当前文件夹下的文件上传到远程
 get filename.file directory  # 下载远程文件到本地
 mget *.* directory           # 下载目录下所有远程文件到本地

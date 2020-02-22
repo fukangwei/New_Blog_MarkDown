@@ -1,7 +1,6 @@
 ---
 title: Qt之QInputDialog
 categories: Qt语法详解
-abbrlink: 7252f654
 date: 2019-02-19 14:24:05
 ---
 &emsp;&emsp;`QInputDialog`类提供了从用户那里得到一个单一值的简单方便的对话框，输入值可以是字符串、数字或者列表中的一项，必须设置标签来告诉用户应该输入什么。其头文件为`qinputdialog.h`，它继承了`QDialog`。<!--more-->
@@ -33,7 +32,7 @@ double res = QInputDialog::getDouble (
                 tr ( "Application name" ),
                 tr ( "Please enter a decimal number" ),
                 33.7, 0, 1000, 2, &ok, this );
-​
+
 if ( ok ) {
     /* 用户输入一些东西并且按下OK */
 } else {
@@ -68,7 +67,7 @@ int res = QInputDialog::getInteger (
             tr ( "Application name" ),
             tr ( "Please enter a number" ),
             22, 0, 1000, 2, &ok, this );
-​
+
 if ( ok ) {
     /* 用户输入一些东西并且按下OK  */
 } else {
@@ -106,7 +105,7 @@ QString res = QInputDialog::getItem (
                 tr ( "Application name" ),
                 tr ( "Please select an item" ),
                 lst, 1, TRUE, &ok, this );
-​
+
 if ( ok ) {
     /* 用户选择一项并且按下OK */
 } else {
@@ -138,10 +137,10 @@ QString QInputDialog::getText (
 ``` cpp
 bool ok = FALSE;
 QString text = QInputDialog::getText (
-                   tr ( "Application name" ),
-                   tr ( "Please enter your name" ),
-                   QLineEdit::Normal, QString::null, &ok, this );
-​
+                    tr ( "Application name" ),
+                    tr ( "Please enter your name" ),
+                    QLineEdit::Normal, QString::null, &ok, this );
+
 if ( ok && !text.isEmpty() ) {
     /* 用户输入一些东西并且按下OK */
 } else {
@@ -160,36 +159,36 @@ bool ok;
 QString string = QInputDialog::getText (
     this, tr ( "输入字符串对话框" ), tr ( "请输入用户名：" ),
     QLineEdit::Normal, tr ( "admin" ), &ok );
-​
+
 if ( ok ) {
     qDebug() << "string:" << string;
 }
-​
+
 /* 获取整数 */
 int value1 = QInputDialog::getInt (
     this, tr ( "输入整数对话框" ), tr ( "请输入-1000到1000之间的数值" ),
     100, -1000, 1000, 10, &ok ); /* 默认值100，最小值“-1000”，最大值1000，数值每次变化10 */
-​
+
 if ( ok ) {
     qDebug() << "value1:" << value1;
 }
-​
+
 /* 获取浮点数 */
 double value2 = QInputDialog::getDouble (
     this, tr ( "输入浮点数对话框" ), tr ( "请输入-1000到1000之间的数值" ),
     0.00, -1000, 1000, 2, &ok ); /* 2表示小数的位数为2 */
-​
+
 if ( ok ) {
     qDebug() << "value2:" << value2;
 }
-​
+
 /* 获取条目 */
 QStringList items;
 items << tr ( "条目1" ) << tr ( "条目2" );
 QString item = QInputDialog::getItem (
     this, tr ( "输入条目对话框" ), tr ( "请选择一个条目" ),
     items, 0, true, &ok ); /* 0表示默认显示列表中的第0个条目，true表示条目可以被更改 */
-​
+
 if ( ok ) {
     qDebug() << "item:" << item;
 }

@@ -1,7 +1,6 @@
 ---
 title: itertools模块
 categories: Python语法
-abbrlink: cc8e6fb
 date: 2019-02-10 20:31:27
 ---
 &emsp;&emsp;`Python`提供了一个非常棒的模块用于创建自定义的迭代器，这个模块就是`itertools`。`itertools`提供的工具相当高效且节省内存，使用这些工具，你将能够创建自己定制的迭代器用于高效率的循环。<!--more-->
@@ -16,7 +15,7 @@ date: 2019-02-10 20:31:27
 
 ``` python
 from itertools import count
-​
+
 for i in count(18):
     if i > 20:
         break
@@ -36,7 +35,7 @@ for i in count(18):
 
 ``` python
 from itertools import islice, count
-​
+
 for i in islice(count(10), 5):
     print(i)
 ```
@@ -59,7 +58,7 @@ for i in islice(count(10), 5):
 
 ``` python
 from itertools import cycle
-​
+
 count = 0
 for item in cycle('XYZ'):
     if count > 4:
@@ -157,7 +156,7 @@ builtins.StopIteration:
 
 ``` python
 from itertools import chain
-​
+
 cmd = ['ls', '/some/dir']
 numbers = list(range(5))
 my_list = list(chain(['foo', 'bar'], cmd, numbers))
@@ -226,10 +225,10 @@ builtins.TypeError: from_iterable() takes exactly one argument (2 given)
 
 ``` python
 from itertools import dropwhile
-​
+
 def greater_than_five(x):
     return x > 5
-​
+
 my_list = list(dropwhile(greater_than_five, [6, 7, 8, 9, 1, 2, 3, 10]))
 print(my_list)
 ```
@@ -246,10 +245,10 @@ print(my_list)
 
 ``` python
 from itertools import filterfalse
-​
+
 def greater_than_five(x):
     return x > 5
-​
+
 my_list = list(filterfalse(greater_than_five, [6, 7, 8, 9, 1, 2, 3, 10]))
 print(my_list)
 ```
@@ -269,7 +268,7 @@ print(my_list)
 
 ``` python
 from itertools import *
-​
+
 def height_class(h):
     if h > 180:
         return 'tall'
@@ -277,7 +276,7 @@ def height_class(h):
         return 'short'
     else:
         return 'middle'
-​
+
 friends = [191, 158, 159, 165, 170, 177, 181, 182, 190]
 friends = sorted(friends, key=height_class)
 
@@ -326,7 +325,7 @@ builtins.StopIteration:
 ``` python
 from itertools import islice
 from itertools import count
-​
+
 for i in islice(count(), 3, 7):
     print(i)
 ```
@@ -348,10 +347,10 @@ for i in islice(count(), 3, 7):
 
 ``` python
 from itertools import starmap
-​
+
 def add(a, b):
     return a + b
-​
+
 for item in starmap(add, [(2, 3), (4, 5)]):
     print(item)
 ```
@@ -383,17 +382,17 @@ for item in starmap(add, [(2, 3), (4, 5)]):
 
 ``` python
 from itertools import tee
-​
+
 data = 'ABC'
 iter1, iter2 = tee(data)
-​
+
 for item in iter1:
     print(item)
 
 print("----------")
 
 for item in iter2:
-    print(item)
+    print(item)
 ```
 
 执行结果：
@@ -416,7 +415,7 @@ C
 
 ``` python
 from itertools import zip_longest
-​
+
 for item in zip_longest('ABCD', 'xy', fillvalue='BLANK'):
     print(item)
 ```
@@ -451,7 +450,7 @@ for item in zip_longest('ABCD', 'xy', fillvalue='BLANK'):
 
 ``` python
 from itertools import combinations
-​
+
 for item in combinations('WXYZ', 2):
     print(''.join(item))
 ```
@@ -475,7 +474,7 @@ YZ
 
 ``` python
 from itertools import combinations_with_replacement
-​
+
 for item in combinations_with_replacement('WXYZ', 2):
     print(''.join(item))
 ```
@@ -507,7 +506,7 @@ for item in combinations_with_replacement('WXYZ', 2):
 
 ``` python
 from itertools import permutations
-​
+
 for item in permutations('WXYZ', 2):
     print(''.join(item))
 ```

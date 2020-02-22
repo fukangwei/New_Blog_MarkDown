@@ -1,7 +1,6 @@
 ---
 title: Perl目录操作
 categories: Perl
-abbrlink: 74aa2817
 date: 2018-12-18 07:52:52
 ---
 &emsp;&emsp;以下列出了一些操作目录的标准函数：<!--more-->
@@ -26,21 +25,21 @@ my @files = glob($dir);  # 显示“/tmp”目录下的所有文件
 foreach (@files) {
     print $_ . "\n";
 }
-​
+
 $dir = "/tmp/*.c";
 @files = glob($dir);  # 显示“/tmp”目录下所有以“.c”结尾的文件
 
 foreach (@files) {
     print $_ . "\n";
 }
-​
+
 $dir = "/tmp/.*";
 @files = glob($dir);  # 显示所有隐藏文件
 
 foreach (@files) {
     print $_ . "\n";
 }
-​
+
 $dir = "/tmp/* /home/*";  # 显示“/tmp”和“/home”目录下的所有文件
 @files = glob($dir);
 
@@ -53,11 +52,11 @@ foreach (@files) {
 
 ``` perl
 opendir( DIR, '.' ) or die "无法打开目录, $!";
-​
+
 while ( $file = readdir DIR ) {
     print "$file\n";
 }
-​
+
 closedir DIR;
 ```
 
@@ -65,11 +64,11 @@ closedir DIR;
 
 ``` perl
 opendir( DIR, '.' ) or die "无法打开目录, $!";
-​
+
 foreach ( sort grep( /^.*\.c$/, readdir(DIR) ) ) {
     print "$_\n";
 }
-​
+
 closedir DIR;
 ```
 
@@ -79,7 +78,7 @@ closedir DIR;
 
 ``` perl
 $dir = "/tmp/perl";
-​
+
 # 在“/tmp”目录下创建perl目录
 mkdir($dir) or die "无法创建$dir目录, $!";
 print "目录创建成功\n";
@@ -103,7 +102,7 @@ print "目录删除成功\n";
 
 ``` perl
 $dir = "/home";
-​
+
 # 将当前目录移动到“/home”目录下
 chdir($dir) or die "无法切换目录到 $dir , $!";
 print "你现在所在的目录为$dir\n";

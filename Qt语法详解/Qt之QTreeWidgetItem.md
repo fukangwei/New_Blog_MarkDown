@@ -1,7 +1,6 @@
 ---
 title: Qt之QTreeWidgetItem
 categories: Qt语法详解
-abbrlink: b16db4cf
 date: 2019-01-27 00:36:51
 ---
 &emsp;&emsp;The `QTreeWidgetItem` class provides an item for use with the `QTreeWidget` convenience class. The header file is `QTreeWidgetItem`.<!--more-->
@@ -158,7 +157,7 @@ You can define new user types in `QTreeWidgetItem` subclasses to ensure that cus
 - `QTreeWidgetItem::ChildIndicatorPolicy QTreeWidgetItem::childIndicatorPolicy() const`: Returns the item indicator policy. This policy decides when the tree branch `expand/collapse` indicator is shown.
 - `QTreeWidgetItem * QTreeWidgetItem::clone() const [virtual]`: Creates a deep copy of the item and of its children.
 - `int QTreeWidgetItem::columnCount() const`: Returns the number of columns in the item.
-- `QVariant QTreeWidgetItem::data(int column, int role) const [virtual]`: Returns the value for the item's `column` and `role`.
+- `QVariant QTreeWidgetItem::data(int column, int role) const [virtual]`: Returns the value for the item's `column` and `role`.
 - `void QTreeWidgetItem::emitDataChanged() [protected]`: Causes the model associated with this item to emit a `dataChanged()` signal for this item. You normally only need to call this function if you have subclassed `QTreeWidgetItem` and reimplemented `data()` and/or `setData()`.
 - `Qt::ItemFlags QTreeWidgetItem::flags() const`: Returns the flags used to describe the item. These determine whether the item can be checked, edited, and selected. The default value for flags is `Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled`. If the item was constructed with a parent, flags will in addition contain `Qt::ItemIsDropEnabled`.
 - `QFont QTreeWidgetItem::font(int column) const`: Returns the font used to render the text in the specified `column`.
@@ -178,7 +177,7 @@ You can define new user types in `QTreeWidgetItem` subclasses to ensure that cus
 - `void QTreeWidgetItem::setBackground(int column, const QBrush & brush)`: Sets the background `brush` of the label in the given `column` to the specified `brush`.
 - `void QTreeWidgetItem::setCheckState(int column, Qt::CheckState state)`: Sets the item in the given `column` check state to be `state`.
 - `void QTreeWidgetItem::setChildIndicatorPolicy(QTreeWidgetItem::ChildIndicatorPolicy policy)`: Sets the item indicator `policy`. This `policy` decides when the tree branch `expand/collapse` indicator is shown. The default value is `ShowForChildren`.
-- `void QTreeWidgetItem::setData(int column, int role, const QVariant & value) [virtual]`: Sets the `value` for the item's `column` and `role` to the given `value`. The `role` describes the type of data specified by `value`, and is defined by the `Qt::ItemDataRole` enum.
+- `void QTreeWidgetItem::setData(int column, int role, const QVariant & value) [virtual]`: Sets the `value` for the item's `column` and `role` to the given `value`. The `role` describes the type of data specified by `value`, and is defined by the `Qt::ItemDataRole` enum.
 - `void QTreeWidgetItem::setDisabled(bool disabled)`: Disables the item if `disabled` is `true`; otherwise enables the item.
 - `void QTreeWidgetItem::setExpanded(bool expand)`: Expands the item if `expand` is true, otherwise collapses the item. **Warning**: The `QTreeWidgetItem` must be added to the `QTreeWidget` before calling this function.
 - `void QTreeWidgetItem::setFirstColumnSpanned(bool span)`: Sets the first section to `span` all columns if `span` is `true`; otherwise all item sections are shown.

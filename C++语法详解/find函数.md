@@ -1,8 +1,7 @@
 ---
 title: find函数
-abbrlink: b544e0f4
 date: 2019-02-07 15:37:24
-tags:
+categories: C++语法详解
 ---
 &emsp;&emsp;以下所讲的所有的`string`查找函数都有唯一的返回类型，那就是`size_type`，即一个无符号整数。若查找成功，返回按查找规则找到的第一个字符或子串的位置；若查找失败，返回`npos`，即`-1`，打印出来为`4294967295`(在`32`位操作系统中为`32`个`1`)。<!--more-->
 
@@ -18,9 +17,9 @@ size_type find ( charT c, size_type pos = 0 ) const noexcept;
 ``` cpp
 #include<iostream>
 #include<string>
-​
+
 using namespace std;
-​
+
 int main() {
     /* 测试“size_type find (charT c, size_type pos = 0) const noexcept;” */
     string st1 ( "babbabab" );
@@ -63,24 +62,24 @@ int main() {
 /* 找出字符串str中所有的“abc”(输出位置)；若未找到，输出“not find!” */
 #include <iostream>
 #include <string>
-​
+
 using namespace std;
-​
+
 int main() {
     string str ( "babccbabcaabcccbabccabcabcabbabcc" );
     int num = 0;
     size_t fi = str.find ( "abc", 0 );
-​
+
     while ( fi != str.npos ) {
-        cout << fi << "   ";
+        cout << fi << "   ";
         num++;
         fi = str.find ( "abc", fi + 1 );
     }
-​
+
     if ( 0 == num ) {
         cout << "not find!";
     }
-​
+
     cout << endl;
     return 0;
 }
@@ -116,9 +115,9 @@ size_type find_first_of ( charT c, size_type pos = 0 ) const noexcept;
 ``` cpp
 #include <iostream>
 #include <string>
-​
+
 using namespace std;
-​
+
 int main() {
     /* 测试“size_type find_first_of (charT c, size_type pos = 0) const noexcept;” */
     string str ( "babccbabcc" );
@@ -144,18 +143,18 @@ int main() {
 /* 将字符串中所有的元音字母换成“*” */
 #include<iostream>
 #include<string>
-​
+
 using namespace std;
-​
+
 int main() {
     std::string str ( "PLease, replace the vowels in this sentence by asterisks." );
     std::string::size_type found = str.find_first_of ( "aeiou" );
-​
+
     while ( found != std::string::npos ) {
         str[found] = '*';
         found = str.find_first_of ( "aeiou", found + 1 );
     }
-​
+
     std::cout << str << '\n';
     return 0;
 }
@@ -181,9 +180,9 @@ size_type find_last_of ( charT c, size_type pos = npos ) const noexcept;
 ``` cpp
 #include <iostream>
 #include <string>
-​
+
 using namespace std;
-​
+
 int main() {
     /* 测试“size_type find_last_of (const charT* s, size_type pos = npos) const;” */
     /* 目标串中仅有字符c与源串中的两个c匹配，其余字符均不匹配 */
@@ -212,9 +211,9 @@ size_type find_first_not_of ( charT c, size_type pos = 0 ) const noexcept;
 ``` cpp
 #include <iostream>
 #include <string>
-​
+
 using namespace std;
-​
+
 int main() {
     /* 测试“size_type find_first_not_of (const charT* s, size_type pos = 0) const;” */
     string str ( "abcdefg" );

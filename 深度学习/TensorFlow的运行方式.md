@@ -1,7 +1,6 @@
 ---
 title: TensorFlow的运行方式
 categories: 深度学习
-abbrlink: 20514fba
 date: 2019-01-15 14:05:11
 ---
 &emsp;&emsp;`TensorFlow`的运行方式分如下`4`步：<!--more-->
@@ -47,15 +46,15 @@ def add_layer(inputs, in_size, out_size, activation_function=None):
     weights = tf.Variable(tf.random_normal([in_size, out_size]))
     # 构建偏置：“1 * out_size”的矩阵
     biases = tf.Variable(tf.zeros([1, out_size]) + 0.1)
-    Wx_plus_b = tf.matmul(inputs, weights) + biases  # 矩阵相乘
-​
+    Wx_plus_b = tf.matmul(inputs, weights) + biases  # 矩阵相乘
+
     if activation_function is None:
         out_puts = Wx_plus_b
     else:
         out_puts = activation_function(Wx_plus_b)
-​
+
     return out_puts  # 输出得到的数据
-​
+
 # 构建隐藏层，假设隐藏层有20个神经元
 h1 = add_layer(xs, 1, 20, activation_function=tf.nn.relu)
 # 构建输出层，假设输出层和输入层一样，有一个神经元
@@ -65,7 +64,7 @@ prediction = add_layer(h1, 20, 1, activation_function=None)
 &emsp;&emsp;接下来需要构建损失函数：计算输出层的预测值和真实值间的误差，对二者差的平方求和，然后再取平均，得到损失函数。运用梯度下降法，以`0.1`的效率最小化损失：
 
 ``` python
- # 计算预测值和真实值间的误差
+# 计算预测值和真实值间的误差
 loss = tf.reduce_mean(tf.reduce_sum(tf.square(ys - prediction), reduction_indices=[1]))
 train_step = tf.train.GradientDescentOptimizer(0.1).minimize(loss)
 ```
@@ -78,7 +77,7 @@ train_step = tf.train.GradientDescentOptimizer(0.1).minimize(loss)
 init = tf.global_variables_initializer()
 sess = tf.Session()
 sess.run(init)
-​
+
 for i in range(1000):
     sess.run(train_step, feed_dict={xs: x_data, ys: y_data})
 

@@ -1,7 +1,6 @@
 ---
 title: strchr、strstr和strrstr函数
 categories: C语言语法详解
-abbrlink: 45eae9dc
 date: 2018-12-14 21:56:15
 ---
 ### strchr函数
@@ -26,7 +25,7 @@ char* strchr ( const char* string, char c );
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-​
+
 int main() {
     char* s = "0123456789012345678901234567890";
     char* p;
@@ -46,7 +45,7 @@ int main() {
 
 其函数实现为：
 
-``` c
+``` cpp
 char* mystrchr ( char* s, char c ) {
     while ( *s != '\0' && *s != c ) {
         ++s;
@@ -83,7 +82,7 @@ char* mystrstr ( char* s1, char* s2 ) {
 
     return NULL;
 }
-​
+
 int main() {
     char str1[20] = "abcdhello!";
     char str2[20] = "cd";
@@ -121,6 +120,6 @@ char* my_strrstr ( char const* s1, char const* s2 ) {
         }
     }
 
-    ​return last; /* 返回指向我们找到的最后一次匹配的起始位置的值 */
+    return last; /* 返回指向我们找到的最后一次匹配的起始位置的值 */
 }
 ```

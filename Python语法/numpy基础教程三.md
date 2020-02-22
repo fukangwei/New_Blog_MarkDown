@@ -1,7 +1,6 @@
 ---
 title: numpy基础教程三
 categories: Python语法
-abbrlink: c5b9e42b
 date: 2019-08-04 08:11:52
 mathjax: true
 ---
@@ -89,7 +88,7 @@ a[:, np.newaxis, :] + b (3d array): 3 x 5 x 4
 
 - `y` : `ndarray`, `bool`. For scalar input, the result is a new `boolean` with value `True` if the input is finite; otherwise the value is `False` (input is either positive infinity, negative infinity or `Not a Number`). For array input, the result is a `boolean` array with the same dimensions as the input and the values are `True` if the corresponding element of the input is finite; otherwise the values are `False` (element is either positive infinity, negative infinity or `Not a Number`).
 
-&emsp;&emsp;Notes: `Not a Number`, positive infinity and negative infinity are considered to be `non-finite`.
+&emsp;&emsp;**Notes**: `Not a Number`, positive infinity and negative infinity are considered to be `non-finite`.
 &emsp;&emsp;NumPy uses the `IEEE Standard for Binary Floating-Point for Arithmetic` (`IEEE 754`). This means that `Not a Number` is not equivalent to infinity. Also that positive infinity is not equivalent to negative infinity. But infinity is equivalent to positive infinity. Errors result if the second argument is also supplied when `x` is a scalar input, or if first and second arguments have different shapes.
 
 ``` python
@@ -253,14 +252,14 @@ Please note that `sparse=False`, `copy=False` will likely return `non-contiguous
 
 - `X1, X2, ..., XN`: `ndarray`. For vectors `x1, x2, ..., xn` with lengths `Ni = len(xi)`, return `(N1, N2, N3, ..., Nn)` shaped arrays if `indexing = 'ij'`, or `(N2, N1, N3, ..., Nn)` shaped arrays if `indexing='xy'` with the elements of `xi` repeated to fill the matrix along the first dimension for `x1`, the second for `x2` and so on.
 
-&emsp;&emsp;Notes: This function supports both indexing conventions through the indexing keyword argument. Giving the string `ij` returns a meshgrid with matrix indexing, while `xy` returns a meshgrid with `Cartesian` indexing. In the `2-D` case with inputs of length `M` and `N`, the outputs are of shape `(N, M)` for `xy` indexing and `(M, N)` for `ij` indexing. In the `3-D` case with inputs of length `M`, `N` and `P`, outputs are of shape `(N, M, P)` for `xy` indexing and `(M, N, P)` for `ij` indexing. The difference is illustrated by the following code snippet:
+&emsp;&emsp;**Notes**: This function supports both indexing conventions through the indexing keyword argument. Giving the string `ij` returns a meshgrid with matrix indexing, while `xy` returns a meshgrid with `Cartesian` indexing. In the `2-D` case with inputs of length `M` and `N`, the outputs are of shape `(N, M)` for `xy` indexing and `(M, N)` for `ij` indexing. In the `3-D` case with inputs of length `M`, `N` and `P`, outputs are of shape `(N, M, P)` for `xy` indexing and `(M, N, P)` for `ij` indexing. The difference is illustrated by the following code snippet:
 
 ``` python
 xv, yv = np.meshgrid(x, y, sparse=False, indexing='ij')
 for i in range(nx):
     for j in range(ny):
         # treat xv[i, j], yv[i, j]
-​
+
 xv, yv = np.meshgrid(x, y, sparse=False, indexing='xy')
 for i in range(nx):
     for j in range(ny):
@@ -320,7 +319,7 @@ meshgrid is very useful to evaluate functions on a grid.
 
 - `out`: `ndarray`. Discrete, linear convolution of `a` and `v`.
 
-&emsp;&emsp;Notes: The discrete convolution operation is defined as:
+&emsp;&emsp;**Notes**: The discrete convolution operation is defined as:
 
 $$
 \begin{equation}
@@ -404,7 +403,7 @@ array([[ 0,  1,  2,  3],
 
 - `out`: `ndarray`. The covariance matrix of the variables.
 
-&emsp;&emsp;Notes: Assume that the observations are in the columns of the observation array `m` and let `f = fweights` and `a = aweights` for brevity. The steps to compute the weighted covariance are as follows:
+&emsp;&emsp;**Notes**: Assume that the observations are in the columns of the observation array `m` and let `f = fweights` and `a = aweights` for brevity. The steps to compute the weighted covariance are as follows:
 
 ``` python
 >>> w = f * a
@@ -455,11 +454,11 @@ Note that element $C_{0,1}$, which shows the correlation between $x_0$ and $x_1$
 
 ``` python
 import numpy as np
-​
+
 def func(i):
     print(i)  # 输出“[0. 1. 2. 3. 4.]”
     return i * 2
-​
+
 array = np.fromfunction(func, (5,))
 print(array)  # 输出“[0. 2. 4. 6. 8.]”
 ```
@@ -469,12 +468,12 @@ print(array)  # 输出“[0. 2. 4. 6. 8.]”
 
 ``` python
 import numpy as np
-​
+
 def func(i, j):
     print("i =\n", i)
     print("j =\n", j)
     return i * j
-​
+
 array = np.fromfunction(func, (3, 3))
 print("----------")
 print(array)
@@ -501,12 +500,12 @@ j =
 
 ``` python
 import numpy as np
-​
+
 def func(i, j):
     print("i =\n", i)
     print("j =\n", j)
     return i * j
-​
+
 array = np.fromfunction(func, (3, 2))
 print("----------")
 print(array)
@@ -535,7 +534,7 @@ j =
 
 ``` python
 import numpy as np
-​
+
 arr = np.array([1, 2, 3, 4, 5])
 print(arr)  # 输出“[1 2 3 4 5]”
 print(arr.dtype)  # 输出“int32”
@@ -564,7 +563,7 @@ print(float_arr)  # 输出“[1.2    2.3    3.2141]”
 - `sep`: `str`. Separator between array items for text output. If empty, a binary file is written, equivalent to `file.write(a.tobytes())`.
 - `format`: `str`. Format string for text file output. Each entry in the array is formatted to text by first converting it to the closest `Python` type, and then using `"format" % item`.
 
-&emsp;&emsp;Notes: This is a convenience function for quick storage of array data. Information on endianness and precision is lost, so this method is not a good choice for files intended to archive data or transport data between machines with different endianness. Some of these problems can be overcome by outputting the data as text files, at the expense of speed and file size.
+&emsp;&emsp;**Notes**: This is a convenience function for quick storage of array data. Information on endianness and precision is lost, so this method is not a good choice for files intended to archive data or transport data between machines with different endianness. Some of these problems can be overcome by outputting the data as text files, at the expense of speed and file size.
 &emsp;&emsp;When `fid` is a file object, array contents are directly written to the file, bypassing the file object's write method. As a result, `tofile` cannot be used with files objects supporting compression (e.g., `GzipFile`) or `file-like` objects that do not support `fileno` (e.g., `BytesIO`).
 
 ### numpy.around(round)
@@ -575,7 +574,7 @@ print(float_arr)  # 输出“[1.2    2.3    3.2141]”
 - `decimals`: `int`, optional. Number of decimal places to round to. If `decimals` is negative, it specifies the number of positions to the left of the decimal point.
 - `out`: `ndarray`, optional. Alternative output array in which to place the result. It must have the same shape as the expected output, but the type of the output values will be cast if necessary.
 
-&emsp;&emsp;Notes: For values exactly halfway between rounded decimal values, `NumPy` rounds to the nearest even value. Thus `1.5` and `2.5` round to `2.0`, `-0.5` and `0.5` round to `0.0`, etc. Results may also be surprising due to the inexact representation of decimal fractions in the `IEEE floating point standard` and errors introduced when scaling by powers of ten.
+&emsp;&emsp;**Notes**: For values exactly halfway between rounded decimal values, `NumPy` rounds to the nearest even value. Thus `1.5` and `2.5` round to `2.0`, `-0.5` and `0.5` round to `0.0`, etc. Results may also be surprising due to the inexact representation of decimal fractions in the `IEEE floating point standard` and errors introduced when scaling by powers of ten.
 
 ``` python
 >>> np.around([0.37, 1.64])
@@ -608,7 +607,7 @@ array([0, 0,  0, 10])
 
 - `y`: `ndarray`. The element-wise remainder of the quotient `floor_divide(x1, x2)`. This is a scalar if both `x1` and `x2` are scalars.
 
-&emsp;&emsp;Notes: Returns `0` when `x2` is `0` and both `x1` and `x2` are (arrays of) integers. `mod` is an alias of `remainder`.
+&emsp;&emsp;**Notes**: Returns `0` when `x2` is `0` and both `x1` and `x2` are (arrays of) integers. `mod` is an alias of `remainder`.
 
 ``` python
 >>> np.remainder([4, 7], [2, 3])
@@ -937,7 +936,7 @@ ValueError: arrays must have same number of dimensions
 
 - `cumsum_along_axis`: `ndarray`. A new array holding the result is returned unless `out` is specified, in which case a reference to `out` is returned. The result has the same size as `a`, and the same shape as `a` if `axis` is not `None` or `a` is a `1-d` array.
 
-&emsp;&emsp;Notes: Arithmetic is modular when using integer types, and no error is raised on overflow.
+&emsp;&emsp;**Notes**: Arithmetic is modular when using integer types, and no error is raised on overflow.
 
 ``` python
 >>> a = np.array([[1, 2, 3], [4, 5, 6]])
@@ -1094,7 +1093,7 @@ array([2, 3])
 
 - `out`: `ndarray`. Data read from the text file.
 
-&emsp;&emsp;Notes: This function aims to be a fast reader for simply formatted files. The `genfromtxt` function provides more sophisticated handling of, e.g., lines with missing values. The strings produced by the Python `float.hex` method can be used as input for floats.
+&emsp;&emsp;**Notes**: This function aims to be a fast reader for simply formatted files. The `genfromtxt` function provides more sophisticated handling of, e.g., lines with missing values. The strings produced by the Python `float.hex` method can be used as input for floats.
 
 ``` python
 >>> from io import StringIO  # StringIO behaves like a file object
@@ -1122,7 +1121,7 @@ array([ 2.,  4.])
 - `args`: Arguments, optional: Arrays to save to the file. Since it is not possible for `Python` to know the names of the arrays outside `savez`, the arrays will be saved with names `arr_0`, `arr_1`, and so on. These arguments can be any expression.
 - `kwds`: Keyword arguments, optional: Arrays to save to the file. Arrays will be saved in the file with the keyword names.
 
-&emsp;&emsp;Notes: The `.npz` file format is a zipped archive of files named after the variables they contain. The archive is not compressed and each file in the archive contains one variable in `.npy` format. For a description of the `.npy` format, see `numpy.lib.format` or the [NumPy Enhancement Proposal](http://docs.scipy.org/doc/numpy/neps/npy-format.html).
+&emsp;&emsp;**Notes**: The `.npz` file format is a zipped archive of files named after the variables they contain. The archive is not compressed and each file in the archive contains one variable in `.npy` format. For a description of the `.npy` format, see `numpy.lib.format` or the [NumPy Enhancement Proposal](http://docs.scipy.org/doc/numpy/neps/npy-format.html).
 &emsp;&emsp;When opening the saved `.npz` file with load a `NpzFile` object is returned. This is a `dictionary-like` object which can be queried for its list of arrays (with the `.files` attribute), and for the arrays themselves.
 
 ``` python
@@ -1236,7 +1235,7 @@ array([[[ 0.,  1.],
 
 - `out`: `ndarray` or `tuple of ndarrays`. If both `x` and `y` are specified, the output array contains elements of `x` where `condition` is `True`, and elements from `y` elsewhere. If only `condition` is given, return the tuple `condition.nonzero()`, the indices where `condition` is `True`.
 
-&emsp;&emsp;Notes: If `x` and `y` are given and input arrays are `1-D`, where is equivalent to:
+&emsp;&emsp;**Notes**: If `x` and `y` are given and input arrays are `1-D`, where is equivalent to:
 
 ``` python
 [xv if c else yv for (c, xv, yv) in zip(condition, x, y)]

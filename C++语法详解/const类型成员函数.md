@@ -1,7 +1,6 @@
 ---
 title: const类型成员函数
 categories: C++语法详解
-abbrlink: f547c7ee
 date: 2019-02-05 18:46:18
 ---
 &emsp;&emsp;在`C++`中，若一个变量声明为`const`类型，则试图修改该变量的值的操作都被视编译错误：<!--more-->
@@ -44,7 +43,7 @@ public:
     int ok() const {
         return _cursor;
     }
-​
+
     int error ( intival ) const {
         _cursor = ival;
     }
@@ -61,10 +60,10 @@ public:
 private:
     char *m_sName;
 };
-​
+
 void setName ( const string &s ) const {
     m_sName = s.c_str(); /* 错误！不能修改m_sName */
-​
+
     for ( int i = 0; i < s.size(); ++i ) {
         m_sName[i] = s[i]; /* 不好的风格，但不是错误的 */
     }

@@ -1,7 +1,6 @@
 ---
 title: nth_element函数
 categories: C++语法详解
-abbrlink: 3c9239a5
 date: 2019-02-05 19:48:44
 ---
 &emsp;&emsp;函数原型如下：<!--more-->
@@ -18,26 +17,26 @@ void nth_element ( first, nth, last, compare );
 ``` cpp
 #include <iostream>
 #include <algorithm>
-​
+
 using namespace std;
-​
+
 int main() {
-    int array[] = {5, 6, 7, 8, 4, 2, 1, 3, 0};
-    int len = sizeof ( array ) / sizeof ( int );
-    cout << "排序前: ";
-​
-    for ( int i = 0; i < len; i++ ) {
-        cout << array[i] << " ";
-    }
-​
-    nth_element ( array, array + 6, array + len );
-    cout << endl;
-    cout << "排序后：";
-​
-    for ( int i = 0; i < len; i++ ) {
-        cout << array[i] << " ";
-    }
-​
-    cout << endl << "第6个元素为" << array[6] << endl;
+    int array[] = {5, 6, 7, 8, 4, 2, 1, 3, 0};
+    int len = sizeof ( array ) / sizeof ( int );
+    cout << "排序前: ";
+
+    for ( int i = 0; i < len; i++ ) {
+        cout << array[i] << " ";
+    }
+
+    nth_element ( array, array + 6, array + len );
+    cout << endl;
+    cout << "排序后：";
+
+    for ( int i = 0; i < len; i++ ) {
+        cout << array[i] << " ";
+    }
+
+    cout << endl << "第6个元素为" << array[6] << endl;
 }
 ```

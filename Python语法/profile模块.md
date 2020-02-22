@@ -1,7 +1,6 @@
 ---
 title: profile模块
 categories: Python语法
-abbrlink: bc1e60be
 date: 2018-12-27 18:07:25
 ---
 &emsp;&emsp;`profile`是`python`的标准库，可以用于统计程序里每一个函数的运行时间，并且提供了多样化的报表。使用`profile`来分析一个程序很简单，例如有这样一个程序：<!--more-->
@@ -14,7 +13,7 @@ def foo():
         sum += i
 
     return sum
-​
+
 if __name__ == "__main__":
     foo()
 ```
@@ -31,9 +30,9 @@ if __name__ == "__main__":
 
 ``` bash
 5 function calls in 0.016 seconds
-​
+
 Ordered by: standard name
-​
+
 ncalls  tottime  percall  cumtime  percall filename:lineno(function)
      1    0.000    0.000    0.016    0.016 :0(exec)
      1    0.000    0.000    0.000    0.000 :0(setprofile)

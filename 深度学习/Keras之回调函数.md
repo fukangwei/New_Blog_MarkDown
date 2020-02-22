@@ -1,7 +1,6 @@
 ---
 title: Keras之回调函数
 categories: 深度学习
-abbrlink: f76632d
 date: 2019-01-16 10:34:19
 ---
 &emsp;&emsp;回调函数是一个函数的合集，会在训练的阶段中所使用。你可以使用回调函数来查看训练模型的内在状态和统计。你可以传递一个列表的回调函数(作为`callbacks`关键字参数)到`Sequential`或`Model`类型的`fit`方法。在训练时，相应的回调函数的方法就会被在各自的阶段被调用。<!--more-->
@@ -76,7 +75,7 @@ keras.callbacks.ModelCheckpoint(
 
 ``` python
 from keras.callbacks import ModelCheckpoint
-​
+
 model = Sequential()
 model.add(Dense(10, input_dim=784, kernel_initializer='uniform'))
 model.add(Activation('softmax'))
@@ -186,7 +185,7 @@ class LossHistory(keras.callbacks.Callback):
 
     def on_batch_end(self, batch, logs={}):
         self.losses.append(logs.get('loss'))
-​
+
 model = Sequential()
 model.add(Dense(10, input_dim=784, kernel_initializer='uniform'))
 model.add(Activation('softmax'))

@@ -1,7 +1,6 @@
 ---
 title: ungetc函数
 categories: C语言语法详解
-abbrlink: b27a8e70
 date: 2018-12-06 13:45:47
 ---
 &emsp;&emsp;`ungetc`的功能是把一个字符退回到输入流中：<!--more-->

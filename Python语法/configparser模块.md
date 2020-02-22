@@ -1,7 +1,6 @@
 ---
 title: configparser模块
 categories: Python语法
-abbrlink: ea7347c1
 date: 2018-12-27 18:19:14
 ---
 &emsp;&emsp;`configparser`用于配置文件解析，可以解析特定格式的配置文件，多数此类配置文件名格式为`XXX.ini`，例如`mysql`的配置文件。`ini`文件示例：<!--more-->
@@ -10,7 +9,7 @@ date: 2018-12-27 18:19:14
 [section1]
 name = wang
 age = 18
-​
+
 [section2]
 name : python
 age = 19
@@ -27,7 +26,7 @@ XX = XX 或者 XX : XX  # 代表参数
 
 ``` python
 import configparser  # 导入模块
-​
+
 config = configparser.ConfigParser()  # 创建对象
 # 读取配置文件，如果配置文件不存在，则进行创建
 config.read("user.ini", encoding="utf-8")
@@ -47,7 +46,7 @@ print(val)  # 输出“True”
 # 检查指定节点中是否存在某个key，返回True或False
 val = config.has_option('section1', 'age')
 print(val)  # 输出“True”
-​
+
 # 添加一个节点，节点名为node，此时添加的节点node尚未写入文件
 config.add_section("node")
 config.write(open('user.ini', "w"))  # 将添加的节点node写入配置文件

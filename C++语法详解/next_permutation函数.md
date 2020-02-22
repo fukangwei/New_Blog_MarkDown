@@ -1,7 +1,6 @@
 ---
 title: next_permutation函数
 categories: C++语法详解
-abbrlink: d07d8ae8
 date: 2018-12-27 10:28:40
 ---
 &emsp;&emsp;`STL`提供了两个用来计算排列组合关系的算法，分别是`next_permutation`和`prev_permutation`。首先了解什么是`下一个`排列组合，什么是`前一个`排列组合。<!--more-->
@@ -12,21 +11,21 @@ date: 2018-12-27 10:28:40
 #include <iostream>
 #include <algorithm>
 #include "stdlib.h"
-​
+
 using namespace std;
-​
+
 int main() {
     int ans[4] = { 1, 2, 3, 4 };
     sort(ans, ans + 4); /* 这个sort可以不用，因为{1, 2, 3, 4}已经排好序*/
-​
+
     do { /* 注意这一步，如果是while循环，则需要提前输出 */
         for (int i = 0; i < 4; ++i) {
             cout << ans[i] << " ";
         }
-​
+
         cout << endl;
     } while (next_permutation(ans, ans + 4));
-​
+
     system("pause");
     return 0;
 }

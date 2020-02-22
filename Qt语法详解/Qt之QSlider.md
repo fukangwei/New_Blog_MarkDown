@@ -1,7 +1,6 @@
 ---
 title: Qt之QSlider
 categories: Qt语法详解
-abbrlink: ba64e5ad
 date: 2019-02-18 19:01:21
 ---
 &emsp;&emsp;`QSlider`部件提供了一个垂直或水平滑动条。它允许用户沿水平或垂直方向移动滑块，并将滑块所在的位置转换成一个合法范围内的值。<!--more-->
@@ -51,24 +50,24 @@ date: 2019-02-18 19:01:21
 int nMin = 0;
 int nMax = 200;
 int nSingleStep = 10;
-​
+
 /* 微调框 */
 QSpinBox *pSpinBox = new QSpinBox ( this );
 pSpinBox->setMinimum ( nMin ); /* 最小值 */
 pSpinBox->setMaximum ( nMax ); /* 最大值 */
 pSpinBox->setSingleStep ( nSingleStep ); /* 步长 */
-​
+
 /* 滑动条 */
 QSlider *pSlider = new QSlider ( this );
 pSlider->setOrientation ( Qt::Horizontal ); /* 水平方向 */
 pSlider->setMinimum ( nMin ); /* 最小值 */
 pSlider->setMaximum ( nMax ); /* 最大值 */
 pSlider->setSingleStep ( nSingleStep ); /* 步长 */
-​
+
 /* 连接信号槽(相互改变) */
 connect ( pSpinBox, SIGNAL ( valueChanged ( int ) ), pSlider, SLOT ( setValue ( int ) ) );
 connect ( pSlider, SIGNAL ( valueChanged ( int ) ), pSpinBox, SLOT ( setValue ( int ) ) );
-​
+
 pSpinBox->setValue ( 10 );
 ```
 

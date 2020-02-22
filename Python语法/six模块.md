@@ -1,7 +1,6 @@
 ---
 title: six模块
 categories: Python语法
-abbrlink: 4f347c31
 date: 2019-02-10 17:38:51
 ---
 ### Six: Python 2 and 3 Compatibility Library
@@ -50,7 +49,7 @@ from six import get_unbound_function
 class X(object):
     def method(self):
         pass
-​
+
 method_function = get_unbound_function(X.method)
 ```
 
@@ -127,7 +126,7 @@ on `Python 2`.
 ``` python
 class MyClass(object):
     pass
-​
+
 MyClass = add_metaclass(Meta)(MyClass)
 ```
 
@@ -150,7 +149,7 @@ MyClass = add_metaclass(Meta)(MyClass)
 
 ### unittest assertions
 
-&emsp;&emsp;`six` contains compatibility shims for unittest assertions that have been renamed. The parameters are the same as their aliases, but you must pass the test method as the first argument. For example:
+&emsp;&emsp;`six` contains compatibility shims for unittest assertions that have been renamed. The parameters are the same as their aliases, but you must pass the test method as the first argument.
 
 ``` python
 import six

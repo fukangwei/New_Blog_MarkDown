@@ -1,7 +1,6 @@
 ---
 title: AlertDialog对话框
 categories: Android
-abbrlink: ef042740
 date: 2018-12-28 15:48:39
 ---
 &emsp;&emsp;`AlertDialog`对话框基本使用流程如下：<!--more-->
@@ -24,7 +23,7 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-​
+
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +70,7 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-​
+
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +109,7 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-​
+
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,7 +149,7 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-​
+
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

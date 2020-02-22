@@ -1,7 +1,6 @@
 ---
 title: lambda表达式
 categories: Python语法
-abbrlink: 330a6169
 date: 2018-12-28 09:50:03
 ---
 &emsp;&emsp;`lambda`表达式也叫`匿名函数`，其语法如下：<!--more-->
@@ -87,7 +86,7 @@ def func():
     for i in range(4):
         def lam(x):
             return x * i
-​
+
         fs.append(lam)
 
     return fs

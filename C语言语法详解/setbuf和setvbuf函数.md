@@ -1,7 +1,6 @@
 ---
 title: setbuf和setvbuf函数
 categories: C语言语法详解
-abbrlink: 5b66ade3
 date: 2018-12-14 17:27:26
 ---
 &emsp;&emsp;函数`setbuf`用于将指定缓冲区与特定的文件流相关联，实现操作缓冲区时直接操作文件流的功能。<!--more-->
@@ -50,7 +49,7 @@ This is a test of buffered output..
 
 ``` cpp
 #include <stdio.h>
-​
+
 int main() {
     int c;
     char buf[BUFSIZ];
@@ -86,7 +85,7 @@ setbuf ( stdout, malloc ( BUFSIZ ) );
 &emsp;&emsp;函数原型如下：
 
 ``` cpp
-int setvbuf ( FILE* stream, c​har* buf, int type, unsigned size );
+int setvbuf ( FILE* stream, char* buf, int type, unsigned size );
 ```
 
 - `type`：期望缓冲区的类型：

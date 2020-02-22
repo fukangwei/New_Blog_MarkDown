@@ -1,21 +1,20 @@
 ---
 title: ucos消息队列
 categories: ucos和ucgui
-abbrlink: 42ac754c
 date: 2018-12-29 11:27:56
 ---
 &emsp;&emsp;代码如下：<!--more-->
 
 ``` cpp
 #include "includes.h"
-​
+
 #define TASK_STK_SIZE 512
 #define N_MESSAGES    128
-​
+
 OS_STK StartTaskStk[TASK_STK_SIZE];
 OS_STK MyTaskStk[TASK_STK_SIZE];
 OS_STK YouTaskStk[TASK_STK_SIZE];
-​
+
 char *s_flag; /* 该字符串指示哪个任务在运行 */
 char *ss; /* 存放接收到的消息指针 */
 char *s100; /* 存放发送消息的指针 */
@@ -27,11 +26,11 @@ void *MsgGrp[N_MESSAGES]; /* 定义消息指针数组 */
 INT8U err;
 INT8U y = 0;
 OS_EVENT *Str_Q; /* 定义事件控制块指针。队列的事件控制块指针用于存放创建的消息队列的指针 */
-​
+
 void MyTask ( void *data );
 void StartTask ( void *data );
 void YouTask ( void *data );
-​
+
 void main ( void ) {
     OSInit();
     PC_DOSSaveReturn();
@@ -43,7 +42,7 @@ void main ( void ) {
     OSTaskCreate ( StartTask, ( void * ) 0, &StartTaskStk[TASK_STK_SIZE - 1], 0 );
     OSStart();
 }
-​
+
 void StartTask ( void *pdata ) {
 #if OS_CRITICAL_METHOD == 3
     OS_CPU_SR cpu_sr;
@@ -57,7 +56,7 @@ void StartTask ( void *pdata ) {
     OSStatInit();
     OSTaskCreate ( MyTask, ( void * ) 0, &MyTaskStk[TASK_STK_SIZE - 1], 3 );
     OSTaskCreate ( YouTask, ( void * ) 0, &YouTaskStk[TASK_STK_SIZE - 1], 4 );
-​
+
     // s = "How many strings could be geted?";
     // /* 发送消息，以LIFO后进先出的方式发送。第一个参数Str_Q是消息队列的指针，
     //    是OSQCreate的返回值，第二个参数s是消息指针 */
@@ -65,35 +64,35 @@ void StartTask ( void *pdata ) {
     for ( ;; ) {
         s_flag = "The StartTask is running!";
         PC_DispStr ( 50, ++y, s_flag, DISP_FGND_RED + DISP_BGND_LIGHT_GRAY ); /* 提示哪个任务在运行 */
-​
+
         if ( OSTimeGet() > 100 && OSTimeGet() < 500 ) {
             s100 = "The value of OSTIME is from 100 to 500 NOW!!";
             OSQPostFront ( Str_Q, s100 ); /* 发送消息，以LIFO后进先出的方式发送 */
             s = "The string belongs to which task.";
             OSQPostFront ( Str_Q, s ); /* 发送消息，以LIFO方式发送。所以如果要申请消息时，会先得到s，然后才是s100 */
         }
-​
+
         if ( OSTimeGet() > 1000 && OSTimeGet() < 1500 ) {
             s500 = "The value of OSTIME is from 1000 to 1500 NOW!!";
             OSQPostFront ( Str_Q, s500 ); /* 发送消息 */
         }
-​
+
         if ( PC_GetKey ( &key ) == TRUE ) {
             if ( key == 0x1B ) {
                 PC_DOSReturn();
             }
         }
-​
+
         OSTimeDlyHMSM ( 0, 0, 1, 0 );
     }
 }
-​
+
 void MyTask ( void *pdata ) {
 #if OS_CRITICAL_METHOD == 3
     OS_CPU_SR cpu_sr;
 #endif
     pdata = pdata;
-​
+
     for ( ;; ) {
         s_flag = "The MyTask is running!";
         PC_DispStr ( 50, ++y, s_flag, DISP_FGND_RED + DISP_BGND_LIGHT_GRAY ); /* 提示哪个任务在运行 */
@@ -107,13 +106,13 @@ void MyTask ( void *pdata ) {
         OSTimeDlyHMSM ( 0, 0, 1, 0 );
     }
 }
-​
+
 void YouTask ( void *pdata ) {
 #if OS_CRITICAL_METHOD == 3
     OS_CPU_SR cpu_sr;
 #endif
     pdata = pdata;
-​
+
     for ( ;; ) {
         s_flag = "The YouTask is running!";
         PC_DispStr ( 50, ++y, s_flag, DISP_FGND_RED + DISP_BGND_LIGHT_GRAY ); /* 提示哪个任务在运行 */

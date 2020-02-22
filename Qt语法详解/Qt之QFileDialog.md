@@ -1,7 +1,6 @@
 ---
 title: Qt之QFileDialog
 categories: Qt语法详解
-abbrlink: 56eaa33c
 date: 2019-01-24 14:05:36
 ---
 &emsp;&emsp;`QFileDialog`是`Qt`中的文件对话框，以下资料来源于`Qt`官方文档。使用`QFileDialog`可以调用当前系统的文件对话框，需要包含头文件`QFileDialog`。最简单的方法是调用静态函数来对话框获取文件：<!--more-->
@@ -31,7 +30,7 @@ qDebug() << "fileNames:" << fileNames;
 
 ``` cpp
 QFileDialog *fd = new QFileDialog ( this, "file dlg", TRUE );
-​
+
 if ( fd->exec() == QFileDialog::Accepted ) { /* ok */
     QString file = fd->selectedFile();
     qWarning ( s );
@@ -83,7 +82,7 @@ QString s = fd->selectedFile();
 
 ``` cpp
 QStringList slist = fd->selectedFiles();
-​
+
 for ( QStringList::Iterator it = slist.begin(); it != slist.end(); it++ ) {
     qWarning ( *it );
 }
@@ -119,7 +118,7 @@ QString getSaveFileName ( QWidget *parent = 0, const QString &caption = QString(
 ``` cpp
 QString fileName = QFileDialog::getSaveFileName ( this, tr ( "Open Config" ), \
                                                   "", tr ( "Config Files (*.ifg)" ) );
-​
+
 if ( !fileName.isNull() ) {
     /* User Code */
 } else { /* 点击取消按钮 */

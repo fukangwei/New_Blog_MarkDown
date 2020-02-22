@@ -1,7 +1,6 @@
 ---
 title: 读写xml和yml文件
 categories: opencv和图像处理
-abbrlink: 1fa7bd01
 date: 2019-02-23 17:27:09
 ---
 &emsp;&emsp;有时我们在处理完图像后，需要保存数据到文件上，以供下一步的处理。一个比较广泛的需求场景是：我们对一幅图像进行特征提取之后，需要把特征点信息保存到文件上，以供后面的机器学习分类操作。那么如果遇到这样的场景，我们有什么好方法？我想到的是把这些数据全写到文件上，如果下次需要这些数据时，就把它们从文件里读出来就好了。<!--more-->
@@ -129,8 +128,6 @@ map_data:
 1. Create new `FileStorage` and open it for writing. It can be done with a single call to `FileStorage::FileStorage()` constructor that takes a filename, or you can use the default constructor and then call `FileStorage::open()`. Format of the file (`XML` or `YAML`) is determined from the filename extension (`.xml` and `.yml`/`.yaml`, respectively)
 2. Write all the data you want using the streaming operator `<<`, just like in the case of `STL` streams.
 3. Close the file using `FileStorage::release()`. `FileStorage` destructor also closes the file.
-
-&emsp;&emsp;Here is an example:
 
 ``` cpp
 #include <opencv2/highgui/highgui.hpp>

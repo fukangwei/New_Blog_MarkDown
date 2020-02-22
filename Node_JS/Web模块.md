@@ -1,7 +1,6 @@
 ---
 title: Web模块
 categories: Node.js笔记
-abbrlink: '4287951'
 date: 2019-03-02 13:35:22
 ---
 &emsp;&emsp;`Web`服务器一般指网站服务器，是指驻留于因特网上某种类型计算机的程序，`Web`服务器的基本功能就是提供`Web`信息浏览服务。它只需支持`HTTP`协议、`HTML`文档格式及`URL`，与客户端的网络浏览器配合。<!--more-->
@@ -32,11 +31,11 @@ var http = require('http');
 var http = require('http');
 var fs = require('fs');
 var url = require('url');
-​
+
 http.createServer(function (request, response) { // 创建服务器
     var pathname = url.parse(request.url).pathname; // 解析请求，包括文件名
     console.log("Request for " + pathname + " received."); // 输出请求的文件名
-​
+
     // 从文件系统中读取请求的文件内容
     fs.readFile(pathname.substr(1), function (err, data) {
         if (err) {
@@ -50,14 +49,14 @@ http.createServer(function (request, response) { // 创建服务器
             response.writeHead(200, {
                 'Content-Type': 'text/html'
             });
-​
+
             response.write(data.toString()); // 响应文件内容
         }
-​
+
         response.end(); // 发送响应数据
     });
 }).listen(8080);
-​
+
 // 控制台会输出以下信息
 console.log('Server running at http://127.0.0.1:8080/');
 ```
@@ -99,25 +98,25 @@ Request for /index.html received.
 
 ``` javascript
 var http = require('http');
-​
+
 var options = { // 用于请求的选项
     host: 'localhost',
     port: '8080',
     path: '/index.html'
 };
-​
+
 var callback = function (response) { // 处理响应的回调函数
     // 不断更新数据
     var body = '';
     response.on('data', function (data) {
         body += data;
     });
-​
+
     response.on('end', function () { // 数据接收完成
         console.log(body);
     });
 }
-​
+
 var req = http.request(options, callback); // 向服务端发送请求
 req.end();
 ```
@@ -132,7 +131,7 @@ req.end();
         <title>菜鸟教程(runoob.com)</title>
     </head>
     <body>
-        <h1>我的第一个标题</h1>
+        <h1>我的第一个标题</h1>
         <p>我的第一个段落。</p>
     </body>
 </html>

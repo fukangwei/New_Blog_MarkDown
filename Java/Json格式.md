@@ -1,7 +1,6 @@
 ---
 title: Json格式
 categories: Java
-abbrlink: cbe7ec5
 date: 2018-12-21 14:38:45
 ---
 &emsp;&emsp;代码如下：<!--more-->
@@ -9,25 +8,25 @@ date: 2018-12-21 14:38:45
 ``` java
 import org.json.JSONArray;
 import org.json.JSONObject;
-​
+
 public class test {
     public static void main(String[] args) {
         /* 初始化JSONObject(方法一) */
         JSONObject jsonObject1 = new JSONObject();
         jsonObject1.put("Name", "Tom");
         jsonObject1.put("age", "11");
-​
+
         /* 初始化JSONObject(方法二) */
         JSONObject jsonObject2 = new JSONObject("{'Name':'Tom','age':'11'}");
-​
+
         /* 初始化JSONArray(方法一) */
         JSONArray jsonArray1 = new JSONArray();
         jsonArray1.put("abc");
         jsonArray1.put("xyz");
-​
+
         /* 初始化JSONArray(方法二) */
         JSONArray jsonArray2 = new JSONArray("['abc','xyz']");
-​
+
         System.out.println("jsonObject1:" + "\r" + jsonObject1.toString());
         System.out.println("jsonObject2:" + "\r" + jsonObject2.toString());
         System.out.println("jsonArray1:" + "\r" + jsonArray1.toString());
@@ -57,7 +56,7 @@ public class test {
 
 ``` java
 import org.json.JSONObject;
-​
+
 public class test {
     public static void main(String[] args) {
         String jsonString = "{'url':'http://www.cnblogs.com/qianxudetianxia'}";
@@ -84,7 +83,7 @@ http://www.cnblogs.com/qianxudetianxia
 
 ``` java
 import org.json.JSONObject;
-​
+
 public class test {
     public static void main(String[] args) {
         String jsonString = "{'name':'android','version':'1.2.3'}";
@@ -107,13 +106,13 @@ public class test {
 ``` java
 import org.json.JSONArray;
 import org.json.JSONObject;
-​
+
 public class test {
     public static void main(String[] args) {
         String jsonString = "{'number':[1,2,3]}";
         JSONObject demoJson = new JSONObject(jsonString);
         JSONArray numberList = demoJson.getJSONArray("number");
-​
+
         for (int i = 0; i < numberList.length(); i++) {
             /* 因为数组中的类型为int，所以为getInt，而getString、getLong同理 */
             System.out.println(numberList.getInt(i));
@@ -141,7 +140,7 @@ public class test {
 ``` java
 import org.json.JSONArray;
 import org.json.JSONObject;
-​
+
 public class test {
     public static void main(String[] args) {
         String jsonString = "{'number':[[1],[2],[3]]}";
@@ -175,7 +174,7 @@ public class test {
 ``` java
 import org.json.JSONArray;
 import org.json.JSONObject;
-​
+
 public class test {
     public static void main(String[] args) {
         String jsonString = "{'mobile':[{'name':'android'},{'name':'iphone'}]}";

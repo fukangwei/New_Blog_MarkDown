@@ -1,7 +1,6 @@
 ---
 title: this指针
 categories: C++语法详解
-abbrlink: 2b153c25
 date: 2019-02-05 18:53:49
 ---
 &emsp;&emsp;对象的`this`指针并不是对象本身的一部分，不会影响`sizeof(对象)`的结果。`this`作用域是在类内部，当类的非静态成员函数中访问类的非静态成员时，编译器会自动将对象本身的地址作为一个隐含参数传递给函数。也就是说，即使你没有写上`this`指针，编译器在编译时也会加上`this`，它作为非静态成员函数的隐含形参，对各成员的访问均通过`this`进行。例如，调用`date.SetMonth(9) <--> SetMonth(&date, 9)`，`this`帮助完成了这一转换。<!--more-->
@@ -10,9 +9,9 @@ date: 2019-02-05 18:53:49
 
 ``` cpp
 #include "iostream"
-​
+
 using namespace std;
-​
+
 class Point {
     int x, y;
 public:
@@ -20,17 +19,17 @@ public:
         x = a;
         y = b;
     }
-​
+
     void MovePoint ( int a, int b ) {
         x += a;
         y += b;
     }
-​
+
     void print() {
         cout << "x = " << x << ", y = " << y << endl;
     }
 };
-​
+
 int main( ) {
     Point point1 ( 10, 10 );
     point1.MovePoint ( 2, 2 );

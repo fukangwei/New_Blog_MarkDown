@@ -1,7 +1,6 @@
 ---
 title: STM32的引脚重映射和复用
 categories: 单片机
-abbrlink: 8f86ca4e
 date: 2019-03-18 22:11:33
 ---
 &emsp;&emsp;`STM32`中有很多内置外设的输入输出引脚都具有重映射(`remap`)的功能，本文对一些在使用引脚重映射时所遇到的有关问题加以说明。<!--more-->
@@ -60,7 +59,7 @@ GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 GPIO_Init ( GPIOB, &GPIO_InitStructure );
-​
+
 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7;
 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
 GPIO_Init ( GPIOB, &GPIO_InitStructure );

@@ -1,7 +1,6 @@
 ---
 title: TensorFlow实现多层感知机
 categories: 深度学习
-abbrlink: af0f033e
 date: 2019-02-15 16:09:29
 ---
 ### 多层感知机简介
@@ -40,7 +39,7 @@ sess = tf.InteractiveSession()
 ``` python
 in_units = 784
 h1_units = 300
-​
+
 # 对于ReLU激活函数，常用截断正态分布，避免0梯度和完全对称。
 # 对于Softmax分类(也就是sigmoid激活)，由于对0附近最敏感，所以采用全0初始权重
 W1 = tf.Variable(tf.truncated_normal([in_units, h1_units], stddev=0.1))
@@ -77,7 +76,7 @@ train_step = tf.train.AdagradOptimizer(0.3).minimize(cross_entropy)
 ``` python
 correct_prediction = tf.equal(tf.argmax(y, axis=1), tf.argmax(y_, axis=1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-​
+
 tf.global_variables_initializer().run()
 
 for i in range(3000):

@@ -1,7 +1,6 @@
 ---
 title: Chronometer计时器
 categories: Android
-abbrlink: ceffc04d
 date: 2018-12-28 12:26:19
 ---
 &emsp;&emsp;`Android`给我们提供了一个计时组件`Chronometer`，该组件继承自`TextView`，因此它会显示一段文本内容。但是`Chronometer`并不显示当前时间，它显示的是从某个起始时间开始，一共过去了多长时间。<!--more-->
@@ -20,7 +19,7 @@ date: 2018-12-28 12:26:19
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-​
+
     <Chronometer
         android:id="@+id/chronometer"
         android:layout_width="fill_parent"
@@ -37,10 +36,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Chronometer;
 import android.os.SystemClock;
-​
+
 public class MainActivity extends AppCompatActivity {
-    Chronometer ch;  /* 定义计时器 */
-​
+    Chronometer ch; /* 定义计时器 */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

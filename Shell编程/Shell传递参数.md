@@ -1,7 +1,6 @@
 ---
 title: Shell传递参数
 categories: Shell编程
-abbrlink: 8b1c7bcf
 date: 2019-01-20 18:17:58
 ---
 &emsp;&emsp;可以在执行`Shell`脚本时，向脚本传递参数。脚本内获取参数的格式为`$n`，`n`代表一个数字，`1`为执行脚本的第一个参数，`2`为执行脚本的第二个参数，以此类推。<!--more-->
@@ -9,7 +8,7 @@ date: 2019-01-20 18:17:58
 
 ``` bash
 #!/bin/bash
-​
+
 echo "执行的文件名：$0";
 echo "第一个参数为：$1";
 echo "第二个参数为：$2";
@@ -41,7 +40,7 @@ $ ./test.sh 1 2 3
 
 ``` bash
 #!/bin/bash
-​
+
 echo "第一个参数为：$1";
 echo "参数个数为：$#";
 echo "传递的参数作为一个字符串显示：$*";
@@ -64,13 +63,13 @@ $ ./test.sh 1 2 3
 
 ``` bash
 #!/bin/bash
-​
+
 echo "-- \$* 演示 ---"
 
 for i in "$*"; do
     echo $i
 done
-​
+
 echo "-- \$@ 演示 ---"
 
 for i in "$@"; do

@@ -1,7 +1,6 @@
 ---
 title: Linux应用问题
 categories: 软件与硬件问题
-abbrlink: db791014
 date: 2019-02-14 19:36:40
 ---
 ### command not found
@@ -122,7 +121,7 @@ sudo apt-get update
 ``` bash
 # 解决方法一
 chmod +x install
-./install​
+./install
 # 解决方法二
 bash ./install
 ```
@@ -188,7 +187,7 @@ sudo apt-get install libncurses5-dev
 
 ``` cpp
 #include <curses.h>
-​
+
 int main() {
     initscr();
     clear();

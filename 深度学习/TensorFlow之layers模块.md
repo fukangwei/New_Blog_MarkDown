@@ -1,7 +1,6 @@
 ---
 title: TensorFlow之layers模块
 categories: 深度学习
-abbrlink: cbb73499
 date: 2019-01-16 14:56:39
 ---
 &emsp;&emsp;`TensorFlow`的`layers`模块提供用于深度学习的更高层次封装的`API`，利用它可以轻松地构建模型。`tf.layers`模块提供的方法有：<!--more-->
@@ -154,7 +153,7 @@ dense(
 
 ``` python
 import tensorflow as tf
-​
+
 x = tf.keras.Input(shape=[32])
 print(x)
 y1 = tf.layers.dense(x, 16, activation=tf.nn.relu)
@@ -178,7 +177,7 @@ Tensor("dense_1/Sigmoid:0", shape=(?, 5), dtype=float32)
 ``` python
 conv2d(
     inputs, filters, kernel_size, strides=(1, 1), padding='valid', data_format='channels_last',
-    dilation_rate=(1, 1), activation=None, use_bias=True, kernel_initializer=None,
+    dilation_rate=(1, 1), activation=None, use_bias=True, kernel_initializer=None,
     bias_initializer=tf.zeros_initializer(), kernel_regularizer=None, bias_regularizer=None,
     activity_regularizer=None, kernel_constraint=None, bias_constraint=None,
     trainable=True, name=None, reuse=None)
@@ -208,7 +207,7 @@ conv2d(
 
 ``` python
 import tensorflow as tf
-​
+
 x = tf.keras.Input(shape=[20, 20, 3])
 y = tf.layers.conv2d(x, filters=6, kernel_size=2, padding='same')
 print(y)
@@ -224,7 +223,7 @@ Tensor("conv2d/BiasAdd:0", shape=(?, 20, 20, 6), dtype=float32)
 
 ``` python
 import tensorflow as tf
-​
+
 x = tf.keras.Input(shape=[20, 20, 3])
 y = tf.layers.conv2d(x, filters=6, kernel_size=2)
 print(y)
@@ -240,7 +239,7 @@ Tensor("conv2d/BiasAdd:0", shape=(?, 19, 19, 6), dtype=float32)
 
 ``` python
 import tensorflow as tf
-​
+
 x = tf.keras.Input(shape=[20, 20, 3])
 y = tf.layers.conv2d(x, filters=6, kernel_size=[2, 3])
 print(y)
@@ -257,7 +256,7 @@ Tensor("conv2d/BiasAdd:0", shape=(?, 19, 18, 6), dtype=float32)
 
 ``` python
 import tensorflow as tf
-​
+
 x = tf.keras.Input(shape=[20, 20, 3])
 y = tf.layers.conv2d(x, filters=6, kernel_size=[2, 3], strides=[2, 2])
 print(y)
@@ -273,7 +272,7 @@ Tensor("conv2d/BiasAdd:0", shape=(?, 10, 9, 6), dtype=float32)
 
 ``` python
 import tensorflow as tf
-​
+
 x = tf.keras.Input(shape=[20, 20, 3])
 y = tf.layers.conv2d(x, filters=6, kernel_size=2, activation=tf.nn.relu, use_bias=False)
 print(y)
@@ -289,7 +288,7 @@ Tensor("conv2d/Relu:0", shape=(?, 19, 19, 6), dtype=float32)
 
 ``` python
 import tensorflow as tf
-​
+
 x = tf.keras.Input(shape=[20, 20, 3])
 y = tf.layers.conv2d_transpose(x, filters=6, kernel_size=2, strides=2)
 print(y)
@@ -322,7 +321,7 @@ max_pooling2d(
 
 ``` python
 import tensorflow as tf
-​
+
 x = tf.keras.Input(shape=[20, 20, 3])
 print(x)
 y = tf.layers.conv2d(x, filters=6, kernel_size=3, padding='same')
@@ -360,7 +359,7 @@ dropout(inputs, rate=0.5, noise_shape=None, seed=None, training=False, name=None
 
 ``` python
 import tensorflow as tf
-​
+
 x = tf.keras.Input(shape=[32])
 print(x)
 y = tf.layers.dense(x, 16, activation=tf.nn.softmax)
@@ -389,7 +388,7 @@ flatten(inputs, name=None)
 
 ``` python
 import tensorflow as tf
-​
+
 x = tf.keras.Input(shape=[5, 6])
 print(x)
 y = tf.layers.flatten(x)
@@ -407,7 +406,7 @@ Tensor("flatten/Reshape:0", shape=(?, 30), dtype=float32)
 
 ``` python
 import tensorflow as tf
-​
+
 x = tf.placeholder(shape=[5, 6, 2], dtype=tf.float32)
 print(x)
 y = tf.layers.flatten(x)

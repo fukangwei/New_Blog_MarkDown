@@ -1,7 +1,6 @@
 ---
 title: math模块
 categories: Python语法
-abbrlink: 6cf85dea
 date: 2018-12-27 19:35:46
 ---
 ### 数学常量
@@ -24,7 +23,7 @@ date: 2018-12-27 19:35:46
 
 ``` python
 import math
-​
+
 print("math.modf(100.12):", math.modf(100.12))
 print("math.modf(119):", math.modf(119))
 print("math.modf(math.pi):", math.modf(math.pi))

@@ -1,7 +1,6 @@
 ---
 title: Qt之QNetwork系列
 categories: Qt语法详解
-abbrlink: 9c4fd38b
 date: 2019-01-26 21:42:05
 ---
 ### QNetworkAccessManager

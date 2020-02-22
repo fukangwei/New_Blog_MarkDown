@@ -1,7 +1,6 @@
 ---
 title: xml模块
 categories: Python语法
-abbrlink: daba54cb
 date: 2019-01-12 14:08:01
 ---
 ### 什么是XML？
@@ -107,7 +106,7 @@ xml.sax.parseString(xmlstring, contenthandler[, errorhandler])
 
 ``` python
 import xml.sax
-​
+
 class MovieHandler(xml.sax.ContentHandler):
     def __init__(self):
         self.CurrentData = ""
@@ -141,7 +140,7 @@ class MovieHandler(xml.sax.ContentHandler):
             print("Description:", self.description)
 
         self.CurrentData = ""
-​
+
     def characters(self, content):  # 读取字符时调用
         if self.CurrentData == "type":
             self.type = content
@@ -155,7 +154,7 @@ class MovieHandler(xml.sax.ContentHandler):
             self.stars = content
         elif self.CurrentData == "description":
             self.description = content
-​
+
 if __name__ == "__main__":
     parser = xml.sax.make_parser()  # 创建一个XMLReader
     # turn off namepsaces
@@ -210,21 +209,21 @@ Description: Viewable boredom
 ``` python
 from xml.dom.minidom import parse
 import xml.dom.minidom
-​
+
 DOMTree = xml.dom.minidom.parse("movies.xml")  # 使用minidom解析器打开XML文档
 collection = DOMTree.documentElement
-​
+
 if collection.hasAttribute("shelf"):
     print("Root element : %s" % collection.getAttribute("shelf"))
-​
+
 movies = collection.getElementsByTagName("movie")  # 在集合中获取所有电影
-​
+
 for movie in movies:  # 打印每部电影的详细信息
     print("*****Movie*****")
 
     if movie.hasAttribute("title"):
         print("Title: %s" % movie.getAttribute("title"))
-​
+
     type = movie.getElementsByTagName('type')[0]
     print("Type: %s" % type.childNodes[0].data)
     format = movie.getElementsByTagName('format')[0]
@@ -355,7 +354,7 @@ Children are nested, and we can access specific child nodes by `index`:
 #### Pull API for non-blocking parsing
 
 &emsp;&emsp;Most parsing functions provided by this module require the whole document to be read at once before returning any result. It is possible to use an `XMLParser` and feed data into it incrementally, but it is a push `API` that calls methods on a callback target, which is too `low-level` and inconvenient for most needs. Sometimes what the user really wants is to be able to parse `XML` incrementally, without blocking operations, while enjoying the convenience of fully constructed `Element` objects.
-&emsp;&emsp;The most powerful tool for doing this is `XMLPullParser`. It does not require a blocking read to obtain the `XML` data, and is instead fed with data incrementally with `XMLPullParser.feed()` calls. To get the parsed `XML` elements, call `XMLPullParser.read_events()`. Here is an example:
+&emsp;&emsp;The most powerful tool for doing this is `XMLPullParser`. It does not require a blocking read to obtain the `XML` data, and is instead fed with data incrementally with `XMLPullParser.feed()` calls. To get the parsed `XML` elements, call `XMLPullParser.read_events()`.
 
 ``` python
 >>> parser = ET.XMLPullParser(['start', 'end'])
@@ -529,7 +528,7 @@ A better way to search the namespaced `XML` example is to create a dictionary wi
 
 ``` python
 ns = {'real_person': 'http://people.example.com', 'role': 'http://characters.example.com'}
-​
+
 for actor in root.findall('real_person:actor', ns):
     name = actor.find('real_person:name', ns)
     print(name.text)
@@ -560,9 +559,9 @@ Eric Idle
 
 ``` python
 import xml.etree.ElementTree as ET
-​
+
 root = ET.fromstring(countrydata)
-root.findall(".")  # Top-level elements
+root.findall(".")  # Top-level elements
 # All 'neighbor' grand-children of 'country' children of the top-level elements
 root.findall("./country/neighbor")
 # Nodes with name='Singapore' that have a 'year' child
@@ -655,10 +654,10 @@ the `a` element has `None` for both text and tail attributes, the `b` element ha
 
 ``` python
 element = root.find('foo')
-​
+
 if not element:  # careful!
     print("element not found, or element has no subelements")
-​
+
 if element is None:
     print("element not found")
 ```
@@ -780,7 +779,7 @@ Example of changing the attribute `target` of every link in first paragraph:
 #### class xml.etree.ElementTree.XMLPullParser(events=None)
 
 &emsp;&emsp;A pull parser suitable for `non-blocking` applications. Its `input-side API` is similar to that of `XMLParser`, but instead of pushing calls to a callback target, `XMLPullParser` collects an internal list of parsing `events` and lets the user read from it. `events` is a sequence of events to report back. The supported `events` are the strings `start`, `end`, `start-ns` and `end-ns` (the `ns` events are used to get detailed namespace information). If `events` is omitted, only `end` events are reported.
-&emsp;&emsp;`feed(data)`: Feed the given `bytes data` to the parser.
+&emsp;&emsp;`feed(data)`: Feed the given `bytes data` to the parser.
 &emsp;&emsp;`close()`: Signal the parser that the data stream is terminated. Unlike `XMLParser.close()`, this method always returns `None`. Any events not yet retrieved when the parser is closed can still be read with `read_events()`.
 &emsp;&emsp;`read_events()`: Return an iterator over the `events` which have been encountered in the data fed to the parser. The iterator yields `(event, elem)` pairs, where `event` is a string representing the type of `event` (e.g. `end`) and `elem` is the encountered `Element` object.
 &emsp;&emsp;`Events` provided in a previous call to `read_events()` will not be yielded again. `Events` are consumed from the internal queue only when they are retrieved from the iterator, so multiple readers iterating in parallel over iterators obtained from `read_events()` will have unpredictable results.

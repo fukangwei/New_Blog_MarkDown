@@ -1,7 +1,6 @@
 ---
 title: zigbee协议栈简单使用教程二
 categories: CC2530和zigbee笔记
-abbrlink: 29168
 date: 2019-10-08 21:40:21
 ---
 ### 无线数据传输
@@ -447,7 +446,7 @@ SampleApp_Flash_DstAddr.addr.shortAddr = SAMPLEAPP_FLASH_GROUP;
 ``` cpp
 void SampleApp_SendPointToPointMessage ( void ) {
     uint8 data[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-​
+
     if ( AF_DataRequest ( &Point_To_Point_DstAddr,
                           &SampleApp_epDesc,
                           SAMPLEAPP_POINT_TO_POINT_CLUSTERID,
@@ -496,13 +495,13 @@ if ( events &SAMPLEAPP_SEND_PERIODIC_MSG_EVT ) {
 ``` cpp
 void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
     uint16 flashTime;
-​
+
     switch ( pkt->clusterId ) {
         case SAMPLEAPP_POINT_TO_POINT_CLUSTERID:
             HalUARTWrite ( 0, "I get data\n", 11 ); /*用于提示有数据 */
             HalUARTWrite ( 0, &pkt->cmd.Data[0], 10 ); /* 打印收到数据 */
             HalUARTWrite ( 0, "\n", 1 ); /* 回车换行，便于观察 */
-            break;​
+            break;
         case SAMPLEAPP_FLASH_CLUSTERID:
             flashTime = BUILD_UINT16 ( pkt->cmd.Data[1], pkt->cmd.Data[2] );
             HalLedBlink ( HAL_LED_4, 4, 50, ( flashTime / 4 ) );
@@ -517,7 +516,7 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
 /* Received whenever the device changes state in the network */
 case ZDO_STATE_CHANGE:
     SampleApp_NwkState = ( devStates_t ) ( MSGpkt->hdr.status );
-​
+
     if ( //(SampleApp_NwkState == DEV_ZB_COORD)|| /* 协调器不给自己点播 */
         ( SampleApp_NwkState == DEV_ROUTER ) || ( SampleApp_NwkState == DEV_END_DEVICE ) ) {
         /* Start sending the periodic message in a regular interval */
@@ -527,7 +526,7 @@ case ZDO_STATE_CHANGE:
     } else {
         /* Device is no longer in the network */
     }
-​
+
     break;
 ```
 
@@ -578,7 +577,7 @@ aps_AddGroup ( SAMPLEAPP_ENDPOINT, &SampleApp_Group );
 ``` cpp
 void SampleApp_SendGroupMessage ( void ) {
     uint8 data[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}; /* 自定义数据 */
-​
+
     if ( AF_DataRequest ( &SampleApp_Flash_DstAddr,
                           &SampleApp_epDesc,
                           SAMPLEAPP_FLASH_CLUSTERID,
@@ -658,7 +657,7 @@ SampleApp_Periodic_DstAddr.addr.shortAddr = 0xFFFF;
 ``` cpp
 void SampleApp_SendPeriodicMessage ( void ) {
     uint8 data[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}; /* 自定义数据 */
-​
+
     if ( AF_DataRequest ( &SampleApp_Periodic_DstAddr,
                           &SampleApp_epDesc,
                           SAMPLEAPP_PERIODIC_CLUSTERID,
@@ -697,7 +696,7 @@ if ( events &SAMPLEAPP_SEND_PERIODIC_MSG_EVT ) {
 ``` cpp
 void SampleApp_SendPeriodicMessage ( void ) {
     uint8 data[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}; /* 自定义数据 */
-​
+
     if ( AF_DataRequest ( &SampleApp_Periodic_DstAddr, &SampleApp_epDesc,
                           SAMPLEAPP_PERIODIC_CLUSTERID,
                           10, /* 字节数 */
@@ -716,7 +715,7 @@ void SampleApp_SendPeriodicMessage ( void ) {
 ``` cpp
 void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
     uint16 flashTime;
-​
+
     switch ( pkt->clusterId ) {
         case SAMPLEAPP_PERIODIC_CLUSTERID:
             HalUARTWrite ( 0, "I get data\n", 11 ); /* 用于提示有数据 */
@@ -745,7 +744,7 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
 ``` cpp
 void SampleApp_SendPointToPointMessage ( void ) {
     uint8 device; /* 设备类型变量 */
-​
+
     if ( SampleApp_NwkState == DEV_ROUTER ) {
         device = 0x01; /* 编号1表示路由器 */
     } else if ( SampleApp_NwkState == DEV_END_DEVICE ) {
@@ -753,7 +752,7 @@ void SampleApp_SendPointToPointMessage ( void ) {
     } else {
         device = 0x03; /* 编号3表示出错 */
     }
-​
+
     if ( AF_DataRequest ( &Point_To_Point_DstAddr, /* 发送设备类型编号 */
                           &SampleApp_epDesc,
                           SAMPLEAPP_POINT_TO_POINT_CLUSTERID,
@@ -807,19 +806,19 @@ void SampleApp_MessageMSGCB ( afIncomingMSGPacket_t *pkt ) {
     uint16 flashTime, temp;
     /* 16进制转ASCII码表 */
     uint8 asc_16[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-​
+
     switch ( pkt->clusterId ) {
         case SAMPLEAPP_POINT_TO_POINT_CLUSTERID:
             temp = pkt->srcAddr.addr.shortAddr; /* 读出数据包的16位短地址 */
-​
+
             if ( pkt->cmd.Data[0] == 1 ) { /* 路由器 */
                 HalUARTWrite ( 0, "ROUTER ShortAddr:0x", 19 ); /* 提示接收到数据 */
             }
-​
+
             if ( pkt->cmd.Data[0] == 2 ) { /* 终端 */
                 HalUARTWrite ( 0, "ENDDEVICE ShortAddr:0x", 22 ); /* 提示接收到数据 */
             }
-​
+
             /* 将短地址分解，ASCII码打印 */
             HalUARTWrite ( 0, &asc_16[temp / 4096], 1 );
             HalUARTWrite ( 0, &asc_16[temp % 4096 / 256], 1 );

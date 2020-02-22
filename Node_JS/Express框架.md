@@ -1,7 +1,6 @@
 ---
 title: Express框架
 categories: Node.js笔记
-abbrlink: 4d62b629
 date: 2019-03-02 12:19:37
 ---
 &emsp;&emsp;`Express`是一个简洁而灵活的`Web`应用框架，使用`Express`可以快速地搭建一个完整功能的网站。`Express`框架核心特性如下：<!--more-->
@@ -17,11 +16,11 @@ date: 2019-03-02 12:19:37
 ``` javascript
 var express = require('express');
 var app = express();
-​
+
 app.get('/', function (req, res) {
     res.send('Hello World');
 })
-​
+
 var server = app.listen(8081, function () {
     var host = server.address().address
     var port = server.address().port
@@ -94,37 +93,37 @@ app.get('/', function (req, res) {
 ``` javascript
 var express = require('express');
 var app = express();
-​
+
 // 主页输出“Hello World”
 app.get('/', function (req, res) {
     console.log("主页GET请求");
     res.send('Hello GET');
 })
-​
+
 // POST请求
 app.post('/', function (req, res) {
     console.log("主页POST请求");
     res.send('Hello POST');
 })
-​
+
 // del_user页面响应
 app.get('/del_user', function (req, res) {
     console.log("del_user响应DELETE请求");
     res.send('删除页面');
 })
-​
+
 // list_user页面GET请求
 app.get('/list_user', function (req, res) {
     console.log("list_user的GET请求");
     res.send('用户列表页面');
 })
-​
+
 // 对页面abcd、abxcd、ab123cd等响应GET请求
 app.get('/ab*cd', function (req, res) {
     console.log("“ab*cd”的GET请求");
     res.send('正则匹配');
 })
-​
+
 var server = app.listen(8081, function () {
     var host = server.address().address
     var port = server.address().port
@@ -155,13 +154,13 @@ public/images/logo.png
 ``` javascript
 var express = require('express');
 var app = express();
-​
+
 app.use(express.static('public'));
-​
+
 app.get('/', function (req, res) {
     res.send('Hello World');
 })
-​
+
 var server = app.listen(8081, function () {
     var host = server.address().address
     var port = server.address().port
@@ -195,23 +194,23 @@ server.js文件如下：
 ``` javascript
 var express = require('express');
 var app = express();
-​
+
 app.use(express.static('public'));
-​
+
 app.get('/index.htm', function (req, res) {
     res.sendFile(__dirname + "/" + "index.htm");
 })
-​
+
 app.get('/process_get', function (req, res) {
     var response = { // 输出JSON格式
         "first_name": req.query.first_name,
         "last_name": req.query.last_name
     };
-​
+
     console.log(response);
     res.end(JSON.stringify(response));
 })
-​
+
 var server = app.listen(8081, function () {
     var host = server.address().address
     var port = server.address().port
@@ -248,18 +247,18 @@ var server = app.listen(8081, function () {
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-​
+
 // 创建“application/x-www-form-urlencoded”编码解析
 var urlencodedParser = bodyParser.urlencoded({
     extended: false
 })
-​
+
 app.use(express.static('public'));
-​
+
 app.get('/index.htm', function (req, res) {
     res.sendFile(__dirname + "/" + "index.htm");
 })
-​
+
 app.post('/process_post', urlencodedParser, function (req, res) {
     var response = { // 输出JSON格式
         "first_name": req.body.first_name,
@@ -269,7 +268,7 @@ app.post('/process_post', urlencodedParser, function (req, res) {
     console.log(response);
     res.end(JSON.stringify(response));
 })
-​
+
 var server = app.listen(8081, function () {
     var host = server.address().address
     var port = server.address().port
@@ -310,24 +309,24 @@ var server = app.listen(8081, function () {
 var express = require('express');
 var app = express();
 var fs = require("fs");
-​
+
 var bodyParser = require('body-parser');
 var multer = require('multer');
-​
+
 app.use(express.static('public'));
-​
+
 app.use(bodyParser.urlencoded({
     extended: false
 }));
-​
+
 app.use(multer({
     dest: '/tmp/'
 }).array('image'));
-​
+
 app.get('/index.htm', function (req, res) {
     res.sendFile(__dirname + "/" + "index.htm");
 })
-​
+
 app.post('/file_upload', function (req, res) {
     console.log(req.files[0]); // 上传的文件信息
     var des_file = __dirname + "/" + req.files[0].originalname;
@@ -348,7 +347,7 @@ app.post('/file_upload', function (req, res) {
         });
     });
 })
-​
+
 var server = app.listen(8081, function () {
     var host = server.address().address
     var port = server.address().port

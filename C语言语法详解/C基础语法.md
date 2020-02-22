@@ -1,7 +1,6 @@
 ---
 title: C基础语法
 categories: C语言语法详解
-abbrlink: 27789
 date: 2019-10-01 20:37:14
 ---
 ### Hello, World

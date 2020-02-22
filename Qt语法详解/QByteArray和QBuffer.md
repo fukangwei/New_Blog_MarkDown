@@ -1,7 +1,6 @@
 ---
 title: QByteArray和QBuffer
 categories: Qt语法详解
-abbrlink: 4464ac76
 date: 2019-01-25 18:41:07
 ---
 &emsp;&emsp;`QByteArray`类提供了一个字节数组，既可以存储原始的字节(包括`\0`)，又可以被用来存储以`\0`结尾的字符串(可以理解为字符数组`char str[] = {'h', 'e', 'l', 'l', 'o', '\0'}`或者`char *str = "hello"`)。由于`QByteArray`封装的功能很多，使用起来比`char *`要方便的多，而就其内部实现来讲，它会保证所有的数据以`\0`结尾，使用隐式数据共享(`copy-on-write`)来减少内存消耗以及不必要的数据拷贝。<!--more-->
@@ -43,14 +42,14 @@ for ( int i = 0; i < array.size(); ++i ) {
 
 &emsp;&emsp;4. 可以使用`left`、`right`或者`mid`来实现一次取出多个字符：
 
-- `QByteArray QByteArray::left(int len) const`: Returns a byte array that contains the leftmost `len` bytes of this byte array. The entire byte array is returned if `len` is greater than `size()`. Example:
+- `QByteArray QByteArray::left(int len) const`: Returns a byte array that contains the leftmost `len` bytes of this byte array. The entire byte array is returned if `len` is greater than `size()`.
 
 ``` cpp
 QByteArray x ( "Pineapple" );
 QByteArray y = x.left ( 4 ); /* y = "Pine" */
 ```
 
-- `QByteArray QByteArray::right(int len) const`: Returns a byte array that contains the rightmost `len` bytes of this byte array. The entire byte array is returned if `len` is greater than `size()`.
+- `QByteArray QByteArray::right(int len) const`: Returns a byte array that contains the rightmost `len` bytes of this byte array. The entire byte array is returned if `len` is greater than `size()`.
 
 ``` cpp
 QByteArray x ( "Pineapple" );
@@ -65,9 +64,9 @@ QByteArray y = x.mid ( 5, 4 ); /* y = "pine" */
 QByteArray z = x.mid ( 5 ); /* z = "pineapples" */
 ```
 
-&emsp;&emsp;5. `char * QByteArray::data()`: Returns a pointer to the data stored in the byte array; `const char * QByteArray::constData() const`: Returns a pointer to the data stored in the byte array：通过`data`或者`constData`可以获得`QByteArray`的真实数据的指针，获得的数据指针在调用`QByteArray`的`non-const`函数之前都是有效的。
+&emsp;&emsp;5. `char * QByteArray::data()`: Returns a pointer to the data stored in the byte array; `const char * QByteArray::constData() const`: Returns a pointer to the data stored in the byte array：通过`data`或者`constData`可以获得`QByteArray`的真实数据的指针，获得的数据指针在调用`QByteArray`的`non-const`函数之前都是有效的。
 
-&emsp;&emsp;6. `uint qstrlen(const char * str)`: Returns the number of characters that precede(先于) the terminating `\0`, or `0` if `str` is `0`.
+&emsp;&emsp;6. `uint qstrlen(const char * str)`: Returns the number of characters that precede(先于) the terminating `\0`, or `0` if `str` is `0`.
 
 ``` cpp
 QByteArray array = "hello world!";
@@ -154,7 +153,7 @@ buffer.getChar ( &ch ); /* ch = 'r' */
 QByteArray byteArray;
 QBuffer buffer ( &byteArray );
 buffer.open ( QIODevice::WriteOnly );
-​
+
 QDataStream out ( &buffer );
 out << QApplication::palette();
 ```
@@ -166,7 +165,7 @@ QByteArray byteArray;
 QPalette palette;
 QBuffer buffer ( &byteArray );
 buffer.open ( QIODevice::ReadOnly );
-​
+
 QDataStream in ( &buffer );
 in >> palette;
 ```
@@ -239,7 +238,7 @@ buffer.close(); /* byteArray = "abcdef" */
 QByteArray byArr;
 byte cmd[5] = {'1', '2', '\0', '3', '4'};
 byArr.resize ( 5 );
-​
+
 for ( int i = 0; i < 5; i++ ) {
     byArr[i] = cmd[i];
 }

@@ -1,7 +1,6 @@
 ---
 title: Keras之函数式模型
 categories: 深度学习
-abbrlink: 8b61fbe3
 date: 2019-01-16 18:34:38
 ---
 &emsp;&emsp;`Keras`函数式`API`是定义复杂模型(如多输出模型、有向无环图，或具有共享层的模型)的方法。只要你的模型不是类似`VGG`一条路走到黑的模型，或者你的模型需要多于一个的输出，那么你总应该选择函数式模型。函数式模型是最广泛的一类模型，序贯模型(`Sequential`)只是它的一种特殊情况。<!--more-->
@@ -17,14 +16,14 @@ date: 2019-01-16 18:34:38
 ``` python
 from keras.layers import Input, Dense
 from keras.models import Model
-​
+
 inputs = Input(shape=(784,))  # 这部分返回一个张量
-​
+
 # 层的实例是可调用的，它以张量为参数，并且返回一个张量
 x = Dense(64, activation='relu')(inputs)
 x = Dense(64, activation='relu')(x)
 predictions = Dense(10, activation='softmax')(x)
-​
+
 # 这部分创建了一个包含输入层和三个全连接层的模型
 model = Model(inputs=inputs, outputs=predictions)
 model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
@@ -42,10 +41,10 @@ y = model(x)  # 这是可行的，并且返回上面定义的“10-way softmax�
 
 ``` python
 from keras.layers import TimeDistributed
-​
+
 # 输入张量是20个时间步的序列，每一个时间为一个784维的向量
 input_sequences = Input(shape=(20, 784))
-​
+
 # 这部分将我们之前定义的模型应用于输入序列中的每个时间步。之前定义的模型的输出
 # 是一个“10-way softmax”，因而下面的层的输出将是维度为10的20个向量的序列
 processed_sequences = TimeDistributed(model)(input_sequences)
@@ -58,10 +57,10 @@ processed_sequences = TimeDistributed(model)(input_sequences)
 
 ``` python
 a = Input(shape=(140, 256))
-​
+
 lstm = LSTM(32)
 encoded_a = lstm(a)
-​
+
 assert lstm.output == encoded_a
 ```
 
@@ -113,16 +112,16 @@ assert conv.get_input_shape_at(1) == (None, 64, 64, 3)
 
 ``` python
 from keras.layers import Conv2D, MaxPooling2D, Input
-​
+
 input_img = Input(shape=(256, 256, 3))
-​
+
 tower_1 = Conv2D(64, (1, 1), padding='same', activation='relu')(input_img)
 tower_1 = Conv2D(64, (3, 3), padding='same', activation='relu')(tower_1)
 tower_2 = Conv2D(64, (1, 1), padding='same', activation='relu')(input_img)
 tower_2 = Conv2D(64, (5, 5), padding='same', activation='relu')(tower_2)
 tower_3 = MaxPooling2D((3, 3), strides=(1, 1), padding='same')(input_img)
 tower_3 = Conv2D(64, (1, 1), padding='same', activation='relu')(tower_3)
-​
+
 output = keras.layers.concatenate([tower_1, tower_2, tower_3], axis=1)
 ```
 
@@ -132,7 +131,7 @@ output = keras.layers.concatenate([tower_1, tower_2, tower_3], axis=1)
 
 ``` python
 from keras.layers import Conv2D, Input
-​
+
 x = Input(shape=(256, 256, 3))  # 输入张量为3通道“256 * 256”图像
 # 3输出通道(与输入通道相同)的“3 * 3”卷积核
 y = Conv2D(3, (3, 3), padding='same')(x)
@@ -318,7 +317,7 @@ def generate_arrays_from_file(path):
             yield ({'input_1': x1, 'input_2': x2}, {'output': y})
 
         f.close()
-​
+
 model.fit_generator(generate_arrays_from_file('/my_file.txt'), steps_per_epoch=10000, epochs=10)
 ```
 

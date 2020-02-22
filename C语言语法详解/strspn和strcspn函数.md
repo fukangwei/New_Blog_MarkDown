@@ -1,14 +1,13 @@
 ---
 title: strspn和strcspn函数
 categories: C语言语法详解
-abbrlink: b30a0322
 date: 2018-12-13 13:25:52
 ---
 ### strcspn函数
 
 &emsp;&emsp;函数原型为：<!--more-->
 
-``` c
+``` cpp
 #include <string.h>
 size_t strcspn ( const char* s, const char* reject );
 ```
@@ -72,7 +71,7 @@ int main() {
 int mystrspn ( const char* s, const char* accept ) {
     const char* p = NULL;
     const char* a = NULL;
-    int count = 0;​
+    int count = 0;
 
     for ( p = s; *p != '\0'; p++ ) {
         for ( a = accept; *a != '\0'; a++ ) {

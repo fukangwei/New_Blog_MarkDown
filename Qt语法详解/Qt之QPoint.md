@@ -1,7 +1,6 @@
 ---
 title: Qt之QPoint
 categories: Qt语法详解
-abbrlink: 7ef3c5e6
 date: 2019-01-23 19:45:45
 ---
 &emsp;&emsp;The `QPoint` class defines a point in the plane using integer precision. The header file is `QPoint`.<!--more-->
@@ -68,14 +67,14 @@ p.rx()++;
 - `QPoint::QPoint()`: Constructs a null point, i.e. with coordinates `(0, 0)`.
 - `QPoint::QPoint(int x, int y)`: Constructs a point with the given coordinates `(x, y)`.
 - `bool QPoint::isNull() const`: Returns `true` if both the `x` and `y` coordinates are set to `0`, otherwise returns `false`.
-- `int QPoint::manhattanLength() const`: Returns the sum of the absolute values of `x()` and `y()`, traditionally known as the `Manhattan length` of the vector from the origin to the point. For example:
+- `int QPoint::manhattanLength() const`: Returns the sum of the absolute values of `x()` and `y()`, traditionally known as the `Manhattan length` of the vector from the origin to the point.
 
 ``` cpp
 QPoint oldPosition;
-​
+
 MyWidget::mouseMoveEvent ( QMouseEvent *event ) {
     QPoint point = event->pos() - oldPosition;
-​
+
     if ( point.manhattanLength() > 3 )
         // the mouse has moved more than 3 pixels since the oldPosition
 }
@@ -89,14 +88,14 @@ double trueLength = sqrt ( pow ( x(), 2 ) + pow ( y(), 2 ) );
 
 The tradition of `Manhattan length` arises because such distances apply to travelers who can only travel on a rectangular grid, like the streets of `Manhattan`.
 
-- `int & QPoint::rx()`: Returns a reference to the `x` coordinate of this point. Using a reference makes it possible to directly manipulate `x`. For example:
+- `int & QPoint::rx()`: Returns a reference to the `x` coordinate of this point. Using a reference makes it possible to directly manipulate `x`.
 
 ``` cpp
 QPoint p ( 1, 2 );
 p.rx()--; /* p becomes (0, 2) */
 ```
 
-- `int & QPoint::ry()`: Returns a reference to the `y` coordinate of this point. Using a reference makes it possible to directly manipulate `y`. For example:
+- `int & QPoint::ry()`: Returns a reference to the `y` coordinate of this point. Using a reference makes it possible to directly manipulate `y`.
 
 ``` cpp
 QPoint p ( 1, 2 );
@@ -106,9 +105,9 @@ p.ry()++; /* p becomes (1, 3) */
 - `void QPoint::setX(int x)`: Sets the `x` coordinate of this point to the given `x` coordinate.
 - `void QPoint::setY(int y)`: Sets the `y` coordinate of this point to the given `y` coordinate.
 - `int QPoint::x() const`: Returns the `x` coordinate of this point.
-- `int QPoint::y() const`: Returns the `y` coordinate of this point.
+- `int QPoint::y() const`: Returns the `y` coordinate of this point.
 - `QPoint & QPoint::operator*=(float factor)`: Multiplies this point's coordinates by the given `factor`, and returns a reference to this point. Note that the result is rounded to the nearest integer as points are held as integers. Use `QPointF` for floating point accuracy.
-- `QPoint & QPoint::operator*=(double factor)`: Multiplies this point's coordinates by the given `factor`, and returns a reference to this point. For example:
+- `QPoint & QPoint::operator*=(double factor)`: Multiplies this point's coordinates by the given `factor`, and returns a reference to this point.
 
 ``` cpp
 QPoint p ( -1, 4 );
@@ -118,7 +117,7 @@ p *= 2.5; /* p becomes (-3, 10) */
 Note that the result is rounded to the nearest integer as points are held as integers. Use `QPointF` for floating point accuracy.
 
 - `QPoint & QPoint::operator*=(int factor)`: Multiplies this point's coordinates by the given `factor`, and returns a reference to this point.
-- `QPoint & QPoint::operator+=(const QPoint & point)`: Adds the given `point` to this `point` and returns a reference to this `point`. For example:
+- `QPoint & QPoint::operator+=(const QPoint & point)`: Adds the given `point` to this `point` and returns a reference to this `point`.
 
 ``` cpp
 QPoint p ( 3, 7 );
@@ -126,7 +125,7 @@ QPoint q ( -1, 4 );
 p += q; /* p becomes (2, 11) */
 ```
 
-- `QPoint & QPoint::operator-=(const QPoint & point)`: Subtracts the given `point` from this `point` and returns a reference to this `point`. For example:
+- `QPoint & QPoint::operator-=(const QPoint & point)`: Subtracts the given `point` from this `point` and returns a reference to this `point`.
 
 ``` cpp
 QPoint p ( 3, 7 );
@@ -134,7 +133,7 @@ QPoint q ( -1, 4 );
 p -= q; /* p becomes (4, 3) */
 ```
 
-- `QPoint & QPoint::operator/=(qreal divisor)`: This is an overloaded function. Divides both `x` and `y` by the given `divisor`, and returns a reference to this point. For example:
+- `QPoint & QPoint::operator/=(qreal divisor)`: This is an overloaded function. Divides both `x` and `y` by the given `divisor`, and returns a reference to this point.
 
 ``` cpp
 QPoint p ( -3, 10 );

@@ -1,7 +1,6 @@
 ---
 title: MD5加密算法
 categories: 数据结构和算法
-abbrlink: 22873
 date: 2019-10-04 08:27:50
 ---
 &emsp;&emsp;`Message Digest Algorithm 5`(中文名为消息摘要算法第五版)为计算机安全领域广泛使用的一种散列函数，用以提供消息的完整性保护。该算法的文件号为`RFC 1321`(`R.Rivest，MIT Laboratory for Computer Science and RSA Data Security Inc. April 1992`)。<!--more-->
@@ -260,54 +259,54 @@ d：FE E5 B6 1B
 ``` cpp
 #ifndef MD5_H
 #define MD5_H
-​
+
 typedef struct {
     unsigned int count[2];
     unsigned int state[4];
     unsigned char buffer[64];
 } MD5_CTX;
-​
+
 #define F(x,y,z) ((x & y) | (~x & z))
 #define G(x,y,z) ((x & z) | (y & ~z))
 #define H(x,y,z) (x^y^z)
 #define I(x,y,z) (y ^ (x | ~z))
 #define ROTATE_LEFT(x,n) ((x << n) | (x >> (32-n)))
-​
+
 #define FF(a,b,c,d,x,s,ac) \
     { \
         a += F(b,c,d) + x + ac; \
         a = ROTATE_LEFT(a,s); \
         a += b; \
     }
-​
+
 #define GG(a,b,c,d,x,s,ac) \
     { \
         a += G(b,c,d) + x + ac; \
         a = ROTATE_LEFT(a,s); \
         a += b; \
     }
-​
+
 #define HH(a,b,c,d,x,s,ac) \
     { \
         a += H(b,c,d) + x + ac; \
         a = ROTATE_LEFT(a,s); \
         a += b; \
     }
-​
+
 #define II(a,b,c,d,x,s,ac) \
     { \
         a += I(b,c,d) + x + ac; \
         a = ROTATE_LEFT(a,s); \
         a += b; \
     }
-​
+
 void MD5Init ( MD5_CTX *context );
 void MD5Update ( MD5_CTX *context, unsigned char *input, unsigned int inputlen );
 void MD5Final ( MD5_CTX *context, unsigned char digest[16] );
 void MD5Transform ( unsigned int state[4], unsigned char block[64] );
 void MD5Encode ( unsigned char *output, unsigned int *input, unsigned int len );
 void MD5Decode ( unsigned int *output, unsigned char *input, unsigned int len );
-​
+
 #endif
 ```
 
@@ -316,13 +315,13 @@ void MD5Decode ( unsigned int *output, unsigned char *input, unsigned int len );
 ``` cpp
 #include <memory.h>
 #include "md5.h"
-​
+
 unsigned char PADDING[] = {
     0x80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-​
+
 void MD5Init ( MD5_CTX *context ) {
     context->count[0] = 0;
     context->count[1] = 0;
@@ -331,35 +330,35 @@ void MD5Init ( MD5_CTX *context ) {
     context->state[2] = 0x98BADCFE;
     context->state[3] = 0x10325476;
 }
-​
+
 void MD5Update ( MD5_CTX *context, unsigned char *input, unsigned int inputlen ) {
     unsigned int i = 0, index = 0, partlen = 0;
     index = ( context->count[0] >> 3 ) & 0x3F;
     partlen = 64 - index;
     context->count[0] += inputlen << 3;
-​
+
     if ( context->count[0] < ( inputlen << 3 ) ) {
         context->count[1]++;
     }
-​
+
     context->count[1] += inputlen >> 29;
-​
+
     if ( inputlen >= partlen ) {
         memcpy ( &context->buffer[index], input, partlen );
         MD5Transform ( context->state, context->buffer );
-​
+
         for ( i = partlen; i + 64 <= inputlen; i += 64 ) {
             MD5Transform ( context->state, &input[i] );
         }
-​
+
         index = 0;
     } else {
         i = 0;
     }
-​
+
     memcpy ( &context->buffer[index], &input[i], inputlen - i );
 }
-​
+
 void MD5Final ( MD5_CTX *context, unsigned char digest[16] ) {
     unsigned int index = 0, padlen = 0;
     unsigned char bits[8];
@@ -370,10 +369,10 @@ void MD5Final ( MD5_CTX *context, unsigned char digest[16] ) {
     MD5Update ( context, bits, 8 );
     MD5Encode ( digest, context->state, 16 );
 }
-​
+
 void MD5Encode ( unsigned char *output, unsigned int *input, unsigned int len ) {
     unsigned int i = 0, j = 0;
-​
+
     while ( j < len ) {
         output[j] = input[i] & 0xFF;
         output[j + 1] = ( input[i] >> 8 ) & 0xFF;
@@ -383,17 +382,17 @@ void MD5Encode ( unsigned char *output, unsigned int *input, unsigned int len ) 
         j += 4;
     }
 }
-​
+
 void MD5Decode ( unsigned int *output, unsigned char *input, unsigned int len ) {
     unsigned int i = 0, j = 0;
-​
+
     while ( j < len ) {
         output[i] = ( input[j] ) | ( input[j + 1] << 8 ) | ( input[j + 2] << 16 ) | ( input[j + 3] << 24 );
         i++;
         j += 4;
     }
 }
-​
+
 void MD5Transform ( unsigned int state[4], unsigned char block[64] ) {
     unsigned int a = state[0];
     unsigned int b = state[1];
@@ -482,7 +481,7 @@ void MD5Transform ( unsigned int state[4], unsigned char block[64] ) {
 #include <stdlib.h>
 #include <string.h>
 #include "md5.h"
-​
+
 int main ( int argc, char *argv[] ) {
     MD5_CTX md5;
     MD5Init ( &md5 );
@@ -492,11 +491,11 @@ int main ( int argc, char *argv[] ) {
     MD5Update ( &md5, encrypt, strlen ( ( char * ) encrypt ) );
     MD5Final ( &md5, decrypt );
     printf ( "加密前: %s\n加密后: ", encrypt );
-​
+
     for ( i = 0; i < 16; i++ ) {
         printf ( "%02x", decrypt[i] );
     }
-​
+
     getchar();
     return 0;
 }

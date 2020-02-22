@@ -1,7 +1,6 @@
 ---
 title: Profile、Cluster和Attribute的关系
 categories: CC2530和zigbee笔记
-abbrlink: 602d54df
 date: 2019-02-05 14:05:14
 ---
 &emsp;&emsp;`zigbee`规范引入了`profile`、`cluster`的概念。具体说来，假设规范一个`profile`(可以理解成一套规定)，这个`profile`用来规范智能家居领域的相关产品都要满足那些要求，那么`home automation public profile`就规定了智能家居都要做什么。当然你可以自己规范一个`profile`，称为`private profile`。而`zigbee`联盟则已经规范了一些`profile`，比如`home automation`、`smart energy`和`building automation`等。一个`public profile`也规定了`profile`的`ID`，比如智能家居就规定是`0x104`。协议栈本身也有一个`profile`，就是`Zigbee Device Profile`，也就是`ZDP`，这里规范了一个`zigbee`节点都要具备的功能，比如路由能力、网络发现能力、各个协议层需要做什么工作等。<!--more-->
@@ -72,7 +71,7 @@ Profile ID | Profile Name
 #define SAMPLEAPP_MAX_CLUSTERS       2
 #define SAMPLEAPP_PERIODIC_CLUSTERID 1
 #define SAMPLEAPP_FLASH_CLUSTERID    2
-​
+
 /* This list should be filled with Application specific Cluster IDs */
 const cId_t SampleApp_ClusterList[SAMPLEAPP_MAX_CLUSTERS] = {
     SAMPLEAPP_PERIODIC_CLUSTERID,
@@ -90,7 +89,7 @@ const cId_t SampleApp_ClusterList[SAMPLEAPP_MAX_CLUSTERS] = {
 #define SAMPLEAPP_DEVICEID       0x0001
 #define SAMPLEAPP_DEVICE_VERSION 0
 #define SAMPLEAPP_FLAGS          0
-​
+
 const SimpleDescriptionFormat_t SampleApp_SimpleDesc = {
     SAMPLEAPP_ENDPOINT,                /* int Endpoint;             */
     SAMPLEAPP_PROFID,                  /* uint16 AppProfId[2];      */

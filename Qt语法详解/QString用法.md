@@ -1,7 +1,6 @@
 ---
 title: QString用法
 categories: Qt语法详解
-abbrlink: 12800ee1
 date: 2019-02-01 16:01:27
 ---
 &emsp;&emsp;从字符串`one, two, three, four`中获取第二个由`,`分隔的子串，即`two`：<!--more-->
@@ -9,9 +8,9 @@ date: 2019-02-01 16:01:27
 ``` cpp
 #include <QtCore/QCoreApplication>
 #include <iostream>
-​
+
 using namespace std;
-​
+
 int main() {
     QString str = "one, two, three, four";
     cout << str.section ( ',', 1, 1 ).trimmed().toStdString() << endl;
@@ -26,9 +25,9 @@ int main() {
 #include <QtCore/QCoreApplication>
 #include <QRegExp>
 #include <iostream>
-​
+
 using namespace std;
-​
+
 int main() {
     QString str = "one, two* three / four / five ^ six";
     cout << str.section ( QRegExp ( "[,*/^]" ), 3, 3 ).trimmed().toStdString() << endl;
@@ -54,11 +53,11 @@ QString str;
 QString csv = "forename,middlename,surname,phone";
 QString path = "/usr/local/bin/myapp"; // First field is empty
 QString::SectionFlag flag = QString::SectionSkipEmpty;
-​
+
 str = csv.section ( ',', 2, 2 ); // str == "surname"
 str = path.section ( '/', 3, 4 ); // str == "bin/myapp"
 str = path.section ( '/', 3, 3, flag ); // str == "myapp"
-​
+
 str = csv.section ( ',', -3, -2 ); // str == "middlename,surname"
 str = path.section ( '/', -1 ); // str == "myapp"
 ```
@@ -94,9 +93,9 @@ QStringList QString::split ( const QRegExp &rx, SplitBehavior behavior = KeepEmp
 #include <QRegExp>
 #include <QStringList>
 #include <iostream>
-​
+
 using namespace std;
-​
+
 int main() {
     QString str = "one, two* three / four / five ^ six";
     /* 把每一个块装进一个QStringList中 */
@@ -215,7 +214,7 @@ int QString::indexOf ( const QString &str, int from = 0, \
 ``` cpp
 QString x = "sticky question";
 QString y = "sti";
-x.indexOf ( y );  /* returns 0 */
+x.indexOf ( y ); /* returns 0 */
 x.indexOf ( y, 1 ); /* returns 10 */
 x.indexOf ( y, 10 ); /* returns 10 */
 x.indexOf ( y, 11 ); /* returns -1 */
@@ -347,7 +346,7 @@ str = QString ( QLatin1String ( mm ) );
 #include <QtGui/QApplication>
 #include <QtDebug>
 #include <QString>
-​
+
 int main ( int argc, char *argv[] ) {
     QApplication a ( argc, argv );
     QString str = “hello”; /* QString转“char *” */
@@ -384,7 +383,7 @@ qDebug() << "status:" << status;
 执行结果：
 
 ``` cpp
-status: "Processing file 5 of 10: lyc.txt"  
+status: "Processing file 5 of 10: lyc.txt"
 ```
 
 ---

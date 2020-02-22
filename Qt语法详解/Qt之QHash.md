@@ -1,7 +1,6 @@
 ---
 title: Qt之QHash
 categories: Qt语法详解
-abbrlink: 8bae26cb
 date: 2019-01-28 18:27:15
 ---
 &emsp;&emsp;The `QHash` class is a template class that provides a `hash-table-based` dictionary.<!--more-->
@@ -128,7 +127,7 @@ int num2 = hash.value ( "thirteen" );
 
 ``` cpp
 int timeout = 30;
-​
+
 if ( hash.contains ( "TIMEOUT" ) ) {
     timeout = hash.value ( "TIMEOUT" );
 }
@@ -146,7 +145,7 @@ int timeout = hash.value ( "TIMEOUT", 30 );
 /* WRONG */
 QHash<int, QWidget *> hash;
 ...
-​
+
 for ( int i = 0; i < 1000; ++i ) {
     if ( hash[i] == okButton ) {
         cout << "Found button at index " << i << endl;
@@ -159,7 +158,7 @@ for ( int i = 0; i < 1000; ++i ) {
 
 ``` cpp
 QHashIterator<QString, int> i ( hash );
-​
+
 while ( i.hasNext() ) {
     i.next();
     cout << i.key() << ": " << i.value() << endl;
@@ -170,7 +169,7 @@ while ( i.hasNext() ) {
 
 ``` cpp
 QHash<QString, int>::const_iterator i = hash.constBegin();
-​
+
 while ( i != hash.constEnd() ) {
     cout << i.key() << ": " << i.value() << endl;
     ++i;
@@ -178,7 +177,7 @@ while ( i != hash.constEnd() ) {
 ```
 
 &emsp;&emsp;`QHash` is unordered, so an iterator's sequence cannot be assumed to be predictable. If ordering by key is required, use a `QMap`.
-&emsp;&emsp;Normally, a `QHash` allows only one value per key. If you call `insert()` with a key that already exists in the `QHash`, the previous value is erased. For example:
+&emsp;&emsp;Normally, a `QHash` allows only one value per key. If you call `insert()` with a key that already exists in the `QHash`, the previous value is erased.
 
 ``` cpp
 hash.insert ( "plenty", 100 );
@@ -189,7 +188,7 @@ hash.insert ( "plenty", 2000 ); /* hash.value("plenty") == 2000 */
 
 ``` cpp
 QList<int> values = hash.values ( "plenty" );
-​
+
 for ( int i = 0; i < values.size(); ++i ) {
     cout << values.at ( i ) << endl;
 }
@@ -199,7 +198,7 @@ for ( int i = 0; i < values.size(); ++i ) {
 
 ``` cpp
 QHash<QString, int>::iterator i = hash.find ( "plenty" );
-​
+
 while ( i != hash.end() && i.key() == "plenty" ) {
     cout << i.value() << endl;
     ++i;
@@ -211,7 +210,7 @@ while ( i != hash.end() && i.key() == "plenty" ) {
 ``` cpp
 QHash<QString, int> hash;
 ...
-​
+
 foreach ( int value, hash ) {
     cout << value << endl;
 }
@@ -224,7 +223,7 @@ foreach ( int value, hash ) {
 ``` cpp
 #ifndef EMPLOYEE_H
 #define EMPLOYEE_H
-​
+
 class Employee {
 public:
     Employee() {}
@@ -234,15 +233,15 @@ private:
     QString myName;
     QDate myDateOfBirth;
 };
-​
+
 inline bool operator== ( const Employee &e1, const Employee &e2 ) {
     return e1.name() == e2.name() && e1.dateOfBirth() == e2.dateOfBirth();
 }
-​
+
 inline uint qHash ( const Employee &key ) {
     return qHash ( key.name() ) ^ key.dateOfBirth().day();
 }
-​
+
 #endif // EMPLOYEE_H
 ```
 
@@ -277,13 +276,13 @@ inline uint qHash ( const Employee &key ) {
 - `bool QHash::empty() const`: This function is provided for `STL` compatibility. It is equivalent to `isEmpty()`, returning `true` if the hash is empty; otherwise returns `false`.
 - `iterator QHash::end()`: Returns an `STL-style` iterator pointing to the imaginary item after the last item in the hash.
 - `const_iterator QHash::end() const`: This is an overloaded function.
-- `iterator QHash::erase(iterator pos)`: Removes the `(key, value)` pair associated with the iterator `pos` from the hash, and returns an iterator to the next item in the hash. Unlike `remove()` and `take()`, this function never causes `QHash` to rehash its internal data structure. This means that it can safely be called while iterating, and won't affect the order of items in the hash. For example:
+- `iterator QHash::erase(iterator pos)`: Removes the `(key, value)` pair associated with the iterator `pos` from the hash, and returns an iterator to the next item in the hash. Unlike `remove()` and `take()`, this function never causes `QHash` to rehash its internal data structure. This means that it can safely be called while iterating, and won't affect the order of items in the hash.
 
 ``` cpp
 QHash<QObject *, int> objectHash;
 ...
 QHash<QObject *, int>::iterator i = objectHash.find ( obj );
-​
+
 while ( i != objectHash.end() && i.key() == obj ) {
     if ( i.value() == 0 ) {
         i = objectHash.erase ( i );
@@ -299,7 +298,7 @@ while ( i != objectHash.end() && i.key() == obj ) {
 QHash<QString, int> hash;
 ...
 QHash<QString, int>::const_iterator i = hash.find ( "HDR" );
-​
+
 while ( i != hash.end() && i.key() == "HDR" ) {
     cout << i.value() << endl;
     ++i;
@@ -315,12 +314,12 @@ while ( i != hash.end() && i.key() == "HDR" ) {
 - `QList<Key> QHash::keys() const`: Returns a list containing all the keys in the hash, in an arbitrary order. Keys that occur multiple times in the hash (because items were inserted with `insertMulti()`, or `unite()` was used) also occur multiple times in the list. To obtain a list of unique keys, where each key from the map only occurs once, use `uniqueKeys()`. The order is guaranteed to be the same as that used by `values()`.
 - `QList<Key> QHash::keys(const T & value) const`: This is an overloaded function. Returns a list containing all the keys associated with `value`, in an arbitrary order. This function can be slow (linear time), because `QHash's` internal data structure is optimized for fast lookup by key, not by value.
 - `int QHash::remove(const Key & key)`: Removes all the items that have the `key` from the hash. Returns the number of items removed which is usually `1` but will be `0` if the `key` isn't in the hash, or greater than `1` if `insertMulti()` has been used with the `key`.
-- `void QHash::reserve(int size)`: Ensures that the `QHash's` internal hash table consists of at least `size` buckets. This function is useful for code that needs to build a huge hash and wants to avoid repeated reallocation. For example:
+- `void QHash::reserve(int size)`: Ensures that the `QHash's` internal hash table consists of at least `size` buckets. This function is useful for code that needs to build a huge hash and wants to avoid repeated reallocation.
 
 ``` cpp
 QHash<QString, int> hash;
 hash.reserve ( 20000 );
-​
+
 for ( int i = 0; i < 20000; ++i ) {
     hash.insert ( keys[i], values[i] );
 }

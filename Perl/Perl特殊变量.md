@@ -1,7 +1,6 @@
 ---
 title: Perl特殊变量
 categories: Perl
-abbrlink: f0e18ad2
 date: 2018-12-18 09:41:00
 ---
 &emsp;&emsp;`Perl`定义了一些特殊的变量，通常以`$`、`@`或`%`作为前缀，例如`$_`。很多特殊的变量有一个很长的英文名，例如操作系统变量`$!`可以写为`$OS_ERROR`。如果你想使用英文名的特殊变量，则需要在程序头部添加`use English;`。<!--more-->

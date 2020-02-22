@@ -1,7 +1,6 @@
 ---
 title: ucgui添加自定义汉字库
 categories: ucos和ucgui
-abbrlink: 29393c66
 date: 2019-03-19 08:08:59
 ---
 &emsp;&emsp;首先打开`ucgui_font.exe`，然后点击`选择字体`，选择你需要的字体，并设置字形及大小。<!--more-->

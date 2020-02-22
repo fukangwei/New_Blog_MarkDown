@@ -33,7 +33,7 @@ git init
 ``` bash
 $ git status
 On branch master  # 在master分支
-​
+
 Initial commit
 
 Untracked files:
@@ -50,7 +50,7 @@ $ git status  # 再次查看状态status
 On branch master
 
 Initial commit
-​
+
 Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
     new file: 1.py  # 版本库已识别1.py(staged)

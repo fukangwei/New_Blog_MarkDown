@@ -1,7 +1,6 @@
 ---
 title: h5py模块
 categories: Python语法
-abbrlink: e08c1f54
 date: 2019-02-10 15:47:38
 ---
 &emsp;&emsp;`h5py`文件是存放两类对象的容器，分别是数据集(`dataset`)和组(`group`)。`dataset`类似于`numpy`的数组；`group`则类似于`python`中的字典，有键(`key`)和值(`value`)。`键`就是组成员的名称，`值`就是组成员对象本身(组或者数据集)。`group`中可以存放`dataset`或者其他的`group`。下面来看如何创建组和数据集。<!--more-->
@@ -16,11 +15,11 @@ f = h5py.File("myh5py.hdf5", "w")  # 如果是读取文件的话，就把“w”
 
 ``` python
 import h5py
-​
+
 f = h5py.File("myh5py.hdf5", "w")
 # “deset1”是数据集的name，(20,)代表数据集的shape，“i”代表的是数据集的元素类型
 f.create_dataset("dset1", (20,), 'i')
-​
+
 for key in f.keys():
     print(key)
     print(f[key].name)
@@ -42,13 +41,13 @@ dset1
 ``` python
 import h5py
 import numpy as np
-​
+
 f = h5py.File("myh5py.hdf5", "w")
 d1 = f.create_dataset("dset1", (20,), 'i')
 d1[...] = np.arange(20)  # 赋值
 # 或者可以直接按照下面的方式创建数据集并赋值
 f["dset2"] = np.arange(15)
-​
+
 for key in f.keys():
     print(f[key].name)
     print(f[key].value)
@@ -68,11 +67,11 @@ for key in f.keys():
 ``` python
 import h5py
 import numpy as np
-​
+
 f = h5py.File("myh5py.hdf5", "w")
 a = np.arange(20)
 d1 = f.create_dataset("dset1", data=a)
-​
+
 for key in f.keys():
     print(f[key].name)
     print(f[key].value)
@@ -90,13 +89,13 @@ for key in f.keys():
 ``` python
 import h5py
 import numpy as np
-​
+
 f = h5py.File("myh5py.hdf5", "w")
 g1 = f.create_group("bar")  # 创建一个名为bar的组
 # 在bar这个组里面分别创建name为dset1和dset2的数据集并赋值
 g1["dset1"] = np.arange(10)
 g1["dset2"] = np.arange(12).reshape((3, 4))
-​
+
 for key in g1.keys():
     print(g1[key].name)
     print(g1[key].value)

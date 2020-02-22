@@ -1,7 +1,6 @@
 ---
 title: 决策树sklearn
 categories: 机器学习
-abbrlink: e31b3edf
 date: 2019-02-27 08:43:33
 ---
 &emsp;&emsp;`sklearn.tree`模块提供了决策树模型，用于解决分类问题和回归问题。方法如下：<!--more-->
@@ -150,16 +149,16 @@ from sklearn.feature_extraction import DictVectorizer
 import csv
 from sklearn import tree
 from sklearn import preprocessing
-​
+
 # Read in the csv file and put features into list of dict and list of class label
 allElectronicsData = open(r'test.csv', 'rt')
 reader = csv.reader(allElectronicsData)
 headers = next(reader)
 print(headers)
-​
+
 featureList = []
 labelList = []
-​
+
 for row in reader:
     labelList.append(row[len(row) - 1])
     rowDict = {}
@@ -168,37 +167,37 @@ for row in reader:
         rowDict[headers[i]] = row[i]
 
     featureList.append(rowDict)
-​
+
 print(featureList)
-​
+
 vec = DictVectorizer()  # Vetorize features
 dummyX = vec.fit_transform(featureList).toarray()
-​
+
 print("dummyX: " + str(dummyX))
 print(vec.get_feature_names())
 print("labelList: " + str(labelList))
-​
+
 # vectorize class labels
 lb = preprocessing.LabelBinarizer()
 dummyY = lb.fit_transform(labelList)
 print("dummyY: " + str(dummyY))
-​
+
 # Using decision tree for classification
 clf = tree.DecisionTreeClassifier(criterion='entropy')
 clf = clf.fit(dummyX, dummyY)
 print("clf: " + str(clf))
-​
+
 with open("allElectronicInformationGainOri.dot", 'w') as f:  # Visualize model
     f = tree.export_graphviz(clf, feature_names=vec.get_feature_names(), out_file=f)
-​
+
 oneRowX = dummyX[0, :]
 print("oneRowX: " + str(oneRowX))
-​
+
 newRowX = oneRowX
 newRowX[0] = 1
 newRowX[2] = 0
 print("newRowX: " + str(newRowX))
-​
+
 predictedY = clf.predict(newRowX.reshape(1, -1))
 print("predictedY: " + str(predictedY))
 ```

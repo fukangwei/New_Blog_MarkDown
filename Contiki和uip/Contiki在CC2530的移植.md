@@ -1,7 +1,6 @@
 ---
 title: Contiki在CC2530的移植
 categories: Contiki和uip
-abbrlink: 62c1e627
 date: 2019-02-04 23:38:25
 ---
 &emsp;&emsp;首先选择一个`CC2530`上的基础程序(例如串口打印)，移植系统在此基础上进行。<!--more-->
@@ -27,15 +26,15 @@ $PROJ_DIR$\contiki-3.0\cpu\cc253x\
 #include <sys/clock.h>
 #include <ioCC2530.h>
 #include "stdio.h"
-​
+
 #define LED1 P1_0 /* 定义P1.0口为LED1控制端 */
-​
+
 void IO_Init ( void ) {
     P1SEL &= ~0x01; /* P1.0作为普通IO口 */
     P1DIR |= 0x01; /* P1.0定义为输出 */
     P1INP |= 0X01; /* 打开三态 */
 }
-​
+
 void InitUART ( void ) {
     PERCFG = 0x00; /* (外设控制寄存器)USART_0的I/O位置为备用位置0 */
     P0SEL = 0x0c; /* P0_2和P0_3用作串口(外部设备功能) */
@@ -45,51 +44,51 @@ void InitUART ( void ) {
     U0BAUD |= 59; /* 波特率设为9600 */
     UTX0IF = 0; /* UART0的TX中断标志初始设置为0 */
 }
-​
+
 __near_func int putchar ( int c ) {
     UTX0IF = 0;
     U0DBUF = ( char ) c;
-​
+
     while ( UTX0IF == 0 );
-​
+
     return ( c );
 }
-​
+
 PROCESS ( led_process, "led" );
 PROCESS_THREAD ( led_process, ev, data ) {
     PROCESS_BEGIN();
     IO_Init();
     LED1 = 0;
-​
+
     while ( 1 ) {
         static struct etimer et;
         etimer_set ( &et, CLOCK_SECOND / 2 );
         PROCESS_WAIT_EVENT_UNTIL ( etimer_expired ( &et ) );
         LED1 = !LED1; /* LED1闪烁 */
     }
-​
+
     PROCESS_END();
 }
-​
+
 PROCESS ( print_process, "print" );
 PROCESS_THREAD ( print_process, ev, data ) {
     PROCESS_BEGIN();
-​
+
     while ( 1 ) {
         static struct etimer et;
         etimer_set ( &et, CLOCK_SECOND / 2 );
         PROCESS_WAIT_EVENT_UNTIL ( etimer_expired ( &et ) );
         printf ( "I am running!\r\n" );
     }
-​
+
     PROCESS_END();
 }
-​
+
 unsigned int idle_count = 0;
 AUTOSTART_PROCESSES ( &led_process, &print_process );
-​
+
 extern void soc_init();
-​
+
 int main ( void ) {
     InitUART();
     clock_init();
@@ -97,17 +96,17 @@ int main ( void ) {
     process_init();
     process_start ( &etimer_process, NULL );
     autostart_start ( autostart_processes );
-​
+
     while ( 1 ) {
         do {
         } while ( process_run() > 0 );
-​
+
         idle_count++;
         /* Idle! */
         /* Stop processor clock */
         /* asm("wfi"::); */
     }
-​
+
     return 0;
 }
 ```
@@ -125,7 +124,7 @@ $TOOLKIT_DIR$\inc\dlib\c\
 #if CC_CONF_OPTIMIZE_STACK_SIZE
     #pragma exclude bits
 #endif
-​
+
 void clock_isr ( void ) __interrupt ( ST_VECTOR ) {
     /* ... */
 }
@@ -140,7 +139,7 @@ void clock_isr ( void ) __interrupt ( ST_VECTOR ) {
 //#if CC_CONF_OPTIMIZE_STACK_SIZE
 //    #pragma exclude bits
 //#endif
-​
+
 #pragma vector=ST_VECTOR
 __near_func __interrupt void clock_isr ( void ) {
     /* ... */

@@ -1,7 +1,6 @@
 ---
 title: Qt之QTextFrame
 categories: Qt语法详解
-abbrlink: dc99228e
 date: 2019-01-02 21:05:02
 ---
 &emsp;&emsp;The `QTextFrame` class represents a frame in a `QTextDocument`.<!--more-->

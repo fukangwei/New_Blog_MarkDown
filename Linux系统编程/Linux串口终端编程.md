@@ -1,7 +1,6 @@
 ---
 title: Linux串口终端编程
 categories: Linux系统编程
-abbrlink: ac7242a0
 date: 2019-02-03 20:52:30
 ---
 ### 串口概述
@@ -176,53 +175,53 @@ write ( fd, buff, 8 );
 #include <fcntl.h>
 #include <termios.h>
 #include <errno.h>
-​
+
 #define FALSE -1
 #define TRUE  0
-​
+
 int speed_arr[] = {
     B38400, B19200, B9600, B4800, B2400, B1200, B300,
     B38400, B19200, B9600, B4800, B2400, B1200, B300,
 };
-​
+
 int name_arr[] = {
     38400, 19200, 9600, 4800, 2400, 1200, 300,
     38400, 19200, 9600, 4800, 2400, 1200, 300,
 };
-​
+
 void set_speed ( int fd, int speed ) {
     int i;
     int status;
     struct termios Opt;
     tcgetattr ( fd, &Opt );
-​
+
     for ( i = 0; i < sizeof ( speed_arr ) / sizeof ( int ); i++ ) {
         if ( speed == name_arr[i] ) {
             tcflush ( fd, TCIOFLUSH );
             cfsetispeed ( &Opt, speed_arr[i] );
             cfsetospeed ( &Opt, speed_arr[i] );
             status = tcsetattr ( fd, TCSANOW, &Opt );
-​
+
             if ( status != 0 ) {
                 perror ( "tcsetattr fd1" );
                 return;
             }
-​
+
             tcflush ( fd, TCIOFLUSH );
         }
     }
 }
-​
+
 int set_Parity ( int fd, int databits, int stopbits, int parity ) {
     struct termios options;
-​
+
     if ( tcgetattr ( fd, &options ) != 0 ) {
         perror ( "SetupSerial 1" );
         return ( FALSE );
     }
-​
+
     options.c_cflag &= ~CSIZE;
-​
+
     switch ( databits ) {
         case 7: options.c_cflag |= CS7; break;
         case 8: options.c_cflag |= CS8; break;
@@ -230,7 +229,7 @@ int set_Parity ( int fd, int databits, int stopbits, int parity ) {
             fprintf ( stderr, "Unsupported data size\n" );
             return ( FALSE );
     }
-​
+
     switch ( parity ) {
         case 'n':
         case 'N':
@@ -257,37 +256,37 @@ int set_Parity ( int fd, int databits, int stopbits, int parity ) {
             fprintf ( stderr, "Unsupported parity\n" );
             return ( FALSE );
     }
-​
+
     switch ( stopbits ) {
         case 1: options.c_cflag &= ~CSTOPB; break;
-        case 2: options.c_cflag |= CSTOPB; break;​
+        case 2: options.c_cflag |= CSTOPB; break;
         default:
             fprintf ( stderr, "Unsupported stop bits\n" );
             return ( FALSE );
     }
-​
+
     if ( parity != 'n' ) { /* Set input parity option */
         options.c_iflag |= INPCK;
     }
-​
+
     tcflush ( fd, TCIFLUSH );
     options.c_cc[VTIME] = 150;
     options.c_cc[VMIN] = 0; /* Update the options and do it NOW */
-​
+
     if ( tcsetattr ( fd, TCSANOW, &options ) != 0 ) {
         perror ( "SetupSerial 3" );
         return ( FALSE );
     }
-​
+
     return ( TRUE );
 }
-​
+
 int main ( void ) {
     printf ( "This program updates last time at %s  %s\n", __TIME__, __DATE__ );
     printf ( "STDIO COM1\n" );
     int fd;
     fd = open ( "/dev/ttyUSB0", O_RDWR ); /* 我用的是USB转串口设备 */
-​
+
     if ( fd == -1 ) {
         perror ( "serialport error\n" );
     } else {
@@ -295,19 +294,19 @@ int main ( void ) {
         printf ( "%s", ttyname ( fd ) );
         printf ( " succesfully!\n" );
     }
-​
+
     set_speed ( fd, 9600 );
-​
+
     if ( set_Parity ( fd, 8, 1, 'N' ) == FALSE ) {
         printf ( "Set Parity Error\n" );
         exit ( 0 );
     }
-​
+
     char buf[] = "fe55aa07bc010203040506073d";
     write ( fd, &buf, 26 );
     char buff[512];
     int nread;
-​
+
     while ( 1 ) {
         if ( ( nread = read ( fd, buff, 512 ) ) > 0 ) {
             printf ( "\nLen: %d\n", nread );
@@ -315,7 +314,7 @@ int main ( void ) {
             printf ( "%s", buff );
         }
     }
-​
+
     close ( fd );
     return 0;
 }
@@ -556,17 +555,17 @@ if ( ( tcsetattr ( fd, TCSANOW, &new_cfg ) ) != 0 ) {
 int set_com_config ( int fd, int baud_rate, int data_bits, char parity, int stop_bits ) {
     struct termios new_cfg, old_cfg;
     int speed;
-​
+
     /* 保存并测试现有串口参数设置，在这里如果串口号等出错，会有相关的出错信息 */
     if ( tcgetattr ( fd, &old_cfg ) != 0 ) {
         perror ( "tcgetattr" );
         return -1;
     }
-​
+
     new_cfg = old_cfg;
     cfmakeraw ( &new_cfg ); /* 配置为原始模式 */
     new_cfg.c_cflag &= ~CSIZE;
-​
+
     switch ( baud_rate ) { /* 设置波特率 */
         case 2400:   speed = B2400;   break;
         case 4800:   speed = B4800;   break;
@@ -575,15 +574,15 @@ int set_com_config ( int fd, int baud_rate, int data_bits, char parity, int stop
         case 38400:  speed = B38400;  break;
         case 115200: speed = B115200; break;
     }
-​
+
     cfsetispeed ( &new_cfg, speed );
     cfsetospeed ( &new_cfg, speed );
-​
+
     switch ( data_bits ) { /* 设置数据位 */
         case 7: new_cfg.c_cflag |= CS7; break;
         case 8: new_cfg.c_cflag |= CS8; break;
     }
-​
+
     switch ( parity ) { /* 设置奇偶校验位 */
         case 'n':
         case 'N':
@@ -607,22 +606,22 @@ int set_com_config ( int fd, int baud_rate, int data_bits, char parity, int stop
             new_cfg.c_cflag &= ~CSTOPB;
             break;
     }
-​
+
     switch ( stop_bits ) { /* 设置停止位 */
         case 1: new_cfg.c_cflag &= ~CSTOPB; break;
         case 2: new_cfg.c_cflag |= CSTOPB;  break;
     }
-​
+
     /* 设置等待时间和最小接收字符 */
     new_cfg.c_cc[VTIME] = 0;
     new_cfg.c_cc[VMIN] = 1;
     tcflush ( fd, TCIFLUSH ); /* 处理未接收字符 */
-​
+
     if ( ( tcsetattr ( fd, TCSANOW, &new_cfg ) ) != 0 ) { /* 激活新配置 */
         perror ( "tcsetattr" );
         return -1;
     }
-​
+
     return 0;
 }
 ```
@@ -633,7 +632,7 @@ int set_com_config ( int fd, int baud_rate, int data_bits, char parity, int stop
 #include <termios.h>
 #include <stdio.h>
 #include <stdlib.h>
-​
+
 #define PASSWORD_LEN 8
 
 int main() {
@@ -650,8 +649,8 @@ int main() {
         fgets ( password, PASSWORD_LEN, stdin );
         tcsetattr ( fileno ( stdin ), TCSANOW, &initialrsettings );
         fprintf ( stdout, "\nYou entered %s\n", password );
-    }
-​
+    }
+
     exit ( 0 );
 }
 ```
@@ -663,26 +662,26 @@ int main() {
 #include <unistd.h>
 #include <stdlib.h>
 #include <termios.h>
-​
+
 char *menu[] = {
     "a - add new record",
     "d - delete record",
     "q - quit",
     NULL,
 };
-​
+
 int getchoice ( char *greet, char *choices[], FILE *in, FILE *out );
-​
+
 int main() {
     int choice = 0;
     FILE *input;
     FILE *output;
     struct termios initial_settings, new_settings;
-​
+
     if ( !isatty ( fileno ( stdout ) ) ) {
         fprintf ( stderr, "You are not a terminal, OK.\n" );
     }
-​
+
     input = fopen ( "/dev/tty", "r" );
     output = fopen ( "/dev/tty", "w" );
 
@@ -690,7 +689,7 @@ int main() {
         fprintf ( stderr, "Unable to open /dev/tty\n" );
         exit ( 1 );
     }
-​
+
     tcgetattr ( fileno ( input ), &initial_settings );
     new_settings = initial_settings;
     new_settings.c_lflag &= ~ICANON;
@@ -698,54 +697,54 @@ int main() {
     new_settings.c_cc[VMIN] = 1;
     new_settings.c_cc[VTIME] = 0;
     new_settings.c_lflag &= ~ISIG;
-​
+
     if ( tcsetattr ( fileno ( input ), TCSANOW, &new_settings ) != 0 ) {
         fprintf ( stderr, "could not set attributes\n" );
     }
-​
+
     do {
         choice = getchoice ( "Please select an action", menu, input, output );
         printf ( "You have chosen: %c\n", choice );
     } while ( choice != 'q' );
-​
+
     tcsetattr ( fileno ( input ), TCSANOW, &initial_settings );
     exit ( 0 );
 }
-​
+
 int getchoice ( char *greet, char *choices[], FILE *in, FILE *out ) {
     int chosen = 0;
     int selected;
     char **option;
-​
+
     do {
         fprintf ( out, "Choice: %s\n", greet );
         option = choices;
-​
+
         while ( *option ) {
             fprintf ( out, "%s\n", *option );
             option++;
         }
-​
+
         do {
             selected = fgetc ( in );
         } while ( selected == '\n' || selected == '\r' );
-​
+
         option = choices;
-​
+
         while ( *option ) {
             if ( selected == *option[0] ) {
                 chosen = 1;
                 break;
             }
-​
+
             option++;
         }
-​
+
         if ( !chosen ) {
             fprintf ( out, "Incorrect choice, select again\n" );
         }
     } while ( !chosen );
-​
+
     return selected;
 }
 ```
@@ -772,7 +771,7 @@ int setupterm ( char *term, int fd, int *errret );
 #include <term.h>
 #include <curses.h>
 #include <stdlib.h>
-​
+
 int main() {
     setupterm ( "unlisted", fileno ( stdout ), ( int * ) 0 );
     printf ( "Done.\n" );
@@ -806,7 +805,7 @@ sudo apt-get install libncurses5-dev
 #include <term.h>
 #include <ncurses.h>
 #include <stdlib.h>
-​
+
 int main() {
     int nrows, ncolumns;
     setupterm ( NULL, fileno ( stdout ), ( int * ) 0 );

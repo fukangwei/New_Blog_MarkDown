@@ -1,7 +1,6 @@
 ---
 title: FrameLayout帧布局
 categories: Android
-abbrlink: c02103c0
 date: 2019-02-08 20:43:35
 ---
 &emsp;&emsp;`FrameLayout`(帧布局)可以说是六大布局中最为简单的一个布局，这个布局直接在屏幕上开辟出一块空白的区域，当我们往里面添加控件的时候，会默认把它们放到这块区域的左上角，而这种布局方式却没有任何的定位方式，所以它应用的场景并不多。<!--more-->
@@ -20,17 +19,17 @@ date: 2019-02-08 20:43:35
     android:layout_height="match_parent"
     android:foreground="@mipmap/aero3"
     android:foregroundGravity="right|bottom">
-​
+
     <TextView
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:background="#FF6143" />
-​
+
     <TextView
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:background="#7BFE00" />
-​
+
     <TextView
         android:layout_width="100dp"
         android:layout_height="100dp"

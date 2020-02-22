@@ -1,7 +1,6 @@
 ---
 title: Shell编程注意事项
 categories: Shell编程
-abbrlink: edc18a1e
 date: 2019-01-20 06:34:58
 ---
 1. 在`shell`语言中，如果变量的值包含空格，则一定要用引号引用起来。<!--more-->

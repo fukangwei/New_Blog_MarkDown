@@ -1,7 +1,6 @@
 ---
 title: Qt之LineEdit
 categories: Qt语法详解
-abbrlink: fe581a02
 date: 2019-02-23 10:45:35
 ---
 ### 行编辑器
@@ -11,13 +10,13 @@ date: 2019-02-23 10:45:35
 ``` cpp
 #ifndef MYWIDGET_H
 #define MYWIDGET_H
-​
+
 #include <QWidget>
-​
+
 namespace Ui {
     class MyWidget;
 }
-​
+
 class MyWidget : public QWidget {
     Q_OBJECT
 public:
@@ -29,7 +28,7 @@ private slots:
 private:
     Ui::MyWidget *ui;
 };
-​
+
 #endif // MYWIDGET_H
 ```
 
@@ -40,7 +39,7 @@ private:
 #include "ui_mywidget.h"
 #include <QDebug>
 #include <QCompleter>
-​
+
 MyWidget::MyWidget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::MyWidget ) {
     ui->setupUi ( this );
     QValidator *validator = new QIntValidator ( 100, 999, this ); /* 新建验证器，指定范围为100至999 */
@@ -51,17 +50,17 @@ MyWidget::MyWidget ( QWidget *parent ) : QWidget ( parent ), ui ( new Ui::MyWidg
     completer->setCaseSensitivity ( Qt::CaseInsensitive ); /* 设置大小写不敏感 */
     ui->lineEdit4->setCompleter ( completer );
 }
-​
+
 MyWidget::~MyWidget() {
     delete ui;
 }
-​
+
 void MyWidget::on_lineEdit2_returnPressed() { /* 回车键按下信号的槽 */
     ui->lineEdit3->setFocus(); /* 让lineEdit3获得光标 */
     qDebug() << ui->lineEdit2->text(); /* 输出lineEdit2的内容 */
     qDebug() << ui->lineEdit2->displayText(); /* 输出lineEdit2显示的内容 */
 }
-​
+
 void MyWidget::on_lineEdit3_returnPressed() { /* 回车键按下信号的槽 */
     ui->lineEdit4->setFocus();
     qDebug() << ui->lineEdit3->text();

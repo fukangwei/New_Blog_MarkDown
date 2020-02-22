@@ -1,7 +1,6 @@
 ---
 title: BFPRT算法
 categories: 数据结构和算法
-abbrlink: c2effb3e
 date: 2019-03-03 10:24:35
 ---
 &emsp;&emsp;在一堆数中求其前`k`大或前`k`小的问题，简称`TOP-K`问题。而目前解决`TOP-K`问题最有效的算法即是`BFPRT`算法，又称为`中位数的中位数`算法，该算法由`Blum`、`Floyd`、`Pratt`、`Rivest`、`Tarjan`提出，最坏时间复杂度为`O(n)`。<!--more-->
@@ -32,64 +31,64 @@ date: 2019-03-03 10:24:35
 ``` cpp
 #include <iostream>
 #include <algorithm>
-​
+
 using namespace std;
-​
+
 int BFPRT(int array[], int left, int right, const int &k); /* 返回中位数的中位数下标 */
-​
+
 int InsertSort(int array[], int left, int right) { /* 插入排序，返回中位数下标 */
     int temp;
     int j;
-​
+
     for (int i = left + 1; i <= right; i++) {
         temp = array[i];
         j = i - 1;
-​
+
         while (j >= left && array[j] > temp) {
             array[j + 1] = array[j--];
         }
-​
+
         array[j + 1] = temp;
     }
-​
+
     return ((right - left) >> 1) + left;
 }
-​
+
 int GetPivotIndex(int array[], int left, int right) {
     if (right - left < 5) {
         return InsertSort(array, left, right);
     }
-​
+
     int sub_right = left - 1;
-​
+
     for (int i = left; i + 4 <= right; i += 5) {
         int index = InsertSort(array, i, i + 4); /* 找到五个元素的中位数的下标 */
         swap(array[++sub_right], array[index]); /* 依次放在左侧 */
     }
-​
+
     return BFPRT(array, left, sub_right, ((sub_right - left + 1) >> 1) + 1);
 }
-​
+
 /* 利用中位数的中位数的下标进行划分，返回分界线下标 */
 int Partition(int array[], int left, int right, int pivot_index) {
     swap(array[pivot_index], array[right]); /* 把主元放置于末尾 */
     int divide_index = left; /* 跟踪划分的分界线 */
-​
+
     for (int i = left; i < right; i++) {
         if (array[i] < array[right]) {
             swap(array[divide_index++], array[i]); /* 比主元小的都放在左侧 */
         }
     }
-​
+
     swap(array[divide_index], array[right]); /* 最后把主元换回来 */
     return divide_index;
 }
-​
+
 int BFPRT(int array[], int left, int right, const int &k) {
     int pivot_index = GetPivotIndex(array, left, right); /* 得到中位数的中位数下标 */
     int divide_index = Partition(array, left, right, pivot_index); /* 进行划分，返回划分边界 */
     int num = divide_index - left + 1;
-​
+
     if (num == k) {
         return divide_index;
     } else if (num > k) {
@@ -98,24 +97,24 @@ int BFPRT(int array[], int left, int right, const int &k) {
         return BFPRT(array, divide_index + 1, right, k - num);
     }
 }
-​
+
 int main() {
     int k = 5;
     int array[10] = { 1, 1, 2, 3, 1, 5, -1, 7, 8, -10 };
     cout << "原数组: ";
-​
+
     for (int i = 0; i < 10; i++) {
         cout << array[i] << " ";
     }
-​
+
     cout << endl;
     cout << "第" << k << "小值为: " << array[BFPRT(array, 0, 9, k)] << endl;
     cout << "变换后的数组: ";
-​
+
     for (int i = 0; i < 10; i++) {
         cout << array[i] << " ";
     }
-​
+
     cout << endl;
     system("pause");
     return 0;

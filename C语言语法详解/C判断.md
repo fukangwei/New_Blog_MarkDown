@@ -1,7 +1,6 @@
 ---
 title: C判断
 categories: C语言语法详解
-abbrlink: 13544
 date: 2019-10-02 07:29:47
 ---
 &emsp;&emsp;判断结构要求程序员指定`一个`或`多个`要评估或测试的条件，以及条件为真时要执行的语句和条件为假时要执行的语句。<!--more-->
@@ -100,12 +99,14 @@ switch ( expression ) {
 switch(ch1) {
     case 'A':
         printf("这个 A 是外部 switch 的一部分" );
+
         switch(ch2) {
             case 'A':
                 printf("这个A是内部switch的一部分" );
                 break;
             case 'B': /* 内部 B case 代码 */
         }
+
         break;
     case 'B': /* 外部 B case 代码 */
 }

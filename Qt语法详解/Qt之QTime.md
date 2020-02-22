@@ -1,7 +1,6 @@
 ---
 title: Qt之QTime
 categories: Qt语法详解
-abbrlink: 3582dc36
 date: 2019-01-03 14:16:18
 ---
 &emsp;&emsp;在`Qt`中，可以利用`QTime`类来控制时间，这里介绍一下`QTime`的成员函数的用法：<!--more-->

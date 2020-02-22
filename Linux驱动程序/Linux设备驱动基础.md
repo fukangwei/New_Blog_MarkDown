@@ -1,7 +1,6 @@
 ---
 title: Linux设备驱动基础
 categories: Linux驱动程序
-abbrlink: 64ca51ff
 date: 2019-03-21 17:39:00
 ---
 ### 驱动程序介绍

@@ -1,7 +1,6 @@
 ---
 title: Bundle
 categories: Android
-abbrlink: a2d737cb
 date: 2019-03-02 10:59:41
 ---
 &emsp;&emsp;In this tutorial, we'll be discuss about android bundle to pass data between activities.<!--more-->
@@ -79,7 +78,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-​
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
-​
+
 public class Main3Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

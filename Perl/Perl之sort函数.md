@@ -1,7 +1,6 @@
 ---
 title: Perl之sort函数
 categories: Perl
-abbrlink: b32c6fe3
 date: 2018-12-18 06:52:52
 ---
 &emsp;&emsp;最简单的用法如下：<!--more-->
@@ -27,7 +26,7 @@ foreach ( sort { $a <=> $b } @arr ){
 
 ``` perl
 my %hash = ( 'a' => 2, 'b' => 3, 'c' => 11 );
-​
+
 foreach my $key ( sort { $hash{$a} cmp $hash{$b} } keys %hash ) {
     print $key, " => ", $hash{$key}, "\n";
 }
@@ -45,7 +44,7 @@ b => 3
 
 ``` perl
 my %hash = ( 'a' => 2, 'b' => 3, 'c' => 11 );
-​
+
 foreach my $key ( sort { $hash{$a} <=> $hash{$b} } keys %hash ) {
     print $key, " => ", $hash{$key}, "\n";
 }
@@ -63,7 +62,7 @@ c => 11
 
 ``` perl
 my %hash = ( 'a' => 2, 'b' => 3, 'c' => 11 );
-​
+
 foreach my $key ( sort { $hash{$b} <=> $hash{$a} } keys %hash ) {
     print $key, " => ", $hash{$key}, "\n";
 }

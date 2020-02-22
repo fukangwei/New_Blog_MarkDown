@@ -1,7 +1,6 @@
 ---
 title: Stack类
 categories: Java
-abbrlink: 5a714dcc
 date: 2018-12-21 17:42:56
 ---
 &emsp;&emsp;栈是`Vector`的一个子类，它实现了一个标准的后进先出的栈。堆栈只定义了默认构造函数，用来创建一个空栈：<!--more-->
@@ -22,21 +21,21 @@ Stack()
 
 ``` java
 import java.util.*;
-​
+
 public class StackDemo {
     static void showpush(Stack<Integer> st, int a) {
         st.push(a);
         System.out.println("push(" + a + ")");
         System.out.println("stack: " + st);
     }
-​
+
     static void showpop(Stack<Integer> st) {
         System.out.print("pop -> ");
         Integer a = (Integer) st.pop();
         System.out.println(a);
         System.out.println("stack: " + st);
     }
-​
+
     public static void main(String args[]) {
         Stack<Integer> st = new Stack<Integer>();
         System.out.println("stack: " + st);

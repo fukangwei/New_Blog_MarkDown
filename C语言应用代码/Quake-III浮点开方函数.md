@@ -1,7 +1,6 @@
 ---
 title: Quake-III浮点开方函数
 categories: C语言应用代码
-abbrlink: 967b2525
 date: 2019-02-07 10:03:49
 ---
 &emsp;&emsp;`QUAKE`的开发商`ID SOFTWARE`遵守`GPL`协议，公开了`QUAKE-III`的源代码，让世人有幸目睹`Carmack`传奇的`3D`引擎的源码，名称为`quake3-1.32b-source.zip`。<!--more-->

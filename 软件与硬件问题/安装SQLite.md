@@ -1,7 +1,6 @@
 ---
 title: 安装SQLite
 categories: 软件与硬件问题
-abbrlink: 2dca5f6
 date: 2019-02-06 18:02:14
 ---
 ### Linux下的安装
@@ -82,7 +81,7 @@ id    name  age
 ``` sql
 seq name file
 --- ---- -----------------
-0   main /home/fkw/test.db
+0   main /home/fkw/test.db
 ```
 
 &emsp;&emsp;执行命令`.tables`，查看该数据库内的表信息，执行结果为`mytable`。
@@ -125,7 +124,7 @@ make install  # 执行安装命令
 
 ``` bash
 $ ls lib/
-libsqlite3.a   libsqlite3.la   libsqlite3.so   libsqlite3.so.0   libsqlite3.so.0.8.6   pkgconfig
+libsqlite3.a   libsqlite3.la   libsqlite3.so   libsqlite3.so.0   libsqlite3.so.0.8.6   pkgconfig
 ```
 
 `libsqlite3.so`和`libsqlite3.so.0`都是`libsqlite3.so.0.8.6`的软链接文件。真正需要下载到开发板`/lib`目录下的动态库是`libsqlite3.so.0.8.6`。下载到开发板后，还需对它建立软链接文件，因为可执行程序寻找的动态链接库的名字为`libsqlite3.so.0`。
@@ -156,43 +155,43 @@ sqlite>
 ``` cpp
 #include <stdio.h>
 #include <sqlite3.h>
-​
+
 /* 执行到sqlite3_exec的回调函数 */
 static int callback ( void *NotUsed, int argc, char **argv, char **azColName ) {
     int i;
-​
+
     for ( i = 0; i < argc; i++ ) {
         printf ( "%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL" );
     }
-​
+
     printf ( "\n" );
     return 0;
 }
-​
+
 int main ( int argc, char **argv ) {
     sqlite3 *db; /* sqlite里最常用的是“sqlite3 *”类型 */
     char *zErrMsg = 0;
     int rc;
-​
+
     if ( argc != 3 ) { /* 可执行程序有三个参数 */
         fprintf ( stderr, "Usage: %s DATABASE SQL-STATEMENT\n", argv[0] );
     }
-​
+
     rc = sqlite3_open ( argv[1], &db );
-​
+
     /* main第一个参数是可执行文件名，第二个参数是打开或创建的数据库文件名 */
     if ( rc ) {
         fprintf ( stderr, "Can't open database: %s\n", sqlite3_errmsg ( db ) );
         sqlite3_close ( db ); /* 打开或创建数据库失败就关闭数据库 */
     }
-​
+
     rc = sqlite3_exec ( db, argv[2], callback, 0, &zErrMsg );
-​
+
     /* main第三个参数argv[2]传入到上面这条执行sql语句，查询数据库 */
     if ( rc != SQLITE_OK ) { /* SQLITE_OK表示操作正常 */
         fprintf ( stderr, "SQL error: %s\n", zErrMsg );
     }
-​
+
     sqlite3_close ( db ); /* 关闭数据库 */
     return 0;
 }

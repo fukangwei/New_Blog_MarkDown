@@ -1,7 +1,6 @@
 ---
 title: 可视化CNN中间层
 categories: 深度学习
-abbrlink: 24f0dfa3
 date: 2019-01-01 11:23:20
 ---
 &emsp;&emsp;主要的实现思路如下：<!--more-->
@@ -36,28 +35,28 @@ def preprocess_image(cv2im, resize_im=True):
     im_as_arr = np.float32(cv2im)
     im_as_arr = np.ascontiguousarray(im_as_arr[..., ::-1])
     im_as_arr = im_as_arr.transpose(2, 0, 1)  # Convert array to D,W,H
-​
+
     for channel, _ in enumerate(im_as_arr):  # Normalize the channels
         im_as_arr[channel] /= 255
         im_as_arr[channel] -= mean[channel]
         im_as_arr[channel] /= std[channel]
-​
+
     im_as_ten = torch.from_numpy(im_as_arr).float()  # Convert to float tensor
     im_as_ten.unsqueeze_(0)  # Add one more channel to the beginning. Tensor shape = 1,3,224,224
     im_as_var = Variable(im_as_ten, requires_grad=True)  # Convert to Pytorch variable
     return im_as_var
-​
+
 class FeatureVisualization():
     def __init__(self, img_path, selected_layer):
         self.img_path = img_path
         self.selected_layer = selected_layer
         self.pretrained_model = models.vgg16(pretrained=True).features
-​
+
     def process_image(self):
         img = cv2.imread(self.img_path)
         img = preprocess_image(img)
         return img
-​
+
     def get_feature(self):
         input = self.process_image()
         print("get_feature:", input.shape)
@@ -69,7 +68,7 @@ class FeatureVisualization():
 
             if (index == self.selected_layer):
                 return x
-​
+
     def get_single_feature(self):
         features = self.get_feature()
         print("get_single_feature_1:", features.shape)
@@ -78,14 +77,14 @@ class FeatureVisualization():
         feature = feature.view(feature.shape[1], feature.shape[2])
         print("get_single_feature_3:", feature.shape)
         return feature
-​
+
     def save_feature_to_img(self):
         feature = self.get_single_feature()
         feature = feature.data.numpy()
         feature = 1.0 / (1 + np.exp(-1 * feature))  # use sigmod to [0, 1]
         feature = np.round(feature * 255)  # to [0, 255]
         cv2.imwrite('./img.jpg', feature)
-​
+
 if __name__ == '__main__':
     myClass = FeatureVisualization('./tu.jpg', 5)
     print(myClass.pretrained_model)
