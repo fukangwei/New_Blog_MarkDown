@@ -9,7 +9,7 @@ categories: 数据库
 
 ``` bash
 sudo apt-get install mysql-server
-sudo apt-get istnall mysql-client
+sudo apt-get install mysql-client
 sudo apt-get install libmysqlclient-dev
 ```
 
