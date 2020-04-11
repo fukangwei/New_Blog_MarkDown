@@ -65,7 +65,7 @@ void dbg_setup_uart ( void ) {
 }
 ```
 
-&emsp;&emsp;9. 将`main.c`中的`#include<gpio.h>`删除，并编译工程。可能会出一些错误，比如多定义或者未定义。其中`1`个是`autostart_processes`未定义，解决方法是创建一个进程并使用`AUTOSTART_PROCESSES`加入自启动项目。`main.c`如下：
+&emsp;&emsp;9. 将`main.c`中的`#include <gpio.h>`删除，并编译工程。可能会出一些错误，比如多定义或者未定义。其中`1`个是`autostart_processes`未定义，解决方法是创建一个进程并使用`AUTOSTART_PROCESSES`加入自启动项目。`main.c`如下：
 
 ``` cpp
 #include "stm32f10x.h"

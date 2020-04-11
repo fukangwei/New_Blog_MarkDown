@@ -15,8 +15,8 @@ size_type find ( charT c, size_type pos = 0 ) const noexcept;
 示例如下：
 
 ``` cpp
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -141,8 +141,8 @@ int main() {
 
 ``` cpp
 /* 将字符串中所有的元音字母换成“*” */
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
