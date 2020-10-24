@@ -2,6 +2,7 @@
 title: DHT11编程详解
 categories: 硬件电路笔记
 date: 2018-12-04 10:41:54
+mathjax: true
 ---
 ### DHT11数据格式(40bit)
 
