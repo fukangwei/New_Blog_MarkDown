@@ -2,6 +2,7 @@
 title: Quake-III浮点开方函数
 categories: C语言应用代码
 date: 2019-02-07 10:03:49
+mathjax: true
 ---
 &emsp;&emsp;`QUAKE`的开发商`ID SOFTWARE`遵守`GPL`协议，公开了`QUAKE-III`的源代码，让世人有幸目睹`Carmack`传奇的`3D`引擎的源码，名称为`quake3-1.32b-source.zip`。<!--more-->
 &emsp;&emsp;我们知道，越底层的函数，调用越频繁。`3D`引擎归根到底还是数学运算，那么找到最底层的数学运算函数(`game/code/q_math.c`)，必然是精心编写的。在`game/code/q_math.c`里发现了这样一段代码，它的作用是将一个数开平方并取倒，经测试这段代码比`(float)(1.0 / sqrt(x))`快`4`倍：

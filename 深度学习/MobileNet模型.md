@@ -21,7 +21,7 @@ date: 2019-04-23 14:16:16
 
 $$
 \begin{align}
-\frac{D_K * D_K * M * D_F * D_F + M * N * D_F * D_F}{D_K * D_K * M * N * D_F * D_F} = \frac{1}{N} + \frac{1}{D^2_K}
+\frac{D_K * D_K * M * D_F * D_F + M * N * D_F * D_F}{D_K * D_K * M * N * D_F * D_F} = \frac{1}{N} + \frac{1}{D^2_K} \notag
 \end{align}
 $$
 

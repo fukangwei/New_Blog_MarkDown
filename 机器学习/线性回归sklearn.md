@@ -31,7 +31,7 @@ y = ax + b
 $$
 
 $$
-a = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2} \\
+a = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2}
 $$
 
 $$
