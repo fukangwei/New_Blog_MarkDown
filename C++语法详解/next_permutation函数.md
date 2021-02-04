@@ -10,7 +10,6 @@ date: 2018-12-27 10:28:40
 ``` cpp
 #include <iostream>
 #include <algorithm>
-#include "stdlib.h"
 
 using namespace std;
 
@@ -26,7 +25,6 @@ int main() {
         cout << endl;
     } while (next_permutation(ans, ans + 4));
 
-    system("pause");
     return 0;
 }
 ```

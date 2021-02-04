@@ -258,7 +258,6 @@ int main() {
     graph.print();
     graph.Dijkstra(1);
     graph.print_path(1);
-    system("pause");
     return 0;
 }
 ```

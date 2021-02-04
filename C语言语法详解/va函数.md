@@ -57,7 +57,6 @@ int sum ( int number, ... ) { /* 第一个参数指定了参数的个数 */
 
 int main ( void ) {
     printf ( "%d\n", sum ( 4, 4, 3, 2, 1 ) );
-    system ( "pause" );
     return 0;
 }
 ```

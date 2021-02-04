@@ -65,7 +65,6 @@ int main ( void ) {
         cout << "the queue is empty" << endl;
     }
 
-    system ( "PAUSE" );
     return 0;
 }
 ```

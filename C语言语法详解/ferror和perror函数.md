@@ -40,8 +40,6 @@ int main ( void ) {
     } else {
         printf ( "\n异常" );
     }
-
-    system ( "pause" );
 }
 ```
 

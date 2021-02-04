@@ -30,7 +30,6 @@ void reverse ( BidirectionalIterator first, BidirectionalIterator last ) {
 #include <iostream> /* std::cout */
 #include <algorithm> /* std::reverse */
 #include <vector> /* std::vector */
-#include <cstdlib>
 
 int main() {
     std::vector<int> myvector;
@@ -48,7 +47,6 @@ int main() {
     }
 
     std::cout << '\n';
-    system("pause");
     return 0;
 }
 ```

@@ -190,7 +190,7 @@ int main() {
     stream >> n;
     cout << n << endl;
     stream.clear();
-    /*string变char* */
+    /* string变“char*” */
     string str1 = "little";
     char cStr[10];
     stream << str1;
@@ -221,10 +221,8 @@ int main ( int argc, char *argv[] ) {
         stream << "sdfsdfdsfsadfsdafsdfsdgsdgsdgsadgdsgsdagasdgsdagsadgsdgsgdsagsadgs";
         stream >> str;
         cout << "Size of stream = " << stream.str().length() << endl;
-        system ( "PAUSE" );
     }
 
-    system ( "PAUSE" );
     return 0;
 }
 ```
