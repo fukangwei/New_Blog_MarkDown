@@ -99,7 +99,7 @@ void CPP_fun();
 `Cxx.cpp`如下：
 
 ``` cpp
-extern "C" { /* 告诉C+++编译器，括号里按照C的命名规则编译 */
+extern "C" { /* 告诉C++编译器，括号里按照C的命名规则编译 */
     void CPP_fun() {
         /* user code */
     }

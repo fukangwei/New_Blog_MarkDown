@@ -98,7 +98,7 @@ switch ( expression ) {
 ``` cpp
 switch(ch1) {
     case 'A':
-        printf("这个 A 是外部 switch 的一部分" );
+        printf("这个A是外部switch的一部分" );
 
         switch(ch2) {
             case 'A':

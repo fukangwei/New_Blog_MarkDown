@@ -83,6 +83,7 @@ Please, insert two values: 2 32
 2*32=64
 ```
 
+
 ---
 
 ### std::ostream_iterator

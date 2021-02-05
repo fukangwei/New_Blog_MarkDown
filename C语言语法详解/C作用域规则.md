@@ -46,7 +46,7 @@ int g = 20; /* 全局变量声明 */
 
 int main() {
     int g = 10; /* 局部变量声明 */
-    printf ( "Value of g = %d\n", g );
+    printf ( "value of g = %d\n", g );
     return 0;
 }
 ```

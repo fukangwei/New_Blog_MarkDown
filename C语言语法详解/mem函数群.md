@@ -26,8 +26,7 @@ int main ( void ) {
 
     if ( pch != NULL ) {
         printf ( "'p' found at position %d\n", pch - str + 1 );
-    }
-    else {
+    } else {
         printf ( "'p' not found.\n" );
     }
 
@@ -50,8 +49,7 @@ int main ( void ) {
 
     if ( p ) {
         printf ( "%s\n", p );
-    }
-    else {
+    } else {
         printf ( "Not Found\n" );
     }
 
@@ -97,11 +95,9 @@ int main ( void ) {
 
     if ( n > 0 ) {
         printf ( "'%s' is greater than '%s'.\n", buffer1, buffer2 );
-    }
-    else if ( n < 0 ) {
+    } else if ( n < 0 ) {
         printf ( "'%s' is less than '%s'.\n", buffer1, buffer2 );
-    }
-    else {
+    } else {
         printf ( "'%s' is the same as '%s'.\n", buffer1, buffer2 );
     }
 

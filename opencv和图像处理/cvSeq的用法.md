@@ -172,6 +172,7 @@ CvSeq *cvEndWriteSeq ( CvSeqWriter *writer );
 void cvStartReadSeq ( const CvSeq *seq, CvSeqReader *reader, int reverse = 0 );
 ```
 
+
 ---
 
 &emsp;&emsp;一直困惑于`CvSeq`到底是个什么样的东西，因为曾经拿到别人写的一个函数库，其返回值是一个`CvSeq`指针。我的任务是遍历所有的`Sequence`，然后删除其中不符合要求的`Sequence`。由于没有文档，我当时并不知道需要遍历的是`Sequence`还是`Sequence`中的`Element`，于是写下了类似如下的代码：

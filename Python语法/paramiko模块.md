@@ -88,6 +88,7 @@ print(stdout.read().decode())
 trans.close()  # 关闭连接
 ```
 
+
 ---
 
 ### 关于SSHClient对象的exec_command

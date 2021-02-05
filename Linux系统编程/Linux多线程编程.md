@@ -821,6 +821,7 @@ Picked up a thread:1
 All done
 ```
 
+
 ---
 
 ### linux的pthread_kill函数
@@ -851,6 +852,7 @@ if ( kill_ret == ESRCH ) {
     printf ( "线程存在\n" );
 }
 ```
+
 
 ---
 
@@ -1107,6 +1109,7 @@ Minpriority: 1
 sched_priority: 99
 ```
 
+
 ---
 
 ### 互斥锁pthread_mutex_t
@@ -1147,6 +1150,7 @@ int pthread_mutexattr_getshared ( pthread_mutexattr_t *mattr, int *pshared );
 int pthread_mutexattr_settype ( pthread_mutexattr_t *attr, int type );
 int pthread_mutexattr_gettype ( pthread_mutexattr_t *attr, int *type );
 ```
+
 
 ---
 
@@ -1329,6 +1333,7 @@ tid1: count--
 tid1: count = 0
 after sleep 5s, begin exit!
 ```
+
 
 ---
 

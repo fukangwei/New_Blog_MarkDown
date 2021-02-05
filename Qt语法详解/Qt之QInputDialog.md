@@ -69,7 +69,7 @@ int res = QInputDialog::getInteger (
             22, 0, 1000, 2, &ok, this );
 
 if ( ok ) {
-    /* 用户输入一些东西并且按下OK  */
+    /* 用户输入一些东西并且按下OK */
 } else {
     /* 用户按下Cancel */
 }

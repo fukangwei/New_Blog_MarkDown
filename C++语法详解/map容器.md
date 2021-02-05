@@ -31,8 +31,7 @@ l_it = maplive.find ( 112 );
 
 if ( l_it == maplive.end() ) {
     cout << "we do not find 112" << endl;
-}
-else {
+} else {
     cout << "wo find 112" << endl;
 }
 ```
@@ -46,8 +45,7 @@ l_it = maplive.find ( 112 );
 
 if ( l_it == maplive.end() ) {
     cout << "we do not find 112" << endl;
-}
-else {
+} else {
     maplive.erase ( l_it ); /* delete 112 */
 }
 ```
@@ -208,7 +206,7 @@ void print ( const pair<const string, int > &r ) {
 }
 
 int main ( int argc, char const *argv[] ) {
-    istream_iterator<string> ii ( cin ); /* 流的输入迭代器  */
+    istream_iterator<string> ii ( cin ); /* 流的输入迭代器 */
     istream_iterator<string> eos; /* 输入的哨兵 */
     for_each ( ii, eos, record );
     for_each ( histogtram.begin(), histogtram.end(), print );

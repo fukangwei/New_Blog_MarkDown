@@ -252,7 +252,7 @@ typedef unsigned long long int uintmax_t;
 
 /* ISO C99标准指出，在C++实现中这些宏应该只在被请求到的时候才定义 */
 #if !defined __cplusplus || defined __STDC_CONSTANT_MACROS
-/* 有符号  */
+/* 有符号 */
 #define INT8_C(c)  c
 #define INT16_C(c) c
 #define INT32_C(c) c

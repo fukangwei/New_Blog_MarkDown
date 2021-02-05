@@ -319,7 +319,7 @@ void main ( void ) {
 }
 ```
 
-线程`1`和线程`2的展开式如下：
+线程`1`和线程`2`的展开式如下：
 
 ``` cpp
 static void protothread1 ( struct pt *pt ) { /* 线程1 */
