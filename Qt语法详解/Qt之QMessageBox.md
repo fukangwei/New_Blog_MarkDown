@@ -130,6 +130,7 @@ QMessageBox::about ( /* 关于对话框 */
     tr ( "yafeilinux.com致力于Qt及Qt Creator的普及工作！" ) );
 ```
 
+
 ---
 
 ### QMessageBox典型用法

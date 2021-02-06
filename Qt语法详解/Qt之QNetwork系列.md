@@ -85,6 +85,7 @@ void setNetworkAccessible ( NetworkAccessibility accessible )
 void networkAccessibleChanged ( QNetworkAccessManager::NetworkAccessibility accessible )
 ```
 
+
 ---
 
 ### QNetworkRequest

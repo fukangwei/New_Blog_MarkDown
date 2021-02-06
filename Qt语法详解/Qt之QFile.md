@@ -51,6 +51,7 @@ int main ( int argc, char *argv[] ) {
 }
 ```
 
+
 ---
 
 &emsp;&emsp;`Qt`作为一个通用开发库，提供了跨平台的文件操作能力。`Qt`通过`QIODevice`提供了对`I/O`设备的抽象，这些设备具有读写字节块的能力。下面是`I/O`设备的类图(左图为`Qt4`的，右图为`Qt5`的)：
@@ -314,6 +315,7 @@ while ( !line3.isNull() ) {
     line3 = in.readLine();
 }
 ```
+
 
 ---
 

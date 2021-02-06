@@ -70,6 +70,7 @@ void MainWindow::showSelectedImage ( QTreeWidgetItem *item, int column ) {
 }
 ```
 
+
 ---
 
 &emsp;&emsp;The `QTreeWidget` class provides a tree view that uses a predefined tree model.

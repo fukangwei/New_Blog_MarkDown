@@ -843,6 +843,7 @@ bar.o : bar.c
 <pattern ...> : <variable-assignment>
 ```
 
+
 ---
 
 ### 使用条件判断

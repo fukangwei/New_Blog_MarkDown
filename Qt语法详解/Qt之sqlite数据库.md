@@ -136,6 +136,7 @@ database.close(); /* 关闭数据库 */
 QFile::remove ( "database.db" ); /* 删除数据库 */
 ```
 
+
 ---
 
 &emsp;&emsp;`QSqlDatabase`类实现了数据库连接的操作，`QSqlQuery`类执行`SQL`语句，`QSqlRecord`类封装数据库所有记录。
@@ -280,6 +281,7 @@ if ( QSqlDatabase::contains ( "qt_sql_default_connection" ) ) {
     db = QSqlDatabase::addDatabase ( "QSQLITE" );
 }
 ```
+
 
 ---
 

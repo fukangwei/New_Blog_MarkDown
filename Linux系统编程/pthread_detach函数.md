@@ -36,6 +36,7 @@ void print_message_function ( void *ptr ) {
 }
 ```
 
+
 ---
 
 ### pthread_detach作用

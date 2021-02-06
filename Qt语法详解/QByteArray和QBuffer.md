@@ -227,6 +227,7 @@ buffer.write ( "def", 3 );
 buffer.close(); /* byteArray = "abcdef" */
 ```
 
+
 ---
 
 ### Qt中QByteArray与byte之间转换

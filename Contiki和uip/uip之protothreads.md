@@ -226,6 +226,7 @@ static char handle_dhcp ( void ) {
 }
 ```
 
+
 ---
 
 &emsp;&emsp;`protothread`是专为资源有限的系统设计的一种耗费资源特别少并且不使用堆栈的线程模型，相比于嵌入式操作系统，其有如下优点：

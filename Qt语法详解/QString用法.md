@@ -105,6 +105,7 @@ int main() {
 }
 ```
 
+
 ---
 
 ### QString与数字的相互转化
@@ -184,6 +185,7 @@ const char *p = qstr.toStdString().data(); /* 转换过来的是常量 */
 QDateTime qdate = QDateTime::currentDateTime();
 datetime = qdate.toString ( "yyyy年MM月dd日ddddhh:mm:ss" );
 ```
+
 
 ---
 
@@ -322,6 +324,7 @@ x.replace ( 4, 3, y ); /* x is "Say no!" */
 QString &QString::setNum ( uint n, int base = 10 );
 ```
 
+
 ---
 
 ### QString与“char *”之间的转换
@@ -359,6 +362,7 @@ int main ( int argc, char *argv[] ) {
 }
 ```
 
+
 ---
 
 ### 如何使用QString::arg？
@@ -385,6 +389,7 @@ qDebug() << "status:" << status;
 ``` cpp
 status: "Processing file 5 of 10: lyc.txt"
 ```
+
 
 ---
 

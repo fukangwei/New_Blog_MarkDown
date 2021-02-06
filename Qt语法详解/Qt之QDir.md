@@ -91,6 +91,7 @@ true
 Already exits
 ```
 
+
 ---
 
 - `QString QDir::homePath() [static]`: Returns the absolute path of the user's home directory. Under `Windows`, this function will return the directory of the current user's profile. Typically, this is:

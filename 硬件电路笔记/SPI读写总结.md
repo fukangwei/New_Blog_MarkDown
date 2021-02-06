@@ -120,6 +120,7 @@ uint8 SPI_WriteAndRead_OneByte ( uint8 u8_writedata ) {
 }
 ```
 
+
 ---
 
 &emsp;&emsp;`STM32`模拟`SPI`时序的代码如下：

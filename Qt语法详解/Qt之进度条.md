@@ -92,6 +92,7 @@ void MainWindow::updateDataTransferProgress ( qint64 readBytes, qint64 totalByte
 }
 ```
 
+
 ---
 
 - `hide`：实现`QProgressBar`进度条的隐藏。

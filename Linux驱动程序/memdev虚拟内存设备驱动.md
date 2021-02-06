@@ -267,6 +267,7 @@ module_exit ( globalmem_exit );
 MODULE_LICENSE ( "Dual BSD/GPL" );
 ```
 
+
 ---
 
 &emsp;&emsp;目前有两个设备，它们的主设备号是相同的，但次设备号不同。

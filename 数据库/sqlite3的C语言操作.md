@@ -200,6 +200,7 @@ int main ( int agrc, char *argv[] ) {
 }
 ```
 
+
 ---
 
 ### sqlite3使用回调函数
@@ -250,6 +251,7 @@ ncols = 4 (总共4个字段)
  values[0]:  1;  values[1]:  HHB;  values[2]: ShangHai;  values[3]: 25
 headers[0]: ID; headers[1]: NAME; headers[2]:  ADDRESS; headers[3]: AGE
 ```
+
 
 ---
 

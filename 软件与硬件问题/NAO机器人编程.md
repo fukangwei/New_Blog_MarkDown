@@ -334,6 +334,7 @@ timeLists = [[1.0, 2.0]] * 6
 proxyMo.angleInterpolation('RArm', angleLists, timeLists, True)
 ```
 
+
 ---
 
 ### getSensorNames

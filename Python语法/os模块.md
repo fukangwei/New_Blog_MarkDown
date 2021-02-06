@@ -710,6 +710,7 @@ b'2\\'
 b'\xbe2'
 ```
 
+
 ---
 
 ### 环境变量
@@ -742,6 +743,7 @@ dir = "D:\LearnTool"
 os.environ['datapath'] = dir
 print(os.environ.get('datapath'))
 ```
+
 
 ---
 

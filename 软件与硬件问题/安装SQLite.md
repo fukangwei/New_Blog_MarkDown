@@ -91,6 +91,7 @@ seq name file
 sudo apt-get install sqlitebrowser
 ```
 
+
 ---
 
 ### Windows上安装SQLite
@@ -104,6 +105,7 @@ Enter ".help" for instructions
 Enter SQL statements terminated with a ";"
 sqlite>
 ```
+
 
 ---
 

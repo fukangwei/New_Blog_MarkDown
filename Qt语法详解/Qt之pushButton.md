@@ -54,6 +54,7 @@ ui->pushButton->setFocus(); /* 设置默认焦点 */
 ui->pushButton->setDefault ( true ); /* 设置默认按钮，设置了这个属性，当用户按下回车的时候，就会按下该按钮 */
 ```
 
+
 ---
 
 ### QPushbutton用于发送toggled(bool)的checkable属性

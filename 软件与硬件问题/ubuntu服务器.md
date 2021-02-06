@@ -190,6 +190,7 @@ TFTP_OPTIONS="-l -c -s"
 sudo service tftpd-hpa restart
 ```
 
+
 ---
 
 ### ssh服务器
@@ -218,6 +219,7 @@ sudo /etc/init.d/ssh start
 ``` bash
 sudo /etc/init.d/ssh restart
 ```
+
 
 ---
 
