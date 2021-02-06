@@ -127,78 +127,49 @@ if (condition) {
 Language                   | key
 ---------------------------|----
 `C`                        | `c`
-`Apache`                   | `apache`
-`AppleScript`              | `applescript`
-`AsciiDoc`                 | `asciidoc`
-`AutoHotkey`               | `autohotkey`
 `AVR Assembler`            | `avrasm`
 `Bash`                     | `bash`
-`BrainFuck`                | `brainfuck`
 `CMake`                    | `cmake`
 `CoffeeScript`             | `coffeescript`
 `C++`                      | `cpp`
 `C#`                       | `cs`
 `CSS`                      | `css`
-`D`                        | `d`
-`Dart`                     | `d`
 `Delphi`                   | `delphi`
 `Diff`                     | `diff`
 `Django`                   | `django`
 `DOS .bat`                 | `dos`
-`Erlang REPL`              | `erlang-repl`
-`Erlang`                   | `erlang`
-`FIX`                      | `fix`
-`F#`                       | `fsharp`
-`G-code (ISO 6983)`        | `gcode`
 `Go`                       | `go`
-`Gradle`                   | `gradle`
 `Haskell`                  | `haskell`
-`Haxe`                     | `haxe`
 `HTTP`                     | `http`
-`Ini file`                 | `ini`
 `Java`                     | `java`
 `JavaScript`               | `javascript`
 `JSON`                     | `json`
-`Lisp`                     | `lisp`
-`LiveCode`                 | `livecodeserver`
-`LiveScript`               | `livescript`
 `Lua`                      | `lua`
 `Makefile`                 | `makefile`
 `Markdown`                 | `markdown`
-`Mathematica`              | `mathematica`
 `Matlab`                   | `matlab`
-`Monkey`                   | `monkey`
 `nginx`                    | `nginx`
 `Objective C`              | `objectivec`
 `Oxygene`                  | `oxygene`
 `Perl`                     | `perl`
 `PHP`                      | `php`
 `PowerShell`               | `powershell`
-`Processing`               | `processing`
-`Python's profiler output` | `profile`
 `Protocol Buffers`         | `protobuf`
-`Puppet`                   | `puppet`
 `Python`                   | `python`
-`Q`                        | `q`
 `R`                        | `r`
 `Ruby`                     | `ruby`
-`Oracle Rules Language`    | `ruleslanguage`
 `Rust`                     | `rust`
 `Scala`                    | `scala`
-`Scheme`                   | `scheme`
-`SmallTalk`                | `smalltalk`
 `SQL`                      | `sql`
 `Swift`                    | `swift`
 `Tcl`                      | `tcl`
 `TeX`                      | `tex`
-`Twig`                     | `twig`
 `TypeScript`               | `typescript`
 `VB.NET`                   | `vbnet`
 `VBScript in HTML`         | `vbscript-html`
 `VBScript`                 | `vbscript`
 `Verilog`                  | `verilog`
 `VHDL`                     | `vhdl`
-`Vim Script`               | `vim`
 `Intel x86 Assembly`       | `x86asm`
 `XML`或`HTML`              | `xml`
 

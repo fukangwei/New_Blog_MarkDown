@@ -544,6 +544,6 @@ dev = &mem_devp[num];
 filp->private_data = dev; /* 传递的是mem_dev结构数组中其中一个的地址 */
 ```
 
-<img src="./memdev虚拟内存设备驱动/1.jpg" height="165" width="226">
+<img src="./memdev虚拟内存设备驱动/1.jpg" width = 40%>
 
-<img src="./memdev虚拟内存设备驱动/2.jpg" height="143" width="216">
+<img src="./memdev虚拟内存设备驱动/2.jpg" width = 40%>

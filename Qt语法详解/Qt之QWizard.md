@@ -156,7 +156,7 @@ int main ( int argc, char *argv[] ) {
 
 &emsp;&emsp;You can explicitly set the look to use using `setWizardStyle()` (e.g., if you want the same look on all platforms).
 
-<img src="./Qt之QWizard/1.png" height="291" width="540">
+<img src="./Qt之QWizard/1.png" width=50%>
 
 &emsp;&emsp;**Note**: `AeroStyle` has effect only on a `Windows Vista system` with alpha compositing enabled. `ModernStyle` is used as a fallback when this condition is not met.
 &emsp;&emsp;In addition to the wizard style, there are several options that control the look and feel of the wizard. These can be set using `setOption()` or `setOptions()`. For example, `HaveHelpButton` makes `QWizard` show a Help button along with the other wizard buttons.

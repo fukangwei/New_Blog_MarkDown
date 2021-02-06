@@ -14,10 +14,10 @@ date: 2018-12-30 18:43:42
 &emsp;&emsp;`RNG`类是`opencv`里`C++`的随机数产生器。它可产生一个`64`位的`int`随机数。目前可按均匀分布和高斯分布产生随机数。随机数的产生采用的是`Multiply-With-Carry`算法和`Ziggurat`算法。
 &emsp;&emsp;`RNG`可以产生如下随机数：
 
-- `RNG(int seed)`：使用种子seed产生一个64位随机整数，默认`-1`。
+- `RNG(int seed)`：使用种子`seed`产生一个`64`位随机整数，默认`-1`。
 - `RNG::uniform()`：产生一个均匀分布的随机数。
 - `RNG::gaussian()`：产生一个高斯分布的随机数。
-- `RNG::uniform(a, b)`：返回一个`[a, b)`范围的均匀分布的随机数，a和b的数据类型要一致，而且必须是`int`、`float`、`double`中的一种，默认是`int`。
+- `RNG::uniform(a, b)`：返回一个`[a, b)`范围的均匀分布的随机数，`a`和`b`的数据类型要一致，而且必须是`int`、`float`、`double`中的一种，默认是`int`。
 - `RNG::gaussian(σ)`：返回一个均值为`0`，标准差为`σ`的随机数。如果要产生均值为`λ`，标准差为`σ`的随机数，可以使用`λ + RNG::gaussian(σ)`。
 
 &emsp;&emsp;代码示例如下：

@@ -323,7 +323,7 @@ meshgrid is very useful to evaluate functions on a grid.
 
 $$
 \begin{equation}
-\left (a \ast  v \right )\left [n \right ] = \sum_{m=-\infty}^{\infty }a\left [ m\right ]v\left [ n - m\right ]
+\left (a \ast  v \right )\left [n \right ] = \sum_{m=-\infty}^{\infty }a\left [ m\right ]v\left [ n - m\right ] \notag
 \end{equation}
 $$
 

@@ -189,7 +189,7 @@ plt.imshow(img)  # img是图片
 matplotlib.pyplot.imshow(X, cmap=None)
 ```
 
-参数X是要绘制的图像或数组，`cmap`是颜色图谱(`colormap`)，默认绘制为`RGB`颜色空间。其它可选的颜色图谱如下：
+参数`X`是要绘制的图像或数组，`cmap`是颜色图谱(`colormap`)，默认绘制为`RGB`颜色空间。其它可选的颜色图谱如下：
 
 颜色图谱   | 描述       | 颜色图谱   | 描述
 ----------|------------|-----------|------
@@ -439,7 +439,7 @@ for i in range(50):
 plt.pause(1)
 ```
 
-#### 没有GUI时使用matplotlib绘图
+### 没有GUI时使用matplotlib绘图
 
 &emsp;&emsp;在`import matplotlib.pyplot as plt`语句之前添加如下语句：
 

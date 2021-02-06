@@ -15,7 +15,7 @@ void mixChannels ( const Mat *src, int nsrc, Mat *dst,
 - `dst`: Output array or vector of matrices. All the matrices must be allocated. Their size and depth must be the same as in `src[0]`.
 - `ndst`: Number of matrices in `dst`.
 - `fromTo`: Array of index pairs specifying which channels are copied and where. `fromTo[k * 2]` is a `0-based` index of the input channel in `src`. `fromTo[k * 2 + 1]` is an index of the output channel in `dst`. The continuous channel numbering is used: the first input image channels are indexed from `0` to `src[0].channels() - 1`, the second input image channels are indexed from `src[0].channels()` to `src[0].channels() + src[1].channels() - 1`, and so on. The same scheme is used for the output image channels. As a special case, when `fromTo[k * 2]` is negative, the corresponding output channel is filled with `zero`.
-- `npairs`: Number of index pairs in fromTo.
+- `npairs`: Number of index pairs in `fromTo`.
 
 &emsp;&emsp;In the example below, the code splits a `4-channel` RGBA image into a `3-channel` BGR (with R and B channels swapped) and a separate `alpha-channel` image:
 &emsp;&emsp;example one:

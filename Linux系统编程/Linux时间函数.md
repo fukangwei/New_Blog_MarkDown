@@ -29,13 +29,13 @@ typedef long time_t;
 #define _TM_DEFINED
 
 struct tm {
-    int tm_sec;  /* 秒，取值区间为0至59                                  */
-    int tm_min;  /* 分，取值区间为0至59                                  */
-    int tm_hour; /* 时，取值区间为0至23                                  */
-    int tm_mday; /* 日，取值区间为1至31                                  */
-    int tm_mon;  /* 月份，取值区间为0至11                                */
-    int tm_year; /* 年份，其值为1900年至今年数                           */
-    int tm_wday; /* 星期，取值区间为0至6，0代表星期天，1代表星期1，以此类推 */
+    int tm_sec;  /* 秒，取值区间为0至59                                */
+    int tm_min;  /* 分，取值区间为0至59                                */
+    int tm_hour; /* 时，取值区间为0至23                                */
+    int tm_mday; /* 日，取值区间为1至31                                */
+    int tm_mon;  /* 月份，取值区间为0至11                              */
+    int tm_year; /* 年份，其值为1900年至今年数                          */
+    int tm_wday; /* 星期，取值区间为0至6，0代表星期天，1代表星期1，以此类推  */
     int tm_yday; /* 从每年的1月1日开始的天数，取值区间为0至365，0代表1月1日 */
     /* 夏令时标识符，使用夏令时，tm_isdst为正；不使用夏令时，tm_isdst为0；不了解情况时，tm_isdst为负 */
     int tm_isdst;

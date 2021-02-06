@@ -181,7 +181,7 @@ sudo apt-get update && sudo apt-get upgrade
 sudo apt-get install libncurses5-dev
 ```
 
-### undefined reference to \`initscr'
+### undefined reference to initscr
 
 &emsp;&emsp;代码如下：
 
