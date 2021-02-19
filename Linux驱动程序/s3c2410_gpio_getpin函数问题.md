@@ -34,7 +34,7 @@ if ( MISO_STU ) {
 uint8 SPI_RW ( uint8 tmp ) {
     uint8 bit_ctr;
 
-    for ( bit_ctr = 0 ; bit_ctr < 8 ; bit_ctr++ ) { /* output 8-bit */
+    for ( bit_ctr = 0; bit_ctr < 8; bit_ctr++ ) { /* output 8-bit */
         if ( tmp & 0x80 ) { /* output 'tmp', MSB to MOSI */
             MOSI_H;
         } else {
@@ -46,7 +46,7 @@ uint8 SPI_RW ( uint8 tmp ) {
         ndelay ( 60 );
 
         if ( MISO_STU ) { /* capture current MISO bit */
-            tmp |= 0x01 ;
+            tmp |= 0x01;
         }
 
         SCK_L; /* then set SCK low again */

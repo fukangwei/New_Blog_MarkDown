@@ -25,14 +25,14 @@ int main ( void ) {
         sleep ( 1 );
     }
 
-    return ( 0 ) ;
+    return ( 0 );
 }
 
 void print_message_function ( void *ptr ) {
     pthread_detach ( pthread_self() );
     static int g;
     printf ( "%d\n", g++ );
-    pthread_exit ( 0 ) ;
+    pthread_exit ( 0 );
 }
 ```
 

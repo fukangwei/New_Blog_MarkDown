@@ -270,10 +270,10 @@ void GPIO_Configuration ( void ) {
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
-    GPIO_Init ( GPIOA , &GPIO_InitStructure );
+    GPIO_Init ( GPIOA, &GPIO_InitStructure );
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-    GPIO_Init ( GPIOA , &GPIO_InitStructure );
+    GPIO_Init ( GPIOA, &GPIO_InitStructure );
 }
 
 void RCC_Configuration ( void ) {
@@ -310,7 +310,7 @@ void USART_Configuration ( void ) {
     USART_ClockInitStructure.USART_CPOL = USART_CPOL_Low;
     USART_ClockInitStructure.USART_CPHA = USART_CPHA_2Edge;
     USART_ClockInitStructure.USART_LastBit = USART_LastBit_Disable;
-    USART_ClockInit ( USART1 , &USART_ClockInitStructure );
+    USART_ClockInit ( USART1, &USART_ClockInitStructure );
     USART_InitStructure.USART_BaudRate = 9600;
     USART_InitStructure.USART_WordLength = USART_WordLength_8b;
     USART_InitStructure.USART_StopBits = USART_StopBits_1;

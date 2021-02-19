@@ -17,7 +17,7 @@ map<int, char>    mapint;
 &emsp;&emsp;2. 向`map`中添加数据：
 
 ``` cpp
-map<int , string> maplive;
+map<int, string> maplive;
 maplive.insert ( pair<int, string> ( 102, "aclive" ) );
 maplive.insert ( map<int, string>::value_type ( 321, "hai" ) );
 maplive[112] = "April"; /* map中最常用的插入操作 */
@@ -40,7 +40,7 @@ if ( l_it == maplive.end() ) {
 
 ``` cpp
 /* 如果需要删除key值为112的元素 */
-map<int , string >::iterator l_it;;
+map<int, string>::iterator l_it;;
 l_it = maplive.find ( 112 );
 
 if ( l_it == maplive.end() ) {

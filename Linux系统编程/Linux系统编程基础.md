@@ -108,7 +108,7 @@ int close ( int fd ); /* fd是文件描述符 */
 #include <sys/stat.h>
 #include <fcntl.h>
 
-int main ( int argc , char *argv[] ) {
+int main ( int argc, char *argv[] ) {
     int fd;
     if ( argc < 2 ) {
         puts ( "please input the open file pathname!\n" );
@@ -740,7 +740,7 @@ void *create ( void *arg ) {
     return ( void * ) 0;
 }
 
-int main ( int argc , char *argv[] ) {
+int main ( int argc, char *argv[] ) {
     pthread_t tidp;
     int error;
     int test = 4;
@@ -879,7 +879,7 @@ void *thread ( void *str ) {
 
     for ( i = 0; i < 3; ++i ) {
         sleep ( 1 );
-        printf ( "This in the thread : %d\n" , i );
+        printf ( "This in the thread : %d\n", i );
     }
 
     return NULL;
@@ -894,7 +894,7 @@ int main() {
 
     for ( i = 0; i < 3; ++i ) {
         sleep ( 1 );
-        printf ( "This in the main : %d\n" , i );
+        printf ( "This in the main : %d\n", i );
     }
 
     return 0;

@@ -11,14 +11,6 @@ void qsort ( void* base, int num, int width, int ( *fcmp ) ( const void*, const 
 ```
 
 `base`是待排序数组首地址，`num`是数组中待排序元素数量，`width`是各元素的占用空间大小，`fcmp`是指向函数的指针，用于确定排序的顺序。
-
-``` bash
-MSDN: The qsort function implements a quick-sort algorithm to sort an array of num elements, each of width bytes.
-The argument base is a pointer to the base of the array to be sorted. qsort overwrites this array with the sorted elements.
-The argument compare is a pointer to a user-supplied routine that compares two array elements and returns a value specifying their
-relationship. qsort calls the compare routine one or more times during the sort, passing pointers to two array elements on each call.
-```
-
 &emsp;&emsp;`fcmp`函数的原型为`fcmp ( ( void * ) &elem1, ( void * ) &elem2 );`，具体描述如下：
 
 `fcmp`函数的返回值 | 描述

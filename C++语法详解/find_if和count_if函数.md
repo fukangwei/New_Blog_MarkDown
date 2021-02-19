@@ -116,13 +116,13 @@ bool gt_2 ( const pair<const string, int> &r ) {
     return r.second > 2;
 }
 
-void f ( map<string , int> &m ) { /* 找到第一个大于2的值 */
+void f ( map<string, int> &m ) { /* 找到第一个大于2的值 */
     typedef map<string, int>::const_iterator M1;
     M1 i = find_if ( m.begin(), m.end(), gt_2 );
     cout << ( *i ).first << " " << ( *i ).second << endl;
 }
 
-void g ( map<string , int> &m ) { /* 统计频率高于2的个数 */
+void g ( map<string, int> &m ) { /* 统计频率高于2的个数 */
     int c2 = count_if ( m.begin(), m.end(), gt_2 );
     cout << c2 << endl;
 }

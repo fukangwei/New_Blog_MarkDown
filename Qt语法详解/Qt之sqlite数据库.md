@@ -29,7 +29,7 @@ database.setPassword ( "123456" );
 
 if ( !database.open() ) { /* 打开数据库 */
     qDebug() << database.lastError();
-    qFatal ( "failed to connect." ) ;
+    qFatal ( "failed to connect." );
 } else {
     /* QSqlQuery类提供执行和操作的SQL语句的方法。可以用来执行DML(数据操作语言)语句，
        如SELECT、INSERT、UPDATE、DELETE，以及DDL(数据定义语言)语句，

@@ -58,7 +58,7 @@ struct ST {
 };
 
 int main ( void ) {
-    ST a ; /* 调用默认构造函数 */
+    ST a; /* 调用默认构造函数 */
     vector<ST> v;
     v.push_back ( a ); /* 调用复制构造函数 */
     ST s = v.at ( 0 ); /* 调用“=”函数 */

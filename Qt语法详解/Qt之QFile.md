@@ -286,16 +286,18 @@ QString QTextStream::read ( qint64 maxlen ); /* 读取txt文件maxlen个字符  
 QString line1 = in.read ( 1 );               /* 读取一个字符               */
 QString line2 = in.read ( 1 );               /* 自动读取下一个字符          */
 QString line1 = in.read ( 20 );              /* 读取20个字符，归为一个字符串 */
+
 QString QTextStream::readLine ( qint64 maxlen = 0 )：
 QString line1 = in.readLine ( 0 ); /* 读取第0行文档     */
 QString line2 = in.readLine ( 5 ); /* 读取第0行5个文档  */
 QString line1 = in.readLine();     /* 读取第0行文档     */
 QString line2 = in.readLine();     /* 自动读取第1行文档 */
+
 QString QTextStream::readAll ()：
 QString line1 = in.readAll(); /* 读取全部txt文档，并归为一个字符串 */
 bool QTextStream::seek ( qint64 pos )：
 bool a = in.seek ( 6 );         /* 定位文本中的第6个位置 */
-QString line2 = in.read ( 1 ) ; /* 读取该位的1字符       */
+QString line2 = in.read ( 1 ); /* 读取该位的1字符       */
 ```
 
 &emsp;&emsp;读取`txt`文本全部内容的方法：

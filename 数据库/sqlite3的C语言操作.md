@@ -162,7 +162,7 @@ void search_by_id ( char *table, char *id ) {
 }
 
 void delete_by_id ( char *table, char *id ) {
-    int rc ;
+    int rc;
     char *sql;
     char *zErrMsg = 0;
     sql = sqlite3_mprintf ( "delete from %s where id=%s", table, id );
@@ -183,7 +183,7 @@ int main ( int agrc, char *argv[] ) {
     int i;
     create_table ( filename );
 
-    for ( i = 0 ; i < 10; i++ ) {
+    for ( i = 0; i < 10; i++ ) {
         insert_record ( "save_data", 2000, "5678", "2012-03-12 09:43:56" );
         insert_record ( "save_data", 2001, "5678", "2012-03-12 09:43:56" );
         insert_record ( "save_data", 2002, "5678", "2012-03-12 09:43:56" );
@@ -311,8 +311,8 @@ int main ( int argc, char **argv ) {
         printf ( "--------------------------------\n" );
         index = nColumn; /* 字段值从index开始 */
 
-        for ( i = 0; i < nRow ; i++ ) {
-            for ( j = 0 ; j < nColumn; j++ ) {
+        for ( i = 0; i < nRow; i++ ) {
+            for ( j = 0; j < nColumn; j++ ) {
                 printf ( "%-5s ", dbResult[index++] );
             }
 

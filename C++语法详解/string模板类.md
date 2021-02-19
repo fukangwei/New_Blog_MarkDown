@@ -14,7 +14,7 @@ date: 2019-02-07 11:41:33
 using namespace std;
 
 int main() {
-    string s1 ;
+    string s1;
     s1 = "1234567890";
 
     for ( int i = 0, len = s1.length(); i < len; i++ ) {

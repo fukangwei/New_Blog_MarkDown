@@ -263,13 +263,13 @@ int main ( void ) {
     uart_init ( 9600 );
     LED_Init();
     STMFLASH_Write ( FLASH_SAVE_ADDR, ( u16 * ) TEXT_Buffer, SIZE );
-    printf ( "I write %s\r\n", TEXT_Buffer ) ;
+    printf ( "I write %s\r\n", TEXT_Buffer );
     delay_ms ( 500 );
 
     while ( 1 ) {
         memset ( datatemp, 0, sizeof ( datatemp ) );
         STMFLASH_Read ( FLASH_SAVE_ADDR, ( u16 * ) datatemp, SIZE );
-        printf ( "I read %s\r\n", datatemp ) ;
+        printf ( "I read %s\r\n", datatemp );
         LED = !LED;
         delay_ms ( 500 );
     }

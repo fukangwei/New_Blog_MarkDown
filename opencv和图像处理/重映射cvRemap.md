@@ -186,7 +186,7 @@ int main() {
 
     /* 双层循环，遍历每一个像素点，改变map_x和map_y的值 */
     for ( int i = 0; i < srcImage.rows; i++ ) {
-        for ( int j = 0; j < srcImage.cols ; j++ ) {
+        for ( int j = 0; j < srcImage.cols; j++ ) {
             map_x.at<float> ( i, j ) = static_cast<float> ( srcImage.cols - j - 1 );
             map_y.at<float> ( i, j ) = static_cast<float> ( i );
         }

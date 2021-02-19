@@ -169,7 +169,7 @@ int main ( int argc, char *const argv[] ) {
                 /* plot particles */
 #ifdef PLOT_PARTICLES
                 Point partPt ( condens->flSamples[i][0], condens->flSamples[i][1] );
-                drawCross ( partPt , Scalar ( 255, 0, 255 ), 2 );
+                drawCross ( partPt, Scalar ( 255, 0, 255 ), 2 );
 #endif
             }
 

@@ -132,7 +132,7 @@ Enter password: ******
 在登录成功后会出现`mysql>`命令提示窗口，你可以在上面执行任何`SQL`语句。以上命令执行后，登录成功的输出结果如下：
 
 ``` shell
-Welcome to the MySQL monitor.  Commands end with ; or \g.
+Welcome to the MySQL monitor. Commands end with ; or \g.
 Your MySQL connection id is 2854760 to server version: 5.0.9
 
 Type 'help;' or '\h' for help. Type '\c' to clear the buffer.

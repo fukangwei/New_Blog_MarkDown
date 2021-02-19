@@ -74,7 +74,7 @@ void MyTask ( void *pdata ) {
 #endif
     pdata = pdata;
 
-    for ( ; ; ) {
+    for ( ;; ) {
         PC_DispStr ( 10, ++y, s1, DISP_BGND_BLACK + DISP_FGND_WHITE ); /* 显示信息 */
         IntBlkPtr = OSMemGet ( /* 请求内存块*/
                         IntBuffer, /* 内存分区的指针 */
@@ -106,7 +106,7 @@ void YouTask ( void *pdata ) {
 #endif
     pdata = pdata;
 
-    for ( ; ; ) {
+    for ( ;; ) {
         PC_DispStr ( 10, ++y, s2, DISP_BGND_BLACK + DISP_FGND_WHITE );
         IntBlkPtr = OSMemGet ( /* 请求内存块 */
                         IntBuffer, /* 内存分区的指针 */
@@ -131,7 +131,7 @@ void HerTask ( void *pdata ) {
 #endif
     pdata = pdata;
 
-    for ( ; ; ) {
+    for ( ;; ) {
         PC_DispStr ( 10, ++y, s3, DISP_BGND_BLACK + DISP_FGND_WHITE );
         IntBlkPtr = OSMemGet ( /* 请求内存块 */
                         IntBuffer, /* 内存分区的指针 */

@@ -73,7 +73,7 @@ void MyTask ( void *pdata ) {
 #endif
     pdata = pdata;
 
-    for ( ; ; ) {
+    for ( ;; ) {
         OSFlagPend ( /* 请求信号量集 */
             Sem_F, /* 请求信号量集指针 */
             /* 过滤器，请求第0和第1位信号，即0011。这里是把数据3强制转化为OS_FLAGS
@@ -98,7 +98,7 @@ void YouTask ( void *pdata ) {
 #endif
     pdata = pdata;
 
-    for ( ; ; ) {
+    for ( ;; ) {
         PC_DispStr ( 10, ++y, s2, DISP_BGND_BLACK + DISP_FGND_WHITE ); /* 显示信息 */
         OSTimeDlyHMSM ( 0, 0, 8, 0 ); /* 等待8s */
         OSFlagPost ( /* 向信号量集发信号 */
@@ -119,7 +119,7 @@ void HerTask ( void *pdata ) {
 #endif
     pdata = pdata;
 
-    for ( ; ; ) {
+    for ( ;; ) {
         PC_DispStr ( 10, ++y, s3, DISP_BGND_BLACK + DISP_FGND_WHITE ); /* 显示信息 */
         OSTimeDlyHMSM ( 0, 0, 8, 0 ); /* 等待8s */
         OSFlagPost ( /* 向信号量集发信号 */

@@ -41,7 +41,7 @@ int channels[] = {0, 1};
 Mat dstHist;
 Rect rect;
 vector<Point> pt; /* 保存目标轨迹 */
-void onMouse ( int event, int x, int y, int flags , void *ustc ); /* 鼠标回调函数 */
+void onMouse ( int event, int x, int y, int flags, void *ustc ); /* 鼠标回调函数 */
 
 int main ( int argc, char *argv[] ) {
     VideoCapture video ( argv[1] );
