@@ -26,7 +26,7 @@ maplive[112] = "April"; /* map中最常用的插入操作 */
 &emsp;&emsp;3. 在`map`中查找元素。`find`函数返回一个迭代器指向键值为`key`的元素；如果没找到，就返回指向`map`尾部的迭代器：
 
 ``` cpp
-map<int, string >::iterator l_it;;
+map<int, string>::iterator l_it;;
 l_it = maplive.find ( 112 );
 
 if ( l_it == maplive.end() ) {
@@ -201,7 +201,7 @@ void record ( const string &s ) {
     histogtram[s]++; /* 记录字符串s出现的次数 */
 }
 
-void print ( const pair<const string, int > &r ) {
+void print ( const pair<const string, int> &r ) {
     cout << r.first << " " << r.second << endl;
 }
 

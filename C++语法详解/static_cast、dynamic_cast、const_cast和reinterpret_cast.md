@@ -163,7 +163,7 @@ double d = static_cast < double > ( n );
 
 ``` cpp
 int n = 9;
-double d = reinterpret_cast<double & > ( n );
+double d = reinterpret_cast< double & > ( n );
 ```
 
 这次结果有所不同，在进行计算以后，`d`包含无用值。这是因为`reinterpret_cast`仅仅是复制`n`的比特位到`d`，没有进行必要的分析。因此，你需要谨慎使用`reinterpret_cast`。

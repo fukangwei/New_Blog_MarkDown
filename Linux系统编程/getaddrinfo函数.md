@@ -59,7 +59,7 @@ const char *gai_strerror ( int error );
 &emsp;&emsp;由`getaddrinfo`返回的所有存储空间都是动态获取的，这些存储空间必须通过调用`freeaddrinfo`返回给系统。
 
 ``` cpp
-#include < netdb.h >
+#include <netdb.h>
 void freeaddrinfo ( struct addrinfo *ai );
 ```
 
