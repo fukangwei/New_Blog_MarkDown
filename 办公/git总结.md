@@ -763,3 +763,17 @@ git pull origin next
 - `git branch <branchname>`：新建分支。
 - `git branch -d <branchname>`：删除本地分支。
 - `git branch -m <old_name> <new_name>`：重命名本地分支。
+
+### 强制覆盖本地代码
+
+&emsp;&emsp;使用如下命令：
+
+``` bash
+git fetch --all
+git reset --hard origin/master
+git pull
+```
+
+### 注意点
+
+&emsp;&emsp;1. 如果将文件名的进行大小写转换(例如将`ABC.cpp`重命名为`abc.cpp`)，则`git`无法察觉到这种改变。
