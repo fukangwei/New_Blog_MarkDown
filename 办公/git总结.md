@@ -777,3 +777,4 @@ git pull
 ### 注意点
 
 &emsp;&emsp;1. 如果将文件名的进行大小写转换(例如将`ABC.cpp`重命名为`abc.cpp`)，则`git`无法察觉到这种改变。
+&emsp;&emsp;2. 如果出现了`fatal: unable to access https://github.com/...`的问题，解决方法是把`https`改成`git`。
