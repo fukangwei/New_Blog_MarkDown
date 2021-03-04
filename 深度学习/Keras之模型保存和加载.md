@@ -10,7 +10,7 @@ date: 2019-01-01 14:04:48
 - 训练配置项(损失函数和优化器)。
 - 优化器状态，允许准确地从你上次结束的地方继续训练。
 
-你可以使用`keras.models.load_model(filepath)`重新实例化模型。`load_model`还将负责使用保存的训练配置项来编译模型(除非模型从未编译过)。
+&emsp;&emsp;你可以使用`keras.models.load_model(filepath)`重新实例化模型。`load_model`还将负责使用保存的训练配置项来编译模型(除非模型从未编译过)。
 
 ``` python
 from keras.models import load_model

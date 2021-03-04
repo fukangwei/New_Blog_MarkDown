@@ -261,7 +261,7 @@ name1/var1/Add:0
 ```
 
 可以看出，`variable scope`和`name scope`都会给`op`的`name`加上前缀。
-&emsp;&emsp;对比三个个程序可以看出：
+&emsp;&emsp;对比三个程序可以看出：
 
 - `name_scope`对`get_variable`创建的变量的名字不会有任何影响，而创建的`op`会被加上前缀。
 - `tf.get_variable_scope`返回的只是`variable_scope`，不管`name_scope`，所以以后我们在使用`tf.get_variable_scope().reuse_variables()`时可以无视`name_scope`。

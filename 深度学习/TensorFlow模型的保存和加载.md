@@ -21,7 +21,7 @@ saver = tf.train.Saver(max_to_keep=0)
 saver = tf.train.Saver(max_to_keep=1)
 ```
 
-创建完saver对象后，就可以保存训练好的模型了：
+创建完`saver`对象后，就可以保存训练好的模型了：
 
 ``` python
 saver.save(sess, 'ckpt/mnist.ckpt', global_step=step)

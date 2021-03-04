@@ -79,7 +79,7 @@ $$
 
 ### 位置型PID算法的C语言实现
 
-&emsp;&emsp;这里简单总结一下位置型`PID`实现的伪算法；
+&emsp;&emsp;这里简单总结一下位置型`PID`实现的伪算法：
 
 ``` cpp
 previous_error := 0 // 上一次偏差

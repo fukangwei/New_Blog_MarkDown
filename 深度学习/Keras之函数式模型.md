@@ -227,7 +227,7 @@ evaluate(self, x=None, y=None, batch_size=None, verbose=1, sample_weight=None)
 - `verbose`：日志显示模式，`0`为不在标准输出流输出日志信息，`1`为输出进度条记录。
 - `sample_weight`：训练样本的可选`Numpy`权重数组，用于在训练时调整损失函数(仅用于训练)。可以传递一个`1D`的与样本等长的向量用于对样本进行`1`对`1`的加权，或者在面对时序数据时，传递一个的形式为(`samples, sequence_length`)的矩阵来为每个时间步上的样本赋不同的权。这种情况下请确定在编译模型时添加了`sample_weight_mode = 'temporal'`。
 
-该函数返回标量测试误差(如果模型只有一个输出且没有评估标准)或标量列表(如果模型具有多个输出和/或评估指标)。属性`model.metrics_names`将提供标量输出的显示标签。
+该函数返回标量测试误差(如果模型只有一个输出且没有评估标准)，或者标量列表(如果模型具有多个输出`和/或`评估指标)。属性`model.metrics_names`将提供标量输出的显示标签。
 
 #### predict
 
@@ -337,7 +337,7 @@ evaluate_generator(
 - `generator`：一个生成(`inputs, targets`)或(`inputs, targets, sample_weights`)的生成器，或一个`Sequence(keras.utils.Sequence)`对象的实例，为了避免在使用多进程时数据的重复。
 - `steps`：在声明一个`epoch`完成并开始下一个`epoch`之前从`generator`产生的总步数(批次样本数)。它通常应该等于你的数据集的样本数量除以批量大小。对于`Sequence`，它是可选的：如果未指定，将使用`len(generator)`作为步数。
 
-该函数返回标量测试误差(如果模型只有一个输入且没有评估标准)，或者标量的列表(如果模型有多个输出和/或评估标准)。属性`model.metrics_names`将提供标量输出的显示标签。
+该函数返回标量测试误差(如果模型只有一个输入且没有评估标准)，或者标量的列表(如果模型有多个输出`和/或`评估标准)。属性`model.metrics_names`将提供标量输出的显示标签。
 
 #### predict_generator
 

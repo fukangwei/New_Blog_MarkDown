@@ -31,11 +31,11 @@ float Q_rsqrt ( float number ) {
 &emsp;&emsp;这个简洁的函数最核心的部分就是标注了`what the fuck?`的一句`i = 0x5f3759df - ( i >> 1 );`，再加上`y = y * ( threehalfs - ( x2 * y * y ) );`，两句话就完成了开方运算！而且注意到，核心那句是定点移位运算，速度极快！特别在很多没有乘法指令的`RISC`结构`CPU`上，这样做是极其高效的。
 &emsp;&emsp;算法的原理其实不复杂，就是牛顿迭代法，用$x - \frac{f(x)}{f'(x)}$来不断的逼近$f(x) = a$的根。简单来说比如求平方根：
 
-\begin{equation}
+\begin{aligned}
 f(x) = x^2 = a \\
 f'(x) = 2x \\
-\frac{f(x)}{f'(x)} = \frac{x}{2}
-\end{equation}
+\frac{f(x)}{f'(x)} = \frac{x}{2} \notag
+\end{aligned}
 
 把$f(x)$代入$x - \frac{f(x)}{f'(x)}$后有$(x+\frac{a}{x})/2$。现在我们令`a`为`5`，选一个猜测值(比如`2`)，那么可以这么算：`5/2 = 2.5；(2.5 + 2)/2 = 2.25；5/2.25 = xxx；(2.25 + xxx)/2 = xxxx`。这样反复迭代下去，结果必定收敛于`sqrt(5)`。但是卡马克(`quake3`作者)真正厉害的地方是，他选择了一个神秘的常数`0x5f3759df`来计算那个猜测值。就是加注释的那一行，那一行算出的值非常接近`1/sqrt(n)`，这样只需要`2`次牛顿迭代就可以达到所需要的精度。
 &emsp;&emsp;普渡大学的数学家`Chris Lomont`采用暴力的方法，找到一个比卡马克数字要好上那么一丁点的数字，这个数字就是`0x5f375a86`。`Lomont`为此写下一篇论文`Fast Inverse Square Root`。论文下载地址为`http://www.math.purdue.edu/~clomont/Math/Papers/2003/InvSqrt.pdf`和`http://www.matrix67.com/data/InvSqrt.pdf`。最精简的`1/sqrt`函数如下：

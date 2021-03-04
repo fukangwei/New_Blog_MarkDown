@@ -100,16 +100,16 @@ from keras.datasets import mnist
 
 类别 | 描述          | 中文
 ----|---------------|----
-`0` | `T-shirt/top` | `T恤/上衣`
-`1` | `Trouser`     | `裤子`
-`2` | `Pullover`    | `套头衫`
-`3` | `Dress`       | `连衣裙`
-`4` | `Coat`        | `外套`
-`5` | `Sandal`      | `凉鞋`
-`6` | `Shirt`       | `衬衫`
-`7` | `Sneaker`     | `运动鞋`
-`8` | `Bag`         | `背包`
-`9` | `Ankle boot`  | `短靴`
+`0` | `T-shirt/top` | T恤/上衣
+`1` | `Trouser`     | 裤子
+`2` | `Pullover`    | 套头衫
+`3` | `Dress`       | 连衣裙
+`4` | `Coat`        | 外套
+`5` | `Sandal`      | 凉鞋
+`6` | `Shirt`       | 衬衫
+`7` | `Sneaker`     | 运动鞋
+`8` | `Bag`         | 背包
+`9` | `Ankle boot`  | 短靴
 
 用法如下：
 

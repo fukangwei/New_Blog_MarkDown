@@ -159,7 +159,7 @@ model.fit(x_train, y_train, epochs=20, batch_size=128)
 score = model.evaluate(x_test, y_test, batch_size=128)
 ```
 
-&emsp;&emsp;类似VGG的卷积神经网络：
+&emsp;&emsp;类似`VGG`的卷积神经网络：
 
 ``` python
 import numpy as np

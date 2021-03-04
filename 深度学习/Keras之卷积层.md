@@ -316,7 +316,7 @@ keras.layers.ZeroPadding2D(padding=(1, 1), data_format=None)
 - `padding`：整数，或`2`个整数的元组，或`2`个整数的`2`个元组。
 
 1. 如果为整数：将对宽度和高度运用相同的对称填充。
-2. 如果为`2`个整数的元组：解释为高度和宽度的2个不同的对称裁剪值(`symmetric_height_pad, symmetric_width_pad`)。
+2. 如果为`2`个整数的元组：解释为高度和宽度的`2`个不同的对称裁剪值(`symmetric_height_pad, symmetric_width_pad`)。
 3. 如果为`2`个整数的`2`个元组：解释为(`(top_pad, bottom_pad), (left_pad, right_pad)`)。
 
 - `data_format`：字符串，`channels_last`(默认)或`channels_first`之一，代表图像的通道维的位置。`channels_last`对应输入尺寸为(`batch, height, width, channels`)，`channels_first`对应输入尺寸为(`batch, channels, height, width`)。

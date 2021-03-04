@@ -56,7 +56,7 @@ static PT_THREAD ( handle_dhcp ( void ) ) {
 #define LC_INIT(s) s = 0;
 ```
 
-下面是结构pt的定义：
+下面是结构`pt`的定义：
 
 ``` cpp
 struct pt {

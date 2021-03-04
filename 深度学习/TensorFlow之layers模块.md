@@ -310,7 +310,7 @@ max_pooling2d(
     data_format='channels_last', name=None)
 ```
 
-- `inputs`: 需要池化的输入对象，必须是4维的。
+- `inputs`: 需要池化的输入对象，必须是`4`维的。
 - `pool_size`：池化窗口大小，必须是一个数字(高和宽都是此数字)或者长度为`2`的列表(分别代表高、宽)。
 - `strides`：池化步长，必须是一个数字(高和宽都是此数字)或者长度为`2`的列表(分别代表高、宽)。
 - `padding`：可选参数，`padding`的方法，可选`valid`或者`same`，大小写不区分。

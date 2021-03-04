@@ -625,7 +625,7 @@ convolution(
 - `normalizer_params`：正则化函数的参数。
 - `weights_initializer`：权重的初始化程序。
 - `weights_regularizer`：权重可选的正则化程序。
-- `biases_initializer`：`biase`的初始化程序。
+- `biases_initializer`：`biases`的初始化程序。
 - `biases_regularizer`：`biases`可选的正则化程序。
 - `reuse`：是否共享层或者核变量。
 - `variable_collections`：所有变量的集合列表或者字典。

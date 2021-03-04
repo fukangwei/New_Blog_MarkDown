@@ -96,8 +96,13 @@ tf.VarianceScaling(scale=1.0, mode="fan_in", distribution="normal", seed=None, d
 - `mode`：`fan_in`、`fan_out`和`fan_avg`中的一个，用于计算标准差`stddev`的值。
 - `distribution`：分布类型，`normal`或`uniform`中的一个。
 
-1. 当`distribution = "normal"`时，生成`truncated normal distribution`(截断正态分布)的随机数，其中`stddev = sqrt(scale / n)`，`n`的计算与`mode`参数有关。如果`mode = "fan_in"`，`n`为输入单元的结点数；如果`mode = "fan_out"`，`n`为输出单元的结点数；如果`mode = "fan_avg"`，`n`为输入和输出单元结点数的平均值
-2. 当`distribution = "uniform"`时，生成均匀分布的随机数，假设分布区间为`[-limit, limit]`，则：
+&emsp;&emsp;1. 当`distribution = "normal"`时，生成`truncated normal distribution`(截断正态分布)的随机数，其中`stddev = sqrt(scale / n)`，`n`的计算与`mode`参数有关：
+
+- 如果`mode = "fan_in"`，`n`为输入单元的结点数。
+- 如果`mode = "fan_out"`，`n`为输出单元的结点数。
+- 如果`mode = "fan_avg"`，`n`为输入和输出单元结点数的平均值。
+
+&emsp;&emsp;2. 当`distribution = "uniform"`时，生成均匀分布的随机数，假设分布区间为`[-limit, limit]`，则：
 
 ``` python
 limit = sqrt(3 * scale / n)

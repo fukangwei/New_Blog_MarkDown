@@ -738,7 +738,7 @@ params: [[0.59815351 0.65806083 0.1297678  0.8921319 ]
 tf.nn.top_k(input, k, name=None)
 ```
 
-这个函数的作用是返回`input`中每行最大的k个数，并且返回它们所在位置的索引。`value(i, j)`表示输入数据`input(i)`的第`j`大的元素。`indices(i, j)`给出对应元素的列索引，即`input(i, indices(i, j)) = values(i, j)`。如果遇到两个相等的元素，那么我们先取索引小的值。
+这个函数的作用是返回`input`中每行最大的`k`个数，并且返回它们所在位置的索引。`value(i, j)`表示输入数据`input(i)`的第`j`大的元素。`indices(i, j)`给出对应元素的列索引，即`input(i, indices(i, j)) = values(i, j)`。如果遇到两个相等的元素，那么我们先取索引小的值。
 
 ``` python
 import tensorflow as tf

@@ -114,7 +114,7 @@ torch.normal(means=torch.arange(1, 11), std=torch.arange(1, 0, -0.1))
 [torch.FloatTensor of size 10]
 ```
 
-第二个函数原型如下：
+&emsp;&emsp;第二个函数原型如下：
 
 ``` python
 torch.normal(mean=0.0, std, out=None)
@@ -134,7 +134,7 @@ torch.normal(mean=0.0, std, out=None)
 [torch.FloatTensor of size 5]
 ```
 
-第三个函数原型如下：
+&emsp;&emsp;第三个函数原型如下：
 
 ``` python
 torch.normal(means, std=1.0, out=None)
@@ -247,7 +247,7 @@ torch.max(input)
 0.4729
 ```
 
-第二个函数原型如下：
+&emsp;&emsp;第二个函数原型如下：
 
 ``` python
 torch.max(input, dim, max=None, max_indices=None) -> (Tensor, LongTensor)
@@ -273,7 +273,7 @@ torch.max(input, dim, max=None, max_indices=None) -> (Tensor, LongTensor)
  2      0      0      0      [torch.LongTensor of size 4x1])
 ```
 
-第三个函数原型如下：
+&emsp;&emsp;第三个函数原型如下：
 
 ``` python
 torch.max(input, other, out=None) -> Tensor
@@ -356,7 +356,7 @@ torch.sum(input) -> float
 0.9969287421554327
 ```
 
-第二个函数原型如下：
+&emsp;&emsp;第二个函数原型如下：
 
 ``` python
 torch.sum(input, dim, out=None) -> Tensor
@@ -506,7 +506,7 @@ torch.nn.functional.conv1d(
 >>> F.conv1d(inputs, filters)
 ```
 
-第二个函数原型如下：
+&emsp;&emsp;第二个函数原型如下：
 
 ``` python
 torch.nn.functional.conv2d(
@@ -530,7 +530,7 @@ torch.nn.functional.conv2d(
 >>> F.conv2d(inputs, filters, padding=1)
 ```
 
-第三个函数原型如下：
+&emsp;&emsp;第三个函数原型如下：
 
 ``` python
 torch.nn.functional.conv3d(
@@ -643,7 +643,7 @@ torch.nn.MaxPool1d(
 - `return_indices`：如果等于`True`，则会返回输出最大值的序号，对于上采样操作会有帮助。
 - `ceil_mode`：如果等于`True`，计算输出信号大小的时候，会使用向上取整，代替默认的向下取整的操作。
 
-对于输入信号的输入通道，提供`1`维最大池化(`max pooling`)操作。如果`padding`不是0，会在输入的每一边添加相应数目`0`；`dilation`用于控制内核点之间的距离。
+对于输入信号的输入通道，提供`1`维最大池化(`max pooling`)操作。如果`padding`不是`0`，会在输入的每一边添加相应数目`0`；`dilation`用于控制内核点之间的距离。
 &emsp;&emsp;对于`shape`，输入(`N, C_in, L_in`)，输出(`N, C_out, L_out`)。
 
 ``` python

@@ -1385,11 +1385,11 @@ array([('c', 1), ('a', 2)],
 
 &emsp;&emsp;相关系数是用来反映变量之间相关关系密切程度的统计指标。相关系数也可以看成协方差：一种剔除了两个变量量纲影响、标准化后的特殊协方差。它消除了两个变量变化幅度的影响，而只是单纯地反应两个变量每单位变化时的相似程度：
 
-$$\begin{equation}
+\begin{aligned}
 r = \frac{Cov(X,Y)}{\sqrt{\partial_{x}} \sqrt{\partial_{y}}}
-\end{equation}$$
+\end{aligned}
 
-&emsp;&emsp;$\partial_{x}$和$\partial_{y}$表示$X$、$Y$的方差，并且$|r| ≤ 1$。
+$\partial_{x}$和$\partial_{y}$表示$X$、$Y$的方差，并且$|r| ≤ 1$。
 
 ``` python
 import numpy as np
