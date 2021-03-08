@@ -337,7 +337,7 @@ FRESULT f_sync (
 
 - `FR_OK`：函数成功。
 - `FR_DISK_ERR`：由于底层磁盘`I/O`函数中的错误，而导致该函数失败。
-- `FR_INT_ERR`：由于一个错误的FAT结构或一个内部错误，而导致该函数失败。
+- `FR_INT_ERR`：由于一个错误的`FAT`结构或一个内部错误，而导致该函数失败。
 - `FR_NOT_READY`：由于驱动器中没有存储介质或任何其他原因，而导致磁盘驱动器无法工作。
 - `FR_INVALID_OBJECT`：文件对象无效。
 
@@ -388,7 +388,7 @@ FRESULT f_readdir (
 - `FR_INVALID_OBJECT`：文件对象无效。
 
 &emsp;&emsp;`f_readdir`函数当`_FS_MINIMIZE <= 1`时可用，它顺序地读取目录项。目录中的所有项可以通过重复调用`f_readdir`函数被读取。当所有目录项已被读取并且没有项要读取时，该函数没有任何错误地返回一个空字符串到`f_name`成员中。当`FileInfo`给定一个空指针时，目录对象的读索引将被回绕。
-&emsp;&emsp;当`LFN`功能被使能时，在使用`f_readdir`函数之前，文件信息结构中的`lfname`和`lfsize`必须被初始化为有效数值。`lfname`是一个返回长文件名的字符串缓冲区指针。`lfsize`是以字符为单位的字符串缓冲区的大小。如果读缓冲区或`LFN`工作缓冲区的大小(对于`LFN`)不足，或者对象没有`LFN`，则一个空字符串将被返回到`LFN`读缓冲区。如果`LFN`包含任何不能被转换为OEM代码的字符，则一个空字符串将被返回，但是这不是`Unicode API`配置的情况。当`lfname`是一个空字符串时，没有`LFN`的任何数据被返回。当对象没有`LFN`时，任何小型大写字母可以被包含在`SFN`中。
+&emsp;&emsp;当`LFN`功能被使能时，在使用`f_readdir`函数之前，文件信息结构中的`lfname`和`lfsize`必须被初始化为有效数值。`lfname`是一个返回长文件名的字符串缓冲区指针。`lfsize`是以字符为单位的字符串缓冲区的大小。如果读缓冲区或`LFN`工作缓冲区的大小(对于`LFN`)不足，或者对象没有`LFN`，则一个空字符串将被返回到`LFN`读缓冲区。如果`LFN`包含任何不能被转换为`OEM`代码的字符，则一个空字符串将被返回，但是这不是`Unicode API`配置的情况。当`lfname`是一个空字符串时，没有`LFN`的任何数据被返回。当对象没有`LFN`时，任何小型大写字母可以被包含在`SFN`中。
 &emsp;&emsp;当相对路径功能被使能(`_FS_RPATH == 1`)时，`.`和`..`目录项不会被过滤掉，并且它将出现在读目录项中。
 
 ``` cpp
@@ -480,7 +480,7 @@ FRESULT f_getfree (
 - `FR_DISK_ERR`：由于底层磁盘`I/O`函数中的错误，而导致该函数失败。
 - `FR_INT_ERR`：由于一个错误的`FAT`结构或一个内部错误，而导致该函数失败。
 - `FR_NOT_ENABLED`：逻辑驱动器没有工作区。
-- `FR_NO_FILESYSTEM`：磁盘上没有有效的FAT卷。
+- `FR_NO_FILESYSTEM`：磁盘上没有有效的`FAT`卷。
 
 &emsp;&emsp;`f_getfree`函数当`_FS_READONLY == 0`并且`_FS_MINIMIZE == 0`时有效。`f_getfree`函数获取驱动器上空闲簇的数目。文件系统对象中的成员`csize`是每簇中的扇区数，因此以扇区为单位的空闲空间可以被计算出来。当`FAT32`卷上的`FSInfo`结构不同步时，该函数返回一个错误的空闲簇计数。
 
@@ -655,7 +655,7 @@ FRESULT f_chmod (
 - `FR_DISK_ERR`：由于底层磁盘`I/O`函数中的错误，而导致该函数失败。
 - `FR_INT_ERR`：由于一个错误的`FAT`结构或一个内部错误，而导致该函数失败。
 - `FR_NOT_ENABLED`：逻辑驱动器没有工作区。
-- `FR_NO_FILESYSTEM`：磁盘上没有有效的FAT卷。
+- `FR_NO_FILESYSTEM`：磁盘上没有有效的`FAT`卷。
 
 &emsp;&emsp;`f_chmod`函数当`_FS_READONLY == 0`并且`_FS_MINIMIZE == 0`时可用。对文件`newname.txt`置位`ARC`和`SYS`属性，取消`HID`和`REO`属性：
 

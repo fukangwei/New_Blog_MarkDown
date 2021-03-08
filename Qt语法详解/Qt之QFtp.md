@@ -281,7 +281,7 @@ void FtpWindow::stateChanged ( int state ) {
 `QFtp::Rename`          | `13` | 正在执行`rename`
 `QFtp::RawCommand`      | `14` | 正在执行`rawCommand`
 
-这允许你对特定命令执行特定操作，例如在FTP客户端中，可能需要在启动`list`命令时清除目录视图。在这种情况下，可以简单地检查连接到`commandStarted`信号的槽函数中的`currentCommand`是否为`List`。
+这允许你对特定命令执行特定操作，例如在`FTP`客户端中，可能需要在启动`list`命令时清除目录视图。在这种情况下，可以简单地检查连接到`commandStarted`信号的槽函数中的`currentCommand`是否为`List`。
 
 ``` cpp
 void FtpWindow::commandStarted ( int id ) {

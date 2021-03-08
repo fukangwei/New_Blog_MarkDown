@@ -42,7 +42,7 @@ target : prerequisites
 
 #### 一个示例
 
-&emsp;&emsp;正如前面所说的，如果一个工程有`3`个头文件和`8`个`C`文件，我们为了完成前面所述的那三个规则，我们的Makefile应该是下面的这个样子的：
+&emsp;&emsp;正如前面所说的，如果一个工程有`3`个头文件和`8`个`C`文件，我们为了完成前面所述的那三个规则，我们的`Makefile`应该是下面的这个样子的：
 
 ``` makefile
 edit : main.o kbd.o command.o display.o insert.o search.o files.o utils.o

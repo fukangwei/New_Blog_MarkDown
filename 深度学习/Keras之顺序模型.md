@@ -358,7 +358,7 @@ fit(
 - `validation_data`：元组`(x_val, y_val)`或元组`(x_val, y_val, val_sample_weights)`，是指定的验证集。这个参数会覆盖`validation_split`。
 - `shuffle`：布尔值(是否在每轮迭代之前混洗数据)或者字符串(`batch`)。一般为布尔值，表示是否在训练过程中随机打乱输入样本的顺序。若为字符串`batch`，则是用来处理`HDF5`数据的特殊情况，它将在`batch`内部将数据打乱。
 - `class_weight`：字典，将不同的类别映射为不同的权值，该参数用来在训练过程中调整损失函数(只能用于训练)。
-- `sample_weight`：权值的`numpy array`，用于在训练时调整损失函数(仅用于训练)。可以传递一个`1D`的与样本等长的向量用于对样本进行1对1的加权，或者在面对时序数据时，传递一个的形式为`(samples, sequence_length)`的矩阵来为每个时间步上的样本赋不同的权。这种情况下请确定在编译模型时添加了`sample_weight_mode='temporal'`。
+- `sample_weight`：权值的`numpy array`，用于在训练时调整损失函数(仅用于训练)。可以传递一个`1D`的与样本等长的向量用于对样本进行`1`对`1`的加权，或者在面对时序数据时，传递一个的形式为`(samples, sequence_length)`的矩阵来为每个时间步上的样本赋不同的权。这种情况下请确定在编译模型时添加了`sample_weight_mode='temporal'`。
 - `initial_epoch`：从该参数指定的`epoch`开始训练，有助于恢复之前的训练。
 - `fit`函数返回一个`History`的对象，其`History.history`属性记录了损失函数和其他指标的数值随`epoch`变化的情况，如果有验证集的话，也包含了验证集的这些指标变化情况。
 

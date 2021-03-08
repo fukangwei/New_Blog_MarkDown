@@ -1040,7 +1040,7 @@ struct sysfs_ops {
 
 #### Kset
 
-&emsp;&emsp;`kset`是具有相同类型的`kobject`的集合，在`sysfs`中体现成一个目录。`kobject`是`kset`的一个子目录，`kset_c.kobj.k_set = &kset_p`，`kset_c`目录的属性由kobj来指定，kset_c的父目录为kset_p。在内核中用kset数据结构表示，定义为：
+&emsp;&emsp;`kset`是具有相同类型的`kobject`的集合，在`sysfs`中体现成一个目录。`kobject`是`kset`的一个子目录，`kset_c.kobj.k_set = &kset_p`，`kset_c`目录的属性由`kobj`来指定，`kset_c`的父目录为`kset_p`。在内核中用`kset`数据结构表示，定义为：
 
 ``` cpp
 struct kset {
@@ -1431,7 +1431,7 @@ void free_irq ( unsigned int irq, void *dev_id );
 #### 协议栈
 
 &emsp;&emsp;`Linux`的优点之一在于它丰富而稳定的网络协议栈。其范围从协议无关层(例如通用`socket`层接口或设备层)到各种具体的网络协议实现。
-&emsp;&emsp;对于网络的理论介绍一般都采用`OSI`(`Open Systems Interconnection`)模型，但是`Linux`中网络栈的介绍一般分为四层的Internet模型。
+&emsp;&emsp;对于网络的理论介绍一般都采用`OSI`(`Open Systems Interconnection`)模型，但是`Linux`中网络栈的介绍一般分为四层的`Internet`模型。
 
 #### 网络接口层
 

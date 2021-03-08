@@ -1435,7 +1435,7 @@ Plot the function over the `complex` plane:
 
 ### nonzero
 
-&emsp;&emsp;`nonzero(a)`返回数组`a`中值不为零的元素的下标，它的返回值是一个长度为`a.ndim`(数组`a`的轴数)的元组，元组的每个元素都是一个整数数组，其值为非零元素的下标在对应轴上的值。例如对于一维布尔数组`b1`，`nonzero(b1)`所得到的是一个长度为1的元组，它表示`b1[0]`和`b1[2]`的值不为`0`(`False`)。
+&emsp;&emsp;`nonzero(a)`返回数组`a`中值不为零的元素的下标，它的返回值是一个长度为`a.ndim`(数组`a`的轴数)的元组，元组的每个元素都是一个整数数组，其值为非零元素的下标在对应轴上的值。例如对于一维布尔数组`b1`，`nonzero(b1)`所得到的是一个长度为`1`的元组，它表示`b1[0]`和`b1[2]`的值不为`0`(`False`)。
 
 ``` python
 >>> b1 = np.array([True, False, True, False])

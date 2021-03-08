@@ -35,7 +35,7 @@ BOOL isBigEndian() {
 }
 ```
 
-如果是`little endian`，那么`i = 1;`的内存从小到大依次放的是`0x01 0x00 0x00 0x00`，按照i的起始地址变成按照`char *`方式(1字节)存取，即得`c = 0x01`，反之亦然。也许看起来不是很清晰，下面来看一下这个：
+如果是`little endian`，那么`i = 1;`的内存从小到大依次放的是`0x01 0x00 0x00 0x00`，按照`i`的起始地址变成按照`char *`方式(`1`字节)存取，即得`c = 0x01`，反之亦然。也许看起来不是很清晰，下面来看一下这个：
 
 ``` cpp
 BOOL isBigEndian() {
@@ -50,7 +50,7 @@ BOOL isBigEndian() {
 ```
 
 这里用的是`union`来控制这个共享布局，有个知识点就是`union`里面的成员`c`和`i`都是从低地址开始对齐的。同样可以得到如此结果，而且不用转换，清晰一些。
-&emsp;&emsp;2) 将`little endian`下的`long long`类型的值换成`big endian`类型的值。已知系统提供了下面的api：`long htonl(long lg);`，其作用是把所有的字节序换成大端字节序，得出下面的做法：
+&emsp;&emsp;2) 将`little endian`下的`long long`类型的值换成`big endian`类型的值。已知系统提供了下面的`api`：`long htonl(long lg);`，其作用是把所有的字节序换成大端字节序，得出下面的做法：
 
 ``` cpp
 long long htonLL ( long long lg ) {

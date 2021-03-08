@@ -320,7 +320,7 @@ torch.squeeze(input, dim=None, out=None)
 - `dim(int, optional)`：如果给定，则`input`只会在给定维度挤压。
 - `out(Tensor, optional)`：输出张量。
 
-将输入张量形状中的`1`去除并返回。如果输入shape是`A * 1 * B * 1 * C * 1 * D`，那么输出shape就是`A * B * C * D`。当给定`dim`时，那么挤压操作只在给定维度上。例如，输入形状为`A * 1 * B`，`squeeze(input, 0)`将会保持张量不变，只有用`squeeze(input, 1)`，形状会变成`A * B`。注意，返回张量与输入张量共享内存，所以改变其中一个的内容会改变另一个。
+将输入张量形状中的`1`去除并返回。如果输入`shape`是`A * 1 * B * 1 * C * 1 * D`，那么输出`shape`就是`A * B * C * D`。当给定`dim`时，那么挤压操作只在给定维度上。例如，输入形状为`A * 1 * B`，`squeeze(input, 0)`将会保持张量不变，只有用`squeeze(input, 1)`，形状会变成`A * B`。注意，返回张量与输入张量共享内存，所以改变其中一个的内容会改变另一个。
 
 ``` python
 >>> x = torch.zeros(2,1,2,1,2)

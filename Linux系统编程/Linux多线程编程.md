@@ -1363,7 +1363,7 @@ pthread_cond_signal ( &m_cond );
 pthread_mutex_unlock ( &m_mutex );
 ```
 
-为什么要与`pthread_mutex`一起使用呢？这是为了应对线程`1`在调用`pthread_cond_wait`但线程1还没有进入`wait cond`的状态的时候，此时线程`2`调用了`pthread_cond_signal`的情况。如果不用`mutex`锁的话，这个`cond_singal`就丢失了。加了锁的情况是，线程`2`必须等到`mutex`被释放(也就是`pthread_cod_wait`释放锁并进入`wait_cond`状态，此时线程`2`上锁)的时候才能调用`pthread_cond_signal`。`pthread_cond_signal`既可以放在`pthread_mutex_lock`和`pthread_mutex_unlock`之间，也可以放在`pthread_mutex_lock`和`pthread_mutex_unlock`之后，但是各有有缺点。
+为什么要与`pthread_mutex`一起使用呢？这是为了应对线程`1`在调用`pthread_cond_wait`但线程`1`还没有进入`wait cond`的状态的时候，此时线程`2`调用了`pthread_cond_signal`的情况。如果不用`mutex`锁的话，这个`cond_singal`就丢失了。加了锁的情况是，线程`2`必须等到`mutex`被释放(也就是`pthread_cod_wait`释放锁并进入`wait_cond`状态，此时线程`2`上锁)的时候才能调用`pthread_cond_signal`。`pthread_cond_signal`既可以放在`pthread_mutex_lock`和`pthread_mutex_unlock`之间，也可以放在`pthread_mutex_lock`和`pthread_mutex_unlock`之后，但是各有有缺点。
 &emsp;&emsp;在两者之间的情况如下：
 
 ``` cpp

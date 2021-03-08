@@ -212,7 +212,7 @@ http://www.iqianyue.com/mypost
 5. 使用`urllib.requesr.urlopen`打开对应的`Request`对象，完成信息的传递。
 6. 后续处理，比如读取网页内容、将内容写入文件等。
 
-首先需要设置好对应的URL地址。在单击提交之后，会传递到当前页面进行处理，所以处理的页面应该是`http://www.iqianyue.com/mypost`，即`URL`应该设置为`http://www.iqianyue.com/mypost`。然后需要构建表单数据，在该网页上右击`查看网页源代码`，找到对应的`form`表单部分，然后进行分析：
+首先需要设置好对应的`URL`地址。在单击提交之后，会传递到当前页面进行处理，所以处理的页面应该是`http://www.iqianyue.com/mypost`，即`URL`应该设置为`http://www.iqianyue.com/mypost`。然后需要构建表单数据，在该网页上右击`查看网页源代码`，找到对应的`form`表单部分，然后进行分析：
 
 ``` xml
 <html>

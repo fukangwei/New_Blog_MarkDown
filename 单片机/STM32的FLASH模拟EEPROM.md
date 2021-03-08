@@ -31,7 +31,7 @@ FLASH_Status FLASH_ProgramHalfWord ( uint32_t Address, uint16_t Data );
 FLASH_Status FLASH_ProgramOptionByteData ( uint32_t Address, uint8_t Data );
 ```
 
-`FLASH_ProgramWord`为`32`位字写入函数，其他分别为`16`位半字写入和用户选择字节写入函数。这里需要说明，`32`位字节写入实际上是写入的两次16位数据，写完第一次后地址`+ 2`，这与`STM32`闪存的编程每次必须写入`16`位并不矛盾。
+`FLASH_ProgramWord`为`32`位字写入函数，其他分别为`16`位半字写入和用户选择字节写入函数。这里需要说明，`32`位字节写入实际上是写入的两次`16`位数据，写完第一次后地址`+ 2`，这与`STM32`闪存的编程每次必须写入`16`位并不矛盾。
 
 ### 擦除函数
 

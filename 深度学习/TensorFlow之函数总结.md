@@ -270,7 +270,7 @@ tf.shape(split0)  # [5, 10]
 ### tf.reshape
 
 &emsp;&emsp;`tf.reshape(tensor, shape, name=None)`的作用是将`tensor`变换为参数`shape`的形式。其中`shape`为一个列表形式，特殊的一点是列表中可以存在`-1`，`-1`代表的含义是不用我们自己指定这一维的大小，函数会自动计算，但列表中只能存在一个`-1`(当然如果存在多个`-1`，就是一个存在多解的方程了)。
-&emsp;&emsp;`TensorFlow`根据`shape`变换矩阵的方式为`reshape(t, shape) => reshape(t, [-1]) => reshape(t, shape)`，首先将矩阵t变为一维矩阵，然后再对矩阵的形式进行更改。
+&emsp;&emsp;`TensorFlow`根据`shape`变换矩阵的方式为`reshape(t, shape) => reshape(t, [-1]) => reshape(t, shape)`，首先将矩阵`t`变为一维矩阵，然后再对矩阵的形式进行更改。
 
 ``` python
 # tensor 't' is [1, 2, 3, 4, 5, 6, 7, 8, 9]. tensor 't' has shape [9]
@@ -469,7 +469,7 @@ sess.close()  # 关闭会话
 
 操作                                              | 描述
 --------------------------------------------------|------
-`class tf.OpError`                                | 一个基本的错误类型，在当TF执行失败时候报错
+`class tf.OpError`                                | 一个基本的错误类型，在当`TF`执行失败时候报错
 `tf.OpError.op`                                   | 返回执行失败的操作节点，有的操作(如`Send`或`Recv`)可能不会返回，那就要用用到`node_def`方法
 `tf.OpError.node_def`                             | 以`NodeDef proto`形式表示失败的`op`
 `tf.OpError.error_code`                           | 描述该错误的整数错误代码

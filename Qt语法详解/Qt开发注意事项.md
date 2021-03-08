@@ -20,7 +20,7 @@ date: 2019-01-24 16:12:55
 15. `QString`类型的数据不是以`\0`结尾的，这要和`C`语言的字符串进行区分，访问`QString`中的单个字符使用`at`函数。
 16. 在`Qt`中使用图片时，最好将图片添加到资源文件中，这样可以避免由于图片路径的错误而带来的麻烦。使用资源文件中的图片的方法是`:图片的资源文件路径`。
 17. `Qt`判断字符串是否为空应该使用成员函数`isEmpty()`，而不应该用`null`。
-18. Qt的`find`函数返回的迭代器的类型为`const_iterator`，因此要将相应的迭代器变量设置为`const_iterator`型。
+18. `Qt`的`find`函数返回的迭代器的类型为`const_iterator`，因此要将相应的迭代器变量设置为`const_iterator`型。
 19. 当使用`Qt`的网络功能时，需要在`.pro`文件中增加语句`QT += network`。
 20. 关于`Qt`中`emit`的作用：在程序中应该能找到类似这样的语句`connect ( obj, SIGNAL ( changeCurrentShape ( * ) ), anotherobj, SLOG ( FUN ( * ) ) );`，当执行到`emit changeCurrentShape(Shape::Triangle)`时，`Qt`的信号槽机制会自动触发`FUN`函数。
 21. 如果需要为窗口上的控件设置加速键，例如按住`Alt + N`即可跳到某个控件上，可以类似这样做：`pushbotton->setText(tr("&nihao"));`是设置`Alt + N`为加速键。如果需要在控件上显示`&`，需要使用`&&`。

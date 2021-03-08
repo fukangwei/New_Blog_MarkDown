@@ -12,7 +12,7 @@ date: 2018-12-30 22:15:58
 bin\OpenPoseDemo.exe --help
 ```
 
-&emsp;&emsp;使用OpenPose分析视频文件如下：
+&emsp;&emsp;使用`OpenPose`分析视频文件如下：
 
 ``` bash
 bin\OpenPoseDemo.exe --video .\examples\media\video.avi

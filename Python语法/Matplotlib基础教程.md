@@ -664,7 +664,7 @@ plt.show()
 
 ### 等高线图
 
-&emsp;&emsp;数据集即坐标点`(x, y)`和对应的高度值，共有`256`个坐标点。高度值使用一个`height function f(x, y)`生成。`x`、`y`分别是在区间`[-3, 3]`中均匀分布的`256`个值，并用`meshgrid`在二维平面中将x和y一一对应起来，编织成栅格：
+&emsp;&emsp;数据集即坐标点`(x, y)`和对应的高度值，共有`256`个坐标点。高度值使用一个`height function f(x, y)`生成。`x`、`y`分别是在区间`[-3, 3]`中均匀分布的`256`个值，并用`meshgrid`在二维平面中将`x`和`y`一一对应起来，编织成栅格：
 
 ``` python
 import matplotlib.pyplot as plt

@@ -30,7 +30,7 @@ mysql -u root -p
 
 ### Windows系统下安装MySQL数据库
 
-&emsp;&emsp;`MySQL`安装文件分为两种，一种是`msi`格式，一种是`zip`格式。如果是`msi`格式的，可以直接点击安装，一般MySQL将会安装在`C:\Program Files\MySQL\MySQL Server 5.6`目录中；`zip`格式是需要用户自己解压的，解压缩之后`MySQL`就可以使用了。
+&emsp;&emsp;`MySQL`安装文件分为两种，一种是`msi`格式，一种是`zip`格式。如果是`msi`格式的，可以直接点击安装，一般`MySQL`将会安装在`C:\Program Files\MySQL\MySQL Server 5.6`目录中；`zip`格式是需要用户自己解压的，解压缩之后`MySQL`就可以使用了。
 &emsp;&emsp;完成上述步骤之后，很多用户开始使用`MySQL`，但是会出现错误，因为还没有配置环境变量。配置环境变量很简单，从`我的电脑 -> 属性 -> 高级 -> 环境变量`，选择`PATH`，在其后面添加`MySQL`的`bin`文件夹的路径，例如`C:\Program Files\MySQL\MySQL Server 5.6\bin`。
 &emsp;&emsp;我们还需要修改一下配置文件，`MySQL`默认的配置文件是`C:\Program Files\MySQL\MySQL Server 5.6\my-default.ini`，其配置如下：
 

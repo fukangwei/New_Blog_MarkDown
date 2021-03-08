@@ -7,12 +7,12 @@ date: 2018-12-16 13:07:07
 
 ``` cpp
 class String {
-  public:
+public:
     String ( const char* str = NULL ); /* 普通构造函数 */
     String ( const String& other ); /* 拷贝构造函数 */
     ~String ( void ); /* 析构函数 */
     String& operate = ( const String& other ); /* 赋值函数 */
-  private:
+private:
     char* m_data; /* 用于保存字符串 */
 };
 ```

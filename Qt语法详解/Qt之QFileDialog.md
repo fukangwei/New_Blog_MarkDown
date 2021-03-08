@@ -99,7 +99,7 @@ QString getOpenFileName ( QWidget *parent = 0, const QString &caption = QString(
                           QString *selectedFilter = 0, Options options = 0 );
 ```
 
-- `parent`：用于指定父组件。注意，很多`Qt`组件的构造函数都会有这么一个parent参数，并提供一个默认值0。
+- `parent`：用于指定父组件。注意，很多`Qt`组件的构造函数都会有这么一个`parent`参数，并提供一个默认值`0`。
 - `caption`：对话框的标题。
 - `dir`：对话框显示时默认打开的目录，`.`代表程序运行目录，`/`代表当前盘符的根目录。也可以是平台相关的目录，例如`C:\\`。
 - `filter`：对话框的后缀名过滤器。多个文件使用空格分隔，例如使用`Image Files(*.jpg *.png)`就让它只能显示后缀名是`jpg`或者`png`的文件；多个过滤使用两个分号分隔，如果需要使用多个过滤器，使用`;;`分割，例如`JPEG Files(*.jpg);;PNG Files(*.png)`。

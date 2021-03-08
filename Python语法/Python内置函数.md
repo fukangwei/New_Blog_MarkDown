@@ -52,7 +52,7 @@ ord(c)
 len(s)
 ```
 
-参数s是一个对象。
+参数`s`是一个对象。
 
 ``` python
 str = "runoob"

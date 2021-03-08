@@ -333,7 +333,7 @@ void MainWindow::doubleclicked ( QListWidgetItem *item ) { /* 列表项双击操
 - `void QListWidget::addItem ( QListWidgetItem * item )`：该函数用来将一个列表项添加到列表框当中。注意，一个列表项只能被添加到列表框中一次，如果多次添加同一个列表项到列表框中，将导致不可预期的结果。
 - `void QListWidget::addItem ( const QString & label )`：重载函数，用来将参数`label`所引用的字符串作为一个列表项，添加到列表框中。
 - `int QList::count ()const and int QList::size () const`：上述两个函数的功能等价，都是用来返回列表中存储的对象元素的个数。
-- `T QList::takeAt ( int i )`：该函数按照参数i指定的索引位置，将存储在列表中对应的对象元素移除并返回。返回类型为模板类型，由存储的数据的类型决定。索引值的大小范围为`0 <= i <= size()`。
+- `T QList::takeAt ( int i )`：该函数按照参数`i`指定的索引位置，将存储在列表中对应的对象元素移除并返回。返回类型为模板类型，由存储的数据的类型决定。索引值的大小范围为`0 <= i <= size()`。
 
 注意，`QList<QString>`的数据结构是栈，只能从栈顶取元素。
 

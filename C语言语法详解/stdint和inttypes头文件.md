@@ -5,8 +5,8 @@ date: 2018-12-13 20:25:31
 ---
 &emsp;&emsp;`stdint.h`是`C99`引进的一个标准`C`库的头文件。`stdint.h`中定义了几种扩展的整数类型和宏，规则如下(其中`N`可以为`8`、`16`、`32`或`64`)：`intN_t`、`int_leastN_t`、`int_fastN_t`表示长度为`N`位的整型数；`uintN_t`、`uint_leastN_t`、`uint_fastN_t`表示长度为`N`位的无符号整型数。<!--more-->
 &emsp;&emsp;在`stdint.h`中的常量，定义了以上各类型数的最大最小值(其中`n`可以为`8`、`16`、`32`或`64`)：`INTn_MIN`、`UINTn_MIN`、`INTn_MAX`、`UITn_MAX`、`INT_LEASEn_MIN`、`INT_LEASEn_MAX`、`INT_FASTn_MIN`或`INT_FASTn_MAX`。
-&emsp;&emsp;`intN_t`格式的宏指一个有`N`位的整数，例如`int16_t`指一个`16`位的有符号的整数；`uintN_t`格式的宏指定一个有N位的无符号的整数，例如`uint32_t`指定一个`32`位的无符号的整数；`int_leastN_t`格式的宏指定一个至少`N`位的整数；`uint_leastN_t`指定一个至少`N`位的无符号的整数；`int_fastN_t`指定一个至少`N`位的快速有符号的整数；`intmax_t`类型指定一个最大尺寸的有符号整数，而`uintmax_t`指定一个最大尺寸的无符号整数。
-&emsp;&emsp;`stdint.h`可以实现将一个常数扩展为特定整数类型的宏，这些宏通用格式为`INTN_C(value)`和`UINTN_C(value)`，其中N是所需类型的位宽度。除此之外，还有`INTMAX_C(value)`和`UINTMAX_C(value)`，它们创建指定值的最大宽度常数。
+&emsp;&emsp;`intN_t`格式的宏指一个有`N`位的整数，例如`int16_t`指一个`16`位的有符号的整数；`uintN_t`格式的宏指定一个有`N`位的无符号的整数，例如`uint32_t`指定一个`32`位的无符号的整数；`int_leastN_t`格式的宏指定一个至少`N`位的整数；`uint_leastN_t`指定一个至少`N`位的无符号的整数；`int_fastN_t`指定一个至少`N`位的快速有符号的整数；`intmax_t`类型指定一个最大尺寸的有符号整数，而`uintmax_t`指定一个最大尺寸的无符号整数。
+&emsp;&emsp;`stdint.h`可以实现将一个常数扩展为特定整数类型的宏，这些宏通用格式为`INTN_C(value)`和`UINTN_C(value)`，其中`N`是所需类型的位宽度。除此之外，还有`INTMAX_C(value)`和`UINTMAX_C(value)`，它们创建指定值的最大宽度常数。
 &emsp;&emsp;注意大数的输出，`int64_t`类型的输出为`%lld`，`uint64_t`类型的输出为`%llu`，`uint64_t`的十六进制输出为`%llx`，`uint64_t`的八进制输出为`%llo`。`stdint.h`文件如下：
 
 ``` cpp
