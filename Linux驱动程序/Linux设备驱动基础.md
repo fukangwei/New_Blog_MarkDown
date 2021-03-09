@@ -132,13 +132,13 @@ struct file_operations mem_fops = {
 2. 初始化`cdev`。
 3. 添加`cdev`。
 
-&emsp;&emsp;`Struct cdev`的分配可使用`cdev_alloc`函数来完成：
+&emsp;&emsp;`struct cdev`的分配可使用`cdev_alloc`函数来完成：
 
 ``` cpp
 struct cdev *cdev_alloc ( void );
 ```
 
-&emsp;&emsp;`Struct cdev`的初始化使用`cdev_init`函数来完成：
+&emsp;&emsp;`struct cdev`的初始化使用`cdev_init`函数来完成：
 
 ``` cpp
 void cdev_init ( struct cdev *cdev, const struct file_operations *fops );
@@ -607,8 +607,8 @@ int select ( int maxfd, fd_set *readfds, fd_set *writefds,
 
 &emsp;&emsp;`Select`调用返回时，返回值有如下情况：
 
-- 正常情况下返回满足要求的文件描述符个数；
-- 经过了`timeout`等待后仍无文件满足要求，返回值为`0`；
+- 正常情况下返回满足要求的文件描述符个数。
+- 经过了`timeout`等待后仍无文件满足要求，返回值为`0`。
 - 如果`select`被某个信号中断，它将返回`-1`，并设置`errno`为`EINTR`。
 - 如果出错，返回`-1`并设置相应的`errno`。
 
@@ -638,11 +638,8 @@ FD_SET ( fd2, &fds ); /* 设置描述符 */
 maxfdp = fd1 + 1; /* 描述符最大值加1，假设fd1大于fd2 */
 
 switch ( select ( maxfdp, &fds, NULL, NULL, &timeout ) ) {
-    case -1:
-        exit ( -1 );
-        break; /* select错误，退出程序 */
-    case 0:
-        break;
+    case -1: exit ( -1 ); break; /* select错误，退出程序 */
+    case 0:               break;
     default:
         if ( FD_ISSET ( fd1, &fds ) ) { /* 测试fd1是否可读 */
         }
@@ -1240,7 +1237,7 @@ void driver_remove_file ( struct device_driver *drv, struct driver_attribute *at
 
 #### 平台设备描述
 
-&emsp;&emsp;平台设备使用`Struct Platform_device`来描述：
+&emsp;&emsp;平台设备使用`struct Platform_device`来描述：
 
 ``` cpp
 struct platform_device {
@@ -1252,7 +1249,7 @@ struct platform_device {
 }
 ```
 
-&emsp;&emsp;`Struct Platform_device`的分配使用：
+&emsp;&emsp;`struct Platform_device`的分配使用：
 
 ``` cpp
 struct platform_device *platform_device_alloc ( const char *name, int id );
@@ -1655,7 +1652,7 @@ void input_unregister_device ( struct input_dev *dev );
 set_bit ( EV_KEY, button_dev.evbit );
 ```
 
-`Struct iput_dev`中有两个成员，一个是`evbit`，另一个是`keybit`，分别用来表示设备所支持的事件类型和按键类型。
+`struct iput_dev`中有两个成员，一个是`evbit`，另一个是`keybit`，分别用来表示设备所支持的事件类型和按键类型。
 &emsp;&emsp;事件类型如下：
 
 类型     | 说明

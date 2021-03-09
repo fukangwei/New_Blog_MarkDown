@@ -159,7 +159,7 @@ tensor(7.5000)
 tensor(7.5000, grad_fn=<MeanBackward1>)
 ```
 
-到目前为止，看不出什么不同。但是时刻记住，`Variable`在计算时，它会在默默地搭建着一个叫做计算图(`computational graph`)的庞大系统。这个图的作用是将所有的计算步骤(节点)都连接起来，最后进行误差反向传递时，一次性将所有`variable`里面的修改幅度(梯度)都计算出来，而`tensor`就没有这个能力。`v_out = torch.mean(variable * variable)`就是在计算图中添加的一个计算步骤：
+到目前为止，看不出什么不同。但是时刻记住，`Variable`在计算时，它会在默默地搭建着一个叫做`计算图`(`computational graph`)的庞大系统。这个图的作用是将所有的计算步骤(节点)都连接起来，最后进行误差反向传递时，一次性将所有`variable`里面的修改幅度(梯度)都计算出来，而`tensor`就没有这个能力。`v_out = torch.mean(variable * variable)`就是在计算图中添加的一个计算步骤：
 
 ``` python
 import torch

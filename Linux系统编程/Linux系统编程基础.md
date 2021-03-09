@@ -611,7 +611,7 @@ int main ( int argc, char **argv ) {
 
 #### 进程同步
 
-&emsp;&emsp;一组并发进程按一定的顺序执行的过程称为进程间的同步。具有同步关系的一组并发进程称为合作进程，合作进程间互相发送的信号称为消息或事件。
+&emsp;&emsp;一组并发进程按一定的顺序执行的过程称为`进程间的同步`。具有同步关系的一组并发进程称为`合作进程`，合作进程间互相发送的信号称为`消息`或`事件`。
 
 #### 进程调度
 
@@ -720,7 +720,7 @@ int main ( int argc, char *argv[] ) {
         return -1;
     }
 
-    printf ( "The main process's pid is %d  \n", getpid() );
+    printf ( "The main process's pid is %d \n", getpid() );
     sleep ( 1 );
     return 0;
 }
@@ -774,8 +774,8 @@ struct menber {
 void *create ( void *arg ) { /* 线程执行函数 */
     struct menber *temp;
     temp = ( struct menber * ) arg;
-    printf ( "menber->a = %d  \n", temp->a );
-    printf ( "menber->s = %s  \n", temp->s );
+    printf ( "menber->a = %d \n", temp->a );
+    printf ( "menber->s = %s \n", temp->s );
     return ( void * ) 0;
 }
 
@@ -973,15 +973,15 @@ void pthread_cleanup_pop ( int execute );
 #include <unistd.h>
 
 void *clean ( void *arg ) {
-    printf ( "cleanup :%s  \n", ( char * ) arg );
+    printf ( "cleanup :%s \n", ( char * ) arg );
     return ( void * ) 0;
 }
 
 void *thr_fn1 ( void *arg ) {
-    printf ( "thread 1 start  \n" );
+    printf ( "thread 1 start \n" );
     pthread_cleanup_push ( ( void * ) clean, "thread 1 first handler" );
     pthread_cleanup_push ( ( void * ) clean, "thread 1 second hadler" );
-    printf ( "thread 1 push complete  \n" );
+    printf ( "thread 1 push complete \n" );
 
     if ( arg ) {
         return ( ( void * ) 1 );
@@ -993,10 +993,10 @@ void *thr_fn1 ( void *arg ) {
 }
 
 void *thr_fn2 ( void *arg ) {
-    printf ( "thread 2 start  \n" );
+    printf ( "thread 2 start \n" );
     pthread_cleanup_push ( ( void * ) clean, "thread 2 first handler" );
     pthread_cleanup_push ( ( void * ) clean, "thread 2 second handler" );
-    printf ( "thread 2 push complete  \n" );
+    printf ( "thread 2 push complete \n" );
 
     if ( arg ) {
         pthread_exit ( ( void * ) 2 );
@@ -1032,7 +1032,7 @@ int main ( void ) {
         return -1;
     }
 
-    printf ( "thread 1 exit code %d  \n", ( int ) tret );
+    printf ( "thread 1 exit code %d \n", ( int ) tret );
     err = pthread_join ( tid2, &tret );
 
     if ( err != 0 ) {
@@ -1040,7 +1040,7 @@ int main ( void ) {
         return -1;
     }
 
-    printf ( "thread 2 exit code %d  \n", ( int ) tret );
+    printf ( "thread 2 exit code %d \n", ( int ) tret );
     return 1;
 }
 ```
@@ -1238,9 +1238,9 @@ void *function ( void *arg ) {
 
 #### 网络层
 
-&emsp;&emsp;第一部分称为网络层。主要包括`Internet`协议(`IP`)、网际控制报文协议(`ICMP`)和地址解析协议(`ARP`)。
+&emsp;&emsp;第一部分称为`网络层`。主要包括`Internet`协议(`IP`)、网际控制报文协议(`ICMP`)和地址解析协议(`ARP`)。
 
-- `Internet`协议(`IP`)：该协议被设计成互联分组交换通信网，以形成一个网际通信环境。它负责在源主机和目的地主机之间传输来自其较高层软件的称为数据报文的数据块，它在源和目的地之间提供非连接型传递服务。
+- `Internet`协议(`IP`)：该协议被设计成互联分组交换通信网，以形成一个网际通信环境。它负责在源主机和目的地主机之间传输来自其较高层软件的，称为`数据报文`的数据块，它在源和目的地之间提供非连接型传递服务。
 - 网际控制报文协议(`ICMP`)：它实际上不是`IP`层部分，但直接同`IP`层一起工作，报告网络上的某些出错情况。允许网际路由器传输差错信息或测试报文。
 - 地址解析协议(`ARP`)：`ARP`实际上不是网络层部分，它处于`IP`和数据链路层之间，它是在`32`位`IP`地址和`48`位物理地址之间执行翻译的协议。
 
@@ -1431,7 +1431,7 @@ listen ( ... );
 while ( 1 ) {
     accept ( ... );
 
-    if ( fork ( .. ) == 0 ) {
+    if ( fork ( ... ) == 0 ) {
         process ( ... );
         close ( ... );
         exit ( ... );
@@ -1445,7 +1445,7 @@ while ( 1 ) {
 
 #### 多路复用I/O
 
-&emsp;&emsp;阻塞函数在完成其指定的任务以前不允许程序继续向下执行。例如，当服务器运行到`accept`语句时，而没有客户请求连接，服务器就会停止在`accept`语句上等待连接请求的到来，这种情况称为阻塞(`blocking`)。而非阻塞操作则可以立即完成，例如，如果你希望服务器仅仅检查是否有客户在等待连接，有就接受连接，否则就继续做其他事情，则可以通过使用`select`系统调用来实现。除此之外，`select`还可以同时监视多个套接字。
+&emsp;&emsp;阻塞函数在完成其指定的任务以前不允许程序继续向下执行。例如，当服务器运行到`accept`语句时，而没有客户请求连接，服务器就会停止在`accept`语句上等待连接请求的到来，这种情况称为`阻塞`(`blocking`)。而非阻塞操作则可以立即完成，例如，如果你希望服务器仅仅检查是否有客户在等待连接，有就接受连接，否则就继续做其他事情，则可以通过使用`select`系统调用来实现。除此之外，`select`还可以同时监视多个套接字。
 
 ``` cpp
 int select (

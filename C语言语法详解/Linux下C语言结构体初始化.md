@@ -80,7 +80,7 @@ oper_three caculate: ret = 60
 
 ---
 
-&emsp;&emsp;在阅读`GNU/Linux`内核代码时，我们会遇到一种特殊的结构初始化方式。该方式是某些`C`教材(如`K&R`第二版)中没有介绍过的，称为指定初始化(`designated initializer`)。下面看一个例子，`Linux-2.6.x/drivers/usb/storage/usb.c`中有这样一个结构体初始化代码：
+&emsp;&emsp;在阅读`GNU/Linux`内核代码时，我们会遇到一种特殊的结构初始化方式。该方式是某些`C`教材(如`K&R`第二版)中没有介绍过的，称为`指定初始化`(`designated initializer`)。下面看一个例子，`Linux-2.6.x/drivers/usb/storage/usb.c`中有这样一个结构体初始化代码：
 
 ``` cpp
 static struct usb_driver usb_storage_driver = {

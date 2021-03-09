@@ -17,7 +17,7 @@ enum enumType {
 };
 ```
 
-上述代码有两个作用：声明`enumType`为新的数据类型，称为枚举(`enumeration`)；声明`Monday`、`Tuesday`等为符号常量，通常称之为枚举量，其值默认分别为`0`至`6`。
+上述代码有两个作用：声明`enumType`为新的数据类型，称为`枚举`(`enumeration`)；声明`Monday`、`Tuesday`等为符号常量，通常称之为枚举量，其值默认分别为`0`至`6`。
 &emsp;&emsp;利用新的枚举类型`enumType`声明这种类型的变量：
 
 ``` cpp

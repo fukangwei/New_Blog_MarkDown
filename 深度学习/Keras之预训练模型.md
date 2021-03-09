@@ -131,7 +131,7 @@ model = load_model(
 2. 如果`alpha > 1`，则同比例增加每层的滤波器个数。
 3. 如果`alpha = 1`，使用默认的滤波器个数。
 
-- `depth_multiplier`：`depthwise`卷积的深度乘子，也称为分辨率乘子。
+- `depth_multiplier`：`depthwise`卷积的深度乘子，也称为`分辨率乘子`。
 - `dropout`：`dropout`比例。
 
 ---
