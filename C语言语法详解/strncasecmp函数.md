@@ -3,7 +3,7 @@ title: strncasecmp函数
 date: 2021-03-09 07:12:59
 categories: C语言语法详解
 ---
-&emsp;&emsp;`strncasecmp`原型如下：
+&emsp;&emsp;`strncasecmp`原型如下：<!--more-->
 
 ``` cpp
 int strncasecmp ( const char *s1, const char *s2, size_t n );
