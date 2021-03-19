@@ -5,16 +5,28 @@ categories: ROS笔记
 ---
 ### 工作空间
 
-&emsp;&emsp;工作空间(`workspace`)是一个存放工程开发相关文件的文件夹。<!--more-->
+&emsp;&emsp;`ROS`的工作空间(`workspace`)指的是在硬盘上`ROS`源代码的组织形式，其结构大致可以如下图所示：<!--more-->
 
-- `src`：代码空间(`Source Space`)
-- `build`：编译空间(`Build Space`)
-- `devel`：开发空间(`Development Space`)
-- `install`：安装空间(`Install Space`)
+<img src="./ROS工作空间与功能包/Workspace工作目录结构.png" width="50%">
 
-&emsp;&emsp;标准的`Workspace`目录结构如下：
-
-<img src="./ROS工作空间与功能包/Workspace工作目录结构.png" width="20%">
+``` bash
+WorkSpace -- 自定义的工作空间
+    |-- build：编译空间，用于存放CMake和catkin的缓存信息、配置信息和其他中间文件
+    |-- devel：开发空间，用于存放编译后生成的目标文件，包括头文件、动态或静态链接库、可执行文件等
+    |-- src：源码
+        |-- package：功能包，这是ROS基本单元
+            |-- CMakeLists.txt：配置编译规则，例如源文件、依赖项、目标文件
+            |-- package.xml：包信息，例如包名、版本、作者
+            |-- scripts：存储python文件
+            |-- src：存储C++源文件
+            |-- include：头文件
+            |-- msg：消息通信格式文件
+            |-- srv：服务通信格式文件
+            |-- action：动作格式文件
+            |-- launch：存储launch文件
+            |-- config：配置信息
+        |-- CMakeLists.txt：编译的基本配置
+```
 
 &emsp;&emsp;通过无人驾驶项目来理解`Workspace`：
 

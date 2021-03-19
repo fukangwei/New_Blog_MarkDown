@@ -92,7 +92,7 @@ int main ( int argc, char **argv ) {
 int main ( int argc, char** argv ) {
     ros::init ( argc, argv, "person_client" ); /* 初始化ROS节点 */
     ros::NodeHandle node; /* 创建节点句柄 */
-    /* 发现“/spawn”服务后，创建一个服务客户端，连接名为/spawn的service */
+    /* 发现“/spawn”服务后，创建一个服务客户端，连接名为“/spawn”的service */
     ros::service::waitForService ( "/show_person" );
     ros::ServiceClient person_client = node.serviceClient<learning_service::Person> ( "/show_person" );
     /* 初始化“learning_service::Person”的请求数据 */
