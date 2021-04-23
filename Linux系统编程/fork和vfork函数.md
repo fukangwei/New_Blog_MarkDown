@@ -180,7 +180,23 @@ int main() {
 
 &emsp;&emsp;我认为解题的关键就是要认识到`fork`将程序切成两段：
 
-<img src="./fork和vfork函数/1.png">
+<div align="center">
+
+``` mermaid
+graph LR
+    A[Part.A]
+    B[Part.B]
+    C["pid = fork();"]
+
+    A --- C
+    C --- B
+
+    linkStyle 0 stroke:#0ff,stroke-width:0px
+    linkStyle 1 stroke:#0ff,stroke-width:0px
+    style C fill:#fff,stroke:#333,stroke-width:0px,opacity:0
+```
+
+</div>
 
 &emsp;&emsp;上图表示一个含有`fork`的程序，而`fork`语句可以看成将程序切为`A`、`B`两个部分。然后整个程序会如下运行：
 
@@ -221,4 +237,18 @@ pid1:0, pid2:0
 
 可以给出一个以`P0`为根的进程树：
 
-<img src="./fork和vfork函数/2.png" height="270" width="355">
+<div align="center">
+
+``` mermaid
+graph TD
+    P0(P0 PID:XXX)
+    P1(P1 PID:1001)
+    P2(P2 PID:1002)
+    P3(P3 PID:1003)
+
+    P0 --> P1
+    P0 --> P2
+    P1 --> P3
+```
+
+</div>

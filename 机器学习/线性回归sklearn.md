@@ -170,7 +170,18 @@ print("Predicted value: ", result['predicted_value'])
 
 &emsp;&emsp;对于多元线性回归，有如下例子：
 
-<img src="./线性回归sklearn/3.png" width=50%>
+Driving Assignment | X1 = Miles Traveled | X2 = Number of Deliveries | Y = Travel Time(Hours)
+-------------------|---------------------|---------------------------|-----------------------
+1                  | 100                 | 4                         | 9.3
+2                  | 50                  | 3                         | 4.8
+3                  | 100                 | 4                         | 8.9
+4                  | 100                 | 2                         | 6.5
+5                  | 50                  | 2                         | 4.2
+6                  | 80                  | 2                         | 6.2
+7                  | 75                  | 3                         | 7.4
+8                  | 65                  | 4                         | 6.0
+9                  | 90                  | 3                         | 7.6
+10                 | 90                  | 2                         | 6.1
 
 求出`X1 = 102`，`X2 = 6`时的`Y`。
 

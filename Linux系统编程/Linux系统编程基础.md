@@ -595,7 +595,21 @@ int main ( int argc, char **argv ) {
 
 &emsp;&emsp;进程是一个具有一定独立功能的程序的一次运行活动。其特点有：动态性、并发性、独立性和异步性。进程的状态变换如下：
 
-<img src="./Linux系统编程基础/1.png" height="244" width="306">
+<div align="center">
+
+``` mermaid
+graph LR
+    A[就绪]
+    B[阻塞]
+    C[执行]
+
+    A -->|进程调度| C
+    C -->|I/O请求| B
+    B -->|I/O完成| A
+    C -->|时间片完| A
+```
+
+</div>
 
 #### 进程ID
 

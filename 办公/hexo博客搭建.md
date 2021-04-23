@@ -91,9 +91,15 @@ scheme: Muse
 npm install hexo-generator-searchdb --save
 ```
 
-编辑`主题配置文件`，启用本地搜索功能：
+编辑`主题配置文件`，启用本地搜索功能，并且修改`url`和`root`：
 
 ``` bash
+# URL
+## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
+url: https://fukangwei.github.io/
+root: //
+permalink: :title/
+
 # Local search
 local_search:
     enable: true
@@ -257,7 +263,7 @@ post_asset_folder: true
 &emsp;&emsp;插入图片只要使用如下语法：
 
 ``` html
-<img src="./git总结/1.png" width="70%">
+<img src="./hexo博客搭建/1.png" width="70%">
 ```
 
 ### 添加置顶功能

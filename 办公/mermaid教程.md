@@ -385,6 +385,42 @@ graph TB
 
 </div>
 
+&emsp;&emsp;另一种语法如下：
+
+``` cpp
+graph LR
+    subgraph Understand
+        D[Transform]
+        E[Vishualise]
+        F[Model]
+    end
+
+    A --> D
+    D --> E
+    F --> D
+    E --> F
+    F --> AA
+```
+
+<div align="center">
+
+``` mermaid
+graph LR
+    subgraph Understand
+        D[Transform]
+        E[Vishualise]
+        F[Model]
+    end
+
+    A --> D
+    D --> E
+    F --> D
+    E --> F
+    F --> AA
+```
+
+</div>
+
 &emsp;&emsp;也可以使用`flowchart`来绘制子图：
 
 ``` cpp
@@ -535,6 +571,30 @@ sequenceDiagram
 
 </div>
 
+#### 别名
+
+&emsp;&emsp;可以给角色起一个简短的别名，以方便书写：
+
+``` cpp
+sequenceDiagram
+    participant A as Alice
+    participant J as John
+    A ->> J : Hello John, how are you?
+    J ->> A : Great!
+```
+
+<div align="center">
+
+``` mermaid
+sequenceDiagram
+    participant A as Alice
+    participant J as John
+    A ->> J : Hello John, how are you?
+    J ->> A : Great!
+```
+
+</div>
+
 #### 便签
 
 &emsp;&emsp;给序列图增加便签的语法如下：
@@ -673,9 +733,9 @@ sequenceDiagram
 
 ``` cpp
 sequenceDiagram
-    rect rgba(0, 255, 255, .6)
-        Bob ->> Alice : Thanks for asking
-    end
+rect rgba(0, 255, 255, .6)
+    Bob ->> Alice : Thanks for asking
+end
 ```
 
 结果如下：
@@ -684,9 +744,37 @@ sequenceDiagram
 
 ``` mermaid
 sequenceDiagram
-    rect rgba(0, 255, 255, .6)
-        Bob ->> Alice : Thanks for asking
-    end
+rect rgba(0, 255, 255, .6)
+    Bob ->> Alice : Thanks for asking
+end
+```
+
+</div>
+
+### 饼图
+
+&emsp;&emsp;饼图的代码如下：
+
+``` cpp
+pie
+    title 电影
+    "喜剧"   : 38
+    "恐怖片" : 85
+    "动作片" : 100
+    "音乐剧" : 150 
+```
+
+结果如下：
+
+<div align="center">
+
+``` mermaid
+pie
+    title 电影
+    "喜剧"   : 38
+    "恐怖片" : 85
+    "动作片" : 100
+    "音乐剧" : 150 
 ```
 
 </div>

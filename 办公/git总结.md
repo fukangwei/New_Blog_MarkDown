@@ -730,7 +730,25 @@ git fetch origin master
 git log -p FETCH_HEAD
 ```
 
-<img src="./git总结/5.png" width="70%">
+结果如下：
+
+``` bash
+$ git log -p FETCH_HEAD
+commit 03980df2e8b150f6f69396d1f074cefea8121072 (HEAD -> master, origin/master, origin/HEAD)
+Author: fukangwei <15262751239@163.com>
+Date:   Thu Mar 4 07:25:02 2021 +0800
+
+    Fix my resume
+
+diff --git "a/\344\270\255\346.pdf" "b/\344\270\255\346.pdf"
+index a7c5317..e50e6c5 100644
+--- "a/\344\270\255\346.pdf"
++++ "b/\344\270\255\346.pdf"
+@@ -1,28 +1,31 @@
+
+-个人简历         求职意向：C/C++ 软件工程师，Python 软件工程师，
+-                          图像处理工程师，深度学习工程师
+```
 
 返回的信息包括更新的文件名、更新的作者和时间，以及更新的代码。我们可以通过这些信息来判断是否产生冲突，以确定是否将更新`merge`到当前分支。
 
