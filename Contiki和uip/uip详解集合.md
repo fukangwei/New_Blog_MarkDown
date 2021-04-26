@@ -193,7 +193,7 @@ struct httpd_state {
     char *script;
 };
 
-typedef struct httpd_state uip_tcp_appstate_t
+typedef struct httpd_state uip_tcp_appstate_t;
 #define UIP_APPCALL smtp_appcall       /* TCP/IP事件的应答函数名称 */
 typedef smtp_state uip_tcp_appstate_t; /* 存储在uip_conn中的应用状态类型 */
 typedef int uip_udp_appstate_t;        /* 存储在uip_conn中的应用状态类型 */

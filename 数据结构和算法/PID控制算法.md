@@ -167,8 +167,8 @@ int main() {
 &emsp;&emsp;代码如下：
 
 ``` cpp
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 struct _pid {
     float SetSpeed;    // 定义设定值
