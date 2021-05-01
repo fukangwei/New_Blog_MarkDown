@@ -58,5 +58,3 @@ int main ( int argc, char *argv[] ) {
     return app.exec();
 }
 ```
-
-<img src="./Qt之线程同步/1.png" height="266" width="247">

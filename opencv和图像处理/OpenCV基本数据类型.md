@@ -67,7 +67,18 @@ cvRectangle ( myImg, cvPoint ( 5, 10 ), cvPoint ( 20, 30 ), cvScalar ( 255, 255,
 &emsp;&emsp;`OpenCV`提供了大量实用的图像操作符，包括缩放图像、单通道提取、找出特定通道最大最小值、两个图像求和、对图像进行阈值操作等。
 &emsp;&emsp;虽然`OpenCV`是由`C`语言实现的，但它使用的结构体也是遵循面向对象的思想设计的。实际上，`IplImage`由`CvMat`派生，而`CvMat`由`CvArr`派生。
 
-<img src="./OpenCV基本数据类型/1.png">
+<div align="center">
+
+``` mermaid
+graph LR
+    A[CvArr]
+    B[CvMat]
+    C[IplImage]
+
+    A-->B-->C
+```
+
+</div>
 
 &emsp;&emsp;在开始探讨图像细节之前，我们需要先了解另一种数据类型`CvMat`，它是`OpenCV`的矩阵结构。虽然`OpenCV`完全由`C`语言实现，但`CvMat`和`IplImage`之间的关系就如同`C++`中的继承关系。实质上，`IplImage`可以被视为从`CvMat`中派生的。因此在试图了解复杂的派生类之前，最好先了解基本的类。第三个类`CvArr`可以被视为一个抽象基类，`CvMat`由它派生。在函数原型中，会经常看到`CvArr`(更准确地说是`CvArr *`)，当它出现时，便可以将`CvMat *`或`IplImage *`传递到程序。
 
@@ -179,7 +190,7 @@ color[2] = 0; /* R通道 */
 srcImage.at<uchar> ( 14, 25 ) = 25;
 ```
 
-如果要操作的图片`img`是一幅数据类型同样为`unsigned char`的彩色图片，再次要求将坐标`(14, 25)`的像素赋值为`25`。这个操作跟上面的就有点区别了，需要对这个像素三个通道的每个对应元素赋值。`Opencv`中图像三原色在内存中的排列顺序为`B`、`G`和`R`，操作过程如下：
+如果要操作的图片`img`是一幅数据类型同样为`unsigned char`的彩色图片，再次要求将坐标`(14, 25)`的像素赋值为`25`。这个操作跟上面的就有点区别了，需要对这个像素三个通道的每个对应元素赋值。`OpenCV`中图像三原色在内存中的排列顺序为`B`、`G`和`R`，操作过程如下：
 
 ``` cpp
 img.at<Vec3b> ( 14, 25 ) [0] = 25; /* B通道 */

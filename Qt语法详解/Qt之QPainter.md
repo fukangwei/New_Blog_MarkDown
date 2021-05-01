@@ -8,7 +8,18 @@ date: 2019-03-18 16:59:06
 &emsp;&emsp;`Qt`中提供了强大的`2D`绘图系统，可以使用相同的`API`在屏幕和绘图设备上进行绘制，它主要基于`QPainter`、`QPaintDevice`和`QPaintEngine`这三个类。<!--more-->
 &emsp;&emsp;`QPainter`用来执行绘图操作，其提供的`API`在`GUI`或`QImage`、`QOpenGLPaintDevice`、`QWidget`和`QPaintDevice`显示图形(线、形状、渐变等)、文本和图像。`QPaintDevice`不直接绘制物理显示画面，而利用逻辑界面的中间媒介。例如绘制矩形图形时，为了将对象绘制到`QWidget`、`QGLPixelBuffer`、`QImage`、`QPixmap`、`QPicture`等多种界面中间，必须使用`QPaintDevice`。`QPaintEngine`提供了一些接口，可以用于`QPainter`在不同的设备上进行绘制。下图给出了这三个类之间的层次结构：
 
-<img src="./Qt之QPainter/1.png">
+<div align="center">
+
+``` mermaid
+graph LR
+    A[QPainter]
+    B[QPaintEngine]
+    C[QPaintDevice]
+
+    A-->B-->C
+```
+
+</div>
 
 &emsp;&emsp;这种实现的主要好处是，所有的绘制都遵循着同一种绘制流程，这样可以很方便地添加新的特性，也可以为不支持的功能添加一个默认的实现方式。另外需要说明一点，`Qt`提供了一个独立的`QtOpenGL`模块，可以让你在`Qt`的应用程序中使用`OpenGL`功能。该模块提供了一个`OpenGL`的模块，可以像其他的`Qt`组件一样的使用。它的不同之处在于，它是使用`OpenGL`作为显示技术，使用`OpenGL`函数进行绘制。
 &emsp;&emsp;绘图系统由`QPainter`完成具体的绘制操作，`QPainter`类提供了大量高度优化的函数来完成`GUI`编程所需要的大部分绘制工作。它可以绘制一切想要的图形，从最简单的一条直线到其他任何复杂的图形，例如饼图、弧形等，还可以用来绘制文本和图片。`QPainter`可以在继承自`QPaintDevice`类的任何对象上进行绘制操作。

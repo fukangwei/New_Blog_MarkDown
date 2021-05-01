@@ -148,4 +148,31 @@ direct-dcl: name
 简而言之，声明符`dcl`就是前面可能带有多个`*`的`direct-dcl`。`direct-dcl`可以是`name`、由一对圆括号括起来的`dcl`、后面跟有一对圆括号的`direct-dcl`、后面跟有用方括号括起来的表示可选长度的`direct-dcl`。
 &emsp;&emsp;例如分析`(* pfa[])()`，按该语法分析，`pfa`将被识别为一个`name`，从而被认为是一个`direct-dcl`。于是`pfa[]`也是一个`direct-dcl`。接着，`* pfa[]`被识别为一个`dcl`，因此判定`(* pfa[])`是一个`direct-dcl`。再接着，`(* pfa[])()`被识别为一个`direct-dcl`，因此也是一个`dcl`。该过程如下：
 
-<img src="./解析C语言复杂声明/1.png" height="295" width="338">
+<div align="center">
+
+``` mermaid
+graph TD
+    A1["("]
+    A2["*"]
+    A3[pfa]
+    A4["[]"]
+    A5[")"]
+    A6["()"]
+
+    B1["name"]
+    C1["dir-dcl"]
+    D1["dir-dcl"]
+    E1["dcl"]
+    F1["dir-dcl"]
+    G1["dir-dcl"]
+    H1["dcl"]
+
+    A1------>F1
+    A2----->E1
+    A3-->B1-->C1-->D1-->E1-->F1-->G1-->H1
+    A4---->D1
+    A5------>F1
+    A6------->G1
+```
+
+</div>
