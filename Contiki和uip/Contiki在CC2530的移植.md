@@ -3,9 +3,9 @@ title: Contiki在CC2530的移植
 categories: Contiki和uip
 date: 2019-02-04 23:38:25
 ---
-&emsp;&emsp;首先选择一个`CC2530`上的基础程序(例如串口打印)，移植系统在此基础上进行。<!--more-->
-&emsp;&emsp;将`contiki-3.0/core/sys`目录下的`autostart.c`、`etimer.c`、`process.c`和`timer.c`文件，`contiki-3.0\cpu\cc253x\dev`目录下的`clock.c`以及`contiki-3.0\cpu\cc253x\dev`目录下的`soc.c`添加到工程中。
-&emsp;&emsp;将头文件路径添加到`IAR`中：
+&emsp;&emsp;首先选择一个`CC2530`的基础程序(例如`串口打印`)，移植`Contiki`系统的工作将在此基础上进行。<!--more-->
+&emsp;&emsp;将`contiki-3.0/core/sys`目录下的`autostart.c`、`etimer.c`、`process.c`和`timer.c`文件，`contiki-3.0\cpu\cc253x\dev`目录下的`clock.c`，以及`contiki-3.0\cpu\cc253x\dev`目录下的`soc.c`添加到工程中。
+&emsp;&emsp;将如下头文件路径添加到`IAR`中：
 
 ``` cpp
 $PROJ_DIR$\contiki-3.0\core\
@@ -16,7 +16,7 @@ $PROJ_DIR$\contiki-3.0\platform\cc2530dk\
 $PROJ_DIR$\contiki-3.0\cpu\cc253x\
 ```
 
-将`main`文件修改为：
+&emsp;&emsp;将该串口打印程序的`main.c`文件修改为：
 
 ``` cpp
 #include <sys/process.h>
@@ -111,13 +111,18 @@ int main ( void ) {
 }
 ```
 
-对工程进行编译，会出现很多错误，接下来更改错误。系统会提示`8051def.h`文件中的`stdint.h`不存在，解决方法是在`IAR`头文件路径中添加如下路径：
+对工程进行编译，可能会出现很多错误，接下来要进行修改。具体步骤如下：
+&emsp;&emsp;1. 如果`IAR`提示`8051def.h`中的`stdint.h`不存在，则在`IAR`头文件路径中添加如下内容：
 
 ``` makefile
 $TOOLKIT_DIR$\inc\dlib\c\
 ```
 
-&emsp;&emsp;系统会提示没有`compiler.h`文件，解决方法是注释`cc253x.h`中的`#include <compiler.h>`，然后加入`#include <ioCC2530.h>`，将`cc253x.h`中与`ioCC2530.h`重复的部分注释掉。将`contiki-conf.h`文件中的`CLOCK_CONF_STACK_FRIENDLY`设置为`0`，将`clock.c`中的`__xdata __at(0x0000) static unsigned long timer_value = 0;`改为`static volatile unsigned long timer_value = 0;`。将如下内容进行修改：
+&emsp;&emsp;2. 注释`cc253x.h`中的`#include <compiler.h>`，然后加入`#include <ioCC2530.h>`。
+&emsp;&emsp;3. 将`cc253x.h`中与`ioCC2530.h`重复的部分注释掉。
+&emsp;&emsp;4. 将`contiki-conf.h`文件中的`CLOCK_CONF_STACK_FRIENDLY`设置为`0`。
+&emsp;&emsp;5. 将`clock.c`中的`__xdata __at(0x0000) static unsigned long timer_value = 0;`改为`static volatile unsigned long timer_value = 0;`。
+&emsp;&emsp;6. 将如下内容进行修改：
 
 ``` cpp
 #pragma save
@@ -132,7 +137,7 @@ void clock_isr ( void ) __interrupt ( ST_VECTOR ) {
 #pragma restore
 ```
 
-修改为：
+修改结果如下：
 
 ``` cpp
 //#pragma save
@@ -148,7 +153,7 @@ __near_func __interrupt void clock_isr ( void ) {
 //#pragma restore
 ```
 
-&emsp;&emsp;将`8051def.h`中的如下内容注释掉：
+&emsp;&emsp;7. 将`8051def.h`中的如下内容注释掉：
 
 ``` cpp
 #if !defined(__SDCC_mcs51) && !defined(SDCC_mcs51)
@@ -166,9 +171,11 @@ __near_func __interrupt void clock_isr ( void ) {
 #endif
 ```
 
-在`autostart.h`中加入如下内容，移植工作结束：
+&emsp;&emsp;8. 在`autostart.h`中加入如下内容：
 
 ``` cpp
 #define AUTOSTART_ENABLE 1
 #define CC_NO_VA_ARGS    0
 ```
+
+再次编译工程，如果没有报错，则移植成功。

@@ -16,7 +16,7 @@ categories: 软件与硬件问题
 
 #### 视频格式转换
 
-&emsp;&emsp;将视频的编码从`MPEG4`，转换为`H264`：
+&emsp;&emsp;将视频的编码从`MPEG4`转换为`H264`：
 
 ``` bash
 ffmpeg -i input.mp4 -vcodec libx264 output.mp4
