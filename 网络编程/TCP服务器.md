@@ -3,6 +3,8 @@ title: TCP服务器
 date: 2019-01-17 12:58:23
 categories: 网络编程
 ---
+### IPv4版
+
 &emsp;&emsp;`tcp_client.c`如下：<!--more-->
 
 ``` cpp
@@ -69,7 +71,7 @@ int main ( int argc, char *argv[] ) {
 }
 ```
 
-`tcp_server.c`如下：
+&emsp;&emsp;`tcp_server.c`如下：
 
 ``` cpp
 #include <stdlib.h>
@@ -143,7 +145,7 @@ int main ( int argc, char *argv[] ) {
 }
 ```
 
-并发服务器版本`tcp_server.c`如下：
+&emsp;&emsp;并发服务器版本`tcp_server.c`如下：
 
 ``` cpp
 #include <stdlib.h>
@@ -234,8 +236,7 @@ int main ( int argc, char *argv[] ) {
 }
 ```
 
-
----
+### IPv6版
 
 &emsp;&emsp;`tcp_client_ipv6.c`如下：
 

@@ -3,6 +3,8 @@ title: UDP服务器
 date: 2019-01-16 21:28:24
 categories: 网络编程
 ---
+### IPv4版
+
 &emsp;&emsp;`udp_client.c`如下：<!--more-->
 
 ``` cpp
@@ -125,6 +127,8 @@ int main ( void ) {
     close ( sockfd );
 }
 ```
+
+### IPv6版
 
 &emsp;&emsp;`uip_client_ipv6.c`如下：
 

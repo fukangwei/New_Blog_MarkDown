@@ -585,6 +585,8 @@ sequenceDiagram
     J ->> A : Great!
 ```
 
+结果如下：
+
 <div align="center">
 
 ``` mermaid
