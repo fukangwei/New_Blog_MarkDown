@@ -124,54 +124,15 @@ if (condition) {
 
 `language_key`可以是如下选项：
 
-Language                   | key
----------------------------|----
-`C`                        | `c`
-`AVR Assembler`            | `avrasm`
-`Bash`                     | `bash`
-`CMake`                    | `cmake`
-`CoffeeScript`             | `coffeescript`
-`C++`                      | `cpp`
-`C#`                       | `cs`
-`CSS`                      | `css`
-`Delphi`                   | `delphi`
-`Diff`                     | `diff`
-`Django`                   | `django`
-`DOS .bat`                 | `dos`
-`Go`                       | `go`
-`Haskell`                  | `haskell`
-`HTTP`                     | `http`
-`Java`                     | `java`
-`JavaScript`               | `javascript`
-`JSON`                     | `json`
-`Lua`                      | `lua`
-`Makefile`                 | `makefile`
-`Markdown`                 | `markdown`
-`Matlab`                   | `matlab`
-`nginx`                    | `nginx`
-`Objective C`              | `objectivec`
-`Oxygene`                  | `oxygene`
-`Perl`                     | `perl`
-`PHP`                      | `php`
-`PowerShell`               | `powershell`
-`Protocol Buffers`         | `protobuf`
-`Python`                   | `python`
-`R`                        | `r`
-`Ruby`                     | `ruby`
-`Rust`                     | `rust`
-`Scala`                    | `scala`
-`SQL`                      | `sql`
-`Swift`                    | `swift`
-`Tcl`                      | `tcl`
-`TeX`                      | `tex`
-`TypeScript`               | `typescript`
-`VB.NET`                   | `vbnet`
-`VBScript in HTML`         | `vbscript-html`
-`VBScript`                 | `vbscript`
-`Verilog`                  | `verilog`
-`VHDL`                     | `vhdl`
-`Intel x86 Assembly`       | `x86asm`
-`XML`或`HTML`              | `xml`
+Language      | key        | Language   | key
+--------------|------------|------------|--
+`C`           | `c`        | `Bash`     | `bash`
+`CMake`       | `cmake`    | `C++`      | `cpp`
+`JSON`        | `json`     | `Makefile` | `makefile`
+`Markdown`    | `markdown` | `Matlab`   | `matlab`
+`Python`      | `python`   | `Rust`     | `rust`
+`SQL`         | `sql`      | `TeX`      | `tex`
+`XML`或`HTML` | `xml`
 
 ### 表格
 

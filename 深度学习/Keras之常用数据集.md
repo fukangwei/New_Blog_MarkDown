@@ -98,18 +98,13 @@ from keras.datasets import mnist
 
 &emsp;&emsp;训练集为`60000`张`28 * 28`像素灰度图像，测试集为`10000`同规格图像，总共`10`类时尚物品标签。该数据集可以用作`MNIST`的直接替代品。类别标签如下：
 
-类别 | 描述          | 中文
-----|---------------|----
-`0` | `T-shirt/top` | T恤/上衣
-`1` | `Trouser`     | 裤子
-`2` | `Pullover`    | 套头衫
-`3` | `Dress`       | 连衣裙
-`4` | `Coat`        | 外套
-`5` | `Sandal`      | 凉鞋
-`6` | `Shirt`       | 衬衫
-`7` | `Sneaker`     | 运动鞋
-`8` | `Bag`         | 背包
-`9` | `Ankle boot`  | 短靴
+类别 | 描述          | 中文     | 类别 | 描述          | 中文
+----|---------------|----------|------|--------------|------
+`0` | `T-shirt/top` | T恤/上衣 | `1` | `Trouser`     | 裤子
+`2` | `Pullover`    | 套头衫   | `3` | `Dress`       | 连衣裙
+`4` | `Coat`        | 外套     | `5` | `Sandal`      | 凉鞋
+`6` | `Shirt`       | 衬衫     | `7` | `Sneaker`     | 运动鞋
+`8` | `Bag`         | 背包     | `9` | `Ankle boot`  | 短靴
 
 用法如下：
 
@@ -122,12 +117,3 @@ from keras.datasets import fashion_mnist
 
 - `(x_train, x_test)`：`uint8`数组表示的灰度图像，尺寸为`(num_samples, 28, 28)`。
 - `(y_train, y_test)`：`uint8`数组表示的数字标签(范围在`0`至`9`之间的整数)，尺寸为`(num_samples,)`。
-
-### Boston房价回归数据集
-
-&emsp;&emsp;数据集来自卡内基梅隆大学维护的`StatLib`库。样本包含`1970`年代的在波士顿郊区不同位置的房屋信息，总共有`13`种房屋属性。目标值是一个位置的房屋的中值(单位是`k$`)：
-
-``` python
-from keras.datasets import boston_housing
-(x_train, y_train), (x_test, y_test) = boston_housing.load_data()
-```

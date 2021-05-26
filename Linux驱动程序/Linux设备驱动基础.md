@@ -1709,7 +1709,7 @@ static void button_interrupt ( int irq, void *dummy, struct pt_regs *fp ) {
     input_sync ( &button_dev );
 }
 
-static int _ _init button_init ( void ) {
+static int __init button_init ( void ) {
     /* 申请中断 */
     if ( request_irq ( BUTTON_IRQ, button_interrupt, 0, "button", NULL ) ) {
         return - EBUSY;
