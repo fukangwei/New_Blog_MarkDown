@@ -5,8 +5,7 @@ date: 2019-02-14 16:37:15
 ---
 ### FTP服务器
 
-&emsp;&emsp;在`Linux`系统中，`ftp`服务器的全名叫`vsftpd`。我们需要利用相关命令来安装`ftp`服务器，然后在`vsftpd.conf`中进行相关配置。<!--more-->
-&emsp;&emsp;1. 首先使用如下命令进行安装：
+&emsp;&emsp;1. 首先使用如下命令进行安装：<!--more-->
 
 ``` bash
 sudo apt-get install vsftpd
@@ -32,7 +31,7 @@ passwd ftpname
 ```
 
 可以使用`cat /etc/passwd`查看当前系统用户。
-&emsp;&emsp;4. 修改`vsftpd`配置文件，该文件位于`/etc`目录下，相关的配置如下：
+&emsp;&emsp;4. 修改`vsftpd`配置文件`vsftpd.conf`，该文件位于`/etc`目录下，相关的配置如下：
 
 ``` bash
 listen=YES                     # 服务器监听
