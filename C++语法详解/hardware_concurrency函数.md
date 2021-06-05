@@ -3,13 +3,13 @@ title: hardware_concurrency函数
 date: 2021-03-03 06:02:11
 categories: C++语法详解
 ---
-&emsp;&emsp;`hardware_concurrency` returns the number of concurrent threads supported by the implementation. If the value is not well defined or not computable, returns `0`.<!--more-->
+&emsp;&emsp;`hardware_concurrency`返回实现支持的并发线程数。如果该值不可计算，则返回`0`：<!--more-->
 
 ``` cpp
 static unsigned int hardware_concurrency() noexcept;
 ```
 
-Example:
+代码如下：
 
 ``` cpp
 #include <iostream>
@@ -21,7 +21,7 @@ int main() {
 }
 ```
 
-Possible output:
+执行结果：
 
 ``` bash
 4 concurrent threads are supported.

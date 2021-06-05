@@ -155,7 +155,7 @@ vncserver :1
 sudo apt-get install openssh-server
 ```
 
-&emsp;&emsp;`sftp`是`Secure File Transfer Protocol`的缩写，意思是安全文件传送协议，可以为传输文件提供一种安全的加密方法，与`ftp`有着几乎一样的语法和功能。`SFTP`本身没有单独的守护进程，它必须使用`sshd`守护进程(端口号默认是`22`)来完成相应的连接操作。所以从某种意义上来说，`SFTP`并不像一个服务器程序，而更像是一个客户端程序。`SFTP`使用加密传输认证信息和数据，所以是非常安全的。但由于这种传输方式使用了加密和解密技术，所以传输效率比普通的`FTP`要低得多。常用的命令如下：
+&emsp;&emsp;`sftp`是`Secure File Transfer Protocol`的缩写，意思是安全文件传送协议，可以为传输文件提供一种安全的加密方法，与`ftp`有着几乎一样的语法和功能。常用的命令如下：
 
 ``` bash
 sftp user@host               # 登陆远程主机
