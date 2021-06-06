@@ -3,15 +3,6 @@ title: Qt之QLable
 categories: Qt语法详解
 date: 2019-02-06 17:14:43
 ---
-&emsp;&emsp;`QLable`的相关`API`如下：<!--more-->
-
-- `setText( string )`：设置`label`显示的文本。
-- `move(x, y)`：移动`label`到指定位置。
-- `setWindowTitle( string )`：设置窗体的标题。
-- `resize(x, y)`：设置`label`的大小。
-- `show()`：在屏幕上显示出来。
-- `QLabel( string )`：新建一个`label`控件并设置显示内容。
-
 ### 播放gif动画以及显示logo
 
 &emsp;&emsp;代码如下：
