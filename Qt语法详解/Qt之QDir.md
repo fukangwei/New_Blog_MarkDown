@@ -90,26 +90,3 @@ true
 "D:/qttest/QtDir-build-desktop/release"
 Already exits
 ```
-
-
----
-
-- `QString QDir::homePath() [static]`: Returns the absolute path of the user's home directory. Under `Windows`, this function will return the directory of the current user's profile. Typically, this is:
-
-``` cpp
-C:/Documents and Settings/Username
-```
-
-Use the `toNativeSeparators()` function to convert the separators to the ones that are appropriate for the underlying operating system.
-&emsp;&emsp;If the directory of the current user's profile does not exist or cannot be retrieved, the following alternatives will be checked (in the given order) until an existing and available path is found:
-
-- The path specified by the `USERPROFILE` environment variable.
-- The path formed by concatenating the `HOMEDRIVE` and `HOMEPATH` environment variables.
-- The path specified by the `HOME` environment variable.
-- The path returned by the `rootPath()` function (which uses the `SystemDrive` environment variable)
-- The `C:/` directory.
-
-Under `non-Windows` operating systems the `HOME` environment variable is used if it exists, otherwise the path returned by the `rootPath()`.
-
-- `QString QDir::rootPath() [static]`: Returns the absolute path of the root directory. For `Unix` operating systems, this returns `/`. For `Windows`, this normally returns `c:/`. I.E. the root of the system drive.
-- `QString QDir::tempPath()`: Returns the absolute path of the system's temporary directory. On `Unix/Linux` systems, this is the path in the `TMPDIR` environment variable or `/tmp` if `TMPDIR` is not defined. On `Windows`, this is usually the path in the `TEMP` or `TMP` environment variable. Whether a directory separator is added to the end or not, depends on the operating system.

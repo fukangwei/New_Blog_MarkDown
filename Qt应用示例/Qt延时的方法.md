@@ -22,25 +22,3 @@ int main ( int argc, char *argv[] ) {
     return app.exec();
 }
 ```
-
-&emsp;&emsp;2. 如下代码可以让程序以毫秒延时：
-
-``` cpp
-QTime n = QTime::currentTime();
-QTime now;
-
-do {
-    now = QTime::currentTime();
-} while ( n.msecsTo ( now ) <= 500 ); /* 延迟500毫秒 */
-```
-
-&emsp;&emsp;3. 如下代码可以让程序以秒延时：
-
-``` cpp
-QDateTime n2 = QDateTime::currentDateTime();
-QDateTime now;
-
-do {
-    now = QDateTime::currentDateTime();
-} while ( n2.secsTo ( now ) <= 6 ); /* 延时6秒 */
-```
