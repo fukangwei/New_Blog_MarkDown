@@ -89,13 +89,13 @@ u16 GetADCValue ( u8 ADC_Channel ) { /* ADC_Channel_x 0~17 */
 ADC_TempSensorVrefintCmd ( ENABLE );
 ```
 
-温度传感器通道号是`ADC_Channel_16`，此通道的采样时间调到最大，来保证精度。温度的计算公式如下：
+温度传感器通道号是`ADC_Channel_16`，此通道的采样时间调到最大，来保证精度。
+&emsp;&emsp;温度的计算公式为$\displaystyle{Temp = \frac{V_{25} - V_{SENSE}}{Avg\\_Slope} + 25}$：
 
-$$
-温度(^{\circ}C) = \{(V_{25}-V_{SENSE})/Avg\_Slope\} + 25
-$$
+- $V_{25}$是$V_{SENSE}$在$25^{\circ}C$时的数值。
+- $Avg\\_Slope$是温度与$V_{SENSE}$曲线的平均斜率。
 
-其中$V_{25}$是$V_{SENSE}$在$25^{\circ}C$时的数值；$Avg\\_Slope$是温度与$V_{SENSE}$曲线的平均斜率(单位是$mV/^{\circ}C$或$\mu V/^{\circ}C$)。$V_{25}$、$V_{SENSE}$的典型值分别为$1.43$、$4.3mV/^{\circ}C$，则`TEMP = (1.43 - Vsense)/0.0043 + 25`。
+$V_{25}$的典型值为`1.43`，$Avg\\_Slope$的典型值为$4.3mV/^{\circ}C$，则$\displaystyle{Temp = \frac{1.43 - V_{SENSE}}{0.0043} + 25}$。
 
 &emsp;&emsp;**补充说明**：
 
