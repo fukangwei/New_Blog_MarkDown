@@ -3,10 +3,10 @@ title: ucos在STM32上的移植
 categories: ucos和ucgui
 date: 2019-03-19 08:49:39
 ---
-&emsp;&emsp;`UCOS-II`由`Micrium`公司提供，是一个可移植、可固化的、可裁剪的、占先式多任务实时内核。它适用于多种微处理器、微控制器和数字处理芯片。同时，该系统源代码开放、注释详尽，适合系统开发。<!--more-->
+&emsp;&emsp;`UCOS-II`是一个可移植、可裁剪的、抢占式多任务实时内核，适用于多种微处理器。<!--more-->
 &emsp;&emsp;`UCOS-II`的架构如下：
 
-<img src="./ucos在STM32上的移植/1.png" height="295" width="344">
+<img src="./ucos在STM32上的移植/1.png" width=30%>
 
 &emsp;&emsp;**Step one**：下面这几个文件可以完全不用修改：
 
