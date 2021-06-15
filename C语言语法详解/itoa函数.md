@@ -3,7 +3,7 @@ title: itoa函数
 categories: C语言语法详解
 date: 2018-12-12 07:12:02
 ---
-&emsp;&emsp;`itoa`是广泛应用的非标准`C/C++`语言扩展函数。由于它不是标准`C/C++`语言函数，所以不能在所有的编译器中使用。但是，大多数的编译器通常在`stdlib.h`或`cstdlib`头文件中包含这个函数，其功能为将任意类型的数字转换为字符串。在`stdlib.h`中与之有相反功能的函数是`atoi`。<!--more-->
+&emsp;&emsp;`itoa`的功能是将任意类型的数字转换为字符串。<!--more-->
 
 ``` cpp
 char* itoa ( int value, char* string, int radix );
@@ -24,7 +24,32 @@ int main ( void ) {
 }
 ```
 
-&emsp;&emsp;实现`itoa`函数的源代码如下：
+&emsp;&emsp;简化版的`itoa`函数实现如下：
+
+``` cpp
+void my_itoa ( int n, char s[] ) {
+    int i, sign;
+
+    if ( ( sign = n ) < 0 ) { /* record sign */
+        n = -n; /* make n positive */
+    }
+
+    i = 0;
+
+    do { /* generate digits in reverse order */
+        s[i++] = n % 10 + '0'; /* get next digit */
+    } while ( ( n /= 10 ) > 0 ); /* delete it */
+
+    if ( sign < 0 ) {
+        s[i++] = '-';
+    }
+
+    s[i] = '\0';
+    reverse ( s );
+}
+```
+
+&emsp;&emsp;完整版的`itoa`函数实现如下：
 
 ``` cpp
 char* my_itoa ( int num, char* str, int radix ) {
