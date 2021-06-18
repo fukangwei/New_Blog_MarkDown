@@ -20,11 +20,17 @@ char* index ( const char* s, int c );
 #include <string.h>
 
 int main() {
-    char* s = "0123456789";
+    char s[] = "0123456789";
     char* p;
     p = index ( s, '5' );
     printf ( "%s\n", p );
 }
+```
+
+执行结果：
+
+``` cpp
+56789
 ```
 
 ### rindex
@@ -44,9 +50,15 @@ char* rindex ( const char* s, int c );
 #include <string.h>
 
 int main() {
-    char* s = "01234567890123456789";
+    char s[] = "01234567890123456789";
     char* p;
     p = rindex ( s, '5' );
     printf ( "%s\n", p );
 }
+```
+
+执行结果：
+
+``` cpp
+56789
 ```

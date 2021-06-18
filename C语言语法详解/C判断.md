@@ -3,7 +3,7 @@ title: C判断
 categories: C语言语法详解
 date: 2019-10-02 07:29:47
 ---
-&emsp;&emsp;判断结构要求程序员指定`一个`或`多个`要评估或测试的条件，以及条件为真时要执行的语句和条件为假时要执行的语句。<!--more-->
+&emsp;&emsp;判断结构要求程序员指定`一个`或`多个`要评估或测试的条件，以及条件为真时要执行的语句、条件为假时要执行的语句。<!--more-->
 &emsp;&emsp;`C`语言把任何`非零`和`非空`的值设定为`true`，把`0`或`null`设定为`false`。
 
 ### if语句
@@ -12,7 +12,7 @@ date: 2019-10-02 07:29:47
 
 ``` cpp
 if ( boolean_expression ) {
-    /* 如果布尔表达式为真，则将要执行的语句 */
+    /* 如果boolean_expression为真，则将要执行的语句 */
 }
 ```
 
@@ -22,19 +22,15 @@ if ( boolean_expression ) {
 
 ``` cpp
 if ( boolean_expression ) {
-    /* 如果布尔表达式为真，则将执行的语句 */
+    /* 如果boolean_expression为真，则将执行的语句 */
 } else {
-    /* 如果布尔表达式为假，则将执行的语句 */
+    /* 如果boolean_expression为假，则将执行的语句 */
 }
 ```
 
 ### if-else if-else语句
 
-&emsp;&emsp;`if`语句后可跟一个可选的`else if-else`语句，用于测试多种条件。当使用`if-else if-else`语句时，以下几点需要注意：
-
-- `if`后可跟`0`个或`1`个`else`，`else`必须在所有`else if`之后。
-- `if`后可跟`0`个或`N`个`else if`，`else if`必须在`else`之前。
-- 一旦某个`else if`匹配成功，其他的`else if`或`else`将不会被测试。
+&emsp;&emsp;`if`语句后可跟一个可选的`else if-else`语句，用于测试多种条件：
 
 ``` cpp
 if ( boolean_expression_1 ) {
@@ -50,7 +46,7 @@ if ( boolean_expression_1 ) {
 
 ### 嵌套if语句
 
-&emsp;&emsp;在`C`语言中，嵌套`if-else`语句是合法的，这意味着你可以在一个`if`或`else if`语句内使用另一个`if`或`else if`语句。
+&emsp;&emsp;在`C`语言中，嵌套`if-else`语句是合法的，这意味着你可以在一个`if`或`else if`语句内，使用另一个`if`或`else if`语句：
 
 ``` cpp
 if ( boolean_expression_1 ) {
@@ -61,11 +57,9 @@ if ( boolean_expression_1 ) {
 }
 ```
 
-可以嵌套`else if-else`，方式与嵌套`if`语句相似。
-
 ### switch语句
 
-&emsp;&emsp;`switch`语句允许测试一个变量等于多个值时的情况，每个值称为一个`case`：
+&emsp;&emsp;`switch`语句用于测试一个变量等于多个值时的情况，每个值称为一个`case`：
 
 ``` cpp
 switch ( expression ) {
@@ -81,19 +75,17 @@ switch ( expression ) {
 }
 ```
 
-`switch`语句必须遵循下面的规则：
+&emsp;&emsp;`switch`语句必须遵循下面的规则：
 
-- `switch`语句中的`expression`是一个常量表达式，必须是一个`整型`或`枚举类型`。
-- 在一个`switch`中可以有任意数量的`case`语句。每个`case`后跟一个要比较的值和一个冒号。
-- `case`的`constant-expression`必须与`switch`中的变量具有相同的数据类型，且必须是一个常量或字面量。
-- 当被测试的变量等于`case`中的常量时，`case`后跟的语句将被执行，直到遇到`break`语句为止。
+- `expression`是一个常量表达式，必须是一个`整型`或`枚举类型`。
+- 当`expression`等于`case`中的常量时，`case`后跟的语句将被执行，直到遇到`break`语句为止。
 - 当遇到`break`语句时，`switch`终止，控制流将跳转到`switch`语句后的下一行。
 - 不是每一个`case`都需要包含`break`。如果`case`语句不包含`break`，控制流将会`继续`后续的`case`，直到遇到`break`为止。
-- 一个`switch`语句可以有一个可选的`default case`，出现在`switch`的结尾。`default case`可用于在上面所有`case`都不为真时执行一个任务。`default case`中的`break`语句不是必需的。
+- `switch`语句有一个可选的`default case`，出现在`switch`的结尾，用于在上面所有`case`都不为真时执行一个任务。
 
 ### 嵌套switch语句
 
-&emsp;&emsp;可以把一个`switch`作为一个外部`switch`的语句序列的一部分，即可以在一个`switch`语句内使用另一个`switch`语句。即使内部和外部`switch`的`case`常量包含共同的值，也没有矛盾。
+&emsp;&emsp;可以在一个`switch`语句内使用另一个`switch`语句，即使内部和外部`switch`的`case`常量包含共同的值，也没有矛盾：
 
 ``` cpp
 switch(ch1) {
@@ -104,11 +96,11 @@ switch(ch1) {
             case 'A':
                 printf("这个A是内部switch的一部分" );
                 break;
-            case 'B': /* 内部 B case 代码 */
+            case 'B': /* 内部B case代码 */
         }
 
         break;
-    case 'B': /* 外部 B case 代码 */
+    case 'B': /* 外部B case代码 */
 }
 ```
 

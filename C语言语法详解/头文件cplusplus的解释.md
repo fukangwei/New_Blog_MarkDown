@@ -3,50 +3,44 @@ title: 头文件cplusplus的解释
 categories: C语言语法详解
 date: 2018-12-09 12:54:38
 ---
+### 原因解释
+
 &emsp;&emsp;我们经常会遇到下面的代码段：<!--more-->
 
 ``` cpp
 #ifdef __cplusplus
 extern "C" {
 #endif
-... /* c语法代码段 */
+... /* C语法代码段 */
 #ifdef __cplusplus
 }
 #endif
 ```
 
-`__cplusplus`是`CPP`中的自定义宏，表示这是一段`cpp`的代码，编译器按`C++`的方式进行编译。如果这时需要使用`C`语言的代码，那么就需要加上`extern "C" {`来说明。
-
-``` cpp
-#ifdef __cplusplus /* C++编译环境中才会定义“__cplusplus” */
-    /* 告诉编译器下面的函数是C语言函数(因为C++和C语言
-       对函数的编译转换不一样，主要是因为C++中存在重载) */
-    extern"C" {
-#endif
-```
-
-&emsp;&emsp;要明白为何使用`extern "C"{`，还得从`CPP`中对函数的重载处理开始说起。在`C++`中，为了支持重载机制，在编译生成的汇编码中，要对函数的名字进行一些处理，加入比如函数的返回类型等。而在`C`中，只是简单的函数名字而已，不会加入其他的信息。也就是说，`C++`和`C`对产生的函数名字的处理是不一样的。加上`extern "C"{`的目的，就是主要实现`C`与`C++`的相互调用问题。`extern "C"`是连接声明(`linkage declaration`)，被其修饰的变量和函数是按照`C`语言方式编译和连接的。作为一种面向对象的语言，`C++`支持函数重载，而`C`语言不支持。假设某个函数的原型为：
+`__cplusplus`是`C++`中的自定义宏，表示这是一段`cpp`的代码，编译器按`C++`的方式进行编译。如果要弄明白`extern "C"{`的作用，还要从`C++`中对函数重载处理说起。
+&emsp;&emsp;为了支持重载机制，`C++`在编译生成的符号表中，要对函数的名字进行一些处理，例如加上函数的参数类型。而在`C`语言中，只是简单的函数名字，不会加入其他的信息。也就是说，`C++`和`C`语言对产生的函数名字的处理是不一样的。
+&emsp;&emsp;假设某个函数的原型为：
 
 ``` cpp
 void foo ( int x, int y );
 ```
 
-该函数被`C`编译器编译后，在`symbol`库中的名字为`_foo`，而`C++`编译器则会产生像`_foo_int_int`之类的名字。`_foo_int_int`这样的名字包含了函数名和函数参数数量及类型信息，`C++`就是靠这种机制来实现函数重载的。
+该函数被`C`编译器编译后，在符号表中的名字为`_foo`，而`C++`编译器则会产生像`_foo_int_int`之类的名字。`_foo_int_int`包含了函数名、参数数量以及参数类型信息，`C++`就是靠这种机制来实现函数重载的。
+&emsp;&emsp;`extern "C"`的主要作用就是实现`C++`代码调用其他`C`语言代码。加上`extern "C"`后，会指示编译器这部分代码按`C`语言的方式进行编译。
+&emsp;&emsp;例如你用`C`语言开发了一个`DLL`，为了让`C++`也能够调用该`DLL`中的函数，你需要用`extern "C"`来强制编译器不要修改你的函数名。
 
-### C++调用C函数的实例
+### 代码实例
 
-&emsp;&emsp;`c.h`如下：
+&emsp;&emsp;`cExample.h`如下：
 
 ``` cpp
-#ifndef _c_h_
-#define _c_h_
+#ifndef C_EXAMPLE_H
+#define C_EXAMPLE_H
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-void C_fun();
-
+extern int add ( int x, int y );
 #ifdef __cplusplus
 }
 #endif
@@ -54,64 +48,41 @@ void C_fun();
 #endif
 ```
 
-&emsp;&emsp;`cc.c`如下：
+&emsp;&emsp;`cExample.c`如下：
 
 ``` cpp
-#include "c.h"
+#include "cExample.h"
 
-void C_fun() {
+int add ( int x, int y ) {
+    return x + y;
 }
 ```
 
-需要在`cxx.cpp`中调用`c.c`中的`C_fun`。`cxx.cpp`如下：
+&emsp;&emsp;`cppFile.cpp`如下：
 
 ``` cpp
-#include "c.h"
+#include "cExample.h"
+#include <iostream>
 
-int main() {
-    C_fun();
+using namespace std;
+
+int main ( int argc, char* argv[] ) {
+    cout << "2 + 3 = " << add ( 2, 3 ) << endl;
+    return 0;
 }
 ```
 
-`C++`调用`C`的函数时，在`C++`的`.h`文件中加`extern "C" {}`。`extern "C"`是告诉`C++`编译器件括号里的东西是按照`C`的`obj`文件格式编译的，要连接的话按照`C`的命名规则去找。
+&emsp;&emsp;使用`gcc`编译生成动态链接库：
 
-### C调用C++中的函数
-
-&emsp;&emsp;因为先有`C`后有`C++`，所以只能从`C++`的代码中考虑了。加入`C++`中的函数或变量有可能被`C`中的文件调用，也是用`extern "C"{}`，不过代码中要加，头文件中也要加，因为可能`C++`中也调用该函数。`Cxx.h`如下：
-
-``` cpp
-#ifndef _c_h_
-#define _c_h_
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-void CPP_fun();
-
-#ifdef __cplusplus
-}
-#endif
-
-#endif
+``` bash
+gcc -shared cExample.c -o libhello.so
 ```
 
-`Cxx.cpp`如下：
+&emsp;&emsp;使用`g++`编译`cppFile.cpp`，并链接`libhello.so`：
 
-``` cpp
-extern "C" { /* 告诉C++编译器，括号里按照C的命名规则编译 */
-    void CPP_fun() {
-        /* user code */
-    }
-}
+``` bash
+export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH
+g++ cppFile.cpp -o cppFile -lhello -L .
 ```
 
-`c.c`如下：
-
-``` cpp
-#include "Cpp.h"
-
-int main() {
-    CPP_fun();
-}
-```
+最后执行`./cppFile`即可。
