@@ -3,96 +3,188 @@ title: qsort函数
 categories: C语言语法详解
 date: 2018-12-12 18:38:58
 ---
-&emsp;&emsp;`qsort`函数是编译器函数库自带的快速排序函数：<!--more-->
+### 函数原型
+
+&emsp;&emsp;`qsort`是一个快速排序函数：<!--more-->
 
 ``` cpp
 #include <stdlib.h>
 void qsort ( void* base, int num, int width, int ( *fcmp ) ( const void*, const void* ) );
 ```
 
-`base`是待排序数组首地址，`num`是数组中待排序元素数量，`width`是各元素的占用空间大小，`fcmp`是指向函数的指针，用于确定排序的顺序。
-&emsp;&emsp;`fcmp`函数的原型为`fcmp ( ( void * ) &elem1, ( void * ) &elem2 );`，具体描述如下：
-
-`fcmp`函数的返回值 | 描述
-------------------|------
-`< 0`             | `elem1`将被排在`elem2`前面
-`= 0`             | `elem1`等于`elem2`
-`> 0`             | `elem1`将被排在`elem2`后面
-
-&emsp;&emsp;例如对于一个长为`1000`的数组(例如`int a[1000];`)进行排序，那么`base`为`a`，`num`为`1000`，`width`为`sizeof(int)`，`fcmp`是自己定义的函数，即`qsort ( a, 1000, sizeof ( int ), comp );`。其中，`comp`函数为：
+- `base`是待排序数组首地址。
+- `num`是数组中待排序元素数量。
+- `width`是各元素的占用空间大小。
+- `fcmp`是指向函数的指针，用于确定排序的顺序，例如：
 
 ``` cpp
 int comp ( const void* a, const void* b ) {
     return * ( int* ) a - * ( int* ) b; /* 由小到大排序 */
-    // return * ( int * ) b - * ( int * ) a; /* 为由大到小排序 */
+    // return * ( int * ) b - * ( int * ) a; /* 由大到小排序 */
 }
 ```
 
-参数列表是两个空指针，现在它要去指向你的数组元素，所以要转型为你当前的类型，然后取值。升序排列时，若第一个参数指针指向的`值`大于第二个参数指针指向的`值`，则返回正；若第一个参数指针指向的`值`等于第二个参数指针指向的`值`，则返回零；若第一个参数指针指向的`值`小于第二个参数指针指向的`值`，则返回负。降序排列时，则刚好相反。
-&emsp;&emsp;对一维数组的排序示例(从小到大排序)如下：
+### 一维数组排序
+
+&emsp;&emsp;对`char`型一维数组进行排序：
 
 ``` cpp
 #include <stdio.h>
 #include <stdlib.h>
 
-int comp ( const void* a, const void* b ) {
-    return * ( int* ) a - * ( int* ) b;
+int cmp ( const void* a, const void* b ) {
+    /* a、b是指向word中某个元素的指针 */
+    return * ( char* ) a - * ( char* ) b;
 }
 
 int main ( void ) {
-    int i = 0;
-    int* array = NULL;
-    int n;
-    printf ( "Input n: " );
-    scanf ( "%d", &n );
-    array = ( int* ) malloc ( n * sizeof ( int ) );
-    printf ( "Input the elements: " );
+    char word[5] = {'c', 'a', 'b', 'd', 'e'};
+    qsort ( word, 5, sizeof ( word[0] ), cmp );
 
-    for ( ; i < n; i++ ) {
-        scanf ( "%d", ( array + i ) );
+    for ( int i = 0; i < 5; i++ ) {
+        printf ( "word[%d] is %c\n", i, word[i] );
     }
 
-    qsort ( array, n, sizeof ( int ), comp );
-
-    for ( i = 0; i < n; i++ ) {
-        printf ( "%d ", array[i] );
-    }
-
-    free ( array );
     return 0;
 }
 ```
 
-&emsp;&emsp;按结构体中某个关键字排序(对结构体一级排序)：
+执行结果：
 
 ``` cpp
+word[0] is a
+word[1] is b
+word[2] is c
+word[3] is d
+word[4] is e
+```
+
+&emsp;&emsp;对`double`型一维数组进行排序：
+
+``` cpp
+#include <stdio.h>
+#include <stdlib.h>
+
+int cmp ( const void* a, const void* b ) {
+    /* 返回值的问题，显然cmp返回的是一个整型 */
+    return * ( double* ) a > * ( double* ) b ? 1 : -1;
+}
+
+int main ( void ) {
+    double in[4] = {4.6, 5.2, 1.3, 0.2};
+    qsort ( in, 4, sizeof ( in[0] ), cmp );
+
+    for ( int i = 0; i < 4; i++ ) {
+        printf ( "in[%d] is %lf\n", i, in[i] );
+    }
+
+    return 0;
+}
+```
+
+执行结果：
+
+``` cpp
+in[0] is 0.200000
+in[1] is 1.300000
+in[2] is 4.600000
+in[3] is 5.200000
+```
+
+### 二维数组排序
+
+&emsp;&emsp;代码如下：
+
+``` cpp
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int cmp ( const void *a, const void * b ) {
+    int* c = ( int * ) a;
+    int* d = ( int * ) b;
+    return c[0] - d[0];
+}
+
+int main() {
+    int a[][2] = {{7, 3}, {4, 6}, {5, 9}};
+    qsort ( a, 3, sizeof ( int ) * 2, cmp );
+
+    for ( int i = 0; i < 3; i++ ) {
+        for ( int j = 0; j < 2; j++ ) {
+            printf ( "a[%d][%d] is %d ", i, j, a[i][j] );
+        }
+
+        printf ( "\n" );
+    }
+
+    return 0;
+}
+```
+
+执行结果：
+
+``` cpp
+a[0][0] is 4 a[0][1] is 6
+a[1][0] is 5 a[1][1] is 9
+a[2][0] is 7 a[2][1] is 3
+```
+
+### 结构体一级排序
+
+&emsp;&emsp;按结构体中某个关键字排序：
+
+``` cpp
+#include <stdio.h>
+#include <stdlib.h>
+
 struct In {
     double data;
     int other;
-} s[100];
+} s[4];
 
 int cmp ( const void* a, const void* b ) { /* 按照data的值从小到大将结构体排序 */
     return ( * ( In* ) a ).data > ( * ( In* ) b ).data ? 1 : -1;
-    /* 注意，这条语句在VC6.0环境下运行可能会出错，但是并不是语句错了，而是你要先Build，
-       或者全部重建。或者你可以将这上面1条语句改成下面这3条语句：
-    struct In *aa = (In *)a;
-    struct In *bb = (In *)b;
-    return aa->data > bb->data ? 1 : -1; */
 }
 
-qsort ( s, 100, sizeof ( s[0] ), cmp );
+int main ( void ) {
+    s[0] = {1.3, 44};
+    s[1] = {4.6, 34};
+    s[2] = {0.2, 22};
+    s[3] = {5.2, 45};
+    qsort ( s, 4, sizeof ( s[0] ), cmp );
+
+    for ( int i = 0; i < 4; i++ ) {
+        printf ( "s[%d].data is %f\n", i, s[i].data );
+    }
+
+    return 0;
+}
 ```
 
-&emsp;&emsp;按结构体中多个关键字排序(对结构体多级排序)，以二级为例：
+执行结果：
 
 ``` cpp
-struct In {
-    int x; /* 你可以理解为失败次数 */
-    int y; /* 你可以比喻成成功次数 */
-} s[100];
+s[0].data is 0.200000
+s[1].data is 1.300000
+s[2].data is 4.600000
+s[3].data is 5.200000
+```
 
-/* 按照x从小到大排序，当x相等时按照y从大到小排序。你可以理解为：失败是主要
-   因素的一个问题，先比较谁的失败次数少；如果失败次数相同，再看谁的成功次数多 */
+### 结构体多级排序
+
+&emsp;&emsp;按结构体中多个关键字排序：
+
+``` cpp
+#include <stdio.h>
+#include <stdlib.h>
+
+struct In {
+    int x;
+    int y;
+} s[4];
+
+/* 按照x从小到大排序，当x相等时，按照y从大到小排序 */
 int cmp ( const void* a, const void* b ) {
     struct In* c = ( In* ) a;
     struct In* d = ( In* ) b;
@@ -104,47 +196,31 @@ int cmp ( const void* a, const void* b ) {
     }
 }
 
-qsort ( s, 100, sizeof ( s[0] ), cmp );
+int main ( void ) {
+    s[0] = {4, 44};
+    s[1] = {2, 45};
+    s[2] = {2, 56};
+    s[3] = {1, 45};
+    qsort ( s, 4, sizeof ( s[0] ), cmp );
+
+    for ( int i = 0; i < 4; i++ ) {
+        printf ( "s[%d].x is %d, s[%d].y is %d\n", i, s[i].x, i, s[i].y );
+    }
+
+    return 0;
+}
 ```
 
-&emsp;&emsp;对结构体中的字符串进行排序：
+执行结果：
 
 ``` cpp
-struct In {
-    int data;
-    char str[100];
-} s[100];
-
-/* 按照结构体中字符串str的字典顺序排序 */
-int cmp ( const void* a, const void* b ) {
-    return strcmp ( ( * ( In* ) a )->str, ( * ( In* ) b )->str );
-}
-
-qsort ( s, 100, sizeof ( s[0] ), cmp );
+s[0].x is 1, s[0].y is 45
+s[1].x is 2, s[1].y is 56
+s[2].x is 2, s[2].y is 45
+s[3].x is 4, s[3].y is 44
 ```
 
-&emsp;&emsp;`qsort`对其他类型的数组进行排序：
-
-``` cpp
-/* 对char类型数组排序 */
-char word[100];
-
-int cmp ( const void* a, const void* b ) {
-    return * ( char* ) a - * ( char* ) b;
-}
-
-qsort ( word, 100, sizeof ( word[0] ), cmp );
-
-/* 对double类型数组排序 */
-double in[100];
-
-int cmp ( const void* a, const void* b ) {
-    /* 返回值的问题，显然cmp返回的是一个整型 */
-    return * ( double* ) a > * ( double* ) b ? 1 : -1;
-}
-
-qsort ( in, 100, sizeof ( in[0] ), cmp );
-```
+### 字符串数组排序
 
 &emsp;&emsp;对字符串数组的排序：
 
@@ -155,28 +231,29 @@ qsort ( in, 100, sizeof ( in[0] ), cmp );
 #include <string.h>
 #include <stdlib.h>
 
-char s[100][100];
-int i, n;
-
 int cmp ( const void* a, const void* b ) {
     return ( strcmp ( ( char* ) a, ( char* ) b ) );
 }
 
 int main() {
-    scanf ( "%d", &n );
+    char s[][10] = {"hello", "world", "test", "litte"};
+    qsort ( s, 4, sizeof ( s[0] ), cmp );
 
-    for ( i = 0; i < n; i++ ) {
-        scanf ( "%s", s[i] );
-    }
-
-    qsort ( s, n, sizeof ( s[0] ), cmp );
-
-    for ( i = 0; i < n; i++ ) {
+    for ( int i = 0; i < 4; i++ ) {
         printf ( "%s\n", s[i] );
     }
 
-    return ( 0 );
+    return 0;
 }
+```
+
+执行结果：
+
+``` cpp
+hello
+litte
+test
+world
 ```
 
 - 对于`char *s[]`型：
@@ -186,41 +263,24 @@ int main() {
 #include <string.h>
 #include <stdlib.h>
 
-char* s[100];
-int i, n;
-
 int cmp ( const void* a, const void* b ) {
-    return ( strcmp ( * ( char** ) a, * ( char** ) b ) );
+    char * c = * ( char** ) a;
+    char * d = * ( char** ) b;
+    return ( strcmp ( c, d ) );
 }
 
 int main() {
-    scanf ( "%d", &n );
+    char str_0[] = "hello";
+    char str_1[] = "world";
+    char str_2[] = "test";
+    char str_3[] = "litte";
+    char* s[] = {str_0, str_1, str_2, str_3};
+    qsort ( s, 4, sizeof ( s[0] ), cmp );
 
-    for ( i = 0; i < n; i++ ) {
-        s[i] = ( char* ) malloc ( 20 );
-        scanf ( "%s", s[i] );
-    }
-
-    qsort ( s, n, sizeof ( s[0] ), cmp );
-
-    for ( i = 0; i < n; i++ ) {
+    for ( int i = 0; i < 4; i++ ) {
         printf ( "%s\n", s[i] );
     }
 
-    for ( i = 0; i < n; i++ ) {
-        free ( s[i] );
-    }
-
-    return ( 0 );
-}
-```
-
-&emsp;&emsp;对一个二维数组进行排序：例如`int a[1000][2];`，按照`a[0]`的大小进行一个整体的排序，其中`a[1]`必须和`a[0]`一起移动交换，即第一行和第二行(`a[0]`和`a[1]`分别代表第一行和第二行的首地址)。使用库函数排序的代码量并不比用冒泡排序法少，但速度却快很多：
-
-``` cpp
-qsort ( a, 1000, sizeof ( int ) * 2, comp );
-
-int comp ( const void* a, const void* b ) {
-    return ( ( int* ) a ) [0] - ( ( int* ) b ) [0];
+    return 0;
 }
 ```

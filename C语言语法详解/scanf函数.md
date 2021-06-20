@@ -28,6 +28,21 @@ scanf ( "%d %d", &a, &b );
 
 &emsp;&emsp;如果`scanf`中的`%d`是连着写的，例如`%d%d%d`，则在输入数据时，数据之间不可以用逗号分隔，只能用空白字符分隔。若是`%d,%d,%d`，则在输入数据时，需要加`,`进行分隔，例如`2,3,4`。
 
+### 读取字符
+
+&emsp;&emsp;输入字符：
+
+``` cpp
+#include <stdio.h>
+
+int main ( void ) {
+    char a;
+    scanf ( "%c", &a );
+    printf ( "%c\n", a );
+    return 0;
+}
+```
+
 ### 读取浮点数
 
 &emsp;&emsp;输入`float`型数据：

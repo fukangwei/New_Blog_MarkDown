@@ -3,18 +3,50 @@ title: strcat函数
 date: 2021-06-16 19:54:09
 categories: C语言语法详解
 ---
-&emsp;&emsp;`strcat`函数是将字符串`t`连接到字符串`s`的尾部，注意`s`必须有足够大的空间：<!--more-->
+### 函数原型
+
+&emsp;&emsp;`strcat`函数用来连接字符串：<!--more-->
 
 ``` cpp
-void strcat ( char s[], char t[] ) {
-    int i, j;
-    i = j = 0;
+char *strcat ( char *dest, const char *src );
+```
 
-    while ( s[i] != '\0' ) { /* 判断是否为字符串s的尾部 */
+`strcat`会将参数`src`字符串复制到参数`dest`所指的字符串尾部，`dest`的结束字符`NUL`会被覆盖掉，并在连接后的字符串尾部再增加一个`NUL`。
+
+``` cpp
+#include <stdio.h>
+#include <string.h>
+
+int main () {
+    char str[80];
+    strcpy ( str, "these " );
+    strcat ( str, "strings " );
+    strcat ( str, "are " );
+    strcat ( str, "concatenated." );
+    printf ( "%s\n", str );
+    return 0;
+}
+```
+
+执行结果如下：
+
+``` cpp
+these strings are concatenated.
+```
+
+### 具体实现
+
+&emsp;&emsp;具体实现如下：
+
+``` cpp
+void my_strcat ( char *s, char *t ) {
+    int i = 0, j = 0;
+
+    while ( s[i] != '\0' ) {
         i++;
     }
 
-    while ( ( s[i++] = t[j++] ) != '\0' ) /* 拷贝t */
+    while ( ( s[i++] = t[j++] ) != '\0' )
         ;
 }
 ```
