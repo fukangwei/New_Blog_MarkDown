@@ -3,6 +3,8 @@ title: strdup函数
 categories: C语言语法详解
 date: 2018-12-10 16:31:53
 ---
+### 函数原型
+
 &emsp;&emsp;`strdup`用于复制出字符串`str`的一个副本，该副本有自己的内存空间：<!--more-->
 
 ``` cpp
@@ -10,7 +12,7 @@ date: 2018-12-10 16:31:53
 char* strdup ( char* str );
 ```
 
-函数如果执行成功，则返回新字符串的指针，失败则返回`NULL`。
+函数如果执行成功，则返回指向新字符串的指针，失败则返回`NULL`。
 
 ``` cpp
 #include <stdio.h>
@@ -18,7 +20,7 @@ char* strdup ( char* str );
 #include <stdlib.h>
 
 int main ( void ) {
-    char string[10] = "abcde";
+    char string[] = "abcde";
     char* dup_str = NULL;
     dup_str = strdup ( string );
     printf ( "%s\n", dup_str );
@@ -27,17 +29,19 @@ int main ( void ) {
 }
 ```
 
-&emsp;&emsp;`strdup`的工作原理如下：
+### 函数实现
+
+&emsp;&emsp;具体实现如下：
 
 ``` cpp
 char* my_strdup ( const char* s ) {
     size_t len = strlen ( s ) + 1;
-    void* new = malloc ( len );
+    void* temp = malloc ( len );
 
-    if ( new == NULL ) {
+    if ( temp == NULL ) {
         return NULL;
     }
 
-    return ( char* ) memcpy ( new, s, len );
+    return ( char * ) memcpy ( temp, s, len );
 }
 ```

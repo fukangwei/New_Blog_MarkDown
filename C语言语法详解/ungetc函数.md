@@ -9,13 +9,13 @@ date: 2018-12-06 13:45:47
 int ungetc ( char c, FILE* stream );
 ```
 
-其中`c`是要写入的字符，`stream`是文件流指针。若函数返回字符`c`，表示操作成功，返回`EOF`表示操作失败。
+其中`c`是要退回到输入流的字符，`stream`是文件流指针。若函数返回字符`c`，表示操作成功；若返回`EOF`，则表示操作失败。
 
 ``` cpp
 #include <stdio.h>
 #include <ctype.h>
 
-void main ( void ) {
+int main ( void ) {
     int ch;
     int result = 0;
     printf ( "Enter an integer: " );
@@ -28,14 +28,15 @@ void main ( void ) {
         ungetc ( ch, stdin );
     }
 
-    printf ( "Number = %d\nNextcharacter in stream = '%c'", result, getchar() );
+    printf ( "Number = %d\nNext character in stream = %c\n", result, getchar() );
+    return 0;
 }
 ```
 
 执行结果：
 
-``` bash
-Enter an integer: 521a
-Number = 521
-Nextcharacter in stream = 'a'
+``` cpp
+Enter an integer: 512a
+Number = 512
+Next character in stream = a
 ```

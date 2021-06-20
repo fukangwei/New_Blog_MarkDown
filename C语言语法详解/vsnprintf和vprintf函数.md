@@ -5,20 +5,19 @@ date: 2018-12-14 16:35:26
 ---
 ### vsnprintf函数
 
-&emsp;&emsp;`_vsnprintf`是`C`语言库函数之一，属于可变参数函数，用于向字符串中打印数据，数据格式由用户自定义。<!--more-->
+&emsp;&emsp;函数功能是将可变参数列表进行格式化，然后输出到一个字符数组中。<!--more-->
 
 ``` cpp
 #include <stdarg.h>
-int _vsnprintf ( char* str, size_t size, const char* format, va_list ap );
+int vsnprintf ( char* str, size_t size, const char* format, va_list ap );
 ```
 
-- `char* str`：把生成的格式化的字符串存放在这里。
-- `size_t size`：`str`可接受的最大字符数(非字节数，`UNICODE`一个字符是`2`个字节)，防止产生数组越界。
-- `const char* format`：指定输出格式的字符串，它决定了你需要提供的可变参数的类型、个数和顺序。
-- `va_list ap`：`va_list`变量(`va`即`variable argument`，意思是可变参数)。
+- `str`：把格式化后的字符串存放在这里。
+- `size`：`str`可接受的最大字符数。
+- `format`：指定输出格式的字符串。
+- `ap`：`va_list`型变量。
 
-函数功能是将可变参数格式化输出到一个字符数组。用法类似于`vsprintf`，不过加了`size`的限制，防止了内存溢出(`size`为`str`所指的存储空间的大小)。函数执行成功，则返回写入到字符数组`str`中的字符个数(不包含终止符)，最大不超过`size`；执行失败，则返回负值，并置`errno`。
-&emsp;&emsp;注意，`Linux`环境下是`vsnprintf`，`VC6`环境下是`_vsnprintf`。
+如果函数执行成功，则返回写入到字符数组`str`中的字符个数；如果函数执行失败，则返回`-1`。
 
 ``` cpp
 #include <stdio.h>
@@ -27,17 +26,18 @@ int _vsnprintf ( char* str, size_t size, const char* format, va_list ap );
 int mon_log ( char* format, ... ) {
     char str_tmp[50];
     int i = 0;
-    va_list vArgList; /* 定义一个va_list型的变量，这个变量是指向参数的指针 */
-    /* 用va_start宏初始化变量，这个宏的第二个参数是第一个可变参数的前一个参数，是一个固定的参数 */
+    va_list vArgList;
     va_start ( vArgList, format );
     i = vsnprintf ( str_tmp, 50, format, vArgList );
     printf ( "str_tmp is %s\n", str_tmp );
-    va_end ( vArgList ); /* 用va_end宏结束可变参数的获取 */
-    return i; /* 返回参数的字符个数中间有逗号间隔 */
+    va_end ( vArgList );
+    return i;
 }
 
 int main() {
-    int i = mon_log ( "%s,%d,%d,%d", "asd", 2, 3, 4 );
+    char str[] = "asd";
+    char format[] = "%s, %d, %d, %d";
+    int i = mon_log ( format, str, 2, 3, 4 );
     printf ( "%d\n", i );
     return 0;
 }
@@ -46,8 +46,8 @@ int main() {
 执行结果：
 
 ``` bash
-str_tmp is asd,2,3,4
-9
+str_tmp is asd, 2, 3, 4
+12
 ```
 
 ### vprintf函数
@@ -60,7 +60,10 @@ str_tmp is asd,2,3,4
 int vprintf ( const char* format, va_list ap );
 ```
 
-`vprintf`的作用和`printf`相同，参数`format`格式也相同，`va_list`为不定个数的参数列。对于返回值，成功则返回实际输出的字符数，失败则返回`-1`，错误原因存于`errno`中。
+- `format`：指定输出格式的字符串。
+- `ap`：`va_list`型变量。
+
+如果函数执行成功，则返回实际输出的字符数；如果函数执行失败，则返回`-1`。
 
 ``` cpp
 #include <stdio.h>
@@ -72,14 +75,21 @@ int vpf ( char* fmt, ... ) {
     va_start ( argptr, fmt );
     cnt = vprintf ( fmt, argptr );
     va_end ( argptr );
-    return ( cnt );
+    return cnt;
 }
 
 int main ( void ) {
     int inumber = 30;
     float fnumber = 90.0;
-    char* string = "abc";
-    vpf ( "%d %f %s\n", inumber, fnumber, string );
+    char string[] = "abc";
+    char fmt[] = "%d %f %s\n";
+    vpf ( fmt, inumber, fnumber, string );
     return 0;
 }
+```
+
+执行结果：
+
+``` cpp
+30 90.000000 abc
 ```
