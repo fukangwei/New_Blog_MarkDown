@@ -5,7 +5,9 @@ date: 2019-02-03 18:42:31
 ---
 ### Linux进程与线程
 
-&emsp;&emsp;`Linux`进程创建一个新线程时，线程将拥有自己的栈(因为线程有自己的局部变量)，但与它的创建者共享全局变量、文件描述符、信号句柄和当前目录状态。`Linux`通过`fork`创建子进程与创建线程之间是有区别的：`fork`创建出该进程的一份拷贝，这个新进程拥有自己的变量和自己的`PID`，它的时间调度是独立的，它的执行几乎完全独立于父进程。进程可以看成一个资源的基本单位，而线程是程序调度的基本单位，一个进程内部的线程之间共享进程获得的时间片。<!--more-->
+&emsp;&emsp;`Linux`进程创建一个新线程时，线程将拥有自己的栈，因为线程有自己的局部变量。但与它的创建者共享全局变量、文件描述符、信号句柄和当前目录状态。
+&emsp;&emsp;`Linux`通过`fork`创建子进程与创建线程之间是有区别的：`fork`创建出该进程的一份拷贝，这个新进程拥有自己的变量和自己的`PID`，它的时间调度是独立的，它的执行几乎完全独立于父进程。
+&emsp;&emsp;进程可以看成一个资源的基本单位，而线程是程序调度的基本单位，一个进程内部的线程之间共享进程获得的时间片。<!--more-->
 
 ### \_REENTRANT宏
 
@@ -15,10 +17,6 @@ date: 2019-02-03 18:42:31
 - 它会对部分函数重新定义它们的可安全重入的版本，这些函数名字一般不会发生改变，只是会在函数名后面添加`_r`字符串，例如将函数`gethostbyname`变成`gethostbyname_r`。
 - `stdio.h`中原来以宏的形式实现的一些函数将变成可安全重入函数。
 - 在`error.h`中定义的变量`error`现在将成为一个函数调用，它能够以一种安全的多线程方式来获取真正的`errno`的值。
-
-### 线程的基本函数
-
-&emsp;&emsp;大多数`pthread_XXX`系列的函数在失败时，并未遵循`UNIX`函数的惯例返回`-1`，这种情况在`UNIX`函数中属于一少部分。如果调用成功，则返回值是`0`，如果失败则返回错误代码。
 
 #### 线程创建
 
@@ -35,21 +33,7 @@ int pthread_create ( pthread_t *thread, pthread_attr_t *attr,
 - `(* start_routine)(void *)`：传递新线程所要执行的函数地址。
 - `arg`：新线程所要执行的函数的参数。
 
-如果调用成功，则返回值是`0`；如果失败，则返回错误代码。`pthread_attr_t`的结构体如下：
-
-``` cpp
-typedef struct {
-    int detachstate;               /* 线程的分离状态            */
-    int schedpolicy;               /* 线程调度策略              */
-    struct sched_param schedparam; /* 线程的调度参数            */
-    int inheritsched;              /* 线程的继承性              */
-    int scope;                     /* 线程的作用域              */
-    size_t guardsize;              /* 线程栈末尾的警戒缓冲区大小 */
-    int stackaddr_set;
-    void *stackaddr;               /* 线程栈的位置              */
-    size_t stacksize;              /* 线程栈的大小              */
-} pthread_attr_t;
-```
+如果调用成功，则返回值是`0`；如果失败，则返回错误代码。
 
 #### 线程终止
 
@@ -60,7 +44,7 @@ typedef struct {
 void pthread_exit ( void *retval );
 ```
 
-参数`retval`指向线程向要返回的某个对象。线程通过调用`pthread_exit`函数终止执行，并返回一个指向某对象的指针。注意，绝不能用它返回一个指向局部变量的指针，因为线程调用该函数后，这个局部变量就不存在了，这将引起严重的程序漏洞。
+参数`retval`指向线程向要返回的某个对象。线程通过调用`pthread_exit`函数终止执行，并返回一个指向某对象的指针。
 
 #### 线程同步
 
@@ -74,11 +58,7 @@ int pthread_join ( pthread_t th, void **thread_return );
 - `th`：将要等待结束的线程，线程通过`pthread_create`返回的标识符来指定。
 - `thread_return`：一个指针，指向另一个指针，而后者指向线程的返回值。
 
-调用成功完成后，`pthrea_join`返回`0`，其他任何返回值都表示出现了错误。如果检测到以下任意情况，`pthread_join`将失败并返回相应的值：
-
-- `ESRCH`：没有找到与给定的线程`ID`相对应的线程。如果多个线程等待同一个线程终止，则所有等待线程将一直等到目标线程终止。然后一个等待线程成功返回，其余的等待线程将失败，返回`ESRCH`错误。
-- `EDEADLK`：将出现死锁，如一个线程等待其本身，或者线程`A`和线程`B`互相等待。
-- `EINVAL`：与给定的线程`ID`相对应的线程是分离线程。
+调用成功完成后，`pthrea_join`返回`0`，其他任何返回值都表示出现了错误。
 
 ``` cpp
 #include <pthread.h>
@@ -508,21 +488,6 @@ int pthread_attr_destroy ( pthread_attr_t *attr );
 功能为对线程属性变量的销毁。参数`attr`为线程属性。函数返回值为`0`表示成功，为`-1`表示失败。
 
 #### 其他函数
-
-&emsp;&emsp;其他函数如下：
-
-``` cpp
-/* 设置新创建线程栈的保护区大小 */
-int pthread_attr_setguardsize ( pthread_attr_t *attr, size_t guardsize );
-/* 决定怎样设置新创建线程的调度属性 */
-int pthread_attr_setinheritsched ( pthread_attr_t *attr, int inheritsched );
-/* 两者共同决定了线程栈的基地址以及堆栈的最小尺寸(以字节为单位) */
-int pthread_attr_setstack ( pthread_attr_t *attr, void *stackader, size_t stacksize );
-/* 决定了新创建线程的栈的基地址 */
-int pthread_attr_setstackaddr ( pthread_attr_t *attr, void *stackader );
-/* 决定了新创建线程的栈的最小尺寸(以字节为单位) */
-int pthread_attr_setstacksize ( pthread_attr_t *attr, size_t stacksize );
-```
 
 例如创建优先级为`10`的线程：
 
