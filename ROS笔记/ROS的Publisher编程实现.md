@@ -104,7 +104,7 @@ def velocity_publisher():
         vel_msg.angular.z = 0.2
         # 发布消息
         turtle_vel_pub.publish(vel_msg)
-        rospy.loginfo("Publsh turtle velocity command[%0.2f m/s, %0.2f rad/s]", 
+        rospy.loginfo("Publsh turtle velocity command[%0.2f m/s, %0.2f rad/s]",
                 vel_msg.linear.x, vel_msg.angular.z)
         rate.sleep() # 按照循环频率延时
 

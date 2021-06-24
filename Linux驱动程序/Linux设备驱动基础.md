@@ -681,27 +681,6 @@ static unsigned int mem_poll ( struct file *filp, poll_table *wait ) {
 
 ### 自动创建设备文件
 
-#### 自动创建(2.4内核)
-
-``` cpp
-devfs_register ( devfs_handle_t dir, const char *name, unsigned int flags,
-                 unsigned int major, unsigned int minor,
-                 umode_t mode, void *ops, void *info );
-```
-
-在指定的目录中创建设备文件。
-
-- `dir`：目录名，为空表示在`/dev`目录下创建。
-- `name`：文件名。
-- `flags`：创建标志。
-- `major`：主设备号。
-- `minor`：次设备号。
-- `mode`：创建模式。
-- `ops`：操作函数集。
-- `info`：通常为空。
-
-#### 自动创建(2.6内核)
-
 &emsp;&emsp;从`Linux 2.6.13`开始，`devfs`不复存在，`udev`成为`devfs`的替代。相比`devfs`，`udev(mdev)`存在于应用层。利用`udev(mdev)`来实现设备文件的自动创建很简单，在驱动初始化的代码里调用`class_create`为该设备创建一个`class`，再为每个设备调用`device_create`创建对应的设备。例如：
 
 ``` cpp

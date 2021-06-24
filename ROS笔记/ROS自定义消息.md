@@ -153,7 +153,7 @@ def velocity_publisher():
         person_msg.age  = 18
         person_msg.sex  = Person.male # 发布消息
         person_info_pub.publish(person_msg)
-        rospy.loginfo("Publsh person message[%s, %d, %d]", 
+        rospy.loginfo("Publsh person message[%s, %d, %d]",
                 person_msg.name, person_msg.age, person_msg.sex)
         rate.sleep() # 按照循环频率延时
 
@@ -174,7 +174,7 @@ import rospy
 from learning_topic.msg import Person
 
 def personInfoCallback(msg):
-    rospy.loginfo("Subcribe Person Info: name:%s  age:%d  sex:%d", 
+    rospy.loginfo("Subcribe Person Info: name:%s  age:%d  sex:%d",
              msg.name, msg.age, msg.sex)
 
 def person_subscriber():
