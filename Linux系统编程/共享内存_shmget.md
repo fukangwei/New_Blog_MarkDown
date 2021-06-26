@@ -5,7 +5,7 @@ date: 2019-03-13 13:02:59
 ---
 ### 共享内存
 
-&emsp;&emsp;共享内存是被多个进程共享的一部分物理内存。一个进程向共享内存写入了数据，共享这个内存区域的所有进程就可以立刻看到其中的内容。
+&emsp;&emsp;共享内存是被多个进程共享的一部分物理内存。一个进程向共享内存写入了数据，共享这个内存区域的所有进程就可以立刻看到其中的内容。<!--more-->
 &emsp;&emsp;如下图所示，共享内存的地址在进程`A`中的地址可能是`0x5000`，在进程`B`中的地址可能是`0x7000`，这是因为共享内存映射到不同进程当中的不同位置。
 
 <img src="./共享内存_shmget/2.png">
@@ -128,7 +128,7 @@ struct shared_use_st {
 #endif
 ```
 
-&emsp;&emsp;`shm1.c`如下：
+&emsp;&emsp;`shmread.c`如下：
 
 ``` cpp
 #include <unistd.h>
@@ -184,7 +184,7 @@ int main ( void ) {
 }
 ```
 
-&emsp;&emsp;`shm2.c`如下：
+&emsp;&emsp;`shmwrite.c`如下：
 
 ``` cpp
 #include <unistd.h>
