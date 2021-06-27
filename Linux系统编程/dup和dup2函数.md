@@ -3,7 +3,9 @@ title: dup和dup2函数
 categories: Linux系统编程
 date: 2019-02-03 00:13:39
 ---
-&emsp;&emsp;这两个函数的作用都是复制一个现存的文件描述符：<!--more-->
+### 函数原型
+
+&emsp;&emsp;函数原型如下：<!--more-->
 
 ``` cpp
 #include <unistd.h>
@@ -11,21 +13,17 @@ int dup ( int oldfd );
 int dup2 ( int oldfd, int newfd );
 ```
 
-当调用`dup`函数时，内核在进程中创建一个新的文件描述符，此描述符是当前可用文件描述符的最小数值，这个文件描述符指向`oldfd`所拥有的文件表项。假如`oldfd`的值为`1`，当前文件描述符的最小值为`3`，那么新描述符`3`指向描述符`1`所拥有的文件表项。
-&emsp;&emsp;`dup2`和`dup`的区别就是，它可以用`newfd`参数指定新描述符的数值，如果`newfd`已经打开，则先将其关闭。如果`newfd`等于`oldfd`，则`dup2`返回`newfd`，而不关闭它。`dup2`函数返回的新文件描述符同样与参数`oldfd`共享同一文件表项。`APUE`用另外一个种方法说明了这个问题：实际上，调用`dup ( oldfd );`等效于：
+当调用`dup`和`dup2`函数时，内核在进程中创建一个新的文件描述符，该文件描述符指向`oldfd`的文件表项。
+&emsp;&emsp;`dup2`和`dup`的区别如下：
 
-``` cpp
-fcntl ( oldfd, F_DUPFD, 0 );
-```
+1. `dup2`可以用`newfd`指定新文件描述符的数值，如果`newfd`已经打开，则先将其关闭。
+2. 如果`newfd`等于`oldfd`，则`dup2`返回`newfd`，而不关闭它。
 
-而调用`dup2 ( oldfd, newfd );`等效于：
+`dup2`函数返回的新文件描述符同样与参数`oldfd`共享同一文件表项。
 
-``` cpp
-close ( oldfd );
-fcntl ( oldfd, F_DUPFD, newfd );
-```
+### dup函数实例
 
-&emsp;&emsp;`dup`函数实例如下：
+&emsp;&emsp;使用`dup`将标准输出重定向到文件`hello`：
 
 ``` cpp
 #include <stdio.h>
@@ -62,22 +60,9 @@ int main ( int argc, char *argv[] ) {
 }
 ```
 
-在上面代码中，`nfd`拷贝了`fd`，所以`write ( nfd, buf, n );`写到`nfd`所代表的文件时，也就是写到`fd`所代表的文件。程序执行完后，可以在相应目录的`hello`文件中看到输出：
+### dup2函数实例
 
-``` bash
-$ gcc dup.c
-$ ls
-a.out  dup.c
-$ ./a.out
-hello world
-^C
-$ ls
-a.out  dup.c  hello
-$ cat hello
-hello world
-```
-
-&emsp;&emsp;`dup2`函数实例如下：
+&emsp;&emsp;使用`dup2`将标准输出重定向到文件`hello.file`：
 
 ``` cpp
 #include <stdio.h>
@@ -111,17 +96,4 @@ int main ( int argc, char *argv[] ) {
 
     return 0;
 }
-```
-
-上面的例子使用`dup2`将标准输出重定向为`hello.file`文件：
-
-``` bash
-$ ls
-dup2.c
-$ gcc dup2.c
-$ ./a.out
-hello world
-^C
-$ cat hello.file
-hello world
 ```

@@ -33,9 +33,4 @@ int setsockopt ( int s, int level, int optname, const void *optval, socklen_topt
 - `SO_OOBINLINE`：当接收到`OOB`数据时会马上送至标准输入设备。
 - `SO_LINGER`：确保数据安全且可靠的传送出去。
 
-`optval`代表欲设置的值，`optlen`则为`optval`的长度。函数执行成功则返回`0`，若有错误则返回`-1`，错误原因存于`errno`：
-
-- `EBADF`：参数`s`并非合法的`socket`处理代码。
-- `ENOTSOCK`：参数`s`为一文件描述词，非`socket`。
-- `ENOPROTOOPT`：参数`optname`指定的选项不正确。
-- `EFAULT`：参数`optval`指针指向无法存取的内存空间。
+`optval`代表欲设置的值，`optlen`则为`optval`的长度。函数执行成功则返回`0`，若有错误则返回`-1`。

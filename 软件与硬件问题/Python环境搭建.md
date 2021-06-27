@@ -40,8 +40,6 @@ jupyter notebook
 
 即可在浏览器中打开当前目录。可以通过切换目录来选择需要打开的`ipynb`文件。
 
----
-
 ### TensorFlow的安装
 
 #### Windows版本
@@ -93,9 +91,6 @@ cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
 pip install tensorflow==1.4.0
 ```
 
-
----
-
 ### 远程访问“Jupyter Notebook”
 
 &emsp;&emsp;在远程服务器上启动`jupyter notebooks`服务：
@@ -111,8 +106,6 @@ ssh -N -f -L localhost:8888:localhost:8889 username@serverIP
 ```
 
 其中`-N`告诉`ssh`没有命令要被远程执行，`-f`告诉`ssh`在后台执行，`-L`指定`port forwarding`的配置，远端端口是`8889`，本地的端口号的`8888`。注意`username@serverIP`替换成服务器的对应账号。最后打开浏览器，访问`http://localhost:8888/`。
-
----
 
 ### 使用conda创建python虚拟环境
 
