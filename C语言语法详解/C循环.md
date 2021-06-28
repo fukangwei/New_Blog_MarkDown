@@ -77,3 +77,23 @@ for ( initialization; condition; increment ) {
 ``` cpp
 continue;
 ```
+
+### 无限循环
+
+&emsp;&emsp;无限循环有`2`种形式：
+
+- `for`形式：
+
+``` cpp
+for ( ;; ) {
+    /* User code */
+}
+```
+
+- `while`形式：
+
+``` cpp
+while ( 1 ) {
+    /* User code */
+}
+```

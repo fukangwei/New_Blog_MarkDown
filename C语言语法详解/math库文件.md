@@ -98,3 +98,71 @@ The round of 2.7 is 3.000000
 The round of -2.2 is -2.000000
 The round of -2.7 is -3.000000
 ```
+
+### pow
+
+&emsp;&emsp;函数原型如下：
+
+``` cpp
+double pow ( double x, double y );
+```
+
+该函数用来求`x`的`y`次幂。
+
+``` cpp
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    double x = 4, y = 6;
+    double result = pow ( x, y );
+    printf ( "%lf\n", result );
+    return 0;
+}
+```
+
+### abs
+
+&emsp;&emsp;函数原型如下：
+
+``` cpp
+int abs ( int x );
+```
+
+该函数返回`x`的绝对值。
+
+``` cpp
+#include <stdio.h>
+#include <stdlib.h>
+
+int main () {
+    int a, b;
+    a = abs ( 5 );
+    printf ( "a = %d\n", a );
+    b = abs ( -10 );
+    printf ( "b = %d\n", b );
+    return ( 0 );
+}
+```
+
+### sqrt
+
+&emsp;&emsp;函数原型如下：
+
+``` cpp
+double sqrt ( double x );
+```
+
+该函数返回`x`的平方根。
+
+``` cpp
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    double root;
+    root = sqrt ( 200 );
+    printf ( "answer is %f\n", root );
+    return 0;
+}
+```
