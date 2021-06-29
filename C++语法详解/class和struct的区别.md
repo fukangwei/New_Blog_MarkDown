@@ -52,7 +52,7 @@ struct ST {
         set ( this, ( ST * ) &s )
     }
 
-    ST ( const ST &s ) { /* 复制构造函数 */
+    ST ( const ST &s ) { /* 拷贝构造函数 */
         *this = s;
     }
 };
@@ -60,7 +60,7 @@ struct ST {
 int main ( void ) {
     ST a; /* 调用默认构造函数 */
     vector<ST> v;
-    v.push_back ( a ); /* 调用复制构造函数 */
+    v.push_back ( a ); /* 调用拷贝构造函数 */
     ST s = v.at ( 0 ); /* 调用“=”函数 */
     cout << s.a << " " << s.b << endl;
     cin >> a.a;

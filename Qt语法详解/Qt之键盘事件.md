@@ -29,12 +29,12 @@ void Widget::keyPressEvent ( QKeyEvent *event ) {
 
 class MyLineEdit : public QLineEdit {
     Q_OBJECT
-public:
+  public:
     explicit MyLineEdit ( QWidget *parent = 0 );
-protected:
+  protected:
     void keyPressEvent ( QKeyEvent *event );
-signals:
-public slots:
+  signals:
+  public slots:
 };
 
 #endif // MYLINEEDIT_H

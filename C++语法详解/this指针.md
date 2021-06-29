@@ -3,78 +3,114 @@ title: this指针
 categories: C++语法详解
 date: 2019-02-05 18:53:49
 ---
-&emsp;&emsp;对象的`this`指针并不是对象本身的一部分，不会影响`sizeof(对象)`的结果。`this`作用域是在类内部，当类的非静态成员函数中访问类的非静态成员时，编译器会自动将对象本身的地址作为一个隐含参数传递给函数。也就是说，即使你没有写上`this`指针，编译器在编译时也会加上`this`，它作为非静态成员函数的隐含形参，对各成员的访问均通过`this`进行。例如，调用`date.SetMonth(9) <--> SetMonth(&date, 9)`，`this`帮助完成了这一转换。<!--more-->
-&emsp;&emsp;一种情况就是，在类的非静态成员函数中返回类对象本身时，直接使用`return *this`；另外一种情况是，当成员函数的参数与成员变量名相同时，要写成`this->n = n`，不能写成`n = n`。
-&emsp;&emsp;`this`指针存在于类的成员函数中，指向被调用函数所在的类实例的地址。根据以下程序来说明`this`指针：
+### this指针
+
+&emsp;&emsp;在`C++`中，每一个对象都能在成员函数内部，通过`this`指针来访问自己的地址：<!--more-->
 
 ``` cpp
-#include "iostream"
+#include <iostream>
 
 using namespace std;
 
-class Point {
-    int x, y;
-public:
-    Point ( int a, int b ) {
-        x = a;
-        y = b;
-    }
-
-    void MovePoint ( int a, int b ) {
-        x += a;
-        y += b;
-    }
-
-    void print() {
-        cout << "x = " << x << ", y = " << y << endl;
+class Box {
+  public:
+    Box* get_address() {
+        return this;
     }
 };
 
-int main( ) {
-    Point point1 ( 10, 10 );
-    point1.MovePoint ( 2, 2 );
-    point1.print();
+int main() {
+    Box box1;
+    Box* p = box1.get_address();
+    cout << "p is " << p << endl;
+    return 0;
 }
 ```
 
-当对象`point1`调用`MovePoint(2, 2)`时，程序将`point1`对象的地址传递给了`this`指针。`MovePoint`函数的原型应是：
+执行结果：
 
 ``` cpp
-void MovePoint ( Point *this, int a, int b );
+p is 0x7ffeacc4ed5f
 ```
 
-第一个参数是指向该类对象的一个指针，在定义成员函数时没看见它，是因为这个参数在类中是隐含的。这样，`point1`的地址传递给了`this`，所以`MovePoint`函数便显式地写成了：
+### 代码实例
+
+&emsp;&emsp;代码实例：
 
 ``` cpp
-void MovePoint ( int a, int b ) {
-    this->x += a;
-    this->y += b;
+#include <iostream>
+
+using namespace std;
+
+class Box {
+  public:
+    Box ( double l = 2.0, double b = 2.0, double h = 2.0 ) {
+        cout << "Constructor called." << endl;
+        length = l;
+        breadth = b;
+        height = h;
+    }
+
+    double Volume() {
+        return length * breadth * height;
+    }
+
+    int compare ( Box box ) {
+        return this->Volume() > box.Volume();
+    }
+
+  private:
+    double length;
+    double breadth;
+    double height;
+};
+
+int main ( void ) {
+    Box Box1 ( 3.3, 1.2, 1.5 );
+    Box Box2 ( 8.5, 6.0, 2.0 );
+
+    if ( Box1.compare ( Box2 ) ) {
+        cout << "Box2 is smaller than Box1" << endl;
+    } else {
+        cout << "Box2 is equal to or larger than Box1" << endl;
+    }
+
+    return 0;
 }
 ```
 
-于是，`point1`调用该函数后，它的的数据成员被调用并更新了值，该函数过程可写成了：
+执行结果：
 
 ``` cpp
-point1.x += a;
-point1.y += b;
+Constructor called.
+Constructor called.
+Box2 is equal to or larger than Box1
 ```
 
-&emsp;&emsp;关于`this`指针的一个经典回答：当你进入一个房子后，你可以看见桌子、椅子、地板等，但是房子你是看不到全貌了。对于一个类的实例来说，你可以看到它的成员函数、成员变量，但是实例本身呢？`this`是一个指针，它时时刻刻指向你这个实例本身。
-&emsp;&emsp;`this`只能在成员函数中使用，全局函数、静态函数都不能使用`this`。实际上，成员函数默认第一个参数为`T * const this`：
+### this详解
+
+&emsp;&emsp;实际上，成员函数默认第一个参数为`T * const this`。
+&emsp;&emsp;类`A`如下：
 
 ``` cpp
 class A {
-public:
+  public:
     int func ( int p ) {
     }
 };
 ```
 
-`func`的原型在编译器看来应该是`int func(A * const this,int p);`。由此可见，`this`在成员函数的开始前构造，在成员函数的结束后清除。这个生命周期同任何一个函数的参数是一样的，没有任何区别。当调用一个类的成员函数时，编译器将类的指针作为函数的`this`参数传递进去：
+`func`的原型在编译器看来应该是`int func ( A * const this, int p );`。当调用一个成员函数时，编译器将对象的地址作为函数的`this`参数传递进去：
 
 ``` cpp
 A a;
+// 如下2行代码相等
 a.func ( 10 );
+A::func ( &a, 10 );
 ```
 
-此处，编译器将会编译成`A::func(&a, 10);`。
+### 注意点
+
+- 在类的非静态成员函数中返回类对象本身时，直接使用`return *this`。
+- 当成员函数的参数与成员变量名称相同时，要写成`this->n = n`，不能写成`n = n`。
+- `this`只能在成员函数中使用，全局函数、静态函数都不能使用`this`。
