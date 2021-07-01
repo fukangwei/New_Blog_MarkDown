@@ -5,38 +5,30 @@ date: 2019-02-05 20:21:24
 ---
 ### max函数
 
-&emsp;&emsp;This is a function template, in the header file `algorithm`:<!--more-->
+&emsp;&emsp;函数原型如下：<!--more-->
 
 ``` cpp
 template <class T> const T &max ( const T &a, const T &b );
-template <class T, class Compare> const T &max ( const T &a, const T &b, Compare comp );
 ```
 
-Returns the largest of `a` and `b`. If both are equivalent, `a` is returned.
-&emsp;&emsp;The function uses `operator<` (or `comp`, if provided) to compare the values. The behavior of this function template is equivalent to:
+函数返回`a`和`b`中的最大值。如果`a`和`b`相等，则返回`a`。
 
 ``` cpp
-template <class T> const T &max ( const T &a, const T &b ) {
-    return ( a < b ) ? b : a; // or return comp(a, b) ? b : a;
-}
-```
+#include <iostream>
+#include <algorithm>
 
-Example:
-
-``` cpp
-#include <iostream> /* std::cout */
-#include <algorithm> /* std::max */
+using namespace std;
 
 int main() {
-    std::cout << "max(1, 2) == " << std::max(1, 2) << '\n';
-    std::cout << "max(2, 1) == " << std::max(2, 1) << '\n';
-    std::cout << "max('a', 'z') == " << std::max('a', 'z') << '\n';
-    std::cout << "max(3.14, 2.73) == " << std::max(3.14, 2.73) << '\n';
+    cout << "max(1, 2) == " << max ( 1, 2 ) << endl;
+    cout << "max(2, 1) == " << max ( 2, 1 ) << endl;
+    cout << "max('a', 'z') == " << max ( 'a', 'z' ) << endl;
+    cout << "max(3.14, 2.73) == " << max ( 3.14, 2.73 ) << endl;
     return 0;
 }
 ```
 
-Output:
+执行结果：
 
 ``` cpp
 max(1, 2) == 2
@@ -47,38 +39,30 @@ max(3.14, 2.73) == 3.14
 
 ### min函数
 
-&emsp;&emsp;This is a function template, in the header file `algorithm`:
+&emsp;&emsp;函数原型如下：
 
 ``` cpp
 template <class T> const T &min ( const T &a, const T &b );
-template <class T, class Compare> const T &min ( const T &a, const T &b, Compare comp );
 ```
 
-Returns the smallest of `a` and `b`. If both are equivalent, `a` is returned.
-&emsp;&emsp;The function uses `operator<` (or `comp`, if provided) to compare the values. The behavior of this function template is equivalent to:
+函数返回`a`和`b`中的最小值。如果`a`和`b`相等，则返回`a`。
 
 ``` cpp
-template <class T> const T &min ( const T &a, const T &b ) {
-    return ! ( b < a ) ? a : b; // or return !comp(b, a) ? a : b;
-}
-```
+#include <iostream>
+#include <algorithm>
 
-Example:
-
-``` cpp
-#include <iostream> /* std::cout */
-#include <algorithm> /* std::min */
+using namespace std;
 
 int main() {
-    std::cout << "min(1, 2) == " << std::min(1, 2) << '\n';
-    std::cout << "min(2, 1) == " << std::min(2, 1) << '\n';
-    std::cout << "min('a', 'z') == " << std::min('a', 'z') << '\n';
-    std::cout << "min(3.14, 2.72) == " << std::min(3.14, 2.72) << '\n';
+    cout << "max(1, 2) == " << min ( 1, 2 ) << endl;
+    cout << "max(2, 1) == " << min ( 2, 1 ) << endl;
+    cout << "max('a', 'z') == " << min ( 'a', 'z' ) << endl;
+    cout << "max(3.14, 2.73) == " << min ( 3.14, 2.73 ) << endl;
     return 0;
 }
 ```
 
-Output:
+执行结果：
 
 ``` cpp
 min(1, 2) == 1
