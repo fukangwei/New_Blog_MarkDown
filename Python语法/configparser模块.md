@@ -3,7 +3,8 @@ title: configparser模块
 categories: Python语法
 date: 2018-12-27 18:19:14
 ---
-&emsp;&emsp;`configparser`用于配置文件解析，可以解析特定格式的配置文件，多数此类配置文件名格式为`XXX.ini`，例如`mysql`的配置文件。`ini`文件示例：<!--more-->
+&emsp;&emsp;`configparser`可以解析特定格式的配置文件。<!--more-->
+&emsp;&emsp;`ini`文件示例：
 
 ``` bash
 [section1]
@@ -15,14 +16,14 @@ name : python
 age = 19
 ```
 
-文件格式说明：
+&emsp;&emsp;文件格式说明：
 
 ``` bash
 [XXX]  # 代表节点
 XX = XX 或者 XX : XX  # 代表参数
 ```
 
-代码如下：
+&emsp;&emsp;代码如下：
 
 ``` python
 import configparser  # 导入模块
@@ -57,4 +58,4 @@ config.set("section1", "k1", "v1")
 config.write(open("user.ini", "w"))
 ```
 
-对于`getint`，还有对应的`getboolean`和`getfloat`函数。
+&emsp;&emsp;对于`getint`，还有对应的`getboolean`和`getfloat`函数。

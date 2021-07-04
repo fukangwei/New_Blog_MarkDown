@@ -19,7 +19,7 @@ pip install scikit-image
 `color`        | 颜色空间变换
 `data`         | 提供一些测试图片和样本数据
 `filters`      | 图像增强的模块，例如边缘检测、自动阈值
-`draw`         | 操作于`numpy`数组上的基本图形绘制，包括线条、矩阵、圆和文本等
+`draw`         | 操作于`numpy`数组上的基本图形绘制
 `transform`    | 几何变换和其他变换，例如旋转、拉伸和`Radon`变换
 `exposure`     | 图像强度调整，例如直方图均衡化
 `feature`      | 特征检测和提取，例如纹理分析
