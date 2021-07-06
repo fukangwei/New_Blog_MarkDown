@@ -3,8 +3,11 @@ title: multiprocessing模块
 categories: Python语法
 date: 2019-02-10 16:54:23
 ---
-&emsp;&emsp;`Python`提供了多进程包`multiprocessing`，它支持子进程调度、通信以及共享内存，执行不同形式的同步，提供了`Process`、`Lock`等组件。<!--more-->
-&emsp;&emsp;多进程和多线程区别：多线程使用的是`CPU`的一个核，适合`IO`密集型任务；多进程使用的是`CPU`的多个核，适合运算密集型任务。
+&emsp;&emsp;`Python`提供了多进程模块`multiprocessing`，它支持子进程调度、通信以及共享内存，提供了`Process`、`Lock`等组件。<!--more-->
+&emsp;&emsp;多进程和多线程区别：
+
+- 多线程使用的是`CPU`的一个核，适合`IO`密集型任务。
+- 多进程使用的是`CPU`的多个核，适合运算密集型任务。
 
 ### multiprocessing的方法
 
@@ -31,13 +34,15 @@ print(m)  # 输出“[]”
 p = multiprocessing.Precess(target=worker, args=(2,))
 ```
 
-参数`target`是函数名字，`args`是函数需要的的参数，以`tuple`形式传入。
+- `target`是函数名字。
+- `args`是函数需要的的参数，以`tuple`形式传入。
+
 &emsp;&emsp;`Process`的常用方法如下：
 
 - `is_alive`：判断进程是否存活。
 - `run`：启动进程。
 - `start`：启动进程，会自动调用`run`方法。
-- `join(timeout=)`：等待进程结束或者直到超时。
+- `join(timeout=)`：等待进程结束，或者直到超时。
 
 &emsp;&emsp;`Process`的常用属性如下：
 
@@ -72,7 +77,9 @@ Process-1
 This is end
 ```
 
-&emsp;&emsp;多进程示例如下：
+### 多进程实例
+
+&emsp;&emsp;代码如下：
 
 ``` python
 import time
@@ -122,7 +129,7 @@ worker end
 
 ### lock组件
 
-&emsp;&emsp;当我们使用多进程来读写文件时，需要用到锁机制进行控制读写流程：
+&emsp;&emsp;当使用多进程来读写文件时，需要用`锁机制`对读写进行控制：
 
 ``` python
 import multiprocessing
@@ -167,8 +174,6 @@ init, member = 0
 add 3, number = 3
 add 3, number = 6
 ```
-
-对于进程`1`和进程`3`，谁先抢到锁，则另一个进程只能等待抢到者执行完之后才能执行。
 
 ### 共享内存
 
@@ -218,49 +223,19 @@ add 3, number = 5
 add 3, number = 8
 ```
 
-### 多进程Manager
-
-&emsp;&emsp;`Python`提供了强大的`Manage`专门用来做数据共享的，其支持的类型非常多，包括`Value`、`Array`、`list`、`dict`、`Queue`、`Lock`等：
-
-``` python
-import multiprocessing
-
-def worker(d, L):
-    L += range(11, 16)  # 返回一个列表序列的特殊写法
-
-    for i in range(1, 3):
-        key = "key {0}".format(i)
-        value = "value {0}".format(i)
-        d[key] = value
-
-if __name__ == "__main__":
-    manager = multiprocessing.Manager()
-    L = manager.list()
-    d = manager.dict()
-    p = multiprocessing.Process(target=worker, args=(d, L))
-    p.start()
-    p.join()
-
-    print(d)
-    print(L)
-    print("main end")
-```
-
-执行结果：
-
-``` python
-{'key 1': 'value 1', 'key 2': 'value 2'}
-[11, 12, 13, 14, 15]
-main end
-```
-
 ### 进程池
 
-&emsp;&emsp;`Pool`可以提供指定数量的进程供用户调用，当有新的请求提交到`pool`中时，如果池还没有满，那么就会创建一个新的进程用来执行该请求；但如果池中的进程数已经达到规定最大值，那么该请求就会等待，直到池中有进程结束，才会创建新的进程。
-&emsp;&emsp;进程有阻塞和非阻塞两种类型：
+&emsp;&emsp;`Pool`可以提供指定数量的进程供用户调用。当有新的请求提交到`pool`中时：
+
+1. 如果池还没有满，那么就会创建一个新的进程用来执行该请求。
+2. 如果池中的进程数已经达到规定最大值，那么该请求就会等待，直到池中有进程结束，才会创建新的进程。
+
+&emsp;&emsp;进程有`阻塞`和`非阻塞`这`2`种类型：
 
 - `Pool.apply_async`：非阻塞型，进程可以同时执行。
 - `Pool.apply`：阻塞型，一个进程结束并释放回进程池，下一个进程才可以开始。
+
+#### 非阻塞型
 
 &emsp;&emsp;非阻塞型如下：
 
@@ -301,7 +276,8 @@ end hello 4
 main end
 ```
 
-一开始启动`3`个进程，之后先关闭一个进程，再补充另外一个进程进来，始终保持`3`个，直至结束。
+#### 阻塞型
+
 &emsp;&emsp;阻塞型如下：
 
 ``` python
@@ -340,5 +316,3 @@ start hello 4
 end hello 4
 main end
 ```
-
-每次只能启动一个进程，启动新进程前，需关闭老进程。

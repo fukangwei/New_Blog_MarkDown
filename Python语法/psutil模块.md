@@ -3,29 +3,28 @@ title: psutil模块
 categories: Python语法
 date: 2019-02-10 17:08:38
 ---
-&emsp;&emsp;用`Python`编写脚本简化日常的运维工作是`Python`的一个重要用途。在`Linux`下，有许多系统命令可以让我们时刻监控系统运行的状态，如`ps`、`top`、`free`等。要获取这些系统信息，`Python`可以通过`subprocess`模块调用并获取结果。但这样做显得很麻烦，尤其是要写很多解析代码。<!--more-->
-&emsp;&emsp;在`Python`中获取系统信息的另一个好办法是使用`psutil`这个第三方模块。顾名思义，`psutil`等于`process and system utilities`，它不仅可以通过一两行代码实现系统监控，还可以跨平台使用，支持`Linux`、`UNIX`、`OSX`、`Windows`等，是系统管理员和运维小伙伴的必备模块。
+&emsp;&emsp;`psutil`模块用于获取系统信息。<!--more-->
 
 ### 获取CPU信息
 
-&emsp;&emsp;先来获取`CPU`的信息：
+&emsp;&emsp;获取`CPU`的信息：
 
 ``` python
 >>> import psutil
 >>> psutil.cpu_count()  # CPU逻辑数量
 4
 >>> psutil.cpu_count(logical=False)  # CPU物理核心
-2  # “2”说明是双核超线程，“4”则是4核非超线程
+2
 ```
 
-统计`CPU`的`用户/系统/空闲时间`：
+&emsp;&emsp;统计`CPU`的`用户/系统/空闲时间`：
 
 ``` python
 >>> psutil.cpu_times()
 scputimes(user=10963.31, nice=0.0, system=5138.67, idle=356102.45)
 ```
 
-查看`CPU`使用率，每秒刷新一次，累计`10`次(类似于`top`命令)：
+&emsp;&emsp;查看`CPU`使用率，每秒刷新一次，累计`10`次：
 
 ``` python
 >>> for x in range(10):
@@ -45,7 +44,7 @@ scputimes(user=10963.31, nice=0.0, system=5138.67, idle=356102.45)
 
 ### 获取内存信息
 
-&emsp;&emsp;使用`psutil`获取物理内存和交换内存信息，分别使用：
+&emsp;&emsp;获取物理内存和交换内存信息：
 
 ``` python
 >>> psutil.virtual_memory()
@@ -55,11 +54,9 @@ svmem(total=8589934592, available=2866520064, percent=66.6, used=7201386496, \
 sswap(total=1073741824, used=150732800, free=923009024, percent=14.0, sin=10705981440, sout=40353792)
 ```
 
-返回的是字节为单位的整数，可以看到总内存大小是`8589934592`(`8GB`)，已用`7201386496`(`6.7GB`)，使用了`66.6%`，而交换区大小是`1073741824`(`1GB`)。
-
 ### 获取磁盘信息
 
-&emsp;&emsp;可以通过`psutil`获取磁盘分区、磁盘使用率和磁盘`IO`信息：
+&emsp;&emsp;获取磁盘分区、磁盘使用率、磁盘`IO`信息：
 
 ``` python
 >>> psutil.disk_partitions()  # 磁盘分区信息
@@ -72,14 +69,12 @@ sdiskio(read_count=988513, write_count=274457, read_bytes=14856830464, \
 ...     write_bytes=17509420032, read_time=2228966, write_time=1618405)
 ```
 
-可以看到，磁盘`/`的总容量是`998982549504`(`930GB`)，使用了`39.1%`。文件格式是`HFS`，`opts`中包含`rw`表示可读写，`journaled`表示支持日志。
-
 ### 获取网络信息
 
-&emsp;&emsp;`psutil`可以获取网络接口和网络连接信息：
+&emsp;&emsp;获取网络接口信息：
 
 ``` python
->>> psutil.net_io_counters()  # 获取网络读写字节/包的个数
+>>> psutil.net_io_counters()  # 获取网络读写字节的个数
 snetio(bytes_sent=3885744870, bytes_recv=10357676702, packets_sent=10613069, \
 ...    packets_recv=10423357, errin=0, errout=0, dropin=0, dropout=0)
 >>> psutil.net_if_addrs()  # 获取网络接口信息
@@ -100,22 +95,7 @@ snetio(bytes_sent=3885744870, bytes_recv=10357676702, packets_sent=10613069, \
 }
 ```
 
-要获取当前网络连接信息，使用`net_connections`函数：
-
-``` python
->>> psutil.net_connections()
-Traceback (most recent call last):
-  ...
-PermissionError: [Errno 1] Operation not permitted
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  ...
-psutil.AccessDenied: psutil.AccessDenied (pid=3847)
-```
-
-你可能会得到一个`AccessDenied`错误，原因是`psutil`获取信息也是要走系统接口，而获取网络连接信息需要`root`权限。这种情况下，可以退出`Python`交互环境，用`sudo`重新启动：
+&emsp;&emsp;获取网络连接信息需要`root`权限：
 
 ``` python
 >>> import psutil
@@ -139,7 +119,7 @@ psutil.AccessDenied: psutil.AccessDenied (pid=3847)
 
 ### 获取进程信息
 
-&emsp;&emsp;通过`psutil`可以获取到所有进程的详细信息：
+&emsp;&emsp;获取所有进程的详细信息：
 
 ``` python
 >>> psutil.pids()  # 所有进程ID
@@ -184,21 +164,4 @@ pmem(rss=8310784, vms=2481725440, pfaults=3207, pageins=18)
  'PWD': '/Users/michael', 'LANG': 'zh_CN.UTF-8', ...}
 >>> p.terminate()  # 结束进程
 Terminated: 15 <-- 自己把自己结束了
-```
-
-&emsp;&emsp;`psutil`还提供了一个`test`函数，可以模拟出`ps`命令的效果：
-
-``` python
->>> import psutil
->>> psutil.test()
-USER         PID %MEM      VSZ     RSS TTY START   TIME  COMMAND
-root           0 24.0 74270628 2016380  ?  Nov18  40:51  kernel_task
-root           1  0.1  2494140    9484  ?  Nov18  01:39  launchd
-root          44  0.4  2519872   36404  ?  Nov18  02:02  UserEventAgent
-root          45    ?  2474032    1516  ?  Nov18  00:14  syslogd
-root          47  0.1  2504768    8912  ?  Nov18  00:03  kextd
-root          48  0.1  2505544    4720  ?  Nov18  00:19  fseventsd
-_appleeven    52  0.1  2499748    5024  ?  Nov18  00:00  appleeventsd
-root          53  0.1  2500592    6132  ?  Nov18  00:02  configd
-...
 ```
