@@ -3,13 +3,17 @@ title: tqdm模块
 categories: Python语法
 date: 2018-12-27 17:45:22
 ---
-&emsp;&emsp;`Tqdm`是一个快速的、可扩展的`Python`进度条，可以在`Python`长循环中添加一个进度提示信息，用户只需要封装迭代器`tqdm(iterator)`即可。<!--more-->
-&emsp;&emsp;最基本的用法如下，该进度条的长度是`9`：
+&emsp;&emsp;`tqdm`是一个进度条，可以在`Python`循环中添加一个进度提示信息。<!--more-->
+
+### 基本用法
+
+&emsp;&emsp;基本用法如下：
 
 ``` python
 from tqdm import tqdm
 from time import sleep
 
+# 进度条的长度是9
 for i in tqdm(range(9)):
     sleep(0.1)
 ```
@@ -20,7 +24,9 @@ for i in tqdm(range(9)):
 100%|██████████| 9/9 [00:00<00:00,  9.94it/s]
 ```
 
-还可以为进度条添加描述：
+### 添加描述
+
+&emsp;&emsp;还可以为进度条添加描述：
 
 ``` python
 from tqdm import tqdm
@@ -38,6 +44,8 @@ for char in pbar:
 ``` bash
 Processing c:  50%|█████     | 2/4 [00:02<00:02,  1.00s/it]
 ```
+
+### 手动控制更新
 
 &emsp;&emsp;除了自动的更新方式，还可以手动地控制更新：
 

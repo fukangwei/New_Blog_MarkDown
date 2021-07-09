@@ -332,7 +332,7 @@ os.open(file, flags [, mode])
 `os.O_APPEND`   | 以追加的方式打开   | `os.O_CREAT`    | 创建并打开一个新文件
 `os.O_FSYNC`    | 同步写入          | `os.O_EXCL`     | 如果指定的文件存在，就返回错误
 `os.O_SHLOCK`   | 自动获取共享锁     | `os.O_EXLOCK`   | 自动获取独立锁
-`os.O_NOFOLLOW` | 不追踪软链接       |
+`os.O_NOFOLLOW` | 不追踪软链接
 
 &emsp;&emsp;代码实例：
 

@@ -3,37 +3,11 @@ title: visdom模块
 categories: Python语法
 date: 2019-04-13 15:26:26
 ---
-&emsp;&emsp;`visdom`可以创造、组织和共享多种数据的可视化，包括数值、图像、文本，甚至是视频，支持`PyTorch`、`Torch`及`Numpy`。用户可通过编程组织可视化空间，或通过用户接口为数据打造仪表板，检查实验结果或调试代码。<!--more-->
-&emsp;&emsp;`visdom`中有两个重要概念：
+&emsp;&emsp;`visdom`可以进行多种数据的可视化，包括数值、图像甚至是视频。<!--more-->
+&emsp;&emsp;通过`python -m visdom.server`命令启动`visdom`服务，默认绑定`8097`端口，需要在浏览器上输入`http://localhost:8097`。
+&emsp;&emsp;`visdom`同时支持`PyTorch`的`tensor`和`Numpy`的`ndarray`两种数据结构，但不支持`Python`的`int`、`float`等类型，因此需要将数据转成`ndarray`或`tensor`。
 
-- `env`(环境)：不同环境的可视化结果相互隔离，互不影响。在使用时如果不指定`env`，则默认使用`main`。不同用户、不同程序一般使用不同的`env`。
-- `pane`(窗格)：窗格用于可视化图像、数值或打印文本等，可以拖动、缩放、保存和关闭。一个程序中可使用同一个`env`中的不同`pane`，每个`pane`可视化或记录某一信息。
-
-点击`clear`按钮可以清空当前`env`的所有`pane`，点击`save`按钮可将当前`env`保存成`json`文件，保存路径位于`~/.visdom/`目录下。也可修改`env`的名字后点击`fork`，保存当前`env`的状态至更名后的`env`。
-&emsp;&emsp;`visdom`可以通过命令`pip install visdom`来实现。安装完成后，需要通过`python -m visdom.server`命令启动`visdom`服务，或通过`nohup python -m visdom.server &`命令将服务放至后台运行。`visdom`服务是一个`web server`服务，默认绑定`8097`端口(需要在浏览器上输入`http://localhost:8097`)，客户端与服务器间通过`tornado`进行非阻塞交互。
-&emsp;&emsp;`visdom`的使用有两点需要注意的地方：
-
-- 需手动指定保存`env`，可在`web`界面点击`save`按钮或在程序中调用`save`方法，否则`visdom`服务重启后，`env`等信息会丢失。
-- 客户端与服务器之间的交互采用`tornado`异步框架，可视化操作不会阻塞当前程序，网络异常也不会导致程序退出。
-
-&emsp;&emsp;`visdom`以`Plotly`为基础，支持丰富的可视化操作。`vis = visdom.Visdom(env=u'test1')`，用于构建一个客户端，客户端除指定`env`之外，还可以指定`host`、`port`等参数。`vis`作为一个客户端对象，可以使用常见的画图函数：
-
-- `line`：类似于`Matlab`中的`plot`操作，用于记录某些标量的变化，如损失、准确率等。
-- `image`：可视化图片，可以是输入的图片，也可以是`GAN`生成的图片，还可以是卷积核的信息。
-- `text`：用于记录日志等文字信息，支持`html`格式。
-- `histgram`：可视化分布，主要是查看数据、参数的分布。
-- `scatter`：绘制散点图。
-- `bar`：绘制柱状图。
-- `pie`：绘制饼状图。
-
-&emsp;&emsp;`visdom`同时支持`PyTorch`的`tensor`和`Numpy`的`ndarray`两种数据结构，但不支持`Python`的`int`、`float`等类型，因此每次传入时都需先将数据转成`ndarray`或`tensor`。上述操作的参数一般不同，但有两个参数是绝大多数操作都具备的：
-
-- `win`：用于指定`pane`的名字，如果不指定，`visdom`将自动分配一个新的`pane`。如果两次操作指定的`win`名字一样，新的操作将覆盖当前`pane`的内容，因此建议每次操作都重新指定`win`。
-- `opts`：选项，接收一个字典，常见的`option`包括`title`、`xlabel`、`ylabel`、`width`等，主要用于设置`pane`的显示格式。
-
-&emsp;&emsp;之前提到过，每次操作都会覆盖之前的数值，但往往我们在训练网络的过程中需要不断地更新数值，例如损失值等，这时就需要指定参数`update='append'`来避免覆盖之前的数值。而除了使用`update`参数以外，还可以使用`vis.updateTrace`方法来更新图，但`updateTrace`不仅能在指定`pane`上新增一个和已有数据相互独立的`Trace`，还能像`update='append'`那样在同一条`trace`上追加数据。
-
-### viz.maplotlib(matplotlib显示)
+### viz.maplotlib
 
 &emsp;&emsp;代码如下：
 
@@ -55,7 +29,7 @@ except BaseException as err:
 
 <img src="./visdom模块/1.png" height="238" width="329">
 
-### vis.video(视频)
+### vis.video
 
 &emsp;&emsp;代码如下：
 
@@ -80,7 +54,7 @@ except ImportError:
 
 <img src="./visdom模块/2.png" height="231" width="262">
 
-### vis.image(图片)
+### vis.image
 
 &emsp;&emsp;代码如下：
 
@@ -101,7 +75,7 @@ viz.images(  # 多张图像
 
 <img src="./visdom模块/3.png" height="271" width="404">
 
-### vis.scatter(散点图)
+### vis.scatter
 
 &emsp;&emsp;代码如下：
 
@@ -177,7 +151,7 @@ viz.scatter(
 
 <img src="./visdom模块/6.png" height="272" width="368">
 
-### vis.bar(柱状图)
+### vis.bar
 
 &emsp;&emsp;代码如下：
 
@@ -202,7 +176,7 @@ viz.bar(X=np.random.rand(20, 3), opts=dict(stacked=False, \
 
 <img src="./visdom模块/7.png" height="289" width="944">
 
-### vis.heat/contour/surface(热程图/地理图/表面图)
+### vis.heat/contour/surface
 
 &emsp;&emsp;代码如下：
 
@@ -230,7 +204,7 @@ viz.surf(X=X, opts=dict(colormap='Hot'))  # surface
 
 <img src="./visdom模块/8.png" height="260" width="928">
 
-### viz.boxplot(箱形图)/stem(茎干图)/quiver(箭状图)
+### viz.boxplot/stem/quiver
 
 &emsp;&emsp;代码如下：
 
@@ -264,7 +238,7 @@ viz.quiver(X=U, Y=V, opts=dict(normalize=0.9),)
 
 <img src="./visdom模块/9.png" height="251" width="902">
 
-### viz.text(文字)/pie(饼图)/mesh(网丝图)
+### viz.text/pie/mesh
 
 &emsp;&emsp;代码如下：
 

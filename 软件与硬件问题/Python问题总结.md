@@ -3,75 +3,9 @@ title: Python问题总结
 categories: 软件与硬件问题
 date: 2019-01-10 16:01:38
 ---
-### HTTP Error 403: Forbidden
-
-&emsp;&emsp;`urllib.request.urlopen`经常会被用来打开一个网页的源代码，然后会去分析这个页面源代码。但是对于有的网站使用这种方法时，会抛出`HTTP Error 403: Forbidden`异常。例如执行下面的语句：<!--more-->
-
-``` python
-urllib.request.urlopen("http://blog.csdn.net/eric_sunah/article/details/11099295")
-```
-
-会出现以下异常：
-
-``` python
-"D:\Python\lib\urllib\request.py", in open response = meth(req, response)
-"D:\Python\lib\urllib\request.py", in http_response 'http', request, response, code, msg, hdrs)
-"D:\Python\lib\urllib\request.py", in error return self._call_chain(*args)
-"D:\Python\lib\urllib\request.py", in _call_chain result = func(*args)
-"D:\Python\lib\urllib\request.py", in http_error_default raise HTTPError(req.full_url, code, msg, hdrs, fp)
-urllib.error.HTTPError: HTTP Error 403: Forbidden
-```
-
-&emsp;&emsp;之所以出现上面的异常，是因为如果用`urllib.request.urlopen`方式打开一个`URL`，服务器端只会收到一个单纯的对于该页面访问的请求，但是服务器并不知道发送这个请求使用的浏览器、操作系统、硬件平台等信息，而缺失这些信息的请求往往都是非正常的访问，例如爬虫。有些网站为了防止这种非正常的访问，会验证请求信息中的`UserAgent`(它的信息包括硬件平台、系统软件、应用软件和用户个人偏好)。如果`UserAgent`存在异常或者是不存在，那么这次请求将会被拒绝(例如上面的错误信息所示)，所以可以尝试在请求中加入`UserAgent`的信息。
-&emsp;&emsp;对于`Python 3`来说，在请求中添加`UserAgent`的信息非常简单：
-
-``` python
-# 如果不加上下面的这行，出现会出现“urllib2.HTTPError: HTTP Error 403: Forbidden”错误
-# 主要是由于该网站禁止爬虫导致的，可以在请求加上头信息，伪装成浏览器访问“User-Agent”，
-# 具体的信息可以通过火狐的FireBug插件查询
-headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'}
-req = urllib.request.Request(url=chaper_url, headers=headers)
-urllib.request.urlopen(req).read()
-```
-
-将`urllib.request.urlopen.read`替换成上面的代码后，对于出现问题的页面就可以就正常访问。如果加上这个`UserAgent`还是不行的话，那就换一个`UserAgent`吧。
-
-### serial.serialutil.SerialException: could not open port
-
-&emsp;&emsp;`Question`: I tried to communicate `Python` and `Arduino` with `pyserial` on `Win8`, but it had error like this：
-
-``` python
-Traceback (most recent call last):
-File "C:\Users\Fon\Desktop\x.py", line 7, in <module> ser.open()  # open serial port
-File "C:\Python27\lib\site-packages\serial\serialwin32.py", line 66, \
-in open raise SerialException("could not open port %r: %r" % (self.portstr, ctypes.WinError())) \
-serial.serialutil.SerialException: could not open port 'COM4': \
-WindowsError(2, 'The system cannot find the file specified.')
-```
-
-this is my code：
-
-``` python
-import serial
-
-ser = serial.Serial()
-ser.port = 3  # serial port
-ser.baudrate = 115200  # set baudrate 115200
-ser.timeout = 60  # timeout 60 second
-ser.open()  # open serial port
-
-while True:
-    ser.write('l')  # send '1' to port to get light
-    light = ser.read(4)
-    print "light", light
-```
-
-in this code, I tried to open port `COM4`, I already check this port is available and I already tried another port but it not worked any port. Am I using wrong port? or something?
-&emsp;&emsp;`Answer`: Does the port even exist? Maybe there is something already connected to it. If you ran the program before and the serial port didn't close correctly that old program may still be connected to it. If it doesn't exist then you will have to use a program to create a virtual serial port.
-
 ### TypeError: a bytes-like object is required, not str
 
-&emsp;&emsp;解决方法将字符串通过`encode`方法转换为`bytes`。如果从网络或磁盘上读取了字节流，那么读到的数据就是`bytes`，要把`bytes`变为`str`，就需要用`decode`方法。
+&emsp;&emsp;解决方法将字符串通过`encode`方法转换为`bytes`。如果从网络或磁盘上读取了字节流，那么读到的数据就是`bytes`，要把`bytes`变为`str`，就需要用`decode`方法。<!--more-->
 &emsp;&emsp;有时是在处理文件中发生该错误，例如使用`open`函数打开文本文件时，使用了`rb`属性。解决方法是在`open`函数中使用`r`属性，即文本方式读取，而不是`rb`以二进制文件方式读取。
 
 ### color.cpp:7456: error: (-215) scn == 3 || scn == 4 in function cv::ipp_cvtColor
@@ -94,7 +28,7 @@ while (cap.isOpened()):
 
 ### dict object has no attribute iteritems
 
-&emsp;&emsp;在`Python 3.5`以后，`iteritems`变为`items`。
+&emsp;&emsp;在`Python 3`以后，`iteritems`变为`items`。
 
 ### 使用pickle读取文件提示TypeError或者UnicodeDecodeError
 
@@ -125,7 +59,7 @@ train, test, dicts = pickle.load(open("./dataset/atis.pkl", "rb"), encoding='iso
 train, test, dicts = pickle.load(open("./dataset/atis.pkl", "rb"), encoding='iso-8859-1', errors='ignore')
 ```
 
-如果这些方法还是解决不了，则考虑修改系统的默认文件编码。`Windows`系统修改文件默认编码的方法：在`设置`中输入`Region`，点击`管理语言设置` -> `更改系统区域设置`，勾选`Beta版：使用Unicode UTF-8提供全球语言支持`。
+如果这些方法还是解决不了，则考虑修改系统的默认文件编码。
 
 ### AttributeError: _csv.reader object has no attribute next
 
@@ -232,16 +166,6 @@ sift = cv2.xfeatures2d.SIFT_create()
 ```
 
 同时要注意，安装的`whl`包是`opencv+contrib`。
-
-### Retrying (Retry(total=2, connect=None, read=None, redirect=None))
-
-&emsp;&emsp;通过`pip`安装`scipy`、`scikit-learn`等`python`库时，可能会报出上面的错误，原因是`pip`客户端长时间连接不到`pip`服务器。解决方法是需要将`pip`客户端连接到国内的服务器，以下载`pandas`为例：
-
-``` bash
-pip install pandas --index https://pypi.mirrors.ustc.edu.cn/simple/
-```
-
-注意，`--index`后面也可以换成别的镜像，比如`http://mirrors.sohu.com/python/`。
 
 ### Your CPU supports instructions that this TensorFlow...
 

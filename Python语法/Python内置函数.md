@@ -753,3 +753,13 @@ def func():
 
 func()
 ```
+
+### id
+
+&emsp;&emsp;`id`函数用于获取对象的内存地址：
+
+``` python
+>>> a = 'runoob'
+>>> id(a)
+2434848042264
+```
