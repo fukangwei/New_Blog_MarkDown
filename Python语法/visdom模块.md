@@ -5,7 +5,7 @@ date: 2019-04-13 15:26:26
 ---
 &emsp;&emsp;`visdom`可以进行多种数据的可视化，包括数值、图像甚至是视频。<!--more-->
 &emsp;&emsp;通过`python -m visdom.server`命令启动`visdom`服务，默认绑定`8097`端口，需要在浏览器上输入`http://localhost:8097`。
-&emsp;&emsp;`visdom`同时支持`PyTorch`的`tensor`和`Numpy`的`ndarray`两种数据结构，但不支持`Python`的`int`、`float`等类型，因此需要将数据转成`ndarray`或`tensor`。
+&emsp;&emsp;`visdom`同时支持`PyTorch`的`tensor`、`Numpy`的`ndarray`这两种数据结构，但不支持`int`、`float`等类型，因此需要将数据转换为`ndarray`或`tensor`。
 
 ### viz.maplotlib
 
@@ -27,7 +27,7 @@ except BaseException as err:
     print('Error message: ', err)
 ```
 
-<img src="./visdom模块/1.png" height="238" width="329">
+<img src="./visdom模块/1.png" width=25%>
 
 ### vis.video
 
@@ -52,7 +52,7 @@ except ImportError:
     print('Skipped video example')
 ```
 
-<img src="./visdom模块/2.png" height="231" width="262">
+<img src="./visdom模块/2.png" width=25%>
 
 ### vis.image
 
@@ -73,7 +73,7 @@ viz.images(  # 多张图像
     opts=dict(title='Random images', caption='How random.'))
 ```
 
-<img src="./visdom模块/3.png" height="271" width="404">
+<img src="./visdom模块/3.png" width=30%>
 
 ### vis.scatter
 
@@ -107,7 +107,7 @@ viz.update_window_opts(  # 对窗口进行更新，包括标注、坐标和样�
 )
 ```
 
-<img src="./visdom模块/4.png" height="294" width="392">
+<img src="./visdom模块/4.png" width=30%>
 
 &emsp;&emsp;通过`update='new'`添加新散点：
 
@@ -149,7 +149,7 @@ viz.scatter(
 )
 ```
 
-<img src="./visdom模块/6.png" height="272" width="368">
+<img src="./visdom模块/6.png" width=30%>
 
 ### vis.bar
 
@@ -174,9 +174,9 @@ viz.bar(X=np.random.rand(20, 3), opts=dict(stacked=False, \
         legend=['The Netherlands', 'France', 'United States']))
 ```
 
-<img src="./visdom模块/7.png" height="289" width="944">
+<img src="./visdom模块/7.png" width=70%>
 
-### vis.heat/contour/surface
+### vis.heat/contour/surf
 
 &emsp;&emsp;代码如下：
 
@@ -199,10 +199,10 @@ x = np.tile(np.arange(1, 101), (100, 1))
 y = x.transpose()
 X = np.exp((((x - 50) ** 2) + ((y - 50) ** 2)) / -(20.0 ** 2))
 viz.contour(X=X, opts=dict(colormap='Viridis'))
-viz.surf(X=X, opts=dict(colormap='Hot'))  # surface
+viz.surf(X=X, opts=dict(colormap='Hot'))
 ```
 
-<img src="./visdom模块/8.png" height="260" width="928">
+<img src="./visdom模块/8.png" width=70%>
 
 ### viz.boxplot/stem/quiver
 
@@ -221,7 +221,7 @@ X = np.random.rand(100, 2)
 X[:, 1] += 2
 viz.boxplot(X=X, opts=dict(legend=['Men', 'Women']))
 
-# stemplot
+# stem plot
 Y = np.linspace(0, 2 * math.pi, 70)
 X = np.column_stack((np.sin(Y), np.cos(Y)))
 viz.stem(X=X, Y=Y, opts=dict(legend=['Sine', 'Cosine']))
@@ -236,7 +236,7 @@ V = np.multiply(np.sin(X), Y)
 viz.quiver(X=U, Y=V, opts=dict(normalize=0.9),)
 ```
 
-<img src="./visdom模块/9.png" height="251" width="902">
+<img src="./visdom模块/9.png" width=70%>
 
 ### viz.text/pie/mesh
 
@@ -269,4 +269,4 @@ Y = np.c_[i, j, k]
 viz.mesh(X=X, Y=Y, opts=dict(opacity=0.5))
 ```
 
-<img src="./visdom模块/10.png" height="242" width="762">
+<img src="./visdom模块/10.png" width=70%>

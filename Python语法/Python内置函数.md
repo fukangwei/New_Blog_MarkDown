@@ -191,6 +191,24 @@ zip([iterable, ...])
 [(1, 2, 3), (4, 5, 6)]
 ```
 
+&emsp;&emsp;同时遍历两个或更多的序列时，可以使用`zip`：
+
+``` python
+questions = ['name', 'quest', 'favorite color']
+answers = ['qinshihuang', 'the holy', 'blue']
+
+for q, a in zip(questions, answers):
+    print('what is your %s? it is %s' % (q, a))
+```
+
+执行结果：
+
+``` python
+what is your name? it is qinshihuang
+what is your quest? it is the holy
+what is your favorite color? it is blue
+```
+
 ### sorted
 
 &emsp;&emsp;`sorted`函数对所有可迭代对象进行排序：

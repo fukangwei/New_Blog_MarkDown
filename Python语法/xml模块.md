@@ -3,19 +3,10 @@ title: xml模块
 categories: Python语法
 date: 2019-01-12 14:08:01
 ---
-### 什么是XML？
+### 关于XML
 
-&emsp;&emsp;`XML`指可扩展标记语言(`Extensible Markup Language`)，标准通用标记语言的子集，是一种用于标记电子文件使其具有结构性的标记语言。它被设计用于传输和存储数据。<!--more-->
-&emsp;&emsp;`XML`是一套定义语义标记的规则，这些标记将文档分成许多部件，并对这些部件加以标识。它也是元标记语言，即定义了用于定义其他与特定领域有关的、语义的、结构化的标记语言的句法语言。
-
-### python对XML的解析
-
-&emsp;&emsp;常见的`XML`编程接口有`DOM`和`SAX`，这两种接口处理`XML`文件的方式不同，当然使用场合也不同。`python`有三种方法解析`XML`：`SAX`、`DOM`以及`ElementTree`：
-
-- `SAX(Simple API for XML)`：`python`标准库包含`SAX`解析器，`SAX`用事件驱动模型，通过在解析`XML`的过程中触发一个个的事件，并调用用户定义的回调函数来处理`XML`文件。
-- `DOM(Document Object Model)`：将`XML`数据在内存中解析成一个树，通过对树的操作来操作`XML`。
-
-本章节使用到的`XML`实例文件`movies.xml`内容如下：
+&emsp;&emsp;`XML`是一种标记电子文件，使其具有结构性的标记语言，经常用于传输和存储数据。<!--more-->
+&emsp;&emsp;`movies.xml`如下：
 
 ``` xml
 <collection shelf="New Arrivals">
@@ -53,158 +44,9 @@ date: 2019-01-12 14:08:01
 </collection>
 ```
 
-### python使用SAX解析xml
+### 关于DOM
 
-&emsp;&emsp;`SAX`是一种基于事件驱动的`API`。利用`SAX`解析`XML`文档牵涉到两个部分，即`解析器`和`事件处理器`。
-
-- 解析器负责读取`XML`文档，并向事件处理器发送事件，例如元素开始和元素结束事件。
-- 事件处理器则负责对事件作出相应，对传递的`XML`数据进行处理。
-
-&emsp;&emsp;在`python`中使用`SAX`方式处理`XML`，要先引入`xml.sax`中的`parse`函数，还有`xml.sax.handler`中的`ContentHandler`。
-
-#### ContentHandler类方法介绍
-
-- `characters(content)`方法：调用时机是：从行开始，在遇到标签之前，如果存在字符，`content`的值为这些字符串；从一个标签开始，在遇到下一个标签之前，如果存在字符，`content`的值为这些字符串；从一个标签，在遇到行结束符之前，如果存在字符，`content`的值为这些字符串。标签可以是开始标签，也可以是结束标签。
-- `startDocument`方法：文档启动的时候调用。
-- `endDocument`方法：解析器到达文档结尾时调用。
-- `startElement(name, attrs)`方法：遇到`XML`开始标签时调用，`name`是标签的名字，`attrs`是标签的属性值字典。
-- `endElement(name)`方法：遇到`XML`结束标签时调用。
-
-#### make_parser方法
-
-&emsp;&emsp;以下方法创建一个新的解析器对象并返回：
-
-``` python
-xml.sax.make_parser([parser_list])
-```
-
-参数`parser_list`是可选参数，即解析器列表。
-
-#### parser方法
-
-&emsp;&emsp;以下方法创建一个`SAX`解析器，并解析`xml`文档：
-
-``` python
-xml.sax.parse(xmlfile, contenthandler[, errorhandler])
-```
-
-参数`xmlfile`是`xml`文件名；`contenthandler`必须是一个`ContentHandler`的对象；对于`errorhandler`，如果指定该参数，`errorhandler`必须是一个`SAX ErrorHandler`对象。
-
-#### parseString方法
-
-&emsp;&emsp;`parseString`方法创建一个`XML`解析器，并解析`xml`字符串：
-
-``` python
-xml.sax.parseString(xmlstring, contenthandler[, errorhandler])
-```
-
-参数`xmlstring`是`xml`字符串；`contenthandler`必须是一个`ContentHandler`的对象；对于`errorhandler`，如果指定该参数，`errorhandler`必须是一个`SAX ErrorHandler`对象。
-
-### Python解析XML实例
-
-&emsp;&emsp;代码如下：
-
-``` python
-import xml.sax
-
-class MovieHandler(xml.sax.ContentHandler):
-    def __init__(self):
-        self.CurrentData = ""
-        self.type = ""
-        self.format = ""
-        self.year = ""
-        self.rating = ""
-        self.stars = ""
-        self.description = ""
-
-    def startElement(self, tag, attributes):  # 元素开始调用
-        self.CurrentData = tag
-
-        if tag == "movie":
-            print("*****Movie*****")
-            title = attributes["title"]
-            print("Title:", title)
-
-    def endElement(self, tag):  # 元素结束调用
-        if self.CurrentData == "type":
-            print("Type:", self.type)
-        elif self.CurrentData == "format":
-            print("Format:", self.format)
-        elif self.CurrentData == "year":
-            print("Year:", self.year)
-        elif self.CurrentData == "rating":
-            print("Rating:", self.rating)
-        elif self.CurrentData == "stars":
-            print("Stars:", self.stars)
-        elif self.CurrentData == "description":
-            print("Description:", self.description)
-
-        self.CurrentData = ""
-
-    def characters(self, content):  # 读取字符时调用
-        if self.CurrentData == "type":
-            self.type = content
-        elif self.CurrentData == "format":
-            self.format = content
-        elif self.CurrentData == "year":
-            self.year = content
-        elif self.CurrentData == "rating":
-            self.rating = content
-        elif self.CurrentData == "stars":
-            self.stars = content
-        elif self.CurrentData == "description":
-            self.description = content
-
-if __name__ == "__main__":
-    parser = xml.sax.make_parser()  # 创建一个XMLReader
-    # turn off namepsaces
-    parser.setFeature(xml.sax.handler.feature_namespaces, 0)
-    # 重写ContextHandler
-    Handler = MovieHandler()
-    parser.setContentHandler(Handler)
-    parser.parse("movies.xml")
-```
-
-执行结果：
-
-``` python
-*****Movie*****
-Title: Enemy Behind
-Type: War, Thriller
-Format: DVD
-Year: 2003
-Rating: PG
-Stars: 10
-Description: Talk about a US-Japan war
-*****Movie*****
-Title: Transformers
-Type: Anime, Science Fiction
-Format: DVD
-Year: 1989
-Rating: R
-Stars: 8
-Description: A schientific fiction
-*****Movie*****
-Title: Trigun
-Type: Anime, Action
-Format: DVD
-Rating: PG
-Stars: 10
-Description: Vash the Stampede!
-*****Movie*****
-Title: Ishtar
-Type: Comedy
-Format: VHS
-Rating: PG
-Stars: 2
-Description: Viewable boredom
-```
-
-### 使用xml.dom解析xml
-
-&emsp;&emsp;文件对象模型(`Document Object Model`，即`DOM`)是`W3C`组织推荐的处理可扩展置标语言的标准编程接口。
-&emsp;&emsp;一个`DOM`的解析器在解析一个`XML`文档时，一次性读取整个文档，把文档中所有元素保存在内存中的一个树结构里，之后可以利用`DOM`提供的不同的函数来读取或修改文档的内容和结构，也可以把修改过的内容写入`xml`文件。
-&emsp;&emsp;`python`中用`xml.dom.minidom`来解析`xml`文件：
+&emsp;&emsp;`DOM`是`W3C`组织推荐的处理`XML`的标准编程接口。`DOM`解析`XML`文档的方法如下：
 
 ``` python
 from xml.dom.minidom import parse
