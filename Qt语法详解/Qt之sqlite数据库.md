@@ -4,20 +4,7 @@ categories: Qt语法详解
 date: 2019-02-02 12:45:15
 ---
 &emsp;&emsp;在使用数据库功能时，需要在`.pro`文件中增加语句`QT += sql`，同时在代码中增加头文件`QtSql`。<!--more-->
-&emsp;&emsp;`QtSql`模块提供了与平台以及数据库种类无关的访问`SQL`数据库的接口，这个接口由利用`Qt`的模型视图结构将数据库与用户界面集成的一套类来支持。`QSqlDatabase`对象象征了数据库的关联。`Qt`使用驱动程序与各种数据库的应用编程接口进行通信。`Qt`包括如下驱动程序：
-
-驱动程序    | 数据库
------------|----------
-`QDB2`     | `IBM DB2`
-`QIBASE`   | `Borland InterBase`
-`QMYSQL`   | `MySql`
-`QOCI`     | 甲骨文公司(`Oracle Call Interface`)
-`QODBC`    | `ODBC`(包括微软公司的`QSL`服务)
-`QPSQL`    | `PostgreSQL`
-`QSQLITE`  | `QSLite`第`3`版
-`QSQLITE2` | `QSLite`第`2`版
-`QTDS`     | `Qybase`自适应服务器
-
+&emsp;&emsp;`QtSql`模块提供了与平台以及数据库种类无关的访问`SQL`数据库的接口，这个接口由利用`Qt`的模型视图结构将数据库与用户界面集成的一套类来支持。`QSqlDatabase`对象象征了数据库的关联。`Qt`使用驱动程序与各种数据库的应用编程接口进行通信。
 &emsp;&emsp;由于授权的许可限制，`Qt`的开源版本无法提供所有的驱动程序。当配置`Qt`时，既可以选择`Qt`本身包含的`SQL`驱动程序，也可以以插件的形式建立驱动程序。如下是`Qt`使用`SQLite`的基本操作：
 
 ``` cpp

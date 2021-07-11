@@ -57,7 +57,7 @@ int main ( int argc, char *argv[] ) {
 }
 
 int select_callback ( void *data, int col_count, char **col_values, char **col_Name ) {
-    int i; /* 每条记录回调一次该函数,有多少条就回调多少次 */
+    int i; /* 每条记录回调一次该函数，有多少条就回调多少次 */
 
     for ( i = 0; i < col_count; i++ ) {
         printf ( "%s = %s\n", col_Name[i], col_values[i] == 0 ? "NULL" : col_values[i] );
@@ -100,9 +100,9 @@ void create_table ( char *filename ) {
     char *zErrMsg = 0;
     int rc;
     rc = sqlite3_open ( filename, &db );
-    // rc = sqlite3_open_v2 ( filename, &db, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE, NULL );
+
     if ( rc ) {
-        fprintf ( stderr, "can't open database%s\n", sqlite3_errmsg ( db ) );
+        fprintf ( stderr, "can't open database %s\n", sqlite3_errmsg ( db ) );
         sqlite3_close ( db );
     }
 
