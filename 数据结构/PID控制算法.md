@@ -1,7 +1,7 @@
 ---
 title: PID控制算法
 date: 2021-02-22 21:28:12
-categories: 数据结构和算法
+categories: 数据结构
 mathjax: true
 ---
 ### PID算法原理
@@ -19,9 +19,7 @@ mathjax: true
 &emsp;&emsp;`pid`的控制规律如下：
 
 $$
-\begin{align}
-U(t) = K_{p} (err(t) + \frac{1}{T_{I}} \int err(t) dt + T_{D} \frac{derr(t)}{dt}) \notag
-\end{align}
+U(t) = K_{p} \left (err(t) + \frac{1}{T_{I}} \int err(t) dt + T_{D} \frac{derr(t)}{dt} \right )
 $$
 
 其中$K_{p}$为比例，$T_{I}$为积分时间，$T_{D}$为微分时间。
@@ -45,39 +43,31 @@ $$
 从而形成如下`PID`离散表示形式：
 
 $$
-\begin{align}
-U(k) = K_{p}(err(k) + \frac{T}{T_{I}} \sum err(k) + \frac{T_{D}}{T}(err(k) - err(k - 1))) \notag
-\end{align}
+U(k) = K_{p} \left (err(k) + \frac{T}{T_{I}} \sum err(k) + \frac{T_{D}}{T}(err(k) - err(k - 1)) \right )
 $$
 
 也可以记为：
 
 $$
-\begin{align}
-U(k) = K_{p}err(k) + K_{i} \sum err(k) + K_{d}(err(k) - err(k - 1)) \notag
-\end{align}
+U(k) = K_{p}err(k) + K_{i} \sum err(k) + K_{d}(err(k) - err(k - 1))
 $$
 
 这就是所谓的位置型`PID`算法的离散描述公式。
 &emsp;&emsp;我们知道还有一个增量型`PID`算法，那么接下来推导一下增量型`PID`算法的公式。上面的公式描述了第`k`个采样周期的结果，那么前一时刻也就是第`k - 1`个采样周期可以表示为：
 
 $$
-\begin{align}
-U(k - 1) = K_{p} err(k - 1) + K_{i} \sum err(k - 1) + K_{d}(err(k - 1) - err(k - 2)) \notag
-\end{align}
+U(k - 1) = K_{p} err(k - 1) + K_{i} \sum err(k - 1) + K_{d}(err(k - 1) - err(k - 2))
 $$
 
 那么我们再来说第`K`个采样周期的增量，很显然就是`U(k) - U(k - 1)`，于是得到了增量型`PID`算法的表示公式：
 
 $$
-\begin{align}
-\triangle U(k) = K_{p} (err(k) - err(k - 1)) + K_{i} err(k) + K_{d}(err(k) - 2err(k - 1) + err(k - 2)) \notag
-\end{align}
+\triangle U(k) = K_{p} (err(k) - err(k - 1)) + K_{i} err(k) + K_{d}(err(k) - 2err(k - 1) + err(k - 2))
 $$
 
 所以，增量型`PID`的计算公式为$U(k) = U(k - 1) + \triangle U(k)$。
 
-### 位置型PID算法的C语言实现
+### 位置型PID算法
 
 &emsp;&emsp;这里简单总结一下位置型`PID`实现的伪算法：
 
@@ -162,7 +152,7 @@ int main() {
 }
 ```
 
-### 增量型PID算法的C语言实现
+### 增量型PID算法
 
 &emsp;&emsp;代码如下：
 
@@ -193,7 +183,9 @@ void PID_init() {
 float PID_realize ( float speed ) {
     pid.SetSpeed = speed;
     pid.err = pid.SetSpeed - pid.ActualSpeed;
-    float incrementSpeed = pid.Kp * ( pid.err - pid.err_next ) + pid.Ki * pid.err + pid.Kd * ( pid.err - 2 * pid.err_next + pid.err_last );
+    float incrementSpeed = pid.Kp * ( pid.err - pid.err_next ) + \
+                           pid.Ki * pid.err +                    \
+                           pid.Kd * ( pid.err - 2 * pid.err_next + pid.err_last );
     pid.ActualSpeed += incrementSpeed;
     pid.err_last = pid.err_next;
     pid.err_next = pid.err;

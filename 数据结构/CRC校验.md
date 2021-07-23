@@ -1,7 +1,7 @@
 ---
 title: CRC校验
 date: 2021-06-14 08:53:01
-categories: C语言应用代码
+categories: 数据结构
 ---
 ### CRC16
 
