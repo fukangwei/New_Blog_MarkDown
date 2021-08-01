@@ -5,7 +5,7 @@ date: 2019-03-02 18:52:20
 ---
 ### 拷贝比较
 
-&emsp;&emsp;拷贝有`=`、`copy.copy`和`copy.deepcopy`这`3`种方式：
+&emsp;&emsp;拷贝有`=`、`copy.copy`和`copy.deepcopy`这`3`种方式：<!--more-->
 
 - `b = a`：赋值引用，`a`和`b`都指向同一个对象：
 

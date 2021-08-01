@@ -1,6 +1,6 @@
 ---
 title: STM32中GPIO位输出的方法
-categories: 单片机
+categories: STM32
 date: 2019-01-19 14:53:57
 ---
 ### 端口位设置与清零
