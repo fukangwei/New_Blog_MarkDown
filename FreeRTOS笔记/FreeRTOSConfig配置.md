@@ -47,7 +47,7 @@ categories: FreeRTOS笔记
 
 ### configTICK_RATE_HZ
 
-&emsp;&emsp;用于设置`FreeRTOS`的系统时钟节拍频率。如果将此宏设置为`1000`，则系统时钟每`1ms`发生一次中断。
+&emsp;&emsp;用于设置`FreeRTOS`的系统时钟节拍频率。如果将设置为`1000`，则系统时钟每`1ms`发生一次中断。
 
 ### configUSE_IDLE_HOOK
 
@@ -78,6 +78,10 @@ void vApplicationIdleHook ( void );
 &emsp;&emsp;设置为`1`时，使能软件定时器功能。
 &emsp;&emsp;当宏`configUSE_TIMERS`为`1`时，宏`configTIMER_TASK_PRIORITY`、`configTIMER_QUEUE_LENGTH`和`configTIMER_TASK_STACK_DEPTH`必须被设置。
 
+### configPRIO_BITS
+
+&emsp;&emsp;用来设置`MCU`使用多少位优先级，`STM32`使用的是`4`位，所以设置为`4`。
+
 ### configLIBRARY_LOWEST_INTERRUPT_PRIORITY
 
 &emsp;&emsp;用于设置最低的中断优先级，此处设置为`15`。
@@ -92,5 +96,5 @@ void vApplicationIdleHook ( void );
 
 &emsp;&emsp;此宏是由`configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY`左移`4`位而来的。
 
-- 低于此优先级的中断可以安全地调用 FreeRTOS 的 API 函数。
-- 高于此优先级的中断 FreeRTOS 是不能禁止的，中断服务函数也不能调用 FreeRTOS 的 API 函数
+- 低于此优先级的中断可以安全地调用`FreeRTOS`的`API`函数。
+- 高于此优先级的中断是不能被`FreeRTOS`禁止的，也不能调用`FreeRTOS`的`API`。
