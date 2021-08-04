@@ -78,6 +78,14 @@ void vApplicationIdleHook ( void );
 &emsp;&emsp;设置为`1`时，使能软件定时器功能。
 &emsp;&emsp;当宏`configUSE_TIMERS`为`1`时，宏`configTIMER_TASK_PRIORITY`、`configTIMER_QUEUE_LENGTH`和`configTIMER_TASK_STACK_DEPTH`必须被设置。
 
+### configTIMER_TASK_PRIORITY
+
+&emsp;&emsp;设置软件定时器任务的任务优先级。
+
+### configTIMER_TASK_STACK_DEPTH
+
+&emsp;&emsp;设置定时器任务的任务堆栈大小。
+
 ### configPRIO_BITS
 
 &emsp;&emsp;用来设置`MCU`使用多少位优先级，`STM32`使用的是`4`位，所以设置为`4`。
@@ -98,3 +106,16 @@ void vApplicationIdleHook ( void );
 
 - 低于此优先级的中断可以安全地调用`FreeRTOS`的`API`函数。
 - 高于此优先级的中断是不能被`FreeRTOS`禁止的，也不能调用`FreeRTOS`的`API`。
+
+### configMAX_TASK_NAME_LEN
+
+&emsp;&emsp;设置任务名最大长度。
+
+### configMINIMAL_STACK_SIZE
+
+&emsp;&emsp;设置空闲任务的最小任务堆栈大小，以`字`为单位。
+&emsp;&emsp;如果在`STM32`上设置为`100`，那么真正的堆栈大小是`100 * 4 = 400`字节。
+
+### configUSE_TIME_SLICING
+
+&emsp;&emsp;当`configUSE_TIME_SLICING`定义为`1`时，多个任务可以共用一个任务优先级，数量不限。
