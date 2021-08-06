@@ -5,7 +5,7 @@ categories: FreeRTOS笔记
 ---
 ### 抢占式多任务系统
 
-&emsp;&emsp;`FreeRTOS`是一个抢占式的实时多任务系统，运行过程如下：
+&emsp;&emsp;`FreeRTOS`是一个抢占式的实时多任务系统，运行过程如下：<!--more-->
 
 <img src="./FreeRTOS任务管理/抢占式多任务系统.png" width=50%>
 

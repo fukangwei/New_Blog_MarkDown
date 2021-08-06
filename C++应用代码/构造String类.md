@@ -18,7 +18,7 @@ private:
 };
 ```
 
-代码如下：
+&emsp;&emsp;代码如下：
 
 ``` cpp
 String::String ( const char* str ) { /* 普通构造函数 */
